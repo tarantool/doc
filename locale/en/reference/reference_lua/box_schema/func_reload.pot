@@ -1,0 +1,50 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_schema/func_reload.rst:5
+msgid "box.schema.func.reload()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_reload.rst:11
+msgid "Reload a C module with all its functions without restarting the server."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_reload.rst:13
+msgid "Under the hood, Tarantool loads a new copy of the module (``*.so`` shared library) and starts routing all new request to the new version. The previous version remains active until all started calls are finished. All shared libraries are loaded with ``RTLD_LOCAL`` (see \"man 3 dlopen\"), therefore multiple copies can co-exist without any problems."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_reload.rst:21
+msgid "Reload will fail if a module was loaded from Lua script with `ffi.load() <http://luajit.org/ext_ffi_api.html#ffi_load>`_."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_reload.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_reload.rst:24
+msgid "the name of the module to reload"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_reload.rst:26
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_reload.rst:28
+msgid "-- reload the entire module contents\n"
+"box.schema.func.reload('module')"
+msgstr ""

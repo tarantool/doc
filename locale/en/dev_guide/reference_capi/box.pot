@@ -1,0 +1,334 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/dev_guide/reference_capi/box.rst:3
+msgid "Module box"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:7
+msgid "Opaque structure passed to a C stored procedure"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:13
+msgid "Return a tuple from a C stored procedure."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:15
+msgid "The returned tuple is automatically reference-counted by Tarantool. An example program that uses ``box_return_tuple()`` is :ref:`write.c <f_c_tutorial-write>`."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:19
+#: ../../doc/dev_guide/reference_capi/box.rst:46
+msgid "an opaque structure passed to the C stored procedure by Tarantool"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:21
+msgid "a tuple to return"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+msgid "Returns"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:23
+#: ../../doc/dev_guide/reference_capi/box.rst:51
+msgid "-1 on error (perhaps, out of memory; check :ref:`box_error_last()<c_api-error-box_error_last>`)"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:25
+#: ../../doc/dev_guide/reference_capi/box.rst:53
+#: ../../doc/dev_guide/reference_capi/box.rst:106
+#: ../../doc/dev_guide/reference_capi/box.rst:123
+#: ../../doc/dev_guide/reference_capi/box.rst:139
+#: ../../doc/dev_guide/reference_capi/box.rst:160
+#: ../../doc/dev_guide/reference_capi/box.rst:181
+#: ../../doc/dev_guide/reference_capi/box.rst:204
+msgid "0 otherwise"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:32
+msgid "Return a pointer to a series of bytes in MessagePack format."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:34
+msgid "This can be used instead of :ref:`box_return_tuple() <box-box_return_tuple>` -- it can send the same value, but as MessagePack instead of as a tuple object. It may be simpler than ``box_return_tuple()`` when the result is small, for example a number or a boolean or a short string. It will also be faster than ``box_return_tuple()``, if the result is that users save time by not creating a tuple every time they want to return something from a C function."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:42
+msgid "On the other hand, if an already-existing tuple was obtained from an iterator, then it would be faster to return the tuple via ``box_return_tuple()`` rather than extracting its parts and sending them via ``box_return_mp()``."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:48
+msgid "the first MessagePack byte"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:49
+msgid "after the last MessagePack byte"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:55
+msgid "For example, if ``mp`` is a buffer, and ``mp_end`` is a return value produced by encoding a single MP_UINT scalar value with ``mp_end=mp_encode_uint(mp,1);``, then ``box_return_mp(ctx,mp,mp_end);`` should return ``0``."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:64
+msgid "Find space id by name."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:66
+msgid "This function performs a SELECT request on the ``_vspace`` system space."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:68
+msgid "space name"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:69
+#: ../../doc/dev_guide/reference_capi/box.rst:85
+msgid "length of ``name``"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:71
+#: ../../doc/dev_guide/reference_capi/box.rst:87
+msgid ":c:macro:`BOX_ID_NIL` on error or if not found (check :ref:`box_error_last()<c_api-error-box_error_last>`)"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:73
+#: ../../doc/dev_guide/reference_capi/box.rst:89
+msgid "space_id otherwise"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:75
+msgid "See also: :c:type:`box_index_id_by_name`"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:79
+msgid "Find index id by name."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:81
+msgid "This function performs a SELECT request on the ``_vindex`` system space."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:83
+#: ../../doc/dev_guide/reference_capi/box.rst:99
+#: ../../doc/dev_guide/reference_capi/box.rst:116
+#: ../../doc/dev_guide/reference_capi/box.rst:131
+#: ../../doc/dev_guide/reference_capi/box.rst:147
+#: ../../doc/dev_guide/reference_capi/box.rst:168
+#: ../../doc/dev_guide/reference_capi/box.rst:189
+msgid "space identifier"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:84
+msgid "index name"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:91
+msgid "See also: :c:type:`box_space_id_by_name`"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:97
+msgid "Execute an INSERT/REPLACE request."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:100
+#: ../../doc/dev_guide/reference_capi/box.rst:117
+#: ../../doc/dev_guide/reference_capi/box.rst:170
+msgid "encoded tuple in MsgPack Array format ([ field1, field2, ...])"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:101
+#: ../../doc/dev_guide/reference_capi/box.rst:118
+#: ../../doc/dev_guide/reference_capi/box.rst:171
+msgid "end of a ``tuple``"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:102
+#: ../../doc/dev_guide/reference_capi/box.rst:119
+msgid "output argument. Resulting tuple. Can be set to NULL to discard result"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:105
+#: ../../doc/dev_guide/reference_capi/box.rst:122
+#: ../../doc/dev_guide/reference_capi/box.rst:138
+#: ../../doc/dev_guide/reference_capi/box.rst:159
+#: ../../doc/dev_guide/reference_capi/box.rst:180
+#: ../../doc/dev_guide/reference_capi/box.rst:203
+msgid "-1 on error (check :ref:`box_error_last()<c_api-error-box_error_last>`)"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:108
+msgid "See also :ref:`space_object.insert()<box_space-insert>`"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:114
+msgid "Execute a REPLACE request."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:125
+msgid "See also :ref:`space_object.replace()<box_space-replace>`"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:129
+msgid "Execute a DELETE request."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:132
+#: ../../doc/dev_guide/reference_capi/box.rst:148
+#: ../../doc/dev_guide/reference_capi/box.rst:169
+msgid "index identifier"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:133
+#: ../../doc/dev_guide/reference_capi/box.rst:149
+msgid "encoded key in MsgPack Array format ([ field1, field2, ...])"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:134
+#: ../../doc/dev_guide/reference_capi/box.rst:150
+msgid "end of a ``key``"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:135
+#: ../../doc/dev_guide/reference_capi/box.rst:156
+#: ../../doc/dev_guide/reference_capi/box.rst:177
+msgid "output argument. An old tuple. Can be set to NULL to discard result"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:141
+msgid "See also :ref:`space_object.delete()<box_space-delete>`"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:145
+msgid "Execute an UPDATE request."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:151
+#: ../../doc/dev_guide/reference_capi/box.rst:172
+msgid "encoded operations in MsgPack Array format, e.g. ``[[ '=', field_id,  value ], ['!', 2, 'xxx']]``"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:153
+msgid "end of an ``ops`` section"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:154
+#: ../../doc/dev_guide/reference_capi/box.rst:175
+msgid "0 if field_ids are zero-based as in C, 1 if field ids are 1-based as in Lua"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:162
+msgid "See also :ref:`space_object.update()<box_space-update>`"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:166
+msgid "Execute an UPSERT request."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:174
+msgid "end of a ``ops``"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:183
+msgid "See also :ref:`space_object.upsert()<box_space-upsert>`"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:187
+msgid "Truncate a space."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:195
+msgid "Since version :doc:`2.4.1 </release/2.4.1>`. Push MessagePack data into a session data channel -- socket, console or whatever is behind the session. Behaves just like Lua :doc:`/reference/reference_lua/box_session/push`."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:200
+msgid "begin of MessagePack to push"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:201
+msgid "end of MessagePack to push"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:210
+msgid "Since version :doc:`2.4.1 </release/2.4.1>`. Return the last retrieved value of the specified sequence."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:213
+msgid "sequence identifier"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:214
+msgid "pointer to a variable where the current sequence value will be stored on success."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:217
+msgid "0 on success and -1 otherwise. In case of an error user could get it via ``box_error_last()``."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:224
+msgid "Since version :doc:`2.11.0 </release/2.11.0>`. Return the unique identifier (ID) for the current session."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:227
+msgid "the unique identifier (ID) for the current session"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:228
+msgid "0 or -1 if there is no session"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:230
+msgid "See also :ref:`box.session.id()<box_session-id>`"
+msgstr ""

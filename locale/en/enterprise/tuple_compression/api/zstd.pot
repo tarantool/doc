@@ -1,0 +1,215 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:4
+msgid "Submodule compress.zstd"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:9
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:11
+msgid "The ``compress.zstd`` submodule provides the ability to compress and decompress data using the `zstd <https://en.wikipedia.org/wiki/Zstd>`_ algorithm. You can use the ``zstd`` compressor as follows:"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:14
+msgid "Create a compressor instance using the :ref:`compress.zstd.new() <compress-zstd-new>` function:"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:16
+msgid "local zstd_compressor = require('compress.zstd').new()\n"
+"-- or --\n"
+"local zstd_compressor = require('compress').zstd.new()"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:22
+msgid "Optionally, you can pass compression options (:ref:`zstd_opts <zstd_opts_class>`) specific for ``zstd``:"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:24
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:90
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:152
+msgid "local zstd_compressor = require('compress.zstd').new({\n"
+"    level = 5\n"
+"})\n"
+""
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:28
+msgid "To compress the specified data, use the :ref:`compress() <zstd_compressor-compress>` method:"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:30
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:118
+msgid "compressed_data = zstd_compressor:compress('Hello world!')\n"
+""
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:34
+msgid "To decompress data, call :ref:`decompress() <zstd_compressor-decompress>`:"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:36
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:135
+msgid "decompressed_data = zstd_compressor:decompress(compressed_data)\n"
+""
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:45
+msgid "API Reference"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:55
+msgid "**Functions**"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:58
+msgid ":ref:`compress.zstd.new() <compress-zstd-new>`"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:59
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:81
+msgid "Create a ``zstd`` compressor instance."
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:61
+msgid "**Objects**"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:64
+msgid ":ref:`zstd_compressor <zstd_compressor_class>`"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:65
+msgid "A ``zstd`` compressor instance."
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:67
+msgid ":ref:`zstd_opts <zstd_opts_class>`"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:68
+msgid "Configuration options of the ``zstd`` compressor."
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:75
+msgid "compress.zstd.new()"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:0
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:0
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:83
+msgid "``zstd`` compression options (see :ref:`zstd_opts <zstd_opts_class>`)"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:0
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:0
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:85
+msgid "a new ``zstd`` compressor instance (see :ref:`zstd_compressor <zstd_compressor_class>`)"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:0
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:0
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:86
+msgid "userdata"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:88
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:116
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:133
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:150
+msgid "**Example**"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:98
+msgid "zstd_compressor"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:102
+msgid "A compressor instance that exposes the API for compressing and decompressing data using the ``zstd`` algorithm. To create the ``zstd`` compressor, call :ref:`compress.zstd.new() <compress-zstd-new>`."
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:109
+msgid "Compress the specified data."
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:111
+msgid "data to be compressed"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:113
+msgid "compressed data"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:114
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:131
+msgid "string"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:126
+msgid "Decompress the specified data."
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:128
+msgid "data to be decompressed"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:130
+msgid "decompressed data"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:143
+msgid "zstd_opts"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:147
+msgid "Configuration options of the :ref:`zstd_compressor <zstd_compressor_class>`. These options can be passed to the :ref:`compress.zstd.new() <compress-zstd-new>` function."
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:160
+msgid "Specifies the ``zstd`` compression level that enables you to adjust the compression ratio and speed. The lower level improves the compression speed at the cost of compression ratio. For example, you can use level 1 if speed is most important and level 22 if size is most important."
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:164
+msgid "Default: 3"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:165
+msgid "Minimum: -131072"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:166
+msgid "Maximum: 22"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression/api/zstd.rst:170
+msgid "Assigning 0 to ``level`` resets its value to the default (3)."
+msgstr ""

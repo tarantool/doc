@@ -1,0 +1,253 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/buffer.rst:5
+msgid "Module buffer"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/buffer.rst:7
+msgid "The ``buffer`` module returns a dynamically resizable buffer which is solely for optional use by methods of the :ref:`net.box module <net_box-module>` or the :ref:`msgpack module <msgpack-module>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/buffer.rst:11
+msgid "Ordinarily the ``net.box`` methods return a Lua table. If a ``buffer`` option is used, then the ``net.box`` methods return a :ref:`raw MsgPack string <msgpack-definitions>`. This saves time on the server, if the client application has its own routine for decoding raw MsgPack strings."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/buffer.rst:19
+msgid "The buffer uses four pointers to manage its capacity:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/buffer.rst:21
+msgid "``buf`` -- a pointer to the beginning of the buffer"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/buffer.rst:22
+msgid "``rpos`` -- a pointer to the beginning of the range; available for reading data (\"read position\")"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/buffer.rst:23
+msgid "``wpos`` -- a pointer to the end of the range; available for reading data, and to the beginning of the range for writing new data (\"write position\")"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/buffer.rst:25
+msgid "``epos`` -- a pointer to the end of the range; available for writing new data (\"end position\")"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/buffer.rst:31
+msgid "Create a new buffer."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/buffer.rst:33
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/buffer.rst:35
+msgid "In this example we will show that using buffer allows you to keep the data in the format that you get from the server. So if you get the data only for sending it somewhere else, buffer fastens this a lot."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/buffer.rst:39
+msgid "box.cfg{listen = 3301}\n"
+"buffer = require('buffer')\n"
+"net_box = require('net.box')\n"
+"msgpack = require('msgpack')\n"
+"\n"
+"box.schema.space.create('tester')\n"
+"box.space.tester:create_index('primary')\n"
+"box.space.tester:insert({1, 'ABCDE', 12345})\n"
+"\n"
+"box.schema.user.create('usr1', {password = 'pwd1'})\n"
+"box.schema.user.grant('usr1', 'read,write,execute', 'space', 'tester')\n"
+"\n"
+"ibuf = buffer.ibuf()\n"
+"\n"
+"conn = net_box.connect('usr1:pwd1@localhost:3301')\n"
+"conn.space.tester:select({}, {buffer=ibuf})\n"
+"\n"
+"msgpack.decode_unchecked(ibuf.rpos)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/buffer.rst:60
+#: ../../doc/reference/reference_lua/buffer.rst:228
+msgid "The result of the final request looks like this:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/buffer.rst:62
+#: ../../doc/reference/reference_lua/buffer.rst:196
+msgid "tarantool> msgpack.decode_unchecked(ibuf.rpos)\n"
+"---\n"
+"- {48: [['ABCDE', 12345]]}\n"
+"- 'cdata<char *>: 0x7f97ba10c041'\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/buffer.rst:72
+msgid "Before Tarantool version 1.7.7, the function to use for this case is ``msgpack.ibuf_decode(ibuf.rpos)``. Starting with Tarantool version 1.7.7, ``ibuf_decode`` is deprecated."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/buffer.rst:82
+msgid "Allocate ``size`` bytes for ``buffer_object``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/buffer.rst:0
+#: ../../doc/reference/reference_lua/buffer.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/buffer.rst:84
+msgid "memory in bytes to allocate"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/buffer.rst:0
+#: ../../doc/reference/reference_lua/buffer.rst:0
+#: ../../doc/reference/reference_lua/buffer.rst:0
+#: ../../doc/reference/reference_lua/buffer.rst:0
+#: ../../doc/reference/reference_lua/buffer.rst:0
+#: ../../doc/reference/reference_lua/buffer.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/buffer.rst:85
+msgid "``wpos``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/buffer.rst:92
+msgid "Return the capacity of the ``buffer_object``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/buffer.rst:94
+msgid "``epos - buf``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/buffer.rst:101
+msgid "Check if ``size`` bytes are available for reading in ``buffer_object``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/buffer.rst:103
+msgid "memory in bytes to check"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/buffer.rst:104
+msgid "``rpos``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/buffer.rst:111
+msgid "Return the size of the range occupied by data."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/buffer.rst:113
+msgid "``rpos - buf``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/buffer.rst:120
+msgid "Read ``size`` bytes from buffer."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/buffer.rst:127
+msgid "Clear the memory slots allocated by ``buffer_object``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/buffer.rst:129
+msgid "tarantool> ibuf:recycle()\n"
+"---\n"
+"...\n"
+"tarantool> ibuf.buf, ibuf.rpos, ibuf.wpos, ibuf.epos\n"
+"---\n"
+"- 'cdata<char *>: NULL'\n"
+"- 'cdata<char *>: NULL'\n"
+"- 'cdata<char *>: NULL'\n"
+"- 'cdata<char *>: NULL'\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/buffer.rst:147
+msgid "Clear the memory slots used by ``buffer_object``. This method allows to keep the buffer but remove data from it. It is useful when you want to use the buffer further."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/buffer.rst:151
+msgid "tarantool> ibuf:reset()\n"
+"---\n"
+"...\n"
+"tarantool> ibuf.buf, ibuf.rpos, ibuf.wpos, ibuf.epos\n"
+"---\n"
+"- 'cdata<char *>: 0x010cc28030'\n"
+"- 'cdata<char *>: 0x010cc28030'\n"
+"- 'cdata<char *>: 0x010cc28030'\n"
+"- 'cdata<char *>: 0x010cc2c000'\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/buffer.rst:169
+msgid "Reserve memory for ``buffer_object``. Check if there is enough memory to write ``size`` bytes after ``wpos``. If not, ``epos`` shifts until ``size`` bytes will be available."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/buffer.rst:177
+msgid "Return a range, available for reading data."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/buffer.rst:179
+msgid "``wpos - rpos``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/buffer.rst:186
+msgid "Return a range for writing data."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/buffer.rst:188
+msgid "``epos - wpos``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/buffer.rst:192
+msgid "**Module buffer and skip_header**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/buffer.rst:194
+msgid "The example in the previous section"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/buffer.rst:204
+msgid "showed that, ordinarily, the response from net.box includes a header -- 48 (hexadecimal 30) that is the :ref:`key <internals-unified_packet_structure>` for IPROTO_DATA. But in some situations, for example when passing the buffer to a C function that expects a MsgPack byte array without a header, the header can be skipped. This is done by specifying ``skip_header=true`` as an option to :ref:`conn.space.space-name:select{...} <conn-select>` or :ref:`conn.space.space-name:insert{...} <conn-insert>` or :ref:`conn.space.space-name:replace{...} <conn-replace>` or :ref:`conn.space.space-name:update{...} <conn-update>` or :ref:`conn.space.space-name:upsert{...} <conn-upsert>` or :ref:`conn.space.space-name:delete{...} <conn-delete>`. The default is ``skip_header=false``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/buffer.rst:217
+msgid "Now here is the end of the same example, except that ``skip_header=true`` is used."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/buffer.rst:219
+msgid "ibuf = buffer.ibuf()\n"
+"\n"
+"conn = net_box.connect('usr1:pwd1@localhost:3301')\n"
+"conn.space.tester:select({}, {buffer=ibuf, skip_header=true})\n"
+"\n"
+"msgpack.decode_unchecked(ibuf.rpos)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/buffer.rst:230
+msgid "tarantool> msgpack.decode_unchecked(ibuf.rpos)\n"
+"---\n"
+"- [['ABCDE', 12345]]\n"
+"- 'cdata<char *>: 0x7f8fd102803f'\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/buffer.rst:238
+msgid "Notice that the IPROTO_DATA header (48) is gone."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/buffer.rst:240
+msgid "The result is still inside an array, as is clear from the fact that it is shown inside square brackets. It is possible to skip the array header too, with :ref:`msgpack.decode_array_header() <msgpack-decode_array_header>`."
+msgstr ""

@@ -1,0 +1,90 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_ctl/on_recovery_state.rst:5
+msgid "box.ctl.on_recovery_state()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/on_recovery_state.rst:11
+msgid "**Since:** :doc:`2.11.0 </release/2.11.0>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/on_recovery_state.rst:13
+msgid "Create a :ref:`trigger <triggers>` executed on different stages of a node :ref:`recovery <internals-recovery_process>` or initial configuration. Note that you need to set the ``box.ctl.on_recovery_state`` trigger before the initial :ref:`box.cfg <box_introspection-box_cfg>` call."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/on_recovery_state.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/on_recovery_state.rst:16
+msgid "a trigger function"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/on_recovery_state.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/on_recovery_state.rst:18
+msgid "``nil`` or a function pointer"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/on_recovery_state.rst:20
+msgid "A registered trigger function is run on each of the supported recovery state and receives the state name as a parameter:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/on_recovery_state.rst:23
+msgid "``snapshot_recovered``: the node has recovered the snapshot files."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/on_recovery_state.rst:24
+msgid "``wal_recovered``: the node has recovered the WAL files."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/on_recovery_state.rst:25
+msgid "``indexes_built``: the node has built secondary indexes for memtx spaces. This stage might come before any actual data is recovered. This means that the indexes are available right after the first tuple is recovered."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/on_recovery_state.rst:28
+msgid "``synced``: the node has synced with enough remote peers. This means that the node changes the state from :ref:`orphan <internals-replication-orphan_status>` to ``running``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/on_recovery_state.rst:31
+msgid "All these states are passed during the initial ``box.cfg`` call when recovering from the snapshot and WAL files. Note that the ``synced`` state might be reached after the initial ``box.cfg`` call finishes. For example, if :ref:`replication_sync_timeout <cfg_replication-replication_sync_timeout>` is set to 0, the node finishes ``box.cfg`` without reaching ``synced`` and stays ``orphan``. Once the node is synced with enough remote peers, the ``synced`` state is reached."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/on_recovery_state.rst:40
+msgid "When bootstrapping a fresh cluster with no data, all the instances in this cluster execute triggers on the same stages for consistency. For example, ``snapshot_recovered`` and ``wal_recovered`` run when the node finishes a cluster's bootstrap or finishes joining to an existing cluster."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/on_recovery_state.rst:46
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/on_recovery_state.rst:48
+msgid "The example below shows how to :ref:`log <log-module>` a specified message when each state is reached."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/on_recovery_state.rst:50
+msgid "local log = require('log')\n"
+"local log_recovery_state = function(state)\n"
+"    log.info(state .. ' state reached')\n"
+"end\n"
+"box.ctl.on_recovery_state(log_recovery_state)\n"
+""
+msgstr ""

@@ -1,0 +1,100 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/compat/box_cfg_replication_sync_timeout.rst:4
+msgid "Default value for replication_sync_timeout"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/box_cfg_replication_sync_timeout.rst:6
+msgid "Having a non-zero :ref:`replication_sync_timeout <cfg_replication-replication_sync_timeout>` gives a user the false assumption that the ``box.cfg{replication = ...}`` call returns only when the configured node is synced with all the other nodes. This is mostly true for the big ``replication_sync_timeout`` values, but it is not 100% guaranteed. In other words, a user still has to check if the node is synced, or the sync just timed out. Besides, while ``replication_sync_timeout`` is ticking, you cannot reconfigure ``box`` with another ``box.cfg`` call, which hardens reconfiguration."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/box_cfg_replication_sync_timeout.rst:11
+msgid "It is decided to set the ``replication_sync_timeout`` to zero by default."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/box_cfg_replication_sync_timeout.rst:14
+msgid "Old and new behavior"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/box_cfg_replication_sync_timeout.rst:16
+msgid "The ``compat`` module allows you to choose between"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/box_cfg_replication_sync_timeout.rst:18
+msgid "the old behavior: ``box.cfg.replication_sync_timeout`` is 300 seconds by default"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/box_cfg_replication_sync_timeout.rst:20
+msgid "and the new behavior:``box.cfg.replication_sync_timeout`` is 0 by default."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/box_cfg_replication_sync_timeout.rst:22
+msgid "It is important to set the desired behavior before the initial ``box.cfg{}`` call to take effect for it."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/box_cfg_replication_sync_timeout.rst:24
+msgid "tarantool> compat.box_cfg_replication_sync_timeout = 'new'\n"
+"---\n"
+"...\n"
+"tarantool> box.cfg{}\n"
+"---\n"
+"...\n"
+"tarantool> box.cfg.replication_sync_timeout\n"
+"---\n"
+"- 0\n"
+"...\n"
+"tarantool> compat.box_cfg_replication_sync_timeout = 'old'\n"
+"---\n"
+"- error: 'builtin/box/load_cfg.lua:253: The compat  option ''box_cfg_replication_sync_timeout''\n"
+"    takes effect only before the initial box.cfg() call'\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/box_cfg_replication_sync_timeout.rst:42
+msgid "A fresh Tarantool run:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/box_cfg_replication_sync_timeout.rst:44
+msgid "tarantool> compat.box_cfg_replication_sync_timeout = 'old'\n"
+"---\n"
+"...\n"
+"tarantool> box.cfg{}\n"
+"---\n"
+"...\n"
+"tarantool> box.cfg.replication_sync_timeout\n"
+"---\n"
+"- 300\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/box_cfg_replication_sync_timeout.rst:58
+msgid "Known compatibility issues"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/box_cfg_replication_sync_timeout.rst:60
+msgid "At this point, no incompatible modules are known."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/box_cfg_replication_sync_timeout.rst:63
+msgid "Detecting issues in your codebase"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/box_cfg_replication_sync_timeout.rst:65
+msgid "We expect issues with a user assuming that the node is not in the orphan state (``box.info.status ~= \"orphan\"``) after the ``box.cfg{replication=...}`` call returns. This is not true with the new behaviour. To simulate the old behavior, one may add a ``box.ctl.wait_rw()`` call after the ``box.cfg{}`` call. ``box.ctl.wait_rw()`` returns only when the node becomes writable, and hence is not an orphan."
+msgstr ""

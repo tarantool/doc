@@ -1,0 +1,109 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/tooling/tt_cli/play.rst:4
+msgid "Playing the contents of .snap and .xlog files to a Tarantool instance"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/play.rst:6
+msgid "$ tt play URI FILE ... [OPTION ...]"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/play.rst:10
+msgid "``tt play`` plays the contents of :ref:`snapshot <internals-snapshot>` (``.snap``) and :ref:`WAL <internals-wal>` (``.xlog``) files to another Tarantool instance. A single call of ``tt play`` can play multiple files."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/play.rst:15
+msgid "Options"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/play.rst:19
+msgid "Play operations starting from the given LSN."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/play.rst:23
+msgid "Play operations up to the given LSN. Default: ``18446744073709551615``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/play.rst:27
+msgid "Filter the operations by replica ID. Can be passed more than once."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/play.rst:29
+msgid "When calling ``tt cat`` with filters by LSN (``--from`` and ``--to`` flags) and replica ID (``--replica``), remember that LSNs differ across replicas. Thus, if you pass more than one replica ID via ``--from`` or ``--to``, the result may not reflect the actual sequence of operations."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/play.rst:36
+msgid "Filter the output by space ID. Can be passed more than once."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/play.rst:40
+msgid "Show the operations on system spaces."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/play.rst:43
+msgid "Details"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/play.rst:45
+msgid "``tt play`` plays operations from ``.xlog`` and ``.snap`` files to the destination instance one by one. All data changes happen the same way as if they were performed on this instance. This means that:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/play.rst:49
+msgid "All affected spaces must exist on the destination instance. They must have the same structure and ``space_id`` as on the instance that created the snapshot or WAL file."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/play.rst:52
+msgid "To play a snapshot or a WAL to a clean instance, include the operations on system spaces by adding the ``--show-system`` flag. With this flag, ``tt`` plays the operations that create and configure user-defined spaces."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/play.rst:56
+msgid "The operations' LSNs will change unless you play all operations that took place since the instance startup."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/play.rst:58
+msgid "Replica IDs will change in accordance with the destination instance configuration."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/play.rst:61
+msgid "Examples"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/play.rst:63
+msgid "Play the contents of ``00000000000000000000.xlog`` to the instance on ``192.168.10.10:3301``:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/play.rst:66
+msgid "$ tt play 192.168.10.10:3301 00000000000000000000.xlog"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/play.rst:70
+msgid "Play operations on spaces with ``space_id`` 512 and 513 from the ``00000000000000000012.snap`` snapshot file:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/play.rst:73
+msgid "$ tt play 192.168.10.10:3301 00000000000000000012.snap --space 512 --space 513"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/play.rst:77
+msgid "Play the contents of ``00000000000000000000.xlog`` including operations on system spaces:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/play.rst:79
+msgid "$ tt play 192.168.10.10:3301 00000000000000000000.xlog --show-system"
+msgstr ""

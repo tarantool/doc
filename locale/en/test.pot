@@ -1,0 +1,692 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/test.rst:6
+msgid "Заголовок 1-го уровня"
+msgstr ""
+
+#: ../../doc/test.rst:9
+msgid "Заголовок 2-го уровня"
+msgstr ""
+
+#: ../../doc/test.rst:12
+msgid "Заголовок 3-го уровня"
+msgstr ""
+
+#: ../../doc/test.rst:15
+msgid "Заголовок 4-го уровня"
+msgstr ""
+
+#: ../../doc/test.rst:19
+msgid "Работа с кодом"
+msgstr ""
+
+#: ../../doc/test.rst:22
+#: ../../doc/test.rst:219
+msgid "Внутристрочный код"
+msgstr ""
+
+#: ../../doc/test.rst:24
+msgid "с бэктиками - ``echo \"Hello world!\"``, ``ìd==0``, ``tarantoolsession``"
+msgstr ""
+
+#: ../../doc/test.rst:26
+msgid "с ролью **code** - :code:`echo \"Hello world!\"`, :code:`ìd==0`, :code:`tarantoolsession`."
+msgstr ""
+
+#: ../../doc/test.rst:29
+#: ../../doc/test.rst:223
+#: ../../doc/test.rst:232
+msgid "Блок кода"
+msgstr ""
+
+#: ../../doc/test.rst:31
+#: ../../doc/test.rst:224
+msgid "for page in paged_iter(\"X\", 10) do\n"
+"    print(\"New Page. Number Of Tuples = \" .. #page)\n"
+"    for i=1,#page,1 do print(page[i]) end\n"
+"end"
+msgstr ""
+
+#: ../../doc/test.rst:39
+#: ../../doc/test.rst:233
+msgid "Это блок кода без подсветки."
+msgstr ""
+
+#: ../../doc/test.rst:44
+msgid "Подсветка переменных в коде"
+msgstr ""
+
+#: ../../doc/test.rst:46
+msgid ":samp:`{space_object}:insert(\\\\{ffi.cast('double', {value})\\\\})`"
+msgstr ""
+
+#: ../../doc/test.rst:97
+msgid ":samp:`box.space.{space-name}:create_index('{index-name}')`"
+msgstr ""
+
+#: ../../doc/test.rst:53
+msgid "Директории: :file:`/usr/bin/example.py`"
+msgstr ""
+
+#: ../../doc/test.rst:57
+msgid "Guilabel"
+msgstr ""
+
+#: ../../doc/test.rst:60
+#: ../../doc/test.rst:138
+#: ../../doc/test.rst:188
+msgid "Пример 1"
+msgstr ""
+
+#: ../../doc/test.rst:62
+msgid "Кнопка :guilabel:`Старт`"
+msgstr ""
+
+#: ../../doc/test.rst:65
+msgid "Пример 2 (с &)"
+msgstr ""
+
+#: ../../doc/test.rst:67
+msgid "Кнопка :guilabel:`&Старт`"
+msgstr ""
+
+#: ../../doc/test.rst:71
+msgid "Ссылки"
+msgstr ""
+
+#: ../../doc/test.rst:73
+msgid "Ссылки выглядят `так <https://github.com/tarantool/tarantool/issues>`__."
+msgstr ""
+
+#: ../../doc/test.rst:75
+msgid "Ссылка с ролью **:ref:** :ref:`здесь <page_example>`"
+msgstr ""
+
+#: ../../doc/test.rst:79
+msgid "Работа с терминами"
+msgstr ""
+
+#: ../../doc/test.rst:82
+msgid "слово1"
+msgstr ""
+
+#: ../../doc/test.rst:84
+#: ../../doc/test.rst:87
+msgid "определение"
+msgstr ""
+
+#: ../../doc/test.rst:85
+msgid "термин2"
+msgstr ""
+
+#: ../../doc/test.rst:89
+msgid "Например, это ссылка на определение термина :term:`слово1`. У термина в ссылке может быть :term:`кастомный текст <слово1>`."
+msgstr ""
+
+#: ../../doc/test.rst:92
+msgid "Для акронимов и аббревиатур можно использовать соответствующую роль:"
+msgstr ""
+
+#: ../../doc/test.rst:94
+msgid "Some text here :abbr:`PVC (persistent volume claim)`."
+msgstr ""
+
+#: ../../doc/test.rst:98
+msgid "Адмонишены"
+msgstr ""
+
+#: ../../doc/test.rst:100
+msgid "Заметка (note):"
+msgstr ""
+
+#: ../../doc/test.rst:104
+msgid "Это замечание. Мы используем его, чтобы выделить дополнительную информацию, которая может быть полезна пользователю."
+msgstr ""
+
+#: ../../doc/test.rst:108
+msgid "Предупреждение (warning):"
+msgstr ""
+
+#: ../../doc/test.rst:112
+msgid "Это блок с предупреждением. Используется, чтобы предупредить пользователей о чем-то."
+msgstr ""
+
+#: ../../doc/test.rst:115
+msgid "Блок \"Важно\" (Important):"
+msgstr ""
+
+#: ../../doc/test.rst:119
+msgid "Таким блоком выделяют важную информацию, которую пользователю обязательно нужно увидеть."
+msgstr ""
+
+#: ../../doc/test.rst:123
+msgid "Факт:"
+msgstr ""
+
+#: ../../doc/test.rst:125
+msgid "Факт"
+msgstr ""
+
+#: ../../doc/test.rst:128
+msgid "Это факт. ``fact`` --- это наш кастомный CSS класс. Использовать его стоит, если другие варианты не подходят."
+msgstr ""
+
+#: ../../doc/test.rst:131
+msgid "Этот тип адмонишена требует явно заданного заголовка."
+msgstr ""
+
+#: ../../doc/test.rst:135
+msgid "Отступы и списки"
+msgstr ""
+
+#: ../../doc/test.rst:140
+msgid "Это маркированный список."
+msgstr ""
+
+#: ../../doc/test.rst:141
+msgid "Второй элемент маркированного списка"
+msgstr ""
+
+#: ../../doc/test.rst:143
+msgid "Вложенный список."
+msgstr ""
+
+#: ../../doc/test.rst:144
+msgid "Вложенный список 2."
+msgstr ""
+
+#: ../../doc/test.rst:146
+msgid "Два параграфа в одном элементе списка."
+msgstr ""
+
+#: ../../doc/test.rst:148
+msgid "Продолжается список первого уровня"
+msgstr ""
+
+#: ../../doc/test.rst:152
+#: ../../doc/test.rst:242
+msgid "Пример 2"
+msgstr ""
+
+#: ../../doc/test.rst:154
+msgid "Это нумерованный список."
+msgstr ""
+
+#: ../../doc/test.rst:155
+#: ../../doc/test.rst:158
+#: ../../doc/test.rst:161
+msgid "Второй элемент."
+msgstr ""
+
+#: ../../doc/test.rst:157
+msgid "Вложенный нумерованный список."
+msgstr ""
+
+#: ../../doc/test.rst:160
+msgid "Крайне редко бывает и третий уровень."
+msgstr ""
+
+#: ../../doc/test.rst:164
+#: ../../doc/test.rst:259
+msgid "Пример 3"
+msgstr ""
+
+#: ../../doc/test.rst:166
+msgid "Элемент списка 1. Первый параграф."
+msgstr ""
+
+#: ../../doc/test.rst:169
+msgid "Второй параграф."
+msgstr ""
+
+#: ../../doc/test.rst:171
+#: ../../doc/test.rst:215
+msgid "Элемент списка 2."
+msgstr ""
+
+#: ../../doc/test.rst:173
+#: ../../doc/test.rst:217
+msgid "Вложенный элемент списка."
+msgstr ""
+
+#: ../../doc/test.rst:175
+msgid "# блок кода внутри вложенного списка"
+msgstr ""
+
+#: ../../doc/test.rst:179
+msgid "Еще один вложенный элемент списка."
+msgstr ""
+
+#: ../../doc/test.rst:185
+msgid "Таблицы"
+msgstr ""
+
+#: ../../doc/test.rst:193
+msgid "Тип контента"
+msgstr ""
+
+#: ../../doc/test.rst:194
+msgid "Пример контента"
+msgstr ""
+
+#: ../../doc/test.rst:196
+msgid "Текст"
+msgstr ""
+
+#: ../../doc/test.rst:197
+msgid "Так выглядит в таблице текст в несколько абзацев. Вот один абзац. Здесь должен быть какой-то длинный текст."
+msgstr ""
+
+#: ../../doc/test.rst:200
+msgid "А вот и второй абзац. И здесь должен быть какой-то интересный текст или просто длинный параграф."
+msgstr ""
+
+#: ../../doc/test.rst:203
+msgid "Маркированный список"
+msgstr ""
+
+#: ../../doc/test.rst:204
+msgid "Это маркированный список внутри таблицы."
+msgstr ""
+
+#: ../../doc/test.rst:206
+msgid "Еще один элемент маркированного списка в таблице."
+msgstr ""
+
+#: ../../doc/test.rst:208
+msgid "Третий элемент"
+msgstr ""
+
+#: ../../doc/test.rst:210
+msgid "Списки могут быть вложенными."
+msgstr ""
+
+#: ../../doc/test.rst:212
+msgid "Нумерованный список"
+msgstr ""
+
+#: ../../doc/test.rst:213
+msgid "Элемент списка 1."
+msgstr ""
+
+#: ../../doc/test.rst:220
+msgid "``echo \"Hello world!\"``, ``ìd==0``, ``tarantoolsession``, :code:`echo \"Hello world!\"`"
+msgstr ""
+
+#: ../../doc/test.rst:237
+msgid "Картинка в таблице"
+msgstr ""
+
+#: ../../doc/test.rst:250
+msgid "Name"
+msgstr ""
+
+#: ../../doc/test.rst:251
+msgid "Use"
+msgstr ""
+
+#: ../../doc/test.rst:253
+msgid ":doc:`/index`"
+msgstr ""
+
+#: ../../doc/test.rst:254
+msgid "Link to ``index.rst``"
+msgstr ""
+
+#: ../../doc/test.rst:269
+msgid "SQL type"
+msgstr ""
+
+#: ../../doc/test.rst:269
+msgid "NoSQL type"
+msgstr ""
+
+#: ../../doc/test.rst:269
+msgid "Aliases"
+msgstr ""
+
+#: ../../doc/test.rst:269
+msgid "Minimum"
+msgstr ""
+
+#: ../../doc/test.rst:269
+msgid "Maximum"
+msgstr ""
+
+#: ../../doc/test.rst:271
+msgid "BOOLEAN"
+msgstr ""
+
+#: ../../doc/test.rst:271
+#: ../../doc/test.rst:399
+msgid "boolean"
+msgstr ""
+
+#: ../../doc/test.rst:271
+msgid "BOOL"
+msgstr ""
+
+#: ../../doc/test.rst:271
+#: ../../doc/test.rst:289
+msgid "FALSE"
+msgstr ""
+
+#: ../../doc/test.rst:271
+msgid "TRUE"
+msgstr ""
+
+#: ../../doc/test.rst:273
+msgid "INTEGER"
+msgstr ""
+
+#: ../../doc/test.rst:273
+msgid "integer"
+msgstr ""
+
+#: ../../doc/test.rst:273
+msgid "INT"
+msgstr ""
+
+#: ../../doc/test.rst:273
+msgid "-9223372036854775808"
+msgstr ""
+
+#: ../../doc/test.rst:273
+#: ../../doc/test.rst:275
+msgid "18446744073709551615"
+msgstr ""
+
+#: ../../doc/test.rst:275
+msgid "UNSIGNED"
+msgstr ""
+
+#: ../../doc/test.rst:275
+msgid "unsigned"
+msgstr ""
+
+#: ../../doc/test.rst:275
+#: ../../doc/test.rst:277
+#: ../../doc/test.rst:279
+#: ../../doc/test.rst:284
+#: ../../doc/test.rst:286
+#: ../../doc/test.rst:289
+msgid "(none)"
+msgstr ""
+
+#: ../../doc/test.rst:275
+msgid "0"
+msgstr ""
+
+#: ../../doc/test.rst:277
+msgid "DOUBLE"
+msgstr ""
+
+#: ../../doc/test.rst:277
+msgid "double"
+msgstr ""
+
+#: ../../doc/test.rst:277
+#: ../../doc/test.rst:279
+msgid "-1.79769e308"
+msgstr ""
+
+#: ../../doc/test.rst:277
+#: ../../doc/test.rst:279
+msgid "1.79769e308"
+msgstr ""
+
+#: ../../doc/test.rst:279
+msgid "NUMBER"
+msgstr ""
+
+#: ../../doc/test.rst:279
+msgid "number"
+msgstr ""
+
+#: ../../doc/test.rst:281
+msgid "STRING"
+msgstr ""
+
+#: ../../doc/test.rst:281
+msgid "string"
+msgstr ""
+
+#: ../../doc/test.rst:281
+msgid "TEXT, VARCHAR(n)"
+msgstr ""
+
+#: ../../doc/test.rst:281
+msgid "``''``"
+msgstr ""
+
+#: ../../doc/test.rst:281
+msgid "``'many-characters'``"
+msgstr ""
+
+#: ../../doc/test.rst:284
+msgid "VARBINARY"
+msgstr ""
+
+#: ../../doc/test.rst:284
+msgid "varbinary"
+msgstr ""
+
+#: ../../doc/test.rst:284
+msgid "``X''``"
+msgstr ""
+
+#: ../../doc/test.rst:284
+#: ../../doc/test.rst:289
+msgid "``X'many-hex-digits'``"
+msgstr ""
+
+#: ../../doc/test.rst:286
+msgid "UUID"
+msgstr ""
+
+#: ../../doc/test.rst:286
+msgid "uuid"
+msgstr ""
+
+#: ../../doc/test.rst:286
+msgid "00000000-0000-0000- 0000-000000000000"
+msgstr ""
+
+#: ../../doc/test.rst:286
+msgid "ffffffff-ffff-ffff- dfff-ffffffffffff"
+msgstr ""
+
+#: ../../doc/test.rst:289
+msgid "SCALAR"
+msgstr ""
+
+#: ../../doc/test.rst:289
+msgid "scalar"
+msgstr ""
+
+#: ../../doc/test.rst:293
+msgid "Картинки"
+msgstr ""
+
+#: ../../doc/test.rst:295
+msgid "С директивой **image::**:"
+msgstr ""
+
+#: ../../doc/test.rst:301
+msgid "Еще пример:"
+msgstr ""
+
+#: ../../doc/test.rst:307
+msgid "Через **substitution**:"
+msgstr ""
+
+#: ../../doc/test.rst:309
+msgid "|image definition|"
+msgstr ""
+
+#: ../../doc/test.rst:311
+#: ../../doc/test.rst:311
+msgid "image definition"
+msgstr ""
+
+#: ../../doc/test.rst:313
+msgid "Второй пример определения картинок с помощью **substitution**:"
+msgstr ""
+
+#: ../../doc/test.rst:315
+msgid "Вот первая картинка |cat3|, а вот вторая картинка |cat4|."
+msgstr ""
+
+#: ../../doc/test.rst:317
+#: ../../doc/test.rst:317
+msgid "cat3"
+msgstr ""
+
+#: ../../doc/test.rst:321
+#: ../../doc/test.rst:321
+msgid "cat4"
+msgstr ""
+
+#: ../../doc/test.rst:327
+msgid "Шаблоны"
+msgstr ""
+
+#: ../../doc/test.rst:330
+msgid "Функция"
+msgstr ""
+
+#: ../../doc/test.rst:336
+msgid "Create and start a fiber. The fiber is created and begins to run immediately."
+msgstr ""
+
+#: ../../doc/test.rst:0
+#: ../../doc/test.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/test.rst:338
+msgid "the function to be associated with the fiber"
+msgstr ""
+
+#: ../../doc/test.rst:339
+msgid "what will be passed to function"
+msgstr ""
+
+#: ../../doc/test.rst:0
+#: ../../doc/test.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/test.rst:341
+msgid "created fiber object"
+msgstr ""
+
+#: ../../doc/test.rst:0
+#: ../../doc/test.rst:0
+#: ../../doc/test.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/test.rst:342
+msgid "userdata"
+msgstr ""
+
+#: ../../doc/test.rst:344
+#: ../../doc/test.rst:386
+#: ../../doc/test.rst:401
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/test.rst:346
+msgid "tarantool> fiber = require('fiber')\n"
+"---\n"
+"...\n"
+"tarantool> function function_name()\n"
+"         >   print(\"I'm a fiber\")\n"
+"         > end\n"
+"---\n"
+"...\n"
+"tarantool> fiber_object = fiber.create(function_name); print(\"Fiber started\")\n"
+"I'm a fiber\n"
+"Fiber started\n"
+"---\n"
+"..."
+msgstr ""
+
+#: ../../doc/test.rst:364
+msgid "Описание классов"
+msgstr ""
+
+#: ../../doc/test.rst:370
+msgid "Search for a tuple via the given index."
+msgstr ""
+
+#: ../../doc/test.rst:372
+msgid "an object reference."
+msgstr ""
+
+#: ../../doc/test.rst:373
+msgid "values to be matched against the index key"
+msgstr ""
+
+#: ../../doc/test.rst:375
+msgid "the tuple whose index-key fields are equal to the passed key values"
+msgstr ""
+
+#: ../../doc/test.rst:376
+msgid "tuple"
+msgstr ""
+
+#: ../../doc/test.rst:378
+msgid "**Possible errors:**"
+msgstr ""
+
+#: ../../doc/test.rst:380
+msgid "no such index;"
+msgstr ""
+
+#: ../../doc/test.rst:381
+msgid "wrong type;"
+msgstr ""
+
+#: ../../doc/test.rst:382
+msgid "more than one tuple matches."
+msgstr ""
+
+#: ../../doc/test.rst:384
+msgid "**Complexity factors:** Index size, Index type."
+msgstr ""
+
+#: ../../doc/test.rst:388
+msgid "tarantool> box.space.tester.index.primary:get(2)\n"
+"---\n"
+"- [2, 'Music']\n"
+"..."
+msgstr ""
+
+#: ../../doc/test.rst:397
+msgid "True if the index is unique, false if the index is not unique."
+msgstr ""
+
+#: ../../doc/test.rst:403
+msgid "tarantool> box.space.tester.index.primary.unique\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""

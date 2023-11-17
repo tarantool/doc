@@ -1,0 +1,221 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_schema.rst:5
+msgid "Submodule box.schema"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:9
+msgid "The ``box.schema`` submodule has data-definition functions for spaces, users, roles, function tuples, and sequences."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:12
+msgid "Below is a list of all ``box.schema`` functions."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:23
+msgid "Name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:24
+msgid "Use"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:26
+msgid ":doc:`./box_schema/space_create`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:27
+msgid "Create a space"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:29
+msgid ":doc:`./box_schema/upgrade`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:30
+msgid "Upgrade a database"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:32
+msgid ":doc:`./box_schema/downgrade`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:33
+msgid "Downgrade a database"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:35
+msgid ":doc:`./box_schema/downgrade_issues`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:36
+msgid "List downgrade issues for the specified Tarantool version"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:38
+msgid ":doc:`./box_schema/downgrade_versions`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:39
+msgid "List Tarantool versions available for downgrade"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:41
+msgid ":doc:`./box_schema/user_create`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:42
+msgid "Create a user"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:44
+msgid ":doc:`./box_schema/user_drop`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:45
+msgid "Drop a user"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:47
+msgid ":doc:`./box_schema/user_exists`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:48
+msgid "Check if a user exists"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:50
+msgid ":doc:`./box_schema/user_grant`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:51
+msgid "Grant privileges to a user or a role"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:53
+msgid ":doc:`./box_schema/user_revoke`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:54
+msgid "Revoke privileges from a user or a role"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:56
+msgid ":doc:`./box_schema/user_password`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:57
+msgid "Get a hash of a user's password"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:59
+msgid ":doc:`./box_schema/user_passwd`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:60
+msgid "Associate a password with a user"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:62
+msgid ":doc:`./box_schema/user_info`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:63
+msgid "Get a description of a user's privileges"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:65
+msgid ":doc:`./box_schema/role_create`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:66
+msgid "Create a role"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:68
+msgid ":doc:`./box_schema/role_drop`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:69
+msgid "Drop a role"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:71
+msgid ":doc:`./box_schema/role_exists`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:72
+msgid "Check if a role exists"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:74
+msgid ":doc:`./box_schema/role_grant`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:75
+msgid "Grant privileges to a role"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:77
+msgid ":doc:`./box_schema/role_revoke`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:78
+msgid "Revoke privileges from a role"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:80
+msgid ":doc:`./box_schema/role_info`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:81
+msgid "Get a description of a role's privileges"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:83
+msgid ":doc:`./box_schema/func_create`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:84
+msgid "Create a function tuple"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:86
+msgid ":doc:`./box_schema/func_drop`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:87
+msgid "Drop a function tuple"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:89
+msgid ":doc:`./box_schema/func_exists`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:90
+msgid "Check if a function tuple exists"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:92
+msgid ":doc:`./box_schema/func_reload`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema.rst:93
+msgid "Reload a C module with all its functions, no restart"
+msgstr ""

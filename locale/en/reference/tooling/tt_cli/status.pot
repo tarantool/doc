@@ -1,0 +1,62 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/tooling/tt_cli/status.rst:4
+msgid "Checking instance status"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/status.rst:6
+msgid "$ tt status {INSTANCE | APPLICATION[:APP_INSTANCE]}"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/status.rst:10
+msgid "``tt status`` prints the current status of the specified Tarantool instance or all instances of an application."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/status.rst:14
+msgid "Examples"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/status.rst:17
+msgid "Single instance"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/status.rst:19
+msgid "Check the status of the ``app`` instance:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/status.rst:21
+#: ../../doc/reference/tooling/tt_cli/status.rst:30
+msgid "$ tt status app"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/status.rst:26
+msgid "Multiple instances"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/status.rst:28
+msgid "Check the status of all instances of the ``app`` application:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/status.rst:34
+msgid "Check the status of the ``replica`` instance of the ``app`` application:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/status.rst:36
+msgid "$ tt status app:replica"
+msgstr ""

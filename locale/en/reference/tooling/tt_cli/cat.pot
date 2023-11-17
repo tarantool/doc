@@ -1,0 +1,97 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/tooling/tt_cli/cat.rst:4
+msgid "Printing the contents of .snap and .xlog files"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cat.rst:6
+msgid "$ tt cat FILE ... [OPTION ...]"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cat.rst:10
+msgid "``tt cat`` prints the contents of :ref:`snapshot <internals-snapshot>` (``.snap``) and :ref:`WAL <internals-wal>` (``.xlog``) files to stdout. A single call of ``tt cat`` can print the contents of multiple files."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cat.rst:16
+msgid "Options"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cat.rst:20
+msgid "Output format: ``yaml`` (default), ``json``, or ``lua``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cat.rst:24
+msgid "Show operations starting from the given LSN."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cat.rst:28
+msgid "Show operations up to the given LSN. Default: ``18446744073709551615``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cat.rst:32
+msgid "Filter the output by replica ID. Can be passed more than once."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cat.rst:34
+msgid "When calling ``tt cat`` with filters by LSN (``--from`` and ``--to`` flags) and replica ID (``--replica``), remember that LSNs differ across replicas. Thus, if you pass more than one replica ID via ``--from`` or ``--to``, the result may not reflect the actual sequence of operations."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cat.rst:41
+msgid "Filter the output by space ID. Can be passed more than once."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cat.rst:45
+msgid "Show the contents of system spaces."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cat.rst:48
+msgid "Examples"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cat.rst:50
+msgid "Output contents of ``00000000000000000000.xlog`` WAL file in the YAML format:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cat.rst:52
+msgid "$ tt cat 00000000000000000000.xlog"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cat.rst:56
+msgid "Output operations on spaces with ``space_id`` 512 and 513 from the ``00000000000000000012.snap`` snapshot file in the JSON format:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cat.rst:59
+msgid "$ tt cat 00000000000000000012.snap --space 512 --space 513 --format json"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cat.rst:63
+msgid "Output operations on all spaces, including system spaces, from the ``00000000000000000000.xlog`` WAL file:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cat.rst:66
+msgid "$ tt cat 00000000000000000000.xlog --show-system"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cat.rst:70
+msgid "Output operations with LSNs between 100 and 500 on replica 1 from the ``00000000000000000000.xlog`` WAL file:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/cat.rst:73
+msgid "$ tt cat 00000000000000000000.xlog --from 100 --to 500 --replica 1"
+msgstr ""

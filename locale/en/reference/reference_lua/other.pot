@@ -1,0 +1,296 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/other.rst:3
+msgid "Other package components"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:5
+msgid "All the Tarantool modules are, at some level, inside a package which, appropriately, is named ``package``. There are also miscellaneous functions and variables which are outside all modules."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:15
+msgid "Name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:15
+msgid "Use"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:17
+msgid ":ref:`tonumber64() <other-tonumber64>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:17
+msgid "Convert a string or a Lua number to a 64-bit integer"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:20
+msgid ":ref:`dostring() <other-dostring>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:20
+msgid "Parse and execute an arbitrary chunk of Lua code"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:23
+msgid ":ref:`package.path <other-package_path>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:23
+msgid "Get file paths used to search for Lua modules"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:26
+msgid ":ref:`package.cpath <other-package_cpath>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:26
+msgid "Get file paths used to search for C modules"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:29
+msgid ":ref:`package.loaded <other-package_loaded>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:29
+msgid "Show Lua or C modules loaded by Tarantool"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:32
+msgid ":ref:`package.searchroot <other-package_searchroot>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:32
+msgid "Get the root path for a directory search"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:35
+msgid ":ref:`package.setsearchroot <other-package_setsearchroot>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:35
+msgid "Set the root path for a directory search"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:44
+msgid "Convert a string or a Lua number to a 64-bit integer. The input value can be expressed in decimal, binary (for example 0b1010), or hexadecimal (for example -0xffff). The result can be used in arithmetic, and the arithmetic will be 64-bit integer arithmetic rather than floating-point arithmetic. (Operations on an unconverted Lua number use floating-point arithmetic.) The ``tonumber64()`` function is added by Tarantool; the name is global."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:52
+#: ../../doc/reference/reference_lua/other.rst:108
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:54
+msgid "tarantool> type(123456789012345), type(tonumber64(123456789012345))\n"
+"---\n"
+"- number\n"
+"- number\n"
+"...\n"
+"tarantool> i = tonumber64('1000000000')\n"
+"---\n"
+"...\n"
+"tarantool> type(i), i / 2, i - 2, i * 2, i + 2, i % 2, i ^ 2\n"
+"---\n"
+"- number\n"
+"- 500000000\n"
+"- 999999998\n"
+"- 2000000000\n"
+"- 1000000002\n"
+"- 0\n"
+"- 1000000000000000000\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:75
+msgid "**Warning:** There is an underlying LuaJIT library that operates with C rules. Therefore you should expect odd results if you compare unsigned and signed (for example 0ULL > -1LL is false), or if you use numbers outside the 64-bit integer range (for example 9223372036854775808LL is negative). Also you should be aware that :samp:`type({number-literal-ending-in-ULL})` is cdata, not a Lua arithmetic type, which prevents direct use with some functions in Lua libraries such as `math <https://www.lua.org/manual/5.1/manual.html#5.6>`_. See the `LuaJIT reference <http://luajit.org/ext_ffi_semantics.html>`_ and look for the phrase \"64 bit integer arithmetic\". and the phrase \"64 bit integer comparison\". Or see the comments on `Issue#4089 <https://github.com/tarantool/tarantool/issues/4089>`_."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:95
+msgid "Parse and execute an arbitrary chunk of Lua code. This function is mainly useful to define and run Lua code without having to introduce changes to the global Lua environment."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:0
+#: ../../doc/reference/reference_lua/other.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:99
+msgid "Lua code"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:100
+msgid "zero or more scalar values which will be appended to, or substitute for, items in the Lua chunk."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:103
+msgid "whatever is returned by the Lua code chunk."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:105
+msgid "Possible errors: If there is a compilation error, it is raised as a Lua error."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:110
+msgid "tarantool> dostring('abc')\n"
+"---\n"
+"error: '[string \"abc\"]:1: ''='' expected near ''<eof>'''\n"
+"...\n"
+"tarantool> dostring('return 1')\n"
+"---\n"
+"- 1\n"
+"...\n"
+"tarantool> dostring('return ...', 'hello', 'world')\n"
+"---\n"
+"- hello\n"
+"- world\n"
+"...\n"
+"tarantool> dostring([[\n"
+"         >   local f = function(key)\n"
+"         >     local t = box.space.tester:select{key}\n"
+"         >     if t ~= nil then\n"
+"         >       return t[1]\n"
+"         >     else\n"
+"         >       return nil\n"
+"         >     end\n"
+"         >   end\n"
+"         >   return f(...)]], 1)\n"
+"---\n"
+"- null\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:143
+msgid "Get file paths used to search for Lua :ref:`modules <app_server-modules>`. For example, these paths are used to find modules loaded using the ``require()`` directive."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:146
+#: ../../doc/reference/reference_lua/other.rst:155
+#: ../../doc/reference/reference_lua/other.rst:164
+msgid "See also: :ref:`package.searchroot() <other-package_searchroot>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:152
+msgid "Get file paths used to search for C :ref:`modules <app_server-modules>`. For example, these paths are used to find modules loaded using the ``require()`` directive."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:161
+msgid "Show Lua or C modules loaded by Tarantool, so that their functions and members are available. ``loaded`` shows both pre-loaded modules and modules added using the ``require()`` directive."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:170
+msgid "Return the current search root, which defines the path to the root directory from which dependencies are loaded. By default, the search root is the current directory."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:175
+msgid "The current directory is obtained using :ref:`debug.sourcedir() <debug-sourcedir>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:177
+#: ../../doc/reference/reference_lua/other.rst:225
+msgid "**Example**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:179
+msgid "Suppose the application has the following structure:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:181
+msgid "/home/testuser/myapp\n"
+"├── .rocks/share/tarantool/\n"
+"│   └── foo.lua\n"
+"├── init.lua\n"
+"└── modules\n"
+"    └── bar.lua"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:190
+msgid "In this case, modules are placed in the same directory as the application initialization file. If you :ref:`run the application <app_server-launching_app_binary>` using the ``tarantool`` command from the ``myapp`` directory, ..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:193
+msgid "/home/testuser/myapp$ tarantool init.lua"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:197
+msgid "... the search root is ``/home/testuser/myapp`` and Tarantool finds all modules in this directory automatically. This means that to load the ``foo`` and ``modules.bar`` modules in ``init.lua``, you only need to add the corresponding ``require`` directives:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:200
+#: ../../doc/reference/reference_lua/other.rst:249
+msgid "-- init.lua --\n"
+"require('foo')\n"
+"require('modules.bar')"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:206
+msgid "Starting with :doc:`2.11.0 </release/2.11.0>`, you can also run the application using the ``tarantool`` command from the directory other than ``myapp``:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:208
+msgid "/home/testuser$ tarantool myapp/init.lua"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:212
+msgid "In this case, the path to the initialization file (``/home/testuser/myapp``) is added to search paths for modules."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:214
+msgid "To load modules placed outside of the path to the application directory, use :ref:`package.setsearchroot() <other-package_setsearchroot>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:220
+msgid "Set the search root, which defines the path to the root directory from which dependencies are loaded. By default, the search root is the current directory (see :ref:`package.searchroot() <other-package_searchroot>`)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:223
+msgid "a relative or absolute path to the search root. If ``search-root`` is a relative path, it is expanded to an absolute path. You can omit this argument or set it to :ref:`box.NULL <box-null>` to reset the search root to the current directory."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:227
+msgid "Suppose external modules are stored outside the application directory, for example:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:229
+msgid "/home/testuser/\n"
+"├── myapp\n"
+"│   └── init.lua\n"
+"└── mymodules\n"
+"    ├── .rocks/share/tarantool/\n"
+"    │   └── foo.lua\n"
+"    └── modules\n"
+"        └── bar.lua"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:240
+msgid "In this case, you can specify the ``/home/testuser/mymodules`` path as the search root for modules in the following way:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:242
+msgid "-- init.lua --\n"
+"package.setsearchroot('/home/testuser/mymodules')"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/other.rst:247
+msgid "Then, you can load the ``foo`` and ``bar`` modules using the ``require()`` directive:"
+msgstr ""

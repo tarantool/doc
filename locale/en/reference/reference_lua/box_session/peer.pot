@@ -1,0 +1,45 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_session/peer.rst:6
+msgid "box.session.peer()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/peer.rst:12
+msgid "This function works only if there is a peer, that is, if a connection has been made to a separate Tarantool instance."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/peer.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/peer.rst:15
+msgid "The host address and port of the session peer, for example \"127.0.0.1:55457\". If the session exists but there is no connection to a separate instance, the return is null. The command is executed on the server instance, so the \"local name\" is the server instance's host and port, and the \"peer name\" is the client's host and port."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/peer.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/peer.rst:23
+msgid "string"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/peer.rst:25
+msgid "Possible errors: 'session.peer(): session does not exist'"
+msgstr ""

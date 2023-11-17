@@ -1,0 +1,288 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/release/2.1.2.rst:4
+msgid "Tarantool 2.1.2 and earlier"
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:6
+msgid "Release: https://github.com/tarantool/tarantool/releases"
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:10
+msgid "**Release 2.1.2**"
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:12
+msgid "Release type: stable. Release date: 2019-04-05."
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:14
+msgid "Release: :tarantool-release:`2.1.2.`"
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:16
+msgid "This is the first :ref:`stable <release-policy>` release in the 2.x series."
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:18
+msgid "The goal of this release is to significantly extend SQL support and increase stability."
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:21
+#: ../../doc/release/2.1.2.rst:178
+msgid "Functionality added or changed:"
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:42
+msgid "(SQL) ``box.sql.execute()`` replaced with"
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:24
+msgid ":ref:`box.execute() <box-sql_box_execute>`. It now works just like ``netbox.execute()``: returns result set metadata, row count, etc. E.g.:"
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:28
+msgid "box.execute(\"CREATE TABLE person(id INTEGER PRIMARY KEY, birth_year INT)\")\n"
+"---\n"
+"- row_count: 1\n"
+"...\n"
+"box.execute(\"SELECT birth_year FROM person\")\n"
+"---\n"
+"- metadata:\n"
+"  - name: birth_year\n"
+"    type: INTEGER\n"
+"  rows:\n"
+"  - [1983]\n"
+"  - [1984]\n"
+"..."
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:44
+msgid "(SQL) Type system was :ref:`significantly refactored <sql>`."
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:63
+msgid "(SQL) There are cases in SQL when it is possible to do Tarantool’s"
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:47
+msgid "update operation for UPDATE statement, instead of doing delete + insert. However, there are cases where SQL semantics is too complex. E.g.:"
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:50
+msgid "CREATE TABLE file (id INT PRIMARY KEY, checksum INT);\n"
+"INSERT INTO stock VALUES (1, 3),(2, 4),(3,5);\n"
+"CREATE UNIQUE INDEX i ON file (checksum);\n"
+"SELECT * FROM file;\n"
+"-- [1, 3], [2, 4], [3, 5]\n"
+"UPDATE OR REPLACE file SET checksum = checksum + 1;\n"
+"SELECT * FROM stock;\n"
+"-- [1, 4], [3, 6]"
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:61
+msgid "I.e. [1, 3] tuple is updated as [1, 4] and have replaced tuple [2, 4]. This logic is implemented by preventive tuple deletion from all corresponding indexes in SQL."
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:66
+msgid "(SQL) Now SQL’s integer type is stored as integer in space’s format."
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:66
+msgid "It was stored as scalar before, which made comparisons slow."
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:73
+msgid "(SQL) It is now possible to define a constraint"
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:69
+msgid ":ref:`within column definition <sql_create_table>`. E.g.:"
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:71
+msgid "CREATE TABLE person (id INT PRIMARY KEY, age INT, CHECK (age > 10));"
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:81
+msgid "(SQL) Syntax for the pragma ``pragma index_info`` is now unified with"
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:76
+msgid "``table_info``. E.g. to get information on index ``age_index`` of table ``person`` you can write:"
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:79
+msgid "pragma index_info(person.age_index);"
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:83
+msgid "(Server) It is now possible to index a field specified using JSON. E.g.:"
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:85
+msgid "person = box.schema.create_space(\"person\")\n"
+"name_idx = person:create_index('name', {parts = {{'[2]fname', 'str'}, {'[2]sname', 'str'}}})\n"
+"person:insert({1, {fname='James', sname='Bond'}, {town='London', country='GB', organization='MI6'}})"
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:91
+msgid "(Server) In case of out of space event, Tarantool is now allowed to delete backup WAL files not needed for recovery from the last checkpoint."
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:94
+msgid "(Server) Add support for :ref:`tarantoolctl rocks pack / unpack <tarantoolctl-module_management>` subcommands. The subcommands are used to create / deploy binary rock distributions."
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:97
+msgid "(Server) ``string.rstrip`` and ``string.lstrip`` should accept symbols to strip. Add optional 'chars' parameter for specifying the unwanted characters. E.g.:"
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:100
+msgid "local chars = \"#\\0\"\n"
+"str = \"##Hello world!#\"\n"
+"print(string.strip(str, chars)) -- \"Hello world!\""
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:111
+msgid "(Server) :ref:`on_shutdown <box_ctl-on_shutdown>` trigger added."
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:107
+msgid "It may be set in a way similar to ``space:on_replace`` triggers:"
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:109
+msgid "box.ctl.on_shutdown(new_trigger, old_trigger)"
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:119
+msgid "(Server) :ref:`on_schema_init <box_ctl-on_schema_init>` trigger added."
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:114
+msgid "It may be set before the first call to ``box.cfg()`` and is fired during ``box.cfg()`` before user data recovery start. To set the trigger, say:"
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:117
+msgid "box.ctl.on_schema_init(new_trig, old_trig)"
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:125
+msgid "(Server) A new option for the snapshot daemon,"
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:122
+msgid ":ref:`box.cfg.checkpoint_wal_threshold <cfg_checkpoint_daemon-checkpoint_wal_threshold>`, allows to limit the maximum disk size of maintained WALs. Once the configured threshold is exceeded, the WAL thread notifies the che ckpoint daemon that it's time to make a new checkpoint and delete old WAL files."
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:154
+msgid "(Server) New types of :ref:`privileges <authentication-owners_privileges>` --"
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:128
+msgid "to create, alter and drop space -- were introduced. In order to create, drop or alter space or index, you should have a corresponding privilege. E.g.:"
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:132
+msgid "box.schema.user.create(\"optimizer\", { password  = 'secret' })\n"
+"box.schema.user.grant(\"optimizer\", \"alter\", \"space\")\n"
+"person = box.schema.space.create(\"person\")\n"
+"box.session.su(\"optimizer\")\n"
+"i = s:c reate_index(\"primary\") -- success\n"
+"s:insert{1} -- fail\n"
+"s:select{} -- fail\n"
+"s:drop() -- fail"
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:143
+msgid "Notice the incompatible change: Tarantool 1.10 requires read/write/execute privileges on an object to allow create, drop or alter. These privileges are no longer sufficient in 2.1. To remedy the problem, Tarantool 2.1 automatically grants create/drop/alter privileges on an object if a user has read/write/execute privileges on it during schema upgrade. But old scripts may stop working if read/write/execute is granted **after** schema upgrade."
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:151
+msgid "Additionally, create/drop/alter privileges are already supported in 1.10, which also supports the old semantics of read/write/execute. You are encouraged to grant new privileges in 1.10 before upgrade and modify your scripts."
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:158
+msgid "**Release 2.1.1**"
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:160
+msgid "Release type: beta. Release date: 2018-11-14."
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:162
+msgid "Release: :tarantool-release:`2.1.1.`"
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:164
+msgid "This release resolves all major bugs since 2.0.4 alpha and extends Tarantool's SQL feature set."
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:169
+msgid "**Release 2.0.4**"
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:171
+msgid "Release type: alpha. Release date: 2018-02-15."
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:173
+msgid "Release: :tarantool-release:`2.0.4.`"
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:175
+msgid "This is a successor of the 1.8.x releases. It improves the overall stability of the SQL engine and has some new features."
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:180
+msgid "Added support for SQL collations by incorporating libICU character set and collation library."
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:182
+msgid "IPROTO interface was extended to support SQL queries."
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:183
+msgid "``net.box`` subsystem was extended to support SQL queries."
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:184
+msgid "Enabled ``ANALYZE`` statement to produce correct results, necessary for efficient query plans."
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:186
+msgid "Enabled savepoints functionality. ``SAVEPOINT`` statement works w/o issues."
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:187
+msgid "Enabled ``ALTER TABLE ... RENAME`` statement."
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:188
+msgid "Improved rules for identifier names: now fully consistent with Lua frontend."
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:189
+msgid "Enabled support for triggers; trigger bodies now persist in Tarantool snapshots and survive server restart."
+msgstr ""
+
+#: ../../doc/release/2.1.2.rst:191
+msgid "Significant performance improvements."
+msgstr ""

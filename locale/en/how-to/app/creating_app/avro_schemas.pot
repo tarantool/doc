@@ -1,0 +1,196 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/how-to/app/creating_app/avro_schemas.rst:4
+msgid "Avro schemas"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/avro_schemas.rst:6
+msgid "To store JSON data as tuples, we will apply a savvy practice which reduces data footprint and ensures all stored documents are valid. We will use Tarantool module `avro-schema <https://github.com/tarantool/avro-schema>`_ which checks the schema of a JSON document and converts it to a Tarantool tuple. The tuple will contain only field values, and thus take a lot less space than the original document. In avro-schema terms, converting JSON documents to tuples is \"flattening\", and restoring the original documents is \"unflattening\"."
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/avro_schemas.rst:14
+msgid "First you need to :ref:`install <app_server-installing_module>` the module with ``tt rocks install avro-schema``."
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/avro_schemas.rst:17
+msgid "Further usage is quite straightforward:"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/avro_schemas.rst:19
+msgid "For each entity, we need to define a schema in `Apache Avro schema <https://en.wikipedia.org/wiki/Apache_Avro>`_ syntax, where we list the entity's fields with their names and `Avro data types <http://avro.apache.org/docs/current/spec.html#schema_primitive>`_."
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/avro_schemas.rst:23
+msgid "At initialization, we call ``avro-schema.create()`` that creates objects in memory for all schema entities, and ``compile()`` that generates flatten/unflatten methods for each entity."
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/avro_schemas.rst:26
+msgid "Further on, we just call flatten/unflatten methods for a respective entity on receiving/sending the entity's data."
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/avro_schemas.rst:29
+msgid "Here's what our schema definitions for the player and pokémon entities look like:"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/avro_schemas.rst:31
+msgid "local schema = {\n"
+"    player = {\n"
+"        type=\"record\",\n"
+"        name=\"player_schema\",\n"
+"        fields={\n"
+"            {name=\"id\", type=\"long\"},\n"
+"            {name=\"name\", type=\"string\"},\n"
+"            {\n"
+"                name=\"location\",\n"
+"                type= {\n"
+"                    type=\"record\",\n"
+"                    name=\"player_location\",\n"
+"                    fields={\n"
+"                        {name=\"x\", type=\"double\"},\n"
+"                        {name=\"y\", type=\"double\"}\n"
+"                    }\n"
+"                }\n"
+"            }\n"
+"        }\n"
+"    },\n"
+"    pokemon = {\n"
+"        type=\"record\",\n"
+"        name=\"pokemon_schema\",\n"
+"        fields={\n"
+"            {name=\"id\", type=\"long\"},\n"
+"            {name=\"status\", type=\"string\"},\n"
+"            {name=\"name\", type=\"string\"},\n"
+"            {name=\"chance\", type=\"double\"},\n"
+"            {\n"
+"                name=\"location\",\n"
+"                type= {\n"
+"                    type=\"record\",\n"
+"                    name=\"pokemon_location\",\n"
+"                    fields={\n"
+"                        {name=\"x\", type=\"double\"},\n"
+"                        {name=\"y\", type=\"double\"}\n"
+"                    }\n"
+"                }\n"
+"            }\n"
+"        }\n"
+"    }\n"
+"}"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/avro_schemas.rst:76
+msgid "And here's how we create and compile our entities at initialization:"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/avro_schemas.rst:78
+msgid "-- load avro-schema module with require()\n"
+"local avro = require('avro_schema')\n"
+"\n"
+"-- create models\n"
+"local ok_m, pokemon = avro.create(schema.pokemon)\n"
+"local ok_p, player = avro.create(schema.player)\n"
+"if ok_m and ok_p then\n"
+"    -- compile models\n"
+"    local ok_cm, compiled_pokemon = avro.compile(pokemon)\n"
+"    local ok_cp, compiled_player = avro.compile(player)\n"
+"    if ok_cm and ok_cp then\n"
+"        -- start the game\n"
+"        <...>\n"
+"    else\n"
+"        log.error('Schema compilation failed')\n"
+"    end\n"
+"else\n"
+"    log.info('Schema creation failed')\n"
+"end\n"
+"return false"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/avro_schemas.rst:101
+msgid "As for the map entity, it would be an overkill to introduce a schema for it, because we have only one map in the game, it has very few fields, and -- which is most important -- we use the map only inside our logic, never exposing it to external users."
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/avro_schemas.rst:109
+msgid "Next, we need methods to implement the game logic. To simulate object-oriented programming in our Lua code, let's store all Lua functions and shared variables in a single local variable (let's name it as ``game``). This will allow us to address functions or variables from within our module as ``self.func_name`` or ``self.var_name``. Like this:"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/avro_schemas.rst:115
+msgid "local game = {\n"
+"    -- a local variable\n"
+"    num_players = 0,\n"
+"\n"
+"    -- a method that prints a local variable\n"
+"    hello = function(self)\n"
+"      print('Hello! Your player number is ' .. self.num_players .. '.')\n"
+"    end,\n"
+"\n"
+"    -- a method that calls another method and returns a local variable\n"
+"    sign_in = function(self)\n"
+"      self.num_players = self.num_players + 1\n"
+"      self:hello()\n"
+"      return self.num_players\n"
+"    end\n"
+"}"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/avro_schemas.rst:134
+msgid "In OOP terms, we can now regard local variables inside ``game`` as object fields, and local functions as object methods."
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/avro_schemas.rst:139
+msgid "In this manual, Lua examples use **local** variables. Use **global** variables with caution, since the module’s users may be unaware of them."
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/avro_schemas.rst:142
+msgid "To enable/disable the use of undeclared global variables in your Lua code, use Tarantool's :ref:`strict <strict-module>` module."
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/avro_schemas.rst:145
+msgid "So, our game module will have the following methods:"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/avro_schemas.rst:147
+msgid "``catch()`` to calculate whether the pokémon was caught (besides the coordinates of both the player and pokémon, this method will apply a probability factor, so not every pokémon within the player's reach will be caught);"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/avro_schemas.rst:151
+msgid "``respawn()`` to add missing pokémons to the map, say, every 60 seconds (we assume that a frightened pokémon runs away, so we remove a pokémon from the map on any catch attempt and add it back to the map in a while);"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/avro_schemas.rst:154
+msgid "``notify()`` to log information about caught pokémons (like \"Player 1 caught pokémon A\");"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/avro_schemas.rst:156
+msgid "``start()`` to initialize the game (it will create database spaces, create and compile avro schemas, and launch ``respawn()``)."
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/avro_schemas.rst:159
+msgid "Besides, it would be convenient to have methods for working with Tarantool storage. For example:"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/avro_schemas.rst:162
+msgid "``add_pokemon()`` to add a pokémon to the database, and"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/avro_schemas.rst:163
+msgid "``map()`` to populate the map with all pokémons stored in Tarantool."
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/avro_schemas.rst:165
+msgid "We'll need these two methods primarily when initializing our game, but we can also call them later, for example to test our code."
+msgstr ""

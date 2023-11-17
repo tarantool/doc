@@ -1,0 +1,48 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_schema/upgrade.rst:4
+msgid "box.schema.upgrade()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/upgrade.rst:10
+msgid "If you created a database with an older Tarantool version and have now installed a newer version, make the request ``box.schema.upgrade()``. This updates Tarantool system spaces to match the currently installed version of Tarantool. You can learn about the general upgrade process from the :ref:`Upgrades <admin-upgrades>` topic."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/upgrade.rst:15
+msgid "For example, here is what happens when you run ``box.schema.upgrade()`` with a database created with Tarantool version 1.6.4 to version 1.7.2 (only a small part of the output is shown):"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/upgrade.rst:19
+msgid "tarantool> box.schema.upgrade()\n"
+"alter index primary on _space set options to {\"unique\":true}, parts to [[0,\"unsigned\"]]\n"
+"alter space _schema set options to {}\n"
+"create view _vindex...\n"
+"grant read access to 'public' role for _vindex view\n"
+"set schema version to 1.7.0\n"
+"---\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/upgrade.rst:30
+msgid "You can also put the request ``box.schema.upgrade()`` inside a :doc:`box.once() </reference/reference_lua/box_once>` function in your Tarantool :ref:`initialization file <index-init_label>`. On startup, this will create new system spaces, update data type names (for example, ``num`` -> ``unsigned``, ``str`` -> ``string``) and options in Tarantool system spaces."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/upgrade.rst:36
+msgid "See also: :ref:`box.schema.downgrade() <box_schema-downgrade>`"
+msgstr ""

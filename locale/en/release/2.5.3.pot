@@ -1,0 +1,191 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/release/2.5.3.rst:2
+msgid "Tarantool 2.5.3"
+msgstr ""
+
+#: ../../doc/release/2.5.3.rst:4
+msgid "Release: :tarantool-release:`2.5.3` Date: 2020-12-30 Tag: 2.5.3-0-gf93e480"
+msgstr ""
+
+#: ../../doc/release/2.5.3.rst:8
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/release/2.5.3.rst:10
+msgid "2.5.3 is the second :doc:`stable </release/policy>` version of the 2.5 release series. It introduces one improvement and resolves 19 bugs since 2.5.2."
+msgstr ""
+
+#: ../../doc/release/2.5.3.rst:14
+msgid "The “stable” label means that we have all planned features implemented and we see no high-impact issues. However, if you encounter an issue, feel free to `report it <https://github.com/tarantool/tarantool/issues>`_ on GitHub."
+msgstr ""
+
+#: ../../doc/release/2.5.3.rst:20
+msgid "Compatibility"
+msgstr ""
+
+#: ../../doc/release/2.5.3.rst:22
+msgid "Tarantool 2.x is backward compatible with Tarantool 1.10.x in the binary data layout, client-server protocol, and replication protocol."
+msgstr ""
+
+#: ../../doc/release/2.5.3.rst:25
+msgid "Please `upgrade <https://www.tarantool.io/en/doc/latest/book/admin/upgrades/>`_ using the ``box.schema.upgrade()`` procedure to unlock all the new features of the 2.x series."
+msgstr ""
+
+#: ../../doc/release/2.5.3.rst:31
+msgid "Functionality added or changed"
+msgstr ""
+
+#: ../../doc/release/2.5.3.rst:34
+#: ../../doc/release/2.5.3.rst:82
+msgid "Replication"
+msgstr ""
+
+#: ../../doc/release/2.5.3.rst:36
+msgid "It is now possible to specify synchro quorum as a function of a number ``N`` of registered replicas instead of a ``const`` number, for example:"
+msgstr ""
+
+#: ../../doc/release/2.5.3.rst:40
+msgid "box.cfg{replication_synchro_quorum = \"N/2 + 1\"}"
+msgstr ""
+
+#: ../../doc/release/2.5.3.rst:44
+msgid "Only the non-anonymous bootstrapped replicas amount to ``N``. The expression should respect synchro guarantees: at least 50% of the cluster size + 1. The expression value is re-evaluated automatically inside of Tarantool when new replicas appear or old ones are removed (:tarantool-issue:`5446`)."
+msgstr ""
+
+#: ../../doc/release/2.5.3.rst:51
+#: ../../doc/release/2.5.3.rst:115
+msgid "Lua"
+msgstr ""
+
+#: ../../doc/release/2.5.3.rst:53
+msgid "Show JSON tokens themselves instead of token names ``T_*`` in the JSON decoder error messages (:tarantool-issue:`4339`)."
+msgstr ""
+
+#: ../../doc/release/2.5.3.rst:55
+msgid "Show a decoding context in the JSON decoder error messages (:tarantool-issue:`4339`)."
+msgstr ""
+
+#: ../../doc/release/2.5.3.rst:58
+msgid "Build"
+msgstr ""
+
+#: ../../doc/release/2.5.3.rst:60
+msgid "Deploy packages for Fedora 32 (:tarantool-issue:`4966`)."
+msgstr ""
+
+#: ../../doc/release/2.5.3.rst:61
+msgid "Deploy packages for Debian Bullseye (:tarantool-issue:`5638`)."
+msgstr ""
+
+#: ../../doc/release/2.5.3.rst:64
+msgid "Bugs fixed"
+msgstr ""
+
+#: ../../doc/release/2.5.3.rst:67
+msgid "Core"
+msgstr ""
+
+#: ../../doc/release/2.5.3.rst:69
+msgid "``fiber.cond:wait()`` now correctly throws an error when a fiber is cancelled, instead of ignoring the timeout and returning without any signs of an error (:tarantool-issue:`5013`)."
+msgstr ""
+
+#: ../../doc/release/2.5.3.rst:72
+msgid "Fixed a memory corruption issue, which was most visible on macOS, but could affect any system (:tarantool-issue:`5312`)."
+msgstr ""
+
+#: ../../doc/release/2.5.3.rst:74
+msgid "A dynamic module now gets correctly unloaded from memory in case of an attempt to load a non-existing function from it (:tarantool-issue:`5475`)."
+msgstr ""
+
+#: ../../doc/release/2.5.3.rst:76
+msgid "A ``swim:quit()`` call now can’t result in a crash (:tarantool-issue:`4570`)."
+msgstr ""
+
+#: ../../doc/release/2.5.3.rst:77
+msgid "Snapshot recovery with no JSONPath or multikey indices involved now has normal performance (:tarantool-issue:`4774`)."
+msgstr ""
+
+#: ../../doc/release/2.5.3.rst:84
+msgid "A false-positive “too long WAL write” message no longer appears for synchronous transactions (:tarantool-issue:`5139`)."
+msgstr ""
+
+#: ../../doc/release/2.5.3.rst:86
+msgid "A ``box.ctl.wait_rw()`` call could return when the instance was not in fact writable due to having foreign synchronous transactions. As a result, there was no proper way to wait until the automatically elected leader would become writable. Now ``box.ctl.wait_rw()`` works correctly (:tarantool-issue:`5440`)."
+msgstr ""
+
+#: ../../doc/release/2.5.3.rst:93
+msgid "SQL"
+msgstr ""
+
+#: ../../doc/release/2.5.3.rst:95
+msgid "Data changes in read-only mode are now forbidden (:tarantool-issue:`5231`)."
+msgstr ""
+
+#: ../../doc/release/2.5.3.rst:96
+msgid "Query execution now does not occasionally raise an unrelated error “Space ‘0’ does not exist” (:tarantool-issue:`5592`)."
+msgstr ""
+
+#: ../../doc/release/2.5.3.rst:98
+msgid "Coinciding names of temporary files (used to store data during execution) having two instances running on the same machine no longer cause a segfault (:tarantool-issue:`5537`)."
+msgstr ""
+
+#: ../../doc/release/2.5.3.rst:101
+msgid "The return value of ``ifnull()`` built-in function is now of a correct type."
+msgstr ""
+
+#: ../../doc/release/2.5.3.rst:103
+msgid "SQL calling Lua functions with box calls inside can no longer result in a memory corruption (:tarantool-issue:`5427`)."
+msgstr ""
+
+#: ../../doc/release/2.5.3.rst:107
+msgid "LuaJIT"
+msgstr ""
+
+#: ../../doc/release/2.5.3.rst:109
+msgid "Dispatching ``__call`` metamethod no longer causes address clashing (:tarantool-issue:`4518`, :tarantool-issue:`4649`)."
+msgstr ""
+
+#: ../../doc/release/2.5.3.rst:111
+msgid "Fixed a false positive panic when yielding in debug hook (:tarantool-issue:`5649`)."
+msgstr ""
+
+#: ../../doc/release/2.5.3.rst:117
+msgid "An attempt to use a ``net.box`` connection which is not established yet now results in a correctly reported error (:tarantool-issue:`4787`)."
+msgstr ""
+
+#: ../../doc/release/2.5.3.rst:119
+msgid "Fixed a ``NULL`` dereference on error paths in merger which usually happened on a ‘wrong’ ``key_def`` (:tarantool-issue:`5450`)."
+msgstr ""
+
+#: ../../doc/release/2.5.3.rst:121
+msgid "Calling ``key_def.compare_with_key()`` with an invalid key no longer causes a segfault (:tarantool-issue:`5307`)."
+msgstr ""
+
+#: ../../doc/release/2.5.3.rst:123
+msgid "Fixed a hang which occured when ``tarantool`` ran a user script with the ``-e`` option and this script exited with an error (like with ``tarantool -e 'assert(false)'``) (:tarantool-issue:`4983`)."
+msgstr ""
+
+#: ../../doc/release/2.5.3.rst:128
+msgid "Memtx"
+msgstr ""
+
+#: ../../doc/release/2.5.3.rst:130
+msgid "The ``on_schema_init`` triggers now can’t cause duplicates in primary key (:tarantool-issue:`5304`). As part of the `fix <https://github.com/tarantool/tarantool/commit/019b29f31ad58639966b9e5d894341c2917f1bb1>`_ there is a new function, :ref:`box.ctl.is_recovery_finished() <box_ctl-is_recovery_finished>`."
+msgstr ""

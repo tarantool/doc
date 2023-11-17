@@ -1,0 +1,81 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/intro.rst:3
+msgid "Preface"
+msgstr ""
+
+#: ../../doc/book/intro.rst:5
+msgid "Welcome to Tarantool! This is the User's Guide. We recommend reading it first, and consulting :ref:`Reference <reference>` materials for more detail afterwards, if needed."
+msgstr ""
+
+#: ../../doc/book/intro.rst:11
+msgid "How to read the documentation"
+msgstr ""
+
+#: ../../doc/book/intro.rst:13
+msgid "To get started, you can install and launch Tarantool using :ref:`a Docker container <getting_started-using_docker>`, :ref:`a package manager <getting_started-using_package_manager>`, or the online Tarantool server at http://try.tarantool.org. Either way, as the first tryout, you can follow the introductory exercises from :ref:`Chapter 2 \"Getting started\" <getting_started>`. If you want more hands-on experience, proceed to :ref:`How-to guides <how-to>` after you are through with Chapter 2."
+msgstr ""
+
+#: ../../doc/book/intro.rst:22
+msgid ":ref:`Chapter 3 \"Database\" <database-chapter>` is about using Tarantool as a NoSQL DBMS, whereas :ref:`Chapter 4 \"Application server\" <app_server>` is about using Tarantool as an application server."
+msgstr ""
+
+#: ../../doc/book/intro.rst:26
+msgid ":ref:`Chapter 5 \"Server administration\" <admin>` and :ref:`Chapter 6 \"Replication\" <replication>` are primarily for administrators."
+msgstr ""
+
+#: ../../doc/book/intro.rst:29
+msgid ":ref:`Chapter 7 \"Connectors\" <index-box_connectors>` is strictly for users who are connecting from a different language such as C or Perl or Python — other users will find no immediate need for this chapter."
+msgstr ""
+
+#: ../../doc/book/intro.rst:33
+msgid ":ref:`Chapter 8 \"FAQ\" <faq>` gives answers to some frequently asked questions about Tarantool."
+msgstr ""
+
+#: ../../doc/book/intro.rst:36
+msgid "For experienced users, there are also :ref:`Reference <reference>` materials, a :ref:`Contributor's Guide <contrib_guide>` and an extensive set of comments in the source code."
+msgstr ""
+
+#: ../../doc/book/intro.rst:42
+msgid "Getting in touch with the Tarantool community"
+msgstr ""
+
+#: ../../doc/book/intro.rst:44
+msgid "Please report bugs or make feature requests at http://github.com/tarantool/tarantool/issues."
+msgstr ""
+
+#: ../../doc/book/intro.rst:46
+msgid "You can contact developers directly in `telegram <http://telegram.me/tarantool>`_ or in a Tarantool discussion group (`English <https://groups.google.com/forum/#!forum/tarantool>`_ or `Russian <https://googlegroups.com/group/tarantool-ru>`_)."
+msgstr ""
+
+#: ../../doc/book/intro.rst:53
+msgid "Conventions used in this manual"
+msgstr ""
+
+#: ../../doc/book/intro.rst:55
+msgid "Square brackets [ and ] enclose optional syntax."
+msgstr ""
+
+#: ../../doc/book/intro.rst:57
+msgid "Two dots in a row .. mean the preceding tokens may be repeated."
+msgstr ""
+
+#: ../../doc/book/intro.rst:59
+msgid "A vertical bar | means the preceding and following tokens are mutually exclusive alternatives."
+msgstr ""

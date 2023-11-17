@@ -1,0 +1,908 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/enterprise/changelog.rst:4
+msgid "Changelog"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:7
+msgid "Versioning policy"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:9
+msgid "A Tarantool Enterprise SDK version consists of two parts:"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:11
+msgid "<TARANTOOL_BASE_VERSION>-r<REVISION>"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:16
+msgid "For example: ``2.11.1-0-gc42d9735b-r589``."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:18
+msgid "``TARANTOOL_BASE_VERSION`` is the Community version which the Enterprise version is based on."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:19
+msgid "``REVISION`` is the SDK revision. Besides Tarantool itself, it includes the ``tt`` utility, a set of open and closed source modules, and examples. Learn more from :ref:`Package contents <enterprise-package-contents>`."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:22
+msgid "598"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:24
+msgid "Updated cartridge-cli to `2.12.9 <https://github.com/tarantool/cartridge-cli/releases/tag/2.12.7>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:25
+msgid "Updated tt-ee to `1.3.1 <https://github.com/tarantool/tt-ee/releases/tag/v1.3.1>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:28
+msgid "595"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:30
+msgid "Updated tt-ee to `1.3.0 <https://github.com/tarantool/tt-ee/releases/tag/v1.3.0>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:31
+msgid "Updated cartridge to `2.8.3 <https://github.com/tarantool/cartridge/releases/tag/2.8.3>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:32
+msgid "Updated cartridge-cli-extensions to `1.1.2 <https://github.com/tarantool/cartridge-cli-extensions/releases/tag/1.1.2>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:33
+msgid "Updated crud to `1.3.0 <https://github.com/tarantool/crud/releases/tag/1.3.0>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:34
+msgid "Updated queue to `1.3.3 <https://github.com/tarantool/queue/releases/tag/1.3.3>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:35
+msgid "Updated sharded-queue to `0.1.1 <https://github.com/tarantool/sharded-queue/releases/tag/0.1.1>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:36
+msgid "Updated membership to `2.4.1 <https://github.com/tarantool/membership/releases/tag/2.4.1>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:37
+msgid "Added tests for Astra Linux 1.7."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:41
+msgid "589"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:43
+msgid "Updated ``tarantool-2.10`` to 2.10.8."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:44
+msgid "Updated ``tarantool-master`` to 3.0.0-alpha3."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:45
+msgid "Updated migrations to `0.6.0 <https://github.com/tarantool/migrations/releases/tag/0.6.0>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:46
+msgid "Updated tt-ee to `1.2.0 <https://github.com/tarantool/tt-ee/releases/tag/v1.2.0>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:47
+msgid "Updated space-explorer to `1.1.8 <https://github.com/tarantool/space-explorer/releases/tag/1.1.8>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:48
+msgid "Updated cartridge-metrics-role to `0.1.1 <https://github.com/tarantool/cartridge-metrics-role/releases/tag/0.1.1>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:49
+msgid "Updated cartridge to `2.8.2 <https://github.com/tarantool/cartridge/releases/tag/2.8.2>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:50
+msgid "Updated expirationd to `1.5.0 <https://github.com/tarantool/expirationd/releases/tag/1.5.0>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:51
+msgid "Added sideservice `0.1.0 <https://github.com/tarantool/sideservice/releases/tag/0.1.0>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:54
+msgid "579"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:56
+msgid "Updated cartridge-cli to `2.12.7 <https://github.com/tarantool/cartridge-cli/releases/tag/2.12.7>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:57
+msgid "Updated ``tarantool-2.11`` to 2.11.1."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:60
+msgid "577"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:62
+msgid "Added crud `1.2.0 <https://github.com/tarantool/crud/releases/tag/1.2.0>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:63
+msgid "Added ddl `1.6.3 <https://github.com/tarantool/ddl/releases/tag/1.6.3>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:64
+msgid "Added sharded-queue `0.1.0 <https://github.com/tarantool/sharded-queue/releases/tag/0.1.0>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:65
+msgid "Added ddl `1.6.4 <https://github.com/tarantool/ddl/releases/tag/1.6.4>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:66
+msgid "Updated tt-ee to `1.1.2 <https://github.com/tarantool/tt-ee/releases/tag/v1.1.2>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:67
+msgid "Updated cartridge-cli to `2.12.6 <https://github.com/tarantool/cartridge-cli/releases/tag/2.12.6>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:70
+msgid "563"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:72
+msgid "Updated ``tarantool-2.10`` to 2.10.7."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:73
+msgid "Updated ``tarantool-2.11`` to 2.11.0."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:74
+msgid "Added kafka `1.6.6 <https://github.com/tarantool/kafka/releases/tag/1.6.6>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:75
+msgid "Added vshard `0.1.24 <https://github.com/tarantool/vshard/releases/tag/0.1.24>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:76
+msgid "Added metrics `1.0.0 <https://github.com/tarantool/metrics/releases/tag/1.0.0>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:77
+msgid "Added cartridge-metrics-role `0.1.0 <https://github.com/tarantool/cartridge-metrics-role/releases/tag/0.1.0>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:78
+msgid "Added cartridge `2.8.0 <https://github.com/tarantool/cartridge/releases/tag/2.8.0>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:79
+msgid "Added http `1.5.0 <https://github.com/tarantool/http/releases/tag/1.5.0>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:82
+msgid "557"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:84
+msgid "Added checks `3.3.0 <https://github.com/tarantool/checks/releases/tag/3.3.0>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:85
+msgid "Updated cartridge-cli to `2.12.5 <https://github.com/tarantool/cartridge-cli/releases/tag/2.12.5>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:88
+msgid "553"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:90
+msgid "Added ``tt-ee`` and ``tt`` environment configuration."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:91
+msgid "Added crud `1.1.1 <https://github.com/tarantool/crud/releases/tag/1.1.1>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:92
+msgid "Added avro-schema `3.1.1 <https://github.com/tarantool/avro-schema/releases/tag/3.1.0>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:93
+msgid "Added expirationd `1.4.0 <https://github.com/tarantool/expirationd/releases/tag/1.4.0>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:94
+msgid "Added graphql `0.3.0 <https://github.com/tarantool/graphql/releases/tag/0.3.0>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:95
+msgid "Added graphqlapi `0.0.10 <https://github.com/tarantool/graphqlapi/releases/tag/0.0.10>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:96
+msgid "Added metrics `0.17.0 <https://github.com/tarantool/metrics/releases/tag/0.17.0>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:97
+msgid "Added migrations `0.5.0 <https://github.com/tarantool/migrations/releases/tag/0.5.0>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:98
+msgid "Added oracle `1.4.0 <https://github.com/tarantool/oracle/releases/tag/1.4.0>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:99
+msgid "Added cartridge `2.7.9 <https://github.com/tarantool/cartridge/releases/tag/2.7.9>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:100
+msgid "Added vshard `0.1.23 <https://github.com/tarantool/vshard/releases/tag/0.1.23>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:101
+msgid "Added kafka `1.6.5 <https://github.com/tarantool/kafka/releases/tag/1.6.5>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:104
+msgid "549"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:106
+msgid "Updated ``tarantool-2.10`` to 2.10.6."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:109
+msgid "545"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:111
+msgid "Updated ``tarantool-2.11`` to 2.11.0-rc2."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:114
+msgid "543"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:116
+msgid "Added the ``tarantool-2.11`` submodule."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:119
+msgid "542"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:121
+msgid "Updated ``tarantool-1.10`` to 1.10.15."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:124
+msgid "541"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:126
+msgid "Updated ``tarantool-master`` to ``3.0.0-entrypoint``."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:129
+msgid "540"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:131
+msgid "Updated ``tarantool-2.10`` to 2.10.5."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:134
+msgid "539"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:136
+msgid "Added vshard `0.1.22 <https://github.com/tarantool/vshard/releases/tag/0.1.22>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:139
+msgid "538"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:141
+msgid "Updated ``tarantool-2.8`` to apply 2 hotfixes."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:144
+msgid "537"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:146
+msgid "Fix non-interactive installation of the ``brew`` package."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:148
+msgid "Changed the owner of the ``/usr/local/bin`` directory."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:150
+msgid "Installed ``awscli@1`` instead of ``awscli`` since it takes much less time."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:154
+msgid "536"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:156
+msgid "Added the missing property ``2.10`` for scope ``CACHE`` in CMakeLists.txt."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:159
+msgid "535"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:161
+msgid "Added expirationd `1.3.1 <https://github.com/tarantool/expirationd/releases/tag/1.3.1>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:164
+msgid "534"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:166
+msgid "Added crud `1.0.0 <https://github.com/tarantool/crud/releases/tag/1.0.0>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:169
+msgid "533"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:171
+msgid "Use runners with label ``regular`` for builds and the tagged release workflow."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:175
+msgid "532"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:177
+msgid "Added http `1.4.0 <https://github.com/tarantool/http/releases/tag/1.4.0>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:178
+msgid "Added space-explorer `1.1.7 <https://github.com/tarantool/space-explorer/releases/tag/1.1.7>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:179
+msgid "Added checks `3.2.0 <https://github.com/tarantool/checks/releases/tag/3.2.0>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:180
+msgid "Added metrics `0.16.0 <https://github.com/tarantool/metrics/releases/tag/0.16.0>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:181
+msgid "Added cartridge `2.7.8 <https://github.com/tarantool/cartridge/releases/tag/2.7.8>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:184
+msgid "531"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:186
+msgid "Added the ``-DENABLE_LTO=ON``  flag for tarantool-ee@master branch to CMakeLists.txt"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:190
+msgid "530"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:192
+msgid "Upgraded devtoolset from 8 to 9. It was required for upgrading ld from 2.30 to 2.31+ for LTO."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:197
+msgid "529"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:199
+msgid "Updated tarantool’s master branch to a recent revision."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:202
+msgid "528"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:204
+msgid "Fixed code style in the Linux and macOS workflows."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:207
+msgid "527"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:209
+msgid "Reliably install packages in macOS builds."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:212
+msgid "526"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:214
+msgid "Refactored the way that GC64 builds are defined in the build workflow. There are no changes to the composition of resulting bundles."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:218
+msgid "525"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:220
+msgid "Added alerting failures in builds on stable branches and integration testing to VK Teams chats."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:224
+msgid "524"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:226
+msgid "Updated to fresh tarantool master (``2.11.0-entrypoint-107-ga18449d``)"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:229
+msgid "523"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:231
+msgid "Added cartridge `2.7.7 <https://github.com/tarantool/cartridge/releases/tag/2.7.7>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:234
+msgid "522"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:236
+msgid "Outdated workflow runs are now canceled to save CI time."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:239
+msgid "521"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:241
+msgid "Added crud `0.14.1 <https://github.com/tarantool/crud/releases/tag/0.14.1>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:242
+msgid "Added expirationd `1.3.0 <https://github.com/tarantool/expirationd/releases/tag/1.3.0>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:243
+msgid "Added metrics `0.15.1 <https://github.com/tarantool/metrics/releases/tag/0.15.1>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:244
+msgid "Added queue `1.2.2 <https://github.com/tarantool/queue/releases/tag/1.2.2>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:247
+msgid "520"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:249
+msgid "Release SDK by tags:"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:251
+msgid "Run workflow in SDK docker container."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:252
+msgid "Upload SDK files for 1.10, 2.8, 2.10 versions to release folder."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:253
+msgid "Add consistency check for all versions."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:256
+msgid "519"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:258
+msgid "On feature branches, SDK is now rebuilt only on relevant changes."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:261
+msgid "r518"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:263
+msgid "Added frontend core `8.2.1 <https://github.com/tarantool/frontend-core/releases/tag/8.2.1>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:264
+msgid "Added vshard `0.1.21 <https://github.com/tarantool/vshard/releases/tag/0.1.21>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:265
+msgid "Added http `1.3.0 <https://github.com/tarantool/http/releases/tag/1.3.0>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:266
+msgid "Added cartridge `2.7.6 <https://github.com/tarantool/cartridge/releases/tag/2.7.6>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:269
+msgid "r517"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:271
+msgid "Updated Tarantool EE to `2.10.4 <https://github.com/tarantool/tarantool-ee/releases/tag/2.10.4>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:274
+msgid "r516"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:276
+msgid "Updated bundled OpenSSL to version 1.1.1q."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:279
+msgid "r515"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:281
+msgid "Removed support of Tarantool 2.7."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:282
+msgid "Started using ``tarantool/actions/prepare-checkout`` to make builds more stable."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:285
+msgid "r514"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:287
+msgid "Remove the local registry and setup using GitHub registry."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:288
+msgid "Sync rocks cache to s3 and back."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:289
+msgid "Setup using shared runners."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:290
+msgid "Refactor and format ``ci-linux.yml`` and ``ci-macos.yml``."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:293
+msgid "r513"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:295
+msgid "Removed kafka 1.5.0 due to a build issue with Tarantool 2.10.3 and higher."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:296
+msgid "Updated kafka to version `1.6.2 <https://github.com/tarantool/kafka/releases/tag/1.6.2>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:299
+msgid "r512"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:301
+msgid "Updated tuple-keydef to version `0.0.3 <https://github.com/tarantool/tuple-keydef/releases/tag/0.0.3>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:304
+msgid "r511"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:306
+msgid "Enabled parallel build of rocks for macOS in CI."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:309
+msgid "r510"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:311
+msgid "Updated Tarantool to :doc:`2.10.3 </release/2.10.3>`."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:312
+msgid "Added a readable error for the case when the flight recoder fails to write data due to insufficient free space on the disk device. Previously, it was sending a `SIGBUS` error (:tarantool-ee-issue:`196`)."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:315
+msgid "Fixed a crash in the flight recorder caused by non-thread-safe log recording from multiple threads (:tarantool-ee-issue:`226`)."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:319
+msgid "r502"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:321
+msgid "Updated Tarantool to :doc:`2.10.2 </release/2.10.2>`."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:322
+msgid "Increased resolution of stored entries in flight recorder (:tarantool-ee-issue:`193`)."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:323
+msgid "Fixed a bug in the flight recorder that resulted in skipping log entries in case ``box.cfg.log_level`` is less than ``flightrec_log_level`` (:tarantool-ee-issue:`201`)."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:327
+msgid "r498"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:329
+msgid "Updated Tarantool to :doc:`2.10.1 </release/2.10.1>`."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:330
+msgid "Updated Cyrus SASL to version 2.1.28."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:331
+msgid "Updated OpenLDAP to version 2.5.13."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:332
+msgid "Updated LZ4 to version 1.9.3. Fixed `CVE-2021-3520 <https://github.com/advisories/GHSA-gmc7-pqv9-966m>`__."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:333
+msgid "Fixed replication reconnect failure after disabling SSL encryption (:tarantool-ee-issue:`137`)."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:334
+msgid "Fixed a crash that occurred while tyring to start an instance that has a compressed memtx space (:tarantool-ee-issue:`171`)."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:336
+msgid "Fixed `CVE-2022-29242 <https://www.cve.org/CVERecord?id=CVE-2022-29242>`__ in GOST SSL engine."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:337
+msgid "Fixed a bug in the flight recorder reader implementation that resulted in a hang or error while trying to open an empty section (:tarantool-ee-issue:`187`)."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:341
+msgid "r467"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:344
+msgid "Breaking changes"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:346
+msgid "Default audit log format was changed to CSV."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:349
+msgid "Functionality added or changed"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:352
+#: ../../doc/enterprise/changelog.rst:412
+msgid "Enterprise"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:354
+msgid "Implemented user-defined audit events. Now it's possible to log custom messages to the audit log from Lua (:tarantool-ee-issue:`65`)."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:357
+msgid "**[Breaking change]** Switched the default audit log format to CSV. The format can be switched back to JSON using the new ``box.cfg.audit_format`` configuration option (:tarantool-ee-issue:`66`)."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:361
+msgid "Implemented the audit log filter. Now, it's possible to enable logging only for a subset of all audit events using the new ``box.cfg.audit_filter`` configuration option (:tarantool-ee-issue:`67`)."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:366
+#: ../../doc/enterprise/changelog.rst:422
+msgid "Core"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:368
+msgid "Implement constraints and foreign keys. Now a user can create function constraints and foreign key relations (:tarantool-issue:`6436`)."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:370
+msgid "Changed log level of some information messages from critical to info (:tarantool-issue:`4675`)."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:372
+msgid "Added predefined system events: ``box.status``, ``box.id``, ``box.election`` and ``box.schema`` (:tarantool-issue:`6260`)."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:374
+msgid "Introduced transaction isolation levels in Lua and IPROTO (:tarantool-issue:`6930`)."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:377
+msgid "Vinyl"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:379
+msgid "Disabled the deferred DELETE optimization in Vinyl to avoid possible performance degradation of secondary index reads. Now, to enable the optimization, one has to set the ``defer_deletes`` flag in space options (:tarantool-issue:`4501`)."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:385
+#: ../../doc/enterprise/changelog.rst:443
+msgid "Lua"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:387
+msgid "Added support of console autocompletion for net.box objects ``stream`` and ``future`` (:tarantool-issue:`6305`)."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:391
+#: ../../doc/enterprise/changelog.rst:456
+msgid "Datetime"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:393
+msgid "Parse method to allow converting string literals in extended iso-8601"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:394
+msgid "or rfc3339 formats (:tarantool-issue:`6731`)."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:396
+msgid "The range of supported years has been extended in all parsers to cover"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:396
+msgid "fully -5879610-06-22..5879611-07-11 (:tarantool-issue:`6731`)."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:399
+msgid "Build"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:401
+msgid "Added bundling of *GNU libunwind* to support backtrace feature on *AARCH64* architecture and distributives that don't provide *libunwind* package."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:404
+msgid "Re-enabled backtrace feature for all *RHEL* distributions by default, except for *AARCH64* architecture and ancient *GCC* versions, which lack compiler features required for backtrace (gh-4611)."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:409
+msgid "Bugs fixed"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:414
+msgid "Disabled audit log unless explicitly configured (:tarantool-ee-issue:`39`). Before this change, audit events were written to stderr if ``box.cfg.audit_log`` wasn't set. Now, audit log is disabled in this case."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:417
+msgid "Disabled audit logging of replicated events (:tarantool-ee-issue:`59`). Now, replicated events (for example, user creation) are logged only on the origin, never on a replica."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:424
+msgid "Banned DDL operations in space on_replace triggers, since they could lead to a crash (:tarantool-issue:`6920`)."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:426
+msgid "Fixed a bug due to which all fibers created with ``fiber_attr_setstacksize()`` leaked until the thread exit. Their stacks also leaked except when ``fiber_set_joinable(..., true)`` was used."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:429
+msgid "Fixed a crash in mvcc connected with secondary index conflict (:tarantool-issue:`6452`)."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:430
+msgid "Fixed a bug which resulted in wrong space count (:tarantool-issue:`6421`)."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:431
+msgid "Select in RO transaction now reads confirmed data, like a standalone (auotcommit) select does (:tarantool-issue:`6452`)."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:435
+msgid "Replication"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:437
+msgid "Fixed potential obsolete data write in synchronious replication due to race in accessing terms while disk write operation is in progress and not yet completed."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:440
+msgid "Fixed replicas failing to bootstrap when master is just re-started (:tarantool-issue:`6966`)."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:445
+msgid "Fixed the behavior of tarantool console on SIGINT. Now Ctrl+C discards the current input and prints the new prompt (:tarantool-issue:`2717`)."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:449
+msgid "Triggers"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:451
+msgid "Fixed assertion or segfault when MP_EXT received via net.box (:tarantool-issue:`6766`)."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:452
+msgid "Now ROUND() properly support INTEGER and DECIMAL as the first argument (:tarantool-issue:`6988`)."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:458
+msgid "Intervals received after datetime arithmetic operations may be improperly normalized if result was negative"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:461
+msgid "tarantool> date.now() - date.now()\n"
+"---\n"
+"- -1.000026000 seconds\n"
+"..."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:468
+msgid "I.e. 2 immediately called ``date.now()`` produce very close values, whose difference should be close to 0, not 1 second (gh-6882)."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:472
+msgid "Net.box"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:474
+msgid "Changed the type of the error returned by net.box on timeout from ClientError to TimedOut (:tarantool-issue:`6144`)."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:478
+msgid "r457"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:480
+msgid "Fixed some binary protocol encryption bugs."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:483
+msgid "r455"
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:485
+msgid "Added :ref:`binary protocol encryption <enterprise-iproto-encryption>`."
+msgstr ""
+
+#: ../../doc/enterprise/changelog.rst:486
+msgid "Added :doc:`tuple field compression <tuple_compression>`."
+msgstr ""

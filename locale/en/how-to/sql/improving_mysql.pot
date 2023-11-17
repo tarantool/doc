@@ -1,0 +1,378 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/how-to/sql/improving_mysql.rst:5
+msgid "Improving MySQL with Tarantool"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:7
+msgid "Replicating MySQL is one of the Tarantool’s killer functions. It allows you to keep your existing MySQL database while at the same time accelerating it and scaling it out horizontally. Even if you aren’t interested in extensive expansion, simply replacing existing replicas with Tarantool can save you money, because Tarantool is more efficient per core than MySQL. To read a testimonial of a company that implemented Tarantool replication on a large scale, please see `here <https://dzone.com/articles/next-level-mysql-performance-tarantool-as-a-replic>`_."
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:16
+msgid "Notes:"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:18
+msgid "if you run into any trouble with regards to the basics of Tarantool, you may wish to consult the :ref:`Getting started guide <getting_started_db>` or the :ref:`Data model description <box_data_model>`."
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:22
+msgid "these instructions are for **CentOS 7.5** and **MySQL 5.7**. They also assume that you have systemd installed and are working with an existing MySQL installation."
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:25
+msgid "a helpful log for troubleshooting during this tutorial is ``replicatord.log`` in ``/var/log``. You can also have a look at the instance’s log ``example.log`` in ``/var/log/tarantool``."
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:29
+msgid "So let’s proceed."
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:31
+msgid "First we’ll install the necessary packages in CentOS:"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:33
+msgid "yum -y install git ncurses-devel cmake gcc-c++ boost boost-devel wget unzip nano bzip2 mysql-devel mysql-lib"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:37
+msgid "Next we’ll clone the Tarantool-MySQL replication package from GitHub:"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:39
+msgid "git clone https://github.com/tarantool/mysql-tarantool-replication.git"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:43
+msgid "Now we can build the replicator with cmake:"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:45
+msgid "cd mysql-tarantool-replication\n"
+"git submodule update --init --recursive\n"
+"cmake .\n"
+"make"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:52
+msgid "Our replicator will run as a systemd daemon called replicatord, so let’s edit its systemd service file, ``replicatord.service``, in the mysql-tarantool-replication repo."
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:56
+msgid "nano replicatord.service"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:60
+msgid "Change the following line:"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:62
+msgid "ExecStart=/usr/local/sbin/replicatord -c /usr/local/etc/replicatord.cfg"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:66
+msgid "Replace the ``.cfg`` extension with ``.yml``:"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:68
+msgid "ExecStart=/usr/local/sbin/replicatord -c /usr/local/etc/replicatord.yml"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:72
+msgid "Next let’s copy some files from our replicatord repo to other necessary locations:"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:74
+msgid "cp replicatord /usr/local/sbin/replicatord\n"
+"cp replicatord.service /etc/systemd/system"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:79
+msgid "Now let’s enter the MySQL console and create a sample database (depending on your existing installation, you may of course be a user other than root):"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:82
+msgid "mysql -u root -p\n"
+"CREATE DATABASE menagerie;\n"
+"QUIT"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:88
+msgid "Next we’ll get some sample data from MySQL, which we’ll pull into our root directory, then install from the terminal:"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:91
+msgid "cd\n"
+"wget http://downloads.mysql.com/docs/menagerie-db.zip\n"
+"unzip menagerie-db.zip\n"
+"cd menagerie-db\n"
+"mysql -u root -p menagerie < cr_pet_tbl.sql\n"
+"mysql -u root -p menagerie < load_pet_tbl.sql\n"
+"mysql menagerie -u root -p < ins_puff_rec.sql\n"
+"mysql menagerie -u root -p < cr_event_tbl.sql"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:102
+msgid "Let’s enter the MySQL console now and massage the data for use with the Tarantool replicator (we are adding an ID, changing a field name to avoid conflict, and cutting down the number of fields; note that with real data, this is the step that will involve the most tweaking):"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:107
+msgid "mysql -u root -p\n"
+"USE menagerie;\n"
+"ALTER TABLE pet ADD id INT PRIMARY KEY AUTO_INCREMENT FIRST;\n"
+"ALTER TABLE pet CHANGE COLUMN 'name' 'name2' VARCHAR(255);\n"
+"ALTER TABLE pet DROP sex, DROP birth, DROP death;\n"
+"QUIT"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:116
+msgid "Now that we have the sample data set up, we’ll need to edit MySQL’s configuration file for use with the replicator."
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:119
+msgid "cd\n"
+"nano /etc/my.cnf"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:124
+msgid "Note that your ``my.cnf`` for MySQL could be in a slightly different location. Set:"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:127
+msgid "[mysqld]\n"
+"binlog_format = ROW\n"
+"server_id = 1\n"
+"log-bin = mysql-bin\n"
+"interactive_timeout = 3600\n"
+"wait_timeout = 3600\n"
+"max_allowed_packet = 32M\n"
+"socket = /var/lib/mysql/mysql.sock\n"
+"bind-address = 127.0.0.1\n"
+"\n"
+"[client]\n"
+"socket = /var/lib/mysql/mysql.sock"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:142
+msgid "After exiting nano, we’ll restart mysqld:"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:144
+msgid "systemctl restart mysqld"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:148
+msgid "Next, let’s install Tarantool and set up spaces for replication. Go to the `Download page <https://www.tarantool.io/en/download/os-installation/rhel-centos/>`_ and follow the instructions there to install Tarantool."
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:153
+msgid "Now we will write a standard Tarantool program by editing the Lua example, which comes with Tarantool:"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:156
+msgid "cd\n"
+"nano /etc/tarantool/instances.available/example.lua"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:161
+msgid "Replace the entire contents of the file with the following:"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:163
+msgid "box.cfg {\n"
+"    listen = 3301;\n"
+"    memtx_memory = 128 * 1024 * 1024; -- 128Mb\n"
+"    memtx_min_tuple_size = 16;\n"
+"    memtx_max_tuple_size = 128 * 1024 * 1024; -- 128Mb\n"
+"    vinyl_memory = 128 * 1024 * 1024; -- 128Mb\n"
+"    vinyl_cache = 128 * 1024 * 1024; -- 128Mb\n"
+"    vinyl_max_tuple_size = 128 * 1024 * 1024; -- 128Mb\n"
+"    vinyl_write_threads = 2;\n"
+"    wal_mode = \"none\";\n"
+"    wal_max_size = 256 * 1024 * 1024;\n"
+"    checkpoint_interval = 60 * 60; -- one hour\n"
+"    checkpoint_count = 6;\n"
+"    force_recovery = true;\n"
+"\n"
+"     -- 1 – SYSERROR\n"
+"     -- 2 – ERROR\n"
+"     -- 3 – CRITICAL\n"
+"     -- 4 – WARNING\n"
+"     -- 5 – INFO\n"
+"     -- 6 – VERBOSE\n"
+"     -- 7 – DEBUG\n"
+"     log_level = 7;\n"
+"     too_long_threshold = 0.5;\n"
+" }\n"
+"\n"
+"box.schema.user.grant('guest','read,write,execute','universe')\n"
+"\n"
+"local function bootstrap()\n"
+"\n"
+"    if not box.space.mysqldaemon then\n"
+"        s = box.schema.space.create('mysqldaemon')\n"
+"        s:create_index('primary',\n"
+"        {type = 'tree', parts = {1, 'unsigned'}, if_not_exists = true})\n"
+"    end\n"
+"\n"
+"    if not box.space.mysqldata then\n"
+"        t = box.schema.space.create('mysqldata')\n"
+"        t:create_index('primary',\n"
+"        {type = 'tree', parts = {1, 'unsigned'}, if_not_exists = true})\n"
+"    end\n"
+"\n"
+"end\n"
+"\n"
+"bootstrap()"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:211
+msgid "To understand more of what’s happening here, it would be best to have a look back at the earlier `articles <https://dzone.com/articles/tarantool-101-10-steps-for-absolute-beginners-the>`_ in the Tarantool 101 series or use the :ref:`getting-started <getting_started_db>` guide."
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:216
+msgid "Now we need to create a symlink from ``instances.available`` to a directory named ``instances.enabled`` (similar to NGINX). So in ``/etc/tarantool`` run the following:"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:220
+msgid "mkdir instances.enabled\n"
+"ln -s /instances.available/example.lua instances.enabled"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:225
+msgid "Next we can start up our Lua program with ``tt``, the Tarantool command-line utility:"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:228
+msgid "tt start example"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:232
+msgid "Now let’s enter our Tarantool instance, where we can check that our target spaces were successfully created:"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:235
+#: ../../doc/how-to/sql/improving_mysql.rst:297
+#: ../../doc/how-to/sql/improving_mysql.rst:329
+msgid "tt connect example"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:239
+msgid "tarantool> box.space._space:select()"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:243
+msgid "At the bottom you will see \"mysqldaemon\" and \"mysqldata\" spaces. Then exit with \"CTRL+C\"."
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:245
+msgid "Now that we have MySQL and Tarantool set up, we can proceed to configure our replicator. First let’s work with ``replicatord.yml`` in the main ``tarantool-mysql-replication`` directory."
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:249
+msgid "nano replicatord.yml"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:253
+msgid "Change the entire file as follows, making sure to add your MySQL password and to set the appropriate user:"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:256
+msgid "mysql:\n"
+"    host: 127.0.0.1\n"
+"    port: 3306\n"
+"    user: root\n"
+"    password:\n"
+"    connect_retry: 15 # seconds\n"
+"\n"
+"tarantool:\n"
+"    host: 127.0.0.1:3301\n"
+"    binlog_pos_space: 512\n"
+"    binlog_pos_key: 0\n"
+"    connect_retry: 15 # seconds\n"
+"    sync_retry: 1000 # milliseconds\n"
+"\n"
+"mappings:\n"
+"    - database: menagerie\n"
+"      table: pet\n"
+"      columns: [ id, name2, owner, species ]\n"
+"      space: 513\n"
+"      key_fields:  [ 0 ]\n"
+"      # insert_call: function_name\n"
+"      # update_call: function_name\n"
+"      # delete_call: function_name"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:282
+msgid "Now we need to copy replicatord.yml to the location where systemd looks for it:"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:284
+msgid "cp replicatord.yml /usr/local/etc/replicatord.yml"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:288
+msgid "Next we can start up the replicator:"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:290
+msgid "systemctl start replicatord"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:294
+msgid "Now we can enter our Tarantool instance and do a select on the “mysqldata” space. We will see the replicated content from MySQL:"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:301
+msgid "tarantool> box.space.mysqldata:select()\n"
+"---\n"
+"- - [1, 'Fluffy', 'Harold', 'cat']\n"
+"  - [2, 'Claws', 'Gwen', 'cat']\n"
+"  - [3, 'Buffy', 'Harold', 'dog']\n"
+"  - [4, 'Fang', 'Benny', 'dog']\n"
+"  - [5, 'Bowser', 'Diane', 'dog']\n"
+"  - [6, 'Chirpy', 'Gwen', 'bird']\n"
+"  - [7, 'Whistler', 'Gwen', 'bird']\n"
+"  - [8, 'Slim', 'Benny', 'snake']\n"
+"  - [9, 'Puffball', 'Diane', 'hamster']"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:316
+msgid "Finally let’s enter a record into MySQL and then go back to Tarantool to make sure it’s replicated. So first we’ll exit our Tarantool instance with ``CTRL-C``, and then say:"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:320
+msgid "mysql -u root -p\n"
+"USE menagerie;\n"
+"INSERT INTO pet(name2, owner, species) VALUES ('Spot', 'Brad', 'dog');\n"
+"QUIT"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:327
+msgid "Once back in the terminal enter:"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:333
+msgid "tarantool> box.space.mysqldata:select()"
+msgstr ""
+
+#: ../../doc/how-to/sql/improving_mysql.rst:337
+msgid "You should see the replicated data in Tarantool!"
+msgstr ""

@@ -1,0 +1,268 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/how-to/replication/repl_remove_instances.rst:4
+msgid "Removing instances"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_remove_instances.rst:6
+msgid "Let's assume that we have the following configured replica set with 3 instances (*instance1*, *instance2* and *intance3*) and we want to remove *instance2*."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_remove_instances.rst:12
+msgid "To remove it politely, follow these steps:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_remove_instances.rst:14
+msgid "Disconnect *instance2* from the cluster."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_remove_instances.rst:15
+msgid "Disconnect the cluster from *instance2*."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_remove_instances.rst:16
+msgid "Remove *instance2* from the ``_cluster`` space."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_remove_instances.rst:21
+msgid "**Step 1: disconnecting an instance from the cluster**"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_remove_instances.rst:23
+msgid "On the disconnecting instance *instance2*, run ``box.cfg{}`` with a blank replication source:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_remove_instances.rst:26
+msgid "tarantool> box.cfg{replication=''}"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_remove_instances.rst:30
+msgid "Then check that it was disconnected. Take a look at ``box.info.replication`` on *instance2* (notice that ``replication.{1,3}.upstream`` is absent):"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_remove_instances.rst:33
+msgid "tarantool> box.info.replication\n"
+"---\n"
+"- 1:\n"
+"   id: 1\n"
+"   uuid: db89978f-7115-4537-8417-9982bb5a256f\n"
+"   lsn: 9\n"
+"-- upstream is absent\n"
+"   downstream:\n"
+"      status: follow\n"
+"      idle: 0.93983899999876\n"
+"      vclock: {1: 9}\n"
+"2:\n"
+"   id: 2\n"
+"   uuid: 0a756d14-e437-4296-85b0-d27a0621613e\n"
+"   lsn: 0\n"
+"3:\n"
+"   id: 3\n"
+"   uuid: bb362584-c265-4e53-aeb6-450ae818bf59\n"
+"   lsn: 0\n"
+"-- upstream is absent\n"
+"   downstream:\n"
+"      status: follow\n"
+"      idle: 0.26624799999991\n"
+"      vclock: {1: 9}\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_remove_instances.rst:61
+msgid "Check *instance1* and *instance3* as well (notice that the status of ``replication.2.downstream`` is ``stopped``):"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_remove_instances.rst:64
+msgid "-- instance1\n"
+"tarantool> box.info.replication\n"
+"---\n"
+"- 1:\n"
+"   id: 1\n"
+"   uuid: db89978f-7115-4537-8417-9982bb5a256f\n"
+"   lsn: 9\n"
+"2:\n"
+"   id: 2\n"
+"   uuid: 0a756d14-e437-4296-85b0-d27a0621613e\n"
+"   lsn: 0\n"
+"   upstream:\n"
+"      status: follow\n"
+"      idle: 0.3533439999992\n"
+"      peer: replicator@localhost:3302\n"
+"      lag: 0.0001220703125\n"
+"   downstream:\n"
+"      status: stopped     -- status has changed:\n"
+"      message: unexpected EOF when reading from socket, called on fd 13, aka [::1]:3301,\n"
+"      peer of [::1]:53776\n"
+"      system_message: Broken pipe\n"
+"3:\n"
+"   id: 3\n"
+"   uuid: bb362584-c265-4e53-aeb6-450ae818bf59\n"
+"   lsn: 0\n"
+"   upstream:\n"
+"      status: follow\n"
+"      idle: 0.35327999999936\n"
+"      peer: replicator@localhost:3303\n"
+"      lag: 0.00018095970153809\n"
+"   downstream:\n"
+"      status: follow\n"
+"      idle: 0.68685100000221\n"
+"      vclock: {1: 9}\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_remove_instances.rst:102
+msgid "**Step 2: disconnecting the cluster from the decommissioned instance**"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_remove_instances.rst:104
+msgid "On every other instance in the cluster remove *instance2* from the ``box.cfg{ replication }`` list and call an appropriate ``box.cfg{ replication = {instance1, instance3} }``:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_remove_instances.rst:108
+msgid "tarantool> box.cfg{ replication = { 'instance1-uri', 'instance3-uri' } }"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_remove_instances.rst:112
+msgid "Take a look at ``box.info.replication`` on *instance2* to check that *instance1* and *instance3* were disconnected (notice that the status of ``replication.{1,3}.downstream`` is ``stopped``):"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_remove_instances.rst:116
+msgid "tarantool> box.info.replication\n"
+"---\n"
+"- 1:\n"
+"   id: 1\n"
+"   uuid: db89978f-7115-4537-8417-9982bb5a256f\n"
+"   lsn: 9\n"
+"   downstream:\n"
+"      status: stopped    -- status has changed\n"
+"      message: unexpected EOF when reading from socket, called on fd 16, aka [::1]:3302,\n"
+"      peer of [::1]:53832\n"
+"      system_message: Broken pipe\n"
+"2:\n"
+"   id: 2\n"
+"   uuid: 0a756d14-e437-4296-85b0-d27a0621613e\n"
+"   lsn: 0\n"
+"3:\n"
+"   id: 3\n"
+"   uuid: bb362584-c265-4e53-aeb6-450ae818bf59\n"
+"   lsn: 0\n"
+"   downstream:\n"
+"      status: stopped    -- status has changed\n"
+"      message: unexpected EOF when reading from socket, called on fd 18, aka [::1]:3302,\n"
+"      peer of [::1]:53825\n"
+"      system_message: Broken pipe\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_remove_instances.rst:144
+msgid "Check *instance1* and *instance3* as well (notice that the status of ``replication.2.upstream`` is ``stopped``):"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_remove_instances.rst:147
+msgid "-- instance1\n"
+"tarantool> box.info.replication\n"
+"---\n"
+"- 1:\n"
+"   id: 1\n"
+"   uuid: db89978f-7115-4537-8417-9982bb5a256f\n"
+"   lsn: 9\n"
+"2:\n"
+"   id: 2\n"
+"   uuid: 0a756d14-e437-4296-85b0-d27a0621613e\n"
+"   lsn: 0\n"
+"   downstream:\n"
+"      status: stopped   -- status has changed\n"
+"      message: unexpected EOF when reading from socket, called on fd 13, aka [::1]:3301,\n"
+"      peer of [::1]:53776\n"
+"      system_message: Broken pipe\n"
+"3:\n"
+"   id: 3\n"
+"   uuid: bb362584-c265-4e53-aeb6-450ae818bf59\n"
+"   lsn: 0\n"
+"   upstream:\n"
+"      status: follow\n"
+"      idle: 0.50240100000156\n"
+"      peer: replicator@localhost:3303\n"
+"      lag: 0.00015711784362793\n"
+"   downstream:\n"
+"      status: follow\n"
+"      idle: 0.14237199999843\n"
+"      vclock: {1: 9}\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_remove_instances.rst:180
+msgid "**Step 3: persistent removal**"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_remove_instances.rst:182
+msgid "If a removed instance rejoins later, it will receive all the updates made by the other instances while it was disconnected."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_remove_instances.rst:185
+msgid "If an instance is decommissioned forever, we should clean up the ``_cluster`` space. First, discover the ``id`` and ``uuid`` of the instance. On *instance2*, call ``return box.info.id, box.info.uuid``:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_remove_instances.rst:189
+msgid "tarantool> return box.info.id, box.info.uuid\n"
+"---\n"
+"- 2\n"
+"- '0a756d14-e437-4296-85b0-d27a0621613e'\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_remove_instances.rst:197
+msgid "Take a note of ``id`` and ``uuid``."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_remove_instances.rst:199
+msgid "Now choose any master from the remaining cluster and perform the following actions on it (let's assume that we chose *instance1*):"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_remove_instances.rst:202
+msgid "Select all records from the ``_cluster`` space:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_remove_instances.rst:204
+msgid "tarantool> box.space._cluster:select{}\n"
+"---\n"
+"- - [1, 'db89978f-7115-4537-8417-9982bb5a256f']\n"
+"- [2, '0a756d14-e437-4296-85b0-d27a0621613e']\n"
+"- [3, 'bb362584-c265-4e53-aeb6-450ae818bf59']\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_remove_instances.rst:213
+msgid "Check if the ``id`` and ``uuid`` of *instance2* are correct and remove them from the cluster:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_remove_instances.rst:216
+msgid "tarantool> box.space._cluster:delete(2)\n"
+"---\n"
+"- [2, '0a756d14-e437-4296-85b0-d27a0621613e']\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_remove_instances.rst:223
+msgid "**Final checks**"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_remove_instances.rst:225
+msgid "After all modifications, say ``box.info.replication`` to check the health status."
+msgstr ""

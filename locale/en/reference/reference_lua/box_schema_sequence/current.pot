@@ -1,0 +1,61 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_schema_sequence/current.rst:5
+msgid "sequence_object:current()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema_sequence/current.rst:11
+msgid "Since version :doc:`2.4.1 </release/2.4.1>`. Return the last retrieved value of the specified sequence or throw an error if no value has been generated yet (``next()`` has not been called yet, or ``current()`` is called right after ``reset()`` is called)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema_sequence/current.rst:16
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema_sequence/current.rst:18
+msgid "tarantool> sq = box.schema.sequence.create('test')\n"
+"---\n"
+"...\n"
+"tarantool> sq:current()\n"
+"---\n"
+"- error: Sequence 'test' is not started\n"
+"...\n"
+"tarantool> sq:next()\n"
+"---\n"
+"- 1\n"
+"...\n"
+"tarantool> sq:current()\n"
+"---\n"
+"- 1\n"
+"...\n"
+"tarantool> sq:set(42)\n"
+"---\n"
+"...\n"
+"tarantool> sq:current()\n"
+"---\n"
+"- 42\n"
+"...\n"
+"tarantool> sq:reset()\n"
+"---\n"
+"...\n"
+"tarantool> sq:current()  -- error\n"
+"---\n"
+"- error: Sequence 'test' is not started\n"
+"..."
+msgstr ""

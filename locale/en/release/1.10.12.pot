@@ -1,0 +1,146 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/release/1.10.12.rst:2
+msgid "Tarantool 1.10.12"
+msgstr ""
+
+#: ../../doc/release/1.10.12.rst:4
+msgid "Released on 2021-12-22."
+msgstr ""
+
+#: ../../doc/release/1.10.12.rst:6
+msgid "Release: :tarantool-release:`1.10.12`."
+msgstr ""
+
+#: ../../doc/release/1.10.12.rst:7
+msgid "Tag: ``1.10.12``."
+msgstr ""
+
+#: ../../doc/release/1.10.12.rst:10
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/release/1.10.12.rst:12
+msgid "1.10.12 is the next stable release in the :doc:`long-term support (LTS) version </release/policy>` 1.10.x release series."
+msgstr ""
+
+#: ../../doc/release/1.10.12.rst:15
+msgid "The label “stable” means there are 1.10.x-based applications running in production for quite a while without known crashes, incorrect results or other showstopper bugs."
+msgstr ""
+
+#: ../../doc/release/1.10.12.rst:19
+msgid "This release introduces 3 improvements and resolves roughly 10 issues since the 1.10.11 version."
+msgstr ""
+
+#: ../../doc/release/1.10.12.rst:23
+msgid "Compatibility"
+msgstr ""
+
+#: ../../doc/release/1.10.12.rst:25
+msgid "Tarantool 1.10.x is backward compatible with Tarantool 1.9.x in binary data layout, client-server protocol and replication protocol."
+msgstr ""
+
+#: ../../doc/release/1.10.12.rst:28
+msgid "Please `upgrade <https://www.tarantool.io/en/doc/1.10/book/admin/upgrades/>`__ using the ``box.schema.upgrade()`` procedure to unlock all the new features of the 1.10.x series."
+msgstr ""
+
+#: ../../doc/release/1.10.12.rst:34
+msgid "Functionality added or changed"
+msgstr ""
+
+#: ../../doc/release/1.10.12.rst:37
+#: ../../doc/release/1.10.12.rst:92
+msgid "Build"
+msgstr ""
+
+#: ../../doc/release/1.10.12.rst:39
+msgid "Stop support of Ubuntu Trusty (14.04). (:tarantool-issue:`6502`)"
+msgstr ""
+
+#: ../../doc/release/1.10.12.rst:40
+msgid "Bump debian package compatibility level to 10 (:tarantool-issue:`5429`). Bump minimal required debhelper to version 10 (except for Ubuntu Xenial)."
+msgstr ""
+
+#: ../../doc/release/1.10.12.rst:44
+msgid "Bugs fixed"
+msgstr ""
+
+#: ../../doc/release/1.10.12.rst:47
+msgid "Core"
+msgstr ""
+
+#: ../../doc/release/1.10.12.rst:49
+msgid "Fixed a crash caused by a race between box.session.push() and closing connection (:tarantool-issue:`6520`)."
+msgstr ""
+
+#: ../../doc/release/1.10.12.rst:51
+msgid "Fixed crash in case a fiber changing box.cfg.listen is woken up (:tarantool-issue:`6480`)."
+msgstr ""
+
+#: ../../doc/release/1.10.12.rst:53
+msgid "Fixed box.cfg.listen not reverted to the old address in case the new one is invalid (:tarantool-issue:`6092`)."
+msgstr ""
+
+#: ../../doc/release/1.10.12.rst:57
+msgid "Replication"
+msgstr ""
+
+#: ../../doc/release/1.10.12.rst:59
+msgid "Fixed replica reconnecting to a living master on any ``box.cfg{replication=...}`` change. Such reconnects could lead to replica failing to restore connection for ``replication_timeout`` seconds (:tarantool-issue:`4669`)."
+msgstr ""
+
+#: ../../doc/release/1.10.12.rst:65
+msgid "LuaJIT"
+msgstr ""
+
+#: ../../doc/release/1.10.12.rst:67
+msgid "Fixed the order VM registers are allocated by LuaJIT frontend in case of ``BC_ISGE`` and ``BC_ISGT`` (:tarantool-issue:`6227`)."
+msgstr ""
+
+#: ../../doc/release/1.10.12.rst:69
+msgid "Fixed inconsistency while searching for an error function when unwinding a C protected frame to handle a runtime error (e.g. an error in \\__gc handler)."
+msgstr ""
+
+#: ../../doc/release/1.10.12.rst:74
+msgid "Lua"
+msgstr ""
+
+#: ../../doc/release/1.10.12.rst:76
+msgid "When error is raised during encoding call results, auxiliary lightuserdata value is not removed from the main Lua coroutine stack. Prior to the fix it leads to undefined behaviour during the next usage of this Lua coroutine (:tarantool-issue:`4617`)."
+msgstr ""
+
+#: ../../doc/release/1.10.12.rst:80
+msgid "Fixed Lua C API misuse, when the error is raised during call results encoding on unprotected coroutine and expected to be catched on the different one, that is protected (:tarantool-issue:`6248`)."
+msgstr ""
+
+#: ../../doc/release/1.10.12.rst:85
+msgid "Triggers"
+msgstr ""
+
+#: ../../doc/release/1.10.12.rst:87
+msgid "Fixed possibility crash in case when trigger removes itself. Fixed possibility crash in case when someone destroy trigger, when it’s yield (:tarantool-issue:`6266`)."
+msgstr ""
+
+#: ../../doc/release/1.10.12.rst:94
+msgid "The Debian package does not depend on binutils anymore (:tarantool-issue:`6699`)."
+msgstr ""
+
+#: ../../doc/release/1.10.12.rst:95
+msgid "Fix build errors with glibc-2.34 (:tarantool-issue:`6686`)."
+msgstr ""

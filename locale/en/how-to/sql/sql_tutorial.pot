@@ -1,0 +1,963 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:4
+msgid "SQL tutorial"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:6
+msgid "This tutorial is a demonstration of the support for SQL in Tarantool. It includes the functionality that you'd encounter in an \"SQL-101\" course."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:12
+msgid "Starting up with a first table and SELECTs"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:15
+msgid "Initialize"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:17
+msgid "In this tutorial, the requests are done in the Tarantool interactive console. Start Tarantool and initialize it with :ref:`default settings <box_introspection-box_cfg>` by calling ``box.cfg{}``:"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:21
+msgid "tarantool> box.cfg{}"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:25
+msgid "Now you can start working with the database."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:28
+msgid "Switch to the SQL language"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:30
+msgid "A feature of the client console program is that you can switch languages and specify the end-of-statement delimiter."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:33
+msgid "Run the following commands to set the console input language to SQL and use semicolon as a delimiter:"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:36
+msgid "tarantool> \\set language sql\n"
+"tarantool> \\set delimiter ;"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:43
+msgid "CREATE, INSERT, UPDATE, SELECT"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:45
+msgid "To get started, enter simple SQL statements:"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:47
+msgid "CREATE TABLE table1 (column1 INTEGER PRIMARY KEY, column2 VARCHAR(100));\n"
+"INSERT INTO table1 VALUES (1, 'A');\n"
+"UPDATE table1 SET column2 = 'B';\n"
+"SELECT * FROM table1 WHERE column1 = 1;"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:54
+msgid "The result of the ``SELECT`` statement looks like this:"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:56
+msgid "tarantool> SELECT * FROM table1 WHERE column1 = 1;\n"
+"---\n"
+"- metadata:\n"
+"  - name: COLUMN1\n"
+"    type: integer\n"
+"  - name: COLUMN2\n"
+"    type: string\n"
+"  rows:\n"
+"  - [1, 'B']\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:69
+msgid "The result includes:"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:71
+msgid "Metadata: the names and data types of each column"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:72
+msgid "Result rows"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:74
+msgid "For conciseness, metadata is skipped in query results in this tutorial. Only the result rows are shown."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:78
+msgid "CREATE TABLE"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:80
+msgid "Here is ``CREATE TABLE`` with more details:"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:82
+msgid "There are multiple columns, with different data types."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:83
+msgid "There is a ``PRIMARY KEY`` (unique and not-null) for two of the columns."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:85
+msgid "CREATE TABLE table2 (column1 INTEGER,\n"
+"                     column2 VARCHAR(100),\n"
+"                     column3 SCALAR,\n"
+"                     column4 DOUBLE,\n"
+"                     PRIMARY KEY (column1, column2));"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:93
+msgid "The result is: ``row_count: 1``."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:96
+msgid "INSERT"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:98
+msgid "Put four rows in the table:"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:100
+msgid "The INTEGER and DOUBLE columns get numbers"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:101
+msgid "The VARCHAR and SCALAR columns get strings (the SCALAR strings are expressed as hexadecimals)"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:104
+msgid "INSERT INTO table2 VALUES (1, 'AB', X'4142', 5.5);\n"
+"INSERT INTO table2 VALUES (1, 'CD', X'2020', 1E4);\n"
+"INSERT INTO table2 VALUES (2, 'AB', X'2020', 12.34567);\n"
+"INSERT INTO table2 VALUES (-1000, '', X'', 0.0);"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:111
+msgid "Then try to put another row:"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:113
+msgid "INSERT INTO table2 VALUES (1, 'AB', X'A5', -5.5);"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:117
+msgid "This ``INSERT`` fails because of a primary-key violation: the row with the primary key ``1, 'AB'`` already exists."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:121
+msgid "The SEQSCAN keyword"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:123
+msgid "In Tarantool, ``SELECT`` SQL queries that perform sequential scans (that is, go through all the table rows instead of using indexes) are prohibited by default. For example, this query leads to the error ``Scanning is not allowed for 'table2'``:"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:127
+msgid "SELECT * FROM table2;"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:131
+msgid "To execute a scan query, put the ``SEQSCAN`` keyword before the table name:"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:133
+msgid "SELECT * FROM SEQSCAN table2;"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:137
+msgid "Try to execute these queries that use indexed ``column1`` in filters:"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:139
+msgid "SELECT * FROM table2 WHERE column1 = 1;\n"
+"SELECT * FROM table2 WHERE column1 + 1 = 2;"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:144
+#: ../../doc/how-to/sql/sql_tutorial.rst:185
+#: ../../doc/how-to/sql/sql_tutorial.rst:244
+#: ../../doc/how-to/sql/sql_tutorial.rst:310
+#: ../../doc/how-to/sql/sql_tutorial.rst:355
+#: ../../doc/how-to/sql/sql_tutorial.rst:443
+#: ../../doc/how-to/sql/sql_tutorial.rst:519
+#: ../../doc/how-to/sql/sql_tutorial.rst:542
+#: ../../doc/how-to/sql/sql_tutorial.rst:574
+#: ../../doc/how-to/sql/sql_tutorial.rst:597
+#: ../../doc/how-to/sql/sql_tutorial.rst:666
+#: ../../doc/how-to/sql/sql_tutorial.rst:695
+#: ../../doc/how-to/sql/sql_tutorial.rst:760
+msgid "The result is:"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:146
+msgid "The first query returns rows:"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:148
+msgid "- [1, 'AB', 'AB', 10.5]\n"
+"- [1, 'CD', '  ', 10005]"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:153
+msgid "The second query fails with the error ``Scanning is not allowed for 'TABLE2'``. Although ``column1`` is indexed, the expression ``column1 + 1`` is not calculated from the index, which makes this ``SELECT`` a scan query."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:159
+msgid "You can allow SQL scan queries without ``SEQSCAN`` for the current session by running the command:"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:162
+msgid "SET SESSION \"sql_seq_scan\" = true;"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:167
+msgid "Learn more about using ``SEQSCAN`` in the :ref:`SQL FROM clause description <sql_from>`."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:170
+msgid "SELECT with ORDER BY clause"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:172
+msgid "Retrieve the 4 rows in the table, in descending order by ``column2``, then (where the ``column2`` values are the same) in ascending order by ``column4``."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:175
+msgid "``*`` is short for \"all columns\"."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:177
+msgid "SELECT * FROM SEQSCAN table2 ORDER BY column2 DESC, column4 ASC;"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:183
+msgid "Tarantool has its own"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:187
+msgid "- - [1, 'CD', '  ', 10000]\n"
+"  - [1, 'AB', 'AB', 5.5]\n"
+"  - [2, 'AB', '  ', 12.34567]\n"
+"  - [-1000, '', '', 0]"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:195
+msgid "SELECT with WHERE clauses"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:197
+msgid "Retrieve some of what you inserted:"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:199
+msgid "The first statement uses the ``LIKE`` comparison operator which is asking for \"first character must be 'A', the next characters can be anything.\""
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:202
+msgid "The second statement uses logical operators and parentheses, so the ANDed expressions must be true, or the ORed expression must be true. Notice the columns don't have to be indexed."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:206
+msgid "SELECT column1, column2, column1 * column4 FROM SEQSCAN table2 WHERE column2\n"
+"LIKE 'A%';\n"
+"SELECT column1, column2, column3, column4 FROM SEQSCAN table2\n"
+"    WHERE (column1 < 2 AND column4 < 10)\n"
+"    OR column3 = X'2020';"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:214
+#: ../../doc/how-to/sql/sql_tutorial.rst:271
+msgid "The results are:"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:216
+msgid "- - [1, 'AB', 5.5]\n"
+"  - [2, 'AB', 24.69134]"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:221
+msgid "and"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:223
+msgid "- - [-1000, '', '', 0]\n"
+"  - [1, 'AB', 'AB', 5.5]\n"
+"  - [1, 'CD', '  ', 10000]\n"
+"  - [2, 'AB', '  ', 12.34567]"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:231
+msgid "SELECT with GROUP BY and aggregate functions"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:233
+msgid "Retrieve with grouping."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:235
+msgid "The rows which have the same values for ``column2`` are grouped and are aggregated -- summed, counted, averaged -- for ``column4``."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:238
+msgid "SELECT column2, SUM(column4), COUNT(column4), AVG(column4)\n"
+"FROM SEQSCAN table2\n"
+"GROUP BY column2;"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:246
+msgid "- - ['', 0, 1, 0]\n"
+"  - ['AB', 17.84567, 2, 8.922835]\n"
+"  - ['CD', 10000, 1, 10000]"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:255
+msgid "Complications and complex SELECTs"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:258
+msgid "NULLs"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:260
+msgid "Insert rows that contain ``NULL`` values."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:262
+msgid "``NULL`` is not the same as Lua ``nil``; it commonly is used in SQL for unknown or not-applicable."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:265
+msgid "INSERT INTO table2 VALUES (1, NULL, X'4142', 5.5);\n"
+"INSERT INTO table2 VALUES (0, '!!@', NULL, NULL);\n"
+"INSERT INTO table2 VALUES (0, '!!!', X'00', NULL);"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:273
+msgid "The first ``INSERT`` fails because ``NULL`` is not permitted for a column that was defined with a ``PRIMARY KEY`` clause."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:276
+msgid "The other ``INSERT`` statements succeed."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:279
+msgid "Indexes"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:281
+msgid "Create a new index on ``column4``."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:283
+msgid "There already is an index for the primary key. Indexes are useful for making queries faster. In this case, the index also acts as a constraint, because it prevents two rows from having the same values in ``column4``. However, it is not an error that ``column4`` has multiple occurrences of NULLs."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:288
+msgid "CREATE UNIQUE INDEX i ON table2 (column4);"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:292
+msgid "The result is: ``rowcount: 1``."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:295
+msgid "Create a subset table"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:297
+msgid "Create a table ``table3``, which contains a subset of the ``table2`` columns and a subset of the ``table2`` rows."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:300
+msgid "You can do this by combining ``INSERT`` with ``SELECT``. Then select everything from the result table."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:303
+msgid "CREATE TABLE table3 (column1 INTEGER, column2 VARCHAR(100), PRIMARY KEY\n"
+"(column2));\n"
+"INSERT INTO table3 SELECT column1, column2 FROM SEQSCAN table2 WHERE column1 <> 2;\n"
+"SELECT * FROM SEQSCAN table3;"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:312
+msgid "- - [-1000, '']\n"
+"  - [0, '!!!']\n"
+"  - [0, '!!@']\n"
+"  - [1, 'AB']\n"
+"  - [1, 'CD']"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:321
+msgid "SELECT with a subquery"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:323
+msgid "A subquery is a query within a query."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:325
+msgid "Find all the rows in ``table2`` whose ``(column1, column2)`` values are not present in ``table3``."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:328
+msgid "SELECT * FROM SEQSCAN table2 WHERE (column1, column2) NOT IN (SELECT column1,\n"
+"column2 FROM SEQSCAN table3);"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:333
+msgid "The result is the single row that was excluded when inserting the rows with the ``INSERT ... SELECT`` statement:"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:336
+msgid "- - [2, 'AB', '  ', 12.34567]"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:341
+msgid "SELECT with a join"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:343
+msgid "A join is a combination of two tables. There is more than one way to do them in Tarantool: \"Cartesian joins\", \"left outer joins\", and so on."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:346
+msgid "This example shows the most typical case, where column values from one table match column values from another table."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:349
+msgid "SELECT * FROM SEQSCAN table2, table3\n"
+"    WHERE table2.column1 = table3.column1 AND table2.column2 = table3.column2\n"
+"    ORDER BY table2.column4;"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:357
+msgid "- - [0, '!!!', \"\\0\", null, 0, '!!!']\n"
+"  - [0, '!!@', null, null, 0, '!!@']\n"
+"  - [-1000, '', '', 0, -1000, '']\n"
+"  - [1, 'AB', 'AB', 5.5, 1, 'AB']\n"
+"  - [1, 'CD', ' ', 10000, 1, 'CD']"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:368
+msgid "Constraints and foreign keys"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:371
+msgid "CREATE TABLE with a CHECK clause"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:373
+msgid "Create a table which includes a constraint that there must not be any rows containing ``13`` in ``column2``. Then try to insert such a row."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:376
+msgid "CREATE TABLE table4 (column1 INTEGER PRIMARY KEY, column2 INTEGER, CHECK\n"
+"(column2 <> 13));\n"
+"INSERT INTO table4 VALUES (12, 13);"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:382
+msgid "Result: the insert fails, as it should, with the message ``Check constraint 'ck_unnamed_TABLE4_1' failed for tuple``."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:386
+msgid "CREATE TABLE with a FOREIGN KEY clause"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:388
+msgid "Create a table which includes a constraint that there must not be any rows containing values that do not appear in ``table2``."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:391
+msgid "CREATE TABLE table5 (column1 INTEGER, column2 VARCHAR(100),\n"
+"    PRIMARY KEY (column1),\n"
+"    FOREIGN KEY (column1, column2) REFERENCES table2 (column1, column2));\n"
+"INSERT INTO table5 VALUES (2,'AB');\n"
+"INSERT INTO table5 VALUES (3,'AB');"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:399
+#: ../../doc/how-to/sql/sql_tutorial.rst:491
+msgid "Result:"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:401
+msgid "The first ``INSERT`` statement succeeds because ``table3`` contains a row with ``[2, 'AB', ' ', 12.34567]``."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:403
+msgid "The second ``INSERT`` statement, correctly, fails with the message ``Foreign key constraint ''fk_unnamed_TABLE5_1'' failed: foreign tuple was not found``."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:407
+msgid "UPDATE"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:409
+msgid "Due to earlier ``INSERT`` statements, these values are in ``column4`` of ``table2``: ``{0, NULL, NULL, 5.5, 10000, 12.34567}``. Add ``5`` to each of these values except ``0``. Adding ``5`` to ``NULL`` results in NULL, as SQL arithmetic requires. Use ``SELECT`` to see what happened to ``column4``."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:414
+msgid "UPDATE table2 SET column4 = column4 + 5 WHERE column4 <> 0;\n"
+"SELECT column4 FROM SEQSCAN table2 ORDER BY column4;"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:419
+msgid "The result is: ``{NULL, NULL, 0, 10.5, 17.34567, 10005}``."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:422
+msgid "DELETE"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:424
+msgid "Due to earlier ``INSERT`` statements, there are 6 rows in ``table2``:"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:426
+msgid "- - [-1000, '', '', 0]\n"
+"  - [0, '!!!', \"\\0\", null]\n"
+"  - [0, '!!@', null, null]\n"
+"  - [1, 'AB', 'AB', 10.5]\n"
+"  - [1, 'CD', '  ', 10005]\n"
+"  - [2, 'AB', '  ', 17.34567]"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:435
+msgid "Try to delete the last and first of these rows:"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:437
+msgid "DELETE FROM table2 WHERE column1 = 2;\n"
+"DELETE FROM table2 WHERE column1 = -1000;\n"
+"SELECT COUNT(column1) FROM SEQSCAN table2;"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:445
+msgid "The first ``DELETE`` statement causes an error because there's a foreign-key constraint."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:447
+msgid "The second ``DELETE`` statement succeeds."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:448
+msgid "The ``SELECT`` statement shows that there are 5 rows remaining."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:451
+msgid "ALTER TABLE with a FOREIGN KEY clause"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:453
+msgid "Create another constraint that there must not be any rows in ``table1`` containing values that do not appear in ``table5``. This was impossible during the ``table1`` creation because at that time ``table5`` did not exist. You can add constraints to existing tables with the ``ALTER TABLE`` statement."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:458
+msgid "ALTER TABLE table1 ADD CONSTRAINT c\n"
+"    FOREIGN KEY (column1) REFERENCES table5 (column1);\n"
+"DELETE FROM table1;\n"
+"ALTER TABLE table1 ADD CONSTRAINT c\n"
+"    FOREIGN KEY (column1) REFERENCES table5 (column1);"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:466
+msgid "Result: the ``ALTER TABLE`` statement fails the first time because there is a row in ``table1``, and ``ADD CONSTRAINT`` requires that the table be empty. After the row is deleted, the ``ALTER TABLE`` statement completes successfully. Now there is a chain of references, from ``table1`` to ``table5`` and from ``table5`` to ``table2``."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:473
+msgid "Triggers"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:475
+msgid "The idea of a trigger is: if a change (``INSERT`` or ``UPDATE`` or ``DELETE``) happens, then a further action -- perhaps another ``INSERT`` or ``UPDATE`` or ``DELETE`` -- will happen."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:479
+msgid "Set up the following trigger: when a update to ``table3`` is done, do an update to ``table2``. Specify this as ``FOR EACH ROW``, so that the trigger activates 5 times (since there are 5 rows in ``table3``)."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:483
+msgid "SELECT column4 FROM table2 WHERE column1 = 2;\n"
+"CREATE TRIGGER tr AFTER UPDATE ON table3 FOR EACH ROW\n"
+"BEGIN UPDATE table2 SET column4 = column4 + 1 WHERE column1 = 2; END;\n"
+"UPDATE table3 SET column2 = column2;\n"
+"SELECT column4 FROM table2 WHERE column1 = 2;"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:493
+msgid "The first ``SELECT`` shows that the original value of ``column4`` in ``table2`` where ``column1 = 2`` was: 17.34567."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:495
+msgid "The second ``SELECT`` returns:"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:497
+msgid "- - [22.34567]"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:504
+msgid "Operators and functions"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:507
+msgid "String operations"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:509
+msgid "You can manipulate string data (usually defined with ``CHAR`` or ``VARCHAR`` data types) in many ways. For example:"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:512
+msgid "concatenate strings with the ``||`` operator"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:513
+msgid "extract substrings with the ``SUBSTR`` function"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:515
+msgid "SELECT column2, column2 || column2, SUBSTR(column2, 2, 1) FROM SEQSCAN table2;"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:521
+msgid "- - ['!!!', '!!!!!!', '!']\n"
+"  - ['!!@', '!!@!!@', '!']\n"
+"  - ['AB', 'ABAB', 'B']\n"
+"  - ['CD', 'CDCD', 'D']\n"
+"  - ['AB', 'ABAB', 'B']"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:530
+msgid "Number operations"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:532
+msgid "You can also manipulate number data (usually defined with ``INTEGER`` or ``DOUBLE`` data types) in many ways. For example:"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:535
+msgid "shift left with the ``<<`` operator"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:536
+msgid "get modulo with the ``%`` operator"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:538
+msgid "SELECT column1, column1 << 1, column1 << 2, column1 % 2 FROM SEQSCAN table2;"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:544
+msgid "- - [0, 0, 0, 0]\n"
+"  - [0, 0, 0, 0]\n"
+"  - [1, 2, 4, 1]\n"
+"  - [1, 2, 4, 1]\n"
+"  - [2, 4, 8, 0]"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:553
+msgid "Ranges and limits"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:555
+msgid "Tarantool can handle:"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:557
+msgid "integers anywhere in the 4-byte integer range"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:558
+msgid "approximate-numerics anywhere in the 8-byte IEEE floating point range"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:559
+msgid "any Unicode characters, with UTF-8 encoding and a choice of collations"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:561
+msgid "Insert such values in a new table and see what happens when you select them with arithmetic on a number column and ordering by a string column."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:564
+msgid "CREATE TABLE t6 (column1 INTEGER, column2 VARCHAR(10), column4 DOUBLE,\n"
+"PRIMARY KEY (column1));\n"
+"INSERT INTO t6 VALUES (-1234567890, 'АБВГД', 123456.123456);\n"
+"INSERT INTO t6 VALUES (+1234567890, 'GD', 1e30);\n"
+"INSERT INTO t6 VALUES (10, 'FADEW?', 0.000001);\n"
+"INSERT INTO t6 VALUES (5, 'ABCDEFG', NULL);\n"
+"SELECT column1 + 1, column2, column4 * 2 FROM SEQSCAN t6 ORDER BY column2;"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:576
+msgid "- - [6, 'ABCDEFG', null]\n"
+"  - [11, 'FADEW?', 2e-06]\n"
+"  - [1234567891, 'GD', 2e+30]\n"
+"  - [-1234567889, 'АБВГД', 246912.246912]"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:584
+msgid "Views"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:586
+msgid "A view (or *viewed table*), is virtual, meaning that its rows aren't physically in the database, their values are calculated from other tables."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:589
+msgid "Create a view ``v3`` based on ``table3`` and select from it:"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:591
+msgid "CREATE VIEW v3 AS SELECT SUBSTR(column2,1,2), column4 FROM SEQSCAN t6\n"
+"WHERE column4 >= 0;\n"
+"SELECT * FROM v3;"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:599
+#: ../../doc/how-to/sql/sql_tutorial.rst:622
+msgid "- - ['АБ', 123456.123456]\n"
+"  - ['FA', 1e-06]\n"
+"  - ['GD', 1e+30]"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:606
+msgid "Common table expressions"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:608
+msgid "By putting ``WITH`` + ``SELECT`` in front of a ``SELECT``, you can make a temporary view that lasts for the duration of the statement."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:611
+msgid "Create such a view and select from it:"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:613
+msgid "WITH cte AS (\n"
+"             SELECT SUBSTR(column2,1,2), column4 FROM SEQSCAN t6\n"
+"             WHERE column4 >= 0)\n"
+"SELECT * FROM cte;"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:620
+msgid "The result is the same as the ``CREATE VIEW`` result:"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:629
+msgid "VALUES"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:631
+msgid "Tarantool can handle statements like ``SELECT 55;`` (select without ``FROM``) like some other popular DBMSs. But it also handles the more standard statement ``VALUES (expression [, expression ...]);``."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:635
+msgid "SELECT 55 * 55, 'The rain in Spain';\n"
+"VALUES (55 * 55, 'The rain in Spain');"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:640
+msgid "The result of both these statements is:"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:642
+msgid "- - [3025, 'The rain in Spain']"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:647
+msgid "Metadata"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:649
+msgid "To find out the internal structure of the Tarantool database with SQL, select from the Tarantool system tables ``_space``, ``_index``, and ``_trigger``:"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:652
+msgid "SELECT * FROM SEQSCAN \"_space\";\n"
+"SELECT * FROM SEQSCAN \"_index\";\n"
+"SELECT * FROM SEQSCAN \"_trigger\";"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:658
+msgid "Actually, these statements select from NoSQL \"system spaces\"."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:660
+msgid "Select from ``_space`` by a table name:"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:662
+msgid "SELECT \"id\", \"name\", \"owner\", \"engine\" FROM \"_space\" WHERE \"name\"='TABLE3';"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:668
+msgid "- - [517, 'TABLE3', 1, 'memtx']"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:675
+msgid "Using SQL from Lua"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:677
+msgid "You can execute SQL statements directly from the Lua code without switching to the SQL input."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:680
+msgid "Change the settings so that the console accepts statements written in Lua instead of statements written in SQL:"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:683
+msgid "tarantool> \\set language lua"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:688
+msgid "box.execute()"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:689
+msgid "You can invoke SQL statements using the Lua function ``box.execute(string)``."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:691
+msgid "tarantool> box.execute([[SELECT * FROM SEQSCAN table3;]]);"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:697
+msgid "- - [-1000, '']\n"
+"  - [0, '!!!']\n"
+"  - [0, '!!@']\n"
+"  - [1, 'AB']\n"
+"  - [1, 'CD']\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:707
+msgid "Create a million-row table"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:709
+msgid "To see how the SQL in Tarantool scales, create a bigger table."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:711
+msgid "The following Lua code generates one million rows with random data and inserts them into a table. Copy this code into the Tarantool console and wait a bit:"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:715
+msgid "box.execute(\"CREATE TABLE tester (s1 INT PRIMARY KEY, s2 VARCHAR(10))\");\n"
+"\n"
+"function string_function()\n"
+"   local random_number\n"
+"   local random_string\n"
+"   random_string = \"\"\n"
+"   for x = 1,10,1 do\n"
+"     random_number = math.random(65, 90)\n"
+"     random_string = random_string .. string.char(random_number)\n"
+"   end\n"
+"   return random_string\n"
+"end;\n"
+"\n"
+"function main_function()\n"
+"   local string_value, t, sql_statement\n"
+"   for i = 1,1000000,1 do\n"
+"     string_value = string_function()\n"
+"     sql_statement = \"INSERT INTO tester VALUES (\" .. i .. \",'\" .. string_value .. \"')\"\n"
+"     box.execute(sql_statement)\n"
+"   end\n"
+"end;\n"
+"start_time = os.clock();\n"
+"main_function();\n"
+"end_time = os.clock();\n"
+"print('insert done in ' .. end_time - start_time .. ' seconds');"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:743
+msgid "The result is: you now have a table with a million rows, with a message saying \"``insert done in 88.570578 seconds``\"."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:748
+msgid "Select from a million-row table"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:750
+msgid "Check how ``SELECT`` works on the million-row table:"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:752
+msgid "the first query goes by an index because ``s1`` is the primary key"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:753
+msgid "the second query does not go by an index"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:755
+msgid "box.execute([[SELECT * FROM tester WHERE s1 = 73446;]]);\n"
+"box.execute([[SELECT * FROM SEQSCAN tester WHERE s2 LIKE 'QFML%';]]);"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:762
+msgid "the first statement completes instantaneously"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:763
+msgid "the second statement completed noticeably slower"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:766
+msgid "Cleanup and exit"
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:768
+msgid "To cleanup all the objects created in this tutorial, switch to the SQL input language again. Then run the ``DROP`` statements for all created tables, views, and triggers."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:772
+msgid "These statements must be entered separately."
+msgstr ""
+
+#: ../../doc/how-to/sql/sql_tutorial.rst:774
+msgid "tarantool> \\set language sql\n"
+"tarantool> DROP TABLE tester;\n"
+"tarantool> DROP TABLE table1;\n"
+"tarantool> DROP VIEW v3;\n"
+"tarantool> DROP TRIGGER tr;\n"
+"tarantool> DROP TABLE table5;\n"
+"tarantool> DROP TABLE table4;\n"
+"tarantool> DROP TABLE table3;\n"
+"tarantool> DROP TABLE table2;\n"
+"tarantool> DROP TABLE t6;\n"
+"tarantool> \\set language lua\n"
+"tarantool> os.exit();"
+msgstr ""

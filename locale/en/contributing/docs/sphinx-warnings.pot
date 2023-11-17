@@ -1,0 +1,283 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:2
+msgid "Sphinx-build warnings reference"
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:4
+msgid "This document will guide you through the warnings that can be raised by Sphinx while building the docs."
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:7
+msgid "Below are the most frequent warnings and the ways to solve them."
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:10
+msgid "Bullet list ends without a blank line; unexpected unindent"
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:12
+msgid "**Similar warning:** Block quote ends without a blank line; unexpected unindent"
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:14
+#: ../../doc/contributing/docs/sphinx-warnings.rst:37
+#: ../../doc/contributing/docs/sphinx-warnings.rst:59
+#: ../../doc/contributing/docs/sphinx-warnings.rst:116
+#: ../../doc/contributing/docs/sphinx-warnings.rst:141
+#: ../../doc/contributing/docs/sphinx-warnings.rst:158
+#: ../../doc/contributing/docs/sphinx-warnings.rst:173
+#: ../../doc/contributing/docs/sphinx-warnings.rst:199
+#: ../../doc/contributing/docs/sphinx-warnings.rst:225
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:16
+msgid "*   The last point of bullet list\n"
+"This text should start after a blank line"
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:21
+#: ../../doc/contributing/docs/sphinx-warnings.rst:45
+#: ../../doc/contributing/docs/sphinx-warnings.rst:69
+#: ../../doc/contributing/docs/sphinx-warnings.rst:88
+#: ../../doc/contributing/docs/sphinx-warnings.rst:105
+#: ../../doc/contributing/docs/sphinx-warnings.rst:126
+#: ../../doc/contributing/docs/sphinx-warnings.rst:147
+#: ../../doc/contributing/docs/sphinx-warnings.rst:162
+#: ../../doc/contributing/docs/sphinx-warnings.rst:179
+#: ../../doc/contributing/docs/sphinx-warnings.rst:210
+#: ../../doc/contributing/docs/sphinx-warnings.rst:231
+msgid "**Solution:**"
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:23
+msgid "*   The last point of bullet list\n"
+"\n"
+"This text should start after a blank line"
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:30
+msgid "Could not lex literal_block as \"...\". Highlighting skipped"
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:32
+msgid "This warning means that there's a ``code-block`` with an unknown lexer. Most probably, it's a typo. Check out the `full list of Pygments lexers <https://pygments.org/docs/lexers/>`_ for the right spelling."
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:39
+msgid "..  code-block:: cxx\n"
+"\n"
+"    // some code here"
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:47
+msgid "..  code-block:: cpp\n"
+"\n"
+"    // some code here"
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:53
+msgid "However, sometimes there's no appropriate lexer or the code snippet can't be lexed properly. In that case, use ``code-block:: text``."
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:57
+msgid "Duplicate explicit target name: \"...\""
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:61
+msgid "*   `Install <https://git-scm.com/book/en/v2/Getting-Started-Installing-Git>`_\n"
+"    ``git``, the version control system.\n"
+"\n"
+"*   `Install <https://linuxize.com/post/how-to-unzip-files-in-linux/>`_\n"
+"    the ``unzip`` utility."
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:71
+msgid "Sphinx-builder raises warnings when we call different targets the same name. Sphinx developers `recommend <https://github.com/sphinx-doc/sphinx/issues/3921>`_ using double underlines ``__`` in such cases to avoid this."
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:75
+msgid "*   `Install <https://git-scm.com/book/en/v2/Getting-Started-Installing-Git>`__\n"
+"    ``git``, the version control system.\n"
+"\n"
+"*   `Install <https://linuxize.com/post/how-to-unzip-files-in-linux/>`__\n"
+"    the ``unzip`` utility."
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:84
+msgid "Document isn't included in any toctree"
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:86
+msgid "This warning means that you forgot to put the document name in the toctree."
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:90
+msgid "If you don't want to include the document in a toctree, place the ``:orphan:`` directive at the top of the file. If this file is already included somewhere or reused, add it to the _includes directory. Sphinx ignores everything in this directory because we list it among ``exclude_patterns`` in ``conf.py``."
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:97
+msgid "Duplicate label \"...\", other instance in \".../.../...\""
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:101
+msgid "This happens if you include the contents of a file into another file, when the included file has tags in it. In this, Sphinx thinks the tags are repeated."
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:107
+msgid "As in the previous case, add the file to _includes or avoid using tags in it."
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:110
+msgid "Malformed hyperlink target"
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:112
+msgid "**Similar warning:** Unknown target name: \"...\""
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:114
+msgid "Check the target spelling and the tag syntax."
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:118
+msgid "..  _box_space-index_func"
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:122
+msgid "See the :ref:`Creating a functional index <box_space-index_func>` section."
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:128
+msgid "A semicolon is missing in the tag definition:"
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:130
+msgid "..  _box_space-index_func:"
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:135
+msgid "Anonymous hyperlink mismatch"
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:137
+msgid "**Warning example:** Anonymous hyperlink mismatch: 1 references but 0 targets."
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:139
+msgid "Check the hyperlink formatting."
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:143
+msgid "Read more in `Lua Manual <https://www.lua.org/manual/5.3`__."
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:149
+msgid "A closing greater-than sign is missing in the tag definition:"
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:151
+msgid "Read more in `Lua Manual <https://www.lua.org/manual/5.3>`__."
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:156
+msgid "Toctree contains reference to nonexisting document '...'"
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:160
+msgid "This may happen when you refer to a wrong path to a document."
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:164
+msgid "Check the path."
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:166
+msgid "If the path points to a submodule, check that you've :doc:`built the submodules content </contributing/docs/build>` before building docs."
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:171
+msgid "Undefined label: ... (if the link has no caption the label must precede a section header)"
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:175
+msgid "Read more in :ref:`<sql_data_type_conversion>`."
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:181
+msgid "We recommend using custom captions with ``:ref:``:"
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:183
+msgid "Read more in :ref:`Data Type Conversion <sql_data_type_conversion>`."
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:187
+#: ../../doc/contributing/docs/sphinx-warnings.rst:218
+msgid "**See also:**"
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:189
+msgid ":doc:`Links and references </contributing/docs/markup/links>`"
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:192
+msgid "Unexpected indentation"
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:194
+msgid "The reStructuredText syntax is based on indentation, much like in Python. All lines in a block of content must be equally indented. An increase or decrease in indentation denotes the end of the current block and the beginning of a new one."
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:201
+msgid "Note: In the following examples, dots stand for indentation spaces. For example, ``|..|`` denotes a two-space indentation."
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:204
+msgid "|..|* (Engines) Improve dump start/stop logging. When initiating memory dump, print\n"
+"how much memory is going to be dumped, the expected dump rate, ETA, and the recent\n"
+"write rate."
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:212
+msgid "*|...|(Engines) Improve dump start/stop logging. When initiating memory dump, print\n"
+"|....|how much memory is going to be dumped, the expected dump rate, ETA, and the recent\n"
+"|....|write rate."
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:220
+msgid ":doc:`General syntax guidelines </contributing/docs/markup/intro>`"
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:223
+msgid "Unknown document"
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:227
+msgid ":doc:`reference/reference_lua/box_space/update`"
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:233
+msgid "Sphinx did not recognize the file path correctly due to a missing slash at the beginning, so let's just put it there:"
+msgstr ""
+
+#: ../../doc/contributing/docs/sphinx-warnings.rst:236
+msgid ":doc:`/reference/reference_lua/box_space/update`"
+msgstr ""

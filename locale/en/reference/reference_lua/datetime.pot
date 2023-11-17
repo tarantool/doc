@@ -1,0 +1,121 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/datetime.rst:3
+msgid "Module datetime"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime.rst:5
+msgid "Since :doc:`2.10.0 </release/2.10.0>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime.rst:7
+msgid "The ``datetime`` module provides support for the :ref:`datetime and interval data types <index-box_datetime>`. It allows creating the date and time values either via the object interface or via parsing string values conforming to the ISO-8601 standard."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime.rst:11
+msgid "Below is a list of the ``datetime`` module functions and methods."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime.rst:22
+msgid "Name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime.rst:23
+msgid "Use"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime.rst:25
+msgid ":doc:`./datetime/new`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime.rst:26
+msgid "Create a ``datetime`` object from a table of time units."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime.rst:28
+msgid ":ref:`format() <datetime-format>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime.rst:29
+msgid "Convert the standard presentation of a ``datetime`` object into a formatted string."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime.rst:31
+msgid ":ref:`datetime_object:totable() <datetime-totable>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime.rst:32
+msgid "Convert the information from a ``datetime`` object into the table format."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime.rst:34
+msgid ":ref:`set() <datetime-set>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime.rst:35
+msgid "Update the field values in the existing ``datetime`` object."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime.rst:37
+msgid ":ref:`parse() <datetime-parse>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime.rst:38
+msgid "Convert an input string with the date and time information into a ``datetime`` object."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime.rst:40
+msgid ":ref:`add() <datetime-add>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime.rst:41
+msgid "Modify an existing datetime object by adding values of the input arguments."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime.rst:43
+msgid ":ref:`sub() <datetime-sub>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime.rst:44
+msgid "Modify an existing datetime object by subtracting values of the input arguments."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime.rst:46
+msgid ":doc:`./datetime/interval_new`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime.rst:47
+msgid "Create an ``interval`` object from a table of time units."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime.rst:49
+msgid ":ref:`interval_object:totable() <interval-totable>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime.rst:50
+msgid "Convert the information from an ``interval`` object into the table format."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime.rst:52
+msgid ":doc:`./datetime/interval_arithm`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime.rst:53
+msgid "Arithmetic operations with datetime and interval objects."
+msgstr ""

@@ -1,0 +1,43 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/fun.rst:5
+msgid "Module fun"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fun.rst:7
+msgid "Luafun, also known as the Lua Functional Library, takes advantage of the features of LuaJIT to help users create complex functions. Inside the module are \"sequence processors\" such as ``map``, ``filter``, ``reduce``, ``zip`` -- they take a user-written function as an argument and run it against every element in a sequence, which can be faster or more convenient than a user-written loop. Inside the module are \"generators\" such as ``range``, ``tabulate``, and ``rands`` -- they return a bounded or boundless series of values. Within the module are \"reducers\", \"filters\", \"composers\" ... or, in short, all the important features found in languages like Standard ML, Haskell, or Erlang."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fun.rst:17
+msgid "The full documentation is `On the luafun section of github <https://luafun.github.io/>`_. However, the first chapter can be skipped because installation is already done, it's inside Tarantool. All that is needed is the usual ``require`` request. After that, all the operations described in the Lua fun manual will work, provided they are preceded by the name returned by the ``require`` request. For example:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/fun.rst:23
+msgid "tarantool> fun = require('fun')\n"
+"---\n"
+"...\n"
+"tarantool> for _k, a in fun.range(3) do\n"
+"         >   print(a)\n"
+"         > end\n"
+"1\n"
+"2\n"
+"3\n"
+"---\n"
+"..."
+msgstr ""

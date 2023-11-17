@@ -1,0 +1,816 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:4
+msgid "space_object:create_index()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:11
+msgid "Create an :ref:`index <index-box_index>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:13
+msgid "It is mandatory to create an index for a space before trying to insert tuples into it or select tuples from it. The first created index will be used as the primary-key index, so it must be unique."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:17
+msgid "an :ref:`object reference <app_server-object_reference>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:19
+msgid "name of index, which should conform to the :ref:`rules for object names <app_server-names>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:21
+msgid "index options (see :ref:`index_opts <index_opts_object>`)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:23
+msgid "index object"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:24
+msgid "index_object"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:26
+msgid "**Possible errors:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:28
+msgid "too many parts"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:29
+msgid "index '...' already exists"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:30
+msgid "primary key must be unique"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:32
+msgid "Building or rebuilding a large index will cause occasional :ref:`yields <app-cooperative_multitasking>` so that other requests will not be blocked. If the other requests cause an illegal situation such as a duplicate key in a unique index, building or rebuilding such index will fail."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:39
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:94
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:121
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:323
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:352
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:586
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:663
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:41
+msgid "-- Create a space --\n"
+"bands = box.schema.space.create('bands')\n"
+"\n"
+"-- Specify field names and types --\n"
+"box.space.bands:format({\n"
+"    { name = 'id', type = 'unsigned' },\n"
+"    { name = 'band_name', type = 'string' },\n"
+"    { name = 'year', type = 'unsigned' }\n"
+"})\n"
+"\n"
+"-- Create a primary index --\n"
+"box.space.bands:create_index('primary', { parts = { 'id' } })\n"
+"\n"
+"-- Create a unique secondary index --\n"
+"box.space.bands:create_index('band', { parts = { 'band_name' } })\n"
+"\n"
+"-- Create a non-unique secondary index --\n"
+"box.space.bands:create_index('year', { parts = { { 'year' } }, unique = false })\n"
+"\n"
+"-- Create a multi-part index --\n"
+"box.space.bands:create_index('year_band', { parts = { { 'year' }, { 'band_name' } } })\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:51
+msgid "index_opts"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:56
+msgid "Index options that include the index name, type, identifiers of key fields, and so on. These options are passed to the :ref:`space_object.create_index() <box_space-create_index>` method."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:61
+msgid "These options are also passed to :doc:`/reference/reference_lua/box_index/alter`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:67
+msgid "The :ref:`index type <index-types>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:69
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:172
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:193
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:307
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:320
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:396
+msgid "Type: string"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:70
+msgid "Default: ``TREE``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:71
+msgid "Possible values: ``TREE``, ``HASH``, ``RTREE``, ``BITSET``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:78
+msgid "A unique numeric identifier of the index, which is generated automatically."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:80
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:162
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:219
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:231
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:243
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:255
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:267
+msgid "Type: number"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:81
+msgid "Default: last index's ID + 1"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:88
+msgid "Specify whether an index may be unique. When ``true``, the index cannot contain the same key value twice."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:91
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:108
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:207
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:348
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:385
+msgid "Type: boolean"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:92
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:208
+msgid "Default: ``true``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:96
+msgid "-- Create a non-unique secondary index --\n"
+"box.space.bands:create_index('year', { parts = { { 'year' } }, unique = false })\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:106
+msgid "Specify whether to swallow an error on an attempt to create an index with a duplicated name."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:109
+msgid "Default: ``false``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:116
+msgid "Specify the index's key parts."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:118
+msgid "Type: a table of :ref:`key_part <key_part_object>` values"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:119
+msgid "Default: ``{1, ‘unsigned’}``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:123
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:442
+msgid "-- Create a primary index --\n"
+"box.space.bands:create_index('primary', { parts = { 'id' } })\n"
+"\n"
+"-- Create a unique secondary index --\n"
+"box.space.bands:create_index('band', { parts = { 'band_name' } })\n"
+"\n"
+"-- Create a non-unique secondary index --\n"
+"box.space.bands:create_index('year', { parts = { { 'year' } }, unique = false })\n"
+"\n"
+"-- Create a multi-part index --\n"
+"box.space.bands:create_index('year_band', { parts = { { 'year' }, { 'band_name' } } })\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:132
+msgid "**Alternative way to declare index parts**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:134
+msgid "Before version :doc:`2.7.1 </release/2.7.1>`, if an index consisted of a single part and had some options like ``is_nullable`` or ``collation`` and its definition was written as"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:138
+msgid "my_space:create_index('one_part_idx', {parts = {1, 'unsigned', is_nullable=true}})"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:142
+msgid "(with the only brackets) then options were ignored by Tarantool."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:144
+msgid "Since version :doc:`2.7.1 </release/2.7.1>` it is allowed to omit extra braces in an index definition and use both ways:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:147
+msgid "-- with extra braces\n"
+"my_space:create_index('one_part_idx', {parts = {{1, 'unsigned', is_nullable=true}}})\n"
+"\n"
+"-- without extra braces\n"
+"my_space:create_index('one_part_idx', {parts = {1, 'unsigned', is_nullable=true}})"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:160
+msgid "The RTREE index dimension."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:163
+msgid "Default: 2"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:170
+msgid "The RTREE index distance type."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:173
+msgid "Default: ``euclid``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:174
+msgid "Possible values: ``euclid``, ``manhattan``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:181
+msgid "Create a generator for indexes using a sequence object. Learn more from :ref:`specifying a sequence in create_index() <box_schema-sequence_create_index>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:184
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:294
+msgid "Type: string or number"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:191
+msgid "Specify the identifier of the :ref:`functional index <box_space-index_func>` function."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:200
+msgid "**Since:** :doc:`2.6.1 </release/2.6.1>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:202
+msgid "Specify whether hint optimization is enabled for the TREE index:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:204
+msgid "If ``true``, the index works faster."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:205
+msgid "If ``false``, the index size is reduced by half."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:215
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:227
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:239
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:251
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:263
+msgid "**Vinyl only**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:217
+msgid "Specify the bloom filter's false positive rate."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:220
+msgid "Default: :ref:`vinyl_bloom_fpr <cfg_storage-vinyl_bloom_fpr>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:229
+msgid "Specify the size of a page used for read and write disk operations."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:232
+msgid "Default: :ref:`vinyl_page_size <cfg_storage-vinyl_page_size>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:241
+msgid "Specify the default maximum range size (in bytes) for a vinyl index."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:244
+msgid "Default: :ref:`vinyl_range_size <cfg_storage-vinyl_range_size>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:253
+msgid "Specify the maximum number of runs per level in the LSM tree."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:256
+msgid "Default: :ref:`vinyl_run_count_per_level <cfg_storage-vinyl_run_count_per_level>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:265
+msgid "Specify the ratio between the sizes of different levels in the LSM tree."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:268
+msgid "Default: :ref:`vinyl_run_size_ratio <cfg_storage-vinyl_run_size_ratio>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:277
+msgid "key_part"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:281
+msgid "A descriptor of a single part in a multipart key. A table of parts is passed to the :ref:`index_opts.parts <index_opts_parts>` option."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:288
+msgid "Specify the field number or name."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:292
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:440
+msgid "To create a key part by a field name, you need to specify :ref:`space_object:format() <box_space-format>` first."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:296
+msgid "**Examples:** :ref:`Creating an index using field names and numbers <box_space-field_names>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:303
+msgid "Specify the field type. If the field type is specified in :ref:`space_object:format() <box_space-format>`, ``key_part.type`` inherits this value."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:308
+msgid "Default: ``scalar``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:309
+msgid "Possible values: listed in :ref:`Indexed field types <index-box_indexed-field-types>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:316
+msgid "Specify the :ref:`collation <index-collation>` used to compare field values. If the field collation is specified in :ref:`space_object:format() <box_space-format>`, ``key_part.collation`` inherits this value."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:321
+msgid "Possible values: listed in the :ref:`box.space._collation <box_space-collation>` system space"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:325
+msgid "-- Create a space --\n"
+"box.schema.space.create('tester')\n"
+"\n"
+"-- Use the 'unicode' collation --\n"
+"box.space.tester:create_index('unicode', { parts = { { field = 1,\n"
+"                                                        type = 'string',\n"
+"                                                        collation = 'unicode' } } })\n"
+"\n"
+"-- Use the 'unicode_ci' collation --\n"
+"box.space.tester:create_index('unicode_ci', { parts = { { field = 1,\n"
+"                                                        type = 'string',\n"
+"                                                        collation = 'unicode_ci' } } })\n"
+"\n"
+"-- Insert test data --\n"
+"box.space.tester:insert { 'ЕЛЕ' }\n"
+"box.space.tester:insert { 'елейный' }\n"
+"box.space.tester:insert { 'ёлка' }\n"
+"\n"
+"-- Returns nil --\n"
+"select_unicode = box.space.tester.index.unicode:select({ 'ЁлКа' })\n"
+"-- Returns 'ёлка' --\n"
+"select_unicode_ci = box.space.tester.index.unicode_ci:select({ 'ЁлКа' })\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:334
+msgid "Specify whether ``nil`` (or its equivalent such as ``msgpack.NULL``) can be used as a field value. If the ``is_nullable`` option is specified in :ref:`space_object:format() <box_space-format>`, ``key_part.is_nullable`` inherits this value."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:338
+msgid "You can set this option to ``true`` if:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:340
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:376
+msgid "the index type is TREE"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:341
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:377
+msgid "the index is not the primary index"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:343
+msgid "It is also legal to insert nothing at all when using trailing nullable fields. Within indexes, such null values are always treated as equal to other null values and are always treated as less than non-null values. Nulls may appear multiple times even in a unique index."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:349
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:386
+msgid "Default: false"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:354
+msgid "box.space.tester:create_index('I', {unique = true, parts = {{field = 2, type = 'number', is_nullable = true}}})"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:360
+msgid "It is legal to create multiple indexes for the same field with different ``is_nullable`` values or to call :doc:`/reference/reference_lua/box_space/format` with a different ``is_nullable`` value from what is used for an index. When there is a contradiction, the rule is: null is illegal unless ``is_nullable=true`` for every index and for the space format."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:371
+msgid "**Since:** :doc:`2.8.2 </release/2.8.2>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:373
+msgid "Specify whether an index can skip tuples with null at this key part. You can set this option to ``true`` if:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:379
+msgid "If ``exclude_null`` is set to ``true``, ``is_nullable`` is set to ``true`` automatically. Note that this option can be changed dynamically. In this case, the index is rebuilt."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:383
+msgid "Such indexes do not store filtered tuples at all, so indexing can be done faster."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:394
+msgid "Specify the path string for a map field."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:398
+msgid "See the examples below:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:400
+msgid ":ref:`Creating an index using the path option for map fields <box_space-path>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:401
+msgid ":ref:`Creating a multikey index using the path option with [*] <box_space-path_multikey>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:427
+msgid "Examples"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:432
+msgid "Creating an index using field names and numbers"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:435
+msgid "``create_index()`` can use field names or field numbers to define key parts."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:438
+msgid "**Example 1 (field names):**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:447
+msgid "**Example 2 (field numbers):**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:449
+msgid "-- Create a primary index --\n"
+"box.space.bands:create_index('primary', { parts = { 1 } })\n"
+"\n"
+"-- Create a unique secondary index --\n"
+"box.space.bands:create_index('band', { parts = { 2 } })\n"
+"\n"
+"-- Create a non-unique secondary index --\n"
+"box.space.bands:create_index('year', { parts = { { 3 } }, unique = false })\n"
+"\n"
+"-- Create a multi-part index --\n"
+"box.space.bands:create_index('year_band', { parts = { 3, 2 } })\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:459
+msgid "Creating an index using the path option for map fields (JSON-path indexes)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:461
+msgid "To create an index for a field that is a map (a path string and a scalar value), specify the path string during index creation, like this:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:512
+msgid ":extsamp:`parts = {{*{field-number}*}, {*{'data-type'}*}, path = {*{'path-name'}*}}`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:469
+msgid "The index type must be TREE or HASH and the contents of the field must always be maps with the same path."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:472
+msgid "**Example 1 -- The simplest use of path:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:474
+msgid "box.schema.space.create('space1')\n"
+"box.space.space1:create_index('primary', { parts = { { field = 1,\n"
+"                                                       type = 'scalar',\n"
+"                                                       path = 'age' } } })\n"
+"box.space.space1:insert({ { age = 44 } })\n"
+"box.space.space1:select(44)\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:479
+msgid "**Example 2 -- path plus format() plus JSON syntax to add clarity:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:481
+msgid "box.schema.space.create('space2')\n"
+"box.space.space2:format({ { 'id', 'unsigned' }, { 'data', 'map' } })\n"
+"box.space.space2:create_index('info', { parts = { { 'data.full_name[\"firstname\"]', 'str' },\n"
+"                                                  { 'data.full_name[\"surname\"]', 'str' } } })\n"
+"box.space.space2:insert({ 1, { full_name = { firstname = 'John', surname = 'Doe' } } })\n"
+"box.space.space2:select { 'John' }\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:491
+msgid "Creating a multikey index using the path option with [*]"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:493
+msgid "The string in a path option can contain ``[*]`` which is called **an array index placeholder**. Indexes defined with this are useful for JSON documents that all have the same structure."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:497
+msgid "For example, when creating an index on field#2 for a string document that will start with ``{'data': [{'name': '...'}, {'name': '...'}]``, the parts section in the ``create_index`` request could look like:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:501
+msgid "parts = {{field = 2, type = 'str', path = 'data[*].name'}}"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:505
+msgid "Then tuples containing names can be retrieved quickly with ``index_object:select({key-value})``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:508
+msgid "A single field can have multiple keys, as in this example which retrieves the same tuple twice because there are two keys 'A' and 'B' which both match the request:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:512
+msgid "my_space = box.schema.space.create('json_documents')\n"
+"my_space:create_index('primary')\n"
+"multikey_index = my_space:create_index('multikey', {parts = {{field = 2, type = 'str', path = 'data[*].name'}}})\n"
+"my_space:insert({1,\n"
+"         {data = {{name = 'A'},\n"
+"                  {name = 'B'}},\n"
+"          extra_field = 1}})\n"
+"multikey_index:select({''}, {iterator = 'GE'})"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:523
+msgid "The result of the select request looks like this:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:525
+msgid "tarantool> multikey_index:select({''},{iterator='GE'})\n"
+"---\n"
+"- - [1, {'data': [{'name': 'A'}, {'name': 'B'}], 'extra_field': 1}]\n"
+"- [1, {'data': [{'name': 'A'}, {'name': 'B'}], 'extra_field': 1}]\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:533
+msgid "The following restrictions exist:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:535
+msgid "``[*]`` must be alone or must be at the end of a name in the path."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:536
+msgid "``[*]`` must not appear twice in the path."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:537
+msgid "If an index has a path with ``x[*]``, then no other index can have a path with x.component."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:539
+msgid "``[*]`` must not appear in the path of a primary key."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:540
+msgid "If an index has ``unique=true`` and has a path with ``[*]``, then duplicate keys from different tuples are disallowed, but duplicate keys for the same tuple are allowed."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:543
+msgid "The field's value must have the same structure as in the path definition, or be nil (nil is not indexed)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:545
+msgid "In a space with multikey indexes, any tuple cannot contain :ref:`more than ~8,000 elements <limitations_fields_in_tuple_multikey_index>` indexed that way."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:551
+msgid "Creating a functional index"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:553
+msgid "Functional indexes are indexes that call a user-defined function for forming the index key, rather than depending entirely on the Tarantool default formation. Functional indexes are useful for condensing or truncating or reversing or any other way that users want to customize the index."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:558
+msgid "There are several recommendations for building functional indexes:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:560
+msgid "The function definition must expect a tuple, which has the contents of fields at the time a data-change request happens, and must return a tuple, which has the contents that will be put in the index."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:564
+msgid "The ``create_index`` definition must include the specification of all key parts, and the custom function must return a table that has the same number of key parts with the same types."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:568
+msgid "The space must have a memtx engine."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:570
+msgid "The function must be persistent and deterministic (see :ref:`Creating a function with body <box_schema-func_create_with-body>`)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:573
+msgid "The key parts must not depend on JSON paths."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:575
+msgid "The function must access key-part values by index, not by field name."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:577
+msgid "Functional indexes must not be primary-key indexes."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:579
+msgid "Functional indexes cannot be altered and the function cannot be changed if it is used for an index, so the only way to change them is to drop the index and create it again."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:583
+msgid "Only :ref:`sandboxed <box_schema-func_create_with-body>` functions are suitable for functional indexes."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:588
+msgid "A function could make a key using only the first letter of a string field."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:590
+msgid "Create a space. The space needs a primary-key field, which is not the field that we will use for the functional index:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:593
+msgid "box.schema.space.create('tester')\n"
+"box.space.tester:create_index('i', { parts = { { field = 1, type = 'string' } } })\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:599
+msgid "Create a function. The function expects a tuple. In this example, it will work on tuple[2] because the key source is field number 2 in what we will insert. Use ``string.sub()`` from the ``string`` module to get the first character:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:603
+msgid "function_code = [[function(tuple) return {string.sub(tuple[2],1,1)} end]]\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:608
+msgid "Make the function persistent using the ``box.schema.func.create`` function:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:610
+msgid "box.schema.func.create('my_func',\n"
+"        { body = function_code, is_deterministic = true, is_sandboxed = true })\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:615
+msgid "Create a functional index. Specify the fields whose values will be passed to the function. Specify the function:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:618
+msgid "box.space.tester:create_index('func_index', { parts = { { field = 1, type = 'string' } },\n"
+"                                              func = 'my_func' })\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:623
+msgid "Insert a few tuples. Select using only the first letter, it will work because that is the key. Or, select using the same function as was used for insertion:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:627
+msgid "box.space.tester:insert({ 'a', 'wombat' })\n"
+"box.space.tester:insert({ 'b', 'rabbit' })\n"
+"box.space.tester.index.func_index:select('w')\n"
+"box.space.tester.index.func_index:select(box.func.my_func:call({ { 'tester', 'wombat' } }))\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:633
+msgid "The results of the two ``select`` requests will look like this:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:635
+msgid "tarantool> box.space.tester.index.func_index:select('w')\n"
+"---\n"
+"- - ['a', 'wombat']\n"
+"...\n"
+"tarantool> box.space.tester.index.func_index:select(box.func.my_func:call({{'tester','wombat'}}));\n"
+"---\n"
+"- - ['a', 'wombat']\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:646
+msgid "Here is the full code of the example:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:648
+msgid "box.schema.space.create('tester')\n"
+"box.space.tester:create_index('i', { parts = { { field = 1, type = 'string' } } })\n"
+"function_code = [[function(tuple) return {string.sub(tuple[2],1,1)} end]]\n"
+"box.schema.func.create('my_func',\n"
+"        { body = function_code, is_deterministic = true, is_sandboxed = true })\n"
+"box.space.tester:create_index('func_index', { parts = { { field = 1, type = 'string' } },\n"
+"                                              func = 'my_func' })\n"
+"box.space.tester:insert({ 'a', 'wombat' })\n"
+"box.space.tester:insert({ 'b', 'rabbit' })\n"
+"box.space.tester.index.func_index:select('w')\n"
+"box.space.tester.index.func_index:select(box.func.my_func:call({ { 'tester', 'wombat' } }))\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:656
+msgid "Functions for functional indexes can return **multiple keys**. Such functions are called \"multikey\" functions."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:659
+msgid "To create a multikey function, the options of ``box.schema.func.create()`` must include ``is_multikey = true``. The return value must be a table of tuples. If a multikey function returns N tuples, then N keys will be added to the index."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/create_index.rst:665
+msgid "tester = box.schema.space.create('withdata')\n"
+"tester:format({ { name = 'name', type = 'string' },\n"
+"                { name = 'address', type = 'string' } })\n"
+"name_index = tester:create_index('name', { parts = { { field = 1, type = 'string' } } })\n"
+"function_code = [[function(tuple)\n"
+"       local address = string.split(tuple[2])\n"
+"       local ret = {}\n"
+"       for _, v in pairs(address) do\n"
+"         table.insert(ret, {utf8.upper(v)})\n"
+"       end\n"
+"       return ret\n"
+"     end]]\n"
+"box.schema.func.create('address',\n"
+"        { body = function_code,\n"
+"          is_deterministic = true,\n"
+"          is_sandboxed = true,\n"
+"          is_multikey = true })\n"
+"addr_index = tester:create_index('addr', { unique = false,\n"
+"                                           func = 'address',\n"
+"                                           parts = { { field = 1, type = 'string',\n"
+"                                                  collation = 'unicode_ci' } } })\n"
+"tester:insert({ \"James\", \"SIS Building Lambeth London UK\" })\n"
+"tester:insert({ \"Sherlock\", \"221B Baker St Marylebone London NW1 6XE UK\" })\n"
+"addr_index:select('Uk')\n"
+""
+msgstr ""

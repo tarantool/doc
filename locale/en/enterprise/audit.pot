@@ -1,0 +1,224 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/enterprise/audit.rst:2
+msgid "Security audit"
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:4
+msgid "This document will help you audit the security of a Tarantool cluster. It explains certain security aspects, their rationale, and the ways to check them. For details on how to configure Tarantool Enterprise Edition and its infrastructure for each aspect, refer to the :doc:`security hardening guide <security>`."
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:10
+msgid "Encryption of external iproto traffic"
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:12
+msgid "Tarantool uses the :doc:`iproto binary protocol </dev_guide/internals/box_protocol>` for replicating data between instances and also in the connector libraries."
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:16
+msgid "Since version 2.10.0, the Enterprise Edition has the built-in support for using SSL to encrypt the client-server communications over binary connections. For details on enabling SSL encryption, see the :ref:`enterprise-iproto-encryption` section of this document."
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:19
+msgid "In case the built-in encryption is not enabled, we recommend using VPN to secure data exchange between data centers."
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:22
+msgid "Closed iproto ports"
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:24
+msgid "When a Tarantool cluster does not use iproto for external requests, connections to the iproto ports should be allowed only between Tarantool instances."
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:27
+msgid "For more details on configuring ports for iproto, see the ``advertise_uri`` section in the Cartridge documentation."
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:32
+msgid "HTTPS connection termination"
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:34
+msgid "A Tarantool instance can accept HTTP connections from external services or access the administrative web UI. All such connections must go through an HTTPS-providing web server, running on the same host, such as nginx. This requirement is for both virtual and physical hosts. Running HTTP traffic through a few separate hosts with HTTPS termination is not sufficiently secure."
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:44
+msgid "Closed HTTP ports"
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:48
+msgid "Tarantool accepts HTTP connections on a specific port. It must be only available on the same host for nginx to connect to it."
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:51
+msgid "Check that the configured HTTP port is closed and that the HTTPS port (``443`` by default) is open."
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:55
+msgid "Restricted access to the administrative console"
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:57
+msgid "The :doc:`console </reference/reference_lua/console>` module provides a way to connect to a running instance and run custom Lua code. This can be useful for development and administration. The following code examples open connections on a TCP port and on a UNIX socket."
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:62
+msgid "console.listen(<port number>)\n"
+"console.listen('/var/lib/tarantool/socket_name.sock')"
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:67
+msgid "Opening an administrative console through a TCP port is always unsafe. Check that there are no calls like ``console.listen(<port_number>)`` in the code."
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:71
+msgid "Connecting through a socket requires having the write permission on the ``/var/lib/tarantool`` directory. Check that write permission to this directory is limited to the ``tarantool`` user."
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:76
+msgid "Limiting the guest user"
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:78
+msgid "Connecting to the instance with ``tt connect`` or ``tarantoolctl connect`` without user credentials (under the ``guest`` user) must be disabled."
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:81
+msgid "There are two ways to check this vulnerability:"
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:83
+msgid "Check that the source code doesn't grant access to the ``guest`` user. The corresponding code can look like this:"
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:86
+msgid "box.schema.user.grant('guest',\n"
+"    'read,write',\n"
+"    'universe',\n"
+"    nil, { if_not_exists = true }\n"
+")"
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:94
+msgid "Besides searching for the whole code pattern, search for any entries of ``'universe'``."
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:97
+msgid "Try connecting with ``tt connect`` to each Tarantool node."
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:99
+msgid "For more details, refer to the documentation on :ref:`access control <authentication>`."
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:103
+msgid "Authorization in the web UI"
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:105
+msgid "Using the web interface must require logging in with a username and password."
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:108
+msgid "Running under the tarantool user"
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:110
+msgid "All Tarantool instances should be running under the ``tarantool`` user."
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:113
+msgid "Limiting access to the tarantool user"
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:115
+msgid "The ``tarantool`` user must be a non-privileged user without the ``sudo`` permission. Also, it must not have a password set to prevent logging in via SSH or ``su``."
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:120
+msgid "Keeping two or more snapshots"
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:122
+msgid "In order to have a reliable backup, a Tarantool instance must keep two or more latest snapshots. This should be checked on each Tarantool instance."
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:126
+msgid "The :ref:`snapshot_count <cfg_checkpoint_daemon-checkpoint_count>` value determines the number of kept snapshots. Configuration values are primarily set in the configuration files but can be overridden with environment variables and command-line arguments. So, it's best to check both the values in the configuration files and the actual values using the console:"
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:133
+msgid "tarantool> box.cfg.checkpoint_count\n"
+"---\n"
+"- 2"
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:141
+msgid "Enabled write-ahead logging (WAL)"
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:143
+msgid "Tarantool records all incoming data in the write-ahead log (WAL). The WAL must be enabled to ensure that data will be recovered in case of a possible instance restart."
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:147
+msgid "Secure values of ``wal_mode`` are ``write`` and ``fsync``:"
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:149
+msgid "tarantool> box.cfg.wal_mode\n"
+"---\n"
+"- write"
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:155
+msgid "An exclusion from this requirement is when the instance is processing data, which can be freely rejected. For example, when Tarantool is used for caching. Then WAL can be disabled to reduce i/o load."
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:160
+msgid "For more details, see the :ref:`wal_mode reference <cfg_binary_logging_snapshots-wal_mode>`."
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:164
+msgid "The logging level is INFO or higher"
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:166
+msgid "The logging level should be set to 5 (``INFO``), 6 (``VERBOSE``), or 7 (``DEBUG``). Application logs will then have enough information to research a possible security breach."
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:169
+msgid "tarantool> box.cfg.log_level\n"
+"---\n"
+"- 5"
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:175
+msgid "For a full list of logging levels, see the :ref:`log_level reference <cfg_logging-log_level>`."
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:180
+msgid "Logging with journald"
+msgstr ""
+
+#: ../../doc/enterprise/audit.rst:182
+msgid "Tarantool should use ``journald`` for logging."
+msgstr ""

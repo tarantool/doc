@@ -1,0 +1,252 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/enterprise/tuple_compression.rst:4
+msgid "Tuple compression"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:6
+msgid "Tuple compression, introduced in Tarantool Enterprise Edition 2.10.0, aims to save memory space. Typically, it decreases the volume of stored data by 15%. However, the exact volume saved depends on the type of data."
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:10
+msgid "The following compression algorithms are supported:"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:12
+msgid "`lz4 <https://en.wikipedia.org/wiki/LZ4_(compression_algorithm)>`_"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:13
+msgid "`zstd <https://en.wikipedia.org/wiki/Zstd>`_"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:14
+msgid "`zlib <https://en.wikipedia.org/wiki/Zlib>`_ (since :doc:`2.11.0 </release/2.11.0>`)"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:16
+msgid "To learn about the performance costs of each algorithm, check :ref:`Tuple compression performance <enterprise-tuple-comp-performance>`."
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:19
+msgid "Tarantool doesn't compress tuples themselves, just the fields inside these tuples. You can only compress non-indexed fields. Compression works best when JSON is stored in the field."
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:25
+msgid "The :ref:`compress <compress-module>` module provides the API for compressing and decompressing data."
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:31
+msgid "Enabling compression for a new space"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:33
+msgid "First, create a space:"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:35
+msgid "box.schema.space.create('bands')"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:39
+msgid "Then, create an index for this space, for example:"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:41
+msgid "box.space.bands:create_index('primary', {parts = {{1, 'unsigned'}}})"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:45
+msgid "Create a format to declare field names and types. In the example below, the ``band_name`` and ``year`` fields have the ``zstd`` and ``lz4`` compression formats, respectively. The first field (``id``) has the index, so it cannot be compressed."
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:49
+msgid "box.space.bands:format({\n"
+"           {name = 'id', type = 'unsigned'},\n"
+"           {name = 'band_name', type = 'string', compression = 'zstd'},\n"
+"           {name = 'year', type = 'unsigned', compression = 'lz4'}\n"
+"       })"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:57
+msgid "Now, the new tuples that you add to the space ``bands`` will be compressed. When you read a compressed tuple, you do not need to decompress it back yourself."
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:65
+msgid "Checking which fields are compressed"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:67
+msgid "To check which fields in a space are compressed, run :ref:`space_object:format() <box_space-format>` on the space. If a field is compressed, the format includes the compression algorithm, for example:"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:71
+msgid "tarantool> box.space.bands:format()\n"
+"    ---\n"
+"    - [{'name': 'id', 'type': 'unsigned'},\n"
+"       {'type': 'string', 'compression': 'zstd', 'name': 'band_name'},\n"
+"       {'type': 'unsigned', 'compression': 'lz4', 'name': 'year'}]\n"
+"    ..."
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:85
+msgid "Enabling compression for existing spaces"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:87
+msgid "You can enable compression for existing fields. All the tuples added after that will have this field compressed. However, this doesn't affect the tuples already stored in the space. You need to make the snapshot and restart Tarantool to compress the existing tuples."
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:92
+msgid "Here's an example of how to compress existing fields:"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:94
+msgid "Create a space without compression and add several tuples:"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:96
+msgid "box.schema.space.create('bands')\n"
+"\n"
+"box.space.bands:format({\n"
+"    { name = 'id', type = 'unsigned' },\n"
+"    { name = 'band_name', type = 'string' },\n"
+"    { name = 'year', type = 'unsigned' }\n"
+"})\n"
+"\n"
+"box.space.bands:create_index('primary', { parts = { 'id' } })\n"
+"\n"
+"box.space.bands:insert { 1, 'Roxette', 1986 }\n"
+"box.space.bands:insert { 2, 'Scorpions', 1965 }\n"
+"box.space.bands:insert { 3, 'Ace of Base', 1987 }\n"
+"box.space.bands:insert { 4, 'The Beatles', 1960 }"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:113
+msgid "Suppose that you want fields 2 and 3 to be compressed from now on. To enable compression, change the format as follows:"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:116
+msgid "local new_format = box.space.bands:format()\n"
+"\n"
+"new_format[2].compression = 'zstd'\n"
+"new_format[3].compression = 'lz4'\n"
+"\n"
+"box.space.bands:format(new_format)"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:125
+msgid "From now on, all the tuples that you add to the space have fields 2 and 3 compressed."
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:127
+msgid "To finalize the change, create a snapshot by running :ref:`box.snapshot() <box-snapshot>` and restart Tarantool. As a result, all old tuples will also be compressed in memory during recovery."
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:133
+msgid ":doc:`space:upgrade() <space_upgrade>` provides the ability to enable compression and update the existing tuples in the background. To achieve this, you need to pass a new space format in the ``format`` argument of ``space:upgrade()``."
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:141
+msgid "Tuple compression performance"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:143
+msgid "Below are the results of a `synthetic test <https://github.com/tarantool/doc/blob/latest/doc/code_snippets/test/performance/compression_speed.lua>`_ that illustrate how tuple compression affects performance. The test was carried out on a simple Tarantool space containing 100,000 tuples, each having a field with a sample JSON roughly 600 bytes large. The test compared the speed of running ``select`` and ``replace`` operations on uncompressed and compressed data as well as the overall data size of the space. Performance is measured in requests per second."
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:156
+msgid "Compression type"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:157
+msgid "``select``, RPS"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:158
+msgid "``replace``, RPS"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:159
+msgid "Space size, bytes"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:160
+msgid "None"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:161
+msgid "4,486k"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:162
+msgid "1,109k"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:163
+msgid "41,168,548"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:164
+msgid "``zstd``"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:165
+msgid "308k"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:166
+msgid "26k"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:167
+msgid "21,368,548"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:168
+msgid "``lz4``"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:169
+msgid "1,765k"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:170
+msgid "672k"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:171
+msgid "25,268,548"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:172
+msgid "``zlib``"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:173
+msgid "325k"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:174
+msgid "107k"
+msgstr ""
+
+#: ../../doc/enterprise/tuple_compression.rst:175
+msgid "20,768,548"
+msgstr ""

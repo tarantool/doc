@@ -1,0 +1,148 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/datetime/interval_object.rst:4
+msgid "interval_object"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_object.rst:8
+msgid "Since :doc:`2.10.0 </release/2.10.0>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_object.rst:14
+msgid "Convert the information from an ``interval`` object into the table format. Resulting table has the following fields:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_object.rst:23
+msgid "Field name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_object.rst:24
+msgid "Description"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_object.rst:26
+msgid "nsec"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_object.rst:27
+msgid "Nanosecods"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_object.rst:29
+msgid "sec"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_object.rst:30
+msgid "Seconds"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_object.rst:32
+msgid "min"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_object.rst:33
+msgid "Minutes"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_object.rst:35
+msgid "hour"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_object.rst:36
+msgid "Hours"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_object.rst:38
+msgid "day"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_object.rst:39
+msgid "Day number"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_object.rst:41
+msgid "month"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_object.rst:42
+msgid "Month number"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_object.rst:44
+msgid "year"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_object.rst:45
+msgid "Year"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_object.rst:47
+msgid "week"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_object.rst:48
+msgid "Week number"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_object.rst:50
+msgid "adjust"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_object.rst:51
+msgid "Defines how to round days in a month after an arithmetic operation."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_object.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_object.rst:53
+msgid "table with the date and time parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_object.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_object.rst:54
+msgid "table"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_object.rst:56
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/datetime/interval_object.rst:58
+msgid "tarantool> iv = datetime.interval.new{month = 1, adjust = 'last'}\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> iv:totable()\n"
+"---\n"
+"- adjust: last\n"
+"  sec: 0\n"
+"  nsec: 0\n"
+"  day: 0\n"
+"  week: 0\n"
+"  hour: 0\n"
+"  month: 1\n"
+"  year: 0\n"
+"  min: 0\n"
+"..."
+msgstr ""

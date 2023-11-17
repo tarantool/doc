@@ -1,0 +1,339 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:4
+msgid "Importing data"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:6
+msgid "Enterprise Edition"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:9
+msgid "This command is supported by the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:12
+msgid "$ tt [crud] import URI FILE SPACE [IMPORT_OPTION ...]\n"
+"# or\n"
+"$ tt [crud] import URI - SPACE < FILE [IMPORT_OPTION ...]"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:18
+msgid "``tt [crud] import`` imports data from a file to a space. The ``crud`` command is optional and can be used to import data to a cluster by using the `CRUD <https://github.com/tarantool/crud>`_ module. Without ``crud``, data is imported using the :ref:`box.space <box_space>` API."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:21
+msgid "This command takes the following arguments:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:23
+msgid "``URI``: The URI of a router instance if ``crud`` is used. Otherwise, it should specify the URI of a storage."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:24
+msgid "``FILE``: The name of a file containing data to be imported."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:25
+msgid "``SPACE``: The name of a space to which data is imported."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:29
+msgid ":ref:`Write access <authentication-owners_privileges>` to the space and `execute` access to `universe` are required to import data."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:35
+msgid "Limitations"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:37
+msgid "Importing isn't supported for the :ref:`interval <index-box_interval>` field type."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:43
+msgid "Matching of input and space fields"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:49
+msgid "Automatic matching"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:51
+msgid "Suppose that you have the ``customers.csv`` file with a header containing field names in the first row:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:53
+msgid "id,firstname,lastname,age\n"
+"1,Andrew,Fuller,38\n"
+"2,Michael,Suyama,46\n"
+"3,Robert,King,33\n"
+"# ..."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:61
+msgid "If the target ``customers`` space has fields with the same names, you can import data using the ``--header`` and ``--match`` options specified as follows:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:63
+msgid "$ tt crud import localhost:3301 customers.csv customers \\\n"
+"                 --header \\\n"
+"                 --match=header"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:69
+msgid "In this case, fields in the input file and the target space are matched automatically. You can also match fields :ref:`manually <tt-import-match-fields-manual>` if field names in the input file and the target space differ. Note that if you're importing data into a cluster, you don't need to specify the ``bucket_id`` field. The CRUD module generates ``bucket_id`` values automatically."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:77
+msgid "Manual matching"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:79
+msgid "The ``--match`` option enables importing data by matching field names in the input file and the target space manually. Suppose that you have the following ``customers.csv`` file with four fields:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:82
+msgid "customer_id,name,surname,customer_age\n"
+"1,Andrew,Fuller,38\n"
+"2,Michael,Suyama,46\n"
+"3,Robert,King,33\n"
+"# ..."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:90
+msgid "If the target ``customers`` space has the ``id``, ``firstname``, ``lastname``, and ``age`` fields, you can configure mapping as follows:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:93
+msgid "$ tt crud import localhost:3301 customers.csv customers \\\n"
+"                 --header \\\n"
+"                 --match \"id=customer_id;firstname=name;lastname=surname;age=customer_age\""
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:99
+msgid "Similarly, you can configure mapping using numeric field positions in the input file:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:101
+msgid "$ tt crud import localhost:3301 customers.csv customers \\\n"
+"                 --header \\\n"
+"                 --match \"id=1;firstname=2;lastname=3;age=4\""
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:107
+msgid "Below are the rules if some fields are missing in input data or space:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:109
+msgid "If a space has fields that are not specified in input data, ``tt [crud] import`` tries to insert ``null`` values."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:110
+msgid "If input data contains fields missing in a target space, these fields are ignored."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:115
+msgid "Handling duplicate primary key errors"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:117
+msgid "The ``--on-exist`` option enables you to control data import when a duplicate primary key error occurs. In the example below, values already existing in the space are replaced with new ones:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:120
+msgid "$ tt crud import localhost:3301 customers.csv customers \\\n"
+"                 --on-exist replace"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:128
+msgid "Handling parsing errors"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:130
+msgid "To skip rows whose data cannot be parsed correctly, use the ``--on-error`` option as follows:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:132
+msgid "$ tt crud import localhost:3301 customers.csv customers \\\n"
+"                 --on-error skip"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:141
+msgid "Options"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:145
+msgid "The string of symbols that defines decimal separators for numeric data (the default is ``.,``)."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:149
+msgid "Symbols specified in this option cannot intersect with ``--th-sep``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:153
+msgid "A symbol that defines a field value delimiter. For CSV, the default delimiter is a comma (``,``). To use a tab character as a delimiter, set this value as ``tab``:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:157
+msgid "$ tt crud import localhost:3301 customers.csv customers \\\n"
+"                 --delimiter tab"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:164
+msgid "A delimiter cannot be ``\\r``, ``\\n``, or the Unicode replacement character (``U+FFFD``)."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:168
+msgid "The name of a file containing rows that are not imported (the default is ``error``)."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:170
+#: ../../doc/reference/tooling/tt_cli/import.rst:218
+msgid "See also: :ref:`Handling parsing errors <tt-import-parsing-error>`."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:174
+msgid "A format of input data."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:176
+msgid "Supported formats: ``csv``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:180
+msgid "Process the first line as a header containing field names. In this case, field values start from the second line."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:183
+#: ../../doc/reference/tooling/tt_cli/import.rst:194
+msgid "See also: :ref:`Matching of input and space fields <tt-import-match-fields>`."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:187
+msgid "The name of a log file containing information about import errors (the default is ``import``). If the log file already exists, new data is written to this file."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:192
+msgid "Configure matching between field names in the input file and the target space."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:198
+msgid "A value to be interpreted as ``null`` when importing data. By default, an empty value is interpreted as ``null``. For example, a tuple imported from the following row ..."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:202
+msgid "1,477,Andrew,,38"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:206
+msgid "... should look as follows: ``[1, 477, 'Andrew', null, 38]``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:210
+msgid "An action performed if a row to be imported cannot be parsed correctly. Possible values:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:213
+#: ../../doc/reference/tooling/tt_cli/import.rst:225
+msgid "``stop``: stop importing data."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:214
+msgid "``skip``: skip rows whose data cannot be parsed correctly."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:216
+msgid "Duplicate primary key errors are handled using the ``--on-exist`` option."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:222
+msgid "An action performed if a duplicate primary key error occurs. Possible values:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:226
+msgid "``skip``: skip existing values when importing."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:227
+msgid "``replace``: replace existing values when importing."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:229
+msgid "Other errors are handled using the ``--on-error`` option."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:231
+msgid "See also: :ref:`Handling duplicate primary key errors <tt-import-duplicate-error>`."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:235
+msgid "A password used to connect to the instance."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:239
+msgid "The name of a progress file that stores the following information:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:241
+msgid "The positions of lines that were not imported at the last launch."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:242
+msgid "The last position that was processed at the last launch."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:244
+msgid "If a file with the specified name exists, it is taken into account when importing data. ``tt import`` tries to insert lines that were not imported and then continues importing from the last position."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:247
+msgid "At each launch, the content of a progress file with the specified name is overwritten. If the file with the specified name does not exist, a progress file is created with the results of this run."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:252
+msgid "If the option is not set, then this mechanism is not used."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:256
+msgid "A symbol that defines a quote. For CSV, double quotes are used by default (``\"``). The double symbol of this option acts as the escaping symbol within input data."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:262
+msgid "The name of a file with rows that were imported (the default is ``success``). Overwrites the file if it already exists."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:267
+msgid "The string of symbols that define thousand separators for numeric data. The default value includes a space and a backtick `````. This means that ``1 000 000`` and ``1`000`000`` are both imported as ``1000000``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:273
+msgid "Symbols specified in this option cannot intersect with ``--dec-sep``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:277
+msgid "A username for connecting to the instance."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:281
+msgid "Applicable only when ``crud`` is used."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/import.rst:283
+msgid "Specify whether any operation failed on a router leads to rollback on a storage where the operation is failed."
+msgstr ""

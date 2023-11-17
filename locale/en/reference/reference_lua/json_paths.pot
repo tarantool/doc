@@ -1,0 +1,156 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/json_paths.rst:5
+msgid "JSON paths"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json_paths.rst:9
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json_paths.rst:11
+msgid "Since version :doc:`2.3 </release/2.3.2>`, Tarantool supports JSON path updates. You can update or upsert formatted :doc:`tuple </reference/reference_lua/box_tuple/update>` / :ref:`space <box_space-update>` / :doc:`index </reference/reference_lua/box_index/update>` fields by name (not only by field number). Updates of nested structures are also supported."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json_paths.rst:17
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json_paths.rst:19
+msgid "tarantool> box.cfg{};\n"
+"         > format = {};\n"
+"         > format[1] = {'field1', 'unsigned'};\n"
+"         > format[2] = {'field2', 'map'};\n"
+"         > format[3] = {'field3', 'array'};\n"
+"         > format[4] = {'field4', 'string', is_nullable = true}\n"
+"---\n"
+"...\n"
+"tarantool> s = box.schema.create_space('test', {format = format});\n"
+"         > _ = s:create_index('pk')\n"
+"---\n"
+"...\n"
+"tarantool> t = {\n"
+"         >     1,\n"
+"         >     {\n"
+"         >         key1 = 'value',\n"
+"         >         key2 = 10\n"
+"         >     },\n"
+"         >     {\n"
+"         >         2,\n"
+"         >         3,\n"
+"         >         {key3 = 20}\n"
+"         >     }\n"
+"         > }\n"
+"---\n"
+"...\n"
+"tarantool> t = s:replace(t)\n"
+"---\n"
+"...\n"
+"tarantool> t:update({{'=', 'field2.key1', 'new_value'}})\n"
+"---\n"
+"- [1, {'key1': 'new_value', 'key2': 10}, [2, 3, {'key3': 20}]]\n"
+"...\n"
+"tarantool> t:update({{'+', 'field3[2]', 1}})\n"
+"---\n"
+"- [1, {'key1': 'value', 'key2': 10}, [2, 4, {'key3': 20}]]\n"
+"...\n"
+"tarantool> s:update({1}, {{'!', 'field4', 'inserted value'}})\n"
+"---\n"
+"- [1, {'key1': 'value', 'key2': 10}, [2, 3, {'key3': 20}], 'inserted value']\n"
+"...\n"
+"tarantool> s:update({1}, {{'#', '[2].key2', 1}, {'=', '[3][3].key4', 'value4'}})\n"
+"---\n"
+"- [1, {'key1': 'value'}, [2, 3, {'key3': 20, 'key4': 'value4'}], 'inserted value']\n"
+"...\n"
+"tarantool> s:upsert({1, {k = 'v'}, {}}, {{'#', '[2].key1', 1}})\n"
+"---\n"
+"...\n"
+"tarantool> s:select{}\n"
+"---\n"
+"- - [1, {}, [2, 3, {'key3': 20, 'key4': 'value4'}], 'inserted value']\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json_paths.rst:74
+msgid "Notice that field names that look like JSON paths are processed similarly to :doc:`accessing tuple fields by JSON </reference/reference_lua/box_tuple/field_path>`: first, the whole path is interpreted as a field name; if such a name does not exist, then it is treated as a path."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json_paths.rst:79
+msgid "For example, for a field name ``field.name.like.json``, this update"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json_paths.rst:129
+msgid ":samp:`{object-name}:update({..., 'field.name.like.json', ...})`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json_paths.rst:86
+msgid "will update this field instead of keys ``field`` -> ``name`` -> ``like`` -> ``json``. If you need such a name as part of a bigger path, then you should wrap it in quotes ``\"\"`` and brackets ``[]``:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json_paths.rst:138
+msgid ":samp:`{object-name}:update({..., '[\"field.name.like.json\"].next.fields', ...})`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json_paths.rst:95
+msgid "**There are some rules for JSON updates:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json_paths.rst:97
+msgid "Operation ``'!'`` can't be used to create all intermediate nodes of a path. For example, ``{'!', 'field1[1].field3', ...}`` can't create fields ``'field1'`` and ``'[1]'``, they should exist."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json_paths.rst:101
+msgid "Operation ``'#'``, when applied to maps, can't delete more than one key at once. That is, its argument should be always 1 for maps."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json_paths.rst:104
+msgid "``{'#', 'field1.field2', 1}`` is allowed;"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json_paths.rst:106
+msgid "``{'#', 'field1.field2', 10}`` is not."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json_paths.rst:108
+msgid "This limitation originates from the problem that keys in a map are not ordered anyhow, and ``'#'`` with more than 1 key would lead to undefined behavior."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json_paths.rst:112
+msgid "Operation ``'!'`` on maps can't create a key, if it exists already."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json_paths.rst:114
+msgid "If a map contains non-string keys (booleans, numbers, maps, arrays - anything), then these keys can't be updated via JSON paths. But it is still allowed to update string keys in such a map."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json_paths.rst:119
+msgid "**Why JSON updates are good, and should be preferred when only a part of a tuple needs to be updated:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json_paths.rst:122
+msgid "They consume less space in WAL, because for an update only its keys, operations, and arguments are stored. It is cheaper to store an update of one deep field than of the whole tuple."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json_paths.rst:126
+msgid "They are faster. Firstly, this is because they are implemented in C, and have no problems with Lua GC and dynamic typing. Secondly, some cases of JSON paths are highly optimized. For example, an update with a single JSON path costs O(1) memory regardless of how deep that path goes (not counting update arguments)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json_paths.rst:133
+msgid "They are available from remote clients, as well as any other DML. Before JSON updates became available in Tarantool, to update one deep part of a tuple, it was necessary to download that tuple, update it in memory, and send it back -- 2 network hops. With JSON paths, it can be 1 hop when the update can be described in paths."
+msgstr ""

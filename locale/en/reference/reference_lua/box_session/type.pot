@@ -1,0 +1,65 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_session/type.rst:6
+msgid "box.session.type()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/type.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/type.rst:12
+msgid "the type of connection or cause of action."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/type.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/type.rst:14
+msgid "string"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/type.rst:16
+msgid "Possible return values are:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/type.rst:18
+msgid "'binary' if the connection was done via the binary protocol, for example to a target made with :ref:`box.cfg{listen=...} <cfg_basic-listen>`;"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/type.rst:21
+msgid "'console' if the connection was done via the administrative console, for example to a target made with :ref:`console.listen <console-listen>`;"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/type.rst:24
+msgid "'repl' if the connection was done directly, for example when :ref:`using Tarantool as a client <admin-using_tarantool_as_a_client>`;"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/type.rst:26
+msgid "'applier' if the action is due to :ref:`replication <replication>`, regardless of how the connection was done;"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/type.rst:29
+msgid "'background' if the action is in a :ref:`background fiber <fiber-module>`, regardless of whether the Tarantool server was :ref:`started in the background <cfg_basic-background>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/type.rst:34
+msgid "``box.session.type()`` is useful for an :ref:`on_replace() <box_space-on_replace>` trigger on a replica -- the value will be 'applier' if and only if the trigger was activated because of a request that was done on the master."
+msgstr ""

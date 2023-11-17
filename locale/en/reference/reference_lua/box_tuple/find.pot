@@ -1,0 +1,64 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_tuple/find.rst:6
+msgid "tuple_object:find(), tuple_object:findall()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/find.rst:13
+msgid "If ``t`` is a tuple instance, ``t:find(search-value)`` will return the number of the first field in ``t`` that matches the search value, and ``t:findall(search-value [, search-value ...])`` will return numbers of all fields in ``t`` that match the search value. Optionally one can put a numeric argument ``field-number`` before the search-value to indicate “start searching at field number ``field-number``.”"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/find.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/find.rst:20
+msgid "the number of the field in the tuple."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/find.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/find.rst:21
+msgid "number"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/find.rst:23
+msgid "In the following example, a tuple named ``t`` is created and then: the number of the first field in ``t`` which matches 'a' is returned, then the numbers of all the fields in ``t`` which match 'a' are returned, then the numbers of all the fields in t which match 'a' and are at or after the second field are returned."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/find.rst:29
+msgid "tarantool> t = box.tuple.new{'a', 'b', 'c', 'a'}\n"
+"---\n"
+"...\n"
+"tarantool> t:find('a')\n"
+"---\n"
+"- 1\n"
+"...\n"
+"tarantool> t:findall('a')\n"
+"---\n"
+"- 1\n"
+"- 4\n"
+"...\n"
+"tarantool> t:findall(2, 'a')\n"
+"---\n"
+"- 4\n"
+"..."
+msgstr ""

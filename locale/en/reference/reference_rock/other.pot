@@ -1,0 +1,45 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_rock/other.rst:2
+msgid "Other rocks"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/other.rst:4
+msgid "This page features a list of links to third-party Tarantool module documentation that is hosted externally -- mostly on GitHub pages or in READMEs:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/other.rst:7
+msgid "`crud <https://github.com/tarantool/crud#readme>`_"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/other.rst:8
+msgid "`expirationd <https://tarantool.github.io/expirationd/>`_"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/other.rst:9
+msgid "`icu-date <https://github.com/tarantool/icu-date#readme>`_"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/other.rst:10
+msgid "`tracing <https://github.com/tarantool/tracing/>`_"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/other.rst:12
+msgid "For Tarantool Enterprise modules, see the :ref:`Tarantool EE <enterprise-rocks>` documentation."
+msgstr ""

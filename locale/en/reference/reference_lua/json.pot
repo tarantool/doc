@@ -1,0 +1,515 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/json.rst:5
+msgid "Module json"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:9
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:11
+msgid "The ``json`` module provides JSON manipulation routines. It is based on the `Lua-CJSON module by Mark Pulford <http://www.kyne.com.au/~mark/software/lua-cjson.php>`_. For a complete manual on Lua-CJSON please read `the official documentation <http://www.kyne.com.au/~mark/software/lua-cjson-manual.html>`_."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:18
+msgid "Index"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:20
+msgid "Below is a list of all ``json`` functions and members."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:28
+msgid "Name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:28
+#: ../../doc/reference/reference_lua/json.rst:171
+msgid "Use"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:30
+msgid ":ref:`json.encode() <json-encode>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:30
+msgid "Convert a Lua object to a JSON string"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:33
+msgid ":ref:`json.decode() <json-decode>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:33
+msgid "Convert a JSON string to a Lua object"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:36
+msgid ":ref:`__serialize parameter <json-serialize>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:36
+msgid "Output structure specification"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:39
+msgid ":ref:`json.cfg() <json-module_cfg>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:39
+msgid "Change configuration"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:42
+msgid ":ref:`json.NULL <json-null>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:42
+msgid "Analog of Lua's \"nil\""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:52
+msgid "Convert a Lua object to a JSON string."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:0
+#: ../../doc/reference/reference_lua/json.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:54
+msgid "either a scalar value or a Lua table value."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:55
+#: ../../doc/reference/reference_lua/json.rst:94
+msgid "see :ref:`json.cfg <json-module_cfg>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:0
+#: ../../doc/reference/reference_lua/json.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:56
+msgid "the original value reformatted as a JSON string."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:0
+#: ../../doc/reference/reference_lua/json.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:57
+msgid "string"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:59
+#: ../../doc/reference/reference_lua/json.rst:98
+#: ../../doc/reference/reference_lua/json.rst:303
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:61
+msgid "tarantool> json=require('json')\n"
+"---\n"
+"...\n"
+"tarantool> json.encode(123)\n"
+"---\n"
+"- '123'\n"
+"...\n"
+"tarantool> json.encode({123})\n"
+"---\n"
+"- '[123]'\n"
+"...\n"
+"tarantool> json.encode({123, 234, 345})\n"
+"---\n"
+"- '[123,234,345]'\n"
+"...\n"
+"tarantool> json.encode({abc = 234, cde = 345})\n"
+"---\n"
+"- '{\"cde\":345,\"abc\":234}'\n"
+"...\n"
+"tarantool> json.encode({hello = {'world'}})\n"
+"---\n"
+"- '{\"hello\":[\"world\"]}'\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:91
+msgid "Convert a JSON string to a Lua object."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:93
+msgid "a string formatted as JSON."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:95
+msgid "the original contents formatted as a Lua table."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:96
+msgid "table"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:100
+msgid "tarantool> json = require('json')\n"
+"---\n"
+"...\n"
+"tarantool> json.decode('123')\n"
+"---\n"
+"- 123\n"
+"...\n"
+"tarantool> json.decode('[123, \"hello\"]')\n"
+"---\n"
+"- [123, 'hello']\n"
+"...\n"
+"tarantool> json.decode('{\"hello\": \"world\"}').hello\n"
+"---\n"
+"- world\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:118
+msgid "See the tutorial :ref:`Sum a JSON field for all tuples <c_lua_tutorial-sum_a_json_field>` to see how ``json.decode()`` can fit in an application."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:124
+msgid "**__serialize parameter:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:126
+msgid "The JSON output structure can be specified with ``__serialize``:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:128
+msgid "'seq', 'sequence', 'array' - table encoded as an array"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:129
+msgid "'map', 'mapping' - table encoded as a map"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:130
+msgid "function - the meta-method called to unpack serializable representation of table, cdata or userdata objects"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:133
+msgid "Serializing 'A' and 'B' with different ``__serialize`` values brings different results:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:136
+msgid "tarantool> json.encode(setmetatable({'A', 'B'}, { __serialize=\"seq\"}))\n"
+"---\n"
+"- '[\"A\",\"B\"]'\n"
+"...\n"
+"tarantool> json.encode(setmetatable({'A', 'B'}, { __serialize=\"map\"}))\n"
+"---\n"
+"- '{\"1\":\"A\",\"2\":\"B\"}'\n"
+"...\n"
+"tarantool> json.encode({setmetatable({f1 = 'A', f2 = 'B'}, { __serialize=\"map\"})})\n"
+"---\n"
+"- '[{\"f2\":\"B\",\"f1\":\"A\"}]'\n"
+"...\n"
+"tarantool> json.encode({setmetatable({f1 = 'A', f2 = 'B'}, { __serialize=\"seq\"})})\n"
+"---\n"
+"- '[[]]'\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:159
+msgid "Set values that affect the behavior of :ref:`json.encode <json-encode>` and :ref:`json.decode <json-decode>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:162
+msgid "The values are all either integers or boolean ``true``/``false``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:171
+msgid "Option"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:171
+msgid "Default"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:173
+msgid "``cfg.encode_max_depth``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:173
+#: ../../doc/reference/reference_lua/json.rst:217
+msgid "128"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:173
+msgid "Max recursion depth for encoding"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:175
+msgid "``cfg.encode_deep_as_nil``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:175
+#: ../../doc/reference/reference_lua/json.rst:191
+#: ../../doc/reference/reference_lua/json.rst:194
+msgid "false"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:175
+msgid "A flag saying whether to crop tables with nesting level deeper than ``cfg.encode_max_depth``. Not-encoded fields are replaced with one null. If not set, too deep nesting is considered an error."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:182
+msgid "``cfg.encode_invalid_numbers``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:182
+#: ../../doc/reference/reference_lua/json.rst:187
+#: ../../doc/reference/reference_lua/json.rst:197
+#: ../../doc/reference/reference_lua/json.rst:211
+#: ../../doc/reference/reference_lua/json.rst:214
+msgid "true"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:182
+msgid "A flag saying whether to enable encoding of NaN and Inf numbers"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:185
+msgid "``cfg.encode_number_precision``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:185
+msgid "14"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:185
+msgid "Precision of floating point numbers"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:187
+msgid "``cfg.encode_load_metatables``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:187
+msgid "A flag saying whether the serializer will follow :ref:`__serialize <json-serialize>` metatable field"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:191
+msgid "``cfg.encode_use_tostring``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:191
+msgid "A flag saying whether to use ``tostring()`` for unknown types"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:194
+msgid "``cfg.encode_invalid_as_nil``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:194
+msgid "A flag saying whether use NULL for non-recognized types"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:197
+msgid "``cfg.encode_sparse_convert``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:197
+msgid "A flag saying whether to handle excessively sparse arrays as maps. See detailed description :ref:`below <json-module_cfg_sparse>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:202
+msgid "``cfg.encode_sparse_ratio``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:202
+msgid "2"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:202
+msgid "1/``encode_sparse_ratio`` is the permissible percentage of missing values in a sparse array."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:206
+msgid "``cfg.encode_sparse_safe``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:206
+msgid "10"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:206
+msgid "A limit ensuring that small Lua arrays are always encoded as sparse arrays (instead of generating an error or encoding as a map)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:211
+msgid "``cfg.decode_invalid_numbers``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:211
+msgid "A flag saying whether to enable decoding of NaN and Inf numbers"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:214
+msgid "``cfg.decode_save_metatables``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:214
+msgid "A flag saying whether to set metatables for all arrays and maps"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:217
+msgid "``cfg.decode_max_depth``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:217
+msgid "Max recursion depth for decoding"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:222
+msgid "**Sparse arrays features:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:224
+msgid "During encoding, the JSON encoder tries to classify a table into one of four kinds:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:226
+msgid "map - at least one table index is not unsigned integer"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:227
+msgid "regular array - all array indexes are available"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:228
+msgid "sparse array - at least one array index is missing"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:229
+msgid "excessively sparse array - the number of values missing exceeds the configured ratio"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:231
+msgid "An array is excessively sparse when **all** the following conditions are met:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:233
+msgid "``encode_sparse_ratio`` > 0"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:234
+msgid "``max(table)`` > ``encode_sparse_safe``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:235
+msgid "``max(table)`` > ``count(table)`` * ``encode_sparse_ratio``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:237
+msgid "The JSON encoder will never consider an array to be excessively sparse when ``encode_sparse_ratio = 0``. The ``encode_sparse_safe`` limit ensures that small Lua arrays are always encoded as sparse arrays. By default, attempting to encode an excessively sparse array will generate an error. If ``encode_sparse_convert`` is set to ``true``, excessively sparse arrays will be handled as maps."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:244
+msgid "**json.cfg() example 1:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:246
+msgid "The following code will encode 0/0 as NaN (\"not a number\") and 1/0 as Inf (\"infinity\"), rather than returning nil or an error message:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:249
+msgid "json = require('json')\n"
+"json.cfg{encode_invalid_numbers = true}\n"
+"x = 0/0\n"
+"y = 1/0\n"
+"json.encode({1, x, y, 2})"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:257
+msgid "The result of the ``json.encode()`` request will look like this:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:259
+msgid "tarantool> json.encode({1, x, y, 2})\n"
+"---\n"
+"- '[1,nan,inf,2]\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:266
+msgid "**json.cfg example 2:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:268
+msgid "To avoid generating errors on attempts to encode unknown data types as userdata/cdata, you can use this code:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:271
+msgid "tarantool> httpc = require('http.client').new()\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> json.encode(httpc.curl)\n"
+"---\n"
+"- error: unsupported Lua type 'userdata'\n"
+"...\n"
+"\n"
+"tarantool> json.encode(httpc.curl, {encode_use_tostring=true})\n"
+"---\n"
+"- '\"userdata: 0x010a4ef2a0\"'\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:289
+msgid "To achieve the same effect for only one call to ``json.encode()`` (i.e. without changing the configuration permanently), you can use ``json.encode({1, x, y, 2}, {encode_invalid_numbers = true})``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:293
+msgid "Similar configuration settings exist for :ref:`MsgPack <msgpack-cfg>` and :ref:`YAML <yaml-cfg>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:300
+msgid "A value comparable to Lua \"nil\" which may be useful as a placeholder in a tuple."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/json.rst:305
+msgid "-- When nil is assigned to a Lua-table field, the field is null\n"
+"tarantool> {nil, 'a', 'b'}\n"
+"---\n"
+"- - null\n"
+"  - a\n"
+"  - b\n"
+"...\n"
+"-- When json.NULL is assigned to a Lua-table field, the field is json.NULL\n"
+"tarantool> {json.NULL, 'a', 'b'}\n"
+"---\n"
+"- - null\n"
+"  - a\n"
+"  - b\n"
+"...\n"
+"-- When json.NULL is assigned to a JSON field, the field is null\n"
+"tarantool> json.encode({field2 = json.NULL, field1 = 'a', field3 = 'c'})\n"
+"---\n"
+"- '{\"field2\":null,\"field1\":\"a\",\"field3\":\"c\"}'\n"
+"..."
+msgstr ""

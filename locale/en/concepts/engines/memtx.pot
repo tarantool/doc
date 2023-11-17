@@ -1,0 +1,201 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/concepts/engines/memtx.rst:4
+msgid "Storing data with memtx"
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx.rst:6
+msgid "The ``memtx`` storage engine is used in Tarantool by default. It keeps all data in random-access memory (RAM), and therefore has very low read latency."
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx.rst:8
+msgid "The obvious question here is: if all the data is stored in memory, how can you prevent the data loss in case of emergency such as outage or Tarantool instance failure?"
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx.rst:11
+msgid "First of all, Tarantool persists all data changes by writing requests to the write-ahead log (WAL) that is stored on disk. Read more about that in the :ref:`memtx-persist` section. In case of a distributed application, there is an option of synchronous replication that ensures keeping the data consistent on a quorum of replicas. Although replication is not directly a storage engine topic, it is a part of the answer regarding data safety. Read more in the :ref:`memtx-replication` section."
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx.rst:16
+msgid "In this chapter, the following topics are discussed in brief with the references to other chapters that explain the subject matter in details."
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx.rst:25
+msgid "Memory model"
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx.rst:27
+msgid "There is a fixed number of independent :ref:`execution threads <thread_model>`. The threads don't share state. Instead they exchange data using low-overhead message queues. While this approach limits the number of cores that the instance uses, it removes competition for the memory bus and ensures peak scalability of memory access and network throughput."
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx.rst:32
+msgid "Only one thread, namely, the **transaction processor thread** (further, **TX thread**) can access the database, and there is only one TX thread for each Tarantool instance. In this thread, transactions are executed in a strictly consecutive order. Multi-statement transactions exist to provide isolation: each transaction sees a consistent database state and commits all its changes atomically. At commit time, a yield happens and all transaction changes are written to :ref:`WAL <internals-wal>` in a single batch. In case of errors during transaction execution, a transaction is rolled-back completely. Read more in the following sections: :ref:`transaction_model`, :ref:`txn_mode_transaction-manager`."
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx.rst:42
+msgid "Within the TX thread, there is a memory area allocated for Tarantool to store data. It's called **Arena**."
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx.rst:46
+msgid "Data is stored in :term:`spaces <space>`. Spaces contain database records—:term:`tuples <tuple>`. To access and manipulate the data stored in spaces and tuples, Tarantool builds :doc:`indexes </concepts/data_model/indexes>`."
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx.rst:49
+msgid "Special `allocators <https://github.com/tarantool/small>`__ manage memory allocations for spaces, tuples, and indexes within the Arena. The slab allocator is the main allocator used to store tuples. Tarantool has a built-in module called ``box.slab`` which provides the slab allocator statistics that can be used to monitor the total memory usage and memory fragmentation. For more details, see the ``box.slab`` module :doc:`reference </reference/reference_lua/box_slab>`."
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx.rst:57
+msgid "Also inside the TX thread, there is an event loop. Within the event loop, there are a number of :ref:`fibers <fiber-fibers>`. Fibers are cooperative primitives that allow interaction with spaces, that is, reading and writing the data. Fibers can interact with the event loop and between each other directly or by using special primitives called channels. Due to the usage of fibers and :ref:`cooperative multitasking <app-cooperative_multitasking>`, the ``memtx`` engine is lock-free in typical situations."
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx.rst:64
+msgid "To interact with external users, there is a separate :ref:`network thread <thread_model>` also called the **iproto thread**. The iproto thread receives a request from the network, parses and checks the statement, and transforms it into a special structure—a message containing an executable statement and its options. Then the iproto thread ships this message to the TX thread and runs the user's request in a separate fiber."
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx.rst:74
+msgid "Data persistence"
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx.rst:76
+msgid "To ensure :ref:`data persistence <index-box_persistence>`, Tarantool does two things."
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx.rst:78
+msgid "After executing data change requests in memory, Tarantool writes each such request to the :ref:`write-ahead log (WAL) <internals-wal>` files (``.xlog``) that are stored on disk. Tarantool does this via a separate thread called the **WAL thread**."
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx.rst:83
+msgid "Tarantool periodically takes the entire :doc:`database snapshot </reference/reference_lua/box_snapshot>` and saves it on disk. It is necessary for accelerating instance's restart because when there are too many WAL files, it can be difficult for Tarantool to restart quickly."
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx.rst:86
+msgid "To save a snapshot, there is a special fiber called the **snapshot daemon**. It reads the consistent content of the entire Arena and writes it on disk into a snapshot file (``.snap``). Due of the cooperative multitasking, Tarantool cannot write directly on disk because it is a locking operation. That is why Tarantool interacts with disk via a separate pool of threads from the :doc:`fio </reference/reference_lua/fio>` library."
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx.rst:93
+msgid "So, even in emergency situations such as an outage or a Tarantool instance failure, when the in-memory database is lost, the data can be restored fully during Tarantool restart."
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx.rst:96
+msgid "What happens during the restart:"
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx.rst:98
+msgid "Tarantool finds the latest snapshot file and reads it."
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx.rst:99
+msgid "Tarantool finds all the WAL files created after that snapshot and reads them as well."
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx.rst:100
+msgid "When the snapshot and WAL files have been read, there is a fully recovered in-memory data set corresponding to the state when the Tarantool instance stopped."
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx.rst:102
+msgid "While reading the snapshot and WAL files, Tarantool is building the primary indexes."
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx.rst:103
+msgid "When all the data is in memory again, Tarantool is building the secondary indexes."
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx.rst:104
+msgid "Tarantool runs the application."
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx.rst:109
+msgid "Accessing data"
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx.rst:111
+msgid "To access and manipulate the data stored in memory, Tarantool builds indexes. Indexes are also stored in memory within the Arena."
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx.rst:114
+msgid "Tarantool supports a number of :ref:`index types <index-types>` intended for different usage scenarios. The possible types are TREE, HASH, BITSET, and RTREE."
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx.rst:117
+msgid "Select query are possible against secondary index keys as well as primary keys. Indexes can have multi-part keys."
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx.rst:120
+msgid "For detailed information about indexes, refer to the :doc:`/concepts/data_model/indexes` page."
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx.rst:125
+msgid "Replicating data"
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx.rst:127
+msgid "Although this topic is not directly related to the ``memtx`` engine, it completes the overall picture of how Tarantool works in case of a distributed application."
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx.rst:129
+msgid "Replication allows multiple Tarantool instances to work on copies of the same database. The copies are kept in sync because each instance can communicate its changes to all the other instances. It is implemented via WAL replication."
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx.rst:133
+msgid "To send data to a replica, Tarantool runs another thread called **relay**. Its purpose is to read the WAL files and send them to replicas. On a replica, the fiber called **applier** is run. It receives the changes from a remote node and applies them to the replica's Arena. All the changes are being written to WAL files via the replica's WAL thread as if they are done locally."
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx.rst:140
+msgid "By default, :ref:`replication <replication-architecture>` in Tarantool is asynchronous: if a transaction is committed locally on a master node, it does not mean it is replicated onto any replicas."
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx.rst:144
+msgid ":ref:`Synchronous replication <repl_sync>` exists to solve this problem. Synchronous transactions are not considered committed and are not responded to a client until they are replicated onto some number of replicas."
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx.rst:148
+msgid "For more information on replication, refer to the :ref:`corresponding chapter <replication>`."
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx.rst:153
+msgid "Summary"
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx.rst:155
+msgid "The main key points describing how the in-memory storage engine works can be summarized in the following way:"
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx.rst:157
+msgid "All data is in RAM."
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx.rst:158
+msgid "Access to data is from one thread."
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx.rst:159
+msgid "Tarantool writes all data change requests in WAL."
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx.rst:160
+msgid "Data snapshots are taken periodically."
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx.rst:161
+msgid "Indexes are build to access the data."
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx.rst:162
+msgid "WAL can be replicated."
+msgstr ""

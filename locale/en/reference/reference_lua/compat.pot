@@ -1,0 +1,113 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/compat.rst:4
+msgid "Module compat"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat.rst:6
+msgid "Module ``compat`` is introduced since version 2.11.0-rc."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat.rst:9
+msgid "The usual way to handle compatibility problems is to introduce an option for a new behavior and leave the old one by default. It is not always the perfect way."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat.rst:12
+msgid "Sometimes developers want to keep the old behavior for existing applications and offer the new behavior by default for the new ones. For example, the old behavior is known to be problematic, or less safe, or it doesn't correspond to user expectations. In contrast, the user doesn't always read all the documentation and often assumes good defaults. It was decided to introduce a compatibility module to provide a direct way to deprecate unwanted behavior."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat.rst:17
+msgid "The ``compat`` module is basically a global table of options with additional verbose interface and helper functions. There are three stages of changing behavior:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat.rst:20
+msgid "Old behavior by default."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat.rst:21
+msgid "New behavior by default."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat.rst:22
+msgid "New behavior is frozen and the old behavior is removed."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat.rst:24
+msgid "During the first two stages, a user can toggle options via the interface and change the behavior according to one's needs. At the last stage, the old behavior is removed from the codebase, and the option is marked as obsolete. Because ``compat`` is a global instance, options can be hardcoded into it or added in runtime, for example, by external module."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat.rst:28
+msgid "Options are switched to the next stage in major releases. In this way, developers are able to adapt to the new standard behavior and test it before switching to the next release. If something is broken by a new Tarantool version, a developer can still have a way to fix it by a simple config change, that is, explicitly select the old behavior."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat.rst:31
+msgid "Consider example below:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat.rst:33
+msgid "The option ``json_esc_slash`` is introduced in the 2.11 minor release. Default is set to 'old', but a developer can utilize the new behavior or test the updated behavior by switching it manually to 'new'."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat.rst:35
+msgid "In release 3.0, the next major release, ``json_esc_slash`` default is switched to 'new'. Now, developers who don't manage to adapt to the new behavior, are able to switch the option to 'old' and fix their module in the future."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat.rst:38
+msgid "In release 4.0, ``json_esc_slash`` is marked as obsolete, and the old behavior is no longer accessible. Developers are forced to use the new behavior."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat.rst:41
+msgid "Basic usage"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat.rst:43
+msgid "If you want to explicitly secure every behavior in ``compat``, you can do it manually, and then call ``compat.dump()`` to get a Lua command that sets up the ``compat`` with all the options selected. You should place this commands at the beginning of code in your ``init.lua`` file. In this way, you are guaranteed to get the same behavior on any other Tarantool version. See a :doc:`tutorial on using compat <./compat/compat_tutorial>` for more examples."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat.rst:48
+msgid "Options"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat.rst:50
+msgid "Below are the available ``compat`` options:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat.rst:52
+msgid ":doc:`json_escape_forward_slash <./compat/json_escape_forward_slash>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat.rst:53
+msgid ":doc:`yaml_pretty_multiline <./compat/yaml_pretty_multiline>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat.rst:54
+msgid ":doc:`fiber_channel_close_mode <./compat/fiber_channel_close_mode>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat.rst:55
+msgid ":doc:`box_cfg_replication_sync_timeout <./compat/box_cfg_replication_sync_timeout>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat.rst:56
+msgid ":doc:`sql_seq_scan_default <./compat/sql_seq_scan_default>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat.rst:57
+msgid ":doc:`fiber_slice_default <./compat/fiber_slice_default>`"
+msgstr ""

@@ -1,0 +1,318 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:4
+msgid "Transaction mode: MVCC"
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:6
+msgid "Since version :doc:`2.6.1 </release/2.6.1>`, Tarantool has another transaction behavior mode that allows :ref:`\"yielding\" <app-yields>` inside a :ref:`memtx <engines-chapter>` transaction. This is controlled by the *transaction manager*."
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:12
+msgid "This mode allows concurrent transactions but may cause conflicts. You can use this mode on the :ref:`memtx <engines-chapter>` storage engine. The :ref:`vinyl <engines-chapter>` storage engine also supports MVCC mode, but has a different implementation."
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:19
+msgid "Currently, you cannot use several different storage engines within one transaction."
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:24
+msgid "Transaction manager"
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:26
+msgid "The transaction manager is designed to isolate concurrent transactions and provides a *serializable* `transaction isolation level <https://en.wikipedia.org/wiki/Isolation_(database_systems)#Isolation_levels>`_. It consists of two parts:"
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:31
+msgid "*MVCC* -- multi version concurrency control engine, which stores all change actions of all transactions. It also creates the transaction view of the database state and a read view (a fixed state of the database that is never changed by other transactions) when necessary."
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:36
+msgid "*Conflict manager* -- a manager that tracks changes to transactions and determines their correctness in the serialization order. The conflict manager declares transactions to be in conflict or sends transactions to read views when necessary."
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:40
+msgid "Since version :doc:`2.10.1 </release/2.10.1>`, the conflict manager detects conflicts right after the first one of several conflicting transactions is committed. After this moment, any CRUD operations in the conflicted transaction will result in errors until the transaction is rolled back."
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:45
+msgid "The transaction manager also provides a non-classical *snapshot* isolation level -- this snapshot is not necessarily tied to the start time of the transaction, like the classical snapshot where a transaction can get a consistent snapshot of the database. The conflict manager decides if and when each transaction gets which snapshot. This avoids some conflicts compared to the classic snapshot isolation approach."
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:52
+msgid "Currently, the :ref:`isolation level <transaction_model_levels>` of BITSET and RTREE indexes in MVCC transaction mode is *read-committed* (not *serializable*, as stated). If a transaction uses these indexes, it can read committed or confirmed data (depending on the isolation level). However, the indexes are subject to different anomalies that can make them unserializable."
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:60
+msgid "Enabling the transaction manager"
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:62
+msgid "By default, the transaction manager is disabled. Use the :ref:`memtx_use_mvcc_engine <cfg_basic-memtx_use_mvcc_engine>` option to enable it via ``box.cfg``."
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:65
+msgid "box.cfg{memtx_use_mvcc_engine = true}"
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:73
+msgid "Setting the transaction isolation level"
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:75
+msgid "The transaction manager has the following options for the :ref:`transaction isolation level <transaction_model_levels>`:"
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:77
+msgid "``best-effort`` (default)"
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:79
+msgid "``read-committed``"
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:81
+msgid "``read-confirmed``"
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:83
+msgid "``linearizable`` (only for a specific transaction)"
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:85
+msgid "Using ``best-effort`` as the default option allows MVCC to consider the actions of transactions independently and determine the best :ref:`isolation level <transaction_model_levels>` for them. It increases the probability of successful completion of the transaction and helps to avoid possible conflicts."
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:89
+msgid "To set another default isolation level, for example, ``read-committed``, use the following command:"
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:91
+msgid "box.cfg { txn_isolation = 'read-committed' }"
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:95
+msgid "Note that the ``linearizable`` isolation level can't be set as default and can be used for a specific transaction only. You can set an isolation level for a specific transaction in its ``box.begin()`` call:"
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:98
+msgid "box.begin({ tnx_isolation = 'best-effort' })"
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:102
+msgid "In this case, you can also use the ``default`` option. It sets the transaction's isolation level to the one set in ``box.cfg``."
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:107
+msgid "For autocommit transactions (actions with a statement without explicit ``box.begin/box.commit`` calls) there is a rule:"
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:110
+msgid "Read-only transactions (for example, ``select``) are performed with ``read-confirmed``."
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:111
+msgid "All other transactions (for example, ``replace``) are performed with ``read-committed``."
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:113
+msgid "You can also set the isolation level in the net.box :ref:`stream:begin() <net_box-stream_begin>` method and :ref:`IPROTO_BEGIN <box_protocol-begin>` binary protocol request."
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:116
+msgid "Choosing the better option depends on whether you have conflicts or not. If you have many conflicts, you should set a different option or use the :ref:`default transaction mode <txn_mode-default>`."
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:123
+msgid "Examples with MVCC enabled and disabled"
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:125
+msgid "Create a file ``init.lua``, containing the following:"
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:127
+msgid "fiber = require 'fiber'\n"
+"\n"
+"box.cfg{ listen = '127.0.0.1:3301', memtx_use_mvcc_engine = false }\n"
+"box.schema.user.grant('guest', 'super', nil, nil, {if_not_exists = true})\n"
+"\n"
+"tickets = box.schema.create_space('tickets', { if_not_exists = true })\n"
+"tickets:format({\n"
+"    { name = \"id\", type = \"number\" },\n"
+"    { name = \"place\", type = \"number\" },\n"
+"})\n"
+"tickets:create_index('primary', {\n"
+"    parts = { 'id' },\n"
+"    if_not_exists = true\n"
+"})"
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:144
+msgid "Connect to the instance using the :ref:`tt connect <tt-connect>` command:"
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:146
+msgid "tt connect 127.0.0.1:3301"
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:150
+msgid "Then try to execute the transaction with yield inside:"
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:152
+msgid "box.atomic(function() tickets:replace{1, 429} fiber.yield() tickets:replace{2, 429} end)"
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:157
+msgid "You will receive an error message:"
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:159
+msgid "---\n"
+"- error: Transaction has been aborted by a fiber yield\n"
+"..."
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:165
+msgid "Also, if you leave a transaction open while returning from a request, you will get an error message:"
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:167
+msgid "127.0.0.1:3301> box.begin()\n"
+"    ⨯ Failed to execute command: Transaction is active at return from function"
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:172
+msgid "Change ``memtx_use_mvcc_engine`` to ``true``, restart Tarantool, and try again:"
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:174
+msgid "127.0.0.1:3301> box.atomic(function() tickets:replace{1, 429} fiber.yield() tickets:replace{2, 429} end)\n"
+"---\n"
+"..."
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:180
+msgid "Now check if this transaction was successful:"
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:182
+msgid "127.0.0.1:3301> box.space.tickets:select({}, {limit = 10})\n"
+"---\n"
+"- - [1, 429]\n"
+"  - [2, 429]\n"
+"..."
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:194
+msgid "Streams and interactive transactions"
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:196
+msgid "Since :tarantool-release:`2.10.0`, IPROTO implements streams and interactive transactions that can be used when :ref:`memtx_use_mvcc_engine <cfg_basic-memtx_use_mvcc_engine>` is enabled on the server."
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:204
+msgid "Stream"
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:206
+msgid "A *stream* supports multiplexing several transactions over one connection. Each stream has its own identifier, which is unique within the connection. All requests with the same non-zero stream ID belong to the same stream. All requests in a stream are executed strictly sequentially. This allows the implementation of :ref:`interactive transactions <txn_mode_interactive_transaction>`. If the stream ID of a request is ``0``, it does not belong to any stream and is processed in the old way."
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:215
+msgid "In :doc:`net.box </reference/reference_lua/net_box>`, a stream is an object above the connection that has the same methods but allows sequential execution of requests. The ID is automatically generated on the client side. If a user writes their own connector and wants to use streams, they must transmit the ``stream_id`` over the :ref:`IPROTO protocol <box_protocol-id>`."
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:221
+msgid "Unlike a thread, which involves multitasking and execution within a program, a stream transfers data via the protocol between a client and a server."
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:228
+msgid "Interactive transaction"
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:230
+msgid "An *interactive transaction* is one that does not need to be sent in a single request. There are multiple ways to begin, commit, and roll back a transaction, and they can be mixed. You can use :ref:`stream:begin() <net_box-stream_begin>`, :ref:`stream:commit() <net_box-stream_commit>`, :ref:`stream:rollback() <net_box-stream_rollback>` or the appropriate stream methods -- ``call``, ``eval``, or ``execute`` -- using the SQL transaction syntax."
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:237
+msgid "Let’s create a Lua client (``client.lua``) and run it with Tarantool:"
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:239
+msgid "local net_box = require 'net.box'\n"
+"local conn = net_box.connect('127.0.0.1:3301')\n"
+"local conn_tickets = conn.space.tickets\n"
+"local yaml = require 'yaml'\n"
+"\n"
+"local stream = conn:new_stream()\n"
+"local stream_tickets = stream.space.tickets\n"
+"\n"
+"-- Begin transaction over an iproto stream:\n"
+"stream:begin()\n"
+"print(\"Replaced in a stream\\n\".. yaml.encode(  stream_tickets:replace({1, 768}) ))\n"
+"\n"
+"-- Empty select, the transaction was not committed.\n"
+"-- You can't see it from the requests that do not belong to the\n"
+"-- transaction.\n"
+"print(\"Selected from outside of transaction\\n\".. yaml.encode(conn_tickets:select({}, {limit = 10}) ))\n"
+"\n"
+"-- Select returns the previously inserted tuple\n"
+"-- because this select belongs to the transaction:\n"
+"print(\"Selected from within transaction\\n\".. yaml.encode(stream_tickets:select({}, {limit = 10}) ))\n"
+"\n"
+"-- Commit transaction:\n"
+"stream:commit()\n"
+"\n"
+"-- Now this select also returns the tuple because the transaction has been committed:\n"
+"print(\"Selected again from outside of transaction\\n\".. yaml.encode(conn_tickets:select({}, {limit = 10}) ))\n"
+"\n"
+"os.exit()"
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:270
+msgid "Then call it and see the following output:"
+msgstr ""
+
+#: ../../doc/concepts/atomic/txn_mode_mvcc.rst:272
+msgid "Replaced in a stream\n"
+"--- [1, 768]\n"
+"...\n"
+"\n"
+"Selected from outside of transaction\n"
+"---\n"
+"- [1, 429]\n"
+"- [2, 429]\n"
+"...\n"
+"\n"
+"Selected from within transaction\n"
+"---\n"
+"- [1, 768]\n"
+"- [2, 429]\n"
+"...\n"
+"\n"
+"Selected again from outside of transaction\n"
+"---\n"
+"- [1, 768]\n"
+"- [2, 429]\n"
+"...```"
+msgstr ""

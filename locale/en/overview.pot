@@ -1,0 +1,185 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/overview.rst:2
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/overview.rst:5
+msgid "What is Tarantool?"
+msgstr ""
+
+#: ../../doc/overview.rst:7
+msgid "Tarantool combines an in-memory DBMS and a Lua server in a single platform providing ACID-compliant storage. It comes in two :ref:`editions <overview-editions>`: Community and Enterprise. The :ref:`use cases <overview-use_cases>` for Tarantool vary from ultra-fast cache to product data marts and smart queue services."
+msgstr ""
+
+#: ../../doc/overview.rst:13
+msgid "Here are some of Tarantool's key characteristics:"
+msgstr ""
+
+#: ../../doc/overview.rst:15
+msgid "**Easy handling of OLTP workloads**: processes hundreds of thousands RPS"
+msgstr ""
+
+#: ../../doc/overview.rst:17
+msgid "**Data integrity**: :ref:`write-ahead log (WAL) <concepts-data_model-persistence>` and :ref:`data snapshots <concepts-data_model-persistence>`"
+msgstr ""
+
+#: ../../doc/overview.rst:20
+msgid "**Cooperative multitasking**: transactions are performed in :ref:`lightweight coroutines <concepts-coop_multitasking>` with no interthread locking"
+msgstr ""
+
+#: ../../doc/overview.rst:23
+msgid "**Advanced indexing**: :ref:`composite indexes <concepts-data_model_indexes>`, :ref:`locale support <index-collation>`, indexing by :ref:`nested fields and arrays <index-box_indexed-field-types>`"
+msgstr ""
+
+#: ../../doc/overview.rst:27
+msgid "**Compute close to data**: :ref:`Lua server <concepts-application_server>` and Just-In-Time compiler on board"
+msgstr ""
+
+#: ../../doc/overview.rst:30
+msgid "**Durable distributed storage**: multiple failover modes and :ref:`RAFT-based synchronous replication <repl_sync>` available"
+msgstr ""
+
+#: ../../doc/overview.rst:34
+msgid "Tarantool allows executing code alongside data, which helps increase the speed of operations. Developers can :ref:`implement any business logic with Lua <app_server-creating_app>`, and a single Tarantool instance can also receive :ref:`SQL requests <sql_tutorial>`."
+msgstr ""
+
+#: ../../doc/overview.rst:38
+msgid "Tarantool has a variety of compatible `modules <https://www.tarantool.io/en/download/rocks>`__ (Lua rocks). You can pick the ones that you need and install them manually."
+msgstr ""
+
+#: ../../doc/overview.rst:41
+msgid "Tarantool runs on Linux (x86_64, aarch64), Mac OS X (x86_64, M1), and FreeBSD (x86_64)."
+msgstr ""
+
+#: ../../doc/overview.rst:43
+msgid "You can use Tarantool with a programming language you're familiar with. For this purpose, a number of :ref:`connectors <getting_started_connectors>` are provided."
+msgstr ""
+
+#: ../../doc/overview.rst:49
+msgid "Editions"
+msgstr ""
+
+#: ../../doc/overview.rst:51
+msgid "Tarantool comes in two editions: the open-source **Community Edition (CE)** and the commercial **Enterprise Edition (EE)**."
+msgstr ""
+
+#: ../../doc/overview.rst:54
+msgid "**Tarantool Community Edition** lets you develop applications and speed up a system in operation. It features :ref:`synchronous replication <repl_sync>`, affords easy :ref:`scalability <sharding>`, and includes tools to develop efficient :ref:`applications <app_server>`. The `Tarantool community <https://t.me/tarantool>`__ helps with any practical questions regarding the Community Edition."
+msgstr ""
+
+#: ../../doc/overview.rst:60
+msgid "**Tarantool Enterprise Edition** `provides advanced tools <https://www.tarantool.io/en/compare/>`__ for administration, deployment, and security management, along with premium support services. This edition includes all the Community Edition features and is more predictable in terms of solution cost and maintenance. The Enterprise Edition is shipped as an SDK and includes a number of closed-source modules. See the :ref:`Tarantool Enterprise Edition <tarantool_enterprise>` documentation."
+msgstr ""
+
+#: ../../doc/overview.rst:70
+msgid "Use cases"
+msgstr ""
+
+#: ../../doc/overview.rst:73
+msgid "Fast first-class storage"
+msgstr ""
+
+#: ../../doc/overview.rst:75
+msgid "Primary storage"
+msgstr ""
+
+#: ../../doc/overview.rst:77
+msgid "No secondary storage required"
+msgstr ""
+
+#: ../../doc/overview.rst:79
+msgid "Tolerance to high write loads"
+msgstr ""
+
+#: ../../doc/overview.rst:80
+msgid "Support of relational approaches"
+msgstr ""
+
+#: ../../doc/overview.rst:81
+msgid "Composite secondary indexes"
+msgstr ""
+
+#: ../../doc/overview.rst:83
+msgid "Data access, data slices"
+msgstr ""
+
+#: ../../doc/overview.rst:85
+msgid "Predictable request latency"
+msgstr ""
+
+#: ../../doc/overview.rst:88
+msgid "Advanced cache"
+msgstr ""
+
+#: ../../doc/overview.rst:90
+msgid "Write-behind caching"
+msgstr ""
+
+#: ../../doc/overview.rst:91
+msgid "Secondary index support"
+msgstr ""
+
+#: ../../doc/overview.rst:92
+msgid "Complex invalidation algorithm support"
+msgstr ""
+
+#: ../../doc/overview.rst:95
+msgid "Smart queue"
+msgstr ""
+
+#: ../../doc/overview.rst:97
+msgid "Support of various identification techniques"
+msgstr ""
+
+#: ../../doc/overview.rst:98
+msgid "Advanced task lifecycle management"
+msgstr ""
+
+#: ../../doc/overview.rst:100
+msgid "Task scheduling"
+msgstr ""
+
+#: ../../doc/overview.rst:101
+msgid "Archiving of completed tasks"
+msgstr ""
+
+#: ../../doc/overview.rst:104
+msgid "Data-centric applications"
+msgstr ""
+
+#: ../../doc/overview.rst:106
+msgid "Arbitrary data flows from many sources"
+msgstr ""
+
+#: ../../doc/overview.rst:107
+msgid "Incoming data processing"
+msgstr ""
+
+#: ../../doc/overview.rst:108
+msgid "Storage"
+msgstr ""
+
+#: ../../doc/overview.rst:109
+msgid "Background cycle processing"
+msgstr ""
+
+#: ../../doc/overview.rst:111
+msgid "Scheduling support"
+msgstr ""

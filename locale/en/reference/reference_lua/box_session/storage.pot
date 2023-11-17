@@ -1,0 +1,54 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_session/storage.rst:6
+msgid "box.session.storage"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/storage.rst:12
+msgid "A Lua table that can hold arbitrary unordered session-specific names and values, which will last until the session ends. For example, this table could be useful to store current tasks when working with a `Tarantool queue manager <https://github.com/tarantool/queue>`_."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/storage.rst:17
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/storage.rst:19
+msgid "tarantool> box.session.peer(box.session.id())\n"
+"---\n"
+"- 127.0.0.1:45129\n"
+"...\n"
+"tarantool> box.session.storage.random_memorandum = \"Don't forget the eggs\"\n"
+"---\n"
+"...\n"
+"tarantool> box.session.storage.radius_of_mars = 3396\n"
+"---\n"
+"...\n"
+"tarantool> m = ''\n"
+"---\n"
+"...\n"
+"tarantool> for k, v in pairs(box.session.storage) do\n"
+"         >   m = m .. k .. '='.. v .. ' '\n"
+"         > end\n"
+"---\n"
+"...\n"
+"tarantool> m\n"
+"---\n"
+"- 'radius_of_mars=3396 random_memorandum=Don't forget the eggs. '\n"
+"..."
+msgstr ""

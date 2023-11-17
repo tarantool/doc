@@ -1,0 +1,303 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/how-to/getting_started_go.rst:5
+msgid "Connecting from Go"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:11
+msgid "Pre-requisites"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:13
+msgid "Before we proceed:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:15
+msgid "`Install <https://github.com/tarantool/go-tarantool#installation>`__ the ``go-tarantool`` library."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:18
+msgid ":ref:`Start <getting_started_db>` Tarantool (locally or in Docker) and make sure that you have created and populated a database as we suggested :ref:`earlier <creating-db-locally>`:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:22
+msgid "box.cfg{listen = 3301}\n"
+"s = box.schema.space.create('tester')\n"
+"s:format({\n"
+"         {name = 'id', type = 'unsigned'},\n"
+"         {name = 'band_name', type = 'string'},\n"
+"         {name = 'year', type = 'unsigned'}\n"
+"         })\n"
+"s:create_index('primary', {\n"
+"         type = 'hash',\n"
+"         parts = {'id'}\n"
+"         })\n"
+"s:create_index('secondary', {\n"
+"         type = 'hash',\n"
+"         parts = {'band_name'}\n"
+"         })\n"
+"s:insert{1, 'Roxette', 1986}\n"
+"s:insert{2, 'Scorpions', 2015}\n"
+"s:insert{3, 'Ace of Base', 1993}"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:45
+msgid "Please do not close the terminal window where Tarantool is running -- you'll need it soon."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:48
+msgid "In order to connect to Tarantool as an administrator, reset the password for the ``admin`` user:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:51
+msgid "box.schema.user.passwd('pass')"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:59
+msgid "Connecting to Tarantool"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:61
+msgid "To get connected to the Tarantool server, write a simple Go program:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:63
+msgid "package main\n"
+"\n"
+"import (\n"
+"    \"fmt\"\n"
+"\n"
+"    \"github.com/tarantool/go-tarantool\"\n"
+")\n"
+"\n"
+"func main() {\n"
+"\n"
+"    conn, err := tarantool.Connect(\"127.0.0.1:3301\", tarantool.Opts{\n"
+"            User: \"admin\",\n"
+"            Pass: \"pass\",\n"
+"    })\n"
+"\n"
+"    if err != nil {\n"
+"            log.Fatalf(\"Connection refused\")\n"
+"    }\n"
+"\n"
+"    defer conn.Close()\n"
+"\n"
+"    // Your logic for interacting with the database\n"
+"}"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:89
+msgid "The default user is ``guest``."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:95
+msgid "Manipulating the data"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:101
+msgid "Inserting data"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:103
+msgid "To insert a :term:`tuple` into a :term:`space`, use ``Insert``:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:105
+msgid "resp, err = conn.Insert(\"tester\", []interface{}{4, \"ABBA\", 1972})"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:109
+msgid "This inserts the tuple ``(4, \"ABBA\", 1972)`` into a space named ``tester``."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:111
+msgid "The response code and data are available in the `tarantool.Response <https://github.com/tarantool/go-tarantool#usage>`_ structure:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:115
+msgid "code := resp.Code\n"
+"data := resp.Data"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:124
+msgid "Querying data"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:126
+msgid "To select a tuple from a space, use `Select <https://github.com/tarantool/go-tarantool#api-reference>`_:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:129
+msgid "resp, err = conn.Select(\"tester\", \"primary\", 0, 1, tarantool.IterEq, []interface{}{4})"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:133
+msgid "This selects a tuple by the primary key with ``offset = 0`` and ``limit = 1`` from a space named ``tester`` (in our example, this is the index named ``primary``, based on the ``id`` field of each tuple)."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:137
+msgid "Next, select tuples by a secondary key."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:139
+msgid "resp, err = conn.Select(\"tester\", \"secondary\", 0, 1, tarantool.IterEq, []interface{}{\"ABBA\"})"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:143
+msgid "Finally, it would be nice to select all the tuples in a space. But there is no one-liner for this in Go; you would need a script like :ref:`this one <cookbook-select-all-go>`."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:147
+msgid "For more examples, see https://github.com/tarantool/go-tarantool#usage"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:153
+msgid "Updating data"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:155
+msgid "Update a :term:`field` value using ``Update``:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:157
+msgid "resp, err = conn.Update(\"tester\", \"primary\", []interface{}{4}, []interface{}{[]interface{}{\"+\", 2, 3}})"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:161
+msgid "This increases by 3 the value of field ``2`` in the tuple with ``id = 4``. If a tuple with this ``id`` doesn't exist, Tarantool will return an error."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:164
+msgid "Now use ``Replace`` to totally replace the tuple that matches the primary key. If a tuple with this primary key doesn't exist, Tarantool will do nothing."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:168
+msgid "resp, err = conn.Replace(\"tester\", []interface{}{4, \"New band\", 2011})"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:172
+msgid "You can also update the data using ``Upsert`` that works similarly to ``Update``, but creates a new tuple if the old one was not found."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:175
+msgid "resp, err = conn.Upsert(\"tester\", []interface{}{4, \"Another band\", 2000}, []interface{}{[]interface{}{\"+\", 2, 5}})"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:179
+msgid "This increases by 5 the value of the third field in the tuple with ``id = 4``, or inserts the tuple ``(4, \"Another band\", 2000)`` if a tuple with this ``id`` doesn't exist."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:187
+msgid "Deleting data"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:189
+msgid "To delete a tuple, use ``сonnection.Delete``:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:191
+msgid "resp, err = conn.Delete(\"tester\", \"primary\", []interface{}{4})"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:195
+msgid "To delete all tuples in a space (or to delete an entire space), use ``Call``. We'll focus on this function in more detail in the :ref:`next <getting_started-go-stored-procs>` section."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:199
+msgid "To delete all tuples in a space, call ``space:truncate``:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:201
+msgid "resp, err = conn.Call(\"box.space.tester:truncate\", []interface{}{})"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:205
+msgid "To delete an entire space, call ``space:drop``. This requires connecting to Tarantool as the ``admin`` user:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:208
+msgid "resp, err = conn.Call(\"box.space.tester:drop\", []interface{}{})"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:216
+msgid "Executing stored procedures"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:218
+msgid "Switch to the terminal window where Tarantool is running."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:222
+msgid "If you don't have a terminal window with remote connection to Tarantool, check out these guides:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:225
+msgid ":ref:`connecting to a local Tarantool instance <connecting-remotely>`"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:226
+msgid ":ref:`attaching to a Tarantool instance that runs in a Docker container <getting_started-docker-attaching>`"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:228
+msgid "Define a simple Lua function:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:230
+msgid "function sum(a, b)\n"
+"    return a + b\n"
+"end"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:236
+msgid "Now we have a Lua function defined in Tarantool. To invoke this function from ``go``, use ``Call``:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:239
+msgid "resp, err = conn.Call(\"sum\", []interface{}{2, 3})"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:243
+msgid "To send bare Lua code for execution, use ``Eval``:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:245
+msgid "resp, err = connection.Eval(\"return 4 + 5\", []interface{}{})"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:253
+msgid "Feature comparison"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:255
+msgid "There are two more connectors from the open-source community:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:257
+msgid "`viciious/go-tarantool <https://github.com/viciious/go-tarantool>`_"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:259
+msgid "`FZambia/tarantool <https://github.com/FZambia/tarantool>`_."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_go.rst:261
+msgid "See the :ref:`feature comparison table <index_connector_go>` of all Go connectors available."
+msgstr ""

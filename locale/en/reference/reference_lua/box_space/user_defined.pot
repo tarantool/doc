@@ -1,0 +1,60 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_space/user_defined.rst:5
+msgid "space_object extensions"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/user_defined.rst:7
+msgid "You can extend ``space_object`` with custom functions as follows:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/user_defined.rst:9
+msgid "Create a Lua function."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/user_defined.rst:10
+msgid "Add the function name to a predefined global variable ``box.schema.space_mt``, which has the ``table`` type. Adding to ``box.schema.space_mt`` makes the function available for all spaces."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/user_defined.rst:11
+msgid "Call the function on the ``space_object``: ``space_object:function-name([parameters])``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/user_defined.rst:13
+msgid "Alternatively, you can make a user-defined function available for only one space by calling ``getmetatable(space_object)`` and then adding the function name to the meta table."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/user_defined.rst:17
+msgid "See also: :doc:`/reference/reference_lua/box_index/user_defined`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/user_defined.rst:19
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/user_defined.rst:21
+msgid "-- Visible to any space, no parameters.\n"
+"-- After these requests, the value of global_variable will be 6.\n"
+"box.schema.space.create('t')\n"
+"box.space.t:create_index('i')\n"
+"global_variable = 5\n"
+"function f(space_arg) global_variable = global_variable + 1 end\n"
+"box.schema.space_mt.counter = f\n"
+"box.space.t:counter()"
+msgstr ""

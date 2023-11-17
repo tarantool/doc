@@ -1,0 +1,524 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:5
+msgid "Replication cluster upgrade"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:7
+msgid "Below are the general instructions for upgrading a Tarantool cluster with replication. Upgrading from some versions can involve certain specifics. To find out if it is your case, check the version-specific topics of the :ref:`Upgrades <admin-upgrades>` section."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:11
+msgid "A replication cluster can be upgraded without downtime due to its redundancy. When you disconnect a single instance for an upgrade, there is always another instance that takes over its functionality: being a master storage for the same data buckets or working as a router. This way, you can upgrade all the instances one by one."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:16
+msgid "The high-level steps of cluster upgrade are the following:"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:18
+msgid ":ref:`Ensure the application compatibility <admin-upgrades-cluster-check-app>` with the target Tarantool version."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:20
+msgid ":ref:`Check the cluster health <admin-upgrades-cluster-pre-check>`."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:21
+msgid ":ref:`Install the target Tarantool version <admin-upgrades-cluster-install>` on the cluster nodes."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:23
+msgid ":ref:`Upgrade router <admin-upgrades-cluster-routers>` nodes one by one."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:24
+msgid ":ref:`Upgrade storage replica sets <admin-upgrades-cluster-storages>` one by one."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:29
+msgid "The only way to upgrade Tarantool from version 1.6, 1.7, or 1.9 to 2.x **without downtime** is to take an intermediate step by upgrading to 1.10 and then to 2.x."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:32
+msgid "Before upgrading Tarantool from 1.6 to 2.x, please read about the associated :ref:`caveats <admin-upgrades-1.6-1.10>`."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:37
+msgid "Some upgrade steps are moved to the separate section :ref:`Procedures and checks <admin-upgrades-cluster-procedures>` to avoid overloading the general instruction with details. Typically, these are checks you should repeat during the upgrade to ensure it goes well."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:41
+msgid "If you experience issues during upgrade, you can roll back to the original version. The rollback instructions are provided in the :ref:`Rollback <admin-upgrades-cluster-rollback>` section."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:48
+msgid "Checking your application"
+msgstr ""
+
+#: ../../doc/book/admin/_includes/upgrade_check_app.rst:1
+msgid "Before upgrading, make sure your application is compatible with the target Tarantool version:"
+msgstr ""
+
+#: ../../doc/book/admin/_includes/upgrade_check_app.rst:4
+msgid "Set up a development environment with the target Tarantool version installed. See the installation instructions at the Tarantool `download page <http://tarantool.org/download.html>`_ and in the :ref:`tt install reference <tt-install>`."
+msgstr ""
+
+#: ../../doc/book/admin/_includes/upgrade_check_app.rst:8
+msgid "Deploy the application in this environment and check how it works. In case of any issues, adjust the application code to ensure compatibility with the target version."
+msgstr ""
+
+#: ../../doc/book/admin/_includes/upgrade_check_app.rst:11
+msgid "When your application is ready to run on the target Tarantool version, you can start upgrading the production environment."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:56
+msgid "Pre-upgrade checks"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:58
+msgid "Perform these steps before the upgrade to ensure that your cluster is working correctly:"
+msgstr ""
+
+#: ../../doc/book/admin/_includes/upgrade_checks_pre.rst:1
+#: ../../doc/book/admin/_includes/upgrade_checks_pre.rst:1
+msgid "On each ``router`` instance, perform the :ref:`vshard.router check <admin-upgrades-router-check>`:"
+msgstr ""
+
+#: ../../doc/book/admin/_includes/upgrade_checks_pre.rst:3
+#: ../../doc/book/admin/_includes/upgrade_checks_pre.rst:3
+msgid "tarantool> vshard.router.info()\n"
+"-- no issues in the output\n"
+"-- sum of 'bucket.available_rw' == total number of buckets"
+msgstr ""
+
+#: ../../doc/book/admin/_includes/upgrade_checks_pre.rst:9
+#: ../../doc/book/admin/_includes/upgrade_checks_pre.rst:9
+msgid "On each ``storage`` instance, perform the :ref:`replication check <admin-upgrades-replication-check>`:"
+msgstr ""
+
+#: ../../doc/book/admin/_includes/upgrade_checks_pre.rst:11
+#: ../../doc/book/admin/_includes/upgrade_checks_pre.rst:11
+msgid "tarantool> box.info\n"
+"-- box.info.status == 'running'\n"
+"-- box.info.ro == 'false' on one instance in each replica set.\n"
+"-- box.info.replication[*].upstream.status == 'follow'\n"
+"-- box.info.replication[*].downstream.status == 'follow'\n"
+"-- box.info.replication[*].upstream.lag <= box.cfg.replication_timeout\n"
+"-- can also be moderately larger under a write load"
+msgstr ""
+
+#: ../../doc/book/admin/_includes/upgrade_checks_pre.rst:22
+#: ../../doc/book/admin/_includes/upgrade_checks_pre.rst:22
+msgid "On each ``storage`` instance, perform the :ref:`vshard.storage check <admin-upgrades-storage-check>`:"
+msgstr ""
+
+#: ../../doc/book/admin/_includes/upgrade_checks_pre.rst:24
+#: ../../doc/book/admin/_includes/upgrade_checks_pre.rst:24
+msgid "tarantool> vshard.storage.info()\n"
+"-- no issues in the output\n"
+"-- replication.status == 'follow'"
+msgstr ""
+
+#: ../../doc/book/admin/_includes/upgrade_checks_pre.rst:30
+#: ../../doc/book/admin/_includes/upgrade_checks_pre.rst:30
+msgid "Check all instances' :ref:`logs <admin-logs>` for application errors."
+msgstr ""
+
+#: ../../doc/book/admin/_includes/upgrade_checks_pre.rst:34
+#: ../../doc/book/admin/_includes/upgrade_checks_pre.rst:34
+msgid "If you're running Cartridge, you can check the health of the cluster instances on the **Cluster** tab of its web interface."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:62
+msgid "In case of any issues, make sure to fix them before starting the upgrade procedure."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:67
+msgid "Installing the target version"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:69
+msgid "Install the target Tarantool version on all hosts of the cluster. You can do this using a package manager or the :ref:`tt utility <tt-cli>`. See the installation instructions at the Tarantool `download page <http://tarantool.org/download.html>`_ and in the :ref:`tt install reference <tt-install>`."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:74
+msgid "Check that the target Tarantool version is installed by running ``tarantool -v`` on all hosts."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:78
+msgid "Upgrading a Tarantool cluster with no downtime"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:83
+msgid "Upgrading routers"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:85
+msgid "Upgrade **router** instances one by one:"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:87
+msgid "Stop one ``router`` instance."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:88
+msgid "Start this instance on the target Tarantool version."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:89
+msgid "Repeat the previous steps for each ``router`` instance."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:91
+msgid "After completing the router instances upgrade, perform the :ref:`vshard.router check <admin-upgrades-router-check>` on each of them."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:97
+msgid "Upgrading storages"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:99
+msgid "Before upgrading **storage** instances:"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:101
+msgid "Disable Cartridge failover: run"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:103
+msgid "tt cartridge failover disable"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:107
+msgid "or use the Cartridge web interface (**Cluster** tab, **Failover: <Mode>** button)."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:109
+msgid "Disable the :ref:`rebalancer <storage_api-rebalancer_disable>`: run"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:111
+msgid "tarantool> vshard.storage.rebalancer_disable()"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:115
+msgid "Make sure that the Cartridge ``upgrade_schema`` option is ``false``."
+msgstr ""
+
+#: ../../doc/book/admin/_includes/upgrade_storages.rst:5
+msgid "Upgrade storage instances by performing the following steps for each replica set:"
+msgstr ""
+
+#: ../../doc/book/admin/_includes/upgrade_storages.rst:9
+msgid "To detect possible upgrade issues early, we recommend that you perform a :ref:`replication check <admin-upgrades-replication-check>` on all instances of the replica set **after each step**."
+msgstr ""
+
+#: ../../doc/book/admin/_includes/upgrade_storages.rst:14
+msgid "Pick a replica (a **read-only** instance) from the replica set. Stop this replica and start it again on the target Tarantool version. Wait until it reaches the ``running`` status (``box.info.status == running``)."
+msgstr ""
+
+#: ../../doc/book/admin/_includes/upgrade_storages.rst:17
+msgid "Restart all other **read-only** instances of the replica set on the target version one by one."
+msgstr ""
+
+#: ../../doc/book/admin/_includes/upgrade_storages.rst:19
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:183
+msgid "Make one of the updated replicas the new master using the applicable instruction from :ref:`Switching the master <admin-upgrades-switch-master>`."
+msgstr ""
+
+#: ../../doc/book/admin/_includes/upgrade_storages.rst:21
+msgid "Restart the last instance of the replica set (the former master, now a replica) on the target version."
+msgstr ""
+
+#: ../../doc/book/admin/_includes/upgrade_storages.rst:26
+msgid "Run :ref:`box.schema.upgrade() <box_schema-upgrade>` on the new master. This will update the Tarantool system spaces to match the currently installed version of Tarantool. The changes will be propagated to other nodes via the replication mechanism later."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:121
+msgid "This is the point of no return for upgrading from versions earlier than 2.8.2: once you complete it, the schema is no longer compatible with the initial version."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:124
+msgid "When upgrading from version 2.8.2 or newer, you can undo the schema upgrade using :ref:`box.schema.downgrade() <box_schema-downgrade>`."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:127
+msgid "Run ``box.snapshot()`` on every node in the replica set to make sure that the replicas immediately see the upgraded database state in case of restart."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:130
+msgid "Once you complete the steps, enable failover or rebalancer back:"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:132
+msgid "Enable Cartridge failover: run"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:134
+msgid "tt cartridge failover set [mode]"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:138
+msgid "or use the Cartridge web interface (**Cluster** tab, **Failover: Disabled** button)."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:140
+msgid "Enable the :ref:`rebalancer <storage_api-rebalancer_enable>`: run"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:142
+msgid "tarantool> vshard.storage.rebalancer_enable()"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:147
+msgid "Post-upgrade checks"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:149
+msgid "Perform these steps after the upgrade to ensure that your cluster is working correctly:"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:157
+msgid "Rollback"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:160
+msgid "Rollback before the point of no return"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:162
+msgid "If you decide to roll back before reaching the :ref:`point of no return <admin-upgrades-no-return>`, your data is fully compatible with the version you had before the upgrade. In this case, you can roll back the same way: restart the nodes you've already upgraded on the original version."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:168
+msgid "Rollback after the point of no return"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:170
+msgid "If you've passed the :ref:`point of no return <admin-upgrades-no-return>` (that is, executed ``box.schema.upgrade()``) during the upgrade, then a rollback requires downgrading the schema to the original version."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:174
+msgid "To check if an automatic downgrade is available for your original version, use ``box.schema.downgrade_versions()``. If the version you need is on the list, execute the following steps on **each upgraded replica set** to roll back:"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:178
+msgid "Run ``box.schema.downgrade(<version>)`` on master specifying the original version."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:179
+msgid "Run ``box.snapshot()`` on every instance in the replica set to make sure that the replicas immediately see the downgraded database state after restart."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:181
+msgid "Restart all **read-only** instances of the replica set on the initial version one by one."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:185
+msgid "Restart the last instance of the replica set (the former master, now a replica) on the original version."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:188
+msgid "Then enable failover or rebalancer back as described in the :ref:`Upgrading storages <admin-upgrades-cluster-storages>`."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:191
+msgid "Recovering from a failed upgrade"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:195
+msgid "This section applies to cases when the upgrade procedure has failed and the cluster is not functioning properly anymore. Thus, it implies a downtime and a full cluster restart."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:199
+msgid "In case of an upgrade failure after passing the :ref:`point of no return <admin-upgrades-no-return>`, follow these steps to roll back to the original version:"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:202
+msgid "Stop all cluster instances."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:203
+msgid "Save snapshot and ``xlog`` files from all instances whose data was modified after the last backup procedure. These files will help apply these modifications later."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:206
+msgid "Save the latest backups from all instances."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:207
+msgid "Restore the original Tarantool version on all hosts of the cluster."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:208
+msgid "Launch the cluster on the original Tarantool version."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:212
+msgid "At this point, the application becomes fully functional and contains data from the backups. However, the data modifications made after the backups were taken must be restored manually."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:216
+msgid "Manually apply the latest data modifications from ``xlog`` files you saved on step 2 using the :ref:`xlog <xlog>` module. On instances where such changes happened, do the following:"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:220
+msgid "Find out the vclock value of the latest operation in the original WAL."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:221
+msgid "Play the operations from the newer xlog starting from this vclock on the instance."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:226
+msgid "If the upgrade has failed after calling ``box.schema.upgrade()``, **don't apply** the modifications of system spaces done by this call. This can make the schema incompatible with the original Tarantool version."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:230
+msgid "Find more information about the Tarantool recovery in :ref:`Disaster recovery <admin-disaster_recovery>`."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:235
+msgid "Procedures and checks"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:240
+msgid "Replication check"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:242
+msgid "Run ``box.info``:"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:244
+msgid "tarantool> box.info"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:248
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:276
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:292
+msgid "Check that the following conditions are satisfied:"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:250
+msgid "``box.info.status`` is ``running``"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:251
+msgid "``box.info.replication[*].upstream.status`` and ``box.info.replication[*].downstream.status`` are ``follow``"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:253
+msgid "``box.info.replication[*].upstream.lag`` is less or equal than ``box.cfg.replication_timeout``, but it can also be moderately larger under a write load."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:255
+msgid "``box.info.ro`` is ``false`` at least on one instance in **each** replica set. If all instances have ``box.info.ro = true``, this means there are no writable nodes. On Tarantool :doc:`v. 2.10.0 </release/2.10.0>` or later, you can find out why this happened by running ``box.info.ro_reason``. If ``box.info.ro_reason`` or ``box.info.status`` has the value ``orphan``, the instance doesn't see the rest of the replica set."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:262
+msgid "Then run ``box.info`` once more and check that ``box.info.replication[*].upstream.lag`` values are updated."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:268
+msgid "vshard.storage check"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:270
+msgid "Run ``vshard.storage.info()``:"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:272
+msgid "tarantool> vshard.storage.info()"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:278
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:294
+msgid "there are no issues or alerts"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:279
+msgid "``replication.status`` is ``follow``"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:284
+msgid "vshard.router check"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:286
+msgid "Run ``vshard.router.info()``:"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:288
+msgid "tarantool> vshard.router.info()"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:295
+msgid "all buckets are available (the sum of ``bucket.available_rw`` on all replica sets equals the total number of buckets)"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:301
+msgid "Switching the master"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:303
+msgid "**Cartridge**. If your cluster runs on Cartridge, you can switch the master in the web interface. To do this, go to the **Cluster** tab, click **Edit replica set**, and drag an instance to the top of **Failover priority** list to make it the master."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:307
+msgid "**Raft**. If your cluster uses :ref:`automated leader election <repl_leader_elect>`, switch the master by following these steps:"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:310
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:320
+msgid "Pick a *candidate* -- a read-only instance to become the new master."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:311
+msgid "Run ``box.ctl.promote()`` on the candidate. The operation will start and wait for the election to happen."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:313
+msgid "Run `box.cfg{ election_mode = \"voter\" }` on the current master."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:314
+msgid "Check that the candidate became the new master: its ``box.info.ro`` must be ``false``."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:317
+msgid "**Legacy**. If your cluster neither works on Cartridge nor has automated leader election, switch the master by following these steps:"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:321
+msgid "Run `box.cfg{ read_only = true }` on the current master."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:322
+msgid "Check that the candidate's vclock value matches the master's: The value of ``box.info.vclock[<master_id>]`` on the candidate must be equal to ``box.info.lsn`` on the master. ``<master_id>`` here is the value of ``box.info.id`` on the master."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:327
+msgid "If the vclock values don't match, stop the switch procedure and restore the replica set state by calling ``box.cfg{ read_only == false }`` on the master. Then pick another candidate and restart the procedure."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/upgrade_cluster.rst:331
+msgid "After switching the master, perform the :ref:`replication check <admin-upgrades-replication-check>` on each instance of the replica set."
+msgstr ""

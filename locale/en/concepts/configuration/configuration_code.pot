@@ -1,0 +1,396 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/concepts/configuration/configuration_code.rst:4
+msgid "Configuration in code"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:10
+msgid "Starting with the 3.0 version, the recommended way of configuring Tarantool is using a :ref:`configuration file <configuration_file>`. Configuring Tarantool in code is considered a legacy approach."
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:15
+msgid "This topic covers the specifics of configuring Tarantool in code using the ``box.cfg`` API. In this case, a configuration is stored in an :ref:`initialization file <index-init_label>` - a Lua script with the specified configuration options. You can find all the available options in the :ref:`Configuration reference <box-cfg-params-ref>`."
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:23
+msgid "Initialization file"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:25
+msgid "If the command to :ref:`start Tarantool <configuration_code_run_instance_tarantool>` includes an instance file, then Tarantool begins by invoking the Lua program in the file, which may have the name ``init.lua``. The Lua program may get further arguments from the command line or may use operating-system functions, such as ``getenv()``. The Lua program almost always begins by invoking ``box.cfg()``, if the database server will be used or if ports need to be opened. For example, suppose ``init.lua`` contains the lines"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:35
+msgid "#!/usr/bin/env tarantool\n"
+"box.cfg{\n"
+"    listen              = os.getenv(\"LISTEN_URI\"),\n"
+"    memtx_memory        = 33554432,\n"
+"    pid_file            = \"tarantool.pid\",\n"
+"    wal_max_size        = 2500\n"
+"}\n"
+"print('Starting ', arg[1])"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:46
+msgid "and suppose the environment variable ``LISTEN_URI`` contains 3301, and suppose the command line is ``tarantool init.lua ARG``. Then the screen might look like this:"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:50
+msgid "$ export LISTEN_URI=3301\n"
+"$ tarantool init.lua ARG\n"
+"... main/101/init.lua C> Tarantool 2.8.3-0-g01023dbc2\n"
+"... main/101/init.lua C> log level 5\n"
+"... main/101/init.lua I> mapping 33554432 bytes for memtx tuple arena...\n"
+"... main/101/init.lua I> recovery start\n"
+"... main/101/init.lua I> recovering from './00000000000000000000.snap'\n"
+"... main/101/init.lua I> set 'listen' configuration option to \"3301\"\n"
+"... main/102/leave_local_hot_standby I> ready to accept requests\n"
+"Starting  ARG\n"
+"... main C> entering the event loop"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:64
+msgid "If you wish to start an interactive session on the same terminal after initialization is complete, you can pass the ``-i`` :ref:`command-line option <configuration_command_options>`."
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:71
+msgid "Environment variables"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:73
+msgid "Starting from version :doc:`2.8.1 </release/2.8.1>`, you can specify configuration parameters via special environment variables. The name of a variable should have the following pattern: ``TT_<NAME>``, where ``<NAME>`` is the uppercase name of the corresponding :ref:`box.cfg parameter <box-cfg-params-ref>`."
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:77
+msgid "For example:"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:79
+msgid "``TT_LISTEN`` -- corresponds to the :ref:`box.cfg.listen <cfg_basic-listen>` option."
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:80
+msgid "``TT_MEMTX_DIR`` -- corresponds to the :ref:`box.cfg.memtx_dir <cfg_basic-memtx_dir>` option."
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:82
+msgid "In case of an array value, separate the array elements by a comma without space:"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:84
+msgid "export TT_REPLICATION=\"localhost:3301,localhost:3302\""
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:88
+msgid "If you need to pass :ref:`additional parameters for URI <index-uri-several-params>`, use the ``?`` and ``&`` delimiters:"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:90
+msgid "export TT_LISTEN=\"localhost:3301?param1=value1&param2=value2\""
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:94
+msgid "An empty variable (``TT_LISTEN=``) has the same effect as an unset one, meaning that the corresponding configuration parameter won't be set when calling ``box.cfg{}``."
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:111
+msgid "Configuration parameters"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:113
+msgid "Configuration parameters have the form:"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:115
+msgid ":extsamp:`{**{box.cfg}**}{[{*{key = value}*} [, {*{key = value ...}*}]]}`"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:117
+msgid "Configuration parameters can be set in a Lua :ref:`initialization file <index-init_label>`, which is specified on the Tarantool command line."
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:120
+msgid "Most configuration parameters are for allocating resources, opening ports, and specifying database behavior. All parameters are optional. Most of the parameters are dynamic, that is, they can be changed at runtime by calling ``box.cfg{}`` a second time. For example, the command below sets the :ref:`listen port <cfg_basic-listen>` to ``3301``."
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:125
+msgid "tarantool> box.cfg{ listen = 3301 }\n"
+"2023-05-10 13:28:54.667 [31326] main/103/interactive I> tx_binary: stopped\n"
+"2023-05-10 13:28:54.667 [31326] main/103/interactive I> tx_binary: bound to [::]:3301\n"
+"2023-05-10 13:28:54.667 [31326] main/103/interactive/box.load_cfg I> set 'listen' configuration option to 3301\n"
+"---\n"
+"..."
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:135
+msgid "To see all the non-null parameters, execute ``box.cfg`` (no parentheses)."
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:137
+msgid "tarantool> box.cfg\n"
+"---\n"
+"- replication_skip_conflict: false\n"
+"  wal_queue_max_size: 16777216\n"
+"  feedback_host: https://feedback.tarantool.io\n"
+"  memtx_dir: .\n"
+"  memtx_min_tuple_size: 16\n"
+"  -- other parameters --\n"
+"..."
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:149
+msgid "To see a particular parameter value, call a corresponding ``box.cfg`` option. For example, ``box.cfg.listen`` shows the specified :ref:`listen address <cfg_basic-listen>`."
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:152
+msgid "tarantool> box.cfg.listen\n"
+"---\n"
+"- 3301\n"
+"..."
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:164
+msgid "Listen URI"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:166
+msgid "Some configuration parameters and some functions depend on a URI (Universal Resource Identifier). The URI string format is similar to the `generic syntax for a URI schema <https://en.wikipedia.org/wiki/List_of_URI_schemes>`_. It may contain (in order):"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:171
+msgid "user name for login"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:172
+msgid "password"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:173
+msgid "host name or host IP address"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:174
+msgid "port number"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:175
+msgid "query parameters"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:177
+msgid "Only a port number is always mandatory. A password is mandatory if a user name is specified unless the user name is 'guest'."
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:180
+msgid "Formally, the URI syntax is ``[host:]port`` or ``[username:password@]host:port``. If a host is omitted, then \"0.0.0.0\" or \"[::]\" is assumed, meaning respectively any IPv4 address or any IPv6 address on the local machine. If ``username:password`` is omitted, then the \"guest\" user is assumed. Some examples:"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:193
+msgid "URI fragment"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:193
+msgid "Example"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:195
+msgid "port"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:195
+msgid "3301"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:197
+msgid "host:port"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:197
+msgid "127.0.0.1:3301"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:199
+msgid "username:password@host:port"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:199
+msgid "notguest:sesame@mail.ru:3301"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:202
+msgid "In code, the URI value can be passed as a number (if only a port is specified) or a string:"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:204
+msgid "box.cfg { listen = 3301 }\n"
+"\n"
+"box.cfg { listen = \"127.0.0.1:3301\" }"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:210
+msgid "In certain circumstances, a Unix domain socket may be used where a URI is expected, for example, ``unix/:/tmp/unix_domain_socket.sock`` or simply ``/tmp/unix_domain_socket.sock``."
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:214
+msgid "The :ref:`uri <uri-module>` module provides functions that convert URI strings into their components or turn components into URI strings."
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:220
+msgid "Specifying several URIs"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:222
+msgid "Starting from version 2.10.0, a user can open several listening iproto sockets on a Tarantool instance and, consequently, can specify several URIs in the configuration parameters such as :ref:`box.cfg.listen <cfg_basic-listen>` and :ref:`box.cfg.replication <cfg_replication-replication>`."
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:226
+msgid "URI values can be set in a number of ways:"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:228
+msgid "As a string with URI values separated by commas."
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:230
+msgid "box.cfg { listen = \"127.0.0.1:3301, /unix.sock, 3302\" }"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:234
+msgid "As a table that contains URIs in the string format."
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:236
+msgid "box.cfg { listen = {\"127.0.0.1:3301\", \"/unix.sock\", \"3302\"} }"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:240
+msgid "As an array of tables with the ``uri`` field."
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:242
+msgid "box.cfg { listen = {\n"
+"        {uri = \"127.0.0.1:3301\"},\n"
+"        {uri = \"/unix.sock\"},\n"
+"        {uri = 3302}\n"
+"    }\n"
+"}"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:251
+msgid "In a combined way -- an array that contains URIs in both the string and the table formats."
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:253
+msgid "box.cfg { listen = {\n"
+"        \"127.0.0.1:3301\",\n"
+"        { uri = \"/unix.sock\" },\n"
+"        { uri = 3302 }\n"
+"    }\n"
+"}"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:264
+msgid "Also, starting from version 2.10.0, it is possible to specify additional parameters for URIs. You can do this in different ways:"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:267
+msgid "Using the ``?`` delimiter when URIs are specified in a string format."
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:269
+msgid "box.cfg { listen = \"127.0.0.1:3301?p1=value1&p2=value2, /unix.sock?p3=value3\" }"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:273
+msgid "Using the ``params`` table: a URI is passed in a table with additional parameters in the \"params\" table. Parameters in the \"params\" table overwrite the ones from a URI string (\"value2\" overwrites \"value1\" for ``p1`` in the example below)."
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:276
+msgid "box.cfg { listen = {\n"
+"        \"127.0.0.1:3301?p1=value1\",\n"
+"        params = {p1 = \"value2\", p2 = \"value3\"}\n"
+"    }\n"
+"}"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:284
+msgid "Using the ``default_params`` table for specifying default parameter values."
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:286
+msgid "In the example below, two URIs are passed in a table. The default value for the ``p3`` parameter is defined in the ``default_params`` table and used if this parameter is not specified in URIs. Parameters in the ``default_params`` table are applicable to all the URIs passed in a table."
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:291
+msgid "box.cfg { listen = {\n"
+"        \"127.0.0.1:3301?p1=value1\",\n"
+"        { uri = \"/unix.sock\", params = { p2 = \"value2\" } },\n"
+"        default_params = { p3 = \"value3\" }\n"
+"    }\n"
+"}"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:300
+msgid "The recommended way for specifying URI with additional parameters is the following:"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:302
+msgid "box.cfg { listen = {\n"
+"        {uri = \"127.0.0.1:3301\", params = {p1 = \"value1\"}},\n"
+"        {uri = \"/unix.sock\", params = {p2 = \"value2\"}},\n"
+"        {uri = 3302, params = {p3 = \"value3\"}}\n"
+"    }\n"
+"}"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:311
+msgid "In case of a single URI, the following syntax also works:"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:313
+msgid "box.cfg { listen = {\n"
+"        uri = \"127.0.0.1:3301\",\n"
+"        params = { p1 = \"value1\", p2 = \"value2\" }\n"
+"    }\n"
+"}"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:326
+msgid "Starting a Tarantool instance"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:328
+msgid "Below is the syntax for starting a Tarantool instance configured in a Lua initialization script:"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:330
+msgid "$ tarantool LUA_INITIALIZATION_FILE [OPTION ...]"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:334
+msgid "The ``tarantool`` command also provides a set of :ref:`options <configuration_command_options>` that might be helpful for development purposes."
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:336
+msgid "The command below starts a Tarantool instance configured in the ``init.lua`` file:"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:338
+msgid "$ tarantool init.lua"
+msgstr ""

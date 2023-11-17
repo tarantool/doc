@@ -1,0 +1,979 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:4
+msgid "tarantoolctl utility (deprecated)"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:8
+msgid "``tarantoolctl`` is deprecated in favor of :ref:`tt CLI <tt-cli>`. Find the instructions on switching from ``tarantoolctl`` to ``tt`` in :ref:`Migration from tarantoolctl to tt <tarantoolctl-migration-to-tt>`."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:12
+msgid "``tarantoolctl`` is a utility for administering Tarantool :ref:`instances <tarantoolctl-instance_management>`, :ref:`checkpoint files <tarantoolctl-checkpoint_management>` and :ref:`modules <tarantoolctl-module_management>`. It is shipped and installed as part of Tarantool distribution. This utility is intended for use by administrators only."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:19
+msgid "See also ``tarantoolctl`` usage examples in :ref:`Server administration <admin>` section."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:25
+msgid "Command format"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:27
+msgid "``tarantoolctl COMMAND NAME [URI] [FILE] [OPTIONS..]``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:29
+#: ../../doc/reference/tooling/tarantoolctl.rst:251
+msgid "where:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:31
+msgid "``COMMAND`` is one of the following: ``start``, ``stop``, ``status``, ``restart``, ``logrotate``, ``check``, ``enter``, ``eval``, ``connect``, ``cat``, ``play``, ``rocks``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:35
+msgid "``NAME`` is the name of an :ref:`instance file <admin-instance_file>` or a :ref:`module <app_server-modules>`."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:38
+msgid "``FILE`` is the path to some file (.lua, .xlog or .snap)."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:40
+msgid "``URI`` is the URI of some Tarantool instance."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:42
+msgid "``OPTIONS`` are options taken by some ``tarantoolctl`` commands."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:47
+msgid "Commands for managing Tarantool instances"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:65
+msgid "``tarantoolctl start NAME``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:50
+msgid "Start a Tarantool instance."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:52
+msgid "Additionally, this command sets the TARANTOOLCTL environment variable to 'true', to mark that the instance was started by ``tarantoolctl``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:57
+msgid "``tarantoolctl`` works for instances without ``box.cfg{}`` called or with delayed ``box.cfg{}`` call."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:60
+msgid "For example, this can be used to manage instances which receive configuration from an external server. For such instances, ``tarantoolctl start`` goes to background when ``box.cfg{}`` is called, so it will wait until options for ``box.cfg`` are received. However this is not the case for daemon management systems like ``systemd``, as they handle backgrounding on their side."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:68
+msgid "``tarantoolctl stop NAME``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:68
+msgid "Stop a Tarantool instance."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:76
+msgid "``tarantoolctl status NAME``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:71
+msgid "Show an instance's status (started/stopped). If pid file exists and an alive control socket exists, the return code is ``0``. Otherwise, the return code is not ``0``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:75
+msgid "Reports typical problems to stderr (e.g. pid file exists and control socket doesn't)."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:83
+msgid "``tarantoolctl restart NAME``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:79
+msgid "Stop and start a Tarantool instance."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:81
+msgid "Additionally, this command sets the TARANTOOL_RESTARTED environment variable to 'true', to mark that the instance was restarted by ``tarantoolctl``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:88
+msgid "``tarantoolctl logrotate NAME``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:86
+msgid "Rotate logs of a started Tarantool instance. Works only if logging-into-file is enabled in the instance file. Pipe/syslog make no effect."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:91
+msgid "``tarantoolctl check NAME``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:91
+msgid "Check an instance file for syntax errors."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:99
+msgid "``tarantoolctl enter NAME [--language=language]``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:94
+msgid "Enter an instance's interactive Lua or SQL console."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:96
+msgid "Supported option:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:98
+msgid "``--language=language`` to set :ref:`interactive console <interactive_console>` language. Can be either ``Lua`` or ``SQL``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:102
+msgid "``tarantoolctl eval NAME FILE``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:102
+msgid "Evaluate a local Lua file on a running Tarantool instance."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:106
+msgid "``tarantoolctl connect URI``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:105
+msgid "Connect to a Tarantool instance on an admin-console port. Supports both TCP/Unix sockets."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:111
+msgid "Commands for managing checkpoint files"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:114
+msgid "``tarantoolctl cat FILE.. [--space=space_no ..] [--show-system] [--from=from_lsn] [--to=to_lsn] [--replica=replica_id ..] [--format=format_name]``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:114
+msgid "Print into stdout the contents of .snap/.xlog files."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:117
+msgid "``tarantoolctl play URI FILE.. [--space=space_no ..] [--show-system] [--from=from_lsn] [--to=to_lsn] [--replica=replica_id ..]``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:117
+msgid "Play the contents of .snap/.xlog files to another Tarantool instance."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:119
+#: ../../doc/reference/tooling/tarantoolctl.rst:214
+msgid "Supported options:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:121
+msgid "``--space=space_no`` to filter the output by space number. May be passed more than once."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:123
+msgid "``--show-system`` to show the contents of system spaces."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:124
+msgid "``--from=from_lsn`` to show operations starting from the given lsn."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:125
+msgid "``--to=to_lsn`` to show operations ending with the given lsn."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:126
+msgid "``--replica=replica_id`` to filter the output by replica id. May be passed more than once."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:128
+msgid "``--format=format_name`` to indicate format (defaults to ``yaml``, can also be ``json`` or ``lua``)."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:133
+msgid "Commands for managing Tarantool modules"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:136
+msgid "``tarantoolctl rocks build NAME``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:136
+msgid "Build/compile and install a rock. Since version :doc:`2.4.1 </release/2.4.1>`."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:139
+msgid "``tarantoolctl rocks config URI``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:139
+msgid "Query and set the LuaRocks configuration. Since version :doc:`2.4.1 </release/2.4.1>`."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:142
+msgid "``tarantoolctl rocks doc NAME``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:142
+msgid "Show documentation for an installed rock."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:146
+msgid "``tarantoolctl rocks download [NAME]``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:145
+msgid "Download a specific rock or rockspec file from a rocks server. Since version :doc:`2.4.1 </release/2.4.1>`."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:149
+msgid "``tarantoolctl rocks help NAME``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:149
+msgid "Help on commands."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:152
+msgid "``tarantoolctl rocks init NAME``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:152
+msgid "Initialize a directory for a Lua project using LuaRocks. Since version :doc:`2.4.1 </release/2.4.1>`."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:155
+msgid "``tarantoolctl rocks install NAME``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:155
+msgid "Install a module in the ``.rocks`` directory, nested in the current directory."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:158
+msgid "``tarantoolctl rocks lint FILE``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:158
+msgid "Check the syntax of a rockspec. Since version :doc:`2.4.1 </release/2.4.1>`."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:161
+msgid "``tarantoolctl rocks list``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:161
+msgid "List all installed modules."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:164
+msgid "``tarantoolctl rocks make``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:164
+msgid "Compile a package in the current directory using a rockspec and install it."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:167
+msgid "``tarantoolctl rocks make_manifest``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:167
+msgid "Compile a manifest file for a repository."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:170
+msgid "``tarantoolctl rocks new_version NAME``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:170
+msgid "Auto-write a rockspec for a new version of a rock. Since version :doc:`2.4.1 </release/2.4.1>`."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:173
+msgid "``tarantoolctl rocks pack NAME``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:173
+msgid "Create a rock by packing sources or binaries."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:176
+msgid "``tarantoolctl rocks purge NAME``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:176
+msgid "Remove all installed rocks from a tree. Since version :doc:`2.4.1 </release/2.4.1>`."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:179
+msgid "``tarantoolctl rocks remove NAME``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:179
+msgid "Remove a module."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:182
+msgid "``tarantoolctl rocks show NAME``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:182
+msgid "Show information about an installed module."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:185
+msgid "``tarantoolctl rocks search NAME``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:185
+msgid "Search the repository for modules."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:188
+msgid "``tarantoolctl rocks unpack NAME``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:188
+msgid "Unpack the contents of a rock."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:191
+msgid "``tarantoolctl rocks which NAME``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:191
+msgid "Tell which file corresponds to a given module name. Since version :doc:`2.4.1 </release/2.4.1>`."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:202
+msgid "``tarantoolctl rocks write_rockspec``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:194
+msgid "Write a template for a rockspec file. Since version :doc:`2.4.1 </release/2.4.1>`."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:197
+#: ../../doc/reference/tooling/tarantoolctl.rst:207
+msgid "As an argument, you can specify:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:199
+msgid "a ``.rockspec`` file to create a source rock containing the module's sources, or"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:201
+msgid "the name of an installed module (and its version if there are more than one) to create a binary rock containing the compiled module."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:212
+msgid "``tarantoolctl rocks unpack {<rock_file> | <rockspec> | <name> [version]}``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:205
+msgid "Unpack the contents of a rock into a new directory under the current one."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:209
+msgid "source or binary rock files,"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:210
+msgid "``.rockspec`` files, or"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:211
+msgid "names of rocks or ``.rockspec`` files in remote repositories (and the rock version if there are more than one)."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:216
+msgid "``--server=server_name`` check this server first, then the usual list."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:217
+msgid "``--only-server=server_name`` check this server only, ignore the usual list."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:222
+msgid "tarantoolctl configuration file"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:224
+msgid "The ``tarantoolctl`` configuration file named ``.tarantoolctl`` contains the configuration that ``tarantoolctl`` uses to override instance configuration. In other words, it contains system-wide configuration defaults. If ``tarantoolctl`` fails to find this file with the method described in the section :ref:`Starting/stopping an instance <admin-start_stop_instance>`, it uses default settings."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:232
+msgid "Most of the parameters are similar to those used by :doc:`box.cfg{} </reference/reference_lua/box_cfg>`. Here are the default settings (possibly installed in ``/etc/default/tarantool`` or ``/etc/sysconfig/tarantool`` as part of Tarantool distribution -- see OS-specific default paths in :ref:`Notes for operating systems <admin-os_notes>`):"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:238
+msgid "default_cfg = {\n"
+"    pid_file  = \"/var/run/tarantool\",\n"
+"    wal_dir   = \"/var/lib/tarantool\",\n"
+"    memtx_dir = \"/var/lib/tarantool\",\n"
+"    vinyl_dir = \"/var/lib/tarantool\",\n"
+"    log       = \"/var/log/tarantool\",\n"
+"    username  = \"tarantool\",\n"
+"    language  = \"Lua\",\n"
+"}\n"
+"instance_dir = \"/etc/tarantool/instances.enabled\""
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:0
+msgid "``pid_file``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:0
+msgid "Directory for the pid file and control-socket file; ``tarantoolctl`` will add “/instance_name” to the directory name."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:0
+msgid "``wal_dir``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:0
+msgid "Directory for write-ahead .xlog files; ``tarantoolctl`` will add \"/instance_name\" to the directory name."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:0
+msgid "``memtx_dir``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:0
+msgid "Directory for snapshot .snap files; ``tarantoolctl`` will add \"/instance_name\" to the directory name."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:0
+msgid "``vinyl_dir``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:0
+msgid "Directory for vinyl files; ``tarantoolctl`` will add \"/instance_name\" to the directory name."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:0
+msgid "``log``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:0
+msgid "The place where the application log will go; ``tarantoolctl`` will add \"/instance_name.log\" to the name."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:0
+msgid "``username``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:0
+msgid "The user that runs the Tarantool instance. This is the operating system user name rather than the Tarantool-client user name. Tarantool will change its effective user to this user after becoming a daemon."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:0
+msgid "``language``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:0
+msgid "The :ref:`interactive console <interactive_console>` language. Can be either ``Lua`` or ``SQL``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:0
+msgid "``instance_dir``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:0
+msgid "The directory where all instance files for this host are stored. Put instance files in this directory, or create symbolic links."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:279
+msgid "The default instance directory depends on Tarantool's ``WITH_SYSVINIT`` build option: when ON, it is ``/etc/tarantool/instances.enabled``, otherwise (OFF or not set) it is ``/etc/tarantool/instances.available``. The latter case is typical for Tarantool builds for Linux distros with ``systemd``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:285
+msgid "To check the build options, say ``tarantool --version``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:290
+msgid "Log rotation in tarantooctl"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:292
+msgid "With ``tarantoolctl``, :ref:`log rotation <admin-logs>` is pre-configured to use ``logrotate`` program, which you must have installed."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:295
+msgid "File ``/etc/logrotate.d/tarantool`` is part of the standard Tarantool distribution, and you can modify it to change the default behavior. This is what this file is usually like:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:299
+msgid "/var/log/tarantool/*.log {\n"
+"    daily\n"
+"    size 512k\n"
+"    missingok\n"
+"    rotate 10\n"
+"    compress\n"
+"    delaycompress\n"
+"    create 0640 tarantool adm\n"
+"    postrotate\n"
+"        /usr/bin/tt logrotate `basename ${1%%.*}`\n"
+"    endscript\n"
+"}"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:314
+msgid "If you use a different log rotation program, you can invoke ``tarantoolctl logrotate`` command to request instances to reopen their log files after they were moved by the program of your choice."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:321
+msgid "Using tarantooctl on FreeBSD"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:323
+msgid "To make ``tarantoolctl`` work along with ``init.d`` utilities on FreeBSD, use paths other than those suggested in :ref:`Instance configuration <admin-instance_config>`. Instead of ``/usr/share/tarantool/`` directory, use ``/usr/local/etc/tarantool/`` and create the following subdirectories:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:329
+msgid "``default`` for ``tarantoolctl`` defaults (see example below),"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:330
+msgid "``instances.available`` for all available instance files, and"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:331
+msgid "``instances.enabled`` for instance files to be auto-started by sysvinit."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:333
+msgid "Here is an example of ``tarantoolctl`` defaults on FreeBSD:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:335
+msgid "default_cfg = {\n"
+"    pid_file   = \"/var/run/tarantool\", -- /var/run/tarantool/${INSTANCE}.pid\n"
+"    wal_dir    = \"/var/db/tarantool\", -- /var/db/tarantool/${INSTANCE}/\n"
+"    snap_dir   = \"/var/db/tarantool\", -- /var/db/tarantool/${INSTANCE}\n"
+"    vinyl_dir = \"/var/db/tarantool\", -- /var/db/tarantool/${INSTANCE}\n"
+"    logger     = \"/var/log/tarantool\", -- /var/log/tarantool/${INSTANCE}.log\n"
+"    username   = \"admin\"\n"
+"}\n"
+"\n"
+"-- instances.available - all available instances\n"
+"-- instances.enabled - instances to autostart by sysvinit\n"
+"instance_dir = \"/usr/local/etc/tarantool/instances.available\""
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:353
+msgid "Starting and stopping instances"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:355
+msgid "While a Lua application is executed by Tarantool, an instance file is executed by ``tarantoolctl`` which is a Tarantool script."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:358
+msgid "Here is what ``tarantoolctl`` does when you issue the command:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:360
+msgid "$ tarantoolctl start <instance_name>"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:364
+msgid "Read and parse the command line arguments. The last argument, in our case, contains an instance name."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:367
+msgid "Read and parse its own configuration file. This file contains ``tarantoolctl`` defaults, like the path to the directory where instances should be searched for."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:371
+msgid "When ``tarantool`` is invoked by root, it looks for a configuration file in ``/etc/default/tarantool``. When ``tarantool`` is invoked by a local (non-root) user, it looks for a configuration file first in the current directory (``$PWD/.tarantoolctl``), and then in the current user's home directory (``$HOME/.config/tarantool/tarantool``). If no configuration file is found there, or in the ``/usr/local/etc/default/tarantool`` file, then ``tarantoolctl`` falls back to :ref:`built-in defaults <admin-tt_config_file>`."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:380
+msgid "Look up the instance file in the instance directory, for example ``/etc/tarantool/instances.enabled``. To build the instance file path, ``tarantoolctl`` takes the instance name, prepends the instance directory and appends \".lua\" extension to the instance file."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:385
+msgid "Override :doc:`box.cfg{} </reference/reference_lua/box_cfg>` function to pre-process its parameters and ensure that instance paths are pointing to the paths defined in the ``tarantoolctl`` configuration file. For example, if the configuration file specifies that instance work directory must be in ``/var/tarantool``, then the new implementation of ``box.cfg{}`` ensures that :ref:`work_dir <cfg_basic-work_dir>` parameter in ``box.cfg{}`` is set to ``/var/tarantool/<instance_name>``, regardless of what the path is set to in the instance file itself."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:394
+msgid "Create a so-called \"instance control file\". This is a Unix socket with Lua console attached to it. This file is used later by ``tarantoolctl`` to query the instance state, send commands to the instance and so on."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:398
+msgid "Set the TARANTOOLCTL environment variable to 'true'. This allows the user to know that the instance was started by ``tarantoolctl``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:401
+msgid "Finally, use Lua ``dofile`` command to execute the instance file."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:403
+msgid "To check the instance file for syntax errors prior to starting ``my_app`` instance, say:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:406
+msgid "$ tarantoolctl check my_app"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:410
+msgid "To stop a running ``my_app`` instance, say:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:412
+#: ../../doc/reference/tooling/tarantoolctl.rst:531
+msgid "$ tarantoolctl stop my_app"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:416
+msgid "To restart (i.e. stop and start) a running ``my_app`` instance, say:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:418
+msgid "$ tarantoolctl restart my_app"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:425
+msgid "Running Tarantool locally"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:427
+msgid "Sometimes you may need to run a Tarantool instance locally, e.g. for test purposes. Let's configure a local instance, then start and monitor it with ``tarantoolctl``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:431
+msgid "First, we create a sandbox directory on the user's path:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:433
+msgid "$ mkdir ~/tarantool_test"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:437
+msgid "... and set default ``tarantoolctl`` configuration in ``$HOME/.config/tarantool/tarantool``. Let the file contents be:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:440
+msgid "default_cfg = {\n"
+"    pid_file  = \"/home/user/tarantool_test/my_app.pid\",\n"
+"    wal_dir   = \"/home/user/tarantool_test\",\n"
+"    snap_dir  = \"/home/user/tarantool_test\",\n"
+"    vinyl_dir = \"/home/user/tarantool_test\",\n"
+"    log       = \"/home/user/tarantool_test/log\",\n"
+"}\n"
+"instance_dir = \"/home/user/tarantool_test\""
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:453
+msgid "Specify a full path to the user's home directory instead of \"~/\"."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:455
+msgid "Omit ``username`` parameter. ``tarantoolctl`` normally doesn't have permissions to switch current user when invoked by a local user. The instance will be running under 'admin'."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:459
+msgid "Next, we create the instance file ``~/tarantool_test/my_app.lua``. Let the file contents be:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:462
+msgid "box.cfg{listen = 3301}\n"
+"box.schema.user.passwd('Gx5!')\n"
+"box.schema.user.grant('guest','read,write,execute','universe')\n"
+"fiber = require('fiber')\n"
+"box.schema.space.create('tester')\n"
+"box.space.tester:create_index('primary',{})\n"
+"i = 0\n"
+"while 0 == 0 do\n"
+"    fiber.sleep(5)\n"
+"    i = i + 1\n"
+"    print('insert ' .. i)\n"
+"    box.space.tester:insert{i, 'my_app tuple'}\n"
+"end"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:478
+msgid "Let’s verify our instance file by starting it without ``tarantoolctl`` first:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:480
+msgid "$ cd ~/tarantool_test\n"
+"$ tarantool my_app.lua\n"
+"2017-04-06 10:42:15.762 [54085] main/101/my_app.lua C> version 1.7.3-489-gd86e36d5b\n"
+"2017-04-06 10:42:15.763 [54085] main/101/my_app.lua C> log level 5\n"
+"2017-04-06 10:42:15.764 [54085] main/101/my_app.lua I> mapping 268435456 bytes for tuple arena...\n"
+"2017-04-06 10:42:15.774 [54085] iproto/101/main I> binary: bound to [::]:3301\n"
+"2017-04-06 10:42:15.774 [54085] main/101/my_app.lua I> initializing an empty data directory\n"
+"2017-04-06 10:42:15.789 [54085] snapshot/101/main I> saving snapshot `./00000000000000000000.snap.inprogress'\n"
+"2017-04-06 10:42:15.790 [54085] snapshot/101/main I> done\n"
+"2017-04-06 10:42:15.791 [54085] main/101/my_app.lua I> vinyl checkpoint done\n"
+"2017-04-06 10:42:15.791 [54085] main/101/my_app.lua I> ready to accept requests\n"
+"insert 1\n"
+"insert 2\n"
+"insert 3\n"
+"<...>"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:498
+msgid "Now we tell ``tarantoolctl`` to start the Tarantool instance:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:500
+msgid "$ tarantoolctl start my_app"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:504
+msgid "Expect to see messages indicating that the instance has started. Then:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:506
+msgid "$ ls -l ~/tarantool_test/my_app"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:510
+msgid "Expect to see the .snap file and the .xlog file. Then:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:512
+msgid "$ less ~/tarantool_test/log/my_app.log"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:516
+msgid "Expect to see the contents of ``my_app``‘s log, including error messages, if any. Then:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:519
+msgid "$ tarantoolctl enter my_app\n"
+"tarantool> box.cfg{}\n"
+"tarantool> console = require('console')\n"
+"tarantool> console.connect('localhost:3301')\n"
+"tarantool> box.space.tester:select({0}, {iterator = 'GE'})"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:527
+msgid "Expect to see several tuples that ``my_app`` has created."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:529
+msgid "Stop now. A polite way to stop ``my_app`` is with ``tarantoolctl``, thus we say:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:535
+msgid "Finally, we make a cleanup."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:537
+msgid "$ rm -R tarantool_test"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:544
+msgid "Migration from tarantoolctl to tt"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:546
+msgid ":ref:`tt <tt-cli>` is a command-line utility for managing Tarantool applications that comes to replace ``tarantoolctl``. Starting from version 3.0, ``tarantoolctl`` is no longer shipped as a part of Tarantool distribution; ``tt`` is the only recommended tool for managing Tarantool applications from the command line."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:551
+msgid "``tarantoolctl`` remains fully compatible with Tarantool 2.* versions. However, it doesn't receive major updates anymore."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:554
+msgid "We recommend that you migrate from ``tarantoolctl`` to ``tt`` to ensure the full support and timely updates and fixes."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:558
+msgid "System-wide configuration"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:560
+msgid "``tt`` supports system-wide environment configuration by default. If you have Tarantool instances managed by ``tarantoolctl`` in such an environment, you can switch to ``tt`` without additional migration steps or use ``tt`` along with ``tarantoolctl``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:564
+#: ../../doc/reference/tooling/tarantoolctl.rst:610
+#: ../../doc/reference/tooling/tarantoolctl.rst:673
+msgid "Example:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:566
+msgid "$ sudo tt instances\n"
+"List of enabled applications:\n"
+"• example\n"
+"\n"
+"$ tarantoolctl start example\n"
+"Starting instance example...\n"
+"Forwarding to 'systemctl start tarantool@example'\n"
+"\n"
+"$ tarantoolctl status example\n"
+"Forwarding to 'systemctl status tarantool@example'\n"
+"● tarantool@example.service - Tarantool Database Server\n"
+"    Loaded: loaded (/lib/systemd/system/tarantool@.service; enabled; vendor preset: enabled)\n"
+"    Active: active (running)\n"
+"    Docs: man:tarantool(1)\n"
+"    Main PID: 6698 (tarantool)\n"
+". . .\n"
+"\n"
+"$ sudo tt status\n"
+"• example: RUNNING. PID: 6698.\n"
+"\n"
+"$ sudo tt connect example\n"
+"• Connecting to the instance...\n"
+"• Connected to /var/run/tarantool/example.control\n"
+"\n"
+"/var/run/tarantool/example.control>\n"
+"\n"
+"$ sudo tt stop example\n"
+"• The Instance example (PID = 6698) has been terminated.\n"
+"\n"
+"$ tarantoolctl status example\n"
+"Forwarding to 'systemctl status tarantool@example'\n"
+"○ tarantool@example.service - Tarantool Database Server\n"
+"    Loaded: loaded (/lib/systemd/system/tarantool@.service; enabled; vendor preset: enabled)\n"
+"    Active: inactive (dead)"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:604
+msgid "Local configuration"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:606
+msgid "If you have a local ``tarantoolctl`` configuration, create a ``tt`` environment based on the existing ``.tarantoolctl`` configuration file. To do this, run ``tt init`` in the directory where the file is located."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:612
+msgid "$ cat .tarantoolctl\n"
+"default_cfg = {\n"
+"    pid_file  = \"./run/tarantool\",\n"
+"    wal_dir   = \"./lib/tarantool\",\n"
+"    memtx_dir = \"./lib/tarantool\",\n"
+"    vinyl_dir = \"./lib/tarantool\",\n"
+"    log       = \"./log/tarantool\",\n"
+"    language  = \"Lua\",\n"
+"}\n"
+"instance_dir = \"./instances.enabled\"\n"
+"\n"
+"$ tt init\n"
+"• Found existing config '.tarantoolctl'\n"
+"• Environment config is written to 'tt.yaml'"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:629
+msgid "After that, you can start managing Tarantool instances in this environment with ``tt``:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:631
+msgid "$ tt start app1\n"
+"• Starting an instance [app1]...\n"
+"\n"
+"$ tt status app1\n"
+"• app1: RUNNING. PID: 33837.\n"
+"\n"
+"$ tt stop app1\n"
+"• The Instance app1 (PID = 33837) has been terminated.\n"
+"\n"
+"$ tt check app1\n"
+"• Result of check: syntax of file '/home/user/instances.enabled/app1.lua' is OK"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:646
+msgid "Commands difference"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:648
+msgid "Most ``tarantoolctl`` commands look the same in ``tt``: ``tarantoolctl start`` and ``tt start``, ``tarantoolctl play`` and ``tt play``, and so on. To migrate such calls, it is usually enough to replace the utility name. There can be slight differences in command flags and format. For details on ``tt`` commands, see the :ref:`tt commands reference <tt-commands>`."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:654
+msgid "The following commands are different in ``tt``:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:662
+msgid "``tarantoolctl`` command"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:663
+msgid "``tt`` command"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:664
+msgid "``tarantoolctl enter``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:665
+msgid "``tt connect``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:666
+msgid "``tarantoolctl eval``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:667
+msgid "``tt connect`` with ``-f`` flag"
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:671
+msgid "``tt connect`` also covers ``tarantoolctl connect`` with the same syntax."
+msgstr ""
+
+#: ../../doc/reference/tooling/tarantoolctl.rst:675
+msgid " # tarantoolctl enter > tt connect\n"
+" $ tarantoolctl enter app1\n"
+" connected to unix/:./run/tarantool/app1.control\n"
+" unix/:./run/tarantool/app1.control>\n"
+"\n"
+" $ tt connect app1\n"
+" • Connecting to the instance...\n"
+" • Connected to /home/user/run/tarantool/app1/app1.control\n"
+"\n"
+" # tarantoolctl eval > tt connect -f\n"
+" $ tarantoolctl eval app1 eval.lua\n"
+" connected to unix/:./run/tarantool/app1.control\n"
+" ---\n"
+" - 42\n"
+" ...\n"
+"\n"
+"$ tt connect app1 -f eval.lua\n"
+" ---\n"
+" - 42\n"
+" ...\n"
+"\n"
+" # tarantoolctl connect > tt connect\n"
+" $ tarantoolctl connect localhost:3301\n"
+" connected to localhost:3301\n"
+" localhost:3301>\n"
+"\n"
+" $ tt connect localhost:3301\n"
+" • Connecting to the instance...\n"
+" • Connected to localhost:3301"
+msgstr ""

@@ -1,0 +1,413 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/contributing/contributing.rst:4
+msgid "How to get involved in Tarantool"
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:7
+msgid "What is Tarantool?"
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:9
+msgid "Tarantool is an open source database that can store everything in RAM. Use Tarantool as a cache with the ability to save data to disk. Tarantool serves up to a million requests per second, allows for secondary index searches, and has SQL support."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:14
+msgid "In Tarantool, you can execute code alongside data. This allows for faster operations. Implement any business logic in Lua. Get rid of stale entries, sync with other data sources, implement an HTTP service."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:19
+msgid "Go to :ref:`Getting Started <getting_started>` and try Tarantool."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:22
+msgid "How to get help?"
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:24
+msgid "We have a `special Telegram chat <https://t.me/tarantool_contrib>`_ for contributors. We speak Russian and English in the chat."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:28
+msgid "This is the easiest way to get your questions answered. Many people are afraid to ask questions because they believe they are \"wasting the experts' time,\" but we don't really think so. Contributors are important to us."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:33
+msgid "We also have a `Stack Overflow tag <https://stackoverflow.com/questions/tagged/tarantool>`_."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:36
+msgid "Join the chat and ask questions."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:39
+msgid "How to leave feedback, ideas, or suggestions?"
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:41
+msgid "You can leave your feedback or share ideas in different ways:"
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:43
+msgid "**The simplest way** is to fill `the feedback form <https://docs.google.com/forms/d/1iwBj_2in-rBIYEcPeeVPQa4JfUIU_m14IUbAK4NojIE/edit?usp=sharing>`__. All you need to do is fill in one product comment field and click \"Send.\" You can optionally provide your email address. If you wish, we can involve you in the product development process."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:48
+msgid "**A more technical way** is to create a ticket on GitHub. If you have a suggestion for a new feature or information about a bug, `create a new GitHub issue <https://github.com/tarantool/tarantool/issues/new>`_. The link leads to the ``tarantool/tarantool`` repository. To leave feedback for our other projects on GitHub, select \"Issues\" > \"New issue.\""
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:54
+msgid "See `an example of a feature request <https://github.com/tarantool/tarantool/issues/5046>`_."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:56
+msgid "To talk to our team about a product, go to one of our chats:"
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:58
+msgid "`Russian-speaking <https://t.me/tarantoolru>`_"
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:59
+msgid "`English-speaking <https://t.me/tarantool>`_"
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:61
+msgid "If Telegram is inconvenient for you or simply isn't working, you can leave your comment on `tarantool.io <http://www.tarantool.io>`_. Fill out the form at the bottom of the site and leave your email. We read every request and respond to them usually within 2 days."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:67
+msgid "How to contribute"
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:69
+msgid "There are many ways to contribute to Tarantool:"
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:71
+msgid "Code: Contribute to the code. We have components written in C, Lua, Python, Go, and other languages."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:73
+msgid "Write: Improve documentation, write blog posts, create tutorials or solution pages."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:74
+msgid "Q&A: Share your experience on Stack Overflow with the `#tarantool <https://stackoverflow.com/questions/tagged/tarantool>`_ tag."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:76
+msgid "Spread the word: Share your accomplishments on social media using the ``#tarantool`` hashtag (or CC ``@tarantooldb`` on Twitter)."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:81
+msgid "Tarantool ecosystem"
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:83
+msgid "Tarantool has a large ecosystem of tools. We divide the ecosystem into four large blocks:"
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:86
+msgid "Tarantool itself."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:87
+msgid "Modules for Tarantool. They can be written in C and Lua."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:88
+msgid "Connectors for programming languages."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:89
+msgid "Applied tools. See the curated `Awesome Tarantool list <https://github.com/tarantool/awesome-tarantool>`_, which also includes external tools."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:93
+msgid "To start contributing, check the \"good first issue\" tag in the issues section of any of our repositories. These are beginner to intermediate tasks that will help you get comfortable with the tool."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:98
+msgid "See the `list of tasks <https://github.com/tarantool/tarantool/labels/good%20first%20issue>`_ for the ``tarantool/tarantool`` repository."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:101
+msgid "There is a review queue in each of our repositories, so your changes may not be reviewed immediately. We usually give the first answer within two days. Depending on the ticket and its complexity, the review time may take a week or more."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:106
+msgid "Please do not hesitate to tag the maintainer in your GitHub ticket."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:108
+msgid "Read on to learn about contributing to different ecosystem blocks."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:112
+msgid "Documentation: How to report and fix problems"
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:114
+msgid "There are several ways to improve the documentation:"
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:116
+msgid "**The easiest one** is to leave your comment on the web documentation page. To use the built-in feedback form, select the text that you want to comment on, press :kbd:`Ctrl+Enter`, type your comment in the pop-up window, and click :guilabel:`Submit`. On mobile screens, an :guilabel:`Error?` button appears at the bottom of the screen, which opens the same pop-up window. You can point out an error, provide feedback on the current article, or suggest changes. We review each comment and work with it."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:125
+msgid "**Advanced**: All Tarantool documentation tasks can be found in the `repository <https://github.com/tarantool/doc/issues>`_. Go to any task and suggest your changes. We write our documentation using `reStructuredText markup <https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html>`_, and we have a :doc:`writing style guide <docs>`. After you make the change, build the documentation locally and see how it works. This can be done automatically in Docker. To learn more, check the `README of the tarantool/doc repository <https://github.com/tarantool/doc>`_."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:135
+msgid "Some Tarantool projects have their documentation in the code repository. This is typical for modules, for example, `metrics <https://github.com/tarantool/metrics/>`_. This is done on purpose, so the developers themselves can update it faster. You can find instructions for building such documentation in the code repository."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:140
+msgid "If you find that the documentation provided in the README of a module or a connector is incomplete or wrong, the best way to influence this is to fix it yourself. Clone the repository, fix the bug, and suggest changes in a pull request. It will take you five minutes but it will help the whole community."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:145
+msgid "If you cannot fix it for any reason, create a ticket in the repository and report the error. It will be fixed promptly."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:150
+msgid "How to contribute to modules"
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:152
+msgid "Tarantool is a database with an embedded application server. This means you can write any code in C or Lua and pack it in distributable modules."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:155
+msgid "We have official and unofficial modules. Here are some of our official modules:"
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:158
+msgid "`HTTP server <https://github.com/tarantool/http>`_: HTTP server implementation with middleware support."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:160
+msgid "`queue <https://github.com/tarantool/queue>`_: Tarantool implementation of the persistent message queue."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:162
+msgid "`metrics <https://github.com/tarantool/metrics>`_: Ready-to-use solution for collecting metrics."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:165
+msgid "Official modules are provided in our organization on GitHub."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:167
+msgid "All modules are distributed through our package manager, which is pre-installed with Tarantool. That also applies to unofficial modules, which means that other users can get your module easily."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:172
+msgid "If you want to add your module to our GitHub organization, `send us a message on Telegram <https://t.me/arturbrsg>`_."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:177
+msgid "Contributing to an existing module"
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:179
+msgid "Tasks for contributors can be found in the issues section of any repository under the \"good first issue\" tag. These tasks are beginner or intermediate in terms of difficulty level, so you can comfortably get used to the module of your interest."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:183
+msgid "Check the `currently open tasks <https://github.com/tarantool/http/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22>`_ for the HTTP Server module."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:187
+msgid "Please see our :doc:`Lua style guide </dev_guide/lua_style_guide>`."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:189
+msgid "You can find the contact of the current maintainer in the MAINTAINERS file, located in the root of the repository. If there is no such file, please `let us know <https://t.me/arturbrsg>`_. We will respond within two days."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:194
+msgid "If you see that the project does not have a maintainer or is inactive, you can become its maintainer yourself. See the :ref:`How to become a maintainer <contributing-how_to_become_a_maintainer>` section."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:200
+msgid "Creating a new module"
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:202
+msgid "You can also create custom modules and share them with the community. `Look at the module template <https://github.com/tarantool/modulekit>`_ and write your own."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:208
+msgid "How to contribute to Tarantool Core"
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:210
+msgid "Tarantool is written mostly in C. Some parts are in C++ and Lua. Your contributions to Tarantool Core may take longer to review because we want the code to be reliable."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:215
+msgid "To start:"
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:217
+msgid ":doc:`Learn how to build Tarantool </dev_guide/building_from_source>`."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:218
+msgid "Read about Tarantool architecture and main modules on the `developer site <https://docs.tarantool.dev/en/latest/>`__ and on `GitHub <https://github.com/tarantool/tarantool/wiki/Developer-information>`__."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:222
+msgid "In Tarantool development, we strive to follow the standards laid out in our :doc:`style and contribution guides </dev_guide/developer_guidelines>`. These documents explain how to format your code and commits as well as how to write tests without breaking anything accidentally."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:227
+msgid "The guidelines also help you create patches that are easy to check, which allows quickly pushing changes to master."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:230
+msgid "Please read about `our code review procedure <https://github.com/tarantool/tarantool/wiki/Code-review-procedure#general-coding-points-to-check>`_ before making your first commit."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:234
+msgid "You can suggest a patch using the fork and pull mechanism on GitHub: Make changes to your copy of the repository and submit it to us for review. Check the `GitHub documentation <https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork>`__ to learn how to do it."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:241
+msgid "How to write tests"
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:243
+msgid "A database is a product that is expected to be as reliable as possible. We at Tarantool created ``test-run``, a dedicated test framework for developing scripts that test Tarantool itself."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:247
+msgid "Writing your own test is not difficult. Check out the following examples:"
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:249
+msgid "`C unit test <https://github.com/tarantool/tarantool/blob/7b7a0c088f4fd25245d1d34544a2cd30589436e9/test/unit/csv.c>`_"
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:250
+msgid "`Lua unit test <https://github.com/tarantool/tarantool/blob/7b7a0c088f4fd25245d1d34544a2cd30589436e9/test/app/fio.test.lua>`_"
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:252
+msgid "We also have a CI workflow that automatically checks build and test coverage for new changes on all supported operating systems. The workflow is launched after every commit to the repository."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:256
+msgid "We have many tasks for QA specialists. Our QA team provides test coverage for our products, helps develop the test framework, and introduces and maintains new tools to test the stability of our releases."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:260
+msgid "For modules, we use `luatest <https://github.com/tarantool/luatest>`_--- our fork of a framework popular in the Lua community, enhanced and optimized for our tasks. See `examples <https://github.com/tarantool/metrics/tree/master/test>`_. of writing tests for a module."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:270
+msgid "How to contribute to language connectors"
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:272
+msgid "A connector is a library that provides an API to access Tarantool from a programming language. Tarantool uses its own binary protocol for access, and the connector's task is to transfer user requests to the database and application server in the required format."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:277
+msgid "Data access connectors have already been implemented for all major languages. If you want to write your own connector, you first need to familiarize yourself with the Tarantool binary protocol. Read :doc:`the protocol description </dev_guide/internals/box_protocol>` to learn more."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:282
+msgid "We consider the following connectors as references:"
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:284
+msgid "https://github.com/tarantool-php/client"
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:285
+msgid "`net.box <https://github.com/tarantool/tarantool/blob/master/src/box/lua/net_box.lua>`_---Tarantool binary protocol client"
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:288
+msgid "You can look at them to understand how to do it right."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:290
+msgid "Some connectors in the Tarantool ecosystem are supported by the Tarantool team. Others are developed and supported exclusively by the community. All of them have their pros and cons. See the `complete list of connectors and their recommended versions <https://www.tarantool.io/en/download/connectors>`_."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:295
+msgid "If you are using a community connector and want to implement new features for it or fix a bug, send your PRs via GitHub to the connector repository."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:298
+msgid "If you have questions for the author of the connector, check the MAINTAINERS file for the repository maintainer's contact. If there is no such file, `send us a message on Telegram <https://t.me/arturbrsg>`_. We will help you figure it out. We usually answer within one day."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:305
+msgid "How to contribute to tools"
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:307
+msgid "The Tarantool ecosystem has tools that facilitate the workflow, help with application deployment, or allow working with Kubernetes."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:310
+msgid "Here are some of the tools created by the Tarantool team:"
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:312
+msgid "`tt <https://github.com/tarantool/tt>`_: a CLI utility for creating and managing Tarantool applications."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:314
+msgid "`tarantool-operator <https://github.com/tarantool/tarantool-operator>`_: a Kubernetes operator for cluster orchestration."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:317
+msgid "These tools can be installed via standard package managers: ``ansible galaxy``, ``yum``, or ``apt-get``."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:320
+msgid "If you have a tool that might go well in our curated `Awesome Tarantool list <https://github.com/tarantool/awesome-tarantool>`_, read the `guide for contributors <https://github.com/tarantool/awesome-tarantool/blob/master/CONTRIBUTING.md>`_ and submit a pull request."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:329
+msgid "How to become a maintainer"
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:331
+msgid "Maintainers are people who can merge PRs or commit to master. We expect maintainers to answer questions and tickets on time as well as do code reviews."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:334
+msgid "If you need to get a review but no one responds within a week, take a look at the Maintainers section of the repository's ``README.md``. Write to the person listed there. If you have not received an answer within 3--4 days, you can escalate the question `on Telegram <https://t.me/arturbrsg>`__."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:340
+msgid "A repository may have no maintainers (empty Maintainers list in ``README.md``), or the existing maintainers may be inactive. In this case, you can become a maintainer yourself. We think it's better if the repository is maintained by a newbie than if the repository is dead. So don't be shy: we love maintainers and help them figure it all out."
+msgstr ""
+
+#: ../../doc/contributing/contributing.rst:345
+msgid "All you need to do is fill out `this form <https://docs.google.com/forms/d/1RihU9hQkbY5n7hU-3ZOr6t1L6cJKOlJcETowD_cNeOk/edit?usp=sharing>`_. Tell us what repository you want to access, the reason (inactivity, the maintainer is not responding), and how to contact you. We will consider your application in 1 day and either give you the rights or tell you what else needs to be done."
+msgstr ""

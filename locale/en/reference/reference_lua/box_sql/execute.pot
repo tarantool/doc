@@ -1,0 +1,187 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_sql/execute.rst:5
+msgid "box.execute()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_sql/execute.rst:9
+msgid "Execute the SQL statement contained in the ``sql-statement`` parameter."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_sql/execute.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_sql/execute.rst:11
+msgid "statement, which should conform to :ref:`the rules for SQL grammar <sql_statements_and_clauses>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_sql/execute.rst:13
+msgid "optional table for placeholders in the statement"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_sql/execute.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_sql/execute.rst:15
+msgid "depends on statement"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_sql/execute.rst:19
+msgid "There are two ways to pass extra parameters to ``box.execute()``:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_sql/execute.rst:21
+msgid "The first way, which is the preferred way, is to put placeholders in the string, and pass a second argument, an ``extra-parameters`` table. A placeholder is either a question mark \"?\", or a colon \":\" followed by a name. An extra parameter is any Lua expression."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_sql/execute.rst:26
+msgid "If placeholders are question marks, then they are replaced by ``extra-parameters`` values in corresponding positions. That is, the first ``?`` is replaced by the first extra parameter, the second ``?`` is replaced by the second extra parameter, and so on."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_sql/execute.rst:31
+msgid "If placeholders are ``:names``, then they are replaced by ``extra-parameters`` values with corresponding names."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_sql/execute.rst:34
+msgid "For example, this request that contains literal values ``1`` and ``'x'``:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_sql/execute.rst:36
+msgid "box.execute([[INSERT INTO tt VALUES (1, 'x');]]);"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_sql/execute.rst:40
+msgid "... is the same as the request below containing two question-mark placeholders (``?`` and ``?``) and a two-element ``extra-parameters`` table:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_sql/execute.rst:43
+msgid "x = {1,'x'}\n"
+"box.execute([[INSERT INTO tt VALUES (?, ?);]], x);"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_sql/execute.rst:48
+msgid "... and is the same as this request containing two ``:name`` placeholders (``:a`` and ``:b``) and a two-element ``extra-parameters`` table with elements named \"a\" and \"b\":"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_sql/execute.rst:52
+msgid "box.execute([[INSERT INTO tt VALUES (:a, :b);]], {{[':a']=1},{[':b']='x'}})"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_sql/execute.rst:57
+msgid "The second way is to concatenate strings. For example, the Lua script below inserts 10 rows with different primary-key values into table ``t``:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_sql/execute.rst:61
+msgid "for i=1,10,1 do\n"
+"    box.execute(\"insert into t values (\" .. i .. \")\")\n"
+"end"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_sql/execute.rst:67
+msgid "When creating SQL statements based on user input, application developers should beware of `SQL injection <https://en.wikipedia.org/wiki/SQL_injection>`_."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_sql/execute.rst:70
+msgid "Since ``box.execute()`` is an invocation of a Lua function, it either causes an error message or returns a value."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_sql/execute.rst:73
+msgid "For some statements the returned value contains a field named ``rowcount``, for example:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_sql/execute.rst:75
+msgid "tarantool> box.execute([[CREATE TABLE table1 (column1 INT PRIMARY key, column2 VARCHAR(10));]])\n"
+"---\n"
+"- rowcount: 1\n"
+"...\n"
+"tarantool> box.execute([[INSERT INTO table1 VALUES (55,'Hello SQL world!');]])\n"
+"---\n"
+"- rowcount: 1\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_sql/execute.rst:86
+msgid "For statements that cause generation of values for PRIMARY KEY AUTOINCREMENT columns, there is a field named ``autoincrement_id``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_sql/execute.rst:91
+msgid "For SELECT or PRAGMA statements, the returned value is a *result set*, containing a field named ``metadata`` (a table with column names and Tarantool/NoSQL type names) and a field named ``rows`` (a table with the contents of each row)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_sql/execute.rst:96
+msgid "For example, for a statement ``SELECT \"x\" FROM t WHERE \"x\"=5;`` where ``\"x\"`` is an INTEGER column and there is one row, a display on the Tarantool client might look like this:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_sql/execute.rst:100
+msgid "tarantool> box.execute([[SELECT \"x\" FROM t WHERE \"x\"=5;]])\n"
+"---\n"
+"- metadata:\n"
+"  - name: x\n"
+"    type: integer\n"
+"  rows:\n"
+"  - [5]\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_sql/execute.rst:111
+msgid "For a look at raw format of SELECT results, see :ref:`Binary protocol -- responses for SQL <box_protocol-sql_protocol>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_sql/execute.rst:114
+msgid "The order of components within a map is not guaranteed."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_sql/execute.rst:118
+msgid "If ``sql_full_metadata`` in the :ref:`_session_settings <box_space-session_settings>` system table is TRUE, then result set metadata may include these things in addition to ``name`` and ``type``:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_sql/execute.rst:123
+msgid "``collation`` (present only if COLLATE clause is specified for a STRING) = :ref:`\"Collation\" <index-collation>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_sql/execute.rst:125
+msgid "``is_nullable`` (present only if the :ref:`select list <sql_select_list>` specified a base table column and nothing else) = false if column was defined as :ref:`NOT NULL <sql_nulls>`, otherwise true. If this is not present, that implies that nullability is unknown."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_sql/execute.rst:129
+msgid "``is_autoincrement`` (present only if the select list specified a base table column and nothing else) = true if column was defined as :ref:`PRIMARY KEY AUTOINCREMENT <sql_table_constraint_def>`, otherwise false."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_sql/execute.rst:133
+msgid "``span`` (always present) = the original expression in a select list, which often is the same as ``name`` if the select list specifies a column name and nothing else, but otherwise differs, for example, after ``SELECT x+55 AS x FROM t;`` the ``name`` is X and the ``span`` is x+55. If ``span`` and ``name`` are the same then the content is MP_NIL."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_sql/execute.rst:139
+msgid "Alternative: if you are using the Tarantool server as a client, you can switch languages as follows:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_sql/execute.rst:142
+msgid "\\set language sql\n"
+"\\set delimiter ;"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_sql/execute.rst:147
+msgid "Afterwards, you can enter any SQL statement directly without needing ``box.execute()``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_sql/execute.rst:150
+msgid "There is also an ``execute()`` function available in :ref:`module net.box <net_box-module>`. For example, you can execute ``conn:execute(sql-statement])`` after ``conn = net_box.connect(url-string)``."
+msgstr ""

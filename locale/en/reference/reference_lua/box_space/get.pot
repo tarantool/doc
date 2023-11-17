@@ -1,0 +1,103 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_space/get.rst:5
+msgid "space_object:get()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/get.rst:11
+msgid "Search for a tuple in the given space."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/get.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/get.rst:13
+msgid "an :ref:`object reference <app_server-object_reference>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/get.rst:15
+msgid "value to be matched against the index key, which may be multi-part."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/get.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/get.rst:18
+msgid "the tuple whose index key matches ``key``, or ``nil``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/get.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/get.rst:19
+msgid "tuple"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/get.rst:21
+msgid "**Possible errors:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/get.rst:23
+msgid "``space_object`` does not exist."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/get.rst:24
+msgid ":errcode:`ER_TRANSACTION_CONFLICT` if a transaction conflict is detected in the :ref:`MVCC transaction mode <txn_mode_transaction-manager>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/get.rst:27
+msgid "**Complexity factors:** Index size, Index type, Number of indexes accessed, WAL settings."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/get.rst:30
+msgid "The ``box.space...select`` function returns a set of tuples as a Lua table; the ``box.space...get`` function returns at most a single tuple. And it is possible to get the first tuple in a space by appending ``[1]``. Therefore ``box.space.tester:get{1}`` has the same effect as ``box.space.tester:select{1}[1]``, if exactly one tuple is found."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/get.rst:36
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/get.rst:38
+msgid "box.space.tester:get{1}"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/get.rst:44
+msgid "**Using field names instead of field numbers:** `get()` can use field names described by the optional :doc:`/reference/reference_lua/box_space/format` clause. This is true because the object returned by ``get()`` can be used with most of the features described in the :doc:`/reference/reference_lua/box_tuple` description, including :doc:`/reference/reference_lua/box_tuple/field_name`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/get.rst:50
+msgid "For example, we can format the `tester` space with a field named `x` and use the name `x` in the index definition:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/get.rst:53
+msgid "box.space.tester:format({{name='x',type='scalar'}})\n"
+"box.space.tester:create_index('I',{parts={'x'}})"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/get.rst:58
+msgid "Then, if ``get`` or ``select`` retrieves a single tuple, we can reference the field 'x' in the tuple by its name:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/get.rst:61
+msgid "box.space.tester:get{1}['x']\n"
+"box.space.tester:select{1}[1]['x']"
+msgstr ""

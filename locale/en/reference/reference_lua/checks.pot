@@ -1,0 +1,828 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/checks.rst:4
+msgid "Module checks"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:6
+msgid "**Since:** :doc:`2.11.0 </release/2.11.0>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:8
+msgid "The ``checks`` module provides the ability to check the types of arguments passed to a Lua function. You need to call the :ref:`checks(type_1, ...) <checks-checks>` function inside the target Lua function and pass :ref:`one or more <checks_number_of_arguments>` type qualifiers to check the corresponding argument types. There are two types of type qualifiers:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:12
+msgid "A :ref:`string type qualifier <checks_string_type_qualifier>` checks whether a function's argument conforms to the specified type. Example: ``'string'``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:13
+msgid "A :ref:`table type qualifier <checks_table_type_qualifiers>` checks whether the values of a table passed as an argument conform to the specified types. Example: ``{ 'string', 'number' }``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:17
+msgid "For earlier versions, you can install the ``checks`` module from the `Tarantool rocks repository <https://www.tarantool.io/en/download/rocks>`_."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:22
+msgid "Loading checks"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:24
+msgid "In Tarantool :doc:`2.11.0 </release/2.11.0>` and later versions, the :ref:`checks API <checks_api_reference>` is available in a script without loading the module."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:26
+msgid "For earlier versions, you need to install the ``checks`` module from the Tarantool rocks repository and load the module using the ``require()`` directive:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:28
+msgid "local checks = require('checks')"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:36
+msgid "Number of arguments to check"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:38
+msgid "For each argument to check, you need to specify its own type qualifier in the :ref:`checks(type_1, ...) <checks-checks>` function."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:43
+msgid "One argument"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:45
+msgid "In the example below, the ``checks`` function accepts a ``string`` type qualifier to verify that only a string value can be passed to the ``greet`` function. Otherwise, an error is raised."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:48
+#: ../../doc/reference/reference_lua/checks.rst:109
+msgid "function greet(name)\n"
+"    checks('string')\n"
+"    return 'Hello, ' .. name\n"
+"end\n"
+"--[[\n"
+"greet('John')\n"
+"-- returns 'Hello, John'\n"
+"\n"
+"greet(123)\n"
+"-- raises an error: bad argument #1 to nil (string expected, got number)\n"
+"--]]\n"
+"\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:57
+msgid "Multiple arguments"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:59
+msgid "To check the types of several arguments, you need to pass the corresponding type qualifiers to the ``checks`` function. In the example below, both arguments should be string values."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:62
+msgid "function greet_fullname(firstname, lastname)\n"
+"    checks('string', 'string')\n"
+"    return 'Hello, ' .. firstname .. ' ' .. lastname\n"
+"end\n"
+"--[[\n"
+"greet_fullname('John', 'Smith')\n"
+"-- returns 'Hello, John Smith'\n"
+"\n"
+"greet_fullname('John', 1)\n"
+"-- raises an error: bad argument #2 to nil (string expected, got number)\n"
+"--]]\n"
+"\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:67
+#: ../../doc/reference/reference_lua/checks.rst:94
+msgid "To skip checking specific arguments, use the :ref:`? placeholder <checks_any_type>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:73
+msgid "Variable number of arguments"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:75
+msgid "You can check the types of explicitly specified arguments for functions that accept a variable number of arguments."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:77
+msgid "function extra_arguments_num(a, b, ...)\n"
+"    checks('string', 'number')\n"
+"    return select('#', ...)\n"
+"end\n"
+"--[[\n"
+"extra_arguments_num('a', 2, 'c')\n"
+"-- returns 1\n"
+"\n"
+"extra_arguments_num('a', 'b', 'c')\n"
+"-- raises an error: bad argument #1 to nil (string expected, got number)\n"
+"--]]\n"
+"\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:87
+msgid "String type qualifier"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:89
+msgid "This section describes how to check a specific argument type using a string type qualifier:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:91
+msgid "The :ref:`Supported types <checks_string_supported_types>` section describes all the types supported by the ``checks`` module."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:92
+msgid "If required, you can make a :ref:`union type <checks_union_type>` to allow an argument to accept several types."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:93
+msgid "You can make any of the supported types :ref:`optional <checks_optional_type>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:99
+msgid "Supported types"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:104
+msgid "Lua types"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:106
+msgid "A string type qualifier can accept any of the `Lua types <https://www.lua.org/pil/2.html>`_, for example, ``string``, ``number``, ``table``, or ``nil``. In the example below, the ``checks`` function accepts ``string`` to validate that only a string value can be passed to the ``greet`` function."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:118
+msgid "Tarantool types"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:120
+msgid "You can use :ref:`Tarantool-specific types <index_box_field_type_details>` in a string qualifier. The example below shows how to check that a function argument is a decimal value."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:123
+msgid "local decimal = require('decimal')\n"
+"function sqrt(value)\n"
+"    checks('decimal')\n"
+"    return decimal.sqrt(value)\n"
+"end\n"
+"--[[\n"
+"sqrt(decimal.new(16))\n"
+"-- returns 4\n"
+"\n"
+"sqrt(16)\n"
+"-- raises an error: bad argument #1 to nil (decimal expected, got number)\n"
+"--]]\n"
+"\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:128
+msgid "This table lists all the checks available for Tarantool types:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:136
+msgid "Check"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:137
+msgid "Description"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:138
+msgid "See also"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:140
+msgid "``checks('datetime')``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:141
+msgid "Check whether the specified value is :ref:`datetime_object <datetime_obj>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:142
+msgid ":ref:`checkers.datetime(value) <checks-checkers-datetime>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:144
+msgid "``checks('decimal')``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:145
+msgid "Check whether the specified value has the :ref:`decimal <decimal>` type"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:146
+msgid ":ref:`checkers.decimal(value) <checks-checkers-decimal>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:148
+msgid "``checks('error')``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:149
+msgid "Check whether the specified value is :ref:`error_object <box_error-error_object>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:150
+msgid ":ref:`checkers.error(value) <checks-checkers-error>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:152
+msgid "``checks('int64')``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:153
+msgid "Check whether the specified value is an ``int64`` value"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:154
+msgid ":ref:`checkers.int64(value) <checks-checkers-int64>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:156
+msgid "``checks('interval')``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:157
+msgid "Check whether the specified value is :ref:`interval_object <interval_obj>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:158
+msgid ":ref:`checkers.interval(value) <checks-checkers-interval>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:160
+msgid "``checks('tuple')``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:161
+msgid "Check whether the specified value is a :ref:`tuple <box_tuple-new>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:162
+msgid ":ref:`checkers.tuple(value) <checks-checkers-tuple>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:164
+msgid "``checks('uint64')``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:165
+msgid "Check whether the specified value is a ``uint64`` value"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:166
+msgid ":ref:`checkers.uint64(value) <checks-checkers-uint64>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:168
+msgid "``checks('uuid')``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:169
+msgid "Check whether the specified value is :ref:`uuid_object <uuid-module>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:170
+msgid ":ref:`checkers.uuid(value) <checks-checkers-uuid>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:172
+msgid "``checks('uuid_bin')``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:173
+msgid "Check whether the specified value is :ref:`uuid <uuid-module>` represented by a 16-byte binary string"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:174
+msgid ":ref:`checkers.uuid_bin(value) <checks-checkers-uuid_bin>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:176
+msgid "``checks('uuid_str')``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:177
+msgid "Check whether the specified value is :ref:`uuid <uuid-module>` represented by a 36-byte hexadecimal string"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:178
+msgid ":ref:`checkers.uuid_str(value) <checks-checkers-uuid_str>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:185
+msgid "Custom function"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:187
+msgid "A string type qualifier can accept the name of a custom function that performs arbitrary validations. To achieve this, create a function returning ``true`` if the value is valid and add this function to the :ref:`checkers <checks-checkers>` table."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:190
+msgid "The example below shows how to use the ``positive`` function to check that an argument value is a positive number."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:192
+msgid "function checkers.positive(value)\n"
+"    return (type(value) == 'number') and (value > 0)\n"
+"end\n"
+"\n"
+"function get_doubled_number(value)\n"
+"    checks('positive')\n"
+"    return value * 2\n"
+"end\n"
+"--[[\n"
+"get_doubled_number(10)\n"
+"-- returns 20\n"
+"\n"
+"get_doubled_number(-5)\n"
+"-- raises an error: bad argument #1 to nil (positive expected, got number)\n"
+"--]]\n"
+"\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:201
+msgid "Metatable type"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:203
+msgid "A string qualifier can accept a value stored in the ``__type`` field of the argument `metatable <https://www.lua.org/pil/13.html>`_."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:205
+msgid "local blue = setmetatable({ 0, 0, 255 }, { __type = 'color' })\n"
+"function get_blue_value(color)\n"
+"    checks('color')\n"
+"    return color[3]\n"
+"end\n"
+"--[[\n"
+"get_blue_value(blue)\n"
+"-- returns 255\n"
+"\n"
+"get_blue_value({0, 0, 255})\n"
+"-- raises an error: bad argument #1 to nil (color expected, got table)\n"
+"--]]\n"
+"\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:214
+msgid "Union types"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:216
+msgid "To allow an argument to accept several types (a union type), concatenate type names with a pipe (``|``). In the example below, the argument can be both a ``number`` and ``string`` value."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:219
+msgid "function get_argument_type(value)\n"
+"    checks('number|string')\n"
+"    return type(value)\n"
+"end\n"
+"--[[\n"
+"get_argument_type(1)\n"
+"-- returns 'number'\n"
+"\n"
+"get_argument_type('key1')\n"
+"-- returns 'string'\n"
+"\n"
+"get_argument_type(true)\n"
+"-- raises an error: bad argument #1 to nil (number|string expected, got boolean)\n"
+"--]]\n"
+"\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:229
+msgid "Optional types"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:231
+msgid "To make any of the supported types optional, prefix its name with a question mark (``?``). In the example below, the ``name`` argument is optional. This means that the ``greet`` function can accept ``string`` and ``nil`` values."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:235
+msgid "function greet(name)\n"
+"    checks('?string')\n"
+"    if name ~= nil then\n"
+"        return 'Hello, ' .. name\n"
+"    else\n"
+"        return 'Hello from Tarantool'\n"
+"    end\n"
+"end\n"
+"--[[\n"
+"greet('John')\n"
+"-- returns 'Hello, John'\n"
+"\n"
+"greet()\n"
+"-- returns 'Hello from Tarantool'\n"
+"\n"
+"greet(123)\n"
+"-- raises an error: bad argument #1 to nil (string expected, got number)\n"
+"--]]\n"
+"\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:240
+msgid "As for a specific type, you can make a :ref:`union type <checks_union_type>` value optional: ``?number|string``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:246
+msgid "Skipping argument checking"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:248
+msgid "You can skip checking of the specified arguments using the question mark (``?``) placeholder. In this case, the argument can be any type."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:251
+msgid "function greet_fullname_any(firstname, lastname)\n"
+"    checks('string', '?')\n"
+"    return 'Hello, ' .. firstname .. ' ' .. tostring(lastname)\n"
+"end\n"
+"--[[\n"
+"greet_fullname_any('John', 'Doe')\n"
+"-- returns 'Hello, John Doe'\n"
+"\n"
+"greet_fullname_any('John', 1)\n"
+"-- returns 'Hello, John 1'\n"
+"--]]\n"
+"\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:262
+msgid "Table type qualifier"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:264
+msgid "A table type qualifier checks whether the values of a table passed as an argument conform to the specified types. In this case, the following checks are made:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:267
+msgid "The argument is checked to conform to the ``?table`` type, and its content is validated."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:268
+msgid "Table values are validated against the specified :ref:`string type qualifiers <checks_string_type_qualifier>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:269
+msgid "Table keys missing in ``checks`` are validated against the ``nil`` type."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:271
+msgid "The code below checks that the first and second table values have the ``string`` and ``number`` types."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:273
+msgid "function configure_connection(options)\n"
+"    checks({ 'string', 'number' })\n"
+"    local ip_address = options[1] or '127.0.0.1'\n"
+"    local port = options[2] or 3301\n"
+"    return ip_address .. ':' .. port\n"
+"end\n"
+"--[[\n"
+"configure_connection({'0.0.0.0', 3303})\n"
+"-- returns '0.0.0.0:3303'\n"
+"\n"
+"configure_connection({'0.0.0.0', '3303'})\n"
+"-- raises an error: bad argument options[2] to nil (number expected, got string)\n"
+"--]]\n"
+"\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:278
+msgid "In the next example, the same checks are made for the specified keys."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:280
+msgid "function configure_connection_opts(options)\n"
+"    checks({ ip_address = 'string', port = 'number' })\n"
+"    local ip_address = options.ip_address or '127.0.0.1'\n"
+"    local port = options.port or 3301\n"
+"    return ip_address .. ':' .. port\n"
+"end\n"
+"--[[\n"
+"configure_connection_opts({ip_address = '0.0.0.0', port = 3303})\n"
+"-- returns '0.0.0.0:3303'\n"
+"\n"
+"configure_connection_opts({ip_address = '0.0.0.0', port = '3303'})\n"
+"-- raises an error: bad argument options.port to nil (number expected, got string)\n"
+"\n"
+"configure_connection_opts({login = 'testuser', ip_address = '0.0.0.0', port = 3303})\n"
+"-- raises an error: unexpected argument options.login to nil\n"
+"--]]\n"
+"\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:287
+msgid "Table qualifiers can be nested and use tables, too."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:294
+msgid "API Reference"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:304
+msgid "**Members**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:307
+msgid ":ref:`checks() <checks-checks>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:308
+msgid "When called inside a function, checks that the function's arguments conform to the specified types"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:310
+msgid ":ref:`checkers <checks-checkers>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:311
+msgid "A global variable that provides access to checkers for different types"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:317
+msgid "checks()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:321
+msgid "When called inside a function, checks that the function's arguments conform to the specified types."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:0
+#: ../../doc/reference/reference_lua/checks.rst:0
+#: ../../doc/reference/reference_lua/checks.rst:0
+#: ../../doc/reference/reference_lua/checks.rst:0
+#: ../../doc/reference/reference_lua/checks.rst:0
+#: ../../doc/reference/reference_lua/checks.rst:0
+#: ../../doc/reference/reference_lua/checks.rst:0
+#: ../../doc/reference/reference_lua/checks.rst:0
+#: ../../doc/reference/reference_lua/checks.rst:0
+#: ../../doc/reference/reference_lua/checks.rst:0
+#: ../../doc/reference/reference_lua/checks.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:323
+msgid "a :ref:`string <checks_string_type_qualifier>` or :ref:`table <checks_table_type_qualifiers>` type qualifier used to check the argument type"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:324
+msgid "optional type qualifiers used to check the types of :ref:`other arguments <checks_number_of_arguments>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:329
+msgid "checkers"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:331
+msgid "The ``checkers`` global variable provides access to checkers for different types. You can use this variable to add a :ref:`custom checker <checks_custom_function>` that performs arbitrary validations."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:336
+msgid "The ``checkers`` variable also provides access to checkers for Tarantool-specific types. These checkers can be used in a custom checker."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:343
+msgid "Check whether the specified value is :ref:`datetime_object <datetime_obj>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:345
+#: ../../doc/reference/reference_lua/checks.rst:363
+#: ../../doc/reference/reference_lua/checks.rst:382
+#: ../../doc/reference/reference_lua/checks.rst:405
+#: ../../doc/reference/reference_lua/checks.rst:424
+#: ../../doc/reference/reference_lua/checks.rst:443
+#: ../../doc/reference/reference_lua/checks.rst:466
+#: ../../doc/reference/reference_lua/checks.rst:485
+#: ../../doc/reference/reference_lua/checks.rst:504
+#: ../../doc/reference/reference_lua/checks.rst:518
+msgid "the value to check the type for"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:0
+#: ../../doc/reference/reference_lua/checks.rst:0
+#: ../../doc/reference/reference_lua/checks.rst:0
+#: ../../doc/reference/reference_lua/checks.rst:0
+#: ../../doc/reference/reference_lua/checks.rst:0
+#: ../../doc/reference/reference_lua/checks.rst:0
+#: ../../doc/reference/reference_lua/checks.rst:0
+#: ../../doc/reference/reference_lua/checks.rst:0
+#: ../../doc/reference/reference_lua/checks.rst:0
+#: ../../doc/reference/reference_lua/checks.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:347
+msgid "``true`` if the specified value is ``datetime_object``; otherwise, ``false``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:0
+#: ../../doc/reference/reference_lua/checks.rst:0
+#: ../../doc/reference/reference_lua/checks.rst:0
+#: ../../doc/reference/reference_lua/checks.rst:0
+#: ../../doc/reference/reference_lua/checks.rst:0
+#: ../../doc/reference/reference_lua/checks.rst:0
+#: ../../doc/reference/reference_lua/checks.rst:0
+#: ../../doc/reference/reference_lua/checks.rst:0
+#: ../../doc/reference/reference_lua/checks.rst:0
+#: ../../doc/reference/reference_lua/checks.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:348
+#: ../../doc/reference/reference_lua/checks.rst:366
+#: ../../doc/reference/reference_lua/checks.rst:385
+#: ../../doc/reference/reference_lua/checks.rst:408
+#: ../../doc/reference/reference_lua/checks.rst:427
+#: ../../doc/reference/reference_lua/checks.rst:446
+#: ../../doc/reference/reference_lua/checks.rst:469
+#: ../../doc/reference/reference_lua/checks.rst:488
+#: ../../doc/reference/reference_lua/checks.rst:507
+#: ../../doc/reference/reference_lua/checks.rst:521
+msgid "boolean"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:350
+#: ../../doc/reference/reference_lua/checks.rst:368
+#: ../../doc/reference/reference_lua/checks.rst:387
+#: ../../doc/reference/reference_lua/checks.rst:410
+#: ../../doc/reference/reference_lua/checks.rst:429
+#: ../../doc/reference/reference_lua/checks.rst:448
+#: ../../doc/reference/reference_lua/checks.rst:471
+#: ../../doc/reference/reference_lua/checks.rst:490
+msgid "**Example**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:352
+#: ../../doc/reference/reference_lua/checks.rst:431
+msgid "local datetime = require('datetime')\n"
+"local is_datetime = checkers.datetime(datetime.new { day = 1, month = 6, year = 2023 })\n"
+"local is_interval = checkers.interval(datetime.interval.new { day = 1 })\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:361
+msgid "Check whether the specified value has the :ref:`decimal <decimal>` type."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:365
+msgid "``true`` if the specified value has the ``decimal`` type; otherwise, ``false``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:370
+msgid "local decimal = require('decimal')\n"
+"local is_decimal = checkers.decimal(decimal.new(16))\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:380
+msgid "Check whether the specified value is :ref:`error_object <box_error-error_object>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:384
+msgid "``true`` if the specified value is ``error_object``; otherwise, ``false``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:389
+msgid "local server_error = box.error.new({ code = 500, reason = 'Server error' })\n"
+"local is_error = checkers.error(server_error)\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:399
+msgid "Check whether the specified value is one of the following ``int64`` values:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:401
+msgid "a Lua number in a range from -2^53+1 to 2^53-1 (inclusive)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:402
+msgid "Lua cdata ``ctype<uint64_t>`` in a range from 0 to ``LLONG_MAX``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:403
+msgid "Lua cdata ``ctype<int64_t>``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:407
+msgid "``true`` if the specified value is an ``int64`` value; otherwise, ``false``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:412
+#: ../../doc/reference/reference_lua/checks.rst:473
+msgid "local is_int64 = checkers.int64(-1024)\n"
+"local is_uint64 = checkers.uint64(2048)\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:422
+msgid "Check whether the specified value is :ref:`interval_object <interval_obj>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:426
+msgid "``true`` if the specified value is ``interval_object``; otherwise, ``false``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:441
+msgid "Check whether the specified value is a :ref:`tuple <box_tuple-new>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:445
+msgid "``true`` if the specified value is a tuple; otherwise, ``false``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:450
+msgid "local is_tuple = checkers.tuple(box.tuple.new(1, 'The Beatles', 1960))\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:460
+msgid "Check whether the specified value is one of the following ``uint64`` values:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:462
+msgid "a Lua number in a range from 0 to 2^53-1 (inclusive)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:463
+msgid "Lua cdata ``ctype<uint64_t>``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:464
+msgid "Lua cdata ``ctype<int64_t>`` in range from 0 to ``LLONG_MAX``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:468
+msgid "``true`` if the specified value is an ``uint64`` value; otherwise, ``false``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:483
+msgid "Check whether the specified value is :ref:`uuid_object <uuid-module>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:487
+msgid "``true`` if the specified value is ``uuid_object``; otherwise, ``false``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:492
+msgid "local uuid = require('uuid')\n"
+"local is_uuid = checkers.uuid(uuid())\n"
+"local is_uuid_bin = checkers.uuid_bin(uuid.bin())\n"
+"local is_uuid_str = checkers.uuid_str(uuid.str())\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:502
+msgid "Check whether the specified value is :ref:`uuid <uuid-module>` represented by a 16-byte binary string."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:506
+msgid "``true`` if the specified value is ``uuid`` represented by a 16-byte binary string; otherwise, ``false``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:509
+#: ../../doc/reference/reference_lua/checks.rst:523
+msgid "**See also:** :ref:`uuid(value) <checks-checkers-uuid>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:516
+msgid "Check whether the specified value is :ref:`uuid <uuid-module>` represented by a 36-byte hexadecimal string."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/checks.rst:520
+msgid "``true`` if the specified value is ``uuid`` represented by a 36-byte hexadecimal string; otherwise, ``false``"
+msgstr ""

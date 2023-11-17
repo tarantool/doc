@@ -1,0 +1,98 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/admin/replication/repl_monitoring.rst:4
+msgid "Monitoring a replica set"
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_monitoring.rst:6
+msgid "To learn what instances belong to the replica set and obtain statistics for all these instances, issue a :doc:`/reference/reference_lua/box_info/replication` request:"
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_monitoring.rst:9
+msgid "tarantool> box.info.replication\n"
+"---\n"
+"  replication:\n"
+"    1:\n"
+"      id: 1\n"
+"      uuid: b8a7db60-745f-41b3-bf68-5fcce7a1e019\n"
+"      lsn: 88\n"
+"    2:\n"
+"      id: 2\n"
+"      uuid: cd3c7da2-a638-4c5d-ae63-e7767c3a6896\n"
+"      lsn: 31\n"
+"      upstream:\n"
+"        status: follow\n"
+"        idle: 43.187747001648\n"
+"        peer: replicator@192.168.0.102:3301\n"
+"        lag: 0\n"
+"      downstream:\n"
+"        vclock: {1: 31}\n"
+"    3:\n"
+"      id: 3\n"
+"      uuid: e38ef895-5804-43b9-81ac-9f2cd872b9c4\n"
+"      lsn: 54\n"
+"      upstream:\n"
+"        status: follow\n"
+"        idle: 43.187621831894\n"
+"        peer: replicator@192.168.0.103:3301\n"
+"        lag: 2\n"
+"      downstream:\n"
+"        vclock: {1: 54}\n"
+"..."
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_monitoring.rst:42
+msgid "This report is for a master-master replica set of three instances, each having its own instance id, UUID and log sequence number."
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_monitoring.rst:48
+msgid "The request was issued at master #1, and the reply includes statistics for the other two masters, given in regard to master #1."
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_monitoring.rst:51
+msgid "The primary indicators of replication health are:"
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_monitoring.rst:55
+msgid ":ref:`idle <box_info_replication_upstream_idle>`: the time (in seconds) since the instance received the last event from a master."
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_monitoring.rst:58
+msgid "If the master has no updates to send to the replicas, it sends heartbeat messages every :ref:`replication_timeout <cfg_replication-replication_timeout>` seconds. The master is programmed to disconnect if it does not see acknowledgments of the heartbeat messages within ``replication_timeout`` * 4 seconds."
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_monitoring.rst:63
+msgid "Therefore, in a healthy replication setup, ``idle`` should never exceed ``replication_timeout``: if it does, either the replication is lagging seriously behind, because the master is running ahead of the replica, or the network link between the instances is down."
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_monitoring.rst:68
+msgid ":ref:`lag <box_info_replication_upstream_lag>`: the time difference between the local time at the instance, recorded when the event was received, and the local time at another master recorded when the event was written to the :ref:`write ahead log <internals-wal>` on that master."
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_monitoring.rst:73
+msgid "Since the ``lag`` calculation uses the operating system clocks from two different machines, do not be surprised if it’s negative: a time drift may lead to the remote master clock being consistently behind the local instance's clock."
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_monitoring.rst:77
+msgid "For multi-master configurations, ``lag`` is the maximal lag."
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_monitoring.rst:79
+msgid "For better understanding, see the following diagram illustrating the ``upstream`` and ``downstream`` connections within the replica set of three instances:"
+msgstr ""

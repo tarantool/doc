@@ -1,0 +1,304 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/tooling/interactive_console.rst:4
+msgid "Interactive console"
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:6
+msgid "The interactive console is Tarantool's basic command-line interface for entering requests and seeing results. It is what users see when they start the server without an :ref:`instance file <admin-instance_file>`. The interactive console is often called the Lua console to distinguish it from the administrative console, but in fact it can handle both Lua and SQL input."
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:13
+msgid "The majority of examples in this manual show what users see with the interactive console. It includes:"
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:16
+msgid "``tarantool>`` prompt"
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:17
+msgid "instruction (a Lua request or an SQL statement)"
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:18
+msgid "response (a display in either YAML or Lua format)"
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:20
+msgid "-- Interactive console example with Lua input and YAML output --\n"
+"tarantool> box.info().replication\n"
+"---\n"
+"- 1:\n"
+"    id: 1\n"
+"    uuid: a5d22f66-2d28-4a35-b78f-5bf73baf6c8a\n"
+"    lsn: 0\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:34
+msgid "Interactive console input and output"
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:36
+msgid "The **input language** can be either Lua (default) or SQL. To change the input language, run ``\\set language <language>``, for example:"
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:39
+msgid "-- Set input language to SQL --\n"
+"tarantool> \\set language sql\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:47
+msgid "The **delimiter** can be changed to any character with ``\\set delimiter <character>``. By default, the delimiter is empty, which means the input does not need to end with a delimiter. For example, a common recommendation for SQL input is to use the semicolon delimiter:"
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:52
+msgid "-- Set ';' delimiter --\n"
+"tarantool> \\set delimiter ;\n"
+"---\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:60
+msgid "The **output format** can be either `YAML <http://yaml.org/spec>`_ (default) or Lua. To change the output format, run ``\\set output <format>``, for example:"
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:63
+msgid "-- Set output format Lua --\n"
+"tarantool> \\set output lua\n"
+"true"
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:69
+msgid "The default YAML output format is the following:"
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:71
+msgid "The output starts from a document-start line ``\"---\"``."
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:72
+msgid "Each item begins on a separate line starting with ``\"- \"``."
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:73
+msgid "Each sub-item in a nested structure is indented."
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:74
+msgid "The output ends with a document-end line ``\"...\"``."
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:76
+msgid "The alternative Lua format for console output is the following:"
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:78
+msgid "There are no lines for document-start or document-end."
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:79
+msgid "Items are separated by commas."
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:80
+msgid "Each sub-item in a nested structure is placed inside \"``{}``\" braces."
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:82
+msgid "So, when an input is a Lua object description, the output in the Lua format equals it."
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:84
+msgid "For the Lua output format, you can specify an **end of statement** symbol. It is added to the end of each output statement in the current session and can be used for parsing the output by scripts. By default, the end of statement symbol is empty. You can change it to any character or character sequence. To set an end of statement symbol for the current session, run `\\`set output lua,local_eos=<symbol>``, for example:"
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:91
+msgid "-- Set output format Lua and '#' end of statement symbol --\n"
+"tarantool> \\set output lua,local_eos=#\n"
+"true#"
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:97
+msgid "To switch back to the empty end of statement symbol:"
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:99
+msgid "-- Set output format Lua and empty end of statement symbol --\n"
+"tarantool> \\set output lua,local_eos=\n"
+"true"
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:105
+msgid "The YAML output has better readability. The Lua output can be reused in requests. The table below shows output examples in these formats compared with the MsgPack format, which is good for database storage."
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:122
+msgid "Type"
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:123
+msgid "Lua input"
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:124
+msgid "Lua output"
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:125
+msgid "YAML output"
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:126
+msgid "MsgPack storage"
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:128
+msgid "scalar"
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:129
+#: ../../doc/reference/tooling/interactive_console.rst:130
+msgid ":code:`1`"
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:0
+#: ../../doc/reference/tooling/interactive_console.rst:0
+#: ../../doc/reference/tooling/interactive_console.rst:0
+#: ../../doc/reference/tooling/interactive_console.rst:0
+msgid ":code:`---`"
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:0
+#: ../../doc/reference/tooling/interactive_console.rst:0
+msgid ":code:`- 1`"
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:0
+#: ../../doc/reference/tooling/interactive_console.rst:0
+#: ../../doc/reference/tooling/interactive_console.rst:0
+#: ../../doc/reference/tooling/interactive_console.rst:0
+msgid ":code:`...`"
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:136
+msgid ":code:`\\x01`"
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:138
+msgid "scalar sequence"
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:139
+#: ../../doc/reference/tooling/interactive_console.rst:140
+msgid ":code:`1, 2, 3`"
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:0
+msgid ":code:`- 2`"
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:0
+msgid ":code:`- 3`"
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:148
+msgid ":code:`\\x01 \\x02 \\x03`"
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:150
+msgid "2-element table"
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:151
+#: ../../doc/reference/tooling/interactive_console.rst:152
+msgid ":code:`{1, 2}`"
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:0
+msgid ":code:`- - 1`"
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:0
+msgid ":literal:`\\   - 2`"
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:159
+msgid ":code:`0x92 0x01 0x02`"
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:161
+msgid "map"
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:162
+#: ../../doc/reference/tooling/interactive_console.rst:163
+msgid ":code:`{key = 1}`"
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:0
+msgid ":code:`- key: 1`"
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:169
+msgid ":code:`\\x81 \\xa3 \\x6b \\x65 \\x79 \\x01`"
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:171
+msgid "The console parameters of a Tarantool instance can also be changed from another instance using the :ref:`console <console-module>` built-in module functions."
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:177
+msgid "Keyboard shortcuts"
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:179
+msgid "Since :doc:`2.10.0 </release/2.10.0>`."
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:185
+msgid "Keyboard shortcut"
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:186
+msgid "Effect"
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:188
+msgid "``CTRL+C``"
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:189
+msgid "Discard current input with the ``SIGINT`` signal in the console mode and jump to a new line with a default prompt."
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:192
+msgid "``CTRL+D``"
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:193
+msgid "Quit Tarantool interactive console."
+msgstr ""
+
+#: ../../doc/reference/tooling/interactive_console.rst:197
+msgid "Keep in mind that ``CTRL+C`` shortcut will shut Tarantool down if there is any currently running command in the console. The :ref:`SIGINT <admin-server_signals>` signal stops the instance running in a daemon mode."
+msgstr ""

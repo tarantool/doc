@@ -1,0 +1,1386 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/swim.rst:5
+msgid "Module swim"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:9
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:11
+msgid "The ``swim`` module contains Tarantool's implementation of SWIM -- Scalable Weakly-consistent Infection-style Process Group Membership Protocol. It is recommended for any type of Tarantool cluster where the number of nodes can be large. Its job is to discover and monitor the other members in the cluster and keep their information in a \"member table\". It works by sending and receiving, in a background event loop, periodically, via UDP, messages."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:19
+msgid "Each message has several parts, including:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:21
+msgid "the ping such as \"I am checking whether you are alive\","
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:22
+msgid "the event such as \"I am joining\","
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:23
+msgid "the anti-entropy such as \"I know that another member exists\","
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:24
+msgid "the payload such as \"I or another member could have user-generated data\"."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:26
+msgid "The maximum message size is about 1500 bytes."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:28
+msgid "SWIM sends messages periodically to a random subset of the member table. SWIM processes replies from those members asynchronously."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:31
+msgid "Each entry in the member table has:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:33
+msgid "a UUID,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:34
+msgid "a status (\"alive\", \"suspected\", \"dead\", or \"left\")."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:36
+msgid "When a member fails to acknowledge a certain number of pings, its status is changed from \"alive\" to \"suspected\", that is, suspected of being dead. But SWIM tries to **avoid false positives** (misidentifying members as dead) which could happen when a member is overloaded and responds to pings too slowly, or when there is network trouble and packets can not go through some channels. When a member is suspected, SWIM randomly chooses other members and sends requests to them: \"please ping this suspected member\". This is called an **indirect ping**. Thus via different routes and additional hops the suspected member gets additional chances to reply, and thus \"refute\" the suspicion."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:47
+msgid "Because selection is random there is an **even network load** of about one message per member per protocol step, regardless of the cluster size. This is a major feature of SWIM. Because the protocol depends on members passing information on, also known as \"gossiping\", members do not need to broadcast messages to every member, which would cause a network load of N messages per member per protocol step, where N is the number of members in the cluster. However, selection is not entirely random, there is a preference for selecting least-recently-pinged members, like a round-robin."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:56
+msgid "Regarding the **anti-entropy** part of a message: this is necessary for maintaining the status in entries of the member table. Consider an example where two members, #1 and #2, are both alive. No events happen so only pings are being sent periodically. Then a third member, #3 appears. It knows about one of the existing members, #2. How can it discover the other member? Certainly #1 could notify #2 and #2 could notify #3, but messages go via UDP, so any notification event can be lost. However, regular messages containing \"ping\" and/or \"event\" also can contain an \"anti-entropy\" section, which is taken from a randomly-chosen part of the member table. So for this example, #2 will eventually randomly add to a regular message the anti-entropy note that #1 is alive, and thus #3 will discover #1 even though it did not receive a direct \"I am alive\" event message from #1."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:72
+msgid "Regarding the **UUID** part of an entry in the member table: this is necessary for stable identification, because UUID changes more rarely than URI (a combination of IP and port number). But if the UUID does change, SWIM will include both the new and old UUID in messages, so all other members will eventually learn about the new UUID and change the member table accordingly."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:80
+msgid "Regarding the **payload** part of a message: this is not always necessary, it is a feature which allows passing user-generated information via SWIM instead of via node-to-node communication. The swim module has methods for specifying a \"payload\", which is arbitrary user data with a maximum size of about 1.2 KB. The payload can be anything, and it will be eventually disseminated over the cluster and available at other members. Each member can have its own payload."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:90
+msgid "Messages can be **encrypted**. Encryption may not be necessary in a closed network but is necessary for safety if the cluster is on the public Internet. Users can specify an encryption algorithm, an encryption mode, and a private key. All parts of all messages (including ping, acknowledgment, event, payload, URI, and UUID) will be encrypted with that private key, as well as a random public key generated for each message to prevent pattern attacks."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:98
+msgid "In theory the event dissemination speed (the number of hops to pass information throughout the cluster) is ``O(log(cluster_size))``. For that and other theoretical information see the Cornell University `paper <https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf>`_ which originally described SWIM."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:110
+msgid "Create a new SWIM instance. A SWIM instance maintains a member table and interacts with other members. Multiple SWIM instances can be created in a single Tarantool process."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:0
+#: ../../doc/reference/reference_lua/swim.rst:0
+#: ../../doc/reference/reference_lua/swim.rst:0
+#: ../../doc/reference/reference_lua/swim.rst:0
+#: ../../doc/reference/reference_lua/swim.rst:0
+#: ../../doc/reference/reference_lua/swim.rst:0
+#: ../../doc/reference/reference_lua/swim.rst:0
+#: ../../doc/reference/reference_lua/swim.rst:0
+#: ../../doc/reference/reference_lua/swim.rst:0
+#: ../../doc/reference/reference_lua/swim.rst:0
+#: ../../doc/reference/reference_lua/swim.rst:0
+#: ../../doc/reference/reference_lua/swim.rst:0
+#: ../../doc/reference/reference_lua/swim.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:114
+msgid "an optional configuration parameter.  If ``cfg`` is not specified or is nil, then the new SWIM instance is not bound to a socket and has nil attributes, so it cannot interact with other members and only a few methods are valid until :ref:`swim_object:cfg() <swim-object_cfg>` is called.  If ``cfg`` is specified, then the effect is the same as calling ``s = swim.new() s:cfg()``, except for generation. For configuration description see :ref:`swim_object:cfg() <swim-object_cfg>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:114
+msgid "an optional configuration parameter."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:116
+msgid "If ``cfg`` is not specified or is nil, then the new SWIM instance is not bound to a socket and has nil attributes, so it cannot interact with other members and only a few methods are valid until :ref:`swim_object:cfg() <swim-object_cfg>` is called."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:122
+msgid "If ``cfg`` is specified, then the effect is the same as calling ``s = swim.new() s:cfg()``, except for generation. For configuration description see :ref:`swim_object:cfg() <swim-object_cfg>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:128
+msgid "The generation part of ``cfg`` can only be specified during ``new()``, it cannot be specified later during ``cfg()``. Generation is part of :ref:`incarnation <swim-incarnation_description>`. Usually generation is not specified because the default value (a timestamp) is sufficient, but if there is reason to mistrust timestamps (because the time is changed or because the instance is started on a different machine), then users may say ``swim.new({generation = <number>})``. In that case the latest value should be persisted somehow (for example in a file, or in a space, or in a global service), and the new value must be greater than any previous value of generation."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:0
+#: ../../doc/reference/reference_lua/swim.rst:0
+#: ../../doc/reference/reference_lua/swim.rst:0
+#: ../../doc/reference/reference_lua/swim.rst:0
+#: ../../doc/reference/reference_lua/swim.rst:0
+#: ../../doc/reference/reference_lua/swim.rst:0
+#: ../../doc/reference/reference_lua/swim.rst:0
+#: ../../doc/reference/reference_lua/swim.rst:0
+#: ../../doc/reference/reference_lua/swim.rst:0
+#: ../../doc/reference/reference_lua/swim.rst:0
+#: ../../doc/reference/reference_lua/swim.rst:0
+#: ../../doc/reference/reference_lua/swim.rst:0
+#: ../../doc/reference/reference_lua/swim.rst:0
+#: ../../doc/reference/reference_lua/swim.rst:0
+#: ../../doc/reference/reference_lua/swim.rst:0
+#: ../../doc/reference/reference_lua/swim.rst:0
+#: ../../doc/reference/reference_lua/swim.rst:0
+#: ../../doc/reference/reference_lua/swim.rst:0
+#: ../../doc/reference/reference_lua/swim.rst:0
+#: ../../doc/reference/reference_lua/swim.rst:0
+#: ../../doc/reference/reference_lua/swim.rst:0
+#: ../../doc/reference/reference_lua/swim.rst:0
+#: ../../doc/reference/reference_lua/swim.rst:0
+#: ../../doc/reference/reference_lua/swim.rst:0
+#: ../../doc/reference/reference_lua/swim.rst:0
+#: ../../doc/reference/reference_lua/swim.rst:0
+#: ../../doc/reference/reference_lua/swim.rst:0
+#: ../../doc/reference/reference_lua/swim.rst:0
+#: ../../doc/reference/reference_lua/swim.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:140
+msgid "swim-object :ref:`a swim object <swim-object>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:142
+#: ../../doc/reference/reference_lua/swim.rst:225
+#: ../../doc/reference/reference_lua/swim.rst:238
+#: ../../doc/reference/reference_lua/swim.rst:336
+#: ../../doc/reference/reference_lua/swim.rst:517
+#: ../../doc/reference/reference_lua/swim.rst:549
+#: ../../doc/reference/reference_lua/swim.rst:711
+#: ../../doc/reference/reference_lua/swim.rst:736
+#: ../../doc/reference/reference_lua/swim.rst:921
+msgid "Example:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:144
+msgid "swim_object = swim.new({uri = 3333, uuid = '00000000-0000-1000-8000-000000000001', heartbeat_rate = 0.1})"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:152
+msgid "A swim object is an object returned by :ref:`swim.new() <swim-new>`. It has methods: :ref:`cfg() <swim-object_cfg>`, :ref:`delete() <swim-delete>`, :ref:`is_configured() <swim-is_configured>`, :ref:`size() <swim-size>`, :ref:`quit() <swim-quit>`, :ref:`add_member() <swim-add_member>`, :ref:`remove_member() <swim-remove_member>`, :ref:`probe_member() <swim-probe_member>`, :ref:`broadcast() <swim-broadcast>`, :ref:`set_payload() <swim-set_payload>`, :ref:`set_payload_raw() <swim-set_payload_raw>`, :ref:`set_codec() <swim-set_codec>`, :ref:`self() <swim-self>`, :ref:`member_by_uuid() <swim-member_by_uuid>`, :ref:`pairs() <swim-pairs>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:174
+msgid "Configure or reconfigure a SWIM instance."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:176
+msgid "the options to describe instance behavior"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:178
+msgid "The ``cfg`` table may have these components:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:180
+msgid "``heartbeat_rate`` (double) -- rate of sending round messages, in seconds. Setting ``heartbeat_rate`` to X does not mean that every member will be checked every X seconds, instead X is the protocol speed. Protocol period depends on member count and heartbeat_rate. Default = 1."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:186
+msgid "``ack_timeout`` (double) -- time in seconds after which a ping is considered to be unacknowledged. Default = 30."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:189
+msgid "``gc_mode`` (enum) -- dead member collection mode."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:191
+msgid "If ``gc_mode == 'off'`` then SWIM never removes dead members from the member table (though users may remove them with :ref:`swim_object:remove_member() <swim-remove_member>`), and SWIM will continue to ping them as if they were alive."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:196
+msgid "If ``gc_mode == 'on'`` then SWIM removes dead members from the member table after one round."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:199
+msgid "Default = ``'on'``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:201
+msgid "``uri`` (string or number) -- either an ``'ip:port'`` address, or just a port number (if ip is omitted then 127.0.0.1 is assumed). If ``port == 0``, then the kernel will select any free port for the IP address."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:206
+msgid "``uuid`` (string or cdata struct tt_uuid) -- a value which should be unique among SWIM instances. Users may choose any value but the recommendation is: use :ref:`box.cfg.instance_uuid <cfg_replication-instance_uuid>`, the Tarantool instance's UUID."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:212
+msgid "All the ``cfg`` components are dynamic -- ``swim_object:cfg()`` may be called more than once. If it is not being called for the first time and a component is not specified, then the component retains its previous value. If it is being called for the first time then uri and uuid are mandatory, since a SWIM instance cannot operate without URI and UUID."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:219
+msgid "``swim_object:cfg()`` is atomic -- if there is an error, then nothing changes."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:222
+msgid "true if configuration succeeds"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:223
+#: ../../doc/reference/reference_lua/swim.rst:334
+#: ../../doc/reference/reference_lua/swim.rst:515
+#: ../../doc/reference/reference_lua/swim.rst:547
+msgid "nil, ``err`` if an error occurred. ``err`` is an error object"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:227
+msgid "swim_object:cfg({heartbeat_rate = 0.5})"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:231
+msgid "After ``swim_object:cfg()``, all other ``swim_object`` methods are callable."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:235
+msgid "Expose all non-nil components of the read-only table which was set up or changed by :ref:`swim_object:cfg() <swim-object_cfg>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:240
+msgid "tarantool> swim_object.cfg\n"
+"---\n"
+"- gc_mode: off\n"
+"  uri: 3333\n"
+"  uuid: 00000000-0000-1000-8000-000000000001\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:253
+msgid "Delete a SWIM instance immediately. Its memory is freed, its member table entry is deleted, and it can no longer be used. Other members will treat this member as 'dead'."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:258
+msgid "After ``swim_object:delete()`` any attempt to use the deleted instance will cause an exception to be thrown."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:261
+msgid "none, this method does not fail"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:263
+msgid "Example: ``swim_object:delete()``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:269
+msgid "Return false if a SWIM instance was created via :ref:`swim.new() <swim-new>` without an optional ``cfg`` argument, and was not configured with :ref:`swim_object:cfg() <swim-object_cfg>`. Otherwise return true."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:275
+msgid "boolean result, true if configured, otherwise false"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:277
+msgid "Example: ``swim_object:is_configured()``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:283
+msgid "Return the size of the member table. It will be at least 1 because the \"self\" member is included."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:286
+msgid "integer size"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:288
+msgid "Example: ``swim_object:size()``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:294
+msgid "Leave the cluster."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:296
+msgid "This is a graceful equivalent of :ref:`swim_object:delete() <swim-delete>` -- the instance is deleted, but before deletion it sends to each member in its member table a message, that this instance has left the cluster, and should not be considered dead."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:302
+msgid "Other instances will mark such a member in their tables as 'left', and drop it after one round of dissemination."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:306
+msgid "Consequences to the caller are the same as after ``swim_object:delete()`` -- the instance is no longer usable, and an error will be thrown if there is an attempt to use it."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:310
+msgid "none, the method does not fail"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:312
+msgid "Example: ``swim_object:quit()``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:318
+msgid "Explicitly add a member into the member table."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:320
+msgid "This method is useful when a new member is joining the cluster and does not yet know what members already exist. In that case it can start interaction explicitly by adding the details about an already-existing member into its member table. Subsequently SWIM will discover other members automatically via messages from the already-existing member."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:328
+msgid "description of the member"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:330
+msgid "The ``cfg`` table has two mandatory components, ``uuid`` and ``uri``, which have the same format as ``uuid`` and ``uri`` in the table for :ref:`swim_object:cfg() <swim-object_cfg>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:333
+msgid "true if member is added"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:338
+msgid "swim_member_object = swim_object:add_member({uuid = ..., uri = ...})"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:346
+msgid "Explicitly and immediately remove a member from the member table."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:349
+#: ../../doc/reference/reference_lua/swim.rst:707
+msgid "UUID"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:351
+msgid "true if member is removed"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:352
+#: ../../doc/reference/reference_lua/swim.rst:374
+#: ../../doc/reference/reference_lua/swim.rst:394
+msgid "nil, ``err`` if an error occurred. ``err`` is an error object."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:354
+msgid "Example: ``swim_object:delete('00000000-0000-1000-8000-000000000001')``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:360
+msgid "Send a ping request to the specified ``uri`` address. If another member is listening at that address, it will receive the ping, and respond with an ACK (acknowledgment) message containing information such as UUID. That information will be added to the member table."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:366
+msgid "``swim_object:probe_member()`` is similar to :ref:`swim_object:add_member() <swim-add_member>`, but it does not require UUID, and it is not reliable because it uses UDP."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:370
+msgid "URI. Format is the same as for ``uri`` in :ref:`swim_object:cfg() <swim-object_cfg>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:373
+msgid "true if member is pinged"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:376
+msgid "Example: ``swim_object:probe_member(3333)``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:382
+msgid "Broadcast a ping request to all the network interfaces in the system."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:385
+msgid "``swim_object:broadcast()`` is like :ref:`swim_object:probe_member() <swim-probe_member>` to many members at once."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:389
+msgid "All the sent ping requests have this port as destination port in their UDP headers. By default a currently bound port is used."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:393
+msgid "true if broadcast is sent"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:396
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:398
+msgid "tarantool> fiber = require('fiber')\n"
+"---\n"
+"...\n"
+"tarantool> swim = require('swim')\n"
+"---\n"
+"...\n"
+"tarantool> s1 = swim.new({uri = 3333, uuid = '00000000-0000-1000-8000-000000000001', heartbeat_rate = 0.1})\n"
+"---\n"
+"...\n"
+"tarantool> s2 = swim.new({uri = 3334, uuid = '00000000-0000-1000-8000-000000000002', heartbeat_rate = 0.1})\n"
+"---\n"
+"...\n"
+"tarantool> s1:size()\n"
+"---\n"
+"- 1\n"
+"...\n"
+"tarantool> s1:add_member({uri = s2:self():uri(), uuid = s2:self():uuid()})\n"
+"---\n"
+"- true\n"
+"...\n"
+"tarantool> s1:size()\n"
+"---\n"
+"- 1\n"
+"...\n"
+"tarantool> s2:size()\n"
+"---\n"
+"- 1\n"
+"...\n"
+"\n"
+"tarantool> fiber.sleep(0.2)\n"
+"---\n"
+"...\n"
+"tarantool> s1:size()\n"
+"---\n"
+"- 2\n"
+"...\n"
+"tarantool> s2:size()\n"
+"---\n"
+"- 2\n"
+"...\n"
+"tarantool> s1:remove_member(s2:self():uuid()) s2:remove_member(s1:self():uuid())\n"
+"---\n"
+"...\n"
+"tarantool> s1:size()\n"
+"---\n"
+"- 1\n"
+"...\n"
+"tarantool> s2:size()\n"
+"---\n"
+"- 1\n"
+"...\n"
+"\n"
+"tarantool> s1:probe_member(s2:self():uri())\n"
+"---\n"
+"- true\n"
+"...\n"
+"tarantool> fiber.sleep(0.1)\n"
+"---\n"
+"...\n"
+"tarantool> s1:size()\n"
+"---\n"
+"- 2\n"
+"...\n"
+"tarantool> s2:size()\n"
+"---\n"
+"- 2\n"
+"...\n"
+"tarantool> s1:remove_member(s2:self():uuid()) s2:remove_member(s1:self():uuid())\n"
+"---\n"
+"...\n"
+"tarantool> s1:size()\n"
+"---\n"
+"- 1\n"
+"...\n"
+"tarantool> s2:size()\n"
+"---\n"
+"- 1\n"
+"...\n"
+"tarantool> s1:broadcast(3334)\n"
+"---\n"
+"- true\n"
+"...\n"
+"tarantool> fiber.sleep(0.1)\n"
+"---\n"
+"...\n"
+"tarantool> s1:size()\n"
+"---\n"
+"- 2\n"
+"...\n"
+"\n"
+"tarantool> s2:size()\n"
+"---\n"
+"- 2\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:499
+msgid "Set a payload, as formatted data."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:501
+msgid "Payload is arbitrary user defined data up to 1200 bytes in size and disseminated over the cluster. So each cluster member will eventually learn what is the payload of other members in the cluster, because it is stored in the member table and can be queried with :ref:`swim_member_object:payload() <swim-payload>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:507
+msgid "Different members may have different payloads."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:509
+msgid "Arbitrary Lua object to disseminate. Set to nil to remove the payload, in which case it will be eventually removed on other instances. The object is serialized in MessagePack."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:514
+#: ../../doc/reference/reference_lua/swim.rst:546
+msgid "true if payload is set"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:519
+msgid "swim_object:set_payload({field1 = 100, field2 = 200})"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:527
+msgid "Set a payload, as raw data."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:529
+msgid "Sometimes a payload does not need to be a Lua object. For example, a user may already have a well formatted MessagePack object and just wants to set it as a payload. Or cdata needs to be exposed."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:534
+msgid "``set_payload_raw`` allows setting a payload as is, without MessagePack serialization."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:537
+msgid "any value"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:539
+msgid "Payload size in bytes. If ``payload`` is string then ``size`` is optional, and if specified, then should not be larger than actual ``payload`` size. If ``size`` is less than actual ``payload`` size, then only the first ``size`` bytes of ``payload`` are used. If ``payload`` is cdata then ``size`` is mandatory."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:551
+msgid "tarantool> tarantool> ffi = require('ffi')\n"
+"---\n"
+"...\n"
+"tarantool> fiber = require('fiber')\n"
+"---\n"
+"...\n"
+"tarantool> swim = require('swim')\n"
+"---\n"
+"...\n"
+"tarantool> s1 = swim.new({uri = 0, uuid = '00000000-0000-1000-8000-000000000001', heartbeat_rate = 0.1})\n"
+"---\n"
+"...\n"
+"tarantool> s2 = swim.new({uri = 0, uuid = '00000000-0000-1000-8000-000000000002', heartbeat_rate = 0.1})\n"
+"---\n"
+"...\n"
+"tarantool> s1:add_member({uri = s2:self():uri(), uuid = s2:self():uuid()})\n"
+"---\n"
+"- true\n"
+"...\n"
+"tarantool> s1:set_payload({a = 100, b = 200})\n"
+"---\n"
+"- true\n"
+"...\n"
+"tarantool> s2:set_payload('any payload')\n"
+"---\n"
+"- true\n"
+"...\n"
+"tarantool> fiber.sleep(0.2)\n"
+"---\n"
+"...\n"
+"tarantool> s1_view = s2:member_by_uuid(s1:self():uuid())\n"
+"---\n"
+"...\n"
+"tarantool> s2_view = s1:member_by_uuid(s2:self():uuid())\n"
+"---\n"
+"...\n"
+"tarantool> s1_view:payload()\n"
+"---\n"
+"- {'a': 100, 'b': 200}\n"
+"...\n"
+"tarantool> s2_view:payload()\n"
+"---\n"
+"- any payload\n"
+"...\n"
+"tarantool> cdata = ffi.new('char[?]', 2)\n"
+"---\n"
+"...\n"
+"tarantool> cdata[0] = 1\n"
+"---\n"
+"...\n"
+"tarantool> cdata[1] = 2\n"
+"---\n"
+"...\n"
+"tarantool> s1:set_payload_raw(cdata, 2)\n"
+"---\n"
+"- true\n"
+"...\n"
+"tarantool> fiber.sleep(0.2)\n"
+"---\n"
+"...\n"
+"tarantool> cdata, size = s1_view:payload_cdata()\n"
+"---\n"
+"...\n"
+"tarantool> cdata[0]\n"
+"---\n"
+"- 1\n"
+"...\n"
+"tarantool> cdata[1]\n"
+"---\n"
+"- 2\n"
+"...\n"
+"tarantool> size\n"
+"---\n"
+"- 2\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:633
+msgid "Enable encryption for all following messages."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:635
+msgid "For a brief description of encryption algorithms see \"enum_crypto_algo\" and \"enum crypto_mode\" in the Tarantool source code file `crypto.h <https://github.com/tarantool/tarantool/blob/master/src/lib/crypto/crypto.h>`_."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:640
+msgid "When encryption is enabled, all the messages are encrypted with a chosen private key, and a randomly generated and updated public key."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:644
+msgid "description of the encryption"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:646
+msgid "The components of the ``codec_cfg`` table may be:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:648
+msgid "``algo`` (string) -- encryption algorithm name. All the names in :ref:`module crypto <crypto>` are supported: 'aes128', 'aes192', 'aes256', 'des'. Specify 'none' to disable encryption."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:653
+msgid "``mode`` (string) -- encryption algorithm mode. All the modes in module ``crypto`` are supported: 'ecb', 'cbc', 'cfb', 'ofb'. Default = 'cbc'."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:657
+msgid "``key`` (cdata or string) -- a private secret key which is kept secret and should never be stored hard-coded in source code."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:660
+msgid "``key_size`` (integer) -- size of the key in bytes."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:662
+msgid "``key_size`` is mandatory if key is cdata."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:664
+msgid "``key_size`` is optional if key is string, and if ``key_size`` is shorter than than actual key size then the key is truncated."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:668
+msgid "All of ``algo``, ``mode``, ``key``, and ``key_size`` should be the same for all SWIM instances, so that members can understand each others' messages."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:672
+msgid "Example;"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:674
+msgid "tarantool> tarantool> swim = require('swim')\n"
+"---\n"
+"...\n"
+"tarantool> s1 = swim.new({uri = 0, uuid = '00000000-0000-1000-8000-000000000001'})\n"
+"---\n"
+"...\n"
+"tarantool> s1:set_codec({algo = 'aes128', mode = 'cbc', key = '1234567812345678'})\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:691
+msgid "Return a :ref:`swim member object <swim-member_object>` (of self) from the member table, or from a cache containing earlier results of ``swim_object:self()`` or ``swim_object:member_by_uuid()`` or ``swim_object:pairs()``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:695
+msgid ":ref:`swim member object <swim-member_object>`, not nil because self() will not fail"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:697
+msgid "Example: ``swim_member_object = swim_object:self()``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:703
+msgid "Return a :ref:`swim member object <swim-member_object>` (given UUID) from the member table, or from a cache containing earlier results of ``swim_object:self()`` or ``swim_object:member_by_uuid()`` or ``swim_object:pairs()``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:709
+msgid ":ref:`swim member object <swim-member_object>`, or nil if not found"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:713
+msgid "swim_member_object = swim_object:member_by_uuid('00000000-0000-1000-8000-000000000001')"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:721
+msgid "Set up an iterator for returning :ref:`swim member objects <swim-member_object>` from the member table, or from a cache containing earlier results of ``swim_object:self()`` or ``swim_object:member_by_uuid()`` or ``swim_object:pairs()``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:726
+msgid "``swim_object:pairs()`` should be in a 'for' loop, and there should only be one iterator in operation at one time. (The iterator is implemented in an extra light fashion so only one iterator object is available per SWIM instance.)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:731
+msgid "as for any Lua pairs() iterators. generator function, iterator object (a swim member object), and initial key (a UUID)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:738
+msgid "tarantool> fiber = require('fiber')\n"
+"---\n"
+"...\n"
+"tarantool> swim = require('swim')\n"
+"---\n"
+"...\n"
+"tarantool> s1 = swim.new({uri = 0, uuid = '00000000-0000-1000-8000-000000000001', heartbeat_rate = 0.1})\n"
+"---\n"
+"...\n"
+"tarantool> s2 = swim.new({uri = 0, uuid = '00000000-0000-1000-8000-000000000002', heartbeat_rate = 0.1})\n"
+"---\n"
+"...\n"
+"tarantool> s1:add_member({uri = s2:self():uri(), uuid = s2:self():uuid()})\n"
+"---\n"
+"- true\n"
+"...\n"
+"tarantool> fiber.sleep(0.2)\n"
+"---\n"
+"...\n"
+"tarantool> s1:self()\n"
+"---\n"
+"- uri: 127.0.0.1:55845\n"
+"  status: alive\n"
+"  incarnation: cdata {generation = 1569353431853325ULL, version = 1ULL}\n"
+"  uuid: 00000000-0000-1000-8000-000000000001\n"
+"  payload_size: 0\n"
+"...\n"
+"tarantool> s1:member_by_uuid(s1:self():uuid())\n"
+"---\n"
+"- uri: 127.0.0.1:55845\n"
+"  status: alive\n"
+"  incarnation: cdata {generation = 1569353431853325ULL, version = 1ULL}\n"
+"  uuid: 00000000-0000-1000-8000-000000000001\n"
+"  payload_size: 0\n"
+"...\n"
+"tarantool> s1:member_by_uuid(s2:self():uuid())\n"
+"---\n"
+"- uri: 127.0.0.1:53666\n"
+"  status: alive\n"
+"  incarnation: cdata {generation = 1569353431865138ULL, version = 1ULL}\n"
+"  uuid: 00000000-0000-1000-8000-000000000002\n"
+"  payload_size: 0\n"
+"...\n"
+"tarantool> t = {}\n"
+"---\n"
+"...\n"
+"tarantool> for k, v in s1:pairs() do table.insert(t, {k, v}) end\n"
+"---\n"
+"...\n"
+"tarantool> t\n"
+"---\n"
+"- - - 00000000-0000-1000-8000-000000000002\n"
+"    - uri: 127.0.0.1:53666\n"
+"      status: alive\n"
+"      incarnation: cdata {generation = 1569353431865138ULL, version = 1ULL}\n"
+"      uuid: 00000000-0000-1000-8000-000000000002\n"
+"      payload_size: 0\n"
+"  - - 00000000-0000-1000-8000-000000000001\n"
+"    - uri: 127.0.0.1:55845\n"
+"      status: alive\n"
+"      incarnation: cdata {generation = 1569353431853325ULL, version = 1ULL}\n"
+"      uuid: 00000000-0000-1000-8000-000000000001\n"
+"      payload_size: 0\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:809
+msgid "Methods :ref:`swim_object:member_by_uuid() <swim-member_by_uuid>`, :ref:`swim_object:self() <swim-self>`, and :ref:`swim_object:pairs() <swim-pairs>` return swim member objects."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:815
+msgid "A swim member object has methods for reading its attributes: :ref:`status() <swim-status>`, :ref:`uuid <swim-uuid>`, :ref:`uri() <swim-uri>`, :ref:`incarnation() <swim-incarnation>`, :ref:`payload_cdata <swim-payload_cdata>`, :ref:`payload_str() <swim-payload_str>`, :ref:`payload() <swim-payload>`, :ref:`is_dropped() <swim-is_dropped>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:830
+msgid "Return the status, which may be 'alive', 'suspected', 'left', or 'dead'."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:833
+msgid "string 'alive' | 'suspected' | 'left' | dead'"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:839
+msgid "Return the UUID as cdata struct tt_uuid."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:841
+msgid "cdata-struct-tt-uuid UUID"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:847
+msgid "Return the URI as a string 'ip:port'. Via this method a user can learn a real assigned port, if port = 0 was specified in :ref:`swim_object:cfg() <swim-object_cfg>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:852
+msgid "string ip:port"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:858
+msgid "Return a cdata object with the :ref:`incarnation <swim-incarnation_description>`. The cdata object has two attributes: incarnation().generation and incarnation().version."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:862
+msgid "Incarnations can be compared to each other with any comparison operator (==, <, >, <=, >=, ~=)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:865
+msgid "Incarnations, when printed, will appear as strings with both generation and version."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:868
+msgid "cdata incarnation"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:874
+msgid "Return member's payload."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:876
+msgid "pointer-to-cdata payload and size in bytes"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:882
+msgid "Return payload as a string object. Payload is not decoded. It is just returned as a string instead of cdata. If payload was not specified by :ref:`swim_object:set_payload() <swim-set_payload>` or by :ref:`swim_object:set_payload_raw() <swim-set_payload_raw>`, then its size is 0 and nil is returned."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:889
+msgid "string-object payload, or nil if there is no payload"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:895
+msgid "Since the ``swim`` module is a Lua module, a user is likely to use Lua objects as a payload -- tables, numbers, strings etc. And it is natural to expect that :ref:`swim_member_object:payload() <swim-payload>` should return the same object which was passed into :ref:`swim_object:set_payload() <swim-set_payload>` by another instance. ``swim_member_object:payload()`` tries to interpret payload as MessagePack, and if that fails then it returns the payload as a string."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:906
+msgid "``swim_member_object:payload()`` caches its result. Therefore only the first call actually decodes cdata payload. All following calls return a pointer to the same result, unless payload is changed with a new incarnation. If payload was not specified (its size is 0), then nil is returned."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:916
+msgid "Returns true if this member object is a stray reference to a member which has already been dropped from the member table."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:919
+msgid "boolean true if member is dropped, otherwise false"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:923
+msgid "tarantool> swim = require('swim')\n"
+"---\n"
+"...\n"
+"tarantool> s = swim.new({uri = 0, uuid = '00000000-0000-1000-8000-000000000001'})\n"
+"---\n"
+"...\n"
+"tarantool> self = s:self()\n"
+"---\n"
+"...\n"
+"tarantool> self:status()\n"
+"---\n"
+"- alive\n"
+"...\n"
+"tarantool> self:uuid()\n"
+"---\n"
+"- 00000000-0000-1000-8000-000000000001\n"
+"...\n"
+"tarantool> self:uri()\n"
+"---\n"
+"- 127.0.0.1:56367\n"
+"...\n"
+"tarantool> self:incarnation()\n"
+"---\n"
+"- - cdata {generation = 1569354463981551ULL, version = 1ULL}\n"
+"...\n"
+"tarantool> self:is_dropped()\n"
+"---\n"
+"- false\n"
+"...\n"
+"tarantool> s:set_payload_raw('123')\n"
+"---\n"
+"- true\n"
+"...\n"
+"tarantool> self:payload_cdata()\n"
+"---\n"
+"- 'cdata<const char *>: 0x0103500050'\n"
+"- 3\n"
+"...\n"
+"tarantool> self:payload_str()\n"
+"---\n"
+"- '123'\n"
+"...\n"
+"tarantool> s:set_payload({a = 100})\n"
+"---\n"
+"- true\n"
+"...\n"
+"tarantool> self:payload_cdata()\n"
+"---\n"
+"- 'cdata<const char *>: 0x0103500050'\n"
+"- 4\n"
+"...\n"
+"tarantool> self:payload_str()\n"
+"---\n"
+"- !!binary gaFhZA==\n"
+"...\n"
+"tarantool> self:payload()\n"
+"---\n"
+"- {'a': 100}\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:989
+msgid "Create an \"on_member :ref:`trigger <triggers>`\". The ``trigger-function`` will be executed when a member in the member table is updated."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:992
+msgid "this will become the trigger function"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:993
+msgid "(optional) this will be passed to trigger-function"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:995
+msgid "nil or function pointer."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:997
+msgid "The **trigger-function** should have three parameter declarations (Tarantool will pass values for them when it invokes the function):"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1000
+msgid "the member which is having the member event,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1001
+msgid "the event object,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1002
+msgid "the ``ctx`` which will be the same value as what is passed to ``swim_object:on_member_event``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1005
+msgid "A **member event** is any of:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1007
+msgid "appearance of a new member,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1008
+msgid "drop of an existing member, or"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1009
+msgid "update of an existing member."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1011
+msgid "An **event object** is an object which the trigger-function can use for determining what type of member event has happened. The object's methods -- such as ``is_new_status()``, ``is_new_uri()``, ``is_new_incarnation()``, ``is_new_payload()``, ``is_drop()`` -- return boolean values."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1017
+msgid "A member event may have more than one associated **trigger**. Triggers are executed sequentially. Therefore if a trigger function causes yields or sleeps, other triggers may be forced to wait. However, since trigger execution is done in a separate fiber, SWIM itself is not forced to wait."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1024
+msgid "Example of an on-member trigger function:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1026
+msgid "tarantool> swim = require('swim')\n"
+"\n"
+"local function on_event(member, event, ctx)\n"
+"    if event:is_new() then\n"
+"        ...\n"
+"    elseif event:is_drop() then\n"
+"        ...\n"
+"    end\n"
+"\n"
+"    if event:is_update() then\n"
+"        -- All next conditions can be\n"
+"        -- true simultaneously.\n"
+"        if event:is_new_status() then\n"
+"...\n"
+"        end\n"
+"        if event:is_new_uri() then\n"
+"...\n"
+"        end\n"
+"        if event:is_new_incarnation() then\n"
+"...\n"
+"        end\n"
+"        if event:is_new_payload() then\n"
+"...\n"
+"        end\n"
+"    end\n"
+"end"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1055
+msgid "Notice in the above example that the function is ready for the possibility that multiple events can happen simultaneously for a single trigger activation. ``is_new()`` and ``is_drop()`` can not both be true, but ``is_new()`` and ``is_update()`` can both be true, or ``is_drop()`` and ``is_update()`` can both be true. Multiple simultaneous events are especially likely if there are many events and trigger functions are slow -- in that case, for example, a member might be added and then updated after a while, and then after a while there will be a single trigger activation."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1067
+msgid "Also: ``is_new()`` and ``is_new_payload()`` can both be true. This case is not due to trigger functions that are slow. It occurs because \"omitted payload\" and \"size-zero payload\" are not the same thing. For example: when a ping is received, a new member might be added, but ping messages do not include payload. The payload will appear later in a different message. If that is important for the application, then the function should not assume when ``is_new()`` is true that the member already has a payload, and should not assume that payload size says something about the payload's presence or absence."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1078
+msgid "Also: functions should not assume that ``is_new()`` and ``is_drop()`` will always be seen. If a new member appears but then is dropped before its appearance has caused a trigger activation, then there will be no trigger activation."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1084
+msgid "``is_new_generation()`` will be true if the generation part of :ref:`incarnation <swim-incarnation_description>` changes. ``is_new_version()`` will be true if the version part of incarnation changes. ``is_new_incarnation()`` will be true if either the generation part or the version part of incarnation changes. For example a combination of these methods can be used within a user-defined trigger to check whether a process has restarted, or a member has changed ..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1094
+msgid "swim = require('swim')\n"
+"s = swim.new()\n"
+"s:on_member_event(function(m, e)\n"
+"...\n"
+"    if e:is_new_incarnation() then\n"
+"        if e:is_new_generation() then\n"
+"            -- Process restart.\n"
+"        end\n"
+"        if e:is_new_version() then\n"
+"            -- Process version update. It means\n"
+"            -- the member is somehow changed.\n"
+"        end\n"
+"    end\n"
+"end"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1113
+msgid "Delete an on-member trigger."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1115
+msgid "old-trigger"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1117
+#: ../../doc/reference/reference_lua/swim.rst:1132
+msgid "The old-trigger value should be the value returned by ``on_member_event(trigger-function[, ctx])``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1122
+msgid "This is a variation of ``on_member_event(new-trigger, [, ctx])``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1124
+msgid "The additional parameter is ``old-trigger``. Instead of adding the new-trigger at the end of a list of triggers, this function will replace the entry in the list of triggers that matches old-trigger. The position within a list may be important because triggers are activated sequentially starting with the first trigger in the list."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1137
+msgid "Return the list of on-member triggers."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1141
+msgid "SWIM internals"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1143
+msgid "The SWIM internals section is not necessary for programmers who wish to use the SWIM module, it is for programmers who wish to change or replace the SWIM module."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1146
+msgid "The SWIM wire protocol is open, will be backward compatible in case of any changes, and can be implemented by users who wish to simulate their own SWIM cluster members because they use another language than Lua, or another environment unrelated to Tarantool. The protocol is encoded as `MsgPack <https://en.wikipedia.org/wiki/MessagePack>`_."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1153
+msgid "SWIM packet structure:\n"
+"\n"
+"+-----------------Public data, not encrypted------------------+\n"
+"|                                                             |\n"
+"|      Initial vector, size depends on chosen algorithm.      |\n"
+"|                   Next data is encrypted.                   |\n"
+"|                                                             |\n"
+"+----------Meta section, handled by transport level-----------+\n"
+"| map {                                                       |\n"
+"|     0 = SWIM_META_TARANTOOL_VERSION: uint, Tarantool        |\n"
+"|                                      version ID,            |\n"
+"|     1 = SWIM_META_SRC_ADDRESS: uint, ip,                    |\n"
+"|     2 = SWIM_META_SRC_PORT: uint, port,                     |\n"
+"|     3 = SWIM_META_ROUTING: map {                            |\n"
+"|         0 = SWIM_ROUTE_SRC_ADDRESS: uint, ip,               |\n"
+"|         1 = SWIM_ROUTE_SRC_PORT: uint, port,                |\n"
+"|         2 = SWIM_ROUTE_DST_ADDRESS: uint, ip,               |\n"
+"|         3 = SWIM_ROUTE_DST_PORT: uint, port                 |\n"
+"|     }                                                       |\n"
+"| }                                                           |\n"
+"+-------------------Protocol logic section--------------------+\n"
+"| map {                                                       |\n"
+"|     0 = SWIM_SRC_UUID: 16 byte UUID,                        |\n"
+"|                                                             |\n"
+"|                 AND                                         |\n"
+"|                                                             |\n"
+"|     2 = SWIM_FAILURE_DETECTION: map {                       |\n"
+"|         0 = SWIM_FD_MSG_TYPE: uint, enum swim_fd_msg_type,  |\n"
+"|         1 = SWIM_FD_GENERATION: uint,                       |\n"
+"|         2 = SWIM_FD_VERSION: uint                           |\n"
+"|     },                                                      |\n"
+"|                                                             |\n"
+"|               OR/AND                                        |\n"
+"|                                                             |\n"
+"|     3 = SWIM_DISSEMINATION: array [                         |\n"
+"|         map {                                               |\n"
+"|             0 = SWIM_MEMBER_STATUS: uint,                   |\n"
+"|                                     enum member_status,     |\n"
+"|             1 = SWIM_MEMBER_ADDRESS: uint, ip,              |\n"
+"|             2 = SWIM_MEMBER_PORT: uint, port,               |\n"
+"|             3 = SWIM_MEMBER_UUID: 16 byte UUID,             |\n"
+"|             4 = SWIM_MEMBER_GENERATION: uint,               |\n"
+"|             5 = SWIM_MEMBER_VERSION: uint,                  |\n"
+"|             6 = SWIM_MEMBER_PAYLOAD: bin                    |\n"
+"|         },                                                  |\n"
+"|         ...                                                 |\n"
+"|     ],                                                      |\n"
+"|                                                             |\n"
+"|               OR/AND                                        |\n"
+"|                                                             |\n"
+"|     1 = SWIM_ANTI_ENTROPY: array [                          |\n"
+"|         map {                                               |\n"
+"|             0 = SWIM_MEMBER_STATUS: uint,                   |\n"
+"|                                     enum member_status,     |\n"
+"|             1 = SWIM_MEMBER_ADDRESS: uint, ip,              |\n"
+"|             2 = SWIM_MEMBER_PORT: uint, port,               |\n"
+"|             3 = SWIM_MEMBER_UUID: 16 byte UUID,             |\n"
+"|             4 = SWIM_MEMBER_GENERATION: uint,               |\n"
+"|             5 = SWIM_MEMBER_VERSION: uint,                  |\n"
+"|             6 = SWIM_MEMBER_PAYLOAD: bin                    |\n"
+"|         },                                                  |\n"
+"|         ...                                                 |\n"
+"|     ],                                                      |\n"
+"|                                                             |\n"
+"|               OR/AND                                        |\n"
+"|                                                             |\n"
+"|     4 = SWIM_QUIT: map {                                    |\n"
+"|         0 = SWIM_QUIT_GENERATION: uint,                     |\n"
+"|         1 = SWIM_QUIT_VERSION: uint                         |\n"
+"|     }                                                       |\n"
+"| }                                                           |\n"
+"+-------------------------------------------------------------+"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1228
+msgid "The **Initial vector section** appears only when encryption is enabled. This section contains a public key. For example, for AES algorithms it is a 16-byte initial vector stored as is. When no encryption is used, the section size is 0."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1233
+msgid "The later sections (Meta and Protocol Logic) are encrypted as one big data chunk if encryption is enabled."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1236
+msgid "The **Meta section** handles routing and protocol versions compatibility. It works at the 'transport' level of the SWIM protocol, and is always present. Keys in the meta section are:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1240
+msgid "SWIM_META_TARANTOOL_VERSION -- mandatory field. Tarantool sets here its version as a 3 byte integer:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1243
+msgid "1 byte for major,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1244
+msgid "1 byte for minor,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1245
+msgid "1 byte for patch."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1247
+msgid "For example, Tarantool version 2.1.3 would be encoded like this: ``(((2 << 8) | 1) << 8) | 3;``. This field will be used to support multiple versions of the protocol."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1251
+msgid "SWIM_META_SRC_ADDRESS and SWIM_META_SRC_PORT -- mandatory. source IP address and port. IP is encoded as 4 bytes. \"xxx.xxx.xxx.xxx\" where each 'xxx' is encoding of one byte. Port is encoded as an integer. Example of how to encode \"127.0.0.1:3313\":"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1256
+msgid "struct in_addr addr;\n"
+"inet_aton(\"127.0.0.1\", &addr);\n"
+"pos = mp_encode_uint(pos, SWIM_META_SRC_ADDRESS);\n"
+"pos = mp_encode_uint(pos, addr->s_addr);\n"
+"pos = mp_encode_uint(pos, SWIM_META_SRC_PORT);\n"
+"pos = mp_encode_uint(pos, 3313);"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1265
+msgid "SWIM_META_ROUTING subsection -- not mandatory. Responsible for packet forwarding. Used by SWIM suspicion mechanism. Read about suspicion in the SWIM paper."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1269
+msgid "If this subsection is present then the following fields are mandatory:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1272
+msgid "SWIM_ROUTE_SRC_ADDRESS and SWIM_ROUTE_SRC_PORT (source IP address and port) (should be an address of the message originator (can differ from"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1275
+msgid "SWIM_META_SRC_ADDRESS and from SWIM_META_SRC_ADDRESS_PORT);"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1276
+msgid "SWIM_ROUTE_DST_ADDRESS and SWIM_ROUTE_DST_PORT (destination IP address and port, for the message's final destination)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1279
+msgid "If a message was sent indirectly with the help of SWIM_META_ROUTING, then the reply should be sent back by the same route."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1282
+msgid "For an example of how SWIM uses routing for indirect pings ... Assume there are 3 nodes: S1, S2, S3. S1 sends a message to S3 via S2. The following steps are executed in order to deliver the message:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1287
+msgid "S1 -> S2\n"
+"{ src: S1, routing: {src: S1, dst: S3}, body: ... }"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1292
+msgid "S2 receives the message and sees that routing.dst is not equal to S2, so it is a foreign packet. S2 forwards the packet to S3 preserving all the data including body and routing sections."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1296
+msgid "S2 -> S3"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1300
+msgid "S3 receives the message and sees that routing.dst is equal to S3, so the message is delivered. If S3 wants to answer, it sends a response via the same proxy. It knows that the message was delivered from S2, so it sends an answer via S2."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1305
+msgid "The **Protocol logic section** handles SWIM logical protocol steps and actions."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1307
+msgid "SWIM_SRC_UUID -- mandatory field. SWIM uses UUID as a unique identifier of a member, not IP/port. This field stores UUID of sender. Its type is MP_BIN. Size is always 16 bytes. UUID is encoded in host byte order, no bswaps are needed."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1312
+msgid "Following SWIM_SRC_UUID there are four possible subsections: SWIM_FAILURE_DETECTION, SWIM_DISSEMINATION, SWIM_ANTI_ENTROPY, SWIM_QUIT. Any or all of these subsections may be present. A connector should be ready to handle any combination."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1317
+msgid "SWIM_FAILURE_DETECTION subsection -- describes a ping or ACK. In the SWIM_FAILURE_DETECTION subsection are:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1320
+msgid "SWIM_FD_MSG_TYPE (0 is ping, 1 is ack);"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1321
+msgid "SWIM_FD_GENERATION + SWIM_FD_VERSION (the :ref:`incarnation <swim-incarnation_description>`)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1323
+msgid "SWIM_DISSEMINATION subsection -- a list of changed cluster members. It may include only a subset of changed cluster members if there are too many changes to fit into one UDP packet."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1327
+msgid "In the SWIM_DISSEMINATION subsection are:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1329
+msgid "SWIM_MEMBER_STATUS (mandatory) (0 = alive, 1 = suspected, 2 = dead, 3 = left);"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1330
+msgid "SWIM_MEMBER_ADDRESS and SWIM_MEMBER_PORT (mandatory) member IP and port;"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1331
+msgid "SWIM_MEMBER_UUID (mandatory) (member UUID);"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1332
+msgid "SWIM_MEMBER_GENERATION + SWIM_MEMBER_VERSION (mandatory) (the member :ref:`incarnation <swim-incarnation_description>`);"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1333
+msgid "SWIM_MEMBER_PAYLOAD (not mandatory) (member payload) (MessagePack type is MP_BIN)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1336
+msgid "Note that absence of SWIM_MEMBER_PAYLOAD means nothing - it is not the same as a payload with zero size."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1339
+msgid "SWIM_ANTI_ENTROPY subsection -- a helper for the dissemination. It contains all the same fields as the dissemination sub, but all of them are mandatory, including payload even when payload size is 0. Anti-entropy eventually spreads changes which for any reason are not spread by the dissemination."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1345
+msgid "SWIM_QUIT subsection -- statement that the sender has left the cluster gracefully, for example via :ref:`swim_object:quit() <swim-quit>`, and should not be considered dead. Sender status should be changed to 'left'."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1350
+msgid "In the SWIM_QUIT subsection are:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1352
+msgid "SWIM_QUIT_GENERATION + SWIM_QUIT_VERSION (the sender :ref:`incarnation <swim-incarnation_description>`)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1356
+msgid "The **incarnation** is a 128-bit cdata value which is part of each member's configuration and is present in most messages. It has two parts: generation and version."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1360
+msgid "Generation is persistent. By default it has the number of microseconds since the epoch (compare the value returned by :ref:`clock_realtime64() <clock-time>`). Optionally a user can set generation during :ref:`new() <swim-new>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1365
+msgid "Version is volatile. It is initially 0. It is incremented automatically every time that a change occurs."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1368
+msgid "The incarnation, or sometimes the version alone, is useful for deciding to ignore obsolete messages, for updating a member's attributes on remote nodes, and for refuting messages that say a member is dead."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1373
+msgid "If the member's incarnation is less than the locally stored incarnation, then the message is obsolete. This can happen because UDP allows reordering and duplication."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1377
+msgid "If the member's incarnation in a message is greater than the locally stored incarnation, then most of its attributes  (IP, port, status) should be updated with the values received in the message. However, the payload attribute should not be updated unless it is present in the message. Because of its relatively large size, payload is not always included in every message."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1384
+msgid "Refutation usually happens when a false-positive failure detection has happened. In such a case the member thought to be dead receives that information from other members, increases its own incarnation, and spreads a message saying the member is alive (a \"refutation\")."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/swim.rst:1390
+msgid "Note: in the original version of Tarantool SWIM, and in the original SWIM specification, there is no generation and the incarnation consists of only the version. Generation was added because it is useful for detecting obsolete messages left over from a previous life of an instance that has restarted."
+msgstr ""

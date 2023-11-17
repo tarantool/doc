@@ -1,0 +1,2617 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/configuration/index.rst:5
+msgid "Configuration reference (box.cfg)"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_code.rst:5
+msgid "Starting with the 3.0 version, the recommended way of configuring Tarantool is using a :ref:`configuration file <configuration_file>`. Configuring Tarantool in code is considered a legacy approach."
+msgstr ""
+
+#: ../../doc/reference/configuration/index.rst:12
+msgid "This topic describes all configuration parameters that can be specified :ref:`in code <configuration_code>` using the ``box.cfg`` API."
+msgstr ""
+
+#: ../../doc/reference/configuration/index.rst:20
+msgid "Basic parameters"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:1
+msgid ":ref:`background <cfg_basic-background>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:2
+msgid ":ref:`custom_proc_title <cfg_basic-custom_proc_title>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:3
+msgid ":ref:`listen <cfg_basic-listen>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:4
+msgid ":ref:`memtx_dir <cfg_basic-memtx_dir>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:5
+msgid ":ref:`pid_file <cfg_basic-pid_file>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:6
+msgid ":ref:`read_only <cfg_basic-read_only>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:7
+msgid ":ref:`sql_cache_size <cfg_basic-sql_cache_size>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:8
+msgid ":ref:`vinyl_dir <cfg_basic-vinyl_dir>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:9
+msgid ":ref:`vinyl_timeout <cfg_basic-vinyl_timeout>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:10
+msgid ":ref:`username <cfg_basic-username>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:11
+msgid ":ref:`wal_dir <cfg_basic-wal_dir>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:12
+msgid ":ref:`work_dir <cfg_basic-work_dir>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:13
+msgid ":ref:`worker_pool_threads <cfg_basic-worker_pool_threads>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:14
+msgid ":ref:`strip_core <cfg_basic-strip_core>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:15
+msgid ":ref:`memtx_use_mvcc_engine <cfg_basic-memtx_use_mvcc_engine>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:21
+msgid "Since version 1.6.2. Run the server as a background task. The :ref:`log <cfg_logging-log>` and :ref:`pid_file <cfg_basic-pid_file>` parameters must be non-null for this to work."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:26
+#: ../../doc/reference/configuration/cfg_basic.rst:136
+#: ../../doc/reference/configuration/cfg_basic.rst:285
+#: ../../doc/reference/configuration/cfg_basic.rst:297
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:24
+#: ../../doc/reference/configuration/cfg_hot_standby.rst:48
+#: ../../doc/reference/configuration/cfg_replication.rst:203
+#: ../../doc/reference/configuration/cfg_replication.rst:296
+#: ../../doc/reference/configuration/cfg_logging.rst:151
+#: ../../doc/reference/configuration/cfg_feedback.rst:23
+#: ../../doc/reference/configuration/cfg_deprecated.rst:26
+#: ../../doc/reference/configuration/cfg_deprecated.rst:56
+#: ../../doc/reference/configuration/cfg_deprecated.rst:67
+#: ../../doc/reference/configuration/cfg_deprecated.rst:163
+msgid "Type: boolean"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:27
+#: ../../doc/reference/configuration/cfg_basic.rst:137
+#: ../../doc/reference/configuration/cfg_basic.rst:298
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:25
+#: ../../doc/reference/configuration/cfg_hot_standby.rst:49
+#: ../../doc/reference/configuration/cfg_replication.rst:204
+#: ../../doc/reference/configuration/cfg_replication.rst:297
+#: ../../doc/reference/configuration/cfg_deprecated.rst:27
+msgid "Default: false"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:28
+msgid "Environment variable: TT_BACKGROUND"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:29
+#: ../../doc/reference/configuration/cfg_basic.rst:107
+#: ../../doc/reference/configuration/cfg_basic.rst:120
+#: ../../doc/reference/configuration/cfg_basic.rst:185
+#: ../../doc/reference/configuration/cfg_basic.rst:215
+#: ../../doc/reference/configuration/cfg_basic.rst:231
+#: ../../doc/reference/configuration/cfg_basic.rst:258
+#: ../../doc/reference/configuration/cfg_basic.rst:288
+#: ../../doc/reference/configuration/cfg_basic.rst:300
+#: ../../doc/reference/configuration/cfg_storage.rst:64
+#: ../../doc/reference/configuration/cfg_storage.rst:100
+#: ../../doc/reference/configuration/cfg_storage.rst:121
+#: ../../doc/reference/configuration/cfg_storage.rst:137
+#: ../../doc/reference/configuration/cfg_storage.rst:164
+#: ../../doc/reference/configuration/cfg_storage.rst:189
+#: ../../doc/reference/configuration/cfg_storage.rst:215
+#: ../../doc/reference/configuration/cfg_storage.rst:230
+#: ../../doc/reference/configuration/cfg_storage.rst:244
+#: ../../doc/reference/configuration/cfg_storage.rst:257
+#: ../../doc/reference/configuration/cfg_storage.rst:270
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:27
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:41
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:79
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:93
+#: ../../doc/reference/configuration/cfg_hot_standby.rst:51
+#: ../../doc/reference/configuration/cfg_replication.rst:422
+#: ../../doc/reference/configuration/cfg_replication.rst:446
+#: ../../doc/reference/configuration/cfg_networking.rst:94
+#: ../../doc/reference/configuration/cfg_logging.rst:126
+#: ../../doc/reference/configuration/cfg_logging.rst:154
+#: ../../doc/reference/configuration/cfg_deprecated.rst:28
+#: ../../doc/reference/configuration/cfg_deprecated.rst:58
+#: ../../doc/reference/configuration/cfg_deprecated.rst:96
+msgid "Dynamic: no"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:35
+msgid "Since version 1.6.7. Add the given string to the server's process title (what’s shown in the COMMAND column for ``ps -ef`` and ``top -c`` commands)."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:40
+msgid "For example, ordinarily :samp:`ps -ef` shows the Tarantool server process thus:"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:43
+msgid "$ ps -ef | grep tarantool\n"
+"1000     14939 14188  1 10:53 pts/2    00:00:13 tarantool <running>"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:48
+msgid "But if the configuration parameters include ``custom_proc_title='sessions'`` then the output looks like:"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:51
+msgid "$ ps -ef | grep tarantool\n"
+"1000     14939 14188  1 10:53 pts/2    00:00:16 tarantool <running>: sessions"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:56
+#: ../../doc/reference/configuration/cfg_basic.rst:104
+#: ../../doc/reference/configuration/cfg_basic.rst:117
+#: ../../doc/reference/configuration/cfg_basic.rst:182
+#: ../../doc/reference/configuration/cfg_basic.rst:212
+#: ../../doc/reference/configuration/cfg_basic.rst:228
+#: ../../doc/reference/configuration/cfg_basic.rst:255
+#: ../../doc/reference/configuration/cfg_storage.rst:81
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:76
+#: ../../doc/reference/configuration/cfg_replication.rst:57
+#: ../../doc/reference/configuration/cfg_replication.rst:227
+#: ../../doc/reference/configuration/cfg_replication.rst:419
+#: ../../doc/reference/configuration/cfg_replication.rst:443
+#: ../../doc/reference/configuration/cfg_replication.rst:576
+#: ../../doc/reference/configuration/cfg_replication.rst:641
+#: ../../doc/reference/configuration/cfg_logging.rst:123
+#: ../../doc/reference/configuration/cfg_logging.rst:207
+#: ../../doc/reference/configuration/cfg_feedback.rst:35
+msgid "Type: string"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:57
+#: ../../doc/reference/configuration/cfg_basic.rst:91
+#: ../../doc/reference/configuration/cfg_basic.rst:118
+#: ../../doc/reference/configuration/cfg_basic.rst:213
+#: ../../doc/reference/configuration/cfg_basic.rst:256
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:59
+#: ../../doc/reference/configuration/cfg_replication.rst:58
+#: ../../doc/reference/configuration/cfg_replication.rst:273
+#: ../../doc/reference/configuration/cfg_replication.rst:420
+#: ../../doc/reference/configuration/cfg_replication.rst:444
+#: ../../doc/reference/configuration/cfg_networking.rst:17
+#: ../../doc/reference/configuration/cfg_logging.rst:124
+msgid "Default: null"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:58
+msgid "Environment variable: TT_CUSTOM_PROC_TITLE"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:59
+#: ../../doc/reference/configuration/cfg_basic.rst:93
+#: ../../doc/reference/configuration/cfg_basic.rst:139
+#: ../../doc/reference/configuration/cfg_basic.rst:171
+#: ../../doc/reference/configuration/cfg_basic.rst:204
+#: ../../doc/reference/configuration/cfg_basic.rst:274
+#: ../../doc/reference/configuration/cfg_snapshot_daemon.rst:73
+#: ../../doc/reference/configuration/cfg_snapshot_daemon.rst:103
+#: ../../doc/reference/configuration/cfg_snapshot_daemon.rst:136
+#: ../../doc/reference/configuration/cfg_deprecated.rst:69
+#: ../../doc/reference/configuration/cfg_deprecated.rst:166
+msgid "Dynamic: yes"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:65
+msgid "Since version 1.6.4."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:67
+msgid "The read/write data port number or :ref:`URI <index-uri>` (Universal Resource Identifier) string. Has no default value, so **must be specified** if connections occur from the remote clients that don't use the :ref:`\"admin port\" <admin-security>`. Connections made with :samp:`listen = {URI}` are called \"binary port\" or \"binary protocol\" connections."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:74
+msgid "A typical value is 3301."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:76
+msgid "box.cfg { listen = 3301 }\n"
+"\n"
+"box.cfg { listen = \"127.0.0.1:3301\" }"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:84
+msgid "A replica also binds to this port, and accepts connections, but these connections can only serve reads until the replica becomes a master."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:87
+msgid "Starting from version 2.10.0, you can specify :ref:`several URIs <index-uri-several>`, and the port number is always stored as an integer value."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:90
+msgid "Type: integer or string"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:92
+msgid "Environment variable: TT_LISTEN"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:99
+msgid "Since version 1.7.4. A directory where memtx stores snapshot (.snap) files. Can be relative to :ref:`work_dir <cfg_basic-work_dir>`. If not specified, defaults to ``work_dir``. See also :ref:`wal_dir <cfg_basic-wal_dir>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:105
+#: ../../doc/reference/configuration/cfg_basic.rst:183
+#: ../../doc/reference/configuration/cfg_basic.rst:229
+msgid "Default: \".\""
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:106
+msgid "Environment variable: TT_MEMTX_DIR"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:113
+msgid "Since version 1.4.9. Store the process id in this file. Can be relative to :ref:`work_dir <cfg_basic-work_dir>`. A typical value is “:file:`tarantool.pid`”."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:119
+msgid "Environment variable: TT_PID_FILE"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:126
+msgid "Since version 1.7.1. Say ``box.cfg{read_only=true...}`` to put the server instance in read-only mode. After this, any requests that try to change persistent data will fail with error :errcode:`ER_READONLY`. Read-only mode should be used for master-replica :ref:`replication <replication>`. Read-only mode does not affect data-change requests for spaces defined as :doc:`temporary </reference/reference_lua/box_schema/space_create>`. Although read-only mode prevents the server from writing to the :ref:`WAL <internals-wal>`, it does not prevent writing diagnostics with the :ref:`log module <log-module>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:138
+msgid "Environment variable: TT_READ_ONLY"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:141
+msgid "Setting ``read_only == true`` affects spaces differently depending on the :ref:`options <space_opts_object>` that were used during :doc:`box.schema.space.create </reference/reference_lua/box_schema/space_create>`, as summarized by this chart:"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:149
+msgid "Option"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:149
+msgid "Can be created?"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:149
+msgid "Can be written to?"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:149
+msgid "Is replicated?"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:149
+msgid "Is persistent?"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:151
+msgid "(default)"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:151
+#: ../../doc/reference/configuration/cfg_basic.rst:151
+#: ../../doc/reference/configuration/cfg_basic.rst:153
+#: ../../doc/reference/configuration/cfg_basic.rst:153
+#: ../../doc/reference/configuration/cfg_basic.rst:153
+#: ../../doc/reference/configuration/cfg_basic.rst:155
+#: ../../doc/reference/configuration/cfg_basic.rst:155
+msgid "no"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:151
+#: ../../doc/reference/configuration/cfg_basic.rst:151
+#: ../../doc/reference/configuration/cfg_basic.rst:153
+#: ../../doc/reference/configuration/cfg_basic.rst:155
+#: ../../doc/reference/configuration/cfg_basic.rst:155
+msgid "yes"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:153
+msgid "temporary"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:155
+msgid "is_local"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:162
+msgid "Since version 2.3.1. The maximum number of bytes in the cache for :ref:`SQL prepared statements <box-sql_box_prepare>`. (The number of bytes that are actually used can be seen with :ref:`box.info.sql().cache.size <box_introspection-box_info>`.)"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:168
+#: ../../doc/reference/configuration/cfg_storage.rst:118
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:111
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:136
+#: ../../doc/reference/configuration/cfg_replication.rst:488
+#: ../../doc/reference/configuration/cfg_replication.rst:506
+#: ../../doc/reference/configuration/cfg_replication.rst:526
+#: ../../doc/reference/configuration/cfg_replication.rst:607
+msgid "Type: number"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:169
+msgid "Default: 5242880"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:170
+msgid "Environment variable: TT_SQL_CACHE_SIZE"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:177
+msgid "Since version 1.7.1. A directory where vinyl files or subdirectories will be stored. Can be relative to :ref:`work_dir <cfg_basic-work_dir>`. If not specified, defaults to ``work_dir``."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:184
+msgid "Environment variable: TT_VINYL_DIR"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:191
+msgid "Since version 1.7.5. The vinyl storage engine has a scheduler which does compaction. When vinyl is low on available memory, the compaction scheduler may be unable to keep up with incoming update requests. In that situation, queries may time out after ``vinyl_timeout`` seconds. This should rarely occur, since normally vinyl would throttle inserts when it is running low on compaction bandwidth. Compaction can also be ordered manually with :doc:`/reference/reference_lua/box_index/compact`."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:201
+#: ../../doc/reference/configuration/cfg_storage.rst:32
+#: ../../doc/reference/configuration/cfg_storage.rst:97
+#: ../../doc/reference/configuration/cfg_storage.rst:134
+#: ../../doc/reference/configuration/cfg_storage.rst:241
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:58
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:90
+#: ../../doc/reference/configuration/cfg_replication.rst:247
+#: ../../doc/reference/configuration/cfg_replication.rst:327
+#: ../../doc/reference/configuration/cfg_replication.rst:345
+#: ../../doc/reference/configuration/cfg_networking.rst:16
+#: ../../doc/reference/configuration/cfg_logging.rst:165
+#: ../../doc/reference/configuration/cfg_feedback.rst:46
+#: ../../doc/reference/configuration/cfg_deprecated.rst:94
+msgid "Type: float"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:202
+msgid "Default: 60"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:203
+msgid "Environment variable: TT_VINYL_TIMEOUT"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:210
+msgid "Since version 1.4.9. UNIX user name to switch to after start."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:214
+msgid "Environment variable: TT_USERNAME"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:221
+msgid "Since version 1.6.2. A directory where write-ahead log (.xlog) files are stored. Can be relative to :ref:`work_dir <cfg_basic-work_dir>`. Sometimes ``wal_dir`` and :ref:`memtx_dir <cfg_basic-memtx_dir>` are specified with different values, so that write-ahead log files and snapshot files can be stored on different disks. If not specified, defaults to ``work_dir``."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:230
+msgid "Environment variable: TT_WAL_DIR"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:237
+msgid "Since version 1.4.9. A directory where database working files will be stored. The server instance switches to ``work_dir`` with :manpage:`chdir(2)` after start. Can be relative to the current directory. If not specified, defaults to the current directory. Other directory parameters may be relative to ``work_dir``, for example:"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:244
+msgid "box.cfg{\n"
+"    work_dir = '/home/user/A',\n"
+"    wal_dir = 'B',\n"
+"    memtx_dir = 'C'\n"
+"}"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:252
+msgid "will put xlog files in ``/home/user/A/B``, snapshot files in ``/home/user/A/C``, and all other files or subdirectories in ``/home/user/A``."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:257
+msgid "Environment variable: TT_WORK_DIR"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:265
+msgid "Since version 1.7.5. The maximum number of threads to use during execution of certain internal processes (currently :ref:`socket.getaddrinfo() <socket-getaddrinfo>` and :ref:`coio_call() <c_api-coio-coio_call>`)."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:271
+#: ../../doc/reference/configuration/cfg_storage.rst:47
+#: ../../doc/reference/configuration/cfg_storage.rst:61
+#: ../../doc/reference/configuration/cfg_storage.rst:147
+#: ../../doc/reference/configuration/cfg_storage.rst:161
+#: ../../doc/reference/configuration/cfg_storage.rst:172
+#: ../../doc/reference/configuration/cfg_storage.rst:186
+#: ../../doc/reference/configuration/cfg_storage.rst:212
+#: ../../doc/reference/configuration/cfg_storage.rst:227
+#: ../../doc/reference/configuration/cfg_storage.rst:254
+#: ../../doc/reference/configuration/cfg_storage.rst:267
+#: ../../doc/reference/configuration/cfg_snapshot_daemon.rst:70
+#: ../../doc/reference/configuration/cfg_snapshot_daemon.rst:100
+#: ../../doc/reference/configuration/cfg_snapshot_daemon.rst:133
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:38
+#: ../../doc/reference/configuration/cfg_replication.rst:272
+#: ../../doc/reference/configuration/cfg_replication.rst:369
+#: ../../doc/reference/configuration/cfg_networking.rst:53
+#: ../../doc/reference/configuration/cfg_networking.rst:72
+#: ../../doc/reference/configuration/cfg_networking.rst:91
+#: ../../doc/reference/configuration/cfg_logging.rst:34
+msgid "Type: integer"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:272
+#: ../../doc/reference/configuration/cfg_storage.rst:268
+msgid "Default: 4"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:273
+msgid "Environment variable: TT_WORKER_POOL_THREADS"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:280
+msgid "Since version 2.2.2. Whether coredump files should include memory allocated for tuples. (This can be large if Tarantool runs under heavy load.) Setting to ``true`` means \"do not include\". In an older version of Tarantool the default value of this parameter was ``false``."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:286
+#: ../../doc/reference/configuration/cfg_feedback.rst:24
+#: ../../doc/reference/configuration/cfg_deprecated.rst:57
+#: ../../doc/reference/configuration/cfg_deprecated.rst:68
+#: ../../doc/reference/configuration/cfg_deprecated.rst:164
+msgid "Default: true"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:287
+msgid "Environment variable: TT_STRIP_CORE"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:294
+msgid "Since version :doc:`2.6.1 </release/2.6.1>`. Enables :ref:`transactional manager <txn_mode_transaction-manager>` if set to ``true``."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:299
+msgid "Environment variable: TT_MEMTX_USE_MVCC_ENGINE"
+msgstr ""
+
+#: ../../doc/reference/configuration/index.rst:25
+msgid "Configuring the storage"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:1
+msgid ":ref:`memtx_memory <cfg_storage-memtx_memory>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:2
+msgid ":ref:`memtx_max_tuple_size <cfg_storage-memtx_max_tuple_size>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:3
+msgid ":ref:`memtx_min_tuple_size <cfg_storage-memtx_min_tuple_size>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:4
+msgid ":ref:`memtx_allocator <cfg_storage-memtx_allocator>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:5
+msgid ":ref:`slab_alloc_factor <cfg_storage-slab_alloc_factor>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:6
+msgid ":ref:`slab_alloc_granularity <cfg_storage-slab_alloc_granularity>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:7
+msgid ":ref:`vinyl_bloom_fpr <cfg_storage-vinyl_bloom_fpr>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:8
+msgid ":ref:`vinyl_cache <cfg_storage-vinyl_cache>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:9
+msgid ":ref:`vinyl_max_tuple_size <cfg_storage-vinyl_max_tuple_size>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:10
+msgid ":ref:`vinyl_memory <cfg_storage-vinyl_memory>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:11
+msgid ":ref:`vinyl_page_size <cfg_storage-vinyl_page_size>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:12
+msgid ":ref:`vinyl_range_size <cfg_storage-vinyl_range_size>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:13
+msgid ":ref:`vinyl_run_count_per_level <cfg_storage-vinyl_run_count_per_level>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:14
+msgid ":ref:`vinyl_run_size_ratio <cfg_storage-vinyl_run_size_ratio>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:15
+msgid ":ref:`vinyl_read_threads <cfg_storage-vinyl_read_threads>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:16
+msgid ":ref:`vinyl_write_threads <cfg_storage-vinyl_write_threads>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:22
+msgid "Since version 1.7.4. How much memory Tarantool allocates to actually store tuples. When the limit is reached, :ref:`INSERT <box_space-insert>` or :ref:`UPDATE <box_space-insert>` requests begin failing with error :errcode:`ER_MEMORY_ISSUE`. The server does not go beyond the ``memtx_memory`` limit to allocate tuples, but there is additional memory used to store indexes and connection information. Depending on actual configuration and workload, Tarantool can consume up to 20% more than the ``memtx_memory`` limit."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:33
+msgid "Default: 256 * 1024 * 1024 = 268435456 bytes"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:34
+msgid "Minimum: 33554432 bytes (32 MB)"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:35
+msgid "Environment variable: TT_MEMTX_MEMORY"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:36
+#: ../../doc/reference/configuration/cfg_storage.rst:175
+msgid "Dynamic: **yes** but it cannot be decreased"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:42
+msgid "Since version 1.7.4. Size of the largest allocation unit, for the memtx storage engine. It can be increased if it is necessary to store large tuples. See also: :ref:`vinyl_max_tuple_size <cfg_storage-vinyl_max_tuple_size>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:48
+#: ../../doc/reference/configuration/cfg_storage.rst:162
+msgid "Default: 1024 * 1024 = 1048576 bytes"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:49
+msgid "Environment variable: TT_MEMTX_MAX_TUPLE_SIZE"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:50
+#: ../../doc/reference/configuration/cfg_storage.rst:150
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:61
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:114
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:139
+#: ../../doc/reference/configuration/cfg_replication.rst:60
+#: ../../doc/reference/configuration/cfg_replication.rst:206
+#: ../../doc/reference/configuration/cfg_replication.rst:230
+#: ../../doc/reference/configuration/cfg_replication.rst:250
+#: ../../doc/reference/configuration/cfg_replication.rst:275
+#: ../../doc/reference/configuration/cfg_replication.rst:299
+#: ../../doc/reference/configuration/cfg_replication.rst:330
+#: ../../doc/reference/configuration/cfg_replication.rst:348
+#: ../../doc/reference/configuration/cfg_replication.rst:372
+#: ../../doc/reference/configuration/cfg_replication.rst:491
+#: ../../doc/reference/configuration/cfg_replication.rst:509
+#: ../../doc/reference/configuration/cfg_replication.rst:579
+#: ../../doc/reference/configuration/cfg_replication.rst:610
+#: ../../doc/reference/configuration/cfg_replication.rst:644
+#: ../../doc/reference/configuration/cfg_networking.rst:19
+#: ../../doc/reference/configuration/cfg_networking.rst:56
+#: ../../doc/reference/configuration/cfg_networking.rst:75
+#: ../../doc/reference/configuration/cfg_logging.rst:37
+#: ../../doc/reference/configuration/cfg_logging.rst:168
+#: ../../doc/reference/configuration/cfg_logging.rst:210
+#: ../../doc/reference/configuration/cfg_logging.rst:234
+#: ../../doc/reference/configuration/cfg_feedback.rst:26
+#: ../../doc/reference/configuration/cfg_feedback.rst:38
+#: ../../doc/reference/configuration/cfg_feedback.rst:49
+msgid "Dynamic: **yes**"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:56
+msgid "Since version 1.7.4. Size of the smallest allocation unit. It can be decreased if most of the tuples are very small. The value must be between 8 and 1048280 inclusive."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:62
+msgid "Default: 16 bytes"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:63
+msgid "Environment variable: TT_MEMTX_MIN_TUPLE_SIZE"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:70
+msgid "Since version :doc:`2.10.0 </release/2.10.0>`. Specifies the allocator used for memtx tuples. The possible values are ``system``  and ``small``:"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:74
+msgid "``system`` is based on the ``malloc`` function. This allocator allocates memory as needed, checking that the quota is not exceeded."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:77
+msgid "``small`` is a special `slab allocator <https://github.com/tarantool/small>`_. Note that this allocator is prone to unresolvable fragmentation on specific workloads, so you can switch to ``system`` in such cases."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:82
+msgid "Default: 'small'"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:83
+msgid "Environment variable: TT_MEMTX_ALLOCATOR"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:84
+msgid "Dynamic: No"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:90
+msgid "The multiplier for computing the sizes of memory chunks that tuples are stored in. A lower value may result in less wasted memory depending on the total amount of memory available and the distribution of item sizes. Allowed values range from 1 to 2."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:95
+msgid "See also: :ref:`slab_alloc_granularity <cfg_storage-slab_alloc_granularity>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:98
+msgid "Default: 1.05"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:99
+msgid "Environment variable: TT_SLAB_ALLOC_FACTOR"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:106
+msgid "Since version :doc:`2.8.1 </release/2.8.1>`. Specifies the granularity (in bytes) of memory allocation in the :ref:`small allocator <cfg_storage-memtx_allocator>`. The value of ``slab_alloc_granularity`` should be a power of two and should be greater than or equal to 4. Below are few recommendations on how to adjust the ``slab_alloc_granularity`` value:"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:111
+msgid "To store small tuples of approximately the same size, set ``slab_alloc_granularity`` to 4 bytes to save memory."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:113
+msgid "To store tuples of different sizes, you can increase the ``slab_alloc_granularity`` value. This results in allocating tuples from the same ``mempool``."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:116
+msgid "See also: :ref:`slab_alloc_factor <cfg_storage-slab_alloc_factor>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:119
+msgid "Default: 8 bytes"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:120
+msgid "Environment variable: TT_SLAB_ALLOC_GRANULARITY"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:127
+msgid "Since version 1.7.4. Bloom filter false positive rate -- the suitable probability of the `bloom filter <https://en.wikipedia.org/wiki/Bloom_filter>`_ to give a wrong result. The ``vinyl_bloom_fpr`` setting is a default value for one of the options in the :ref:`Options for space_object:create_index() <box_space-create_index>` chart."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:135
+msgid "Default: 0.05"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:136
+msgid "Environment variable: TT_VINYL_BLOOM_FPR"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:143
+msgid "Since version 1.7.4. The cache size for the vinyl storage engine. The cache can be resized dynamically."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:148
+#: ../../doc/reference/configuration/cfg_storage.rst:173
+msgid "Default: 128 * 1024 * 1024 = 134217728 bytes"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:149
+msgid "Environment variable: TT_VINYL_CACHE"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:156
+msgid "Since version 1.7.5. Size of the largest allocation unit, for the vinyl storage engine. It can be increased if it is necessary to store large tuples. See also: :ref:`memtx_max_tuple_size <cfg_storage-memtx_max_tuple_size>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:163
+msgid "Environment variable: TT_VINYL_MAX_TUPLE_SIZE"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:170
+msgid "Since version 1.7.4. The maximum number of in-memory bytes that vinyl uses."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:174
+msgid "Environment variable: TT_VINYL_MEMORY"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:181
+msgid "Since version 1.7.4. Page size. Page is a read/write unit for vinyl disk operations. The ``vinyl_page_size`` setting is a default value for one of the options in the :ref:`Options for space_object:create_index() <box_space-create_index>` chart."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:187
+msgid "Default: 8 * 1024 = 8192 bytes"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:188
+msgid "Environment variable: TT_VINYL_PAGE_SIZE"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:195
+msgid "Since version 1.7.4. The default maximum range size for a vinyl index, in bytes. The maximum range size affects the decision whether to :ref:`split <engines-vinyl_split>` a range."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:200
+msgid "If ``vinyl_range_size`` is not nil and not 0, then it is used as the default value for the ``range_size`` option in the :ref:`Options for space_object:create_index() <box_space-create_index>` chart."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:205
+msgid "If ``vinyl_range_size`` is nil or 0, and ``range_size`` is not specified when the index is created, then Tarantool sets a value later depending on performance considerations. To see the actual value, use :doc:`index_object:stat().range_size </reference/reference_lua/box_index/stat>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:210
+msgid "In Tarantool versions prior to 1.10.2, ``vinyl_range_size`` default value was 1073741824."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:213
+#: ../../doc/reference/configuration/cfg_logging.rst:152
+msgid "Default: nil"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:214
+msgid "Environment variable: TT_VINYL_RANGE_SIZE"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:221
+msgid "Since version 1.7.4. The maximal number of runs per level in vinyl LSM tree. If this number is exceeded, a new level is created. The ``vinyl_run_count_per_level`` setting is a default value for one of the options in the :ref:`Options for space_object:create_index() <box_space-create_index>` chart."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:228
+#: ../../doc/reference/configuration/cfg_snapshot_daemon.rst:101
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:91
+msgid "Default: 2"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:229
+msgid "Environment variable: TT_VINYL_RUN_COUNT_PER_LEVEL"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:236
+msgid "Since version 1.7.4. Ratio between the sizes of different levels in the LSM tree. The ``vinyl_run_size_ratio`` setting is a default value for one of the options in the :ref:`Options for space_object:create_index() <box_space-create_index>` chart."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:242
+msgid "Default: 3.5"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:243
+msgid "Environment variable: TT_VINYL_RUN_SIZE_RATIO"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:250
+msgid "Since version 1.7.5. The maximum number of read threads that vinyl can use for some concurrent operations, such as I/O and compression."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:255
+#: ../../doc/reference/configuration/cfg_replication.rst:370
+#: ../../doc/reference/configuration/cfg_replication.rst:527
+#: ../../doc/reference/configuration/cfg_networking.rst:92
+msgid "Default: 1"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:256
+msgid "Environment variable: TT_VINYL_READ_THREADS"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:263
+msgid "Since version 1.7.5. The maximum number of write threads that vinyl can use for some concurrent operations, such as I/O and compression."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_storage.rst:269
+msgid "Environment variable: TT_VINYL_WRITE_THREADS"
+msgstr ""
+
+#: ../../doc/reference/configuration/index.rst:32
+msgid "Checkpoint daemon"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_snapshot_daemon.rst:1
+msgid ":ref:`checkpoint_count <cfg_checkpoint_daemon-checkpoint_count>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_snapshot_daemon.rst:2
+msgid ":ref:`checkpoint_interval <cfg_checkpoint_daemon-checkpoint_interval>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_snapshot_daemon.rst:3
+msgid ":ref:`checkpoint_wal_threshold <cfg_checkpoint_daemon-checkpoint_wal_threshold>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_snapshot_daemon.rst:5
+msgid "The checkpoint daemon is a fiber which is constantly running. At intervals, it may make new :ref:`snapshot (.snap) files <index-box_persistence>` and then may delete old snapshot files."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_snapshot_daemon.rst:9
+msgid "The :ref:`checkpoint_interval <cfg_checkpoint_daemon-checkpoint_interval>` and :ref:`checkpoint_count <cfg_checkpoint_daemon-checkpoint_count>` configuration settings determine how long the intervals are, and how many snapshots should exist before deletions occur."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_snapshot_daemon.rst:16
+msgid "**Tarantool garbage collector**"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_snapshot_daemon.rst:18
+msgid "The checkpoint daemon may activate the Tarantool garbage collector which deletes old files. This garbage collector is distinct from the `Lua garbage collector <https://www.lua.org/manual/5.1/manual.html#2.10>`_ which is for Lua objects, and distinct from a Tarantool garbage collector which specializes in :ref:`handling shard buckets <vshard-gc>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_snapshot_daemon.rst:25
+msgid "If the checkpoint daemon deletes an old snapshot file, then the Tarantool garbage collector will also delete any :ref:`write-ahead log (.xlog) <internals-wal>` files which are older than the snapshot file and which contain information that is present in the snapshot file. It will also delete obsolete vinyl ``.run`` files."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_snapshot_daemon.rst:31
+msgid "The checkpoint daemon and the Tarantool garbage collector will not delete a file if:"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_snapshot_daemon.rst:33
+msgid "a **backup** is ongoing and the file has not been backed up (see :ref:`\"Hot backup\" <admin-backups-hot_backup_vinyl_memtx>`), or"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_snapshot_daemon.rst:36
+msgid "**replication** is ongoing and the file has not been relayed to a replica (see :ref:`\"Replication architecture\" <replication-architecture>`),"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_snapshot_daemon.rst:39
+msgid "a replica is connecting, or"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_snapshot_daemon.rst:41
+msgid "a replica has fallen behind. The progress of each replica is tracked; if a replica's position is far from being up to date, then the server stops to give it a chance to catch up. If an administrator concludes that a replica is permanently down, then the correct procedure is to restart the server, or (preferably) :ref:`remove the replica from the cluster <replication-remove_instances>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_snapshot_daemon.rst:53
+msgid "Since version 1.7.4. The interval between actions by the checkpoint daemon, in seconds. If ``checkpoint_interval`` is set to a value greater than zero, and there is activity which causes change to a database, then the checkpoint daemon will call :doc:`box.snapshot() </reference/reference_lua/box_snapshot>` every ``checkpoint_interval`` seconds, creating a new snapshot file each time. If ``checkpoint_interval`` is set to zero, then the checkpoint daemon is disabled."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_snapshot_daemon.rst:61
+msgid "For example:"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_snapshot_daemon.rst:63
+msgid "box.cfg{checkpoint_interval=60}"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_snapshot_daemon.rst:67
+msgid "will cause the checkpoint daemon to create a new database snapshot once per minute, if there is activity."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_snapshot_daemon.rst:71
+msgid "Default: 3600 (one hour)"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_snapshot_daemon.rst:72
+msgid "Environment variable: TT_CHECKPOINT_INTERVAL"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_snapshot_daemon.rst:79
+msgid "Since version 1.7.4. The maximum number of snapshots that may exist on the :ref:`memtx_dir <cfg_basic-memtx_dir>` directory before the checkpoint daemon will delete old snapshots. If ``checkpoint_count`` equals zero, then the checkpoint daemon does not delete old snapshots. For example:"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_snapshot_daemon.rst:85
+msgid "box.cfg{\n"
+"    checkpoint_interval = 3600,\n"
+"    checkpoint_count  = 10\n"
+"}"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_snapshot_daemon.rst:92
+msgid "will cause the checkpoint daemon to create a new snapshot each hour until it has created ten snapshots. After that, it will delete the oldest snapshot (and any associated write-ahead-log files) after creating a new one."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_snapshot_daemon.rst:96
+msgid "Remember that, as noted earlier, snapshots will not be deleted if replication is ongoing and the file has not been relayed to a replica. Therefore ``checkpoint_count`` has no effect unless all replicas are alive."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_snapshot_daemon.rst:102
+msgid "Environment variable: TT_CHECKPOINT_COUNT"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_snapshot_daemon.rst:109
+msgid "Since version 2.1.2. The threshold for the total size in bytes of all WAL files created since the last checkpoint. Once the configured threshold is exceeded, the WAL thread notifies the checkpoint daemon that it must make a new checkpoint and delete old WAL files."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_snapshot_daemon.rst:114
+msgid "This parameter enables administrators to handle a problem that could occur with calculating how much disk space to allocate for a partition containing WAL files."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_snapshot_daemon.rst:118
+msgid "For example, suppose :ref:`checkpoint_interval <cfg_checkpoint_daemon-checkpoint_interval>` = 2 and :ref:`checkpoint_count <cfg_checkpoint_daemon-checkpoint_count>` = 5 and the average amount that Tarantool writes between each checkpoint interval = 1 GB. Then one could calculate that the necessary amount is (2*5*1) 10GB. But this calculation would be wrong if, instead of writing 1 GB during one checkpoint interval, Tarantool encounters an unusual spike and tries to write 11 GB, causing an operating-system ENOSPC (\"no space\") error. By setting ``checkpoint_wal_threshold`` to a lower value, say 9 GB, an administrator could prevent the error."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_snapshot_daemon.rst:134
+msgid "Default: 10^18 (a large number so in effect there is no limit by default)"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_snapshot_daemon.rst:135
+msgid "Environment variable: TT_CHECKPOINT_WAL_THRESHOLD"
+msgstr ""
+
+#: ../../doc/reference/configuration/index.rst:37
+msgid "Binary logging and snapshots"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:1
+msgid ":ref:`force_recovery <cfg_binary_logging_snapshots-force_recovery>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:2
+msgid ":ref:`wal_max_size <cfg_binary_logging_snapshots-wal_max_size>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:3
+msgid ":ref:`snap_io_rate_limit <cfg_binary_logging_snapshots-snap_io_rate_limit>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:4
+msgid ":ref:`wal_mode <cfg_binary_logging_snapshots-wal_mode>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:5
+msgid ":ref:`wal_dir_rescan_delay <cfg_binary_logging_snapshots-wal_dir_rescan_delay>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:6
+msgid ":ref:`wal_queue_max_size <cfg_binary_logging_snapshots-wal_queue_max_size>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:7
+msgid ":ref:`wal_cleanup_delay <cfg_binary_logging_snapshots-wal_cleanup_delay>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:13
+msgid "Since version 1.7.4. If ``force_recovery`` equals true, Tarantool tries to continue if there is an error while reading a :ref:`snapshot file<index-box_persistence>` (at server instance start) or a :ref:`write-ahead log file<internals-wal>` (at server instance start or when applying an update at a replica): skips invalid records, reads as much data as possible and lets the process finish with a warning. Users can prevent the error from recurring by writing to the database and executing :doc:`box.snapshot() </reference/reference_lua/box_snapshot>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:22
+msgid "Otherwise, Tarantool aborts recovery if there is an error while reading."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:26
+msgid "Environment variable: TT_FORCE_RECOVERY"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:33
+msgid "Since version 1.7.4. The maximum number of bytes in a single write-ahead log file. When a request would cause an .xlog file to become larger than ``wal_max_size``, Tarantool creates another WAL file."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:39
+msgid "Default: 268435456 (256 * 1024 * 1024) bytes"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:40
+msgid "Environment variable: TT_WAL_MAX_SIZE"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:47
+msgid "Since version 1.4.9. Reduce the throttling effect of :doc:`box.snapshot() </reference/reference_lua/box_snapshot>` on INSERT/UPDATE/DELETE performance by setting a limit on how many megabytes per second it can write to disk. The same can be achieved by splitting :ref:`wal_dir <cfg_basic-wal_dir>` and :ref:`memtx_dir <cfg_basic-memtx_dir>` locations and moving snapshots to a separate disk. The limit also affects what :ref:`box.stat.vinyl().regulator <box_introspection-box_stat_vinyl_regulator>` may show for the write rate of dumps to .run and .index files."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:60
+msgid "Environment variable: TT_SNAP_IO_RATE_LIMIT"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:67
+msgid "Since version 1.6.2. Specify fiber-WAL-disk synchronization mode as:"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:69
+msgid "``none``: write-ahead log is not maintained. A node with ``wal_mode = none`` can't be replication master;"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:71
+msgid "``write``: :ref:`fibers <fiber-fibers>` wait for their data to be written to the write-ahead log (no :manpage:`fsync(2)`);"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:73
+msgid "``fsync``: fibers wait for their data, :manpage:`fsync(2)` follows each :manpage:`write(2)`;"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:77
+msgid "Default: \"write\""
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:78
+msgid "Environment variable: TT_WAL_MODE"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:85
+msgid "Since version 1.6.2. Number of seconds between periodic scans of the write-ahead-log file directory, when checking for changes to write-ahead-log files for the sake of :ref:`replication <replication>` or :ref:`hot standby <index-hot_standby>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:92
+msgid "Environment variable: TT_WAL_DIR_RESCAN_DELAY"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:99
+msgid "Since version :doc:`2.8.1 </release/2.8.1>`. The size of the queue (in bytes) used by a :ref:`replica <replication-roles>` to submit new transactions to a :ref:`write-ahead log<internals-wal>` (WAL). This option helps limit the rate at which a replica submits transactions to the WAL. Limiting the queue size might be useful when a replica is trying to sync with a master and reads new transactions faster than writing them to the WAL."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:108
+msgid "You might consider increasing the ``wal_queue_max_size`` value in case of large tuples (approximately one megabyte or larger)."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:112
+msgid "Default: 16777216 bytes"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:113
+msgid "Environment variable: TT_WAL_QUEUE_MAX_SIZE"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:120
+msgid "Since version :doc:`2.6.3 </release/2.6.3>`. The delay (in seconds) used to prevent the :ref:`Tarantool garbage collector <cfg_checkpoint_daemon-garbage-collector>` from immediately removing :ref:`write-ahead log<internals-wal>` files after a node restart. This delay eliminates possible erroneous situations when the master deletes WALs needed by :ref:`replicas <replication-roles>` after restart. As a consequence, replicas sync with the master faster after its restart and don't need to download all the data again."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:128
+msgid "Once all the nodes in the replica set are up and running, automatic cleanup is started again even if ``wal_cleanup_delay`` has not expired."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:133
+msgid "The ``wal_cleanup_delay`` option has no effect on nodes running as :ref:`anonymous replicas<cfg_replication-replication_anon>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:137
+msgid "Default: 14400 seconds"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_binary_logging_snapshots.rst:138
+msgid "Environment variable: TT_WAL_CLEANUP_DELAY"
+msgstr ""
+
+#: ../../doc/reference/configuration/index.rst:44
+msgid "Hot standby"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_hot_standby.rst:3
+msgid "Since version 1.7.4. Whether to start the server in **hot standby** mode."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_hot_standby.rst:5
+msgid "Hot standby is a feature which provides a simple form of failover without :ref:`replication <replication>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_hot_standby.rst:8
+msgid "The expectation is that there will be two instances of the server using the same configuration. The first one to start will be the \"primary\" instance. The second one to start will be the \"standby\" instance."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_hot_standby.rst:12
+msgid "To initiate the standby instance, start a second instance of the Tarantool server on the same computer with the same :doc:`box.cfg </reference/reference_lua/box_cfg>` configuration settings -- including the same directories and same non-null URIs -- and with the additional configuration setting ``hot_standby = true``. Expect to see a notification ending with the words ``I> Entering hot standby mode``. This is fine. It means that the standby instance is ready to take over if the primary instance goes down."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_hot_standby.rst:22
+msgid "The standby instance will initialize and will try to take a lock on :ref:`wal_dir <cfg_basic-wal_dir>`, but will fail because the primary instance has made a lock on ``wal_dir``. So the standby instance goes into a loop, reading the write ahead log which the primary instance is writing (so the two instances are always in sync), and trying to take the lock. If the primary instance goes down for any reason, the lock will be released. In this case, the standby instance will succeed in taking the lock, will connect on the :ref:`listen <cfg_basic-listen>` address and will become the primary instance. Expect to see a notification ending with the words ``I> ready to accept requests``."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_hot_standby.rst:35
+msgid "Thus there is no noticeable downtime if the primary instance goes down."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_hot_standby.rst:37
+msgid "Hot standby feature has no effect:"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_hot_standby.rst:39
+msgid "if :ref:`wal_dir_rescan_delay = a large number <cfg_binary_logging_snapshots-wal_dir_rescan_delay>` (on Mac OS and FreeBSD); on these platforms, it is designed so that the loop repeats every ``wal_dir_rescan_delay`` seconds."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_hot_standby.rst:43
+msgid "if :ref:`wal_mode = 'none' <cfg_binary_logging_snapshots-wal_mode>`; it is designed to work with ``wal_mode = 'write'`` or ``wal_mode = 'fsync'``."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_hot_standby.rst:45
+msgid "for spaces created with :doc:`engine = 'vinyl' </reference/reference_lua/box_schema/space_create>`; it is designed to work for spaces created with ``engine = 'memtx'``."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_hot_standby.rst:50
+msgid "Environment variable: TT_HOT_STANDBY"
+msgstr ""
+
+#: ../../doc/reference/configuration/index.rst:49
+msgid "Replication"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:1
+msgid ":ref:`replication <cfg_replication-replication>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:2
+msgid ":ref:`replication_anon <cfg_replication-replication_anon>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:3
+msgid ":ref:`bootstrap_strategy <cfg_replication-bootstrap_strategy>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:4
+msgid ":ref:`replication_connect_timeout <cfg_replication-replication_connect_timeout>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:5
+msgid ":ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:6
+msgid ":ref:`replication_skip_conflict <cfg_replication-replication_skip_conflict>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:7
+msgid ":ref:`replication_sync_lag <cfg_replication-replication_sync_lag>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:8
+msgid ":ref:`replication_sync_timeout <cfg_replication-replication_sync_timeout>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:9
+msgid ":ref:`replication_timeout <cfg_replication-replication_timeout>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:10
+msgid ":ref:`replicaset_uuid <cfg_replication-replicaset_uuid>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:11
+msgid ":ref:`instance_uuid <cfg_replication-instance_uuid>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:12
+msgid ":ref:`replication_synchro_quorum <cfg_replication-replication_synchro_quorum>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:13
+msgid ":ref:`replication_synchro_timeout <cfg_replication-replication_synchro_timeout>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:14
+msgid ":ref:`replication_threads <cfg_replication-replication_replication_threads>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:15
+msgid ":ref:`election_mode <cfg_replication-election_mode>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:16
+msgid ":ref:`election_timeout <cfg_replication-election_timeout>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:17
+msgid ":ref:`election_fencing_mode <cfg_replication-election_fencing_mode>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:23
+msgid "Since version 1.7.4. If ``replication`` is not an empty string, the instance is considered to be a Tarantool :ref:`replica <replication>`. The replica will try to connect to the master specified in ``replication`` with a :ref:`URI <index-uri>` (Universal Resource Identifier), for example:"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:29
+msgid ":samp:`{konstantin}:{secret_password}@{tarantool.org}:{3301}`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:31
+msgid "If there is more than one replication source in a replica set, specify an array of URIs, for example (replace 'uri' and 'uri2' in this example with valid URIs):"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:35
+msgid ":extsamp:`box.cfg{ replication = { {*{'uri1'}*}, {*{'uri2'}*} } }`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:39
+msgid "Starting from version 2.10.0, there is a number of other ways for specifying several URIs. See :ref:`syntax examples <index-uri-several>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:41
+msgid "If one of the URIs is \"self\" -- that is, if one of the URIs is for the instance where ``box.cfg{}`` is being executed -- then it is ignored. Thus, it is possible to use the same ``replication`` specification on multiple server instances, as shown in :ref:`these examples <replication-bootstrap>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:47
+msgid "The default user name is 'guest'."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:49
+msgid "A read-only replica does not accept data-change requests on the :ref:`listen <cfg_basic-listen>` port."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:52
+msgid "The ``replication`` parameter is dynamic, that is, to enter master mode, simply set ``replication`` to an empty string and issue:"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:55
+msgid ":extsamp:`box.cfg{ replication = {*{new-value}*} }`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:59
+msgid "Environment variable: TT_REPLICATION"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:66
+msgid "Since version 2.3.1. A Tarantool replica can be anonymous. This type of replica is read-only (but you still can write to temporary and replica-local spaces), and it isn't present in the ``_cluster`` table."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:71
+msgid "Since an anonymous replica isn't registered in the ``_cluster`` table, there is no limitation for anonymous replicas count in a replica set: you can have as many of them as you want."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:75
+msgid "In order to make a replica anonymous, pass the option ``replication_anon=true`` to ``box.cfg`` and set ``read_only`` to ``true``."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:79
+msgid "Let's go through anonymous replica bootstrap. Suppose we have got a master configured with"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:82
+msgid "box.cfg{listen=3301}"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:86
+msgid "and created a local space called \"loc\":"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:88
+msgid "box.schema.space.create('loc', {is_local=true})\n"
+"box.space.loc:create_index(\"pk\")"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:93
+msgid "Now, to configure an anonymous replica, we need to issue ``box.cfg``, as usual."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:96
+msgid "box.cfg{replication_anon=true, read_only=true, replication=3301}"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:100
+msgid "As mentioned above, ``replication_anon`` may be set to ``true`` only together with ``read_only``. The instance will fetch the master's snapshot and start following its changes. It will receive no id, so its id value will remain zero."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:105
+msgid "tarantool> box.info.id\n"
+"---\n"
+"- 0\n"
+"...\n"
+"tarantool> box.info.replication\n"
+"---\n"
+"- 1:\n"
+"    id: 1\n"
+"    uuid: 3c84f8d9-e34d-4651-969c-3d0ed214c60f\n"
+"    lsn: 4\n"
+"    upstream:\n"
+"    status: follow\n"
+"    idle: 0.6912029999985\n"
+"    peer:\n"
+"    lag: 0.00014615058898926\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:124
+msgid "Now we can use the replica. For example, we can do inserts into the local space:"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:127
+msgid "tarantool> for i = 1,10 do\n"
+"    > box.space.loc:insert{i}\n"
+"    > end\n"
+"---\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:135
+msgid "Note that while the instance is anonymous, it will increase the 0-th component of its ``vclock``:"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:138
+msgid "tarantool> box.info.vclock\n"
+"---\n"
+"- {0: 10, 1: 4}\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:145
+msgid "Let's now promote the anonymous replica to a regular one:"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:147
+msgid "tarantool> box.cfg{replication_anon=false}\n"
+"2019-12-13 20:34:37.423 [71329] main I> assigned id 2 to replica 6a9c2ed2-b9e1-4c57-a0e8-51a46def7661\n"
+"2019-12-13 20:34:37.424 [71329] main/102/interactive I> set 'replication_anon' configuration option to false\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> 2019-12-13 20:34:37.424 [71329] main/117/applier/ I> subscribed\n"
+"2019-12-13 20:34:37.424 [71329] main/117/applier/ I> remote vclock {1: 5} local vclock {0: 10, 1: 5}\n"
+"2019-12-13 20:34:37.425 [71329] main/118/applierw/ C> leaving orphan mode"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:159
+msgid "The replica has just received an id equal to 2. We can make it read-write now."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:161
+msgid "tarantool> box.cfg{read_only=false}\n"
+"2019-12-13 20:35:46.392 [71329] main/102/interactive I> set 'read_only' configuration option to false\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> box.schema.space.create('test')\n"
+"---\n"
+"- engine: memtx\n"
+"before_replace: 'function: 0x01109f9dc8'\n"
+"on_replace: 'function: 0x01109f9d90'\n"
+"ck_constraint: []\n"
+"field_count: 0\n"
+"temporary: false\n"
+"index: []\n"
+"is_local: false\n"
+"enabled: false\n"
+"name: test\n"
+"id: 513\n"
+"- created\n"
+"...\n"
+"\n"
+"tarantool> box.info.vclock\n"
+"---\n"
+"- {0: 10, 1: 5, 2: 2}\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:189
+msgid "Now the replica tracks its changes in the 2nd ``vclock`` component, as expected. It can also become a replication master from now on."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:193
+msgid "Notes:"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:195
+msgid "You cannot replicate from an anonymous instance."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:196
+msgid "To promote an anonymous instance to a regular one, first start it as anonymous, and only then issue ``box.cfg{replication_anon=false}``"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:199
+msgid "In order for the deanonymization to succeed, the instance must replicate from some read-write instance, otherwise it cannot be added to the ``_cluster`` table."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:205
+msgid "Environment variable: TT_REPLICATION_ANON"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:213
+msgid "Since :doc:`2.11.0 </release/2.11.0>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:215
+msgid "Specifies a strategy used to bootstrap a :ref:`replica set <replication-bootstrap>`. The following strategies are available:"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:218
+msgid "``auto``: a node doesn't boot if a half or more of other nodes in a replica set are not connected. For example, if the :ref:`replication <cfg_replication-replication>` parameter contains 2 or 3 nodes, a node requires 2 connected instances. In the case of 4 or 5 nodes, at least 3 connected instances are required. Moreover, a bootstrap leader fails to boot unless every connected node has chosen it as a bootstrap leader."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:224
+msgid "``legacy`` (deprecated since :doc:`2.11.0 </release/2.11.0>`): a node requires the :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>` number of other nodes to be connected. This option is added to keep the compatibility with the current versions of Cartridge and might be removed in the future."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:228
+msgid "Default: auto"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:229
+msgid "Environment variable: TT_BOOTSTRAP_STRATEGY"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:237
+msgid "Since version 1.9.0. The number of seconds that a replica will wait when trying to connect to a master in a cluster. See :ref:`orphan status <replication-orphan_status>` for details."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:242
+msgid "This parameter is different from :ref:`replication_timeout <cfg_replication-replication_timeout>`, which a master uses to disconnect a replica when the master receives no acknowledgments of heartbeat messages."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:248
+msgid "Default: 30"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:249
+msgid "Environment variable: TT_REPLICATION_CONNECT_TIMEOUT"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:256
+msgid "Deprecated since :doc:`2.11.0 </release/2.11.0>`. This option is in effect if :ref:`bootstrap_strategy <cfg_replication-bootstrap_strategy>` is set to ``legacy``."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:259
+msgid "Specifies the number of nodes to be up and running to start a replica set. This parameter has effect during :ref:`bootstrap <replication-leader>` or :ref:`configuration update <replication-configuration_update>`. Setting ``replication_connect_quorum`` to ``0`` makes Tarantool require no immediate reconnect only in case of recovery. See :ref:`Orphan status <replication-orphan_status>` for details."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:266
+#: ../../doc/reference/configuration/cfg_replication.rst:290
+#: ../../doc/reference/configuration/cfg_replication.rst:413
+#: ../../doc/reference/configuration/cfg_replication.rst:437
+msgid "Example:"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:268
+msgid "box.cfg { replication_connect_quorum = 2 }"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:274
+msgid "Environment variable: TT_REPLICATION_CONNECT_QUORUM"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:281
+msgid "Since version 1.10.1. By default, if a replica adds a unique key that another replica has added, replication :ref:`stops <replication-replication_stops>` with error = ER_TUPLE_FOUND."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:286
+msgid "However, by specifying ``replication_skip_conflict = true``, users can state that such errors may be ignored. So instead of saving the broken transaction to the xlog, it will be written there as ``NOP`` (No operation)."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:292
+msgid "box.cfg{replication_skip_conflict=true}"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:298
+msgid "Environment variable: TT_REPLICATION_SKIP_CONFLICT"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:304
+msgid "``replication_skip_conflict = true`` is recommended to be used only for manual replication recovery."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:311
+msgid "Since version 1.9.0. The maximum :ref:`lag <box_info_replication_upstream_lag>` allowed for a replica. When a replica :ref:`syncs <replication-orphan_status>` (gets updates from a master), it may not catch up completely. The number of seconds that the replica is behind the master is called the \"lag\". Syncing is considered to be complete when the replica's lag is less than or equal to ``replication_sync_lag``."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:319
+msgid "If a user sets ``replication_sync_lag`` to nil or to 365 * 100 * 86400 (TIMEOUT_INFINITY), then lag does not matter -- the replica is always considered to be \"synced\". Also, the lag is ignored (assumed to be infinite) in case the master is running Tarantool older than 1.7.7, which does not send :ref:`heartbeat messages <heartbeat>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:324
+msgid "This parameter is ignored during bootstrap. See :ref:`orphan status <replication-orphan_status>` for details."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:328
+msgid "Default: 10"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:329
+msgid "Environment variable: TT_REPLICATION_SYNC_LAG"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:336
+msgid "Since version 1.10.2. The number of seconds that a node waits when trying to sync with other nodes in a replica set (see :ref:`bootstrap_strategy <cfg_replication-bootstrap_strategy>`), after connecting or during :ref:`configuration update <replication-configuration_update>`. This could fail indefinitely if ``replication_sync_lag`` is smaller than network latency, or if the replica cannot keep pace with master updates. If ``replication_sync_timeout`` expires, the replica enters :ref:`orphan status <replication-orphan_status>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:346
+msgid "Default: 300"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:347
+msgid "Environment variable: TT_REPLICATION_SYNC_TIMEOUT"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:352
+msgid "The default ``replication_sync_timeout`` value is going to be changed in future versions from ``300`` to ``0``. You can learn the reasoning behind this decision from the :ref:`Default value for replication_sync_timeout <compat-option-replication-timeout>` topic, which also describes how to try the new behavior in the current version."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:359
+msgid "Since version 1.7.5. If the master has no updates to send to the replicas, it sends heartbeat messages every ``replication_timeout`` seconds, and each replica sends an ACK packet back."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:363
+msgid "Both master and replicas are programmed to drop the connection if they get no response in four ``replication_timeout`` periods. If the connection is dropped, a replica tries to reconnect to the master."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:367
+msgid "See more in :ref:`Monitoring a replica set <replication-monitoring>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:371
+msgid "Environment variable: TT_REPLICATION_TIMEOUT"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:378
+msgid "Since version 1.9.0. As described in section :ref:`\"Replication architecture\" <replication-architecture>`, each replica set is identified by a `universally unique identifier <https://en.wikipedia.org/wiki/Universally_unique_identifier>`_ called **replica set UUID**, and each instance is identified by an **instance UUID**."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:385
+msgid "Ordinarily it is sufficient to let the system generate and format the UUID strings which will be permanently stored."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:388
+msgid "However, some administrators may prefer to store Tarantool configuration information in a central repository, for example `Apache ZooKeeper <https://zookeeper.apache.org>`_. Such administrators can assign their own UUID values for either -- or both -- instances (:ref:`instance_uuid <cfg_replication-instance_uuid>`) and replica set (``replicaset_uuid``), when starting up for the first time."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:395
+msgid "General rules:"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:397
+msgid "The values must be true unique identifiers, not shared by other instances or replica sets within the common infrastructure."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:400
+msgid "The values must be used consistently, not changed after initial setup (the initial values are stored in :ref:`snapshot files <index-box_persistence>` and are checked whenever the system is restarted)."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:404
+msgid "The values must comply with `RFC 4122 <https://tools.ietf.org/html/rfc4122>`_. The `nil UUID <https://tools.ietf.org/html/rfc4122#section-4.1.7>`_ is not allowed."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:408
+msgid "The UUID format includes sixteen octets represented as 32 hexadecimal (base 16) digits, displayed in five groups separated by hyphens, in the form ``8-4-4-4-12`` for a total of 36 characters (32 alphanumeric characters and four hyphens)."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:415
+msgid "box.cfg{replicaset_uuid='7b853d13-508b-4b8e-82e6-806f088ea6e9'}"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:421
+msgid "Environment variable: TT_REPLICASET_UUID"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:428
+msgid "Since version 1.9.0. For replication administration purposes, it is possible to set the `universally unique identifiers <https://en.wikipedia.org/wiki/Universally_unique_identifier>`_ of the instance (``instance_uuid``) and the replica set (``replicaset_uuid``), instead of having the system generate the values."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:434
+msgid "See the description of :ref:`replicaset_uuid <cfg_replication-replicaset_uuid>` parameter for details."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:439
+msgid "box.cfg{instance_uuid='037fec43-18a9-4e12-a684-a42b716fcd02'}"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:445
+msgid "Environment variable: TT_INSTANCE_UUID"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:452
+msgid "Since version :doc:`2.5.1 </release/2.5.1>`. For :ref:`synchronous replication <repl_sync>` only. This option tells how many replicas should confirm the receipt of a synchronous transaction before it can finish its commit."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:457
+msgid "Since version :doc:`2.5.3 </release/2.5.3>`, the option supports dynamic evaluation of the quorum number. That is, the number of quorum can be specified not as a constant number, but as a function instead. In this case, the option returns the formula evaluated. The result is treated as an integer number. Once any replicas are added or removed, the expression is re-evaluated automatically."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:464
+msgid "For example,"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:466
+msgid "box.cfg{replication_synchro_quorum = \"N / 2 + 1\"}"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:470
+msgid "Where `N` is a current number of registered replicas in a cluster."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:472
+msgid "Keep in mind that the example above represents a canonical quorum definition. The formula ``at least 50% of the cluster size + 1`` guarantees data reliability. Using a value less than the canonical one might lead to unexpected results, including a :ref:`split-brain <repl_leader_elect_splitbrain>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:477
+msgid "Since version :doc:`2.10.0 </release/2.10.0>`, this option does not account for anonymous replicas."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:480
+msgid "The default value for this parameter is ``N / 2 + 1``."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:482
+#: ../../doc/reference/configuration/cfg_replication.rst:502
+msgid "It is not used on replicas, so if the master dies, the pending synchronous transactions will be kept waiting on the replicas until a new master is elected."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:485
+msgid "If the value for this option is set to ``1``, the synchronous transactions work like asynchronous when not configured. `1` means that successful WAL write to the master is enough to commit."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:489
+msgid "Default: N / 2 + 1 (before version :doc:`2.10.0 </release/2.10.0>`, the default value was 1)"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:490
+msgid "Environment variable: TT_REPLICATION_SYNCHRO_QUORUM"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:497
+msgid "Since version :doc:`2.5.1 </release/2.5.1>`. For :ref:`synchronous replication <repl_sync>` only. Tells how many seconds to wait for a synchronous transaction quorum replication until it is declared failed and is rolled back."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:507
+#: ../../doc/reference/configuration/cfg_replication.rst:608
+#: ../../doc/reference/configuration/cfg_logging.rst:35
+msgid "Default: 5"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:508
+msgid "Environment variable: TT_REPLICATION_SYNCHRO_TIMEOUT"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:515
+msgid "Since version :doc:`2.10.0 </release/2.10.0>`. The number of threads spawned to decode the incoming replication data."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:518
+msgid "The default value is `1`. It means that a single separate thread handles all the incoming replication streams. In most cases, one thread is enough for all incoming data. Therefore, it is likely that the user will not need to set this configuration option."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:523
+msgid "Possible values range from 1 to 1000. If there are multiple replication threads, connections to serve are distributed evenly between the threads."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:528
+msgid "Possible values: from 1 to 1000"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:529
+msgid "Environment variable: TT_REPLICATION_THREADS"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:530
+msgid "Dynamic: **no**"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:536
+msgid "Since version :doc:`2.6.1 </release/2.6.1>`. Specifies the role of a replica set node in the :ref:`leader election process <repl_leader_elect>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:540
+msgid "Possible values:"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:542
+msgid "off"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:543
+msgid "voter"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:544
+msgid "candidate"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:545
+msgid "manual."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:547
+msgid "Participation of a replica set node in the automated leader election can be turned on and off by this option."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:550
+msgid "The default value is ``off``. All nodes that have values other than ``off`` run the Raft state machine internally talking to other nodes according to the Raft leader election protocol. When the option is ``off``, the node accepts Raft messages from other nodes, but it doesn't participate in the election activities, and this doesn't affect the node's state. So, for example, if a node is not a leader but it has ``election_mode = 'off'``, it is writable anyway."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:558
+msgid "You can control which nodes can become a leader. If you want a node to participate in the election process but don't want that it becomes a leaders, set the ``election_mode`` option to ``voter``. In this case, the election works as usual, this particular node will vote for other nodes, but won't become a leader."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:564
+msgid "If the node should be able to become a leader, use ``election_mode = 'candidate'``."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:566
+msgid "Since version :doc:`2.8.2 </release/2.8.2>`, the manual election mode is introduced. It may be used when a user wants to control which instance is the leader explicitly instead of relying on the Raft election algorithm."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:570
+msgid "When an instance is configured with the ``election_mode='manual'``, it behaves as follows:"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:572
+msgid "By default, the instance acts like a voter -- it is read-only and may vote for other instances that are candidates."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:573
+msgid "Once :ref:`box.ctl.promote() <box_ctl-promote>` is called, the instance becomes a candidate and starts a new election round. If the instance wins the elections, it becomes a leader, but won't participate in any new elections."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:577
+msgid "Default: 'off'"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:578
+msgid "Environment variable: TT_ELECTION_MODE"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:585
+msgid "Since version :doc:`2.6.1 </release/2.6.1>`. Specifies the timeout between election rounds in the :ref:`leader election process <repl_leader_elect>` if the previous round ended up with a split-vote."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:590
+msgid "In the :ref:`leader election process <repl_leader_elect_process>`, there can be an election timeout for the case of a split-vote. The timeout can be configured using this option; the default value is 5 seconds."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:595
+msgid "It is quite big, and for most of the cases it can be freely lowered to 300-400 ms. It can be a floating point value (300 ms would be ``box.cfg{election_timeout = 0.3}``)."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:599
+msgid "To avoid the split vote repeat, the timeout is randomized on each node during every new election, from 100% to 110% of the original timeout value. For example, if the timeout is 300 ms and there are 3 nodes started the election simultaneously in the same term, they can set their election timeouts to 300, 310, and 320 respectively, or to 305, 302, and 324, and so on. In that way, the votes will never be split because the election on different nodes won't be restarted simultaneously."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:609
+msgid "Environment variable: TT_ELECTION_TIMEOUT"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:616
+msgid "Since version :doc:`2.11.0 </release/2.11.0>`. In earlier Tarantool versions, use :ref:`election_fencing_enabled <cfg_election-election_fencing_enabled_deprecated>` instead."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:619
+msgid "Specifies the :ref:`leader fencing mode <repl_leader_elect_fencing>` that affects the leader election process. When the parameter is set to ``soft`` or ``strict``, the leader resigns its leadership if it has less than :ref:`replication_synchro_quorum <cfg_replication-replication_synchro_quorum>` of alive connections to the cluster nodes. The resigning leader receives the status of a :ref:`follower <repl_leader_elect>` in the current election term and becomes read-only."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:628
+msgid "In ``soft`` mode, a connection is considered dead if there are no responses for :ref:`4*replication_timeout <cfg_replication-replication_timeout>` seconds both on the current leader and the followers."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:631
+msgid "In ``strict`` mode, a connection is considered dead if there are no responses for :ref:`2*replication_timeout <cfg_replication-replication_timeout>` seconds on the current leader and :ref:`4*replication_timeout <cfg_replication-replication_timeout>` seconds on the followers. This improves chances that there is only one leader at any time."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:637
+msgid "Fencing applies to the instances that have the :ref:`election_mode <cfg_replication-election_mode>` set to ``candidate`` or ``manual``. To turn off :ref:`leader fencing <repl_leader_elect_fencing>`, set ``election_fencing_mode`` to ``off``."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:642
+msgid "Default: 'soft'"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_replication.rst:643
+msgid "Environment variable: TT_ELECTION_FENCING_MODE"
+msgstr ""
+
+#: ../../doc/reference/configuration/index.rst:54
+msgid "Networking"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_networking.rst:1
+msgid ":ref:`io_collect_interval <cfg_networking-io_collect_interval>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_networking.rst:2
+msgid ":ref:`net_msg_max <cfg_networking-net_msg_max>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_networking.rst:3
+msgid ":ref:`readahead <cfg_networking-readahead>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_networking.rst:4
+msgid ":ref:`iproto_threads <cfg_networking-iproto_threads>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_networking.rst:10
+msgid "Since version 1.4.9. The instance will sleep for io_collect_interval seconds between iterations of the event loop. Can be used to reduce CPU load in deployments in which the number of client connections is large, but requests are not so frequent (for example, each connection issues just a handful of requests per second)."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_networking.rst:18
+msgid "Environment variable: TT_IO_COLLECT_INTERVAL"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_networking.rst:25
+msgid "Since version 1.10.1. To handle messages, Tarantool allocates fibers. To prevent fiber overhead from affecting the whole system, Tarantool restricts how many messages the fibers handle, so that some pending requests are blocked."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_networking.rst:30
+msgid "On powerful systems, increase ``net_msg_max`` and the scheduler will immediately start processing pending requests."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_networking.rst:33
+msgid "On weaker systems, decrease ``net_msg_max`` and the overhead may decrease although this may take some time because the scheduler must wait until already-running requests finish."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_networking.rst:37
+msgid "When ``net_msg_max`` is reached, Tarantool suspends processing of incoming packages until it has processed earlier messages. This is not a direct restriction of the number of fibers that handle network messages, rather it is a system-wide restriction of channel bandwidth. This in turn causes restriction of the number of incoming network messages that the :ref:`transaction processor thread <thread_model>` handles, and therefore indirectly affects the fibers that handle network messages. (The number of fibers is smaller than the number of messages because messages can be released as soon as they are delivered, while incoming requests might not be processed until some time after delivery.)"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_networking.rst:51
+msgid "On typical systems, the default value (768) is correct."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_networking.rst:54
+msgid "Default: 768"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_networking.rst:55
+msgid "Environment variable: TT_NET_MSG_MAX"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_networking.rst:62
+msgid "Since version 1.6.2. The size of the read-ahead buffer associated with a client connection. The larger the buffer, the more memory an active connection consumes and the more requests can be read from the operating system buffer in a single system call. The rule of thumb is to make sure the buffer can contain at least a few dozen requests. Therefore, if a typical tuple in a request is large, e.g. a few kilobytes or even megabytes, the read-ahead buffer size should be increased. If batched request processing is not used, it’s prudent to leave this setting at its default."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_networking.rst:73
+msgid "Default: 16320"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_networking.rst:74
+msgid "Environment variable: TT_READAHEAD"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_networking.rst:81
+msgid "Since version :doc:`2.8.1 </release/2.8.1>`. The number of :ref:`network threads <thread_model>`. There can be unusual workloads where the network thread is 100% loaded and the transaction processor thread is not, so the network thread is a bottleneck. In that case set ``iproto_threads`` to 2 or more. The operating system kernel will determine which connection goes to which thread."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_networking.rst:89
+msgid "On typical systems, the default value (1) is correct."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_networking.rst:93
+msgid "Environment variable: TT_IPROTO_THREADS"
+msgstr ""
+
+#: ../../doc/reference/configuration/index.rst:59
+msgid "Logging"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:3
+msgid "This section provides information on how to configure options related to logging. You can also use the :ref:`log module <log-module>` to configure logging in your application."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:7
+msgid ":ref:`log_level <cfg_logging-log_level>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:8
+msgid ":ref:`log <cfg_logging-log>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:9
+msgid ":ref:`log_nonblock <cfg_logging-log_nonblock>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:10
+msgid ":ref:`too_long_threshold <cfg_logging-too_long_threshold>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:11
+msgid ":ref:`log_format <cfg_logging-log_format>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:12
+msgid ":ref:`log_modules <cfg_logging-log_modules>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:18
+msgid "Since version 1.6.2. Specifies the level of detail the :ref:`log <admin-logs>` has. There are seven levels:"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:21
+msgid "1 – ``SYSERROR``"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:22
+msgid "2 – ``ERROR``"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:23
+msgid "3 – ``CRITICAL``"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:24
+msgid "4 – ``WARNING``"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:25
+msgid "5 – ``INFO``"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:26
+msgid "6 – ``VERBOSE``"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:27
+msgid "7 – ``DEBUG``"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:29
+msgid "By setting ``log_level``, you can enable logging of all events with severities above or equal to the given level. Tarantool prints logs to the standard error stream by default. This can be changed with the :ref:`log <cfg_logging-log>` configuration parameter."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:36
+msgid "Environment variable: TT_LOG_LEVEL"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:40
+msgid "Prior to Tarantool 1.7.5 there were only six levels and ``DEBUG`` was level 6. Starting with Tarantool 1.7.5, ``VERBOSE`` is level 6 and ``DEBUG`` is level 7. ``VERBOSE`` is a new level for monitoring repetitive events which would cause too much log writing if ``INFO`` were used instead."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:49
+msgid "Since version 1.7.4. By default, Tarantool sends the log to the standard error stream (``stderr``). If ``log`` is specified, Tarantool can send the log to a:"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:53
+msgid "file"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:55
+msgid "pipe"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:57
+msgid "system logger"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:59
+msgid "Example 1: sending the log to the ``tarantool.log`` file."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:61
+msgid "box.cfg{log = 'tarantool.log'}\n"
+"-- or\n"
+"box.cfg{log = 'file:tarantool.log'}"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:67
+msgid "This opens the file ``tarantool.log`` for output on the server's default directory. If the ``log`` string has no prefix or has the prefix \"file:\", then the string is interpreted as a file path."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:71
+msgid "Example 2: sending the log to a pipe."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:73
+msgid "box.cfg{log = '| cronolog tarantool.log'}\n"
+"-- or\n"
+"box.cfg{log = 'pipe: cronolog tarantool.log'}"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:79
+msgid "This starts the program `cronolog <https://linux.die.net/man/1/cronolog>`_ when the server starts, and sends all log messages to the standard input (``stdin``) of ``cronolog``. If the ``log`` string begins with '|' or has the prefix \"pipe:\", then the string is interpreted as a Unix `pipeline <https://en.wikipedia.org/wiki/Pipeline_%28Unix%29>`_."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:85
+msgid "Example 3: sending the log to syslog."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:87
+msgid "box.cfg{log = 'syslog:identity=tarantool'}\n"
+"-- or\n"
+"box.cfg{log = 'syslog:facility=user'}\n"
+"-- or\n"
+"box.cfg{log = 'syslog:identity=tarantool,facility=user'}\n"
+"-- or\n"
+"box.cfg{log = 'syslog:server=unix:/dev/log'}"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:97
+msgid "If the ``log`` string begins with \"syslog:\", then it is interpreted as a message for the `syslogd <https://linux.die.net/man/8/syslogd>`_ program, which normally is running in the background on any Unix-like platform. The setting can be ``syslog:``, ``syslog:facility=...``, ``syslog:identity=...``, ``syslog:server=...``, or a combination."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:104
+msgid "The ``syslog:identity`` setting is an arbitrary string, which is placed at the beginning of all messages. The default value is \"tarantool\"."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:107
+msgid "The ``syslog:facility`` setting is currently ignored but will be used in the future. The value must be one of the `syslog <https://en.wikipedia.org/wiki/Syslog>`_ keywords, which tell syslogd where the message should go. The possible values are: auth, authpriv, cron, daemon, ftp, kern, lpr, mail, news, security, syslog, user, uucp, local0, local1, local2, local3, local4, local5, local6, local7. The default value is: local7."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:114
+msgid "The ``syslog:server`` setting is the locator for the syslog server. It can be a Unix socket path beginning with \"unix:\", or an ipv4 port number. The default socket value is: ``dev/log`` (on Linux) or ``/var/run/syslog`` (on macOS). The default port value is: 514, the UDP port."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:119
+msgid "When logging to a file, Tarantool reopens the log on `SIGHUP <https://en.wikipedia.org/wiki/SIGHUP>`_. When log is a program, its PID is saved in the :ref:`log.pid <log-pid>` variable. You need to send it a signal to rotate logs."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:125
+msgid "Environment variable: TT_LOG"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:132
+msgid "Since version 1.7.4. If ``log_nonblock`` equals **true**, Tarantool does not block during logging when the system is not ready for writing, and drops the message instead. If :ref:`log_level <cfg_logging-log_level>` is high, and many messages go to the log, setting ``log_nonblock`` to **true** may improve logging performance at the cost of some log messages getting lost."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:139
+msgid "This parameter has effect only if :ref:`log <cfg_logging-log>` is configured to send logs to a pipe or system logger. The default ``log_nonblock`` value is **nil**, which means that blocking behavior corresponds to the logger type:"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:144
+msgid "**false** for ``stderr`` and file loggers."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:146
+msgid "**true** for a pipe and system logger."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:148
+msgid "This is a behavior change: in earlier versions of the Tarantool server, the default value was **true**."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:153
+msgid "Environment variable: TT_LOG_NONBLOCK"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:160
+msgid "Since version 1.6.2. If processing a request takes longer than the given value (in seconds), warn about it in the log. Has effect only if :ref:`log_level <cfg_logging-log_level>` is greater than or equal to 4 (WARNING)."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:166
+msgid "Default: 0.5"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:167
+msgid "Environment variable: TT_TOO_LONG_THRESHOLD"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:174
+msgid "Since version 1.7.6. Log entries have two possible formats:"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:176
+msgid "'plain' (the default), or"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:177
+msgid "'json' (with more detail and with JSON labels)."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:179
+msgid "Here is what a log entry looks like if ``box.cfg{log_format='plain'}``:"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:181
+msgid "2017-10-16 11:36:01.508 [18081] main/101/interactive I> set 'log_format' configuration option to \"plain\""
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:185
+msgid "Here is what a log entry looks like if ``box.cfg{log_format='json'}``:"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:187
+msgid "{\"time\": \"2017-10-16T11:36:17.996-0600\",\n"
+"\"level\": \"INFO\",\n"
+"\"message\": \"set 'log_format' configuration option to \\\"json\\\"\",\n"
+"\"pid\": 18081,|\n"
+"\"cord_name\": \"main\",\n"
+"\"fiber_id\": 101,\n"
+"\"fiber_name\": \"interactive\",\n"
+"\"file\": \"builtin\\/box\\/load_cfg.lua\",\n"
+"\"line\": 317}"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:199
+msgid "The ``log_format='plain'`` entry has a time value, process ID, cord name, :ref:`fiber_id <fiber_object-id>`, :ref:`fiber_name <fiber_object-name_get>`, :ref:`log level <cfg_logging-log_level>`, and message."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:204
+msgid "The ``log_format='json'`` entry has the same fields along with their labels, and in addition has the file name and line number of the Tarantool source."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:208
+msgid "Default: 'plain'"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:209
+msgid "Environment variable: TT_LOG_FORMAT"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:217
+msgid "Since version :doc:`2.11.0 </release/2.11.0>`. Configure the specified log levels (:ref:`log_level <cfg_logging-log_level>`) for different modules."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:220
+msgid "You can specify a logging level for the following module types:"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:222
+msgid "Modules (files) that use the default logger. Example: :ref:`Set log levels for files that use the default logger <cfg_logging-logging_example_existing_modules>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:225
+msgid "Modules that use custom loggers created using the :ref:`log.new() <log-new>` function. Example: :ref:`Set log levels for modules that use custom loggers <cfg_logging-logging_example_new_modules>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:228
+msgid "The ``tarantool`` module that enables you to configure the logging level for Tarantool core messages. Specifically, it configures the logging level for messages logged from non-Lua code, including C modules. Example: :ref:`Set a log level for C modules <cfg_logging-logging_example_tarantool_module>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:231
+msgid "Type: table"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:232
+msgid "Default: blank"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:233
+msgid "Environment variable: TT_LOG_MODULES"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:240
+msgid "**Example 1: Set log levels for files that use the default logger**"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:242
+msgid "Suppose you have two identical modules placed by the following paths: ``test/logging/module1.lua`` and ``test/logging/module2.lua``. These modules use the default logger and look as follows:"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:245
+msgid "return {\n"
+"    say_hello = function()\n"
+"        local log = require('log')\n"
+"        log.info('Info message from module1')\n"
+"    end\n"
+"}\n"
+""
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:249
+msgid "To load these modules in your application, you need to add the corresponding ``require`` directives:"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:251
+msgid "module1 = require('test.logging.module1')\n"
+"module2 = require('test.logging.module2')\n"
+""
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:256
+msgid "To configure logging levels, you need to provide module names corresponding to paths to these modules. In the example below, the ``box_cfg`` variable contains logging settings that can be passed to the ``box.cfg()`` function:"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:259
+msgid "box_cfg = { log_modules = {\n"
+"    ['test.logging.module1'] = 'verbose',\n"
+"    ['test.logging.module2'] = 'error' }\n"
+"}\n"
+""
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:264
+msgid "Given that ``module1`` has the ``verbose`` logging level and ``module2`` has the ``error`` level, calling ``module1.say_hello()`` shows a message but ``module2.say_hello()`` is swallowed:"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:266
+msgid "-- Prints 'info' messages --\n"
+"module1.say_hello()\n"
+"--[[\n"
+"[92617] main/103/interactive/test.logging.module1 I> Info message from module1\n"
+"---\n"
+"...\n"
+"--]]\n"
+"\n"
+"-- Swallows 'info' messages --\n"
+"module2.say_hello()\n"
+"--[[\n"
+"---\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:273
+msgid "**Example 2: Set log levels for modules that use custom loggers**"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:275
+msgid "In the example below, the ``box_cfg`` variable contains logging settings that can be passed to the ``box.cfg()`` function. This example shows how to set the ``verbose`` level for ``module1`` and the ``error`` level for ``module2``:"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:278
+msgid "box_cfg = { log_level = 'warn',\n"
+"            log_modules = {\n"
+"                module1 = 'verbose',\n"
+"                module2 = 'error' }\n"
+"}\n"
+""
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:283
+msgid "To create custom loggers, call the :ref:`log.new() <log-new>` function:"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:285
+msgid "-- Creates new loggers --\n"
+"module1_log = require('log').new('module1')\n"
+"module2_log = require('log').new('module2')\n"
+""
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:290
+msgid "Given that ``module1`` has the ``verbose`` logging level and ``module2`` has the ``error`` level, calling ``module1_log.info()`` shows a message but ``module2_log.info()`` is swallowed:"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:292
+msgid "-- Prints 'info' messages --\n"
+"module1_log.info('Info message from module1')\n"
+"--[[\n"
+"[16300] main/103/interactive/module1 I> Info message from module1\n"
+"---\n"
+"...\n"
+"--]]\n"
+"\n"
+"-- Swallows 'debug' messages --\n"
+"module1_log.debug('Debug message from module1')\n"
+"--[[\n"
+"---\n"
+"...\n"
+"--]]\n"
+"\n"
+"-- Swallows 'info' messages --\n"
+"module2_log.info('Info message from module2')\n"
+"--[[\n"
+"---\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:299
+msgid "**Example 3: Set a log level for C modules**"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:301
+msgid "In the example below, the ``box_cfg`` variable contains logging settings that can be passed to the ``box.cfg()`` function. This example shows how to set the ``info`` level for the ``tarantool`` module:"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:304
+msgid "box_cfg = { log_level = 'warn',\n"
+"            log_modules = { tarantool = 'info' } }\n"
+""
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:309
+msgid "The specified level affects messages logged from C modules:"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:311
+msgid "ffi = require('ffi')\n"
+"\n"
+"-- Prints 'info' messages --\n"
+"ffi.C._say(ffi.C.S_INFO, nil, 0, nil, 'Info message from C module')\n"
+"--[[\n"
+"[6024] main/103/interactive I> Info message from C module\n"
+"---\n"
+"...\n"
+"--]]\n"
+"\n"
+"-- Swallows 'debug' messages --\n"
+"ffi.C._say(ffi.C.S_DEBUG, nil, 0, nil, 'Debug message from C module')\n"
+"--[[\n"
+"---\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:316
+msgid "The example above uses the `LuaJIT ffi library <http://luajit.org/ext_ffi.html>`_ to call C functions provided by the ``say`` module."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:323
+msgid "Logging example"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:325
+msgid "This example illustrates how \"rotation\" works, that is, what happens when the server instance is writing to a log and signals are used when archiving it."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:328
+msgid "Start with two terminal shells: Terminal #1 and Terminal #2."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:330
+msgid "In Terminal #1, start an interactive Tarantool session. Then, use the ``log`` property to send logs to `Log_file` and call ``log.info`` to put a message in the log file."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:334
+msgid "box.cfg{log='Log_file'}\n"
+"log = require('log')\n"
+"log.info('Log Line #1')"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:340
+msgid "In Terminal #2, use the ``mv`` command to rename the log file to `Log_file.bak`."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:2112
+msgid "mv Log_file Log_file.bak"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:347
+msgid "As a result, the next log message will go to `Log_file.bak`."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:349
+msgid "Go back to Terminal #1 and put a message \"Log Line #2\" in the log file."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:351
+msgid "log.info('Log Line #2')"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:355
+msgid "In Terminal #2, use ``ps`` to find the process ID of the Tarantool instance."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:2127
+msgid "ps -A | grep tarantool"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:362
+msgid "In Terminal #2, execute ``kill -HUP`` to send a SIGHUP signal to the Tarantool instance. Tarantool will open `Log_file` again, and the next log message will go to `Log_file`."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:2135
+msgid "kill -HUP *process_id*"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:370
+msgid "The same effect could be accomplished by calling :ref:`log.rotate <log-rotate>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:372
+msgid "In Terminal #1, put a message \"Log Line #3\" in the log file."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:374
+msgid "log.info('Log Line #3')"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:378
+msgid "In Terminal #2, use ``less`` to examine files. `Log_file.bak` will have the following lines ..."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:2151
+msgid "2015-11-30 15:13:06.373 [27469] main/101/interactive I> Log Line #1`\n"
+"2015-11-30 15:14:25.973 [27469] main/101/interactive I> Log Line #2`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:387
+msgid "... and `Log_file` will look like this:"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_logging.rst:2159
+msgid "log file has been reopened\n"
+"2015-11-30 15:15:32.629 [27469] main/101/interactive I> Log Line #3"
+msgstr ""
+
+#: ../../doc/reference/configuration/index.rst:64
+msgid "Feedback"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_feedback.rst:3
+msgid ":ref:`feedback_enabled <cfg_logging-feedback_enabled>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_feedback.rst:4
+msgid ":ref:`feedback_host <cfg_logging-feedback_host>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_feedback.rst:5
+msgid ":ref:`feedback_interval <cfg_logging-feedback_interval>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_feedback.rst:7
+msgid "By default, a Tarantool daemon sends a small packet once per hour, to ``https://feedback.tarantool.io``. The packet contains three values from :ref:`box.info <box_introspection-box_info>`: ``box.info.version``, ``box.info.uuid``, and ``box.info.cluster_uuid``. By changing the feedback configuration parameters, users can adjust or turn off this feature."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_feedback.rst:18
+msgid "Since version 1.10.1. Whether to send feedback."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_feedback.rst:20
+msgid "If this is set to ``true``, feedback will be sent as described above. If this is set to ``false``, no feedback will be sent."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_feedback.rst:25
+msgid "Environment variable: TT_FEEDBACK_ENABLED"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_feedback.rst:32
+msgid "Since version 1.10.1. The address to which the packet is sent. Usually the recipient is Tarantool, but it can be any URL."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_feedback.rst:36
+msgid "Default: ``https://feedback.tarantool.io``"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_feedback.rst:37
+msgid "Environment variable: TT_FEEDBACK_HOST"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_feedback.rst:44
+msgid "Since version 1.10.1. The number of seconds between sendings, usually 3600 (1 hour)."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_feedback.rst:47
+msgid "Default: 3600"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_feedback.rst:48
+msgid "Environment variable: TT_FEEDBACK_INTERVAL"
+msgstr ""
+
+#: ../../doc/reference/configuration/index.rst:69
+msgid "Deprecated parameters"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_deprecated.rst:3
+msgid "These parameters are deprecated since Tarantool version 1.7.4:"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_deprecated.rst:5
+msgid ":ref:`coredump <cfg_basic-coredump_deprecated>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_deprecated.rst:6
+msgid ":ref:`logger <cfg_logging-logger_deprecated>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_deprecated.rst:7
+msgid ":ref:`logger_nonblock <cfg_logging-logger_nonblock_deprecated>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_deprecated.rst:8
+msgid ":ref:`panic_on_snap_error <cfg_binary_logging_snapshots-panic_on_snap_error_deprecated>`,"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_deprecated.rst:9
+msgid ":ref:`panic_on_wal_error <cfg_binary_logging_snapshots-panic_on_wal_error_deprecated>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_deprecated.rst:10
+msgid ":ref:`replication_source <cfg_replication-replication_source_deprecated>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_deprecated.rst:11
+msgid ":ref:`slab_alloc_arena <cfg_storage-slab_alloc_arena_deprecated>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_deprecated.rst:12
+msgid ":ref:`slab_alloc_maximal <cfg_storage-slab_alloc_maximal_deprecated>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_deprecated.rst:13
+msgid ":ref:`slab_alloc_minimal <cfg_storage-slab_alloc_minimal_deprecated>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_deprecated.rst:14
+msgid ":ref:`snap_dir <cfg_basic-snap_dir_deprecated>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_deprecated.rst:15
+msgid ":ref:`snapshot_count <cfg_checkpoint_daemon-snapshot_count_deprecated>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_deprecated.rst:16
+msgid ":ref:`snapshot_period <cfg_checkpoint_daemon-snapshot_period_deprecated>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_deprecated.rst:17
+msgid ":ref:`rows_per_wal <cfg_binary_logging_snapshots-rows_per_wal>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_deprecated.rst:18
+msgid ":ref:`election_fencing_enabled <cfg_election-election_fencing_enabled_deprecated>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_deprecated.rst:24
+msgid "**Deprecated**, do not use."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_deprecated.rst:34
+msgid "**Deprecated** in favor of :ref:`log <cfg_logging-log>`. The parameter was only renamed, while the type, values and semantics remained intact."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_deprecated.rst:42
+msgid "**Deprecated** in favor of :ref:`log_nonblock <cfg_logging-log_nonblock>`. The parameter was only renamed, while the type, values and semantics remained intact."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_deprecated.rst:50
+#: ../../doc/reference/configuration/cfg_deprecated.rst:64
+msgid "**Deprecated** in favor of :ref:`force_recovery <cfg_binary_logging_snapshots-force_recovery>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_deprecated.rst:53
+msgid "If there is an error while reading a snapshot file (at server instance start), abort."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_deprecated.rst:75
+msgid "**Deprecated** in favor of :ref:`replication <cfg_replication-replication>`. The parameter was only renamed, while the type, values and semantics remained intact."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_deprecated.rst:84
+msgid "**Deprecated** in favor of :ref:`memtx_memory <cfg_storage-memtx_memory>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_deprecated.rst:87
+msgid "How much memory Tarantool allocates to actually store tuples, **in gigabytes**. When the limit is reached, INSERT or UPDATE requests begin failing with error :errcode:`ER_MEMORY_ISSUE`. While the server does not go beyond the defined limit to allocate tuples, there is additional memory used to store indexes and connection information. Depending on actual configuration and workload, Tarantool can consume up to 20% more than the limit set here."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_deprecated.rst:95
+msgid "Default: 1.0"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_deprecated.rst:102
+msgid "**Deprecated** in favor of :ref:`memtx_max_tuple_size <cfg_storage-memtx_max_tuple_size>`. The parameter was only renamed, while the type, values and semantics remained intact."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_deprecated.rst:111
+msgid "**Deprecated** in favor of :ref:`memtx_min_tuple_size <cfg_storage-memtx_min_tuple_size>`. The parameter was only renamed, while the type, values and semantics remained intact."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_deprecated.rst:120
+msgid "**Deprecated** in favor of :ref:`memtx_dir <cfg_basic-memtx_dir>`. The parameter was only renamed, while the type, values and semantics remained intact."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_deprecated.rst:128
+msgid "**Deprecated** in favor of :ref:`checkpoint_interval <cfg_checkpoint_daemon-checkpoint_interval>`. The parameter was only renamed, while the type, values and semantics remained intact."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_deprecated.rst:137
+msgid "**Deprecated** in favor of :ref:`checkpoint_count <cfg_checkpoint_daemon-checkpoint_count>`. The parameter was only renamed, while the type, values and semantics remained intact."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_deprecated.rst:146
+msgid "**Deprecated** in favor of :ref:`wal_max_size <cfg_binary_logging_snapshots-wal_max_size>`. The parameter does not allow to properly limit size of WAL logs."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_deprecated.rst:154
+msgid "**Deprecated** in Tarantool v2.11 in favor of :ref:`election_fencing_mode <cfg_replication-election_fencing_mode>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_deprecated.rst:157
+msgid "The parameter does not allow using the ``strict`` fencing mode. Setting to ``true`` is equivalent to setting the ``soft`` :ref:`election_fencing_mode <cfg_replication-election_fencing_mode>`. Setting to ``false`` is equivalent to setting the ``off`` :ref:`election_fencing_mode <cfg_replication-election_fencing_mode>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_deprecated.rst:165
+msgid "Environment variable: TT_ELECTION_FENCING_ENABLED"
+msgstr ""

@@ -1,0 +1,142 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/release/1.10.10.rst:2
+msgid "Tarantool 1.10.10"
+msgstr ""
+
+#: ../../doc/release/1.10.10.rst:4
+msgid "Released on 2021-04-21."
+msgstr ""
+
+#: ../../doc/release/1.10.10.rst:6
+msgid "Release :tarantool-release:`1.10.10`."
+msgstr ""
+
+#: ../../doc/release/1.10.10.rst:7
+msgid "Tagged ``1.10.10-0-gaea7ae7``"
+msgstr ""
+
+#: ../../doc/release/1.10.10.rst:11
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/release/1.10.10.rst:13
+msgid "1.10.10 is the next stable release in the :doc:`long-term support (LTS) version </release/policy>` 1.10.x release series."
+msgstr ""
+
+#: ../../doc/release/1.10.10.rst:17
+msgid "The label \"stable\" means there are 1.10.x-based applications running in production for quite a while without known crashes, incorrect results or other showstopper bugs."
+msgstr ""
+
+#: ../../doc/release/1.10.10.rst:21
+msgid "This release introduces 12 improvements and resolves roughly 3 issues since version :doc:`1.10.9 </release/1.10.9>`."
+msgstr ""
+
+#: ../../doc/release/1.10.10.rst:25
+msgid "Compatibility"
+msgstr ""
+
+#: ../../doc/release/1.10.10.rst:27
+msgid "Tarantool 1.10.x is backward compatible with Tarantool 1.9.x in binary data layout, client-server protocol and replication protocol."
+msgstr ""
+
+#: ../../doc/release/1.10.10.rst:30
+msgid "Please `upgrade <https://www.tarantool.io/en/doc/1.10/book/admin/upgrades/>`__ using the ``box.schema.upgrade()`` procedure to unlock all the new features of the 1.10.x series."
+msgstr ""
+
+#: ../../doc/release/1.10.10.rst:36
+msgid "Functionality added or changed"
+msgstr ""
+
+#: ../../doc/release/1.10.10.rst:39
+#: ../../doc/release/1.10.10.rst:89
+msgid "Build"
+msgstr ""
+
+#: ../../doc/release/1.10.10.rst:41
+msgid "Tarantool build infrastructure now requires CMake version 3.1 or later."
+msgstr ""
+
+#: ../../doc/release/1.10.10.rst:42
+msgid "Binary packages for Fedora 33 (:tarantool-issue:`5502`) are now available."
+msgstr ""
+
+#: ../../doc/release/1.10.10.rst:43
+msgid "Binary packages for CentOS 6 and Debian Jessie won't be published since this version."
+msgstr ""
+
+#: ../../doc/release/1.10.10.rst:44
+msgid "Backported the ``-DENABLE_LTO=ON/OFF`` CMake option (:tarantool-issue:`3117`, :tarantool-issue:`3743`). It is useful for building packages for Fedora 33 (:tarantool-issue:`5502`)."
+msgstr ""
+
+#: ../../doc/release/1.10.10.rst:47
+msgid "The built-in zstd is upgraded from v1.3.3 to v1.4.8 (part of :tarantool-issue:`5502`)."
+msgstr ""
+
+#: ../../doc/release/1.10.10.rst:49
+msgid "``libcurl`` symbols in the case of bundled libcurl are now exported (:tarantool-issue:`5223`, :tarantool-issue:`5542`)."
+msgstr ""
+
+#: ../../doc/release/1.10.10.rst:51
+msgid "SMTP and SMTPS protocols are now enabled in the bundled ``libcurl`` (:tarantool-issue:`4559`)."
+msgstr ""
+
+#: ../../doc/release/1.10.10.rst:52
+msgid "The ``libcurl`` headers are now shipped to system path ``${PREFIX}/include/tarantool`` when ``libcurl`` is included as a bundled library or in a static build (:tarantool-issue:`4559`)."
+msgstr ""
+
+#: ../../doc/release/1.10.10.rst:57
+msgid "Testing"
+msgstr ""
+
+#: ../../doc/release/1.10.10.rst:59
+msgid "Tarantool CI/CD has migrated to GitHub Actions (:tarantool-issue:`5662`)."
+msgstr ""
+
+#: ../../doc/release/1.10.10.rst:60
+msgid "Implemented a self-sufficient LuaJIT testing environment. As a result, LuaJIT build system is now partially ported to CMake and all testing machinery is enclosed within the `tarantool/luajit <https://github.com/tarantool/luajit/>`__ repository (:tarantool-issue:`4862`, :tarantool-issue:`5470`)."
+msgstr ""
+
+#: ../../doc/release/1.10.10.rst:64
+msgid "Python 3 is now the default in the test infrastructure (:tarantool-issue:`5652`)."
+msgstr ""
+
+#: ../../doc/release/1.10.10.rst:67
+msgid "Bugs fixed"
+msgstr ""
+
+#: ../../doc/release/1.10.10.rst:70
+msgid "Core"
+msgstr ""
+
+#: ../../doc/release/1.10.10.rst:72
+msgid "Extensive usage of ``uri`` and ``uuid`` modules with debug log level no longer leads to crashes or corrupted results of the functions from these modules. Same problem is resolved for using these modules from the callbacks passed to ``ffi.gc()``, and for some functions from the modules ``fio``, ``box.tuple``, and ``iconv`` (:tarantool-issue:`5632`)."
+msgstr ""
+
+#: ../../doc/release/1.10.10.rst:80
+msgid "Lua"
+msgstr ""
+
+#: ../../doc/release/1.10.10.rst:82
+msgid "Fixed the `-e` option, when ``tarantool`` used to enter the interactive mode when stdin is a TTY. Now, ``tarantool -e 'print\"Hello\"'`` doesn't enter the interactive mode, but just prints \"Hello\" and exits (:tarantool-issue:`5040`)."
+msgstr ""
+
+#: ../../doc/release/1.10.10.rst:91
+msgid "Recovering with ``force_recovery`` option now deletes vylog files newer than the snapshot. It helps an instance recover after incidents during a checkpoint (:tarantool-issue:`5823`)."
+msgstr ""

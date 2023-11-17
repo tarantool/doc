@@ -1,0 +1,61 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/admin/upgrades/1.6-2.0-downtime.rst:4
+msgid "Upgrade from 1.6 directly to 2.x with downtime"
+msgstr ""
+
+#: ../../doc/book/admin/_includes/1.6-to-2.x-condition.rst:1
+msgid "Versions later that 1.6 have incompatible :ref:`.snap <internals-snapshot>` and :ref:`.xlog <internals-wal>` file formats: 1.6 files are supported during upgrade, but you won’t be able to return to 1.6 after running under 1.10 or 2.x for a while. A few configuration parameters are also renamed."
+msgstr ""
+
+#: ../../doc/book/admin/_includes/1.6-to-2.x-condition.rst:6
+msgid "To perform a **live** upgrade from Tarantool 1.6 to a more recent version, like :doc:`2.8.4 </release/2.8.4>`, :doc:`2.10.1 </release/2.10.1>` and such, it is necessary to take an intermediate step by upgrading 1.6 -> **1.10** -> 2.x. This is the only way to perform the upgrade **without downtime**."
+msgstr ""
+
+#: ../../doc/book/admin/_includes/1.6-to-2.x-condition.rst:11
+msgid "However, a direct upgrade of a replica set from 1.6 to 2.x is also possible, but only **with downtime**."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/1.6-2.0-downtime.rst:8
+msgid "Here is how to upgrade from Tarantool 1.6 directly to 2.x:"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/1.6-2.0-downtime.rst:10
+msgid "Stop all instances in the replica set."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/1.6-2.0-downtime.rst:12
+msgid ":ref:`Upgrade <admin-upgrades_instance>` Tarantool version to 2.x on every instance."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/1.6-2.0-downtime.rst:14
+msgid "Upgrade the corresponding instance files and applications, if needed."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/1.6-2.0-downtime.rst:16
+msgid "Start all the instances with Tarantool 2.x."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/1.6-2.0-downtime.rst:18
+msgid "Execute ``box.schema.upgrade()`` on the master."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/1.6-2.0-downtime.rst:20
+msgid "Execute ``box.snapshot()`` on every node in the replica set."
+msgstr ""

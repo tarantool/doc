@@ -1,0 +1,68 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_schema/role_revoke.rst:5
+msgid "box.schema.role.revoke()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/role_revoke.rst:11
+msgid "Revoke :ref:`privileges <authentication-owners_privileges>` from a role."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/role_revoke.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/role_revoke.rst:13
+msgid "the name of the role."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/role_revoke.rst:14
+msgid "'read' or 'write' or 'execute' or 'create' or 'alter' or 'drop' or a combination."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/role_revoke.rst:16
+msgid "'space' or 'function' or 'sequence' or 'role'."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/role_revoke.rst:17
+msgid "the name of a function or space or sequence or role."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/role_revoke.rst:19
+msgid "The role must exist, and the object must exist, but it is not an error if the role does not have the privilege."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/role_revoke.rst:22
+msgid "**Variation:** instead of ``object-type, object-name`` say 'universe' which means 'all object-types and all objects'."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/role_revoke.rst:25
+msgid "**Variation:** instead of ``privilege, object-type, object-name`` say ``role-name``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/role_revoke.rst:28
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/role_revoke.rst:30
+msgid "box.schema.role.revoke('Accountant', 'read', 'space', 'tester')\n"
+"box.schema.role.revoke('Accountant', 'execute', 'function', 'f')\n"
+"box.schema.role.revoke('Accountant', 'read,write', 'universe')\n"
+"box.schema.role.revoke('public', 'Accountant')"
+msgstr ""

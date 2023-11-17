@@ -1,0 +1,913 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/dev_guide/c_style_guide.rst:3
+msgid "C Style Guide"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:5
+msgid "We use Git for revision control. The latest development is happening in the default branch (currently ``master``). Our git repository is hosted on GitHub, and can be checked out with ``git clone git://github.com/tarantool/tarantool.git`` (anonymous read-only access)."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:10
+msgid "If you have any questions about Tarantool internals, please post them on `StackOverflow <https://stackoverflow.com/questions/tagged/tarantool>`_ or ask Tarantool developers directly in `telegram <http://telegram.me/tarantool>`_."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:14
+msgid "**General guidelines**"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:16
+msgid "The project's coding style is inspired by the `Linux kernel coding style <https://www.kernel.org/doc/html/v4.10/process/coding-style.html>`_."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:19
+msgid "However, we have some additional guidelines, either unique to Tarantool or deviating from the Kernel guidelines. Below we rewrite the Linux kernel coding style according to the Tarantool's style features."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:24
+msgid "Tarantool coding style"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:26
+msgid "This is a short document describing the preferred coding style for the Tarantool developers and contributors. We **insist** on following these rules in order to make our code consistent and understandable to any developer."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:31
+msgid "Chapter 1: Indentation"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:33
+msgid "Tabs are 8 characters (8-width tabs, not 8 whitespaces), and thus indentations are also 8 characters. There are heretic movements that try to make indentations 4 (or even 2!) characters deep, and that is akin to trying to define the value of PI to be 3."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:38
+msgid "Rationale: The whole idea behind indentation is to clearly define where a block of control starts and ends. Especially when you've been looking at your screen for 20 straight hours, you'll find it a lot easier to see how the indentation works if you have large indentations."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:43
+msgid "Now, some people will claim that having 8-character indentations makes the code move too far to the right, and makes it hard to read on a 80-character terminal screen. The answer to that is that if you need more than 3 levels of indentation, you're screwed anyway, and should fix your program."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:49
+msgid "8-char indents make things easier to read and have the added benefit of warning you when you're nesting your functions too deep. Heed that warning."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:53
+msgid "The preferred way to ease multiple indentation levels in a switch statement is to align the ``switch`` and its subordinate ``case`` labels in the same column instead of ``double-indenting`` the ``case`` labels. E.g.:"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:57
+msgid "switch (suffix) {\n"
+"case 'G':\n"
+"case 'g':\n"
+"  mem <<= 30;\n"
+"  break;\n"
+"case 'M':\n"
+"case 'm':\n"
+"  mem <<= 20;\n"
+"  break;\n"
+"case 'K':\n"
+"case 'k':\n"
+"  mem <<= 10;\n"
+"  /* fall through */\n"
+"default:\n"
+"  break;\n"
+"}"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:76
+msgid "Don't put multiple statements on a single line unless you have something to hide:"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:79
+msgid "if (condition) do_this;\n"
+"  do_something_everytime;"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:84
+msgid "Don't put multiple assignments on a single line either. Avoid tricky expressions."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:86
+msgid "Outside of comments and documentation, spaces are never used for indentation, and the above example is deliberately broken."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:89
+msgid "Get a decent editor and don't leave whitespace at the end of lines."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:92
+msgid "Chapter 2: Breaking long lines and strings"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:94
+msgid "Coding style is all about readability and maintainability using commonly available tools."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:97
+msgid "The limit on the length of lines is 80 columns and this is a strongly preferred limit. As for comments, the same limit of 80 columns is applied."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:100
+msgid "Statements longer than 80 columns will be broken into sensible chunks, unless exceeding 80 columns significantly increases readability and does not hide information. Descendants are always substantially shorter than the parent and are placed substantially to the right. The same applies to function headers with a long argument list."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:107
+msgid "Chapter 3: Placing Braces and Spaces"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:109
+msgid "The other issue that always comes up in C styling is the placement of braces. Unlike the indent size, there are few technical reasons to choose one placement strategy over the other, but the preferred way, as shown to us by the prophets Kernighan and Ritchie, is to put the opening brace last on the line, and put the closing brace first, thus:"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:115
+msgid "if (x is true) {\n"
+"  we do y\n"
+"}"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:121
+msgid "This applies to all non-function statement blocks (if, switch, for, while, do). E.g.:"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:124
+msgid "switch (action) {\n"
+"case KOBJ_ADD:\n"
+"  return \"add\";\n"
+"case KOBJ_REMOVE:\n"
+"  return \"remove\";\n"
+"case KOBJ_CHANGE:\n"
+"  return \"change\";\n"
+"default:\n"
+"  return NULL;\n"
+"}"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:137
+msgid "However, there is one special case, namely functions: they have the opening brace at the beginning of the next line, thus:"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:140
+msgid "int\n"
+"function(int x)\n"
+"{\n"
+"  body of function\n"
+"}"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:148
+msgid "Heretic people all over the world have claimed that this inconsistency is ... well ... inconsistent, but all right-thinking people know that (a) K&R are **right** and (b) K&R are right. Besides, functions are special anyway (you can't nest them in C)."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:153
+msgid "Note that the closing brace is empty on a line of its own, **except** in the cases where it is followed by a continuation of the same statement, i.e. a ``while`` in a do-statement or an ``else`` in an if-statement, like this:"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:158
+msgid "do {\n"
+"  body of do-loop\n"
+"} while (condition);"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:164
+#: ../../doc/dev_guide/c_style_guide.rst:191
+msgid "and"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:166
+msgid "if (x == y) {\n"
+"  ..\n"
+"} else if (x > y) {\n"
+"  ...\n"
+"} else {\n"
+"  ....\n"
+"}"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:176
+msgid "Rationale: K&R."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:178
+msgid "Also, note that this brace-placement also minimizes the number of empty (or almost empty) lines, without any loss of readability. Thus, as the supply of new-lines on your screen is not a renewable resource (think 25-line terminal screens here), you have more empty lines to put comments on."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:184
+msgid "Do not unnecessarily use braces where a single statement will do."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:186
+msgid "if (condition)\n"
+"  action();"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:193
+msgid "if (condition)\n"
+"  do_this();\n"
+"else\n"
+"  do_that();"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:200
+msgid "This does not apply if only one branch of a conditional statement is a single statement; in the latter case use braces in both branches:"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:203
+msgid "if (condition) {\n"
+"  do_this();\n"
+"  do_that();\n"
+"} else {\n"
+"  otherwise();\n"
+"}"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:213
+msgid "Chapter 3.1: Spaces"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:215
+msgid "Tarantool style for use of spaces depends (mostly) on function-versus-keyword usage. Use a space after (most) keywords. The notable exceptions are ``sizeof``, ``typeof``, ``alignof``, and ``__attribute__``, which look somewhat like functions (and are usually used with parentheses, although they are not required in the language, as in: ``sizeof info`` after ``struct fileinfo info;`` is declared)."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:222
+msgid "So use a space after these keywords:"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:224
+msgid "if, switch, case, for, do, while"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:228
+msgid "but not with ``sizeof``, ``typeof``, ``alignof``, or ``__attribute__``. E.g.,"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:230
+msgid "s = sizeof(struct file);"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:234
+msgid "Do not add spaces around (inside) parenthesized expressions. This example is **bad**:"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:237
+msgid "s = sizeof( struct file );"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:241
+msgid "When declaring pointer data or a function that returns a pointer type, the preferred use of ``*`` is adjacent to the data name or function name and not adjacent to the type name. Examples:"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:245
+msgid "char *linux_banner;\n"
+"unsigned long long memparse(char *ptr, char **retptr);\n"
+"char *match_strdup(substring_t *s);"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:251
+msgid "Use one space around (on each side of) most binary and ternary operators, such as any of these::"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:254
+msgid "=  +  -  <  >  *  /  %  |  &  ^  <=  >=  ==  !=  ?  :"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:256
+msgid "but no space after unary operators::"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:258
+msgid "&  *  +  -  ~  !  sizeof  typeof  alignof  __attribute__  defined"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:260
+msgid "no space before the postfix increment & decrement unary operators::"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:262
+#: ../../doc/dev_guide/c_style_guide.rst:266
+msgid "++  --"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:264
+msgid "no space after the prefix increment & decrement unary operators::"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:268
+msgid "and no space around the ``.`` and ``->`` structure member operators."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:270
+msgid "Do not split a cast operator from its argument with a whitespace, e.g. ``(ssize_t)inj->iparam``."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:273
+msgid "Do not leave trailing whitespace at the ends of lines. Some editors with ``smart`` indentation will insert whitespace at the beginning of new lines as appropriate, so you can start typing the next line of code right away. However, some such editors do not remove the whitespace if you end up not putting a line of code there, such as if you leave a blank line. As a result, you end up with lines containing trailing whitespace."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:280
+msgid "Git will warn you about patches that introduce trailing whitespace, and can optionally strip the trailing whitespace for you; however, if applying a series of patches, this may make later patches in the series fail by changing their context lines."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:286
+msgid "Chapter 4: Naming"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:288
+msgid "C is a Spartan language, and so should your naming be. Unlike Modula-2 and Pascal programmers, C programmers do not use cute names like ThisVariableIsATemporaryCounter. A C programmer would call that variable ``tmp``, which is much easier to write, and not the least more difficult to understand."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:294
+msgid "HOWEVER, while mixed-case names are frowned upon, descriptive names for global variables are a must. To call a global function ``foo`` is a shooting offense."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:298
+msgid "GLOBAL variables (to be used only if you **really** need them) need to have descriptive names, as do global functions. If you have a function that counts the number of active users, you should call that ``count_active_users()`` or similar, you should **not** call it ``cntusr()``."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:303
+msgid "Encoding the type of a function into the name (so-called Hungarian notation) is brain damaged - the compiler knows the types anyway and can check those, and it only confuses the programmer. No wonder MicroSoft makes buggy programs."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:308
+msgid "LOCAL variable names should be short, and to the point. If you have some random integer loop counter, it should probably be called ``i``. Calling it ``loop_counter`` is non-productive, if there is no chance of it being misunderstood. Similarly, ``tmp`` can be just about any type of variable that is used to hold a temporary value."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:314
+msgid "If you are afraid to mix up your local variable names, you have another problem, which is called the function-growth-hormone-imbalance syndrome. See chapter 6 (Functions)."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:318
+msgid "For function naming we have a convention is to use:"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:320
+msgid "``new``/``delete`` for functions which allocate + initialize and destroy + deallocate an object,"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:322
+msgid "``create``/``destroy`` for functions which initialize/destroy an object but do not handle memory management,"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:324
+msgid "``init``/``free`` for functions which initialize/destroy libraries and subsystems."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:327
+msgid "Chapter 5: Typedefs"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:329
+msgid "Please don't use things like ``vps_t``. It's a **mistake** to use typedef for structures and pointers. When you see a"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:332
+msgid "vps_t a;"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:336
+msgid "in the source, what does it mean? In contrast, if it says"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:339
+msgid "struct virtual_container *a;"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:343
+msgid "you can actually tell what ``a`` is."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:345
+msgid "Lots of people think that typedefs ``help readability``. Not so. They are useful only for:"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:348
+msgid "Totally opaque objects (where the typedef is actively used to **hide** what the object is)."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:351
+msgid "Example: ``pte_t`` etc. opaque objects that you can only access using the proper accessor functions."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:356
+msgid "Opaqueness and ``accessor functions`` are not good in themselves. The reason we have them for things like pte_t etc. is that there really is absolutely **zero** portably accessible information there."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:360
+msgid "Clear integer types, where the abstraction **helps** avoid confusion whether it is ``int`` or ``long``."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:363
+msgid "u8/u16/u32 are perfectly fine typedefs, although they fit into point 4 better than here."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:368
+msgid "Again - there needs to be a **reason** for this. If something is ``unsigned long``, then there's no reason to do typedef unsigned long myflags_t;"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:372
+msgid "but if there is a clear reason for why it under certain circumstances might be an ``unsigned int`` and under other configurations might be ``unsigned long``, then by all means go ahead and use a typedef."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:376
+msgid "When you use sparse to literally create a **new** type for type-checking."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:379
+msgid "New types which are identical to standard C99 types, in certain exceptional circumstances."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:382
+msgid "Although it would only take a short amount of time for the eyes and brain to become accustomed to the standard types like ``uint32_t``, some people object to their use anyway."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:386
+msgid "When editing existing code which already uses one or the other set of types, you should conform to the existing choices in that code."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:389
+msgid "Maybe there are other cases too, but the rule should basically be to NEVER EVER use a typedef unless you can clearly match one of those rules."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:392
+msgid "In general, a pointer, or a struct that has elements that can reasonably be directly accessed should **never** be a typedef."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:396
+msgid "Chapter 6: Functions"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:398
+msgid "Functions should be short and sweet, and do just one thing. They should fit on one or two screenfuls of text (the ISO/ANSI screen size is 80x24, as we all know), and do one thing and do that well."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:402
+msgid "The maximum length of a function is inversely proportional to the complexity and indentation level of that function. So, if you have a conceptually simple function that is just one long (but simple) case-statement, where you have to do lots of small things for a lot of different cases, it's OK to have a longer function."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:408
+msgid "However, if you have a complex function, and you suspect that a less-than-gifted first-year high-school student might not even understand what the function is all about, you should adhere to the maximum limits all the more closely. Use helper functions with descriptive names (you can ask the compiler to in-line them if you think it's performance-critical, and it will probably do a better job of it than you would have done)."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:416
+msgid "Another measure of the function is the number of local variables. They shouldn't exceed 5-10, or you're doing something wrong. Re-think the function, and split it into smaller pieces. A human brain can generally easily keep track of about 7 different things, anything more and it gets confused. You know you're brilliant, but maybe you'd like to understand what you did 2 weeks from now."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:423
+msgid "In function prototypes, include parameter names with their data types. Although this is not required by the C language, it is preferred in Tarantool because it is a simple way to add valuable information for the reader."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:427
+msgid "Note that we place the function return type on the line before the name and signature."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:430
+msgid "Chapter 7: Centralized exiting of functions"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:432
+msgid "Albeit deprecated by some people, the equivalent of the goto statement is used frequently by compilers in form of the unconditional jump instruction."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:435
+msgid "The goto statement comes in handy when a function exits from multiple locations and some common work such as cleanup has to be done. If there is no cleanup needed then just return directly."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:439
+msgid "Choose label names which say what the goto does or why the goto exists. An example of a good name could be ``out_free_buffer:`` if the goto frees ``buffer``. Avoid using GW-BASIC names like ``err1:`` and ``err2:``, as you would have to renumber them if you ever add or remove exit paths, and they make correctness difficult to verify anyway."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:445
+msgid "The rationale for using gotos is:"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:447
+msgid "unconditional statements are easier to understand and follow"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:448
+msgid "nesting is reduced"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:449
+msgid "errors by not updating individual exit points when making modifications are prevented"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:451
+msgid "saves the compiler work to optimize redundant code away ;)"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:453
+msgid "int\n"
+"fun(int a)\n"
+"{\n"
+"  int result = 0;\n"
+"  char *buffer;\n"
+"\n"
+"  buffer = kmalloc(SIZE, GFP_KERNEL);\n"
+"  if (!buffer)\n"
+"    return -ENOMEM;\n"
+"\n"
+"  if (condition1) {\n"
+"    while (loop1) {\n"
+"      ...\n"
+"    }\n"
+"    result = 1;\n"
+"    goto out_free_buffer;\n"
+"  }\n"
+"  ...\n"
+"out_free_buffer:\n"
+"  kfree(buffer);\n"
+"  return result;\n"
+"}"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:478
+msgid "A common type of bug to be aware of is ``one err bugs`` which look like this:"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:480
+msgid "err:\n"
+"  kfree(foo->bar);\n"
+"  kfree(foo);\n"
+"  return ret;"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:487
+msgid "The bug in this code is that on some exit paths ``foo`` is NULL. Normally the fix for this is to split it up into two error labels ``err_free_bar:`` and ``err_free_foo:``:"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:491
+msgid "err_free_bar:\n"
+" kfree(foo->bar);\n"
+"err_free_foo:\n"
+" kfree(foo);\n"
+" return ret;"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:499
+msgid "Ideally you should simulate errors to test all exit paths."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:502
+msgid "Chapter 8: Commenting"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:504
+msgid "Comments are good, but there is also a danger of over-commenting. NEVER try to explain HOW your code works in a comment: it's much better to write the code so that the **working** is obvious, and it's a waste of time to explain badly written code."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:509
+msgid "Generally, you want your comments to tell WHAT your code does, not HOW. Also, try to avoid putting comments inside a function body: if the function is so complex that you need to separately comment parts of it, you should probably go back to chapter 6 for a while. You can make small comments to note or warn about something particularly clever (or ugly), but try to avoid excess. Instead, put the comments at the head of the function, telling people what it does, and possibly WHY it does it."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:518
+msgid "When commenting the Tarantool C API functions, please use Doxygen comment format, Javadoc flavor, i.e. `@tag` rather than `\\\\tag`. The main tags in use are ``@param``, ``@retval``, ``@return``, ``@see``, ``@note`` and ``@todo``."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:523
+msgid "Every function, except perhaps a very short and obvious one, should have a comment. A sample function comment may look like below:"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:526
+msgid "/**\n"
+" * Write all data to a descriptor.\n"
+" *\n"
+" * This function is equivalent to 'write', except it would ensure\n"
+" * that all data is written to the file unless a non-ignorable\n"
+" * error occurs.\n"
+" *\n"
+" * @retval 0  Success\n"
+" * @retval 1 An error occurred (not EINTR)\n"
+" */\n"
+"static int\n"
+"write_all(int fd, void *data, size_t len);"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:541
+msgid "It's also important to comment data types, whether they are basic types or derived ones. To this end, use just one data declaration per line (no commas for multiple data declarations). This leaves you room for a small comment on each item, explaining its use."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:546
+msgid "Public structures and important structure members should be commented as well."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:548
+msgid "In C comments out of functions and inside of functions should be different in how they are started. Everything else is wrong. Below are correct examples. ``/**`` comes for documentation comments, ``/*`` for local not documented comments. However the difference is vague already, so the rule is simple: out of function use ``/**``, inside use ``/*``."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:554
+msgid "/**\n"
+" * Out of function comment, option 1.\n"
+" */\n"
+"\n"
+"/** Out of function comment, option 2. */\n"
+"\n"
+"int\n"
+"function()\n"
+"{\n"
+"    /* Comment inside function, option 1. */\n"
+"\n"
+"    /*\n"
+"     * Comment inside function, option 2.\n"
+"     */\n"
+"}"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:572
+msgid "If a function has declaration and implementation separated, the function comment should be for the declaration. Usually in the header file. Don't duplicate the comment."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:576
+msgid "A comment and the function signature should be synchronized. Double-check if the parameter names are the same as used in the comment, and mean the same. Especially when you change one of them - ensure you changed the other."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:581
+msgid "Chapter 9: Macros, Enums and RTL"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:583
+msgid "Names of macros defining constants and labels in enums are capitalized."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:585
+msgid "#define CONSTANT 0x12345"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:589
+msgid "Enums are preferred when defining several related constants."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:591
+msgid "CAPITALIZED macro names are appreciated but macros resembling functions may be named in lower case."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:594
+msgid "Generally, inline functions are preferable to macros resembling functions."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:596
+msgid "Macros with multiple statements should be enclosed in a do - while block:"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:598
+msgid "#define macrofun(a, b, c)       \\\n"
+"  do {                          \\\n"
+"    if (a == 5)                 \\\n"
+"      do_this(b, c);            \\\n"
+"  } while (0)"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:606
+msgid "Things to avoid when using macros:"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:608
+msgid "macros that affect control flow:"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:610
+msgid "#define FOO(x)                  \\\n"
+"  do {                          \\\n"
+"    if (blah(x) < 0)            \\\n"
+"      return -EBUGGERED;        \\\n"
+"  } while (0)"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:618
+msgid "is a **very** bad idea. It looks like a function call but exits the ``calling`` function; don't break the internal parsers of those who will read the code."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:621
+msgid "macros that depend on having a local variable with a magic name:"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:623
+msgid "#define FOO(val) bar(index, val)"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:627
+msgid "might look like a good thing, but it's confusing as hell when one reads the code and it's prone to breakage from seemingly innocent changes."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:630
+msgid "macros with arguments that are used as l-values: ``FOO(x) = y;`` will bite you if somebody e.g. turns FOO into an inline function."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:633
+msgid "forgetting about precedence: macros defining constants using expressions must enclose the expression in parentheses. Beware of similar issues with macros using parameters."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:637
+msgid "#define CONSTANT 0x4000\n"
+"#define CONSTEXP (CONSTANT | 3)"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:642
+msgid "namespace collisions when defining local variables in macros resembling functions:"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:645
+msgid "#define FOO(x)            \\\n"
+"({                        \\\n"
+"  typeof(x) ret;          \\\n"
+"  ret = calc_ret(x);      \\\n"
+"  (ret);                  \\\n"
+"})"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:654
+msgid "ret is a common name for a local variable - ``__foo_ret`` is less likely to collide with an existing variable."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:658
+msgid "Chapter 10: Allocating memory"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:660
+msgid "Prefer specialized allocators like ``region``, ``mempool``, ``smalloc`` to ``malloc()/free()`` for any performance-intensive or large memory allocations. Repetitive use of ``malloc()``/``free()`` can lead to memory fragmentation and should therefore be avoided."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:665
+msgid "Always free all allocated memory, even allocated  at start-up. We aim at being valgrind leak-check clean, and in most cases it's just as easy to ``free()`` the allocated memory as it is to write a valgrind suppression. Freeing all allocated memory is also dynamic-load friendly: assuming a plug-in can be dynamically loaded and unloaded multiple times, reload should not lead to a memory leak."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:672
+msgid "Chapter 11: The inline disease"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:674
+msgid "There appears to be a common misperception that gcc has a magic \"make me faster\" speedup option called ``inline``. While the use of inlines can be appropriate, it very often is not. Abundant use of the inline keyword leads to a much bigger kernel, which in turn slows the system as a whole down, due to a bigger icache footprint for the CPU and simply because there is less memory available for the pagecache. Just think about it; a pagecache miss causes a disk seek, which easily takes 5 milliseconds. There are a LOT of cpu cycles that can go into these 5 milliseconds."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:683
+msgid "A reasonable rule of thumb is to not put inline at functions that have more than 3 lines of code in them. An exception to this rule are the cases where a parameter is known to be a compiletime constant, and as a result of this constantness you *know* the compiler will be able to optimize most of your function away at compile time."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:689
+msgid "Often people argue that adding inline to functions that are static and used only once is always a win since there is no space tradeoff. While this is technically correct, gcc is capable of inlining these automatically without help, and the maintenance issue of removing the inline when a second user appears outweighs the potential value of the hint that tells gcc to do something it would have done anyway."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:697
+msgid "Chapter 12: Function return values and names"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:699
+msgid "Functions can return values of many different kinds, and one of the most common is a value indicating whether the function succeeded or failed."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:703
+msgid "In 99.99999% of all cases in Tarantool we return 0 on success, non-zero on error (-1 usually). Errors are saved into a diagnostics area which is global per fiber. We never return error codes as a result of a function."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:707
+msgid "Functions whose return value is the actual result of a computation, rather than an indication of whether the computation succeeded, are not subject to this rule. Generally they indicate failure by returning some out-of-range result. Typical examples would be functions that return pointers; they use NULL or the mechanism to report failure."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:714
+msgid "Chapter 13: Editor modelines and other cruft"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:716
+msgid "Some editors can interpret configuration information embedded in source files, indicated with special markers. For example, emacs interprets lines marked like this:"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:720
+msgid "-*- mode: c -*-"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:724
+msgid "Or like this:"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:726
+msgid "/*\n"
+"Local Variables:\n"
+"compile-command: \"gcc -DMAGIC_DEBUG_FLAG foo.c\"\n"
+"End:\n"
+"*/"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:734
+msgid "Vim interprets markers that look like this:"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:736
+msgid "/* vim:set sw=8 noet */"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:740
+msgid "Do not include any of these in source files. People have their own personal editor configurations, and your source files should not override them. This includes markers for indentation and mode configuration. People may use their own custom mode, or may have some other magic method for making indentation work correctly."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:747
+msgid "Chapter 14: Conditional Compilation"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:749
+msgid "Wherever possible, don't use preprocessor conditionals (``#if``, ``#ifdef``) in .c files; doing so makes code harder to read and logic harder to follow. Instead, use such conditionals in a header file defining functions for use in those .c files, providing no-op stub versions in the #else case, and then call those functions unconditionally from .c files. The compiler will avoid generating any code for the stub calls, producing identical results, but the logic will remain easy to follow."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:757
+msgid "Prefer to compile out entire functions, rather than portions of functions or portions of expressions. Rather than putting an ``#ifdef`` in an expression, factor out part or all of the expression into a separate helper function and apply the condition to that function."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:762
+msgid "If you have a function or variable which may potentially go unused in a particular configuration, and the compiler would warn about its definition going unused, do not compile it and use #if for this."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:766
+msgid "At the end of any non-trivial ``#if`` or ``#ifdef`` block (more than a few lines), place a comment after the #endif on the same line, noting the conditional expression used. For instance:"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:770
+msgid "#ifdef CONFIG_SOMETHING\n"
+"...\n"
+"#endif /* CONFIG_SOMETHING */"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:777
+msgid "Chapter 15: Header files"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:779
+msgid "Use ``#pragma once`` in the headers. As the header guards we refer to this construction:"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:782
+msgid "#ifndef THE_HEADER_IS_INCLUDED\n"
+"#define THE_HEADER_IS_INCLUDED\n"
+"\n"
+"// ... the header code ...\n"
+"\n"
+"#endif // THE_HEADER_IS_INCLUDED"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:791
+msgid "It works fine, but the guard name ``THE_HEADER_IS_INCLUDED`` tends to become outdated when the file is moved or renamed. This is especially painful with multiple files having the same name in the project, but different path. For instance, we have 3 ``error.h`` files, which means for each of them we need to invent a new header guard name, and not forget to update them if the files are moved or renamed."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:798
+msgid "For that reason we use ``#pragma once`` in all the new code, which shortens the header file down to this:"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:801
+msgid "#pragma once\n"
+"\n"
+"// ... header code ..."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:808
+msgid "Chapter 16: Other"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:810
+msgid "We don't apply ``!`` operator to non-boolean values. It means, to check if an integer is not 0, you use ``!= 0``. To check if a pointer is not NULL, you use ``!= NULL``. The same for ``==``."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:814
+msgid "Select GNU C99 extensions are acceptable. It's OK to mix declarations and statements, use true and false."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:817
+msgid "The not-so-current list of all GCC C extensions can be found at: http://gcc.gnu.org/onlinedocs/gcc-4.3.5/gcc/C-Extensions.html"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:821
+msgid "Appendix I: References"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:823
+msgid "`The C Programming Language, Second Edition <https://en.wikipedia.org/wiki/The_C_Programming_Language>`_ by Brian W. Kernighan and Dennis M. Ritchie. Prentice Hall, Inc., 1988. ISBN 0-13-110362-8 (paperback), 0-13-110370-9 (hardback)."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:828
+msgid "`The Practice of Programming <https://en.wikipedia.org/wiki/The_Practice_of_Programming>`_ by Brian W. Kernighan and Rob Pike. Addison-Wesley, Inc., 1999. ISBN 0-201-61586-X."
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:833
+msgid "`GNU manuals <http://www.gnu.org/manual/>`_ - where in compliance with K&R and this text - for **cpp**, **gcc**, **gcc internals** and **indent**"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:836
+msgid "`WG14 International standardization workgroup for the programming language C <http://www.open-std.org/JTC1/SC22/WG14/>`_"
+msgstr ""
+
+#: ../../doc/dev_guide/c_style_guide.rst:839
+msgid "`Kernel CodingStyle, by greg@kroah.com at OLS 2002 <http://www.kroah.com/linux/talks/ols_2002_kernel_codingstyle_talk/html/>`_"
+msgstr ""

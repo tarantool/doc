@@ -1,0 +1,69 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_tuple/field_path.rst:6
+msgid "tuple_object[field-path]"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/field_path.rst:12
+msgid "If ``t`` is a tuple instance, ``t['path']`` will return the field or subset of fields that are in ``path``. ``path`` must be a well formed JSON specification. ``path`` may contain field names if the tuple has been retrieved from a space that has an associated :ref:`format <box_space-format>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/field_path.rst:17
+msgid "To prevent ambiguity, Tarantool first tries to interpret the request as :doc:`/reference/reference_lua/box_tuple/field_number` or :doc:`/reference/reference_lua/box_tuple/field_name`. If and only if that fails, Tarantool tries to interpret the request as ``tuple_object[field-path]``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/field_path.rst:23
+msgid "The path must be a well formed JSON specification, but it may be preceded by '.'. The '.' is a signal that the path acts as a suffix for the tuple."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/field_path.rst:27
+msgid "The advantage of specifying a path is that Tarantool will use it to search through a tuple body and get only the tuple part, or parts, that are actually necessary."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/field_path.rst:31
+msgid "In the following example, a tuple named ``t`` is returned from ``replace`` and then only the relevant part (in this case, matching a name) of a relevant field is returned. Namely: the second field, its third item, the value following 'key='."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/field_path.rst:36
+msgid "tarantool> format = {}\n"
+"---\n"
+"...\n"
+"tarantool> format[1] = {name = 'field1', type = 'unsigned'}\n"
+"---\n"
+"...\n"
+"tarantool> format[2] = {name = 'field2', type = 'array'}\n"
+"---\n"
+"...\n"
+"tarantool> s = box.schema.space.create('test', {format = format})\n"
+"---\n"
+"...\n"
+"tarantool> pk = s:create_index('pk')\n"
+"---\n"
+"...\n"
+"tarantool> field2_value = {1, \"ABC\", {key=\"Hello\", value=\"world\"}}\n"
+"---\n"
+"...\n"
+"tarantool> t = s:replace{1, field2_value}\n"
+"---\n"
+"...\n"
+"tarantool> t[\"[2][3]['key']\"]\n"
+"---\n"
+"- Hello\n"
+"..."
+msgstr ""

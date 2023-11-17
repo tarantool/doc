@@ -1,0 +1,45 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/tooling/tt_cli/binaries.rst:4
+msgid "Showing a list of installed binaries"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/binaries.rst:6
+msgid "$ tt binaries"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/binaries.rst:10
+msgid "``tt binaries`` shows a list of installed binaries and their versions."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/binaries.rst:13
+msgid "Examples"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/binaries.rst:15
+msgid "Show a list of installed Tarantool versions:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/binaries.rst:17
+msgid "$ tt binaries\n"
+"List of installed binaries:\n"
+"   • tarantool:\n"
+"        2.11.1 [active]\n"
+"        2.10.8"
+msgstr ""

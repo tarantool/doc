@@ -1,0 +1,29 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/getting_started/index.rst:7
+msgid "Getting started"
+msgstr ""
+
+#: ../../doc/getting_started/index.rst:11
+msgid "The :ref:`Creating your first Tarantool database <getting_started_db>` section will get you acquainted with Tarantool. We will start Tarantool, create a data schema, and write our first data. You'll get an understanding of the technology and learn about the basic terms and features."
+msgstr ""
+
+#: ../../doc/getting_started/index.rst:16
+msgid "To continue exploring Tarantool and its ecosystem, you might want to check out Tarantool :doc:`tutorials and guides <../how-to/index>`."
+msgstr ""

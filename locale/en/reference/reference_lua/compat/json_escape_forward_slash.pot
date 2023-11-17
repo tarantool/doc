@@ -1,0 +1,77 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/compat/json_escape_forward_slash.rst:4
+msgid "JSON encode escape forward slash"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/json_escape_forward_slash.rst:6
+msgid "For some reason, in the upstream ``lua_cjson``, the '/' sign is escaped. But according to the ``rfc4627`` standard, it is unnecessary and questionably compatible with other implementations."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/json_escape_forward_slash.rst:10
+msgid "Old and new behavior"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/json_escape_forward_slash.rst:12
+msgid "By toggling the ``json_escape_forward_slash`` compat option, you can chose either the json encoder escapes the '/' sign or it does not:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/json_escape_forward_slash.rst:14
+msgid "tarantool> require('compat').json_escape_forward_slash = 'old'\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> require('json').encode('foo/bar')\n"
+"---\n"
+"- '\"foo\\/bar\"'\n"
+"...\n"
+"\n"
+"tarantool> require('compat').json_escape_forward_slash = 'new'\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> require('json').encode('foo/bar')\n"
+"---\n"
+"- '\"foo/bar\"'\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/json_escape_forward_slash.rst:34
+msgid "The option affects both the global serializer instance and serializers created with ``json.new()``. It also affects the way log messages are encoded when written to the log in the json format (the ``box.cfg.log_format`` option is set to 'json')."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/json_escape_forward_slash.rst:38
+msgid "Known compatibility issues"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/json_escape_forward_slash.rst:40
+msgid "At this point, no incompatible modules are known."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/json_escape_forward_slash.rst:43
+msgid "Detecting issues in your codebase"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/json_escape_forward_slash.rst:45
+msgid "Both encoding styles are correct from the JSON standard standpoint, but if your module relies on encodings results bytewise, it may break with this change. Be cautious if you do the following:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/json_escape_forward_slash.rst:48
+msgid "Hash results of ``json.encode()``."
+msgstr ""

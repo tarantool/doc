@@ -1,0 +1,88 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/how-to/app/creating_app/index_iterators.rst:4
+msgid "Index iterators"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/index_iterators.rst:6
+msgid "By our gameplay, all caught pokémons are returned back to the map. We do this for all pokémons on the map every 60 seconds using ``respawn()`` method. We iterate through pokémons by status using Tarantool index iterator function :doc:`/reference/reference_lua/box_index/pairs` and reset the statuses of all \"caught\" pokémons back to \"active\" using ``box.space.pokemons:update()``."
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/index_iterators.rst:12
+msgid "respawn = function(self)\n"
+"    fiber.name('Respawn fiber')\n"
+"    for _, tuple in box.space.pokemons.index.status:pairs(\n"
+"           self.state.CAUGHT) do\n"
+"        box.space.pokemons:update(\n"
+"            tuple[self.ID],\n"
+"            {{'=', self.STATUS, self.state.ACTIVE}}\n"
+"        )\n"
+"    end\n"
+" end"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/index_iterators.rst:25
+msgid "For readability, we introduce named fields:"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/index_iterators.rst:27
+msgid "ID = 1, STATUS = 2,"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/index_iterators.rst:30
+msgid "The complete implementation of ``start()`` now looks like this:"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/index_iterators.rst:32
+msgid "-- create game object\n"
+"start = function(self)\n"
+"    -- create spaces and indexes\n"
+"    box.once('init', function()\n"
+"       box.schema.create_space('pokemons')\n"
+"       box.space.pokemons:create_index(\n"
+"           \"primary\", {type = 'hash', parts = {1, 'unsigned'}}\n"
+"       )\n"
+"       box.space.pokemons:create_index(\n"
+"           \"status\", {type = \"tree\", parts = {2, 'str'}}\n"
+"       )\n"
+"    end)\n"
+"\n"
+"    -- create models\n"
+"    local ok_m, pokemon = avro.create(schema.pokemon)\n"
+"    local ok_p, player = avro.create(schema.player)\n"
+"    if ok_m and ok_p then\n"
+"        -- compile models\n"
+"        local ok_cm, compiled_pokemon = avro.compile(pokemon)\n"
+"        local ok_cp, compiled_player = avro.compile(player)\n"
+"        if ok_cm and ok_cp then\n"
+"            -- start the game\n"
+"            self.pokemon_model = compiled_pokemon\n"
+"            self.player_model = compiled_player\n"
+"            self.respawn()\n"
+"            log.info('Started')\n"
+"            return true\n"
+"         else\n"
+"            log.error('Schema compilation failed')\n"
+"         end\n"
+"    else\n"
+"        log.info('Schema creation failed')\n"
+"    end\n"
+"    return false\n"
+"end"
+msgstr ""

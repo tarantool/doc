@@ -1,0 +1,99 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/how-to/app/creating_app/nginx.rst:4
+msgid "nginx"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/nginx.rst:6
+msgid "In the real life, this microservice would work over HTTP. Let's add `nginx <https://nginx.org/en/>`_ web server to our environment and make a similar demo. But how do we make Tarantool methods callable via REST API? We use nginx with `Tarantool nginx upstream <https://github.com/tarantool/nginx_upstream_module>`_ module and create one more Lua script (`app.lua <https://github.com/tarantool/pokemon/blob/1.9/src/app.lua>`_) that exports three of our game methods -- ``add_pokemon()``, ``map()`` and ``catch()`` -- as REST endpoints of the nginx upstream module:"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/nginx.rst:15
+msgid "local game = require('pokemon')\n"
+"box.cfg{listen=3301}\n"
+"game:start()\n"
+"\n"
+"-- add, map and catch functions exposed to REST API\n"
+"function add(request, pokemon)\n"
+"    return {\n"
+"        result=game:add_pokemon(pokemon)\n"
+"    }\n"
+"end\n"
+"\n"
+"function map(request)\n"
+"    return {\n"
+"        map=game:map()\n"
+"    }\n"
+"end\n"
+"\n"
+"function catch(request, pid, player)\n"
+"    local id = tonumber(pid)\n"
+"    if id == nil then\n"
+"        return {result=false}\n"
+"    end\n"
+"    return {\n"
+"        result=game:catch(id, player)\n"
+"    }\n"
+"end"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/nginx.rst:44
+msgid "An easy way to configure and launch nginx would be to create a Docker container based on a `Docker image <https://hub.docker.com/r/tarantool/tarantool-nginx/>`_ with nginx and the upstream module already installed (see `http/Dockerfile <https://github.com/tarantool/pokemon/blob/1.9/http/Dockerfile>`_). We take a standard `nginx.conf <https://github.com/tarantool/pokemon/blob/1.9/http/nginx.conf>`_, where we define an upstream with our Tarantool backend running (this is another Docker container, see details below):"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/nginx.rst:53
+msgid "upstream tnt {\n"
+"      server pserver:3301 max_fails=1 fail_timeout=60s;\n"
+"      keepalive 250000;\n"
+"}"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/nginx.rst:60
+msgid "and add some Tarantool-specific parameters (see descriptions in the upstream module's `README <https://github.com/tarantool/nginx_upstream_module#directives>`_ file):"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/nginx.rst:64
+msgid "server {\n"
+"  server_name tnt_test;\n"
+"\n"
+"  listen 80 default deferred reuseport so_keepalive=on backlog=65535;\n"
+"\n"
+"  location = / {\n"
+"      root /usr/local/nginx/html;\n"
+"  }\n"
+"\n"
+"  location /api {\n"
+"    # answers check infinity timeout\n"
+"    tnt_read_timeout 60m;\n"
+"    if ( $request_method = GET ) {\n"
+"       tnt_method \"map\";\n"
+"    }\n"
+"    tnt_http_rest_methods get;\n"
+"    tnt_http_methods all;\n"
+"    tnt_multireturn_skip_count 2;\n"
+"    tnt_pure_result on;\n"
+"    tnt_pass_http_request on parse_args;\n"
+"    tnt_pass tnt;\n"
+"  }\n"
+"}"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/nginx.rst:90
+msgid "Likewise, we put Tarantool server and all our game logic in a second Docker container based on the `official Tarantool 1.9 image <https://github.com/tarantool/docker>`_ (see `src/Dockerfile <https://github.com/tarantool/pokemon/blob/1.9/src/Dockerfile>`_) and set the container's default command to ``tarantool app.lua``. This is the backend."
+msgstr ""
