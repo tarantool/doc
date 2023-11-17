@@ -1,0 +1,315 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/compat/compat_tutorial.rst:4
+msgid "Tutorial: Module compat"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/compat_tutorial.rst:6
+msgid "This tutorial covers the following ``compat`` module API and its usage:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/compat_tutorial.rst:12
+msgid "Listing options"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/compat_tutorial.rst:14
+msgid "The options list is serialized in the interactive console with additional details for user convenience:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/compat_tutorial.rst:16
+msgid "All non-obsolete options in order new > old > default."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/compat_tutorial.rst:18
+msgid "Serialization returns array-like table with tables ``{<option> = <value>}``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/compat_tutorial.rst:20
+msgid "The result of compat serialization can still be indexed as a normal key-value table."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/compat_tutorial.rst:22
+msgid "tarantool> compat = require('compat')\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> compat\n"
+"---\n"
+"- - json_escape_forward_slash: new\n"
+"- - option_2: old\n"
+"- - option_default_old: default (old)\n"
+"- - option_default_new: default (new)\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/compat_tutorial.rst:37
+msgid "Listing options details"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/compat_tutorial.rst:39
+msgid "``current`` – the state of the option."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/compat_tutorial.rst:40
+msgid "``default`` – the default state of the option."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/compat_tutorial.rst:41
+msgid "``brief`` – text options description with a link to more detailed description."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/compat_tutorial.rst:43
+msgid "tarantool> compat.option_default_new\n"
+"---\n"
+"- current: old\n"
+"default: new\n"
+"brief: <...>\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/compat_tutorial.rst:53
+msgid "Changing option value"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/compat_tutorial.rst:55
+msgid "You can do it directly, or by passing a table with option-value. Possible values to assign are 'new' , 'old', and 'default'."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/compat_tutorial.rst:58
+msgid "tarantool> compat.json_escape_forward_slash = 'old'\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> compat{json_escape_forward_slash = 'new', option_2 = 'default'}\n"
+"---\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/compat_tutorial.rst:69
+msgid "Restoring defaults"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/compat_tutorial.rst:71
+msgid "By setting 'default' value to an option:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/compat_tutorial.rst:73
+msgid "tarantool> compat.option_2 = 'default'\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> compat.option_2\n"
+"---\n"
+"- current: default\n"
+"- default: new\n"
+"- brief: <...>\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/compat_tutorial.rst:87
+msgid "Getting compat setup with compat.dump()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/compat_tutorial.rst:89
+msgid "tarantool> compat({\n"
+"         >     obsolete_set_explicitly = 'new',\n"
+"         >     option_set_old = 'old',\n"
+"         >     option_set_new = 'new'\n"
+"         > })\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> compat\n"
+"---\n"
+"- - option_set_old: old\n"
+"- - option_set_new: new\n"
+"- - option_default_old: default (old)\n"
+"- - option_default_new: default (new)\n"
+"...\n"
+"\n"
+"# Obsolete options are not returned in serialization, but have the following values:\n"
+"# - obsolete_option_default: default (new)\n"
+"# - obsolete_set_explicitly: new\n"
+"\n"
+"# nil does output obsolete unset options as 'default'\n"
+"tarantool> compat.dump()\n"
+"---\n"
+"- require('compat')({\n"
+"            option_set_old          = 'old',\n"
+"            option_set_new          = 'new',\n"
+"            option_default_old      = 'default',\n"
+"            option_default_new      = 'default',\n"
+"            obsolete_option_default = 'default', -- obsolete since X.Y\n"
+"            obsolete_set_explicitly = 'new',     -- obsolete since X.Y\n"
+"    })\n"
+"...\n"
+"\n"
+"# 'current' is the same as nil with default set to current values\n"
+"tarantool> compat.dump('current')\n"
+"---\n"
+"- require('compat')({\n"
+"            option_set_old          = 'old',\n"
+"            option_set_new          = 'new',\n"
+"            option_default_old      = 'old',\n"
+"            option_default_new      = 'new',\n"
+"            obsolete_option_default = 'new',     -- obsolete since X.Y\n"
+"            obsolete_set_explicitly = 'new',     -- obsolete since X.Y\n"
+"    })\n"
+"...\n"
+"\n"
+"# 'new' outputs obsolete as 'new'.\n"
+"tarantool> compat.dump('new')\n"
+"---\n"
+"- require('compat')({\n"
+"            option_set_old          = 'new',\n"
+"            option_set_new          = 'new',\n"
+"            option_default_old      = 'new',\n"
+"            option_default_new      = 'new',\n"
+"            obsolete_option_default = 'new',     -- obsolete since X.Y\n"
+"            obsolete_set_explicitly = 'new',     -- obsolete since X.Y\n"
+"    })\n"
+"...\n"
+"\n"
+"# 'old' outputs obsolete options as 'new'.\n"
+"tarantool> compat.dump('old')\n"
+"---\n"
+"- require('compat')({\n"
+"            option_set_old          = 'old',\n"
+"            option_set_new          = 'old',\n"
+"            option_default_old      = 'old',\n"
+"            option_default_new      = 'old',\n"
+"            obsolete_option_default = 'new',     -- obsolete since X.Y\n"
+"            obsolete_set_explicitly = 'new',     -- obsolete since X.Y\n"
+"    })\n"
+"...\n"
+"\n"
+"# 'default' does output obsolete options as default.\n"
+"tarantool> dump('default')\n"
+"---\n"
+"- require('compat')({\n"
+"            option_set_old          = 'default',\n"
+"            option_set_new          = 'default',\n"
+"            option_default_old      = 'default',\n"
+"            option_default_new      = 'default',\n"
+"            obsolete_option_default = 'default', -- obsoleted since X.Y\n"
+"            obsolete_set_explicitly = 'default', -- obsoleted since X.Y\n"
+"    })\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/compat_tutorial.rst:177
+msgid "Setting all options to a specific value with compat.dump()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/compat_tutorial.rst:179
+msgid "use compat.dump() to get a specific configuration"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/compat_tutorial.rst:181
+msgid "copy and paste it into console (or use loadstring())"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/compat_tutorial.rst:183
+msgid "tarantool> compat.dump('new')\n"
+"---\n"
+"- require('compat')({\n"
+"      option_2 = 'new',\n"
+"      json_escape_forward_slash = 'new',\n"
+"  })\n"
+"...\n"
+"tarantool> require('compat')({\n"
+"      option_2 = 'new',\n"
+"      json_escape_forward_slash = 'new',\n"
+"  })\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> compat\n"
+"---\n"
+"- - json_escape_forward_slash: new\n"
+"- - option_2: new\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/compat_tutorial.rst:206
+msgid "Adding an option during runtime"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/compat_tutorial.rst:208
+msgid "User must provide a table with:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/compat_tutorial.rst:210
+msgid "name (string)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/compat_tutorial.rst:211
+msgid "default (’new’ / ’old’)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/compat_tutorial.rst:212
+msgid "brief (explanation of the option, can be multiline string)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/compat_tutorial.rst:213
+msgid "obsolete (’X.Y’ / nil) — tarantool version that marked option as obsolete. When nil, option is treated as non-obsolete)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/compat_tutorial.rst:214
+msgid "action function (argument - boolean is_new, changes the behavior accordingly)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/compat_tutorial.rst:215
+msgid "run_action_now (true / false / nil) if add_options should run action afterwards, false by default"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/compat_tutorial.rst:217
+msgid "Option hot reload:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/compat_tutorial.rst:219
+msgid "You can change an existing option in runtime using add_option(), it will update all the fields but keep currently selected behavior if any. The new action will be called afterwards."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/compat/compat_tutorial.rst:222
+msgid "tarantool> compat.add_option{\n"
+"                 name = 'option_4',\n"
+"                 default = 'new',\n"
+"                 brief = \"<...>\",\n"
+"                 obsolete = nil,          -- you can explicitly mark the option as non-obsolete\n"
+"                 action = function(is_new)\n"
+"                      print((\"option_4 action was called with is_new = %s!\"):format(is_new))\n"
+"                 end,\n"
+"                 run_action_now = true\n"
+"           }\n"
+"option_4 postaction was called with is_new = true!\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> compat.add_option{             -- hot reload of option_4\n"
+"                 name = 'option_4',\n"
+"                 default = 'old',         -- different default\n"
+"                 brief = \"<...>\",\n"
+"                 action = function(is_new)\n"
+"                      print((\"new option_4 action was called with is_new = %s!\"):format(is_new))\n"
+"                 end\n"
+"           }\n"
+"---\n"
+"...         -- action is not called by default"
+msgstr ""

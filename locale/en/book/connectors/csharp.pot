@@ -1,0 +1,124 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/connectors/csharp.rst:2
+msgid "C#"
+msgstr ""
+
+#: ../../doc/book/connectors/csharp.rst:4
+msgid "The most commonly used C# driver is `progaudi.tarantool <https://github.com/progaudi/progaudi.tarantool>`__, previously named ``tarantool-csharp``. It is not supplied as part of the Tarantool repository; it must be installed separately. The makers recommend `cross-platform installation using Nuget <https://www.nuget.org/packages/progaudi.tarantool>`__."
+msgstr ""
+
+#: ../../doc/book/connectors/csharp.rst:10
+msgid "To be consistent with the other instructions in this chapter, here is a way to install the driver directly on Ubuntu 16.04."
+msgstr ""
+
+#: ../../doc/book/connectors/csharp.rst:13
+msgid "Install .net core from Microsoft. Follow `.net core installation instructions <https://dotnet.microsoft.com/download>`__."
+msgstr ""
+
+#: ../../doc/book/connectors/csharp.rst:18
+msgid "Mono will not work, nor will .Net from xbuild. Only .net core supported on Linux and Mac."
+msgstr ""
+
+#: ../../doc/book/connectors/csharp.rst:20
+msgid "Read the Microsoft End User License Agreement first, because it is not an ordinary open-source agreement and there will be a message during installation saying \"This software may collect information about you and your use of the software, and send that to Microsoft.\" Still you can `set environment variables <https://docs.microsoft.com/en-us/dotnet/core/tools/telemetry>`__ to opt out from telemetry."
+msgstr ""
+
+#: ../../doc/book/connectors/csharp.rst:28
+msgid "Create a new console project."
+msgstr ""
+
+#: ../../doc/book/connectors/csharp.rst:30
+msgid "$ cd ~\n"
+"$ mkdir progaudi.tarantool.test\n"
+"$ cd progaudi.tarantool.test\n"
+"$ dotnet new console"
+msgstr ""
+
+#: ../../doc/book/connectors/csharp.rst:37
+msgid "Add ``progaudi.tarantool`` reference."
+msgstr ""
+
+#: ../../doc/book/connectors/csharp.rst:39
+msgid "$ dotnet add package progaudi.tarantool"
+msgstr ""
+
+#: ../../doc/book/connectors/csharp.rst:43
+msgid "Change code in ``Program.cs``."
+msgstr ""
+
+#: ../../doc/book/connectors/csharp.rst:45
+msgid "$ cat <<EOT > Program.cs\n"
+"using System;\n"
+"using System.Threading.Tasks;\n"
+"using ProGaudi.Tarantool.Client;\n"
+"\n"
+"public class HelloWorld\n"
+"{\n"
+"  static public void Main ()\n"
+"  {\n"
+"    Test().GetAwaiter().GetResult();\n"
+"  }\n"
+"  static async Task Test()\n"
+"  {\n"
+"    var box = await Box.Connect(\"127.0.0.1:3301\");\n"
+"    var schema = box.GetSchema();\n"
+"    var space = await schema.GetSpace(\"examples\");\n"
+"    await space.Insert((99999, \"BB\"));\n"
+"  }\n"
+"}\n"
+"EOT"
+msgstr ""
+
+#: ../../doc/book/connectors/csharp.rst:68
+msgid "Build and run your application."
+msgstr ""
+
+#: ../../doc/book/connectors/csharp.rst:70
+msgid "Before trying to run, check that the server is listening at ``localhost:3301`` and that the space ``examples`` exists, as :ref:`described earlier <index-connector_setting>`."
+msgstr ""
+
+#: ../../doc/book/connectors/csharp.rst:74
+msgid "$ dotnet restore\n"
+"$ dotnet run"
+msgstr ""
+
+#: ../../doc/book/connectors/csharp.rst:79
+msgid "The program will:"
+msgstr ""
+
+#: ../../doc/book/connectors/csharp.rst:81
+msgid "connect using an application-specific definition of the space,"
+msgstr ""
+
+#: ../../doc/book/connectors/csharp.rst:82
+msgid "open a socket connection with the Tarantool server at ``localhost:3301``,"
+msgstr ""
+
+#: ../../doc/book/connectors/csharp.rst:83
+msgid "send an INSERT request, and — if all is well — end without saying anything."
+msgstr ""
+
+#: ../../doc/book/connectors/csharp.rst:85
+msgid "If Tarantool is not running on localhost with listen port = 3301, or if user 'guest' does not have authorization to connect, or if the INSERT request fails for any reason, the program will print an error message, among other things (stacktrace, etc)."
+msgstr ""
+
+#: ../../doc/book/connectors/csharp.rst:90
+msgid "The example program only shows one request and does not show all that’s necessary for good practice. For that, please see the `progaudi.tarantool driver repository <https://github.com/progaudi/progaudi.tarantool>`__."
+msgstr ""

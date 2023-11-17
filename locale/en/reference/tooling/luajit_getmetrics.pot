@@ -1,0 +1,583 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:4
+msgid "LuaJIT getmetrics"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:6
+msgid "Tarantool can return metrics of a current instance via the Lua API or the C API."
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:15
+msgid "misc.getmetrics()"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:19
+msgid "Get the metrics values into a table."
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:21
+msgid "Parameters: none"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:23
+msgid "table"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:25
+msgid "Example: ``metrics_table = misc.getmetrics()``"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:30
+msgid "getmetrics table values"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:32
+msgid "The metrics table contains 19 values. All values have type = 'number' and are the result of a cast to double, so there may be a very slight precision loss. Values whose names begin with ``gc_`` are associated with the `LuaJIT garbage collector <http://wiki.luajit.org/New-Garbage-Collector/>`_; a fuller study of the garbage collector can be found at `a Lua-users wiki page <http://lua-users.org/wiki/EmergencyGarbageCollector>`_ and `a slide from the creator of Lua <https://www.lua.org/wshop18/Ierusalimschy.pdf#page=16>`_. Values whose names begin with ``jit_`` are associated with the `\"phases\" <https://en.wikipedia.org/wiki/Tracing_just-in-time_compilation>`_ of the just-in-time compilation process; a fuller study of JIT phases can be found at `A masters thesis from cern.ch <http://cds.cern.ch/record/2692915/files/CERN-THESIS-2019-152.pdf?version=1>`_."
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:45
+msgid "Values described as \"monotonic\" are cumulative, that is, they are \"totals since all operations began\", rather than \"since the last getmetrics() call\". Overflow is possible."
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:49
+msgid "Because many values are monotonic, a typical analysis involves calling ``getmetrics()``, saving the table, calling ``getmetrics()`` again and comparing the table to what was saved. The difference is a \"slope curve\". An interesting slope curve is one that shows acceleration, for example the difference between the latest value and the previous value keeps increasing. Some of the table members shown here are used in the examples that come later in this section."
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:65
+msgid "Name"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:65
+msgid "Content"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:65
+msgid "Monotonic?"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:67
+msgid "gc_allocated"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:67
+msgid "number of bytes of allocated memory"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:67
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:71
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:73
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:76
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:79
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:82
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:85
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:89
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:103
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:107
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:111
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:115
+msgid "yes"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:69
+msgid "gc_cdatanum"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:69
+msgid "number of allocated cdata objects"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:69
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:92
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:94
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:96
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:99
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:101
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:109
+msgid "no"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:71
+msgid "gc_freed"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:71
+msgid "number of bytes of freed memory"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:73
+msgid "gc_steps_atomic"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:73
+msgid "number of steps of garbage collector, atomic phases, incremental"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:76
+msgid "gc_steps_finalize"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:76
+msgid "number of steps of garbage collector, finalize"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:79
+msgid "gc_steps_pause"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:79
+msgid "number of steps of garbage collector, pauses"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:82
+msgid "gc_steps_propagate"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:82
+msgid "number of steps of garbage collector, propagate"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:85
+msgid "gc_steps_sweep"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:85
+msgid "number of steps of garbage collector, sweep phases (see the `Sweep phase description`_)"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:89
+msgid "gc_steps_sweepstring"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:89
+msgid "number of steps of garbage collector, sweep phases for strings"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:92
+msgid "gc_strnum"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:92
+msgid "number of allocated string objects"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:94
+msgid "gc_tabnum"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:94
+msgid "number of allocated table objects"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:96
+msgid "gc_total"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:96
+msgid "number of bytes of currently allocated memory (normally equals gc_allocated minus gc_freed)"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:99
+msgid "gc_udatanum"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:99
+msgid "number of allocated udata objects"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:101
+msgid "jit_mcode_size"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:101
+msgid "total size of all allocated machine code areas"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:103
+msgid "jit_snap_restore"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:103
+msgid "overall number of snap restores, based on the number of guard assertions leading to stopping trace executions (see external `Snap tutorial`_)"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:107
+msgid "jit_trace_abort"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:107
+msgid "overall number of aborted traces"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:109
+msgid "jit_trace_num"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:109
+msgid "number of JIT traces"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:111
+msgid "strhash_hit"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:111
+msgid "number of strings being interned because, if a string with the same value is found via the hash, a new one is not created / allocated"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:115
+msgid "strhash_miss"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:115
+msgid "total number of strings allocations during the platform lifetime"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:124
+msgid "Note: Although value names are similar to value names in `ujit.getmetrics() <https://ujit.readthedocs.io/en/latest/public/ujit-024.html#ujit-getmetrics>`_ the values are not the same, primarily because many ujit numbers are not monotonic."
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:128
+msgid "Note: Although value names are similar to value names in :ref:`LuaJIT metrics <metrics-reference-luajit>`, and the values are exactly the same, misc.getmetrics() is slightly easier because there is no need to ‘require’ the misc module."
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:136
+msgid "getmetrics C API"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:138
+msgid "The Lua ``getmetrics()`` function is a wrapper for the C function ``luaM_metrics()``."
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:140
+msgid "C programs may include a header named ``libmisclib.h``. The definitions in ``libmisclib.h`` include the following lines:"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:143
+msgid "struct luam_Metrics { /* the names described earlier for Lua */ }\n"
+"\n"
+"LUAMISC_API void luaM_metrics(lua_State *L, struct luam_Metrics *metrics);"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:149
+msgid "The names of ``struct luam_Metrics`` members are the same as Lua's :ref:`getmetrics table values <luajit_getmetrics_tablevalues>` names. The data types of ``struct luam_Metrics`` members are all ``size_t``. The ``luaM_metrics()`` function will fill the ``*metrics`` structure with the metrics related to the Lua state anchored to the ``L`` coroutine."
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:155
+msgid "**Example with a C program**"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:157
+msgid "Go through the :ref:`C stored procedures <f_c_tutorial-c_stored_procedures>` tutorial. Replace the easy.c example with"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:160
+msgid "#include \"module.h\"\n"
+"#include <lmisclib.h>\n"
+"\n"
+"int easy(box_function_ctx_t *ctx, const char *args, const char *args_end)\n"
+"{\n"
+"  lua_State *ls = luaT_state();\n"
+"  struct luam_Metrics m;\n"
+"  luaM_metrics(ls, &m);\n"
+"  printf(\"allocated memory = %lu\\n\", m.gc_allocated);\n"
+"  return 0;\n"
+"}"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:174
+msgid "Now when you go back to the client and execute the requests up to and including the line ``capi_connection:call('easy')`` you will see that the display is something like \"allocated memory = 4431950\" although the number will vary."
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:183
+msgid "Example with gc_strnum, strhash_miss, and strhash_hit"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:185
+msgid "To track new string object allocations:"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:187
+msgid "function f()\n"
+"  collectgarbage(\"collect\")\n"
+"  local oldm = misc.getmetrics()\n"
+"  local table_of_strings = {}\n"
+"  for i = 3000, 4000 do table.insert(table_of_strings, tostring(i)) end\n"
+"  for i = 3900, 4100 do table.insert(table_of_strings, tostring(i)) end\n"
+"  local newm = misc.getmetrics()\n"
+"  print(\"gc_strnum diff = \" .. newm.gc_strnum - oldm.gc_strnum)\n"
+"  print(\"strhash_miss diff = \" .. newm.strhash_miss - oldm.strhash_miss)\n"
+"  print(\"strhash_hit diff = \" .. newm.strhash_hit - oldm.strhash_hit)\n"
+"end\n"
+"f()"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:202
+msgid "The result will probably be: \"gc_strnum diff = 1100\" because we added 1202 strings but 101 were duplicates, \"strhash_miss_diff = 1100\" for the same reason, \"strhash_hit_diff = 101\" plus some overhead, for the same reason. (There is always a slight overhead amount for ``strhash_hit``, which can be ignored.)"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:208
+msgid "We say \"probably\" because there is a chance that the strings were already allocated somewhere. It is a good thing if the slope curve of ``strhash_miss`` is less than the slope curve of ``strhash_hit``."
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:213
+msgid "The other ``gc_*num`` values -- ``gc_cdatanum``, ``gc_tabnum``, ``gc_udatanum`` -- can be accessed in a similar way. Any of the ``gc_*num`` values can be useful when looking for memory leaks – the total number of these objects should not grow nonstop. A more general way to look for memory leaks is to watch ``gc_total``. Also ``jit_mcode_size`` can be used to watch the amount of allocated memory for machine code traces."
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:223
+msgid "Example with gc_allocated and gc_freed"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:225
+msgid "To track an application's effect on the garbage collector (less is better):"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:227
+msgid "function f()\n"
+"  for i = 1, 10 do collectgarbage(\"collect\") end\n"
+"  local oldm = misc.getmetrics()\n"
+"  local newm = misc.getmetrics()\n"
+"  oldm = misc.getmetrics()\n"
+"  collectgarbage(\"collect\")\n"
+"  newm = misc.getmetrics()\n"
+"  print(\"gc_allocated diff = \" .. newm.gc_allocated - oldm.gc_allocated)\n"
+"  print(\"gc_freed diff = \" .. newm.gc_freed - oldm.gc_freed)\n"
+"end\n"
+"f()"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:241
+msgid "The result will be: ``gc_allocated diff = 800``, ``gc_freed diff = 800``. This shows that ``local ... = getmetrics()`` itself causes memory allocation (because it is creating a table and assigning to it), and shows that when the name of a variable (in this case the ``oldm`` variable) is used again, that causes freeing. Ordinarily the freeing would not occur immediately, but ``collectgarbage(\"collect\")`` forces it to happen so we can see the effect."
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:252
+msgid "Example with gc_allocated and a space optimization"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:254
+msgid "To test whether optimizing for space is possible with tables:"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:256
+msgid "function f()\n"
+"  collectgarbage(\"collect\")\n"
+"  local oldm = misc.getmetrics()\n"
+"  local t = {}\n"
+"  for i = 1, 513 do\n"
+"    t[i] = i\n"
+"  end\n"
+"  local newm = misc.getmetrics()\n"
+"  local diff = newm.gc_allocated - oldm.gc_allocated\n"
+"  print(\"diff = \" .. diff)\n"
+"end\n"
+"f()"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:271
+msgid "The result will show that diff equals approximately 18000."
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:273
+msgid "Now see what happens if the table initialization is different:"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:275
+msgid "function f()\n"
+"  local table_new = require \"table.new\"\n"
+"  local oldm = misc.getmetrics()\n"
+"  local t = table_new(513, 0)\n"
+"  for i = 1, 513 do\n"
+"    t[i] = i\n"
+"  end\n"
+"  local newm = misc.getmetrics()\n"
+"  local diff = newm.gc_allocated - oldm.gc_allocated\n"
+"  print(\"diff = \" .. diff)\n"
+"end\n"
+"f()"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:290
+msgid "The result will show that diff equals approximately 6000."
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:295
+msgid "gc_steps_atomic and gc_steps_propagate"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:297
+msgid "The slope curves of ``gc_steps_*`` items can be used for tracking pressure on the garbage collector too. During long-running routines, ``gc_steps_*`` values will increase, but long times between ``gc_steps_atomic`` increases are a good sign, And, since ``gc_steps_atomic`` increases only once per garbage-collector cycle, it shows how many garbage-collector cycles have occurred."
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:304
+msgid "Also, increases in the ``gc_steps_propagate`` number can be used to estimate indirectly how many objects there are. These values also correlate with the garbage collector's `step multiplier <https://www.lua.org/manual/5.4/manual.html#2.5.1>`_. For example, the number of incremental steps can grow, but according to the step multiplier configuration, one step can process only a small number of objects. So these metrics should be considered when configuring the garbage collector."
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:312
+msgid "The following function takes a casual look whether an SQL statement causes much pressure:"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:314
+msgid "function f()\n"
+"  collectgarbage(\"collect\")\n"
+"  local oldm = misc.getmetrics()\n"
+"  collectgarbage(\"collect\")\n"
+"  box.execute([[DROP TABLE _vindex;]])\n"
+"  local newm = misc.getmetrics()\n"
+"  print(\"gc_steps_atomic = \" .. newm.gc_steps_atomic - oldm.gc_steps_atomic)\n"
+"  print(\"gc_steps_finalize = \" .. newm.gc_steps_finalize - oldm.gc_steps_finalize)\n"
+"  print(\"gc_steps_pause = \" .. newm.gc_steps_pause - oldm.gc_steps_pause)\n"
+"  print(\"gc_steps_propagate = \" .. newm.gc_steps_propagate - oldm.gc_steps_propagate)\n"
+"  print(\"gc_steps_sweep = \" .. newm.gc_steps_sweep - oldm.gc_steps_sweep)\n"
+"end\n"
+"f()"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:330
+msgid "And the display will show that the ``gc_steps_*`` metrics are not significantly different from what they would be if the ``box.execute()`` was absent."
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:336
+msgid "Example with jit_trace_num and jit_trace_abort"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:338
+msgid "Just-in-time compilers will \"trace\" code looking for opportunities to compile. ``jit_trace_abort`` can show how often there was a failed attempt (less is better), and ``jit_trace_num`` can show how many traces were generated since the last flush (usually more is better)."
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:343
+msgid "The following function does not contain code that can cause trouble for LuaJIT:"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:345
+msgid "function f()\n"
+"  jit.flush()\n"
+"  for i = 1, 10 do collectgarbage(\"collect\") end\n"
+"  local oldm = misc.getmetrics()\n"
+"  collectgarbage(\"collect\")\n"
+"  local sum = 0\n"
+"  for i = 1, 57 do\n"
+"    sum = sum + 57\n"
+"  end\n"
+"  for i = 1, 10 do collectgarbage(\"collect\") end\n"
+"  local newm = misc.getmetrics()\n"
+"  print(\"trace_num = \" .. newm.jit_trace_num - oldm.jit_trace_num)\n"
+"  print(\"trace_abort = \" .. newm.jit_trace_abort - oldm.jit_trace_abort)\n"
+"end\n"
+"f()"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:363
+msgid "The result is: trace_num = 1, trace_abort = 0. Fine."
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:365
+msgid "The following function seemingly does contain code that can cause trouble for LuaJIT:"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:367
+msgid "jit.opt.start(0, \"hotloop=2\", \"hotexit=2\", \"minstitch=15\")\n"
+"_G.globalthing = 5\n"
+"function f()\n"
+"  jit.flush()\n"
+"  collectgarbage(\"collect\")\n"
+"  local oldm = misc.getmetrics()\n"
+"  collectgarbage(\"collect\")\n"
+"  local sum = 0\n"
+"  for i = 1, box.space._vindex:count()+ _G.globalthing do\n"
+"    box.execute([[SELECT RANDOMBLOB(0);]])\n"
+"    require('buffer').ibuf()\n"
+"    _G.globalthing = _G.globalthing - 1\n"
+"  end\n"
+"  local newm = misc.getmetrics()\n"
+"  print(\"trace_num = \" .. newm.jit_trace_num - oldm.jit_trace_num)\n"
+"  print(\"trace_abort = \" .. newm.jit_trace_abort - oldm.jit_trace_abort)\n"
+"end\n"
+"f()"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:388
+msgid "The result is: trace_num = between 2 and 4, trace_abort = 1. This means that up to four traces needed to be generated instead of one, and this means that something made LuaJIT give up in despair. Tracing more will reveal that the problem is not the suspicious-looking statements within the function, it is the ``jit.opt.start`` call. (A look at a jit.dump file might help in examining the trace compilation process.)"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:399
+msgid "Example with jit_snap_restore and a performance unoptimization"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:401
+msgid "If the slope curves of the ``jit_snap_restore`` metric grow after changes to old code, that can mean LuaJIT is stopping trace execution more frequently, and that can mean performance is degraded."
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:405
+msgid "Start with this code:"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:407
+msgid "function f()\n"
+"  local function foo(i)\n"
+"    return i <= 5 and i or tostring(i)\n"
+"  end\n"
+"  -- minstitch option needs to emulate nonstitching behaviour\n"
+"  jit.opt.start(0, \"hotloop=2\", \"hotexit=2\", \"minstitch=15\")\n"
+"  local sum = 0\n"
+"  local oldm = misc.getmetrics()\n"
+"  for i = 1, 10 do\n"
+"    sum = sum + foo(i)\n"
+"  end\n"
+"  local newm = misc.getmetrics()\n"
+"  local diff = newm.jit_snap_restore - oldm.jit_snap_restore\n"
+"  print(\"diff = \" .. diff)\n"
+"end\n"
+"f()"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:426
+msgid "The result will be: diff = 3, because there is one side exit when the loop ends, and there are two side exits to the interpreter before LuaJIT may decide that the chunk of code is \"hot\" (the default value of the hotloop parameter is 56 according to `Running LuaJIT  <https://luajit.org/running.html#opt_O>`_)."
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:432
+msgid "And now change only one line within function ``local foo``, so now the code is:"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:434
+msgid "function f()\n"
+"  local function foo(i)\n"
+"    -- math.fmod is not yet compiled!\n"
+"    return i <= 5 and i or math.fmod(i, 11)\n"
+"  end\n"
+"  -- minstitch option needs to emulate nonstitching behaviour\n"
+"  jit.opt.start(0, \"hotloop=2\", \"hotexit=2\", \"minstitch=15\")\n"
+"  local sum = 0\n"
+"  local oldm = misc.getmetrics()\n"
+"  for i = 1, 10 do\n"
+"    sum = sum + foo(i)\n"
+"  end\n"
+"  local newm = misc.getmetrics()\n"
+"  local diff = newm.jit_snap_restore - oldm.jit_snap_restore\n"
+"  print(\"diff = \" .. diff)\n"
+"end\n"
+"f()"
+msgstr ""
+
+#: ../../doc/reference/tooling/luajit_getmetrics.rst:454
+msgid "The result will be: diff is larger, because there are more side exits. So this test indicates that changing the code affected the performance."
+msgstr ""

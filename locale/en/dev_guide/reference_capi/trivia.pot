@@ -1,0 +1,93 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/dev_guide/reference_capi/trivia.rst:3
+msgid "Module trivia/config"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/trivia.rst:7
+msgid "Extern modifier for all public functions."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/trivia.rst:11
+msgid "Package major version - 2 for 2.0.5."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/trivia.rst:15
+msgid "Package minor version - 0 for 2.0.5."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/trivia.rst:19
+msgid "Package patch version - 5 for 2.0.5."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/trivia.rst:23
+msgid "A string with major-minor-patch-commit-id identifier of the release, e.g. 2.0.5-75-gdd8e14ffb."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/trivia.rst:28
+msgid "System configuration dir (e.g ``/etc``)"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/trivia.rst:32
+msgid "Install prefix (e.g. ``/usr``)"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/trivia.rst:36
+msgid "Build type, e.g. Debug or Release"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/trivia.rst:40
+msgid "CMake build type signature, e.g. ``Linux-x86_64-Debug``"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/trivia.rst:44
+msgid "Command line used to run CMake."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/trivia.rst:48
+msgid "Paths to C and CXX compilers."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/trivia.rst:52
+msgid "C compile flags used to build Tarantool."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/trivia.rst:56
+msgid "CXX compile flags used to build Tarantool."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/trivia.rst:60
+msgid "A path to install ``*.lua`` module files."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/trivia.rst:64
+msgid "A path to install ``*.so``/``*.dylib`` module files."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/trivia.rst:68
+msgid "A path to Lua includes (the same directory where this file is contained)"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/trivia.rst:72
+msgid "A constant added to ``package.path`` in Lua to find ``*.lua`` module files."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/trivia.rst:76
+msgid "A constant added to ``package.cpath`` in Lua to find ``*.so`` module files."
+msgstr ""

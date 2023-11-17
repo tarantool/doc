@@ -1,0 +1,204 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_index/select.rst:5
+msgid "index_object:select()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/select.rst:11
+msgid "Search for a tuple or a set of tuples by the current index. To search by the primary index in the specified space, use the :ref:`box_space-select` method."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/select.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/select.rst:14
+msgid "an :ref:`object reference <app_server-object_reference>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/select.rst:16
+msgid "a value to be matched against the index key, which may be multi-part."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/select.rst:17
+msgid "none, any, or all of the following parameters:  * ``iterator`` -- the :ref:`iterator type <box_index-iterator-types>`. The default iterator type is 'EQ'. * ``limit`` -- the maximum number of tuples. * ``offset`` -- the number of tuples to skip (use this parameter carefully when scanning :ref:`large data sets <offset-warning>`). * ``options.after`` -- a tuple or the position of a tuple (:ref:`tuple_pos <box_index-tuple_pos>`) after which ``select`` starts the search. You can pass an empty string or :ref:`box.NULL <box-null>` to this option to start the search from the first tuple. * ``options.fetch_pos`` -- if **true**, the ``select`` method returns the position of the last selected tuple as the second value.    .. NOTE::        The ``after`` and ``fetch_pos`` options are supported for the ``TREE`` :ref:`index <index-types>` only."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/select.rst:17
+msgid "none, any, or all of the following parameters:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/select.rst:19
+msgid "``iterator`` -- the :ref:`iterator type <box_index-iterator-types>`. The default iterator type is 'EQ'."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/select.rst:20
+msgid "``limit`` -- the maximum number of tuples."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/select.rst:21
+msgid "``offset`` -- the number of tuples to skip (use this parameter carefully when scanning :ref:`large data sets <offset-warning>`)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/select.rst:22
+msgid "``options.after`` -- a tuple or the position of a tuple (:ref:`tuple_pos <box_index-tuple_pos>`) after which ``select`` starts the search. You can pass an empty string or :ref:`box.NULL <box-null>` to this option to start the search from the first tuple."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/select.rst:23
+msgid "``options.fetch_pos`` -- if **true**, the ``select`` method returns the position of the last selected tuple as the second value."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/select.rst:27
+msgid "The ``after`` and ``fetch_pos`` options are supported for the ``TREE`` :ref:`index <index-types>` only."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/select.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/select.rst:33
+msgid "This function might return one or two values:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/select.rst:35
+msgid "The tuples whose fields are equal to the fields of the passed key. If the number of passed fields is less than the number of fields in the current key, then only the passed fields are compared, so ``select{1,2}`` matches a tuple whose primary key is ``{1,2,3}``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/select.rst:40
+msgid "(Optionally) If ``options.fetch_pos`` is set to **true**, returns a base64-encoded string representing the position of the last selected tuple as the second value. If no tuples are fetched, returns ``nil``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/select.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/select.rst:45
+msgid "array of tuples"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/select.rst:46
+msgid "(Optionally) string"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/select.rst:52
+msgid "Use the ``offset`` option carefully when scanning large data sets as it linearly increases the number of scanned tuples and leads to a full space scan. Instead, you can use the ``after`` and ``fetch_pos`` options."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/select.rst:58
+msgid "**Examples:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/select.rst:60
+msgid "Below are few examples of using ``select`` with different parameters. To try out these examples, you need to bootstrap a Tarantool database as described in :ref:`Using data operations <box_space-operations-detailed-examples>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/select.rst:64
+msgid "-- Insert test data --\n"
+"box.space.bands:insert { 1, 'Roxette', 1986 }\n"
+"box.space.bands:insert { 2, 'Scorpions', 1965 }\n"
+"box.space.bands:insert { 3, 'Ace of Base', 1987 }\n"
+"box.space.bands:insert { 4, 'The Beatles', 1960 }\n"
+"box.space.bands:insert { 5, 'Pink Floyd', 1965 }\n"
+"box.space.bands:insert { 6, 'The Rolling Stones', 1962 }\n"
+"box.space.bands:insert { 7, 'The Doors', 1965 }\n"
+"box.space.bands:insert { 8, 'Nirvana', 1987 }\n"
+"box.space.bands:insert { 9, 'Led Zeppelin', 1968 }\n"
+"box.space.bands:insert { 10, 'Queen', 1970 }\n"
+"\n"
+"-- Select a tuple by the specified primary key value --\n"
+"select_primary = bands.index.primary:select { 1 }\n"
+"--[[\n"
+"---\n"
+"- - [1, 'Roxette', 1986]\n"
+"...\n"
+"--]]\n"
+"\n"
+"-- Select a tuple by the specified secondary key value --\n"
+"select_secondary = bands.index.band:select { 'The Doors' }\n"
+"--[[\n"
+"---\n"
+"- - [7, 'The Doors', 1965]\n"
+"...\n"
+"--]]\n"
+"\n"
+"-- Select a tuple by the specified multi-part secondary key value --\n"
+"select_multipart = bands.index.year_band:select { 1960, 'The Beatles' }\n"
+"--[[\n"
+"---\n"
+"- - [4, 'The Beatles', 1960]\n"
+"...\n"
+"--]]\n"
+"\n"
+"-- Select tuples by the specified partial key value --\n"
+"select_multipart_partial = bands.index.year_band:select { 1965 }\n"
+"--[[\n"
+"---\n"
+"- - [5, 'Pink Floyd', 1965]\n"
+"  - [2, 'Scorpions', 1965]\n"
+"  - [7, 'The Doors', 1965]\n"
+"...\n"
+"--]]\n"
+"\n"
+"-- Select maximum 3 tuples by the specified secondary index --\n"
+"select_limit = bands.index.band:select({}, { limit = 3 })\n"
+"--[[\n"
+"---\n"
+"- - [3, 'Ace of Base', 1987]\n"
+"  - [9, 'Led Zeppelin', 1968]\n"
+"  - [8, 'Nirvana', 1987]\n"
+"...\n"
+"--]]\n"
+"\n"
+"-- Select maximum 3 tuples with the key value greater than 1965 --\n"
+"select_greater = bands.index.year:select({ 1965 }, { iterator = 'GT', limit = 3 })\n"
+"--[[\n"
+"---\n"
+"- - [9, 'Led Zeppelin', 1968]\n"
+"  - [10, 'Queen', 1970]\n"
+"  - [1, 'Roxette', 1986]\n"
+"...\n"
+"--]]\n"
+"\n"
+"-- Select maximum 3 tuples after the specified tuple --\n"
+"select_after_tuple = bands.index.primary:select({}, { after = { 4, 'The Beatles', 1960 }, limit = 3 })\n"
+"--[[\n"
+"---\n"
+"- - [5, 'Pink Floyd', 1965]\n"
+"  - [6, 'The Rolling Stones', 1962]\n"
+"  - [7, 'The Doors', 1965]\n"
+"...\n"
+"--]]\n"
+"\n"
+"-- Select first 3 tuples and fetch a last tuple's position --\n"
+"result, position = bands.index.primary:select({}, { limit = 3, fetch_pos = true })\n"
+"-- Then, pass this position as the 'after' parameter --\n"
+"select_after_position = bands.index.primary:select({}, { limit = 3, after = position })\n"
+"--[[\n"
+"---\n"
+"- - [4, 'The Beatles', 1960]\n"
+"  - [5, 'Pink Floyd', 1965]\n"
+"  - [6, 'The Rolling Stones', 1962]\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/select.rst:73
+msgid ":samp:`box.space.{space-name}.index.{index-name}:select(...)[1]`. can be replaced by :samp:`box.space.{space-name}.index.{index-name}:get(...)`. That is, ``get`` can be used as a convenient shorthand to get the first tuple in the tuple set that would be returned by ``select``. However, if there is more than one tuple in the tuple set, then ``get`` throws an error."
+msgstr ""

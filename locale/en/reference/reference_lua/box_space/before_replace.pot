@@ -1,0 +1,121 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_space/before_replace.rst:5
+msgid "space_object:before_replace()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/before_replace.rst:11
+msgid "Create a \"replace :ref:`trigger <triggers>`\". The ``trigger-function`` will be executed whenever a ``replace()`` or ``insert()`` or ``update()`` or ``upsert()`` or ``delete()`` happens to a tuple in ``<space-name>``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/before_replace.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/before_replace.rst:16
+msgid "function which will become the trigger function; for the trigger function's optional parameters see the description of :doc:`on_replace </reference/reference_lua/box_space/on_replace>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/before_replace.rst:21
+msgid "existing trigger function which will be replaced by ``trigger-function``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/before_replace.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/before_replace.rst:24
+msgid "nil or function pointer"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/before_replace.rst:26
+msgid "If the parameters are ``(nil, old-trigger-function)``, then the old trigger is deleted."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/before_replace.rst:29
+msgid "If both parameters are omitted, then the response is a list of existing trigger functions."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/before_replace.rst:31
+msgid "If it is necessary to know whether the trigger activation happened due to replication or on a specific connection type, the function can refer to :doc:`/reference/reference_lua/box_session/type`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/before_replace.rst:35
+msgid "Details about trigger characteristics are in the :ref:`triggers <triggers-box_triggers>` section."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/before_replace.rst:38
+msgid "See also :doc:`/reference/reference_lua/box_space/on_replace`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/before_replace.rst:40
+msgid "Administrators can make replace triggers with ``on_replace()``, or make triggers with ``before_replace()``. If they make both types, then all ``before_replace`` triggers are executed before all ``on_replace`` triggers. The functions for both ``on_replace`` and ``before_replace`` triggers can make changes to the database, but only the functions for ``before_replace`` triggers can change the tuple that is being replaced."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/before_replace.rst:49
+msgid "Since a ``before_replace`` trigger function has the extra capability of making a change to the old tuple, it also can have extra overhead, to fetch the old tuple before making the change. Therefore an ``on_replace`` trigger is better if there is no need to change the old tuple. However, this only applies for the memtx engine -- for the vinyl engine, the fetch will happen for either kind of trigger. (With memtx the tuple data is stored along with the index key so no extra search is necessary; with vinyl that is not the case so the extra search is necessary.)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/before_replace.rst:61
+msgid "Where the extra capability is not needed, ``on_replace`` should be used instead of ``before_replace``. Usually ``before_replace`` is used only for certain replication scenarios -- it is useful for conflict resolution."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/before_replace.rst:66
+msgid "The value that a ``before_replace`` trigger function can return affects what will happen after the return. Specifically:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/before_replace.rst:69
+msgid "if there is no return value, then execution proceeds, inserting|replacing the new value;"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/before_replace.rst:71
+msgid "if the value is nil, then the tuple will be deleted;"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/before_replace.rst:72
+msgid "if the value is the same as the old parameter, then no ``on_replace`` function will be called and the data change will be skipped. The return value will be absent."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/before_replace.rst:76
+msgid "if the value is the same as the new parameter, then it's as if the ``before_replace`` function wasn't called;"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/before_replace.rst:78
+msgid "if the value is some other tuple, then it is used for insert/replace."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/before_replace.rst:80
+msgid "However, if a trigger function returns an old tuple, or if a trigger function calls :doc:`run_triggers(false) </reference/reference_lua/box_space/run_triggers>`, that will not affect other triggers that are activated for the same insert | update | replace request."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/before_replace.rst:86
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/before_replace.rst:88
+msgid "The following are ``before_replace`` functions that have no return value, or that return nil, or the same as the old parameter, or the same as the new parameter, or something else."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/before_replace.rst:92
+msgid "function f1 (old, new) return end\n"
+"function f2 (old, new) return nil end\n"
+"function f3 (old, new) return old end\n"
+"function f4 (old, new) return new end\n"
+"function f5 (old, new) return box.tuple.new({new[1],'b'}) end"
+msgstr ""

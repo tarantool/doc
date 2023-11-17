@@ -1,0 +1,208 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_events/system_events.rst:4
+msgid "System events"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/system_events.rst:6
+msgid "Since :doc:`2.10.0 </release/2.10.0>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/system_events.rst:8
+msgid "Predefined events have a special naming schema -- theirs names always start with the reserved ``box.`` prefix. It means that you cannot create new events with it."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/system_events.rst:11
+msgid "The system processes the following events:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/system_events.rst:13
+msgid "``box.id``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/system_events.rst:14
+msgid "``box.status``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/system_events.rst:15
+msgid "``box.election``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/system_events.rst:16
+msgid "``box.schema``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/system_events.rst:17
+msgid "``box.shutdown``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/system_events.rst:19
+msgid "In response to each event, the server sends back certain ``IPROTO`` fields."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/system_events.rst:21
+msgid "The events are available from the beginning as non-:ref:`MP_NIL <box_protocol-notation>`. If a watcher subscribes to a system event before it has been broadcast, it receives an empty table for the event value."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/system_events.rst:25
+msgid "The event is generated when there is a change in any of the values listed in the event. For example, see the parameters in the ``box.id`` event below -- ``id``, ``instance_uuid``, and ``replicaset_uuid``. Suppose the ``ìd`` value (``box.info.id``) has changed. This triggers the ``box.info`` event, which states that the value of ``box.info.id`` has changed, while ``box.info.uuid`` and ``box.info.cluster.uuid`` remain the same."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/system_events.rst:32
+msgid "box.id"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/system_events.rst:34
+msgid "Contains :ref:`identification <box_info_info>` of the instance. Value changes are rare."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/system_events.rst:37
+msgid "``id``: the numeric instance ID is unknown before the registration. For anonymous replicas, the value is ``0`` until they are officially registered."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/system_events.rst:40
+msgid "``instance_uuid``: the UUID of the instance never changes after the first :doc:`box.cfg </reference/reference_lua/box_cfg>`. The value is unknown before the ``box.cfg`` call."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/system_events.rst:44
+msgid "``replicaset_uuid``: the value is unknown until the instance joins a replicaset or boots a new one."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/system_events.rst:46
+msgid "-- box.id value\n"
+"{\n"
+"MP_STR “id”: MP_UINT; box.info.id,\n"
+"MP_STR “instance_uuid”: MP_UUID; box.info.uuid,\n"
+"MP_STR “replicaset_uuid”: MP_UUID box.info.cluster.uuid,\n"
+"}"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/system_events.rst:56
+msgid "box.status"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/system_events.rst:58
+msgid "Contains generic information about the instance status."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/system_events.rst:60
+#: ../../doc/reference/reference_lua/box_events/system_events.rst:80
+msgid "``is_ro``: :ref:`indicates the read-only mode <box_introspection-box_info>` or the ``orphan`` status."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/system_events.rst:61
+msgid "``is_ro_cfg``: indicates the :ref:`read_only <cfg_basic-read_only>` mode for the instance."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/system_events.rst:62
+msgid "``status``: shows the status of an instance."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/system_events.rst:64
+msgid "{\n"
+"MP_STR “is_ro”: MP_BOOL box.info.ro,\n"
+"MP_STR “is_ro_cfg”: MP_BOOL box.cfg.read_only,\n"
+"MP_STR “status”: MP_STR box.info.status,\n"
+"}"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/system_events.rst:73
+msgid "box.election"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/system_events.rst:75
+msgid "Contains fields of :doc:`box.info.election </reference/reference_lua/box_info/election>` that are necessary to find out the most recent writable leader."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/system_events.rst:78
+msgid "``term``: shows the current election term."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/system_events.rst:79
+msgid "``role``: indicates the election state of the node -- ``leader``, ``follower``, or ``candidate``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/system_events.rst:81
+msgid "``leader``: shows the leader node ID in the current term."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/system_events.rst:83
+msgid "{\n"
+"MP_STR “term”: MP_UINT box.info.election.term,\n"
+"MP_STR “role”: MP_STR box.info.election.state,\n"
+"MP_STR “is_ro”: MP_BOOL box.info.ro,\n"
+"MP_STR “leader”: MP_UINT box.info.election.leader,\n"
+"}"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/system_events.rst:93
+msgid "box.schema"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/system_events.rst:95
+msgid "Contains schema-related data."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/system_events.rst:97
+msgid "``version``: shows the schema version."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/system_events.rst:99
+msgid "{\n"
+"MP_STR “version”: MP_UINT schema_version,\n"
+"}"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/system_events.rst:108
+msgid "box.shutdown"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/system_events.rst:110
+msgid "Contains a boolean value which indicates whether there is an active shutdown request."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/system_events.rst:112
+msgid "The event is generated when the server receives a shutdown request (``os.exit()`` command or :ref:`SIGTERM <admin-server_signals>` signal)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/system_events.rst:115
+msgid "The ``box.shutdown`` event is applied for the graceful shutdown protocol. It is a feature which is available since :doc:`2.10.0 </release/2.10.0>`. This protocol is supposed to be used with connectors to signal a client about the upcoming server shutdown and close active connections without broken requests. For more information, refer to the :ref:`graceful shutdown protocol <box-protocol-shutdown>` section."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/system_events.rst:122
+msgid "Usage example"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/system_events.rst:124
+msgid "local conn = net.box.connect(URI)\n"
+"local log = require('log')\n"
+"-- Subscribe to updates of key 'box.id'\n"
+"local w = conn:watch('box.id', function(key, value)\n"
+"    assert(key == 'box.id')\n"
+"    log.info(\"The box.id value is '%s'\", value)\n"
+"end)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/system_events.rst:134
+msgid "If you want to unregister the watcher when it's no longer needed, use the following command:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/system_events.rst:136
+msgid "w:unregister()"
+msgstr ""

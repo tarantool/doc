@@ -1,0 +1,68 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_info/replication_anon.rst:5
+msgid "box.info.replication_anon()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/replication_anon.rst:11
+msgid "List all the :ref:`anonymous replicas <cfg_replication-replication_anon>` following the instance."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/replication_anon.rst:14
+msgid "The output is similar to the one produced by ``box.info.replication`` with an exception that anonymous replicas are indexed by their uuid strings rather than server ids, since server ids have no meaning for anonymous replicas."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/replication_anon.rst:19
+msgid "Notice that when you issue a plain ``box.info.replication_anon``, the only info returned is the number of anonymous replicas following the current instance. In order to see the full stats, you have to call ``box.info.replication_anon()``. This is done to not overload the ``box.info`` output with excess info, since there may be lots of anonymous replicas."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/replication_anon.rst:25
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/replication_anon.rst:27
+msgid "tarantool> box.info.replication_anon\n"
+"---\n"
+"- count: 2\n"
+"...\n"
+"\n"
+"tarantool> box.info.replication_anon()\n"
+"---\n"
+"- 3a6a2cfb-7e47-42f6-8309-7a25c37feea1:\n"
+"    id: 0\n"
+"    uuid: 3a6a2cfb-7e47-42f6-8309-7a25c37feea1\n"
+"    lsn: 0\n"
+"    downstream:\n"
+"      status: follow\n"
+"      idle: 0.76203499999974\n"
+"      vclock: {1: 1}\n"
+"  f58e4cb0-e0a8-42a1-b439-591dd36c8e5e:\n"
+"    id: 0\n"
+"    uuid: f58e4cb0-e0a8-42a1-b439-591dd36c8e5e\n"
+"    lsn: 0\n"
+"    downstream:\n"
+"      status: follow\n"
+"      idle: 0.0041349999992235\n"
+"      vclock: {1: 1}\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/replication_anon.rst:54
+msgid "Notice that anonymous replicas hide their ``lsn`` from the others, so an anonymous replica ``lsn`` will always be reported as zero, even if an anonymous replica performs some local space operations. To find out the ``lsn`` of a specific anonymous replica, you have to issue ``box.info.lsn`` on it."
+msgstr ""

@@ -1,0 +1,71 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/concepts/modules.rst:4
+msgid "Modules"
+msgstr ""
+
+#: ../../doc/concepts/modules.rst:6
+msgid "Any logic that is used in Tarantool can be packaged as an application or a reusable **module**. A module is an optional library that extends Tarantool functionality. It can be used by Tarantool applications or other modules. Modules allow for easier code management and hot code reload without restarting the Tarantool instance. Like applications, modules in Tarantool can be written in Lua, C, or C++. Lua modules are also referred to as \"rocks\"."
+msgstr ""
+
+#: ../../doc/concepts/modules.rst:13
+msgid "For example, here is a Lua module named ``mymodule.lua`` that exports one function named ``myfun``:"
+msgstr ""
+
+#: ../../doc/concepts/modules.rst:16
+msgid "local exports = {}\n"
+"exports.myfun = function(input_string)\n"
+"   print('Hello', input_string)\n"
+"end\n"
+"return exports"
+msgstr ""
+
+#: ../../doc/concepts/modules.rst:24
+msgid "To launch the function ``myfun()`` -- from another module, from a Lua application, or from Tarantool itself, -- save this module as a file, then load this module with the ``require()`` directive and call the exported function."
+msgstr ""
+
+#: ../../doc/concepts/modules.rst:28
+msgid "For example, here's a Lua application that uses ``myfun()`` from ``mymodule.lua``:"
+msgstr ""
+
+#: ../../doc/concepts/modules.rst:31
+msgid "-- loading the module\n"
+"local mymodule = require('mymodule')\n"
+"\n"
+"-- calling myfun() from within test()\n"
+"local test = function()\n"
+"  mymodule.myfun()\n"
+"end"
+msgstr ""
+
+#: ../../doc/concepts/modules.rst:41
+msgid "Tarantool provides an `extensive library <https://www.tarantool.io/en/download/rocks>`_ of compatible modules. Install them using Tarantool's CLI utility :ref:`tt <tt-cli>`. Some modules are also included in the Tarantool repository and can be installed via your operating system's package manager."
+msgstr ""
+
+#: ../../doc/concepts/modules.rst:46
+msgid "Learn how to:"
+msgstr ""
+
+#: ../../doc/concepts/modules.rst:48
+msgid ":ref:`install a module <app_server-installing_module>`"
+msgstr ""
+
+#: ../../doc/concepts/modules.rst:49
+msgid ":ref:`contribute a module <app_server-contributing_module>`"
+msgstr ""

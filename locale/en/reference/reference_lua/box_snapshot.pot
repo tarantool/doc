@@ -1,0 +1,84 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_snapshot.rst:5
+msgid "Function box.snapshot"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_snapshot.rst:9
+msgid "**Memtx**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_snapshot.rst:11
+msgid "Take a snapshot of all data and store it in :ref:`memtx_dir <cfg_basic-memtx_dir>`:samp:`/{<latest-lsn>}.snap`. To take a snapshot, Tarantool first enters the delayed garbage collection mode for all data. In this mode, the :ref:`Tarantool garbage collector <cfg_checkpoint_daemon-garbage-collector>` will not remove files which were created before the snapshot started, it will not remove them until the snapshot has finished. To preserve consistency of the primary key, used to iterate over tuples, a copy-on-write technique is employed. If the master process changes part of a primary key, the corresponding process page is split, and the snapshot process obtains an old copy of the page. In effect, the snapshot process uses multi-version concurrency control in order to avoid copying changes which are superseded while it is running."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_snapshot.rst:25
+msgid "Since a snapshot is written sequentially, you can expect a very high write performance (averaging to 80MB/second on modern disks), which means an average database instance gets saved in a matter of minutes. You may restrict the speed by changing :ref:`snap_io_rate_limit <cfg_binary_logging_snapshots-snap_io_rate_limit>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_snapshot.rst:33
+msgid "As long as there are any changes to the parent index memory through concurrent updates, there are going to be page splits, and therefore you need to have some extra free memory to run this command. 10% of :ref:`memtx_memory <cfg_storage-memtx_memory>` is, on average, sufficient. This statement waits until a snapshot is taken and returns operation result."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_snapshot.rst:41
+msgid "**Change notice:** Prior to Tarantool version 1.6.6, the snapshot process caused a fork, which could cause occasional latency spikes. Starting with Tarantool version 1.6.6, the snapshot process creates a consistent read view and this view is written to the snapshot file by a separate thread (the \"Write Ahead Log\" thread)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_snapshot.rst:47
+msgid "Although ``box.snapshot()`` does not cause a fork, there is a separate fiber which may produce snapshots at regular intervals -- see the discussion of the :ref:`checkpoint daemon <book_cfg_checkpoint_daemon>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_snapshot.rst:51
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_snapshot.rst:53
+msgid "tarantool> box.info.version\n"
+"---\n"
+"- 1.7.0-1216-g73f7154\n"
+"...\n"
+"tarantool> box.snapshot()\n"
+"---\n"
+"- ok\n"
+"...\n"
+"tarantool> box.snapshot()\n"
+"---\n"
+"- error: can't save snapshot, errno 17 (File exists)\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_snapshot.rst:68
+msgid "Taking a snapshot does not cause the server to start a new write-ahead log. Once a snapshot is taken, old WALs can be deleted as long as all replicated data is up to date. But the WAL which was current at the time ``box.snapshot()`` started must be kept for recovery, since it still contains log records written after the start of ``box.snapshot()``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_snapshot.rst:74
+msgid "An alternative way to save a snapshot is to send a SIGUSR1 signal to the instance. While this approach could be handy, it is not recommended for use in automation: a signal provides no way to find out whether the snapshot was taken successfully or not."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_snapshot.rst:79
+msgid "**Vinyl**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_snapshot.rst:81
+msgid "In vinyl, inserted data is stacked in memory until the limit, set in the :ref:`vinyl_memory <cfg_storage-vinyl_memory>` parameter, is reached. Then vinyl automatically dumps it to the disc. ``box.snapshot()`` forces this dump in order to have the ability to recover from this checkpoint. The snapshot files are stored in :samp:`{space_id}/{index_id}/*.run`. Thus, strictly all the data that was written at the time of LSN of the checkpoint is in the ``*.run`` files on the disk, and all operations that happened after the checkpoint will be written in the ``*.xlog``. All dump files created by ``box.snapshot()`` are consistent and have the same LSN as checkpoint."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_snapshot.rst:91
+msgid "At the checkpoint vinyl also rotates the metadata log ``*.vylog``, containing data manipulation operations like \"create file\" and \"delete file\". It goes through the log, removes duplicating operations from the memory and creates a new ``*.vylog`` file, giving it the name according to the :ref:`vclock <box_introspection-box_info>` of the new checkpoint, with \"create\" operations only. This procedure cleans ``*.vylog`` and is useful for recovery because the name of the log is the same as the checkpoint signature."
+msgstr ""

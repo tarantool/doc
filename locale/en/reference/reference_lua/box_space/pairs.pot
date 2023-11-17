@@ -1,0 +1,144 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_space/pairs.rst:5
+msgid "space_object:pairs()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/pairs.rst:11
+msgid "Search for a tuple or a set of tuples in the given space, and allow iterating over one tuple at a time. To search by the specific index, use the :ref:`box_index-pairs` method."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/pairs.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/pairs.rst:15
+msgid "an :ref:`object reference <app_server-object_reference>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/pairs.rst:17
+msgid "value to be matched against the index key, which may be multi-part"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/pairs.rst:19
+msgid "the :ref:`iterator type <box_index-iterator-types>`. The default iterator type is 'EQ'"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/pairs.rst:20
+msgid "a tuple or the position of a tuple (:ref:`tuple_pos <box_index-tuple_pos>`) after which ``pairs`` starts the search. You can pass an empty string or :ref:`box.NULL <box-null>` to this option to start the search from the first tuple."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/pairs.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/pairs.rst:22
+msgid "The `iterator <https://luafun.github.io/under_the_hood.html>`_, which can be used in a ``for/end`` loop or with `totable() <https://luafun.github.io/reducing.html#fun.totable>`_."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/pairs.rst:26
+msgid "**Possible errors:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/pairs.rst:28
+msgid "no such space"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/pairs.rst:29
+msgid "wrong type"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/pairs.rst:30
+msgid ":errcode:`ER_TRANSACTION_CONFLICT` if a transaction conflict is detected in the :ref:`MVCC transaction mode <txn_mode_transaction-manager>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/pairs.rst:32
+msgid "iterator position is invalid"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/pairs.rst:35
+msgid "**Complexity factors:** Index size, Index type."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/pairs.rst:37
+msgid "For information about iterators' internal structures, see the `\"Lua Functional library\" <https://luafun.github.io/index.html>`_ documentation."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/pairs.rst:42
+msgid "**Examples:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/pairs.rst:44
+msgid "Below are few examples of using ``pairs`` with different parameters. To try out these examples, you need to bootstrap a Tarantool instance as described in :ref:`Using data operations <box_space-operations-detailed-examples>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/pairs.rst:48
+msgid "-- Insert test data --\n"
+"tarantool> bands:insert{1, 'Roxette', 1986}\n"
+"           bands:insert{2, 'Scorpions', 1965}\n"
+"           bands:insert{3, 'Ace of Base', 1987}\n"
+"           bands:insert{4, 'The Beatles', 1960}\n"
+"           bands:insert{5, 'Pink Floyd', 1965}\n"
+"           bands:insert{6, 'The Rolling Stones', 1962}\n"
+"           bands:insert{7, 'The Doors', 1965}\n"
+"           bands:insert{8, 'Nirvana', 1987}\n"
+"           bands:insert{9, 'Led Zeppelin', 1968}\n"
+"           bands:insert{10, 'Queen', 1970}\n"
+"---\n"
+"...\n"
+"\n"
+"-- Select all tuples by the primary index --\n"
+"tarantool> for _, tuple in bands:pairs() do\n"
+"               print(tuple)\n"
+"           end\n"
+"[1, 'Roxette', 1986]\n"
+"[2, 'Scorpions', 1965]\n"
+"[3, 'Ace of Base', 1987]\n"
+"[4, 'The Beatles', 1960]\n"
+"[5, 'Pink Floyd', 1965]\n"
+"[6, 'The Rolling Stones', 1962]\n"
+"[7, 'The Doors', 1965]\n"
+"[8, 'Nirvana', 1987]\n"
+"[9, 'Led Zeppelin', 1968]\n"
+"[10, 'Queen', 1970]\n"
+"---\n"
+"...\n"
+"\n"
+"-- Select all tuples whose primary key values are between 3 and 6 --\n"
+"tarantool> for _, tuple in bands:pairs(3, {iterator = \"GE\"}) do\n"
+"             if (tuple[1] > 6) then break end\n"
+"             print(tuple)\n"
+"           end\n"
+"[3, 'Ace of Base', 1987]\n"
+"[4, 'The Beatles', 1960]\n"
+"[5, 'Pink Floyd', 1965]\n"
+"[6, 'The Rolling Stones', 1962]\n"
+"---\n"
+"...\n"
+"\n"
+"-- Select all tuples after the specified tuple --\n"
+"tarantool> for _, tuple in bands:pairs({}, {after={7, 'The Doors', 1965}}) do\n"
+"               print(tuple)\n"
+"           end\n"
+"[8, 'Nirvana', 1987]\n"
+"[9, 'Led Zeppelin', 1968]\n"
+"[10, 'Queen', 1970]\n"
+"---\n"
+"..."
+msgstr ""

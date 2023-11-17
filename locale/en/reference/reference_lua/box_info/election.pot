@@ -1,0 +1,68 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_info/election.rst:5
+msgid "box.info.election"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/election.rst:11
+msgid "Since version :doc:`2.6.1 </release/2.6.1>`. Show the current state of a replica set node in regards to :ref:`leader election <repl_leader_elect>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/election.rst:15
+msgid "The following information is provided:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/election.rst:17
+msgid "``state`` -- election state (mode) of the node. Possible values are ``leader``, ``follower``, or ``candidate``. For more details, refer to description of the :ref:`leader election process <repl_leader_elect_process>`. When election is enabled, the node is writable only in the ``leader`` state."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/election.rst:21
+msgid "``term`` -- current election term."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/election.rst:23
+msgid "``vote`` -- ID of a node the current node votes for. If the value is ``0``, it means the node hasn't voted in the current term yet."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/election.rst:25
+msgid "``leader`` -- leader node ID in the current term. If the value is ``0``, it means the node doesn't know which node is the leader in the current term."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/election.rst:27
+msgid "``leader_idle`` -- time in seconds since the last interaction with the known leader.  Since version :doc:`2.10.0 </release/2.10.0>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/election.rst:31
+msgid "IDs in the ``box.info.election`` output are the replica IDs visible in the ``box.info.id`` output on each node and in the ``_cluster`` space."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/election.rst:33
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/election.rst:35
+msgid "tarantool> box.info.election\n"
+"---\n"
+"- state: follower\n"
+"  term: 2\n"
+"  vote: 0\n"
+"  leader: 0\n"
+"  leader_idle: 0.45112800000061\n"
+"..."
+msgstr ""

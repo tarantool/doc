@@ -1,0 +1,383 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/dev_guide/building_from_source.rst:4
+msgid "Building to contribute"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:6
+msgid "To build Tarantool from source files, you need the following tools:"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:8
+msgid "Git"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:9
+msgid "GCC. Or Clang for Mac OS"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:10
+msgid "CMake 3.3 or later"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:11
+msgid "GNU Make"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:12
+msgid "`Autoconf <http://www.gnu.org/software/autoconf/>`_, any version"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:13
+msgid "`Automake <http://www.gnu.org/software/automake/>`_, any version"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:14
+msgid "`Libtool <http://www.gnu.org/software/libtool/>`_, any version"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:15
+msgid "`Readline <http://www.gnu.org/software/readline/>`_, any version"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:16
+msgid "`ncurses <https://www.gnu.org/software/ncurses/>`_, any version"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:17
+msgid "`OpenSSL <https://www.openssl.org>`_, any version"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:18
+msgid "`ICU <http://site.icu-project.org/download>`_, any version"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:19
+msgid "`Zlib-devel <https://www.zlib.net/>`_, any version"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:20
+msgid "Python3 and modules:"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:22
+msgid "pyyaml"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:23
+msgid "gevent"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:24
+msgid "six"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:27
+msgid "Quick build"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:29
+msgid "To install all required dependencies, build Tarantool and run tests, choose your OS and follow the instructions:"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:32
+msgid ":ref:`Ubuntu/Debian <building_from_source-ubuntu>`"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:33
+msgid ":ref:`Fedora <building_from_source-fedora>`"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:34
+msgid ":ref:`RHEL/CentOS 7 <building_from_source-centos>`"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:35
+msgid ":ref:`CentOS 8 <building_from_source-centos8>`"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:36
+msgid ":ref:`Mac OS <building_from_source-macos>`"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:37
+msgid ":ref:`FreeBSD <building_from_source-freebsd>`"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:39
+msgid "Some additional steps might be useful:"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:41
+msgid ":ref:`-DENABLE_DIST=ON for tarantoolctl installation <building_from_source-tarantoolctl>`"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:42
+msgid ":ref:`Make RPM and Debian packages <building_from_source-rpm_packages>`"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:43
+msgid ":ref:`Verify your Tarantool installation <building_from_source-verify_tarantool>`"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:49
+msgid "Ubuntu/Debian"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:51
+msgid "$ apt-get -y install git build-essential cmake autoconf automake libtool make \\\n"
+"  zlib1g-dev libreadline-dev libncurses5-dev libssl-dev libunwind-dev libicu-dev \\\n"
+"  python3 python3-yaml python3-six python3-gevent\n"
+"\n"
+"$ git clone https://github.com/tarantool/tarantool.git --recursive\n"
+"\n"
+"$ cd tarantool\n"
+"\n"
+"$ git submodule update --init --recursive\n"
+"\n"
+"$ make clean         # unnecessary, added for good luck\n"
+"$ rm CMakeCache.txt  # unnecessary, added for good luck\n"
+"\n"
+"$ mkdir build && cd build\n"
+"\n"
+"$ # start initiating with build type=RelWithDebInfo\n"
+"$ cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo\n"
+"\n"
+"$ make\n"
+"\n"
+"$ make test"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:78
+msgid "Fedora"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:80
+msgid "$ dnf install -y git gcc gcc-c++ cmake  autoconf automake libtool make \\\n"
+"  readline-devel ncurses-devel openssl-devel zlib-devel libunwind-devel libicu-devel \\\n"
+"  python3-pyyaml python3-six python3-gevent\n"
+"\n"
+"$ git clone https://github.com/tarantool/tarantool.git --recursive\n"
+"\n"
+"$ cd tarantool\n"
+"\n"
+"$ git submodule update --init --recursive\n"
+"\n"
+"$ make clean         # unnecessary, added for good luck\n"
+"$ rm CMakeCache.txt  # unnecessary, added for good luck\n"
+"\n"
+"$ mkdir build && cd build\n"
+"\n"
+"$ # start initiating with build type=RelWithDebInfo\n"
+"$ cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo\n"
+"\n"
+"$ make\n"
+"\n"
+"$ make test"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:107
+msgid "RHEL/CentOS 7"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:109
+msgid "$ yum install -y python-pip\n"
+"$ yum install -y epel-release\n"
+"\n"
+"$ curl -s https://packagecloud.io/install/repositories/packpack/backports/script.rpm.sh | bash\n"
+"\n"
+"$ yum install -y git gcc cmake3  autoconf automake libtool make gcc-c++ zlib-devel \\\n"
+"  readline-devel ncurses-devel openssl-devel libunwind-devel libicu-devel \\\n"
+"  python3-pyyaml python3-six python3-gevent\n"
+"\n"
+"$ git clone https://github.com/tarantool/tarantool.git --recursive\n"
+"\n"
+"$ cd tarantool\n"
+"\n"
+"$ git submodule update --init --recursive\n"
+"\n"
+"$ make clean         # unnecessary, added for good luck\n"
+"$ rm CMakeCache.txt  # unnecessary, added for good luck\n"
+"\n"
+"$ mkdir build && cd build\n"
+"\n"
+"$ # start initiating with build type=RelWithDebInfo\n"
+"$ cmake3 .. -DCMAKE_BUILD_TYPE=RelWithDebInfo\n"
+"\n"
+"$ make\n"
+"\n"
+"$ make test"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:141
+msgid "CentOS 8"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:143
+msgid "$ dnf install -y epel-release\n"
+"\n"
+"$ dnf install -y git gcc cmake3  autoconf automake libtool libarchive make gcc-c++ \\\n"
+"  zlib-devel readline-devel ncurses-devel openssl-devel libunwind-devel libicu-devel \\\n"
+"  python3-pyyaml python3-six python3-gevent\n"
+"\n"
+"$ git clone https://github.com/tarantool/tarantool.git --recursive\n"
+"\n"
+"$ cd tarantool\n"
+"\n"
+"$ git submodule update --init --recursive\n"
+"\n"
+"$ make clean         # unnecessary, added for good luck\n"
+"$ rm CMakeCache.txt  # unnecessary, added for good luck\n"
+"\n"
+"$ mkdir build && cd build\n"
+"\n"
+"$ # start initiating with build type=RelWithDebInfo\n"
+"$ cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo\n"
+"\n"
+"$ make\n"
+"\n"
+"$ make test"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:172
+msgid "Mac OS"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:174
+msgid "This instruction is for those who use Homebrew. Refer to the `full instruction for Mac OS <https://github.com/tarantool/tarantool/blob/master/README.MacOSX>`_ if you use MacPorts."
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:178
+msgid "$ xcode-select --install\n"
+"$ xcode-select -switch /Applications/Xcode.app/Contents/Developer\n"
+"\n"
+"$ git clone https://github.com/tarantool/tarantool.git --recursive\n"
+"\n"
+"$ cd tarantool\n"
+"\n"
+"$ git submodule update --init --recursive\n"
+"\n"
+"$ brew install git openssl readline curl icu4c libiconv zlib cmake autoconf automake libtool\n"
+"\n"
+"$ pip install --user -r test-run/requirements.txt\n"
+"\n"
+"$ make clean         # unnecessary, added for good luck\n"
+"$ rm CMakeCache.txt  # unnecessary, added for good luck\n"
+"\n"
+"$ mkdir build && cd build\n"
+"\n"
+"$ # start initiating with build type=RelWithDebInfo\n"
+"$ cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo\n"
+"\n"
+"$ make\n"
+"\n"
+"$ make test"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:208
+msgid "FreeBSD"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:210
+msgid "$ git clone https://github.com/tarantool/tarantool.git --recursive\n"
+"\n"
+"$ cd tarantool\n"
+"\n"
+"$ git submodule update --init --recursive\n"
+"\n"
+"$ pkg install -y git cmake autoconf automake libtool gmake readline icu\n"
+"\n"
+"$ pip install --user -r test-run/requirements.txt\n"
+"\n"
+"$ make clean         # unnecessary, added for good luck\n"
+"$ rm CMakeCache.txt  # unnecessary, added for good luck\n"
+"\n"
+"$ mkdir build && cd build\n"
+"\n"
+"$ # start initiating with build type=RelWithDebInfo\n"
+"$ cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo\n"
+"\n"
+"$ gmake\n"
+"\n"
+"$ gmake test"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:237
+msgid "Additional steps"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:242
+msgid "-DENABLE_DIST=ON for tarantoolctl installation"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:246
+msgid "``tarantoolctl`` is deprecated in favor of :ref:`tt CLI <tt-cli>`. Find the instructions on switching from ``tarantoolctl`` to ``tt`` in :ref:`Migration from tarantoolctl to tt <tarantoolctl-migration-to-tt>`."
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:250
+msgid "The CMake option for hinting that the result will be distributed is :code:`-DENABLE_DIST=ON`. With this option, ``make install`` installs ``tarantoolctl`` files in addition to ``tarantool`` files."
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:257
+msgid "Make RPM and Debian packages"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:259
+msgid "This step is optional. It's only for people who want to redistribute Tarantool. We highly recommend to use official packages from the `tarantool.org <https://tarantool.org/download.html>`_ web-site. However, you can build RPM and Debian packages using `PackPack <https://github.com/packpack/packpack>`_. Consult `Build RPM or Deb package using packpack <https://github.com/tarantool/tarantool/wiki/Build-RPM-or-Deb-package-using-packpack>`_ for details."
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:271
+msgid "Verify your Tarantool installation"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:273
+msgid "$ # if you installed tarantool locally after build\n"
+"$ tarantool\n"
+"$ # - OR -\n"
+"$ # if you didn't install tarantool locally after build\n"
+"$ ./src/tarantool"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:281
+msgid "This starts Tarantool in the interactive mode."
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:284
+msgid "See also"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:286
+msgid "`Tarantool README.md <https://github.com/tarantool/tarantool/blob/master/README.md>`_"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:288
+msgid "`Building Tarantool on macOS <https://github.com/tarantool/tarantool/blob/master/README.MacOSX>`_"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:290
+msgid "`Building Tarantool on FreeBSD <https://github.com/tarantool/tarantool/blob/master/README.FreeBSD>`_"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:292
+msgid "`Building Tarantool on OpenBSD <https://github.com/tarantool/tarantool/blob/master/README.OpenBSD>`_"
+msgstr ""
+
+#: ../../doc/dev_guide/building_from_source.rst:294
+msgid "`Tarantool static build tooling <https://github.com/tarantool/tarantool/blob/master/static-build/README.md>`_"
+msgstr ""

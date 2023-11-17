@@ -1,0 +1,102 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/tooling/tt_cli/init.rst:4
+msgid "Creating a tt environment"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/init.rst:6
+#: ../../doc/reference/tooling/tt_cli/init.rst:52
+msgid "$ tt init"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/init.rst:10
+msgid "``tt init`` creates a ``tt`` environment in the current directory. This includes:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/init.rst:12
+msgid "Setting up directories for working files: binaries, templates, and so on."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/init.rst:13
+msgid "Creating a corresponding ``tt.yaml`` :ref:`configuration file <tt-config_file>`."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/init.rst:16
+msgid "Details"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/_includes/cartridge_deprecation_note.rst:3
+msgid "The Tarantool Cartridge framework is deprecated and is not compatible with Tarantool 3.0 and later. This command is added for backward compatibility with earlier versions."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/init.rst:20
+msgid "``tt init`` checks the existence of configuration files for Cartridge (``cartridge.yml``) or the ``tarantoolctl`` utility (``.tarantoolctl``) in the current directory. If such files are found, ``tt`` generates an environment that uses the same directories:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/init.rst:25
+msgid "``cartridge.yml`` -- the directories specified in the file."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/init.rst:26
+msgid "``.tarantoolctl`` -- the directories specified in the ``default_cfg`` table."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/init.rst:30
+msgid "``init`` is the only ``tt`` command that invokes ``.tarantoolctl`` files. Thus, variables defined in this script will not be available in applications launched by a ``tt start`` call."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/init.rst:34
+msgid "If there is no ``cartridge.yml`` or ``.tarantoolctl`` files in the current directory, ``tt init`` creates a default environment in it. This includes creating the following directories and files:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/init.rst:38
+msgid "``bin`` -- the directory for storing binary files."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/init.rst:39
+msgid "``include`` -- the directory for storing  header files."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/init.rst:40
+msgid "``distfiles`` -- the directory for storing installation files."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/init.rst:41
+msgid "``instances.enabled`` -- the directory for storing running applications or symlinks."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/init.rst:42
+msgid "``modules`` -- the directory for storing external modules."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/init.rst:43
+msgid "``tt.yaml`` -- the configuration file."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/init.rst:44
+msgid "``templates`` -- the directory for storing application templates."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/init.rst:48
+msgid "Example"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/init.rst:50
+msgid "Create a ``tt`` environment in the current directory:"
+msgstr ""

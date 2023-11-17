@@ -1,0 +1,851 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/release/2.3.1.rst:2
+msgid "Tarantool 2.3.1"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:4
+msgid "Release: :tarantool-release:`2.3.1` Date: 2019-12-31 Tag: 2.3.1-0-g5a1a220"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:8
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:10
+msgid "2.3.1 is the beta version of the 2.3 release series."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:12
+msgid "This release introduces roughly 38 features and resolves 102 bugs since the 2.2.1 version. There may be bugs in less common areas. If you find any, feel free to report an issue at `GitHub <https://github.com/tarantool/tarantool/issues>`_."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:17
+msgid "Notable changes are:"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:19
+msgid "field name and JSON path updates"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:20
+msgid "anonymous replica"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:21
+msgid "new DOUBLE SQL type (and new ‘double’ box field type)"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:22
+msgid "stored and indexed decimals (and new ‘decimal’ field type)"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:23
+msgid "``fiber.top()``"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:24
+msgid "feed data from a memory during replica initial join"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:25
+msgid "SQL prepared statements"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:26
+msgid "sessions settings service space"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:28
+msgid "Aside of that many other features have been implemented and considerable amount of bugs have been fixed."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:32
+msgid "Compatibility"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:34
+msgid "Tarantool 2.x is backward compatible with Tarantool 1.10.x in binary data layout, client-server protocol and replication protocol."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:37
+msgid "Please `upgrade <https://www.tarantool.io/en/doc/2.3/book/admin/upgrades/>`_ using the ``box.schema.upgrade()`` procedure to unlock all the new features of the 2.x series."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:43
+msgid "Functionality added or changed"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:45
+msgid "There are changes labeled with **[Breaking change]**. It means that the old behaviour was considered error-prone and therefore changed to protect users from unintended mistakes. However, there is a little probability that someone can lean on the old behaviour, and this label is to bring attention to the things that have been changed."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:52
+#: ../../doc/release/2.3.1.rst:295
+msgid "SQL"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:54
+msgid "Introduce prepared statements support and prepared statements cache (:tarantool-issue:`2592`, :tarantool-issue:`3292`). Using of prepared statements allows to eliminate overhead of transmitting a statement text over a network and parsing it each time before execution. Aside of this, it allows to acquire binding parameters and result set columns metainformation prior to actual execution of a statement. This feature is vital for implementing standard DBMS APIs, such as ODBC and JDBC."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:62
+msgid "**[Breaking change]** Introduce \\_session_setting service space as replacement for PRAGMA keyword (:tarantool-issue:`4511`). All frontends (C, Lua, SQL, binary protocol) can use this space to access or update session settings. Removed ``count_changes``, ``short_column_names``, ``sql_compound_select_limit``, ``vdbe_addoptrace`` pragmas. Transformed others into \\_session_settings tuples."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:69
+msgid "Extend SQL result set metadata (:tarantool-issue:`4407`), In addition to the ``name`` and ``type`` fields, the ``collation``, ``is_nullable``, ``is_autoincrement``, and ``span`` fields are added. These new fields are shown when the ``full_metadata`` session setting is enabled but always sent via binary protocol."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:75
+msgid "Add an ability to disable check constraints (:tarantool-issue:`4244`). Example: ``ALTER TABLE foo {ENABLE|DISABLE} CHECK CONSTRAINT bar;``. For details of using from Lua, refer to `documentation <https://www.tarantool.io/en/doc/latest/reference/reference_lua/box_space/create_check_constraint/>`__."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:80
+msgid "AUTOINCREMENT for multipart primary key (:tarantool-issue:`4217`). The auto-increment feature can be set to any ``INTEGER`` or ``UNSIGNED`` field of ``PRIMARY KEY`` using one of the two ways:"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:84
+msgid "``AUTOINCREMENT`` in column definition:"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:86
+msgid "CREATE TABLE t (i INT, a INT AUTOINCREMENT, PRIMARY KEY (i, a));\n"
+"CREATE TABLE t (i INT AUTOINCREMENT, a INT, PRIMARY KEY (i, a));"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:91
+msgid "``AUTOINCREMENT`` in ``PRIMARY KEY`` definition:"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:93
+msgid "CREATE TABLE t (i INT, a INT, PRIMARY KEY (i, a AUTOINCREMENT));\n"
+"CREATE TABLE t (i INT, a INT, PRIMARY KEY (i AUTOINCREMENT, a));"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:98
+msgid "Allow to create a view from any CTE (common table expression) using ``WITH`` clause (:tarantool-issue:`4149`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:101
+msgid "Support user-defined functions in SQL. ``box.schema.func.create()`` API has been extended and should be used to make some function available in SQL. For details on fields added, refer to the description here: (:doc-issue:`879`). Usage of legacy mechanism\\ ``box.internal.sql_function_create`` is forbidden now (:tarantool-issue:`2200`, :tarantool-issue:`2233`, :tarantool-issue:`4113`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:108
+msgid "Scalar functions ``MIN/MAX`` are renamed to ``LEAST/GREATEST`` (:tarantool-issue:`4405`)"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:111
+msgid "Introduce ``WITH ENGINE`` clause for ``CREATE TABLE`` statement (:tarantool-issue:`4422`). To allow a user to specify engine as per table option, ``CREATE TABLE`` statement has been extended with optional ``WITH ENGINE = <engine_name>`` clause. This clause comes at the end of ``CREATE TABLE`` statement. For example:"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:117
+msgid "CREATE TABLE t_vinyl (id INT PRIMARY KEY) WITH ENGINE = 'vinyl';"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:121
+msgid "Refer also to `SQL reference documentation <https://www.tarantool.io/en/doc/latest/reference/reference_sql/sql_statements_and_clauses/#sql-create-table>`__."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:124
+msgid "Introduce ``DOUBLE`` type (:tarantool-issue:`3812`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:126
+msgid "Display line and position in syntax errors (:tarantool-issue:`2611`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:128
+msgid "Make constraint names unique within a table (:tarantool-issue:`3503`). The SQL standard requires ``PRIMARY KEY``, ``UNIQUE``, ``FOREIGN KEY`` and ``CHECK`` constraints to have the unique name within a table. Now Tarantool/SQL follows this requirement. Please refer to (:doc-issue:`1053`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:133
+msgid "Optimization: a tuple already stores a map of offsets of indexed values. After the change, when a field after an indexed field is accessed, the tuple is decoded from the indexed field rather then from beginning (:tarantool-issue:`4267`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:139
+#: ../../doc/release/2.3.1.rst:360
+msgid "Core"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:141
+msgid "**[Breaking change]** Drop ``rows_per_wal`` option of ``box.cfg()`` in favor of ``wal_max_size`` (:tarantool-issue:`3762`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:143
+msgid "Decimals can now be stored in spaces. The corresponding field type is introduced: ``decimal``. Decimal values are also allowed in the ``scalar``, ``any``, and ``number`` fields. Decimal values can be indexed (:tarantool-issue:`4333`). Also refer to documentation on"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:148
+msgid "`data types <https://www.tarantool.io/en/doc/2.3/book/box/data_model/#data-types>`__"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:150
+msgid "`<space_object>:create_index() <https://www.tarantool.io/en/doc/latest/reference/reference_lua/box_space/create_index/>`__"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:152
+msgid "Add support for decimals in update operations (:tarantool-issue:`4413`). ``tuple:update()`` and ``<space_object>:update()`` now support decimal operands for arithmetic operations (‘+’ and ‘-’). The syntax is as usual, for example:"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:157
+msgid "tarantool> d = box.tuple.new(decimal.new('1'))\n"
+"---\n"
+"...\n"
+"tarantool> d:update{{'+', 1, decimal.new('0.5')}}\n"
+"---\n"
+"- [1.5]\n"
+"..."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:167
+msgid "Insertion (‘!’) and assignment (‘=’) are also supported. See also the full description of the ``update()`` function in `documentation <https://www.tarantool.io/en/doc/latest/reference/reference_lua/box_space/update/>`__."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:170
+msgid "Allow to encode/decode decimals to ``MsgPack`` and to encode to ``YAML`` and ``JSON``. Part of (:tarantool-issue:`4333`); `485439e3 <https://github.com/tarantool/tarantool/commit/485439e33196e26d120e622175f88b4edc7a5aa1>`__; documentation: (:doc-issue:`992`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:174
+msgid "Introduce field name and JSON path updates (:tarantool-issue:`1261`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:176
+msgid "Example of update by a field name: ``box.space.test:update({{'=', 'foo', 42}})``."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:179
+msgid "JSON path update allows to change a value that is nested inside an array or a map. It provides convenient syntax (that is also available for connectors), consumes less space in WAL than replace, and is faster than replaces written in Lua. Example: ``box.space.test:update({{'=', 'foo.bar[1]', 42}})``. Please refer to documentation here: (:doc-issue:`1051`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:185
+msgid "Introduce ``double`` field type. Part of (:tarantool-issue:`3812`). Though is not very usable in Lua, this new field type has been added in ``box`` as a base for the SQL ``DOUBLE`` type."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:188
+msgid "vinyl: don’t pin index for iterator lifetime (prerequisite for snapshot iterators). `02da82ea <https://github.com/tarantool/tarantool/commit/02da82ea7e80bba6371a85d8c41b338dbcd85b73>`_"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:191
+msgid "vinyl: don’t exempt dropped indexes from dump and compaction (prerequisite for snapshot iterators). `d7387ec9 <https://github.com/tarantool/tarantool/commit/d7387ec99083e2132ac1d1a0889ccbf75b498dc5>`_"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:196
+#: ../../doc/release/2.3.1.rst:444
+msgid "Replication"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:198
+msgid "``box.info().replication`` shows applier/replay’s latest error message. Now it also shows the errno description for system errors when it’s applicable (:tarantool-issue:`4402`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:201
+msgid "Feed data from a memory during replica initial join (:tarantool-issue:`1271`). Aside of obvious speed up from reading from a memory instead of a disk, a read view that is acquired to perform an initial join may be a way more recent, that eliminates the need to play all xlog files since a last snapshot. Now relay need to send only changes that occur during initial join to finally join a replica."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:207
+msgid "Introduce a new replica type - anonymous replica (:tarantool-issue:`3186`). Anonymous replica is not present in cluster space and so there is no limitation for its count in a replica set. Anonymous replica is read-only, but can be deanonymized and enabled for writes. Please refer to documentation: (:doc-issue:`1050`) for API and details."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:215
+#: ../../doc/release/2.3.1.rst:490
+msgid "Lua"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:217
+msgid "Expose ``require('tarantool').package`` which is ‘Tarantool’ for the community version and ‘Tarantool Enterprise’ for the enterprise version (:tarantool-issue:`4408`). This value is already displayed in a console greeting and in ``box.info().package``, but it was not accessible from Lua before the first ``box.cfg{<...>}`` call."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:222
+msgid "decimal: add modulo operator (``decimal.new(172.51) % 1 == 0.51``), part of (:tarantool-issue:`4403`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:224
+msgid "**[Breaking change]** JSON and msgpack serializers now raise an error when a depth of data nesting exceeds the ``encode_max_depth`` option value. The default value of the option has been increased from 32 to 128. The ``encode_deep_as_nil`` option is added to give an ability to set the old behaviour back (:tarantool-issue:`4434`). Notes:"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:230
+msgid "These options can be set by using ``json.cfg({<...>})`` or ``msgpack.cfg({<...>})``."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:232
+msgid "``box`` data modification functions (``insert``, ``replace``, ``update`` and ``upsert``) follow the options of the default msgpack serializer instance, and now these functions raise an error on too many levels of nested data by default rather than cut the data silently. This behaviour can be configured using ``msgpack.cfg({<...>})``."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:238
+msgid "previously,\\ ``box.tuple.new()``, ``space:update()``, ``space:upsert()`` and several other functions did not follow ``encode_max_depth`` option; now they do (see also the **Bug fixed** section)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:242
+msgid "previously,\\ ``json.cfg`` and ``msgpack.cfg`` tables was not updated when an option had changed; now they show actual values (see also the **Bug fixed** section)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:246
+msgid "Show line and column in ``json.decode()`` errors (:tarantool-issue:`3316`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:247
+msgid "Exit gracefully when a main script throws an error: notify systemd, log the error (:tarantool-issue:`4382`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:249
+msgid "key_def: accept both ``field`` and ``fieldno`` in ``key_def.new(<...>)`` (:tarantool-issue:`4519`). Originally ``key_def.new(<...>)`` accepted only ``fieldno`` to allow creation with ``<index_object>.parts`` as argument. However, index definition format (``<space_object>.create_index(<...>)``) is different and requires ``field``. Now both are supported."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:255
+msgid "Enable ``__pairs`` and ``__ipairs`` metamethods from Lua 5.2 (:tarantool-issue:`4560`). We still conform Lua 5.1 API that is not always compatible with Lua 5.2. The change is only about those metamethods."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:258
+msgid "Implement a new function ``fiber.top()``. It returns a table with all fibers alive and lists their CPU consumption. For details, refer to `documentation <https://www.tarantool.io/en/doc/2.3/reference/reference_lua/fiber/#lua-function.fiber.top>`__. (:tarantool-issue:`2694`)"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:262
+msgid "Expose ``errno`` field for box.error objects representing system errors. Part of (:tarantool-issue:`4402`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:266
+#: ../../doc/release/2.3.1.rst:535
+msgid "HTTP client"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:268
+msgid "Add ``accept_encoding`` option for HTTP client. For details, refer to description here: (:doc-issue:`1036`). (:tarantool-issue:`4232`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:271
+msgid "Add proxy server related options for HTTP client:"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:273
+msgid "``proxy``"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:274
+msgid "``proxy_port``"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:275
+msgid "``proxy_user_pwd``"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:276
+msgid "``no_proxy`` For details, refer to description here: :doc-issue:`896` (:tarantool-issue:`4477`, :tarantool-issue:`4472`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:281
+#: ../../doc/release/2.3.1.rst:591
+msgid "Misc"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:283
+msgid "tarantoolctl: allow to start instances with delayed ``box.cfg{}`` (:tarantool-issue:`4435`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:285
+msgid "Add package builds and deployment for the following Linux distros:"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:287
+msgid "Ubuntu 19.10 Eoan Ermine (:tarantool-issue:`4583`)"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:288
+msgid "CentOS 8 (:tarantool-issue:`4543`)"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:289
+msgid "Fedora 31 (:tarantool-issue:`4612`)"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:292
+msgid "Bugs fixed"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:297
+msgid "Modify type of a binding value in query response metainformation: always return INTEGER rather than UNSIGNED, even for positive values. This is necessary for consistency with integer literal types. `b7d595ac <https://github.com/tarantool/tarantool/commit/b7d595ac3d92aa0977c66d935e1c6eefabb91bec>`__."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:301
+msgid "Reuse noSQL way to compare floating point values with integral ones. This allows to handle corner cases like ``SELECT 18446744073709551615.0 > 18446744073709551615`` uniformly. `73a4a525 <https://github.com/tarantool/tarantool/commit/73a4a525489dc8541864008eb043f6dfd630e28d>`__."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:305
+msgid "Create or alter a table with a foreign key may lead to wrong bytecode generation that may cause a crash or wrong result (:tarantool-issue:`4495`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:307
+msgid "Allow to update a scalar value using SQL in a space that was created from Lua and contains ``array``, ``map`` or ``any`` fields (:tarantool-issue:`4189`). Note: Tarantool/SQL provides operations on scalar types and does not support ‘array’ and ‘map’ per se."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:311
+msgid "Allow nil to be returned from user-defined function (created with ``box.schema.func.create()``). `1b39cbcf <https://github.com/tarantool/tarantool/commit/1b39cbcf74aa76f55392a6a94aac29ace8749110>`__"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:314
+msgid "Don’t drop a manually created sequence in DROP TABLE statement. `a1155c8b <https://github.com/tarantool/tarantool/commit/a1155c8ba5f52211be7d14dfe38e70684dbfd7d7>`__"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:316
+msgid "Remove grants associated with the table in DROP TABLE statement (:tarantool-issue:`4546`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:318
+msgid "Fix segfault in ``sql_expr_coll()`` when ``SUBSTR()`` is called without arguments. `4c13972f <https://github.com/tarantool/tarantool/commit/4c13972fdd40af0b34ee55703b631fc763398801>`__"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:321
+msgid "Fix converting of floating point values from range [2^63, 2^64] to integer (:tarantool-issue:`4526`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:323
+msgid "Make type string case lower everywhere: in error messages, meta headers, and results of the ``typeof()`` SQL function. `ee60d31d <https://github.com/tarantool/tarantool/commit/ee60d31d1eaa94b5e355942a05015ea172de28e9>`__"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:326
+msgid "Make the\\ ``LENGTH()`` function to accept boolean argument (:tarantool-issue:`4462`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:327
+msgid "Make implicit cast from BOOLEAN to TEXT to return uppercase for consistency with explicit cast (:tarantool-issue:`4462`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:329
+msgid "Fix segfault on binding a value as LIKE argument (:tarantool-issue:`4566`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:330
+msgid "For user-defined functions, verify that the returned value is of the type specified in the function definition (:tarantool-issue:`4387`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:332
+msgid "Start using comprehensive serializer ``luaL_tofield()`` to prepare LUA arguments for user-defined functions. This allows to support cdata types returned from Lua function (:tarantool-issue:`4387`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:335
+msgid "An error is raised when a user-defined function returns too many values (:tarantool-issue:`4387`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:337
+msgid "Store a name of user-defined function in VDBE program instead of pointer. This allows to normally handle the situation when a user-defined function has been deleted to the moment of the VDBE code execution (:tarantool-issue:`4176`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:341
+msgid "Fix casting of VARBINARY value to a NUMBER (:tarantool-issue:`4356`)"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:342
+msgid "Print the data type instead of the data itself in ``diag_set()`` in case of binary data. The reason of this patch is that ``LibYAML`` converts the whole error message to ``base64`` in case of non-printable symbols. Part of (:tarantool-issue:`4356`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:346
+msgid "Remove ``ENGINE`` from the list of the reserved keywords and allow to use it for identifiers: we are going to use the word as a name of some fields for tables forming informational schema."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:349
+msgid "Fix segfault when ``LEAST()`` or ``GREATEST()`` built-in function is invoked without arguments (:tarantool-issue:`4453`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:351
+msgid "Fix dirty memory access when constructing query plan involving search of floating point value in index over integer field (:tarantool-issue:`4558`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:353
+msgid "``INDEXED BY`` clause now obligates the query planner to choose provided index. `49fedfe3 <https://github.com/tarantool/tarantool/commit/49fedfe30cca1f7a34d3b51f9e197c7ed4e4c95b>`__"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:362
+msgid "Make functional index creation transactional (:tarantool-issue:`4401`)"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:363
+msgid "Detect a new invalid JSON path case (:tarantool-issue:`4419`)"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:364
+msgid "Randomize the next checkpoint time after manual ``box.snapshot()`` execution also (:tarantool-issue:`4432`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:366
+msgid "Fix memory leak in call/eval in case of a transaction is not committed (:tarantool-issue:`4388`)"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:368
+msgid "Eliminate warning re ``strip_core`` option of ``box.cfg()`` on MacOS and FreeBSD (:tarantool-issue:`4464`)"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:370
+msgid "The msgpack serializer that is under ``box.tuple.new()`` (called tuple serializer) now reflects options set by ``msgpack.cfg({<...>})``. Part of (:tarantool-issue:`4434`). Aside of ``box.tuple.new()`` behaviour itself, it may affect ``tuple:frommap()``, methods of key_def Lua module, tuple and table merger sources, net.box results of ``:select()`` and ``:execute()`` calls, and xlog Lua module."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:377
+msgid "``box`` functions ``update`` and ``upsert`` now follow ``msgpack.cfg({encode_max_depth = <...>}`` option. Part of (:tarantool-issue:`4434`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:379
+msgid "fiber: make sure the guard page is created; refuse to create a new fiber otherwise (:tarantool-issue:`4541`). It is possible in case of heavy memory usage, say, when there is no resources to split VMAs."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:382
+msgid "recovery: build secondary indices in the hot standby mode without waiting till the main instance termination (:tarantool-issue:`4135`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:384
+msgid "Fix error message for incorrect return value of functional index extractor function (:tarantool-issue:`4553`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:387
+msgid "Was: “Key format doesn’t match one defined in functional index ‘’ of space ‘’: supplied key type is invalid: expected boolean”"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:389
+msgid "Now: “<…>: expected array”"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:391
+msgid "JSON path index now consider is_nullable property when a space had a format (:tarantool-issue:`4520`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:393
+msgid "Forbid ``00000000-0000-0000-0000-000000000000`` as the value of ``box.cfg({<...>})`` options: ``replicaset_uuid`` and ``instance_uuid`` (:tarantool-issue:`4282`). It did not work as expected: the nil UUID was treated as absence of the value."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:397
+msgid "Update cache of universe privileges without reconnect (:tarantool-issue:`2763`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:398
+msgid "net.box: fix memory leak in ``net_box:connect(<URI>)`` (:tarantool-issue:`4588`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:399
+msgid "net.box: don’t fire the ``on_connect`` trigger on schema update (:tarantool-issue:`4593`). Also don’t fire the ``on_disconnect`` trigger if a connection never entered into the ``active`` state (e.g. when the first schema fetch is failed)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:403
+msgid "func: fix use-after-free on function unload. `fa2893ea <https://github.com/tarantool/tarantool/commit/fa2893eab4048638cc250a3bccc304a9e1f69a72>`__"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:405
+msgid "Don’t destroy a session until ``box.session.on_disconnect(<...>)`` triggers are finished (:tarantool-issue:`4627`). This means, for example, that ``box.session.id()`` can be safely invoked from the ``on_disconnect`` trigger. Before this change ``box.session.id()`` returned garbage (usually 0) after yield in the ``on_disconnect`` trigger. *Note*: `tarantool/queue <https://github.com/tarantool/queue>`_ module is affected by this problem in `some scenarios <https://github.com/tarantool/queue/issues/103>`_. It is especially suggested to update Tarantool at least to this release if you’re using this module."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:415
+msgid "func: Fix ``box.schema.func.drop(<..>)`` to unload unused modules (:tarantool-issue:`4648`). Also fix ``box.schema.func.create(<..>)`` to avoid loading a module again when another function from the module is loaded."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:418
+msgid "Encode Lua number -2^63 as integer in ``msgpack.encode()`` and box’s functions (:tarantool-issue:`4672`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:420
+msgid "Forbid to drop admin’s universe access. `2de398ff <https://github.com/tarantool/tarantool/commit/2de398ff01918342eebe0e779327e99c71dd950f>`__. Bootstrap and recovery work on behalf of admin and should be able to fill in the system spaces. Drop of admin’s access may lead to an unrecoverable cluster."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:425
+msgid "Refactor rope library to eliminate virtual calls to increase performance of the library (mainly for JSON path updates). `baa4659c <https://github.com/tarantool/tarantool/commit/baa4659c1857027b3ae53305baaa147af4803cad>`__"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:428
+msgid "Refactor update operation code to avoid extra region-related arguments to take some performance boost (mainly for JSON path updates). `dba9dba7 <https://github.com/tarantool/tarantool/commit/dba9dba70eebc875bea79e9a1357eb4240350fa1>`__"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:432
+msgid "Error logging has been removed in ``engine_find()`` to get rid of the error message duplication. `35177fe0 <https://github.com/tarantool/tarantool/commit/35177fe0e9bdc6888ffc01b214ebf988d3668cca>`__."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:435
+msgid "decimal: Fix encoding of numbers with positive exponent. Follow-up (:tarantool-issue:`692`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:437
+msgid "Increment schema version on DDL operations where it did not performed before: alter of trigger, check constraint and foreign key constraint. Part of (:tarantool-issue:`2592`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:446
+msgid "Stop relay on subscribe error (:tarantool-issue:`4399`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:447
+msgid "Set ``last_row_time`` to ``now`` in ``relay_new`` and ``relay_start`` (:tarantool-issue:`4431`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:449
+msgid "Do not abort replication on ER_UNKNOWN_REPLICA (:tarantool-issue:`4455`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:450
+msgid "Enter orphan mode on manual replication configuration change (:tarantool-issue:`4424`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:451
+msgid "Disallow bootstrap of read-only masters (:tarantool-issue:`4321`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:452
+msgid "Prefer to bootstrap a replica from a fully bootstrapped instance rather than from an instance that is in the process of bootstrapping (:tarantool-issue:`4527`). This change enables the case when two nodes (B, C) are being bootstrapped simultaneously using the one that is already bootstrapped (A), while A is configured to replicate from {B, C} and B – from {A, C}."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:458
+msgid "Return immediately from ``box.cfg{<...>}`` when an instance is reconfigured with ``replication_connect_quorum = 0`` (:tarantool-issue:`3760`). This change also fixes the behaviour of reconfiguration with non-zero ``replication_connect_quorum``: ``box.cfg{<...>}`` returns immediately regardless of whether connections to upstreams are established."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:464
+msgid "Apply replication settings of ``box.cfg({<...>})`` in a strict order (:tarantool-issue:`4433`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:466
+msgid "Auto reconnect a replica if password is invalid (:tarantool-issue:`4550`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:467
+msgid "``box.session.su(<username>)`` now correctly reports an error for ``<username>`` longer than ``BOX_NAME_MAX`` which is 65000. `8b6bdb43 <https://github.com/tarantool/tarantool/commit/8b6bdb435cb6b41375d8e550cc2d9c14c1d1f742>`__"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:471
+msgid "Was: ‘C++ exception’"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:472
+msgid "Now: ‘name length <…> is greater than BOX_NAME_MAX’"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:474
+msgid "Use empty password when a URI in ``box.cfg{replication = <...>}`` is like ``login@host:port`` (:tarantool-issue:`4605`). The behaviour matches the net.box’s one now. Explicit ``login:@host:port`` was necessary before, otherwise a replica displayed the following error: > Missing mandatory field ‘tuple’ in request"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:479
+msgid "Fix segfault during replication configuration (``box.cfg{replication = <...>}`` call) (:tarantool-issue:`4440`, :tarantool-issue:`4576`, :tarantool-issue:`4586`, :tarantool-issue:`4643`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:482
+msgid "Cancel a replica joining thread forcefully on Tarantool instance exit (:tarantool-issue:`4528`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:484
+msgid "Fix the applier to run the ``<space>.before_replace`` trigger during initial join (:tarantool-issue:`4417`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:492
+msgid "Fix segfault on ``ffi.C._say()`` without filename (:tarantool-issue:`4336`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:493
+msgid "Fix ``pwd.getpwall()`` and ``pwd.getgrall()`` hang on CentOS 6 and FreeBSD 12 (:tarantool-issue:`4428`, :tarantool-issue:`4447`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:495
+msgid "json.encode() now follows ``encode_max_depth`` option for arrays that leads to a segfault on recursive Lua tables with numeric keys (:tarantool-issue:`4366`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:498
+msgid "fio.mktree() now reports an error for existing non-directory file (:tarantool-issue:`4439`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:500
+msgid "``json.cfg`` and ``msgpack.cfg`` tables were not updated when an option is changed. Part of (:tarantool-issue:`4434`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:502
+msgid "Fix handling of a socket read error in the console client (``console.connect(<URI>)`` or ``tarantoolctl connect/enter <...>``). `89ec1d97 <https://github.com/tarantool/tarantool/commit/89ec1d97a9b7277c29a08b34f11bc14ef2f888df>`__"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:505
+msgid "Handle the “not enough memory” error gracefully when it is raised from ``lua_newthread()`` (:tarantool-issue:`4556`). There are several cases when a new Lua thread is created:"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:509
+msgid "Start executing a Lua function call or an eval request (from a binary protocol, SQL or with ``box.func.<...>:call()``)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:511
+msgid "Create of a new fiber."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:512
+msgid "Start execution of a trigger."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:513
+msgid "Start of encoding into a YAML format (``yaml.encode()``)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:515
+msgid "Fix stack-use-after-scope in ``json.decode()`` (:tarantool-issue:`4637`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:516
+msgid "Allow to register several functions using ``box.schema.func.create()``, whose names are different only in letters case (:tarantool-issue:`4561`). This make function names work consistently with other names in tarantool (except SQL, of course)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:520
+msgid "Fix decimal comparison with nil. Follow-up (:tarantool-issue:`692`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:521
+msgid "Fix decimal comparison with ``box.NULL`` (:tarantool-issue:`4454`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:522
+msgid "A pointer returned by ``msgpack.decode*(cdata<[char] const *>)`` functions can be assigned to buffer.rpos now (and the same for msgpackffi) (:tarantool-issue:`3926`). All those functions now return ``cdata<char *>`` or ``cdata<const char *>`` depending of a passed argument. Example of the code that did not work: ``res, buf.rpos = msgpack.decode(buf.rpos, buf:size())``."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:528
+msgid "lua/pickle: fix typo that leads to reject of negative integers for ‘i’ (integer) and ‘N’ (big-endian integer) formats in pickle.pack(). `e2d9f664 <https://github.com/tarantool/tarantool/commit/e2d9f66450298b025ed350a2a40d2682b3b6f17e>`__"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:537
+msgid "Use bundled ``libcurl`` rather than system-wide by default. (:tarantool-issue:`4318`, :tarantool-issue:`4180`, :tarantool-issue:`4288`, :tarantool-issue:`4389`, :tarantool-issue:`4397`). This closes several known problems that were fixed in recent libcurl versions, including segfaults, hangs, memory leaks and performance problems."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:542
+msgid "Fix assertion fail after a curl write error (:tarantool-issue:`4232`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:543
+msgid "Disable verbose mode when ``{verbose = false}`` is passed. `72613bb0 <https://github.com/tarantool/tarantool/commit/72613bb0b269daf1fe23ca42fe07ddd1b18367d3>`__"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:547
+msgid "Console Lua output"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:549
+msgid "A new Lua output format is still in the alpha stage and has the known flaws, but we are working to make it rich and stable."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:552
+msgid "Output ``box.NULL`` as ``\"box.NULL\"`` rather than ``\"cdata<void *>: NULL\"``, part of (:tarantool-issue:`3834`) (in quotes for now, yes, due to (:tarantool-issue:`4585`)"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:555
+msgid "Add semicolon (``;``) as responses delimiter (EOS, end of stream/statement), analogue of YAMLs end-of-document (``...``) marker. This is vital for remote clients to determine the end of a particular response, part of (:tarantool-issue:`3834`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:559
+msgid "Fix hang in the console client (``console.connect(<URI>)`` or ``tarantoolctl connect/enter <...>``) after ``\\set output lua[,block]`` command, part of (:tarantool-issue:`3834`). In order to overcome it, two changes have been made:"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:564
+msgid "Parse ``\\set output lua[,block]`` command on a client prior to sending it to a server, store current responses delimiter (EOS) and use it to determine end of responses."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:567
+msgid "Send ``\\set output <...>`` command with a default output mode when establishing a connection (it is matter if different default modes are set)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:571
+msgid "Provide an ability to get or set current responses delimiter using ``console.eos([<...>])``, part of (:tarantool-issue:`3834`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:575
+msgid "LuaJIT"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:577
+msgid "Fix fold machinery misbehaves (:tarantool-issue:`4376`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:578
+msgid "Fix for ``debug.getinfo(1,'>S')`` (:tarantool-issue:`3833`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:579
+msgid "Fix ``string.find`` recording (:tarantool-issue:`4476`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:580
+msgid "Fix the “Data segment size exceeds process limit” error on FreeBSD/x64: do not change resource limits when it is not necessary (:tarantool-issue:`4537`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:583
+msgid "fold: keep type of emitted CONV in sync with its mode. `LuaJIT#524 <https://github.com/LuaJIT/LuaJIT/issues/524>`__ This fixes the following assertion fail: > asm_conv: Assertion \\`((IRType)((ir->t).irt & IRT_TYPE)) != st’ failed"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:593
+msgid "Support ``systemd``\\ ’s NOTIFY_SOCKET on OS X (:tarantool-issue:`4436`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:594
+msgid "Fix linking with static ``openssl`` library (:tarantool-issue:`4437`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:595
+msgid "Get rid of warning re empty ``NOTIFY_SOCKET`` variable (:tarantool-issue:`4305`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:596
+msgid "rocks: fix ‘invalid date format’ error when installing a packed rock (:tarantool-issue:`4481`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:598
+msgid "Remove libyaml from rpm/deb dependencies, because we use bunbled version of libyaml for the packages (since 2.2.1) (:tarantool-issue:`4442`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:600
+msgid "Fix CLI boolean options handling in ``tarantoolctl cat <...>``, such as ``--show-system`` (:tarantool-issue:`4076`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:602
+msgid "Fix segfault (out of bounds access) when a stack unwinding error occurs at backtrace printing (:tarantool-issue:`4636`). Backtrace is printed on the SIGFPE and SIGSEGV signals or when LuaJIT finds itself in the unrecoverable state (``lua_atpanic()``)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:606
+msgid "Clear terminal state on panic (:tarantool-issue:`4466`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:607
+msgid "access: fix the invalid error type ``box.session.su()`` raises for a not found user"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:610
+msgid "was: ``SystemError``"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:611
+msgid "now: ``ClientError``"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:614
+msgid "Building from sources"
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:616
+msgid "Fix for GCC 4.8.5, which is default version on CentOS 7 (:tarantool-issue:`4438`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:617
+msgid "Fix OpenSSL linking problems on FreeBSD (:tarantool-issue:`4490`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:618
+msgid "Fix linking problems on Mac OS when several toolchains are in PATH (:tarantool-issue:`4587`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:620
+msgid "Fix GCC 9 warning on strncpy() (:tarantool-issue:`4515`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:621
+msgid "Fix build on Mac with gcc and XCode 11 (:tarantool-issue:`4580`)."
+msgstr ""
+
+#: ../../doc/release/2.3.1.rst:622
+msgid "Fix LTO warnings that were treated as errors in a release build (:tarantool-issue:`4512`)."
+msgstr ""

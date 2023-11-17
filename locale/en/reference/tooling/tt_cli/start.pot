@@ -1,0 +1,78 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/tooling/tt_cli/start.rst:4
+msgid "Starting a Tarantool instance"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/start.rst:6
+msgid "$ tt start {INSTANCE | APPLICATION[:APP_INSTANCE]}"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/start.rst:10
+msgid "``tt start`` starts Tarantool applications."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/start.rst:13
+msgid "Details"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/start.rst:15
+msgid "The application files must be stored inside the ``instances_enabled`` directory specified in the :ref:`tt configuration file <tt-config_file_app>`. The ``APPLICATION`` value can be:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/start.rst:19
+msgid "the name of an application file without the ``.lua`` extension."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/start.rst:20
+msgid "the name of an application directory. It must contain the ``init.lua`` application file and, optionally, the instances configuration if the application runs on multiple instances. Learn more about :ref:`instances configuration <tt-instances>`."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/start.rst:27
+msgid "Examples"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/start.rst:30
+msgid "Single instance"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/start.rst:32
+msgid "Start an instance with the ``app.lua`` application from the ``instances_enabled`` directory:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/start.rst:35
+#: ../../doc/reference/tooling/tt_cli/start.rst:46
+msgid "$ tt start app"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/start.rst:41
+msgid "Multiple instances"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/start.rst:43
+msgid "Start all instances of the application stored in the ``app/`` directory inside ``instances_enabled`` in accordance with the :ref:`instances configuration <tt-instances>`:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/start.rst:50
+msgid "Start only the ``master`` instance of the application stored in the ``app/`` directory inside ``instances_enabled``:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/start.rst:52
+msgid "$ tt start app:master"
+msgstr ""

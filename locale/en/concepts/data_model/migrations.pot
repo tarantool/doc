@@ -1,0 +1,203 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/concepts/data_model/migrations.rst:4
+msgid "Migrations"
+msgstr ""
+
+#: ../../doc/concepts/data_model/migrations.rst:6
+msgid "**Migration** refers to any change in a data schema: adding/removing a field, creating/dropping an index, changing a field format, etc."
+msgstr ""
+
+#: ../../doc/concepts/data_model/migrations.rst:9
+msgid "In Tarantool, there are two types of schema migration that do not require data migration:"
+msgstr ""
+
+#: ../../doc/concepts/data_model/migrations.rst:12
+msgid "adding a field to the end of a space"
+msgstr ""
+
+#: ../../doc/concepts/data_model/migrations.rst:14
+msgid "creating an index"
+msgstr ""
+
+#: ../../doc/concepts/data_model/migrations.rst:18
+msgid "Check the :ref:`Upgrading space schema <enterprise-space_upgrade>` section. With the help of ``space:upgrade()``, you can enable compression and migrate, including already created tuples."
+msgstr ""
+
+#: ../../doc/concepts/data_model/migrations.rst:24
+msgid "Adding a field to the end of a space"
+msgstr ""
+
+#: ../../doc/concepts/data_model/migrations.rst:26
+msgid "You can add a field as follows:"
+msgstr ""
+
+#: ../../doc/concepts/data_model/migrations.rst:28
+msgid "local users = box.space.users\n"
+"local fmt = users:format()\n"
+"\n"
+"table.insert(fmt, { name = 'age', type = 'number', is_nullable = true })\n"
+"users:format(fmt)"
+msgstr ""
+
+#: ../../doc/concepts/data_model/migrations.rst:36
+msgid "Note that the field must have the ``is_nullable`` parameter. Otherwise, an error will occur."
+msgstr ""
+
+#: ../../doc/concepts/data_model/migrations.rst:39
+msgid "After creating a new field, you probably want to fill it with data. The `tarantool/moonwalker <https://github.com/tarantool/moonwalker>`_ module is useful for this task. The README file describes how to work with this module."
+msgstr ""
+
+#: ../../doc/concepts/data_model/migrations.rst:45
+msgid "Creating an index"
+msgstr ""
+
+#: ../../doc/concepts/data_model/migrations.rst:47
+msgid "Index creation is described in the :doc:`/reference/reference_lua/box_space/create_index` method."
+msgstr ""
+
+#: ../../doc/concepts/data_model/migrations.rst:53
+msgid "Other types of migrations"
+msgstr ""
+
+#: ../../doc/concepts/data_model/migrations.rst:55
+msgid "Other types of migrations are also allowed, but it would be more difficult to maintain data consistency."
+msgstr ""
+
+#: ../../doc/concepts/data_model/migrations.rst:58
+msgid "Migrations are possible in two cases:"
+msgstr ""
+
+#: ../../doc/concepts/data_model/migrations.rst:60
+msgid "When Tarantool starts, and no client uses the database yet"
+msgstr ""
+
+#: ../../doc/concepts/data_model/migrations.rst:62
+msgid "During request processing, when active clients are already using the database"
+msgstr ""
+
+#: ../../doc/concepts/data_model/migrations.rst:64
+msgid "For the first case, it is enough to write and test the migration code. The most difficult task is to migrate data when there are active clients. You should keep it in mind when you initially design the data schema."
+msgstr ""
+
+#: ../../doc/concepts/data_model/migrations.rst:68
+msgid "We identify the following problems if there are active clients:"
+msgstr ""
+
+#: ../../doc/concepts/data_model/migrations.rst:70
+msgid "Associated data can change atomically."
+msgstr ""
+
+#: ../../doc/concepts/data_model/migrations.rst:72
+msgid "The system should be able to transfer data using both the new schema and the old one."
+msgstr ""
+
+#: ../../doc/concepts/data_model/migrations.rst:74
+msgid "When data is being transferred to a new space, data access should consider that the data might be in one space or another."
+msgstr ""
+
+#: ../../doc/concepts/data_model/migrations.rst:77
+msgid "Write requests must not interfere with the migration. A common approach is to write according to the new data schema."
+msgstr ""
+
+#: ../../doc/concepts/data_model/migrations.rst:80
+msgid "These issues may or may not be relevant depending on your application and its availability requirements."
+msgstr ""
+
+#: ../../doc/concepts/data_model/migrations.rst:84
+msgid "What you need to know when writing complex migrations"
+msgstr ""
+
+#: ../../doc/concepts/data_model/migrations.rst:86
+msgid "Tarantool has a transaction mechanism. It is useful when writing a migration, because it allows you to work with the data atomically. But before using the transaction mechanism, you should explore its limitations."
+msgstr ""
+
+#: ../../doc/concepts/data_model/migrations.rst:90
+msgid "For details, see the section about :doc:`transactions </concepts/atomic>`."
+msgstr ""
+
+#: ../../doc/concepts/data_model/migrations.rst:93
+msgid "How you can apply migration"
+msgstr ""
+
+#: ../../doc/concepts/data_model/migrations.rst:95
+msgid "The migration code is executed on a running Tarantool instance. Important: no method guarantees you transactional application of migrations on the whole cluster."
+msgstr ""
+
+#: ../../doc/concepts/data_model/migrations.rst:99
+msgid "**Method 1**: include migrations in the application code"
+msgstr ""
+
+#: ../../doc/concepts/data_model/migrations.rst:101
+msgid "This is quite simple: when you reload the code, the data is migrated at the right moment, and the database schema is updated. However, this method may not work for everyone. You may not be able to restart Tarantool or update the code using the hot-reload mechanism."
+msgstr ""
+
+#: ../../doc/concepts/data_model/migrations.rst:106
+msgid "**Method 2**: tarantool/migrations (only for a Tarantool Cartridge cluster)"
+msgstr ""
+
+#: ../../doc/concepts/data_model/migrations.rst:108
+msgid "This method is described in the README file of the `tarantool/migrations <https://github.com/tarantool/migrations>`_ module."
+msgstr ""
+
+#: ../../doc/concepts/data_model/migrations.rst:113
+msgid "There are also two other methods that we **do not recommend**, but you may find them useful for one reason or another."
+msgstr ""
+
+#: ../../doc/concepts/data_model/migrations.rst:116
+msgid "**Method 3**: the :ref:`tt <tt-cli>` utility"
+msgstr ""
+
+#: ../../doc/concepts/data_model/migrations.rst:118
+msgid "Connect to the necessary instance using ``tt connect``."
+msgstr ""
+
+#: ../../doc/concepts/data_model/migrations.rst:120
+msgid "$ tt connect admin:password@localhost:3301"
+msgstr ""
+
+#: ../../doc/concepts/data_model/migrations.rst:124
+msgid "If your migration is written in a Lua file, you can execute it using ``dofile()``. Call this function and specify the path to the migration file as the first argument. It looks like this:"
+msgstr ""
+
+#: ../../doc/concepts/data_model/migrations.rst:128
+msgid "tarantool> dofile('0001-delete-space.lua')\n"
+"---\n"
+"..."
+msgstr ""
+
+#: ../../doc/concepts/data_model/migrations.rst:134
+msgid "(or) Copy the migration script code, paste it into the console, and run it."
+msgstr ""
+
+#: ../../doc/concepts/data_model/migrations.rst:137
+msgid "You can also connect to the instance and execute the migration script in a single call:"
+msgstr ""
+
+#: ../../doc/concepts/data_model/migrations.rst:139
+msgid "$ tt connect admin:password@localhost:3301 -f 0001-delete-space.lua"
+msgstr ""
+
+#: ../../doc/concepts/data_model/migrations.rst:144
+msgid "**Method 4**: applying migration with Ansible"
+msgstr ""
+
+#: ../../doc/concepts/data_model/migrations.rst:146
+msgid "If you use the `Ansible role  <https://github.com/tarantool/ansible-cartridge>`_ to deploy a Tarantool cluster, you can use ``eval``. You can find more information about it `in the Ansible role documentation <https://github.com/tarantool/ansible-cartridge/blob/master/doc/eval.md>`_."
+msgstr ""

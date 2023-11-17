@@ -1,0 +1,49 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/admin/upgrades.rst:4
+msgid "Upgrades"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades.rst:6
+msgid "This section describes the general upgrade process for Tarantool. There are two main upgrade scenarios for different use cases:"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades.rst:9
+msgid ":doc:`Live upgrade <upgrades/upgrade_cluster>` (without downtime) for replication clusters."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades.rst:10
+msgid ":doc:`Upgrade with downtime <upgrades/upgrade_standalone>` for standalone instances."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades.rst:12
+msgid "You can also downgrade to an earlier version using a similar procedure."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades.rst:14
+msgid "For information about backwards compatibility, see the :ref:`compatibility guarantees <compatibility_guarantees>` description."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades.rst:17
+msgid "Upgrading from or to certain versions can involve specific steps or slightly differ from the general upgrade procedure. Such version-specific cases are described on the dedicated pages inside this section."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades.rst:21
+msgid "This section includes the following topics:"
+msgstr ""

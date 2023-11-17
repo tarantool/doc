@@ -1,0 +1,33 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/release/index.rst:7
+msgid "Releases"
+msgstr ""
+
+#: ../../doc/release/index.rst:9
+msgid "This section contains release notes for all Tarantool versions, starting from 1.6 up to the latest. To download Tarantool releases, check the `Download <https://www.tarantool.io/en/download/>`_ page."
+msgstr ""
+
+#: ../../doc/release/index.rst:12
+msgid "Since version 2.10, a :doc:`new release policy for Tarantool <policy>` has been introduced."
+msgstr ""
+
+#: ../../doc/release/index.rst:14
+msgid "Backwards compatibility is guaranteed between all versions in the same :term:`release series`. It is also appreciated but not guaranteed between different release series (major number changes). To learn more, read the :doc:`Compatibility guarantees <compatibility>` article."
+msgstr ""

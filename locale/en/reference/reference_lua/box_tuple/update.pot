@@ -1,0 +1,87 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_tuple/update.rst:6
+msgid "tuple_object:update()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/update.rst:12
+msgid "Update a tuple."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/update.rst:14
+msgid "This function updates a tuple which is not in a space. Compare the function :extsamp:`box.space.{*{space-name}*}:update({*{key}*}, {{{*{format}*}, {*{field_no}*}, {*{value}*}}, ...})` which updates a tuple in a space."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/update.rst:18
+msgid "For details: see the description for ``operator``, ``field_no``, and ``value`` in the section :ref:`box.space.space-name:update{key, format, {field_number, value}...) <box_space-update>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/update.rst:22
+msgid "If the original tuple comes from a space that has been formatted with a :ref:`format clause <box_space-format>`, the formatting will be preserved for the result tuple."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/update.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/update.rst:26
+msgid "operation type represented in string (e.g. '``=``' for 'assign new value')"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/update.rst:28
+msgid "what field the operation will apply to. The field number can be negative, meaning the position from the end of tuple. (#tuple + negative field number + 1)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/update.rst:32
+msgid "what value will be applied"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/update.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/update.rst:34
+msgid "new tuple"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/update.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/update.rst:35
+msgid "tuple"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/update.rst:37
+msgid "In the following example, a tuple named ``t`` is created and then its second field is updated to equal 'B'."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/update.rst:40
+msgid "tarantool> t = box.tuple.new{'Fld#1', 'Fld#2', 'Fld#3', 'Fld#4', 'Fld#5'}\n"
+"---\n"
+"...\n"
+"tarantool> t:update({{'=', 2, 'B'}})\n"
+"---\n"
+"- ['Fld#1', 'B', 'Fld#3', 'Fld#4', 'Fld#5']\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/update.rst:50
+msgid "Since Tarantool 2.3 a tuple can also be updated via :ref:`JSON paths<json_paths-module>`."
+msgstr ""

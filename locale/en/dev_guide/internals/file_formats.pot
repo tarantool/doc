@@ -1,0 +1,163 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/dev_guide/internals/file_formats.rst:4
+msgid "File formats"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/file_formats.rst:9
+msgid "Data persistence and the WAL file format"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/file_formats.rst:11
+msgid "To maintain data persistence, Tarantool writes each data change request (insert, update, delete, replace, upsert) into a write-ahead log (WAL) file in the :ref:`wal_dir <cfg_basic-wal_dir>` directory. A new WAL file is created when the current one reaches the :ref:`wal_max_size <cfg_binary_logging_snapshots-wal_max_size>` size. Each data change request gets assigned a continuously growing 64-bit log sequence number. The name of the WAL file is based on the log sequence number of the first record in the file, plus an extension ``.xlog``."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/file_formats.rst:19
+msgid "Apart from a log sequence number and the data change request (formatted as in :ref:`Tarantool's binary protocol <internals-box_protocol>`), each WAL record contains a header, some metadata, and then the data formatted according to `msgpack <https://en.wikipedia.org/wiki/MessagePack>`_ rules. For example, this is what the WAL file looks like after the first INSERT request (\"s:insert({1})\") for the sandbox database created in our :ref:`\"Getting started\" exercises <getting_started>`. On the left are the hexadecimal bytes that you would see with:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/file_formats.rst:28
+msgid "$ hexdump 00000000000000000000.xlog"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/file_formats.rst:32
+msgid "and on the right are comments."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/file_formats.rst:34
+msgid "Hex dump of WAL file       Comment\n"
+"--------------------       -------\n"
+"58 4c 4f 47 0a             \"XLOG\\n\"\n"
+"30 2e 31 33 0a             \"0.13\\n\" = version\n"
+"53 65 72 76 65 72 3a 20    \"Server: \"\n"
+"38 62 66 32 32 33 65 30 2d [Server UUID]\\n\n"
+"36 39 31 34 2d 34 62 35 35\n"
+"2d 39 34 64 32 2d 64 32 62\n"
+"36 64 30 39 62 30 31 39 36\n"
+"0a\n"
+"56 43 6c 6f 63 6b 3a 20    \"Vclock: \"\n"
+"7b 7d                      \"{}\" = vclock value, initially blank\n"
+"...                        (not shown = tuples for system spaces)\n"
+"d5 ba 0b ab                Magic row marker always = 0xab0bbad5\n"
+"19                         Length, not including length of header, = 25 bytes\n"
+"00                           Record header: previous crc32\n"
+"ce 8c 3e d6 70               Record header: current crc32\n"
+"a7 cc 73 7f 00 00 66 39      Record header: padding\n"
+"84                         msgpack code meaning \"Map of 4 elements\" follows\n"
+"00 02                         element#1: tag=request type, value=0x02=IPROTO_INSERT\n"
+"02 01                         element#2: tag=server id, value=0x01\n"
+"03 04                         element#3: tag=lsn, value=0x04\n"
+"04 cb 41 d4 e2 2f 62 fd d5 d4 element#4: tag=timestamp, value=an 8-byte \"Float64\"\n"
+"82                         msgpack code meaning \"map of 2 elements\" follows\n"
+"10 cd 02 00                   element#1: tag=space id, value=512, big byte first\n"
+"21 91 01                      element#2: tag=tuple, value=1-element fixed array={1}"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/file_formats.rst:63
+msgid "Tarantool processes requests atomically: a change is either accepted and recorded in the WAL, or discarded completely. Let's clarify how this happens, using the REPLACE request as an example:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/file_formats.rst:67
+msgid "The server instance attempts to locate the original tuple by primary key. If found, a reference to the tuple is retained for later use."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/file_formats.rst:70
+msgid "The new tuple is validated. If for example it does not contain an indexed field, or it has an indexed field whose type does not match the type according to the index definition, the change is aborted."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/file_formats.rst:74
+msgid "The new tuple replaces the old tuple in all existing indexes."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/file_formats.rst:76
+msgid "A message is sent to the WAL writer running in a separate thread, requesting that the change be recorded in the WAL. The instance switches to work on the next request until the write is acknowledged."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/file_formats.rst:80
+msgid "On success, a confirmation is sent to the client. On failure, a rollback procedure is begun. During the rollback procedure, the transaction processor rolls back all changes to the database which occurred after the first failed change, from latest to oldest, up to the first failed change. All rolled back requests are aborted with :errcode:`ER_WAL_IO <ER_WAL_IO>` error. No new change is applied while rollback is in progress. When the rollback procedure is finished, the server restarts the processing pipeline."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/file_formats.rst:88
+msgid "One advantage of the described algorithm is that complete request pipelining is achieved, even for requests on the same value of the primary key. As a result, database performance doesn't degrade even if all requests refer to the same key in the same space."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/file_formats.rst:93
+msgid "The transaction processor thread communicates with the WAL writer thread using asynchronous (yet reliable) messaging; the transaction processor thread, not being blocked on WAL tasks, continues to handle requests quickly even at high volumes of disk I/O. A response to a request is sent as soon as it is ready, even if there were earlier incomplete requests on the same connection. In particular, SELECT performance, even for SELECTs running on a connection packed with UPDATEs and DELETEs, remains unaffected by disk load."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/file_formats.rst:101
+msgid "The WAL writer employs a number of durability modes, as defined in configuration variable :ref:`wal_mode <index-wal_mode>`. It is possible to turn the write-ahead log completely off, by setting :ref:`wal_mode <cfg_binary_logging_snapshots-wal_mode>` to *none*. Even without the write-ahead log it's still possible to take a persistent copy of the entire data set with the :ref:`box.snapshot() <box-snapshot>` request."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/file_formats.rst:108
+msgid "An .xlog file always contains changes based on the primary key. Even if the client requested an update or delete using a secondary key, the record in the .xlog file will contain the primary key."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/file_formats.rst:115
+msgid "The snapshot file format"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/file_formats.rst:117
+msgid "The format of a snapshot .snap file is nearly the same as the format of a WAL .xlog file. However, the snapshot header differs: it contains the instance's global unique identifier and the snapshot file's position in history, relative to earlier snapshot files. Also, the content differs: an .xlog file may contain records for any data-change requests (inserts, updates, upserts, and deletes), a .snap file may only contain records of inserts to memtx spaces."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/file_formats.rst:124
+msgid "Primarily, the .snap file's records are ordered by space id. Therefore the records of system spaces -- such as ``_schema``, ``_space``, ``_index``, ``_func``, ``_priv`` and ``_cluster`` -- will be at the start of the .snap file, before the records of any spaces that were created by users."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/file_formats.rst:129
+msgid "Secondarily, the .snap file's records are ordered by primary key within space id."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/file_formats.rst:134
+msgid "Example"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/file_formats.rst:136
+msgid "The header of a ``.snap`` or ``.xlog`` file looks like:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/file_formats.rst:138
+msgid "<type>\\n                  SNAP\\n or XLOG\\n\n"
+"<version>\\n               currently 0.13\\n\n"
+"Server: <server_uuid>\\n   where UUID is a 36-byte string\n"
+"VClock: <vclock_map>\\n    e.g. {1: 0}\\n\n"
+"\\n"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/file_formats.rst:146
+msgid "After the file header come the data tuples. Tuples begin with a row marker ``0xd5ba0bab`` and the last tuple may be followed by an EOF marker ``0xd510aded``. Thus, between the file header and the EOF marker, there may be data tuples that have this form:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/file_formats.rst:153
+msgid "0            3 4                                         17\n"
+"+-------------+========+============+===========+=========+\n"
+"|             |        |            |           |         |\n"
+"| 0xd5ba0bab  | LENGTH | CRC32 PREV | CRC32 CUR | PADDING |\n"
+"|             |        |            |           |         |\n"
+"+-------------+========+============+===========+=========+\n"
+"   MP_FIXEXT2    MP_INT     MP_INT       MP_INT      ---\n"
+"\n"
+"+============+ +===================================+\n"
+"|            | |                                   |\n"
+"|   HEADER   | |                BODY               |\n"
+"|            | |                                   |\n"
+"+============+ +===================================+\n"
+"     MP_MAP                     MP_MAP"
+msgstr ""

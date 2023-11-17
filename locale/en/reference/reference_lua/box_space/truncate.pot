@@ -1,0 +1,67 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_space/truncate.rst:5
+msgid "space_object:truncate()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/truncate.rst:11
+msgid "Deletes all tuples. The method is performed in background and doesn't block consequent requests."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/truncate.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/truncate.rst:14
+msgid "an :ref:`object reference <app_server-object_reference>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/truncate.rst:17
+msgid "**Complexity factors:** Index size, Index type, Number of tuples accessed."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/truncate.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/truncate.rst:19
+msgid "nil"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/truncate.rst:21
+msgid "The ``truncate`` method can only be called by the user who created the space, or from within a ``setuid`` function created by the user who created the space. Read more about `setuid` functions in the reference for :doc:`/reference/reference_lua/box_schema/func_create`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/truncate.rst:29
+msgid "Do not call this method within a transaction in Tarantool older than :tarantool-release:`2.10.0`. See :tarantool-issue:`6123` for details."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/truncate.rst:32
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/truncate.rst:34
+msgid "tarantool> box.space.tester:truncate()\n"
+"---\n"
+"...\n"
+"tarantool> box.space.tester:len()\n"
+"---\n"
+"- 0\n"
+"..."
+msgstr ""

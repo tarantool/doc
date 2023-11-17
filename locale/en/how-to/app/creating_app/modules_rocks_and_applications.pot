@@ -1,0 +1,103 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/how-to/app/creating_app/modules_rocks_and_applications.rst:4
+msgid "Modules, rocks and applications"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/modules_rocks_and_applications.rst:6
+msgid "To make our game logic available to other developers and Lua applications, let's put it into a Lua module."
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/modules_rocks_and_applications.rst:9
+msgid "A **module** (called \"rock\" in Lua) is an optional library which enhances Tarantool functionality. So, we can install our logic as a module in Tarantool and use it from any Tarantool application or module. Like applications, modules in Tarantool can be written in Lua (rocks), C or C++."
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/modules_rocks_and_applications.rst:14
+msgid "Modules are good for two things:"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/modules_rocks_and_applications.rst:16
+msgid "easier **code management** (reuse, packaging, versioning), and"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/modules_rocks_and_applications.rst:17
+msgid "hot **code reload** without restarting the Tarantool instance."
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/modules_rocks_and_applications.rst:19
+msgid "Technically, a module is a file with source code that exports its functions in an API. For example, here is a Lua module named ``mymodule.lua`` that exports one function named ``myfun``:"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/modules_rocks_and_applications.rst:23
+msgid "local exports = {}\n"
+"exports.myfun = function(input_string)\n"
+"   print('Hello', input_string)\n"
+"end\n"
+"return exports"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/modules_rocks_and_applications.rst:31
+msgid "To launch the function ``myfun()`` -- from another module, from a Lua application, or from Tarantool itself, -- we need to save this module as a file, then load this module with the ``require()`` directive and call the exported function."
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/modules_rocks_and_applications.rst:35
+msgid "For example, here's a Lua application that uses ``myfun()`` function from ``mymodule.lua`` module:"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/modules_rocks_and_applications.rst:38
+msgid "-- loading the module\n"
+"local mymodule = require('mymodule')\n"
+"\n"
+"-- calling myfun() from within test() function\n"
+"local test = function()\n"
+"  mymodule.myfun()\n"
+"end"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/modules_rocks_and_applications.rst:48
+msgid "A thing to remember here is that the ``require()`` directive takes load paths to Lua modules from the ``package.path`` variable. This is a semicolon-separated string, where a question mark is used to interpolate the module name. By default, this variable contains system-wide Lua paths and the working directory. But if we put our modules inside a specific folder (e.g. ``scripts/``), we need to add this folder to ``package.path`` before any calls to ``require()``:"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/modules_rocks_and_applications.rst:55
+msgid "package.path = 'scripts/?.lua;' .. package.path"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/modules_rocks_and_applications.rst:59
+msgid "For our microservice, a simple and convenient solution would be to put all methods in a Lua module (say ``pokemon.lua``) and to write a Lua application (say ``game.lua``) that initializes the gaming environment and starts the game loop."
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/modules_rocks_and_applications.rst:67
+msgid "Now let's get down to implementation details. In our game, we need three entities:"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/modules_rocks_and_applications.rst:69
+msgid "**map**, which is an array of pokémons with coordinates of respawn locations; in this version of the game, let a location be a rectangle identified with two points, upper-left and lower-right;"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/modules_rocks_and_applications.rst:72
+msgid "**player**, which has an ID, a name, and coordinates of the player's location point;"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/modules_rocks_and_applications.rst:74
+msgid "**pokémon**, which has the same fields as the player, plus a status (active/inactive, that is present on the map or not) and a catch probability (well, let's give our pokémons a chance to escape :-) )"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/modules_rocks_and_applications.rst:78
+msgid "We'll store these entities as tuples in Tarantool spaces. But to deliver our backend application as a microservice, the good practice would be to send/receive our data in the universal JSON format, thus using Tarantool as a document storage."
+msgstr ""

@@ -1,0 +1,70 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_slab/runtime_info.rst:5
+msgid "box.runtime.info()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/runtime_info.rst:11
+msgid "Show runtime memory usage report in bytes."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/runtime_info.rst:13
+msgid "The runtime memory encompasses internal Lua memory as well as the runtime arena. The Lua memory stores Lua objects. The runtime arena stores Tarantool-specific objects -- for example, runtime tuples, network buffers and other objects associated with the application server subsystem."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/runtime_info.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/runtime_info.rst:20
+msgid "``lua`` is the size of the Lua heap that is controlled by the Lua garbage collector."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/runtime_info.rst:21
+msgid "``maxalloc`` is the maximum size of the runtime memory."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/runtime_info.rst:22
+msgid "``used`` is the current number of bytes used by the runtime memory."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/runtime_info.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/runtime_info.rst:24
+msgid "table"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/runtime_info.rst:26
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/runtime_info.rst:28
+msgid "tarantool> box.runtime.info()\n"
+"---\n"
+"- lua: 913710\n"
+"  maxalloc: 4398046510080\n"
+"  used: 12582912\n"
+"...\n"
+"tarantool> box.runtime.info().used\n"
+"---\n"
+"- used: 12582912\n"
+"..."
+msgstr ""

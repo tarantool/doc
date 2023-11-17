@@ -1,0 +1,143 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/enterprise/read_views/lua_api.rst:4
+msgid "Read views: Lua API"
+msgstr ""
+
+#: ../../doc/enterprise/read_views/lua_api.rst:6
+msgid "This topic describes the Lua API for working with :ref:`read views <read_views>`."
+msgstr ""
+
+#: ../../doc/enterprise/read_views/lua_api.rst:12
+msgid "Create a :ref:`new read view <creating_read_view>`."
+msgstr ""
+
+#: ../../doc/enterprise/read_views/lua_api.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/enterprise/read_views/lua_api.rst:14
+msgid "(optional) configurations options for a read view. For example, the ``name`` option specifies a read view name. If ``name`` is not specified, a read view name is set to ``unknown``."
+msgstr ""
+
+#: ../../doc/enterprise/read_views/lua_api.rst:0
+#: ../../doc/enterprise/read_views/lua_api.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/enterprise/read_views/lua_api.rst:18
+msgid "a created read view object"
+msgstr ""
+
+#: ../../doc/enterprise/read_views/lua_api.rst:0
+#: ../../doc/enterprise/read_views/lua_api.rst:0
+#: ../../doc/enterprise/read_views/lua_api.rst:0
+#: ../../doc/enterprise/read_views/lua_api.rst:0
+#: ../../doc/enterprise/read_views/lua_api.rst:0
+#: ../../doc/enterprise/read_views/lua_api.rst:0
+#: ../../doc/enterprise/read_views/lua_api.rst:0
+#: ../../doc/enterprise/read_views/lua_api.rst:0
+#: ../../doc/enterprise/read_views/lua_api.rst:0
+#: ../../doc/enterprise/read_views/lua_api.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/enterprise/read_views/lua_api.rst:19
+msgid "read_view_object"
+msgstr ""
+
+#: ../../doc/enterprise/read_views/lua_api.rst:21
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/enterprise/read_views/lua_api.rst:23
+msgid "tarantool> read_view1 = box.read_view.open({name = 'read_view1'})"
+msgstr ""
+
+#: ../../doc/enterprise/read_views/lua_api.rst:31
+msgid "An object that represents a :ref:`read view <read_views>`."
+msgstr ""
+
+#: ../../doc/enterprise/read_views/lua_api.rst:37
+msgid "Get information about a read view such as a name, status, or ID. All the available fields are listed below in the object options."
+msgstr ""
+
+#: ../../doc/enterprise/read_views/lua_api.rst:40
+msgid "information about a read view"
+msgstr ""
+
+#: ../../doc/enterprise/read_views/lua_api.rst:41
+#: ../../doc/enterprise/read_views/lua_api.rst:101
+msgid "table"
+msgstr ""
+
+#: ../../doc/enterprise/read_views/lua_api.rst:47
+msgid "Close a read view. After the read view is closed, its :ref:`status <read_view_object-status>` is set to ``closed``. On an attempt to use it, an error is raised."
+msgstr ""
+
+#: ../../doc/enterprise/read_views/lua_api.rst:55
+msgid "A read view status. The possible values are ``open`` and ``closed``."
+msgstr ""
+
+#: ../../doc/enterprise/read_views/lua_api.rst:58
+#: ../../doc/enterprise/read_views/lua_api.rst:75
+msgid "string"
+msgstr ""
+
+#: ../../doc/enterprise/read_views/lua_api.rst:64
+msgid "A unique numeric identifier of a read view."
+msgstr ""
+
+#: ../../doc/enterprise/read_views/lua_api.rst:66
+#: ../../doc/enterprise/read_views/lua_api.rst:93
+#: ../../doc/enterprise/read_views/lua_api.rst:109
+msgid "number"
+msgstr ""
+
+#: ../../doc/enterprise/read_views/lua_api.rst:72
+msgid "A read view name. You can specify a read view name in the :ref:`box.read_view.open() <box-read_view-open>` arguments."
+msgstr ""
+
+#: ../../doc/enterprise/read_views/lua_api.rst:81
+msgid "Determine whether a read view is system. For example, system read views can be created to make a :ref:`checkpoint <book_cfg_checkpoint_daemon>` or join a new :ref:`replica <replication-architecture>`."
+msgstr ""
+
+#: ../../doc/enterprise/read_views/lua_api.rst:85
+msgid "boolean"
+msgstr ""
+
+#: ../../doc/enterprise/read_views/lua_api.rst:91
+msgid "The :ref:`fiber.clock() <fiber-clock>` value at the moment of opening a read view."
+msgstr ""
+
+#: ../../doc/enterprise/read_views/lua_api.rst:99
+msgid "The :ref:`box.info.vclock <box_introspection-box_info>` value at the moment of opening a read view."
+msgstr ""
+
+#: ../../doc/enterprise/read_views/lua_api.rst:107
+msgid "The :ref:`box.info.signature <box_introspection-box_info>` value at the moment of opening a read view."
+msgstr ""
+
+#: ../../doc/enterprise/read_views/lua_api.rst:115
+msgid "Get access to database spaces included in a read view. You can use this field to :ref:`query space data <querying_data>`."
+msgstr ""
+
+#: ../../doc/enterprise/read_views/lua_api.rst:118
+msgid "space object"
+msgstr ""

@@ -1,0 +1,81 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/dev_guide/reference_capi/on_shutdown.rst:3
+msgid "Function on_shutdown"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/on_shutdown.rst:9
+msgid "Register and/or deregister an on_shutdown function."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/on_shutdown.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/on_shutdown.rst:11
+msgid "Pointer to an area that the new handler can use"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/on_shutdown.rst:12
+msgid "Pointer to a function which will be registered, or NULL"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/on_shutdown.rst:13
+msgid "Pointer to a function which will be deregistered, or NULL"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/on_shutdown.rst:0
+msgid "Returns"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/on_shutdown.rst:15
+msgid "status of operation. 0 - success, -1 - failure"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/on_shutdown.rst:0
+msgid "Return type"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/on_shutdown.rst:16
+msgid "int"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/on_shutdown.rst:18
+msgid "A function which is registered will be called when the Tarantool instance shuts down. This is functionally similar to what :ref:`box.ctl.on_shutdown <box_ctl-on_shutdown>` does."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/on_shutdown.rst:21
+msgid "If there are several on_shutdown functions, the Tarantool instance will call them in reverse order of registration, that is, it will call the last-registered function first."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/on_shutdown.rst:24
+msgid "Typically a module developer will register an on_shutdown function that does whatever cleanup work the module requires, and then returns control to the Tarantool instance. Such an on_shutdown function should be fast, or should use an asynchronous waiting mechanism (for example :ref:`coio_wait <c_api-coio-coio_wait>`)."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/on_shutdown.rst:29
+msgid "Possible errors: old_handler does not exist (errno = EINVAL), new_handler and old_handler are both NULL (errno = EINVAL), memory allocation fails (errno = ENOMEM)."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/on_shutdown.rst:34
+msgid "Example: if the C API .c program contains a function ``int on_shutdown_function(void *arg) {printf(\"Bye!\\n\");return 0; }`` and later, in the function which the instance calls, contains a line ``box_on_shutdown(NULL, on_shutdown_function, NULL);`` then, if all goes well, when the instance shuts down, it will display \"Bye!\"."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/on_shutdown.rst:40
+msgid "Added in version :doc:`2.8.1 </release/2.8.1>`."
+msgstr ""

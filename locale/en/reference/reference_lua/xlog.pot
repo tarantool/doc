@@ -1,0 +1,87 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/xlog.rst:5
+msgid "Module xlog"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/xlog.rst:7
+msgid "The xlog module contains one function: ``pairs()``. It can be used to read Tarantool's :ref:`snapshot files<index-box_persistence>` or :ref:`write-ahead-log (WAL) <internals-wal>` files. A description of the file format is in section :ref:`Data persistence and the WAL file format <internals-data_persistence>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/xlog.rst:19
+msgid "Open a file, and allow iterating over one file entry at a time."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/xlog.rst:0
+msgid "returns"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/xlog.rst:21
+msgid "iterator  which can be used in a for/end loop."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/xlog.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/xlog.rst:22
+msgid "`iterator <https://www.lua.org/pil/7.1.html>`_"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/xlog.rst:24
+msgid "Possible errors: File does not contain properly formatted snapshot or write-ahead-log information."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/xlog.rst:27
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/xlog.rst:29
+msgid "This will read the first write-ahead-log (WAL) file that was created in the :ref:`wal_dir <cfg_basic-wal_dir>` directory in our :ref:`\"Getting started\" exercises <getting_started>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/xlog.rst:33
+msgid "Each result from ``pairs()`` is formatted with MsgPack so its structure can be specified with :ref:`__serialize <msgpack-serialize>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/xlog.rst:36
+msgid "xlog = require('xlog')\n"
+"t = {}\n"
+"for k, v in xlog.pairs('00000000000000000000.xlog') do\n"
+"  table.insert(t, setmetatable(v, { __serialize = \"map\"}))\n"
+"end\n"
+"return t"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/xlog.rst:45
+msgid "The first lines of the result will look like:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/xlog.rst:47
+msgid "(...)\n"
+"---\n"
+"- - {'BODY':   {'space_id': 272, 'index_base': 1, 'key': ['max_id'],\n"
+"                'tuple': [['+', 2, 1]]},\n"
+"     'HEADER': {'type': 'UPDATE', 'timestamp': 1477846870.8541,\n"
+"                'lsn': 1, 'server_id': 1}}\n"
+"  - {'BODY':   {'space_id': 280,\n"
+"                 'tuple': [512, 1, 'tester', 'memtx', 0, {}, []]},\n"
+"     'HEADER': {'type': 'INSERT', 'timestamp': 1477846870.8597,\n"
+"                'lsn': 2, 'server_id': 1}}"
+msgstr ""

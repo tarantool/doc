@@ -1,0 +1,133 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/admin/replication/repl_recover.rst:5
+msgid "Recovering from a degraded state"
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_recover.rst:7
+msgid "\"Degraded state\" is a situation when the master becomes unavailable -- due to hardware or network failure, or due to a programming bug."
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_recover.rst:13
+msgid "In a master-replica set, if a master disappears, error messages appear on the replicas stating that the connection is lost:"
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_recover.rst:16
+msgid "$ # messages from a replica's log\n"
+"2017-06-14 16:23:10.993 [19153] main/105/applier/replicator@192.168.0. I> can't read row\n"
+"2017-06-14 16:23:10.993 [19153] main/105/applier/replicator@192.168.0. coio.cc:349 !> SystemError\n"
+"unexpected EOF when reading from socket, called on fd 17, aka 192.168.0.101:57815,\n"
+"peer of 192.168.0.101:3301: Broken pipe\n"
+"2017-06-14 16:23:10.993 [19153] main/105/applier/replicator@192.168.0. I> will retry every 1 second\n"
+"2017-06-14 16:23:10.993 [19153] relay/[::ffff:192.168.0.101]:/101/main I> the replica has closed its socket, exiting\n"
+"2017-06-14 16:23:10.993 [19153] relay/[::ffff:192.168.0.101]:/101/main C> exiting the relay loop"
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_recover.rst:27
+msgid "... and the master's status is reported as \"disconnected\":"
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_recover.rst:29
+msgid "# report from replica #1\n"
+"tarantool> box.info.replication\n"
+"---\n"
+"- 1:\n"
+"    id: 1\n"
+"    uuid: 70e8e9dc-e38d-4046-99e5-d25419267229\n"
+"    lsn: 542\n"
+"    upstream:\n"
+"      peer: replicator@192.168.0.101:3301\n"
+"      lag: 0.00026607513427734\n"
+"      status: disconnected\n"
+"      idle: 182.36929893494\n"
+"      message: connect, called on fd 13, aka 192.168.0.101:58244\n"
+"  2:\n"
+"    id: 2\n"
+"    uuid: fb252ac7-5c34-4459-84d0-54d248b8c87e\n"
+"    lsn: 0\n"
+"  3:\n"
+"    id: 3\n"
+"    uuid: fd7681d8-255f-4237-b8bb-c4fb9d99024d\n"
+"    lsn: 0\n"
+"    downstream:\n"
+"      vclock: {1: 542}\n"
+"..."
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_recover.rst:56
+msgid "# report from replica #2\n"
+"tarantool> box.info.replication\n"
+"---\n"
+"- 1:\n"
+"    id: 1\n"
+"    uuid: 70e8e9dc-e38d-4046-99e5-d25419267229\n"
+"    lsn: 542\n"
+"    upstream:\n"
+"      peer: replicator@192.168.0.101:3301\n"
+"      lag: 0.00027203559875488\n"
+"      status: disconnected\n"
+"      idle: 186.76988101006\n"
+"      message: connect, called on fd 13, aka 192.168.0.101:58253\n"
+"  2:\n"
+"    id: 2\n"
+"    uuid: fb252ac7-5c34-4459-84d0-54d248b8c87e\n"
+"    lsn: 0\n"
+"    upstream:\n"
+"      status: follow\n"
+"      idle: 186.76960110664\n"
+"      peer: replicator@192.168.0.102:3301\n"
+"      lag: 0.00020599365234375\n"
+"  3:\n"
+"    id: 3\n"
+"    uuid: fd7681d8-255f-4237-b8bb-c4fb9d99024d\n"
+"    lsn: 0\n"
+"..."
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_recover.rst:86
+msgid "To declare that one of the replicas must now take over as a new master:"
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_recover.rst:88
+msgid "Make sure that the old master is gone for good:"
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_recover.rst:90
+msgid "change network routing rules to avoid any more packets being delivered to the master, or"
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_recover.rst:92
+msgid "shut down the master instance, if you have access to the machine, or"
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_recover.rst:93
+msgid "power off the container or the machine."
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_recover.rst:95
+msgid "Say ``box.cfg{read_only=false, listen=URI}`` on the replica, and ``box.cfg{replication=URI}`` on the other replicas in the set."
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_recover.rst:100
+msgid "If there are updates on the old master that were not propagated before the old master went down, :ref:`re-apply them manually <admin-disaster_recovery-master_replica>` to the new master using ``tt cat`` and ``tt play`` commands."
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_recover.rst:105
+msgid "There is no automatic way for a replica to detect that the master is gone forever, since sources of failure and replication environments vary significantly. So the detection of degraded state requires an external observer."
+msgstr ""

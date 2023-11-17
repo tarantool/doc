@@ -1,0 +1,62 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_space/rename.rst:5
+msgid "space_object:rename()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/rename.rst:11
+msgid "Rename a space."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/rename.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/rename.rst:13
+msgid "an :ref:`object reference <app_server-object_reference>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/rename.rst:15
+msgid "new name for space"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/rename.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/rename.rst:17
+msgid "nil"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/rename.rst:19
+msgid "**Possible errors:** ``space_object`` does not exist."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/rename.rst:21
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/rename.rst:23
+msgid "tarantool> box.space.space55:rename('space56')\n"
+"---\n"
+"...\n"
+"tarantool> box.space.space56:rename('space55')\n"
+"---\n"
+"..."
+msgstr ""

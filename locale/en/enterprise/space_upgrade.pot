@@ -1,0 +1,557 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/enterprise/space_upgrade.rst:4
+msgid "Upgrading space schema"
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:6
+msgid "In Tarantool, :ref:`migration <migrations>` refers to any change in a data schema, for example, creating an index, adding a field, or changing a field format. If you need to change a data schema, there are several possible cases:"
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:10
+msgid "Schema migration does not require data migration: adding a field with the ``is_nullable`` parameter to the end of the space, creating an index."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:13
+msgid "Schema migration requires data migration. For example, it is necessary when you have to iterate over the entire space to convert columns to a new format or remove the column completely."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:16
+msgid "To solve the task of migrating the data, you can:"
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:18
+msgid ":ref:`Migrate data <other-migrations>` to a new space manually."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:20
+msgid "Use the ``space:upgrade()`` feature."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:23
+msgid "Space upgrade overview"
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:25
+msgid "The ``space:upgrade()`` feature allows users to upgrade the format of a space and the tuples stored in it without blocking the database."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:31
+msgid "How to apply space upgrade"
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:33
+msgid "First, specify an upgrade function -- a function that will convert the tuples in the space to a new format. The requirements for this function are listed below."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:36
+msgid "The upgrade function takes two arguments. The first argument is a tuple to be upgraded. The second one is optional. It contains some additional information stored in plain Lua object. If omitted, the second argument is ``nil``."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:40
+msgid "The function returns a new tuple or a Lua table. For example, it can add a new field to the tuple. The new tuple must conform to the new space format set by the upgrade operation."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:43
+msgid "The function should be registered with :doc:`box.schema.func.create </reference/reference_lua/box_schema/func_create>`. It should also be stored, deterministic, and written in Lua."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:47
+msgid "The function should not change the primary key of the tuple."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:49
+msgid "The function should be idempotent: ``f(f(t)) = f(t)``. This is necessary because the function is applied to all tuples returned to the user, and some of them may have already been upgraded in the background."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:52
+msgid "Then define a new space format. This step is optional. However, it could be useful if, for example, you want to add a new column with data. For details, check the :ref:`Usage Example <space_upgrade-example>` section."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:56
+msgid "The next optional step is to choose an upgrade mode. There are three modes: ``upgrade``, ``dryrun``, and ``dryrun+upgrade``. The default value is ``upgrade``. To check an upgrade function without applying any changes, choose the ``dryrun`` mode. To run a space upgrade without testing the function, pick the ``upgrade`` mode. If you want to apply both the test and the actual upgrade, use the ``dryrun+upgrade`` option. For details, see the :ref:`Upgrade Modes <space_upgrade-modes>` section."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:65
+msgid "How the upgrade works"
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:67
+msgid "The user defines an upgrade function. Each tuple of the chosen space is passed through the function. The function converts the tuple from the old format to a new one. The function is applied to all tuples stored in the space in the background. Besides, the function is applied to all tuples returned to the user via the box API (for example, ``select``, ``get``). Therefore, it appears that the space upgrades instantly."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:74
+msgid "Keep in mind that ``space:upgrade`` differs from the :doc:`space_object:format() </reference/reference_lua/box_space/format>` in the following ways:"
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:83
+msgid "Difference"
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:84
+msgid "``space:upgrade()``"
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:85
+msgid "``space:format()``"
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:87
+msgid "Non-blocking"
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:88
+msgid "Yes. It returns tuples in the new format, whether or not they have already been converted."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:89
+msgid "Yes."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:91
+msgid "Set a format incompatible with the current one"
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:92
+msgid "Yes. Works for non-indexed field types only."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:93
+msgid "No, only expand the format in a compatible way."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:95
+msgid "Visibility of changes"
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:96
+msgid "Immediately. All changes are visible and replicated immediately. New data should conform to the new format immediately after the call."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:98
+msgid "After data validation. Data validation starts in the background, it does not block the database. Inserting data incompatible with the new format is allowed before validation is completed -- in this case ``space.format`` fails."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:103
+msgid "Cancel (error/restart)"
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:104
+msgid "Writes the state to the system table. Restart: the operation continues. Error: the operation should be restarted manually, any other attempt to change the table fails."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:107
+msgid "Leaves no traces."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:109
+msgid "Set the upgrade function"
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:110
+msgid "Yes. The upgrade may take a while to traverse the space and transform tuples."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:111
+msgid "No."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:116
+msgid "At the moment, the feature is not supported for :ref:`vinyl <engines-vinyl>` spaces."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:120
+msgid "User API"
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:122
+msgid "The ``space:upgrade()`` method is added to the :doc:`space object </reference/reference_lua/box_space>`:"
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:0
+#: ../../doc/enterprise/space_upgrade.rst:0
+#: ../../doc/enterprise/space_upgrade.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:126
+msgid "upgrade function name (string) or ID (integer). For details, see the :ref:`upgrade function requirements <space_upgrade-requirements>` section."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:129
+msgid "additional information passed to the upgrade function in the second argument. The option accepts any Lua value that can be encoded in MsgPack, which means that the :doc:`msgpack.encode(arg) </reference/reference_lua/msgpack>` should succeed. For example, one can pass a scalar or a Lua table. The default value is ``nil``."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:135
+msgid "new space format. The requirements for this are the same as for any other :doc:`space:format() </reference/reference_lua/box_space/format>`. If the field is omitted, the space format will remain the same as before the upgrade."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:139
+msgid ":ref:`upgrade mode <space_upgrade-modes>`. Possible values: ``upgrade``, ``dryrun``, ``dryrun+upgrade``. The default value is ``upgrade``."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:142
+msgid "the flag indicates whether to wait until the upgrade operation is complete before exiting the function. The default value is ``false`` -- the function is blocked until the upgrade operation is finished."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:0
+msgid "Return"
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:147
+msgid "object describing the status of the operation (also known as ``future``). The methods of the object are described below."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:154
+msgid "Shows information about the state of the upgrade operation."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:156
+msgid "dry run mode flag. Possible values: ``true`` for a dry run, ``nil`` for an actual upgrade."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:159
+msgid ":ref:`upgrade status <space_upgrade-states>`. Possible values: ``inprogress``, ``waitrw``, ``error``, ``replica``, ``done``."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:162
+msgid "name of the upgrade function. It is the same as passed to the ``space:upgrade`` method. The field is ``nil`` if the ``status`` is ``done``."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:166
+msgid "additional information passed to the upgrade function. It is the same as for the ``space:upgrade`` method. The field is ``nil`` if it is omitted in the ``space:upgrade``."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:170
+msgid "UUID of the instance running the upgrade (see :doc:`box.info.uuid </reference/reference_lua/box_info>`). The field is ``nil`` if the ``status`` is ``done``."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:174
+msgid "error message if the ``status`` is ``error``, otherwise ``nil``."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:176
+msgid "completion percentage if the ``status`` is ``inprogress``/``waitrw``, otherwise ``nil``."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:0
+#: ../../doc/enterprise/space_upgrade.rst:0
+#: ../../doc/enterprise/space_upgrade.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:179
+msgid "a table with information about the state of the upgrade operation"
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:0
+#: ../../doc/enterprise/space_upgrade.rst:0
+#: ../../doc/enterprise/space_upgrade.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:180
+msgid "table"
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:182
+msgid "The fields can also be accessed directly, without calling the ``info()`` method. For example, ``future.status`` is the same as ``future:info().status``."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:187
+msgid "Waits until the upgrade operation is completed or a timeout occurs. An operation is considered completed if its status is ``done`` or ``error``."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:190
+msgid "if the ``timeout`` argument is omitted, the method waits as long as it takes."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:192
+msgid "returns ``true`` if the operation has been completed, ``false`` on timeout"
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:193
+msgid "boolean"
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:197
+msgid "Cancels the upgrade operation if it is currently running. Otherwise, an exception is thrown. A canceled upgrade operation completes with an error."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:200
+msgid "none"
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:201
+msgid "void"
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:203
+msgid "Running ``space:upgrade()`` with ``is_async = false`` or the ``is_async`` field not set is equal to:"
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:205
+msgid "local future = space:upgrade({func = 'my_func', is_async = true})\n"
+"future:wait()\n"
+"return future"
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:211
+msgid "If called without arguments, ``space:upgrade()`` returns a future object for the active upgrade operation. If there is none, it returns ``nil``."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:217
+msgid "Upgrade modes"
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:219
+msgid "There are three upgrade modes: ``dryrun``, ``dryrun+upgrade``, and ``upgrade``. Regardless of the mode selected, the upgrade does not block execution. Once in a while, the background fiber commits the upgraded tuples and yields."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:223
+msgid "Calling ``space:upgrade`` without arguments always returns the current state of the space upgrade, never the state of a dry run. If there is a dry run working in the background, ``space:upgrade`` will still return ``nil``. Unlike an actual space upgrade, the future object returned by a dry run upgrade can't be recovered if it is lost. So a dry run is aborted if it is garbage collected."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:230
+msgid "In ``dryrun+upgrade`` mode: if the future object is garbage collected by Lua before the end of the dry run and the start of the upgrade, then the dry run will be canceled, and no upgrade will be started."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:234
+msgid "Upgrade modes:"
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:236
+msgid "``upgrade`` mode: the background fiber iterates over the space, applies the upgrade function, checks that obtained tuples fit the new space format, and updates the tuples. This mode prevents the space from being altered. The mode can only be performed on the master instance."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:241
+msgid "``dryrun`` mode: the dry-run mode is used to check the upgrade function. The mode does not apply any changes to the target space. It starts a background fiber. The fiber:"
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:244
+msgid "Iterates over the target space."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:245
+msgid "Attempts to apply the upgrade function to each tuple stored in the space."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:246
+msgid "Checks if the returned tuple matches the new format."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:247
+msgid "Checks if the function is idempotent."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:248
+msgid "Checks that the function does not modify the primary key."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:250
+msgid "For details, see the :ref:`upgrade function requirements <space_upgrade-requirements>` section."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:252
+msgid "To start a dry run, pass ``mode='dryrun'`` to the ``space:upgrade`` method. In this case, the future object has the ``dryrun`` field set to ``true``. The possible statuses are ``inprogress`` and ``dryrun``. ``replica`` and ``waitrw`` states are never set for a dry run future object."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:257
+msgid "The ``dryrun`` mode is not persisted. Restarting the instance does not restart a dry run. A dry run only works on the original instance, never on replicas. Unlike a real upgrade, a dry run does not prevent the space from being altered. The space can even be dropped. In this case, the dry run will complete with an error."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:262
+msgid "``dryrun+upgrade`` mode: it starts a dry run, which, if completed successfully, triggers an actual upgrade. The future object returned by ``space:upgrade`` remains valid throughout the process. It starts as the future object of the dry run. Then, under the hood, it is converted into an upgrade future object. Waiting on it would wait for both the dry run and the upgrade to complete. During the dry run, the future object has the ``dryrun`` field set to ``true``. When the actual upgrade starts, the ``dryrun`` field is set to ``nil``. The mode can only be performed on the master instance."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:273
+msgid "States"
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:275
+msgid "An upgrade operation has one of the following upgrade states:"
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:277
+msgid "``inprogress`` -- the upgrade operation is running in the background. The function is applied to all tuples returned to the user."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:280
+msgid "``waitrw`` -- the instance was switched to the read-only mode (for example, by using ``box.cfg.read_only``), so the upgrade couldn't proceed. The upgrade process will resume as soon as the instance switches back to read-write mode. Nevertheless, the upgrade function is applied to all tuples returned to the user."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:285
+msgid "``error`` -- the upgrade operation failed with an error. See the ``error`` field for the error message. See the log for the tuple that caused the error. No alter operation is allowed, except for another upgrade, supposed to fix the problem. Nevertheless, the upgrade function is applied to all tuples returned to the user. The space is writable."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:290
+msgid "``done`` -- the upgrade operation is successfully completed. The upgrade function is not applied to tuples returned to the user anymore. The function can be deleted."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:293
+msgid "``replica`` -- the upgrade operation is either running or completed with an error on another instance. See the ``owner`` field for the UUID of the instance running the upgrade. Nevertheless, the upgrade function is applied to all tuples returned to the user."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:303
+msgid "Interaction with alter"
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:305
+msgid "While a space upgrade is in progress, the space can't be altered or dropped. The attempt to do that will throw an exception. Restarting an upgrade is allowed in case the currently running upgrade is canceled or completed with an error. It means the manual restart is possible if the upgrade operation is in the :ref:`error state <space_upgrade-states>`."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:310
+msgid "If a space upgrade was canceled or failed with an error, the space can't be altered or dropped. The only option is to restart the upgrade using a different upgrade function or format."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:314
+msgid "Interaction with recovery"
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:316
+msgid "The space upgrade state is persisted. It is stored in the ``_space`` system table. If an instance with a space upgrade in progress (``inprogress`` state) is shut down, it restarts the space upgrade after recovery. If a space upgrade fails (switches to the ``error`` state), it remains in the error state after recovery."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:321
+msgid "Interaction with replication"
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:323
+msgid "The changes made to a space by a space upgrade are replicated. Just as on the instance where the upgrade is performed, the upgrade function is applied to all tuples returned to the user on the replicas. However, the upgrade operation is not performed on the replicas in the background. The replicas wait for the upgrade operation to complete on the master. They can't alter or drop the space. Normally, they can't cancel or restart the upgrade operation either."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:329
+msgid "There is an emergency exception when the master is permanently dead. It is possible to restart a space upgrade that started on another instance. The restart is possible if the upgrade owner UUID (see the ``owner`` field) has been deleted from the ``_cluster`` system table."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:336
+msgid "Except the ``dryrun`` mode, the upgrade can only be performed on the master. If the instance is no longer the master, the upgrade is suspended until the instance is master again. Restarting the upgrade on a new master works only if the old one has been removed from the replica set (``_cluster`` system space)."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:344
+msgid "Usage example"
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:346
+msgid "Suppose there are two columns in the space `test` -- ``id`` (unsigned) and ``data`` (string). The example shows how to upgrade the schema and add another column to the space using ``space:upgrade()``. The new column contains the ``id`` values converted to string. Each step takes a while."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:350
+msgid "The test space is generated with the following script:"
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:352
+msgid "local log = require('log')\n"
+"box.cfg{\n"
+"    checkpoint_count = 1,\n"
+"    memtx_memory = 5 * 1024 * 1024 * 1024,\n"
+"}\n"
+"box.schema.space.create('test')\n"
+"box.space.test:format{\n"
+"    {name = 'id', type = 'unsigned'},\n"
+"    {name = 'data', type = 'string'},\n"
+"}\n"
+"box.space.test:create_index('pk')\n"
+"local count = 20 * 1000 * 1000\n"
+"local progress = 0\n"
+"box.begin()\n"
+"for i = 1, count do\n"
+"    box.space.test:insert{i, 'data' .. i}\n"
+"\n"
+"    if i % 1000 == 0 then\n"
+"        box.commit()\n"
+"        local p = math.floor(i / count * 100)\n"
+"        if progress ~= p then\n"
+"            progress = p\n"
+"            log.info('Generating test data set... %d%% done', p)\n"
+"        end\n"
+"        box.begin()\n"
+"    end\n"
+"end\n"
+"box.commit()\n"
+"box.snapshot()\n"
+"os.exit(0)"
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:385
+msgid "To upgrade the space, connect to the server and then run the commands below:"
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:387
+msgid "localhost:3301> box.schema.func.create('convert', {\n"
+"              >     language = 'lua',\n"
+"              >     is_deterministic = true,\n"
+"              >     body = [[function(t)\n"
+"              >         if #t == 2 then\n"
+"              >             return t:update({{'!', 2, tostring(t.id)}})\n"
+"              >         else\n"
+"              >             return t\n"
+"              >         end\n"
+"              >     end]],\n"
+"              > })\n"
+"localhost:3301> box.space.test:upgrade({\n"
+"              >     func = 'convert',\n"
+"              >     format = {\n"
+"              >         {name = 'id', type = 'unsigned'},\n"
+"              >         {name = 'id_string', type = 'string'},\n"
+"              >         {name = 'data', type = 'string'},\n"
+"              >     },\n"
+"              > })"
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:410
+msgid "While the upgrade is in progress, you can track the state of the upgrade. To check the status, connect to Tarantool from another console and run the following commands:"
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:413
+msgid "localhost:3311> box.space.test:upgrade()\n"
+"---\n"
+"- status: inprogress\n"
+"  progress: 8%\n"
+"  owner: 579a9e99-427e-4e99-9e2e-216bbd3098a7\n"
+"  func: convert\n"
+"..."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:424
+msgid "Even though the upgrade is only 8% complete, selecting the data from the space returns the converted tuples:"
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:426
+msgid "localhost:3311> box.space.test:select({}, {iterator = 'req', limit = 5})\n"
+"---\n"
+"- - [20000000, '20000000', 'data20000000']\n"
+"  - [19999999, '19999999', 'data19999999']\n"
+"  - [19999998, '19999998', 'data19999998']\n"
+"  - [19999997, '19999997', 'data19999997']\n"
+"  - [19999996, '19999996', 'data19999996']\n"
+"..."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:439
+msgid "The tuples contain the new field even though the space upgrade is still running."
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:442
+msgid "Wait for the space upgrade to complete using the command below:"
+msgstr ""
+
+#: ../../doc/enterprise/space_upgrade.rst:444
+msgid "localhost:3311> box.space.test:upgrade():wait()"
+msgstr ""

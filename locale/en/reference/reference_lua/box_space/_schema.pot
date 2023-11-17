@@ -1,0 +1,63 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_space/_schema.rst:5
+msgid "box.space._schema"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_schema.rst:11
+msgid "``_schema`` is a system space."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_schema.rst:13
+msgid "This space contains the following tuples:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_schema.rst:15
+msgid "``version`` tuple with version information for this Tarantool instance,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_schema.rst:16
+msgid "``cluster`` tuple with the instance's replica set ID,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_schema.rst:17
+msgid "``max_id`` tuple with the maximal space ID,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_schema.rst:18
+msgid "``once...`` tuples that correspond to specific :doc:`box.once() </reference/reference_lua/box_once>` blocks from the instance's :ref:`initialization file <index-init_label>`. The first field in these tuples contains the ``key`` value from the corresponding ``box.once()`` block prefixed with 'once' (e.g. `oncehello`), so you can easily find a tuple that corresponds to a specific ``box.once()`` block."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_schema.rst:26
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_schema.rst:28
+msgid "Here is what ``_schema`` contains in a typical installation (notice the tuples for two ``box.once()`` blocks, ``'oncebye'`` and ``'oncehello'``):"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_schema.rst:31
+msgid "tarantool> box.space._schema:select{}\n"
+"---\n"
+"- - ['cluster', 'b4e15788-d962-4442-892e-d6c1dd5d13f2']\n"
+"  - ['max_id', 512]\n"
+"  - ['oncebye']\n"
+"  - ['oncehello']\n"
+"  - ['version', 1, 7, 2]"
+msgstr ""

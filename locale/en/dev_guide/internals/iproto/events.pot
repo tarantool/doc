@@ -1,0 +1,89 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/dev_guide/internals/iproto/events.rst:5
+msgid "Events and subscriptions"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/events.rst:7
+msgid "The commands below support asynchronous server-client notifications signalled with :ref:`box.broadcast() <box-broadcast>`. Servers that support the new feature set the ``IPROTO_FEATURE_WATCHERS`` feature in reply to the ``IPROTO_ID`` command. When the connection is closed, all watchers registered for it are unregistered."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/events.rst:12
+msgid "The remote watcher (event subscription) protocol works in the following way:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/events.rst:14
+msgid "The client sends an ``IPROTO_WATCH`` packet to subscribe to the updates of a specified key defined on the server."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/events.rst:16
+msgid "The server sends an ``IPROTO_EVENT`` packet to the subscribed client after registration. The packet contains the key name and its current value. After that, the packet is sent every time the key value is updated with ``box.broadcast()``, provided that the last notification was acknowledged (see below)."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/events.rst:21
+msgid "After receiving the notification, the client sends an ``IPROTO_WATCH`` packet to acknowledge the notification."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/events.rst:23
+msgid "If the client doesn't want to receive any more notifications, it unsubscribes by sending an ``IPROTO_UNWATCH`` packet."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/events.rst:26
+msgid "All the three request types are asynchronous -- the receiving end doesn't send a packet in reply to any of them. Therefore, neither of them has a sync number."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/events.rst:32
+msgid "IPROTO_WATCH"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/events.rst:34
+msgid "Code: 0x4a."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/events.rst:36
+msgid "Register a new watcher for the given notification key or confirms a notification if the watcher is already subscribed. The watcher is notified after registration. After that, the notification is sent every time the key is updated. The server doesn't reply to the request unless it fails to parse the packet."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/events.rst:48
+msgid "IPROTO_UNWATCH"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/events.rst:50
+msgid "Code: 0x4b."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/events.rst:52
+msgid "Unregister a watcher subscribed to the given notification key. The server doesn't reply to the request unless it fails to parse the packet."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/events.rst:61
+msgid "IPROTO_EVENT"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/events.rst:63
+msgid "Code: 0x4c."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/events.rst:65
+msgid "Sent by the server to notify a client about an update of a key."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/events.rst:70
+msgid "``IPROTO_EVENT_DATA`` contains data sent to a remote watcher. The parameter is optional, the default value is ``MP_NIL``."
+msgstr ""

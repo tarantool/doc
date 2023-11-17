@@ -1,0 +1,79 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_tuple/next.rst:6
+msgid "tuple_object:next()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/next.rst:12
+msgid "An analogue of the Lua ``next()`` function, but for a tuple object. When called without arguments, ``tuple:next()`` returns the first field from a tuple. Otherwise, it returns the field next to the indicated position."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/next.rst:16
+msgid "However ``tuple:next()`` is not really efficient, and it is better to use :doc:`tuple:pairs()/ipairs() </reference/reference_lua/box_tuple/pairs>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/next.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/next.rst:20
+msgid "field number and field value"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/next.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/next.rst:21
+msgid "number and field type"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_tuple/next.rst:23
+msgid "tarantool> tuple = box.tuple.new({5, 4, 3, 2, 0})\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> tuple:next()\n"
+"---\n"
+"- 1\n"
+"- 5\n"
+"...\n"
+"\n"
+"tarantool> tuple:next(1)\n"
+"---\n"
+"- 2\n"
+"- 4\n"
+"...\n"
+"\n"
+"tarantool> ctx, field = tuple:next()\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> while field do\n"
+"         > print(field)\n"
+"         > ctx, field = tuple:next(ctx)\n"
+"         > end\n"
+"5\n"
+"4\n"
+"3\n"
+"2\n"
+"0\n"
+"---\n"
+"..."
+msgstr ""

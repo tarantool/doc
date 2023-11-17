@@ -1,0 +1,65 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/dev_guide/contributing_module.rst:5
+msgid "Contributing a module"
+msgstr ""
+
+#: ../../doc/dev_guide/contributing_module.rst:7
+msgid "This page discusses how to create a Tarantool module and then get it published on `Tarantool rocks page <http://tarantool.org/rocks.html>`_ and included in `official Tarantool images <http://github.com/tarantool/docker>`_ for Docker."
+msgstr ""
+
+#: ../../doc/dev_guide/contributing_module.rst:12
+msgid "To learn how to create a simple module in Lua for local usage, check the corresponding :ref:`how-to guide <app_server-modules>`."
+msgstr ""
+
+#: ../../doc/dev_guide/contributing_module.rst:15
+msgid "To help our contributors, we have created `modulekit <http://github.com/tarantool/modulekit>`_, a set of templates for creating Tarantool modules in Lua and C."
+msgstr ""
+
+#: ../../doc/dev_guide/contributing_module.rst:21
+msgid "As a prerequisite for using ``modulekit``, install ``tarantool-dev`` package first. For example, in Ubuntu say:"
+msgstr ""
+
+#: ../../doc/dev_guide/contributing_module.rst:24
+msgid "$ sudo apt-get install tarantool-dev"
+msgstr ""
+
+#: ../../doc/dev_guide/contributing_module.rst:32
+msgid "Contributing a module in Lua"
+msgstr ""
+
+#: ../../doc/dev_guide/contributing_module.rst:34
+msgid "See `README in \"luakit\" branch of tarantool/modulekit repository <http://github.com/tarantool/modulekit/blob/luakit/README.md>`_ for detailed instructions and examples."
+msgstr ""
+
+#: ../../doc/dev_guide/contributing_module.rst:42
+msgid "Contributing a module in C"
+msgstr ""
+
+#: ../../doc/dev_guide/contributing_module.rst:44
+msgid "In some cases, you may want to create a Tarantool module in C rather than in Lua. For example, to work with specific hardware or low-level system interfaces."
+msgstr ""
+
+#: ../../doc/dev_guide/contributing_module.rst:47
+msgid "See `README in \"ckit\" branch of tarantool/modulekit repository <http://github.com/tarantool/modulekit/blob/ckit/README.md>`_ for detailed instructions and examples."
+msgstr ""
+
+#: ../../doc/dev_guide/contributing_module.rst:53
+msgid "You can also create modules with C++, provided that the code does not throw exceptions."
+msgstr ""

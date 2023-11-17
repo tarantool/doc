@@ -1,0 +1,286 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/configuration/configuration_reference.rst:4
+msgid "Configuration reference"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:6
+msgid "This topic describes all :ref:`configuration parameters <configuration>` provided by Tarantool."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:11
+msgid "config"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:13
+msgid ":ref:`config.reload <configuration_reference_config_reload>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:14
+msgid ":ref:`config.version <configuration_reference_config_version>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:15
+msgid ":ref:`config.etcd.* <configuration_reference_config_etcd>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:21
+#: ../../doc/reference/configuration/configuration_reference.rst:41
+#: ../../doc/reference/configuration/configuration_reference.rst:80
+#: ../../doc/reference/configuration/configuration_reference.rst:95
+#: ../../doc/reference/configuration/configuration_reference.rst:111
+#: ../../doc/reference/configuration/configuration_reference.rst:123
+#: ../../doc/reference/configuration/configuration_reference.rst:136
+#: ../../doc/reference/configuration/configuration_reference.rst:149
+#: ../../doc/reference/configuration/configuration_reference.rst:162
+#: ../../doc/reference/configuration/configuration_reference.rst:175
+#: ../../doc/reference/configuration/configuration_reference.rst:188
+#: ../../doc/reference/configuration/configuration_reference.rst:201
+#: ../../doc/reference/configuration/configuration_reference.rst:213
+msgid "**Since:** :doc:`3.0.0 </release/3.0.0>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:23
+msgid "Specify how the configuration is reloaded. This option accepts the following values:"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:26
+msgid "``auto``: configuration is reloaded automatically when it is changed."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:27
+msgid "``manual``: configuration should be reloaded manually. In this case, you can reload the configuration in the application code using :ref:`config:reload() <config-module>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:29
+msgid "See also: :ref:`Reloading configuration <etcd_reloading_configuration>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:31
+#: ../../doc/reference/configuration/configuration_reference.rst:45
+#: ../../doc/reference/configuration/configuration_reference.rst:103
+#: ../../doc/reference/configuration/configuration_reference.rst:115
+#: ../../doc/reference/configuration/configuration_reference.rst:127
+#: ../../doc/reference/configuration/configuration_reference.rst:140
+#: ../../doc/reference/configuration/configuration_reference.rst:153
+#: ../../doc/reference/configuration/configuration_reference.rst:166
+#: ../../doc/reference/configuration/configuration_reference.rst:217
+msgid "Type: string"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:32
+msgid "Possible values: 'auto', 'manual'"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:33
+msgid "Default: 'auto'"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:34
+msgid "Environment variable: TT_CONFIG_RELOAD"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:43
+msgid "A configuration version."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:46
+#: ../../doc/reference/configuration/configuration_reference.rst:87
+#: ../../doc/reference/configuration/configuration_reference.rst:104
+#: ../../doc/reference/configuration/configuration_reference.rst:116
+#: ../../doc/reference/configuration/configuration_reference.rst:128
+#: ../../doc/reference/configuration/configuration_reference.rst:141
+#: ../../doc/reference/configuration/configuration_reference.rst:154
+#: ../../doc/reference/configuration/configuration_reference.rst:167
+#: ../../doc/reference/configuration/configuration_reference.rst:180
+#: ../../doc/reference/configuration/configuration_reference.rst:193
+#: ../../doc/reference/configuration/configuration_reference.rst:206
+#: ../../doc/reference/configuration/configuration_reference.rst:218
+msgid "Default: nil"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:47
+msgid "Environment variable: TT_CONFIG_VERSION"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:54
+msgid "etcd"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_etcd.rst:3
+msgid "Enterprise Edition"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_etcd.rst:6
+msgid "Storing configuration in etcd is supported by the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:60
+msgid "This section describes options related to :ref:`storing configuration in etcd <configuration_etcd>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:62
+msgid ":ref:`config.etcd.endpoints <config_etcd_endpoints>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:63
+msgid ":ref:`config.etcd.prefix <config_etcd_prefix>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:64
+msgid ":ref:`config.etcd.username <config_etcd_username>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:65
+msgid ":ref:`config.etcd.password <config_etcd_password>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:66
+msgid ":ref:`config.etcd.ssl.ca_file <config_etcd_ssl_ca_file>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:67
+msgid ":ref:`config.etcd.ssl.ca_path <config_etcd_ssl_ca_path>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:68
+msgid ":ref:`config.etcd.ssl.ssl_key <config_etcd_ssl_ssl_key>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:69
+msgid ":ref:`config.etcd.ssl.verify_host <config_etcd_ssl_verify_host>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:70
+msgid ":ref:`config.etcd.ssl.verify_peer <config_etcd_ssl_verify_peer>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:71
+msgid ":ref:`config.etcd.http.request.timeout <config_etcd_http_request_timeout>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:72
+msgid ":ref:`config.etcd.http.request.unix_socket <config_etcd_http_request_unix_socket>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:82
+msgid "The list of endpoints used to access an etcd server."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:84
+#: ../../doc/reference/configuration/configuration_reference.rst:101
+msgid "See also: :ref:`Local etcd configuration <etcd_local_configuration>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:86
+msgid "Type: array"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:88
+msgid "Environment variable: TT_CONFIG_ETCD_ENDPOINTS"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:97
+msgid "A key prefix used to search a configuration on an etcd server. Tarantool searches keys by the following path: ``<prefix>/config/*``. Note that ``<prefix>`` should start with a slash (``/``)."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:105
+msgid "Environment variable: TT_CONFIG_ETCD_PREFIX"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:113
+msgid "A username used for authentication."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:117
+msgid "Environment variable: TT_CONFIG_ETCD_USERNAME"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:125
+msgid "A password used for authentication."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:129
+msgid "Environment variable: TT_CONFIG_ETCD_PASSWORD"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:138
+msgid "A path to a trusted certificate authorities (CA) file."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:142
+msgid "Environment variable: TT_CONFIG_ETCD_SSL_CA_FILE"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:151
+msgid "A path to a directory holding certificates to verify the peer with."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:155
+msgid "Environment variable: TT_CONFIG_ETCD_SSL_CA_PATH"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:164
+msgid "A path to a private SSL key file."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:168
+msgid "Environment variable: TT_CONFIG_ETCD_SSL_SSL_KEY"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:177
+msgid "Enable verification of the certificate's name (CN) against the specified host."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:179
+#: ../../doc/reference/configuration/configuration_reference.rst:192
+msgid "Type: boolean"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:181
+msgid "Environment variable: TT_CONFIG_ETCD_SSL_VERIFY_HOST"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:190
+msgid "Enable verification of the peer's SSL certificate."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:194
+msgid "Environment variable: TT_CONFIG_ETCD_SSL_VERIFY_PEER"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:203
+msgid "A time period required to process an HTTP request to an etcd server: from sending a request to receiving a response."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:205
+msgid "Type: number"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:207
+msgid "Environment variable: TT_CONFIG_ETCD_HTTP_REQUEST_TIMEOUT"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:215
+msgid "A Unix domain socket used to connect to an etcd server."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:219
+msgid "Environment variable: TT_CONFIG_ETCD_HTTP_REQUEST_UNIX_SOCKET"
+msgstr ""

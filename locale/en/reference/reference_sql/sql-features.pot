@@ -1,0 +1,2209 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_sql/sql-features.rst:4
+msgid "SQL features"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:6
+msgid "This section compares Tarantool's features with SQL:2016's \"Feature taxonomy and definition for mandatory features\"."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:9
+msgid "For each feature in that list, there will be a simple example SQL statement. If Tarantool appears to handle the example, it will be marked \"Okay\", else it will be marked \"Fail\". Since this is rough and arbitrary, the hope is that tests which are unfairly marked \"Okay\" will probably be balanced by tests which are unfairly marked \"Fail\"."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:18
+msgid "E011, Numeric data types"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:26
+#: ../../doc/reference/reference_sql/sql-features.rst:76
+#: ../../doc/reference/reference_sql/sql-features.rst:149
+#: ../../doc/reference/reference_sql/sql-features.rst:185
+#: ../../doc/reference/reference_sql/sql-features.rst:233
+#: ../../doc/reference/reference_sql/sql-features.rst:300
+#: ../../doc/reference/reference_sql/sql-features.rst:344
+#: ../../doc/reference/reference_sql/sql-features.rst:389
+#: ../../doc/reference/reference_sql/sql-features.rst:416
+#: ../../doc/reference/reference_sql/sql-features.rst:435
+#: ../../doc/reference/reference_sql/sql-features.rst:486
+#: ../../doc/reference/reference_sql/sql-features.rst:505
+#: ../../doc/reference/reference_sql/sql-features.rst:556
+#: ../../doc/reference/reference_sql/sql-features.rst:581
+#: ../../doc/reference/reference_sql/sql-features.rst:604
+#: ../../doc/reference/reference_sql/sql-features.rst:636
+#: ../../doc/reference/reference_sql/sql-features.rst:656
+#: ../../doc/reference/reference_sql/sql-features.rst:700
+#: ../../doc/reference/reference_sql/sql-features.rst:744
+#: ../../doc/reference/reference_sql/sql-features.rst:791
+#: ../../doc/reference/reference_sql/sql-features.rst:810
+#: ../../doc/reference/reference_sql/sql-features.rst:851
+#: ../../doc/reference/reference_sql/sql-features.rst:870
+#: ../../doc/reference/reference_sql/sql-features.rst:889
+#: ../../doc/reference/reference_sql/sql-features.rst:920
+#: ../../doc/reference/reference_sql/sql-features.rst:949
+#: ../../doc/reference/reference_sql/sql-features.rst:976
+#: ../../doc/reference/reference_sql/sql-features.rst:995
+#: ../../doc/reference/reference_sql/sql-features.rst:1032
+msgid "Feature ID"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:27
+#: ../../doc/reference/reference_sql/sql-features.rst:77
+#: ../../doc/reference/reference_sql/sql-features.rst:150
+#: ../../doc/reference/reference_sql/sql-features.rst:186
+#: ../../doc/reference/reference_sql/sql-features.rst:234
+#: ../../doc/reference/reference_sql/sql-features.rst:301
+#: ../../doc/reference/reference_sql/sql-features.rst:345
+#: ../../doc/reference/reference_sql/sql-features.rst:390
+#: ../../doc/reference/reference_sql/sql-features.rst:417
+#: ../../doc/reference/reference_sql/sql-features.rst:436
+#: ../../doc/reference/reference_sql/sql-features.rst:487
+#: ../../doc/reference/reference_sql/sql-features.rst:506
+#: ../../doc/reference/reference_sql/sql-features.rst:557
+#: ../../doc/reference/reference_sql/sql-features.rst:582
+#: ../../doc/reference/reference_sql/sql-features.rst:605
+#: ../../doc/reference/reference_sql/sql-features.rst:637
+#: ../../doc/reference/reference_sql/sql-features.rst:657
+#: ../../doc/reference/reference_sql/sql-features.rst:701
+#: ../../doc/reference/reference_sql/sql-features.rst:745
+#: ../../doc/reference/reference_sql/sql-features.rst:792
+#: ../../doc/reference/reference_sql/sql-features.rst:811
+#: ../../doc/reference/reference_sql/sql-features.rst:852
+#: ../../doc/reference/reference_sql/sql-features.rst:871
+#: ../../doc/reference/reference_sql/sql-features.rst:890
+#: ../../doc/reference/reference_sql/sql-features.rst:921
+#: ../../doc/reference/reference_sql/sql-features.rst:950
+#: ../../doc/reference/reference_sql/sql-features.rst:977
+#: ../../doc/reference/reference_sql/sql-features.rst:996
+#: ../../doc/reference/reference_sql/sql-features.rst:1033
+msgid "Feature"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:28
+#: ../../doc/reference/reference_sql/sql-features.rst:78
+#: ../../doc/reference/reference_sql/sql-features.rst:151
+#: ../../doc/reference/reference_sql/sql-features.rst:187
+#: ../../doc/reference/reference_sql/sql-features.rst:235
+#: ../../doc/reference/reference_sql/sql-features.rst:302
+#: ../../doc/reference/reference_sql/sql-features.rst:346
+#: ../../doc/reference/reference_sql/sql-features.rst:391
+#: ../../doc/reference/reference_sql/sql-features.rst:418
+#: ../../doc/reference/reference_sql/sql-features.rst:437
+#: ../../doc/reference/reference_sql/sql-features.rst:488
+#: ../../doc/reference/reference_sql/sql-features.rst:507
+#: ../../doc/reference/reference_sql/sql-features.rst:558
+#: ../../doc/reference/reference_sql/sql-features.rst:583
+#: ../../doc/reference/reference_sql/sql-features.rst:606
+#: ../../doc/reference/reference_sql/sql-features.rst:638
+#: ../../doc/reference/reference_sql/sql-features.rst:658
+#: ../../doc/reference/reference_sql/sql-features.rst:702
+#: ../../doc/reference/reference_sql/sql-features.rst:746
+#: ../../doc/reference/reference_sql/sql-features.rst:793
+#: ../../doc/reference/reference_sql/sql-features.rst:812
+#: ../../doc/reference/reference_sql/sql-features.rst:853
+#: ../../doc/reference/reference_sql/sql-features.rst:872
+#: ../../doc/reference/reference_sql/sql-features.rst:891
+#: ../../doc/reference/reference_sql/sql-features.rst:951
+#: ../../doc/reference/reference_sql/sql-features.rst:978
+#: ../../doc/reference/reference_sql/sql-features.rst:997
+#: ../../doc/reference/reference_sql/sql-features.rst:1034
+msgid "Example"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:29
+#: ../../doc/reference/reference_sql/sql-features.rst:79
+#: ../../doc/reference/reference_sql/sql-features.rst:152
+#: ../../doc/reference/reference_sql/sql-features.rst:188
+#: ../../doc/reference/reference_sql/sql-features.rst:236
+#: ../../doc/reference/reference_sql/sql-features.rst:303
+#: ../../doc/reference/reference_sql/sql-features.rst:347
+#: ../../doc/reference/reference_sql/sql-features.rst:392
+#: ../../doc/reference/reference_sql/sql-features.rst:419
+#: ../../doc/reference/reference_sql/sql-features.rst:438
+#: ../../doc/reference/reference_sql/sql-features.rst:489
+#: ../../doc/reference/reference_sql/sql-features.rst:508
+#: ../../doc/reference/reference_sql/sql-features.rst:559
+#: ../../doc/reference/reference_sql/sql-features.rst:584
+#: ../../doc/reference/reference_sql/sql-features.rst:607
+#: ../../doc/reference/reference_sql/sql-features.rst:639
+#: ../../doc/reference/reference_sql/sql-features.rst:659
+#: ../../doc/reference/reference_sql/sql-features.rst:703
+#: ../../doc/reference/reference_sql/sql-features.rst:747
+#: ../../doc/reference/reference_sql/sql-features.rst:794
+#: ../../doc/reference/reference_sql/sql-features.rst:813
+#: ../../doc/reference/reference_sql/sql-features.rst:854
+#: ../../doc/reference/reference_sql/sql-features.rst:873
+#: ../../doc/reference/reference_sql/sql-features.rst:892
+#: ../../doc/reference/reference_sql/sql-features.rst:922
+#: ../../doc/reference/reference_sql/sql-features.rst:952
+#: ../../doc/reference/reference_sql/sql-features.rst:979
+#: ../../doc/reference/reference_sql/sql-features.rst:998
+#: ../../doc/reference/reference_sql/sql-features.rst:1035
+msgid "Tests"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:30
+msgid "E011-01"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:31
+msgid "INTEGER and SMALLINT"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:32
+msgid "``CREATE TABLE t (s1 INT PRIMARY KEY);``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:33
+msgid ":ref:`Okay <sql_create_table>`."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:34
+msgid "E011-02"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:35
+msgid "REAL, DOUBLE PRECISION, and FLOAT data types"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:36
+msgid "``CREATE TABLE tr (s1 FLOAT PRIMARY KEY);``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:37
+msgid "Fail. Tarantool's floating point data type is :ref:`DOUBLE <sql_data_type_double>`. **Note:** Floating point SQL types are not planned to be compatible between 2.1 and 2.2 releases. The reason is that in 2.1 we set 'number' format for columns of these types, but will restrict it to 'float32' and 'float64' in 2.2. The format change requires data migration and cannot be done automatically, because in 2.1 we have no information to distinguish 'number' columns (created from Lua) from FLOAT/DOUBLE/REAL ones (created from SQL)."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:48
+msgid "E011-03"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:49
+msgid "DECIMAL and NUMERIC data types"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:50
+msgid "``CREATE TABLE td (s1 NUMERIC PRIMARY KEY);``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:51
+msgid "Fail, NUMERIC data types are not supported, although the DECIMAL data type is supported."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:53
+msgid "E011-04"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:54
+msgid "Arithmetic operators"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:55
+msgid "``SELECT 10+1, 9-2, 8*3, 7/2 FROM t;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:56
+msgid ":ref:`Okay <sql_operator_arithmetic>`."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:57
+msgid "E011-05"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:58
+msgid "Numeric comparisons"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:59
+msgid "``SELECT * FROM t WHERE 1 < 2;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:60
+#: ../../doc/reference/reference_sql/sql-features.rst:731
+msgid ":ref:`Okay <sql_operator_comparison>`."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:61
+msgid "E011-06"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:62
+msgid "Implicit casting among the numeric data types"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:63
+msgid "``SELECT * FROM t WHERE s1 = 1.00;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:64
+msgid "Okay, because Tarantool allows comparison of 1.00 with an INTEGER column."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:68
+msgid "E021, Character string types"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:80
+msgid "E021-01"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:81
+msgid "Character data type (including all its spellings)"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:82
+msgid "``CREATE TABLE t44 (s1 CHAR PRIMARY KEY);``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:83
+msgid "Fail, CHAR is not supported. This type of Fail will only be counted once."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:84
+msgid "E021-02"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:85
+msgid "CHARACTER VARYING data type (including all its spellings)"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:86
+msgid "``CREATE TABLE t45 (s1 VARCHAR PRIMARY KEY);``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:87
+msgid "Fail, Tarantool only allows VARCHAR(n), which is a synonym for :ref:`STRING <sql_data_type_string>`."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:89
+msgid "E021-03"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:90
+msgid "Character literals"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:91
+msgid "``INSERT INTO t45 VALUES ('');``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:92
+msgid "Okay, and the bad practice of accepting ``\"\"`` for character literals is avoided."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:94
+msgid "E021-04"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:95
+msgid "CHARACTER_LENGTH function"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:96
+msgid "``SELECT character_length(s1) FROM t;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:97
+msgid "Okay. Tarantool treats this as a synonym of :ref:`LENGTH() <sql_function_length>`."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:99
+msgid "E021-05"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:100
+msgid "OCTET_LENGTH"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:101
+msgid "``SELECT octet_length(s1) FROM t;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:102
+msgid "Fail. There is no such function."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:103
+msgid "E021-06"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:104
+msgid "SUBSTRING function"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:105
+msgid "``SELECT substring(s1 FROM 1 FOR 1) FROM t;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:106
+msgid "Fail. There is no such function. There is a function :ref:`SUBSTR(x,n,n) <sql_function_substr>`, which is okay."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:108
+msgid "E021-07"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:109
+msgid "Character concatenation"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:110
+msgid "``SELECT 'a' || 'b' FROM t;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:111
+msgid ":ref:`Okay <sql_operator_concatenate>`."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:112
+msgid "E021-08"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:113
+msgid "UPPER and LOWER functions"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:114
+msgid "``SELECT upper('a'),lower('B') FROM t;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:115
+msgid "Okay. Tarantool supports both :ref:`UPPER() <sql_function_upper>` and :ref:`LOWER() <sql_function_lower>`."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:118
+msgid "E021-09"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:119
+msgid "TRIM function"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:120
+msgid "``SELECT trim('a ') FROM t;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:121
+msgid ":ref:`Okay <sql_function_trim>`."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:122
+msgid "E021-10"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:123
+msgid "Implicit casting among the fixed-length and variable-length character string types"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:125
+msgid "``SELECT * FROM tm WHERE char_column > varchar_column;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:126
+msgid "Fail, there is no fixed-length character string type."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:127
+msgid "E021-11"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:128
+msgid "POSITION function"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:129
+msgid "``SELECT position(x IN y) FROM z;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:130
+msgid "Fail. Tarantool's :ref:`POSITION <sql_function_position>` function requires '``,``' rather than '``IN``'."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:132
+msgid "E021-12"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:133
+msgid "Character comparison"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:134
+msgid "``SELECT * FROM t WHERE s1 > 'a';``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:135
+msgid "Okay. We should note here that comparisons use a binary collation by default, but it is easy to use a :ref:`COLLATE clause <sql_collate_clause>`."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:141
+msgid "E031, Identifiers"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:153
+msgid "E031"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:154
+msgid "Identifiers"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:155
+msgid "``CREATE TABLE rank (ceil INT PRIMARY KEY);``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:156
+msgid "Fail. Tarantool's list of :ref:`reserved words <sql_reserved_words>` differs from the standard's list of reserved words."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:159
+msgid "E031-01"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:160
+msgid "Delimited identifiers"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:161
+msgid "``CREATE TABLE \"t47\" (s1 INT PRIMARY KEY);``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:162
+msgid ":ref:`Okay <sql_identifiers>`. Also, enclosing identifiers inside double quotes means they won't be converted to upper case or lower case, this is the behavior that some other DBMSs lack."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:166
+msgid "E031-02"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:167
+msgid "Lower case identifiers"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:168
+msgid "``CREATE TABLE t48 (s1 INT PRIMARY KEY);``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:169
+#: ../../doc/reference/reference_sql/sql-features.rst:173
+#: ../../doc/reference/reference_sql/sql-features.rst:192
+#: ../../doc/reference/reference_sql/sql-features.rst:200
+#: ../../doc/reference/reference_sql/sql-features.rst:204
+#: ../../doc/reference/reference_sql/sql-features.rst:213
+#: ../../doc/reference/reference_sql/sql-features.rst:217
+#: ../../doc/reference/reference_sql/sql-features.rst:240
+#: ../../doc/reference/reference_sql/sql-features.rst:248
+#: ../../doc/reference/reference_sql/sql-features.rst:256
+#: ../../doc/reference/reference_sql/sql-features.rst:276
+#: ../../doc/reference/reference_sql/sql-features.rst:284
+#: ../../doc/reference/reference_sql/sql-features.rst:288
+#: ../../doc/reference/reference_sql/sql-features.rst:322
+#: ../../doc/reference/reference_sql/sql-features.rst:326
+#: ../../doc/reference/reference_sql/sql-features.rst:373
+#: ../../doc/reference/reference_sql/sql-features.rst:377
+#: ../../doc/reference/reference_sql/sql-features.rst:450
+#: ../../doc/reference/reference_sql/sql-features.rst:493
+#: ../../doc/reference/reference_sql/sql-features.rst:530
+#: ../../doc/reference/reference_sql/sql-features.rst:534
+#: ../../doc/reference/reference_sql/sql-features.rst:544
+#: ../../doc/reference/reference_sql/sql-features.rst:711
+#: ../../doc/reference/reference_sql/sql-features.rst:715
+#: ../../doc/reference/reference_sql/sql-features.rst:723
+#: ../../doc/reference/reference_sql/sql-features.rst:727
+#: ../../doc/reference/reference_sql/sql-features.rst:798
+#: ../../doc/reference/reference_sql/sql-features.rst:817
+#: ../../doc/reference/reference_sql/sql-features.rst:821
+#: ../../doc/reference/reference_sql/sql-features.rst:825
+#: ../../doc/reference/reference_sql/sql-features.rst:829
+#: ../../doc/reference/reference_sql/sql-features.rst:833
+#: ../../doc/reference/reference_sql/sql-features.rst:896
+#: ../../doc/reference/reference_sql/sql-features.rst:900
+#: ../../doc/reference/reference_sql/sql-features.rst:956
+#: ../../doc/reference/reference_sql/sql-features.rst:1039
+msgid "Okay."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:170
+msgid "E031-03"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:171
+msgid "Trailing underscore"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:172
+msgid "``CREATE TABLE t49_ (s1 INT PRIMARY KEY);``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:177
+msgid "E051, Basic query specification"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:189
+msgid "E051-01"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:190
+msgid "SELECT DISTINCT"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:191
+msgid "``SELECT DISTINCT s1 FROM t;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:193
+msgid "E051-02"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:194
+msgid "GROUP BY clause"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:195
+msgid "``SELECT DISTINCT s1 FROM t GROUP BY s1;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:196
+msgid ":ref:`Okay <sql_group_by>`."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:197
+msgid "E051-04"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:198
+msgid "GROUP BY can contain columns not in select list"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:199
+msgid "``SELECT s1 FROM t GROUP BY lower(s1);``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:201
+msgid "E051-05"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:202
+msgid "Select list items can be renamed"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:203
+msgid "``SELECT s1 AS K FROM t ORDER BY K;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:205
+msgid "E051-06"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:206
+msgid "HAVING clause"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:207
+msgid "``SELECT count(*) FROM t HAVING count(*) > 0;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:208
+msgid "Okay. Tarantool supports :ref:`HAVING <sql_having>`, and GROUP BY is not mandatory before HAVING."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:210
+msgid "E051-07"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:211
+msgid "Qualified * in SELECT list"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:212
+msgid "``SELECT t.* FROM t;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:214
+msgid "E051-08"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:215
+msgid "Correlation names in the FROM clause"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:216
+msgid "``SELECT * FROM t AS K;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:218
+msgid "E051-09"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:219
+msgid "Rename columns in the FROM clause"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:220
+msgid "``SELECT * FROM t AS x(q,c);``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:221
+#: ../../doc/reference/reference_sql/sql-features.rst:611
+msgid "Fail."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:225
+msgid "E061, Basic predicates and search conditions"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:237
+msgid "E061-01"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:238
+msgid "Comparison predicate"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:239
+msgid "``SELECT * FROM t WHERE 0 = 0;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:241
+msgid "E061-02"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:242
+msgid "BETWEEN predicate"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:243
+msgid "``SELECT * FROM t WHERE ' ' BETWEEN '' AND ' ';``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:244
+msgid ":ref:`Okay <sql_operator_between>`."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:245
+msgid "E061-03"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:246
+msgid "IN predicate with list of values"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:247
+msgid "``SELECT * FROM t WHERE s1 IN ('a', upper('a'));``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:249
+msgid "E061-04"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:250
+msgid "LIKE predicate"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:251
+msgid "``SELECT * FROM t WHERE s1 LIKE '_';``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:252
+msgid ":ref:`Okay <sql_operator_like>`."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:253
+msgid "E061-05"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:254
+msgid "LIKE predicate: ESCAPE clause"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:255
+msgid "``VALUES ('abc_' LIKE 'abcX_' ESCAPE 'X');``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:257
+msgid "E061-06"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:258
+msgid "NULL predicate"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:259
+msgid "``SELECT * FROM t WHERE s1 IS NOT NULL;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:260
+msgid ":ref:`Okay <sql_is_null>`."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:261
+msgid "E061-07"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:262
+msgid "Quantified comparison predicate"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:263
+msgid "``SELECT * FROM t WHERE s1 = ANY (SELECT s1 FROM t);``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:264
+#: ../../doc/reference/reference_sql/sql-features.rst:280
+#: ../../doc/reference/reference_sql/sql-features.rst:588
+#: ../../doc/reference/reference_sql/sql-features.rst:592
+#: ../../doc/reference/reference_sql/sql-features.rst:719
+#: ../../doc/reference/reference_sql/sql-features.rst:755
+#: ../../doc/reference/reference_sql/sql-features.rst:759
+#: ../../doc/reference/reference_sql/sql-features.rst:771
+#: ../../doc/reference/reference_sql/sql-features.rst:775
+#: ../../doc/reference/reference_sql/sql-features.rst:779
+#: ../../doc/reference/reference_sql/sql-features.rst:877
+#: ../../doc/reference/reference_sql/sql-features.rst:960
+msgid "Fail. Syntax error."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:265
+msgid "E061-08"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:266
+msgid "EXISTS predicate"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:267
+msgid "``SELECT * FROM t WHERE NOT EXISTS (SELECT * FROM t);``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:268
+#: ../../doc/reference/reference_sql/sql-features.rst:272
+msgid ":ref:`Okay <sql_subquery>`."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:269
+msgid "E061-09"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:270
+msgid "Subqueries in comparison predicate"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:271
+msgid "``SELECT * FROM t WHERE s1 > (SELECT s1 FROM t);``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:273
+msgid "E061-11"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:274
+msgid "Subqueries in IN predicate"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:275
+msgid "``SELECT * FROM t WHERE s1 IN (SELECT s1 FROM t);``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:277
+msgid "E061-12"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:278
+msgid "Subqueries in quantified comparison predicate"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:279
+msgid "``SELECT * FROM t WHERE s1 >= ALL (SELECT s1 FROM t);``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:281
+msgid "E061-13"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:282
+msgid "Correlated subqueries"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:283
+msgid "``SELECT * FROM t WHERE s1 = (SELECT s1 FROM t2 WHERE t2.s2 = t.s1);``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:285
+msgid "E061-14"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:286
+msgid "Search condition"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:287
+msgid "``SELECT * FROM t WHERE 0 <> 0 OR 'a' < 'b' AND s1 IS NULL;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:292
+msgid "E071, Basic query expressions"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:304
+msgid "E071-01"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:305
+msgid "UNION DISTINCT table operator"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:306
+msgid "``SELECT * FROM t UNION DISTINCT SELECT * FROM t;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:307
+msgid "Fail. However, ``SELECT * FROM t UNION SELECT * FROM t;`` is okay."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:309
+msgid "E071-02"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:310
+msgid "UNION ALL table operator"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:311
+msgid "``SELECT * FROM t UNION ALL SELECT * FROM t;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:312
+msgid ":ref:`Okay <sql_union>`."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:313
+msgid "E071-03"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:314
+msgid "EXCEPT DISTINCT table operator"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:315
+msgid "``SELECT * FROM t EXCEPT DISTINCT SELECT * FROM t;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:316
+msgid "Fail. However, ``SELECT * FROM t EXCEPT SELECT * FROM t;`` is okay."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:318
+msgid "E071-05"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:319
+msgid "Columns combined via table operators need not have exactly the same data type"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:321
+msgid "``SELECT s1 FROM t UNION SELECT 5 FROM t;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:323
+msgid "E071-06"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:324
+msgid "Table operators in subqueries"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:325
+msgid "``SELECT * FROM t WHERE 'a' IN (SELECT * FROM t UNION SELECT * FROM t);``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:330
+msgid "E081, Basic privileges"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:332
+msgid "Tarantool doesn't support privileges except via NoSQL."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:336
+msgid "E091, Set functions"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:348
+msgid "E091-01"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:349
+msgid "AVG"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:350
+msgid "``SELECT avg(s1) FROM t7;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:351
+msgid "Fail. Tarantool supports :ref:`AVG <sql_aggregate_avg>` but there is no warning that NULLs are eliminated."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:354
+msgid "E091-02"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:355
+msgid "COUNT"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:356
+msgid "``SELECT count(*) FROM t7 WHERE s1 > 0;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:357
+msgid ":ref:`Okay <sql_aggregate_count_row>`."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:358
+msgid "E091-03"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:359
+msgid "MAX"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:360
+msgid "``SELECT max(s1) FROM t7 WHERE s1 > 0;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:361
+msgid ":ref:`Okay <sql_aggregate_max>`."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:362
+msgid "E091-04"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:363
+msgid "MIN"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:364
+msgid "``SELECT min(s1) FROM t7 WHERE s1 > 0;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:365
+msgid ":ref:`Okay <sql_aggregate_min>`."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:366
+msgid "E091-05"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:367
+msgid "SUM"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:368
+msgid "``SELECT sum(1) FROM t7 WHERE s1 > 0;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:369
+msgid ":ref:`Okay <sql_aggregate_sum>`."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:370
+msgid "E091-06"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:371
+msgid "ALL quantifier"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:372
+msgid "``SELECT sum(ALL s1) FROM t7 WHERE s1 > 0;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:374
+msgid "E091-07"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:375
+msgid "DISTINCT quantifier"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:376
+msgid "``SELECT sum(DISTINCT s1) FROM t7 WHERE s1 > 0;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:381
+msgid "E101, Basic data manipulation"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:393
+msgid "E101-01"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:394
+msgid "INSERT statement"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:395
+msgid "``INSERT INTO t (s1,s2) VALUES (1,''), (2,NULL), (3,55);``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:396
+msgid ":ref:`Okay <sql_insert>`."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:397
+msgid "E101-03"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:398
+msgid "Searched UPDATE statement"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:399
+msgid "``UPDATE t SET s1 = NULL WHERE s1 IN (SELECT s1 FROM t2);``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:400
+msgid ":ref:`Okay <sql_update>`."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:401
+msgid "E101-04"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:402
+msgid "Searched DELETE statement"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:403
+msgid "``DELETE FROM t WHERE s1 IN (SELECT s1 FROM t);``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:404
+msgid ":ref:`Okay <sql_delete>`."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:408
+msgid "E111, Single row SELECT statement"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:420
+msgid "E111"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:421
+msgid "Single row SELECT statement"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:422
+msgid "``SELECT count(*) FROM t;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:423
+msgid ":ref:`Okay <sql_SELECT>`."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:427
+msgid "E121, Basic cursor support"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:439
+msgid "E121-01"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:440
+msgid "DECLARE CURSOR"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:442
+#: ../../doc/reference/reference_sql/sql-features.rst:454
+#: ../../doc/reference/reference_sql/sql-features.rst:458
+#: ../../doc/reference/reference_sql/sql-features.rst:462
+#: ../../doc/reference/reference_sql/sql-features.rst:466
+#: ../../doc/reference/reference_sql/sql-features.rst:470
+#: ../../doc/reference/reference_sql/sql-features.rst:474
+msgid "Fail. Tarantool doesn't support cursors."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:443
+msgid "E121-02"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:444
+msgid "ORDER BY columns need not be in select list"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:445
+msgid "``SELECT s1 FROM t ORDER BY s2;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:446
+msgid ":ref:`Okay <sql_order_by>`."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:447
+msgid "E121-03"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:448
+msgid "Value expressions in ORDER BY clause"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:449
+msgid "``SELECT s1 FROM t7 ORDER BY -s1;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:451
+msgid "E121-04"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:452
+msgid "OPEN statement"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:455
+msgid "E121-06"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:456
+msgid "Positioned UPDATE statement"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:459
+msgid "E121-07"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:460
+msgid "Positioned DELETE statement"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:463
+msgid "E121-08"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:464
+msgid "CLOSE statement"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:467
+msgid "E121-10"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:468
+msgid "FETCH statement implicit next"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:471
+msgid "E121-17"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:472
+msgid "WITH HOLD cursors"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:478
+msgid "E131, Null value support"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:490
+msgid "E131"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:491
+msgid "Null value support (nulls in lieu of values)"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:492
+msgid "``SELECT s1 FROM t7 WHERE s1 IS NULL;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:497
+msgid "E141, Basic integrity constraints"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:509
+msgid "E141-01"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:510
+msgid "NOT NULL constraints"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:511
+msgid "``CREATE TABLE t8 (s1 INT PRIMARY KEY, s2 INT NOT NULL);``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:512
+#: ../../doc/reference/reference_sql/sql-features.rst:516
+msgid ":ref:`Okay <sql_table_constraint_def>`."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:513
+msgid "E141-02"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:514
+msgid "UNIQUE constraints of NOT NULL columns"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:515
+msgid "``CREATE TABLE t9 (s1 INT PRIMARY KEY , s2 INT NOT NULL UNIQUE);``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:517
+msgid "E141-03"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:518
+msgid "PRIMARY KEY constraints"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:519
+msgid "``CREATE TABLE t10 (s1 INT PRIMARY KEY);``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:520
+msgid "Okay, although Tarantool shouldn't always insist on having a primary key."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:522
+msgid "E141-04"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:523
+msgid "Basic FOREIGN KEY constraint with the NO ACTION default for both referential delete and referential update actions"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:525
+msgid "``CREATE TABLE t11 (s0 INT PRIMARY KEY, s1 INT REFERENCES t10);``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:526
+msgid ":ref:`Okay <sql_foreign_key>`."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:527
+msgid "E141-06"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:528
+msgid "CHECK constraints"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:529
+msgid "``CREATE TABLE t12 (s1 INT PRIMARY KEY, s2 INT, CHECK (s1 = s2));``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:531
+msgid "E141-07"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:532
+msgid "Column defaults"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:533
+msgid "``CREATE TABLE t13 (s1 INT PRIMARY KEY, s2 INT DEFAULT -1);``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:535
+msgid "E141-08"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:536
+msgid "NOT NULL inferred on primary key"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:537
+msgid "``CREATE TABLE t14 (s1 INT PRIMARY KEY);``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:538
+msgid "Okay. We are unable to insert NULL although we don't explicitly say the column is NOT NULL."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:540
+msgid "E141-10"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:541
+msgid "Names in a foreign key can be specified in any order"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:542
+msgid "``CREATE TABLE t15 (s1 INT, s2 INT, PRIMARY KEY (s1,s2));`` ``CREATE TABLE t16 (s1 INT PRIMARY KEY, s2 INT, FOREIGN KEY (s2,s1) REFERENCES t15 (s1,s2));``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:548
+msgid "E151, Transaction support"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:560
+msgid "E151-01"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:561
+msgid "COMMIT statement"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:562
+msgid "``COMMIT;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:563
+msgid "Fail. Tarantool supports :ref:`COMMIT <sql_commit>` but it is necessary to say :ref:`START TRANSACTION <sql_start_transaction>` first."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:566
+msgid "E151-02"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:567
+msgid "ROLLBACK statement"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:568
+msgid "``ROLLBACK;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:569
+msgid ":ref:`Okay <sql_rollback>`."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:573
+msgid "E152, Basic SET TRANSACTION statement"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:585
+msgid "E152-01"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:586
+msgid "SET TRANSACTION statement: ISOLATION SERIALIZABLE clause"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:587
+msgid "``SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:589
+msgid "E152-02"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:590
+msgid "SET TRANSACTION statement: READ ONLY and READ WRITE clauses"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:591
+msgid "``SET TRANSACTION READ ONLY;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:596
+msgid "E*, Other"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:608
+msgid "E153"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:609
+msgid "Updatable queries with subqueries"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:610
+msgid "``UPDATE \"view_containing_subquery\" SET column1=0;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:612
+msgid "E161"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:613
+msgid "SQL comments using leading double minus"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:614
+msgid "``--comment;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:615
+msgid ":ref:`Okay <sql_tokens>`."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:616
+msgid "E171"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:617
+msgid "SQLSTATE support"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:618
+msgid "``DROP TABLE no_such_table;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:619
+msgid "Fail. Tarantool returns an error message but not an SQLSTATE string."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:620
+msgid "E182"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:621
+msgid "Host language binding"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:623
+msgid "Okay. Any of the Tarantool connectors should be able to call :ref:`box.execute() <box-sql>`."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:628
+msgid "F021, Basic information schema"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:640
+msgid "F021"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:641
+msgid "Basic information schema"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:642
+msgid "``SELECT * from information_schema.tables;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:643
+msgid "Fail. Tarantool's metadata is not in a schema with that name (not counted in the final score)."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:648
+msgid "F031, Basic schema manipulation"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:660
+msgid "F031-01"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:661
+msgid "CREATE TABLE statement to create persistent base tables"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:662
+msgid "``CREATE TABLE t20 (t20_1 INT NOT NULL);``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:663
+msgid "Fail. We always have to specify PRIMARY KEY (we only count this flaw once)."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:664
+msgid "F031-02"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:665
+msgid "CREATE VIEW statement"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:666
+msgid "``CREATE VIEW t21 AS SELECT * FROM t20;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:667
+msgid ":ref:`Okay <sql_create_view>`."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:668
+msgid "F031-03"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:669
+#: ../../doc/reference/reference_sql/sql-features.rst:936
+msgid "GRANT statement"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:671
+msgid "Fail. Tarantool doesn't support privileges except via NoSQL."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:672
+msgid "F031-04"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:673
+msgid "ALTER TABLE statement: add column"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:674
+msgid "``ALTER TABLE t7 ADD COLUMN t7_2 VARCHAR(1) DEFAULT 'q';``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:675
+msgid "Okay. Tarantool supports :ref:`ALTER TABLE <sql_alter_table>`, and support for ADD COLUMN was added in Tarantool 2.7."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:677
+msgid "F031-13"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:678
+msgid "DROP TABLE statement: RESTRICT clause"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:679
+msgid "``DROP TABLE t20 RESTRICT;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:680
+msgid "Fail. Tarantool supports :ref:`DROP TABLE <sql_drop_table>` but not this clause."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:681
+msgid "F031-16"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:682
+msgid "DROP VIEW statement: RESTRICT clause"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:683
+msgid "``DROP VIEW v2 RESTRICT;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:684
+msgid "Fail. Tarantool supports :ref:`DROP VIEW <sql_drop_view>` but not this clause."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:685
+msgid "F031-19"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:686
+msgid "REVOKE statement: RESTRICT clause"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:688
+msgid "Fail. Tarantool does not support privileges except via NoSQL."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:692
+msgid "F041, Basic joined table"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:704
+msgid "F041-01"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:705
+msgid "Inner join but not necessarily the INNER keyword"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:706
+msgid "``SELECT a.s1 FROM t7 a JOIN t7 b;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:707
+msgid ":ref:`Okay <sql_from>`."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:708
+msgid "F041-02"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:709
+msgid "INNER keyword"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:710
+msgid "``SELECT a.s1 FROM t7 a INNER JOIN t7 b;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:712
+msgid "F041-03"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:713
+msgid "LEFT OUTER JOIN"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:714
+msgid "``SELECT t7.*,t22.* FROM t22 LEFT OUTER JOIN t7 ON (t22_1 = s1);``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:716
+msgid "F041-04"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:717
+msgid "RIGHT OUTER JOIN"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:718
+msgid "``SELECT t7.*,t22.* FROM t22 RIGHT OUTER JOIN t7 ON (t22_1 = s1);``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:720
+msgid "F041-05"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:721
+msgid "Outer joins can be nested"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:722
+msgid "``SELECT t7.*,t22.* FROM t22 LEFT OUTER JOIN t7 ON (t22_1 = s1) LEFT OUTER JOIN t23;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:724
+msgid "F041-07"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:725
+msgid "The inner table in a left or right outer join can also be used in an inner join"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:726
+msgid "``SELECT t7.* FROM (t22 LEFT OUTER JOIN t7 ON (t22_1 = s1)) j INNER JOIN t22 ON (j.t22_4 = t7.s1);``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:728
+msgid "F041-08"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:729
+msgid "All comparison operators are supported"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:730
+msgid "``SELECT * FROM t WHERE 0 = 1 OR 0 > 1 OR 0 < 1 OR 0 <> 1;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:736
+msgid "F051, Basic date and time"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:748
+msgid "F051-01"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:749
+msgid "DATE data type (including support of DATE literal)"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:750
+msgid "``CREATE TABLE dates (s1 DATE);``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:751
+msgid "Fail. Tarantool does not support the DATE data type."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:752
+msgid "F051-02"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:753
+msgid "TIME data type (including support of TIME literal)"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:754
+msgid "``CREATE TABLE times (s1 TIME DEFAULT TIME '1:2:3');``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:756
+msgid "F051-03"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:757
+msgid "TIMESTAMP data type (including support of TIMESTAMP literal)"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:758
+msgid "``CREATE TABLE timestamps (s1 TIMESTAMP);``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:760
+msgid "F051-04"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:761
+msgid "Comparison predicate on DATE, TIME and TIMESTAMP data types"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:762
+msgid "``SELECT * FROM dates WHERE s1 = s1;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:763
+#: ../../doc/reference/reference_sql/sql-features.rst:767
+msgid "Fail. Date and time data types are not supported."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:764
+msgid "F051-05"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:765
+msgid "Explicit CAST between date-time types and character string types"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:766
+msgid "``SELECT cast(s1 AS VARCHAR(10)) FROM dates;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:768
+msgid "F051-06"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:769
+msgid "CURRENT_DATE"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:770
+msgid "``SELECT current_date FROM t;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:772
+msgid "F051-07"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:773
+msgid "LOCALTIME"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:774
+msgid "``SELECT localtime FROM t;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:776
+msgid "F051-08"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:777
+msgid "LOCALTIMESTAMP"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:778
+msgid "``SELECT localtimestamp FROM t;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:783
+msgid "F081, UNION and EXCEPT in views"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:795
+msgid "F081"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:796
+msgid "UNION and EXCEPT in views"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:797
+msgid "``CREATE VIEW vv AS SELECT * FROM t7 EXCEPT SELECT * * FROM t15;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:802
+msgid "F131, Grouped operations"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:814
+msgid "F131-01"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:815
+msgid "WHERE, GROUP BY, and HAVING clauses supported in queries with grouped views"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:816
+msgid "``CREATE VIEW vv2 AS SELECT * FROM vv GROUP BY s1;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:818
+msgid "F131-02"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:819
+msgid "Multiple tables supported in queries with grouped views"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:820
+msgid "``CREATE VIEW vv3 AS SELECT * FROM vv2,t30;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:822
+msgid "F131-03"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:823
+msgid "Set functions supported in queries with grouped views"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:824
+msgid "``CREATE VIEW vv4 AS SELECT count(*) FROM vv2;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:826
+msgid "F131-04"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:827
+msgid "Subqueries with GROUP BY and HAVING clauses and grouped views"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:828
+msgid "``CREATE VIEW vv5 AS SELECT count(*) FROM vv2 GROUP BY s1 HAVING count(*) > 0;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:830
+msgid "F131-05"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:831
+msgid "Single row SELECT with GROUP BY and HAVING clauses and grouped views"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:832
+msgid "``SELECT count(*) FROM vv2 GROUP BY s1 HAVING count(*) > 0;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:837
+msgid "F181, Multiple module support"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:839
+msgid "Fail. Tarantool doesn't have modules."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:843
+msgid "F201, CAST function"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:855
+msgid "F201"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:856
+msgid "CAST function"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:857
+msgid "``SELECT cast(s1 AS INT) FROM t;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:858
+msgid ":ref:`Okay <sql_function_cast>`."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:862
+msgid "F221, Explicit defaults"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:874
+msgid "F221"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:875
+msgid "Explicit defaults"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:876
+msgid "``UPDATE t SET s1 = DEFAULT;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:881
+msgid "F261, CASE expression"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:893
+msgid "F261-01"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:894
+msgid "Simple CASE"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:895
+msgid "``SELECT CASE WHEN 1 = 0 THEN 5 ELSE 7 END FROM t;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:897
+msgid "F261-02"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:898
+msgid "Searched CASE"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:899
+msgid "``SELECT CASE 1 WHEN 0 THEN 5 ELSE 7 END FROM t;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:901
+msgid "F261-03"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:902
+msgid "NULLIF"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:903
+msgid "``SELECT nullif(s1,7) FROM t;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:904
+msgid ":ref:`Okay <sql_function_nullif>`"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:905
+msgid "F261-04"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:906
+msgid "COALESCE"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:907
+msgid "``SELECT coalesce(s1,7) FROM t;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:908
+msgid ":ref:`Okay <sql_function_coalesce>`."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:912
+msgid "F311, Schema definition statement"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:923
+msgid "F311-01"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:924
+msgid "CREATE SCHEMA"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:925
+msgid "Fail. Tarantool doesn't have schemas or databases."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:926
+msgid "F311-02"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:927
+msgid "CREATE TABLE for persistent base tables"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:928
+msgid "Fail. Tarantool doesn't have CREATE TABLE inside CREATE SCHEMA."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:929
+msgid "F311-03"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:930
+msgid "CREATE VIEW"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:931
+#: ../../doc/reference/reference_sql/sql-features.rst:934
+msgid "Fail. Tarantool doesn't have CREATE VIEW inside CREATE SCHEMA."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:932
+msgid "F311-04"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:933
+msgid "CREATE VIEW: WITH CHECK OPTION"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:935
+msgid "F311-05"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:937
+msgid "Fail. Tarantool doesn't have GRANT inside CREATE SCHEMA."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:941
+msgid "F*, Other"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:953
+msgid "F471"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:954
+msgid "Scalar subquery values"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:955
+msgid "``SELECT s1 FROM t WHERE s1 = (SELECT count(*) FROM t);``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:957
+msgid "F481"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:958
+msgid "Expanded NULL predicate"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:959
+msgid "``SELECT * FROM t WHERE row(s1,s1) IS NOT NULL;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:961
+msgid "F812"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:962
+msgid "Basic flagging"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:964
+msgid "Fail. Tarantool doesn't support any flagging."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:968
+msgid "S011, Distinct types"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:980
+msgid "S011"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:981
+msgid "Distinct types"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:982
+msgid "``CREATE TYPE x AS FLOAT;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:983
+msgid "Fail. Tarantool doesn't support distinct types."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:987
+msgid "T321, Basic SQL-invoked routines"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:999
+msgid "T321-01"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:1000
+msgid "User-defined functions with no overloading"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:1001
+#: ../../doc/reference/reference_sql/sql-features.rst:1019
+msgid "``CREATE FUNCTION f() RETURNS INT RETURN 5;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:1002
+#: ../../doc/reference/reference_sql/sql-features.rst:1007
+msgid "Fail. User-defined functions for SQL are created in :ref:`Lua <sql_calling_lua>` with a different syntax."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:1004
+msgid "T321-02"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:1005
+msgid "User-defined procedures with no overloading"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:1006
+msgid "``CREATE PROCEDURE p() BEGIN END;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:1009
+msgid "T321-03"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:1010
+msgid "Function invocation"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:1011
+msgid "``SELECT f(1) FROM t;``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:1012
+msgid "Okay. Tarantool can invoke Lua user-defined functions."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:1013
+msgid "T321-04"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:1014
+msgid "CALL statement"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:1015
+msgid "``CALL p();``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:1016
+msgid "Fail. Tarantool doesn't support CALL statements."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:1017
+msgid "T321-05"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:1018
+msgid "RETURN statement"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:1020
+msgid "Fail. Tarantool doesn't support RETURN statements."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:1024
+msgid "T*, Other"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:1036
+msgid "T631"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:1037
+msgid "IN predicate with one list element"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:1038
+msgid "``SELECT * FROM t WHERE 1 IN (1);``"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:1042
+msgid "Total number of items marked \"Fail\": 67"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/sql-features.rst:1044
+msgid "Total number of items marked \"Okay\": 79"
+msgstr ""

@@ -1,0 +1,79 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_error/set.rst:5
+msgid "box.error.set()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/set.rst:9
+msgid "**Since:** :doc:`2.4.1 </release/2.4.1>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/set.rst:11
+msgid "Set the specified error as the last system error explicitly. This error is returned by :doc:`/reference/reference_lua/box_error/last`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/set.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/set.rst:14
+msgid "an error object"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/set.rst:16
+msgid "**Example**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_error/set.rst:18
+msgid "-- Create two errors --\n"
+"local error1 = box.error.new({ code = 500, reason = 'Custom error 1' })\n"
+"local error2 = box.error.new({ code = 505, reason = 'Custom error 2' })\n"
+"\n"
+"-- Raise the first error --\n"
+"box.error(error1)\n"
+"--[[\n"
+"---\n"
+"- error: Custom error 1\n"
+"...\n"
+"--]]\n"
+"\n"
+"-- Get the last error --\n"
+"box.error.last()\n"
+"--[[\n"
+"---\n"
+"- Custom error 1\n"
+"...\n"
+"--]]\n"
+"\n"
+"-- Set the second error as the last error --\n"
+"box.error.set(error2)\n"
+"--[[\n"
+"---\n"
+"...\n"
+"--]]\n"
+"\n"
+"-- Get the last error --\n"
+"box.error.last()\n"
+"--[[\n"
+"---\n"
+"- Custom error 2\n"
+"...\n"
+"--]]\n"
+""
+msgstr ""

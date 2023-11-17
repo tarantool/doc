@@ -1,0 +1,107 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/admin/logs.rst:4
+msgid "Logs"
+msgstr ""
+
+#: ../../doc/book/admin/logs.rst:6
+msgid "Each Tarantool instance logs important events to its own log file ``<instance-name>.log``. For instances started with :ref:`tt <tt-cli>`, the log location is defined by the ``log_dir`` parameter in the :ref:`tt configuration <tt-config>`. By default, it's ``/var/log/tarantool`` in the ``tt`` :ref:`system mode <tt-config_modes>`, and the ``var/log/`` subdirectory of the ``tt`` working directory in the :ref:`local mode <tt-config_modes>`. In the specified location, ``tt`` creates separate directories for each instance's logs."
+msgstr ""
+
+#: ../../doc/book/admin/logs.rst:13
+msgid "To check how logging works, write something to the log using the :ref:`log <log-module>` module:"
+msgstr ""
+
+#: ../../doc/book/admin/logs.rst:15
+msgid "$ tt connect my_app\n"
+"   • Connecting to the instance...\n"
+"   • Connected to /var/run/tarantool/my_app.control\n"
+"\n"
+"/var/run/tarantool/my_app.control> require('log').info(\"Hello for the manual readers\")"
+msgstr ""
+
+#: ../../doc/book/admin/logs.rst:23
+msgid "Then check the logs:"
+msgstr ""
+
+#: ../../doc/book/admin/logs.rst:25
+msgid "$ tail /var/log/tarantool/my_app.log\n"
+"2023-09-12 18:13:00.396 [67173] main/111/guard of feedback_daemon/box.feedback_daemon V> metrics_collector restarted\n"
+"2023-09-12 18:13:00.396 [67173] main/103/-/box.feedback_daemon V> feedback_daemon started\n"
+"2023-09-12 18:13:00.396 [67173] main/103/- D> memtx_tuple_new_raw_impl(14) = 0x1090077b4\n"
+"2023-09-12 18:13:00.396 [67173] main/103/- D> memtx_tuple_new_raw_impl(26) = 0x1090077ec\n"
+"2023-09-12 18:13:00.396 [67173] main/103/- D> memtx_tuple_new_raw_impl(39) = 0x109007824\n"
+"2023-09-12 18:13:00.396 [67173] main/103/- D> memtx_tuple_new_raw_impl(24) = 0x10900785c\n"
+"2023-09-12 18:13:00.396 [67173] main/103/- D> memtx_tuple_new_raw_impl(39) = 0x109007894\n"
+"2023-09-12 18:13:00.396 [67173] main/106/checkpoint_daemon I> scheduled next checkpoint for Tue Sep 12 19:44:34 2023\n"
+"2023-09-12 18:13:00.396 [67173] main I> entering the event loop\n"
+"2023-09-12 18:13:11.656 [67173] main/114/console/unix/:/tarantool I> Hello for the manual readers"
+msgstr ""
+
+#: ../../doc/book/admin/logs.rst:42
+msgid "Log rotation"
+msgstr ""
+
+#: ../../doc/book/admin/logs.rst:44
+msgid "When :ref:`logging to a file <cfg_logging-log>`, the system administrator must ensure logs are rotated timely and do not take up all the available disk space. To prevent log files from growing infinitely, ``tt`` automatically rotates instance logs. The following ``tt`` configuration parameters define the log rotation: ``log_maxsize`` (in megabytes) and ``log_maxage`` (in days). When any of these limits is reached, the log is rotated. Additionally, there is the ``log_maxbackups`` parameter (the number of stored log files for an instance), which enables automatic removal of old log files."
+msgstr ""
+
+#: ../../doc/book/admin/logs.rst:53
+msgid "# tt.yaml\n"
+"tt:\n"
+"  app:\n"
+"    log_maxsize: 100\n"
+"    log_maxage: 3\n"
+"    log_maxbackups: 50\n"
+"    # ..."
+msgstr ""
+
+#: ../../doc/book/admin/logs.rst:63
+msgid "There is also the :ref:`tt logrotate <tt-logrotate>` command that performs log rotation on demand."
+msgstr ""
+
+#: ../../doc/book/admin/logs.rst:66
+msgid "tt logrotate my_app"
+msgstr ""
+
+#: ../../doc/book/admin/logs.rst:70
+msgid "To learn about log rotation in the deprecated ``tarantoolctl`` utility, check its :ref:`documentation <tarantoolctl-log-rotation>`."
+msgstr ""
+
+#: ../../doc/book/admin/logs.rst:77
+msgid "Log formats"
+msgstr ""
+
+#: ../../doc/book/admin/logs.rst:79
+msgid "Tarantool can write its logs to a log file, to ``syslog``, or to a specified program through a pipe."
+msgstr ""
+
+#: ../../doc/book/admin/logs.rst:82
+msgid "File is the default log format for ``tt``. To send logs to a pipe or ``syslog``, specify the :ref:`box.cfg.log <cfg_logging-log>` parameter, for example:"
+msgstr ""
+
+#: ../../doc/book/admin/logs.rst:85
+msgid "box.cfg{log = '| cronolog tarantool.log'}\n"
+"-- or\n"
+"box.cfg{log = 'syslog:identity=tarantool,facility=user'}"
+msgstr ""
+
+#: ../../doc/book/admin/logs.rst:91
+msgid "In such configurations, log rotation is usually handled by the external program used for logging."
+msgstr ""

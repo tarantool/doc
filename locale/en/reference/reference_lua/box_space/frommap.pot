@@ -1,0 +1,87 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_space/frommap.rst:5
+msgid "space_object:frommap()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/frommap.rst:11
+msgid "Convert a map to a tuple instance or to a table. The map must consist of \"field name = value\" pairs. The field names and the value types must match names and types stated previously for the space, via :doc:`/reference/reference_lua/box_space/format`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/frommap.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/frommap.rst:17
+msgid "an :ref:`object reference <app_server-object_reference>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/frommap.rst:19
+msgid "a series of \"field = value\" pairs, in any order."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/frommap.rst:20
+msgid "the only legal option is ``{table = true|false}``; |br| if the option is omitted or if ``{table = false}``, then return type will be 'cdata' (i.e. tuple); |br| if ``{table = true}``, then return type will be 'table'."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/frommap.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/frommap.rst:25
+msgid "a tuple instance or table."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/frommap.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/frommap.rst:26
+msgid "tuple or table"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/frommap.rst:28
+msgid "**Possible errors:** ``space_object`` does not exist or has no format; \"unknown field\"."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/frommap.rst:30
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/frommap.rst:32
+msgid "-- Create a format with two fields named 'a' and 'b'.\n"
+"-- Create a space with that format.\n"
+"-- Create a tuple based on a map consistent with that space.\n"
+"-- Create a table based on a map consistent with that space.\n"
+"tarantool> format1 = {{name='a',type='unsigned'},{name='b',type='scalar'}}\n"
+"---\n"
+"...\n"
+"tarantool> s = box.schema.create_space('test', {format = format1})\n"
+"---\n"
+"...\n"
+"tarantool> s:frommap({b = 'x', a = 123456})\n"
+"---\n"
+"- [123456, 'x']\n"
+"...\n"
+"tarantool> s:frommap({b = 'x', a = 123456}, {table = true})\n"
+"---\n"
+"- - 123456\n"
+"  - x\n"
+"..."
+msgstr ""

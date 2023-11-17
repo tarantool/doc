@@ -1,0 +1,320 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/csv.rst:3
+msgid "Module csv"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:9
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:11
+msgid "The ``csv`` module handles records formatted according to Comma-Separated-Values (CSV) rules."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:14
+msgid "The default formatting rules are:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:16
+msgid "Lua `escape sequences <http://www.lua.org/pil/2.4.html>`_ such as \\\\n or \\\\10 are legal within strings but not within files,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:18
+msgid "Commas designate end-of-field,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:19
+msgid "Line feeds, or line feeds plus carriage returns, designate end-of-record,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:20
+msgid "Leading or trailing spaces are ignored,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:21
+msgid "Quote marks may enclose fields or parts of fields,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:22
+msgid "When enclosed by quote marks, commas and line feeds and spaces are treated as ordinary characters, and a pair of quote marks \"\" is treated as a single quote mark."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:28
+msgid "The possible options which can be passed to csv functions are:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:30
+msgid ":samp:`delimiter = {string}` (default: comma) -- single-byte character to designate end-of-field"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:32
+msgid ":samp:`quote_char = {string}` (default: quote mark) -- single-byte character to designate encloser of string"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:34
+msgid ":samp:`chunk_size = {number}` (default: 4096) -- number of characters to read at once (usually for file-IO efficiency)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:36
+msgid ":samp:`skip_head_lines = {number}` (default: 0) -- number of lines to skip at the start (usually for a header)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:41
+msgid "Index"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:43
+msgid "Below is a list of all ``csv`` functions."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:51
+msgid "Name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:51
+msgid "Use"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:53
+msgid ":ref:`csv.load() <csv-load>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:53
+msgid "Load a CSV file"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:56
+msgid ":ref:`csv.dump() <csv-dump>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:56
+msgid "Transform input into a CSV-formatted string"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:59
+msgid ":ref:`csv.iterate() <csv-iterate>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:59
+msgid "Iterate over CSV records"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:67
+msgid "Get CSV-formatted input from ``readable`` and return a table as output. Usually ``readable`` is either a string or a file opened for reading. Usually :samp:`{options}` is not specified."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:0
+#: ../../doc/reference/reference_lua/csv.rst:0
+#: ../../doc/reference/reference_lua/csv.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:71
+msgid "a string, or any object which has a read() method, formatted according to the CSV rules"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:73
+#: ../../doc/reference/reference_lua/csv.rst:199
+msgid "see :ref:`above <csv-options>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:0
+#: ../../doc/reference/reference_lua/csv.rst:0
+#: ../../doc/reference/reference_lua/csv.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:74
+msgid "loaded_value"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:0
+#: ../../doc/reference/reference_lua/csv.rst:0
+#: ../../doc/reference/reference_lua/csv.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:75
+msgid "table"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:77
+#: ../../doc/reference/reference_lua/csv.rst:159
+#: ../../doc/reference/reference_lua/csv.rst:204
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:79
+msgid "Readable string has 3 fields, field#2 has comma and space so use quote marks:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:82
+msgid "tarantool> csv = require('csv')\n"
+"---\n"
+"...\n"
+"tarantool> csv.load('a,\"b,c \",d')\n"
+"---\n"
+"- - - a\n"
+"    - 'b,c '\n"
+"    - d\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:94
+msgid "Readable string contains 2-byte character = Cyrillic Letter Palochka: (This displays a palochka if and only if character set = UTF-8.)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:97
+msgid "tarantool> csv.load('a\\\\211\\\\128b')\n"
+"---\n"
+"- - - a\\211\\128b\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:104
+msgid "Semicolon instead of comma for the delimiter:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:106
+msgid "tarantool> csv.load('a,b;c,d', {delimiter = ';'})\n"
+"---\n"
+"- - - a,b\n"
+"    - c,d\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:114
+msgid "Readable file :file:`./file.csv` contains two CSV records. Explanation of ``fio`` is in section :ref:`fio <fio-section>`. Source CSV file and example respectively:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:118
+msgid "tarantool> -- input in file.csv is:\n"
+"tarantool> -- a,\"b,c \",d\n"
+"tarantool> -- a\\\\211\\\\128b\n"
+"tarantool> fio = require('fio')\n"
+"---\n"
+"...\n"
+"tarantool> f = fio.open('./file.csv', {'O_RDONLY'})\n"
+"---\n"
+"...\n"
+"tarantool> csv.load(f, {chunk_size = 4096})\n"
+"---\n"
+"- - - a\n"
+"    - 'b,c '\n"
+"    - d\n"
+"  - - a\\\\211\\\\128b\n"
+"...\n"
+"tarantool> f:close()\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:145
+msgid "Get table input from ``csv-table`` and return a CSV-formatted string as output. Or, get table input from ``csv-table`` and put the output in ``writable``. Usually :samp:`{options}` is not specified. Usually ``writable``, if specified, is a file opened for writing. :ref:`csv.dump() <csv-dump>` is the reverse of :ref:`csv.load() <csv-load>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:151
+#: ../../doc/reference/reference_lua/csv.rst:197
+msgid "a table which can be formatted according to the CSV rules."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:153
+msgid "optional. see :ref:`above <csv-options>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:154
+msgid "any object which has a ``write()`` method"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:156
+msgid "dumped_value"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:157
+msgid "string, which is written to ``writable`` if specified"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:161
+msgid "CSV-table has 3 fields, field#2 has \",\" so result has quote marks"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:163
+msgid "tarantool> csv = require('csv')\n"
+"---\n"
+"...\n"
+"tarantool> csv.dump({'a','b,c ','d'})\n"
+"---\n"
+"- 'a,\"b,c \",d\n"
+"\n"
+"'\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:175
+msgid "Round Trip: from string to table and back to string"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:177
+msgid "tarantool> csv_table = csv.load('a,b,c')\n"
+"---\n"
+"...\n"
+"tarantool> csv.dump(csv_table)\n"
+"---\n"
+"- 'a,b,c\n"
+"\n"
+"'\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:193
+msgid "Form a Lua iterator function for going through CSV records one field at a time. Use of an iterator is strongly recommended if the amount of data is large (ten or more megabytes)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:201
+msgid "Lua iterator function"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:202
+msgid "iterator function"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:206
+msgid ":ref:`csv.iterate() <csv-iterate>` is the low level of :ref:`csv.load() <csv-load>` and :ref:`csv.dump() <csv-dump>`. To illustrate that, here is a function which is the same as the :ref:`csv.load() <csv-load>` function, as seen in `the Tarantool source code <https://github.com/tarantool/tarantool/blob/2.1/src/lua/csv.lua>`_."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/csv.rst:211
+msgid "tarantool> load = function(readable, opts)\n"
+"         >   opts = opts or {}\n"
+"         >   local result = {}\n"
+"         >   for i, tup in csv.iterate(readable, opts) do\n"
+"         >     result[i] = tup\n"
+"         >   end\n"
+"         >   return result\n"
+"         > end\n"
+"---\n"
+"...\n"
+"tarantool> load('a,b,c')\n"
+"---\n"
+"- - - a\n"
+"    - b\n"
+"    - c\n"
+"..."
+msgstr ""

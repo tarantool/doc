@@ -1,0 +1,97 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/contributing/docs/markup/headings.rst:2
+msgid "Headings"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/headings.rst:5
+msgid "Heading markup"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/headings.rst:7
+msgid "We use the following markup for headings:"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/headings.rst:9
+msgid "Level 1 heading\n"
+"===============\n"
+"\n"
+"Level 2 heading\n"
+"---------------\n"
+"\n"
+"Level 3 heading\n"
+"~~~~~~~~~~~~~~~\n"
+"\n"
+"Level 4 heading\n"
+"^^^^^^^^^^^^^^^"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/headings.rst:23
+msgid "The underlining should be exactly the same length as the heading text above it. Mismatching length will result in a build warning."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/headings.rst:26
+msgid "Sphinx allows using other characters and styles to format headings. Indeed, using this markup consistently helps us better reuse and move content. It also helps us recognize the heading level immediately without reading the whole document and calculating levels."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/headings.rst:31
+msgid "If you're going to make a 4th or 5th level heading, you probably need to split the document instead."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/headings.rst:36
+msgid "Title headings"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/headings.rst:38
+msgid "The top-level heading of each document plays the important role of a document title. Title's text is used in several places:"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/headings.rst:41
+msgid "Literally as a ``<h1>`` tag in HTML or top-level heading in other formats."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/headings.rst:42
+msgid "Text in the breadcrumbs — the path to the document shown above the text."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/headings.rst:43
+msgid "The ``:doc:`` link's :doc:`default text <links>`."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/headings.rst:44
+msgid "Part of the page's ``title`` tag contents, used as the browser tab name."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/headings.rst:46
+msgid "<title>\n"
+"    Documentation guidelines | Tarantool\n"
+"</title>"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/headings.rst:52
+msgid "Potentially, the page's OpenGraph metadata which is used for building page preview cards on social networks and messengers."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/headings.rst:55
+msgid "<meta property=\"og:title\" content=\"Documentation guidelines\">"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/headings.rst:60
+msgid "ard to navigate in a hierarchy of more than three heading levels."
+msgstr ""

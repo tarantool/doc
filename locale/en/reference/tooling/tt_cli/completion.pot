@@ -1,0 +1,45 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/tooling/tt_cli/completion.rst:4
+msgid "Generating completion for tt"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/completion.rst:6
+msgid "$ tt completion SHELL"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/completion.rst:10
+msgid "``tt completion`` generates tab-based completion for ``tt`` commands in the specified shell: ``bash`` or ``zsh``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/completion.rst:15
+msgid "Examples"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/completion.rst:17
+msgid "Generate ``tt`` completion for the current ``bash`` terminal:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/completion.rst:19
+msgid "$ . <(tt completion bash)"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/completion.rst:25
+msgid "You can add an execution of the completion script to a user's ``.bashrc`` file to make the completion work for this user in all their terminals."
+msgstr ""

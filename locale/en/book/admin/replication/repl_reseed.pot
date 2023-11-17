@@ -1,0 +1,53 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/admin/replication/repl_reseed.rst:5
+msgid "Reseeding a replica"
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_reseed.rst:7
+msgid "If any of a replica's .xlog/.snap/.run files are corrupted or deleted, you can \"re-seed\" the replica:"
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_reseed.rst:10
+msgid "Stop the replica and destroy all local database files (the ones with extensions .xlog/.snap/.run/.inprogress)."
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_reseed.rst:13
+msgid "Delete the replica's record from the following locations:"
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_reseed.rst:15
+msgid "the ``replication`` parameter at all running instances in the replica set."
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_reseed.rst:16
+msgid "the ``box.space._cluster`` tuple on the master instance."
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_reseed.rst:18
+msgid "See section :ref:`Removing instances <replication-remove_instances>` for details."
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_reseed.rst:21
+msgid "Restart the replica with the same instance file to contact the master again. The replica will then catch up with the master by retrieving all the master’s tuples."
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_reseed.rst:27
+msgid "Remember that this procedure works only if the master’s WAL files are present."
+msgstr ""

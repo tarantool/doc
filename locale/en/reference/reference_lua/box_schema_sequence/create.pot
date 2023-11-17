@@ -1,0 +1,101 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_schema_sequence/create.rst:5
+msgid "box.schema.sequence.create()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema_sequence/create.rst:11
+msgid "Create a new sequence generator."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema_sequence/create.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema_sequence/create.rst:13
+msgid "the name of the sequence"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema_sequence/create.rst:15
+msgid "see a quick overview in the \"Options for ``box.schema.sequence.create()``\" :ref:`chart <index-box_sequence-options>` (in the :ref:`Sequences <index-box_sequence>` section of the \"Data model\" chapter), and see more details below."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema_sequence/create.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema_sequence/create.rst:22
+msgid "a reference to a new sequence object."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema_sequence/create.rst:24
+msgid "Options:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema_sequence/create.rst:26
+msgid "``start`` -- the STARTS WITH value. Type = integer, Default = 1."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema_sequence/create.rst:28
+msgid "``min`` -- the MINIMUM value. Type = integer, Default = 1."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema_sequence/create.rst:30
+msgid "``max`` - the MAXIMUM value. Type = integer, Default = 9223372036854775807."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema_sequence/create.rst:32
+msgid "There is a rule: ``min`` <= ``start`` <= ``max``. For example it is illegal to say ``{start=0}`` because then the specified start value (0) would be less than the default min value (1)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema_sequence/create.rst:36
+msgid "There is a rule: ``min`` <= next-value <= ``max``. For example, if the next generated value would be 1000, but the maximum value is 999, then that would be considered \"overflow\"."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema_sequence/create.rst:41
+msgid "There is a rule: ``start`` and ``min`` and ``max`` must all be <= 9223372036854775807 which is 2^63 - 1 (not 2^64)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema_sequence/create.rst:44
+msgid "``cycle`` -- the CYCLE value. Type = bool. Default = false."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema_sequence/create.rst:46
+msgid "If the sequence generator's next value is an overflow number, it causes an error return -- unless ``cycle == true``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema_sequence/create.rst:49
+msgid "But if ``cycle == true``, the count is started again, at the MINIMUM value or at the MAXIMUM value (not the STARTS WITH value)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema_sequence/create.rst:52
+msgid "``cache`` -- the CACHE value. Type = unsigned integer. Default = 0."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema_sequence/create.rst:54
+msgid "Currently Tarantool ignores this value, it is reserved for future use."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema_sequence/create.rst:56
+msgid "``step`` -- the INCREMENT BY value. Type = integer. Default = 1."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema_sequence/create.rst:58
+msgid "Ordinarily this is what is added to the previous value."
+msgstr ""

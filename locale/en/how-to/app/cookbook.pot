@@ -1,0 +1,881 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/how-to/app/cookbook.rst:5
+msgid "Lua cookbook recipes"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:7
+msgid "Here are contributions of Lua programs for some frequent or tricky situations."
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:9
+msgid "You can execute any of these programs by copying the code into a ``.lua`` file, and then entering :samp:`chmod +x ./{program-name}.lua` and :samp:`./{program-name}.lua` on the terminal."
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:13
+msgid "The first line is a \"hashbang\":"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:15
+msgid "#!/usr/bin/env tarantool"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:19
+msgid "This runs  Tarantool Lua application server, which should be on the execution path."
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:22
+msgid "This section contains the following recipes:"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:27
+msgid "Use freely."
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:29
+msgid "See more recipes on `Tarantool GitHub <https://github.com/tarantool/examples/tree/master/cookbook>`__."
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:35
+msgid "hello_world.lua"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:37
+msgid "The standard example of a simple program."
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:39
+msgid "#!/usr/bin/env tarantool\n"
+"\n"
+"print('Hello, World!')"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:49
+msgid "console_start.lua"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:51
+msgid "Use :doc:`box.once() </reference/reference_lua/box_once>` to initialize a database (creating spaces) if this is the first time the server has been run. Then use :ref:`console.start() <console-start>` to start interactive mode."
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:55
+msgid "#!/usr/bin/env tarantool\n"
+"\n"
+"-- Configure database\n"
+"box.cfg {\n"
+"    listen = 3313\n"
+"}\n"
+"\n"
+"box.once(\"bootstrap\", function()\n"
+"    box.schema.space.create('tweedledum')\n"
+"    box.space.tweedledum:create_index('primary',\n"
+"        { type = 'TREE', parts = {1, 'unsigned'}})\n"
+"end)\n"
+"\n"
+"require('console').start()"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:76
+msgid "fio_read.lua"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:78
+msgid "Use the :ref:`fio module <fio-module>` to open, read, and close a file."
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:80
+msgid "#!/usr/bin/env tarantool\n"
+"\n"
+"local fio = require('fio')\n"
+"local errno = require('errno')\n"
+"local f = fio.open('/tmp/xxxx.txt', {'O_RDONLY' })\n"
+"if not f then\n"
+"    error(\"Failed to open file: \"..errno.strerror())\n"
+"end\n"
+"local data = f:read(4096)\n"
+"f:close()\n"
+"print(data)"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:98
+msgid "fio_write.lua"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:100
+msgid "Use the :ref:`fio module <fio-module>` to open, write, and close a file."
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:102
+msgid "#!/usr/bin/env tarantool\n"
+"\n"
+"local fio = require('fio')\n"
+"local errno = require('errno')\n"
+"local f = fio.open('/tmp/xxxx.txt', {'O_CREAT', 'O_WRONLY', 'O_APPEND'},\n"
+"    tonumber('0666', 8))\n"
+"if not f then\n"
+"    error(\"Failed to open file: \"..errno.strerror())\n"
+"end\n"
+"f:write(\"Hello\\n\");\n"
+"f:close()"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:120
+msgid "ffi_printf.lua"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:122
+msgid "Use the `LuaJIT ffi library <http://luajit.org/ext_ffi.html>`_ to call a C built-in function: printf(). (For help understanding ffi, see the `FFI tutorial <http://luajit.org/ext_ffi_tutorial.html>`_.)"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:125
+msgid "#!/usr/bin/env tarantool\n"
+"\n"
+"local ffi = require('ffi')\n"
+"ffi.cdef[[\n"
+"    int printf(const char *format, ...);\n"
+"]]\n"
+"\n"
+"ffi.C.printf(\"Hello, %s\\n\", os.getenv(\"USER\"));"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:140
+msgid "ffi_gettimeofday.lua"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:142
+msgid "Use the `LuaJIT ffi library <http://luajit.org/ext_ffi.html>`_ to call a C function: gettimeofday(). This delivers time with millisecond precision, unlike the time function in Tarantool's :ref:`clock module <clock-module>`."
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:146
+msgid "#!/usr/bin/env tarantool\n"
+"\n"
+"local ffi = require('ffi')\n"
+"ffi.cdef[[\n"
+"    typedef long time_t;\n"
+"    typedef struct timeval {\n"
+"    time_t tv_sec;\n"
+"    time_t tv_usec;\n"
+"} timeval;\n"
+"    int gettimeofday(struct timeval *t, void *tzp);\n"
+"]]\n"
+"\n"
+"local timeval_buf = ffi.new(\"timeval\")\n"
+"local now = function()\n"
+"    ffi.C.gettimeofday(timeval_buf, nil)\n"
+"    return tonumber(timeval_buf.tv_sec * 1000 + (timeval_buf.tv_usec / 1000))\n"
+"end"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:170
+msgid "ffi_zlib.lua"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:172
+msgid "Use the `LuaJIT ffi library <http://luajit.org/ext_ffi.html>`_ to call a C library function. (For help understanding ffi, see the `FFI tutorial <http://luajit.org/ext_ffi_tutorial.html>`_.)"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:175
+msgid "#!/usr/bin/env tarantool\n"
+"\n"
+"local ffi = require(\"ffi\")\n"
+"ffi.cdef[[\n"
+"    unsigned long compressBound(unsigned long sourceLen);\n"
+"    int compress2(uint8_t *dest, unsigned long *destLen,\n"
+"    const uint8_t *source, unsigned long sourceLen, int level);\n"
+"    int uncompress(uint8_t *dest, unsigned long *destLen,\n"
+"    const uint8_t *source, unsigned long sourceLen);\n"
+"]]\n"
+"local zlib = ffi.load(ffi.os == \"Windows\" and \"zlib1\" or \"z\")\n"
+"\n"
+"-- Lua wrapper for compress2()\n"
+"local function compress(txt)\n"
+"    local n = zlib.compressBound(#txt)\n"
+"    local buf = ffi.new(\"uint8_t[?]\", n)\n"
+"    local buflen = ffi.new(\"unsigned long[1]\", n)\n"
+"    local res = zlib.compress2(buf, buflen, txt, #txt, 9)\n"
+"    assert(res == 0)\n"
+"    return ffi.string(buf, buflen[0])\n"
+"end\n"
+"\n"
+"-- Lua wrapper for uncompress\n"
+"local function uncompress(comp, n)\n"
+"    local buf = ffi.new(\"uint8_t[?]\", n)\n"
+"    local buflen = ffi.new(\"unsigned long[1]\", n)\n"
+"    local res = zlib.uncompress(buf, buflen, comp, #comp)\n"
+"    assert(res == 0)\n"
+"    return ffi.string(buf, buflen[0])\n"
+"end\n"
+"\n"
+"-- Simple test code.\n"
+"local txt = string.rep(\"abcd\", 1000)\n"
+"print(\"Uncompressed size: \", #txt)\n"
+"local c = compress(txt)\n"
+"print(\"Compressed size: \", #c)\n"
+"local txt2 = uncompress(c, #txt)\n"
+"assert(txt2 == txt)"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:220
+msgid "ffi_meta.lua"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:222
+msgid "Use the `LuaJIT ffi library <http://luajit.org/ext_ffi.html>`_ to access a C object via a metamethod (a method which is defined with a metatable)."
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:226
+msgid "#!/usr/bin/env tarantool\n"
+"\n"
+"local ffi = require(\"ffi\")\n"
+"ffi.cdef[[\n"
+"typedef struct { double x, y; } point_t;\n"
+"]]\n"
+"\n"
+"local point\n"
+"local mt = {\n"
+"  __add = function(a, b) return point(a.x+b.x, a.y+b.y) end,\n"
+"  __len = function(a) return math.sqrt(a.x*a.x + a.y*a.y) end,\n"
+"  __index = {\n"
+"    area = function(a) return a.x*a.x + a.y*a.y end,\n"
+"  },\n"
+"}\n"
+"point = ffi.metatype(\"point_t\", mt)\n"
+"\n"
+"local a = point(3, 4)\n"
+"print(a.x, a.y)  --> 3  4\n"
+"print(#a)        --> 5\n"
+"print(a:area())  --> 25\n"
+"local b = a + point(0.5, 8)\n"
+"print(#b)        --> 12.5"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:256
+msgid "ffi_varbinary_insert.lua"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:258
+msgid "Use the `LuaJIT ffi library <http://luajit.org/ext_ffi.html>`_ to insert a tuple which has a VARBINARY field."
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:261
+msgid "Note that it is allowed only inside a memtx transaction: when ``box_insert()`` does not yield."
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:264
+msgid "Lua does not have direct support for VARBINARY, so using C is one way to put in data which in MessagePack is stored as bin (MP_BIN). If the tuple is retrieved later, field \"b\" will have type = 'cdata'."
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:268
+msgid "#!/usr/bin/env tarantool\n"
+"\n"
+"-- box.cfg{} should be here\n"
+"\n"
+"s = box.schema.space.create('withdata')\n"
+"s:format({{\"b\", \"varbinary\"}})\n"
+"s:create_index('pk', {parts = {1, \"varbinary\"}})\n"
+"\n"
+"buffer = require('buffer')\n"
+"ffi = require('ffi')\n"
+"\n"
+"function varbinary_insert(space, bytes)\n"
+"    local tmpbuf = buffer.ibuf()\n"
+"    local p = tmpbuf:alloc(3 + #bytes)\n"
+"    p[0] = 0x91 -- MsgPack code for \"array-1\"\n"
+"    p[1] = 0xC4 -- MsgPack code for \"bin-8\" so up to 256 bytes\n"
+"    p[2] = #bytes\n"
+"    for i, c in pairs(bytes) do p[i + 3 - 1] = c end\n"
+"    ffi.cdef[[int box_insert(uint32_t space_id,\n"
+"                             const char *tuple,\n"
+"                             const char *tuple_end,\n"
+"                             box_tuple_t **result);]]\n"
+"    ffi.C.box_insert(space.id, tmpbuf.rpos, tmpbuf.wpos, nil)\n"
+"    tmpbuf:recycle()\n"
+"end\n"
+"\n"
+"varbinary_insert(s, {0xDE, 0xAD, 0xBE, 0xAF})\n"
+"varbinary_insert(s, {0xFE, 0xED, 0xFA, 0xCE})\n"
+"\n"
+"-- if successful, Tarantool enters the event loop now"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:306
+msgid "print_arrays.lua"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:308
+msgid "Create Lua tables, and print them. Notice that for the 'array' table the iterator function is ``ipairs()``, while for the 'map' table the iterator function is pairs(). (``ipairs()`` is faster than ``pairs()``, but ``pairs()`` is recommended for map-like tables or mixed tables.) The display will look like: \"1 Apple | 2 Orange | 3 Grapefruit | 4 Banana | k3 v3 | k1 v1 | k2 v2\"."
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:316
+msgid "#!/usr/bin/env tarantool\n"
+"\n"
+"array = { 'Apple', 'Orange', 'Grapefruit', 'Banana'}\n"
+"for k, v in ipairs(array) do print(k, v) end\n"
+"\n"
+"map = { k1 = 'v1', k2 = 'v2', k3 = 'v3' }\n"
+"for k, v in pairs(map) do print(k, v) end"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:330
+msgid "count_array.lua"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:332
+msgid "Use the '#' operator to get the number of items in an array-like Lua table. This operation has O(log(N)) complexity."
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:335
+msgid "#!/usr/bin/env tarantool\n"
+"\n"
+"array = { 1, 2, 3}\n"
+"print(#array)"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:346
+msgid "count_array_with_nils.lua"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:348
+msgid "Missing elements in arrays, which Lua treats as \"nil\"s, cause the simple \"#\" operator to deliver improper results. The \"print(#t)\" instruction will print \"4\"; the \"print(counter)\" instruction will print \"3\"; the \"print(max)\" instruction will print \"10\". Other table functions, such as :ref:`table.sort() <table-sort>`, will also misbehave when \"nils\" are present."
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:356
+msgid "#!/usr/bin/env tarantool\n"
+"\n"
+"local t = {}\n"
+"t[1] = 1\n"
+"t[4] = 4\n"
+"t[10] = 10\n"
+"print(#t)\n"
+"local counter = 0\n"
+"for k,v in pairs(t) do counter = counter + 1 end\n"
+"print(counter)\n"
+"local max = 0\n"
+"for k,v in pairs(t) do if k > max then max = k end end\n"
+"print(max)"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:376
+msgid "count_array_with_nulls.lua"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:378
+msgid "Use explicit ``NULL`` values to avoid the problems caused by Lua's nil == missing value behavior. Although :code:`json.NULL == nil` is :code:`true`, all the print instructions in this program will print the correct value: 10."
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:383
+msgid "#!/usr/bin/env tarantool\n"
+"\n"
+"local json = require('json')\n"
+"local t = {}\n"
+"t[1] = 1; t[2] = json.NULL; t[3]= json.NULL;\n"
+"t[4] = 4; t[5] = json.NULL; t[6]= json.NULL;\n"
+"t[6] = 4; t[7] = json.NULL; t[8]= json.NULL;\n"
+"t[9] = json.NULL\n"
+"t[10] = 10\n"
+"print(#t)\n"
+"local counter = 0\n"
+"for k,v in pairs(t) do counter = counter + 1 end\n"
+"print(counter)\n"
+"local max = 0\n"
+"for k,v in pairs(t) do if k > max then max = k end end\n"
+"print(max)"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:406
+msgid "count_map.lua"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:408
+msgid "Get the number of elements in a map-like table."
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:410
+msgid "#!/usr/bin/env tarantool\n"
+"\n"
+"local map = { a = 10, b = 15, c = 20 }\n"
+"local size = 0\n"
+"for _ in pairs(map) do size = size + 1; end\n"
+"print(size)"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:423
+msgid "swap.lua"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:425
+msgid "Use a Lua peculiarity to swap two variables without needing a third variable."
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:427
+msgid "#!/usr/bin/env tarantool\n"
+"\n"
+"local x = 1\n"
+"local y = 2\n"
+"x, y = y, x\n"
+"print(x, y)"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:440
+msgid "class.lua"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:442
+msgid "Create a class, create a metatable for the class, create an instance of the class. Another illustration is at `http://lua-users.org/wiki/LuaClassesWithMetatable <http://lua-users.org/wiki/LuaClassesWithMetatable>`_."
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:446
+msgid "#!/usr/bin/env tarantool\n"
+"\n"
+"-- define class objects\n"
+"local myclass_somemethod = function(self)\n"
+"    print('test 1', self.data)\n"
+"end\n"
+"\n"
+"local myclass_someothermethod = function(self)\n"
+"    print('test 2', self.data)\n"
+"end\n"
+"\n"
+"local myclass_tostring = function(self)\n"
+"    return 'MyClass <'..self.data..'>'\n"
+"end\n"
+"\n"
+"local myclass_mt = {\n"
+"    __tostring = myclass_tostring;\n"
+"    __index = {\n"
+"        somemethod = myclass_somemethod;\n"
+"        someothermethod = myclass_someothermethod;\n"
+"    }\n"
+"}\n"
+"\n"
+"-- create a new object of myclass\n"
+"local object = setmetatable({ data = 'data'}, myclass_mt)\n"
+"print(object:somemethod())\n"
+"print(object.data)"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:480
+msgid "garbage.lua"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:482
+msgid "Activate the `Lua garbage collector <https://www.lua.org/manual/5.1/manual.html#2.10>`_ with the `collectgarbage function <https://www.lua.org/manual/5.1/manual.html#pdf-collectgarbage>`_."
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:485
+msgid "#!/usr/bin/env tarantool\n"
+"\n"
+"collectgarbage('collect')"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:495
+msgid "fiber_producer_and_consumer.lua"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:497
+msgid "Start one fiber for producer and one fiber for consumer. Use :ref:`fiber.channel() <fiber_ipc-channel>` to exchange data and synchronize. One can tweak the channel size (:code:`ch_size` in the program code) to control the number of simultaneous tasks waiting for processing."
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:502
+msgid "#!/usr/bin/env tarantool\n"
+"\n"
+"local fiber = require('fiber')\n"
+"local function consumer_loop(ch, i)\n"
+"    -- initialize consumer synchronously or raise an error()\n"
+"    fiber.sleep(0) -- allow fiber.create() to continue\n"
+"    while true do\n"
+"        local data = ch:get()\n"
+"        if data == nil then\n"
+"            break\n"
+"        end\n"
+"        print('consumed', i, data)\n"
+"        fiber.sleep(math.random()) -- simulate some work\n"
+"    end\n"
+"end\n"
+"\n"
+"local function producer_loop(ch, i)\n"
+"    -- initialize consumer synchronously or raise an error()\n"
+"    fiber.sleep(0) -- allow fiber.create() to continue\n"
+"    while true do\n"
+"        local data = math.random()\n"
+"        ch:put(data)\n"
+"        print('produced', i, data)\n"
+"    end\n"
+"end\n"
+"\n"
+"local function start()\n"
+"    local consumer_n = 5\n"
+"    local producer_n = 3\n"
+"\n"
+"    -- Create a channel\n"
+"    local ch_size = math.max(consumer_n, producer_n)\n"
+"    local ch = fiber.channel(ch_size)\n"
+"\n"
+"    -- Start consumers\n"
+"    for i=1, consumer_n,1 do\n"
+"        fiber.create(consumer_loop, ch, i)\n"
+"    end\n"
+"\n"
+"    -- Start producers\n"
+"    for i=1, producer_n,1 do\n"
+"        fiber.create(producer_loop, ch, i)\n"
+"    end\n"
+"end\n"
+"\n"
+"start()\n"
+"print('started')"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:556
+msgid "socket_tcpconnect.lua"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:558
+msgid "Use :ref:`socket.tcp_connect() <socket-tcp_connect>` to connect to a remote host via TCP. Display the connection details and the result of a GET request."
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:562
+msgid "#!/usr/bin/env tarantool\n"
+"\n"
+"local s = require('socket').tcp_connect('google.com', 80)\n"
+"print(s:peer().host)\n"
+"print(s:peer().family)\n"
+"print(s:peer().type)\n"
+"print(s:peer().protocol)\n"
+"print(s:peer().port)\n"
+"print(s:write(\"GET / HTTP/1.0\\r\\n\\r\\n\"))\n"
+"print(s:read('\\r\\n'))\n"
+"print(s:read('\\r\\n'))"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:580
+msgid "socket_tcp_echo.lua"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:582
+msgid "Use :ref:`socket.tcp_connect() <socket-tcp_connect>` to set up a simple TCP server, by creating a function that handles requests and echos them, and passing the function to :ref:`socket.tcp_server() <socket-tcp_server>`. This program has been used to test with 100,000 clients, with each client getting a separate fiber."
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:590
+msgid "#!/usr/bin/env tarantool\n"
+"\n"
+"local function handler(s, peer)\n"
+"    s:write(\"Welcome to test server, \" .. peer.host ..\"\\n\")\n"
+"    while true do\n"
+"        local line = s:read('\\n')\n"
+"        if line == nil then\n"
+"            break -- error or eof\n"
+"        end\n"
+"        if not s:write(\"pong: \"..line) then\n"
+"            break -- error or eof\n"
+"        end\n"
+"    end\n"
+"end\n"
+"\n"
+"local server, addr = require('socket').tcp_server('localhost', 3311, handler)"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:613
+msgid "getaddrinfo.lua"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:615
+msgid "Use :ref:`socket.getaddrinfo() <socket-getaddrinfo>` to perform non-blocking DNS resolution, getting both the AF_INET6 and AF_INET information for 'google.com'. This technique is not always necessary for tcp connections because :ref:`socket.tcp_connect() <socket-tcp_connect>` performs `socket.getaddrinfo` under the hood, before trying to connect to the first available address."
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:623
+msgid "#!/usr/bin/env tarantool\n"
+"\n"
+"local s = require('socket').getaddrinfo('google.com', 'http', { type = 'SOCK_STREAM' })\n"
+"print('host=',s[1].host)\n"
+"print('family=',s[1].family)\n"
+"print('type=',s[1].type)\n"
+"print('protocol=',s[1].protocol)\n"
+"print('port=',s[1].port)\n"
+"print('host=',s[2].host)\n"
+"print('family=',s[2].family)\n"
+"print('type=',s[2].type)\n"
+"print('protocol=',s[2].protocol)\n"
+"print('port=',s[2].port)"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:643
+msgid "socket_udp_echo.lua"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:645
+msgid "Tarantool does not currently have a `udp_server` function, therefore socket_udp_echo.lua is more complicated than socket_tcp_echo.lua. It can be implemented with sockets and fibers."
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:650
+msgid "#!/usr/bin/env tarantool\n"
+"\n"
+"local socket = require('socket')\n"
+"local errno = require('errno')\n"
+"local fiber = require('fiber')\n"
+"\n"
+"local function udp_server_loop(s, handler)\n"
+"    fiber.name(\"udp_server\")\n"
+"    while true do\n"
+"        -- try to read a datagram first\n"
+"        local msg, peer = s:recvfrom()\n"
+"        if msg == \"\" then\n"
+"            -- socket was closed via s:close()\n"
+"            break\n"
+"        elseif msg ~= nil then\n"
+"            -- got a new datagram\n"
+"            handler(s, peer, msg)\n"
+"        else\n"
+"            if s:errno() == errno.EAGAIN or s:errno() == errno.EINTR then\n"
+"                -- socket is not ready\n"
+"                s:readable() -- yield, epoll will wake us when new data arrives\n"
+"            else\n"
+"                -- socket error\n"
+"                local msg = s:error()\n"
+"                s:close() -- save resources and don't wait GC\n"
+"                error(\"Socket error: \" .. msg)\n"
+"            end\n"
+"        end\n"
+"    end\n"
+"end\n"
+"\n"
+"local function udp_server(host, port, handler)\n"
+"    local s = socket('AF_INET', 'SOCK_DGRAM', 0)\n"
+"    if not s then\n"
+"        return nil -- check errno:strerror()\n"
+"    end\n"
+"    if not s:bind(host, port) then\n"
+"        local e = s:errno() -- save errno\n"
+"        s:close()\n"
+"        errno(e) -- restore errno\n"
+"        return nil -- check errno:strerror()\n"
+"    end\n"
+"\n"
+"    fiber.create(udp_server_loop, s, handler) -- start a new background fiber\n"
+"    return s\n"
+"end"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:699
+msgid "A function for a client that connects to this server could look something like this ..."
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:702
+msgid "local function handler(s, peer, msg)\n"
+"    -- You don't have to wait until socket is ready to send UDP\n"
+"    -- s:writable()\n"
+"    s:sendto(peer.host, peer.port, \"Pong: \" .. msg)\n"
+"end\n"
+"\n"
+"local server = udp_server('127.0.0.1', 3548, handler)\n"
+"if not server then\n"
+"    error('Failed to bind: ' .. errno.strerror())\n"
+"end\n"
+"\n"
+"print('Started')\n"
+"\n"
+"require('console').start()"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:723
+msgid "http_get.lua"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:725
+msgid "Use the :ref:`http module <http-module>` to get data via HTTP."
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:728
+msgid "#!/usr/bin/env tarantool\n"
+"\n"
+"local http_client = require('http.client')\n"
+"local json = require('json')\n"
+"local r = http_client.get('https://api.frankfurter.app/latest?to=USD%2CRUB')\n"
+"if r.status ~= 200 then\n"
+"    print('Failed to get currency ', r.reason)\n"
+"    return\n"
+"end\n"
+"local data = json.decode(r.body)\n"
+"print(data.base, 'rate of', data.date, 'is', data.rates.RUB, 'RUB or', data.rates.USD, 'USD')"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:746
+msgid "http_send.lua"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:748
+msgid "Use the :ref:`http module <http-module>` to send data via HTTP."
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:751
+msgid "#!/usr/bin/env tarantool\n"
+"\n"
+"local http_client = require('http.client')\n"
+"local json = require('json')\n"
+"local data = json.encode({ Key = 'Value'})\n"
+"local headers = { Token = 'xxxx', ['X-Secret-Value'] = '42' }\n"
+"local r = http_client.post('http://localhost:8081', data, { headers = headers})\n"
+"if r.status == 200 then\n"
+"    print 'Success'\n"
+"end"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:768
+msgid "http_server.lua"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:770
+msgid "Use the `http`_ `rock`_ (which must first be installed) to turn Tarantool into a web server."
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:773
+msgid "#!/usr/bin/env tarantool\n"
+"\n"
+"local function handler(self)\n"
+"    return self:render{ json = { ['Your-IP-Is'] = self.peer.host } }\n"
+"end\n"
+"\n"
+"local server = require('http.server').new(nil, 8080, {charset = \"utf8\"}) -- listen *:8080\n"
+"server:route({ path = '/' }, handler)\n"
+"server:start()\n"
+"-- connect to localhost:8080 and see json"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:790
+msgid "http_generate_html.lua"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:792
+msgid "Use the `http <https://github.com/tarantool/http/>`_ `rock` (which must first be installed) to generate HTML pages from templates. The `http <https://github.com/tarantool/http/>`_ `rock <https://rocks.tarantool.org/>`_ has a fairly simple template engine which allows execution of regular Lua code inside text blocks (like PHP). Therefore there is no need to learn new languages in order to write templates."
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:799
+msgid "#!/usr/bin/env tarantool\n"
+"\n"
+"local function handler(self)\n"
+"local fruits = {'Apple', 'Orange', 'Grapefruit', 'Banana'}\n"
+"    return self:render{ fruits = fruits }\n"
+"end\n"
+"\n"
+"local server = require('http.server').new(nil, 8080, {charset = \"utf8\"}) -- nil means '*'\n"
+"server:route({ path = '/', file = 'index.html.lua' }, handler)\n"
+"server:start()"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:812
+msgid "An \"HTML\" file for this server, including Lua, could look like this (it would produce \"1 Apple | 2 Orange | 3 Grapefruit | 4 Banana\"). Create a ``templates`` directory and put this file in it:"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:816
+msgid "<html>\n"
+"<body>\n"
+"    <table border=\"1\">\n"
+"        % for i,v in pairs(fruits) do\n"
+"        <tr>\n"
+"            <td><%= i %></td>\n"
+"            <td><%= v %></td>\n"
+"        </tr>\n"
+"        % end\n"
+"    </table>\n"
+"</body>\n"
+"</html>"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:835
+msgid "select_all.go"
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:837
+msgid "In Go, there is no one-liner to select all tuples from a Tarantool space. Yet you can use a script like this one. Call it on the instance you want to connect to."
+msgstr ""
+
+#: ../../doc/how-to/app/cookbook.rst:841
+msgid "package main\n"
+"\n"
+"import (\n"
+"	\"fmt\"\n"
+"	\"log\"\n"
+"\n"
+"	\"github.com/tarantool/go-tarantool\"\n"
+")\n"
+"\n"
+"/*\n"
+"box.cfg{listen = 3301}\n"
+"box.schema.user.passwd('pass')\n"
+"\n"
+"s = box.schema.space.create('tester')\n"
+"s:format({\n"
+"    {name = 'id', type = 'unsigned'},\n"
+"    {name = 'band_name', type = 'string'},\n"
+"    {name = 'year', type = 'unsigned'}\n"
+"})\n"
+"s:create_index('primary', { type = 'hash', parts = {'id'} })\n"
+"s:create_index('scanner', { type = 'tree', parts = {'id', 'band_name'} })\n"
+"\n"
+"s:insert{1, 'Roxette', 1986}\n"
+"s:insert{2, 'Scorpions', 2015}\n"
+"s:insert{3, 'Ace of Base', 1993}\n"
+"*/\n"
+"\n"
+"func main() {\n"
+"	conn, err := tarantool.Connect(\"127.0.0.1:3301\", tarantool.Opts{\n"
+"		User: \"admin\",\n"
+"		Pass: \"pass\",\n"
+"	})\n"
+"\n"
+"	if err != nil {\n"
+"		log.Fatalf(\"Connection refused\")\n"
+"	}\n"
+"	defer conn.Close()\n"
+"\n"
+"	spaceName := \"tester\"\n"
+"	indexName := \"scanner\"\n"
+"	idFn := conn.Schema.Spaces[spaceName].Fields[\"id\"].Id\n"
+"	bandNameFn := conn.Schema.Spaces[spaceName].Fields[\"band_name\"].Id\n"
+"\n"
+"	var tuplesPerRequest uint32 = 2\n"
+"	cursor := []interface{}{}\n"
+"\n"
+"	for {\n"
+"		resp, err := conn.Select(spaceName, indexName, 0, tuplesPerRequest, tarantool.IterGt, cursor)\n"
+"		if err != nil {\n"
+"			log.Fatalf(\"Failed to select: %s\", err)\n"
+"		}\n"
+"\n"
+"		if resp.Code != tarantool.OkCode {\n"
+"			log.Fatalf(\"Select failed: %s\", resp.Error)\n"
+"		}\n"
+"\n"
+"		if len(resp.Data) == 0 {\n"
+"			break\n"
+"		}\n"
+"\n"
+"		fmt.Println(\"Iteration\")\n"
+"\n"
+"		tuples := resp.Tuples()\n"
+"		for _, tuple := range tuples {\n"
+"			fmt.Printf(\"\\t%v\\n\", tuple)\n"
+"		}\n"
+"\n"
+"		lastTuple := tuples[len(tuples)-1]\n"
+"		cursor = []interface{}{lastTuple[idFn], lastTuple[bandNameFn]}\n"
+"	}\n"
+"}\n"
+""
+msgstr ""

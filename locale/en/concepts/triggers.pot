@@ -1,0 +1,141 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/concepts/triggers.rst:7
+msgid "Triggers"
+msgstr ""
+
+#: ../../doc/concepts/triggers.rst:9
+msgid "**Triggers**, also known as **callbacks**, are functions which the server executes when certain events happen."
+msgstr ""
+
+#: ../../doc/concepts/triggers.rst:12
+msgid "To associate an event with a callback, pass the callback to the corresponding :samp:`on_{event}` function:"
+msgstr ""
+
+#: ../../doc/concepts/triggers.rst:15
+msgid ":doc:`/reference/reference_lua/box_session/on_connect` or :doc:`/reference/reference_lua/box_session/on_disconnect`,"
+msgstr ""
+
+#: ../../doc/concepts/triggers.rst:17
+msgid ":doc:`/reference/reference_lua/box_session/on_auth`,"
+msgstr ""
+
+#: ../../doc/concepts/triggers.rst:18
+msgid ":doc:`/reference/reference_lua/box_space/on_replace` or :doc:`/reference/reference_lua/box_space/before_replace`,"
+msgstr ""
+
+#: ../../doc/concepts/triggers.rst:20
+msgid ":doc:`/reference/reference_lua/box_txn_management/on_commit` or :doc:`/reference/reference_lua/box_txn_management/on_rollback`,"
+msgstr ""
+
+#: ../../doc/concepts/triggers.rst:22
+msgid ":ref:`net.box.on_connect() <net_box-on_connect>` or :ref:`net.box.on_disconnect() <net_box-on_disconnect>`,"
+msgstr ""
+
+#: ../../doc/concepts/triggers.rst:24
+msgid ":ref:`net.box.on_schema_reload() <net_box-on_schema_reload>`,"
+msgstr ""
+
+#: ../../doc/concepts/triggers.rst:25
+msgid ":doc:`/reference/reference_lua/box_ctl/on_schema_init` or :doc:`/reference/reference_lua/box_ctl/on_shutdown`,"
+msgstr ""
+
+#: ../../doc/concepts/triggers.rst:27
+msgid ":ref:`swim_object:on_member_event() <swim-on_member_event>`,"
+msgstr ""
+
+#: ../../doc/concepts/triggers.rst:28
+msgid ":doc:`/reference/reference_lua/box_session/on_access_denied`."
+msgstr ""
+
+#: ../../doc/concepts/triggers.rst:30
+msgid "Then the server will store the callback function and call it when the corresponding event happens."
+msgstr ""
+
+#: ../../doc/concepts/triggers.rst:33
+msgid "All triggers have the following characteristics:"
+msgstr ""
+
+#: ../../doc/concepts/triggers.rst:35
+msgid "Triggers are defined only by the :ref:`'admin' user <authentication-owners_privileges>`."
+msgstr ""
+
+#: ../../doc/concepts/triggers.rst:37
+msgid "Triggers are stored in the Tarantool instance's memory, not in the database. Therefore triggers disappear when the instance is shut down. To make them permanent, put function definitions and trigger settings into Tarantool's :ref:`initialization script <index-init_label>`."
+msgstr ""
+
+#: ../../doc/concepts/triggers.rst:42
+msgid "Triggers have low overhead. If a trigger is not defined, then the overhead is minimal: merely a pointer dereference and check. If a trigger is defined, then its overhead is equivalent to the overhead of calling a function."
+msgstr ""
+
+#: ../../doc/concepts/triggers.rst:46
+msgid "There can be multiple triggers for one event. In this case, triggers are executed in the reverse order that they were defined in."
+msgstr ""
+
+#: ../../doc/concepts/triggers.rst:49
+msgid "Triggers must work within the event context, that is, operate variables passed as the trigger function arguments. Triggers should not affect the global state of the program or change things unrelated to the event. If a trigger performs such calls as, for example, `os.exit() <http://www.lua.org/manual/5.1/manual.html#pdf-os.exit>`_ or :doc:`/reference/reference_lua/box_txn_management/rollback`, the result of its execution is undefined."
+msgstr ""
+
+#: ../../doc/concepts/triggers.rst:56
+msgid "Triggers are replaceable. The request to \"redefine a trigger\" implies passing a new trigger function and an old trigger function to one of the :samp:`on_{event}` functions."
+msgstr ""
+
+#: ../../doc/concepts/triggers.rst:60
+msgid "The :samp:`on_{event}` functions all have parameters which are function pointers, and they all return function pointers. Remember that a Lua function definition such as ``function f() x = x + 1 end`` is the same as ``f = function () x = x + 1 end`` - in both cases ``f`` gets a function pointer. And ``trigger = box.session.on_connect(f)`` is the same as ``trigger = box.session.on_connect(function () x = x + 1 end)`` - in both cases ``trigger`` gets the function pointer which was passed."
+msgstr ""
+
+#: ../../doc/concepts/triggers.rst:68
+msgid "You can call any :samp:`on_{event}` function with no arguments to get a list of its triggers. For example, use ``box.session.on_connect()`` to return a table of all connect-trigger functions."
+msgstr ""
+
+#: ../../doc/concepts/triggers.rst:72
+msgid "Triggers can be useful in solving problems with replication. See details in :ref:`Resolving replication conflicts <replication-problem_solving>`."
+msgstr ""
+
+#: ../../doc/concepts/triggers.rst:75
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/concepts/triggers.rst:77
+msgid "Here we log connect and disconnect events into Tarantool server log."
+msgstr ""
+
+#: ../../doc/concepts/triggers.rst:79
+msgid "log = require('log')\n"
+"\n"
+"function on_connect_impl()\n"
+" log.info(\"connected \"..box.session.peer()..\", sid \"..box.session.id())\n"
+"end\n"
+"\n"
+"function on_disconnect_impl()\n"
+" log.info(\"disconnected, sid \"..box.session.id())\n"
+"end\n"
+"\n"
+"function on_auth_impl(user)\n"
+" log.info(\"authenticated sid \"..box.session.id()..\" as \"..user)\n"
+"end\n"
+"\n"
+"function on_connect() pcall(on_connect_impl) end\n"
+"function on_disconnect() pcall(on_disconnect_impl) end\n"
+"function on_auth(user) pcall(on_auth_impl, user) end\n"
+"\n"
+"box.session.on_connect(on_connect)\n"
+"box.session.on_disconnect(on_disconnect)\n"
+"box.session.on_auth(on_auth)"
+msgstr ""

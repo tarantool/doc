@@ -1,0 +1,97 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_index/tuple_pos.rst:5
+msgid "index_object:tuple_pos()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/tuple_pos.rst:11
+msgid "Return a tuple's position for an index. This value can be passed to the ``after`` option of the ``select`` and ``pairs`` methods:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/tuple_pos.rst:14
+msgid ":ref:`index_object:select <box_index-select>` and :ref:`space_object:select <box_space-select>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/tuple_pos.rst:15
+msgid ":ref:`index_object:pairs <box_index-pairs>` and :ref:`space_object:pairs <box_space-pairs>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/tuple_pos.rst:17
+msgid "Note that ``tuple_pos`` does not work with :ref:`functional <box_space-index_func>` and multikey indexes."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/tuple_pos.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/tuple_pos.rst:19
+msgid "an :ref:`object reference <app_server-object_reference>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/tuple_pos.rst:21
+msgid "a tuple whose position should be found"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/tuple_pos.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/tuple_pos.rst:23
+msgid "a tuple's position in a space"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/tuple_pos.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/tuple_pos.rst:24
+msgid "base64-encoded string"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/tuple_pos.rst:27
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/tuple_pos.rst:29
+msgid "To try out this example, you need to bootstrap a Tarantool instance as described in :ref:`Using data operations <box_space-operations-detailed-examples>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/tuple_pos.rst:32
+msgid "-- Insert test data --\n"
+"tarantool> bands:insert{1, 'Roxette', 1986}\n"
+"           bands:insert{2, 'Scorpions', 1965}\n"
+"           bands:insert{3, 'Ace of Base', 1987}\n"
+"           bands:insert{4, 'The Beatles', 1960}\n"
+"           bands:insert{5, 'Pink Floyd', 1965}\n"
+"           bands:insert{6, 'The Rolling Stones', 1962}\n"
+"---\n"
+"...\n"
+"\n"
+"-- Get a tuple's position --\n"
+"tarantool> position = bands.index.primary:tuple_pos({3, 'Ace of Base', 1987})\n"
+"---\n"
+"...\n"
+"-- Pass the tuple's position as the 'after' parameter --\n"
+"tarantool> bands:select({}, {limit = 3, after = position})\n"
+"---\n"
+"- - [4, 'The Beatles', 1960]\n"
+"  - [5, 'Pink Floyd', 1965]\n"
+"  - [6, 'The Rolling Stones', 1962]\n"
+"..."
+msgstr ""

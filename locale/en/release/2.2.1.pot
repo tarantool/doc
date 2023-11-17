@@ -1,0 +1,361 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/release/2.2.1.rst:4
+msgid "Tarantool 2.2.1"
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:6
+msgid "Release: :tarantool-release:`2.2.1`. Release type: beta. Release date: 2019-08-02."
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:10
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:12
+msgid "This is a :ref:`beta <release-policy>` version of the 2.2 series. The label \"beta\" means we have no critical issues and all planned features are there."
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:15
+msgid "The goal of this release is to introduce new indexing features, extend SQL feature set, and improve integration with the core."
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:20
+msgid "Compatibility"
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:22
+msgid "Tarantool 2.x is backward compatible with Tarantool 1.10.x in binary data layout, client-server protocol and replication protocol. You can :ref:`upgrade <admin-upgrades>` using the ``box.schema.upgrade()`` procedure."
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:28
+msgid "Functionality added or changed"
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:30
+msgid "(SQL) ALTER now allows to add a constraint:"
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:32
+msgid "CREATE TABLE t2 (id INT PRIMARY KEY);\n"
+"ALTER TABLE t2 ADD CONSTRAINT ck CHECK(id  > 0);"
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:37
+msgid "(SQL) CHECK constraints are validated during DML operations performed from the Lua land:"
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:40
+msgid "s = box.schema.space.create('withdata')\n"
+"pk = s:create_index('pk')\n"
+"s:format({{'idx', 'number'}})\n"
+"s:create_check_constraint('le10', '\"idx\" < 10')"
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:47
+msgid "tarantool> s:insert({11})\n"
+"---\n"
+"- error: 'Check constraint failed ''le10'': \"idx\" < 10'\n"
+"..."
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:54
+msgid "(SQL) New :ref:`SQL types <sql_column_def_data_type>` introduced: VARBINARY, UNSIGNED, and `BOOLEAN`."
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:57
+msgid "(SQL) CREATE TABLE statement (and all other data definition statements) are now truly transactional."
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:60
+msgid "(SQL) SQL now uses Tarantool diagnostics API to set errors, so error reporting now provides an error code in addition to error message."
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:63
+msgid "(SQL) Multiple improvements to the type system to make it more consistent."
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:65
+msgid "(SQL) Added aliases for LENGTH() from ANSI SQL: CHAR_LENGTH() and CHARACTER_LENGTH()."
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:68
+msgid "(SQL) It is possible to use HAVING without GROUP BY."
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:70
+msgid "(Server) New fixed point type (DECIMAL) introduced to Tarantool:"
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:72
+msgid "decimal = require('decimal')\n"
+"tarantool> a = decimal.new('123.456789')\n"
+"---\n"
+"...\n"
+"tarantool> decimal.precision(a)\n"
+"---\n"
+"- 9\n"
+"...\n"
+"tarantool> decimal.scale(a)\n"
+"---\n"
+"- 6\n"
+"...\n"
+"tarantool> decimal.round(a, 4)\n"
+"---\n"
+"- '123.4568'\n"
+"..."
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:91
+msgid "(Server) Multikey index support:"
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:93
+msgid "-- Multikey indexes (for memtx tree & vinyl);\n"
+"-- cannot be primary; may be non-unique\n"
+"s = box.schema.space.create('clients', {engine = 'vinyl'})\n"
+"pk = s:create_index('pk')\n"
+"phone_type = s:create_index('phone_type', {\n"
+"    unique = false,\n"
+"    parts = {{'[3][*].type', 'str'}}})\n"
+"\n"
+"s:insert({1, 'James',\n"
+"         {{type = 'home', number = '999'},\n"
+"          {type = 'work', number = '777'}\n"
+"         }})\n"
+"s:insert({2, 'Bob',\n"
+"          {{type = 'work', number = '888'}}})\n"
+"s:insert({3, 'Alice', {{type = 'home', number = '333'}}})"
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:111
+msgid "tarantool> phone_type:select('work')\n"
+"---\n"
+"- - [1, 'James', [{'type': 'home', 'number': '999'},\n"
+"                  {'type': 'work', 'number': '777'}]]\n"
+"  - [2, 'Bob', [{'type': 'work', 'number': '888'}]]\n"
+"..."
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:120
+msgid "(Server) Now it is possible to make functions persistent:"
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:122
+msgid "box.schema.func.create('summarize',\n"
+"                      {body = [[function(a,b) return a+b end]],\n"
+"                      is_deterministic = true})"
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:128
+msgid "tarantool> box.func.summarize\n"
+"- aggregate: none\n"
+"  returns: any\n"
+"  exports:\n"
+"    lua: true\n"
+"    sql: false\n"
+"  id: 66\n"
+"  is_sandboxed: false\n"
+"      setuid: false\n"
+"  is_multikey: false\n"
+"  is_deterministic: true\n"
+"  body: function(a,b) return a+b end\n"
+"  name: summarize\n"
+"  language: LUA\n"
+"\n"
+"tarantool> box.func.summarize:call({1, 2})\n"
+"---\n"
+"- 3\n"
+"..."
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:150
+msgid "(Server) Functional indexes implemented:"
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:152
+msgid "-- Functional multikey indexes: define is_multikey = true\n"
+"-- in function definition and return a table of keys from function\n"
+"lua_code = [[function(tuple)\n"
+"                local address = string.split(tuple[2])\n"
+"                local ret = {}\n"
+"                for _, v in pairs(address) do table.insert(ret, {utf8.upper(v)}) end\n"
+"                return ret\n"
+"             end]]\n"
+"box.schema.func.create('addr_extractor', {body = lua_code,\n"
+"                                          is_deterministic = true,\n"
+"                                          is_sandboxed = true,\n"
+"                                          opts = {is_multikey = true}})\n"
+"s = box.schema.space.create('withdata')\n"
+"pk = s:create_index('name', {parts = {1, 'string'}})\n"
+"idx = s:create_index('addr', {unique = false, func = box.func.addr_extractor.id, parts = {{1, 'string', collation = 'unicode_ci'}}})\n"
+"\n"
+"s:insert({\"James\", \"SIS Building Lambeth London UK\"})\n"
+"s:insert({\"Sherlock\", \"221B Baker St Marylebone London NW1 6XE UK\"})"
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:173
+msgid "tarantool>  idx:select('Sis')\n"
+"---\n"
+"- - ['James', 'SIS Building Lambeth London UK']\n"
+"..."
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:180
+msgid "Partial core dumps, which are now on by default. It is now possible to avoid dumping tuples at all during core dump."
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:183
+msgid "Data definition statements, such as create or alter index, which do not yield, can now be used in a transaction. This in practice includes all statements except creating an index on a non-empty space, or changing a format on a non-empty space."
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:188
+msgid "It is now possible to set a sequence not only for the first part of the index:"
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:190
+msgid "s.index.pk:alter{sequence = {field = 2}}"
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:194
+msgid "Allow to call ``box.session.exists()`` and ``box.session.fd()`` without any arguments."
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:197
+msgid "New function introduced to get an index key from a tuple:"
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:199
+msgid "s = box.schema.space.create('withdata')\n"
+"pk = s:create_index('pk')\n"
+"sk = s:create_index('sk', {parts = {\n"
+"      {2, 'number', path = 'a'},\n"
+"      {2, 'number', path = 'b'}}})\n"
+"s:insert{1, {a = 1, b = 1}}\n"
+"s:insert{2, {a = 1, b = 2}}\n"
+"s:insert{3, {a = 3, b = 3}}\n"
+"sk:select(2)\n"
+"\n"
+"key_def_lib = require('key_def')\n"
+"key_def = key_def_lib.new(pk.parts)\n"
+"for _, tuple in sk:pairs({1}) do\n"
+"    local key = key_def:extract_key(tuple)\n"
+"    pk:delete(key)\n"
+"end\n"
+"s:select()"
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:219
+msgid "(Engines) New protocol (called :ref:`SWIM <swim-module>`) implemented to keep a table of cluster members."
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:222
+msgid "(Engines) Removed yields from Vinyl DDL on commit triggers."
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:224
+msgid "(Engines) Improved performance of SELECT-s on memtx spaces. The drawback is that now every memtx-tree tuple consumes extra 8 bytes for a search hint."
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:228
+msgid "(Engines) Indexes of memtx spaces are now built in background fibers. This means that we do not block the event loop during index build anymore."
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:231
+msgid "Replication applier now can apply transactions which were concurrent on the master concurrently on replica. This dramatically improves replication peak performance, from ~50K writes per second to 200K writes per second and higher on a single instance."
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:236
+msgid "Transaction boundaries introduced to replication protocol. This means that Tarantool replication is now transaction-safe, and also reduces load on replica write ahead log in case the master uses a lot of multi-statement transactions."
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:241
+msgid "Tuple access by field name for ``net.box``:"
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:243
+msgid "box.cfg{listen = 3302}\n"
+"box.schema.user.grant('guest','read, write, execute', 'space')\n"
+"box.schema.user.grant('guest', 'create', 'space')\n"
+"box.schema.create_space(\"named\", {format = {{name = \"id\"}}})\n"
+"box.space.named:create_index('id', {parts = {{1, 'unsigned'}}})\n"
+"box.space.named:insert({1})\n"
+"\n"
+"require('net.box').connect('localhost', 3302).space.named:get(1).id"
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:254
+msgid "Cluster id check is now the slave’s responsibility."
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:256
+msgid "It is now possible to set the output format to Lua instead of YAML in the :ref:`interactive console <interactive_console>`."
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:259
+msgid "Multiple new collations added. New collations follow this naming pattern:"
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:262
+msgid "unicode_<locale>_<strength>"
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:266
+msgid "Three strengths are used:"
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:268
+msgid "Primary - \"s1”"
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:269
+msgid "Secondary - \"s2\""
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:270
+msgid "Tertiary - \"s3\""
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:272
+msgid "The following list contains so-called \"stable\" collations -- the ones whose sort order doesn't depend on the ICU version:"
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:275
+msgid "unicode_am_s3\n"
+"unicode_fi_s3\n"
+"unicode_de__phonebook_s3\n"
+"unicode_haw_s3\n"
+"unicode_he_s3\n"
+"unicode_hi_s3\n"
+"unicode_is_s3\n"
+"unicode_ja_s3\n"
+"unicode_ko_s3\n"
+"unicode_lt_s3\n"
+"unicode_pl_s3\n"
+"unicode_si_s3\n"
+"unicode_es_s3"
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:291
+msgid "New function ``utime()`` introduced to the ``fio`` module."
+msgstr ""
+
+#: ../../doc/release/2.2.1.rst:293
+msgid ":ref:`Merger <merger-module>` for tuples streams added."
+msgstr ""

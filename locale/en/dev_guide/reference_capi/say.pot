@@ -1,0 +1,62 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/dev_guide/reference_capi/say.rst:3
+msgid "Module say (logging)"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/say.rst:11
+msgid "do not use this value directly"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/say.rst:29
+#: ../../doc/dev_guide/reference_capi/say.rst:45
+msgid "Format and print a message to Tarantool log file."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/say.rst:0
+#: ../../doc/dev_guide/reference_capi/say.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/say.rst:31
+msgid ":ref:`log level <c_api-say-say_level>`"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/say.rst:32
+#: ../../doc/dev_guide/reference_capi/say.rst:47
+msgid "``printf()``-like format string"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/say.rst:33
+#: ../../doc/dev_guide/reference_capi/say.rst:48
+msgid "format arguments"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/say.rst:35
+#: ../../doc/dev_guide/reference_capi/say.rst:50
+msgid "See also :manpage:`printf(3)`, :ref:`say_level<c_api-say-say_level>`"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/say.rst:52
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/say.rst:54
+msgid "say_info(\"Some useful information: %s\", status);"
+msgstr ""

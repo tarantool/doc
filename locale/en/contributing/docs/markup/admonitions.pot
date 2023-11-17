@@ -1,0 +1,106 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/contributing/docs/markup/admonitions.rst:3
+msgid "Admonitions"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/admonitions.rst:5
+msgid "Sometimes you need to highlight a piece of information. For this purpose we use admonitions."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/admonitions.rst:8
+msgid "In Tarantool we have 3 variants of css-style for admonitions:"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/admonitions.rst:10
+msgid "Note:"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/admonitions.rst:12
+msgid "..  note::"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/admonitions.rst:18
+msgid "This is a note. We use it to highlight extra information that might be helpful for users."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/admonitions.rst:21
+msgid "For example, :ref:`here <net_box-new>` we provide a user with extra information about using ``net_box.new()`` function."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/admonitions.rst:24
+msgid "Warning:"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/admonitions.rst:26
+msgid "..  warning::"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/admonitions.rst:32
+msgid "This is a warning. As you might guess, we use it to warn users about something."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/admonitions.rst:34
+msgid "For example, in the description of :doc:`/reference/reference_lua/box_session/on_connect` trigger we warn a user about some consequences of his actions."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/admonitions.rst:37
+msgid "Important:"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/admonitions.rst:39
+msgid "..  important::"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/admonitions.rst:45
+msgid "This block contains essential information that the user should know while doing something."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/admonitions.rst:47
+msgid "For example, the block :doc:`in Getting Started with Docker </how-to/getting_started_go>` is used to warn the user against closing the terminal window."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/admonitions.rst:50
+msgid "Custom admonition:"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/admonitions.rst:52
+msgid "..  admonition:: Your title\n"
+"    :class: fact"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/admonitions.rst:57
+msgid "Your title"
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/admonitions.rst:60
+msgid "This is a fact. ``fact`` is our custom CSS class. Use it when neither note nor warning doesn't fit."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/admonitions.rst:63
+msgid "Note that this type requires a title."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/admonitions.rst:65
+msgid "For example, :ref:`here <box-txn_management>` we highlight the rules that are necessary to read, and that's why we use ``fact``."
+msgstr ""
+
+#: ../../doc/contributing/docs/markup/admonitions.rst:68
+msgid "The docutils `documentation <https://docutils.sourceforge.io/docs/ref/rst/directives.html#admonitions>`_ offers many more variants for admonitions, but for now these three are enough for us. If you think that it is time to create the new style for some of these types, feel free to contribute or contact us to create a task."
+msgstr ""

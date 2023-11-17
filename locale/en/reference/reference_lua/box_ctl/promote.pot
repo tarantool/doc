@@ -1,0 +1,49 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_ctl/promote.rst:4
+msgid "box.ctl.promote()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/promote.rst:8
+msgid "Since version :doc:`2.6.2 </release/2.6.2>`. Renamed in release :doc:`2.6.3 </release/2.6.3>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/promote.rst:11
+msgid "Wait, then choose new replication leader."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/promote.rst:13
+msgid "For :ref:`synchronous transactions <how-to-repl_sync>` it is possible that a new leader will be chosen but the transactions of the old leader have not been completed. Therefore to finalize the transaction, the function ``box.ctl.promote()`` should be called, as mentioned in the notes for :ref:`leader election <repl_leader_elect_important>`. The old name for this function is ``box.ctl.clear_synchro_queue()``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/promote.rst:21
+msgid "The :ref:`election state <box_info_election>` should change to ``leader``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/promote.rst:23
+msgid "Parameters: none"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/promote.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/promote.rst:25
+msgid "nil or function pointer"
+msgstr ""

@@ -1,0 +1,114 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/admin/security.rst:5
+msgid "Security"
+msgstr ""
+
+#: ../../doc/book/admin/security.rst:7
+msgid "Tarantool allows for two types of connections:"
+msgstr ""
+
+#: ../../doc/book/admin/security.rst:9
+msgid "With :ref:`console.listen() <console-listen>` function from ``console`` module, you can set up a port which can be used to open an administrative console to the server. This is for administrators to connect to a running instance and make requests. ``tt`` invokes ``console.listen()`` to create a control socket for each started instance."
+msgstr ""
+
+#: ../../doc/book/admin/security.rst:15
+msgid "With :ref:`box.cfg{listen=...} <cfg_basic-listen>` parameter from ``box`` module, you can set up a binary port for connections which read and write to the database or invoke stored procedures."
+msgstr ""
+
+#: ../../doc/book/admin/security.rst:19
+msgid "When you connect to an admin console:"
+msgstr ""
+
+#: ../../doc/book/admin/security.rst:21
+msgid "The client-server protocol is plain text."
+msgstr ""
+
+#: ../../doc/book/admin/security.rst:22
+msgid "No password is necessary."
+msgstr ""
+
+#: ../../doc/book/admin/security.rst:23
+msgid "The user is automatically 'admin'."
+msgstr ""
+
+#: ../../doc/book/admin/security.rst:24
+msgid "Each command is fed directly to the built-in Lua interpreter."
+msgstr ""
+
+#: ../../doc/book/admin/security.rst:26
+msgid "Therefore you must set up ports for the admin console very cautiously. If it is a TCP port, it should only be opened for a specific IP. Ideally, it should not be a TCP port at all, it should be a Unix domain socket, so that access to the server machine is required. Thus a typical port setup for admin console is:"
+msgstr ""
+
+#: ../../doc/book/admin/security.rst:31
+msgid "console.listen('/var/lib/tarantool/socket_name.sock')"
+msgstr ""
+
+#: ../../doc/book/admin/security.rst:35
+msgid "and a typical connection :ref:`URI <index-uri>` is:"
+msgstr ""
+
+#: ../../doc/book/admin/security.rst:37
+msgid "/var/lib/tarantool/socket_name.sock"
+msgstr ""
+
+#: ../../doc/book/admin/security.rst:41
+msgid "if the listener has the privilege to write on ``/var/lib/tarantool`` and the connector has the privilege to read on ``/var/lib/tarantool``. Alternatively, to connect to an admin console of an instance started with ``tt``, use :ref:`tt connect <tt-connect>`."
+msgstr ""
+
+#: ../../doc/book/admin/security.rst:46
+msgid "To find out whether a TCP port is a port for admin console, use ``telnet``. For example:"
+msgstr ""
+
+#: ../../doc/book/admin/security.rst:49
+msgid "$ telnet 0 3303\n"
+"Trying 0.0.0.0...\n"
+"Connected to 0.\n"
+"Escape character is '^]'.\n"
+"Tarantool 2.1.0 (Lua console)\n"
+"type 'help' for interactive help"
+msgstr ""
+
+#: ../../doc/book/admin/security.rst:58
+msgid "In this example, the response does not include the word \"binary\" and does include the words \"Lua console\". Therefore it is clear that this is a successful connection to a port for admin console, and you can now enter admin requests on this terminal."
+msgstr ""
+
+#: ../../doc/book/admin/security.rst:63
+msgid "When you connect to a binary port:"
+msgstr ""
+
+#: ../../doc/book/admin/security.rst:65
+msgid "The client-server protocol is :ref:`binary <box_protocol-iproto_protocol>`."
+msgstr ""
+
+#: ../../doc/book/admin/security.rst:66
+msgid "The user is automatically ':ref:`guest <authentication-users>`'."
+msgstr ""
+
+#: ../../doc/book/admin/security.rst:67
+msgid "To change the user, it’s necessary to authenticate."
+msgstr ""
+
+#: ../../doc/book/admin/security.rst:69
+msgid "For ease of use, ``tt connect`` command automatically detects the type of connection during handshake and uses :ref:`EVAL <box_protocol-eval>` binary protocol command when it’s necessary to execute Lua commands over a binary connection. To execute EVAL, the authenticated user must have global \"EXECUTE\" privilege."
+msgstr ""
+
+#: ../../doc/book/admin/security.rst:75
+msgid "Therefore, when ``ssh`` access to the machine is not available, creating a Tarantool user with global \"EXECUTE\" privilege and non-empty password can be used to provide a system administrator **remote** access to an instance."
+msgstr ""

@@ -1,0 +1,292 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/release/2.10.4.rst:2
+msgid "Tarantool 2.10.4"
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:4
+msgid "Released on 2022-11-11."
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:6
+msgid "Release: :tarantool-release:`2.10.4`."
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:7
+msgid "Tag: ``2.10.4``."
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:10
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:12
+msgid "2.10.4 is the fifth :doc:`stable </release/policy/>` version of the 2.10 release series. It introduces 5 improvements and resolves 28 bugs since 2.10.3."
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:16
+msgid "The “stable” label means that we have all planned features implemented and we see no high-impact issues. However, if you encounter an issue, feel free to `report it <https://github.com/tarantool/tarantool/issues>`__ on GitHub."
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:21
+msgid "Compatibility"
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:23
+msgid "Tarantool 2.x is backward compatible with Tarantool 1.10.x in the binary data layout, client-server protocol, and replication protocol."
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:26
+msgid "Please :doc:`upgrade </book/admin/upgrades>` using the ``box.schema.upgrade()`` procedure to unlock all the new features of the 2.x series."
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:32
+#: ../../doc/release/2.10.4.rst:144
+msgid "Now the empty string, ``n``, ``nu``, ``s``, and ``st`` (that is, leading parts of ``num`` and ``str``) are not accepted as valid field types (:tarantool-issue:`5940`). :ref:`This instruction <admin-upgrades-2.10.4_illegal_type_name>` will help you upgrade to Tarantool 2.10.4 and newer if you've previously used these values in field types."
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:38
+msgid "Functionality added or changed"
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:41
+#: ../../doc/release/2.10.4.rst:68
+msgid "Core"
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:43
+msgid "The JSON log format can now be used with the syslog logger (:tarantool-issue:`7860`)."
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:46
+#: ../../doc/release/2.10.4.rst:124
+msgid "SQL"
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:48
+msgid "New rules are applied to determine the type of CASE operation (:tarantool-issue:`6990`)."
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:50
+msgid "Now ``NULLIF()`` call results have the same type as its first argument (:tarantool-issue:`6989`)."
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:54
+msgid "Build"
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:56
+msgid "Diagnostics now provide relative file paths instead of absolute ones (:tarantool-issue:`7808`)."
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:58
+msgid "Now the compiler info displayed in ``tarantool.build.compiler`` and ``tarantool --version`` shows the ID and the version of the compiler that was used to build Tarantool. The output has the format ``${CMAKE_C_COMPILER_ID}-${CMAKE_C_COMPILER_VERSION}``, for example, ``Clang-14.0.0.14000029`` (:tarantool-issue:`7888`)."
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:65
+msgid "Bugs fixed"
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:70
+msgid "Fixed creation of spaces with a constraint and a foreign key on the same field (:tarantool-issue:`7645`)."
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:72
+msgid "Now the same error is returned when a password or a username provided during authorization is incorrect. This prevents user enumeration (:tarantool-sec-issue:`16`)."
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:75
+msgid "Added boundary checking for ``getenv()`` return values. Also, for security reasons, Tarantool code now copies these values instead of using them directly (:tarantool-issue:`7797`)."
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:78
+msgid "``os.getenv()`` now always returns values of sane size (:tarantool-issue:`7797`)."
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:79
+msgid "Fixed the ``BEGIN``, ``COMMIT``, and ``ROLLBACK`` counters in the ``box.stat()`` output. Now they show the number of started, committed, and rolled back transactions (:tarantool-issue:`7583`)."
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:82
+msgid "Fixed a crash that could occur during log rotation and application exit (:tarantool-issue:`4450`)."
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:84
+msgid "Fixed a possible buffer overflow in ``mp_decode_decimal()`` and ``decimal_unpack()`` when an input string was too long (:tarantool-sec-issue:`17`)."
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:86
+msgid "Fixed a bug in the MsgPack library that could lead to a failure to detect invalid MsgPack input and, as a result, an out-of-bounds read (:tarantool-sec-issue:`18`)."
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:89
+msgid "If an error occurs during a snapshot recovery, its log now contains information about the row that caused the error (:tarantool-issue:`7917`)."
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:93
+msgid "Memtx"
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:95
+msgid "Fixed possible loss of committed tuples in secondary indexes with MVCC transaction manager (:tarantool-issue:`7712`)."
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:97
+msgid "Fixed an assertion being triggered on ``space:drop`` (:tarantool-issue:`7757`)."
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:98
+msgid "Fixed possible violation of the secondary index uniqueness with the transaction manager enabled (:tarantool-issue:`7761`)."
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:102
+msgid "LuaJIT"
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:104
+msgid "Backported patches from vanilla LuaJIT trunk (:tarantool-issue:`7230`). In the scope of this activity, the following issues have been resolved:"
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:107
+msgid "Fix overflow check in ``unpack()`` optimized by a compiler."
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:108
+msgid "Fix recording of ``tonumber()`` with cdata argument for failed conversions (:tarantool-issue:`7655`)."
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:110
+msgid "Fix concatenation operation on cdata. It always raises an error now."
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:113
+msgid "Fixed the Lua stack dump command (``lj-stack``) to support Python 2: unpacking arguments within the list initialization is not supported in it (:tarantool-issue:`7458`)."
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:118
+msgid "Lua"
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:120
+msgid "Fixed a crash in ``msgpack.decode`` in case the input string contains an invalid MsgPack header ``0xc1`` (:tarantool-issue:`7818`)."
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:126
+msgid "Fixed an assertion when ``INDEXED BY`` was used with an index that was at least third in a space (:tarantool-issue:`5976`)."
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:128
+msgid "Fixed a crash that could occur when selecting tuples with more fields than specified in the space format (:tarantool-issue:`5310`, :tarantool-issue:`4666`)."
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:130
+msgid "Fixed an assertion in ``JOIN`` when using an unsupported index (:tarantool-issue:`5678`)."
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:132
+msgid "Creating indexes on newly added fields no longer leads to assertions in ``SELECT`` queries (:tarantool-issue:`5183`)."
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:134
+msgid "Re-running a prepared statement that generates new auto-increment IDs no longer causes an error (:tarantool-issue:`6422`)."
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:136
+msgid "An error is now thrown if too many indexes were created in SQL (:tarantool-issue:`5526`)."
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:140
+msgid "Box"
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:142
+msgid "Revoked execute access rights to the ``LUA`` function from the public role (:tarantool-sec-issue:`14`)."
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:150
+msgid "Fixed a bug when ``type = box.NULL`` in ``key_def.new()`` resulted in ``type = 'unsigned'`` (:tarantool-issue:`5222`)."
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:152
+msgid "The ``_vfunc`` system space now has the same format as ``_func`` (:tarantool-issue:`7822`)."
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:154
+msgid "Fixed a crash on recovery from snapshots that don’t include system spaces (:tarantool-issue:`7800`)."
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:156
+msgid "Fixed a bug that occurred when a foreign key was created together with fields that participate in that foreign key (:tarantool-issue:`7652`)."
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:160
+msgid "Datetime"
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:162
+msgid "Fixed interval arithmetic for boundaries crossing DST (:tarantool-issue:`7700`)."
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:164
+msgid "Results of datetime arithmetic operations could get a different timezone if the DST boundary has been crossed during the operation:"
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:167
+msgid "tarantool> datetime.new{year=2008, month=1, day=1,\n"
+"                        tz='Europe/Moscow'} +\n"
+"           datetime.interval.new{month=6}\n"
+"---\n"
+"- 2008-07-01T01:00:00 Europe/Moscow\n"
+"..."
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:176
+msgid "Now we resolve ``tzoffset`` at the end of operation if ``tzindex`` is not 0."
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:179
+msgid "Fixed subtractions for datetimes with different timezones (:tarantool-issue:`7698`)."
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:181
+msgid "Previously, the timezone difference (``tzoffset``) was ignored in datetime subtraction operations:"
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:184
+msgid "tarantool> datetime.new{tz='MSK'} - datetime.new{tz='UTC'}\n"
+"---\n"
+"- +0 seconds\n"
+"...\n"
+"tarantool> datetime.new{tz='MSK'}.timestamp -\n"
+"           datetime.new{tz='UTC'}.timestamp\n"
+"---\n"
+"- -10800\n"
+"..."
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:196
+msgid "Now this difference is accumulated in the minute component of the resulting interval:"
+msgstr ""
+
+#: ../../doc/release/2.10.4.rst:199
+msgid "tarantool> datetime.new{tz='MSK'} - datetime.new{tz='UTC'}\n"
+"---\n"
+"- -180 minutes\n"
+"..."
+msgstr ""

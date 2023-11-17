@@ -1,0 +1,177 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/tooling/tt_cli/pack.rst:4
+msgid "Packaging the application"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/pack.rst:6
+msgid "$ tt pack TYPE [OPTION ...] .."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/pack.rst:10
+msgid "``tt pack`` packages an application into a distributable bundle of the specified ``TYPE``:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/pack.rst:12
+msgid "``tgz``: create a ``.tgz`` archive."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/pack.rst:13
+msgid "``deb``: create a DEB package."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/pack.rst:14
+msgid "``rpm``: create an RPM package."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/pack.rst:16
+msgid "The command below creates a DEB package for an application:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/pack.rst:18
+msgid "$ tt pack deb"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/pack.rst:22
+msgid "This command generates a ``.deb`` file whose name depends on the environment directory name and the operating system architecture, for example, ``test-env_0.1.0.0-1_x86_64.deb``. You can also pass various :ref:`options <tt-pack-options>` to the ``tt pack`` command to adjust generation properties, for example, customize a bundle name, choose which artifacts should be included, specify the required application dependencies."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/pack.rst:29
+msgid "Options"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/pack.rst:33
+msgid "Include all artifacts in a bundle. In this case, a bundle might include snapshots, WAL files, and logs."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/pack.rst:38
+msgid "Specify the applications included in a bundle."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/pack.rst:40
+#: ../../doc/reference/tooling/tt_cli/pack.rst:60
+#: ../../doc/reference/tooling/tt_cli/pack.rst:89
+#: ../../doc/reference/tooling/tt_cli/pack.rst:99
+#: ../../doc/reference/tooling/tt_cli/pack.rst:111
+#: ../../doc/reference/tooling/tt_cli/pack.rst:123
+#: ../../doc/reference/tooling/tt_cli/pack.rst:138
+msgid "**Example**"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/pack.rst:42
+msgid "$ tt pack tgz --app-list app1,app3"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/pack.rst:48
+msgid "**Applicable to:** ``tgz``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/pack.rst:50
+msgid "Package a Cartridge CLI-compatible archive."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/_includes/cartridge_deprecation_note.rst:3
+msgid "The Tarantool Cartridge framework is deprecated and is not compatible with Tarantool 3.0 and later. This command is added for backward compatibility with earlier versions."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/pack.rst:56
+#: ../../doc/reference/tooling/tt_cli/pack.rst:68
+#: ../../doc/reference/tooling/tt_cli/pack.rst:107
+#: ../../doc/reference/tooling/tt_cli/pack.rst:119
+msgid "**Applicable to:** ``deb``, ``rpm``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/pack.rst:58
+msgid "Specify dependencies included in RPM and DEB packages."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/pack.rst:62
+msgid "$ tt pack deb --deps 'wget,make>0.1.0,unzip>1,unzip<=7'"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/pack.rst:70
+msgid "Specify the path to a file containing dependencies included in RPM and DEB packages. For example, the ``package-deps.txt`` file below contains several dependencies and their versions:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/pack.rst:73
+msgid "unzip==6.0\n"
+"neofetch>=6,<7\n"
+"gcc>8"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/pack.rst:79
+msgid "If this file is placed in the current directory, a ``tt pack`` command might look like this:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/pack.rst:81
+msgid "$ tt pack deb --deps-file package-deps.txt"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/pack.rst:87
+msgid "Specify a bundle name."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/pack.rst:91
+msgid "$ tt pack tgz --filename sample-app.tar.gz"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/pack.rst:97
+msgid "Specify a package name."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/pack.rst:101
+#: ../../doc/reference/tooling/tt_cli/pack.rst:140
+msgid "$ tt pack tgz --name sample-app --version 1.0.1"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/pack.rst:109
+msgid "Specify the path to a pre-install script for RPM and DEB packages."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/pack.rst:113
+msgid "$ tt pack deb --preinst pre.sh"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/pack.rst:121
+msgid "Specify the path to a post-install script for RPM and DEB packages."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/pack.rst:125
+msgid "$ tt pack deb --postinst post.sh"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/pack.rst:131
+msgid "Build a package in an Ubuntu 18.04 Docker container. Before executing ``tt pack`` with this option, make sure Docker is running."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/pack.rst:136
+msgid "Specify a package version."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/pack.rst:146
+msgid "Include Tarantool and ``tt`` binaries in a bundle."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/pack.rst:150
+msgid "Don't include Tarantool and ``tt`` binaries in a bundle."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/pack.rst:154
+msgid "Don't include external modules in a bundle."
+msgstr ""

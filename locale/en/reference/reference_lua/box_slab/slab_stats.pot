@@ -1,0 +1,124 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_slab/slab_stats.rst:5
+msgid "box.slab.stats()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/slab_stats.rst:11
+msgid "Show a detailed memory usage report (in bytes) for the slab allocator. The report is broken down into groups by *data item size* as well as by *slab size* (64-byte, 136-byte, etc). The report includes the memory allocated for storing both tuples and indexes."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/slab_stats.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/slab_stats.rst:18
+msgid "``mem_free`` is the allocated, but currently unused memory;"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/slab_stats.rst:19
+msgid "``mem_used`` is the memory used for storing data items (tuples and indexes);"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/slab_stats.rst:20
+msgid "``item_count`` is the number of stored items;"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/slab_stats.rst:21
+msgid "``item_size`` is the size of each data item;"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/slab_stats.rst:22
+msgid "``slab_count`` is the number of slabs allocated;"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/slab_stats.rst:23
+msgid "``slab_size`` is the size of each allocated slab."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/slab_stats.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/slab_stats.rst:25
+msgid "table"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/slab_stats.rst:27
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/slab_stats.rst:29
+msgid "Here is a sample report for the first group:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/slab_stats.rst:31
+msgid "tarantool> box.slab.stats()[1]\n"
+"---\n"
+"- mem_free: 16232\n"
+"  mem_used: 48\n"
+"  item_count: 2\n"
+"  item_size: 24\n"
+"  slab_count: 1\n"
+"  slab_size: 16384\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/slab_stats.rst:43
+msgid "This report is saying that there are 2 data items (``item_count`` = 2) stored in one (``slab_count`` = 1) 24-byte slab (``item_size`` = 24), so ``mem_used`` = 2 * 24 = 48 bytes. Also, ``slab_size`` is 16384 bytes, of which 16384 - 48 = 16232 bytes are free (``mem_free``)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/slab_stats.rst:48
+msgid "A complete report would show memory usage statistics for all groups:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/slab_stats.rst:50
+msgid "tarantool> box.slab.stats()\n"
+"---\n"
+"- - mem_free: 16232\n"
+"    mem_used: 48\n"
+"    item_count: 2\n"
+"    item_size: 24\n"
+"    slab_count: 1\n"
+"    slab_size: 16384\n"
+"  - mem_free: 15720\n"
+"    mem_used: 560\n"
+"    item_count: 14\n"
+"    item_size: 40\n"
+"    slab_count: 1\n"
+"    slab_size: 16384\n"
+"  <...>\n"
+"  - mem_free: 32472\n"
+"    mem_used: 192\n"
+"    item_count: 1\n"
+"    item_size: 192\n"
+"    slab_count: 1\n"
+"    slab_size: 32768\n"
+"  - mem_free: 1097624\n"
+"    mem_used: 999424\n"
+"    item_count: 61\n"
+"    item_size: 16384\n"
+"    slab_count: 1\n"
+"    slab_size: 2097152\n"
+"  ..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/slab_stats.rst:81
+msgid "The total ``mem_used`` for all groups in this report equals ``arena_used`` in :doc:`/reference/reference_lua/box_slab/slab_info` report."
+msgstr ""

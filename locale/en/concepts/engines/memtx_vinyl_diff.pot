@@ -1,0 +1,124 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/concepts/engines/memtx_vinyl_diff.rst:4
+msgid "Difference between memtx and vinyl storage engines"
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx_vinyl_diff.rst:6
+msgid "The primary difference between memtx and vinyl is that memtx is an in-memory engine while vinyl is an on-disk engine. An in-memory storage engine is generally faster (each query is usually run under 1 ms), and the memtx engine is justifiably the default for Tarantool. But on-disk engine such as vinyl is preferable when the database is larger than the available memory, and adding more memory is not a realistic option."
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx_vinyl_diff.rst:19
+msgid "Option"
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx_vinyl_diff.rst:19
+msgid "memtx"
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx_vinyl_diff.rst:19
+msgid "vinyl"
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx_vinyl_diff.rst:21
+msgid "Supported index type"
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx_vinyl_diff.rst:21
+msgid "TREE, HASH, :ref:`RTREE <box_index-rtree>` or BITSET"
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx_vinyl_diff.rst:21
+msgid "TREE"
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx_vinyl_diff.rst:23
+msgid "Temporary spaces"
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx_vinyl_diff.rst:23
+#: ../../doc/concepts/engines/memtx_vinyl_diff.rst:25
+#: ../../doc/concepts/engines/memtx_vinyl_diff.rst:27
+msgid "Supported"
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx_vinyl_diff.rst:23
+#: ../../doc/concepts/engines/memtx_vinyl_diff.rst:25
+msgid "Not supported"
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx_vinyl_diff.rst:25
+msgid ":ref:`random() <box_index-random>` function"
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx_vinyl_diff.rst:27
+msgid ":ref:`alter() <box_index-alter>` function"
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx_vinyl_diff.rst:27
+msgid "Supported starting from the 1.10.2 release (the primary index cannot be modified)"
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx_vinyl_diff.rst:30
+msgid ":ref:`len() <box_space-len>` function"
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx_vinyl_diff.rst:30
+msgid "Returns the number of tuples in the space"
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx_vinyl_diff.rst:30
+msgid "Returns the maximum approximate number of tuples in the space"
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx_vinyl_diff.rst:33
+msgid ":ref:`count() <box_index-count>` function"
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx_vinyl_diff.rst:33
+msgid "Takes a constant amount of time"
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx_vinyl_diff.rst:33
+msgid "Takes a variable amount of time depending on a state of a DB"
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx_vinyl_diff.rst:36
+msgid ":ref:`delete() <box_space-delete>` function"
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx_vinyl_diff.rst:36
+msgid "Returns the deleted tuple, if any"
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx_vinyl_diff.rst:36
+msgid "Always returns nil"
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx_vinyl_diff.rst:38
+msgid "yield"
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx_vinyl_diff.rst:38
+msgid "Does not yield on the select requests unless the transaction is committed to WAL"
+msgstr ""
+
+#: ../../doc/concepts/engines/memtx_vinyl_diff.rst:38
+msgid "Yields on the select requests or on its equivalents: get() or pairs()"
+msgstr ""

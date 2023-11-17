@@ -1,0 +1,57 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/enterprise/index.rst:4
+msgid "Tarantool Enterprise Edition"
+msgstr ""
+
+#: ../../doc/enterprise/index.rst:10
+msgid "This section describes the Enterprise Edition of Tarantool software -- a Lua application server integrated with a DBMS for deploying fault-tolerant distributed data storages."
+msgstr ""
+
+#: ../../doc/enterprise/index.rst:14
+msgid "The Enterprise Edition provides an `extended feature set <https://www.tarantool.io/en/compare/>`__ for developing and managing clustered Tarantool applications, for example:"
+msgstr ""
+
+#: ../../doc/enterprise/index.rst:17
+msgid "Static package for standalone Linux systems."
+msgstr ""
+
+#: ../../doc/enterprise/index.rst:18
+msgid "Tarantool bindings to OpenLDAP."
+msgstr ""
+
+#: ../../doc/enterprise/index.rst:19
+msgid "Security :ref:`audit log <enterprise-logging>`."
+msgstr ""
+
+#: ../../doc/enterprise/index.rst:20
+msgid "Enterprise database connectivity: Oracle and any ODBC-supported DBMS (for example, MySQL, Microsoft SQL Server)."
+msgstr ""
+
+#: ../../doc/enterprise/index.rst:23
+msgid "SSL support for :ref:`traffic encryption <enterprise-iproto-encryption>`."
+msgstr ""
+
+#: ../../doc/enterprise/index.rst:24
+msgid ":doc:`Tuple compression <tuple_compression>`."
+msgstr ""
+
+#: ../../doc/enterprise/index.rst:25
+msgid ":doc:`Non-blocking DDL <space_upgrade>`."
+msgstr ""

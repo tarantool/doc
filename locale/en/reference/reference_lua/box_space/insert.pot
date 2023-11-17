@@ -1,0 +1,80 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_space/insert.rst:5
+msgid "space_object:insert()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/insert.rst:11
+msgid "Insert a tuple into a space."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/insert.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/insert.rst:13
+msgid "an :ref:`object reference <app_server-object_reference>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/insert.rst:15
+msgid "tuple to be inserted."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/insert.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/insert.rst:17
+msgid "the inserted tuple"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/insert.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/insert.rst:18
+msgid "tuple"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/insert.rst:20
+msgid "**Possible errors:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/insert.rst:22
+msgid ":errcode:`ER_TUPLE_FOUND` if a tuple with the same unique-key value already exists."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/insert.rst:24
+msgid ":errcode:`ER_TRANSACTION_CONFLICT` if a transaction conflict is detected in the :ref:`MVCC transaction mode <txn_mode_transaction-manager>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/insert.rst:27
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/insert.rst:29
+msgid "tarantool> box.space.tester:insert{5000,'tuple number five thousand'}\n"
+"---\n"
+"- [5000, 'tuple number five thousand']\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/insert.rst:36
+msgid "For more usage scenarios and typical errors see :ref:`Example: using data operations <box_space-operations-detailed-examples>` further in this section."
+msgstr ""

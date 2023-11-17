@@ -1,0 +1,29 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_space/_func.rst:5
+msgid "box.space._func"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_func.rst:11
+msgid "A system space containing functions created using :ref:`box.schema.func.create() <box_schema-func_create>`. If a function's definition is specified in the :ref:`body <function_options_body>` option, this function is *persistent*. In this case, its definition is stored in a snapshot and can be recovered if the server restarts."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_func.rst:18
+msgid "The :ref:`system space view <box_space-sysviews>` for ``_func`` is ``_vfunc``."
+msgstr ""

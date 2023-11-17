@@ -1,0 +1,49 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_space/run_triggers.rst:5
+msgid "space_object:run_triggers()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/run_triggers.rst:11
+msgid "At the time that a :ref:`trigger <triggers>` is defined, it is automatically enabled - that is, it will be executed. :doc:`Replace </reference/reference_lua/box_space/on_replace>` triggers can be disabled with :samp:`box.space.{space-name}:run_triggers(false)` and re-enabled with :samp:`box.space.{space-name}:run_triggers(true)`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/run_triggers.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/run_triggers.rst:17
+msgid "nil"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/run_triggers.rst:19
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/run_triggers.rst:21
+msgid "The following series of requests will associate an existing function named `F` with an existing space named `T`, associate the function a second time with the same space (so it will be called twice), disable all triggers of `T`, and delete each trigger by replacing with ``nil``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/run_triggers.rst:26
+msgid "tarantool> box.space.T:on_replace(F)\n"
+"tarantool> box.space.T:on_replace(F)\n"
+"tarantool> box.space.T:run_triggers(false)\n"
+"tarantool> box.space.T:on_replace(nil, F)\n"
+"tarantool> box.space.T:on_replace(nil, F)"
+msgstr ""

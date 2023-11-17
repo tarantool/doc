@@ -1,0 +1,46 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_schema/user_info.rst:5
+msgid "box.schema.user.info()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/user_info.rst:11
+msgid "Return a description of a user's :ref:`privileges <authentication-owners_privileges>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/user_info.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/user_info.rst:13
+msgid "the name of the user. This is optional; if it is not supplied, then the information will be for the user who is currently logged in."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/user_info.rst:19
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/user_info.rst:21
+msgid "tarantool> box.schema.user.info('admin')\n"
+"---\n"
+"- - - read,write,execute,session,usage,create,drop,alter,reference,trigger,insert,update,delete\n"
+"    - universe\n"
+"    -\n"
+"..."
+msgstr ""

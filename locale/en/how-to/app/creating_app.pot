@@ -1,0 +1,41 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/how-to/app/creating_app.rst:7
+msgid "Creating an application"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app.rst:9
+msgid "Further we walk you through key programming practices that will give you a good start in writing Lua applications for Tarantool. We will implement a real microservice based on Tarantool! It is a backend for a simplified version of `Pokémon Go <https://en.wikipedia.org/wiki/Pokémon_Go>`_, a location-based augmented reality game launched in mid-2016."
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app.rst:16
+msgid "In this game, players use the GPS capability of a mobile device to locate, catch, battle, and train virtual monsters called \"pokémon\" that appear on the screen as if they were in the same real-world location as the player."
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app.rst:21
+msgid "To stay within the walk-through format, let's narrow the original gameplay as follows. We have a map with pokémon spawn locations. Next, we have multiple players who can send catch-a-pokémon requests to the server (which runs our Tarantool microservice). The server responds whether the pokémon is caught or not, increases the player's pokémon counter if yes, and triggers the respawn-a-pokémon method that spawns a new pokémon at the same location in a while."
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app.rst:30
+msgid "We leave client-side applications outside the scope of this story. However, we promise a mini-demo in the end to simulate real users and give us some fun."
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app.rst:37
+msgid "Follow these topics to implement our application:"
+msgstr ""

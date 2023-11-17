@@ -1,0 +1,360 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/connectors/python.rst:4
+msgid "Python"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:6
+msgid "`tarantool-python <http://github.com/tarantool/tarantool-python>`__ is the official Python connector for Tarantool. It is not supplied as part of the Tarantool repository and must be installed separately (see below for details)."
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:10
+msgid "Here is a complete Python program that inserts ``[99999,'Value','Value']`` into space ``examples`` via the high-level Python API."
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:13
+msgid "#!/usr/bin/python\n"
+"from tarantool import Connection\n"
+"\n"
+"c = Connection(\"127.0.0.1\", 3301)\n"
+"result = c.insert(\"examples\",(99999,'Value', 'Value'))\n"
+"print result"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:22
+msgid "To prepare, paste the code into a file named :file:`example.py` and install the ``tarantool-python`` connector with either :samp:`pip install tarantool\\>0.4` to install in :file:`/usr` (requires **root** privilege) or :samp:`pip install tarantool\\>0.4 --user` to install in :file:`~` i.e. user's default directory."
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:28
+msgid "Before trying to run, check that the server instance is :ref:`listening <cfg_basic-listen>` at ``localhost:3301`` and that the space ``examples`` exists, as :ref:`described earlier <index-connector_setting>`. To run the program, say :samp:`python example.py`. The program will connect to the Tarantool server, will send the :ref:`INSERT <box_space-insert>` request, and will not throw any exception if all went well. If the tuple already exists, the program will throw ``tarantool.error.DatabaseError: (3, \"Duplicate key exists in unique index 'primary' in space 'examples'\")``."
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:36
+msgid "The example program only shows one request and does not show all that's necessary for good practice. For that, please see `tarantool-python <http://github.com/tarantool/tarantool-python>`__ project at GitHub."
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:40
+msgid "Also there are several community-driven Python connectors:"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:42
+msgid "`asynctnt <https://github.com/igorcoding/asynctnt>`__ with asyncio support"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:43
+msgid "`aiotarantool <https://github.com/shveenkov/aiotarantool>`__ also with asyncio support, **no active maintenance**"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:44
+msgid "`gtarantool <https://github.com/shveenkov/gtarantool>`__ with gevent support, **no active maintenance**"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:46
+msgid "The table below contains a feature comparison for asynctnt and tarantool-python. aiotarantool and gtarantool are absent there because they are quite outdated and unmaintained."
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:53
+msgid "Feature comparison"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:55
+msgid "Last update: September 2023"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:61
+msgid "Parameter"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:62
+msgid "`igorcoding/asynctnt <https://github.com/igorcoding/asynctnt>`__"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:63
+msgid "`tarantool/tarantool-python <https://github.com/tarantool/tarantool-python>`__"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:65
+msgid "License"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:66
+msgid "Apache License 2.0"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:67
+msgid "BSD-2"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:69
+msgid "Is maintained"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:70
+#: ../../doc/book/connectors/python.rst:71
+#: ../../doc/book/connectors/python.rst:100
+#: ../../doc/book/connectors/python.rst:101
+#: ../../doc/book/connectors/python.rst:116
+#: ../../doc/book/connectors/python.rst:117
+#: ../../doc/book/connectors/python.rst:120
+#: ../../doc/book/connectors/python.rst:124
+#: ../../doc/book/connectors/python.rst:125
+#: ../../doc/book/connectors/python.rst:128
+#: ../../doc/book/connectors/python.rst:133
+#: ../../doc/book/connectors/python.rst:136
+#: ../../doc/book/connectors/python.rst:137
+#: ../../doc/book/connectors/python.rst:140
+#: ../../doc/book/connectors/python.rst:141
+#: ../../doc/book/connectors/python.rst:144
+#: ../../doc/book/connectors/python.rst:145
+#: ../../doc/book/connectors/python.rst:148
+#: ../../doc/book/connectors/python.rst:149
+#: ../../doc/book/connectors/python.rst:153
+#: ../../doc/book/connectors/python.rst:156
+#: ../../doc/book/connectors/python.rst:157
+#: ../../doc/book/connectors/python.rst:168
+#: ../../doc/book/connectors/python.rst:169
+#: ../../doc/book/connectors/python.rst:173
+#: ../../doc/book/connectors/python.rst:193
+msgid "Yes"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:73
+msgid "Known Issues"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:74
+#: ../../doc/book/connectors/python.rst:75
+msgid "None"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:77
+msgid "Documentation"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:78
+msgid "Yes (`github.io <https://igorcoding.github.io/asynctnt/>`__)"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:79
+msgid "Yes (`readthedocs <https://tarantool-python.readthedocs.io/en/latest/quick-start.en.html>`__ and :ref:`tarantool.io <getting_started-python>`)"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:83
+msgid "Testing / CI / CD"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:84
+#: ../../doc/book/connectors/python.rst:85
+msgid "GitHub Actions"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:87
+msgid "GitHub Stars"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:88
+msgid "73"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:89
+msgid "92"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:91
+msgid "Static Analysis"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:92
+msgid "Yes (Flake8)"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:93
+msgid "Yes (Flake8, Pylint)"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:95
+msgid "Packaging"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:96
+msgid "`pip <https://pypi.org/project/asynctnt/>`__"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:97
+msgid "`pip, deb, rpm <https://github.com/tarantool/tarantool-python#download-and-install>`__"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:99
+msgid "Code coverage"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:103
+msgid "Support asynchronous mode"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:104
+msgid "Yes, `asyncio <https://docs.python.org/3/library/asyncio.html>`__"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:105
+#: ../../doc/book/connectors/python.rst:108
+#: ../../doc/book/connectors/python.rst:121
+#: ../../doc/book/connectors/python.rst:160
+#: ../../doc/book/connectors/python.rst:161
+#: ../../doc/book/connectors/python.rst:164
+#: ../../doc/book/connectors/python.rst:165
+#: ../../doc/book/connectors/python.rst:172
+#: ../../doc/book/connectors/python.rst:176
+#: ../../doc/book/connectors/python.rst:177
+#: ../../doc/book/connectors/python.rst:184
+#: ../../doc/book/connectors/python.rst:188
+msgid "No"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:107
+msgid "Batching support"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:109
+msgid "Yes (with CRUD API)"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:111
+msgid "Schema reload"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:112
+msgid "Yes (automatically, see `auto_refetch_schema <https://igorcoding.github.io/asynctnt/api.html>`__)"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:113
+msgid "Yes (automatically)"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:115
+msgid "Space / index names"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:119
+msgid "Access tuple fields by names"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:123
+msgid ":ref:`SQL support <reference_sql>`"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:127
+msgid ":ref:`Interactive transactions <txn_mode_stream-interactive-transactions>`"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:129
+msgid "No (`issue #163 <https://github.com/tarantool/tarantool-python/issues/163>`__)"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:131
+msgid ":ref:`Varbinary support <index-box_data-types>`"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:132
+msgid "Yes (in ``MP_BIN`` fields)"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:135
+msgid ":ref:`Decimal support <msgpack_ext-decimal>`"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:139
+msgid ":ref:`UUID support <msgpack_ext-uuid>`"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:143
+msgid ":ref:`EXT_ERROR support <msgpack_ext-error>`"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:147
+msgid ":ref:`Datetime support <msgpack_ext-datetime>`"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:151
+msgid ":ref:`Interval support <msgpack_ext-interval>`"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:152
+msgid "No (`issue #30 <https://github.com/igorcoding/asynctnt/issues/30>`__)"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:155
+msgid ":ref:`box.session.push() responses <box_session-push>`"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:159
+msgid ":ref:`Session settings <box_space-session_settings>`"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:163
+msgid "`Graceful shutdown <https://github.com/tarantool/tarantool/issues/5924>`__"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:167
+msgid "`IPROTO_ID (feature discovery) <https://github.com/tarantool/doc/issues/2419>`__"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:171
+msgid "`CRUD support <https://github.com/tarantool/crud>`__"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:175
+msgid "Transparent request retrying"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:179
+msgid "Transparent reconnecting"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:180
+msgid "Autoreconnect"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:181
+msgid "Yes (reconnect_max_attempts, reconnect_delay), checking of connection liveness"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:183
+msgid "Connection pool"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:185
+msgid "Yes (with master discovery)"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:187
+msgid "Support of `PEP 249 -- Python Database API Specification v2.0 <https://www.python.org/dev/peps/pep-0249/>`__"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:189
+msgid "`Yes <https://github.com/tarantool/tarantool-python/wiki/PEP-249-Database-API>`__"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:191
+msgid ":ref:`Encrypted connection (Enterprise Edition) <enterprise-iproto-encryption>`"
+msgstr ""
+
+#: ../../doc/book/connectors/python.rst:192
+msgid "No (`issue #22 <https://github.com/igorcoding/asynctnt/issues/22>`__)"
+msgstr ""

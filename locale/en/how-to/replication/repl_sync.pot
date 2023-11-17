@@ -1,0 +1,126 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/how-to/replication/repl_sync.rst:4
+msgid "Configuring synchronous replication"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_sync.rst:6
+msgid "Since version :doc:`2.5.1 </release/2.5.1>`, :ref:`synchronous replication <repl_sync>` can be enabled per-space by using the ``is_sync`` option:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_sync.rst:10
+msgid "box.schema.create_space('test1', {is_sync = true})"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_sync.rst:14
+msgid "Any transaction doing a DML request on this space becomes synchronous. Notice that DDL on this space (including truncation) is **not** synchronous."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_sync.rst:17
+msgid "To control the behavior of synchronous transactions, there exist global ``box.cfg`` :ref:`options <cfg_replication-replication_synchro_quorum>`:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_sync.rst:20
+msgid "box.cfg{replication_synchro_quorum = <number of instances>}"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_sync.rst:24
+msgid "box.cfg{replication_synchro_quorum = \"N / 2 + 1\"}"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_sync.rst:28
+msgid "This option tells how many replicas should confirm the receipt of a synchronous transaction before it is committed. Since version :doc:`2.5.3 </release/2.5.3>`, the parameter supports dynamic evaluation of the quorum number (see :ref:`reference for the replication_synchro_quorum parameter <cfg_replication-replication_synchro_quorum>` for details). Since version :doc:`2.10.0 </release/2.10.0>`, this option does not account for anonymous replicas. As a usage example, consider this:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_sync.rst:35
+msgid "-- Instance 1\n"
+"box.cfg{\n"
+"    listen = 3313,\n"
+"    replication_synchro_quorum = 2,\n"
+"}\n"
+"box.schema.user.grant('guest', 'super')\n"
+"_ = box.schema.space.create('sync', {is_sync=true})\n"
+"_ = _:create_index('pk')"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_sync.rst:46
+msgid "-- Instance 2\n"
+"box.cfg{\n"
+"    listen = 3314,\n"
+"    replication = 'localhost:3313'\n"
+"}"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_sync.rst:54
+msgid "-- Instance 1\n"
+"box.space.sync:replace{1}"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_sync.rst:59
+msgid "When the first instance makes ``replace()``, it won't finish until the second instance confirms its receipt and successful appliance. Note that the quorum is set to 2, but the transaction was still committed even though there is only one replica. This is because the master instance itself also participates in the quorum."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_sync.rst:64
+msgid "Now, if the second instance is down, the first one won't be able to commit any synchronous change."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_sync.rst:67
+msgid "-- Instance 2\n"
+"Ctrl+D"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_sync.rst:72
+msgid "-- Instance 1\n"
+"tarantool> box.space.sync:replace{2}\n"
+"---\n"
+"- error: Quorum collection for a synchronous transaction is timed out\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_sync.rst:80
+msgid "The transaction wasn't committed because it failed to achieve the quorum in the given time. The time is a second configuration option:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_sync.rst:83
+msgid "box.cfg{replication_synchro_timeout = <number of seconds, can be float>}"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_sync.rst:87
+msgid "It tells how many seconds to wait for a synchronous transaction quorum replication until it is declared failed and is rolled back."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_sync.rst:90
+msgid "A successful synchronous transaction commit is persisted in the WAL as a special CONFIRM record. The rollbacks are similarly persisted with a ROLLBACK record."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_sync.rst:93
+msgid "The ``timeout`` and ``quorum`` options are not used on replicas. It means if the master dies, the pending synchronous transactions will be kept waiting on the replicas until a new master is elected."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_sync.rst:99
+msgid "Tips and tricks"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_sync.rst:101
+msgid "If a transaction is rolled back, it does not mean the ROLLBACK message reached the replicas. It still can happen that the master node suddenly dies, so the transaction will be committed by the new master. Your application logic should be ready for that."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_sync.rst:106
+msgid "Synchronous transactions are better to use with full mesh. Then the replicas can talk to each other in case of the master node's death and still confirm some pending transactions."
+msgstr ""
