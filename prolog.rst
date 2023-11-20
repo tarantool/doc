@@ -36,3 +36,9 @@
 
 .. |iproto_version| replace:: 3
 
+.. |tcm_full_name| replace:: Tarantool Cluster Manager
+
+.. |tcm| replace:: TCM
+
+.. |tcm_version| replace:: 1.0.0
+
