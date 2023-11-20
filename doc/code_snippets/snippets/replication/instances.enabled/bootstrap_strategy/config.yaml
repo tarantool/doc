@@ -8,12 +8,14 @@ iproto:
   advertise:
     peer: replicator@
 
+replication:
+  failover: election
+
 groups:
   group001:
     replicasets:
       replicaset001:
         replication:
-          failover: election
           bootstrap_strategy: config
         bootstrap_leader: instance001
         instances:
