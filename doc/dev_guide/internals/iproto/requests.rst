@@ -38,6 +38,10 @@ Overview
             -   0x8XXX |br| MP_INT
             -   Error response
 
+        *   -   :ref:`IPROTO_UNKNOWN <internals-iproto-unknown>`
+            -   -1 |br| MP_UINT
+            -   An unknown request type
+
         *   -   :ref:`IPROTO_SELECT <box_protocol-select>`
             -   0x01
             -   :ref:`Select <box_space-select>` request
@@ -125,6 +129,18 @@ constants for return codes.
 
 To learn more about error responses,
 check the section :ref:`Request and response format <box_protocol-responses_error>`.
+
+..  _internals-iproto-unknown:
+
+IPROTO_UNKNOWN
+~~~~~~~~~~~~~~
+
+Since :doc:`2.11.0 </release/2.11.0>`.
+
+Code: -1.
+
+An unknown request type. The constant is used to override the handler of unknown IPROTO request types.
+Learn more: :ref:`box.iproto.override() <reference_lua-box_iproto_override>` and :ref:`box_iproto_override <box_box_iproto_override>`.
 
 ..  _box_protocol-select:
 

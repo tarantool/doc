@@ -35,6 +35,7 @@ upsert
 tt
 SEQSCAN
 iproto
+IPROTO
 autoincrement
 etcd
 canonicalization

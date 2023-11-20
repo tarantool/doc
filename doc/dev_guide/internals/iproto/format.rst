@@ -35,7 +35,7 @@ The header is an MP_MAP. It may contain, in any order:
 ..  raw:: html
     :file: images/header.svg
 
-*   Both the request and response make use of the :ref:`IPROTO_REQUEST_TYPE <internals-iproto-keys-request_type>` key.
+*   Both the request and response use the :ref:`IPROTO_REQUEST_TYPE <internals-iproto-keys-request_type>` key.
     It denotes the type of the packet.
 
 *   The request and the matching response have the same sync number (:ref:`IPROTO_SYNC <internals-iproto-keys-sync>`).
@@ -61,12 +61,14 @@ To see how Tarantool decodes the header, have a look at file
 function ``netbox_decode_data``.
 
 For example, in a successful response to ``box.space:select()``,
-the IPROTO_REQUEST_TYPE value will be 0 = ``IPROTO_OK`` and the
-array will have all the tuples of the result.
+the IPROTO_REQUEST_TYPE value is 0 = ``IPROTO_OK`` and the
+array has all the tuples of the result.
 
 Read the source code file `net_box.c <https://github.com/tarantool/tarantool/blob/master/src/box/lua/net_box.c>`__
 where the function ``decode_metadata_optional`` is an example of how Tarantool
 itself decodes extra items.
+
+..  _box_protocol-body:
 
 Body
 ----
@@ -74,9 +76,9 @@ Body
 The body is an MP_MAP. Maximal iproto package body length is 2 GiB.
 
 The body has the details of the request or response. In a request, it can also
-be absent or be an empty map. Both these states will be interpreted equally.
-Responses will contain the body anyway even for an
-:ref:`IPROTO_PING <box_protocol-ping>` request, where it will be an empty MP_MAP.
+be absent or be an empty map. Both these states are interpreted equally.
+Responses contain the body anyway even for an
+:ref:`IPROTO_PING <box_protocol-ping>` request, where it is an empty MP_MAP.
 
 A lot of responses contain the IPROTO_DATA map:
 

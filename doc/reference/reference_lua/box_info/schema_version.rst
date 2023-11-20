@@ -1,8 +1,7 @@
 ..  _box_info_schema_version:
 
-================================================================================
 box.info.schema_version
-================================================================================
+=======================
 
 ..  module:: box.info
 
@@ -23,3 +22,5 @@ box.info.schema_version
         ---
         - 84
         ...
+
+    See also: :ref:`IPROTO_SCHEMA_VERSION <internals-iproto-keys-schema_version>`
