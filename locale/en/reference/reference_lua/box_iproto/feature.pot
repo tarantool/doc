@@ -1,0 +1,52 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-21 08:10+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_iproto/feature.rst:4
+msgid "box.iproto.feature"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/feature.rst:10
+msgid "Contains the IPROTO protocol features that are supported by the server. Each feature is mapped to its corresponding code. Learn more: :ref:`IPROTO_FEATURES <internals-iproto-keys-features>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/feature.rst:14
+msgid "The features in the namespace are written"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/feature.rst:16
+msgid "in lowercase letters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/feature.rst:17
+msgid "without the ``IPROTO_FEATURE_`` prefix"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/feature.rst:19
+msgid "**Example**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/feature.rst:21
+msgid "tarantool> box.iproto.feature.streams\n"
+"---\n"
+"- 0\n"
+"...\n"
+"tarantool> box.iproto.feature.transactions\n"
+"---\n"
+"- 1\n"
+"..."
+msgstr ""

@@ -1,0 +1,132 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-21 08:10+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_iproto/send.rst:4
+msgid "box.iproto.send()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/send.rst:10
+msgid "Since version :doc:`2.11.0 </release/2.11.0>`. Send an :ref:`IPROTO <internals-iproto-format>` packet over the session's socket with the given MsgPack header and body. The header and body contain exported IPROTO constants from the :ref:`box.iproto() <box_iproto>` submodule. Possible IPROTO constant formats:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/send.rst:16
+msgid "a lowercase constant without the ``IPROTO_`` prefix (``schema_version``, ``request_type``)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/send.rst:17
+msgid "a constant from the corresponding :ref:`box.iproto <box_iproto>` subnamespace (``box.iproto.SCHEMA_VERSION``, ``box.iproto.REQUEST_TYPE``)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/send.rst:19
+msgid "The function works for binary sessions only. For details, see :ref:`box.session.type() <box_session-type>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/send.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/send.rst:21
+msgid "the IPROTO session identifier (see :ref:`box.session.id() <box_session-id>`)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/send.rst:22
+msgid "a request header encoded as MsgPack"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/send.rst:23
+msgid "a request body encoded as MsgPack"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/send.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/send.rst:25
+msgid "0 on success, otherwise an error is raised"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/send.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/send.rst:26
+msgid "number"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/send.rst:28
+msgid "**Possible errors:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/send.rst:30
+msgid ":errcode:`ER_SESSION_CLOSED` -- the session is closed."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/send.rst:31
+msgid ":errcode:`ER_NO_SUCH_SESSION` -- the session does not exist."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/send.rst:32
+msgid ":errcode:`ER_MEMORY_ISSUE` -- out-of-memory limit has been reached."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/send.rst:33
+msgid ":errcode:`ER_WRONG_SESSION_TYPE` -- the session type is not binary."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/send.rst:35
+msgid "For details, see `src/box/errcode.h <https://github.com/tarantool/tarantool/blob/master/src/box/errcode.h>`__."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/send.rst:37
+msgid "**Examples:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/send.rst:39
+msgid "Send a packet using Lua tables and string IPROTO constants as keys:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/send.rst:41
+msgid "box.iproto.send(box.session.id(),\n"
+"        { request_type = box.iproto.type.OK,\n"
+"          sync = 10,\n"
+"          schema_version = box.info.schema_version },\n"
+"        { data = 1 })"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/send.rst:49
+msgid "Send a packet using Lua tables and numeric IPROTO constants:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/send.rst:51
+msgid "box.iproto.send(box.session.id(),\n"
+"        { [box.iproto.key.REQUEST_TYPE] = box.iproto.type.OK,\n"
+"          [box.iproto.key.SYNC] = 10,\n"
+"          [box.iproto.key.SCHEMA_VERSION] = box.info.schema_version },\n"
+"        { [box.iproto.key.DATA] = 1 })"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/send.rst:59
+msgid "Send a packet that contains only the header:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/send.rst:61
+msgid "box.iproto.send(box.session.id(),\n"
+"        { request_type = box.iproto.type.OK,\n"
+"          sync = 10,\n"
+"          schema_version = box.info.schema_version })"
+msgstr ""

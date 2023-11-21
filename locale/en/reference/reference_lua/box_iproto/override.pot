@@ -1,0 +1,147 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-21 08:10+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_iproto/override.rst:4
+msgid "box.iproto.override()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/override.rst:10
+msgid "Since version :doc:`2.11.0 </release/2.11.0>`. Set a new IPROTO request handler callback for the given request type."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/override.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/override.rst:13
+msgid "a request type code. Possible values:  *   a type code from :ref:`box.iproto.type <reference_lua-box_iproto_type>` (except     ``box.iproto.type.UNKNOWN``) -- override the existing request type handler.  *   ``box.iproto.type.UNKNOWN`` -- override the handler of unknown request types."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/override.rst:13
+msgid "a request type code. Possible values:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/override.rst:15
+msgid "a type code from :ref:`box.iproto.type <reference_lua-box_iproto_type>` (except ``box.iproto.type.UNKNOWN``) -- override the existing request type handler."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/override.rst:18
+msgid "``box.iproto.type.UNKNOWN`` -- override the handler of unknown request types."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/override.rst:20
+msgid "IPROTO request handler. The signature of a handler function: ``function(sid, header, body)``, where  *  ``sid`` (number): the current IPROTO session identifier (see :ref:`box.session.id() <box_session-id>`) *  ``header`` (userdata): a request header encoded as a :ref:`msgpack_object <msgpack-object-methods>` *  ``body`` (userdata): a request body encoded as a :ref:`msgpack_object <msgpack-object-methods>`  Returns ``true`` on success, otherwise ``false``. On ``false``, there is a fallback to the default handler. Also, you can indicate an error by throwing an exception. In this case, the return value is ``false``, but this does not always mean a failure.  To reset the request handler, set the ``handler`` parameter to ``nil``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/override.rst:20
+msgid "IPROTO request handler. The signature of a handler function: ``function(sid, header, body)``, where"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/override.rst:23
+msgid "``sid`` (number): the current IPROTO session identifier (see :ref:`box.session.id() <box_session-id>`)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/override.rst:24
+msgid "``header`` (userdata): a request header encoded as a :ref:`msgpack_object <msgpack-object-methods>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/override.rst:25
+msgid "``body`` (userdata): a request body encoded as a :ref:`msgpack_object <msgpack-object-methods>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/override.rst:27
+msgid "Returns ``true`` on success, otherwise ``false``. On ``false``, there is a fallback to the default handler. Also, you can indicate an error by throwing an exception. In this case, the return value is ``false``, but this does not always mean a failure."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/override.rst:31
+msgid "To reset the request handler, set the ``handler`` parameter to ``nil``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/override.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/override.rst:33
+msgid "none"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/override.rst:35
+msgid "**Possible errors:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/override.rst:37
+msgid "If a Lua handler throws an exception, the behavior is similar to that of a remote procedure call. The following errors are returned to the client over IPROTO (see `src/lua/utils.h <https://github.com/tarantool/tarantool/blob/dec0e0221e183fa972efa65bb0fb658112f2196f/src/lua/utils.h#L366-L371>`__):"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/override.rst:40
+msgid ":errcode:`ER_PROC_LUA` -- an exception is thrown from a Lua handler, diagnostic is not set."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/override.rst:41
+msgid "diagnostics from ``src/box/errcode.h`` -- an exception is thrown, diagnostic is set."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/override.rst:43
+msgid "For details, see `src/box/errcode.h <https://github.com/tarantool/tarantool/blob/master/src/box/errcode.h>`__."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/override.rst:45
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/override.rst:47
+msgid "Define a handler function for the ``box.iproto.type.SELECT`` request type:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/override.rst:49
+msgid "local function iproto_select_handler_lua(sid, header, body)\n"
+"    if body.space_id == 512 then\n"
+"        box.iproto.send(box.session.id(),\n"
+"                { request_type = box.iproto.type.OK,\n"
+"                  sync = header.SYNC,\n"
+"                  schema_version = box.info.schema_version },\n"
+"                { data = { 1, 2, 3 } })\n"
+"        return true\n"
+"    end\n"
+"    return false\n"
+"end"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/override.rst:63
+msgid "Override ``box.iproto.type.SELECT`` handler:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/override.rst:65
+msgid "box.iproto.override(box.iproto.type.SELECT, iproto_select_handler_lua)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/override.rst:69
+msgid "Reset ``box.iproto.type.SELECT`` handler:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/override.rst:71
+msgid "box.iproto.override(box.iproto.type.SELECT, nil)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/override.rst:75
+msgid "Override a handler function for the unknown request type:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/override.rst:77
+msgid "box.iproto.override(box.iproto.type.UNKNOWN, iproto_unknown_request_handler_lua)"
+msgstr ""
