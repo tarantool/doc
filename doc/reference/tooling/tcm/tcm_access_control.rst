@@ -273,55 +273,46 @@ The following administrative permissions are available in |tcm|:
         -   View connected clusters
 
     *   -   ``admin.clusters.write``
-        -   Manage connected clusters
+        -   Edit cluster details and add new clusters
 
     *   -   ``admin.users.read``
-        -   View |tcm| users
+        -   View users
 
     *   -   ``admin.users.write``
-        -   Manage |tcm| users
+        -   Edit user details and add new users
 
     *   -   ``admin.roles.read``
         -   View roles
 
     *   -   ``admin.roles.write``
-        -   Manage roles
-
-    *   -   ``admin.graphql.read``
-        -   Description
+        -   Edit roles and add new roles
 
     *   -   ``admin.lowlevel.state.read``
-        -   Description
+        -   Read low-level information from |tcm| storage
 
     *   -   ``admin.lowlevel.state.write``
-        -   Description
+        -   Write low-level information from |tcm| storage
 
     *   -   ``admin.addons.read``
         -   View add-ons
 
     *   -   ``admin.addons.write``
-        -   Manage add-ons
+        -   Edit add-on flags
 
     *   -   ``admin.addons.upload``
         -   Upload new add-ons
 
-    *   -   ``admin.addons.emit``
-        -   Description
-
     *   -   ``admin.auditlog.read``
-        -   Description
+        -   View audit log configuration and read audit log in |tcm|
 
     *   -   ``admin.auditlog.write``
-        -   Description
-
-    *   -   ``admin.lowlevel.metrics.read``
-        -   Description
+        -   Edit audit log configuration
 
     *   -   ``admin.sessions.read``
         -   View users' sessions
 
     *   -   ``admin.sessions.write``
-        -   Manage users' sessions
+        -   Revoke users' sessions
 
     *   -   ``admin.ldap.read``
         -   View LDAP configurations
@@ -338,17 +329,14 @@ The following administrative permissions are available in |tcm|:
     *   -  ``admin.devmode.toggle``
         -   Toggle development mode
 
-    *   -   ``admin.password.change``
-        -   Change
+    *   -   ``user.password.change``
+        -   Change own password
 
     *   -   ``admin.secrets.read``
         -   View users' secrets.
 
     *   -   ``admin.secrets.write``
-        -   Manage users' secrets
-
-    *   -   ``admin.secrets.generate``
-        -   Generate passwords
+        -   Manage users' secrets: add, edit, expire, block, delete.
 
 .. _tcm_access_control_permissions_cluster:
 
@@ -365,7 +353,7 @@ The following cluster permissions are available in |tcm|:
         -   Description
 
     *   -   ``cluster.lowlevel.state.read``
-        -   Description
+        -   Read low-level information from |tcm| storage
 
     *   -   ``cluster.lowlevel.state.write``
         -   Description
@@ -383,19 +371,19 @@ The following cluster permissions are available in |tcm|:
         -   View cluster stateboard
 
     *   -   ``cluster.explorer.read``
-        -   View cluster explorer
+        -   Read data from the cluster instances
 
     *   -   ``cluster.explorer.write``
-        -   Manage cluster in the explorer
+        -   Write data to the cluster instances
 
     *   -   ``cluster.explorer.call``
-        -   Call functions on the cluster
+        -   Execute stored functions on the cluster instances
 
     *   -   ``cluster.explorer.eval``
-        -   Evaluate expressions on the cluster
+        -   Execute code on the cluster instances
 
-    *   -   ``cluster.ddl.read``
-        -   Description
+    *   -   ``cluster.space.read``
+        -   Read cluster data schema
 
-    *   -   ``cluster.ddl.write``
-        -   Description
+    *   -   ``cluster.space.write``
+        -   Modify cluster data schema
