@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"POT-Creation-Date: 2023-11-21 08:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,11 +16,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../../doc/reference/reference_lua/box_info/schema_version.rst:5
+#: ../../doc/reference/reference_lua/box_info/schema_version.rst:4
 msgid "box.info.schema_version"
 msgstr ""
 
-#: ../../doc/reference/reference_lua/box_info/schema_version.rst:11
+#: ../../doc/reference/reference_lua/box_info/schema_version.rst:10
 msgid "Since :doc:`2.11.0 </release/2.11.0>`. Show the database schema version. A schema version is a number that indicates whether the :ref:`database schema <index-box-data_schema_description>` is changed. For example, the ``schema_version`` value grows if a :ref:`space <index-box_space>` or :ref:`index <index-box_index>` is added or deleted, or a space, index, or field name is changed."
 msgstr ""
 
@@ -28,17 +28,21 @@ msgstr ""
 msgid "rtype"
 msgstr ""
 
-#: ../../doc/reference/reference_lua/box_info/schema_version.rst:16
+#: ../../doc/reference/reference_lua/box_info/schema_version.rst:15
 msgid "number"
 msgstr ""
 
-#: ../../doc/reference/reference_lua/box_info/schema_version.rst:18
+#: ../../doc/reference/reference_lua/box_info/schema_version.rst:17
 msgid "**Example:**"
 msgstr ""
 
-#: ../../doc/reference/reference_lua/box_info/schema_version.rst:20
+#: ../../doc/reference/reference_lua/box_info/schema_version.rst:19
 msgid "tarantool> box.info.schema_version\n"
 "---\n"
 "- 84\n"
 "..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/schema_version.rst:26
+msgid "See also: :ref:`IPROTO_SCHEMA_VERSION <internals-iproto-keys-schema_version>`"
 msgstr ""

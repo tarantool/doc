@@ -1,0 +1,40 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-21 08:10+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_iproto/protocol_features.rst:4
+msgid "box.iproto.protocol_features"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/protocol_features.rst:10
+msgid "The set of IPROTO protocol features supported by the server. Learn more: :ref:`net.box features <net_box-connect>`, `src/box/iproto_features.h <https://github.com/tarantool/tarantool/blob/master/src/box/iproto_features.h>`__, and `iproto_features_resolve() <https://github.com/tarantool/tarantool/blob/dec0e0221e183fa972efa65bb0fb658112f2196f/src/box/lua/net_box.lua#L93-L105>`__."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/protocol_features.rst:14
+msgid "**Example**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_iproto/protocol_features.rst:16
+msgid "tarantool> box.iproto.protocol_features\n"
+"---\n"
+"- transactions: true\n"
+"  watchers: true\n"
+"  error_extension: true\n"
+"  streams: true\n"
+"  pagination: true\n"
+"..."
+msgstr ""

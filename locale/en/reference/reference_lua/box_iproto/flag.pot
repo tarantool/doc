@@ -16,26 +16,25 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../../doc/reference/reference_lua/box_session/id.rst:5
-msgid "box.session.id()"
+#: ../../doc/reference/reference_lua/box_iproto/flag.rst:4
+msgid "box.iproto.flag"
 msgstr ""
 
-#: ../../doc/reference/reference_lua/box_session/id.rst:11
-msgid "Return the unique identifier (ID) for the current session."
+#: ../../doc/reference/reference_lua/box_iproto/flag.rst:10
+msgid "Contains the flags from the ``IPROTO_FLAGS`` key. Learn more: :ref:`IPROTO_FLAGS key <box_protocol-flags>`."
 msgstr ""
 
-#: ../../doc/reference/reference_lua/box_session/id.rst:0
-msgid "return"
+#: ../../doc/reference/reference_lua/box_iproto/flag.rst:13
+msgid "**Example**"
 msgstr ""
 
-#: ../../doc/reference/reference_lua/box_session/id.rst:13
-msgid "the session identifier; 0 or -1 if there is no session"
-msgstr ""
-
-#: ../../doc/reference/reference_lua/box_session/id.rst:0
-msgid "rtype"
-msgstr ""
-
-#: ../../doc/reference/reference_lua/box_session/id.rst:14
-msgid "number"
+#: ../../doc/reference/reference_lua/box_iproto/flag.rst:15
+msgid "tarantool> box.iproto.flag.COMMIT\n"
+"---\n"
+"- 1\n"
+"...\n"
+"tarantool> box.iproto.flag.WAIT_SYNC\n"
+"---\n"
+"- 2\n"
+"..."
 msgstr ""

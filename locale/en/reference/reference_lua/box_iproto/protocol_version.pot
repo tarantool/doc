@@ -16,26 +16,21 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../../doc/reference/reference_lua/box_session/id.rst:5
-msgid "box.session.id()"
+#: ../../doc/reference/reference_lua/box_iproto/protocol_version.rst:4
+msgid "box.iproto.protocol_version"
 msgstr ""
 
-#: ../../doc/reference/reference_lua/box_session/id.rst:11
-msgid "Return the unique identifier (ID) for the current session."
+#: ../../doc/reference/reference_lua/box_iproto/protocol_version.rst:10
+msgid "The current IPROTO protocol version of the server. Learn more: :ref:`IPROTO_ID <box_protocol-id>`."
 msgstr ""
 
-#: ../../doc/reference/reference_lua/box_session/id.rst:0
-msgid "return"
+#: ../../doc/reference/reference_lua/box_iproto/protocol_version.rst:13
+msgid "**Example**"
 msgstr ""
 
-#: ../../doc/reference/reference_lua/box_session/id.rst:13
-msgid "the session identifier; 0 or -1 if there is no session"
-msgstr ""
-
-#: ../../doc/reference/reference_lua/box_session/id.rst:0
-msgid "rtype"
-msgstr ""
-
-#: ../../doc/reference/reference_lua/box_session/id.rst:14
-msgid "number"
+#: ../../doc/reference/reference_lua/box_iproto/protocol_version.rst:15
+msgid "tarantool> box.iproto.protocol_version\n"
+"---\n"
+"- 4\n"
+"..."
 msgstr ""

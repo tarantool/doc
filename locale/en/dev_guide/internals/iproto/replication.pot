@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"POT-Creation-Date: 2023-11-21 08:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,433 +28,433 @@ msgstr ""
 msgid "Connectors and clients do not need to send replication packets."
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:15
+#: ../../doc/dev_guide/internals/iproto/replication.rst:17
 msgid "General"
-msgstr ""
-
-#: ../../doc/dev_guide/internals/iproto/replication.rst:23
-#: ../../doc/dev_guide/internals/iproto/replication.rst:181
-msgid "Name"
-msgstr ""
-
-#: ../../doc/dev_guide/internals/iproto/replication.rst:24
-#: ../../doc/dev_guide/internals/iproto/replication.rst:182
-msgid "Code"
 msgstr ""
 
 #: ../../doc/dev_guide/internals/iproto/replication.rst:25
 #: ../../doc/dev_guide/internals/iproto/replication.rst:183
-msgid "Description"
+msgid "Name"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/replication.rst:26
+#: ../../doc/dev_guide/internals/iproto/replication.rst:184
+msgid "Code"
 msgstr ""
 
 #: ../../doc/dev_guide/internals/iproto/replication.rst:27
-msgid ":ref:`IPROTO_JOIN <box_protocol-join>`"
-msgstr ""
-
-#: ../../doc/dev_guide/internals/iproto/replication.rst:28
-msgid "0x41"
+#: ../../doc/dev_guide/internals/iproto/replication.rst:185
+msgid "Description"
 msgstr ""
 
 #: ../../doc/dev_guide/internals/iproto/replication.rst:29
-msgid "Request to join a replica set"
+msgid ":ref:`IPROTO_JOIN <box_protocol-join>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/replication.rst:30
+msgid "0x41"
 msgstr ""
 
 #: ../../doc/dev_guide/internals/iproto/replication.rst:31
-msgid ":ref:`IPROTO_SUBSCRIBE <internals-iproto-replication-subscribe>`"
-msgstr ""
-
-#: ../../doc/dev_guide/internals/iproto/replication.rst:32
-msgid "0x42"
+msgid "Request to join a replica set"
 msgstr ""
 
 #: ../../doc/dev_guide/internals/iproto/replication.rst:33
-msgid "Request to subscribe to a specific node in a replica set"
+msgid ":ref:`IPROTO_SUBSCRIBE <internals-iproto-replication-subscribe>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/replication.rst:34
+msgid "0x42"
 msgstr ""
 
 #: ../../doc/dev_guide/internals/iproto/replication.rst:35
-msgid ":ref:`IPROTO_VOTE <internals-iproto-replication-vote>`"
-msgstr ""
-
-#: ../../doc/dev_guide/internals/iproto/replication.rst:36
-msgid "0x44"
+msgid "Request to subscribe to a specific node in a replica set"
 msgstr ""
 
 #: ../../doc/dev_guide/internals/iproto/replication.rst:37
-msgid "Request for replication"
+msgid ":ref:`IPROTO_VOTE <internals-iproto-replication-vote>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/replication.rst:38
+msgid "0x44"
 msgstr ""
 
 #: ../../doc/dev_guide/internals/iproto/replication.rst:39
-msgid ":ref:`IPROTO_BALLOT <box_protocol-ballots>`"
-msgstr ""
-
-#: ../../doc/dev_guide/internals/iproto/replication.rst:40
-#: ../../doc/dev_guide/internals/iproto/replication.rst:202
-msgid "0x29"
+msgid "Request for replication"
 msgstr ""
 
 #: ../../doc/dev_guide/internals/iproto/replication.rst:41
-msgid "Response to IPROTO_VOTE. Used during replica set bootstrap"
+msgid ":ref:`IPROTO_BALLOT <box_protocol-ballots>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/replication.rst:42
+#: ../../doc/dev_guide/internals/iproto/replication.rst:204
+msgid "0x29"
 msgstr ""
 
 #: ../../doc/dev_guide/internals/iproto/replication.rst:43
-msgid "IPROTO_FETCH_SNAPSHOT"
-msgstr ""
-
-#: ../../doc/dev_guide/internals/iproto/replication.rst:44
-msgid "0x45"
+msgid "Response to IPROTO_VOTE. Used during replica set bootstrap"
 msgstr ""
 
 #: ../../doc/dev_guide/internals/iproto/replication.rst:45
+msgid "IPROTO_FETCH_SNAPSHOT"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/replication.rst:46
+msgid "0x45"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/replication.rst:47
 msgid "Fetch the master's snapshot and start anonymous replication. See :ref:`replication_anon <cfg_replication-replication_anon>`"
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:48
+#: ../../doc/dev_guide/internals/iproto/replication.rst:50
 msgid "IPROTO_REGISTER"
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:49
+#: ../../doc/dev_guide/internals/iproto/replication.rst:51
 msgid "0x46"
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:50
+#: ../../doc/dev_guide/internals/iproto/replication.rst:52
 msgid "Register an anonymous replica so it is not anonymous anymore"
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:52
+#: ../../doc/dev_guide/internals/iproto/replication.rst:54
 msgid "The master also sends :ref:`heartbeat <heartbeat>` messages to the replicas. The heartbeat message's IPROTO_REQUEST_TYPE is ``0``."
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:55
+#: ../../doc/dev_guide/internals/iproto/replication.rst:57
 msgid "Below are details on individual replication requests. For synchronous replication requests, see :ref:`below <internals-iproto-replication-synchronous>`."
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:61
+#: ../../doc/dev_guide/internals/iproto/replication.rst:63
 msgid "Heartbeats"
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:63
+#: ../../doc/dev_guide/internals/iproto/replication.rst:65
 msgid "Once in :ref:`replication_timeout <cfg_replication-replication_timeout>` seconds, a master sends a :ref:`heartbeat <heartbeat>` message to a replica, and the replica sends a response. Both messages' IPROTO_REQUEST_TYPE is IPROTO_OK. IPROTO_TIMESTAMP is a float-64 MP_DOUBLE 8-byte timestamp."
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:69
+#: ../../doc/dev_guide/internals/iproto/replication.rst:71
 msgid "Since version 2.11, both messages have an optional field in the body that contains the :ref:`IPROTO_VCLOCK_SYNC <internals-iproto-keys-vclock>` key. The master's heartbeat has no body if the IPROTO_VCLOCK_SYNC key is omitted."
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:73
+#: ../../doc/dev_guide/internals/iproto/replication.rst:75
 msgid "The message from master to a replica:"
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:78
+#: ../../doc/dev_guide/internals/iproto/replication.rst:80
 msgid "The response from the replica:"
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:83
+#: ../../doc/dev_guide/internals/iproto/replication.rst:85
 msgid "The tutorial :ref:`Understanding the binary protocol <box_protocol-illustration>` shows actual byte codes of the above heartbeat examples."
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:89
+#: ../../doc/dev_guide/internals/iproto/replication.rst:91
 msgid "IPROTO_JOIN"
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:91
+#: ../../doc/dev_guide/internals/iproto/replication.rst:93
 msgid "Code: 0x41."
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:93
+#: ../../doc/dev_guide/internals/iproto/replication.rst:95
 msgid "To join a replica set, an instance must send an initial IPROTO_JOIN request to any node in the replica set:"
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:98
+#: ../../doc/dev_guide/internals/iproto/replication.rst:100
 msgid "The node that receives the request does the following in response:"
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:100
+#: ../../doc/dev_guide/internals/iproto/replication.rst:102
 msgid "It sends its vclock:"
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:105
+#: ../../doc/dev_guide/internals/iproto/replication.rst:107
 msgid "It sends a number of :ref:`INSERT <box_protocol-insert>` requests (with additional LSN and ServerID). In this way, the data is updated on the instance that sent the IPROTO_JOIN request. The instance should not reply to these INSERT requests."
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:109
+#: ../../doc/dev_guide/internals/iproto/replication.rst:111
 msgid "It sends the new vclock's MP_MAP in a response similar to the one above and closes the socket."
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:115
+#: ../../doc/dev_guide/internals/iproto/replication.rst:117
 msgid "IPROTO_SUBSCRIBE"
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:117
+#: ../../doc/dev_guide/internals/iproto/replication.rst:119
 msgid "Code: 0x42."
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:119
+#: ../../doc/dev_guide/internals/iproto/replication.rst:121
 msgid "If :ref:`IPROTO_JOIN <box_protocol-join>` was successful, the initiator instance must send an IPROTO_SUBSCRIBE request to all the nodes listed in its :ref:`box.cfg.replication <cfg_replication-replication>`:"
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:126
+#: ../../doc/dev_guide/internals/iproto/replication.rst:128
 msgid "After a successful IPROTO_SUBSCRIBE request, the instance must process every request that could come from other masters. Each master's request includes a vclock pair corresponding to that master -- its instance ID and its LSN, independent from other masters."
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:131
+#: ../../doc/dev_guide/internals/iproto/replication.rst:133
 msgid "IPROTO_ID_FILTER (0x51) is an optional key used in the SUBSCRIBE request followed by an array of ids of instances whose rows won't be relayed to the replica. The field is encoded only when the ID list is not empty."
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:139
+#: ../../doc/dev_guide/internals/iproto/replication.rst:141
 msgid "IPROTO_VOTE"
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:141
+#: ../../doc/dev_guide/internals/iproto/replication.rst:143
 msgid "Code: 0x44."
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:143
+#: ../../doc/dev_guide/internals/iproto/replication.rst:145
 msgid "When connecting for replication, an instance sends an IPROTO_VOTE request. It has no body:"
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:148
+#: ../../doc/dev_guide/internals/iproto/replication.rst:150
 msgid "IPROTO_VOTE is critical during replica set bootstrap. The response to this request is :ref:`IPROTO_BALLOT <box_protocol-ballots>`."
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:154
+#: ../../doc/dev_guide/internals/iproto/replication.rst:156
 msgid "IPROTO_BALLOT"
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:156
-#: ../../doc/dev_guide/internals/iproto/replication.rst:316
+#: ../../doc/dev_guide/internals/iproto/replication.rst:158
+#: ../../doc/dev_guide/internals/iproto/replication.rst:318
 msgid "Code: 0x29."
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:158
+#: ../../doc/dev_guide/internals/iproto/replication.rst:160
 msgid "This value of IPROTO_REQUEST_TYPE indicates a message sent in response to :ref:`IPROTO_VOTE <internals-iproto-replication-vote>` (not to be confused with the key IPROTO_RAFT_VOTE)."
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:161
+#: ../../doc/dev_guide/internals/iproto/replication.rst:163
 msgid "IPROTO_BALLOT and IPROTO_VOTE are critical during replica set bootstrap. IPROTO_BALLOT corresponds to a map containing the following fields:"
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:167
+#: ../../doc/dev_guide/internals/iproto/replication.rst:169
 msgid "IPROTO_BALLOT_REGISTERED_REPLICA_UUIDS has the MP_ARRAY type. The array contains MP_STR elements."
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:173
+#: ../../doc/dev_guide/internals/iproto/replication.rst:175
 msgid "Synchronous"
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:185
+#: ../../doc/dev_guide/internals/iproto/replication.rst:187
 msgid ":ref:`IPROTO_RAFT <box_protocol-raft>`"
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:186
+#: ../../doc/dev_guide/internals/iproto/replication.rst:188
 msgid "0x1e"
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:187
+#: ../../doc/dev_guide/internals/iproto/replication.rst:189
 msgid "Inform that the node changed its :ref:`RAFT status <repl_leader_elect>`"
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:189
+#: ../../doc/dev_guide/internals/iproto/replication.rst:191
 msgid ":ref:`IPROTO_RAFT_PROMOTE <internals-iproto-replication-raft_promote>`"
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:190
+#: ../../doc/dev_guide/internals/iproto/replication.rst:192
 msgid "0x1f"
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:191
+#: ../../doc/dev_guide/internals/iproto/replication.rst:193
 msgid "Wait, then choose new replication leader"
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:193
+#: ../../doc/dev_guide/internals/iproto/replication.rst:195
 msgid ":ref:`IPROTO_RAFT_DEMOTE <internals-iproto-replication-raft_demote>`"
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:194
+#: ../../doc/dev_guide/internals/iproto/replication.rst:196
 msgid "0x20"
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:195
+#: ../../doc/dev_guide/internals/iproto/replication.rst:197
 msgid "Revoke the leader role from the instance"
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:197
+#: ../../doc/dev_guide/internals/iproto/replication.rst:199
 msgid ":ref:`IPROTO_RAFT_CONFIRM <box_protocol-raft_confirm>`"
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:198
+#: ../../doc/dev_guide/internals/iproto/replication.rst:200
 msgid "0x28"
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:199
+#: ../../doc/dev_guide/internals/iproto/replication.rst:201
 msgid "Confirm that the RAFT transactions have achieved quorum and can be committed"
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:201
-msgid ":ref:`IPROTO_RAFT_ROLLBACK <box_protocol-raft_confirm>`"
+#: ../../doc/dev_guide/internals/iproto/replication.rst:203
+msgid ":ref:`IPROTO_RAFT_ROLLBACK <box_protocol-raft_rollback>`"
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:203
+#: ../../doc/dev_guide/internals/iproto/replication.rst:205
 msgid "Roll back the RAFT transactions because they haven't achieved quorum"
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:210
+#: ../../doc/dev_guide/internals/iproto/replication.rst:212
 msgid "IPROTO_RAFT"
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:212
+#: ../../doc/dev_guide/internals/iproto/replication.rst:214
 msgid "Code: 0x1e."
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:214
+#: ../../doc/dev_guide/internals/iproto/replication.rst:216
 msgid "A node broadcasts the IPROTO_RAFT request to all the replicas connected to it when the RAFT state of the node changes. It can be any actions changing the state, like starting a new election, bumping the term, voting for another node, becoming the leader, and so on."
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:219
+#: ../../doc/dev_guide/internals/iproto/replication.rst:221
 msgid "If there should be a response, for example, in case of a vote request to other nodes, the response will also be an IPROTO_RAFT message. In this case, the node should be connected as a replica to another node from which the response is expected because the response is sent via the replication channel. In other words, there should be a full-mesh connection between the nodes."
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:228
+#: ../../doc/dev_guide/internals/iproto/replication.rst:230
 msgid "IPROTO_REPLICA_ID is the ID of the replica from which the request came."
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:233
+#: ../../doc/dev_guide/internals/iproto/replication.rst:235
 msgid "IPROTO_RAFT_PROMOTE"
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:235
+#: ../../doc/dev_guide/internals/iproto/replication.rst:237
 msgid "Code: 0x1f."
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:237
+#: ../../doc/dev_guide/internals/iproto/replication.rst:239
 msgid "See :ref:`box.ctl.promote() <box_ctl-promote>`."
-msgstr ""
-
-#: ../../doc/dev_guide/internals/iproto/replication.rst:242
-#: ../../doc/dev_guide/internals/iproto/replication.rst:266
-#: ../../doc/dev_guide/internals/iproto/replication.rst:299
-#: ../../doc/dev_guide/internals/iproto/replication.rst:332
-msgid "In the header:"
 msgstr ""
 
 #: ../../doc/dev_guide/internals/iproto/replication.rst:244
 #: ../../doc/dev_guide/internals/iproto/replication.rst:268
+#: ../../doc/dev_guide/internals/iproto/replication.rst:301
+#: ../../doc/dev_guide/internals/iproto/replication.rst:334
+msgid "In the header:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/replication.rst:246
+#: ../../doc/dev_guide/internals/iproto/replication.rst:270
 msgid "IPROTO_REPLICA_ID is the replica ID of the node that sent the request."
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:245
+#: ../../doc/dev_guide/internals/iproto/replication.rst:247
 msgid "IPROTO_LSN is the actual LSN of the promote operation as recorded in the WAL."
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:247
-#: ../../doc/dev_guide/internals/iproto/replication.rst:271
-#: ../../doc/dev_guide/internals/iproto/replication.rst:304
-#: ../../doc/dev_guide/internals/iproto/replication.rst:337
+#: ../../doc/dev_guide/internals/iproto/replication.rst:249
+#: ../../doc/dev_guide/internals/iproto/replication.rst:273
+#: ../../doc/dev_guide/internals/iproto/replication.rst:306
+#: ../../doc/dev_guide/internals/iproto/replication.rst:339
 msgid "In the body:"
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:249
+#: ../../doc/dev_guide/internals/iproto/replication.rst:251
 msgid "IPROTO_REPLICA_ID is the replica ID of the previous :ref:`synchronous queue owner <box_info_synchro>`."
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:250
+#: ../../doc/dev_guide/internals/iproto/replication.rst:252
 msgid "IPROTO_LSN is the LSN of the last operation on the previous synchronous queue owner."
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:251
+#: ../../doc/dev_guide/internals/iproto/replication.rst:253
 msgid "IPROTO_TERM is the term in which the node that sent the request becomes the synchronous queue owner. This term corresponds to the value of :ref:`box.info.synchro.queue.term <box_info_synchro>` on the instance."
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:257
+#: ../../doc/dev_guide/internals/iproto/replication.rst:259
 msgid "IPROTO_RAFT_DEMOTE"
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:259
+#: ../../doc/dev_guide/internals/iproto/replication.rst:261
 msgid "Code: 0x20."
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:261
+#: ../../doc/dev_guide/internals/iproto/replication.rst:263
 msgid "See :ref:`box.ctl.demote() <box_ctl-demote>`."
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:269
+#: ../../doc/dev_guide/internals/iproto/replication.rst:271
 msgid "IPROTO_LSN is the actual LSN of the demote operation as recorded in the WAL."
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:273
+#: ../../doc/dev_guide/internals/iproto/replication.rst:275
 msgid "IPROTO_REPLICA_ID is the replica ID of the node that sent the request (same as the value in the header)."
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:275
+#: ../../doc/dev_guide/internals/iproto/replication.rst:277
 msgid "IPROTO_LSN is the LSN of the last synchronous transaction recorded in the node's WAL."
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:276
+#: ../../doc/dev_guide/internals/iproto/replication.rst:278
 msgid "IPROTO_TERM is the term in which the queue becomes empty."
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:281
+#: ../../doc/dev_guide/internals/iproto/replication.rst:283
 msgid "IPROTO_RAFT_CONFIRM"
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:283
+#: ../../doc/dev_guide/internals/iproto/replication.rst:285
 msgid "Code: 0x28."
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:285
-#: ../../doc/dev_guide/internals/iproto/replication.rst:318
+#: ../../doc/dev_guide/internals/iproto/replication.rst:287
+#: ../../doc/dev_guide/internals/iproto/replication.rst:320
 msgid "This message is used in replication connections between Tarantool nodes in :ref:`synchronous replication <repl_sync>`. It is not supposed to be used by any client applications in their regular connections."
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:290
+#: ../../doc/dev_guide/internals/iproto/replication.rst:292
 msgid "This message confirms that the transactions that originated from the instance with id = IPROTO_REPLICA_ID (body) have achieved quorum and can be committed, up to and including LSN = IPROTO_LSN (body)."
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:294
-#: ../../doc/dev_guide/internals/iproto/replication.rst:327
+#: ../../doc/dev_guide/internals/iproto/replication.rst:296
+#: ../../doc/dev_guide/internals/iproto/replication.rst:329
 msgid "The body is a 2-item map:"
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:301
+#: ../../doc/dev_guide/internals/iproto/replication.rst:303
 msgid "IPROTO_REPLICA_ID is the ID of the replica that sends the confirm message."
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:302
+#: ../../doc/dev_guide/internals/iproto/replication.rst:304
 msgid "IPROTO_LSN is the LSN of the confirmation action."
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:306
-#: ../../doc/dev_guide/internals/iproto/replication.rst:339
+#: ../../doc/dev_guide/internals/iproto/replication.rst:308
+#: ../../doc/dev_guide/internals/iproto/replication.rst:341
 msgid "IPROTO_REPLICA_ID is the ID of the instance from which the transactions originated."
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:307
+#: ../../doc/dev_guide/internals/iproto/replication.rst:309
 msgid "IPROTO_LSN is the LSN up to which the transactions should be confirmed."
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:309
+#: ../../doc/dev_guide/internals/iproto/replication.rst:311
 msgid "Prior to Tarantool :tarantool-release:`2.10.0`, IPROTO_RAFT_CONFIRM was called IPROTO_CONFIRM."
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:314
+#: ../../doc/dev_guide/internals/iproto/replication.rst:316
 msgid "IPROTO_RAFT_ROLLBACK"
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:323
+#: ../../doc/dev_guide/internals/iproto/replication.rst:325
 msgid "This message says that the transactions that originated from the instance with id = IPROTO_REPLICA_ID (body) couldn't achieve quorum for some reason and should be rolled back, down to LSN = IPROTO_LSN (body) and including it."
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:334
+#: ../../doc/dev_guide/internals/iproto/replication.rst:336
 msgid "IPROTO_REPLICA_ID is the ID of the replica that sends the rollback message."
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:335
+#: ../../doc/dev_guide/internals/iproto/replication.rst:337
 msgid "IPROTO_LSN is the LSN of the rollback action."
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:340
+#: ../../doc/dev_guide/internals/iproto/replication.rst:342
 msgid "IPROTO_LSN is the LSN starting with which all pending synchronous transactions should be rolled back."
 msgstr ""
 
-#: ../../doc/dev_guide/internals/iproto/replication.rst:342
+#: ../../doc/dev_guide/internals/iproto/replication.rst:344
 msgid "Prior to Tarantool :tarantool-release:`2.10.0`, IPROTO_RAFT_ROLLBACK was called IPROTO_ROLLBACK."
 msgstr ""
