@@ -99,6 +99,10 @@ To publish a cluster's configuration using the ``etcdctl`` utility, use the ``pu
 
     $ etcdctl put /example/config/all < cluster.yaml
 
+.. NOTE::
+
+    For etcd versions earlier than 3.4, you need to set the ``ETCDCTL_API`` environment variable to ``3``.
+
 
 
 
