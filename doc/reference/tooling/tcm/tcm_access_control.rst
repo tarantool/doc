@@ -287,12 +287,6 @@ The following administrative permissions are available in |tcm|:
     *   -   ``admin.roles.write``
         -   Edit roles and add new roles
 
-    *   -   ``admin.lowlevel.state.read``
-        -   Read low-level information from |tcm| storage (for debug purposes)
-
-    *   -   ``admin.lowlevel.state.write``
-        -   Write low-level information to |tcm| storage (for debug purposes)
-
     *   -   ``admin.addons.read``
         -   View add-ons
 
@@ -329,14 +323,17 @@ The following administrative permissions are available in |tcm|:
     *   -  ``admin.devmode.toggle``
         -   Toggle development mode
 
-    *   -   ``user.password.change``
-        -   Change own password
-
     *   -   ``admin.secrets.read``
         -   View information about users' secrets
 
     *   -   ``admin.secrets.write``
-        -   Manage users' secrets: add, edit, expire, block, delete.
+        -   Manage users' secrets: add, edit, expire, block, delete
+
+    *   -   ``admin.lowlevel.state.read``
+        -   Read low-level information from |tcm| storage (for debug purposes)
+
+    *   -   ``admin.lowlevel.state.write``
+        -   Write low-level information to |tcm| storage (for debug purposes)
 
 .. _tcm_access_control_permissions_cluster:
 
@@ -351,12 +348,6 @@ The following cluster permissions are available in |tcm|:
 
     *   -   Permission
         -   Description
-
-    *   -   ``cluster.lowlevel.state.read``
-        -   Read low-level information about cluster configuration (for debug purposes)
-
-    *   -   ``cluster.lowlevel.state.write``
-        -   Write low-level information about cluster configuration (for debug purposes)
 
     *   -   ``cluster.config.read``
         -   View cluster configuration
@@ -384,3 +375,9 @@ The following cluster permissions are available in |tcm|:
 
     *   -   ``cluster.space.write``
         -   Modify cluster data schema
+
+    *   -   ``cluster.lowlevel.state.read``
+        -   Read low-level information about cluster configuration (for debug purposes)
+
+    *   -   ``cluster.lowlevel.state.write``
+        -   Write low-level information about cluster configuration (for debug purposes)
