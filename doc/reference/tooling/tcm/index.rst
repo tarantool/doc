@@ -28,4 +28,6 @@ You can create users and assign them roles that include required permissions.
 For example, a user can be an administrator of a specific cluster or only have the right
 to read data. LDAP authorization is supported as well.
 
-..  TODO: table of contents
+.. toctree::
+
+    tcm_access_control
