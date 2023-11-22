@@ -1,5 +1,5 @@
-sharded_cluster.storage-a-001:
-sharded_cluster.storage-a-002:
-sharded_cluster.storage-b-001:
-sharded_cluster.storage-b-002:
-sharded_cluster.router-a-001:
+storage-a-001:
+storage-a-002:
+storage-b-001:
+storage-b-002:
+router-a-001:
