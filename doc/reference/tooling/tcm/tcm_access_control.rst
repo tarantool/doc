@@ -178,7 +178,7 @@ To change your own password, click your name in the top-right corner and go to
 Changing users' passwords
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Administrators can manage a user's passwords on this user's **Secrets** page.
+Administrators can manage a user's password on this user's **Secrets** page.
 To open it, click **Secrets** in the **Actions** menu of the corresponding **Users** table row.
 
 To change a user's password, click **Edit** in the **Actions** menu of the corresponding
@@ -270,7 +270,7 @@ Administrative permissions
 The following administrative permissions are available in |tcm|:
 
 ..  list-table::
-    :widths: 35 65
+    :widths: auto
     :header-rows: 1
 
     *   -   Permission
@@ -327,7 +327,7 @@ The following administrative permissions are available in |tcm|:
     *   -   ``admin.passwordpolicy.write``
         -   Manage password policy
 
-    *   -  ``admin.devmode.toggle``
+    *   -   ``admin.devmode.toggle``
         -   Toggle development mode
 
     *   -   ``admin.secrets.read``
@@ -353,7 +353,7 @@ Cluster permissions
 The following cluster permissions are available in |tcm|:
 
 ..  list-table::
-    :widths: 35 65
+    :widths: auto
     :header-rows: 1
 
     *   -   Permission
