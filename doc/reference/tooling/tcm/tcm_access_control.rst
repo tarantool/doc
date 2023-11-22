@@ -17,13 +17,13 @@ and users (or user accounts). They work as follows:
     |tcm| (*administrative permissions*) or operations on clusters (*cluster permissions*).
 -   Roles are predefined sets of *administrative* permissions to
     assign to users.
--   Users have roles that define their access rights to |tcm| function and objects, and
+-   Users have roles that define their access rights to |tcm| functions and objects, and
     *cluster* permissions that are assigned for each cluster separately.
 
 ..  note::
 
     |tcm| users, roles, and permissions are not to be confused with similar subjects
-    of :ref:`Tarantool access control system <authentication>`. To access Tarantool
+    of the :ref:`Tarantool access control system <authentication>`. To access Tarantool
     instances directly, Tarantool users with corresponding roles are required.
 
 .. _tcm_access_control_permissions:
@@ -47,7 +47,7 @@ There are two types of permissions in |tcm|: *administrative* and *cluster* perm
     Administrative permissions are assigned to users through :ref:`roles <tcm_access_control_roles>`.
 
 *   *Cluster permissions* enable actions with connected Tarantool clusters.
-    These permission are granted to users on a per-cluster level: each user has a separate
+    These permissions are granted to users on a per-cluster level: each user has a separate
     set of permissions for each cluster.
 
     Technically, cluster permissions define pages shown in the **Cluster** section
@@ -143,7 +143,7 @@ To create a user:
 1.  Click **Add**.
 2.  Fill in the user information: username, full name, and description.
 3.  Generate or enter a password.
-4.  Select roles to assign to user.
+4.  Select roles to assign to the user.
 5.  Add clusters to give the user access to, and select cluster permissions for
     each of them.
 
@@ -165,7 +165,7 @@ Users receive their first passwords during the account creation. It can be enter
 manually or generated automatically.
 
 All passwords are governed by the :ref:`password policy <tcm_access_control_password_policy>`.
-It can be flexibly configured to follow security requirements of your organization.
+It can be flexibly configured to follow the security requirements of your organization.
 
 Changing your password
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -187,10 +187,10 @@ Password expiry
 
 Passwords expire automatically after the expiration period defined in the :ref:`password policy <tcm_access_control_password_policy>`.
 When a user logs in to |tcm| with an expired password, the only action available to
-them is password change. All other |tcm| functions and objects are unavailable until
+them is a password change. All other |tcm| functions and objects are unavailable until
 the new password is set.
 
-Administrators can also set users' password to expired manually.
+Administrators can also set users' passwords to expired manually.
 To set a user's password to expired, click **Expire** in the **Actions**
 menu of the corresponding **Secrets** table row.
 
