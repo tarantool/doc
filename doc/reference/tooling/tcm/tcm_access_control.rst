@@ -234,7 +234,7 @@ There are the following password policy settings:
     a new password.
 -   **Password expiration warning in days**. After this number of days, the user
     sees a warning that their password expires soon.
--   **Block after N login attempts**. Temporarily block user if they enter their
+-   **Block after N login attempts**. Temporarily block users if they enter their
     username or password incorrectly this number of times consecutively.
 -   **User lockout time in seconds**. The time interval for which users can't log
     in after spending all failed login attempts.
