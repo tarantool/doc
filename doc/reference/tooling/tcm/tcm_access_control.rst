@@ -10,7 +10,7 @@ Access control
 
 |tcm_full_name| features a role-based access control system. It enables flexible
 management of access to |tcm| functions, connected clusters, and stored data.
-There are three main entities in the |tcm| access system: permissions, roles,
+The |tcm| access system uses three main entities: permissions, roles,
 and users (or user accounts). They work as follows:
 
 -   Permissions correspond to specific functions or objects in
@@ -50,10 +50,10 @@ There are two types of permissions in |tcm|: *administrative* and *cluster* perm
     These permissions are granted to users on a per-cluster level: each user has a separate
     set of permissions for each cluster.
 
-    Technically, cluster permissions define pages shown in the **Cluster** section
-    of the left menu and controls available on these pages. For example, users
-    with the read configuration permission to a cluster configuration see the **Configuration**
-    page when this cluster is selected.
+    Cluster permissions define which pages of the **Cluster** menu section users
+    see and what actions they can take on these pages.
+    For example, users with the read configuration permission to a cluster configuration
+    see the **Configuration** page when this cluster is selected.
 
     Cluster permissions are assigned to users individually when creating or editing them.
 
@@ -118,7 +118,8 @@ Users
 
 |tcm| users gain access to objects and actions through assigned :ref:`roles <tcm_access_control_roles>`
 and :ref:`cluster permissions <tcm_access_control_permissions>`.
-Each user can have any number of roles, including zero. Users without roles
+
+A user can have any number of roles or none of them. Users without roles
 have access only to clusters that are assigned to them.
 
 |tcm| uses password authentication for users. For information on password management,
@@ -131,6 +132,8 @@ There is one default user **Default Admin**. It has all the available permission
 both administrative and cluster ones. When new clusters are added in |tcm|,
 **Default Admin** automatically receives all cluster permissions for them as well.
 
+.. _tcm_access_control_users_manage:
+
 Managing users
 ~~~~~~~~~~~~~~
 
@@ -142,7 +145,7 @@ To create a user:
 
 1.  Click **Add**.
 2.  Fill in the user information: username, full name, and description.
-3.  Generate or enter a password.
+3.  Generate or type in a password.
 4.  Select roles to assign to the user.
 5.  Add clusters to give the user access to, and select cluster permissions for
     each of them.
@@ -161,8 +164,7 @@ pair of a public and a private key that can be used for authentication. In |tcm|
 *password* is the only supported secret type. In this case, the public key is a username,
 and the private key is a password.
 
-Users receive their first passwords during the account creation. It can be entered
-manually or generated automatically.
+Users receive their first passwords during their :ref:`account creation <tcm_access_control_users_manage>`.
 
 All passwords are governed by the :ref:`password policy <tcm_access_control_password_policy>`.
 It can be flexibly configured to follow the security requirements of your organization.
@@ -181,6 +183,8 @@ To open it, click **Secrets** in the **Actions** menu of the corresponding **Use
 
 To change a user's password, click **Edit** in the **Actions** menu of the corresponding
 **Secrets** table row and enter the new password in the **New secret key** field.
+
+.. _tcm_access_control_password_expiry:
 
 Password expiry
 ~~~~~~~~~~~~~~~
@@ -224,13 +228,16 @@ There are the following password policy settings:
 
 -   **Minimal password length**.
 -   **Do not use last N passwords**.
--   **Password expiration in days**. After this number of days, the user loses access
-    to any objects and functions except password change. After they change the password,
-    all the access rights are returned.
+-   **Password expiration in days**. Users' passwords :ref:`expire <tcm_access_control_password_expiry>`
+    after this number of days since they were set. Users with expired passwords
+    lose access to any objects and functions except password change until they set
+    a new password.
 -   **Password expiration warning in days**. After this number of days, the user
-    sees a warning that they must change their password.
--   **Block after N login attempts**.
--   **User lockout time in seconds**.
+    sees a warning that their password expires soon.
+-   **Block after N login attempts**. Temporarily block user if they enter their
+    username or password incorrectly this number of times consecutively.
+-   **User lockout time in seconds**. The time interval for which users can't log
+    in after spending all failed login attempts.
 -   **Password must include**. Characters and symbols that must be present in passwords:
 
     -   **Lowercase characters (a-z)**
@@ -263,7 +270,7 @@ Administrative permissions
 The following administrative permissions are available in |tcm|:
 
 ..  list-table::
-    :widths: 30 70
+    :widths: 35 65
     :header-rows: 1
 
     *   -   Permission
@@ -328,6 +335,9 @@ The following administrative permissions are available in |tcm|:
 
     *   -   ``admin.secrets.write``
         -   Manage users' secrets: add, edit, expire, block, delete
+
+    *   -   ``user.password.change``
+        -   User's permission to change their own password
 
     *   -   ``admin.lowlevel.state.read``
         -   Read low-level information from |tcm| storage (for debug purposes)
