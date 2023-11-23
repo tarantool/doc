@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"POT-Creation-Date: 2023-11-23 09:50+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,88 +21,129 @@ msgid "Tarantool code examples"
 msgstr ""
 
 #: ../../doc/code_snippets/README.md:3
-msgid "The `doc/code_snippets` folder of a Tarantool documentation repository contains runnable code examples that show how to work with various Tarantool modules. Code from these examples is [referenced](#referencing-code-snippets) in corresponding documentation sections."
+msgid "The `doc/code_snippets` folder of a Tarantool documentation repository contains runnable code examples that show how to work with Tarantool:"
 msgstr ""
 
 #: ../../doc/code_snippets/README.md:5
-msgid "Prerequisites"
+msgid "The [snippets](snippets) folder contains sample applications that demonstrate how to configure a Tarantool cluster."
 msgstr ""
 
-#: ../../doc/code_snippets/README.md:7
-msgid "First, install the [tt CLI utility](https://www.tarantool.io/en/doc/latest/reference/tooling/tt_cli/). Then, go to the `doc/code_snippets` folder and install the following libraries:"
+#: ../../doc/code_snippets/README.md:6
+msgid "The [test](test) folder contains testable Lua examples that show how to work with various Tarantool modules."
+msgstr ""
+
+#: ../../doc/code_snippets/README.md:8
+msgid "Code from these examples is [referenced](#referencing-code-snippets) in corresponding documentation sections."
 msgstr ""
 
 #: ../../doc/code_snippets/README.md:10
-msgid "Install [luatest](https://github.com/tarantool/luatest):"
+msgid "Prerequisites"
 msgstr ""
 
-#: ../../doc/code_snippets/README.md:11
+#: ../../doc/code_snippets/README.md:12
+msgid "Install the [tt CLI utility](https://www.tarantool.io/en/doc/latest/reference/tooling/tt_cli/)."
+msgstr ""
+
+#: ../../doc/code_snippets/README.md:13
+msgid "To be able to run tests for samples from [test](test), go to the `doc/code_snippets` folder and install the following libraries:"
+msgstr ""
+
+#: ../../doc/code_snippets/README.md:15
+msgid "[luatest](https://github.com/tarantool/luatest):"
+msgstr ""
+
+#: ../../doc/code_snippets/README.md:16
 msgid "tt rocks install luatest\n"
 ""
 msgstr ""
 
-#: ../../doc/code_snippets/README.md:15
-msgid "Install [luarapidxml](https://github.com/tarantool/luarapidxml):"
+#: ../../doc/code_snippets/README.md:20
+msgid "[luarapidxml](https://github.com/tarantool/luarapidxml):"
 msgstr ""
 
-#: ../../doc/code_snippets/README.md:16
+#: ../../doc/code_snippets/README.md:21
 msgid "tt rocks install luarapidxml\n"
 ""
 msgstr ""
 
-#: ../../doc/code_snippets/README.md:22
-msgid "Running and testing examples"
+#: ../../doc/code_snippets/README.md:27
+msgid "Running"
 msgstr ""
 
-#: ../../doc/code_snippets/README.md:24
+#: ../../doc/code_snippets/README.md:29
+msgid "Running applications from 'snippets'"
+msgstr ""
+
+#: ../../doc/code_snippets/README.md:31
+msgid "To run applications placed in [snippets](snippets), follow these steps:"
+msgstr ""
+
+#: ../../doc/code_snippets/README.md:33
+msgid "Go to the directory containing samples for a specific feature, for example, [snippets/replication](snippets/replication)."
+msgstr ""
+
+#: ../../doc/code_snippets/README.md:34
+msgid "To run applications placed in [instances.enabled](instances.enabled), execute the `tt start` command, for example:"
+msgstr ""
+
+#: ../../doc/code_snippets/README.md:36
+msgid "$ tt start auto_leader\n"
+""
+msgstr ""
+
+#: ../../doc/code_snippets/README.md:40
+msgid "Running and testing examples from 'test'"
+msgstr ""
+
+#: ../../doc/code_snippets/README.md:42
 msgid "To test all the examples, go to the `doc/code_snippets` folder and execute the `luatest` command:"
 msgstr ""
 
-#: ../../doc/code_snippets/README.md:26
+#: ../../doc/code_snippets/README.md:44
 msgid ".rocks/bin/luatest\n"
 ""
 msgstr ""
 
-#: ../../doc/code_snippets/README.md:30
+#: ../../doc/code_snippets/README.md:48
 msgid "To test the examples from the specified directory, pass its relative path to the `luatest` command:"
 msgstr ""
 
-#: ../../doc/code_snippets/README.md:32
+#: ../../doc/code_snippets/README.md:50
 msgid ".rocks/bin/luatest test/transactions\n"
 ""
 msgstr ""
 
-#: ../../doc/code_snippets/README.md:36
+#: ../../doc/code_snippets/README.md:54
 msgid "To test a specific example with the `stdout` output enabled, use the `luatest` command with the `-c` option, for example:"
 msgstr ""
 
-#: ../../doc/code_snippets/README.md:38
+#: ../../doc/code_snippets/README.md:56
 msgid ".rocks/bin/luatest -c test/http_client/get_test.lua\n"
 ""
 msgstr ""
 
-#: ../../doc/code_snippets/README.md:42
+#: ../../doc/code_snippets/README.md:60
 msgid "Note that the HTTP client samples (placed in `test/http_client`) use the `httpbin` service. You can run `httpbin` locally using Docker to stabilize test results:"
 msgstr ""
 
-#: ../../doc/code_snippets/README.md:45
+#: ../../doc/code_snippets/README.md:63
 msgid "docker run -p 80:80 kennethreitz/httpbin\n"
 ""
 msgstr ""
 
-#: ../../doc/code_snippets/README.md:49
+#: ../../doc/code_snippets/README.md:67
 msgid "In this case, you need to replace `https://httpbin.org` links with `http://127.0.0.1`."
 msgstr ""
 
-#: ../../doc/code_snippets/README.md:52
+#: ../../doc/code_snippets/README.md:70
 msgid "Referencing code snippets"
 msgstr ""
 
-#: ../../doc/code_snippets/README.md:53
+#: ../../doc/code_snippets/README.md:71
 msgid "To display a specific source file in a topic, use the `literalinclude` directive as follows:"
 msgstr ""
 
-#: ../../doc/code_snippets/README.md:54
+#: ../../doc/code_snippets/README.md:72
 msgid "..  literalinclude:: /code_snippets/test/http_client/post_json_test.lua\n"
 "    :language: lua\n"
 "    :lines: 1-6\n"

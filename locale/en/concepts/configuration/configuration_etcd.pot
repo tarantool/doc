@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"POT-Creation-Date: 2023-11-23 09:50+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -156,19 +156,23 @@ msgstr ""
 msgid "$ etcdctl put /example/config/all < cluster.yaml"
 msgstr ""
 
-#: ../../doc/concepts/configuration/configuration_etcd.rst:108
+#: ../../doc/concepts/configuration/configuration_etcd.rst:104
+msgid "For etcd versions earlier than 3.4, you need to set the ``ETCDCTL_API`` environment variable to ``3``."
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_etcd.rst:112
 msgid "Starting Tarantool instances"
 msgstr ""
 
-#: ../../doc/concepts/configuration/configuration_etcd.rst:110
+#: ../../doc/concepts/configuration/configuration_etcd.rst:114
 msgid "The :ref:`tt <tt-cli>` utility is the recommended way to start Tarantool instances. You can learn how to do this from the :ref:`Starting instances using the tt utility <configuration_run_instance_tt>` section."
 msgstr ""
 
-#: ../../doc/concepts/configuration/configuration_etcd.rst:113
+#: ../../doc/concepts/configuration/configuration_etcd.rst:117
 msgid "You can also use the ``tarantool`` command to :ref:`start a Tarantool instance <configuration_run_instance_tarantool>`. In this case, you can eliminate creating a :ref:`local etcd configuration  <etcd_local_configuration>` and provide etcd connection settings using the ``TT_CONFIG_ETCD_ENDPOINTS`` and ``TT_CONFIG_ETCD_PREFIX`` :ref:`environment variables <configuration_environment_variable>`."
 msgstr ""
 
-#: ../../doc/concepts/configuration/configuration_etcd.rst:116
+#: ../../doc/concepts/configuration/configuration_etcd.rst:120
 msgid "$ export TT_CONFIG_ETCD_ENDPOINTS=http://localhost:2379\n"
 "$ export TT_CONFIG_ETCD_PREFIX=/example\n"
 "\n"
@@ -177,25 +181,25 @@ msgid "$ export TT_CONFIG_ETCD_ENDPOINTS=http://localhost:2379\n"
 "$ tarantool --name instance003"
 msgstr ""
 
-#: ../../doc/concepts/configuration/configuration_etcd.rst:131
+#: ../../doc/concepts/configuration/configuration_etcd.rst:135
 msgid "Reloading configuration"
 msgstr ""
 
-#: ../../doc/concepts/configuration/configuration_etcd.rst:133
+#: ../../doc/concepts/configuration/configuration_etcd.rst:137
 msgid "By default, Tarantool watches etcd keys with the :ref:`specified prefix <etcd_local_configuration>` for changes in a cluster's configuration and reloads a changed configuration automatically. If necessary, you can set the :ref:`config.reload <configuration_reference_config_reload>` option to ``manual`` to turn off configuration reloading:"
 msgstr ""
 
-#: ../../doc/concepts/configuration/configuration_etcd.rst:136
+#: ../../doc/concepts/configuration/configuration_etcd.rst:140
 msgid "config:\n"
 "  reload: 'manual'\n"
 "  etcd:\n"
 "    # ..."
 msgstr ""
 
-#: ../../doc/concepts/configuration/configuration_etcd.rst:143
+#: ../../doc/concepts/configuration/configuration_etcd.rst:147
 msgid "In this case, you can reload a configuration in an :ref:`admin console <admin-security>` or :ref:`application code <configuration_application>` using the ``reload()`` function provided by the :ref:`config <config-module>` module:"
 msgstr ""
 
-#: ../../doc/concepts/configuration/configuration_etcd.rst:145
+#: ../../doc/concepts/configuration/configuration_etcd.rst:149
 msgid "require('config'):reload()"
 msgstr ""
