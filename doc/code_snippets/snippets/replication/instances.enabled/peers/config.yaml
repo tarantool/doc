@@ -4,18 +4,17 @@ credentials:
       password: 'topsecret'
       roles: [replication]
 
-iproto:
-  advertise:
-    peer: replicator@
-
 replication:
-  failover: manual
+  peers:
+    - replicator:topsecret@127.0.0.1:3301
+    - replicator:topsecret@127.0.0.1:3302
+    - replicator:topsecret@127.0.0.1:3303
+  failover: election
 
 groups:
   group001:
     replicasets:
       replicaset001:
-        leader: instance001
         instances:
           instance001:
             iproto:
@@ -26,7 +25,3 @@ groups:
           instance003:
             iproto:
               listen: 127.0.0.1:3303
-
-# Load sample data
-app:
-  file: 'myapp.lua'
