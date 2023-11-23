@@ -1,25 +1,43 @@
 # Tarantool code examples
 
-The `doc/code_snippets` folder of a Tarantool documentation repository contains runnable code examples that show how to work with various Tarantool modules. Code from these examples is [referenced](#referencing-code-snippets) in corresponding documentation sections. 
+The `doc/code_snippets` folder of a Tarantool documentation repository contains runnable code examples that show how to work with Tarantool:
+
+- The [snippets](snippets) folder contains sample applications that demonstrate how to configure a Tarantool cluster.
+- The [test](test) folder contains testable Lua examples that show how to work with various Tarantool modules.
+
+Code from these examples is [referenced](#referencing-code-snippets) in corresponding documentation sections. 
 
 ## Prerequisites
 
-First, install the [tt CLI utility](https://www.tarantool.io/en/doc/latest/reference/tooling/tt_cli/).
-Then, go to the `doc/code_snippets` folder and install the following libraries:
+- Install the [tt CLI utility](https://www.tarantool.io/en/doc/latest/reference/tooling/tt_cli/).
+- To be able to run tests for samples from [test](test), go to the `doc/code_snippets` folder and install the following libraries:
 
-- Install [luatest](https://github.com/tarantool/luatest):
-    ```shell
-    tt rocks install luatest
+    - [luatest](https://github.com/tarantool/luatest):
+        ```shell
+        tt rocks install luatest
+        ```
+
+    - [luarapidxml](https://github.com/tarantool/luarapidxml):
+        ```shell
+        tt rocks install luarapidxml
+        ```
+
+
+
+## Running
+
+### Running applications from 'snippets'
+
+To run applications placed in [snippets](snippets), follow these steps:
+
+1.  Go to the directory containing samples for a specific feature, for example, [snippets/replication](snippets/replication).
+2. To run applications placed in [instances.enabled](instances.enabled), execute the `tt start` command, for example:
+
+    ```console
+    $ tt start auto_leader
     ```
 
-- Install [luarapidxml](https://github.com/tarantool/luarapidxml):
-    ```shell
-    tt rocks install luarapidxml
-    ```
-
-
-
-## Running and testing examples
+### Running and testing examples from 'test'
 
 To test all the examples, go to the `doc/code_snippets` folder and execute the `luatest` command:
 

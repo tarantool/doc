@@ -9,13 +9,15 @@ iproto:
     peer: replicator@
 
 replication:
-  failover: manual
+  failover: election
 
 groups:
   group001:
     replicasets:
       replicaset001:
-        leader: instance001
+        replication:
+          bootstrap_strategy: config
+        bootstrap_leader: instance001
         instances:
           instance001:
             iproto:
@@ -26,7 +28,3 @@ groups:
           instance003:
             iproto:
               listen: 127.0.0.1:3303
-
-# Load sample data
-app:
-  file: 'myapp.lua'

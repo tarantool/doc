@@ -1,63 +1,54 @@
-tt:
-  modules:
-    # Directory where the external modules are stored.
-    directory: "modules"
+modules:
+  # Directory where the external modules are stored.
+  directory: modules
 
-  app:
-    # Directory that stores various instance runtime
-    # artifacts like console socket, PID file, etc.
-    run_dir: "var/run"
+env:
+  # Restart instance on failure.
+  restart_on_failure: false
 
-    # Directory that stores log files.
-    log_dir: var/log
+  # Directory that stores binary files.
+  bin_dir: bin
 
-    # The maximum size in MB of the log file before it gets rotated.
-    log_maxsize: 100
+  # Directory that stores Tarantool header files.
+  inc_dir: include
 
-    # The maximum number of days to retain old log files.
-    log_maxage: 8
+  # Path to directory that stores all applications.
+  # The directory can also contain symbolic links to applications.
+  instances_enabled: instances.enabled
 
-    # The maximum number of old log files to retain.
-    log_maxbackups: 10
+  # Tarantoolctl artifacts layout compatibility: if set to true tt will not create application
+  # sub-directories for control socket, pid files, log files, etc.. Data files (wal, vinyl,
+  # snap) and multi-instance applications are not affected by this option.
+  tarantoolctl_layout: false
 
-    # Restart instance on failure.
-    restart_on_failure: false
+app:
+  # Directory that stores various instance runtime
+  # artifacts like console socket, PID file, etc.
+  run_dir: var/run
 
-    # Directory where write-ahead log (.xlog) files are stored.
-    wal_dir: "var/lib"
+  # Directory that stores log files.
+  log_dir: var/log
 
-    # Directory where memtx stores snapshot (.snap) files.
-    memtx_dir: "var/lib"
+  # Directory where write-ahead log (.xlog) files are stored.
+  wal_dir: var/lib
 
-    # Directory where vinyl files or subdirectories will be stored.
-    vinyl_dir: "var/lib"
+  # Directory where memtx stores snapshot (.snap) files.
+  memtx_dir: var/lib
 
-    # Directory that stores binary files.
-    bin_dir: "bin"
+  # Directory where vinyl files or subdirectories will be stored.
+  vinyl_dir: var/lib
 
-    # Directory that stores Tarantool header files.
-    inc_dir: "include"
+# Path to file with credentials for downloading Tarantool Enterprise Edition.
+# credential_path: /path/to/file
+ee:
+  credential_path:
 
-    # Path to directory that stores all applications.
-    # The directory can also contain symbolic links to applications.
-    instances_enabled: "instances.enabled"
+templates:
+  # The path to templates search directory.
+  - path: templates
 
-    # Tarantoolctl artifacts layout compatibility: if set to true tt will not create application
-    # sub-directories for control socket, pid files, log files, etc.. Data files (wal, vinyl,
-    # snap) and multi-instance applications are not affected by this option.
-    tarantoolctl_layout: false
-
-  # Path to file with credentials for downloading Tarantool Enterprise Edition.
-  # credential_path: /path/to/file
-  ee:
-    credential_path: ""
-
-  templates:
-    # The path to templates search directory.
-    - path: "templates"
-
-  repo:
-    # Directory where local rocks files could be found.
-    rocks: ""
-    # Directory that stores installation files.
-    distfiles: "distfiles"
+repo:
+  # Directory where local rocks files could be found.
+  rocks:
+  # Directory that stores installation files.
+  distfiles: distfiles
