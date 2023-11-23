@@ -370,7 +370,7 @@ credentials.users.*
 database
 --------
 
-The ``database`` section defines database-specific configuration parameters, such as an instance's read-write mode, transaction isolation level, and so on.
+The ``database`` section defines database-specific configuration parameters, such as an instance's read-write mode or transaction isolation level.
 
 .. NOTE::
 
@@ -436,7 +436,7 @@ The ``database`` section defines database-specific configuration parameters, suc
     -   ``rw``: an instance is in read-write mode.
     -   ``ro``: an instance is in read-only mode.
 
-    If this option is not specified explicitly, its default value depends on the number of instances in a replica set. For a single instance, the ``rw`` mode is used, while for multiple instances, the ``ro`` mode is used.
+    If not specified explicitly, the default value depends on the number of instances in a replica set. For a single instance, the ``rw`` mode is used, while for multiple instances, the ``ro`` mode is used.
 
     **Example**
 
@@ -538,7 +538,7 @@ The ``iproto`` section is used to configure parameters related to communicating 
 
     An URI used to advertise the current instance to clients.
 
-    The ``iproto.advertise.client`` option accepts an URI in one of the following formats:
+    The ``iproto.advertise.client`` option accepts an URI in the following formats:
 
     -   An address: ``host:port``.
 
@@ -662,16 +662,16 @@ The ``iproto`` section is used to configure parameters related to communicating 
 
 .. confval:: iproto.net_msg_max
 
-    To handle messages, Tarantool allocates fibers.
+    To handle messages, Tarantool allocates :ref:`fibers <app-fibers>`.
     To prevent fiber overhead from affecting the whole system,
     Tarantool restricts how many messages the fibers handle,
     so that some pending requests are blocked.
 
-    -   On powerful systems, increase ``net_msg_max`` and the scheduler
+    -   On powerful systems, increase ``net_msg_max``, and the scheduler
         starts processing pending requests immediately.
 
-    -   On weaker systems, decrease ``net_msg_max`` and the overhead
-        may decrease although this may take some time because the
+    -   On weaker systems, decrease ``net_msg_max``, and the overhead
+        may decrease. Although this may take some time because the
         scheduler must wait until already-running requests finish.
 
     When ``net_msg_max`` is reached,
@@ -971,21 +971,13 @@ The ``replication`` section defines configuration parameters related to :ref:`re
 
     The possible values are:
 
-    *   ``off``
+    *   ``off``: a node doesn't participate in the election activities.
 
-        A node doesn't participate in the election activities.
+    *   ``voter``: a node can participate in the election process but can't be a leader.
 
-    *   ``voter``
+    *   ``candidate``: a node should be able to become a leader.
 
-        A node can participate in the election process but can't be a leader.
-
-    *   ``candidate``
-
-        A node should be able to become a leader.
-
-    *   ``manual``
-
-        Allow to control which instance is the leader explicitly instead of relying on automated leader election.
+    *   ``manual``: allow to control which instance is the leader explicitly instead of relying on automated leader election.
         By default, the instance acts like a voter -- it is read-only and may vote for other candidate instances.
         Once :ref:`box.ctl.promote() <box_ctl-promote>` is called, the instance becomes a candidate and starts a new election round.
         If the instance wins the elections, it becomes a leader but won't participate in any new elections.
