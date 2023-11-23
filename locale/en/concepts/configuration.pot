@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"POT-Creation-Date: 2023-11-23 09:50+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -228,9 +228,6 @@ msgid "credentials:\n"
 "    replicator:\n"
 "      password: 'topsecret'\n"
 "      roles: [replication]\n"
-"    client:\n"
-"      password: 'secret'\n"
-"      roles: [super]\n"
 "\n"
 "iproto:\n"
 "  advertise:\n"
@@ -263,7 +260,7 @@ msgid "``credentials`` (*global*)"
 msgstr ""
 
 #: ../../doc/concepts/configuration.rst:153
-msgid "This section is used to create the *replicator* and *client* users and assign them the specified roles. These options are applied globally to all instances."
+msgid "This section is used to create the *replicator* user and assign it the specified role. These options are applied globally to all instances."
 msgstr ""
 
 #: ../../doc/concepts/configuration.rst:156
@@ -637,7 +634,7 @@ msgid "The *replicator* user is used for replication and has a corresponding rol
 msgstr ""
 
 #: ../../doc/concepts/configuration.rst:426
-msgid "The *client* user has the ``super`` role and can perform any action on Tarantool instances."
+msgid "The *storage* user has the ``super`` role and can perform any action on Tarantool instances."
 msgstr ""
 
 #: ../../doc/concepts/configuration.rst:428
@@ -646,42 +643,42 @@ msgid "credentials:\n"
 "    replicator:\n"
 "      password: 'topsecret'\n"
 "      roles: [replication]\n"
-"    client:\n"
+"    storage:\n"
 "      password: 'secret'\n"
 "      roles: [super]\n"
 ""
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:433
+#: ../../doc/concepts/configuration.rst:434
 msgid "To learn more, see the :ref:`Access control <authentication>` section."
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:439
+#: ../../doc/concepts/configuration.rst:440
 msgid "Memory"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:441
+#: ../../doc/concepts/configuration.rst:442
 msgid "The ``memtx.memory`` option specifies how much :ref:`memory <engines-memtx>` Tarantool allocates to actually store data."
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:443
+#: ../../doc/concepts/configuration.rst:444
 msgid "memtx:\n"
 "  memory: 100000000"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:448
+#: ../../doc/concepts/configuration.rst:449
 msgid "When the limit is reached, ``INSERT`` or ``UPDATE`` requests fail with :ref:`ER_MEMORY_ISSUE <admin-troubleshoot-memory-issues>`."
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:454
+#: ../../doc/concepts/configuration.rst:455
 msgid "Snapshots and write-ahead logs"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:456
+#: ../../doc/concepts/configuration.rst:457
 msgid "The ``snapshot.dir`` and ``wal.dir`` options can be used to configure directories for storing snapshots and write-ahead logs. For example, you can place snapshots and write-ahead logs on different hard drives for better reliability."
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:459
+#: ../../doc/concepts/configuration.rst:460
 msgid "instance001:\n"
 "  snapshot:\n"
 "    dir: '/media/drive1/snapshots'\n"
@@ -689,27 +686,27 @@ msgid "instance001:\n"
 "    dir: '/media/drive2/wals'"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:467
+#: ../../doc/concepts/configuration.rst:468
 msgid "To learn more about the persistence mechanism in Tarantool, see the :ref:`Persistence <concepts-data_model-persistence>` section."
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:473
+#: ../../doc/concepts/configuration.rst:474
 msgid "Starting Tarantool instances"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:478
+#: ../../doc/concepts/configuration.rst:479
 msgid "Starting instances using the tt utility"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:480
+#: ../../doc/concepts/configuration.rst:481
 msgid "The :ref:`tt <tt-cli>` utility is the recommended way to start Tarantool instances."
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:482
+#: ../../doc/concepts/configuration.rst:483
 msgid "Instance files or directories are organized into applications in the ``instances_enabled`` directory. The example below shows how a :ref:`layout <admin-start_stop_instance-multi-instance-layout>` of the application called ``app`` might look:"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:485
+#: ../../doc/concepts/configuration.rst:486
 msgid "├── tt.yaml\n"
 "└── instances.enabled\n"
 "    └── app\n"
@@ -718,180 +715,180 @@ msgid "├── tt.yaml\n"
 "        └── instances.yml"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:494
+#: ../../doc/concepts/configuration.rst:495
 msgid "``config.yaml`` is a :ref:`configuration file <configuration_file>`."
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:495
+#: ../../doc/concepts/configuration.rst:496
 msgid "``myapp.lua`` is a Lua script containing an :ref:`application to load <configuration_application>`."
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:496
+#: ../../doc/concepts/configuration.rst:497
 msgid "``instances.yml`` specifies :ref:`instances <admin-start_stop_instance-multi-instance>` to run in the current environment. This file might look as follows:"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:499
+#: ../../doc/concepts/configuration.rst:500
 msgid "instance001:\n"
 "instance002:\n"
 "instance003:"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:503
+#: ../../doc/concepts/configuration.rst:504
 msgid "To start all instances, use the ``tt start app`` command:"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:505
+#: ../../doc/concepts/configuration.rst:506
 msgid "$ tt start app\n"
 "    • Starting an instance [app:instance001]...\n"
 "    • Starting an instance [app:instance002]...\n"
 "    • Starting an instance [app:instance003]..."
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:512
+#: ../../doc/concepts/configuration.rst:513
 msgid "Then, you can connect to Tarantool instances by its names using the ``tt connect`` command. You can learn more from the :ref:`Starting and stopping instances <admin-start_stop_instance>` section."
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:520
+#: ../../doc/concepts/configuration.rst:521
 msgid "Starting an instance using the tarantool command"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:522
+#: ../../doc/concepts/configuration.rst:523
 msgid "The ``tarantool`` command provides additional :ref:`options <configuration_command_options>` that might be helpful for development purposes. Below is the syntax for starting a Tarantool instance configured in a file:"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:525
+#: ../../doc/concepts/configuration.rst:526
 msgid "$ tarantool [OPTION ...] --name INSTANCE_NAME --config CONFIG_FILE_PATH"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:529
+#: ../../doc/concepts/configuration.rst:530
 msgid "The command below starts ``instance001`` configured in the ``config.yaml`` file:"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:531
+#: ../../doc/concepts/configuration.rst:532
 msgid "$ tarantool --name instance001 --config config.yaml"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:539
+#: ../../doc/concepts/configuration.rst:540
 msgid "Command-line options"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:541
+#: ../../doc/concepts/configuration.rst:542
 msgid "Options that can be passed when :ref:`starting a Tarantool instance <configuration_run_instance_tarantool>`:"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:545
+#: ../../doc/concepts/configuration.rst:546
 msgid "Print an annotated list of all available options and exit."
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:549
-#: ../../doc/concepts/configuration.rst:579
-#: ../../doc/concepts/configuration.rst:588
+#: ../../doc/concepts/configuration.rst:550
+#: ../../doc/concepts/configuration.rst:580
+#: ../../doc/concepts/configuration.rst:589
 msgid "**Since:** :doc:`3.0.0 </release/3.0.0>`."
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:551
+#: ../../doc/concepts/configuration.rst:552
 msgid "Show a list of :ref:`environment variables <configuration_environment_variable>` that can be used to configure Tarantool."
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:557
+#: ../../doc/concepts/configuration.rst:558
 msgid "Print the product name and version."
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:559
-#: ../../doc/concepts/configuration.rst:600
-#: ../../doc/concepts/configuration.rst:611
-#: ../../doc/concepts/configuration.rst:622
-#: ../../doc/concepts/configuration.rst:632
-#: ../../doc/concepts/configuration.rst:642
-#: ../../doc/concepts/configuration.rst:652
+#: ../../doc/concepts/configuration.rst:560
+#: ../../doc/concepts/configuration.rst:601
+#: ../../doc/concepts/configuration.rst:612
+#: ../../doc/concepts/configuration.rst:623
+#: ../../doc/concepts/configuration.rst:633
+#: ../../doc/concepts/configuration.rst:643
+#: ../../doc/concepts/configuration.rst:653
 msgid "**Example**"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:561
+#: ../../doc/concepts/configuration.rst:562
 msgid "% tarantool --version\n"
 "Tarantool 3.0.0-entrypoint-746-g36ef3fb43\n"
 "Target: Darwin-arm64-Release\n"
 "..."
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:568
+#: ../../doc/concepts/configuration.rst:569
 msgid "In this example:"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:570
+#: ../../doc/concepts/configuration.rst:571
 msgid "``3.0.0`` is a Tarantool version. Tarantool follows semantic versioning, which is described in the :ref:`Tarantool release policy <release-policy>` section."
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:573
+#: ../../doc/concepts/configuration.rst:574
 msgid "``Target`` is the platform Tarantool is built on. Platform-specific details may follow this line."
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:581
+#: ../../doc/concepts/configuration.rst:582
 msgid "Set a path to a :ref:`YAML configuration file <configuration_file>`. You can also configure this value using the ``TT_CONFIG`` environment variable."
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:584
-#: ../../doc/concepts/configuration.rst:593
+#: ../../doc/concepts/configuration.rst:585
+#: ../../doc/concepts/configuration.rst:594
 msgid "See also: :ref:`Starting an instance using the tarantool command <configuration_run_instance_tarantool>`"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:590
+#: ../../doc/concepts/configuration.rst:591
 msgid "Set the name of an instance to run. You can also configure this value using the ``TT_INSTANCE_NAME`` environment variable."
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:598
+#: ../../doc/concepts/configuration.rst:599
 msgid "Enter an :ref:`interactive mode <interactive_console>`."
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:602
+#: ../../doc/concepts/configuration.rst:603
 msgid "% tarantool -i"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:609
+#: ../../doc/concepts/configuration.rst:610
 msgid "Execute the 'EXPR' string. See also: `lua man page <https://www.lua.org/manual/5.3/lua.html>`_."
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:613
+#: ../../doc/concepts/configuration.rst:614
 msgid "% tarantool -e \"print('Hello, world!')\"\n"
 "Hello, world!"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:620
+#: ../../doc/concepts/configuration.rst:621
 msgid "Require the 'NAME' library. See also: `lua man page <https://www.lua.org/manual/5.3/lua.html>`_."
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:624
+#: ../../doc/concepts/configuration.rst:625
 msgid "% tarantool -l luatest.coverage script.lua"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:630
+#: ../../doc/concepts/configuration.rst:631
 msgid "Perform a LuaJIT control command. See also: `Command Line Options <https://luajit.org/running.html>`_."
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:634
+#: ../../doc/concepts/configuration.rst:635
 msgid "% tarantool -j off app.lua"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:640
+#: ../../doc/concepts/configuration.rst:641
 msgid "Save or list bytecode. See also: `Command Line Options <https://luajit.org/running.html>`_."
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:644
+#: ../../doc/concepts/configuration.rst:645
 msgid "% tarantool -b test.lua test.out"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:650
+#: ../../doc/concepts/configuration.rst:651
 msgid "Activate a debugging session for 'SCRIPT'. See also: `luadebug.lua <https://github.com/tarantool/tarantool/blob/master/third_party/lua/README-luadebug.md>`_."
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:654
+#: ../../doc/concepts/configuration.rst:655
 msgid "% tarantool -d app.lua"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:661
+#: ../../doc/concepts/configuration.rst:662
 msgid "Stop handling options. See also: `lua man page <https://www.lua.org/manual/5.3/lua.html>`_."
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:666
+#: ../../doc/concepts/configuration.rst:667
 msgid "Stop handling options and execute the standard input as a file. See also: `lua man page <https://www.lua.org/manual/5.3/lua.html>`_."
 msgstr ""
