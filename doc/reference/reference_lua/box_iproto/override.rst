@@ -20,7 +20,6 @@ box.iproto.override()
     :param function handler: IPROTO request handler.
                              The signature of a handler function: ``function(sid, header, body)``, where
 
-                             *  ``sid`` (number): the current IPROTO session identifier (see :ref:`box.session.id() <box_session-id>`)
                              *  ``header`` (userdata): a request header encoded as a :ref:`msgpack_object <msgpack-object-methods>`
                              *  ``body`` (userdata): a request body encoded as a :ref:`msgpack_object <msgpack-object-methods>`
 
@@ -42,13 +41,19 @@ box.iproto.override()
 
     For details, see `src/box/errcode.h <https://github.com/tarantool/tarantool/blob/master/src/box/errcode.h>`__.
 
+    ..  warning::
+
+        When using ``box.iproto.override()``, it is important that you follow the wire protocol.
+        That is, the server response should match the return value types of the corresponding request type.
+        Otherwise, it could lead to peer breakdown or undefined behavior.
+
     **Example:**
 
     Define a handler function for the ``box.iproto.type.SELECT`` request type:
 
     ..  code-block:: lua
 
-        local function iproto_select_handler_lua(sid, header, body)
+        local function iproto_select_handler_lua(header, body)
             if body.space_id == 512 then
                 box.iproto.send(box.session.id(),
                         { request_type = box.iproto.type.OK,
