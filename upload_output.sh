@@ -19,9 +19,11 @@ aws s3 sync output/json/_build_ru/json/_images $S3_PATH/$BRANCH/images_ru --endp
 # upload pdf files
 if [ -f output/_latex_en/tarantool.pdf ]; then
   aws s3 cp --acl public-read output/_latex_en/tarantool.pdf $S3_PATH/$BRANCH/Tarantool-en.pdf --endpoint-url=$ENDPOINT_URL
+  aws s3 cp output/_latex_en/tarantool.pdf $S3_CZ_PATH/$BRANCH/tarantool-en.pdf --endpoint-url="$ENDPOINT_URL"
 fi
 if [ -f output/_latex_ru/tarantool.pdf ]; then
   aws s3 cp --acl public-read output/_latex_ru/tarantool.pdf $S3_PATH/$BRANCH/Tarantool-ru.pdf --endpoint-url=$ENDPOINT_URL
+  aws s3 cp output/_latex_ru/tarantool.pdf $S3_CZ_PATH/$BRANCH/tarantool-ru.pdf --endpoint-url="$ENDPOINT_URL"
 fi
 
 # upload singlehtml and assets

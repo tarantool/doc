@@ -17,6 +17,7 @@ jobs:
       AWS_DEFAULT_REGION: ${{secrets.AWS_DEFAULT_REGION}}
       S3_ENDPOINT_URL: ${{secrets.S3_ENDPOINT_URL}}
       S3_UPLOAD_PATH: ${{secrets.S3_UPLOAD_PATH}}
+      S3_CZ_PATH: ${{ secrets.S3_DOCX_PATH }}
       TARANTOOL_UPDATE_KEY: ${{secrets.TARANTOOL_UPDATE_KEY}}
       TARANTOOL_UPDATE_URL: ${{secrets.TARANTOOL_UPDATE_URL}}
       DEPLOYMENT_NAME: latest
