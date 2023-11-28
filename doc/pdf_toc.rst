@@ -1,6 +1,6 @@
 :orphan:
 
-.. ifconfig:: builder == 'pdf'
+.. ifconfig:: builder in ('pdf', 'singlehtml')
 
     ---------------------------------------------------------------------------
                            Tarantool - Documentation
