@@ -41,7 +41,7 @@ def handle_link(elem, doc):
     """
     Transform html urls in docx format
     """
-    elem.url = elem.url.replace('singlehtml.html', '')
+    elem.url = elem.url.replace('alternate_build_master.html', '')
     return elem
 
 

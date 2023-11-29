@@ -186,7 +186,7 @@ intersphinx_mapping = {
 # (source start file, target name, title, author, documentclass
 # [howto/manual]).
 latex_documents = [
- ('pdf_toc', 'tarantool.tex', u'Tarantool Documentation', u'', 'manual'),
+ ('alternate_build_master', 'tarantool.tex', u'Tarantool Documentation', u'', 'manual'),
 ]
 
 latex_elements = {

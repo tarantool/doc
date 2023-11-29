@@ -71,9 +71,11 @@ set(SPHINX_BUILD_JSON_EN_DIR       "${SPHINX_OUTPUT_DIR}/doctrees/json/en/")
 set(SPHINX_BUILD_JSON_RU_DIR       "${SPHINX_OUTPUT_DIR}/doctrees/json/ru")
 
 set(SPHINX_EN_HTML_DIR             "${SPHINX_OUTPUT_DIR}/html/en/")
+set(SPHINX_EN_SINGLEHTML_DIR       "${SPHINX_OUTPUT_DIR}/singlehtml/en/")
 set(SPHINX_EN_AUTOBUILD_DIR        "${SPHINX_OUTPUT_DIR}/html_auto/en/")
 set(SPHINX_RU_AUTOBUILD_DIR        "${SPHINX_OUTPUT_DIR}/html_auto/ru/")
 set(SPHINX_RU_HTML_DIR             "${SPHINX_OUTPUT_DIR}/html/ru/")
+set(SPHINX_RU_SINGLEHTML_DIR       "${SPHINX_OUTPUT_DIR}/singlehtml/ru/")
 set(SPHINX_EN_HTML_OLD_DIR         "${SPHINX_OUTPUT_DIR}/html_old/en/")
 set(SPHINX_RU_HTML_OLD_DIR         "${SPHINX_OUTPUT_DIR}/html_old/ru/")
 set(SPHINX_EN_JSON_DIR             "${SPHINX_OUTPUT_DIR}/json/_build_en/json")
@@ -118,7 +120,7 @@ add_custom_target(singlehtml ALL
         -c singlehtml/
         -q
         "${CMAKE_CURRENT_SOURCE_DIR}/doc"
-        "${SPHINX_EN_HTML_DIR}"
+        "${SPHINX_EN_SINGLEHTML_DIR}"
     COMMENT "Building HTML single-page documentation with Sphinx"
 )
 
@@ -129,8 +131,31 @@ add_custom_target(singlehtml-website
         -c singlehtml/
         -A rel_path=true
         "${CMAKE_CURRENT_SOURCE_DIR}/doc"
-        "${SPHINX_EN_HTML_DIR}"
+        "${SPHINX_EN_SINGLEHTML_DIR}"
     COMMENT "Building HTML single-page documentation with Sphinx"
+)
+
+add_custom_target(singlehtml-ru ALL
+    COMMAND "${SPHINX_EXECUTABLE}"
+        -b singlehtml
+        -d "${SPHINX_BUILD_SINGLEHTML_RU_DIR}"
+        -c singlehtml/
+        -D language=ru
+        "${CMAKE_CURRENT_SOURCE_DIR}/doc"
+        "${SPHINX_RU_SINGLEHTML_DIR}"
+    COMMENT "Building Russian HTML single-page documentation with Sphinx"
+)
+
+add_custom_target(singlehtml-ru-website
+    COMMAND "${SPHINX_EXECUTABLE}"
+        -b singlehtml
+        -d "${SPHINX_BUILD_SINGLEHTML_RU_DIR}"
+        -c singlehtml/
+        -D language=ru
+        -A rel_path=true
+        "${CMAKE_CURRENT_SOURCE_DIR}/doc"
+        "${SPHINX_RU_HTML_DIR}"
+    COMMENT "Building Russian HTML single-page documentation with Sphinx"
 )
 
 add_custom_target(autobuild
@@ -204,29 +229,6 @@ add_custom_target(json-ru ALL
         "${SPHINX_RU_JSON_DIR}"
         -D language=ru
     COMMENT "Building Russian JSON documentation with Sphinx"
-)
-
-add_custom_target(singlehtml-ru ALL
-    COMMAND "${SPHINX_EXECUTABLE}"
-        -b singlehtml
-        -d "${SPHINX_BUILD_SINGLEHTML_RU_DIR}"
-        -c singlehtml/
-        -D language=ru
-        "${CMAKE_CURRENT_SOURCE_DIR}/doc"
-        "${SPHINX_RU_HTML_DIR}"
-    COMMENT "Building Russian HTML single-page documentation with Sphinx"
-)
-
-add_custom_target(singlehtml-ru-website
-    COMMAND "${SPHINX_EXECUTABLE}"
-        -b singlehtml
-        -d "${SPHINX_BUILD_SINGLEHTML_RU_DIR}"
-        -c singlehtml/
-        -D language=ru
-        -A rel_path=true
-        "${CMAKE_CURRENT_SOURCE_DIR}/doc"
-        "${SPHINX_RU_HTML_DIR}"
-    COMMENT "Building Russian HTML single-page documentation with Sphinx"
 )
 
 add_custom_target(update-pot

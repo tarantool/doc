@@ -5,7 +5,7 @@ on:
     branches:
       - 'latest'
       - '3.0'
-      - 'lastochka42/improve-docx-build'
+      - 'fix-docx'
 
 jobs:
   generate-singlehtml:
@@ -24,13 +24,14 @@ jobs:
           make build-modules
 
       - name: make singlehtml-en
-        run: make singlehtml
+        run: |
+          make singlehtml
           
       - name: save singlehtml-en
         uses: actions/upload-artifact@v3
         with:
           name: singlehtml-en
-          path: output/html/en/singlehtml.html
+          path: output/singlehtml/en/alternate_build_master.html
 
       - name: make singlehtml-ru
         run: make singlehtml-ru
@@ -39,7 +40,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: singlehtml-ru
-          path: output/html/ru/singlehtml.html
+          path: output/singlehtml/ru/alternate_build_master.html
 
       - name: save pandoc filters from the repo
         uses: actions/upload-artifact@v3
@@ -63,7 +64,7 @@ jobs:
 
       - name: generate docx-en
         run: |
-          pandoc singlehtml-en/singlehtml.html \
+          pandoc singlehtml-en/alternate_build_master.html \
             --standalone \
             --verbose \
             --from html \
@@ -77,7 +78,7 @@ jobs:
 
       - name: generate docx-ru
         run: |
-          pandoc singlehtml-ru/singlehtml.html \
+          pandoc singlehtml-ru/alternate_build_master.html \
             --standalone \
             --verbose \
             --from html \
