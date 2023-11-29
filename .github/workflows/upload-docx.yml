@@ -5,7 +5,7 @@ on:
     branches:
       - 'latest'
       - '3.0'
-      - 'lastochka42/generate-docx'
+      - 'lastochka42/improve-docx-build'
 
 jobs:
   generate-singlehtml:
@@ -17,20 +17,24 @@ jobs:
         with:
           submodules: recursive
 
-      - name: generate singlehtml
+      - name: preprare modules
         run: |
           cmake .
           make pull-modules
           make build-modules
-          make singlehtml
-          make singlehtml-ru
 
+      - name: make singlehtml-en
+        run: make singlehtml
+          
       - name: save singlehtml-en
         uses: actions/upload-artifact@v3
         with:
           name: singlehtml-en
           path: output/html/en/singlehtml.html
 
+      - name: make singlehtml-ru
+        run: make singlehtml-ru
+         
       - name: save singlehtml-ru
         uses: actions/upload-artifact@v3
         with:
