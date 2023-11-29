@@ -26,8 +26,7 @@ groups:
               mode: rw
             iproto:
               listen: 127.0.0.1:3302
-          instance003:
-            database:
-              mode: rw
-            iproto:
-              listen: 127.0.0.1:3303
+
+# Load sample data
+app:
+  file: 'myapp.lua'
