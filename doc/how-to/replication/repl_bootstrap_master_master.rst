@@ -207,9 +207,9 @@ Checking a replica set status
             name: instance001
         ...
 
-    .. NOTE::
-
-        Note that a ``vclock`` value might include the 0-th component that is related to local space operations and might differ for different instances in a replica set.
+..  include:: /how-to/replication/repl_bootstrap.rst
+    :start-after: vclock_0th_component_note_start
+    :end-before: vclock_0th_component_note_end
 
 
 
@@ -221,13 +221,41 @@ Adding data
 
 To check that both instances get updates from each other, follow the steps below:
 
-1.  On ``instance001``, create a space and format it as described in :ref:`CRUD operation examples <box_space_examples>`. Add sample data to this space.
+1.  On ``instance001``, create a space, format it, and create a primary index:
 
-2.  On ``instance002``, use the ``select`` operation to make sure data is replicated.
+    ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/master_master/myapp.lua
+        :start-at: box.schema.space.create
+        :end-at: box.space.bands:create_index
+        :language: lua
+        :dedent:
 
-3.  Add more data to the created space on ``instance002``.
+    Then, add sample data to this space:
 
-4.  Get back to ``instance001`` and use ``select`` to make sure new data is replicated.
+    ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/master_master/myapp.lua
+        :start-at: Roxette
+        :end-at: Scorpions
+        :language: lua
+        :dedent:
+
+2.  On ``instance002``, use the ``select`` operation to make sure data is replicated:
+
+    .. code-block:: console
+
+        master_master:instance002> box.space.bands:select()
+        ---
+        - - [1, 'Roxette', 1986]
+          - [2, 'Scorpions', 1965]
+        ...
+
+3.  Add more data to the created space on ``instance002``:
+
+    ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/master_master/myapp.lua
+        :start-at: Ace of Base
+        :end-at: The Beatles
+        :language: lua
+        :dedent:
+
+4.  Get back to ``instance001`` and use ``select`` to make sure new records are replicated.
 
 5.  Check that :ref:`box.info.vclock <box_introspection-box_info>` values are the same on both instances:
 
@@ -237,7 +265,7 @@ To check that both instances get updates from each other, follow the steps below
 
             master_master:instance001> box.info.vclock
             ---
-            - {2: 8, 1: 12}
+            - {2: 5, 1: 9}
             ...
 
     -   ``instance002``:
@@ -246,9 +274,282 @@ To check that both instances get updates from each other, follow the steps below
 
             master_master:instance002> box.info.vclock
             ---
-            - {2: 8, 1: 12}
+            - {2: 5, 1: 9}
             ...
 
 
 
+.. _replication-master-master-resolve-conflicts:
 
+Resolving replication conflicts
+-------------------------------
+
+..  NOTE::
+
+    To learn how to fix and prevent replication conflicts using trigger functions, see :ref:`Resolving replication conflicts <replication-problem_solving>`.
+
+.. _replication-master-master_conflicting_records:
+
+Inserting conflicting records
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To insert conflicting records to ``instance001`` and ``instance002``, follow the steps below:
+
+1.  Stop ``instance001`` using the ``tt stop`` command:
+
+    .. code-block:: console
+
+        $ tt stop master_master:instance001
+
+2.  On ``instance002``, insert a new record:
+
+    .. code-block:: lua
+
+        box.space.bands:insert { 5, 'incorrect data', 0 }
+
+3.  Stop ``instance002`` using ``tt stop``:
+
+    .. code-block:: console
+
+        $ tt stop master_master:instance002
+
+4.  Start ``instance001`` back:
+
+    .. code-block:: lua
+
+        $ tt start master_master:instance001
+
+5.  Connect to ``instance001`` and insert a record that should conflict with a record already inserted on ``instance002``:
+
+    ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/master_master/myapp.lua
+        :start-at: Pink Floyd
+        :end-at: Pink Floyd
+        :language: lua
+        :dedent:
+
+6.  Start ``instance002`` back:
+
+    .. code-block:: console
+
+        $ tt start master_master:instance002
+
+    Then, check ``box.info.replication`` on ``instance001``.
+    ``upstream.status`` should be ``stopped`` because of the ``Duplicate key exists`` error:
+
+    .. code-block:: console
+
+        master_master:instance001> box.info.replication
+        ---
+        - 1:
+            id: 1
+            uuid: 4cfa6e3c-625e-b027-00a7-29b2f2182f23
+            lsn: 9
+            upstream:
+              peer: replicator@127.0.0.1:3302
+              lag: 143.52251672745
+              status: stopped
+              idle: 3.9462469999999
+              message: Duplicate key exists in unique index "primary" in space "bands" with
+                old tuple - [5, "Pink Floyd", 1965] and new tuple - [5, "incorrect data", 0]
+            name: instance002
+            downstream:
+              status: stopped
+              message: 'unexpected EOF when reading from socket, called on fd 12, aka 127.0.0.1:3301,
+                peer of 127.0.0.1:59258: Broken pipe'
+              system_message: Broken pipe
+          2:
+            id: 2
+            uuid: 9bb111c2-3ff5-36a7-00f4-2b9a573ea660
+            lsn: 6
+            name: instance001
+        ...
+
+
+.. _replication-master-master-reseed-replica:
+
+Reseeding a replica
+~~~~~~~~~~~~~~~~~~~
+
+To resolve a replication conflict, ``instance002`` should get the correct data from ``instance001`` first.
+To achieve this, ``instance002`` should be rebootstrapped:
+
+1.  In the ``config.yaml`` file, change ``database.mode`` of ``instance002`` to ``ro``:
+
+    .. code-block:: yaml
+
+        instance002:
+          database:
+            mode: ro
+
+2.  Reload configurations on both instances using the ``reload()`` function provided by the :ref:`config <config-module>` module:
+
+    -   ``instance001``:
+
+        .. code-block:: console
+
+            master_master:instance001> require('config'):reload()
+            ---
+            ...
+
+    -   ``instance002``:
+
+        .. code-block:: console
+
+            master_master:instance002> require('config'):reload()
+            ---
+            ...
+
+3.  Delete write-ahead logs and snapshots stored in the ``var/lib/instance002`` directory.
+
+    .. NOTE::
+
+        ``var/lib`` is the default directory used by tt to store write-ahead logs and snapshots.
+        Learn more from :ref:`Configuration <tt-config>`.
+
+4.  Restart ``instance002`` using the :ref:`tt restart <tt-restart>` command:
+
+    .. code-block:: console
+
+        $ tt restart master_master:instance002
+
+5.  Connect to ``instance002`` and make sure it received the correct data from ``instance001``:
+
+    .. code-block:: console
+
+        master_master:instance002> box.space.bands:select()
+        ---
+        - - [1, 'Roxette', 1986]
+          - [2, 'Scorpions', 1965]
+          - [3, 'Ace of Base', 1987]
+          - [4, 'The Beatles', 1960]
+          - [5, 'Pink Floyd', 1965]
+        ...
+
+
+.. _replication-master-master-resolve-conflict:
+
+Restarting replication
+~~~~~~~~~~~~~~~~~~~~~~
+
+After :ref:`reseeding a replica <replication-master-master-reseed-replica>`, you need to resolve a replication conflict that keeps replication stopped:
+
+1.  Execute ``box.info.replication`` on ``instance001``.
+    ``upstream.status`` is still stopped:
+
+    .. code-block:: console
+
+        master_master:instance001> box.info.replication
+        ---
+        - 1:
+            id: 1
+            uuid: 4cfa6e3c-625e-b027-00a7-29b2f2182f23
+            lsn: 9
+            upstream:
+              peer: replicator@127.0.0.1:3302
+              lag: 143.52251672745
+              status: stopped
+              idle: 1309.943383
+              message: Duplicate key exists in unique index "primary" in space "bands" with
+                old tuple - [5, "Pink Floyd", 1965] and new tuple - [5, "incorrect data",
+                0]
+            name: instance002
+            downstream:
+              status: follow
+              idle: 0.47881799999959
+              vclock: {2: 6, 1: 9}
+              lag: 0
+          2:
+            id: 2
+            uuid: 9bb111c2-3ff5-36a7-00f4-2b9a573ea660
+            lsn: 6
+            name: instance001
+        ...
+
+
+2.  In the ``config.yaml`` file, clear the ``iproto`` option for ``instance001`` by setting its value to ``{}`` to disconnect this instance from ``instance002``.
+    Set ``database.mode`` to ``ro``:
+
+    .. code-block:: yaml
+
+        instance001:
+          database:
+            mode: ro
+          iproto: {}
+
+3.  Reload configuration on ``instance001`` only:
+
+    .. code-block:: console
+
+        master_master:instance001> require('config'):reload()
+        ---
+        ...
+
+4.  Change ``database.mode`` values back to ``rw`` for both instances and restore ``iproto.listen`` for ``instance001``:
+
+    ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/master_master/config.yaml
+        :language: yaml
+        :start-at: instance001
+        :end-at: listen: 127.0.0.1:3302
+        :dedent:
+
+5.  Reload configurations on both instances one more time:
+
+    -   ``instance001``:
+
+        .. code-block:: console
+
+            master_master:instance001> require('config'):reload()
+            ---
+            ...
+
+    -   ``instance002``:
+
+        .. code-block:: console
+
+            master_master:instance002> require('config'):reload()
+            ---
+            ...
+
+6.  Check ``box.info.replication``.
+    ``upstream.status`` be ``follow`` now.
+
+    .. code-block:: console
+
+        master_master:instance001> box.info.replication
+        ---
+        - 1:
+            id: 1
+            uuid: 4cfa6e3c-625e-b027-00a7-29b2f2182f23
+            lsn: 9
+            upstream:
+              status: follow
+              idle: 0.21281300000192
+              peer: replicator@127.0.0.1:3302
+              lag: 0.00031113624572754
+            name: instance002
+            downstream:
+              status: follow
+              idle: 0.035179000002245
+              vclock: {2: 6, 1: 9}
+              lag: 0
+          2:
+            id: 2
+            uuid: 9bb111c2-3ff5-36a7-00f4-2b9a573ea660
+            lsn: 6
+            name: instance001
+        ...
+
+
+
+.. _replication-master-master-add-remove-instances:
+
+Adding and removing instances
+-----------------------------
+
+The process of adding instances to a replica set and removing them is similar for all failover modes.
+Learn how to do this from the :ref:`Master-replica: manual failover <replication-bootstrap>` tutorial:
+
+-   :ref:`Adding instances <replication-add_instances>`
+-   :ref:`Removing instances <replication-remove_instances>`
+
+Before removing an instance from a replica set with :ref:`replication.failover <configuration_reference_replication_failover>` set to ``off``, make sure this instance is in read-only mode.

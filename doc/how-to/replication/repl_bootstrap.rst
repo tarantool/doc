@@ -232,9 +232,13 @@ To check that a replica (``instance002``) gets all updates from the master, foll
             - {1: 21}
             ...
 
+    .. vclock_0th_component_note_start
+
     .. NOTE::
 
         Note that a ``vclock`` value might include the 0-th component that is related to local space operations and might differ for different instances in a replica set.
+
+    .. vclock_0th_component_note_end
 
 
 

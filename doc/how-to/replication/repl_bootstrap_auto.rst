@@ -270,9 +270,9 @@ To check that replicas (``instance001`` and ``instance003``) get all updates fro
             - {0: 1, 1: 32}
             ...
 
-    .. NOTE::
-
-        The 0-th component of ``vclock`` is related to local space operations and might differ for different instances in a replica set.
+..  include:: /how-to/replication/repl_bootstrap.rst
+    :start-after: vclock_0th_component_note_start
+    :end-before: vclock_0th_component_note_end
 
 
 
