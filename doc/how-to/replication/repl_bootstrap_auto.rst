@@ -272,8 +272,7 @@ To check that replicas (``instance001`` and ``instance003``) get all updates fro
 
     .. NOTE::
 
-        The 0-th component of ``vclock`` isn't related to replication.
-
+        The 0-th component of ``vclock`` is related to local space operations and might differ for different instances in a replica set.
 
 
 

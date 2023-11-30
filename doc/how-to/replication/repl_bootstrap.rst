@@ -232,6 +232,10 @@ To check that a replica (``instance002``) gets all updates from the master, foll
             - {1: 21}
             ...
 
+    .. NOTE::
+
+        Note that a ``vclock`` value might include the 0-th component that is related to local space operations and might differ for different instances in a replica set.
+
 
 
 ..  _replication-add_instances:
@@ -289,6 +293,8 @@ Starting an instance
 
 Reloading configuration
 ~~~~~~~~~~~~~~~~~~~~~~~
+
+After adding ``instance003`` to the configuration and starting it, configurations on all instances should be reloaded to allow ``instance001`` and ``instance002`` to get data from the new instance in case it becomes a master:
 
 1.  Connect to ``instance003`` using ``tt connect``:
 
@@ -598,7 +604,9 @@ Removing an instance from the configuration
 Removing an instance from the '_cluster' space
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-1.  Select all the tuples in the :ref:`box.space._cluster <box_space-cluster>` system space:
+To remove an instance from the replica set permanently, it should be removed from the :ref:`box.space._cluster <box_space-cluster>` system space:
+
+1.  Select all the tuples in the ``box.space._cluster`` system space:
 
     .. code-block:: console
 

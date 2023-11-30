@@ -207,6 +207,10 @@ Checking a replica set status
             name: instance001
         ...
 
+    .. NOTE::
+
+        Note that a ``vclock`` value might include the 0-th component that is related to local space operations and might differ for different instances in a replica set.
+
 
 
 
