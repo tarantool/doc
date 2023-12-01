@@ -1,3 +1,5 @@
+.. _tt-installation:
+
 Installation
 ============
 

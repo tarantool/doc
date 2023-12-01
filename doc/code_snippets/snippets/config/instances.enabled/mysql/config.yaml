@@ -1,0 +1,11 @@
+app:
+  file: 'example.lua'
+
+groups:
+  group001:
+    replicasets:
+      replicaset001:
+        instances:
+          instance001:
+            iproto:
+              listen: "3301"

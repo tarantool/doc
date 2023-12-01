@@ -56,9 +56,9 @@ For code snippets, we use the ``code-block:: language``
 You can enable syntax highlighting if you specify the language for the snippet.
 The most commonly used highlighting languages are:
 
-*   ``tarantoolsession``—interactive Tarantool session,
+*   ``tarantoolsession`` -- interactive Tarantool session,
     where command lines start with ``tarantool>`` prompt.
-*   ``console``—interactive console session, where command lines
+*   ``console`` -- interactive console session, where command lines
     start with ``$`` or ``#``.
 *   ``lua``, ``bash`` or ``c`` for programming languages.
 *   ``text`` for cases when we want the code block to have no highlighting.
