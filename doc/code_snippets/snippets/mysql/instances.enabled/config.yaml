@@ -1,0 +1,31 @@
+app:
+  file: 'mysql.lua'
+
+groups:
+  group001:
+    replicasets:
+      replicaset001:
+        instances:
+          instance001:
+            iproto:
+              listen: "3301"
+            memtx:
+              memory: 128 * 1024 * 1024
+              min_tuple_size: 16
+              max_tuple_size: 128 * 1024 * 1024
+            vinyl:
+              memory: 128 * 1024 * 1024
+              cache: 128 * 1024 * 1024
+              max_tuple_size: 128 * 1024 * 1024
+              write_threads: 2
+            wal:
+              mode: "none"
+              wal_max_size: 56 * 1024 * 1024
+            snapshot:
+              by_interval: 60 * 60
+              count: 6
+            force_recovery: true
+            log:
+              level: 7
+            fiber:
+              too_long_threshold: 0.5

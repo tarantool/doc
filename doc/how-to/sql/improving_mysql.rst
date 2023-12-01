@@ -7,7 +7,7 @@ Improving MySQL with Tarantool
 Replicating MySQL is one of the Tarantool’s killer functions.
 It allows you to keep your existing MySQL database while at the same time
 accelerating it and scaling it out horizontally. Even if you aren’t interested
-in extensive expansion, simply replacing existing replicas with Tarantool can
+in extensive expansion, replacing existing replicas with Tarantool can
 save you money, because Tarantool is more efficient per core than MySQL. To read
 a testimonial of a company that implemented Tarantool replication on a large scale,
 please see
@@ -28,21 +28,21 @@ Notes:
 
 So let’s proceed.
 
-#. First we’ll install the necessary packages in CentOS:
+#. First, install the necessary packages in CentOS:
 
    .. code-block:: bash
 
        yum -y install git ncurses-devel cmake gcc-c++ boost boost-devel wget unzip nano bzip2 mysql-devel mysql-lib
 
-#. Next we’ll clone the Tarantool-MySQL replication package from GitHub:
+#. Then clone the Tarantool-MySQL replication package from GitHub:
 
-   .. code-block:: bash
+   ..  code-block:: bash
 
        git clone https://github.com/tarantool/mysql-tarantool-replication.git
 
-#. Now we can build the replicator with cmake:
+#. Build the replicator with ``cmake``:
 
-   .. code-block:: bash
+   ..  code-block:: bash
 
        cd mysql-tarantool-replication
        git submodule update --init --recursive
@@ -53,42 +53,42 @@ So let’s proceed.
    its systemd service file, ``replicatord.service``, in the
    mysql-tarantool-replication repo.
 
-   .. code-block:: bash
+   ..  code-block:: bash
 
        nano replicatord.service
 
    Change the following line:
 
-   .. code-block:: bash
+   ..  code-block:: bash
 
        ExecStart=/usr/local/sbin/replicatord -c /usr/local/etc/replicatord.cfg
 
    Replace the ``.cfg`` extension with ``.yml``:
 
-   .. code-block:: bash
+   ..  code-block:: bash
 
        ExecStart=/usr/local/sbin/replicatord -c /usr/local/etc/replicatord.yml
 
-#. Next let’s copy some files from our replicatord repo to other necessary locations:
+#. Next, copy some files from our replicatord repo to other necessary locations:
 
-   .. code-block:: bash
+   ..  code-block:: bash
 
        cp replicatord /usr/local/sbin/replicatord
        cp replicatord.service /etc/systemd/system
 
-#. Now let’s enter the MySQL console and create a sample database (depending on
+#. After that, enter the MySQL console and create a sample database (depending on
    your existing installation, you may of course be a user other than root):
 
-   .. code-block:: sql
+   ..  code-block:: sql
 
        mysql -u root -p
        CREATE DATABASE menagerie;
        QUIT
 
-#. Next we’ll get some sample data from MySQL, which we’ll pull into our root
+#. Next, get some sample data from MySQL, which we’ll pull into our root
    directory, then install from the terminal:
 
-   .. code-block:: sql
+   ..  code-block:: sql
 
        cd
        wget http://downloads.mysql.com/docs/menagerie-db.zip
@@ -99,7 +99,7 @@ So let’s proceed.
        mysql menagerie -u root -p < ins_puff_rec.sql
        mysql menagerie -u root -p < cr_event_tbl.sql
 
-#. Let’s enter the MySQL console now and massage the data for use with the
+#. Enter the MySQL console now and massage the data for use with the
    Tarantool replicator (we are adding an ID, changing a field name to avoid
    conflict, and cutting down the number of fields; note that with real data,
    this is the step that will involve the most tweaking):
@@ -139,7 +139,7 @@ So let’s proceed.
       [client]
       socket = /var/lib/mysql/mysql.sock
 
-#. After exiting nano, we’ll restart mysqld:
+#. After exiting nano, restart mysqld:
 
    .. code-block:: bash
 
@@ -160,53 +160,10 @@ So let’s proceed.
 
 #. Replace the entire contents of the file with the following:
 
-   .. code-block:: lua
-
-      box.cfg {
-          listen = 3301;
-          memtx_memory = 128 * 1024 * 1024; -- 128Mb
-          memtx_min_tuple_size = 16;
-          memtx_max_tuple_size = 128 * 1024 * 1024; -- 128Mb
-          vinyl_memory = 128 * 1024 * 1024; -- 128Mb
-          vinyl_cache = 128 * 1024 * 1024; -- 128Mb
-          vinyl_max_tuple_size = 128 * 1024 * 1024; -- 128Mb
-          vinyl_write_threads = 2;
-          wal_mode = "none";
-          wal_max_size = 256 * 1024 * 1024;
-          checkpoint_interval = 60 * 60; -- one hour
-          checkpoint_count = 6;
-          force_recovery = true;
-
-           -- 1 – SYSERROR
-           -- 2 – ERROR
-           -- 3 – CRITICAL
-           -- 4 – WARNING
-           -- 5 – INFO
-           -- 6 – VERBOSE
-           -- 7 – DEBUG
-           log_level = 7;
-           too_long_threshold = 0.5;
-       }
-
-      box.schema.user.grant('guest','read,write,execute','universe')
-
-      local function bootstrap()
-
-          if not box.space.mysqldaemon then
-              s = box.schema.space.create('mysqldaemon')
-              s:create_index('primary',
-              {type = 'tree', parts = {1, 'unsigned'}, if_not_exists = true})
-          end
-
-          if not box.space.mysqldata then
-              t = box.schema.space.create('mysqldata')
-              t:create_index('primary',
-              {type = 'tree', parts = {1, 'unsigned'}, if_not_exists = true})
-          end
-
-      end
-
-      bootstrap()
+    ..  literalinclude:: /code_snippets/snippets/mysql/instances.enabled/mysql.lua
+        :language: lua
+        :lines: 3-17
+        :dedent:
 
    To understand more of what’s happening here, it would be best to have a look
    back at the earlier
@@ -229,7 +186,7 @@ So let’s proceed.
 
       tt start example
 
-#. Now let’s enter our Tarantool instance, where we can check that our target
+#. Then enter our Tarantool instance, where we can check that our target
    spaces were successfully created:
 
    .. code-block:: bash
