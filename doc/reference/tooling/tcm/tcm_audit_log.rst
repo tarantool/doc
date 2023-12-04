@@ -25,7 +25,7 @@ The complete list of |tcm| audit events is provided in :ref:`Event types <tcm_au
 Audit logging is disabled in |tcm| by default. To start recording events, you need
 to :ref:`enable <tcm_audit_log_enable>` and :ref:`configure <tcm_audit_log_config>` it.
 
-Audit log stores event details in the JSON format. Each log entry contains the
+The audit log stores event details in the JSON format. Each log entry contains the
 event type, description, time, impacted objects, and other information that
 may be used for incident investigation. The complete list of fields is provided in
 :ref:`Structure of audit log events <tcm_audit_log_structure>`.
@@ -58,7 +58,7 @@ To write |tcm| audit logs to a file:
 
 1.  Go to **Audit settings** and select the **file** protocol.
 2.  Specify the name of the audit log file. The file appears in the |tcm| working directory.
-3.  Configure the log files rotation: maximum file size and age, and the number
+3.  Configure the log files rotation: the maximum file size and age, and the number
     of files to store simultaneously.
 4.  (Optional) Enable compression of audit log files.
 
@@ -67,7 +67,7 @@ To write |tcm| audit logs to a file:
 Configuration parameters:
 
 -   **Output file name**. The name of the audit log file. Default: ``audit.log``
--   **Max size (in MB)**. The maximum size of the log file before it gets rotated,in megabytes. Default: 100.
+-   **Max size (in MB)**. The maximum size of the log file before it gets rotated, in megabytes. Default: 100.
 -   **Max backups**. The maximum number of stored audit log files. Default: 10.
 -   **Max age (in days)**. The maximum age of audit log files in days. Default: 30.
 -   **Compress**. Compress audit log files into ``gzip`` archives when rotating.
@@ -76,13 +76,11 @@ Sending to syslog
 ~~~~~~~~~~~~~~~~~
 
 If you use a centralized log management system based on `syslog <https://datatracker.ietf.org/doc/rfc5424/>`__,
-you can configure |tcm| to send its audit log to your syslog server.
-
-To send |tcm| audit logs to a syslog server:
+you can configure |tcm| to send its audit log to your syslog server:
 
 1.  Go to **Audit settings** and select the **syslog** protocol.
 2.  Enter the syslog server URI and select the network protocol. Typically,
-    ``syslogd`` listens on port 514 and use the UDP protocol.
+    ``syslogd`` listens on port 514 and uses the UDP protocol.
 3.  Specify the syslog logging parameters: timeout, priority, and facility.
 
 .. TODO: move to UI reference
@@ -99,7 +97,7 @@ Configuration parameters:
 Selecting audit events to record
 --------------------------------
 
-When audit log is enabled, |tcm| records all audit events listed in :ref:`Event types <tcm_audit_log_event_types>`.
+When the audit log is enabled, |tcm| records all audit events listed in :ref:`Event types <tcm_audit_log_event_types>`.
 To decrease load and make the audit log comply with specific security
 requirements, you can record only selected events. For example, these can be events
 of user account management or events of cluster data access.
@@ -115,14 +113,13 @@ To remove an event type from a filters list, click the cross icon beside it.
 Viewing audit log
 -----------------
 
-If audit log is written to a file, you can view it in |tcm|.
-To view audit log in |tcm|, go to the **Audit log** page. On this page, you can
-view or search for events.
+If the audit log is written to a file, you can view it in |tcm| in the **Audit log** page.
+On this page, you can view or search for events.
 
 To view the details of a logged audit event, click the corresponding line in the
 table.
 
-To search for an event, use the search bar on the top of the page. Note that the
+To search for an event, use the search bar at the top of the page. Note that the
 search is case-sensitive. For example, to find events with the ``ALARM`` severity,
 enter ``ALARM``, not ``alarm``.
 
