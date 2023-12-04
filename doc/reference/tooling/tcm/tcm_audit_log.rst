@@ -12,7 +12,7 @@ Audit log
 and security-related events, such as:
 
 *   Successful and failed login attempts.
-*   Access to clusters, their configurations, data model, and stored data.
+*   Access to clusters, their configurations, data models, and stored data.
 *   Changes in the access control system: users, roles, passwords, LDAP configurations.
 
 The complete list of |tcm| audit events is provided in :ref:`Event types <tcm_audit_log_event_types>`.
@@ -30,8 +30,8 @@ event type, description, time, impacted objects, and other information that
 may be used for incident investigation. The complete list of fields is provided in
 :ref:`Structure of audit log events <tcm_audit_log_structure>`.
 
-In addition to writing audit logs, |tcm| has a built-in interface for reading and
-searching them. For details, see :ref:`Viewing audit logs <tcm_audit_log_view>`.
+|tcm| also provides a built-in interface for reading and searching the audit log.
+For details, see :ref:`Viewing audit log <tcm_audit_log_view>`.
 
 ..  _tcm_audit_log_enable:
 
