@@ -113,7 +113,7 @@ To remove an event type from a filters list, click the cross icon beside it.
 Viewing audit log
 -----------------
 
-If the audit log is written to a file, you can view it in |tcm| in the **Audit log** page.
+If the audit log is written to a file, you can view it in |tcm| on the **Audit log** page.
 On this page, you can view or search for events.
 
 To view the details of a logged audit event, click the corresponding line in the
@@ -179,9 +179,10 @@ All entries of the |tcm| audit log include the mandatory fields listed in the ta
             -   Additional fields for specific event types in the key-value format
             -   Key examples:
 
-                - ``clusterId`` in cluster-related events.
-                - ``username`` in ``current.*`` or ``auth.*`` events
+                - ``clusterId`` in cluster-related events
                 - ``payload`` in events that include sending data to the server
+                - ``username`` in ``current.*`` or ``auth.*`` events
+
 
 This is an example of an audit log entry on a successful login attempt:
 
