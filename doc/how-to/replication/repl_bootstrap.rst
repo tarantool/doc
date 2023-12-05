@@ -6,6 +6,8 @@ Master-replica: manual failover
 
 **Example on GitHub**: `manual_leader <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/replication/instances.enabled/manual_leader>`_
 
+This tutorial shows how to configure and work with a replica set with manual failover.
+
 
 ..  _replication-tt-env:
 
@@ -236,7 +238,7 @@ To check that a replica (``instance002``) gets all updates from the master, foll
 
     .. NOTE::
 
-        Note that a ``vclock`` value might include the 0-th component that is related to local space operations and might differ for different instances in a replica set.
+        Note that a ``vclock`` value might include the ``0`` component that is related to local space operations and might differ for different instances in a replica set.
 
     .. vclock_0th_component_note_end
 
@@ -298,7 +300,8 @@ Starting an instance
 Reloading configuration
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-After adding ``instance003`` to the configuration and starting it, configurations on all instances should be reloaded to allow ``instance001`` and ``instance002`` to get data from the new instance in case it becomes a master:
+After you added ``instance003`` to the configuration and started it, you need to reload configurations on all instances.
+This is required to allow ``instance001`` and ``instance002`` to get data from the new instance in case it becomes a master.
 
 1.  Connect to ``instance003`` using ``tt connect``:
 

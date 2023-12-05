@@ -5,6 +5,8 @@ Master-master
 
 **Example on GitHub**: `master_master <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/replication/instances.enabled/master_master>`_
 
+This tutorial shows how to configure and work with a master-master replica set.
+
 
 ..  _replication-master-master-tt-env:
 

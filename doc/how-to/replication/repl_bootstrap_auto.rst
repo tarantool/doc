@@ -5,6 +5,8 @@ Master-replica: automated failover
 
 **Example on GitHub**: `auto_leader <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/replication/instances.enabled/auto_leader>`_
 
+This tutorial shows how to configure and work with a replica set with automated failover.
+
 
 ..  _replication-automated-failover-tt-env:
 
@@ -227,7 +229,7 @@ Checking a replica set status
 Adding data
 ~~~~~~~~~~~
 
-To check that replicas (``instance001`` and ``instance003``) get all updates from the master(``instance002``), follow the steps below:
+To check that replicas (``instance001`` and ``instance003``) get all updates from the master (``instance002``), follow the steps below:
 
 1.  Connect to ``instance002`` using ``tt connect``:
 
@@ -241,7 +243,7 @@ To check that replicas (``instance001`` and ``instance003``) get all updates fro
 
 3.  Use the ``select`` operation on ``instance001`` and ``instance003`` to make sure data is replicated.
 
-4.  Check that the 1-st component of :ref:`box.info.vclock <box_introspection-box_info>` values are the same on all instances:
+4.  Check that the ``1`` component of :ref:`box.info.vclock <box_introspection-box_info>` values are the same on all instances:
 
     -   ``instance001``:
 
@@ -368,7 +370,7 @@ To test how automated failover works if the current master is stopped, follow th
 Choosing a leader manually
 --------------------------
 
-1.  Make sure that :ref:`box.info.vclock <box_introspection-box_info>` values (excluding the 0-th components) are the same on all instances:
+1.  Make sure that :ref:`box.info.vclock <box_introspection-box_info>` values (except the ``0`` components) are the same on all instances:
 
     -   ``instance001``:
 
