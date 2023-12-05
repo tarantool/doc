@@ -29,5 +29,7 @@ For example, a user can be an administrator of a specific cluster or only have t
 to read data. LDAP authorization is supported as well.
 
 .. toctree::
+    :maxdepth: 1
 
     tcm_access_control
+    tcm_audit_log
