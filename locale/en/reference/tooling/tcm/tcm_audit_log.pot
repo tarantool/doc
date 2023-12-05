@@ -1,0 +1,833 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-05 04:41+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:4
+msgid "Audit log"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:6
+msgid "Enterprise Edition"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:9
+msgid "|tcm_full_name| is a part of the `Enterprise Edition <https://www.tarantool.io/compare/>`_."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:11
+msgid "|tcm_full_name| provides the audit logging functionality for tracking user activity and security-related events, such as:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:14
+msgid "Successful and failed login attempts."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:15
+msgid "Access to clusters, their configurations, data models, and stored data."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:16
+msgid "Changes in the access control system: users, roles, passwords, LDAP configurations."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:18
+msgid "The complete list of |tcm| audit events is provided in :ref:`Event types <tcm_audit_log_event_types>`."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:22
+msgid "|tcm| audit log records only events that happen in |tcm| itself. For information about Tarantool audit logging, see :ref:`Audit module <enterprise_audit_module>`."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:25
+msgid "Audit logging is disabled in |tcm| by default. To start recording events, you need to :ref:`enable <tcm_audit_log_enable>` and :ref:`configure <tcm_audit_log_config>` it."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:28
+msgid "The audit log stores event details in the JSON format. Each log entry contains the event type, description, time, impacted objects, and other information that may be used for incident investigation. The complete list of fields is provided in :ref:`Structure of audit log events <tcm_audit_log_structure>`."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:33
+msgid "|tcm| also provides a built-in interface for reading and searching the audit log. For details, see :ref:`Viewing audit log <tcm_audit_log_view>`."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:39
+msgid "Enabling audit logging"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:41
+msgid "To enable audit logging in |tcm|, go to **Audit settings** and click **Enable**."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:43
+msgid "To additionally send audit log events to the standard output, click **Send to stdout**."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:48
+msgid "Audit log configuration"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:50
+msgid "|tcm| audit events can be logged to a local file or sent to a `syslog <https://datatracker.ietf.org/doc/rfc5424/>`__ server. To configure audit logging, go to **Audit settings**."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:55
+msgid "Writing to a file"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:57
+msgid "To write |tcm| audit logs to a file:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:59
+msgid "Go to **Audit settings** and select the **file** protocol."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:60
+msgid "Specify the name of the audit log file. The file appears in the |tcm| working directory."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:61
+msgid "Configure the log files rotation: the maximum file size and age, and the number of files to store simultaneously."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:63
+msgid "(Optional) Enable compression of audit log files."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:67
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:88
+msgid "Configuration parameters:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:69
+msgid "**Output file name**. The name of the audit log file. Default: ``audit.log``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:70
+msgid "**Max size (in MB)**. The maximum size of the log file before it gets rotated, in megabytes. Default: 100."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:71
+msgid "**Max backups**. The maximum number of stored audit log files. Default: 10."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:72
+msgid "**Max age (in days)**. The maximum age of audit log files in days. Default: 30."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:73
+msgid "**Compress**. Compress audit log files into ``gzip`` archives when rotating."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:76
+msgid "Sending to syslog"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:78
+msgid "If you use a centralized log management system based on `syslog <https://datatracker.ietf.org/doc/rfc5424/>`__, you can configure |tcm| to send its audit log to your syslog server:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:81
+msgid "Go to **Audit settings** and select the **syslog** protocol."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:82
+msgid "Enter the syslog server URI and select the network protocol. Typically, ``syslogd`` listens on port 514 and uses the UDP protocol."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:84
+msgid "Specify the syslog logging parameters: timeout, priority, and facility."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:90
+msgid "**Protocol**. The network protocol used for connecting to the syslog server. Default: ``udp``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:91
+msgid "**Output**. The syslog server URI. Default: 127.0.0.1:514 (localhost)."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:92
+msgid "**Timeout**. The syslog write timeout in the `ISO 8601 duration format <https://en.wikipedia.org/wiki/ISO_8601#Durations>`__. Default: ``PT2S`` (two seconds)."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:94
+msgid "**Priority**. The syslog severity level. Default: ``info``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:95
+msgid "**Facility**. The syslog facility. Default: ``local0``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:98
+msgid "Selecting audit events to record"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:100
+msgid "When the audit log is enabled, |tcm| records all audit events listed in :ref:`Event types <tcm_audit_log_event_types>`. To decrease load and make the audit log comply with specific security requirements, you can record only selected events. For example, these can be events of user account management or events of cluster data access."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:105
+msgid "To select events to record into the audit log, go to **Audit settings** and enter their :ref:`types <tcm_audit_log_event_types>` into the **Filters** field one-by-one, pressing the **Enter** key after each type."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:109
+msgid "To remove an event type from a filters list, click the cross icon beside it."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:114
+msgid "Viewing audit log"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:116
+msgid "If the audit log is written to a file, you can view it in |tcm| on the **Audit log** page. On this page, you can view or search for events."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:119
+msgid "To view the details of a logged audit event, click the corresponding line in the table."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:122
+msgid "To search for an event, use the search bar at the top of the page. Note that the search is case-sensitive. For example, to find events with the ``ALARM`` severity, enter ``ALARM``, not ``alarm``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:129
+msgid "Structure of audit log events"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:131
+msgid "All entries of the |tcm| audit log include the mandatory fields listed in the table below."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:139
+msgid "Field"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:140
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:234
+msgid "Description"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:141
+msgid "Example"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:142
+msgid "``time``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:143
+msgid "Time of the event"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:144
+msgid "2023-11-23T12:05:27.099+07:00"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:145
+msgid "``severity``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:146
+msgid "Event severity: ``VERBOSE``, ``INFO``, ``WARNING``, or ``ALARM``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:147
+msgid "INFO"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:148
+msgid "``type``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:149
+msgid "Audit :ref:`event type <tcm_audit_log_event_types>`"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:150
+msgid "user.update"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:151
+msgid "``description``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:152
+msgid "Human-readable event description"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:153
+msgid "Update user"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:154
+msgid "``uuid``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:155
+msgid "Event UUID"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:156
+msgid "f8744f51-5760-40c3-ae2d-0b4d6b44836f"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:157
+msgid "``user``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:158
+msgid "UUID of the user who triggered the event"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:159
+msgid "942a4f54-cf7f-4f46-80ce-3511dbbb57b7"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:160
+msgid "``remote``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:161
+msgid "Remote host that triggered the event"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:162
+msgid "100.96.163.226:48722"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:163
+msgid "``host``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:164
+msgid "The |tcm| host on which the event happened"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:165
+msgid "100.96.163.226:8080"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:166
+msgid "``userAgent``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:167
+msgid "Information about the client application and platform that was used to trigger the event"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:168
+msgid "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:169
+msgid "``permission``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:170
+msgid "The permission that was used to trigger the event"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:171
+msgid "[\"admin.users.write\"]"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:172
+msgid "``result``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:173
+msgid "Event result: ``ok`` or ``nok``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:174
+msgid "ok"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:175
+msgid "``err``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:176
+msgid "Human-readable error description for events with ``nok`` result"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:177
+msgid "failed to login"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:178
+msgid "``fields``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:179
+msgid "Additional fields for specific event types in the key-value format"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:180
+msgid "Key examples:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:182
+msgid "``clusterId`` in cluster-related events"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:183
+msgid "``payload`` in events that include sending data to the server"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:184
+msgid "``username`` in ``current.*`` or ``auth.*`` events"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:187
+msgid "This is an example of an audit log entry on a successful login attempt:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:189
+msgid "{\n"
+"    \"time\": \"2023-11-23T12:01:27.247+07:00\",\n"
+"    \"severity\": \"INFO\",\n"
+"    \"description\": \"Login user\",\n"
+"    \"type\": \"current.login\",\n"
+"    \"uuid\": \"4b9c2dd1-d9a1-4b40-a448-6bef4a0e5c79\",\n"
+"    \"user\": \"\",\n"
+"    \"remote\": \"127.0.0.1:63370\",\n"
+"    \"user-agent\": \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36\",\n"
+"    \"host\": \"127.0.0.1:8080\",\n"
+"    \"permissions\": [],\n"
+"    \"result\": \"ok\",\n"
+"    \"fields\": [\n"
+"        {\n"
+"            \"Key\": \"username\",\n"
+"            \"Value\": \"admin\"\n"
+"        },\n"
+"        {\n"
+"            \"Key\": \"method\",\n"
+"            \"Value\": \"null\"\n"
+"        },\n"
+"        {\n"
+"            \"Key\": \"output\",\n"
+"            \"Value\": \"true\"\n"
+"        }\n"
+"    ]\n"
+"}"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:222
+msgid "Event types"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:224
+msgid "The following table lists all possible values of the ``type`` field of |tcm| audit log events."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:233
+msgid "Event type"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:236
+msgid "``auth.fail``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:237
+msgid "Authentication failed"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:238
+msgid "``auth.ok``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:239
+msgid "Authentication successful"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:240
+msgid "``access.denied``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:241
+msgid "An attempt to access an object without the required permission"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:242
+msgid "``user.add``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:243
+msgid "User added"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:244
+msgid "``user.update``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:245
+msgid "User updated"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:246
+msgid "``user.delete``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:247
+msgid "User deleted"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:248
+msgid "``secret.add``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:249
+msgid "User secret added"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:250
+msgid "``secret.update``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:251
+msgid "User secret updated"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:252
+msgid "``secret.block``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:253
+msgid "User secret blocked"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:254
+msgid "``secret.unblock``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:255
+msgid "User secret unblocked"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:256
+msgid "``secret.delete``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:257
+msgid "User secret deleted"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:258
+msgid "``secret.expire``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:259
+msgid "User secret expired"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:260
+msgid "``session.revoke``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:261
+msgid "Session revoked"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:262
+msgid "``session.revokeuser``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:263
+msgid "All user's sessions revoked"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:264
+msgid "``explorer.insert``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:265
+msgid "Data inserted in a cluster"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:266
+msgid "``explorer.delete``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:267
+msgid "Data deleted from a cluster"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:268
+msgid "``explorer.replace``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:269
+msgid "Data replaced in a cluster"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:270
+msgid "``explorer.call``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:271
+msgid "Stored function called on a cluster"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:272
+msgid "``explorer.evaluate``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:273
+msgid "Code executed on a cluster"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:274
+msgid "``explorer.switchover``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:275
+msgid "Master switched manually"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:276
+msgid "``test.devmode``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:277
+msgid "Switched to development mode"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:278
+msgid "``auditlog.config``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:279
+msgid "Audit log configuration changed"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:280
+msgid "``passwordpolicy.save``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:281
+msgid "Password policy changed"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:282
+msgid "``passwordpolicy.resetpasswords``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:283
+msgid "All passwords expired by an administrator"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:284
+msgid "``ddl.save``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:285
+msgid "Cluster data model saved"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:286
+msgid "``ddl.apply``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:287
+msgid "Cluster data model applied"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:288
+msgid "``cluster.config.save``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:289
+msgid "Cluster configuration saved"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:290
+msgid "``cluster.config.reset``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:291
+msgid "Saved cluster configuration reset"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:292
+msgid "``cluster.config.apply``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:293
+msgid "Cluster configuration applied"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:294
+msgid "``current.logout``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:295
+msgid "User logged out their own session"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:296
+msgid "``current.revoke``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:297
+msgid "User revoked their own session"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:298
+msgid "``current.revokeall``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:299
+msgid "User revoked all their active sessions"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:300
+msgid "``current.changepassword``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:301
+msgid "User changed their password"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:302
+msgid "``role.add``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:303
+msgid "Role added"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:304
+msgid "``role.update``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:305
+msgid "Role updated"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:306
+msgid "``role.delete``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:307
+msgid "Role deleted"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:308
+msgid "``cluster.add``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:309
+msgid "Cluster added"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:310
+msgid "``cluster.update``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:311
+msgid "Cluster updated"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:312
+msgid "``cluster.delete``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:313
+msgid "Cluster removed"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:314
+msgid "``ldap.testlogin``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:315
+msgid "Login test executed for a LDAP configuration"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:316
+msgid "``ldap.testconnection``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:317
+msgid "Connection test executed for a LDAP configuration"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:318
+msgid "``ldap.add``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:319
+msgid "LDAP configuration added"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:320
+msgid "``ldap.update``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:321
+msgid "LDAP configuration updated"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:322
+msgid "``ldap.delete``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:323
+msgid "LDAP configuration deleted"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:324
+msgid "``addon.enable``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:325
+msgid "Add-on enabled"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:326
+msgid "``addon.disable``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:327
+msgid "Add-on disabled"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:328
+msgid "``addon.delete``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:329
+msgid "Add-on removed"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:330
+msgid "``tcmstate.save``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:331
+msgid "Low-level information saved in the TCM storage (for debug purposes)"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:332
+msgid "``tcmstate.delete``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_audit_log.rst:333
+msgid "Low-level information deleted from the TCM storage (for debug purposes)"
+msgstr ""
