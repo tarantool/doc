@@ -1081,6 +1081,9 @@ The ``replication`` section defines configuration parameters related to :ref:`re
 
         ..  TODO: https://github.com/tarantool/enterprise_doc/issues/253
 
+
+    See also: :ref:`Replication tutorials <how-to-replication>`.
+
     .. NOTE::
 
         ``replication.failover`` can be defined in the global, group, and replica set :ref:`scope <configuration_scopes>`.

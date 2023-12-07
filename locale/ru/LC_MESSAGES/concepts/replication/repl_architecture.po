@@ -234,7 +234,7 @@ msgstr ""
 "системой значений -- см. описание конфигурационного параметра "
 ":ref:`replicaset_uuid <cfg_replication-replicaset_uuid>`."
 
-msgid "To learn how to enable replication, check the :ref:`how-to guide <replication-setup>`."
+msgid "To learn how to enable replication, check the :ref:`how-to guide <replication-bootstrap>`."
 msgstr "Чтобы узнать, как включить репликацию, перейдите на страницу "
 ":ref:`практическое руководство <replication_setup>`."
 

@@ -15,8 +15,7 @@ to a replica, from the client's point of view the transaction will disappear.
 are not considered committed and are not responded to a client until they are
 replicated onto some number of replicas.
 
-To learn how to enable and use synchronous replication,
-check the :ref:`guide <how-to-repl_sync>`.
+To enable synchronous replication, use the :ref:`space_opts.is_sync <space_opts_is_sync>` option when creating or altering a space.
 
 Synchronous and asynchronous transactions
 -----------------------------------------

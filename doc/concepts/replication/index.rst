@@ -10,7 +10,7 @@ Replication allows multiple Tarantool instances to work on copies of the same
 databases. The databases are kept in sync because each instance can communicate
 its changes to all the other instances.
 
-This chapter includes the following sections:
+This section includes the following topics:
 
 ..  toctree::
     :maxdepth: 2
@@ -20,9 +20,5 @@ This chapter includes the following sections:
     repl_sync
     repl_leader_elect
 
-For practical guides to replication, see the :ref:`How-to section <how-to-replication>`.
-You can learn about :ref:`bootstrapping a replica set <replication-bootstrap>`,
-:ref:`adding instances <replication-add_instances>` to the replica set
-or :ref:`removing them <replication-remove_instances>`,
-:ref:`using synchronous replication <how-to-repl_sync>`
-and :ref:`managing leader elections <how-to-repl_leader_elect>`.
+For practical guides to replication, see :ref:`Replication tutorials <how-to-replication>`.
+You can learn about bootstrapping a replica set, adding instances to the replica set, or removing them.
