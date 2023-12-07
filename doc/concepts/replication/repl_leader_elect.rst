@@ -226,7 +226,7 @@ Important notes
 ~~~~~~~~~~~~~~~
 
 Leader election doesn't work correctly if the election quorum is set to less or equal
-than ``<cluster size> / 2`` because in that case, a split vote can lead to
+than ``<cluster size> / 2``. In that case, a split vote can lead to
 a state when two leaders are elected at once.
 
 For example, suppose there are five nodes. When the quorum is set to ``2``, ``node1``
