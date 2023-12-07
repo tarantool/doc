@@ -1,8 +1,7 @@
 .. _replication-recover:
 
-================================================================================
 Recovering from a degraded state
-================================================================================
+================================
 
 "Degraded state" is a situation when the master becomes unavailable -- due to
 hardware or network failure, or due to a programming bug.
@@ -10,98 +9,45 @@ hardware or network failure, or due to a programming bug.
 .. image:: mr-degraded.svg
     :align: center
 
-In a master-replica set, if a master disappears, error messages appear on the
-replicas stating that the connection is lost:
+-   In a master-replica set with :ref:`manual failover <replication-master_replica_bootstrap>`, if a master disappears, error messages appear on the
+    replicas stating that the connection is lost:
 
-.. code-block:: console
+    .. code-block:: console
 
-   $ # messages from a replica's log
-   2017-06-14 16:23:10.993 [19153] main/105/applier/replicator@192.168.0. I> can't read row
-   2017-06-14 16:23:10.993 [19153] main/105/applier/replicator@192.168.0. coio.cc:349 !> SystemError
-   unexpected EOF when reading from socket, called on fd 17, aka 192.168.0.101:57815,
-   peer of 192.168.0.101:3301: Broken pipe
-   2017-06-14 16:23:10.993 [19153] main/105/applier/replicator@192.168.0. I> will retry every 1 second
-   2017-06-14 16:23:10.993 [19153] relay/[::ffff:192.168.0.101]:/101/main I> the replica has closed its socket, exiting
-   2017-06-14 16:23:10.993 [19153] relay/[::ffff:192.168.0.101]:/101/main C> exiting the relay loop
+        2023-12-04 13:19:04.724 [16755] main/110/applier/replicator@127.0.0.1:3301 I> can't read row
+        2023-12-04 13:19:04.724 [16755] main/110/applier/replicator@127.0.0.1:3301 coio.c:349 E> SocketError: unexpected EOF when reading from socket, called on fd 19, aka 127.0.0.1:55932, peer of 127.0.0.1:3301: Broken pipe
+        2023-12-04 13:19:04.724 [16755] main/110/applier/replicator@127.0.0.1:3301 I> will retry every 1.00 second
+        2023-12-04 13:19:04.724 [16755] relay/127.0.0.1:55940/101/main coio.c:349 E> SocketError: unexpected EOF when reading from socket, called on fd 23, aka 127.0.0.1:3302, peer of 127.0.0.1:55940: Broken pipe
+        2023-12-04 13:19:04.724 [16755] relay/127.0.0.1:55940/101/main I> exiting the relay loop
 
-... and the master's status is reported as "disconnected":
+-   In a master-replica set with :ref:`automated failover <replication-bootstrap-auto>`, a log also includes Raft messages showing the process of a new master's election:
 
-.. code-block:: tarantoolsession
+    .. code-block:: console
 
-   # report from replica #1
-   tarantool> box.info.replication
-   ---
-   - 1:
-       id: 1
-       uuid: 70e8e9dc-e38d-4046-99e5-d25419267229
-       lsn: 542
-       upstream:
-         peer: replicator@192.168.0.101:3301
-         lag: 0.00026607513427734
-         status: disconnected
-         idle: 182.36929893494
-         message: connect, called on fd 13, aka 192.168.0.101:58244
-     2:
-       id: 2
-       uuid: fb252ac7-5c34-4459-84d0-54d248b8c87e
-       lsn: 0
-     3:
-       id: 3
-       uuid: fd7681d8-255f-4237-b8bb-c4fb9d99024d
-       lsn: 0
-       downstream:
-         vclock: {1: 542}
-   ...
+        2023-12-04 13:16:56.340 [16615] main/111/applier/replicator@127.0.0.1:3302 I> can't read row
+        2023-12-04 13:16:56.340 [16615] main/111/applier/replicator@127.0.0.1:3302 coio.c:349 E> SocketError: unexpected EOF when reading from socket, called on fd 24, aka 127.0.0.1:55687, peer of 127.0.0.1:3302: Broken pipe
+        2023-12-04 13:16:56.340 [16615] main/111/applier/replicator@127.0.0.1:3302 I> will retry every 1.00 second
+        2023-12-04 13:16:56.340 [16615] relay/127.0.0.1:55695/101/main coio.c:349 E> SocketError: unexpected EOF when reading from socket, called on fd 25, aka 127.0.0.1:3301, peer of 127.0.0.1:55695: Broken pipe
+        2023-12-04 13:16:56.340 [16615] relay/127.0.0.1:55695/101/main I> exiting the relay loop
+        2023-12-04 13:16:59.690 [16615] main/112/applier/replicator@127.0.0.1:3303 I> RAFT: message {term: 3, vote: 2, state: candidate, vclock: {1: 9}} from 2
+        2023-12-04 13:16:59.690 [16615] main/112/applier/replicator@127.0.0.1:3303 I> RAFT: received a newer term from 2
+        2023-12-04 13:16:59.690 [16615] main/112/applier/replicator@127.0.0.1:3303 I> RAFT: bump term to 3, follow
+        2023-12-04 13:16:59.690 [16615] main/112/applier/replicator@127.0.0.1:3303 I> RAFT: vote for 2, follow
+        2023-12-04 13:16:59.691 [16615] main/119/raft_worker I> RAFT: persisted state {term: 3}
+        2023-12-04 13:16:59.691 [16615] main/119/raft_worker I> RAFT: persisted state {term: 3, vote: 2}
+        2023-12-04 13:16:59.691 [16615] main/112/applier/replicator@127.0.0.1:3303 I> RAFT: message {term: 3, vote: 2, leader: 2, state: leader} from 2
+        2023-12-04 13:16:59.691 [16615] main/112/applier/replicator@127.0.0.1:3303 I> RAFT: vote request is skipped - this is a notification about a vote for a third node, not a request
+        2023-12-04 13:16:59.691 [16615] main/112/applier/replicator@127.0.0.1:3303 I> RAFT: leader is 2, follow
 
-.. code-block:: tarantoolsession
 
-   # report from replica #2
-   tarantool> box.info.replication
-   ---
-   - 1:
-       id: 1
-       uuid: 70e8e9dc-e38d-4046-99e5-d25419267229
-       lsn: 542
-       upstream:
-         peer: replicator@192.168.0.101:3301
-         lag: 0.00027203559875488
-         status: disconnected
-         idle: 186.76988101006
-         message: connect, called on fd 13, aka 192.168.0.101:58253
-     2:
-       id: 2
-       uuid: fb252ac7-5c34-4459-84d0-54d248b8c87e
-       lsn: 0
-       upstream:
-         status: follow
-         idle: 186.76960110664
-         peer: replicator@192.168.0.102:3301
-         lag: 0.00020599365234375
-     3:
-       id: 3
-       uuid: fd7681d8-255f-4237-b8bb-c4fb9d99024d
-       lsn: 0
-   ...
 
-To declare that one of the replicas must now take over as a new master:
+The master's status is reported as ``disconnected`` when executing :ref:`box.info.replication <replication-monitoring>` on a replica:
 
-1. Make sure that the old master is gone for good:
+..  include:: /how-to/replication/repl_bootstrap_auto.rst
+    :start-after: box_info_replication_auto_leader_disconnected_start
+    :end-before: box_info_replication_auto_leader_disconnected_end
 
-   * change network routing rules to avoid any more packets being delivered to
-     the master, or
-   * shut down the master instance, if you have access to the machine, or
-   * power off the container or the machine.
 
-2. Say ``box.cfg{read_only=false, listen=URI}`` on the replica, and
-   ``box.cfg{replication=URI}`` on the other replicas in the set.
+To learn how to perform manual failover in a master-replica set, see the :ref:`Performing manual failover <replication-controlled_failover>` section.
 
-.. NOTE::
-
-   If there are updates on the old master that were not propagated before the
-   old master went down,
-   :ref:`re-apply them manually <admin-disaster_recovery-master_replica>` to the
-   new master using ``tt cat`` and ``tt play`` commands.
-
-There is no automatic way for a replica to detect that the master is gone
-forever, since sources of failure and replication environments vary
-significantly. So the detection of degraded state requires an external observer.
+In a master-replica configuration with automated failover, a new master should be elected :ref:`automatically <replication-automated-failover-testing>`.

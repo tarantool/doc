@@ -313,6 +313,8 @@ To test how automated failover works if the current master is stopped, follow th
     -   ``upstream.status`` is ``disconnected``.
     -   ``downstream.status`` is ``stopped``.
 
+    .. box_info_replication_auto_leader_disconnected_start
+
     .. code-block:: console
 
         auto_leader:instance001> box.info.replication
@@ -355,6 +357,8 @@ To test how automated failover works if the current master is stopped, follow th
               vclock: {2: 1, 1: 32}
               lag: 0.00051403045654297
         ...
+
+    .. box_info_replication_auto_leader_disconnected_end
 
 
 4.  Start ``instance002`` back using ``tt start``:

@@ -249,22 +249,15 @@ error message like
 
 **Solution**
 
-Restart replication with the following commands (at each master instance):
+Restart replication at each master instance.
+Connect to each master instance using the :ref:`tt connect <tt-connect>` command:
 
 .. code-block:: console
 
-    $ # attaching to a Tarantool instance
     $ tt connect <instance_name|URI>
 
-.. code-block:: tarantoolsession
+Then, restart replication as described in :ref:`Restarting replication <replication-master-master-resolve-conflict>`.
 
-    -- restarting replication
-    tarantool> original_value = box.cfg.replication
-    tarantool> box.cfg{replication={}}
-    tarantool> box.cfg{replication=original_value}
-
-We also recommend using text primary keys or setting up
-:ref:`master-slave replication <replication-master_replica_bootstrap>`.
 
 .. _admin-troubleshoot-slow-tarantool:
 

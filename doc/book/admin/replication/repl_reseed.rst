@@ -4,25 +4,19 @@
 Reseeding a replica
 ================================================================================
 
-If any of a replica's .xlog/.snap/.run files are corrupted or deleted, you can
-"re-seed" the replica:
+If any of a replica's write-ahead log or snapshot files are corrupted or deleted, you can "re-seed" the replica.
+This procedure works only if the master's write-ahead logs are present.
 
-1. Stop the replica and destroy all local database files (the ones with
-   extensions .xlog/.snap/.run/.inprogress).
+1.  Stop the replica using the :ref:`tt stop <tt-stop>` command.
 
-2. Delete the replica's record from the following locations:
+2.  Delete write-ahead logs and snapshots stored in the ``var/lib/<instance_name>`` directory.
 
-   a. the ``replication`` parameter at all running instances in the replica set.
-   b. the ``box.space._cluster`` tuple on the master instance.
+    .. NOTE::
 
-   See section :ref:`Removing instances <replication-remove_instances>` for
-   details.
+        ``var/lib`` is the default directory used by tt to store write-ahead logs and snapshots.
+        Learn more from :ref:`Configuration <tt-config>`.
 
-3. Restart the replica with the same instance file to contact the master again.
-   The replica will then catch up with the master by retrieving all the master’s
-   tuples.
+3.  Start the replica using the :ref:`tt start <tt-start>` command.
+    The replica should catch up with the master by retrieving all the master's tuples.
 
-.. NOTE::
-
-   Remember that this procedure works only if the master’s WAL files are
-   present.
+4.  (Optional) If you're reseeding a replica after a replication conflict, you also need to :ref:`restart replication <replication-master-master-resolve-conflict>`.

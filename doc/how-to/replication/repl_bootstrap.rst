@@ -341,6 +341,8 @@ This is required to allow ``instance001`` and ``instance002`` to get data from t
 3.  Execute ``box.info.replication`` to check a replica set status.
     Make sure that ``upstream.status`` and ``downstream.status`` are ``follow`` for ``instance003``.
 
+    .. box_info_replication_manual_leader_start
+
     .. code-block:: console
 
         manual_leader:instance001> box.info.replication
@@ -381,6 +383,8 @@ This is required to allow ``instance001`` and ``instance002`` to get data from t
               vclock: {1: 21}
               lag: 0
                 ...
+
+    .. box_info_replication_manual_leader_end
 
 
 
