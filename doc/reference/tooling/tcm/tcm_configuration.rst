@@ -3,9 +3,9 @@
 Configuration
 =============
 
-.. TODO: write specific configuration tutorials for http, security, logging, and so on.
+.. TODO: write specific configuration tutorials for http, security, logging, and so on. (https://github.com/tarantool/doc/issues/3545)
 
-This topic describes the |tcm_full_name| configuration model. For the complete
+This topic describes how to configure |tcm_full_name|. For the complete
 list of |tcm| configuration parameters, see the :ref:`TCM configuration reference <tcm_configuration_reference>`.
 
 Configuration structure
@@ -97,7 +97,7 @@ Examples:
 -   ``TCM_HTTP_HOST`` is a variable for the ``http.host`` parameter.
 -   ``TCM_HTTP_WEBSESSION_COOKIE_NAME`` is a variable for the ``http.websession-cookie.name`` parameter.
 
-The example below shows how to start |tcm| passing configuration parameters in
+The example below shows how to start |tcm| with configuration parameters passed in
 environment variables:
 
 .. code-block:: console
@@ -118,7 +118,7 @@ hyphens (``-``). Examples:
 -   ``--http-host`` is an option for ``http.host``.
 -  ``--http-websession-cookie-name`` is an option for ``http.websession-cookie.name``.
 
-The example below shows how to start |tcm| passing configuration parameters in
+The example below shows how to start |tcm| with configuration parameters passed in
 command-line options:
 
 .. code-block:: console
@@ -146,7 +146,7 @@ You can combine different ways of |tcm| configuration for efficient management o
 multiple |tcm| installations:
 
 -   A single YAML file for all installations can contain the common configuration parts.
-    For example, the |tcm| configuration storage used for all installations or
+    For example, a single configuration storage that is used for all installations, or
     TLS settings.
 -   Environment variables that set specific parameters for each server, such as
     local directories and paths.
@@ -173,8 +173,7 @@ Most options have the Go's basic types: ``int`` and other numeric types, ``bool`
         request-size: 1572864 # int64
 
 Parameters that can take multiple values are arrays. In YAML, they are passed as
-YAML arrays: each item on a new line, starting with a dash. In environment variables
-and command line options, the items of such arrays are passed in a semicolon-separated string.
+YAML arrays: each item on a new line, starting with a dash.
 
 .. code-block:: yaml
 
@@ -184,6 +183,11 @@ and command line options, the items of such arrays are passed in a semicolon-sep
         endpoints: # array
             - https://192.168.0.1:2379 # item 1
             - https://192.168.0.2:2379 # item 2
+
+.. note::
+
+    In environment variables and command line options, such arrays are passed as
+    semicolon-separated strings of items.
 
 Parameters that set timeouts, TTLs, and other duration values, have the Go's `time.Duration <https://pkg.go.dev/time#Duration>`__
 type. Their values can be passed in time-formatted strings such as ``4h30m25s``.
