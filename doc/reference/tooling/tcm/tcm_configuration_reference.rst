@@ -1474,8 +1474,7 @@ etcd cluster is not available or not needed.
 
 .. confval:: storage.tarantool.prefix
 
-    A prefix for the TCM configuration parameters in a Tarantool cluster used as
-    a configuration storage.
+    A prefix for the TCM configuration parameters in the Tarantool |tcm| configuration storage.
 
     |
     | Type: string
@@ -1488,8 +1487,7 @@ etcd cluster is not available or not needed.
 
 .. confval:: storage.tarantool.addr
 
-    The URI for connecting to the Tarantool cluster used as
-    a configuration storage.
+    The URI for connecting to the Tarantool |tcm| configuration storage.
 
     |
     | Type: string
@@ -1515,8 +1513,7 @@ etcd cluster is not available or not needed.
 
 .. confval:: storage.tarantool.timeout
 
-    A timeout for connecting to the Tarantool cluster used as
-    a configuration storage.
+    A connection timeout for the Tarantool |tcm| configuration storage.
 
     |
     | Type: time.Duration
@@ -1528,7 +1525,7 @@ etcd cluster is not available or not needed.
 
 .. confval:: storage.tarantool.reconnect
 
-    ?? TBD
+    A reconnect timeout for the Tarantool |tcm| configuration storage.
 
     |
     | Type: time.Duration
@@ -1540,8 +1537,7 @@ etcd cluster is not available or not needed.
 
 .. confval:: storage.tarantool.max-reconnects
 
-    Maximum number of reconnects attempts to the Tarantool cluster used as
-    a configuration storage.
+    Maximum number of reconnect attempts for the Tarantool |tcm| configuration storage.
 
     |
     | Type: int
@@ -1553,8 +1549,7 @@ etcd cluster is not available or not needed.
 
 .. confval:: storage.tarantool.user
 
-    A username for connecting to the Tarantool cluster used as
-    a configuration storage.
+    A username for connecting to the Tarantool |tcm| configuration storage.
 
     |
     | Type: string
@@ -1566,8 +1561,7 @@ etcd cluster is not available or not needed.
 
 .. confval:: storage.tarantool.pass
 
-    A password for connecting to the Tarantool cluster used as
-    a configuration storage.
+    A password for connecting to the Tarantool |tcm| configuration storage.
 
     |
     | Type: string
@@ -1579,8 +1573,7 @@ etcd cluster is not available or not needed.
 
 .. confval:: storage.tarantool.rate-limit
 
-    A rate limit for connecting to the Tarantool cluster used as
-    a configuration storage.
+    A rate limit for connecting to the Tarantool |tcm| configuration storage.
 
     |
     | Type: int
@@ -1642,7 +1635,7 @@ etcd cluster is not available or not needed.
 
 .. confval:: storage.tarantool.ssl.key-file
 
-    A path to a TLS private key file to use for connecting to Tarantool |tcm|
+    A path to a TLS private key file to use for connecting to the Tarantool |tcm|
     configuration storage.
 
     See also: :ref:`Traffic encryption <enterprise-iproto-encryption>`.
@@ -1657,7 +1650,7 @@ etcd cluster is not available or not needed.
 
 .. confval:: storage.tarantool.ssl.cert-file
 
-    A path to an SSL certificate to use for connecting to Tarantool |tcm|
+    A path to an SSL certificate to use for connecting to the Tarantool |tcm|
     configuration storage.
 
     See also: :ref:`Traffic encryption <enterprise-iproto-encryption>`.
@@ -1672,7 +1665,7 @@ etcd cluster is not available or not needed.
 
 .. confval:: storage.tarantool.ssl.ca-file
 
-    A path to a trusted CA certificate to use for connecting to Tarantool |tcm|
+    A path to a trusted CA certificate to use for connecting to the Tarantool |tcm|
     configuration storage.
 
     See also: :ref:`Traffic encryption <enterprise-iproto-encryption>`.
@@ -1687,7 +1680,7 @@ etcd cluster is not available or not needed.
 
 .. confval:: storage.tarantool.ssl.ciphers
 
-    A list of SSL cipher suites that can be used for connecting to a Tarantool |tcm|
+    A list of SSL cipher suites that can be used for connecting to the Tarantool |tcm|
     configuration storage. Possible values are listed in :ref:`Supported ciphers <enterprise-iproto-encryption-ciphers>`.
 
     See also: :ref:`Traffic encryption <enterprise-iproto-encryption>`.
@@ -1702,7 +1695,7 @@ etcd cluster is not available or not needed.
 
 .. confval:: storage.tarantool.ssl.password
 
-    A password for an encrypted private SSL key to use for connecting to a Tarantool |tcm|
+    A password for an encrypted private SSL key to use for connecting to the Tarantool |tcm|
     configuration storage.
 
     See also: :ref:`Traffic encryption <enterprise-iproto-encryption>`.
@@ -1716,8 +1709,8 @@ etcd cluster is not available or not needed.
 
 .. confval:: storage.tarantool.ssl.password-file
 
-    A text file with one or more passwords for encrypted private SSL keys to use
-    for connecting to a Tarantool |tcm| configuration storage.
+    A text file with passwords for encrypted private SSL keys to use
+    for connecting to the Tarantool |tcm| configuration storage.
 
     |
     | Type: string
