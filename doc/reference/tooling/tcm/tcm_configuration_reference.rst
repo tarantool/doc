@@ -349,7 +349,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
 
     Indicates that the cookie can't be accessed from the JavaScript
     `Document.cookie <https://developer.mozilla.org/en-US/docs/Web/API/Document/cookie>`__ API.
-    This help mitigate cross-site scripting attacks.
+    This helps mitigate cross-site scripting attacks.
 
     When ``true``, the ``HttpOnly`` attribute is added to the `Set-Cookie <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie>`__
     HTTP response header.
@@ -944,7 +944,7 @@ The ``log`` section defines the |tcm|  logging parameters.
 .. confval:: log.default.syslog.protocol
 
     The network protocol used for connecting to the syslog server. Typically,
-    it's ``tcp``,``udp`, or ``unix``. All possible values are listed in the Go's
+    it's ``tcp``,``udp``, or ``unix``. All possible values are listed in the Go's
     `net.Dial <https://pkg.go.dev/net#Dial>`__ documentation.
 
     |
@@ -1197,7 +1197,7 @@ Tarantool storage parameters:
 
 .. confval:: storage.etcd.dial-timeout
 
-    A etcd dial timeout.
+    An etcd dial timeout.
 
     |
     | Type: time.Duration
@@ -1602,7 +1602,7 @@ etcd cluster is not available or not needed.
 
 .. confval:: storage.tarantool.rate-limit-action
 
-    A action to perform when the :ref:`<tcm_configuration_reference_storage_tarantool_rate-limit>` is reached.
+    An action to perform when the :ref:`<tcm_configuration_reference_storage_tarantool_rate-limit>` is reached.
 
     See also `go-tarantool.Opts <https://pkg.go.dev/github.com/tarantool/go-tarantool#Opts>`.
 

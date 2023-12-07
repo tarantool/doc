@@ -53,7 +53,7 @@ YAML file
 |tcm| configuration can be stored in a YAML file. Its structure must reflect the
 configuration parameters hierarchy.
 
-The example below shows a shows a fragment of a |tcm| configuration file:
+The example below shows a fragment of a |tcm| configuration file:
 
 .. code-block:: yaml
 
@@ -197,7 +197,7 @@ type. Their values can be passed in time-formatted strings such as ``4h30m25s``.
 Finally, there are parameters whose values are constants defined in Go packages.
 For example, :ref:`http.websession-cookie.same-site <tcm_configuration_reference_http_websession-cookie_same-site>`
 values are constants from the Go's `http.SameSite <https://pkg.go.dev/net/http#SameSite>`__
-type. To find out the exact values available for such parameters, refer to `Go
+type. To find out the exact values available for such parameters, refer to the `Go
 packages documentation <https://pkg.go.dev/>`__.
 
 .. code-block:: yaml
