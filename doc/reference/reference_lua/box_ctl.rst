@@ -26,7 +26,7 @@ Below is a list of all ``box.ctl`` functions.
     ..  rst-class:: left-align-column-2
 
     ..  list-table::
-        :widths: 25 75
+        :widths: 35 65
         :header-rows: 1
 
         *   - Name
@@ -62,6 +62,9 @@ Below is a list of all ``box.ctl`` functions.
         *  - :doc:`./box_ctl/demote`
            - Revoke the leader role from the instance
 
+        *  - :doc:`./box_ctl/make_bootstrap_leader`
+           - Make the instance a bootstrap leader of a replica set
+
 ..  toctree::
     :hidden:
 
@@ -75,3 +78,4 @@ Below is a list of all ``box.ctl`` functions.
     box_ctl/is_recovery_finished
     box_ctl/promote
     box_ctl/demote
+    box_ctl/make_bootstrap_leader
