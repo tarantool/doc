@@ -202,6 +202,9 @@ Checking a replica set status
               lag: 0
         ...
 
+    To see the diagrams that illustrate how the ``upstream`` and ``downstream`` connections look,
+    refer to :ref:`Monitoring a replica set <replication-monitoring>`.
+
 
 .. _replication-master_replica_add_data:
 
