@@ -21,8 +21,8 @@ There are the following groups of |tcm| configuration parameters:
 cluster
 -------
 
-The ``cluster`` group defines parameters of connection between |tcm|
-and Tarantool clusters.
+The ``cluster`` group defines parameters of |tcm| interaction with connected
+Tarantool clusters.
 
 -   :ref:`on-air-limit <tcm_configuration_reference_cluster_on-air-limit>`
 -   :ref:`connection-rate-limit <tcm_configuration_reference_cluster_connection-rate-limit>`
@@ -33,7 +33,7 @@ and Tarantool clusters.
 
 .. confval:: cluster.on-air-limit
 
-    ? TBD
+    The maximum number of on-air requests from |tcm| to all connected clusters.
 
     |
     | Type: int64
@@ -41,12 +41,11 @@ and Tarantool clusters.
     | Environment variable: TCM_CLUSTER_ON_AIR_LIMIT
     | Command-line option: --cluster_on_air_limit
 
-
 .. _tcm_configuration_reference_cluster_connection-rate-limit:
 
 .. confval:: cluster.connection-rate-limit
 
-    ? TBD
+    A rate limit for connections to Tarantool instances.
 
     |
     | Type: uint
@@ -58,7 +57,7 @@ and Tarantool clusters.
 
 .. confval:: cluster.tarantool-timeout
 
-    ? TBD
+    A timeout for receiving a response from Tarantool instances.
 
     |
     | Type: time.Duration
@@ -70,7 +69,7 @@ and Tarantool clusters.
 
 .. confval:: cluster.tarantool-ping-timeout
 
-    ? TBD
+    A timeout for receiving a ping response from Tarantool instances.
 
     |
     | Type: time.Duration
@@ -678,7 +677,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
 
 .. confval:: http.api-timeout
 
-    The timeout for getting response from clusters.
+    The stateboard update timeout.
 
     |
     | Type: time.Duration
@@ -690,7 +689,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
 
 .. confval:: http.api-update-interval
 
-    The interval for querying cluster information.
+    The stateboard update interval.
 
     |
     | Type: time.Duration
@@ -714,7 +713,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
 
 .. confval:: http.show-stack-trace
 
-    Include the error stack trace into |tcm| responses.
+    Whether error stack traces are shown in the web UI.
 
     |
     | Type: bool
@@ -726,7 +725,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
 
 .. confval:: http.trace
 
-    ? Include what info exactly?
+    Whether all query tracing information is written in logs.
 
     |
     | Type: bool
@@ -1500,11 +1499,17 @@ etcd cluster is not available or not needed.
 
 .. confval:: storage.tarantool.auth
 
-    ?? TBD
+    An authentication method for the Tarantool |tcm| configuration storage.
+
+    Possible values are the Go's `go-tarantool/Auth <https://pkg.go.dev/github.com/tarantool/go-tarantool#Auth>`__ constants:
+
+    -   ``AutoAuth`` (0)
+    -   ``ChapSha1Auth``
+    -   ``PapSha256Auth``
 
     |
     | Type: int
-    | Default: o
+    | Default: 0
     | Environment variable: TCM_STORAGE_TARANTOOL_AUTH
     | Command-line option: --storage-tarantool-auth
 
@@ -1513,7 +1518,9 @@ etcd cluster is not available or not needed.
 
 .. confval:: storage.tarantool.timeout
 
-    A connection timeout for the Tarantool |tcm| configuration storage.
+    A request timeout for the Tarantool |tcm| configuration storage.
+
+    See also `go-tarantool.Opts <https://pkg.go.dev/github.com/tarantool/go-tarantool#Opts>`.
 
     |
     | Type: time.Duration
@@ -1525,7 +1532,9 @@ etcd cluster is not available or not needed.
 
 .. confval:: storage.tarantool.reconnect
 
-    A reconnect timeout for the Tarantool |tcm| configuration storage.
+    A timeout between reconnect attempts for the Tarantool |tcm| configuration storage.
+
+    See also `go-tarantool.Opts <https://pkg.go.dev/github.com/tarantool/go-tarantool#Opts>`.
 
     |
     | Type: time.Duration
@@ -1537,7 +1546,9 @@ etcd cluster is not available or not needed.
 
 .. confval:: storage.tarantool.max-reconnects
 
-    Maximum number of reconnect attempts for the Tarantool |tcm| configuration storage.
+    The maximum number of reconnect attempts for the Tarantool |tcm| configuration storage.
+
+    See also `go-tarantool.Opts <https://pkg.go.dev/github.com/tarantool/go-tarantool#Opts>`.
 
     |
     | Type: int
@@ -1551,6 +1562,8 @@ etcd cluster is not available or not needed.
 
     A username for connecting to the Tarantool |tcm| configuration storage.
 
+    See also `go-tarantool.Opts <https://pkg.go.dev/github.com/tarantool/go-tarantool#Opts>`.
+
     |
     | Type: string
     | Default: ""
@@ -1562,6 +1575,8 @@ etcd cluster is not available or not needed.
 .. confval:: storage.tarantool.pass
 
     A password for connecting to the Tarantool |tcm| configuration storage.
+
+    See also `go-tarantool.Opts <https://pkg.go.dev/github.com/tarantool/go-tarantool#Opts>`.
 
     |
     | Type: string
@@ -1575,6 +1590,8 @@ etcd cluster is not available or not needed.
 
     A rate limit for connecting to the Tarantool |tcm| configuration storage.
 
+    See also `go-tarantool.Opts <https://pkg.go.dev/github.com/tarantool/go-tarantool#Opts>`.
+
     |
     | Type: int
     | Default: 0
@@ -1587,6 +1604,8 @@ etcd cluster is not available or not needed.
 
     A action to perform when the :ref:`<tcm_configuration_reference_storage_tarantool_rate-limit>` is reached.
 
+    See also `go-tarantool.Opts <https://pkg.go.dev/github.com/tarantool/go-tarantool#Opts>`.
+
     |
     | Type: int
     | Default: 0
@@ -1598,7 +1617,10 @@ etcd cluster is not available or not needed.
 
 .. confval:: storage.tarantool.concurrency
 
-    ?? TBD.
+    An amount of separate mutexes for request queues and buffers inside of a connection
+    to the Tarantool |tcm| configuration storage.
+
+    See also `go-tarantool.Opts <https://pkg.go.dev/github.com/tarantool/go-tarantool#Opts>`.
 
     |
     | Type: int
@@ -1610,7 +1632,9 @@ etcd cluster is not available or not needed.
 
 .. confval:: storage.tarantool.skip-schema
 
-    ?? TBD
+    Whether the schema is loaded from the Tarantool |tcm| configuration storage.
+
+    See also `go-tarantool.Opts <https://pkg.go.dev/github.com/tarantool/go-tarantool#Opts>`.
 
     |
     | Type: bool
@@ -1622,14 +1646,15 @@ etcd cluster is not available or not needed.
 
 .. confval:: storage.tarantool.transport
 
-    ? TBD
+    The connection type for the Tarantool |tcm| configuration storage.
+
+    See also `go-tarantool.Opts <https://pkg.go.dev/github.com/tarantool/go-tarantool#Opts>`.
 
     |
-    | Type: bool
-    | Default: true
+    | Type: string
+    | Default: ""
     | Environment variable: TCM_STORAGE_TARANTOOL_TRANSPORT
     | Command-line option: --storage-tarantool-transport
-
 
 .. _tcm_configuration_reference_storage_tarantool_ssl_key-file:
 
@@ -1781,8 +1806,7 @@ The ``addon`` section defines the |tcm|
 
 .. confval:: addon.dev-addons-dir
 
-    Additional add-on directories for development purposes, separated by commas.
-    ? Maybe convert to semicolon
+    Additional add-on directories for development purposes, separated by semicolons (``;``).
 
     |
     | Type: []string
@@ -1901,7 +1925,12 @@ The ``security`` section defines the security parameters of |tcm|.
 
 .. confval:: security.auth
 
-    ?? separator is ;
+    Ways to log into |tcm|.
+
+    Possible values:
+
+    - ``local``
+    - ``ldap``
 
     |
     | Type: []string
@@ -1913,7 +1942,7 @@ The ``security`` section defines the security parameters of |tcm|.
 
 .. confval:: security.hash-cost
 
-    ?? separator is ;
+    A hash cost for hashing users' passwords.
 
     |
     | Type: int
@@ -1925,7 +1954,8 @@ The ``security`` section defines the security parameters of |tcm|.
 
 .. confval:: security.encryption-key
 
-    ?? separator is ;
+    An encryption key for passwords used by |tcm| for accessing Tarantool
+    and etcd clusters.
 
     |
     | Type: string
@@ -1937,7 +1967,8 @@ The ``security`` section defines the security parameters of |tcm|.
 
 .. confval:: security.encryption-key-file
 
-    ?? separator is ;
+    A path to the file with the encryption key for passwords used by |tcm| for accessing Tarantool
+    and etcd clusters.
 
     |
     | Type: string
@@ -1950,7 +1981,7 @@ The ``security`` section defines the security parameters of |tcm|.
 .. confval:: security.bootstrap-password
 
     A password for the first login of the ``admin`` user. Must be changed after the
-    successful login.
+    successful login. Only for testing purposes.
 
     |
     | Type: string
@@ -1958,29 +1989,30 @@ The ``security`` section defines the security parameters of |tcm|.
     | Environment variable: TCM_SECURITY_BOOTSTRAP_PASSWORD
     | Command-line option: --security-bootstrap-password
 
-.. _tcm_configuration_security_integrity-check:
-
-.. confval:: security.integrity-check
-
-    ? TBD
-
-    |
-    | Type: bool
-    | Default: false
-    | Environment variable: TCM_SECURITY_INTEGRITY_CHECK
-    | Command-line option: --security-integrity-check
-
 .. _tcm_configuration_security_signature-private-key-file:
 
 .. confval:: security.signature-private-key-file
 
-    ? TBD
+    A path to a file with the private key to sign |tcm| data.
 
     |
     | Type: string
     | Default: ""
     | Environment variable: TCM_SECURITY_SIGNATURE_PRIVATE_KEY_FILE
     | Command-line option: --security-signature-private-key-file
+
+.. _tcm_configuration_security_integrity-check:
+
+.. confval:: security.integrity-check
+
+    Whether to check the digital signature. If ``true``, the error is raised
+    in case an incorrect signature is detected.
+
+    |
+    | Type: bool
+    | Default: false
+    | Environment variable: TCM_SECURITY_INTEGRITY_CHECK
+    | Command-line option: --security-integrity-check
 
 .. mode
 
