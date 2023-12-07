@@ -160,8 +160,7 @@ Configuration parameter types
 types. Note that this is different from the :ref:`Tarantool configuration parameters <configuration_reference>`,
 which have Lua types.
 
-Most options have the Go's basic types: `bool`, `string`, `int`, and other numeric types.
-Their values are passed as strings:
+Most options have the Go's basic types: ``int`` and other numeric types, ``bool``, ``string``.
 
 .. code-block:: yaml
 
@@ -169,12 +168,12 @@ Their values are passed as strings:
         basic-auth:
             enabled: false # bool
         network: tcp # string
-        host: 127.0.0.1 #string
+        host: 127.0.0.1 # string
         port: 8080 # int
         request-size: 1572864 # int64
 
 Parameters that can take multiple values are arrays. In YAML, they are passed as
-YAML arrays (each item on a new line, starting with a dash). In environment variables
+YAML arrays: each item on a new line, starting with a dash. In environment variables
 and command line options, the items of such arrays are passed in a semicolon-separated string.
 
 .. code-block:: yaml
@@ -196,7 +195,7 @@ type. Their values can be passed in time-formatted strings such as ``4h30m25s``.
         tarantool-ping-timeout: 5s # duration
 
 Finally, there are parameters whose values are constants defined in Go packages.
-For example, :ref:`http.websession-cookie.same-site <tcm_configuration_reference_http_websession-cookie_same-site> `
+For example, :ref:`http.websession-cookie.same-site <tcm_configuration_reference_http_websession-cookie_same-site>`
 values are constants from the Go's `http.SameSite <https://pkg.go.dev/net/http#SameSite>`__
 type. To find out the exact values available for such parameters, refer to `Go
 packages documentation <https://pkg.go.dev/>`__.
@@ -204,16 +203,17 @@ packages documentation <https://pkg.go.dev/>`__.
 .. code-block:: yaml
 
     http:
-        tls:
-            cipher-suites:
-                - TLS_RSA_WITH_RC4_128_SHA # Go constant
+        websession-cookie:
+            same-site: SameSiteStrictMode
 
-Creating configuration template
--------------------------------
+Creating a configuration template
+---------------------------------
 
-You can create a YAML configuration template for |tcm| by running the ``tcm``
-executable with the ``generate-config`` option:
+You can create a YAML configuration template for |tcm| with all parameters and
+their default values using the ``generate-config`` option of the ``tcm`` executable.
+
+To write a default |tcm| configuration to the ``tcm.example.yml`` file, run:
 
 .. code-block:: console
 
-    tcm generate-config
+    tcm generate-config > tcm.example.yml.

@@ -552,7 +552,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
 
 .. confval:: http.tls.min-version
 
-    The minimum version of the TLS protocol. ? 0 == any?
+    The minimum version of the TLS protocol.
 
     |
     | Type: uint16
@@ -793,7 +793,7 @@ The ``log`` section defines the |tcm|  logging parameters.
 
 .. confval:: log.default.add-source
 
-    ? Add sources to the |tcm| logs.
+    Whether sources are added to the |tcm| log.
 
     |
     | Type: bool
@@ -805,7 +805,7 @@ The ``log`` section defines the |tcm|  logging parameters.
 
 .. confval:: log.default.show-stack-trace
 
-    Add stack traces to the |tcm| log.
+    Whether stack traces are added to the |tcm| log.
 
     |
     | Type: bool
@@ -819,7 +819,7 @@ The ``log`` section defines the |tcm|  logging parameters.
 
     The default |tcm| logging level.
 
-    ? сheck: Possible values:
+    Possible values:
 
     *   ``VERBOSE``
     *   ``INFO``
@@ -872,7 +872,7 @@ The ``log`` section defines the |tcm|  logging parameters.
 
 .. confval:: log.default.no-colorized
 
-    Whether the stdout logs are not colorized.
+    Whether the stdout log is not colorized.
 
     |
     | Type: bool
@@ -898,8 +898,6 @@ The ``log`` section defines the |tcm|  logging parameters.
 
     The maximum size of the |tcm| log file, in bytes.
 
-    ? check ``0``- unlimited.
-
     |
     | Type: int
     | Default: 0
@@ -911,8 +909,6 @@ The ``log`` section defines the |tcm|  logging parameters.
 .. confval:: log.default.file.maxage
 
     The maximum age of a |tcm| log file, in days.
-
-    ? check ``0``- unlimited.
 
     |
     | Type: int
@@ -948,12 +944,9 @@ The ``log`` section defines the |tcm|  logging parameters.
 
 .. confval:: log.default.syslog.protocol
 
-    The network protocol used for connecting to the syslog server.
-
-    ? possible values:
-
-    - ``tcp``
-    - ``udp``
+    The network protocol used for connecting to the syslog server. Typically,
+    it's ``tcp``,``udp`, or ``unix``. All possible values are listed in the Go's
+    `net.Dial <https://pkg.go.dev/net#Dial>`__ documentation.
 
     |
     | Type: string
@@ -1124,8 +1117,6 @@ etcd storage parameters:
 -   :ref:`storage.etcd.embed.name <tcm_configuration_reference_storage_etcd_embed>`
 -   :ref:`storage.etcd.embed.initial-cluster-state <tcm_configuration_reference_storage_etcd_embed>`
 -   :ref:`storage.etcd.embed.self-signed-cert-validity <tcm_configuration_reference_storage_etcd_embed>`
--   :ref:`storage.etcd. <tcm_configuration_reference_storage_etcd_>`
-
 
 Tarantool storage parameters:
 
@@ -1166,6 +1157,7 @@ Tarantool storage parameters:
     The type of the storage used for storing |tcm| configuration.
 
     Possible values:
+
     -   ``etcd``
     -   ``tarantool``
 
@@ -1197,7 +1189,7 @@ Tarantool storage parameters:
 
     |
     | Type: []string
-    | Default: [http://127.0.0.1:2379]
+    | Default: ["http://127.0.0.1:2379"]
     | Environment variable: TCM_STORAGE_ETCD_ENDPOINTS
     | Command-line option: --storage-etcd-endpoints
 
@@ -1220,7 +1212,6 @@ Tarantool storage parameters:
 .. confval:: storage.etcd.auto-sync-interval
 
     An automated sync interval.
-    0 - disabled?
 
     |
     | Type: time.Duration
@@ -1271,8 +1262,8 @@ Tarantool storage parameters:
     The maximum size of a transaction between |tcm| and etcd, in bytes.
 
     |
-    | Type: string
-    | Default: ""
+    | Type: int
+    | Default: 2097152
     | Environment variable: TCM_STORAGE_ETCD_MAX_CALL_SEND_MSG_SIZE
     | Command-line option: --storage-etcd-max-call-send-msg-size
 
@@ -1329,7 +1320,6 @@ Tarantool storage parameters:
 .. confval:: storage.etcd.tls.cert-file
 
     A path to a TLS certificate file to use for etcd connections.
-    Mandatory when the TLS connection to etcd is enabled.
 
     |
     | Type: string
@@ -1342,7 +1332,6 @@ Tarantool storage parameters:
 .. confval:: storage.etcd.tls.key-file
 
     A path to a TLS private key file to use for etcd connections.
-    Mandatory when the TLS connection to etcd is enabled.
 
     |
     | Type: string
@@ -1355,7 +1344,6 @@ Tarantool storage parameters:
 .. confval:: storage.etcd.tls.trusted-ca-file
 
     A path to a trusted CA certificate file to use for etcd connections.
-    Mandatory when the TLS connection to etcd is enabled.
 
     |
     | Type: string
@@ -1474,10 +1462,10 @@ Tarantool storage parameters:
 .. _tcm_configuration_reference_storage_etcd_embed:
 
 storage.etcd.embed.*
---------------------
+~~~~~~~~~~~~~~~~~~~~
 
-The ``storage.etcd.embed`` group parameters define the configuration of the
-embedded etcd cluster that can used as a |tcm| configuration storage.
+The ``storage.etcd.embed`` group defines the configuration of the embedded etcd
+cluster that can used as a |tcm| configuration storage.
 This cluster can be used for development purposes when the production or testing
 etcd cluster is not available or not needed.
 
@@ -1486,19 +1474,261 @@ etcd cluster is not available or not needed.
 
 .. confval:: storage.tarantool.prefix
 
-    A
+    A prefix for the TCM configuration parameters in a Tarantool cluster used as
+    a configuration storage.
 
     |
     | Type: string
-    | Default: ""
+    | Default: "_tcm:
     | Environment variable: TCM_STORAGE_TARANTOOL_PREFIX
     | Command-line option: --storage-tarantool-prefix
 
 
+.. _tcm_configuration_reference_storage_tarantool_addr:
+
+.. confval:: storage.tarantool.addr
+
+    The URI for connecting to the Tarantool cluster used as
+    a configuration storage.
+
+    |
+    | Type: string
+    | Default: "unix/:/tmp/tnt_config_instance.sock"
+    | Environment variable: TCM_STORAGE_TARANTOOL_ADDR
+    | Command-line option: --storage-tarantool-ADDR
+
+
+.. _tcm_configuration_reference_storage_tarantool_auth:
+
+.. confval:: storage.tarantool.auth
+
+    ?? TBD
+
+    |
+    | Type: int
+    | Default: o
+    | Environment variable: TCM_STORAGE_TARANTOOL_AUTH
+    | Command-line option: --storage-tarantool-auth
+
+
+.. _tcm_configuration_reference_storage_tarantool_timeout:
+
+.. confval:: storage.tarantool.timeout
+
+    A timeout for connecting to the Tarantool cluster used as
+    a configuration storage.
+
+    |
+    | Type: time.Duration
+    | Default: 0s
+    | Environment variable: TCM_STORAGE_TARANTOOL_TIMEOUT
+    | Command-line option: --storage-tarantool-timeout
+
+.. _tcm_configuration_reference_storage_tarantool_reconnect:
+
+.. confval:: storage.tarantool.reconnect
+
+    ?? TBD
+
+    |
+    | Type: time.Duration
+    | Default: 0s
+    | Environment variable: TCM_STORAGE_TARANTOOL_RECONNECT
+    | Command-line option: --storage-tarantool-reconnect
+
+.. _tcm_configuration_reference_storage_tarantool_max-reconnects:
+
+.. confval:: storage.tarantool.max-reconnects
+
+    Maximum number of reconnects attempts to the Tarantool cluster used as
+    a configuration storage.
+
+    |
+    | Type: int
+    | Default: 0
+    | Environment variable: TCM_STORAGE_TARANTOOL_MAX_RECONNECTS
+    | Command-line option: --storage-tarantool-max-reconnects
+
+.. _tcm_configuration_reference_storage_tarantool_user:
+
+.. confval:: storage.tarantool.user
+
+    A username for connecting to the Tarantool cluster used as
+    a configuration storage.
+
+    |
+    | Type: string
+    | Default: ""
+    | Environment variable: TCM_STORAGE_TARANTOOL_USER
+    | Command-line option: --storage-tarantool-user
+
+.. _tcm_configuration_reference_storage_tarantool_pass:
+
+.. confval:: storage.tarantool.pass
+
+    A password for connecting to the Tarantool cluster used as
+    a configuration storage.
+
+    |
+    | Type: string
+    | Default: ""
+    | Environment variable: TCM_STORAGE_TARANTOOL_PASS
+    | Command-line option: --storage-tarantool-pass
+
+.. _tcm_configuration_reference_storage_tarantool_rate-limit:
+
+.. confval:: storage.tarantool.rate-limit
+
+    A rate limit for connecting to the Tarantool cluster used as
+    a configuration storage.
+
+    |
+    | Type: int
+    | Default: 0
+    | Environment variable: TCM_STORAGE_TARANTOOL_RATE_LIMIT
+    | Command-line option: --storage-tarantool-rate-limit
+
+.. _tcm_configuration_reference_storage_tarantool_rate-limit-action:
+
+.. confval:: storage.tarantool.rate-limit-action
+
+    A action to perform when the :ref:`<tcm_configuration_reference_storage_tarantool_rate-limit>` is reached.
+
+    |
+    | Type: int
+    | Default: 0
+    | Environment variable: TCM_STORAGE_TARANTOOL_RATE_LIMIT_ACTION
+    | Command-line option: --storage-tarantool-rate-limit-action
+
+
+.. _tcm_configuration_reference_storage_tarantool_concurrency:
+
+.. confval:: storage.tarantool.concurrency
+
+    ?? TBD.
+
+    |
+    | Type: int
+    | Default: 0
+    | Environment variable: TCM_STORAGE_TARANTOOL_CONCURRENCY
+    | Command-line option: --storage-tarantool-concurrency
+
+.. _tcm_configuration_reference_storage_tarantool_skip-schema:
+
+.. confval:: storage.tarantool.skip-schema
+
+    ?? TBD
+
+    |
+    | Type: bool
+    | Default: true
+    | Environment variable: TCM_STORAGE_TARANTOOL_SKIP_SCHEMA
+    | Command-line option: --storage-tarantool-skip-schema
+
+.. _tcm_configuration_reference_storage_tarantool_transport:
+
+.. confval:: storage.tarantool.transport
+
+    ? TBD
+
+    |
+    | Type: bool
+    | Default: true
+    | Environment variable: TCM_STORAGE_TARANTOOL_TRANSPORT
+    | Command-line option: --storage-tarantool-transport
+
+
+.. _tcm_configuration_reference_storage_tarantool_ssl_key-file:
+
+.. confval:: storage.tarantool.ssl.key-file
+
+    A path to a TLS private key file to use for connecting to Tarantool |tcm|
+    configuration storage.
+
+    See also: :ref:`Traffic encryption <enterprise-iproto-encryption>`.
+
+    |
+    | Type: string
+    | Default: ""
+    | Environment variable: TCM_STORAGE_TARANTOOL_SSL_KEY_FILE
+    | Command-line option: --storage-tarantool-ssl-key-file
+
+.. _tcm_configuration_reference_storage_tarantool_ssl_cert-file:
+
+.. confval:: storage.tarantool.ssl.cert-file
+
+    A path to an SSL certificate to use for connecting to Tarantool |tcm|
+    configuration storage.
+
+    See also: :ref:`Traffic encryption <enterprise-iproto-encryption>`.
+
+    |
+    | Type: string
+    | Default: ""
+    | Environment variable: TCM_STORAGE_TARANTOOL_SSL_CERT_FILE
+    | Command-line option: --storage-tarantool-ssl-cert-file
+
+.. _tcm_configuration_reference_storage_tarantool_ssl_ca-file:
+
+.. confval:: storage.tarantool.ssl.ca-file
+
+    A path to a trusted CA certificate to use for connecting to Tarantool |tcm|
+    configuration storage.
+
+    See also: :ref:`Traffic encryption <enterprise-iproto-encryption>`.
+
+    |
+    | Type: string
+    | Default: ""
+    | Environment variable: TCM_STORAGE_TARANTOOL_SSL_CA_FILE
+    | Command-line option: --storage-tarantool-ssl-ca-file
+
+.. _tcm_configuration_reference_storage_tarantool_ssl_ciphers:
+
+.. confval:: storage.tarantool.ssl.ciphers
+
+    A list of SSL cipher suites that can be used for connecting to a Tarantool |tcm|
+    configuration storage. Possible values are listed in :ref:`Supported ciphers <enterprise-iproto-encryption-ciphers>`.
+
+    See also: :ref:`Traffic encryption <enterprise-iproto-encryption>`.
+
+    |
+    | Type: string
+    | Default: ""
+    | Environment variable: TCM_STORAGE_TARANTOOL_SSL_CIPHERS
+    | Command-line option: --storage-tarantool-ssl-ciphers
+
+.. _tcm_configuration_reference_storage_tarantool_ssl_password:
+
+.. confval:: storage.tarantool.ssl.password
+
+    A password for an encrypted private SSL key to use for connecting to a Tarantool |tcm|
+    configuration storage.
+
+    See also: :ref:`Traffic encryption <enterprise-iproto-encryption>`.
+    |
+    | Type: string
+    | Default: ""
+    | Environment variable: TCM_STORAGE_TARANTOOL_SSL_PASSWORD
+    | Command-line option: --storage-tarantool-ssl-password
+
+.. _tcm_configuration_reference_storage_tarantool_ssl_password-file:
+
+.. confval:: storage.tarantool.ssl.password-file
+
+    A text file with one or more passwords for encrypted private SSL keys to use
+    for connecting to a Tarantool |tcm| configuration storage.
+
+    |
+    | Type: string
+    | Default: ""
+    | Environment variable: TCM_STORAGE_TARANTOOL_SSL_PASSWORD_FILE
+    | Command-line option: --storage-tarantool-ssl-password-file
+
 .. _tcm_configuration_reference_storage_tarantool_embed:
 
 storage.tarantool.embed.*
--------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The ``storage.tarantool.embed`` group parameters define the configuration of the
 embedded Tarantool cluster that can used as a |tcm| configuration storage.
@@ -1506,9 +1736,7 @@ This cluster can be used for development purposes when the production or testing
 cluster is not available or not needed.
 
 
-
 .. _tcm_configuration_reference_addon:
-
 
 addon
 -----
@@ -1536,7 +1764,7 @@ The ``addon`` section defines the |tcm|
 
 .. confval:: addon.addons-dir
 
-    The directory where add-on files are stored.
+    The directory from which |tcm| takes add-ons.
 
     |
     | Type: string
