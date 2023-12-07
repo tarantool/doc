@@ -39,7 +39,7 @@ Tarantool clusters.
     | Type: int64
     | Default: 4096
     | Environment variable: TCM_CLUSTER_ON_AIR_LIMIT
-    | Command-line option: ``cluster_on_air_limit``
+    | Command-line option: ``--cluster-on-air-limit``
 
 .. _tcm_configuration_reference_cluster_connection-rate-limit:
 
@@ -51,7 +51,7 @@ Tarantool clusters.
     | Type: uint
     | Default: 512
     | Environment variable: TCM_CLUSTER_CONNECTION_RATE_LIMIT
-    | Command-line option: ``cluster-connection-rate-limit``
+    | Command-line option: ``--cluster-connection-rate-limit``
 
 .. _tcm_configuration_reference_cluster_tarantool-timeout:
 
