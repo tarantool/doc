@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"POT-Creation-Date: 2023-12-07 07:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -79,14 +79,14 @@ msgstr ""
 #: ../../doc/reference/reference_lua/box_schema/space_create.rst:58
 #: ../../doc/reference/reference_lua/box_schema/space_create.rst:121
 #: ../../doc/reference/reference_lua/box_schema/space_create.rst:135
-#: ../../doc/reference/reference_lua/box_schema/space_create.rst:144
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:153
 msgid "Type: boolean"
 msgstr ""
 
 #: ../../doc/reference/reference_lua/box_schema/space_create.rst:59
 #: ../../doc/reference/reference_lua/box_schema/space_create.rst:122
 #: ../../doc/reference/reference_lua/box_schema/space_create.rst:136
-#: ../../doc/reference/reference_lua/box_schema/space_create.rst:145
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:154
 msgid "Default: ``false``"
 msgstr ""
 
@@ -141,14 +141,14 @@ msgid "Field names and types. See the illustrations of format clauses in the :re
 msgstr ""
 
 #: ../../doc/reference/reference_lua/box_schema/space_create.rst:110
-#: ../../doc/reference/reference_lua/box_schema/space_create.rst:153
-#: ../../doc/reference/reference_lua/box_schema/space_create.rst:169
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:162
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:178
 msgid "Type: table"
 msgstr ""
 
 #: ../../doc/reference/reference_lua/box_schema/space_create.rst:111
-#: ../../doc/reference/reference_lua/box_schema/space_create.rst:154
-#: ../../doc/reference/reference_lua/box_schema/space_create.rst:170
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:163
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:179
 msgid "Default: blank"
 msgstr ""
 
@@ -164,21 +164,27 @@ msgstr ""
 msgid "Vinyl does not support temporary spaces."
 msgstr ""
 
-#: ../../doc/reference/reference_lua/box_schema/space_create.rst:142
-msgid "Any transaction doing a DML request on this space becomes synchronous."
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:143
+msgid "Any transaction doing a DML request on this space becomes :ref:`synchronous <repl_sync>`."
 msgstr ""
 
-#: ../../doc/reference/reference_lua/box_schema/space_create.rst:151
-msgid "The :ref:`constraints <index-constraints>` that space tuples must satisfy."
-msgstr ""
-
-#: ../../doc/reference/reference_lua/box_schema/space_create.rst:156
-#: ../../doc/reference/reference_lua/box_schema/space_create.rst:172
-#: ../../doc/reference/reference_lua/box_schema/space_create.rst:196
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:145
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:165
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:181
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:205
 msgid "**Example:**"
 msgstr ""
 
-#: ../../doc/reference/reference_lua/box_schema/space_create.rst:158
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:147
+msgid "box.schema.space.create('bands', { is_sync = true })\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:160
+msgid "The :ref:`constraints <index-constraints>` that space tuples must satisfy."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:167
 msgid "-- Define a tuple constraint function --\n"
 "box.schema.func.create('check_person', {\n"
 "    language = 'LUA',\n"
@@ -191,11 +197,11 @@ msgid "-- Define a tuple constraint function --\n"
 ""
 msgstr ""
 
-#: ../../doc/reference/reference_lua/box_schema/space_create.rst:167
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:176
 msgid "The :ref:`foreign keys <index-box_foreign_keys>` for space fields."
 msgstr ""
 
-#: ../../doc/reference/reference_lua/box_schema/space_create.rst:174
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:183
 msgid "-- Create a space with a tuple foreign key --\n"
 "box.schema.space.create(\"orders\", {\n"
 "    foreign_key = {\n"
@@ -213,61 +219,61 @@ msgid "-- Create a space with a tuple foreign key --\n"
 ""
 msgstr ""
 
-#: ../../doc/reference/reference_lua/box_schema/space_create.rst:179
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:188
 msgid "Saying ``box.cfg{read_only=true...}`` during :ref:`configuration <cfg_basic-read_only>` affects spaces differently depending on the options that were used during ``box.schema.space.create``, as summarized by this chart:"
 msgstr ""
 
-#: ../../doc/reference/reference_lua/box_schema/space_create.rst:186
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:195
 msgid "Option"
 msgstr ""
 
-#: ../../doc/reference/reference_lua/box_schema/space_create.rst:186
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:195
 msgid "Can be created?"
 msgstr ""
 
-#: ../../doc/reference/reference_lua/box_schema/space_create.rst:186
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:195
 msgid "Can be written to?"
 msgstr ""
 
-#: ../../doc/reference/reference_lua/box_schema/space_create.rst:186
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:195
 msgid "Is replicated?"
 msgstr ""
 
-#: ../../doc/reference/reference_lua/box_schema/space_create.rst:186
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:195
 msgid "Is persistent?"
 msgstr ""
 
-#: ../../doc/reference/reference_lua/box_schema/space_create.rst:188
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:197
 msgid "(default)"
 msgstr ""
 
-#: ../../doc/reference/reference_lua/box_schema/space_create.rst:188
-#: ../../doc/reference/reference_lua/box_schema/space_create.rst:188
-#: ../../doc/reference/reference_lua/box_schema/space_create.rst:190
-#: ../../doc/reference/reference_lua/box_schema/space_create.rst:190
-#: ../../doc/reference/reference_lua/box_schema/space_create.rst:190
-#: ../../doc/reference/reference_lua/box_schema/space_create.rst:192
-#: ../../doc/reference/reference_lua/box_schema/space_create.rst:192
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:197
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:197
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:199
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:199
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:199
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:201
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:201
 msgid "no"
 msgstr ""
 
-#: ../../doc/reference/reference_lua/box_schema/space_create.rst:188
-#: ../../doc/reference/reference_lua/box_schema/space_create.rst:188
-#: ../../doc/reference/reference_lua/box_schema/space_create.rst:190
-#: ../../doc/reference/reference_lua/box_schema/space_create.rst:192
-#: ../../doc/reference/reference_lua/box_schema/space_create.rst:192
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:197
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:197
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:199
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:201
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:201
 msgid "yes"
 msgstr ""
 
-#: ../../doc/reference/reference_lua/box_schema/space_create.rst:190
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:199
 msgid "temporary"
 msgstr ""
 
-#: ../../doc/reference/reference_lua/box_schema/space_create.rst:192
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:201
 msgid "is_local"
 msgstr ""
 
-#: ../../doc/reference/reference_lua/box_schema/space_create.rst:198
+#: ../../doc/reference/reference_lua/box_schema/space_create.rst:207
 msgid "tarantool> s = box.schema.space.create('space55')\n"
 "---\n"
 "...\n"

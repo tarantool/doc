@@ -1,0 +1,674 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-07 07:21+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:4
+msgid "Master-master"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:6
+msgid "**Example on GitHub**: `master_master <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/replication/instances.enabled/master_master>`_"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:8
+msgid "This tutorial shows how to configure and work with a master-master replica set."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:14
+msgid "Prerequisites"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:16
+msgid "Before starting this tutorial:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:18
+msgid "Install the :ref:`tt <tt-cli>` utility."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:20
+msgid "Create a tt environment in the current directory by executing the :ref:`tt init <tt-init>` command."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:22
+msgid "Inside the ``instances.enabled`` directory of the created tt environment, create the ``master_master`` directory."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:24
+msgid "Inside ``instances.enabled/master_master``, create the ``instances.yml`` and ``config.yaml`` files:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:26
+msgid "``instances.yml`` specifies instances to :ref:`run <replication-master-master-start-instances>` in the current environment and should look like this:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:28
+msgid "instance001:\n"
+"instance002:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:33
+msgid "The ``config.yaml`` file is intended to store a :ref:`replica set configuration <replication-master-master-configure-cluster>`."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:41
+msgid "Configuring a replica set"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:43
+msgid "This section describes how to configure a replica set in ``config.yaml``."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:49
+msgid "Step 1: Configuring a failover mode"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:51
+msgid "First, set the :ref:`replication.failover <configuration_reference_replication_failover>` option to ``off``:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:53
+msgid "replication:\n"
+"  failover: off\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:64
+msgid "Step 2: Defining a replica set topology"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:66
+msgid "Define a replica set topology inside the :ref:`groups <configuration_reference_groups>` section:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:68
+msgid "The ``database.mode`` option should be set to ``rw`` to make instances work in read-write mode."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:69
+msgid "The :ref:`iproto.listen <configuration_reference_iproto_listen>` option specifies an address used to listen for incoming requests and allows replicas to communicate with each other."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:71
+msgid "groups:\n"
+"  group001:\n"
+"    replicasets:\n"
+"      replicaset001:\n"
+"        instances:\n"
+"          instance001:\n"
+"            database:\n"
+"              mode: rw\n"
+"            iproto:\n"
+"              listen: 127.0.0.1:3301\n"
+"          instance002:\n"
+"            database:\n"
+"              mode: rw\n"
+"            iproto:\n"
+"              listen: 127.0.0.1:3302\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:81
+msgid "Step 3: Creating a user for replication"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:83
+msgid "In the :ref:`credentials <configuration_reference_credentials>` section, create the ``replicator`` user with the ``replication`` role:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:85
+msgid "credentials:\n"
+"  users:\n"
+"    replicator:\n"
+"      password: 'topsecret'\n"
+"      roles: [replication]\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:95
+msgid "Step 4: Specifying advertise URIs"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:97
+msgid "Set :ref:`iproto.advertise.peer <configuration_reference_iproto_advertise_peer>` to advertise the current instance to other replica set members:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:99
+msgid "iproto:\n"
+"  advertise:\n"
+"    peer: replicator@\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:109
+msgid "Resulting configuration"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:111
+msgid "The resulting replica set configuration should look as follows:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:113
+msgid "credentials:\n"
+"  users:\n"
+"    replicator:\n"
+"      password: 'topsecret'\n"
+"      roles: [replication]\n"
+"\n"
+"iproto:\n"
+"  advertise:\n"
+"    peer: replicator@\n"
+"\n"
+"replication:\n"
+"  failover: off\n"
+"\n"
+"groups:\n"
+"  group001:\n"
+"    replicasets:\n"
+"      replicaset001:\n"
+"        instances:\n"
+"          instance001:\n"
+"            database:\n"
+"              mode: rw\n"
+"            iproto:\n"
+"              listen: 127.0.0.1:3301\n"
+"          instance002:\n"
+"            database:\n"
+"              mode: rw\n"
+"            iproto:\n"
+"              listen: 127.0.0.1:3302\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:124
+msgid "Working with a replica set"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:129
+msgid "Starting instances"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:131
+msgid "After configuring a replica set, execute the :ref:`tt start <tt-start>` command from the :ref:`tt environment directory <replication-master-master-tt-env>`:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:133
+msgid "$ tt start master_master\n"
+"   • Starting an instance [master_master:instance001]...\n"
+"   • Starting an instance [master_master:instance002]..."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:139
+msgid "Check that instances are in the ``RUNNING`` status using the :ref:`tt status <tt-status>` command:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:141
+msgid "$ tt status master_master\n"
+"INSTANCE                      STATUS      PID\n"
+"master_master:instance001     RUNNING     30818\n"
+"master_master:instance002     RUNNING     30819"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:152
+msgid "Checking a replica set status"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:154
+msgid "Connect to both instances using :ref:`tt connect <tt-connect>`. Below is the example for ``instance001``:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:157
+msgid "$ tt connect master_master:instance001\n"
+"   • Connecting to the instance...\n"
+"   • Connected to master_master:instance001"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:163
+msgid "Check that both instances are writable using ``box.info.ro``:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:165
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:264
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:388
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:499
+msgid "``instance001``:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:167
+msgid "master_master:instance001> box.info.ro\n"
+"---\n"
+"- false\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:174
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:273
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:396
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:507
+msgid "``instance002``:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:176
+msgid "master_master:instance002> box.info.ro\n"
+"---\n"
+"- false\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:183
+msgid "Execute ``box.info.replication`` to check a replica set status. For ``instance002``, ``upstream.status`` and ``downstream.status`` should be ``follow``."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:186
+msgid "master_master:instance001> box.info.replication\n"
+"---\n"
+"- 1:\n"
+"    id: 1\n"
+"    uuid: 4cfa6e3c-625e-b027-00a7-29b2f2182f23\n"
+"    lsn: 7\n"
+"    upstream:\n"
+"      status: follow\n"
+"      idle: 0.21281599999929\n"
+"      peer: replicator@127.0.0.1:3302\n"
+"      lag: 0.00031614303588867\n"
+"    name: instance002\n"
+"    downstream:\n"
+"      status: follow\n"
+"      idle: 0.21800899999653\n"
+"      vclock: {1: 7}\n"
+"      lag: 0\n"
+"  2:\n"
+"    id: 2\n"
+"    uuid: 9bb111c2-3ff5-36a7-00f4-2b9a573ea660\n"
+"    lsn: 0\n"
+"    name: instance001\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:5
+msgid "Note that a ``vclock`` value might include the ``0`` component that is related to local space operations and might differ for different instances in a replica set."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:222
+msgid "Adding data"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:224
+msgid "To check that both instances get updates from each other, follow the steps below:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:226
+msgid "On ``instance001``, create a space, format it, and create a primary index:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:228
+msgid "box.schema.space.create('bands')\n"
+"box.space.bands:format({\n"
+"    { name = 'id', type = 'unsigned' },\n"
+"    { name = 'band_name', type = 'string' },\n"
+"    { name = 'year', type = 'unsigned' }\n"
+"})\n"
+"box.space.bands:create_index('primary', { parts = { 'id' } })\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:234
+msgid "Then, add sample data to this space:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:236
+msgid "box.space.bands:insert { 1, 'Roxette', 1986 }\n"
+"box.space.bands:insert { 2, 'Scorpions', 1965 }\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:242
+msgid "On ``instance002``, use the ``select`` operation to make sure data is replicated:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:244
+msgid "master_master:instance002> box.space.bands:select()\n"
+"---\n"
+"- - [1, 'Roxette', 1986]\n"
+"  - [2, 'Scorpions', 1965]\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:252
+msgid "Add more data to the created space on ``instance002``:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:254
+msgid "box.space.bands:insert { 3, 'Ace of Base', 1987 }\n"
+"box.space.bands:insert { 4, 'The Beatles', 1960 }\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:260
+msgid "Get back to ``instance001`` and use ``select`` to make sure new records are replicated."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:262
+msgid "Check that :ref:`box.info.vclock <box_introspection-box_info>` values are the same on both instances:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:266
+msgid "master_master:instance001> box.info.vclock\n"
+"---\n"
+"- {2: 5, 1: 9}\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:275
+msgid "master_master:instance002> box.info.vclock\n"
+"---\n"
+"- {2: 5, 1: 9}\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:287
+msgid "Resolving replication conflicts"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:291
+msgid "To learn how to fix and prevent replication conflicts using trigger functions, see :ref:`Resolving replication conflicts <replication-problem_solving>`."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:296
+msgid "Inserting conflicting records"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:298
+msgid "To insert conflicting records to ``instance001`` and ``instance002``, follow the steps below:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:300
+msgid "Stop ``instance001`` using the ``tt stop`` command:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:302
+msgid "$ tt stop master_master:instance001"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:306
+msgid "On ``instance002``, insert a new record:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:308
+msgid "box.space.bands:insert { 5, 'incorrect data', 0 }"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:312
+msgid "Stop ``instance002`` using ``tt stop``:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:314
+msgid "$ tt stop master_master:instance002"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:318
+msgid "Start ``instance001`` back:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:320
+msgid "$ tt start master_master:instance001"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:324
+msgid "Connect to ``instance001`` and insert a record that should conflict with a record already inserted on ``instance002``:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:326
+msgid "box.space.bands:insert { 5, 'Pink Floyd', 1965 }\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:332
+msgid "Start ``instance002`` back:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:334
+msgid "$ tt start master_master:instance002"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:338
+msgid "Then, check ``box.info.replication`` on ``instance001``. ``upstream.status`` should be ``stopped`` because of the ``Duplicate key exists`` error:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:341
+msgid "master_master:instance001> box.info.replication\n"
+"---\n"
+"- 1:\n"
+"    id: 1\n"
+"    uuid: 4cfa6e3c-625e-b027-00a7-29b2f2182f23\n"
+"    lsn: 9\n"
+"    upstream:\n"
+"      peer: replicator@127.0.0.1:3302\n"
+"      lag: 143.52251672745\n"
+"      status: stopped\n"
+"      idle: 3.9462469999999\n"
+"      message: Duplicate key exists in unique index \"primary\" in space \"bands\" with\n"
+"        old tuple - [5, \"Pink Floyd\", 1965] and new tuple - [5, \"incorrect data\", 0]\n"
+"    name: instance002\n"
+"    downstream:\n"
+"      status: stopped\n"
+"      message: 'unexpected EOF when reading from socket, called on fd 12, aka 127.0.0.1:3301,\n"
+"        peer of 127.0.0.1:59258: Broken pipe'\n"
+"      system_message: Broken pipe\n"
+"  2:\n"
+"    id: 2\n"
+"    uuid: 9bb111c2-3ff5-36a7-00f4-2b9a573ea660\n"
+"    lsn: 6\n"
+"    name: instance001\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:373
+msgid "Reseeding a replica"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:375
+msgid "To resolve a replication conflict, ``instance002`` should get the correct data from ``instance001`` first. To achieve this, ``instance002`` should be rebootstrapped:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:378
+msgid "In the ``config.yaml`` file, change ``database.mode`` of ``instance002`` to ``ro``:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:380
+msgid "instance002:\n"
+"  database:\n"
+"    mode: ro"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:386
+msgid "Reload configurations on both instances using the ``reload()`` function provided by the :ref:`config <config-module>` module:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:390
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:483
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:501
+msgid "master_master:instance001> require('config'):reload()\n"
+"---\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:398
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:509
+msgid "master_master:instance002> require('config'):reload()\n"
+"---\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:404
+msgid "Delete write-ahead logs and snapshots stored in the ``var/lib/instance002`` directory."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:408
+msgid "``var/lib`` is the default directory used by tt to store write-ahead logs and snapshots. Learn more from :ref:`Configuration <tt-config>`."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:411
+msgid "Restart ``instance002`` using the :ref:`tt restart <tt-restart>` command:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:413
+msgid "$ tt restart master_master:instance002"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:417
+msgid "Connect to ``instance002`` and make sure it received the correct data from ``instance001``:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:419
+msgid "master_master:instance002> box.space.bands:select()\n"
+"---\n"
+"- - [1, 'Roxette', 1986]\n"
+"  - [2, 'Scorpions', 1965]\n"
+"  - [3, 'Ace of Base', 1987]\n"
+"  - [4, 'The Beatles', 1960]\n"
+"  - [5, 'Pink Floyd', 1965]\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:434
+msgid "Restarting replication"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:436
+msgid "After :ref:`reseeding a replica <replication-master-master-reseed-replica>`, you need to resolve a replication conflict that keeps replication stopped:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:438
+msgid "Execute ``box.info.replication`` on ``instance001``. ``upstream.status`` is still stopped:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:441
+msgid "master_master:instance001> box.info.replication\n"
+"---\n"
+"- 1:\n"
+"    id: 1\n"
+"    uuid: 4cfa6e3c-625e-b027-00a7-29b2f2182f23\n"
+"    lsn: 9\n"
+"    upstream:\n"
+"      peer: replicator@127.0.0.1:3302\n"
+"      lag: 143.52251672745\n"
+"      status: stopped\n"
+"      idle: 1309.943383\n"
+"      message: Duplicate key exists in unique index \"primary\" in space \"bands\" with\n"
+"        old tuple - [5, \"Pink Floyd\", 1965] and new tuple - [5, \"incorrect data\",\n"
+"        0]\n"
+"    name: instance002\n"
+"    downstream:\n"
+"      status: follow\n"
+"      idle: 0.47881799999959\n"
+"      vclock: {2: 6, 1: 9}\n"
+"      lag: 0\n"
+"  2:\n"
+"    id: 2\n"
+"    uuid: 9bb111c2-3ff5-36a7-00f4-2b9a573ea660\n"
+"    lsn: 6\n"
+"    name: instance001\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:471
+msgid "In the ``config.yaml`` file, clear the ``iproto`` option for ``instance001`` by setting its value to ``{}`` to disconnect this instance from ``instance002``. Set ``database.mode`` to ``ro``:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:474
+msgid "instance001:\n"
+"  database:\n"
+"    mode: ro\n"
+"  iproto: {}"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:481
+msgid "Reload configuration on ``instance001`` only:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:489
+msgid "Change ``database.mode`` values back to ``rw`` for both instances and restore ``iproto.listen`` for ``instance001``:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:491
+msgid "instance001:\n"
+"  database:\n"
+"    mode: rw\n"
+"  iproto:\n"
+"    listen: 127.0.0.1:3301\n"
+"instance002:\n"
+"  database:\n"
+"    mode: rw\n"
+"  iproto:\n"
+"    listen: 127.0.0.1:3302\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:497
+msgid "Reload configurations on both instances one more time:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:515
+msgid "Check ``box.info.replication``. ``upstream.status`` be ``follow`` now."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:518
+msgid "master_master:instance001> box.info.replication\n"
+"---\n"
+"- 1:\n"
+"    id: 1\n"
+"    uuid: 4cfa6e3c-625e-b027-00a7-29b2f2182f23\n"
+"    lsn: 9\n"
+"    upstream:\n"
+"      status: follow\n"
+"      idle: 0.21281300000192\n"
+"      peer: replicator@127.0.0.1:3302\n"
+"      lag: 0.00031113624572754\n"
+"    name: instance002\n"
+"    downstream:\n"
+"      status: follow\n"
+"      idle: 0.035179000002245\n"
+"      vclock: {2: 6, 1: 9}\n"
+"      lag: 0\n"
+"  2:\n"
+"    id: 2\n"
+"    uuid: 9bb111c2-3ff5-36a7-00f4-2b9a573ea660\n"
+"    lsn: 6\n"
+"    name: instance001\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:549
+msgid "Adding and removing instances"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:551
+msgid "The process of adding instances to a replica set and removing them is similar for all failover modes. Learn how to do this from the :ref:`Master-replica: manual failover <replication-bootstrap>` tutorial:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:554
+msgid ":ref:`Adding instances <replication-add_instances>`"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:555
+msgid ":ref:`Removing instances <replication-remove_instances>`"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:557
+msgid "Before removing an instance from a replica set with :ref:`replication.failover <configuration_reference_replication_failover>` set to ``off``, make sure this instance is in read-only mode."
+msgstr ""

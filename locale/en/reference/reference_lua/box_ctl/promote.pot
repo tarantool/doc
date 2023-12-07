@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"POT-Creation-Date: 2023-12-07 07:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,7 +29,7 @@ msgid "Wait, then choose new replication leader."
 msgstr ""
 
 #: ../../doc/reference/reference_lua/box_ctl/promote.rst:13
-msgid "For :ref:`synchronous transactions <how-to-repl_sync>` it is possible that a new leader will be chosen but the transactions of the old leader have not been completed. Therefore to finalize the transaction, the function ``box.ctl.promote()`` should be called, as mentioned in the notes for :ref:`leader election <repl_leader_elect_important>`. The old name for this function is ``box.ctl.clear_synchro_queue()``."
+msgid "For :ref:`synchronous transactions <repl_sync>` it is possible that a new leader will be chosen but the transactions of the old leader have not been completed. Therefore to finalize the transaction, the function ``box.ctl.promote()`` should be called, as mentioned in the notes for :ref:`leader election <repl_leader_elect_important>`. The old name for this function is ``box.ctl.clear_synchro_queue()``."
 msgstr ""
 
 #: ../../doc/reference/reference_lua/box_ctl/promote.rst:21

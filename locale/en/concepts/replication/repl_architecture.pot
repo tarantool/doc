@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"POT-Creation-Date: 2023-12-07 07:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -61,7 +61,7 @@ msgid "Data change operations on **replication-local** spaces (:doc:`created </r
 msgstr ""
 
 #: ../../doc/concepts/replication/repl_architecture.rst:50
-msgid "To learn how to enable replication, check the :ref:`Bootstrapping a replica set <replication-setup>` guide."
+msgid "To learn how to enable replication, check the :ref:`Bootstrapping a replica set <replication-bootstrap>` guide."
 msgstr ""
 
 #: ../../doc/concepts/replication/repl_architecture.rst:56

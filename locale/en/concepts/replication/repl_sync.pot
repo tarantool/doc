@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"POT-Creation-Date: 2023-12-07 07:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,57 +33,57 @@ msgid "**Synchronous** replication exists to solve this problem. Synchronous tra
 msgstr ""
 
 #: ../../doc/concepts/replication/repl_sync.rst:18
-msgid "To learn how to enable and use synchronous replication, check the :ref:`guide <how-to-repl_sync>`."
+msgid "To enable synchronous replication, use the :ref:`space_opts.is_sync <space_opts_is_sync>` option when creating or altering a space."
 msgstr ""
 
-#: ../../doc/concepts/replication/repl_sync.rst:22
+#: ../../doc/concepts/replication/repl_sync.rst:21
 msgid "Synchronous and asynchronous transactions"
 msgstr ""
 
-#: ../../doc/concepts/replication/repl_sync.rst:24
+#: ../../doc/concepts/replication/repl_sync.rst:23
 msgid "A killer feature of Tarantool's synchronous replication is its being *per-space*. So, if you need it only rarely for some critical data changes, you won't pay for it in performance terms."
 msgstr ""
 
-#: ../../doc/concepts/replication/repl_sync.rst:28
+#: ../../doc/concepts/replication/repl_sync.rst:27
 msgid "When there is more than one synchronous transaction, they all wait for being replicated. Moreover, if an asynchronous transaction appears, it will also be blocked by the existing synchronous transactions. This behavior is very similar to a regular queue of asynchronous transactions because all the transactions are committed in the same order as they make the :ref:`box.commit() <box-commit>` call. So, here comes **the commit rule**: transactions are committed in the same order as they make the ``box.commit()`` call -- regardless of being synchronous or asynchronous."
 msgstr ""
 
-#: ../../doc/concepts/replication/repl_sync.rst:37
+#: ../../doc/concepts/replication/repl_sync.rst:36
 msgid "If one of the waiting synchronous transactions times out and is rolled back, it will first roll back all the newer pending transactions. Again, just like how asynchronous transactions are rolled back when WAL write fails. So, here comes **the rollback rule:** transactions are always rolled back in the order reversed from the one they make the ``box.commit()`` call -- regardless of being synchronous or asynchronous."
 msgstr ""
 
-#: ../../doc/concepts/replication/repl_sync.rst:44
+#: ../../doc/concepts/replication/repl_sync.rst:43
 msgid "One more important thing is that if an asynchronous transaction is blocked by a synchronous transaction, it does not become synchronous as well. This just means it will wait for the synchronous transaction to be committed. But once it is done, the asynchronous transaction will be committed immediately -- it won't wait for being replicated itself."
 msgstr ""
 
-#: ../../doc/concepts/replication/repl_sync.rst:52
+#: ../../doc/concepts/replication/repl_sync.rst:51
 msgid "Be careful when using synchronous and asynchronous transactions together. Asynchronous transactions are considered committed even if there is no connection to other nodes. Therefore, an old leader node (:ref:`synchronous transaction queue owner <box_info_synchro>`) might have some committed asynchronous transactions that no other replica set member has."
 msgstr ""
 
-#: ../../doc/concepts/replication/repl_sync.rst:57
+#: ../../doc/concepts/replication/repl_sync.rst:56
 msgid "When the connection to such an old (previous) leader node is restored, it starts receiving data from the new leader. At the same time, other replica set members receive the data from the previous leader that they don't have yet. The data from the previous leader contains some committed asynchronous transactions. At this time, the integrity protection will throw the :ref:`ER_SPLIT_BRAIN <repl_leader_elect_splitbrain>` error, which will force the user to rebootstrap the previous leader."
 msgstr ""
 
-#: ../../doc/concepts/replication/repl_sync.rst:65
+#: ../../doc/concepts/replication/repl_sync.rst:64
 msgid "Limitations and known problems"
 msgstr ""
 
-#: ../../doc/concepts/replication/repl_sync.rst:67
+#: ../../doc/concepts/replication/repl_sync.rst:66
 msgid "Until version :doc:`2.5.2 </release/2.5.2>`, there was no way to enable synchronous replication for existing spaces, but since 2.5.2 it can be enabled by :ref:`space_object:alter({is_sync = true}) <box_space-alter>`."
 msgstr ""
 
-#: ../../doc/concepts/replication/repl_sync.rst:72
+#: ../../doc/concepts/replication/repl_sync.rst:71
 msgid "Synchronous transactions work only for master-slave topology. You can have multiple replicas, anonymous replicas, but only one node can make synchronous transactions."
 msgstr ""
 
-#: ../../doc/concepts/replication/repl_sync.rst:75
+#: ../../doc/concepts/replication/repl_sync.rst:74
 msgid "Since Tarantool :doc:`2.10.0 </release/2.10.0>`, anonymous replicas do not participate in the quorum."
 msgstr ""
 
-#: ../../doc/concepts/replication/repl_sync.rst:78
+#: ../../doc/concepts/replication/repl_sync.rst:77
 msgid "Leader election"
 msgstr ""
 
-#: ../../doc/concepts/replication/repl_sync.rst:80
+#: ../../doc/concepts/replication/repl_sync.rst:79
 msgid "Starting from version :doc:`2.6.1 </release/2.6.1>`, Tarantool has the built-in functionality managing automated leader election in a replica set. For more information, refer to the :ref:`corresponding chapter <repl_leader_elect>`."
 msgstr ""
