@@ -14,8 +14,8 @@ and individual instances, from monitoring their state to executing commands inte
 in an instance's console.
 
 |tcm| is a standalone application included in the Tarantool Enterprise Edition
-distribution package. It is shipped as an executable that is ready to run on Linux
-and macOS platforms.
+:ref:`distribution package <enterprise-package-contents>`. It is shipped as ready-to-run
+executable for Linux platforms.
 
 |tcm| works only with Tarantool EE clusters that use :ref:`etcd as a configuration storage <configuration_etcd>`.
 When you create or edit a cluster's configuration in |tcm|, it publishes the saved
