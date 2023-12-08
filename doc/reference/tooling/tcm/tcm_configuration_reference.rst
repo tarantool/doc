@@ -1122,7 +1122,7 @@ Tarantool storage parameters:
 -   :ref:`storage.tarantool.addr <tcm_configuration_reference_storage_tarantool_addr>`
 -   :ref:`storage.tarantool.auth <tcm_configuration_reference_storage_tarantool_timeout>`
 -   :ref:`storage.tarantool.reconnect <tcm_configuration_reference_storage_tarantool_reconnect>`
--   :ref:`storage.tarantool.max_reconnects <tcm_configuration_reference_storage_tarantool_max_reconnects>`
+-   :ref:`storage.tarantool.max-reconnects <tcm_configuration_reference_storage_tarantool_max-reconnects>`
 -   :ref:`storage.tarantool.user <tcm_configuration_reference_storage_tarantool_user>`
 -   :ref:`storage.tarantool.pass <tcm_configuration_reference_storage_tarantool_pass>`
 -   :ref:`storage.tarantool.rate-limit <tcm_configuration_reference_storage_tarantool_rate-limit>`
