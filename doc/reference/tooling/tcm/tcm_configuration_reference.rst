@@ -1203,7 +1203,6 @@ Tarantool storage parameters:
     | Default: 10s
     | Environment variable: TCM_STORAGE_ETCD_DIAL_TIMEOUT
     | Command-line option: ``--storage-etcd-dial-timeout``
-``
 
 .. _tcm_configuration_reference_storage_etcd_auto-sync-interval:
 
