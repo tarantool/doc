@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"POT-Creation-Date: 2023-12-08 07:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -134,97 +134,109 @@ msgid "Each package is distributed as a ``tar + gzip`` archive and includes the 
 msgstr ""
 
 #: ../../doc/enterprise/setup.rst:123
-msgid "static Tarantool binary for simplified deployment in Linux environments,"
+msgid "Static Tarantool binary for simplified deployment in Linux environments."
 msgstr ""
 
 #: ../../doc/enterprise/setup.rst:124
-msgid "selection of open and closed source modules,"
+msgid "``tt`` command-line utility that provides a unified command-line interface for managing Tarantool-based applications. See :ref:`tt-cli` for details."
 msgstr ""
 
-#: ../../doc/enterprise/setup.rst:125
-msgid "sample application walking you through all included modules."
+#: ../../doc/enterprise/setup.rst:126
+msgid "|tcm_full_name| -- a web-based interface for managing Tarantool EE clusters. See :ref:`tcm` for details."
 msgstr ""
 
-#: ../../doc/enterprise/setup.rst:127
-msgid "Archive contents:"
+#: ../../doc/enterprise/setup.rst:128
+msgid "Selection of open and closed source modules."
 msgstr ""
 
 #: ../../doc/enterprise/setup.rst:129
-msgid "``tarantool`` is the main executable of Tarantool."
-msgstr ""
-
-#: ../../doc/enterprise/setup.rst:130
-msgid "``tt`` is the utility that provides a unified command-line interface for managing Tarantool-based applications."
+msgid "Sample application walking you through all included modules"
 msgstr ""
 
 #: ../../doc/enterprise/setup.rst:131
-msgid "``tarantoolctl`` is the utility script for installing supplementary modules and connecting to the administrative console."
+msgid "Archive contents:"
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:133
+msgid "``tarantool`` is the main executable of Tarantool."
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:134
+msgid "``tt`` command-line utility."
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:135
+msgid "``tcm`` is the |tcm_full_name| executable."
 msgstr ""
 
 #: ../../doc/enterprise/setup.rst:136
+msgid "``tarantoolctl`` is the utility script for installing supplementary modules and connecting to the administrative console."
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:141
 msgid "``tarantoolctl`` is deprecated in favor of the :ref:`tt CLI utility <tt-cli>`."
 msgstr ""
 
-#: ../../doc/enterprise/setup.rst:138
+#: ../../doc/enterprise/setup.rst:143
 msgid "``examples/`` is the directory containing sample applications:"
 msgstr ""
 
-#: ../../doc/enterprise/setup.rst:140
+#: ../../doc/enterprise/setup.rst:145
 msgid "``pg_writethrough_cache/`` is an application showcasing how Tarantool can cache data written to, for example, a PostgreSQL database;"
 msgstr ""
 
-#: ../../doc/enterprise/setup.rst:142
+#: ../../doc/enterprise/setup.rst:147
 msgid "``ora_writebehind_cache/`` is an application showcasing how Tarantool can cache writes and queue them to, for example, an Oracle database;"
 msgstr ""
 
-#: ../../doc/enterprise/setup.rst:144
+#: ../../doc/enterprise/setup.rst:149
 msgid "``docker/`` is an application designed to be easily packed into a Docker container;"
 msgstr ""
 
-#: ../../doc/enterprise/setup.rst:147
+#: ../../doc/enterprise/setup.rst:152
 msgid "``rocks/`` is the directory containing a selection of additional open and closed source modules included in the distribution as an offline rocks repository. See the :ref:`rocks reference <enterprise-rocks>` for details."
 msgstr ""
 
-#: ../../doc/enterprise/setup.rst:150
+#: ../../doc/enterprise/setup.rst:155
 msgid "``templates/`` is the directory containing template files for your application development environment."
 msgstr ""
 
-#: ../../doc/enterprise/setup.rst:152
+#: ../../doc/enterprise/setup.rst:157
 msgid "``deprecated/`` is a set of modules that are no longer supported:"
 msgstr ""
 
-#: ../../doc/enterprise/setup.rst:154
+#: ../../doc/enterprise/setup.rst:159
 msgid "``vshard-zookeeper-orchestrator`` is a Python application for launching ``orchestrator``,"
 msgstr ""
 
-#: ../../doc/enterprise/setup.rst:156
+#: ../../doc/enterprise/setup.rst:161
 msgid "``zookeeper-scm`` files are the ZooKeeper integration modules (require ``usr/`` libraries)."
 msgstr ""
 
-#: ../../doc/enterprise/setup.rst:164
+#: ../../doc/enterprise/setup.rst:169
 msgid "Installation"
 msgstr ""
 
-#: ../../doc/enterprise/setup.rst:166
+#: ../../doc/enterprise/setup.rst:171
 msgid "The delivered ``tar + gzip`` archive should be uploaded to a server and unpacked:"
 msgstr ""
 
-#: ../../doc/enterprise/setup.rst:168
+#: ../../doc/enterprise/setup.rst:173
 msgid "$ tar xvf tarantool-enterprise-sdk-<version>.tar.gz"
 msgstr ""
 
-#: ../../doc/enterprise/setup.rst:172
+#: ../../doc/enterprise/setup.rst:177
 msgid "No further installation is required as the unpacked binaries are almost ready to go. Go to the directory with the binaries (``tarantool-enterprise``) and add them to the executable path by running the script provided by the distribution:"
 msgstr ""
 
-#: ../../doc/enterprise/setup.rst:176
+#: ../../doc/enterprise/setup.rst:181
 msgid "$ source ./env.sh"
 msgstr ""
 
-#: ../../doc/enterprise/setup.rst:180
+#: ../../doc/enterprise/setup.rst:185
 msgid "Make sure you have enough privileges to run the script and that the file is executable. Otherwise, try ``chmod`` and ``chown`` commands to adjust it."
 msgstr ""
 
-#: ../../doc/enterprise/setup.rst:183
+#: ../../doc/enterprise/setup.rst:188
 msgid "Next, set up your development environment as described in :ref:`the developer's guide <enterprise-app-development>`."
 msgstr ""

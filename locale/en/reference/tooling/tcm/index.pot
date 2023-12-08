@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"POT-Creation-Date: 2023-12-08 07:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,7 +33,7 @@ msgid "|tcm_full_name| (|tcm|) is a web-based visual tool for configuring, manag
 msgstr ""
 
 #: ../../doc/reference/tooling/tcm/index.rst:16
-msgid "|tcm| is a standalone application included in the Tarantool Enterprise Edition distribution package. It is shipped as an executable that is ready to run on Linux and macOS platforms."
+msgid "|tcm| is a standalone application included in the Tarantool Enterprise Edition :ref:`distribution package <enterprise-package-contents>`. It is shipped as ready-to-run executable for Linux platforms."
 msgstr ""
 
 #: ../../doc/reference/tooling/tcm/index.rst:20
