@@ -120,14 +120,19 @@ at Tarantool website. Please contact ``support@tarantool.io`` for access.
 Each package is distributed as a ``tar + gzip`` archive and includes
 the following components and features:
 
-* static Tarantool binary for simplified deployment in Linux environments,
-* selection of open and closed source modules,
-* sample application walking you through all included modules.
+* Static Tarantool binary for simplified deployment in Linux environments.
+* ``tt`` command-line utility that provides a unified command-line interface for
+  managing Tarantool-based applications. See :ref:`tt-cli` for details.
+* |tcm_full_name| -- a web-based interface for managing Tarantool EE clusters.
+  See :ref:`tcm` for details.
+* Selection of open and closed source modules.
+* Sample application walking you through all included modules
 
 Archive contents:
 
 * ``tarantool`` is the main executable of Tarantool.
-* ``tt`` is the utility that provides a unified command-line interface for managing Tarantool-based applications.
+* ``tt`` command-line utility.
+* ``tcm`` is the |tcm_full_name| executable.
 * ``tarantoolctl`` is the utility script for installing supplementary modules
   and connecting to the administrative console.
 
