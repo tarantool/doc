@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-07 11:39+0000\n"
+"POT-Creation-Date: 2023-12-08 09:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -90,7 +90,7 @@ msgstr ""
 
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:39
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:199
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1801
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1859
 msgid "Type: int64"
 msgstr ""
 
@@ -143,20 +143,20 @@ msgstr ""
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:683
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:695
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1011
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1203
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1216
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1228
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1240
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1252
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1526
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1540
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1202
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1214
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1226
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1238
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1250
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1536
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1550
 msgid "Type: time.Duration"
 msgstr ""
 
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:64
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:252
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1012
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1204
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1203
 msgid "Default: 10s"
 msgstr ""
 
@@ -396,15 +396,16 @@ msgstr ""
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:810
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:877
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:937
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1300
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1312
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1360
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1384
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1396
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1456
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1640
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1777
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2013
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1298
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1310
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1358
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1382
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1394
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1454
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1466
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1650
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1835
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2071
 msgid "Type: bool"
 msgstr ""
 
@@ -420,14 +421,15 @@ msgstr ""
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:811
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:878
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:938
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1301
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1313
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1361
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1385
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1397
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1457
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1778
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2014
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1299
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1311
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1359
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1383
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1395
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1455
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1467
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1836
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2072
 msgid "Default: false"
 msgstr ""
 
@@ -447,8 +449,8 @@ msgstr ""
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:821
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:840
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:857
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1158
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1931
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1157
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1989
 msgid "Possible values:"
 msgstr ""
 
@@ -483,34 +485,34 @@ msgstr ""
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:975
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:987
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:999
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1164
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1176
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1276
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1288
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1324
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1336
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1348
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1372
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1408
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1432
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1444
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1479
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1492
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1568
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1582
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1654
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1669
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1684
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1699
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1714
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1729
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1742
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1789
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1962
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1975
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1988
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2000
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2030
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1163
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1175
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1274
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1286
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1322
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1334
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1346
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1370
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1406
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1430
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1442
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1489
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1502
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1578
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1592
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1664
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1679
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1694
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1709
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1724
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1739
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1752
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1847
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2020
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2033
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2046
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2058
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2088
 msgid "Type: string"
 msgstr ""
 
@@ -556,19 +558,20 @@ msgstr ""
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:901
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:913
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:925
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1264
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1511
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1554
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1596
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1610
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1626
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1842
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1854
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1866
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1878
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1890
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1902
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1949
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1262
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1521
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1564
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1606
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1620
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1636
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1772
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1900
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1912
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1924
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1936
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1948
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1960
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2007
 msgid "Type: int"
 msgstr ""
 
@@ -711,28 +714,28 @@ msgstr ""
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:976
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:988
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1000
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1277
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1289
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1325
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1337
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1349
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1373
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1409
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1433
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1445
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1569
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1583
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1655
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1670
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1685
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1700
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1715
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1730
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1743
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1963
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1976
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1989
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2001
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1275
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1287
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1323
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1335
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1347
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1371
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1407
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1431
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1443
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1579
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1593
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1665
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1680
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1695
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1710
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1725
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1740
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1753
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2021
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2034
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2047
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2059
 msgid "Default: \"\""
 msgstr ""
 
@@ -806,7 +809,7 @@ msgstr ""
 
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:359
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:720
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1641
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1651
 msgid "Default: true"
 msgstr ""
 
@@ -886,9 +889,9 @@ msgstr ""
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:427
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:442
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:458
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1190
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1813
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1937
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1189
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1871
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1995
 msgid "Type: []string"
 msgstr ""
 
@@ -899,8 +902,9 @@ msgstr ""
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:588
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:600
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1027
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1421
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1814
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1419
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1801
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1872
 msgid "Default: []"
 msgstr ""
 
@@ -1059,11 +1063,13 @@ msgstr ""
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:902
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:914
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:926
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1512
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1555
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1597
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1611
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1627
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1522
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1565
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1607
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1621
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1637
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1773
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1787
 msgid "Default: 0"
 msgstr ""
 
@@ -1124,7 +1130,7 @@ msgid "Enabled TLS cipher suites. Possible values are the Golang `tls.TLS_* <htt
 msgstr ""
 
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:599
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1420
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1418
 msgid "Type: []uint16"
 msgstr ""
 
@@ -1144,9 +1150,9 @@ msgstr ""
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:624
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:636
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:648
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1229
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1241
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1253
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1227
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1239
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1251
 msgid "Default: 30s"
 msgstr ""
 
@@ -1287,7 +1293,7 @@ msgid "The maximum size (in bytes) of a static content sent to |TCM|."
 msgstr ""
 
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:744
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1802
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1860
 msgid "Default: 104857600"
 msgstr ""
 
@@ -1556,7 +1562,7 @@ msgid "Command-line option: ``--log-default-file-maxage``"
 msgstr ""
 
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:922
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1839
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1897
 msgid "The maximum number of users in |tcm|."
 msgstr ""
 
@@ -1729,1339 +1735,1390 @@ msgid ":ref:`storage.etcd.password <tcm_configuration_reference_storage_etcd_pas
 msgstr ""
 
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1056
-msgid ":ref:`storage.etcd.tls <tcm_configuration_reference_storage_etcd_tls>`"
-msgstr ""
-
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1057
 msgid ":ref:`storage.etcd.tls.enabled <tcm_configuration_reference_storage_etcd_tls_enabled>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1058
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1057
 msgid ":ref:`storage.etcd.tls.auto <tcm_configuration_reference_storage_etcd_tls_auto>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1059
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1058
 msgid ":ref:`storage.etcd.tls.cert-file <tcm_configuration_reference_storage_etcd_tls_cert-file>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1060
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1059
 msgid ":ref:`storage.etcd.tls.key-file <tcm_configuration_reference_storage_etcd_tls_key-file>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1061
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1060
 msgid ":ref:`storage.etcd.tls.trusted-ca-file <tcm_configuration_reference_storage_etcd_tls_trusted-ca-file>`"
 msgstr ""
 
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1061
+msgid ":ref:`storage.etcd.tls.client-cert-auth <tcm_configuration_reference_storage_etcd_tls_client-cert-auth>`"
+msgstr ""
+
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1062
-msgid ":ref:`storage.etcd.tls.client-cert-auth <tcm_configuration_reference_storage_etcd_tls>`"
+msgid ":ref:`storage.etcd.tls.crl-file <tcm_configuration_reference_storage_etcd_tls_crl-file>`"
 msgstr ""
 
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1063
-msgid ":ref:`storage.etcd.tls.crl-file: <tcm_configuration_reference_storage_etcd_tls>`"
+msgid ":ref:`storage.etcd.tls.insecure-skip-verify <tcm_configuration_reference_storage_etcd_tls_insecure-skip-verify>`"
 msgstr ""
 
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1064
-msgid ":ref:`storage.etcd.tls.insecure-skip-verify <tcm_configuration_reference_storage_etcd_tls>`"
+msgid ":ref:`storage.etcd.tls.skip-client-san-verify <tcm_configuration_reference_storage_etcd_tls_skip-client-san-verify>`"
 msgstr ""
 
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1065
-msgid ":ref:`storage.etcd.tls.skip-client-san-verify <tcm_configuration_reference_storage_etcd_tls>`"
+msgid ":ref:`storage.etcd.tls.server-name <tcm_configuration_reference_storage_etcd_tls_server-name>`"
 msgstr ""
 
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1066
-msgid ":ref:`storage.etcd.tls.server-name <tcm_configuration_reference_storage_etcd_tls>`"
+msgid ":ref:`storage.etcd.tls.cipher-suites <tcm_configuration_reference_storage_etcd_tls_cipher-suites>`"
 msgstr ""
 
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1067
-msgid ":ref:`storage.etcd.tls.cipher-suites <tcm_configuration_reference_storage_etcd_tls>`"
+msgid ":ref:`storage.etcd.tls.allowed-cn <tcm_configuration_reference_storage_etcd_tls_allowed-cn>`"
 msgstr ""
 
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1068
-msgid ":ref:`storage.etcd.tls.allowed-cn <tcm_configuration_reference_storage_etcd_tls>`"
+msgid ":ref:`storage.etcd.tls.allowed-hostname <tcm_configuration_reference_storage_etcd_tls_allowed-hostname>`"
 msgstr ""
 
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1069
-msgid ":ref:`storage.etcd.tls.allowed-hostname <tcm_configuration_reference_storage_etcd_tls>`"
+msgid ":ref:`storage.etcd.tls.empty-cn <tcm_configuration_reference_storage_etcd_tls_empty-cn>`"
 msgstr ""
 
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1070
-msgid ":ref:`storage.etcd.tls.empty-cn <tcm_configuration_reference_storage_etcd_tls>`"
-msgstr ""
-
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1071
 msgid ":ref:`storage.etcd.permit-without-stream <tcm_configuration_reference_storage_etcd_permit-without-stream>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1072
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1071
 msgid ":ref:`storage.etcd.embed.enabled <tcm_configuration_reference_storage_etcd_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1073
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1072
 msgid ":ref:`storage.etcd.embed.endpoints <tcm_configuration_reference_storage_etcd_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1074
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1073
 msgid ":ref:`storage.etcd.embed.advertises <tcm_configuration_reference_storage_etcd_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1075
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1074
 msgid ":ref:`storage.etcd.embed.tls.enabled <tcm_configuration_reference_storage_etcd_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1076
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1075
 msgid ":ref:`storage.etcd.embed.tls.auto <tcm_configuration_reference_storage_etcd_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1077
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1076
 msgid ":ref:`storage.etcd.embed.tls.cert-file <tcm_configuration_reference_storage_etcd_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1078
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1077
 msgid ":ref:`storage.etcd.embed.tls.key-file <tcm_configuration_reference_storage_etcd_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1079
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1078
 msgid ":ref:`storage.etcd.embed.tls.trusted-ca-file <tcm_configuration_reference_storage_etcd_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1080
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1079
 msgid ":ref:`storage.etcd.embed.tls.client-cert-auth <tcm_configuration_reference_storage_etcd_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1081
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1080
 msgid ":ref:`storage.etcd.embed.tls.crl-file <tcm_configuration_reference_storage_etcd_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1082
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1081
 msgid ":ref:`storage.etcd.embed.tls.insecure-skip-verify <tcm_configuration_reference_storage_etcd_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1083
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1082
 msgid ":ref:`storage.etcd.embed.tls.skip-client-san-verify <tcm_configuration_reference_storage_etcd_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1084
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1083
 msgid ":ref:`storage.etcd.embed.tls.server-name <tcm_configuration_reference_storage_etcd_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1085
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1084
 msgid ":ref:`storage.etcd.embed.tls.cipher-suites <tcm_configuration_reference_storage_etcd_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1086
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1085
 msgid ":ref:`storage.etcd.embed.tls.allowed-cn <tcm_configuration_reference_storage_etcd_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1087
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1086
 msgid ":ref:`storage.etcd.embed.tls.allowed-hostname <tcm_configuration_reference_storage_etcd_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1088
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1087
 msgid ":ref:`storage.etcd.embed.tls.empty-cn <tcm_configuration_reference_storage_etcd_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1089
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1088
 msgid ":ref:`storage.etcd.embed.peer-endpoints <tcm_configuration_reference_storage_etcd_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1090
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1089
 msgid ":ref:`storage.etcd.embed.peer-advertises <tcm_configuration_reference_storage_etcd_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1091
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1090
 msgid ":ref:`storage.etcd.embed.peer-tls.enabled <tcm_configuration_reference_storage_etcd_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1092
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1091
 msgid ":ref:`storage.etcd.embed.peer-tls.auto <tcm_configuration_reference_storage_etcd_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1093
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1092
 msgid ":ref:`storage.etcd.embed.peer-tls.cert-file <tcm_configuration_reference_storage_etcd_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1094
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1093
 msgid ":ref:`storage.etcd.embed.peer-tls.key-file <tcm_configuration_reference_storage_etcd_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1095
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1094
 msgid ":ref:`storage.etcd.embed.peer-tls.trusted-ca-file <tcm_configuration_reference_storage_etcd_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1096
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1095
 msgid ":ref:`storage.etcd.embed.peer-tls.client-cert-auth <tcm_configuration_reference_storage_etcd_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1097
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1096
 msgid ":ref:`storage.etcd.embed.peer-tls.crl-file <tcm_configuration_reference_storage_etcd_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1098
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1097
 msgid ":ref:`storage.etcd.embed.peer-tls.insecure-skip-verify <tcm_configuration_reference_storage_etcd_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1099
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1098
 msgid ":ref:`storage.etcd.embed.peer-tls.skip-client-san-verify <tcm_configuration_reference_storage_etcd_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1100
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1099
 msgid ":ref:`storage.etcd.embed.peer-tls.server-name <tcm_configuration_reference_storage_etcd_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1101
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1100
 msgid ":ref:`storage.etcd.embed.peer-tls.cipher-suites <tcm_configuration_reference_storage_etcd_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1102
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1101
 msgid ":ref:`storage.etcd.embed.peer-tls.allowed-cn <tcm_configuration_reference_storage_etcd_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1103
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1102
 msgid ":ref:`storage.etcd.embed.peer-tls.allowed-hostname <tcm_configuration_reference_storage_etcd_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1104
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1103
 msgid ":ref:`storage.etcd.embed.peer-tls.empty-cn <tcm_configuration_reference_storage_etcd_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1105
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1104
 msgid ":ref:`storage.etcd.embed.grpc-keep-alive-timeout <tcm_configuration_reference_storage_etcd_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1106
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1105
 msgid ":ref:`storage.etcd.embed.grpc-keep-alive-interval <tcm_configuration_reference_storage_etcd_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1107
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1106
 msgid ":ref:`storage.etcd.embed.grpc-keep-alive-min-time <tcm_configuration_reference_storage_etcd_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1108
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1107
 msgid ":ref:`storage.etcd.embed.workdir <tcm_configuration_reference_storage_etcd_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1109
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1108
 msgid ":ref:`storage.etcd.embed.waldir <tcm_configuration_reference_storage_etcd_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1110
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1109
 msgid ":ref:`storage.etcd.embed.max-request-bytes <tcm_configuration_reference_storage_etcd_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1111
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1110
 msgid ":ref:`storage.etcd.embed.debug <tcm_configuration_reference_storage_etcd_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1112
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1111
 msgid ":ref:`storage.etcd.embed.start-timeout <tcm_configuration_reference_storage_etcd_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1113
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1112
 msgid ":ref:`storage.etcd.embed.log-level <tcm_configuration_reference_storage_etcd_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1114
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1113
 msgid ":ref:`storage.etcd.embed.initial-cluster <tcm_configuration_reference_storage_etcd_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1115
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1114
 msgid ":ref:`storage.etcd.embed.initial-cluster-token <tcm_configuration_reference_storage_etcd_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1116
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1115
 msgid ":ref:`storage.etcd.embed.name <tcm_configuration_reference_storage_etcd_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1117
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1116
 msgid ":ref:`storage.etcd.embed.initial-cluster-state <tcm_configuration_reference_storage_etcd_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1118
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1117
 msgid ":ref:`storage.etcd.embed.self-signed-cert-validity <tcm_configuration_reference_storage_etcd_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1120
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1119
 msgid "Tarantool storage parameters:"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1122
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1121
 msgid ":ref:`storage.tarantool.prefix <tcm_configuration_reference_storage_tarantool_prefix>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1123
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1122
 msgid ":ref:`storage.tarantool.addr <tcm_configuration_reference_storage_tarantool_addr>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1124
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1123
 msgid ":ref:`storage.tarantool.auth <tcm_configuration_reference_storage_tarantool_timeout>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1125
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1124
 msgid ":ref:`storage.tarantool.reconnect <tcm_configuration_reference_storage_tarantool_reconnect>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1126
-msgid ":ref:`storage.tarantool.max_reconnect <tcm_configuration_reference_storage_tarantool_max_reconnect>`"
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1125
+msgid ":ref:`storage.tarantool.max-reconnects <tcm_configuration_reference_storage_tarantool_max-reconnects>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1127
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1126
 msgid ":ref:`storage.tarantool.user <tcm_configuration_reference_storage_tarantool_user>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1128
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1127
 msgid ":ref:`storage.tarantool.pass <tcm_configuration_reference_storage_tarantool_pass>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1129
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1128
 msgid ":ref:`storage.tarantool.rate-limit <tcm_configuration_reference_storage_tarantool_rate-limit>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1130
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1129
 msgid ":ref:`storage.tarantool.rate-limit-action <tcm_configuration_reference_storage_tarantool_rate-limit-action>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1131
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1130
 msgid ":ref:`storage.tarantool.concurrency <tcm_configuration_reference_storage_tarantool_concurrency>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1132
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1131
 msgid ":ref:`storage.tarantool.skip-schema <tcm_configuration_reference_storage_tarantool_skip-schema>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1133
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1132
 msgid ":ref:`storage.tarantool.transport <tcm_configuration_reference_storage_tarantool_transport>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1134
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1133
 msgid ":ref:`storage.tarantool.ssl.key-file <tcm_configuration_reference_storage_tarantool_ssl_key-file>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1135
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1134
 msgid ":ref:`storage.tarantool.ssl.cert-file <tcm_configuration_reference_storage_tarantool_ssl_cert-file>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1136
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1135
 msgid ":ref:`storage.tarantool.ssl.ca-file <tcm_configuration_reference_storage_tarantool_ssl_ca-file>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1137
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1136
 msgid ":ref:`storage.tarantool.ssl.ciphers <tcm_configuration_reference_storage_tarantool_ssl_ciphers>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1138
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1137
 msgid ":ref:`storage.tarantool.ssl.password <tcm_configuration_reference_storage_tarantool_ssl_password>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1139
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1138
 msgid ":ref:`storage.tarantool.required-protocol-info.auth <tcm_configuration_reference_storage_tarantool_required-protocol-info_auth>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1140
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1139
 msgid ":ref:`storage.tarantool.required-protocol-info.version <tcm_configuration_reference_storage_tarantool_required-protocol-info_version>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1141
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1140
 msgid ":ref:`storage.tarantool.required-protocol-info.features <tcm_configuration_reference_storage_tarantool_required-protocol-info_features>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1142
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1141
 msgid ":ref:`storage.tarantool.embed.enabled <tcm_configuration_reference_storage_tarantool_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1143
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1142
 msgid ":ref:`storage.tarantool.embed.workdir <tcm_configuration_reference_storage_tarantool_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1144
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1143
 msgid ":ref:`storage.tarantool.embed.executable <tcm_configuration_reference_storage_tarantool_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1145
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1144
 msgid ":ref:`storage.tarantool.embed.config-filename <tcm_configuration_reference_storage_tarantool_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1146
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1145
 msgid ":ref:`storage.tarantool.embed.config <tcm_configuration_reference_storage_tarantool_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1147
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1146
 msgid ":ref:`storage.tarantool.embed.args <tcm_configuration_reference_storage_tarantool_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1148
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1147
 msgid ":ref:`storage.tarantool.embed.env <tcm_configuration_reference_storage_tarantool_embed>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1156
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1155
 msgid "The type of the storage used for storing |tcm| configuration."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1160
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1159
 msgid "``etcd``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1161
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1160
 msgid "``tarantool``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1165
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1164
 msgid "Default: etcd"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1166
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1165
 msgid "Environment variable: TCM_STORAGE_PROVIDER"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1167
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1166
 msgid "Command-line option: ``--storage-provider``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1173
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1172
 msgid "A prefix for the |tcm| configuration parameters in etcd."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1177
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1176
 msgid "Default: \"/tcm\""
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1178
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1177
 msgid "Environment variable: TCM_STORAGE_ETCD_PREFIX"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1179
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1178
 msgid "Command-line option: ``--storage-etcd-prefix``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1186
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1185
 msgid "An array of node URIs of the etcd cluster where the |tcm| configuration is stored, separated by semicolons (``;``)."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1191
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1190
 msgid "Default: [\"http://127.0.0.1:2379\"]"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1192
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1191
 msgid "Environment variable: TCM_STORAGE_ETCD_ENDPOINTS"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1193
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1192
 msgid "Command-line option: ``--storage-etcd-endpoints``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1200
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1199
 msgid "An etcd dial timeout."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1205
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1204
 msgid "Environment variable: TCM_STORAGE_ETCD_DIAL_TIMEOUT"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1206
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1205
 msgid "Command-line option: ``--storage-etcd-dial-timeout``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1207
-msgid "``"
-msgstr ""
-
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1213
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1211
 msgid "An automated sync interval."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1217
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1527
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1541
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1215
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1537
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1551
 msgid "Default: 0s"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1218
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1216
 msgid "Environment variable: TCM_STORAGE_ETCD_AUTO_SYNC_INTERVAL"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1219
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1217
 msgid "Command-line option: ``--storage-etcd-auto-sync-interval``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1225
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1223
 msgid "A dial keep-alive time."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1230
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1228
 msgid "Environment variable: TCM_STORAGE_ETCD_DIAL_KEEP_ALIVE_TIME"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1231
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1229
 msgid "Command-line option: ``--storage-etcd-dial-keep-alive-time``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1237
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1235
 msgid "A dial keep-alive timeout."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1242
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1240
 msgid "Environment variable: TCM_STORAGE_ETCD_DIAL_KEEP_ALIVE_TIMEOUT"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1243
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1241
 msgid "Command-line option: ``--storage-etcd-dial-keep-alive-timeout``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1249
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1247
 msgid "A bootstrap timeout."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1254
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1252
 msgid "Environment variable: TCM_STORAGE_ETCD_BOOTSTRAP_TIMEOUT"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1255
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1253
 msgid "Command-line option: ``--storage-etcd-bootstrap-timeout``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1261
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1259
 msgid "The maximum size (in bytes) of a transaction between |tcm| and etcd."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1265
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1263
 msgid "Default: 2097152"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1266
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1264
 msgid "Environment variable: TCM_STORAGE_ETCD_MAX_CALL_SEND_MSG_SIZE"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1267
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1265
 msgid "Command-line option: ``--storage-etcd-max-call-send-msg-size``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1273
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1271
 msgid "A username for accessing the etcd storage."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1278
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1276
 msgid "Environment variable: TCM_STORAGE_ETCD_USERNAME"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1279
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1277
 msgid "Command-line option: ``--storage-etcd-username``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1285
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1283
 msgid "A password for accessing the etcd storage."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1290
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1288
 msgid "Environment variable: TCM_STORAGE_ETCD_PASSWORD"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1291
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1289
 msgid "Command-line option: ``--storage-etcd-password``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1297
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1295
 msgid "Indicates whether TLS is enabled for etcd connections."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1302
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1300
 msgid "Environment variable: TCM_STORAGE_ETCD_TLS_ENABLED"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1303
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1301
 msgid "Command-line option: ``--storage-etcd-tls-enabled``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1309
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1307
 msgid "Use generated certificates for etcd connections."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1314
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1312
 msgid "Environment variable: TCM_STORAGE_ETCD_TLS_AUTO"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1315
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1313
 msgid "Command-line option: ``--storage-etcd-tls-auto``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1321
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1319
 msgid "A path to a TLS certificate file to use for etcd connections."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1326
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1324
 msgid "Environment variable: TCM_STORAGE_ETCD_TLS_CERT_FILE"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1327
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1325
 msgid "Command-line option: ``--storage-etcd-tls-cert-file``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1333
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1331
 msgid "A path to a TLS private key file to use for etcd connections."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1338
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1336
 msgid "Environment variable: TCM_STORAGE_ETCD_TLS_KEY_FILE"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1339
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1337
 msgid "Command-line option: ``--storage-etcd-tls-key-file``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1345
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1343
 msgid "A path to a trusted CA certificate file to use for etcd connections."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1350
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1348
 msgid "Environment variable: TCM_STORAGE_ETCD_TLS_TRUSTED_CA_FILE"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1351
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1349
 msgid "Command-line option: ``--storage-etcd-tls-trusted-ca-file``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1357
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1355
 msgid "Indicates whether client cert authentication is enabled."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1362
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1360
 msgid "Environment variable: TCM_STORAGE_ETCD_TLS_CLIENT_CERT_AUTH"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1363
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1361
 msgid "Command-line option: ``--storage-etcd-tls-client-cert-auth``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1369
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1367
 msgid "A path to the client certificate revocation list file."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1374
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1372
 msgid "Environment variable: TCM_STORAGE_ETCD_TLS_CRL_FILE"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1375
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1373
 msgid "Command-line option: ``--storage-etcd-tls-crl-file``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1381
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1379
 msgid "Skip checking client certificate in etcd connections."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1386
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1384
 msgid "Environment variable: TCM_STORAGE_ETCD_TLS_INSECURE_SKIP_VERIFY"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1387
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1385
 msgid "Command-line option: ``--storage-etcd-tls-insecure-skip-verify``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1393
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1391
 msgid "Skip verification of SAN field in client certificate for etcd connections."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1398
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1396
 msgid "Environment variable: TCM_STORAGE_ETCD_TLS_SKIP_CLIENT_SAN_VERIFY"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1399
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1397
 msgid "Command-line option: ``--storage-etcd-tls-skip-client-san-verify``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1405
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1403
 msgid "Name of the TLS server for etcd connections."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1410
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1408
 msgid "Environment variable: TCM_STORAGE_ETCD_TLS_SERVER_NAME"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1411
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1409
 msgid "Command-line option: ``--storage-etcd-tls-server-name``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1417
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1415
 msgid "TLS cipher suites for etcd connections. Possible values are the Golang `tls.TLS_* <https://pkg.go.dev/crypto/tls#pkg-constants>`__ constants."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1422
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1420
 msgid "Environment variable: TCM_STORAGE_ETCD_TLS_CIPHER_SUITES"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1423
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1421
 msgid "Command-line option: ``--storage-etcd-tls-cipher-suites``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1429
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1427
 msgid "An allowed common name for authentication in etcd connections."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1434
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1432
 msgid "Environment variable: TCM_STORAGE_ETCD_TLS_ALLOWED_CN"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1435
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1433
 msgid "Command-line option: ``--storage-etcd-tls-allowed-cn``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1441
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1439
 msgid "An allowed TLS certificate name for authentication in etcd connections."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1446
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1444
 msgid "Environment variable: TCM_STORAGE_ETCD_TLS_ALLOWED_HOSTNAME"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1447
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1445
 msgid "Command-line option: ``--storage-etcd-tls-allowed-hostname``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1453
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1451
 msgid "Whether the empty common name is allowed in etcd connections."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1458
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1456
 msgid "Environment variable: TCM_STORAGE_ETCD_TLS_EMPTY_CN"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1459
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1457
 msgid "Command-line option: ``--storage-etcd-tls-empty-cn``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1464
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1463
+msgid "Whether keepalive pings can be send to the etcd server without active streams."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1468
+msgid "Environment variable: TCM_STORAGE_ETCD_PERMIT_WITHOUT_STREAM"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1469
+msgid "Command-line option: ``--storage-etcd-permit-without-stream``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1474
 msgid "storage.etcd.embed.*"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1466
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1476
 msgid "The ``storage.etcd.embed`` group defines the configuration of the embedded etcd cluster that can used as a |tcm| configuration storage. This cluster can be used for development purposes when the production or testing etcd cluster is not available or not needed."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1476
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1486
 msgid "A prefix for the TCM configuration parameters in the Tarantool |tcm| configuration storage."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1480
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1490
 msgid "Default: \"_tcm:"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1481
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1491
 msgid "Environment variable: TCM_STORAGE_TARANTOOL_PREFIX"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1482
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1492
 msgid "Command-line option: ``--storage-tarantool-prefix``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1489
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1499
 msgid "The URI for connecting to the Tarantool |tcm| configuration storage."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1493
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1503
 msgid "Default: \"unix/:/tmp/tnt_config_instance.sock\""
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1494
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1504
 msgid "Environment variable: TCM_STORAGE_TARANTOOL_ADDR"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1495
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1505
 msgid "Command-line option: ``--storage-tarantool-ADDR``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1502
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1512
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1761
 msgid "An authentication method for the Tarantool |tcm| configuration storage."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1504
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1514
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1763
 msgid "Possible values are the Go's `go-tarantool/Auth <https://pkg.go.dev/github.com/tarantool/go-tarantool#Auth>`__ constants:"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1506
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1516
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1765
 msgid "``AutoAuth`` (0)"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1507
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1517
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1766
 msgid "``ChapSha1Auth``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1508
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1518
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1767
 msgid "``PapSha256Auth``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1513
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1523
 msgid "Environment variable: TCM_STORAGE_TARANTOOL_AUTH"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1514
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1524
 msgid "Command-line option: ``--storage-tarantool-auth``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1521
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1531
 msgid "A request timeout for the Tarantool |tcm| configuration storage."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1523
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1537
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1551
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1565
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1579
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1593
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1607
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1623
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1637
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1651
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1533
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1547
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1561
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1575
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1589
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1603
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1617
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1633
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1647
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1661
 msgid "See also `go-tarantool.Opts <https://pkg.go.dev/github.com/tarantool/go-tarantool#Opts>`__."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1528
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1538
 msgid "Environment variable: TCM_STORAGE_TARANTOOL_TIMEOUT"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1529
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1539
 msgid "Command-line option: ``--storage-tarantool-timeout``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1535
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1545
 msgid "A timeout between reconnect attempts for the Tarantool |tcm| configuration storage."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1542
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1552
 msgid "Environment variable: TCM_STORAGE_TARANTOOL_RECONNECT"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1543
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1553
 msgid "Command-line option: ``--storage-tarantool-reconnect``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1549
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1559
 msgid "The maximum number of reconnect attempts for the Tarantool |tcm| configuration storage."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1556
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1566
 msgid "Environment variable: TCM_STORAGE_TARANTOOL_MAX_RECONNECTS"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1557
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1567
 msgid "Command-line option: ``--storage-tarantool-max-reconnects``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1563
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1573
 msgid "A username for connecting to the Tarantool |tcm| configuration storage."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1570
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1580
 msgid "Environment variable: TCM_STORAGE_TARANTOOL_USER"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1571
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1581
 msgid "Command-line option: ``--storage-tarantool-user``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1577
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1587
 msgid "A password for connecting to the Tarantool |tcm| configuration storage."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1584
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1594
 msgid "Environment variable: TCM_STORAGE_TARANTOOL_PASS"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1585
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1595
 msgid "Command-line option: ``--storage-tarantool-pass``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1591
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1601
 msgid "A rate limit for connecting to the Tarantool |tcm| configuration storage."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1598
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1608
 msgid "Environment variable: TCM_STORAGE_TARANTOOL_RATE_LIMIT"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1599
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1609
 msgid "Command-line option: ``--storage-tarantool-rate-limit``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1605
-msgid "An action to perform when the :ref:`<tcm_configuration_reference_storage_tarantool_rate-limit>` is reached."
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1615
+msgid "An action to perform when the :ref:`tcm_configuration_reference_storage_tarantool_rate-limit` is reached."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1612
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1622
 msgid "Environment variable: TCM_STORAGE_TARANTOOL_RATE_LIMIT_ACTION"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1613
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1623
 msgid "Command-line option: ``--storage-tarantool-rate-limit-action``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1620
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1630
 msgid "An amount of separate mutexes for request queues and buffers inside of a connection to the Tarantool |tcm| configuration storage."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1628
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1638
 msgid "Environment variable: TCM_STORAGE_TARANTOOL_CONCURRENCY"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1629
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1639
 msgid "Command-line option: ``--storage-tarantool-concurrency``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1635
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1645
 msgid "Whether the schema is loaded from the Tarantool |tcm| configuration storage."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1642
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1652
 msgid "Environment variable: TCM_STORAGE_TARANTOOL_SKIP_SCHEMA"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1643
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1653
 msgid "Command-line option: ``--storage-tarantool-skip-schema``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1649
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1659
 msgid "The connection type for the Tarantool |tcm| configuration storage."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1656
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1666
 msgid "Environment variable: TCM_STORAGE_TARANTOOL_TRANSPORT"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1657
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1667
 msgid "Command-line option: ``--storage-tarantool-transport``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1663
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1673
 msgid "A path to a TLS private key file to use for connecting to the Tarantool |tcm| configuration storage."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1666
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1681
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1696
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1711
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1726
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1676
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1691
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1706
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1721
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1736
 msgid "See also: :ref:`Traffic encryption <enterprise-iproto-encryption>`."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1671
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1681
 msgid "Environment variable: TCM_STORAGE_TARANTOOL_SSL_KEY_FILE"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1672
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1682
 msgid "Command-line option: ``--storage-tarantool-ssl-key-file``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1678
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1688
 msgid "A path to an SSL certificate to use for connecting to the Tarantool |tcm| configuration storage."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1686
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1696
 msgid "Environment variable: TCM_STORAGE_TARANTOOL_SSL_CERT_FILE"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1687
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1697
 msgid "Command-line option: ``--storage-tarantool-ssl-cert-file``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1693
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1703
 msgid "A path to a trusted CA certificate to use for connecting to the Tarantool |tcm| configuration storage."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1701
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1711
 msgid "Environment variable: TCM_STORAGE_TARANTOOL_SSL_CA_FILE"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1702
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1712
 msgid "Command-line option: ``--storage-tarantool-ssl-ca-file``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1708
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1718
 msgid "A list of SSL cipher suites that can be used for connecting to the Tarantool |tcm| configuration storage. Possible values are listed in :ref:`Supported ciphers <enterprise-iproto-encryption-ciphers>`."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1716
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1726
 msgid "Environment variable: TCM_STORAGE_TARANTOOL_SSL_CIPHERS"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1717
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1727
 msgid "Command-line option: ``--storage-tarantool-ssl-ciphers``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1723
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1733
 msgid "A password for an encrypted private SSL key to use for connecting to the Tarantool |tcm| configuration storage."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1731
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1741
 msgid "Environment variable: TCM_STORAGE_TARANTOOL_SSL_PASSWORD"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1732
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1742
 msgid "Command-line option: ``--storage-tarantool-ssl-password``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1738
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1748
 msgid "A text file with passwords for encrypted private SSL keys to use for connecting to the Tarantool |tcm| configuration storage."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1744
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1754
 msgid "Environment variable: TCM_STORAGE_TARANTOOL_SSL_PASSWORD_FILE"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1745
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1755
 msgid "Command-line option: ``--storage-tarantool-ssl-password-file``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1746
-msgid "`` .. _tcm_configuration_reference_storage_tarantool_embed:"
-msgstr ""
-
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1750
-msgid "storage.tarantool.embed.*"
-msgstr ""
-
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1752
-msgid "The ``storage.tarantool.embed`` group parameters define the configuration of the embedded Tarantool cluster that can used as a |tcm| configuration storage. This cluster can be used for development purposes when the production or testing cluster is not available or not needed."
-msgstr ""
-
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1761
-msgid "addon"
-msgstr ""
-
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1763
-msgid "The ``addon`` section defines settings related to |tcm| add-ons."
-msgstr ""
-
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1765
-msgid ":ref:`addon.enabled <tcm_configuration_reference_addon_enabled>`"
-msgstr ""
-
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1766
-msgid ":ref:`addon.addons-dir <tcm_configuration_reference_addon_addons-dir>`"
-msgstr ""
-
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1767
-msgid ":ref:`addon.max-upload-size <tcm_configuration_reference_addon_max-upload-size>`"
-msgstr ""
-
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1768
-msgid ":ref:`addon.dev-addons-dir <tcm_configuration_reference_addon_dev-addons-dir>`"
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1769
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1783
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1797
+msgid "See also `go-tarantool.ProtocolInfo <https://pkg.go.dev/github.com/tarantool/go-tarantool#ProtocolInfo>`__."
 msgstr ""
 
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1774
-msgid "Whether to enable the add-on functionality in |tcm|."
+msgid "Environment variable: TCM_STORAGE_TARANTOOL_SSL_REQUIRED_PROTOCOL_INFO_AUTH"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1779
-msgid "Environment variable: TCM_ADDON_ENABLED"
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1775
+msgid "Command-line option: ``--storage-tarantool-required-protocol-info-auth``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1780
-msgid "Command-line option: ``--addon-enabled``"
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1781
+msgid "A Tarantool protocol version."
 msgstr ""
 
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1786
-msgid "The directory from which |tcm| takes add-ons."
+msgid "Type: uint64"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1790
-msgid "Default: addons"
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1788
+msgid "Environment variable: TCM_STORAGE_TARANTOOL_SSL_REQUIRED_PROTOCOL_INFO_VERSION"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1791
-msgid "Environment variable: TCM_ADDON_ADDONS_DIR"
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1789
+msgid "Command-line option: ``--storage-tarantool-required-protocol-info-version``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1792
-msgid "Command-line option: ``--addon-addons-dir``"
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1795
+msgid "An array of Tarantool protocol features."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1798
-msgid "The maximum size (in bytes) of addon to upload to |tcm|."
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1800
+msgid "Type: []int"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1802
+msgid "Environment variable: TCM_STORAGE_TARANTOOL_SSL_REQUIRED_PROTOCOL_INFO_FEATURES"
 msgstr ""
 
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1803
-msgid "Environment variable: TCM_ADDON_MAX_UPLOAD_SIZE"
+msgid "Command-line option: ``--storage-tarantool-required-protocol-info-features``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1804
-msgid "Command-line option: ``--addon-max-upload-size``"
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1808
+msgid "storage.tarantool.embed.*"
 msgstr ""
 
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1810
-msgid "Additional add-on directories for development purposes, separated by semicolons (``;``)."
+msgid "The ``storage.tarantool.embed`` group parameters define the configuration of the embedded Tarantool cluster that can used as a |tcm| configuration storage. This cluster can be used for development purposes when the production or testing cluster is not available or not needed."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1815
-msgid "Environment variable: TCM_ADDON_DEV_ADDONS_DIR"
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1819
+msgid "addon"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1816
-msgid "Command-line option: ``--addon-dev-addons-dir``"
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1821
+msgid "The ``addon`` section defines settings related to |tcm| add-ons."
 msgstr ""
 
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1823
-msgid "limits"
+msgid ":ref:`addon.enabled <tcm_configuration_reference_addon_enabled>`"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1824
+msgid ":ref:`addon.addons-dir <tcm_configuration_reference_addon_addons-dir>`"
 msgstr ""
 
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1825
-msgid "The ``limits`` section defines limits on various |tcm| objects and relations between them."
+msgid ":ref:`addon.max-upload-size <tcm_configuration_reference_addon_max-upload-size>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1828
-msgid ":ref:`limits.users-count <tcm_configuration_reference_limits_users-count>`"
-msgstr ""
-
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1829
-msgid ":ref:`limits.clusters-count <tcm_configuration_reference_limits_clusters-count>`"
-msgstr ""
-
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1830
-msgid ":ref:`limits.roles-count <tcm_configuration_reference_limits_roles-count>`"
-msgstr ""
-
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1831
-msgid ":ref:`limits.user-secrets-count <tcm_configuration_reference_limits_user-secrets-count>`"
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1826
+msgid ":ref:`addon.dev-addons-dir <tcm_configuration_reference_addon_dev-addons-dir>`"
 msgstr ""
 
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1832
-msgid ":ref:`limits.user-websessions-count <tcm_configuration_reference_limits_user-websessions-count>`"
+msgid "Whether to enable the add-on functionality in |tcm|."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1833
-msgid ":ref:`limits.linked-cluster-users <tcm_configuration_reference_limits_linked-cluster-users>`"
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1837
+msgid "Environment variable: TCM_ADDON_ENABLED"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1843
-msgid "Default: 1000"
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1838
+msgid "Command-line option: ``--addon-enabled``"
 msgstr ""
 
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1844
-msgid "Environment variable: TCM_LIMITS_USERS_COUNT"
+msgid "The directory from which |tcm| takes add-ons."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1845
-msgid "Command-line option: ``--limits-users-count``"
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1848
+msgid "Default: addons"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1851
-msgid "The maximum number of clusters in |tcm|."
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1849
+msgid "Environment variable: TCM_ADDON_ADDONS_DIR"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1855
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1879
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1891
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1903
-msgid "Default: 10"
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1850
+msgid "Command-line option: ``--addon-addons-dir``"
 msgstr ""
 
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1856
-msgid "Environment variable: TCM_LIMITS_CLUSTERS_COUNT"
+msgid "The maximum size (in bytes) of addon to upload to |tcm|."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1857
-msgid "Command-line option: ``--limits-clusters-count``"
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1861
+msgid "Environment variable: TCM_ADDON_MAX_UPLOAD_SIZE"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1863
-msgid "The maximum number of roles in |tcm|."
-msgstr ""
-
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1867
-msgid "Default: 100"
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1862
+msgid "Command-line option: ``--addon-max-upload-size``"
 msgstr ""
 
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1868
-msgid "Environment variable: TCM_LIMITS_ROLES_COUNT"
+msgid "Additional add-on directories for development purposes, separated by semicolons (``;``)."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1869
-msgid "Command-line option: ``--limits-roles-count``"
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1873
+msgid "Environment variable: TCM_ADDON_DEV_ADDONS_DIR"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1875
-msgid "The maximum number secrets that a |tcm| user can have."
-msgstr ""
-
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1880
-msgid "Environment variable: TCM_LIMITS_USER_SECRETS_COUNT"
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1874
+msgid "Command-line option: ``--addon-dev-addons-dir``"
 msgstr ""
 
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1881
-msgid "Command-line option: ``--limits-user-secrets-count``"
+msgid "limits"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1883
+msgid "The ``limits`` section defines limits on various |tcm| objects and relations between them."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1886
+msgid ":ref:`limits.users-count <tcm_configuration_reference_limits_users-count>`"
 msgstr ""
 
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1887
-msgid "The maximum number of open sessions that a |tcm| user can have."
+msgid ":ref:`limits.clusters-count <tcm_configuration_reference_limits_clusters-count>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1892
-msgid "Environment variable: TCM_LIMITS_USER_WEBSESSIONS_COUNT"
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1888
+msgid ":ref:`limits.roles-count <tcm_configuration_reference_limits_roles-count>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1893
-msgid "Command-line option: ``--limits-user-websessions-count``"
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1889
+msgid ":ref:`limits.user-secrets-count <tcm_configuration_reference_limits_user-secrets-count>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1899
-msgid "The maximum number of clusters to which a single user can have access."
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1890
+msgid ":ref:`limits.user-websessions-count <tcm_configuration_reference_limits_user-websessions-count>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1904
-msgid "Environment variable: TCM_LIMITS_LINKED_CLUSTER_USERS"
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1891
+msgid ":ref:`limits.linked-cluster-users <tcm_configuration_reference_limits_linked-cluster-users>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1905
-msgid "Command-line option: ``--limits-linked-cluster-users``"
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1901
+msgid "Default: 1000"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1902
+msgid "Environment variable: TCM_LIMITS_USERS_COUNT"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1903
+msgid "Command-line option: ``--limits-users-count``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1909
+msgid "The maximum number of clusters in |tcm|."
 msgstr ""
 
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1913
-msgid "security"
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1937
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1949
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1961
+msgid "Default: 10"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1914
+msgid "Environment variable: TCM_LIMITS_CLUSTERS_COUNT"
 msgstr ""
 
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1915
-msgid "The ``security`` section defines the security parameters of |tcm|."
-msgstr ""
-
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1917
-msgid ":ref:`security.auth <tcm_configuration_reference_security_auth>`"
-msgstr ""
-
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1918
-msgid ":ref:`security.hash-cost <tcm_configuration_reference_security_hash-cost>`"
-msgstr ""
-
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1919
-msgid ":ref:`security.encryption-key <tcm_configuration_reference_security_encryption-key>`"
-msgstr ""
-
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1920
-msgid ":ref:`security.encryption-key-file <tcm_configuration_reference_security_encryption-key-file_>`"
+msgid "Command-line option: ``--limits-clusters-count``"
 msgstr ""
 
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1921
-msgid ":ref:`security.bootstrap-password <tcm_configuration_reference_security_bootstrap-password>`"
+msgid "The maximum number of roles in |tcm|."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1922
-msgid ":ref:`security.integrity-check <tcm_configuration_reference_security_integrity-check>`"
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1925
+msgid "Default: 100"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1923
-msgid ":ref:`security.signature-private-key-file <tcm_configuration_reference_security_signature-private-key-file>`"
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1926
+msgid "Environment variable: TCM_LIMITS_ROLES_COUNT"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1929
-msgid "Ways to log into |tcm|."
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1927
+msgid "Command-line option: ``--limits-roles-count``"
 msgstr ""
 
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1933
-msgid "``local``"
-msgstr ""
-
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1934
-msgid "``ldap``"
+msgid "The maximum number secrets that a |tcm| user can have."
 msgstr ""
 
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1938
-msgid "Default: [local]"
+msgid "Environment variable: TCM_LIMITS_USER_SECRETS_COUNT"
 msgstr ""
 
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1939
-msgid "Environment variable: TCM_SECURITY_AUTH"
+msgid "Command-line option: ``--limits-user-secrets-count``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1940
-msgid "Command-line option: ``--security-auth``"
-msgstr ""
-
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1946
-msgid "A hash cost for hashing users' passwords."
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1945
+msgid "The maximum number of open sessions that a |tcm| user can have."
 msgstr ""
 
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1950
-msgid "Default: 12"
+msgid "Environment variable: TCM_LIMITS_USER_WEBSESSIONS_COUNT"
 msgstr ""
 
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1951
-msgid "Environment variable: TCM_SECURITY_HASH_COST"
+msgid "Command-line option: ``--limits-user-websessions-count``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1952
-msgid "Command-line option: ``--security-hash-cost``"
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1957
+msgid "The maximum number of clusters to which a single user can have access."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1958
-msgid "An encryption key for passwords used by |tcm| for accessing Tarantool and etcd clusters."
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1962
+msgid "Environment variable: TCM_LIMITS_LINKED_CLUSTER_USERS"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1964
-msgid "Environment variable: TCM_SECURITY_ENCRYPTION_KEY"
-msgstr ""
-
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1965
-msgid "Command-line option: ``--security-encryption-key``"
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1963
+msgid "Command-line option: ``--limits-linked-cluster-users``"
 msgstr ""
 
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1971
-msgid "A path to the file with the encryption key for passwords used by |tcm| for accessing Tarantool and etcd clusters."
+msgid "security"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1973
+msgid "The ``security`` section defines the security parameters of |tcm|."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1975
+msgid ":ref:`security.auth <tcm_configuration_reference_security_auth>`"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1976
+msgid ":ref:`security.hash-cost <tcm_configuration_reference_security_hash-cost>`"
 msgstr ""
 
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1977
-msgid "Environment variable: TCM_SECURITY_ENCRYPTION_KEY_FILE"
+msgid ":ref:`security.encryption-key <tcm_configuration_reference_security_encryption-key>`"
 msgstr ""
 
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1978
-msgid "Command-line option: ``--security-encryption-key-file``"
+msgid ":ref:`security.encryption-key-file <tcm_configuration_reference_security_encryption-key-file_>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1984
-msgid "A password for the first login of the ``admin`` user. Must be changed after the successful login. Only for testing purposes."
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1979
+msgid ":ref:`security.bootstrap-password <tcm_configuration_reference_security_bootstrap-password>`"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1990
-msgid "Environment variable: TCM_SECURITY_BOOTSTRAP_PASSWORD"
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1980
+msgid ":ref:`security.integrity-check <tcm_configuration_reference_security_integrity-check>`"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1981
+msgid ":ref:`security.signature-private-key-file <tcm_configuration_reference_security_signature-private-key-file>`"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1987
+msgid "Ways to log into |tcm|."
 msgstr ""
 
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1991
-msgid "Command-line option: ``--security-bootstrap-password``"
+msgid "``local``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1992
+msgid "``ldap``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1996
+msgid "Default: [local]"
 msgstr ""
 
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1997
-msgid "A path to a file with the private key to sign |tcm| data."
+msgid "Environment variable: TCM_SECURITY_AUTH"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2002
-msgid "Environment variable: TCM_SECURITY_SIGNATURE_PRIVATE_KEY_FILE"
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:1998
+msgid "Command-line option: ``--security-auth``"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2003
-msgid "Command-line option: ``--security-signature-private-key-file``"
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2004
+msgid "A hash cost for hashing users' passwords."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2008
+msgid "Default: 12"
 msgstr ""
 
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2009
-msgid "Whether to check the digital signature. If ``true``, the error is raised in case an incorrect signature is detected."
+msgid "Environment variable: TCM_SECURITY_HASH_COST"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2015
-msgid "Environment variable: TCM_SECURITY_INTEGRITY_CHECK"
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2010
+msgid "Command-line option: ``--security-hash-cost``"
 msgstr ""
 
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2016
-msgid "Command-line option: ``--security-integrity-check``"
+msgid "An encryption key for passwords used by |tcm| for accessing Tarantool and etcd clusters."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2022
+msgid "Environment variable: TCM_SECURITY_ENCRYPTION_KEY"
 msgstr ""
 
 #: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2023
+msgid "Command-line option: ``--security-encryption-key``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2029
+msgid "A path to the file with the encryption key for passwords used by |tcm| for accessing Tarantool and etcd clusters."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2035
+msgid "Environment variable: TCM_SECURITY_ENCRYPTION_KEY_FILE"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2036
+msgid "Command-line option: ``--security-encryption-key-file``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2042
+msgid "A password for the first login of the ``admin`` user. Must be changed after the successful login. Only for testing purposes."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2048
+msgid "Environment variable: TCM_SECURITY_BOOTSTRAP_PASSWORD"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2049
+msgid "Command-line option: ``--security-bootstrap-password``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2055
+msgid "A path to a file with the private key to sign |tcm| data."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2060
+msgid "Environment variable: TCM_SECURITY_SIGNATURE_PRIVATE_KEY_FILE"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2061
+msgid "Command-line option: ``--security-signature-private-key-file``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2067
+msgid "Whether to check the digital signature. If ``true``, the error is raised in case an incorrect signature is detected."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2073
+msgid "Environment variable: TCM_SECURITY_INTEGRITY_CHECK"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2074
+msgid "Command-line option: ``--security-integrity-check``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2081
 msgid "mode"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2027
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2085
 msgid "The |tcm| mode: ``production``, ``development``, or ``test``."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2031
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2089
 msgid "Default: production"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2032
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2090
 msgid "Environment variable: TCM_MODE"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2033
+#: ../../doc/reference/tooling/tcm/tcm_configuration_reference.rst:2091
 msgid "Command-line option: ``--mode``"
 msgstr ""
