@@ -1053,21 +1053,20 @@ etcd storage parameters:
 -   :ref:`storage.etcd.max-call-send-msg-size <tcm_configuration_reference_storage_etcd_max-call-send-msg-size>`
 -   :ref:`storage.etcd.username <tcm_configuration_reference_storage_etcd_username>`
 -   :ref:`storage.etcd.password <tcm_configuration_reference_storage_etcd_password>`
--   :ref:`storage.etcd.tls <tcm_configuration_reference_storage_etcd_tls>`
 -   :ref:`storage.etcd.tls.enabled <tcm_configuration_reference_storage_etcd_tls_enabled>`
 -   :ref:`storage.etcd.tls.auto <tcm_configuration_reference_storage_etcd_tls_auto>`
 -   :ref:`storage.etcd.tls.cert-file <tcm_configuration_reference_storage_etcd_tls_cert-file>`
 -   :ref:`storage.etcd.tls.key-file <tcm_configuration_reference_storage_etcd_tls_key-file>`
 -   :ref:`storage.etcd.tls.trusted-ca-file <tcm_configuration_reference_storage_etcd_tls_trusted-ca-file>`
--   :ref:`storage.etcd.tls.client-cert-auth <tcm_configuration_reference_storage_etcd_tls>`
--   :ref:`storage.etcd.tls.crl-file: <tcm_configuration_reference_storage_etcd_tls>`
--   :ref:`storage.etcd.tls.insecure-skip-verify <tcm_configuration_reference_storage_etcd_tls>`
--   :ref:`storage.etcd.tls.skip-client-san-verify <tcm_configuration_reference_storage_etcd_tls>`
--   :ref:`storage.etcd.tls.server-name <tcm_configuration_reference_storage_etcd_tls>`
--   :ref:`storage.etcd.tls.cipher-suites <tcm_configuration_reference_storage_etcd_tls>`
--   :ref:`storage.etcd.tls.allowed-cn <tcm_configuration_reference_storage_etcd_tls>`
--   :ref:`storage.etcd.tls.allowed-hostname <tcm_configuration_reference_storage_etcd_tls>`
--   :ref:`storage.etcd.tls.empty-cn <tcm_configuration_reference_storage_etcd_tls>`
+-   :ref:`storage.etcd.tls.client-cert-auth <tcm_configuration_reference_storage_etcd_tls_client-cert-auth>`
+-   :ref:`storage.etcd.tls.crl-file <tcm_configuration_reference_storage_etcd_tls_crl-file>`
+-   :ref:`storage.etcd.tls.insecure-skip-verify <tcm_configuration_reference_storage_etcd_tls_insecure-skip-verify>`
+-   :ref:`storage.etcd.tls.skip-client-san-verify <tcm_configuration_reference_storage_etcd_tls_skip-client-san-verify>`
+-   :ref:`storage.etcd.tls.server-name <tcm_configuration_reference_storage_etcd_tls_server-name>`
+-   :ref:`storage.etcd.tls.cipher-suites <tcm_configuration_reference_storage_etcd_tls_cipher-suites>`
+-   :ref:`storage.etcd.tls.allowed-cn <tcm_configuration_reference_storage_etcd_tls_allowed-cn>`
+-   :ref:`storage.etcd.tls.allowed-hostname <tcm_configuration_reference_storage_etcd_tls_allowed-hostname>`
+-   :ref:`storage.etcd.tls.empty-cn <tcm_configuration_reference_storage_etcd_tls_empty-cn>`
 -   :ref:`storage.etcd.permit-without-stream <tcm_configuration_reference_storage_etcd_permit-without-stream>`
 -   :ref:`storage.etcd.embed.enabled <tcm_configuration_reference_storage_etcd_embed>`
 -   :ref:`storage.etcd.embed.endpoints <tcm_configuration_reference_storage_etcd_embed>`
@@ -1123,7 +1122,7 @@ Tarantool storage parameters:
 -   :ref:`storage.tarantool.addr <tcm_configuration_reference_storage_tarantool_addr>`
 -   :ref:`storage.tarantool.auth <tcm_configuration_reference_storage_tarantool_timeout>`
 -   :ref:`storage.tarantool.reconnect <tcm_configuration_reference_storage_tarantool_reconnect>`
--   :ref:`storage.tarantool.max_reconnect <tcm_configuration_reference_storage_tarantool_max_reconnect>`
+-   :ref:`storage.tarantool.max_reconnects <tcm_configuration_reference_storage_tarantool_max_reconnects>`
 -   :ref:`storage.tarantool.user <tcm_configuration_reference_storage_tarantool_user>`
 -   :ref:`storage.tarantool.pass <tcm_configuration_reference_storage_tarantool_pass>`
 -   :ref:`storage.tarantool.rate-limit <tcm_configuration_reference_storage_tarantool_rate-limit>`
@@ -1458,6 +1457,18 @@ Tarantool storage parameters:
     | Environment variable: TCM_STORAGE_ETCD_TLS_EMPTY_CN
     | Command-line option: ``--storage-etcd-tls-empty-cn``
 
+.. _tcm_configuration_reference_storage_etcd_permit-without-stream:
+
+.. confval:: storage.etcd.permit-without-stream
+
+    Whether keepalive pings can be send to the etcd server without active streams.
+
+    |
+    | Type: bool
+    | Default: false
+    | Environment variable: TCM_STORAGE_ETCD_PERMIT_WITHOUT_STREAM
+    | Command-line option: ``--storage-etcd-permit-without-stream``
+
 .. _tcm_configuration_reference_storage_etcd_embed:
 
 storage.etcd.embed.*
@@ -1602,7 +1613,7 @@ etcd cluster is not available or not needed.
 
 .. confval:: storage.tarantool.rate-limit-action
 
-    An action to perform when the :ref:`<tcm_configuration_reference_storage_tarantool_rate-limit>` is reached.
+    An action to perform when the :ref:`tcm_configuration_reference_storage_tarantool_rate-limit` is reached.
 
     See also `go-tarantool.Opts <https://pkg.go.dev/github.com/tarantool/go-tarantool#Opts>`__.
 
@@ -1743,7 +1754,55 @@ etcd cluster is not available or not needed.
     | Default: ""
     | Environment variable: TCM_STORAGE_TARANTOOL_SSL_PASSWORD_FILE
     | Command-line option: ``--storage-tarantool-ssl-password-file``
-``
+
+.. _tcm_configuration_reference_storage_tarantool_required-protocol-info_auth:
+
+.. confval:: storage.tarantool.required-protocol-info.auth
+
+    An authentication method for the Tarantool |tcm| configuration storage.
+
+    Possible values are the Go's `go-tarantool/Auth <https://pkg.go.dev/github.com/tarantool/go-tarantool#Auth>`__ constants:
+
+    -   ``AutoAuth`` (0)
+    -   ``ChapSha1Auth``
+    -   ``PapSha256Auth``
+
+    See also `go-tarantool.ProtocolInfo <https://pkg.go.dev/github.com/tarantool/go-tarantool#ProtocolInfo>`__.
+
+    |
+    | Type: int
+    | Default: 0
+    | Environment variable: TCM_STORAGE_TARANTOOL_SSL_REQUIRED_PROTOCOL_INFO_AUTH
+    | Command-line option: ``--storage-tarantool-required-protocol-info-auth``
+
+.. _tcm_configuration_reference_storage_tarantool_required-protocol-info_version:
+
+.. confval:: storage.tarantool.required-protocol-info.version
+
+    A Tarantool protocol version.
+
+    See also `go-tarantool.ProtocolInfo <https://pkg.go.dev/github.com/tarantool/go-tarantool#ProtocolInfo>`__.
+
+    |
+    | Type: uint64
+    | Default: 0
+    | Environment variable: TCM_STORAGE_TARANTOOL_SSL_REQUIRED_PROTOCOL_INFO_VERSION
+    | Command-line option: ``--storage-tarantool-required-protocol-info-version``
+
+.. _tcm_configuration_reference_storage_tarantool_required-protocol-info_features:
+
+.. confval:: storage.tarantool.required-protocol-info.features
+
+    An array of Tarantool protocol features.
+
+    See also `go-tarantool.ProtocolInfo <https://pkg.go.dev/github.com/tarantool/go-tarantool#ProtocolInfo>`__.
+
+    |
+    | Type: []int
+    | Default: []
+    | Environment variable: TCM_STORAGE_TARANTOOL_SSL_REQUIRED_PROTOCOL_INFO_FEATURES
+    | Command-line option: ``--storage-tarantool-required-protocol-info-features``
+
 .. _tcm_configuration_reference_storage_tarantool_embed:
 
 storage.tarantool.embed.*
