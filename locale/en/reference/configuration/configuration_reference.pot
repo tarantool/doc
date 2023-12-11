@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-07 07:21+0000\n"
+"POT-Creation-Date: 2023-12-11 13:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -101,10 +101,10 @@ msgstr ""
 #: ../../doc/reference/configuration/configuration_reference.rst:599
 #: ../../doc/reference/configuration/configuration_reference.rst:625
 #: ../../doc/reference/configuration/configuration_reference.rst:656
-#: ../../doc/reference/configuration/configuration_reference.rst:943
-#: ../../doc/reference/configuration/configuration_reference.rst:986
-#: ../../doc/reference/configuration/configuration_reference.rst:1042
-#: ../../doc/reference/configuration/configuration_reference.rst:1105
+#: ../../doc/reference/configuration/configuration_reference.rst:941
+#: ../../doc/reference/configuration/configuration_reference.rst:984
+#: ../../doc/reference/configuration/configuration_reference.rst:1040
+#: ../../doc/reference/configuration/configuration_reference.rst:1103
 msgid "Type: string"
 msgstr ""
 
@@ -215,7 +215,7 @@ msgid "See also: :ref:`Local etcd configuration <etcd_local_configuration>`."
 msgstr ""
 
 #: ../../doc/reference/configuration/configuration_reference.rst:102
-#: ../../doc/reference/configuration/configuration_reference.rst:1132
+#: ../../doc/reference/configuration/configuration_reference.rst:1130
 msgid "Type: array"
 msgstr ""
 
@@ -280,7 +280,7 @@ msgstr ""
 #: ../../doc/reference/configuration/configuration_reference.rst:391
 #: ../../doc/reference/configuration/configuration_reference.rst:506
 #: ../../doc/reference/configuration/configuration_reference.rst:916
-#: ../../doc/reference/configuration/configuration_reference.rst:1150
+#: ../../doc/reference/configuration/configuration_reference.rst:1148
 msgid "Type: boolean"
 msgstr ""
 
@@ -302,12 +302,12 @@ msgstr ""
 
 #: ../../doc/reference/configuration/configuration_reference.rst:230
 #: ../../doc/reference/configuration/configuration_reference.rst:494
-#: ../../doc/reference/configuration/configuration_reference.rst:961
-#: ../../doc/reference/configuration/configuration_reference.rst:1011
-#: ../../doc/reference/configuration/configuration_reference.rst:1168
-#: ../../doc/reference/configuration/configuration_reference.rst:1183
-#: ../../doc/reference/configuration/configuration_reference.rst:1227
-#: ../../doc/reference/configuration/configuration_reference.rst:1260
+#: ../../doc/reference/configuration/configuration_reference.rst:959
+#: ../../doc/reference/configuration/configuration_reference.rst:1009
+#: ../../doc/reference/configuration/configuration_reference.rst:1166
+#: ../../doc/reference/configuration/configuration_reference.rst:1181
+#: ../../doc/reference/configuration/configuration_reference.rst:1225
+#: ../../doc/reference/configuration/configuration_reference.rst:1258
 msgid "Type: number"
 msgstr ""
 
@@ -415,7 +415,7 @@ msgstr ""
 
 #: ../../doc/reference/configuration/configuration_reference.rst:392
 #: ../../doc/reference/configuration/configuration_reference.rst:507
-#: ../../doc/reference/configuration/configuration_reference.rst:1151
+#: ../../doc/reference/configuration/configuration_reference.rst:1149
 msgid "Default: false"
 msgstr ""
 
@@ -457,7 +457,7 @@ msgstr ""
 #: ../../doc/reference/configuration/configuration_reference.rst:600
 #: ../../doc/reference/configuration/configuration_reference.rst:626
 #: ../../doc/reference/configuration/configuration_reference.rst:657
-#: ../../doc/reference/configuration/configuration_reference.rst:1133
+#: ../../doc/reference/configuration/configuration_reference.rst:1131
 msgid "Default: :ref:`box.NULL <box-null>`"
 msgstr ""
 
@@ -491,8 +491,8 @@ msgstr ""
 #: ../../doc/reference/configuration/configuration_reference.rst:643
 #: ../../doc/reference/configuration/configuration_reference.rst:808
 #: ../../doc/reference/configuration/configuration_reference.rst:824
-#: ../../doc/reference/configuration/configuration_reference.rst:1091
-#: ../../doc/reference/configuration/configuration_reference.rst:1119
+#: ../../doc/reference/configuration/configuration_reference.rst:1089
+#: ../../doc/reference/configuration/configuration_reference.rst:1117
 msgid "**Example**"
 msgstr ""
 
@@ -695,14 +695,14 @@ msgstr ""
 
 #: ../../doc/reference/configuration/configuration_reference.rst:588
 #: ../../doc/reference/configuration/configuration_reference.rst:613
-#: ../../doc/reference/configuration/configuration_reference.rst:1093
-#: ../../doc/reference/configuration/configuration_reference.rst:1121
+#: ../../doc/reference/configuration/configuration_reference.rst:1091
+#: ../../doc/reference/configuration/configuration_reference.rst:1119
 msgid "In the example below, the following configuration options are specified:"
 msgstr ""
 
 #: ../../doc/reference/configuration/configuration_reference.rst:590
-#: ../../doc/reference/configuration/configuration_reference.rst:1095
-#: ../../doc/reference/configuration/configuration_reference.rst:1123
+#: ../../doc/reference/configuration/configuration_reference.rst:1093
+#: ../../doc/reference/configuration/configuration_reference.rst:1121
 msgid "In the :ref:`credentials <configuration_reference_credentials>` section, the ``replicator`` user with the ``replication`` role is created."
 msgstr ""
 
@@ -860,7 +860,7 @@ msgstr ""
 #: ../../doc/reference/configuration/configuration_reference.rst:694
 #: ../../doc/reference/configuration/configuration_reference.rst:713
 #: ../../doc/reference/configuration/configuration_reference.rst:731
-#: ../../doc/reference/configuration/configuration_reference.rst:1243
+#: ../../doc/reference/configuration/configuration_reference.rst:1241
 msgid "Type: integer"
 msgstr ""
 
@@ -893,8 +893,8 @@ msgid "The number of :ref:`network threads <thread_model>`. There can be unusual
 msgstr ""
 
 #: ../../doc/reference/configuration/configuration_reference.rst:732
-#: ../../doc/reference/configuration/configuration_reference.rst:1244
-#: ../../doc/reference/configuration/configuration_reference.rst:1261
+#: ../../doc/reference/configuration/configuration_reference.rst:1242
+#: ../../doc/reference/configuration/configuration_reference.rst:1259
 msgid "Default: 1"
 msgstr ""
 
@@ -1145,195 +1145,191 @@ msgid "``config``: use the specified node to bootstrap a replica set. To specify
 msgstr ""
 
 #: ../../doc/reference/configuration/configuration_reference.rst:936
-msgid "``supervised``: a bootstrap leader isn't chosen automatically but should be appointed using ``box.ctl.make_bootstrap_leader()`` on the desired node."
+msgid "``supervised``: a bootstrap leader isn't chosen automatically but should be appointed using :ref:`box.ctl.make_bootstrap_leader() <box_ctl-make_bootstrap_leader>` on the desired node."
 msgstr ""
 
 #: ../../doc/reference/configuration/configuration_reference.rst:938
-msgid "Configuration fails if no bootstrap leader is appointed during a :ref:`replication.connect_timeout <configuration_reference_replication_connect_timeout>`."
-msgstr ""
-
-#: ../../doc/reference/configuration/configuration_reference.rst:940
 msgid "``legacy`` (deprecated since :doc:`2.11.0 </release/2.11.0>`): a node requires the :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>` number of other nodes to be connected. This option is added to keep the compatibility with the current versions of Cartridge and might be removed in the future."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:944
+#: ../../doc/reference/configuration/configuration_reference.rst:942
 msgid "Default: ``auto``"
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:945
+#: ../../doc/reference/configuration/configuration_reference.rst:943
 msgid "Environment variable: TT_REPLICATION_BOOTSTRAP_STRATEGY"
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:952
+#: ../../doc/reference/configuration/configuration_reference.rst:950
 msgid "A timeout (in seconds) a replica waits when trying to connect to a master in a cluster. See :ref:`orphan status <replication-orphan_status>` for details."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:955
+#: ../../doc/reference/configuration/configuration_reference.rst:953
 msgid "This parameter is different from :ref:`replication.timeout <configuration_reference_replication_timeout>`, which a master uses to disconnect a replica when the master receives no acknowledgments of heartbeat messages."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:962
+#: ../../doc/reference/configuration/configuration_reference.rst:960
 msgid "Default: 30"
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:963
+#: ../../doc/reference/configuration/configuration_reference.rst:961
 msgid "Environment variable: TT_REPLICATION_CONNECT_TIMEOUT"
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:970
+#: ../../doc/reference/configuration/configuration_reference.rst:968
 msgid "A role of a replica set node in the :ref:`leader election process <repl_leader_elect>`."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:972
+#: ../../doc/reference/configuration/configuration_reference.rst:970
 msgid "The possible values are:"
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:974
+#: ../../doc/reference/configuration/configuration_reference.rst:972
 msgid "``off``: a node doesn't participate in the election activities."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:976
+#: ../../doc/reference/configuration/configuration_reference.rst:974
 msgid "``voter``: a node can participate in the election process but can't be a leader."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:978
+#: ../../doc/reference/configuration/configuration_reference.rst:976
 msgid "``candidate``: a node should be able to become a leader."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:980
+#: ../../doc/reference/configuration/configuration_reference.rst:978
 msgid "``manual``: allow to control which instance is the leader explicitly instead of relying on automated leader election. By default, the instance acts like a voter -- it is read-only and may vote for other candidate instances. Once :ref:`box.ctl.promote() <box_ctl-promote>` is called, the instance becomes a candidate and starts a new election round. If the instance wins the elections, it becomes a leader but won't participate in any new elections."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:987
+#: ../../doc/reference/configuration/configuration_reference.rst:985
 msgid "Default: :ref:`box.NULL <box-null>` (the actual default value depends on :ref:`replication.failover <configuration_reference_replication_failover>`)"
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:988
+#: ../../doc/reference/configuration/configuration_reference.rst:986
 msgid "Environment variable: TT_REPLICATION_ELECTION_MODE"
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:995
+#: ../../doc/reference/configuration/configuration_reference.rst:993
 msgid "Specifies the timeout (in seconds) between election rounds in the :ref:`leader election process <repl_leader_elect>` if the previous round ended up with a split vote."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:999
+#: ../../doc/reference/configuration/configuration_reference.rst:997
 msgid "It is quite big, and for most of the cases, it can be lowered to 300-400 ms."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1002
+#: ../../doc/reference/configuration/configuration_reference.rst:1000
 msgid "To avoid the split vote repeat, the timeout is randomized on each node during every new election, from 100% to 110% of the original timeout value. For example, if the timeout is 300 ms and there are 3 nodes started the election simultaneously in the same term, they can set their election timeouts to 300, 310, and 320 respectively, or to 305, 302, and 324, and so on. In that way, the votes will never be split because the election on different nodes won't be restarted simultaneously."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1012
-#: ../../doc/reference/configuration/configuration_reference.rst:1228
+#: ../../doc/reference/configuration/configuration_reference.rst:1010
+#: ../../doc/reference/configuration/configuration_reference.rst:1226
 msgid "Default: 5"
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1013
+#: ../../doc/reference/configuration/configuration_reference.rst:1011
 msgid "Environment variable: TT_REPLICATION_ELECTION_TIMEOUT"
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1020
+#: ../../doc/reference/configuration/configuration_reference.rst:1018
 msgid "Specifies the :ref:`leader fencing mode <repl_leader_elect_fencing>` that affects the leader election process. When the parameter is set to ``soft`` or ``strict``, the leader resigns its leadership if it has less than :ref:`replication.synchro_quorum <configuration_reference_replication_synchro_quorum>` of alive connections to the cluster nodes. The resigning leader receives the status of a follower in the current election term and becomes read-only."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1028
+#: ../../doc/reference/configuration/configuration_reference.rst:1026
 msgid "In ``soft`` mode, a connection is considered dead if there are no responses for :ref:`4 * replication.timeout <configuration_reference_replication_timeout>` seconds both on the current leader and the followers."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1031
+#: ../../doc/reference/configuration/configuration_reference.rst:1029
 msgid "In ``strict`` mode, a connection is considered dead if there are no responses for :ref:`2 * replication.timeout <configuration_reference_replication_timeout>` seconds on the current leader and :ref:`4 * replication.timeout <configuration_reference_replication_timeout>` seconds on the followers. This improves the chances that there is only one leader at any time."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1037
+#: ../../doc/reference/configuration/configuration_reference.rst:1035
 msgid "Fencing applies to the instances that have the :ref:`replication.election_mode <configuration_reference_replication_election_mode>` set to ``candidate`` or ``manual``. To turn off leader fencing, set ``election_fencing_mode`` to ``off``."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1043
+#: ../../doc/reference/configuration/configuration_reference.rst:1041
 msgid "Default: ``soft``"
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1044
+#: ../../doc/reference/configuration/configuration_reference.rst:1042
 msgid "Possible values: ``off``, ``soft``, ``strict``"
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1045
+#: ../../doc/reference/configuration/configuration_reference.rst:1043
 msgid "Environment variable: TT_REPLICATION_ELECTION_FENCING_MODE"
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1052
+#: ../../doc/reference/configuration/configuration_reference.rst:1050
 msgid "A failover mode used to take over a master role when the current master instance fails. The following modes are available:"
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1055
+#: ../../doc/reference/configuration/configuration_reference.rst:1053
 msgid "``off``"
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1057
+#: ../../doc/reference/configuration/configuration_reference.rst:1055
 msgid "Leadership in a replica set is controlled using the :ref:`database.mode <configuration_reference_database_mode>` option. In this case, you can set the ``database.mode`` option to ``rw`` on all instances in a replica set to make a :ref:`master-master <replication-roles>` configuration."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1060
+#: ../../doc/reference/configuration/configuration_reference.rst:1058
 msgid "The default ``database.mode`` is determined as follows: ``rw`` if there is one instance in a replica set; ``ro`` if there are several instances."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1062
+#: ../../doc/reference/configuration/configuration_reference.rst:1060
 msgid "``manual``"
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1064
+#: ../../doc/reference/configuration/configuration_reference.rst:1062
 msgid "Leadership in a replica set is controlled using the :ref:`<replicaset_name>.leader <configuration_reference_replicasets_name_leader>` option. In this case, a :ref:`master-master <replication-roles>` configuration is forbidden."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1067
+#: ../../doc/reference/configuration/configuration_reference.rst:1065
 msgid "In the ``manual`` mode, the :ref:`database.mode <configuration_reference_database_mode>` option cannot be set explicitly. The leader is configured in the read-write mode, all the other instances are read-only."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1070
+#: ../../doc/reference/configuration/configuration_reference.rst:1068
 msgid "``election``"
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1072
+#: ../../doc/reference/configuration/configuration_reference.rst:1070
 msgid ":ref:`Automated leader election <repl_leader_elect>` is used to control leadership in a replica set."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1074
+#: ../../doc/reference/configuration/configuration_reference.rst:1072
 msgid "In the ``election`` mode, :ref:`database.mode <configuration_reference_database_mode>` and :ref:`<replicaset_name>.leader <configuration_reference_replicasets_name_leader>` shouldn't be set explicitly."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1076
+#: ../../doc/reference/configuration/configuration_reference.rst:1074
 msgid "``supervised`` (`Enterprise Edition <https://www.tarantool.io/compare/>`_ only)"
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1078
+#: ../../doc/reference/configuration/configuration_reference.rst:1076
 msgid "Leadership in a replica set is controlled using an external failover agent."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1080
+#: ../../doc/reference/configuration/configuration_reference.rst:1078
 msgid "In the ``supervised`` mode, :ref:`database.mode <configuration_reference_database_mode>` and :ref:`<replicaset_name>.leader <configuration_reference_replicasets_name_leader>` shouldn't be set explicitly."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1085
+#: ../../doc/reference/configuration/configuration_reference.rst:1083
 msgid "See also: :ref:`Replication tutorials <how-to-replication>`."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1089
+#: ../../doc/reference/configuration/configuration_reference.rst:1087
 msgid "``replication.failover`` can be defined in the global, group, and replica set :ref:`scope <configuration_scopes>`."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1096
+#: ../../doc/reference/configuration/configuration_reference.rst:1094
 msgid ":ref:`iproto.advertise.peer <configuration_reference_iproto_advertise_peer>` specifies that other instances should connect to an address defined in :ref:`iproto.listen <configuration_reference_iproto_listen>` using the ``replicator`` user."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1097
+#: ../../doc/reference/configuration/configuration_reference.rst:1095
 msgid "``replication.failover`` specifies that a master instance should be set manually."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1098
+#: ../../doc/reference/configuration/configuration_reference.rst:1096
 msgid ":ref:`<replicaset_name>.leader <configuration_reference_replicasets_name_leader>` sets ``instance001`` as a replica set leader."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1100
+#: ../../doc/reference/configuration/configuration_reference.rst:1098
 msgid "credentials:\n"
 "  users:\n"
 "    replicator:\n"
@@ -1366,27 +1362,27 @@ msgid "credentials:\n"
 ""
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1106
+#: ../../doc/reference/configuration/configuration_reference.rst:1104
 msgid "Default: ``off``"
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1107
+#: ../../doc/reference/configuration/configuration_reference.rst:1105
 msgid "Environment variable: TT_REPLICATION_FAILOVER"
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1114
+#: ../../doc/reference/configuration/configuration_reference.rst:1112
 msgid "URIs of instances that constitute a replica set. These URIs are used by an instance to connect to another instance as a replica."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1117
+#: ../../doc/reference/configuration/configuration_reference.rst:1115
 msgid "Alternatively, you can use :ref:`iproto.advertise.peer <configuration_reference_iproto_advertise_peer>` to specify a URI used to advertise the current instance to other cluster members."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1124
+#: ../../doc/reference/configuration/configuration_reference.rst:1122
 msgid "``replication.peers`` specifies URIs of replica set instances."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1126
+#: ../../doc/reference/configuration/configuration_reference.rst:1124
 msgid "credentials:\n"
 "  users:\n"
 "    replicator:\n"
@@ -1401,118 +1397,118 @@ msgid "credentials:\n"
 ""
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1134
+#: ../../doc/reference/configuration/configuration_reference.rst:1132
 msgid "Environment variable: TT_REPLICATION_PEERS"
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1141
+#: ../../doc/reference/configuration/configuration_reference.rst:1139
 msgid "By default, if a replica adds a unique key that another replica has added, replication :ref:`stops <replication-replication_stops>` with the ``ER_TUPLE_FOUND`` :ref:`error <error_codes>`. If ``replication.skip_conflict`` is set to ``true``, such errors are ignored."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1148
+#: ../../doc/reference/configuration/configuration_reference.rst:1146
 msgid "Instead of saving the broken transaction to the write-ahead log, it is written as ``NOP`` (No operation)."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1152
+#: ../../doc/reference/configuration/configuration_reference.rst:1150
 msgid "Environment variable: TT_REPLICATION_SKIP_CONFLICT"
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1159
+#: ../../doc/reference/configuration/configuration_reference.rst:1157
 msgid "The maximum delay (in seconds) between the time when data is written to the master and the time when it is written to a replica. If ``replication.sync_lag`` is set to ``nil`` or 365 * 100 * 86400 (``TIMEOUT_INFINITY``), a replica is always considered to be \"synced\"."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1165
+#: ../../doc/reference/configuration/configuration_reference.rst:1163
 msgid "This parameter is ignored during bootstrap. See :ref:`orphan status <replication-orphan_status>` for details."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1169
+#: ../../doc/reference/configuration/configuration_reference.rst:1167
 msgid "Default: 10"
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1170
+#: ../../doc/reference/configuration/configuration_reference.rst:1168
 msgid "Environment variable: TT_REPLICATION_SYNC_LAG"
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1177
+#: ../../doc/reference/configuration/configuration_reference.rst:1175
 msgid "The timeout (in seconds) that a node waits when trying to sync with other nodes in a replica set after connecting or during a :ref:`configuration update <replication-configuration_update>`. This could fail indefinitely if :ref:`replication.sync_lag <configuration_reference_replication_sync_lag>` is smaller than network latency, or if the replica cannot keep pace with master updates. If ``replication.sync_timeout`` expires, the replica enters :ref:`orphan status <replication-orphan_status>`."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1184
+#: ../../doc/reference/configuration/configuration_reference.rst:1182
 msgid "Default: 0"
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1185
+#: ../../doc/reference/configuration/configuration_reference.rst:1183
 msgid "Environment variable: TT_REPLICATION_SYNC_TIMEOUT"
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1192
+#: ../../doc/reference/configuration/configuration_reference.rst:1190
 msgid "A number of replicas that should confirm the receipt of a :ref:`synchronous <repl_sync>` transaction before it can finish its commit."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1194
+#: ../../doc/reference/configuration/configuration_reference.rst:1192
 msgid "This option supports dynamic evaluation of the quorum number. For example, the default value is ``N / 2 + 1`` where ``N`` is the current number of replicas registered in a cluster. Once any replicas are added or removed, the expression is re-evaluated automatically."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1198
+#: ../../doc/reference/configuration/configuration_reference.rst:1196
 msgid "Note that the default value (``at least 50% of the cluster size + 1``) guarantees data reliability. Using a value less than the canonical one might lead to unexpected results, including a :ref:`split-brain <repl_leader_elect_splitbrain>`."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1202
+#: ../../doc/reference/configuration/configuration_reference.rst:1200
 msgid "``replication.synchro_quorum`` is not used on replicas. If the master fails, the pending synchronous transactions will be kept waiting on the replicas until a new master is elected."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1207
+#: ../../doc/reference/configuration/configuration_reference.rst:1205
 msgid "``replication.synchro_quorum`` does not account for anonymous replicas."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1209
+#: ../../doc/reference/configuration/configuration_reference.rst:1207
 msgid "Type: string, number"
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1210
+#: ../../doc/reference/configuration/configuration_reference.rst:1208
 msgid "Default: ``N / 2 + 1``"
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1211
+#: ../../doc/reference/configuration/configuration_reference.rst:1209
 msgid "Environment variable: TT_REPLICATION_SYNCHRO_QUORUM"
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1218
+#: ../../doc/reference/configuration/configuration_reference.rst:1216
 msgid "For :ref:`synchronous replication <repl_sync>` only. Specify how many seconds to wait for a synchronous transaction quorum replication until it is declared failed and is rolled back."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1222
+#: ../../doc/reference/configuration/configuration_reference.rst:1220
 msgid "It is not used on replicas, so if the master fails, the pending synchronous transactions will be kept waiting on the replicas until a new master is elected."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1229
+#: ../../doc/reference/configuration/configuration_reference.rst:1227
 msgid "Environment variable: TT_REPLICATION_SYNCHRO_TIMEOUT"
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1236
+#: ../../doc/reference/configuration/configuration_reference.rst:1234
 msgid "The number of threads spawned to decode the incoming replication data."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1238
+#: ../../doc/reference/configuration/configuration_reference.rst:1236
 msgid "In most cases, one thread is enough for all incoming data. Possible values range from 1 to 1000. If there are multiple replication threads, connections to serve are distributed evenly between the threads."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1245
+#: ../../doc/reference/configuration/configuration_reference.rst:1243
 msgid "Environment variable: TT_REPLICATION_THREADS"
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1252
+#: ../../doc/reference/configuration/configuration_reference.rst:1250
 msgid "A time interval (in seconds) used by a master to send heartbeat requests to a replica when there are no updates to send to this replica. For each request, a replica should return a heartbeat acknowledgment."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1255
+#: ../../doc/reference/configuration/configuration_reference.rst:1253
 msgid "If a master or replica gets no heartbeat message for ``4 * replication.timeout`` seconds, a connection is dropped and a replica tries to reconnect to the master."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1257
+#: ../../doc/reference/configuration/configuration_reference.rst:1255
 msgid "See also: :ref:`Monitoring a replica set <replication-monitoring>`."
 msgstr ""
 
-#: ../../doc/reference/configuration/configuration_reference.rst:1262
+#: ../../doc/reference/configuration/configuration_reference.rst:1260
 msgid "Environment variable: TT_REPLICATION_TIMEOUT"
 msgstr ""

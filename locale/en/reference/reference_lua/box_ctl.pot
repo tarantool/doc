@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"POT-Creation-Date: 2023-12-11 13:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -118,4 +118,12 @@ msgstr ""
 
 #: ../../doc/reference/reference_lua/box_ctl.rst:63
 msgid "Revoke the leader role from the instance"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl.rst:65
+msgid ":doc:`./box_ctl/make_bootstrap_leader`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl.rst:66
+msgid "Make the instance a bootstrap leader of a replica set"
 msgstr ""
