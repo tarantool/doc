@@ -933,9 +933,7 @@ The ``replication`` section defines configuration parameters related to :ref:`re
     *   ``config``: use the specified node to bootstrap a replica set.
         To specify the bootstrap leader, use the :ref:`<replicaset_name>.bootstrap_leader <configuration_reference_replicasets_name_bootstrap_leader>` option.
 
-    *   ``supervised``: a bootstrap leader isn't chosen automatically but should be appointed using ``box.ctl.make_bootstrap_leader()`` on the desired node.
-
-        Configuration fails if no bootstrap leader is appointed during a :ref:`replication.connect_timeout <configuration_reference_replication_connect_timeout>`.
+    *   ``supervised``: a bootstrap leader isn't chosen automatically but should be appointed using :ref:`box.ctl.make_bootstrap_leader() <box_ctl-make_bootstrap_leader>` on the desired node.
 
     *   ``legacy`` (deprecated since :doc:`2.11.0 </release/2.11.0>`): a node requires the :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>` number of other nodes to be connected.
         This option is added to keep the compatibility with the current versions of Cartridge and might be removed in the future.
