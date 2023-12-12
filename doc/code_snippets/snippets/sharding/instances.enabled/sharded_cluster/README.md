@@ -59,3 +59,14 @@ To run the cluster, go to the `sharding` directory in the terminal and perform t
         - [10, 167, 'Queen', 1970]
       ...
       ```
+
+
+## Packaging
+
+To package an application into a `.tgz` archive, use the `tt pack` command:
+
+```console
+$ tt pack tgz --app-list sharded_cluster
+```
+
+Note that the necessary `vshard` dependency is specified in the [sharded_cluster-scm-1.rockspec](sharded_cluster-scm-1.rockspec) file.
