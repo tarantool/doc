@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-07 07:21+0000\n"
+"POT-Creation-Date: 2023-12-12 13:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -104,4 +104,21 @@ msgid "sharded_cluster:storage-b-001> box.space.bands:select()\n"
 "  - [10, 167, 'Queen', 1970]\n"
 "...\n"
 ""
+msgstr ""
+
+#: ../../doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster/README.md:64
+msgid "Packaging"
+msgstr ""
+
+#: ../../doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster/README.md:66
+msgid "To package an application into a `.tgz` archive, use the `tt pack` command:"
+msgstr ""
+
+#: ../../doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster/README.md:68
+msgid "$ tt pack tgz --app-list sharded_cluster\n"
+""
+msgstr ""
+
+#: ../../doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster/README.md:72
+msgid "Note that the necessary `vshard` dependency is specified in the [sharded_cluster-scm-1.rockspec](sharded_cluster-scm-1.rockspec) file."
 msgstr ""
