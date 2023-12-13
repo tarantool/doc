@@ -1,177 +1,204 @@
 .. _admin-instance_config:
-
-Instance configuration
-======================
-
-For each Tarantool instance, you need two files:
-
-* [Optional] An :ref:`application file <app_server-launching_app>` with
-  instance-specific logic. Put this file into the ``/usr/share/tarantool/``
-  directory.
-
-  For example, ``/usr/share/tarantool/my_app.lua`` (here we implement it as a
-  :ref:`Lua module <app_server-modules>` that bootstraps the database and
-  exports ``start()`` function for API calls):
-
-  .. code-block:: lua
-
-     local function start()
-         box.schema.space.create("somedata")
-         box.space.somedata:create_index("primary")
-         <...>
-     end
-
-     return {
-       start = start;
-     }
-
-* An :ref:`instance file <admin-instance_file>` with
-  instance-specific initialization logic and parameters. Put this file, or a
-  symlink to it, into the **instance directory**
-  (see ``instances_enabled`` parameter in :ref:`tt configuration file <tt-config_file>`).
-
-  For example, ``/etc/tarantool/instances.enabled/my_app.lua`` (here we load
-  ``my_app.lua`` module and make a call to ``start()`` function from that
-  module):
-
-  .. code-block:: lua
-
-     #!/usr/bin/env tarantool
-
-     box.cfg {
-         listen = 3301;
-     }
-
-     -- load my_app module and call start() function
-     -- with some app options controlled by sysadmins
-     local m = require('my_app').start({...})
-
-.. _admin-instance_file:
-
-Instance file
--------------
-
-After this short introduction, you may wonder what an instance file is, what it
-is for, and how ``tt`` uses it. After all, Tarantool is an application
-server, so why not start the application stored in ``/usr/share/tarantool``
-directly?
-
-A typical Tarantool application is not a script, but a daemon running in
-background mode and processing requests, usually sent to it over a TCP/IP
-socket. This daemon needs to be started automatically when the operating system
-starts, and managed with the operating system standard tools for service
-management -- such as ``systemd`` or ``init.d``. To serve this very purpose, we
-created **instance files**.
-
-You can have more than one instance file. For example, a single application in
-``/usr/share/tarantool`` can run in multiple instances, each of them having its
-own instance file. Or you can have multiple applications in
-``/usr/share/tarantool`` -- again, each of them having its own instance file.
-
-An instance file is typically created by a system administrator. An application
-file is often provided by a developer, in a Lua rock or an rpm/deb package.
-
-An instance file is designed to not differ in any way from a Lua application.
-It must, however, configure the database, i.e. contain a call to
-:doc:`box.cfg{} </reference/reference_lua/box_cfg>` somewhere in it, because it’s the
-only way to turn a Tarantool script into a background process, and
-``tt`` is a tool to manage background processes. Other than that, an
-instance file may contain arbitrary Lua code, and, in theory, even include the
-entire application business logic in it. We, however, do not recommend this,
-since it clutters the instance file and leads to unnecessary copy-paste when
-you need to run multiple instances of an application.
-
-.. _admin-tt-preload:
-
-Preloading Lua scripts and modules
-----------------------------------
-
-Tarantool supports loading and running chunks of Lua code before the loading instance file.
-To load or run Lua code immediately upon Tarantool startup, specify the ``TT_PRELOAD``
-environment variable. Its value can be either a path to a Lua script or a Lua module name:
-
-*   To run the Lua script ``script.lua`` from the ``preload/path/`` directory inside
-    the working directory in Tarantool before ``main.lua``, set ``TT_PRELOAD`` as follows:
-
-    .. code-block:: console
-
-        $ TT_PRELOAD=/preload/path/script.lua tarantool main.lua
-
-    Tarantool runs the ``script.lua`` code, waits for it to complete, and
-    then starts running ``main.lua``.
-
-*   To load the ``preload.module`` into the Tarantool Lua interpreter
-    executing ``main.lua``, set ``TT_PRELOAD`` as follows:
-
-    .. code-block:: console
-
-        $ TT_PRELOAD=preload.module tarantool main.lua
-
-    Tarantool loads the ``preload.module`` code into the interpreter and
-    starts running ``main.lua`` as if its first statement was ``require('preload.module')``.
-
-    .. warning::
-
-        ``TT_PRELOAD`` values that end with ``.lua`` are considered scripts,
-        so avoid module names with this ending.
-
-To load several scripts or modules, pass them in a single quoted string, separated
-by semicolons:
-
-.. code-block:: console
-
-    $ TT_PRELOAD="/preload/path/script.lua;preload.module" tarantool main.lua
-
-In the preload script, the three dots (``...``) value contains the module name
-if you're preloading a module or the path to the script if you're running a script.
-
-The :ref:`arg <index-init_label>` value from the main script is visible in
-the preload script or module.
-
-For example, when preloading this script:
-
-.. code-block:: lua
-
-    -- preload.lua --
-    print("Preloading:")
-    print("... arg is:", ...)
-    print("Passed args:", arg[1], arg[2])
-
-You get the following output:
-
-.. code-block:: console
-
-    $ TT_PRELOAD=preload.lua tarantool main.lua arg1 arg2
-    Preloading:
-    ... arg is:	preload.lua
-    Passed args:	arg1	arg2
-    'strip_core' is set but unsupported
-    ... main/103/main.lua I> Tarantool 2.11.0-0-g247a9a4 Darwin-x86_64-Release
-    ... main/103/main.lua I> log level 5
-    ... main/103/main.lua I> wal/engine cleanup is paused
-    < ... >
-
-If an error happens during the execution of the preload script or module, Tarantool
-reports the problem and exits.
-
+.. _admin-instance-environment-overview:
 .. _admin-tt_config_file:
 
-tt configuration file
----------------------
+Application environment
+=======================
 
-While instance files contain instance configuration, the :ref:`tt <tt-cli>` configuration file
-contains the configuration that ``tt`` uses to set up the application environment.
-This includes the path to instance files, various working directories, and other
-parameters that connect the application to the system.
+This section provides a high-level overview on how to prepare a Tarantool application for deployment
+and how the application's environment and layout might look.
+This information is helpful for understanding how to administer Tarantool instances using :ref:`tt CLI <tt-cli>` in both development and production environments.
 
-To create a default ``tt`` configuration, run ``tt init``. This creates a ``tt.yaml``
-configuration file. Its location depends on the :ref:`tt launch mode <tt-config_modes>`
-(system or local).
+The main steps of creating and preparing the application for deployment are:
 
-Some ``tt`` configuration parameters are similar to those used by
-:doc:`box.cfg{} </reference/reference_lua/box_cfg>`, for example, ``memxt_dir``
-or ``wal_dir``. Other parameters define the ``tt`` environment, for example,
-paths to installation files used by ``tt`` or to connected :ref:`external modules <tt-external_modules>`.
+1.  :ref:`Initializing a local environment <admin-instance_config-init-environment>`.
 
-Find the detailed information about the ``tt`` configuration parameters and launch modes
+2.  :ref:`Creating and developing an application <admin-instance_config-develop-app>`.
+
+3.  :ref:`Packaging the application <admin-instance_config-package-app>`.
+
+In this section, a `sharded_cluster <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster>`_ application is used as an example.
+This cluster includes 5 instances: one router and 4 storages, which constitute two replica sets.
+
+.. image:: admin_instances_dev.png
+    :align: left
+    :width: 700
+    :alt: Cluster topology
+
+
+
+.. _admin-instance_config-init-environment:
+.. _admin-start_stop_instance-running_locally:
+
+Initializing a local environment
+--------------------------------
+
+Before creating an application, you need to set up a local environment for ``tt``:
+
+1.  Create a home directory for the environment.
+
+2.  Run ``tt init`` in this directory:
+
+    .. code-block:: console
+
+        ~/myapp$ tt init
+           • Environment config is written to 'tt.yaml'
+
+This command creates a default ``tt`` configuration file ``tt.yaml`` for a local
+environment and the directories for applications, control sockets, logs, and other
+artifacts:
+
+.. code-block:: console
+
+    ~/myapp$ ls
+    bin  distfiles  include  instances.enabled  modules  templates  tt.yaml
+
+Find detailed information about the ``tt`` configuration parameters and launch modes
 on the :ref:`tt configuration page <tt-config>`.
+
+
+
+.. _admin-instance_config-develop-app:
+.. _admin-start_stop_instance-multi-instance:
+.. _admin-start_stop_instance-multi-instance-layout:
+
+Creating and developing an application
+--------------------------------------
+
+You can create an application in two ways:
+
+-   Manually by preparing its layout in a directory inside ``instances_enabled``.
+    The directory name is used as the application identifier.
+
+-   From a template by using the :ref:`tt create <tt-create>` command.
+
+In this example, the application's layout is prepared manually and looks as follows.
+
+.. code-block:: console
+
+    ~/myapp$ tree
+    .
+    ├── bin
+    ├── distfiles
+    ├── include
+    ├── instances.enabled
+    │   └── sharded_cluster
+    │       ├── config.yaml
+    │       ├── instances.yaml
+    │       ├── router.lua
+    │       ├── sharded_cluster-scm-1.rockspec
+    │       └── storage.lua
+    ├── modules
+    ├── templates
+    └── tt.yaml
+
+
+The ``sharded_cluster`` directory contains the following files:
+
+-   ``config.yaml``: contains the :ref:`configuration <configuration>` of the cluster. This file might include the entire cluster topology or provide connection settings to a centralized configuration storage.
+-   ``instances.yml``: specifies instances to run in the current environment. For example, on the developer’s machine, this file might include all the instances defined in the cluster configuration. In the production environment, this file includes :ref:`instances to run on the specific machine <admin-instances_to_run>`.
+-   ``router.lua``: includes code specific for a :ref:`router <vshard-architecture-router>`.
+-   ``sharded_cluster-scm-1.rockspec``: specifies the required external dependencies (for example, ``vshard``).
+-   ``storage.lua``: includes code specific for :ref:`storages <vshard-architecture-storage>`.
+
+You can find the full example here:
+`sharded_cluster <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster>`_.
+
+
+
+.. _admin-instance_config-package-app:
+.. _admin-instance-app-layout:
+.. _admin-instance_file:
+
+Packaging the application
+-------------------------
+
+To package the ready application, use the :ref:`tt pack <tt-pack>` command.
+This command can create an installable DEB/RPM package or generate ``.tgz`` archive.
+
+The structure below reflects the content of the packed ``.tgz`` archive for the `sharded_cluster <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster>`_ application:
+
+.. code-block:: console
+
+    ~/myapp$ tree -a
+    .
+    ├── bin
+    │   ├── tarantool
+    │   └── tt
+    ├── include
+    ├── instances.enabled
+    │   └── sharded_cluster -> ../sharded_cluster
+    ├── modules
+    ├── sharded_cluster
+    │   ├── .rocks
+    │   │   └── share
+    │   │       └── ...
+    │   ├── config.yaml
+    │   ├── instances.yaml
+    │   ├── router.lua
+    │   ├── sharded_cluster-scm-1.rockspec
+    │   └── storage.lua
+    └── tt.yaml
+
+
+The application's layout looks similar to the one defined when :ref:`developing the application <admin-instance_config-develop-app>` with some differences:
+
+-   ``bin``: contains the ``tarantool`` and ``tt`` binaries packed with the application bundle.
+
+-   ``instances.enabled``: contains a symlink to the packed ``sharded_cluster`` application.
+
+-   ``sharded_cluster``: a packed application. In addition to files created during the application development, includes the ``.rocks`` directory containing application dependencies (for example, ``vshard``).
+
+-   ``tt.yaml``: a tt configuration file.
+
+
+
+.. _admin-instances_to_run:
+
+Instances to run
+~~~~~~~~~~~~~~~~
+
+One more difference for a deployed application is the content of the ``instances.yaml`` file that specifies instances to run in the current environment.
+
+-   On the developer's machine, this file might include all the instances defined in the cluster configuration.
+
+    .. image:: admin_instances_dev.png
+        :align: left
+        :width: 700
+        :alt: Cluster topology
+
+    ``instances.yaml``:
+
+    ..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster/instances.yaml
+        :language: yaml
+        :dedent:
+
+-   In the production environment, this file includes instances to run on the specific machine.
+
+    .. image:: admin_instances_prod.png
+        :align: left
+        :width: 700
+        :alt: Cluster topology
+
+    ``instances.yaml`` (Server-001):
+
+    .. code-block:: yaml
+
+        router-a-001:
+
+    ``instances.yaml`` (Server-002):
+
+    .. code-block:: yaml
+
+        storage-a-001:
+        storage-b-001:
+
+    ``instances.yaml`` (Server-003):
+
+    .. code-block:: yaml
+
+        storage-a-002:
+        storage-b-002:
+
+
+The :ref:`Starting and stopping instances <admin-start_stop_instance>` section describes how to start and stop Tarantool instances.
