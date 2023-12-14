@@ -3,5 +3,7 @@ groups:
     replicasets:
       replicaset001:
         instances:
-          iproto:
-            listen: "3301"
+          instance001:
+            iproto:
+              listen:
+                - uri: '127.0.0.1:3301'
