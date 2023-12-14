@@ -3,6 +3,10 @@
 Configuration reference
 =======================
 
+..  include:: index.rst
+    :start-after: ee_note_tcm_start
+    :end-before: ee_note_tcm_end
+
 This topic describes :ref:`configuration parameters <tcm_configuration>` of |tcm_full_name|.
 
 There are the following groups of |tcm| configuration parameters:
