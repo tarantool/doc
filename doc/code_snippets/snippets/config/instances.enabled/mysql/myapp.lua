@@ -1,4 +1,4 @@
--- example.lua --
+-- myapp.lua --
 
 box.schema.user.grant('guest', 'read,write,execute', 'universe')
 

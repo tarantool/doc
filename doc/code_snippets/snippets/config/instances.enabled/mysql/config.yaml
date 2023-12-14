@@ -1,5 +1,5 @@
 app:
-  file: 'example.lua'
+  file: 'myapp.lua'
 
 groups:
   group001:
