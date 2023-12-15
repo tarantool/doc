@@ -11,6 +11,230 @@ This topic describes all :ref:`configuration parameters <configuration>` provide
 Most of the configuration options described in this reference can be applied to a specific instance, replica set, group, or to all instances globally.
 To do so, you need to define the required option at the :ref:`specified level <configuration_scopes>`.
 
+..  _configuration_reference_audit:
+
+audit_log
+---------
+
+The ``audit_log`` section defines various parameters related to :ref:`audit log <enterprise_audit_module`.
+
+..  NOTE::
+
+    ``audit_log`` can be defined in ? :ref:`scope <configuration_scopes>`.
+
+* :ref:`audit_log.extract_key <configuration_reference_audit_extract_key>`
+* :ref:`audit_log.file <configuration_reference_audit_file>`
+* :ref:`audit_log.filter <configuration_reference_audit_filter>`
+* :ref:`audit_log.format <configuration_reference_audit_format>`
+* :ref:`audit_log.nonblock <configuration_reference_audit_nonblock>`
+* :ref:`audit_log.pipe <configuration_reference_audit_pipe>`
+* :ref:`audit_log.spaces <configuration_reference_audit_spaces>`
+* :ref:`audit_log.syslog_facility <configuration_reference_audit_syslog-facility>`
+* :ref:`audit_log.syslog_identity <configuration_reference_audit_syslog-identity>`
+* :ref:`audit_log.syslog_server <configuration_reference_audit_syslog-server>`
+* :ref:`audit_log.to <configuration_reference_audit_to>`
+
+..  _configuration_reference_audit_extract_key:
+
+..  confval:: audit_log.extract_key
+
+    **Since:** :doc:`3.0.0 </release/3.0.0>`.
+
+    Specify the logging mode in DML events.
+    If set to ``true``, the audit subsystem extracts and prints only the primary key instead of a full
+    tuples in DML events (``space_insert``, ``space_replace``, ``space_delete``).
+    Otherwise, full tuples are logged.
+    The option may be useful in case tuples are big.
+
+    |
+    | Type: boolean
+    | Default: false
+    | Environment variable: TT_AUDIT_LOG_EXTRACT_KEY
+
+..  _configuration_reference_audit_file:
+
+..  confval:: audit_log.file
+
+    **Since:** :doc:`3.0.0 </release/3.0.0>`.
+
+    Specify a file for the audit log destination.
+    You can set the 'file' type using the :ref:`audit_log.to <configuration_reference_audit_to>` option.
+    If you write logs to a file, Tarantool reopens the audit log at SIGHUP.
+
+    |
+    | Type: string
+    | Default: 'var/log/{{ instance_name }}/audit.lo'
+    | Environment variable: TT_AUDIT_LOG_FILE
+
+..  _configuration_reference_audit_filter:
+
+..  confval:: audit_log.filter
+
+    **Since:** :doc:`3.0.0 </release/3.0.0>`.
+
+    Enable logging for a specified subset of audit events.
+    This option accepts the following values:
+
+    *   ``all`` -- all :ref:`events <audit-log-events>`.
+
+        ..  note::
+
+            Events ``call`` and ``eval`` are included only into the ``all`` group.
+
+    *   ``audit`` -- ``audit_enable`` event.
+
+    *   ``auth`` -- authorization events: ``auth_ok``, ``auth_fail``.
+
+    *   ``priv`` -- events related to authentication, authorization, users, and roles:
+        ``user_create``, ``user_drop``, ``role_create``, ``role_drop``, ``user_enable``, ``user_disable``,
+        ``user_grant_rights``, ``user_revoke_rights``, ``role_grant_rights``, ``role_revoke_rights``.
+
+    *   ``ddl`` -- events of space creation, altering, and dropping:
+        ``space_create``, ``space_alter``, ``space_drop``.
+
+    *   ``dml`` -- events of data modification in spaces:
+        ``space_insert``, ``space_replace``, ``space_delete``.
+
+    *   ``data_operations`` -- events of data modification or selection from spaces:
+        ``space_select``, ``space_insert``, ``space_replace``, ``space_delete``.
+
+    *   ``compatibility`` -- events available in Tarantool before the version 2.10.0.
+        ``auth_ok``, ``auth_fail``, ``disconnect``, ``user_create``, ``user_drop``,
+        ``role_create``, ``role_drop``, ``user_enable``, ``user_disable``,
+        ``user_grant_rights``, ``user_revoke_rights``, ``role_grant_rights``.
+        ``role_revoke_rights``, ``password_change``, ``access_denied``.
+        This group enables the compatibility with earlier Tarantool versions.
+
+
+    |
+    | Type: array
+    | Possible values: 'all', 'audit', 'auth', 'priv', 'ddl', 'dml', 'data_operations', 'compatibility'
+    | Default: 'nil'
+    | Environment variable: TT_AUDIT_LOG_FILTER
+
+..  _configuration_reference_audit_format:
+
+..  confval:: audit_log.format
+
+    **Since:** :doc:`3.0.0 </release/3.0.0>`.
+
+    Specify a format that is used for the audit log.
+
+    |
+    | Type: string
+    | Possible values: 'json', 'csv', 'plain'
+    | Default: 'json'
+    | Environment variable: TT_AUDIT_LOG_FORMAT
+
+..  _configuration_reference_audit_nonblock:
+
+..  confval:: audit_log.nonblock
+
+    **Since:** :doc:`3.0.0 </release/3.0.0>`.
+
+    Specify the logging behavior if the system is not ready to write.
+    If set to ``true``, Tarantool does not block during logging if the system is non-writable and writes a message instead.
+    The option only has an effect if the output goes to ``syslog`` or ``pipe:``.
+    Setting ``audit_nonblock`` to ``true`` is not allowed if the output is to a file.
+    Using this value may improve logging performance at the cost of losing some log messages.
+
+    |
+    | Type: boolean
+    | Default: false
+    | Environment variable: TT_AUDIT_LOG_NONBLOCK
+
+..  _configuration_reference_audit_pipe:
+
+..  confval:: audit_log.pipe
+
+    **Since:** :doc:`3.0.0 </release/3.0.0>`.
+
+    Specify a pipe for the audit log destination.
+    You can set the 'pipe' type using the :ref:`audit_log.to <configuration_reference_audit_to>` option.
+
+    |
+    | Type: string
+    | Default: box.NULL
+    | Environment variable: TT_AUDIT_LOG_PIPE
+
+..  _configuration_reference_audit_spaces:
+
+..  confval:: audit_log.spaces
+
+    **Since:** :doc:`3.0.0 </release/3.0.0>`.
+
+    The array of space names for which data operation events (``space_select``, ``space_insert``, ``space_replace``,
+    ``space_delete``) should be logged. The array accepts string values.
+    If set to :ref:`box.NULL <box-null>`, the data operation events are logged for all spaces.
+
+    |
+    | Type: array
+    | Default: box.NULL
+    | Environment variable: TT_AUDIT_LOG_SPACES
+
+..  _configuration_reference_audit_syslog-facility:
+
+..  confval:: audit_log.syslog_facility
+
+    **Since:** :doc:`3.0.0 </release/3.0.0>`.
+
+    Specify a syslog keyword that tells `syslogd <https://datatracker.ietf.org/doc/html/rfc5424>`__ where to send the message.
+
+    |
+    | Type: string
+    | Possible values: 'auth', 'authpriv', 'cron', 'daemon', 'ftp', 'kern', 'lpr', 'mail', 'news', 'security', 'syslog', 'user', 'uucp', 'local0', 'local1', 'local2', 'local3', 'local4', 'local5', 'local6', 'local7'
+    | Default: 'local7'
+    | Environment variable: TT_AUDIT_LOG_SYSLOG_FACILITY
+
+..  _configuration_reference_audit_syslog-identity:
+
+..  confval:: audit_log.syslog_identity
+
+    **Since:** :doc:`3.0.0 </release/3.0.0>`.
+
+    Specify an arbitrary string that will be placed at the beginning of all messages.
+
+    |
+    | Type: string
+    | Default: 'tarantool'
+    | Environment variable: TT_AUDIT_LOG_SYSLOG_IDENTITY
+
+..  _configuration_reference_audit_syslog-server:
+
+..  confval:: audit_log.syslog_server
+
+    **Since:** :doc:`3.0.0 </release/3.0.0>`.
+
+    Set a location for the syslog server.
+    It can be a Unix socket path starting with 'unix:' or an ipv4 port number.
+    You can enable logging to the system logger using the :ref:`audit_log.to <configuration_reference_audit_to>` option.
+
+    |
+    | Type: string
+    | Default: box.NULL
+    | Environment variable: TT_AUDIT_LOG_SYSLOG_SERVER
+
+..  _configuration_reference_audit_to:
+
+..  confval:: audit_log.to
+
+    **Since:** :doc:`3.0.0 </release/3.0.0>`.
+
+    Enable audit logging and define the log location.
+    This option accepts the following values:
+
+    -   ``devnull``: disable audit logging.
+    -   ``file``: write audit logs to a file (see :ref:`audit_log.file <configuration_reference_audit_file>`).
+    -   ``pipe``: write audit logs to a pipe (see :ref:`audit_log.pipe <configuration_reference_audit_pipe>`).
+    -   ``syslog``: write audit logs to the system logger (see :ref:`audit_log.syslog <configuration_reference_audit_pipe>`).
+
+    By default, audit logging is disabled.
+
+    |
+    | Type: string
+    | Possible values: 'devnull', 'file', 'pipe', 'syslog'
+    | Default: 'devnull'
+    | Environment variable: TT_AUDIT_LOG_TO
 
 ..  _configuration_reference_config:
 
@@ -19,7 +243,7 @@ config
 
 The ``config`` section defines various parameters related to centralized configuration.
 
-.. NOTE::
+..  NOTE::
 
     ``config`` can be defined in the global :ref:`scope <configuration_scopes>` only.
 
