@@ -1,0 +1,16 @@
+groups:
+  group001:
+    iproto:
+      listen:
+      - uri: '127.0.0.1:3301'
+    replicasets:
+      replicaset001:
+        instances:
+          instance001:
+            audit_log:
+              to: file
+              file: 'audit_tarantool.log'
+              filter: [ user_create,data_operations,ddl ]
+              format: json
+              spaces: [ bands ]
+              extract_key: true
