@@ -43,7 +43,7 @@ parameters are required:
     A prefix must be unique for each cluster in storage.
 *   URIs of all instances of the configuration storage.
 *   The credentials for accessing the configuration storage: an `etcd user <https://etcd.io/docs/v3.5/op-guide/authentication/rbac/>`__
-    or a :ref:`Tarantool user <authentication>` and .
+    or a :ref:`Tarantool user <authentication>`.
 
 Additionally, if SSL or TLS encryption is enabled for the configuration storage,
 provide the corresponding encryption configuration: keys, certificates, and other
@@ -72,7 +72,7 @@ Connected clusters are listed on the **Clusters** page.
 Connecting a pre-configured cluster
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-If you already have a cluster and want connect it to |tcm|,
+If you already have a cluster and want to connect it to |tcm|,
 follow these steps:
 
 #.  Go to **Clusters**  and click **Add**.
@@ -81,7 +81,7 @@ follow these steps:
     *   Specify an arbitrary name.
     *   Optionally, provide a description and select a color to mark this cluster in |tcm|.
     *   Optionally, enter the URLs of additional services for the cluster. For example,
-        a Grafana dashboard that monitors the cluster metrics, ot a syslog server
+        a Grafana dashboard that monitors the cluster metrics, or a syslog server
         for viewing the cluster logs. |tcm| provides quick access to these URLs on
         the cluster **Stateboard** page.
 
@@ -118,7 +118,7 @@ To add a new cluster:
     *   Specify an arbitrary name.
     *   Optionally, provide a description and select a color to mark this cluster in |tcm|.
     *   Optionally, enter the URLs of additional services for the cluster. For example,
-        a Grafana dashboard that monitors the cluster metrics, ot a syslog server
+        a Grafana dashboard that monitors the cluster metrics, or a syslog server
         for viewing the cluster logs. |tcm| provides quick access to these URLs on
         the cluster **Stateboard** page.
 
@@ -159,5 +159,5 @@ in the **Actions** menu of the corresponding table row.
 .. note::
 
     Disconnecting a cluster does not affect its functioning. The only
-    thing that is changed is that it's no longer shown in |tcm|.
+    thing that changes is that it's no longer shown in |tcm|.
     You can connect this cluster again at any time.

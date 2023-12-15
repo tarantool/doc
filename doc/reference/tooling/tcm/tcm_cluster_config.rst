@@ -69,7 +69,7 @@ files individually. A reset returns the file into the state that is currently us
 by a cluster (that is, saved in the configuration storage). If you reset a newly
 added file, it is deleted.
 
-To reset an saved configuration file, click the **Reset** button beside the filename.
+To reset a saved configuration file, click the **Reset** button beside the filename.
 
 
 ..  _tcm_configuring_clusters_apply:
