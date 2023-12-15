@@ -3,10 +3,14 @@
 Tarantool Cluster Manager
 =========================
 
+.. ee_note_tcm_start
+
 ..  admonition:: Enterprise Edition
     :class: fact
 
     |tcm_full_name| is a part of the `Enterprise Edition <https://www.tarantool.io/compare/>`_.
+
+.. ee_note_tcm_end
 
 |tcm_full_name| (|tcm|) is a web-based visual tool for configuring, managing, and
 monitoring Tarantool EE clusters. It provides a GUI for working with clusters
@@ -31,6 +35,8 @@ to read data. LDAP authorization is supported as well.
 .. toctree::
     :maxdepth: 1
 
+    tcm_connect_clusters
+    tcm_cluster_config
     tcm_access_control
     tcm_audit_log
     tcm_configuration

@@ -3,6 +3,11 @@
 Configuration
 =============
 
+
+..  include:: index.rst
+    :start-after: ee_note_tcm_start
+    :end-before: ee_note_tcm_end
+
 .. TODO: write specific configuration tutorials for http, security, logging, and so on. (https://github.com/tarantool/doc/issues/3545)
 
 This topic describes how to configure |tcm_full_name|. For the complete

@@ -3,10 +3,9 @@
 Access control
 ==============
 
-..  admonition:: Enterprise Edition
-    :class: fact
-
-    |tcm_full_name| is a part of the `Enterprise Edition <https://www.tarantool.io/compare/>`_.
+..  include:: index.rst
+    :start-after: ee_note_tcm_start
+    :end-before: ee_note_tcm_end
 
 |tcm_full_name| features a role-based access control system. It enables flexible
 management of access to |tcm| functions, connected clusters, and stored data.

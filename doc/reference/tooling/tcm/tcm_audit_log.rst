@@ -3,10 +3,9 @@
 Audit log
 =========
 
-..  admonition:: Enterprise Edition
-    :class: fact
-
-    |tcm_full_name| is a part of the `Enterprise Edition <https://www.tarantool.io/compare/>`_.
+..  include:: index.rst
+    :start-after: ee_note_tcm_start
+    :end-before: ee_note_tcm_end
 
 |tcm_full_name| provides the audit logging functionality for tracking user activity
 and security-related events, such as:
