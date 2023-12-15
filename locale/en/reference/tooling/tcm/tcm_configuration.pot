@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-07 11:39+0000\n"
+"POT-Creation-Date: 2023-12-15 07:52+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,95 +20,103 @@ msgstr ""
 msgid "Configuration"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:8
+#: ../../doc/reference/tooling/tcm/index.rst:3
+msgid "Enterprise Edition"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/index.rst:6
+msgid "|tcm_full_name| is a part of the `Enterprise Edition <https://www.tarantool.io/compare/>`_."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:13
 msgid "This topic describes how to configure |tcm_full_name|. For the complete list of |tcm| configuration parameters, see the :ref:`TCM configuration reference <tcm_configuration_reference>`."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:12
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:17
 msgid "Configuration structure"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:14
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:19
 msgid "|tcm_full_name| configuration is a set of parameters that define various aspects of |tcm| functioning. Parameters are grouped by the particular aspect that they affect. There are the following groups:"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:18
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:23
 msgid "HTTP"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:19
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:24
 msgid "logging"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:20
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:25
 msgid "configuration storage"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:21
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:26
 msgid "security"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:22
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:27
 msgid "add-ons"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:23
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:28
 msgid "limits"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:24
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:29
 msgid "|tcm| running mode"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:26
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:31
 msgid "Parameter groups can be nested. For example, in the ``http`` group there are ``tls`` and ``websession-cookie`` groups, which define TLS encryption and cookie settings."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:30
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:35
 msgid "Parameter names are the full paths from the top-level group to the specific parameter. For example:"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:33
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:38
 msgid "``http.host`` is the ``host`` parameter that is defined directly in the ``http`` group."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:34
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:39
 msgid "``http.tls.enabled`` is the ``enabled`` parameter that is defined in the ``tls`` nested group within ``http``."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:40
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:45
 msgid "Ways to pass configuration parameters"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:42
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:47
 msgid "There are three ways to pass |tcm| configuration parameters:"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:44
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:49
 msgid "a YAML file"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:45
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:50
 msgid "environment variables"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:46
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:51
 msgid "command-line options of the |tcm| executable"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:51
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:56
 msgid "YAML file"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:53
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:58
 msgid "|tcm| configuration can be stored in a YAML file. Its structure must reflect the configuration parameters hierarchy."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:56
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:61
 msgid "The example below shows a fragment of a |tcm| configuration file:"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:58
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:63
 msgid "# a fragment of a YAML configuration file\n"
 "cluster: # top-level group\n"
 "    on-air-limit: 4096\n"
@@ -130,117 +138,117 @@ msgid "# a fragment of a YAML configuration file\n"
 "        init-timeout: 15s"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:80
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:85
 msgid "To start |tcm| with a YAML configuration, pass the location of the configuration file in the ``-c`` command-line option:"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:83
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:88
 msgid "tcm -c=config.yml"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:90
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:95
 msgid "Environment variables"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:92
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:97
 msgid "|tcm| can take values of its configuration parameters from environment variables. The variable names start with ``TCM_``. Then goes the full path to the parameter, converted to upper case. All delimiters are replaced with underscores (``_``). Examples:"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:97
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:102
 msgid "``TCM_HTTP_HOST`` is a variable for the ``http.host`` parameter."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:98
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:103
 msgid "``TCM_HTTP_WEBSESSION_COOKIE_NAME`` is a variable for the ``http.websession-cookie.name`` parameter."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:100
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:105
 msgid "The example below shows how to start |tcm| with configuration parameters passed in environment variables:"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:103
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:108
 msgid "export TCM_HTTP_HOST=0.0.0.0\n"
 "export TCM_HTTP_PORT=8888\n"
 "tcm"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:112
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:117
 msgid "Command-line arguments"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:114
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:119
 msgid "The |tcm| executable has ``--`` command-line options for each configuration parameter. Their names reflect the full path to the parameter, with all delimiters replaced by hyphens (``-``). Examples:"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:118
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:123
 msgid "``--http-host`` is an option for ``http.host``."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:119
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:124
 msgid "``--http-websession-cookie-name`` is an option for ``http.websession-cookie.name``."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:121
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:126
 msgid "The example below shows how to start |tcm| with configuration parameters passed in command-line options:"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:124
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:129
 msgid "./tcm --storage.etcd.embed.enabled --addon.enabled --http.host=0.0.0.0 --http.port=8888"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:132
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:137
 msgid "Configuration precedence"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:134
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:139
 msgid "|tcm| configuration options are applied from multiple sources with the following precedence, from highest to lowest:"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:137
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:142
 msgid "``tcm`` executable arguments."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:138
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:143
 msgid "`TCM_*` environment variables."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:139
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:144
 msgid "Configuration from a YAML file."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:141
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:146
 msgid "If the same option is defined in two or more locations, the option with the highest precedence is applied. For options that aren't defined in any location, the default values are used."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:145
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:150
 msgid "You can combine different ways of |tcm| configuration for efficient management of multiple |tcm| installations:"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:148
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:153
 msgid "A single YAML file for all installations can contain the common configuration parts. For example, a single configuration storage that is used for all installations, or TLS settings."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:151
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:156
 msgid "Environment variables that set specific parameters for each server, such as local directories and paths."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:153
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:158
 msgid "Command-line options for parameters that must be unique for different |tcm| instances running on a single server. For example, ``http.port``."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:157
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:162
 msgid "Configuration parameter types"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:159
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:164
 msgid "|tcm| configuration parameters have the `Go <https://go.dev/>`__ language types. Note that this is different from the :ref:`Tarantool configuration parameters <configuration_reference>`, which have Lua types."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:163
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:168
 msgid "Most options have the Go's basic types: ``int`` and other numeric types, ``bool``, ``string``."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:165
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:170
 msgid "http:\n"
 "    basic-auth:\n"
 "        enabled: false # bool\n"
@@ -250,11 +258,11 @@ msgid "http:\n"
 "    request-size: 1572864 # int64"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:175
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:180
 msgid "Parameters that can take multiple values are arrays. In YAML, they are passed as YAML arrays: each item on a new line, starting with a dash."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:178
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:183
 msgid "storage:\n"
 "provider: etcd\n"
 "etcd:\n"
@@ -263,42 +271,42 @@ msgid "storage:\n"
 "        - https://192.168.0.2:2379 # item 2"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:189
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:194
 msgid "In environment variables and command line options, such arrays are passed as semicolon-separated strings of items."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:192
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:197
 msgid "Parameters that set timeouts, TTLs, and other duration values, have the Go's `time.Duration <https://pkg.go.dev/time#Duration>`__ type. Their values can be passed in time-formatted strings such as ``4h30m25s``."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:195
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:200
 msgid "cluster:\n"
 "    tarantool-timeout: 10s # duration\n"
 "    tarantool-ping-timeout: 5s # duration"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:201
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:206
 msgid "Finally, there are parameters whose values are constants defined in Go packages. For example, :ref:`http.websession-cookie.same-site <tcm_configuration_reference_http_websession-cookie_same-site>` values are constants from the Go's `http.SameSite <https://pkg.go.dev/net/http#SameSite>`__ type. To find out the exact values available for such parameters, refer to the `Go packages documentation <https://pkg.go.dev/>`__."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:207
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:212
 msgid "http:\n"
 "    websession-cookie:\n"
 "        same-site: SameSiteStrictMode"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:214
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:219
 msgid "Creating a configuration template"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:216
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:221
 msgid "You can create a YAML configuration template for |tcm| with all parameters and their default values using the ``generate-config`` option of the ``tcm`` executable."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:219
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:224
 msgid "To write a default |tcm| configuration to the ``tcm.example.yml`` file, run:"
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:221
+#: ../../doc/reference/tooling/tcm/tcm_configuration.rst:226
 msgid "tcm generate-config > tcm.example.yml."
 msgstr ""
