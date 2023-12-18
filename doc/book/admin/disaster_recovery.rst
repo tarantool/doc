@@ -35,9 +35,9 @@ Master crash: manual failover
 
 4.  Make sure that a new replica set leader is a master using :ref:`box.info.ro <box_introspection-box_info>`.
 
-5.  Remove a crashed master from a replica set as described in :ref:`Removing instances <replication-remove_instances>`.
+5.  On a new master, :ref:`remove a crashed instance from the '_cluster' space <replication-remove_instances-remove_cluster>`.
 
-6.  Set up a replacement for the crashed master on a spare host as described in :ref:`Adding instances <replication-add_instances>`.
+6.  Start the instance again on a spare host.
 
 See also: :ref:`Performing manual failover <replication-controlled_failover>`.
 
@@ -127,8 +127,8 @@ Master-master
 
 .. _admin-disaster_recovery-data_loss:
 
-Data loss
----------
+Master-replica/master-master: data loss
+---------------------------------------
 
 **Configuration:** master-replica or master-master.
 
@@ -140,7 +140,7 @@ Data loss
     Depending on the :ref:`replication.failover <configuration_reference_replication_failover>` mode, this can be done as follows:
 
     -   ``manual``: change a replica set leader to ``null``.
-    -   ``election``: switch from the ``election`` failover mode to ``manual`` and change a replica set leader to ``null``.
+    -   ``election``: set :ref:`replication.election_mode <configuration_reference_replication_election_mode>` to ``voter`` or ``off`` at the replica set level.
     -   ``off``: set ``database.mode`` to ``ro``.
 
     Reload configurations on all instances using the ``reload()`` function provided by the :ref:`config <config-module>` module.
