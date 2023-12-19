@@ -37,7 +37,7 @@ Master crash: manual failover
 
 5.  On a new master, :ref:`remove a crashed instance from the '_cluster' space <replication-remove_instances-remove_cluster>`.
 
-6.  Start the instance again on a spare host.
+6.  Set up a replacement for the crashed master on a spare host.
 
 See also: :ref:`Performing manual failover <replication-controlled_failover>`.
 
@@ -55,10 +55,9 @@ Master crash: automated failover
 
 1.  Use ``box.info.election`` to make sure a new master is elected automatically.
 
-2.  Remove a crashed master from a replica set.
+2.  On a new master, :ref:`remove a crashed instance from the '_cluster' space <replication-remove_instances-remove_cluster>`.
 
 3.  Set up a replacement for the crashed master on a spare host.
-    Learn more from :ref:`Adding and removing instances <replication-automated-failover-add-remove-instances>`.
 
 See also: :ref:`Testing automated failover <replication-automated-failover-testing>`.
 

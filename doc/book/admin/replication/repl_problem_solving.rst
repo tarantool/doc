@@ -14,7 +14,7 @@ This topic describes how to solve problems in :ref:`master-master <replication-b
 Replacing the same primary key
 ------------------------------
 
-You have two instances of Tarantool. For example, you try to make a
+**Case 1:** You have two instances of Tarantool. For example, you try to make a
 ``replace`` operation with the same primary key on both instances at the same time.
 This causes a conflict over which tuple to save and which one to discard.
 
@@ -68,8 +68,7 @@ Preventing duplicate insert
 
 .. _replication-replication_stops:
 
-In a replica set of two masters, suppose master #1 tries to
-``insert`` a tuple with the same unique key:
+**Case 2:** In a replica set of two masters, both of them try to insert data by the same unique key:
 
 .. code-block:: tarantoolsession
 
@@ -154,8 +153,8 @@ To learn how to resolve a replication conflict by reseeding a replica, see :ref:
 
 .. _replication-runs_out_of_sync:
 
-Solution 1: replication runs out of sync
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Replication runs out of sync
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In a master-master cluster of two instances, suppose we make the following
 operation:
@@ -181,8 +180,8 @@ When this operation is applied on both instances in the replica set:
 
 .. _replication-commutative_changes:
 
-Solution 2: commutative changes
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Commutative changes
+~~~~~~~~~~~~~~~~~~~
 
 The cases described in the previous paragraphs represent examples of
 **non-commutative** operations, that is operations whose result depends on the
@@ -200,11 +199,12 @@ the update is applied on the other masters.
 
 .. _replication_trigger_usage:
 
-Solution 3: trigger usage
-~~~~~~~~~~~~~~~~~~~~~~~~~
+Trigger usage
+~~~~~~~~~~~~~
 
-The logic and the snippet setting a trigger will be the same here as in case 1.
-But the trigger function will differ:
+The logic and the snippet setting a trigger will be the same here as in :ref:`case 1 <replication-problem_solving_replacing_primary_key>`.
+But the trigger function will differ.
+Note that the trigger below assumes that tuple has a timestamp in the second field.
 
 .. code-block:: lua
 

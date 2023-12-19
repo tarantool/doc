@@ -52,5 +52,3 @@ The primary indicators of replication health are:
     Since the ``lag`` calculation uses the operating system clocks from two different
     machines, do not be surprised if it’s negative: a time drift may lead to the
     remote master clock being consistently behind the local instance's clock.
-
-    For a :ref:`master-master <replication-bootstrap-master-master>` configuration, ``lag`` is the maximal lag.

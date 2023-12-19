@@ -41,7 +41,7 @@ hardware or network failure, or due to a programming bug.
 
 
 
-The master's status is reported as ``disconnected`` when executing :ref:`box.info.replication <replication-monitoring>` on a replica:
+The master's upstream status is reported as ``disconnected`` when executing :ref:`box.info.replication <replication-monitoring>` on a replica:
 
 ..  include:: /how-to/replication/repl_bootstrap_auto.rst
     :start-after: box_info_replication_auto_leader_disconnected_start

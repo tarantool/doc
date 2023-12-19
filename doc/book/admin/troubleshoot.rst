@@ -249,12 +249,10 @@ error message like
 
 **Solution**
 
-Restart replication at each master instance.
-Connect to each master instance using the :ref:`tt connect <tt-connect>` command:
+This issue can be fixed in two ways:
 
-.. code-block:: console
-
-    $ tt connect <instance_name|URI>
+-   Manually: :ref:`reseed <replication-master-master-reseed-replica>` one master from another by removing write-ahead logs and snapshots.
+-   Programmatically: set up a :ref:`conflict resolution trigger <replication-problem_solving>`.
 
 Then, restart replication as described in :ref:`Restarting replication <replication-master-master-resolve-conflict>`.
 
