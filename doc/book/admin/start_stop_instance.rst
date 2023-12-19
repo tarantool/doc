@@ -45,20 +45,15 @@ After the cluster has started and worked for some time, you can find its artifac
 in the directories specified in the ``tt`` configuration. These are the default
 locations in the local :ref:`launch mode <tt-config_modes>`:
 
-*   ``sharded_cluster/var/log/<instance_name>/*.log`` -- instance :ref:`logs <admin-logs>`.
-*   ``sharded_cluster/var/lib/<instance_name>/*.snap`` -- snapshots.
-*   ``sharded_cluster/var/lib/<instance_name>/*.xlog`` -- write-ahead logs.
-*   ``sharded_cluster/var/run/<instance_name>/tarantool.control`` -- a control socket. This is
-    a Unix socket with the Lua console attached to it. This file is used to connect
-    to the instance console.
-*   ``sharded_cluster/var/run/<instance_name>/tarantool.pid`` -- a PID file that ``tt`` uses to
-    check the instance status and send control commands.
+*   ``sharded_cluster/var/log/<instance_name>/`` -- instance :ref:`logs <admin-logs>`.
+*   ``sharded_cluster/var/lib/<instance_name>/`` -- :ref:`snapshots and write-ahead logs <concepts-data_model-persistence>`.
+*   ``sharded_cluster/var/run/<instance_name>/`` -- control sockets and PID files.
 
 In the system launch mode, artifacts are created in these locations:
 
-*   ``/var/log/tarantool/<instance_name>/`` -- instance logs.
-*   ``/var/lib/tarantool/<instance_name>/`` -- snapshots and write-ahead logs.
-*   ``/var/run/tarantool/<instance_name>/`` -- control sockets and PID files.
+*   ``/var/log/tarantool/<instance_name>/``
+*   ``/var/lib/tarantool/<instance_name>/``
+*   ``/var/run/tarantool/<instance_name>/``
 
 
 .. _configuration_run_instance_tarantool:
