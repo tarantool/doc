@@ -29,6 +29,7 @@ webhooks/.env
 
 locale/*
 !locale/ru
+!locale/en
 
 # redundant folders created by sphinx
 

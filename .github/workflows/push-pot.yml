@@ -28,7 +28,7 @@ jobs:
             exit 0
           fi
 
-          git add -f locale/en
+          git add locale/en
           git commit -m "updated pot"
           git push origin 3.0 
 
