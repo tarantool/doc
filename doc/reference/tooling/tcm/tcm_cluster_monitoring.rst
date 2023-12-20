@@ -20,12 +20,33 @@ Cluster topology
 ----------------
 
 The cluster topology is displayed on the **Stateboard** page in one of two forms:
-a list or a graph. The list view is used by default. In this view, each row contains
+a list or a graph.
+
+..  _tcm_cluster_monitoring_topology_list:
+
+List view
+~~~~~~~~~
+
+The list view of the cluster topology is used by default. In this view, each row contains
 the general information about the instance: its current state, memory usage and limit,
-and other parameters. In the graph view, the instance state is shown by its color.
+and other parameters.
+
+In the list view, |tcm| additionally displays the Tarantool version information
+and instance states on circle diagrams. You can click the sectors of these diagrams
+to filter the instances with the selected versions and states.
+
+To switch to the list view, click the list button on the right of the search bar on the **Stateboard** page.
+
+..  _tcm_cluster_monitoring_topology_graph:
+
+Graph view
+~~~~~~~~~~
+
+In the graph view, the instance state is shown by its color.
 You can move the graph vertexes to arrange them as you like, and zoom in and out,
-which is helpful for bigger clusters. To switch between the list
-and the graph view, use the buttons on the right of the search bar on the **Stateboard** page.
+which is helpful for bigger clusters.
+
+To switch to the graph view, click the graph button on the right of the search bar on the **Stateboard** page.
 
 ..  _tcm_cluster_monitoring_topology_group:
 
@@ -79,14 +100,14 @@ built-in modules.
 Additionally, on the instance details page there is a terminal that enables running
 arbitrary Lua code on the instance.
 
-..  _tcm_cluster_monitoring_versions:
+..  _tcm_cluster_monitoring_urls:
 
-Tarantool versions
-------------------
+Additional monitoring services
+------------------------------
 
-The **Stateboard** page displays common information about Tarantool versions running on
-the cluster nodes: the version and the number of instances that run this version.
-The versions information
+When you :ref:`connect a cluster <tcm_connect_clusters>` to |tcm|, you can specify
+URLs of external services linked to this cluster. For example, this can be a Grafana
+server that monitors the cluster metrics.
 
-To view the Tarantool version running on an specific instance, click its name in
-the instances list or graph and open the **Details** tab.
+All the URLs added for a cluster are available in the **Actions** menu on the
+**Stateboard** page.
