@@ -593,7 +593,7 @@ The ``iproto`` section is used to configure parameters related to communicating 
     ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/auto_leader/config.yaml
         :language: yaml
         :start-at: credentials:
-        :end-at: listen: 127.0.0.1:3303
+        :end-at: 127.0.0.1:3303
         :dedent:
 
     | Type: string
