@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-23 09:50+0000\n"
+"POT-Creation-Date: 2023-12-20 07:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -165,7 +165,7 @@ msgid "Starting Tarantool instances"
 msgstr ""
 
 #: ../../doc/concepts/configuration/configuration_etcd.rst:114
-msgid "The :ref:`tt <tt-cli>` utility is the recommended way to start Tarantool instances. You can learn how to do this from the :ref:`Starting instances using the tt utility <configuration_run_instance_tt>` section."
+msgid "The :ref:`tt <tt-cli>` utility is the recommended way to start Tarantool instances. You can learn how to do this from the :ref:`Starting and stopping instances <admin-start_stop_instance>` section."
 msgstr ""
 
 #: ../../doc/concepts/configuration/configuration_etcd.rst:117

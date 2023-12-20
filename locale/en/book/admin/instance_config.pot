@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"POT-Creation-Date: 2023-12-20 07:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,177 +16,248 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../../doc/book/admin/instance_config.rst:4
-msgid "Instance configuration"
-msgstr ""
-
 #: ../../doc/book/admin/instance_config.rst:6
-msgid "For each Tarantool instance, you need two files:"
+msgid "Application environment"
 msgstr ""
 
 #: ../../doc/book/admin/instance_config.rst:8
-msgid "[Optional] An :ref:`application file <app_server-launching_app>` with instance-specific logic. Put this file into the ``/usr/share/tarantool/`` directory."
+msgid "This section provides a high-level overview on how to prepare a Tarantool application for deployment and how the application's environment and layout might look. This information is helpful for understanding how to administer Tarantool instances using :ref:`tt CLI <tt-cli>` in both development and production environments."
 msgstr ""
 
 #: ../../doc/book/admin/instance_config.rst:12
-msgid "For example, ``/usr/share/tarantool/my_app.lua`` (here we implement it as a :ref:`Lua module <app_server-modules>` that bootstraps the database and exports ``start()`` function for API calls):"
+msgid "The main steps of creating and preparing the application for deployment are:"
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:14
+msgid ":ref:`admin-instance_config-init-environment`."
 msgstr ""
 
 #: ../../doc/book/admin/instance_config.rst:16
-msgid "local function start()\n"
-"    box.schema.space.create(\"somedata\")\n"
-"    box.space.somedata:create_index(\"primary\")\n"
-"    <...>\n"
-"end\n"
-"\n"
-"return {\n"
-"  start = start;\n"
-"}"
+msgid ":ref:`admin-instance_config-develop-app`."
 msgstr ""
 
-#: ../../doc/book/admin/instance_config.rst:28
-msgid "An :ref:`instance file <admin-instance_file>` with instance-specific initialization logic and parameters. Put this file, or a symlink to it, into the **instance directory** (see ``instances_enabled`` parameter in :ref:`tt configuration file <tt-config_file>`)."
+#: ../../doc/book/admin/instance_config.rst:18
+msgid ":ref:`admin-instance_config-package-app`."
 msgstr ""
 
-#: ../../doc/book/admin/instance_config.rst:33
-msgid "For example, ``/etc/tarantool/instances.enabled/my_app.lua`` (here we load ``my_app.lua`` module and make a call to ``start()`` function from that module):"
+#: ../../doc/book/admin/instance_config.rst:20
+msgid "In this section, a `sharded_cluster <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster>`_ application is used as an example. This cluster includes 5 instances: one router and 4 storages, which constitute two replica sets."
 msgstr ""
 
-#: ../../doc/book/admin/instance_config.rst:37
-msgid "#!/usr/bin/env tarantool\n"
-"\n"
-"box.cfg {\n"
-"    listen = 3301;\n"
-"}\n"
-"\n"
-"-- load my_app module and call start() function\n"
-"-- with some app options controlled by sysadmins\n"
-"local m = require('my_app').start({...})"
+#: ../../doc/book/admin/instance_config.rst:None
+#: ../../doc/book/admin/instance_config.rst:0
+#: ../../doc/book/admin/instance_config.rst:0
+msgid "Cluster topology"
 msgstr ""
 
-#: ../../doc/book/admin/instance_config.rst:52
-msgid "Instance file"
+#: ../../doc/book/admin/instance_config.rst:34
+msgid "Initializing a local environment"
 msgstr ""
 
-#: ../../doc/book/admin/instance_config.rst:54
-msgid "After this short introduction, you may wonder what an instance file is, what it is for, and how ``tt`` uses it. After all, Tarantool is an application server, so why not start the application stored in ``/usr/share/tarantool`` directly?"
+#: ../../doc/book/admin/instance_config.rst:36
+msgid "Before creating an application, you need to set up a local environment for ``tt``:"
 msgstr ""
 
-#: ../../doc/book/admin/instance_config.rst:59
-msgid "A typical Tarantool application is not a script, but a daemon running in background mode and processing requests, usually sent to it over a TCP/IP socket. This daemon needs to be started automatically when the operating system starts, and managed with the operating system standard tools for service management -- such as ``systemd`` or ``init.d``. To serve this very purpose, we created **instance files**."
+#: ../../doc/book/admin/instance_config.rst:38
+msgid "Create a home directory for the environment."
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:40
+msgid "Run ``tt init`` in this directory:"
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:42
+msgid "~/myapp$ tt init\n"
+"   • Environment config is written to 'tt.yaml'"
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:47
+msgid "This command creates a default ``tt`` configuration file ``tt.yaml`` for a local environment and the directories for applications, control sockets, logs, and other artifacts:"
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:51
+msgid "~/myapp$ ls\n"
+"bin  distfiles  include  instances.enabled  modules  templates  tt.yaml"
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:56
+msgid "Find detailed information about the ``tt`` configuration parameters and launch modes on the :ref:`tt configuration page <tt-config>`."
 msgstr ""
 
 #: ../../doc/book/admin/instance_config.rst:66
-msgid "You can have more than one instance file. For example, a single application in ``/usr/share/tarantool`` can run in multiple instances, each of them having its own instance file. Or you can have multiple applications in ``/usr/share/tarantool`` -- again, each of them having its own instance file."
+msgid "Creating and developing an application"
 msgstr ""
 
-#: ../../doc/book/admin/instance_config.rst:71
-msgid "An instance file is typically created by a system administrator. An application file is often provided by a developer, in a Lua rock or an rpm/deb package."
+#: ../../doc/book/admin/instance_config.rst:68
+msgid "You can create an application in two ways:"
 msgstr ""
 
-#: ../../doc/book/admin/instance_config.rst:74
-msgid "An instance file is designed to not differ in any way from a Lua application. It must, however, configure the database, i.e. contain a call to :doc:`box.cfg{} </reference/reference_lua/box_cfg>` somewhere in it, because it’s the only way to turn a Tarantool script into a background process, and ``tt`` is a tool to manage background processes. Other than that, an instance file may contain arbitrary Lua code, and, in theory, even include the entire application business logic in it. We, however, do not recommend this, since it clutters the instance file and leads to unnecessary copy-paste when you need to run multiple instances of an application."
+#: ../../doc/book/admin/instance_config.rst:70
+msgid "Manually by preparing its layout in a directory inside ``instances_enabled``. The directory name is used as the application identifier."
 msgstr ""
 
-#: ../../doc/book/admin/instance_config.rst:87
-msgid "Preloading Lua scripts and modules"
+#: ../../doc/book/admin/instance_config.rst:73
+msgid "From a template by using the :ref:`tt create <tt-create>` command."
 msgstr ""
 
-#: ../../doc/book/admin/instance_config.rst:89
-msgid "Tarantool supports loading and running chunks of Lua code before the loading instance file. To load or run Lua code immediately upon Tarantool startup, specify the ``TT_PRELOAD`` environment variable. Its value can be either a path to a Lua script or a Lua module name:"
+#: ../../doc/book/admin/instance_config.rst:75
+msgid "In this example, the application's layout is prepared manually and looks as follows."
 msgstr ""
 
-#: ../../doc/book/admin/instance_config.rst:93
-msgid "To run the Lua script ``script.lua`` from the ``preload/path/`` directory inside the working directory in Tarantool before ``main.lua``, set ``TT_PRELOAD`` as follows:"
+#: ../../doc/book/admin/instance_config.rst:77
+msgid "~/myapp$ tree\n"
+".\n"
+"├── bin\n"
+"├── distfiles\n"
+"├── include\n"
+"├── instances.enabled\n"
+"│   └── sharded_cluster\n"
+"│       ├── config.yaml\n"
+"│       ├── instances.yaml\n"
+"│       ├── router.lua\n"
+"│       ├── sharded_cluster-scm-1.rockspec\n"
+"│       └── storage.lua\n"
+"├── modules\n"
+"├── templates\n"
+"└── tt.yaml"
 msgstr ""
 
 #: ../../doc/book/admin/instance_config.rst:96
-msgid "$ TT_PRELOAD=/preload/path/script.lua tarantool main.lua"
+msgid "The ``sharded_cluster`` directory contains the following files:"
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:98
+msgid "``config.yaml``: contains the :ref:`configuration <configuration>` of the cluster. This file might include the entire cluster topology or provide connection settings to a centralized configuration storage."
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:99
+msgid "``instances.yml``: specifies instances to run in the current environment. For example, on the developer’s machine, this file might include all the instances defined in the cluster configuration. In the production environment, this file includes :ref:`instances to run on the specific machine <admin-instances_to_run>`."
 msgstr ""
 
 #: ../../doc/book/admin/instance_config.rst:100
-msgid "Tarantool runs the ``script.lua`` code, waits for it to complete, and then starts running ``main.lua``."
+msgid "``router.lua``: includes code specific for a :ref:`router <vshard-architecture-router>`."
 msgstr ""
 
-#: ../../doc/book/admin/instance_config.rst:103
-msgid "To load the ``preload.module`` into the Tarantool Lua interpreter executing ``main.lua``, set ``TT_PRELOAD`` as follows:"
+#: ../../doc/book/admin/instance_config.rst:101
+msgid "``sharded_cluster-scm-1.rockspec``: specifies the required external dependencies (for example, ``vshard``)."
 msgstr ""
 
-#: ../../doc/book/admin/instance_config.rst:106
-msgid "$ TT_PRELOAD=preload.module tarantool main.lua"
+#: ../../doc/book/admin/instance_config.rst:102
+msgid "``storage.lua``: includes code specific for :ref:`storages <vshard-architecture-storage>`."
 msgstr ""
 
-#: ../../doc/book/admin/instance_config.rst:110
-msgid "Tarantool loads the ``preload.module`` code into the interpreter and starts running ``main.lua`` as if its first statement was ``require('preload.module')``."
+#: ../../doc/book/admin/instance_config.rst:104
+msgid "You can find the full example here: `sharded_cluster <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster>`_."
 msgstr ""
 
-#: ../../doc/book/admin/instance_config.rst:115
-msgid "``TT_PRELOAD`` values that end with ``.lua`` are considered scripts, so avoid module names with this ending."
+#: ../../doc/book/admin/instance_config.rst:114
+msgid "Packaging the application"
 msgstr ""
 
-#: ../../doc/book/admin/instance_config.rst:118
-msgid "To load several scripts or modules, pass them in a single quoted string, separated by semicolons:"
+#: ../../doc/book/admin/instance_config.rst:116
+msgid "To package the ready application, use the :ref:`tt pack <tt-pack>` command. This command can create an installable DEB/RPM package or generate ``.tgz`` archive."
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:119
+msgid "The structure below reflects the content of the packed ``.tgz`` archive for the `sharded_cluster <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster>`_ application:"
 msgstr ""
 
 #: ../../doc/book/admin/instance_config.rst:121
-msgid "$ TT_PRELOAD=\"/preload/path/script.lua;preload.module\" tarantool main.lua"
+msgid "~/myapp$ tree -a\n"
+".\n"
+"├── bin\n"
+"│   ├── tarantool\n"
+"│   └── tt\n"
+"├── include\n"
+"├── instances.enabled\n"
+"│   └── sharded_cluster -> ../sharded_cluster\n"
+"├── modules\n"
+"├── sharded_cluster\n"
+"│   ├── .rocks\n"
+"│   │   └── share\n"
+"│   │       └── ...\n"
+"│   ├── config.yaml\n"
+"│   ├── instances.yaml\n"
+"│   ├── router.lua\n"
+"│   ├── sharded_cluster-scm-1.rockspec\n"
+"│   └── storage.lua\n"
+"└── tt.yaml"
 msgstr ""
 
-#: ../../doc/book/admin/instance_config.rst:125
-msgid "In the preload script, the three dots (``...``) value contains the module name if you're preloading a module or the path to the script if you're running a script."
+#: ../../doc/book/admin/instance_config.rst:144
+msgid "The application's layout looks similar to the one defined when :ref:`developing the application <admin-instance_config-develop-app>` with some differences:"
 msgstr ""
 
-#: ../../doc/book/admin/instance_config.rst:128
-msgid "The :ref:`arg <index-init_label>` value from the main script is visible in the preload script or module."
+#: ../../doc/book/admin/instance_config.rst:146
+msgid "``bin``: contains the ``tarantool`` and ``tt`` binaries packed with the application bundle."
 msgstr ""
 
-#: ../../doc/book/admin/instance_config.rst:131
-msgid "For example, when preloading this script:"
+#: ../../doc/book/admin/instance_config.rst:148
+msgid "``instances.enabled``: contains a symlink to the packed ``sharded_cluster`` application."
 msgstr ""
 
-#: ../../doc/book/admin/instance_config.rst:133
-msgid "-- preload.lua --\n"
-"print(\"Preloading:\")\n"
-"print(\"... arg is:\", ...)\n"
-"print(\"Passed args:\", arg[1], arg[2])"
+#: ../../doc/book/admin/instance_config.rst:150
+msgid "``sharded_cluster``: a packed application. In addition to files created during the application development, includes the ``.rocks`` directory containing application dependencies (for example, ``vshard``)."
 msgstr ""
 
-#: ../../doc/book/admin/instance_config.rst:140
-msgid "You get the following output:"
+#: ../../doc/book/admin/instance_config.rst:152
+msgid "``tt.yaml``: a ``tt`` configuration file."
 msgstr ""
 
-#: ../../doc/book/admin/instance_config.rst:142
-msgid "$ TT_PRELOAD=preload.lua tarantool main.lua arg1 arg2\n"
-"Preloading:\n"
-"... arg is: preload.lua\n"
-"Passed args:        arg1    arg2\n"
-"'strip_core' is set but unsupported\n"
-"... main/103/main.lua I> Tarantool 2.11.0-0-g247a9a4 Darwin-x86_64-Release\n"
-"... main/103/main.lua I> log level 5\n"
-"... main/103/main.lua I> wal/engine cleanup is paused\n"
-"< ... >"
+#: ../../doc/book/admin/instance_config.rst:159
+msgid "Instances to run"
 msgstr ""
 
-#: ../../doc/book/admin/instance_config.rst:154
-msgid "If an error happens during the execution of the preload script or module, Tarantool reports the problem and exits."
+#: ../../doc/book/admin/instance_config.rst:161
+msgid "One more difference for a deployed application is the content of the ``instances.yaml`` file that specifies instances to run in the current environment."
 msgstr ""
 
-#: ../../doc/book/admin/instance_config.rst:160
-msgid "tt configuration file"
+#: ../../doc/book/admin/instance_config.rst:163
+msgid "On the developer's machine, this file might include all the instances defined in the cluster configuration."
 msgstr ""
 
-#: ../../doc/book/admin/instance_config.rst:162
-msgid "While instance files contain instance configuration, the :ref:`tt <tt-cli>` configuration file contains the configuration that ``tt`` uses to set up the application environment. This includes the path to instance files, various working directories, and other parameters that connect the application to the system."
+#: ../../doc/book/admin/instance_config.rst:170
+msgid "``instances.yaml``:"
 msgstr ""
 
-#: ../../doc/book/admin/instance_config.rst:167
-msgid "To create a default ``tt`` configuration, run ``tt init``. This creates a ``tt.yaml`` configuration file. Its location depends on the :ref:`tt launch mode <tt-config_modes>` (system or local)."
-msgstr ""
-
-#: ../../doc/book/admin/instance_config.rst:171
-msgid "Some ``tt`` configuration parameters are similar to those used by :doc:`box.cfg{} </reference/reference_lua/box_cfg>`, for example, ``memxt_dir`` or ``wal_dir``. Other parameters define the ``tt`` environment, for example, paths to installation files used by ``tt`` or to connected :ref:`external modules <tt-external_modules>`."
+#: ../../doc/book/admin/instance_config.rst:172
+msgid "storage-a-001:\n"
+"storage-a-002:\n"
+"storage-b-001:\n"
+"storage-b-002:\n"
+"router-a-001:"
 msgstr ""
 
 #: ../../doc/book/admin/instance_config.rst:176
-msgid "Find the detailed information about the ``tt`` configuration parameters and launch modes on the :ref:`tt configuration page <tt-config>`."
+msgid "In the production environment, this file includes instances to run on the specific machine."
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:183
+msgid "``instances.yaml`` (Server-001):"
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:185
+msgid "router-a-001:"
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:189
+msgid "``instances.yaml`` (Server-002):"
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:191
+msgid "storage-a-001:\n"
+"storage-b-001:"
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:196
+msgid "``instances.yaml`` (Server-003):"
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:198
+msgid "storage-a-002:\n"
+"storage-b-002:"
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:204
+msgid "The :ref:`Starting and stopping instances <admin-start_stop_instance>` section describes how to start and stop Tarantool instances."
 msgstr ""
