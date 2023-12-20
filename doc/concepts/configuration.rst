@@ -78,7 +78,7 @@ The example below shows a sample configuration of a single Tarantool instance:
     :dedent:
 
 -   The ``instances`` section includes only one instance named *instance001*.
-    The ``iproto.listen`` option sets a port used to listen for incoming requests.
+    The ``iproto.listen.uri`` option sets an address used to listen for incoming requests.
 -   The ``replicasets`` section contains one replica set named *replicaset001*.
 -   The ``groups`` section contains one group named *group001*.
 
@@ -99,7 +99,7 @@ Most of the configuration options can be applied to a specific instance, replica
 
     ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/instance_scope/config.yaml
         :language: yaml
-        :emphasize-lines: 7-8
+        :emphasize-lines: 7-9
         :dedent:
 
 -   *Replica set*
@@ -108,7 +108,7 @@ Most of the configuration options can be applied to a specific instance, replica
 
     ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/replicaset_scope/config.yaml
         :language: yaml
-        :emphasize-lines: 5-6
+        :emphasize-lines: 5-7
         :dedent:
 
 -   *Group*
@@ -117,7 +117,7 @@ Most of the configuration options can be applied to a specific instance, replica
 
     ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/group_scope/config.yaml
         :language: yaml
-        :emphasize-lines: 3-4
+        :emphasize-lines: 3-5
         :dedent:
 
 -   *Global*
@@ -126,7 +126,7 @@ Most of the configuration options can be applied to a specific instance, replica
 
     ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/global_scope/config.yaml
         :language: yaml
-        :emphasize-lines: 1-2
+        :emphasize-lines: 1-3
         :dedent:
 
 
@@ -261,19 +261,13 @@ To see all the supported environment variables, execute the ``tarantool`` comman
 
 Below are a few examples that show how to set environment variables of different types, like *string*, *number*, *array*, or *map*:
 
-*   String. In the example below, ``TT_IPROTO_LISTEN`` is used to specify a :ref:`listening host and port <configuration_options_connection>` values:
+*   String. In this example, ``TT_LOG_LEVEL`` is used to set a logging level to ``CRITICAL``:
 
     ..  code-block:: console
 
-        $ export TT_IPROTO_LISTEN='127.0.0.1:3311'
+        $ export TT_LOG_LEVEL='crit'
 
-    To specify several listening addresses, separate them by a comma without space:
-
-    ..  code-block:: console
-
-        $ export TT_IPROTO_LISTEN='127.0.0.1:3311,127.0.0.1:3312'
-
-*   Number. In this example, ``TT_LOG_LEVEL`` is used to set a logging level to 3 (``CRITICAL``):
+*   Number. In this example, a logging level is set to ``CRITICAL`` using a corresponding numeric value:
 
     ..  code-block:: console
 
@@ -308,6 +302,18 @@ Below are a few examples that show how to set environment variables of different
         $ export TT_APP_CFG='{"greeting":"Hi"}'
 
     The *simple* format is applicable only to maps containing scalar values.
+
+*   Array of maps. In the example below, ``TT_IPROTO_LISTEN`` is used to specify a :ref:`listening host and port <configuration_options_connection>` values:
+
+    ..  code-block:: console
+
+        $ export TT_IPROTO_LISTEN=['{"uri":"127.0.0.1:3311"}']
+
+    You can also pass several listening addresses:
+
+    ..  code-block:: console
+
+        $ export TT_IPROTO_LISTEN=['{"uri":"127.0.0.1:3311"}','{"uri":"127.0.0.1:3312"}']
 
 
 .. NOTE::
@@ -379,29 +385,38 @@ Below are a few examples on how to do this:
     .. code-block:: yaml
 
         iproto:
-          listen: "3301"
+          listen:
+            - uri: '3301'
 
 *   Set a listening address to ``127.0.0.1:3301``:
 
     .. code-block:: yaml
 
         iproto:
-          listen: "127.0.0.1:3301"
-
+          listen:
+            - uri: '127.0.0.1:3301'
 
 *   Configure several listening addresses:
 
     .. code-block:: yaml
 
         iproto:
-          listen: "127.0.0.1:3301,127.0.0.1:3303"
+          listen:
+            - uri: '127.0.0.1:3301'
+            - uri: '127.0.0.1:3302'
 
-*   Enables :ref:`traffic encryption <enterprise-iproto-encryption>` for a connection using corresponding URI parameters:
+*   Enable :ref:`traffic encryption <enterprise-iproto-encryption>` for a connection using the ``params`` section of the specified URI:
 
     .. code-block:: yaml
 
         iproto:
-          listen: "127.0.0.1:3301?transport=ssl&ssl_key_file=localhost.key&ssl_cert_file=localhost.crt&ssl_ca_file=ca.crt"
+          listen:
+            - uri: '127.0.0.1:3301'
+              params:
+                transport: 'ssl'
+                ssl_ca_file: 'ca.crt'
+                ssl_cert_file: 'localhost.crt'
+                ssl_key_file: 'localhost.key'
 
     Note that traffic encryption is supported by the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only.
 
@@ -411,7 +426,8 @@ Below are a few examples on how to do this:
     .. code-block:: yaml
 
         iproto:
-          listen: "unix/:./var/run/{{ instance_name }}/tarantool.iproto"
+          listen:
+            - uri: 'unix/:./var/run/{{ instance_name }}/tarantool.iproto'
 
 
 .. _configuration_options_access_control:
@@ -475,4 +491,4 @@ To learn more about the persistence mechanism in Tarantool, see the :ref:`Persis
 
     configuration/configuration_etcd
     configuration/configuration_code
-    configuration/configuration_migrating
+    .. configuration/configuration_migrating
