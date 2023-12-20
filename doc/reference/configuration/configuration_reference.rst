@@ -619,7 +619,7 @@ The ``iproto`` section is used to configure parameters related to communicating 
     ..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster/config.yaml
         :language: yaml
         :start-at: credentials:
-        :end-at: sharding: storage@
+        :end-at: login: storage
         :dedent:
 
     | Type: string
