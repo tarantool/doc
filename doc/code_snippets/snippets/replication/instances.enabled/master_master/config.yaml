@@ -6,7 +6,8 @@ credentials:
 
 iproto:
   advertise:
-    peer: replicator@
+    peer:
+      login: replicator
 
 replication:
   failover: off
@@ -20,12 +21,14 @@ groups:
             database:
               mode: rw
             iproto:
-              listen: 127.0.0.1:3301
+              listen:
+                - uri: '127.0.0.1:3301'
           instance002:
             database:
               mode: rw
             iproto:
-              listen: 127.0.0.1:3302
+              listen:
+                - uri: '127.0.0.1:3302'
 
 # Load sample data
 app:
