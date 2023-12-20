@@ -27,6 +27,11 @@ You can move the graph vertexes to arrange them as you like, and zoom in and out
 which is helpful for bigger clusters. To switch between the list
 and the graph view, use the buttons on the right of the search bar on the **Stateboard** page.
 
+..  _tcm_cluster_monitoring_topology_group:
+
+Instance grouping
+~~~~~~~~~~~~~~~~~
+
 By default, the cluster topology is shown hierarchically as it's defined in the configuration:
 instances are grouped by their replica set, and replica sets are grouped by
 their configuration group.
@@ -39,6 +44,11 @@ you see if issues happen in a specific data center or server.
 To change the instance grouping, click **Group by** in the **Actions** menu on the **Stateboard** page.
 Then add or remove grouping criteria.
 
+..  _tcm_cluster_monitoring_topology_filters:
+
+Filtering
+~~~~~~~~~
+
 You can filter the instances shown on the **Stateboard** page using the search bar
 at the top. It has predefined filters that select:
 
@@ -49,36 +59,22 @@ at the top. It has predefined filters that select:
 
 To display all instances, delete the filter applied in the search bar.
 
-To view the detailed information about an instance or connect to it, click its
-name in the cluster view. See :ref:`tcm_cluster_monitoring_instance_state` to learn
-what exactly you can do with an instance from |tcm|.
+..  _tcm_cluster_monitoring_instance_details:
 
-
-..  _tcm_cluster_monitoring_instance_state:
-
-Instance state
---------------
-
-stateboard
-list of instances
-memory: used/limit
-sharding: buckets
-open instance:
-- details
-- state
-- terminal
-- warnings if any
+Instance details
+----------------
 
 The general information about the state of cluster instances is shown in the
 list view of the cluster topology. Each row contains the information about the instance
 status, used and available memory, read-only status, and virtual buckets for sharded
 clusters.
 
-To view the detailed information about a specific instances, click the corresponding
+To view the detailed information about an instance or connect to it, click the corresponding
 row in the instances list or vertex of the graph. On the instance page, you can
-view its configuration overview, current state (with warning and error messages if any),
-and the detailed Tarantool information returned by the functions ``box.info``,
-``box.stat`` and other.
+find its configuration overview, current state (with warning and error messages if any),
+and the detailed Tarantool information returned by the instance introspection functions
+from :ref:`box_introspection-box_info`, :ref:`box_introspection-box_stat`, and other
+built-in modules.
 
 Additionally, on the instance details page there is a terminal that enables running
 arbitrary Lua code on the instance.
