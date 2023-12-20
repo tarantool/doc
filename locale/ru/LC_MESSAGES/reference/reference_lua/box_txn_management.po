@@ -2,8 +2,9 @@
 msgid "Functions for transaction management"
 msgstr "Управление экземплярами"
 
+#, fuzzy
 msgid ""
-"For general information and examples, see section :ref:`Transaction control "
+"For general information and examples, see section :ref:`Transactions "
 "<atomic-atomic_execution>`."
 msgstr ""
 "Чтобы получить общую информацию и взглянуть на примеры использования, см. "

@@ -1,5 +1,5 @@
 
-msgid "Function `on_shutdown`"
+msgid "Function on_shutdown"
 msgstr ""
 
 msgid "Register and/or deregister an on_shutdown function."
@@ -65,3 +65,6 @@ msgstr ""
 
 msgid "Added in version :doc:`2.8.1 </release/2.8.1>`."
 msgstr ""
+
+#~ msgid "Function `on_shutdown`"
+#~ msgstr ""

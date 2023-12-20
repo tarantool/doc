@@ -1,0 +1,271 @@
+
+msgid "Read views: C API"
+msgstr ""
+
+msgid ""
+"This topic describes the C API for working with :ref:`read views "
+"<read_views>`. The C API is MT-safe and provides the ability to use a read "
+"view from any thread, not only from the :ref:`main (TX) thread "
+"<thread_model>`."
+msgstr ""
+
+msgid "The C API has the following specifics:"
+msgstr ""
+
+msgid ""
+"The :ref:`space.upgrade <enterprise-space_upgrade>` function is not applied "
+"to retrieved tuples even if a space upgrade is in progress."
+msgstr ""
+
+msgid ""
+"Tuples stored in :ref:`compressed spaces <tuple_compression>` are not "
+"decompressed - they are returned as :ref:`raw MessagePack <msgpack-module>` "
+"(``MP_EXT/MP_COMPRESSION``)."
+msgstr ""
+
+msgid ""
+"You can learn how to call C code using stored procedures in the :ref:`C "
+"tutorial<f_c_tutorial-c_stored_procedures>`."
+msgstr ""
+
+msgid "Data types"
+msgstr ""
+
+msgid ""
+"The opaque data types below represent raw read views and an iterator over "
+"data in a raw read view. Note that there is no special data type for tuples "
+"retrieved from a read view. Tuples are returned as raw MessagePack data "
+"(``const char *``)."
+msgstr ""
+
+msgid "A raw database read view."
+msgstr ""
+
+msgid "A space in a raw read view."
+msgstr ""
+
+msgid "An index in a raw read view."
+msgstr ""
+
+msgid "An iterator over data in a raw read view."
+msgstr ""
+
+msgid "Creating and destroying read views"
+msgstr ""
+
+msgid "To create or destroy a read view, use the functions below."
+msgstr ""
+
+msgid ""
+"Open a raw read view with the specified name and get a pointer to this read "
+"view. In the case of error, returns ``NULL`` and sets "
+":ref:`box_error_last()<c_api-error-box_error_last>`. This function may be "
+"called from the main (TX) thread only."
+msgstr ""
+
+msgid "Parameters"
+msgstr ""
+
+msgid ""
+"(optional) a read view name; if ``name`` is not specified, a read view name "
+"is set to ``unknown``"
+msgstr ""
+
+msgid "Returns"
+msgstr ""
+
+msgid "a pointer to a read view"
+msgstr ""
+
+msgid ""
+"Close a raw read view and release all resources associated with it. This "
+"function may be called from the main (TX) thread only."
+msgstr ""
+
+msgid ""
+"Read views created using ``box_raw_read_view_new`` are displayed in "
+":ref:`box.read_view.list() <reference_lua-box_read_view_list>` along with "
+"read views :ref:`created in Lua <box-read_view-open>`."
+msgstr ""
+
+msgid "Spaces and indexes"
+msgstr ""
+
+msgid ""
+"To fetch data from a read view, you need to specify an index to fetch the "
+"data from. The following functions are available for looking up spaces and "
+"indexes in a read view object."
+msgstr ""
+
+msgid ""
+"Find a space by ID in a raw read view. If not found, returns ``NULL`` and "
+"sets :ref:`box_error_last()<c_api-error-box_error_last>`."
+msgstr ""
+
+msgid "a space identifier"
+msgstr ""
+
+msgid "a pointer to a space"
+msgstr ""
+
+msgid ""
+"Find a space by name in a raw read view. If not found, returns ``NULL`` and "
+"sets :ref:`box_error_last()<c_api-error-box_error_last>`."
+msgstr ""
+
+msgid "a space name"
+msgstr ""
+
+msgid "a space name length"
+msgstr ""
+
+msgid ""
+"Find an index by ID in a read view's space. If not found, returns ``NULL`` "
+"and sets :ref:`box_error_last()<c_api-error-box_error_last>`."
+msgstr ""
+
+msgid "a pointer to a read view's space"
+msgstr ""
+
+msgid "a pointer to an index"
+msgstr ""
+
+msgid ""
+"Find an index by name in a read view's space. If not found, returns ``NULL``"
+" and sets :ref:`box_error_last()<c_api-error-box_error_last>`."
+msgstr ""
+
+msgid "an index name"
+msgstr ""
+
+msgid "an index name length"
+msgstr ""
+
+msgid "Iteration and lookup"
+msgstr ""
+
+msgid ""
+"The functions below provide the ability to look up a tuple by the key or "
+"create an iterator over a read view index."
+msgstr ""
+
+msgid ""
+"Methods of the read view iterator are safe to call from any thread, but they"
+" may be used in one thread at the same time. This means that an iterator "
+"should be thread-local."
+msgstr ""
+
+msgid ""
+"Look up a tuple in a read view's index. If found, the ``data`` and ``size`` "
+"out arguments return a pointer to and the size of tuple data. If not found, "
+"``*data`` is set to ``NULL`` and ``*size`` is set to ``0``."
+msgstr ""
+
+msgid "a pointer to a read view's index"
+msgstr ""
+
+msgid ""
+"a pointer to the first byte of the MsgPack data that represents the search "
+"key"
+msgstr ""
+
+msgid ""
+"a pointer to the byte following the last byte of the MsgPack data that "
+"represents the search key"
+msgstr ""
+
+msgid "a pointer to the tuple data"
+msgstr ""
+
+msgid "the size of tuple data"
+msgstr ""
+
+msgid ""
+"``0`` on success; in the case of error, returns ``-1`` and sets "
+":ref:`box_error_last()<c_api-error-box_error_last>`"
+msgstr ""
+
+msgid ""
+"Create an iterator over a raw read view index. The initialized iterator "
+"object returned by this function remains valid and may be safely used until "
+"it's destroyed or the read view is closed. When the iterator object is no "
+"longer needed, it should be destroyed using "
+":ref:`box_raw_read_view_iterator_destroy() "
+"<box_raw_read_view_iterator_destroy>`."
+msgstr ""
+
+msgid "an iterator over a raw read view index"
+msgstr ""
+
+msgid "a pointer to a read view index"
+msgstr ""
+
+msgid ""
+"an iteration direction represented by the :ref:`iterator_type <c_api-"
+"box_index-iterator_type>`"
+msgstr ""
+
+msgid ""
+"Retrieve the current tuple and advance the given iterator over a raw read "
+"view index. The pointer to and the size of tuple data are returned in the "
+"``data`` and the ``size`` out arguments. The data returned by this function "
+"remains valid and may be safely used until the read view is closed."
+msgstr ""
+
+msgid "an iterator over a read view index"
+msgstr ""
+
+msgid ""
+"a pointer to the tuple data; at the end of iteration, ``*data`` is set to "
+"``NULL``"
+msgstr ""
+
+msgid ""
+"the size of tuple data; at the end of iteration, ``*size`` is set to ``0``"
+msgstr ""
+
+msgid ""
+"Destroy an iterator over a raw read view index. The iterator object should "
+"not be used after calling this function, but the data returned by the "
+"iterator may be safely dereferenced until the read view is closed."
+msgstr ""
+
+msgid "Space format"
+msgstr ""
+
+msgid ""
+"A space object's methods below provide the ability to get names and types of"
+" space fields."
+msgstr ""
+
+msgid "Get the number of fields defined in the format of a read view space."
+msgstr ""
+
+msgid "a pointer to a read view space"
+msgstr ""
+
+msgid "the number of fields"
+msgstr ""
+
+msgid ""
+"Get the name of a field defined in the format of a read view space. If the "
+"field number is greater than the total number of fields defined in the "
+"format, ``NULL`` is returned. The string returned by this function is "
+"guaranteed to remain valid until the read view is closed."
+msgstr ""
+
+msgid "the field number (starts with ``0``)"
+msgstr ""
+
+msgid "the name of a field"
+msgstr ""
+
+msgid ""
+"Get the type of a field defined in the format of a read view space. If the "
+"field number is greater than the total number of fields defined in the "
+"format, ``NULL`` is returned. The string returned by this function is "
+"guaranteed to remain valid until the read view is closed."
+msgstr ""
+
+msgid "the type of a field"
+msgstr ""

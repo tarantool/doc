@@ -1,0 +1,50 @@
+
+msgid "Restarting a Tarantool instance"
+msgstr ""
+
+msgid "$ tt restart {INSTANCE | APPLICATION[:APP_INSTANCE]} [OPTION ...]"
+msgstr ""
+
+msgid ""
+"``tt restart`` restarts the specified running Tarantool instance. A ``tt "
+"restart`` call is equivalent to consecutive calls of :doc:`tt stop <stop>` "
+"and :doc:`tt start <start>`."
+msgstr ""
+
+msgid "Options"
+msgstr ""
+
+msgid "Automatic \"Yes\" to confirmation prompt."
+msgstr ""
+
+msgid "Examples"
+msgstr ""
+
+msgid "Single instance"
+msgstr ""
+
+msgid "Restart the ``app`` instance with automatic confirmation:"
+msgstr ""
+
+msgid "$ tt restart app -y"
+msgstr ""
+
+msgid "Multiple instances"
+msgstr ""
+
+msgid ""
+"Restart all instances of the application stored in the ``app/`` directory "
+"inside ``instances_enabled`` in accordance with the :ref:`instances "
+"configuration <tt-instances>`:"
+msgstr ""
+
+msgid "$ tt restart app"
+msgstr ""
+
+msgid ""
+"Restart only the ``master`` instance of the application stored in the "
+"``app/`` directory inside ``instances_enabled``:"
+msgstr ""
+
+msgid "$ tt restart app:master"
+msgstr ""

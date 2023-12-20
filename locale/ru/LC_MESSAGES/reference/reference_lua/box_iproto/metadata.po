@@ -1,0 +1,22 @@
+
+msgid "box.iproto.metadata_key"
+msgstr ""
+
+msgid ""
+"Contains the ``IPROTO_FIELD_*`` keys, which are nested in the "
+":ref:`IPROTO_METADATA <internals-iproto-keys-metadata>` key."
+msgstr ""
+
+msgid "**Example**"
+msgstr ""
+
+msgid ""
+"tarantool> box.iproto.metadata_key.NAME\n"
+"---\n"
+"- 0\n"
+"...\n"
+"tarantool> box.iproto.metadata_key.TYPE\n"
+"---\n"
+"- 1\n"
+"..."
+msgstr ""

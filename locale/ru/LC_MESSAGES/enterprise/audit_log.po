@@ -3,125 +3,247 @@ msgid "Audit module"
 msgstr "Журнал аудита"
 
 msgid ""
-"Audit log provides records on the Tarantool DBMS events in the JSON-format. "
-"The following event logs are available:"
+"The audit module available in Tarantool Enterprise Edition writes messages "
+"that record Tarantool events in plain text, CSV, or JSON format."
 msgstr ""
-"Журнал аудита содержит записи о событиях СУБД Tarantool в формате JSON. "
-"Доступны следующие журналы событий:"
 
-msgid "successful/failed user authentication and authorization,"
-msgstr "пройденная/непройденная аутентификация и авторизация пользователя,"
+msgid ""
+"It provides detailed reports of security-related activities and helps you "
+"find and fix breaches to protect your business. For example, you can see who"
+" created a new user and when:"
+msgstr ""
 
-msgid "closed connection,"
-msgstr "закрытое соединение,"
+msgid ""
+"{\n"
+"    \"time\": \"2022-04-07T13:39:36.046+0300\",\n"
+"    \"remote\": \"\",\n"
+"    \"session_type\": \"background\",\n"
+"    \"module\": \"tarantool\",\n"
+"    \"user\": \"admin\",\n"
+"    \"type\": \"user_create\",\n"
+"    \"tag\": \"\",\n"
+"    \"description\": \"Create user alice\"\n"
+"}"
+msgstr ""
 
-msgid "password change,"
-msgstr "изменение пароля,"
+msgid ""
+"It is up to each company to decide exactly what activities to audit and what"
+" actions to take. System administrators, security engineers, and people in "
+"charge of the company may want to audit different events for different "
+"reasons. Tarantool provides such an option for each of them."
+msgstr ""
 
-msgid "creation/deletion of a user/role,"
-msgstr "создание/удаление пользователя/роли,"
-
-msgid "enabling/disabling a user,"
-msgstr "включение/отключение пользователя,"
-
-msgid "changing privileges of a user/role."
-msgstr "изменение прав пользователя/роли."
-
-msgid "Log structure"
-msgstr "Структура журнала"
-
-msgid "Key"
-msgstr "Ключ"
-
-msgid "Type"
-msgstr "Тип"
-
-msgid "Description"
-msgstr "Описание"
-
-msgid "Example"
-msgstr "Пример"
-
-msgid "``type``"
-msgstr "``type``"
-
-msgid "string"
-msgstr "строка"
-
-msgid "type of event"
-msgstr "тип события"
-
-msgid "``type_id``"
-msgstr "``type_id``"
-
-msgid "number"
-msgstr "число"
-
-msgid "id of event"
+#, fuzzy
+msgid "Audit log events"
 msgstr "идентификатор события"
 
-msgid "``description``"
-msgstr "``description``"
+msgid ""
+"The Tarantool audit log module can record various events that you can "
+"monitor and decide whether you need to take actions:"
+msgstr ""
 
-msgid "description of event"
-msgstr "описание события"
+msgid ""
+"Admin activity -- events related to actions performed by the administrator. "
+"For example, such logs record the creation of a user."
+msgstr ""
 
-msgid "``time``"
-msgstr "``time``"
+msgid ""
+"Access events -- events related to authorization and authentication of "
+"users. For example, such logs record failed attempts to access secure data."
+msgstr ""
 
-msgid "time of event"
-msgstr "время события"
+msgid ""
+"Data access and modification -- events of data manipulation in the storage."
+msgstr ""
 
-msgid "``peer``"
-msgstr "``peer``"
+msgid ""
+"System events -- events related to modification or configuration of "
+"resources. For example, such logs record the replacement of a space."
+msgstr ""
 
-msgid "remote client"
-msgstr "удаленный клиент"
+msgid ""
+":ref:`User-defined events <audit-log-custom>`-- any events added manually "
+"using the audit module API."
+msgstr ""
 
-msgid "``user``"
-msgstr "``user``"
-
-msgid "user"
-msgstr "пользователь"
-
-msgid "``param``"
-msgstr "``param``"
-
-msgid "parameters of event"
-msgstr "параметры события"
-
-msgid "see below"
-msgstr "см. ниже"
-
-msgid "Events description"
-msgstr "Описание события"
+msgid ""
+"The full list of available audit log events is provided in the table below:"
+msgstr ""
 
 msgid "Event"
 msgstr "Событие"
 
-msgid "Parameters"
-msgstr "Параметры"
+msgid "Type of event written to the audit log"
+msgstr ""
 
-msgid "user authorized successfully"
+#, fuzzy
+msgid "Example of an event description"
+msgstr "Описание события"
+
+msgid "Audit log enabled for events"
+msgstr ""
+
+#, fuzzy
+msgid "``audit_enable``"
+msgstr "``user_enable``"
+
+msgid ":ref:`User-defined events <audit-log-custom>`"
+msgstr ""
+
+#, fuzzy
+msgid "``custom``"
+msgstr "``user``"
+
+#, fuzzy
+msgid "User authorized successfully"
 msgstr "авторизация пользователя пройдена"
 
 msgid "``auth_ok``"
 msgstr "``auth_ok``"
 
-msgid "user authorization failed"
+msgid "``Authenticate user <USER>``"
+msgstr ""
+
+#, fuzzy
+msgid "User authorization failed"
 msgstr "авторизация пользователя не пройдена"
 
 msgid "``auth_fail``"
 msgstr "``auth_fail``"
 
-msgid "user logged out or quit the session"
+msgid "``Failed to authenticate user <USER>``"
+msgstr ""
+
+#, fuzzy
+msgid "User logged out or quit the session"
 msgstr "пользователь вышел из системы или завершил сеанс"
 
 msgid "``disconnect``"
 msgstr "``disconnect``"
 
+#, fuzzy
+msgid "``Close connection``"
+msgstr "закрытое соединение,"
+
+#, fuzzy
+msgid "User created"
+msgstr "``user_create``"
+
+msgid "``user_create``"
+msgstr "``user_create``"
+
+msgid "``Create user <USER>``"
+msgstr ""
+
+#, fuzzy
+msgid "User dropped"
+msgstr "``user_drop``"
+
+msgid "``user_drop``"
+msgstr "``user_drop``"
+
+msgid "``Drop user <USER>``"
+msgstr ""
+
+#, fuzzy
+msgid "Role created"
+msgstr "``role_create``"
+
+msgid "``role_create``"
+msgstr "``role_create``"
+
+msgid "``Create role <ROLE>``"
+msgstr ""
+
+msgid "Role dropped"
+msgstr ""
+
+#, fuzzy
+msgid "``role_drop``"
+msgstr "``user_drop``"
+
+msgid "``Drop role <ROLE>``"
+msgstr ""
+
+#, fuzzy
+msgid "User disabled"
+msgstr "``user_disable``"
+
+msgid "``user_disable``"
+msgstr "``user_disable``"
+
+msgid "``Disable user <USER>``"
+msgstr ""
+
+#, fuzzy
+msgid "User enabled"
+msgstr "``user_enable``"
+
+msgid "``user_enable``"
+msgstr "``user_enable``"
+
+msgid "``Enable user <USER>``"
+msgstr ""
+
+msgid "User granted rights"
+msgstr ""
+
+#, fuzzy
+msgid "``user_grant_rights``"
+msgstr "``user_create``"
+
 msgid ""
-"failed access attempts to secure data (personal records, details, "
+"``Grant <PRIVILEGE> rights for <OBJECT_TYPE> <OBJECT_NAME> to user <USER>``"
+msgstr ""
+
+msgid "User revoked rights"
+msgstr ""
+
+#, fuzzy
+msgid "``user_revoke_rights``"
+msgstr "``user_create``"
+
+msgid ""
+"``Revoke <PRIVILEGE> rights for <OBJECT_TYPE> <OBJECT_NAME> from user "
+"<USER>``"
+msgstr ""
+
+msgid "Role granted rights"
+msgstr ""
+
+#, fuzzy
+msgid "``role_grant_rights``"
+msgstr "``role_create``"
+
+msgid ""
+"``Grant <PRIVILEGE> rights for <OBJECT_TYPE> <OBJECT_NAME> to role <ROLE>``"
+msgstr ""
+
+msgid "Role revoked rights"
+msgstr ""
+
+#, fuzzy
+msgid "``role_revoke_rights``"
+msgstr "``role_create``"
+
+msgid ""
+"``Revoke <PRIVILEGE> rights for <OBJECT_TYPE> <OBJECT_NAME> from role "
+"<ROLE>``"
+msgstr ""
+
+#, fuzzy
+msgid "User password changed"
+msgstr "изменение пароля,"
+
+msgid "``password_change``"
+msgstr "``password_change``"
+
+msgid "``Change password for user <USER>``"
+msgstr ""
+
+#, fuzzy
+msgid ""
+"Failed attempt to access secure data (personal records, details, "
 "geolocation, etc.)"
 msgstr ""
 "неудачные попытки доступа к конфиденциальным данным (личные записи, данные, "
@@ -130,53 +252,860 @@ msgstr ""
 msgid "``access_denied``"
 msgstr "``access_denied``"
 
-msgid "creating a user"
-msgstr "создание пользователя"
+msgid "``<ACCESS_TYPE> denied to <OBJECT_TYPE> <OBJECT_NAME>``"
+msgstr ""
 
-msgid "``user_create``"
+msgid "Expressions with arguments evaluated in a string"
+msgstr ""
+
+#, fuzzy
+msgid "``eval``"
+msgstr "``user``"
+
+msgid "``Evaluate expression <EXPR>``"
+msgstr ""
+
+msgid "Function called with arguments"
+msgstr ""
+
+msgid "``call``"
+msgstr ""
+
+msgid "``Call function <FUNCTION> with arguments <ARGS>``"
+msgstr ""
+
+msgid "Iterator key selected from ``space.index``"
+msgstr ""
+
+#, fuzzy
+msgid "``space_select``"
+msgstr "``disconnect``"
+
+msgid "``Select <ITER_TYPE> <KEY> from <SPACE>.<INDEX>``"
+msgstr ""
+
+msgid "Space created"
+msgstr ""
+
+#, fuzzy
+msgid "``space_create``"
 msgstr "``user_create``"
 
-msgid "dropping a user"
-msgstr "удаление пользователя"
+msgid "``Create space <SPACE>``"
+msgstr ""
 
-msgid "``user_drop``"
+msgid "Space altered"
+msgstr ""
+
+#, fuzzy
+msgid "``space_alter``"
+msgstr "``peer``"
+
+msgid "``Alter space <SPACE>``"
+msgstr ""
+
+msgid "Space dropped"
+msgstr ""
+
+#, fuzzy
+msgid "``space_drop``"
 msgstr "``user_drop``"
 
-msgid "disabling a user"
-msgstr "отключение пользователя"
+msgid "``Drop space <SPACE>``"
+msgstr ""
 
-msgid "``user_disable``"
-msgstr "``user_disable``"
+msgid "Tuple inserted into space"
+msgstr ""
 
-msgid "enabling a user"
-msgstr "включение пользователя"
+#, fuzzy
+msgid "``space_insert``"
+msgstr "``peer``"
 
-msgid "``user_enable``"
-msgstr "``user_enable``"
+msgid "``Insert tuple <TUPLE> into space <SPACE>``"
+msgstr ""
 
-msgid "granting (changing) privileges (roles, profiles, etc.) for the user"
-msgstr "выдача (изменение) прав (роли, профили и т.д.) пользователю"
+msgid "Tuple replaced in space"
+msgstr ""
 
-msgid "``user_priv``"
-msgstr "``user_priv``"
+#, fuzzy
+msgid "``space_replace``"
+msgstr "``user_create``"
+
+msgid "``Replace tuple <TUPLE> with <NEW_TUPLE> in space <SPACE>``"
+msgstr ""
+
+msgid "Tuple deleted from space"
+msgstr ""
+
+#, fuzzy
+msgid "``space_delete``"
+msgstr "``access_denied``"
+
+msgid "``Delete tuple <TUPLE> from space <SPACE>``"
+msgstr ""
 
 msgid ""
-"resetting password of the user (the user making changes should be specified)"
+"The ``eval`` event displays data from the ``console`` module and the "
+"``eval`` function of the ``net.box`` module. For more on how they work, see "
+":ref:`Module console <console-module>` and :ref:`Module net.box -- eval "
+"<net_box-eval>`. To separate the data, specify ``console`` or ``binary`` in "
+"the session field."
 msgstr ""
-"сброс пароля пользователя (должен быть указан пользователь, который вносит "
-"изменения)"
 
-msgid "``password_change``"
-msgstr "``password_change``"
+msgid "Event groups"
+msgstr ""
 
-msgid "creating a role"
-msgstr "создание роли"
+msgid ""
+"You can simplify working with audit log events by using built-in event "
+"groups. For example, you can set to record only events related to the "
+"enabling of the audit log, or only events related to a space."
+msgstr ""
 
-msgid "``role_create``"
-msgstr "``role_create``"
+msgid "Tarantool provides the following event groups:"
+msgstr ""
 
-msgid "granting (changing) privileges for the role"
-msgstr "выдача (изменение) прав для роли"
+msgid "``all`` -- all :ref:`events <audit-log-events>`."
+msgstr ""
 
-msgid "``role_priv``"
-msgstr "``role_priv``"
+msgid "Events ``call`` and ``eval`` are included only into the ``all`` group."
+msgstr ""
+
+msgid "``audit`` -- ``audit_enable`` event."
+msgstr ""
+
+msgid "``auth`` -- authorization events: ``auth_ok``, ``auth_fail``."
+msgstr ""
+
+msgid ""
+"``priv`` -- events related to authentication, authorization, users, and "
+"roles: ``user_create``, ``user_drop``, ``role_create``, ``role_drop``, "
+"``user_enable``, ``user_disable``, ``user_grant_rights``, "
+"``user_revoke_rights``, ``role_grant_rights``, ``role_revoke_rights``."
+msgstr ""
+
+msgid ""
+"``ddl`` -- events of space creation, altering, and dropping: "
+"``space_create``, ``space_alter``, ``space_drop``."
+msgstr ""
+
+msgid ""
+"``dml`` -- events of data modification in spaces: ``space_insert``, "
+"``space_replace``, ``space_delete``."
+msgstr ""
+
+msgid ""
+"``data_operations`` -- events of data modification or selection from spaces:"
+" ``space_select``, ``space_insert``, ``space_replace``, ``space_delete``."
+msgstr ""
+
+msgid ""
+"``compatibility`` -- events available in Tarantool before the version "
+"2.10.0. ``auth_ok``, ``auth_fail``, ``disconnect``, ``user_create``, "
+"``user_drop``, ``role_create``, ``role_drop``, ``user_enable``, "
+"``user_disable``, ``user_grant_rights``, ``user_revoke_rights``, "
+"``role_grant_rights``. ``role_revoke_rights``, ``password_change``, "
+"``access_denied``. This group enables the compatibility with earlier "
+"Tarantool versions."
+msgstr ""
+
+msgid ""
+"Be careful when recording ``all`` and ``data_operations`` event groups. The "
+"more events you record, the slower the requests will be processed over time."
+" It is recommended that you select only those groups whose events your "
+"company really needs to monitor and analyze."
+msgstr ""
+
+msgid "Structure of audit log events"
+msgstr ""
+
+msgid ""
+"Each audit log event contains several fields to make it easy to filter and "
+"aggregate the resulting logs. They are described in the following table."
+msgstr ""
+
+msgid "Field"
+msgstr ""
+
+msgid "Description"
+msgstr "Описание"
+
+msgid "Example of a log field display"
+msgstr ""
+
+msgid "``time``"
+msgstr "``time``"
+
+#, fuzzy
+msgid "Time of the event"
+msgstr "время события"
+
+msgid "2022-04-07T13:20:05.327+0300"
+msgstr ""
+
+#, fuzzy
+msgid "``remote``"
+msgstr "``type``"
+
+msgid "Remote host that triggered the event"
+msgstr ""
+
+msgid "100.96.163.226:48722"
+msgstr ""
+
+#, fuzzy
+msgid "``session_type``"
+msgstr "``type``"
+
+msgid "Session type"
+msgstr ""
+
+msgid "console"
+msgstr ""
+
+#, fuzzy
+msgid "``module``"
+msgstr "``user``"
+
+msgid ""
+"Audit log module. Set to ``tarantool`` for system events; can be overwritten"
+" for user-defined events"
+msgstr ""
+
+msgid "tarantool"
+msgstr ""
+
+msgid "``user``"
+msgstr "``user``"
+
+msgid "User who triggered the event"
+msgstr ""
+
+msgid "admin"
+msgstr ""
+
+msgid "``type``"
+msgstr "``type``"
+
+msgid "Audit event type"
+msgstr ""
+
+#, fuzzy
+msgid "access_denied"
+msgstr "``access_denied``"
+
+#, fuzzy
+msgid "``tag``"
+msgstr "``type``"
+
+msgid "A text field that can be overwritten by the user"
+msgstr ""
+
+msgid "``description``"
+msgstr "``description``"
+
+#, fuzzy
+msgid "Human-readable event description"
+msgstr "Описание события"
+
+msgid "Authenticate user Alice"
+msgstr ""
+
+msgid ""
+"You can set all these parameters only once. Unlike many other parameters in "
+"``box.cfg``, they cannot be changed."
+msgstr ""
+
+msgid "Enable the Tarantool audit log"
+msgstr ""
+
+msgid ""
+"By default, audit logging is disabled. To enable audit logging, define the "
+"logs location by setting the ``box.cfg.audit_log`` option. Tarantool can "
+"write audit logs to a file, to a pipe, or to the system logger."
+msgstr ""
+
+msgid "To disable audit logging, set the ``audit_log`` option to ``nil``."
+msgstr ""
+
+msgid "Write to a file"
+msgstr ""
+
+msgid ""
+"box.cfg{audit_log = 'audit_tarantool.log'}\n"
+"-- or\n"
+"box.cfg{audit_log = 'file:audit_tarantool.log'}"
+msgstr ""
+
+msgid ""
+"This opens the ``audit_tarantool.log`` file for output in the server’s "
+"default directory. If the ``audit_log`` string has no prefix or the prefix "
+"``file:``, the string is interpreted as a file path."
+msgstr ""
+
+msgid "Send to a pipe"
+msgstr ""
+
+msgid ""
+"box.cfg{audit_log = '| cronolog audit_tarantool.log'}\n"
+"-- or\n"
+"box.cfg{audit_log = 'pipe: cronolog audit_tarantool.log'}'"
+msgstr ""
+
+msgid ""
+"This starts the `cronolog <https://linux.die.net/man/1/cronolog>`_ program "
+"when the server starts and sends all ``audit_log`` messages to cronolog's "
+"standard input (``stdin``). If the ``audit_log`` string starts with '|' or "
+"contains the prefix ``pipe:``, the string is interpreted as a Unix `pipeline"
+" <https://en.wikipedia.org/wiki/Pipeline_%28Unix%29>`_."
+msgstr ""
+
+msgid "Send to syslog"
+msgstr ""
+
+msgid ""
+"Below is an example of writing audit logs to a directory shared with the "
+"system logs. Tarantool allows this option, but it is not recommended to do "
+"this to avoid difficulties when working with audit logs. System and audit "
+"logs should be written separately. To do this, create separate paths and "
+"specify them."
+msgstr ""
+
+msgid "This example setting sends the audit log to syslog:"
+msgstr ""
+
+msgid ""
+"box.cfg{audit_log = 'syslog:identity=tarantool'}\n"
+"-- or\n"
+"box.cfg{audit_log = 'syslog:facility=user'}\n"
+"-- or\n"
+"box.cfg{audit_log = 'syslog:identity=tarantool,facility=user'}\n"
+"-- or\n"
+"box.cfg{audit_log = 'syslog:server=unix:/dev/log'}"
+msgstr ""
+
+msgid ""
+"If the ``audit_log`` string starts with \"syslog:\", it is interpreted as a "
+"message for the `syslogd <https://datatracker.ietf.org/doc/html/rfc5424>`_ "
+"program, which normally runs in the background of any Unix-like platform. "
+"The setting can be 'syslog:', 'syslog:facility=...', 'syslog:identity=...', "
+"'syslog:server=...' or a combination."
+msgstr ""
+
+msgid ""
+"The ``syslog:identity`` setting is an arbitrary string that is placed at the"
+" beginning of all messages. The default value is ``tarantool``."
+msgstr ""
+
+msgid ""
+"The ``syslog:facility`` setting is currently ignored, but will be used in "
+"the future. The value must be one of the `syslog "
+"<https://en.wikipedia.org/wiki/Syslog>`_ keywords that tell ``syslogd`` "
+"where to send the message. The possible values are ``auth``, ``authpriv``, "
+"``cron``, ``daemon``, ``ftp``, ``kern``, ``lpr``, ``mail``, ``news``, "
+"``security``, ``syslog``, ``user``, ``uucp``, ``local0``, ``local1``, "
+"``local2``, ``local3``, ``local4``, ``local5``, ``local6``, ``local7``. The "
+"default value is ``local7``."
+msgstr ""
+
+msgid ""
+"The ``syslog:server`` setting is the locator for the syslog server. It can "
+"be a Unix socket path starting with \"unix:\" or an ipv4 port number. The "
+"default socket value is ``/dev/log`` (on Linux) or ``/var/run/syslog`` (on "
+"Mac OS). The default port value is 514, which is the UDP port."
+msgstr ""
+
+msgid ""
+"If you log to a file, Tarantool will reopen the audit log at `SIGHUP "
+"<https://en.wikipedia.org/wiki/SIGHUP>`_. If log is a program, its pid is "
+"stored in the ``audit_log.logger_pid`` variable. You need to send it a "
+"signal to rotate logs."
+msgstr ""
+
+msgid "An example of a Tarantool audit log entry in the syslog:"
+msgstr ""
+
+msgid ""
+"{\n"
+"  \"__CURSOR\" : \"s=81564632436a4de590e80b89b0151148;i=11519;b=def80c1464fe49d1aac8a64895d6614d;m=8c825ebfc;t=5edb27a75f282;x=7eba320f7cc9ae4d\",\n"
+"  \"__REALTIME_TIMESTAMP\" : \"1668725698065026\",\n"
+"  \"__MONOTONIC_TIMESTAMP\" : \"37717666812\",\n"
+"  \"_BOOT_ID\" : \"def80c1464fe49d1aac8a64895d6614d\",\n"
+"  \"_UID\" : \"1003\",\n"
+"  \"_GID\" : \"1004\",\n"
+"  \"_COMM\" : \"tarantool\",\n"
+"  \"_EXE\" : \"/app/tarantool/dist/tdg-2.6.4.0.x86_64/tarantool\",\n"
+"  \"_CMDLINE\" : \"tarantool init.lua <running>: core-03\",\n"
+"  \"_CAP_EFFECTIVE\" : \"0\",\n"
+"  \"_AUDIT_SESSION\" : \"1\",\n"
+"  \"_AUDIT_LOGINUID\" : \"1003\",\n"
+"  \"_SYSTEMD_CGROUP\" : \"/user.slice/user-1003.slice/user@1003.service/app.slice/app@core-03.service\",\n"
+"  \"_SYSTEMD_OWNER_UID\" : \"1003\",\n"
+"  \"_SYSTEMD_UNIT\" : \"user@1003.service\",\n"
+"  \"_SYSTEMD_USER_UNIT\" : \"app@core-03.service\",\n"
+"  \"_SYSTEMD_SLICE\" : \"user-1003.slice\",\n"
+"  \"_SYSTEMD_USER_SLICE\" : \"app.slice\",\n"
+"  \"_SYSTEMD_INVOCATION_ID\" : \"be368b4243d842ea8c06b010e0df62c2\",\n"
+"  \"_MACHINE_ID\" : \"2e2339725deb4bc198c54ff4a2e8d626\",\n"
+"  \"_HOSTNAME\" : \"vm-0.test.env\",\n"
+"  \"_TRANSPORT\" : \"syslog\",\n"
+"  \"PRIORITY\" : \"6\",\n"
+"  \"SYSLOG_FACILITY\" : \"23\",\n"
+"  \"SYSLOG_IDENTIFIER\" : \"tarantool\",\n"
+"  \"SYSLOG_PID\" : \"101562\",\n"
+"  \"_PID\" : \"101562\",\n"
+"  \"MESSAGE\" : \"remote: session_type:background module:common.admin.auth user: type:custom_tdg_audit tag:tdg_severity_INFO description:[119eae0e-a691-42cc-9b4c-f14c499e6726] subj: \\\"anonymous\\\", msg: \\\"Access granted to anonymous user\\\"\",\n"
+"  \"_SOURCE_REALTIME_TIMESTAMP\" : \"1668725698064202\"\n"
+"}"
+msgstr ""
+
+msgid "Select events to write to audit log"
+msgstr ""
+
+msgid ""
+"Tarantool's extensive filtering options help you write only the events you "
+"need to the audit log."
+msgstr ""
+
+msgid ""
+"To select events to write to audit log, use the ``box.cfg.audit_filter`` "
+"option. Its value can be a list of events and event groups. The default "
+"value for the ``box.cfg.audit_filter`` option is ``compatibility``, which "
+"enables logging of all events available before 2.10.0."
+msgstr ""
+
+msgid ""
+"box.cfg{\n"
+"        audit_log = 'audit.log',\n"
+"        audit_filter = 'audit,auth,priv,password_change,access_denied'\n"
+"       }"
+msgstr ""
+
+msgid "Customize your filters"
+msgstr ""
+
+msgid ""
+"You can customize the filters and use different combinations of filters for "
+"your purposes."
+msgstr ""
+
+msgid "Filter based on a specific event"
+msgstr ""
+
+msgid "You can set only certain events that you need to record."
+msgstr ""
+
+msgid ""
+"For example, select ``password_change`` to monitor the users who have "
+"changed their passwords."
+msgstr ""
+
+msgid ""
+"box.cfg{\n"
+"        audit_log = 'audit.log',\n"
+"        audit_filter = 'password_change'\n"
+"       }"
+msgstr ""
+
+msgid "Filter based on a specific group"
+msgstr ""
+
+msgid "You can set one of the groups of events that you need to record."
+msgstr ""
+
+msgid ""
+"For example, select ``compatibility`` to monitor only events of user "
+"authorization, granted privileges, disconnection, user password change, and "
+"denied access."
+msgstr ""
+
+msgid ""
+"box.cfg{\n"
+"        audit_log = 'audit.log',\n"
+"        audit_filter = 'compatibility'\n"
+"       }"
+msgstr ""
+
+msgid "Filter based on multiple groups"
+msgstr ""
+
+msgid "You can specify multiple groups depending on the purpose."
+msgstr ""
+
+msgid ""
+"For example, select ``auth`` and ``priv`` to see only events related to "
+"authorization and granted privileges."
+msgstr ""
+
+msgid ""
+"box.cfg{\n"
+"        audit_log = 'audit.log',\n"
+"        audit_filter = 'auth,priv'\n"
+"       }"
+msgstr ""
+
+msgid "Filter based on a group and a specific event"
+msgstr ""
+
+msgid "You can specify a group and a certain event depending on the purpose."
+msgstr ""
+
+msgid ""
+"For example, you can select ``priv`` and ``disconnect`` to see only events "
+"related to granted privileges and disconnect events."
+msgstr ""
+
+msgid ""
+"box.cfg{\n"
+"        audit_log = 'audit.log',\n"
+"        audit_filter = 'priv,disconnect'\n"
+"       }"
+msgstr ""
+
+msgid "Example"
+msgstr "Пример"
+
+msgid "Run the command to filter:"
+msgstr ""
+
+msgid ""
+"local audit = require('audit')\n"
+"\n"
+"box.cfg{audit_log = 'audit.log', audit_filter = 'custom,user_create', audit_format = 'csv'}\n"
+"-- The Tarantool audit module writes the event because a filter is set for it\n"
+"box.schema.user.create('alice')\n"
+"-- The Tarantool audit module will not write the event because no filter is set for it\n"
+"box.schema.user.drop('alice')"
+msgstr ""
+
+msgid "Configure a blocking mode"
+msgstr ""
+
+msgid ""
+"By default, the ``audit_nonblock`` option is set to ``true`` and Tarantool "
+"will not block during logging if the system is not ready to write, dropping "
+"the message instead. Using this value may improve logging performance at the"
+" cost of losing some log messages. This option only has an effect if the "
+"output goes to ``syslog:`` or ``pipe:``. Setting ``audit_nonblock`` to "
+"``true`` is not allowed if the output is to a file. In this case, set "
+"``audit_nonblock`` to ``false``."
+msgstr ""
+
+msgid "Configure the format of audit log events"
+msgstr ""
+
+msgid ""
+"You can choose the format of audit log events -- plain text, CSV or JSON "
+"format."
+msgstr ""
+
+msgid ""
+"Plain text is used by default. This human-readable format can be efficiently"
+" compressed. The JSON format is more convenient to receive log events, "
+"analyze them and integrate them with other systems if needed. Using the CSV "
+"format allows you to view audit log events in tabular form."
+msgstr ""
+
+msgid ""
+"Use these commands to configure the format of audit log events in Tarantool."
+msgstr ""
+
+msgid "Plain text"
+msgstr ""
+
+msgid "box.cfg{audit_log = 'audit.log', audit_format = 'plain'}"
+msgstr ""
+
+#, fuzzy
+msgid "Example:"
+msgstr "Пример"
+
+msgid ""
+"remote:\n"
+"session_type:background\n"
+"module:common.admin.auth\n"
+"user: type:custom_tdg_audit\n"
+"tag:tdg_severity_INFO\n"
+"description:[5e35b406-4274-4903-857b-c80115275940]\n"
+"subj: \"anonymous\",\n"
+"msg: \"Access granted to anonymous user\""
+msgstr ""
+
+msgid "JSON format"
+msgstr ""
+
+msgid "box.cfg{audit_log = 'audit.log', audit_format = 'json'}"
+msgstr ""
+
+msgid ""
+"{\n"
+"    \"time\": \"2022-11-17T21:55:49.880+0300\",\n"
+"    \"remote\": \"\",\n"
+"    \"session_type\": \"background\",\n"
+"    \"module\": \"common.admin.auth\",\n"
+"    \"user\": \"\",\n"
+"    \"type\": \"custom_tdg_audit\",\n"
+"    \"tag\": \"tdg_severity_INFO\",\n"
+"    \"description\": \"[c26cd11a-3342-4ce6-8f0b-a4b222268b9d] subj: \\\"anonymous\\\", msg: \\\"Access granted to anonymous user\\\"\"\n"
+"}"
+msgstr ""
+
+msgid "CSV format"
+msgstr ""
+
+msgid "box.cfg{audit_log = 'audit.log', audit_format = 'csv'}"
+msgstr ""
+
+msgid ""
+"2022-11-17T21:58:03.131+0300,,background,common.admin.auth,,,custom_tdg_audit,tdg_severity_INFO,\"[b3dfe2a3-ec29-4e61-b747-eb2332c83b2e]"
+" subj: \"\"anonymous\"\", msg: \"\"Access granted to anonymous user\"\"\""
+msgstr ""
+
+msgid "Create user-defined events"
+msgstr ""
+
+msgid "Tarantool provides an API for writing user-defined audit log events."
+msgstr ""
+
+msgid ""
+"To add a new event, use the ``audit.log()`` function that takes one of the "
+"following values:"
+msgstr ""
+
+msgid ""
+"Message string. Printed to the audit log with type ``message``. Example: "
+"``audit.log('Hello, World!')``."
+msgstr ""
+
+#, python-format
+msgid ""
+"Format string and arguments. Passed to string format and then output to the "
+"audit log with type message. Example: ``audit.log('Hello, %s!', 'World')``."
+msgstr ""
+
+msgid ""
+"Table with audit log field values. The table must contain at least one field"
+" -- description. Example: ``audit.log({type = 'custom_hello', description = "
+"'Hello, World!'})``."
+msgstr ""
+
+msgid ""
+"Using the field ``audit.new()``, you can create a new log module that allows"
+" you to avoid passing all custom audit log fields each time ``audit.log()`` "
+"is called. It takes a table of audit log field values (same as "
+"``audit.log()``). The ``type`` of the log module for writing user-defined "
+"events must either be ``message`` or have the ``custom_`` prefix."
+msgstr ""
+
+msgid ""
+"local my_audit = audit.new({type = 'custom_hello', module = 'my_module'})\n"
+"my_audit:log('Hello, Alice!')\n"
+"my_audit:log({tag = 'admin', description = 'Hello, Bob!'})\n"
+"\n"
+"-- is equivalent to\n"
+"audit.log({type = 'custom_hello', module = 'my_module',\n"
+"           description = 'Hello, Alice!' })\n"
+"audit.log({type = 'custom_hello', module = 'my_module',\n"
+"           tag = 'admin', description = 'Hello, Bob!'})"
+msgstr ""
+
+msgid ""
+"Some user-defined audit log fields (``time``, ``remote``, ``session_type``) "
+"are set in the same way as for a system event. If a field is not "
+"overwritten, it is set to the same value as for a system event."
+msgstr ""
+
+msgid ""
+"Some audit log fields you can overwrite with ``audit.new()`` and "
+"``audit.log()``:"
+msgstr ""
+
+#, fuzzy
+msgid "type"
+msgstr "Тип"
+
+msgid "user"
+msgstr "пользователь"
+
+#, fuzzy
+msgid "module"
+msgstr "Журнал аудита"
+
+msgid "tag"
+msgstr ""
+
+#, fuzzy
+msgid "description"
+msgstr "Описание"
+
+msgid ""
+"To avoid confusion with system events, the value of the type field must "
+"either be ``message`` (default) or begin with ``custom_``. Otherwise you "
+"will get the error message. User-defined events are filtered out by default."
+" To enable user-defined audit log events, you must add ``custom`` to "
+"``box.cfg.audit_filter``."
+msgstr ""
+
+#, python-format
+msgid ""
+"local audit = require('audit')\n"
+"\n"
+"box.cfg{audit_log = 'audit.log', audit_filter = 'custom', audit_format = 'csv'}\n"
+"audit.log('Hello, Alice!')\n"
+"audit.log('Hello, %s!', 'Bob')\n"
+"audit.log({type = 'custom_hello', description = 'Hello, Eve!'})\n"
+"audit.log({type = 'custom_farewell', user = 'eve', module = 'custom', description = 'Farewell, Eve!'})\n"
+"\n"
+"local my_audit = audit.new({module = 'my_module', tag = 'default'})\n"
+"my_audit:log({description = 'Message 1'})\n"
+"my_audit:log({description = 'Message 2', tag = 'my_tag'})\n"
+"my_audit:log({description = 'Message 3', module = 'other_module'})"
+msgstr ""
+
+msgid "Use read commands"
+msgstr ""
+
+msgid ""
+"To easily read the audit log events in the needed form, use the different "
+"commands:"
+msgstr ""
+
+msgid "``cat`` -- prints one or more files"
+msgstr ""
+
+msgid "``grep`` -- prints a specific text"
+msgstr ""
+
+msgid "``head`` -- prints the first N lines of the file"
+msgstr ""
+
+msgid "``tail`` -- prints the last N lines of the file"
+msgstr ""
+
+msgid ""
+"These are the basic commands to help you read the logs. If necessary, you "
+"can use other commands."
+msgstr ""
+
+msgid "Tips"
+msgstr ""
+
+msgid "How many events can be recorded?"
+msgstr ""
+
+msgid ""
+"If you write to a file, the size of the Tarantool audit module is limited by"
+" the disk space. If you write to a system logger, the size of the Tarantool "
+"audit module is limited by the system logger. If you write to a pipe, the "
+"size of the Tarantool audit module is limited by the system buffer if the "
+"``audit_nonblock`` = ``false``; if ``audit_nonblock`` = ``true``, there is "
+"no limit. However, it is not recommended to use the entire memory, as this "
+"may cause performance degradation and even loss of some logs."
+msgstr ""
+
+msgid "How often should audit logs be reviewed?"
+msgstr ""
+
+msgid ""
+"Consider setting up a schedule in your company. It is recommended to review "
+"audit logs at least every 3 months."
+msgstr ""
+
+msgid "How long should audit logs be stored?"
+msgstr ""
+
+msgid "It is recommended to store audit logs for at least one year."
+msgstr ""
+
+msgid "What is the best way to process audit logs?"
+msgstr ""
+
+msgid "It is recommended to use SIEM systems for this issue."
+msgstr ""
+
+#~ msgid ""
+#~ "Audit log provides records on the Tarantool DBMS events in the JSON-format. "
+#~ "The following event logs are available:"
+#~ msgstr ""
+#~ "Журнал аудита содержит записи о событиях СУБД Tarantool в формате JSON. "
+#~ "Доступны следующие журналы событий:"
+
+#~ msgid "successful/failed user authentication and authorization,"
+#~ msgstr "пройденная/непройденная аутентификация и авторизация пользователя,"
+
+#~ msgid "creation/deletion of a user/role,"
+#~ msgstr "создание/удаление пользователя/роли,"
+
+#~ msgid "enabling/disabling a user,"
+#~ msgstr "включение/отключение пользователя,"
+
+#~ msgid "changing privileges of a user/role."
+#~ msgstr "изменение прав пользователя/роли."
+
+#~ msgid "Log structure"
+#~ msgstr "Структура журнала"
+
+#~ msgid "Key"
+#~ msgstr "Ключ"
+
+#~ msgid "string"
+#~ msgstr "строка"
+
+#~ msgid "type of event"
+#~ msgstr "тип события"
+
+#~ msgid "``type_id``"
+#~ msgstr "``type_id``"
+
+#~ msgid "number"
+#~ msgstr "число"
+
+#~ msgid "description of event"
+#~ msgstr "описание события"
+
+#~ msgid "remote client"
+#~ msgstr "удаленный клиент"
+
+#~ msgid "``param``"
+#~ msgstr "``param``"
+
+#~ msgid "parameters of event"
+#~ msgstr "параметры события"
+
+#~ msgid "see below"
+#~ msgstr "см. ниже"
+
+#~ msgid "Parameters"
+#~ msgstr "Параметры"
+
+#~ msgid "creating a user"
+#~ msgstr "создание пользователя"
+
+#~ msgid "dropping a user"
+#~ msgstr "удаление пользователя"
+
+#~ msgid "disabling a user"
+#~ msgstr "отключение пользователя"
+
+#~ msgid "enabling a user"
+#~ msgstr "включение пользователя"
+
+#~ msgid "granting (changing) privileges (roles, profiles, etc.) for the user"
+#~ msgstr "выдача (изменение) прав (роли, профили и т.д.) пользователю"
+
+#~ msgid "``user_priv``"
+#~ msgstr "``user_priv``"
+
+#~ msgid ""
+#~ "resetting password of the user (the user making changes should be specified)"
+#~ msgstr ""
+#~ "сброс пароля пользователя (должен быть указан пользователь, который вносит "
+#~ "изменения)"
+
+#~ msgid "creating a role"
+#~ msgstr "создание роли"
+
+#~ msgid "granting (changing) privileges for the role"
+#~ msgstr "выдача (изменение) прав для роли"
+
+#~ msgid "``role_priv``"
+#~ msgstr "``role_priv``"

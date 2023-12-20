@@ -1,0 +1,221 @@
+
+msgid "Flight recorder"
+msgstr ""
+
+msgid ""
+"The flight recorder available in the Enterprise Edition is an event "
+"collection tool that gathers various information about a working Tarantool "
+"instance, such as:"
+msgstr ""
+
+msgid "logs"
+msgstr ""
+
+msgid "metrics"
+msgstr ""
+
+msgid "requests and responses"
+msgstr ""
+
+msgid ""
+"This information helps you investigate incidents related to :ref:`crashing "
+"<admin-disaster_recovery>` a Tarantool instance."
+msgstr ""
+
+msgid "Enabling the flight recorder"
+msgstr ""
+
+msgid ""
+"The flight recorder is disabled by default and can be enabled and configured"
+" for a specific Tarantool instance. To enable the flight recorder, set the "
+"``flightrec_enabled`` :doc:`configuration option "
+"</reference/configuration/index>` to ``true``. This option is :ref:`dynamic "
+"<box_cfg_params>` and can be changed at runtime by calling ``box.cfg{}``:"
+msgstr ""
+
+msgid "box.cfg{ flightrec_enabled = true }"
+msgstr ""
+
+msgid ""
+"After ``flightrec_enabled`` is set to ``true``, the flight recorder starts "
+"collecting data in the flight recording file  ``current.ttfr``. This file is"
+" stored in the :ref:`memtx_dir <cfg_basic-memtx_dir>` directory. If the "
+"instance crashes and reboots, Tarantool rotates the flight recording: "
+"``current.ttfr`` is renamed to ``<timestamp>.ttfr`` (for example, "
+"``20230411T050721.ttfr``) and the new ``current.ttfr`` file is created for "
+"collecting data. In the case of correct shutdown (for example, using "
+"``os.exit()``), Tarantool continues writing to the existing ``current.ttfr``"
+" file after restart."
+msgstr ""
+
+msgid "Note that old flight recordings should be removed manually."
+msgstr ""
+
+msgid "Configuration"
+msgstr ""
+
+msgid ""
+"This section describes options related to the flight recorder configuration."
+" Note that all options are :ref:`dynamic <box_cfg_params>` and can be "
+"changed at runtime."
+msgstr ""
+
+msgid "Logs"
+msgstr ""
+
+msgid ""
+"This section describes the flight recorder settings related to :ref:`logging"
+" <cfg_logging-log>`. For example, you can configure a more detailed logging "
+"level in the flight recorder for deeper analysis."
+msgstr ""
+
+msgid ":ref:`flightrec_logs_size <cfg_flightrec_logs_size>`"
+msgstr ""
+
+msgid ":ref:`flightrec_logs_max_msg_size <cfg_flightrec_logs_max_msg_size>`"
+msgstr ""
+
+msgid ":ref:`flightrec_logs_log_level <cfg_flightrec_logs_log_level>`"
+msgstr ""
+
+msgid ""
+"Specifies the size (in bytes) of the log storage. You can set this option to"
+" ``0`` to disable the log storage."
+msgstr ""
+
+msgid "Type: integer"
+msgstr ""
+
+msgid "Default: 10485760"
+msgstr ""
+
+msgid "Environment variable: TT_FLIGHTREC_LOGS_SIZE"
+msgstr ""
+
+msgid ""
+"Specifies the maximum size (in bytes) of the log message. The log message is"
+" truncated if its size exceeds this limit."
+msgstr ""
+
+msgid "Default: 4096"
+msgstr ""
+
+msgid "Maximum: 16384"
+msgstr ""
+
+msgid "Environment variable: TT_FLIGHTREC_LOGS_MAX_MSG_SIZE"
+msgstr ""
+
+msgid ""
+"Specifies the level of detail the log has. You can learn more about log "
+"levels from the :ref:`log_level <cfg_logging-log_level>` option description."
+" Note that the ``flightrec_logs_log_level`` value might differ from "
+"``log_level``."
+msgstr ""
+
+msgid "Default: 6"
+msgstr ""
+
+msgid "Environment variable: TT_FLIGHTREC_LOGS_LOG_LEVEL"
+msgstr ""
+
+msgid "Metrics"
+msgstr ""
+
+msgid ""
+"This section describes the flight recorder settings related to collecting "
+":ref:`metrics <metrics-reference>`."
+msgstr ""
+
+msgid ":ref:`flightrec_metrics_period <cfg_flightrec_metrics_period>`"
+msgstr ""
+
+msgid ":ref:`flightrec_metrics_interval <cfg_flightrec_metrics_interval>`"
+msgstr ""
+
+msgid ""
+"Specifies the time period (in seconds) that defines how long metrics are "
+"stored from the moment of dump. So, this value defines how much historical "
+"metrics data is collected up to the moment of crash. The frequency of metric"
+" dumps is defined by :ref:`flightrec_metrics_interval "
+"<cfg_flightrec_metrics_interval>`."
+msgstr ""
+
+msgid "Default: 180"
+msgstr ""
+
+msgid "Environment variable: TT_FLIGHTREC_METRICS_PERIOD"
+msgstr ""
+
+msgid ""
+"Specifies the time interval (in seconds) that defines the frequency of "
+"dumping metrics. This value shouldn't exceed :ref:`flightrec_metrics_period "
+"<cfg_flightrec_metrics_period>`."
+msgstr ""
+
+msgid "Type: number"
+msgstr ""
+
+msgid "Default: 1.0"
+msgstr ""
+
+msgid "Minimum: 0.001"
+msgstr ""
+
+msgid "Environment variable: TT_FLIGHTREC_METRICS_INTERVAL"
+msgstr ""
+
+msgid ""
+"Given that the average size of a metrics entry is 2 kB, you can estimate the"
+" size of the metrics storage as follows:"
+msgstr ""
+
+msgid "(flightrec_metrics_period / flightrec_metrics_interval) * 2 kB"
+msgstr ""
+
+msgid "Requests"
+msgstr ""
+
+msgid ""
+"This section lists the flight recorder settings related to storing the "
+":ref:`request and response <internals-requests_responses>` data."
+msgstr ""
+
+msgid ":ref:`flightrec_requests_size <cfg_flightrec_requests_size>`"
+msgstr ""
+
+msgid ""
+":ref:`flightrec_requests_max_req_size <cfg_flightrec_requests_max_req_size>`"
+msgstr ""
+
+msgid ""
+":ref:`flightrec_requests_max_res_size <cfg_flightrec_requests_max_res_size>`"
+msgstr ""
+
+msgid ""
+"Specifies the size (in bytes) of storage for the request and response data. "
+"You can set this parameter to ``0`` to disable a storage of requests and "
+"responses."
+msgstr ""
+
+msgid "Environment variable: TT_FLIGHTREC_REQUESTS_SIZE"
+msgstr ""
+
+msgid ""
+"Specifies the maximum size (in bytes) of a request entry. A request entry is"
+" truncated if this size is exceeded."
+msgstr ""
+
+msgid "Default: 16384"
+msgstr ""
+
+msgid "Environment variable: TT_FLIGHTREC_REQUESTS_MAX_REQ_SIZE"
+msgstr ""
+
+msgid ""
+"Specifies the maximum size (in bytes) of a response entry. A response entry "
+"is truncated if this size is exceeded."
+msgstr ""
+
+msgid "Environment variable: TT_FLIGHTREC_REQUESTS_MAX_RES_SIZE"
+msgstr ""

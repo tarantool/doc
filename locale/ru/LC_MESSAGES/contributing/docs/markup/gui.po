@@ -1,0 +1,9 @@
+
+msgid "Referring to GUI elements"
+msgstr ""
+
+msgid "To mention a GUI element, use the ``:guilabel:`` directive:"
+msgstr ""
+
+msgid "Click the :guilabel:`OK` button."
+msgstr ""

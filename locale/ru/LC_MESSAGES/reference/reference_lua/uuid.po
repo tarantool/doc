@@ -86,10 +86,14 @@ msgid "Check if a UUID is an all-zero value"
 msgstr "Проверка, состоит ли UUID из одних нулей"
 
 msgid ""
+"A nil UUID object. Contains the all-zero UUID value -- "
+"``00000000-0000-0000-0000-000000000000``."
+msgstr ""
+
+msgid ""
 "Since version :doc:`2.4.1 </release/2.4.1>`. Create a UUID sequence. You can"
-" use it in an index over a :ref:`UUID field "
-"<details_about_index_field_types>`. For example, to create such index for a "
-"space named ``test``, say:"
+" use it in an index over a :ref:`UUID field <index-box_indexed-field-"
+"types>`. For example, to create such index for a space named ``test``, say:"
 msgstr ""
 
 msgid ""
@@ -130,14 +134,39 @@ msgstr "тип возвращаемого значения"
 msgid "cdata"
 msgstr "cdata."
 
+msgid "Parameters"
+msgstr "Параметры"
+
+msgid ""
+"Byte order of the resulting UUID:  * ``'l'`` -- little-endian * ``'b'`` -- "
+"big-endian * ``'h'``, ``'host'`` -- endianness depends on host (default) * "
+"``'n'``, ``'network'`` -- endianness depends on network"
+msgstr ""
+
+msgid "Byte order of the resulting UUID:"
+msgstr ""
+
+#, fuzzy
+msgid "``'l'`` -- little-endian"
+msgstr "'l' -- порядок от младшего к старшему,"
+
+#, fuzzy
+msgid "``'b'`` -- big-endian"
+msgstr "'b' -- порядок от старшего к младшему,"
+
+#, fuzzy
+msgid "``'h'``, ``'host'`` -- endianness depends on host (default)"
+msgstr "'h' -- порядок зависит от хоста (по умолчанию),"
+
+#, fuzzy
+msgid "``'n'``, ``'network'`` -- endianness depends on network"
+msgstr "'n' -- порядок зависит от сети."
+
 msgid "16-byte string"
 msgstr "16-байтная строка"
 
 msgid "36-byte binary string"
 msgstr "36-байтная двоичная строка"
-
-msgid "Parameters"
-msgstr "Параметры"
 
 msgid "UUID in 36-byte hexadecimal string"
 msgstr "UUID в 36-байтной шестнадцатеричной строке"
@@ -147,6 +176,31 @@ msgstr "конвертированный UUID"
 
 msgid "UUID in 16-byte binary string"
 msgstr "UUID в 16-байтной двоичной строке"
+
+msgid ""
+"Byte order of the given string:  * ``'l'`` -- little-endian, * ``'b'`` -- "
+"big-endian, * ``'h'``, ``'host'`` -- endianness depends on host (default), *"
+" ``'n'``, ``'network'`` -- endianness depends on network."
+msgstr ""
+
+msgid "Byte order of the given string:"
+msgstr ""
+
+#, fuzzy
+msgid "``'l'`` -- little-endian,"
+msgstr "'l' -- порядок от младшего к старшему,"
+
+#, fuzzy
+msgid "``'b'`` -- big-endian,"
+msgstr "'b' -- порядок от старшего к младшему,"
+
+#, fuzzy
+msgid "``'h'``, ``'host'`` -- endianness depends on host (default),"
+msgstr "'h' -- порядок зависит от хоста (по умолчанию),"
+
+#, fuzzy
+msgid "``'n'``, ``'network'`` -- endianness depends on network."
+msgstr "'n' -- порядок зависит от сети."
 
 msgid "Since version :doc:`2.6.1 </release/2.6.1>`."
 msgstr ""
@@ -162,23 +216,11 @@ msgstr ""
 msgid "bool"
 msgstr "bool (логический)"
 
-msgid "``byte-order`` can be one of next flags:"
-msgstr "``byte-order`` может быть одним из следующих флагов:"
-
-msgid "'l' -- little-endian,"
-msgstr "'l' -- порядок от младшего к старшему,"
-
-msgid "'b' -- big-endian,"
-msgstr "'b' -- порядок от старшего к младшему,"
-
-msgid "'h' -- endianness depends on host (default),"
-msgstr "'h' -- порядок зависит от хоста (по умолчанию),"
-
-msgid "'n' -- endianness depends on network."
-msgstr "'n' -- порядок зависит от сети."
-
-msgid "one of ``'l'``, ``'b'``, ``'h'`` or ``'n'``."
-msgstr "один из ``'l'``, ``'b'``, ``'h'`` или ``'n'``."
+msgid ""
+"Byte order of the resulting UUID:  * ``'l'`` -- little-endian, * ``'b'`` -- "
+"big-endian, * ``'h'``, ``'host'`` -- endianness depends on host (default), *"
+" ``'n'``, ``'network'`` -- endianness depends on network."
+msgstr ""
 
 msgid "UUID converted from cdata input value."
 msgstr "UUID, сконвертированный из введенного значения формата cdata."
@@ -190,14 +232,14 @@ msgid "36-byte hexadecimal string"
 msgstr "36-байтная шестнадцатеричная строка"
 
 msgid ""
-"The all-zero UUID value can be expressed as :ref:`uuid.NULL <uuid-null>`, or as "
-"``uuid.fromstr('00000000-0000-0000-0000-000000000000')``. The comparison "
-"with an all-zero value can also be expressed as ``uuid_with_type_cdata == "
+"The all-zero UUID value can be expressed as :ref:`uuid.NULL <uuid-null>`, or"
+" as ``uuid.fromstr('00000000-0000-0000-0000-000000000000')``. The comparison"
+" with an all-zero value can also be expressed as ``uuid_with_type_cdata == "
 "uuid.NULL``."
 msgstr ""
-"Значение UUID из одних нулей может быть выражено как :ref:`uuid.NULL <uuid-null>` или "
-"``uuid.fromstr('00000000-0000-0000-0000-000000000000')``. Сравнение со "
-"значением из одних нулей также может быть выражено как "
+"Значение UUID из одних нулей может быть выражено как :ref:`uuid.NULL <uuid-"
+"null>` или ``uuid.fromstr('00000000-0000-0000-0000-000000000000')``. "
+"Сравнение со значением из одних нулей также может быть выражено как "
 "``uuid_with_type_cdata == uuid.NULL``."
 
 msgid "true if the value is all zero, otherwise false."
@@ -248,3 +290,16 @@ msgstr ""
 "- cdata\n"
 "- false\n"
 "..."
+
+#~ msgid ""
+#~ "Since version :doc:`2.4.1 </release/2.4.1>`. Create a UUID sequence. You can"
+#~ " use it in an index over a :ref:`UUID field "
+#~ "<details_about_index_field_types>`. For example, to create such index for a "
+#~ "space named ``test``, say:"
+#~ msgstr ""
+
+#~ msgid "``byte-order`` can be one of next flags:"
+#~ msgstr "``byte-order`` может быть одним из следующих флагов:"
+
+#~ msgid "one of ``'l'``, ``'b'``, ``'h'`` or ``'n'``."
+#~ msgstr "один из ``'l'``, ``'b'``, ``'h'`` или ``'n'``."

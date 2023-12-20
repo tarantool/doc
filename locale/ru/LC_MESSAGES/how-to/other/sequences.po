@@ -1,3 +1,4 @@
+
 msgid "Sequences"
 msgstr "Последовательности"
 
@@ -132,10 +133,8 @@ msgstr ""
 "Существующую последовательность можно изменять, удалять, сбрасывать, "
 "заставить сгенерировать новое значение или ассоциировать с индексом."
 
-msgid ""
-"Associating a sequence with an index"
-msgstr ""
-"Привязка последовательности к индексу"
+msgid "Associating a sequence with an index"
+msgstr "Привязка последовательности к индексу"
 
 msgid "For an initial example, we generate a sequence named 'S'."
 msgstr ""

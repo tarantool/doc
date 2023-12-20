@@ -1,0 +1,19 @@
+
+msgid "replication.bootstrap_strategy"
+msgstr ""
+
+msgid ""
+"A sample application demonstrating how to use the specified instance to "
+"bootstrap a replica set."
+msgstr ""
+
+msgid "Running"
+msgstr ""
+
+msgid ""
+"To start all instances, execute the following command in the "
+"[replication](../../../replication) directory:"
+msgstr ""
+
+msgid "$ tt start bootstrap_strategy\n"
+msgstr ""

@@ -1,0 +1,219 @@
+
+msgid "Configuration"
+msgstr ""
+
+msgid "Configuration file"
+msgstr ""
+
+msgid ""
+"The key artifact that defines the ``tt`` environment and various aspects of "
+"its execution is its configuration file."
+msgstr ""
+
+msgid ""
+"By default, the configuration file is called ``tt.yaml``. The location where"
+" ``tt`` searches for it depends on the :ref:`launch mode <tt-config_modes>`."
+" You can also pass the configuration file explicitly in the ``--cfg`` "
+":ref:`option <tt-global-options>`."
+msgstr ""
+
+msgid ""
+"The ``tt`` configuration file is a YAML file with the following content:"
+msgstr ""
+
+msgid ""
+"tt:\n"
+"  modules:\n"
+"    directory: path/to/modules/dir\n"
+"  app:\n"
+"    instances_enabled: path/to/applications\n"
+"    run_dir: path/to/run_dir\n"
+"    log_dir: path/to/log_dir\n"
+"    bin_dir: path/to/bin_dir\n"
+"    inc_dir: path/to/inc_dir\n"
+"    wal_dir: path/to/wal_dir\n"
+"    vinyl_dir: path/to/vinyl_dir\n"
+"    memtx_dir: path/to/memtx_dir\n"
+"    log_maxsize: num (MB)\n"
+"    log_maxage: num (days)\n"
+"    log_maxbackups: num\n"
+"    restart_on_failure: bool\n"
+"  repo:\n"
+"    rocks: path/to/rocks\n"
+"    distfiles: path/to/install\n"
+"  ee:\n"
+"    credential_path: path/to/file\n"
+"  templates:\n"
+"    - path: path/to/app/templates1\n"
+"    - path: path/to/app/templates2"
+msgstr ""
+
+msgid "modules section"
+msgstr ""
+
+msgid ""
+"``directory`` -- the directory where :doc:`external modules "
+"<external_modules>` are stored."
+msgstr ""
+
+msgid "app section"
+msgstr ""
+
+msgid ""
+"``instances_enabled`` -- the directory where :ref:`instances <admin-"
+"instance_file>` are stored."
+msgstr ""
+
+msgid ""
+"``run_dir``-- the directory for instance runtime artifacts, such as console "
+"sockets or PID files. Default: ``var/run``."
+msgstr ""
+
+msgid ""
+"``log_dir`` -- the directory where log files are stored. Default: "
+"``var/log``."
+msgstr ""
+
+msgid ""
+"``bin_dir`` -- the directory where binary files are stored. Default: "
+"``bin``."
+msgstr ""
+
+msgid ""
+"``inc_dir`` -- the base directory for storing header files. They will be "
+"placed in the ``include`` subdirectory inside the specified directory. "
+"Default: ``include``."
+msgstr ""
+
+msgid ""
+"``wal_dir`` -- the directory where write-ahead log (``.xlog``) files are "
+"stored. Default: ``var/lib``."
+msgstr ""
+
+msgid ""
+"``memtx_dir`` -- the directory where memtx stores snapshot (``.snap``) "
+"files. Default: ``var/lib``."
+msgstr ""
+
+msgid ""
+"``vinyl_dir`` -- the directory where vinyl files or subdirectories are "
+"stored. Default: ``var/lib``."
+msgstr ""
+
+msgid ""
+"In all directories specified in ``*_dir`` parameters, ``tt`` creates a "
+"directory for each application and instance directories inside it. Names of "
+"these directories match the names of applications and instances."
+msgstr ""
+
+msgid ""
+"``log_maxsize`` -- the maximum size of the log file before it gets rotated, "
+"in megabytes. Default: 100."
+msgstr ""
+
+msgid ""
+"``log_maxage`` -- the maximum age of log files in days. The age of a log "
+"file is defined by the timestamp encoded in its name. Default: not defined "
+"(log files aren't deleted based on their age)."
+msgstr ""
+
+msgid ""
+"A day is defined as exactly 24 hours. It may not exactly correspond to "
+"calendar days due to daylight savings, leap seconds, and other time "
+"adjustments."
+msgstr ""
+
+msgid ""
+"``log_maxbackups`` -- the maximum number of stored log files. Default: not "
+"defined (log files aren't deleted based on their count)."
+msgstr ""
+
+msgid ""
+"``restart_on_failure`` -- restart the instance on failure: ``true`` or "
+"``false``. Default: ``false``."
+msgstr ""
+
+msgid "repo section"
+msgstr ""
+
+msgid "``rocks`` -- the directory where rocks files are stored."
+msgstr ""
+
+msgid "``distfiles`` -- the directory where installation files are stored."
+msgstr ""
+
+msgid "ee section"
+msgstr ""
+
+msgid ""
+"``credential_path`` -- a path to the file with credentials used for "
+"downloading Tarantool Enterprise Edition."
+msgstr ""
+
+msgid "templates section"
+msgstr ""
+
+msgid ""
+"``path`` -- a path to application templates used for creating applications "
+"with :ref:`tt create <tt-create>`. May be specified more than once."
+msgstr ""
+
+msgid "Launch modes"
+msgstr ""
+
+msgid ""
+"``tt`` launch mode defines its working directory and the way it searches for"
+" the configuration file. There are three launch modes:"
+msgstr ""
+
+msgid "default"
+msgstr ""
+
+msgid "system"
+msgstr ""
+
+msgid "local"
+msgstr ""
+
+msgid "Default launch"
+msgstr ""
+
+msgid "**Argument**: none"
+msgstr ""
+
+msgid ""
+"**Configuration file**: searched from the current directory to the root. "
+"Taken from ``/etc/tarantool`` if the file is not found."
+msgstr ""
+
+msgid ""
+"**Working directory**: The directory where the configuration file is found."
+msgstr ""
+
+msgid "System launch"
+msgstr ""
+
+msgid "**Argument**: ``--system`` or ``-S``"
+msgstr ""
+
+msgid "**Configuration file**: Taken from ``/etc/tarantool``."
+msgstr ""
+
+msgid "**Working directory**: Current directory."
+msgstr ""
+
+msgid "Local launch"
+msgstr ""
+
+msgid "**Argument**: ``--local=DIRECTORY`` or ``-L=DIRECTORY``"
+msgstr ""
+
+msgid ""
+"**Configuration file**: Searched from the specified directory to the root. "
+"Taken from ``/etc/tarantool`` if the file is not found."
+msgstr ""
+
+msgid ""
+"**Working directory**: The specified directory. If ``tarantool`` or ``tt`` "
+"executable files are found in the working directory, they will be used."
+msgstr ""

@@ -2,9 +2,10 @@
 msgid "Monitoring a replica set"
 msgstr "Мониторинг набора реплик"
 
+#, fuzzy
 msgid ""
-"To learn what instances belong in the replica set, and obtain statistics for"
-" all these instances, issue a "
+"To learn what instances belong to the replica set and obtain statistics for "
+"all these instances, issue a "
 ":doc:`/reference/reference_lua/box_info/replication` request:"
 msgstr ""
 "Чтобы узнать, какие экземпляры входят в набор реплик и получить статистику "
@@ -92,8 +93,9 @@ msgstr ""
 msgid "The primary indicators of replication health are:"
 msgstr "Основные индикаторы работоспособности репликации:"
 
+#, fuzzy
 msgid ""
-":ref:`idle <box_info_replication_upstream_idle>`, the time (in seconds) "
+":ref:`idle <box_info_replication_upstream_idle>`: the time (in seconds) "
 "since the instance received the last event from a master."
 msgstr ""
 ":ref:`бездействие <box_info_replication_upstream_idle>`, время (в секундах) "
@@ -124,8 +126,9 @@ msgstr ""
 "репликация сильно отстает, поскольку мастер опережает реплику, либо "
 "отсутствует сетевое подключение между экземплярами."
 
+#, fuzzy
 msgid ""
-":ref:`lag <box_info_replication_upstream_lag>`, the time difference between "
+":ref:`lag <box_info_replication_upstream_lag>`: the time difference between "
 "the local time at the instance, recorded when the event was received, and "
 "the local time at another master recorded when the event was written to the "
 ":ref:`write ahead log <internals-wal>` on that master."
@@ -148,3 +151,9 @@ msgstr ""
 
 msgid "For multi-master configurations, ``lag`` is the maximal lag."
 msgstr "Для многомастерной конфигурации это максимально возможное отставание."
+
+msgid ""
+"For better understanding, see the following diagram illustrating the "
+"``upstream`` and ``downstream`` connections within the replica set of three "
+"instances:"
+msgstr ""

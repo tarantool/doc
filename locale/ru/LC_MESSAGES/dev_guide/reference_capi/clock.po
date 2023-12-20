@@ -1,3 +1,4 @@
 
-msgid "Module `clock`"
+#, fuzzy
+msgid "Module clock"
 msgstr "Модуль `clock`"

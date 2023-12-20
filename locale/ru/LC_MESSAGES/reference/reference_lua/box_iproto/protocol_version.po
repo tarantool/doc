@@ -1,0 +1,18 @@
+
+msgid "box.iproto.protocol_version"
+msgstr ""
+
+msgid ""
+"The current IPROTO protocol version of the server. Learn more: "
+":ref:`IPROTO_ID <box_protocol-id>`."
+msgstr ""
+
+msgid "**Example**"
+msgstr ""
+
+msgid ""
+"tarantool> box.iproto.protocol_version\n"
+"---\n"
+"- 4\n"
+"..."
+msgstr ""

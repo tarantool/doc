@@ -1,0 +1,126 @@
+
+msgid "Configuring clusters"
+msgstr ""
+
+msgid "Enterprise Edition"
+msgstr ""
+
+msgid ""
+"|tcm_full_name| is a part of the `Enterprise Edition "
+"<https://www.tarantool.io/compare/>`_."
+msgstr ""
+
+msgid ""
+"|tcm_full_name| features a built-in text editor for Tarantool EE cluster "
+"configurations."
+msgstr ""
+
+msgid ""
+"When you :ref:`connect a cluster <tcm_connect_cluster>` to |tcm|, it gains "
+"access to the cluster's centralized configuration storage: an etcd or a "
+"Tarantool cluster. |tcm| has both read and write access to the cluster "
+"configuration. This enables the configuration editor to work in two ways:"
+msgstr ""
+
+msgid "If a configuration already exists, the editor shows its current state."
+msgstr ""
+
+msgid ""
+"When you change the configuration in the editor and apply changes, they are "
+"sent to the configuration storage."
+msgstr ""
+
+msgid ""
+"To learn how to write Tarantool cluster configurations, see "
+":ref:`configuration`."
+msgstr ""
+
+msgid "Managing a cluster's configuration"
+msgstr ""
+
+msgid ""
+"The configuration editor is available on the **Cluster** > **Configuration**"
+" page."
+msgstr ""
+
+msgid ""
+"To start managing a cluster's configuration, select this cluster in the "
+"**Cluster** drop-down and go to the **Configuration** page."
+msgstr ""
+
+msgid ""
+"A cluster configuration in |tcm| can consist of one or multiple YAML files. "
+"When there are multiple files, they are all considered parts of a single "
+"cluster configuration. You can use this for structuring big cluster "
+"configurations. All files that form the configuration of a cluster are "
+"listed on the left side of the **Cluster configuration** page."
+msgstr ""
+
+msgid ""
+"To add a cluster configuration file, click the plus icon (**+**) below the "
+"page title."
+msgstr ""
+
+msgid ""
+"To open a configuration file in the editor, click its name in the file list."
+msgstr ""
+
+msgid ""
+"To delete a cluster configuration file, click the **Delete** button beside "
+"the filename."
+msgstr ""
+
+msgid ""
+"To download a cluster configuration file, click the **Download** button "
+"beside the filename."
+msgstr ""
+
+msgid ""
+"All configuration changes are discarded when you leave the **Cluster "
+"configuration** page. :ref:`Save <tcm_configuring_clusters_save>` the "
+"configuration if you want to continue editing it later or :ref:`apply "
+"<tcm_configuring_clusters_apply>` it to start using it on the cluster."
+msgstr ""
+
+msgid "Saving a configuration draft"
+msgstr ""
+
+msgid ""
+"|tcm| can store configurations drafts. If you want to leave an unfinished "
+"configuration and return to it later, save it in |tcm|. Saving applies to "
+"whole cluster configurations: it records the edits of all files, file "
+"additions, and file deletions."
+msgstr ""
+
+msgid ""
+"To save a cluster configuration draft after editing, click **Save** in the "
+"**Cluster configuration** page."
+msgstr ""
+
+msgid ""
+"All unsaved changes are discarded when you leave the **Cluster "
+"configuration** page."
+msgstr ""
+
+msgid ""
+"If you have a saved configuration draft, you can reset the changes for each "
+"of its files individually. A reset returns the file into the state that is "
+"currently used by a cluster (that is, saved in the configuration storage). "
+"If you reset a newly added file, it is deleted."
+msgstr ""
+
+msgid ""
+"To reset a saved configuration file, click the **Reset** button beside the "
+"filename."
+msgstr ""
+
+msgid "Applying a configuration"
+msgstr ""
+
+msgid ""
+"When you finish editing a configuration and it's ready to use, apply the "
+"updated configuration to the cluster. To apply a cluster configuration, "
+"click **Apply** on the **Cluster configuration** page. This sends the new "
+"configuration to the cluster configuration storage, and it comes into effect"
+" upon the cluster configuration reload."
+msgstr ""

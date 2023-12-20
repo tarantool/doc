@@ -1,5 +1,6 @@
 
-msgid "Module `box`"
+#, fuzzy
+msgid "Module box"
 msgstr "Модуль `box`"
 
 msgid "Opaque structure passed to a C stored procedure"
@@ -155,13 +156,15 @@ msgstr ""
 "-1 в случае ошибки (проверьте :ref:`box_error_last()<c_api-error-"
 "box_error_last>`)"
 
-msgid "See also :ref:`space_object.insert()<box_space-insert>`"
+#, fuzzy
+msgid "See also: :ref:`space_object.insert()<box_space-insert>`"
 msgstr "См. также :ref:`space_object.insert()<box_space-insert>`"
 
 msgid "Execute a REPLACE request."
 msgstr "Выполнение запроса замены (REPLACE)."
 
-msgid "See also :ref:`space_object.replace()<box_space-replace>`"
+#, fuzzy
+msgid "See also: :ref:`space_object.replace()<box_space-replace>`"
 msgstr "См. также :ref:`space_object.replace()<box_space-replace>`"
 
 msgid "Execute a DELETE request."
@@ -182,7 +185,8 @@ msgstr ""
 "аргумент вывода. Старый кортеж. Можно задать значение NULL для сброса "
 "результата"
 
-msgid "See also :ref:`space_object.delete()<box_space-delete>`"
+#, fuzzy
+msgid "See also: :ref:`space_object.delete()<box_space-delete>`"
 msgstr "См. также :ref:`space_object.delete()<box_space-delete>`"
 
 msgid "Execute an UPDATE request."
@@ -204,7 +208,8 @@ msgstr ""
 "0, если идентификаторы полей field_id с основанием 0, как в C, 1, если "
 "идентификаторы полей с основанием 1, как в Lua"
 
-msgid "See also :ref:`space_object.update()<box_space-update>`"
+#, fuzzy
+msgid "See also: :ref:`space_object.update()<box_space-update>`"
 msgstr "См. также :ref:`space_object.update()<box_space-update>`"
 
 msgid "Execute an UPSERT request."
@@ -213,7 +218,8 @@ msgstr "Выполнение запроса обновления и вставк
 msgid "end of a ``ops``"
 msgstr "конец операций ``ops``"
 
-msgid "See also :ref:`space_object.upsert()<box_space-upsert>`"
+#, fuzzy
+msgid "See also: :ref:`space_object.upsert()<box_space-upsert>`"
 msgstr "См. также :ref:`space_object.upsert()<box_space-upsert>`"
 
 msgid "Truncate a space."
@@ -258,3 +264,271 @@ msgid ""
 msgstr ""
 "0 при успехе и -1 в обратном случае. В случае ошибки, ее можно получить с "
 "помощью ``box_error_last()``."
+
+msgid ""
+"Since version :doc:`2.11.0 </release/2.11.0>`. Return the database schema "
+"version. A schema version is a number that indicates whether the "
+":ref:`database schema <index-box-data_schema_description>` is changed. For "
+"example, the ``schema_version`` value grows if a :ref:`space <index-"
+"box_space>` or :ref:`index <index-box_index>` is added or deleted, or a "
+"space, index, or field name is changed."
+msgstr ""
+
+msgid "the database schema version"
+msgstr ""
+
+#, fuzzy
+msgid "Return type"
+msgstr "Возвращает"
+
+msgid "number"
+msgstr ""
+
+msgid ""
+"See also: :ref:`box.info.schema_version <box_info_schema_version>` and "
+":ref:`IPROTO_SCHEMA_VERSION <internals-iproto-keys-schema_version>`"
+msgstr ""
+
+#, fuzzy
+msgid ""
+"Since version :doc:`2.11.0 </release/2.11.0>`. Return the unique identifier "
+"(ID) for the current session."
+msgstr ""
+"С версии :doc:`2.4.1 </release/2.4.1>`. Возврат последнего полученного "
+"значения из указанной последовательности."
+
+msgid "the session identifier; 0 or -1 if there is no session"
+msgstr ""
+
+#, fuzzy
+msgid "See also: :ref:`box.session.id() <box_session-id>`"
+msgstr "См. также :ref:`space_object.update()<box_space-update>`"
+
+msgid ""
+"Since version :doc:`2.11.0 </release/2.11.0>`. Send an :ref:`IPROTO "
+"<internals-iproto-format>` packet over the session's socket with the given "
+"MsgPack header and body. The function yields. The function works for binary "
+"sessions only. For details, see :ref:`box.session.type() <box_session-"
+"type>`."
+msgstr ""
+
+msgid ""
+"the IPROTO session identifier (see :ref:`box_session_id() "
+"<box_box_session_id>`)"
+msgstr ""
+
+msgid "a MsgPack-encoded header"
+msgstr ""
+
+msgid "end of a header encoded as MsgPack"
+msgstr ""
+
+msgid ""
+"a MsgPack-encoded body. If the ``body`` and ``body_end`` parameters are "
+"omitted, the packet consists of the header only."
+msgstr ""
+
+msgid "end of a body encoded as MsgPack"
+msgstr ""
+
+#, fuzzy
+msgid ""
+"0 on success; -1 on error (check :ref:`box_error_last() <c_api-error-"
+"box_error_last>`)"
+msgstr ""
+"-1 в случае ошибки (проверьте :ref:`box_error_last()<c_api-error-"
+"box_error_last>`)"
+
+msgid "See also: :ref:`box.iproto.send() <reference_lua-box_iproto_send>`"
+msgstr ""
+
+msgid "**Possible errors:**"
+msgstr ""
+
+msgid ":errcode:`ER_SESSION_CLOSED` -- the session is closed."
+msgstr ""
+
+msgid ":errcode:`ER_NO_SUCH_SESSION` -- the session does not exist."
+msgstr ""
+
+msgid ":errcode:`ER_MEMORY_ISSUE` -- out-of-memory limit has been reached."
+msgstr ""
+
+msgid ":errcode:`ER_WRONG_SESSION_TYPE` -- the session type is not binary."
+msgstr ""
+
+msgid ""
+"For details, see `src/box/errcode.h "
+"<https://github.com/tarantool/tarantool/blob/master/src/box/errcode.h>`__."
+msgstr ""
+
+msgid "**Example**"
+msgstr ""
+
+msgid ""
+"/* IPROTO constants are not exported to C.\n"
+"* That is, the user encodes them by himself.\n"
+"*/\n"
+"#define IPROTO_REQUEST_TYPE 0x00\n"
+"#define IPROTO_OK 0x00\n"
+"#define IPROTO_SYNC 0x01\n"
+"#define IPROTO_SCHEMA_VERSION 0x05\n"
+"#define IPROTO_DATA 0x30\n"
+"\n"
+"char buf[256] = {};\n"
+"char *header = buf;\n"
+"char *header_end = header;\n"
+"header_end = mp_encode_map(header_end, 3);\n"
+"header_end = mp_encode_uint(header_end, IPROTO_REQUEST_TYPE);\n"
+"header_end = mp_encode_uint(header_end, IPROTO_OK);\n"
+"header_end = mp_encode_uint(header_end, IPROTO_SYNC);\n"
+"header_end = mp_encode_uint(header_end, 10);\n"
+"header_end = mp_encode_uint(header_end, IPROTO_SCHEMA_VERSION);\n"
+"header_end = mp_encode_uint(header_end, box_schema_version());\n"
+"\n"
+"char *body = header_end;\n"
+"char *body_end = body;\n"
+"body_end = mp_encode_map(body_end, 1);\n"
+"body_end = mp_encode_uint(body_end, IPROTO_DATA);\n"
+"body_end = mp_encode_uint(body_end, 1);\n"
+"\n"
+"/* The packet contains both the header and body. */\n"
+"box_iproto_send(box_session_id(), header, header_end, body, body_end);\n"
+"\n"
+"/* The packet contains the header only. */\n"
+"box_iproto_send(box_session_id(), header, header_end, NULL, NULL);"
+msgstr ""
+
+msgid ""
+"Since version :doc:`2.11.0 </release/2.11.0>`. Set a new IPROTO request "
+"handler with the provided context for the given request type. The function "
+"yields."
+msgstr ""
+
+msgid ""
+"IPROTO request type code (for example, ``IPROTO_SELECT``). For details, "
+"check :ref:`Client-server requests and responses <internals-"
+"requests_responses>`.  To override the handler of unknown request types, use"
+" the :ref:`IPROTO_UNKNOWN <internals-iproto-keys-unknown>` type code."
+msgstr ""
+
+msgid ""
+"IPROTO request type code (for example, ``IPROTO_SELECT``). For details, "
+"check :ref:`Client-server requests and responses <internals-"
+"requests_responses>`."
+msgstr ""
+
+msgid ""
+"To override the handler of unknown request types, use the "
+":ref:`IPROTO_UNKNOWN <internals-iproto-keys-unknown>` type code."
+msgstr ""
+
+msgid ""
+"IPROTO request handler. To reset the request handler, set the ``handler`` "
+"parameter to ``NULL``. See the full parameter description in the "
+":ref:`Handler function <box_box_iproto_override-handler>` section."
+msgstr ""
+
+msgid ""
+"IPROTO request handler destructor. The destructor is called when the "
+"corresponding handler is removed. See the full parameter description in the "
+":ref:`Handler destructor function <box_box_iproto_override-destroy>` "
+"section."
+msgstr ""
+
+msgid "a context passed to the ``handler`` and ``destroy`` callbacks"
+msgstr ""
+
+msgid ""
+"See also: :ref:`box.iproto.override() <reference_lua-box_iproto_override>`"
+msgstr ""
+
+msgid ""
+"If a Lua handler throws an exception, the behavior is similar to that of a "
+"remote procedure call. The following errors are returned to the client over "
+"IPROTO (see `src/lua/utils.h "
+"<https://github.com/tarantool/tarantool/blob/dec0e0221e183fa972efa65bb0fb658112f2196f/src/lua/utils.h#L366-L371>`__):"
+msgstr ""
+
+msgid ""
+":errcode:`ER_PROC_LUA` -- an exception is thrown from a Lua handler, "
+"diagnostic is not set."
+msgstr ""
+
+msgid ""
+"diagnostics from ``src/box/errcode.h`` -- an exception is thrown, diagnostic"
+" is set."
+msgstr ""
+
+msgid "**Handler function**"
+msgstr ""
+
+msgid "The signature of a handler function (the ``handler`` parameter):"
+msgstr ""
+
+msgid ""
+"enum iproto_handler_status {\n"
+"        IPROTO_HANDLER_OK,\n"
+"        IPROTO_HANDLER_ERROR,\n"
+"        IPROTO_HANDLER_FALLBACK,\n"
+"}\n"
+"\n"
+"typedef enum iproto_handler_status\n"
+"(*iproto_handler_t)(const char *header, const char *header_end,\n"
+"                    const char *body, const char *body_end, void *ctx);"
+msgstr ""
+
+msgid "where:"
+msgstr ""
+
+msgid "``header`` (const char*) -- a MsgPack-encoded header"
+msgstr ""
+
+msgid "``header_end`` (const char*) -- end of a header encoded as MsgPack"
+msgstr ""
+
+msgid "``body`` (const char*) -- a MsgPack-encoded body"
+msgstr ""
+
+msgid "``header_end`` (const char*) -- end of a body encoded as MsgPack"
+msgstr ""
+
+msgid "The handler returns a status code. Possible statuses:"
+msgstr ""
+
+msgid "``IPROTO_REQUEST_HANDLER_OK`` -- success"
+msgstr ""
+
+msgid ""
+"``IPROTO_REQUEST_HANDLER_ERROR`` -- error, diagnostic must be set by handler"
+" (see :ref:`box_error_set() <c_api-error-box_error_set>` and "
+":ref:`box_error_raise() <c_api-error-box_error_raise>`)"
+msgstr ""
+
+msgid "``IPROTO_REQUEST_HANDLER_FALLBACK`` -- fallback to the default handler"
+msgstr ""
+
+msgid "**Handler destructor function**"
+msgstr ""
+
+msgid ""
+"The destructor is called when the handler is reset. The signature of a "
+"destructor function (the ``destroy`` parameter):"
+msgstr ""
+
+msgid "typedef void (*iproto_handler_destroy_t)(void *ctx);"
+msgstr ""
+
+msgid ""
+"``ctx`` (void*): the context provided by ``box_iproto_override()`` function."
+msgstr ""
+
+msgid "**Examples**"
+msgstr ""
+
+msgid ""
+"box_iproto_override(1000, iproto_request_handler_с, NULL)\n"
+"box_iproto_override(IPROTO_SELECT, iproto_request_handler_с, (uintptr_t)23)\n"
+"box_iproto_override(IPROTO_SELECT, NULL, NULL)\n"
+"box_iproto_override(IPROTO_UNKNOWN, iproto_unknown_request_handler_с, &ctx)"
+msgstr ""

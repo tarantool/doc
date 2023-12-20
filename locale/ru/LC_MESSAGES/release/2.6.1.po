@@ -31,7 +31,7 @@ msgstr ""
 msgid "Read more:"
 msgstr ""
 
-msgid ":ref:`atomic-transactional-manager`"
+msgid ":ref:`txn_mode_transaction-manager`"
 msgstr ""
 
 msgid ""
@@ -46,7 +46,7 @@ msgid ""
 " service reliability on a new level."
 msgstr ""
 
-msgid ":doc:`/book/replication/repl_leader_elect`"
+msgid ":ref:`Automated leader election <repl_leader_elect>`"
 msgstr ""
 
 msgid ""
@@ -108,8 +108,7 @@ msgstr ""
 
 msgid ""
 "Make memtx tuple hints an optional feature (:tarantool-issue:`4927`). Read "
-"more: :ref:`Options for space_object:create_index() <box_space-create_index-"
-"options>`."
+"more: :ref:`Options for space_object:create_index() <index_opts_object>`."
 msgstr ""
 
 msgid "Vinyl"
@@ -146,7 +145,7 @@ msgstr ""
 
 msgid ""
 "**[Breaking change]** Introduce LuaJIT platform metrics (:tarantool-"
-"issue:`5187`). Read more: :ref:`LuaJIT metrics <metrics-luajit>`."
+"issue:`5187`). Read more: :ref:`LuaJIT metrics <metrics-reference-luajit>`."
 msgstr ""
 
 msgid ""
@@ -173,7 +172,7 @@ msgstr "Репликация"
 
 msgid ""
 "Automated leader election based on Raft algorithm (:tarantool-issue:`1146`)."
-" Read more: :doc:`/book/replication/repl_leader_elect`."
+" Read more: :ref:`Automated leader election <repl_leader_elect>`."
 msgstr ""
 
 msgid ""
@@ -340,3 +339,25 @@ msgid ""
 "Get rid of typedef redefinitions for compatibility with C99 (:tarantool-"
 "issue:`5313`)."
 msgstr ""
+
+#~ msgid ":ref:`atomic-transactional-manager`"
+#~ msgstr ""
+
+#~ msgid ":doc:`/book/replication/repl_leader_elect`"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Make memtx tuple hints an optional feature (:tarantool-issue:`4927`). Read "
+#~ "more: :ref:`Options for space_object:create_index() <box_space-create_index-"
+#~ "options>`."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "**[Breaking change]** Introduce LuaJIT platform metrics (:tarantool-"
+#~ "issue:`5187`). Read more: :ref:`LuaJIT metrics <metrics-luajit>`."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Automated leader election based on Raft algorithm (:tarantool-issue:`1146`)."
+#~ " Read more: :doc:`/book/replication/repl_leader_elect`."
+#~ msgstr ""

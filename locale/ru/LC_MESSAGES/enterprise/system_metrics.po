@@ -5,6 +5,9 @@ msgstr "Метрики системы мониторинга"
 msgid "Option"
 msgstr "Параметр"
 
+msgid "Description"
+msgstr ""
+
 msgid "SNMP type"
 msgstr "Тип по SNMP"
 

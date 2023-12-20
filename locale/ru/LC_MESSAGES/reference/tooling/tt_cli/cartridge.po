@@ -1,0 +1,544 @@
+
+msgid "Managing a Cartridge application"
+msgstr ""
+
+msgid ""
+"The Tarantool Cartridge framework is deprecated and is not compatible with "
+"Tarantool 3.0 and later. This command is added for backward compatibility "
+"with earlier versions."
+msgstr ""
+
+msgid "$ tt cartridge COMMAND {[OPTION ...]|SUBCOMMAND}"
+msgstr ""
+
+msgid ""
+"``tt cartridge`` manages a Cartridge application. ``COMMAND`` is one of the "
+"following:"
+msgstr ""
+
+msgid ":ref:`admin <tt_cartridge_admin>`"
+msgstr ""
+
+msgid ":ref:`bench <tt_cartridge_bench>`"
+msgstr ""
+
+msgid ":ref:`failover <tt_cartridge_failover>`"
+msgstr ""
+
+msgid ":ref:`repair <tt_cartridge_repair>`"
+msgstr ""
+
+msgid ":ref:`replicasets <tt_cartridge_replicasets>`"
+msgstr ""
+
+msgid "admin"
+msgstr ""
+
+msgid "$ tt cartridge admin ADMIN_FUNC_NAME [ADMIN_OPTION ...]"
+msgstr ""
+
+msgid ""
+"``tt cartridge admin`` calls `admin functions "
+"<https://github.com/tarantool/cartridge-cli-"
+"extensions/blob/master/doc/admin.md>`_ provided by the application."
+msgstr ""
+
+msgid "Options"
+msgstr ""
+
+msgid "(Required) An application name."
+msgstr ""
+
+msgid "List the available admin functions."
+msgstr ""
+
+msgid "A name of the instance to connect to."
+msgstr ""
+
+msgid "An address to connect to."
+msgstr ""
+
+msgid ""
+"A directory where PID and socket files are stored. Defaults to "
+"``/var/run/tarantool``."
+msgstr ""
+
+msgid "Examples"
+msgstr ""
+
+msgid "Get a list of the available admin functions:"
+msgstr ""
+
+msgid ""
+"$ tt cartridge admin --name APPNAME --list\n"
+"\n"
+"   • Available admin functions:\n"
+"\n"
+"probe  Probe instance"
+msgstr ""
+
+msgid "Get help for a specific function:"
+msgstr ""
+
+msgid ""
+"$ tt cartridge admin --name APPNAME probe --help\n"
+"\n"
+"   • Admin function \"probe\" usage:\n"
+"\n"
+"Probe instance\n"
+"\n"
+"Args:\n"
+"  --uri string  Instance URI"
+msgstr ""
+
+msgid "Call a function with an argument:"
+msgstr ""
+
+msgid ""
+"$ tt cartridge admin --name APPNAME probe --uri localhost:3301\n"
+"\n"
+"   • Probe \"localhost:3301\": OK"
+msgstr ""
+
+msgid "bench"
+msgstr ""
+
+msgid "$ tt cartridge bench [BENCH_OPTION ...]"
+msgstr ""
+
+msgid "``tt cartridge bench`` runs benchmarks for Tarantool."
+msgstr ""
+
+msgid "A Tarantool instance address (the default is ``127.0.0.1:3301``)."
+msgstr ""
+
+msgid "A username used to connect to the instance (the default is ``guest``)."
+msgstr ""
+
+msgid "A password used to connect to the instance."
+msgstr ""
+
+msgid "A number of concurrent connections (the default is ``10``)."
+msgstr ""
+
+msgid ""
+"A number of simultaneous requests per connection (the default is ``10``)."
+msgstr ""
+
+msgid "The duration of a benchmark test in seconds (the default is ``10``)."
+msgstr ""
+
+msgid ""
+"The size of a key part of benchmark data in bytes (the default is ``10``)."
+msgstr ""
+
+msgid ""
+"The size of a value part of benchmark data in bytes (the default is ``20``)."
+msgstr ""
+
+msgid "A percentage of inserts (the default is ``100``)."
+msgstr ""
+
+msgid "A percentage of selects."
+msgstr ""
+
+msgid "A percentage of updates."
+msgstr ""
+
+msgid ""
+"A number of records to pre-fill the space (the default is ``1000000``)."
+msgstr ""
+
+msgid "failover"
+msgstr ""
+
+msgid "$ tt cartridge failover COMMAND [COMMAND_OPTION ...]"
+msgstr ""
+
+msgid ""
+"``tt cartridge failover`` manages an application failover. The following "
+"commands are available:"
+msgstr ""
+
+msgid "``set``"
+msgstr ""
+
+msgid "``setup``"
+msgstr ""
+
+msgid "``status``"
+msgstr ""
+
+msgid "``disable``"
+msgstr ""
+
+msgid "failover set"
+msgstr ""
+
+msgid "$ tt cartridge failover set MODE [FAILOVER_SET_OPTION ...]"
+msgstr ""
+
+msgid "Setup failover in the specified mode:"
+msgstr ""
+
+msgid "``stateful``"
+msgstr ""
+
+msgid "``eventual``"
+msgstr ""
+
+msgid "``disabled``"
+msgstr ""
+
+msgid "Options:"
+msgstr ""
+
+msgid ""
+"``--state-provider STRING``: A failover's state provider. Can be "
+"``stateboard`` or ``etcd2``. Used only in the ``stateful`` mode."
+msgstr ""
+
+msgid ""
+"``--params STRING``: Failover parameters specified in a JSON-formatted "
+"string, for example, ``\"{'fencing_timeout': 10', 'fencing_enabled': "
+"true}\"``."
+msgstr ""
+
+msgid ""
+"``--provider-params STRING``: Failover provider parameters specified in a "
+"JSON-formatted string, for example, ``\"{'lock_delay': 14}\"``."
+msgstr ""
+
+msgid "failover setup"
+msgstr ""
+
+msgid "$ tt cartridge failover setup --file STRING"
+msgstr ""
+
+msgid ""
+"Setup failover with parameters described in a file. The failover "
+"configuration file defaults to ``failover.yml``."
+msgstr ""
+
+msgid "The ``failover.yml`` file might look as follows:"
+msgstr ""
+
+msgid ""
+"mode: stateful\n"
+"state_provider: stateboard\n"
+"stateboard_params:\n"
+"    uri: localhost:4401\n"
+"    password: passwd\n"
+"failover_timeout: 15"
+msgstr ""
+
+msgid "failover status"
+msgstr ""
+
+msgid "$ tt cartridge failover status"
+msgstr ""
+
+msgid "Get the current failover status."
+msgstr ""
+
+msgid "failover disable"
+msgstr ""
+
+msgid "$ tt cartridge failover disable"
+msgstr ""
+
+msgid "Disable failover."
+msgstr ""
+
+msgid "An application name. Defaults to \"package\" in rockspec."
+msgstr ""
+
+msgid ""
+"A path to the file containing failover settings. Defaults to "
+"``failover.yml``."
+msgstr ""
+
+msgid "repair"
+msgstr ""
+
+msgid "$ tt cartridge repair COMMAND [REPAIR_OPTION ...]"
+msgstr ""
+
+msgid ""
+"``tt cartridge repair`` repairs a running application. The following "
+"commands are available:"
+msgstr ""
+
+msgid "``list-topology``"
+msgstr ""
+
+msgid "``remove-instance``"
+msgstr ""
+
+msgid "``set-advertise-uri``"
+msgstr ""
+
+msgid "``set-leader``"
+msgstr ""
+
+msgid "repair list-topology"
+msgstr ""
+
+msgid "$ tt cartridge repair list-topology [REPAIR_OPTION ...]"
+msgstr ""
+
+msgid "Get a summary of the current cluster topology."
+msgstr ""
+
+msgid "repair remove-instance"
+msgstr ""
+
+msgid "$ tt cartridge repair remove-instance UUID [REPAIR_OPTION ...]"
+msgstr ""
+
+msgid ""
+"Remove the instance with the specified UUID from the cluster. If the "
+"instance isn't found, raise an error."
+msgstr ""
+
+msgid "repair set-advertise-uri"
+msgstr ""
+
+msgid ""
+"$ tt cartridge repair set-advertise-uri INSTANCE-UUID NEW-URI [REPAIR_OPTION"
+" ...]"
+msgstr ""
+
+msgid ""
+"Change the instance's advertise URI. Raise an error if the instance isn't "
+"found or is expelled."
+msgstr ""
+
+msgid "repair set-leader"
+msgstr ""
+
+msgid ""
+"$ tt cartridge repair set-leader REPLICASET-UUID INSTANCE-UUID "
+"[REPAIR_OPTION ...]"
+msgstr ""
+
+msgid ""
+"Set the instance as the leader of the replica set. Raise an error in the "
+"following cases:"
+msgstr ""
+
+msgid "There is no replica set or instance with that UUID."
+msgstr ""
+
+msgid "The instance doesn't belong to the replica set."
+msgstr ""
+
+msgid "The instance has been disabled or expelled."
+msgstr ""
+
+msgid "The following options work with any ``repair`` subcommand:"
+msgstr ""
+
+msgid ""
+"The directory containing the instances' working directories. Defaults to "
+"``/var/lib/tarantool``."
+msgstr ""
+
+msgid ""
+"The following options work with any ``repair`` command, except ``list-"
+"topology``:"
+msgstr ""
+
+msgid ""
+"The directory where PID and socket files are stored. Defaults to "
+"``/var/run/tarantool``."
+msgstr ""
+
+msgid "Launch in dry-run mode: show changes but do not apply them."
+msgstr ""
+
+msgid "Enable instance configuration to reload after the patch."
+msgstr ""
+
+msgid "replicasets"
+msgstr ""
+
+msgid "$ tt cartridge replicasets COMMAND [COMMAND_OPTION ...]"
+msgstr ""
+
+msgid ""
+"``tt cartridge replicasets`` manages an application's replica sets. The "
+"following commands are available:"
+msgstr ""
+
+msgid "``save``"
+msgstr ""
+
+msgid "``list``"
+msgstr ""
+
+msgid "``join``"
+msgstr ""
+
+msgid "``list-roles``"
+msgstr ""
+
+msgid "``list-vshard-groups``"
+msgstr ""
+
+msgid "``add-roles``"
+msgstr ""
+
+msgid "``remove-roles``"
+msgstr ""
+
+msgid "``set-weight``"
+msgstr ""
+
+msgid "``set-failover-priority``"
+msgstr ""
+
+msgid "``bootstrap-vshard``"
+msgstr ""
+
+msgid "``expel``"
+msgstr ""
+
+msgid "replicasets setup"
+msgstr ""
+
+msgid ""
+"$ tt cartridge replicasets setup [--file FILEPATH] [--bootstrap-vshard]"
+msgstr ""
+
+msgid "Setup replica sets using a file."
+msgstr ""
+
+msgid ""
+"``--file``: A file with a replica set configuration. Defaults to "
+"``replicasets.yml``."
+msgstr ""
+
+msgid "``--bootstrap-vshard``: Bootstrap vshard upon setup."
+msgstr ""
+
+msgid "replicasets save"
+msgstr ""
+
+msgid "$ tt cartridge replicasets save [--file FILEPATH]"
+msgstr ""
+
+msgid "Save the current replica set configuration to a file."
+msgstr ""
+
+msgid ""
+"``--file``: A file to save the configuration to. Defaults to "
+"``replicasets.yml``."
+msgstr ""
+
+msgid "replicasets list"
+msgstr ""
+
+msgid "$ tt cartridge replicasets list [--replicaset STRING]"
+msgstr ""
+
+msgid "List the current cluster topology."
+msgstr ""
+
+msgid "``--replicaset STRING``: A replica set name."
+msgstr ""
+
+msgid "replicasets join"
+msgstr ""
+
+msgid ""
+"$ tt cartridge replicasets join INSTANCE_NAME ... [--replicaset STRING]"
+msgstr ""
+
+msgid ""
+"Join the instance to a cluster. If a replica set with the specified alias "
+"isn't found in the cluster, it is created. Otherwise, instances are joined "
+"to an existing replica set."
+msgstr ""
+
+msgid "replicasets list-roles"
+msgstr ""
+
+msgid "$ tt cartridge replicasets list-roles"
+msgstr ""
+
+msgid "List the available roles."
+msgstr ""
+
+msgid "replicasets list-vshard-groups"
+msgstr ""
+
+msgid "$ tt cartridge replicasets list-vshard-groups"
+msgstr ""
+
+msgid "List the available vshard groups."
+msgstr ""
+
+msgid "replicasets add-roles"
+msgstr ""
+
+msgid ""
+"$ tt cartridge replicasets add-roles ROLE_NAME ... [--replicaset STRING] "
+"[--vshard-group STRING]"
+msgstr ""
+
+msgid "Add roles to the replica set."
+msgstr ""
+
+msgid ""
+"``--vshard-group STRING``: A vshard group for ``vshard-storage`` replica "
+"sets."
+msgstr ""
+
+msgid "replicasets remove-roles"
+msgstr ""
+
+msgid ""
+"$ tt cartridge replicasets remove-roles ROLE_NAME ... [--replicaset STRING]"
+msgstr ""
+
+msgid "Remove roles from the replica set."
+msgstr ""
+
+msgid "replicasets set-weight"
+msgstr ""
+
+msgid "$ tt cartridge replicasets set-weight WEIGHT [--replicaset STRING]"
+msgstr ""
+
+msgid "Specify replica set weight."
+msgstr ""
+
+msgid "replicasets set-failover-priority"
+msgstr ""
+
+msgid ""
+"$ tt cartridge replicasets set-failover-priority INSTANCE_NAME ... "
+"[--replicaset STRING]"
+msgstr ""
+
+msgid "Configure replica set failover priority."
+msgstr ""
+
+msgid "replicasets bootstrap-vshard"
+msgstr ""
+
+msgid "$ tt cartridge replicasets bootstrap-vshard"
+msgstr ""
+
+msgid "Bootstrap vshard."
+msgstr ""
+
+msgid "replicasets expel"
+msgstr ""
+
+msgid "$ tt cartridge replicasets expel INSTANCE_NAME ..."
+msgstr ""
+
+msgid "Expel one or more instances from the cluster."
+msgstr ""

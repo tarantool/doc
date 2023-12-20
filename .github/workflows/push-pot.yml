@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - '3.0'
+      - 'lastochka42/update-po'
 permissions:
   contents: write
 jobs:
@@ -15,7 +16,7 @@ jobs:
       - name: Generate Portable Object Templates
         run: |
          cmake .
-         make update-pot  
+         make update-po  
 
       - name: Commit generated pots
         run: |
@@ -28,7 +29,7 @@ jobs:
             exit 0
           fi
 
-          git add locale/en
-          git commit -m "updated pot"
-          git push origin 3.0 
+          git add locale/
+          git commit -m "updated locale"
+          git push origin lastochka42/update-po
 

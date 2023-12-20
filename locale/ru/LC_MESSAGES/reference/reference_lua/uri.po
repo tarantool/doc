@@ -5,58 +5,53 @@ msgstr "Модуль uri"
 msgid "Overview"
 msgstr "Общие сведения"
 
+#, fuzzy
 msgid ""
-"A \"URI\" is a \"Uniform Resource Identifier\". The `IETF standard "
-"<https://www.ietf.org/rfc/rfc2396.txt>`_ says a URI string looks like this:"
+"The URI module provides functions that convert `URI "
+"<https://en.wikipedia.org/wiki/Uniform_Resource_Identifier>`_ strings into "
+"their components, or turn components into URI strings, for example:"
 msgstr ""
-"URI -- это Унифицированный идентификатор ресурса (Uniform Resource "
-"Identifier). Согласно `стандарту IETF "
-"<https://www.ietf.org/rfc/rfc2396.txt>`_, URI-строка выглядит следующим "
-"образом:"
-
-msgid "[scheme:]scheme-specific-part[#fragment]"
-msgstr "[схема:]специальная-часть-схемы[#фрагмент]"
-
-msgid "A common type, a hierarchical URI, looks like this:"
-msgstr "Общий тип, иерархический URI, выглядит так:"
-
-msgid "[scheme:][//authority][path][?query][#fragment]"
-msgstr "[схема:][//адрес][путь][?запрос][#фрагмент]"
+"Модуль Tarantool URI включает в себя процедуры для разложения URI-строк на "
+"компоненты или объединения компонентов в URI-строку."
 
 msgid ""
-"For example the string ``'https://tarantool.org/x.html#y'`` has three "
-"components:"
+"local uri = require('uri')\n"
+"\n"
+"parsed_uri = uri.parse('https://www.tarantool.io/doc/latest/reference/reference_lua/http/#api-reference')\n"
+"--[[\n"
+"---\n"
+"- host: www.tarantool.io\n"
+"  fragment: api-reference\n"
+"  scheme: https\n"
+"  path: /doc/latest/reference/reference_lua/http/\n"
+"...\n"
+"--]]\n"
+"\n"
+"formatted_uri = uri.format({ scheme = 'https',\n"
+"                             host = 'www.tarantool.io',\n"
+"                             path = '/doc/latest/reference/reference_lua/http/',\n"
+"                             fragment = 'api-reference' })\n"
+"--[[\n"
+"---\n"
+"- https://www.tarantool.io/doc/latest/reference/reference_lua/http/#api-reference\n"
+"...\n"
+"--]]\n"
 msgstr ""
-"Например, строка ``'https://tarantool.org/x.html#y'`` содержит три "
-"компонента:"
-
-msgid "``https`` is the scheme,"
-msgstr "``https`` -- схема,"
-
-msgid "``tarantool.org/x.html`` is the path,"
-msgstr "``tarantool.org/x.html`` -- путь,"
-
-msgid "``y`` is the fragment."
-msgstr "``y`` -- фрагмент."
 
 msgid ""
-"Tarantool's URI module provides routines which convert URI strings into "
-"their components, or turn components into URI strings."
+"You can also use this module to encode and decode arbitrary strings using "
+"the specified encoding options."
 msgstr ""
-"Модуль Tarantool URI включает в себя процедуры для разложения URI-строк на"
-" компоненты или объединения компонентов в URI-строку."
 
-msgid "Index"
-msgstr "Указатель"
+msgid "API Reference"
+msgstr ""
 
-msgid "Below is a list of all ``uri`` functions."
+#, fuzzy
+msgid "Below is a list of ``uri`` functions, properties, and related objects."
 msgstr "Ниже приведен перечень всех функций модуля ``uri``."
 
-msgid "Name"
-msgstr "Имя"
-
-msgid "Use"
-msgstr "Назначение"
+msgid "**Functions**"
+msgstr ""
 
 msgid ":ref:`uri.parse() <uri-parse>`"
 msgstr ":ref:`uri.parse() <uri-parse>`"
@@ -67,83 +62,593 @@ msgstr "Получение таблицы URI-компонентов"
 msgid ":ref:`uri.format() <uri-format>`"
 msgstr ":ref:`uri.format() <uri-format>`"
 
-msgid "Construct a URI from components"
+#, fuzzy
+msgid "Construct a URI from the specified components"
 msgstr "Создание URI из компонентов"
+
+#, fuzzy
+msgid ":ref:`uri.escape() <uri-escape>`"
+msgstr ":ref:`uri.parse() <uri-parse>`"
+
+msgid "Encode a string using the specified encoding options"
+msgstr ""
+
+#, fuzzy
+msgid ":ref:`uri.unescape() <uri-unescape>`"
+msgstr ":ref:`uri.parse() <uri-parse>`"
+
+msgid "Decode a string using the specified encoding options"
+msgstr ""
+
+msgid "**Properties**"
+msgstr ""
+
+#, fuzzy
+msgid ":ref:`uri.RFC3986 <uri-rfc3986>`"
+msgstr ":ref:`uri.parse() <uri-parse>`"
+
+msgid "Encoding options that use unreserved symbols defined in RFC 3986"
+msgstr ""
+
+#, fuzzy
+msgid ":ref:`uri.PATH <uri-path>`"
+msgstr ":ref:`uri.parse() <uri-parse>`"
+
+msgid "Options used to encode the ``path`` URI component"
+msgstr ""
+
+#, fuzzy
+msgid ":ref:`uri.PATH_PART <uri-path-part>`"
+msgstr ":ref:`uri.parse() <uri-parse>`"
+
+msgid "Options used to encode specific ``path`` parts"
+msgstr ""
+
+#, fuzzy
+msgid ":ref:`uri.QUERY <uri-query>`"
+msgstr ":ref:`uri.parse() <uri-parse>`"
+
+msgid "Options used to encode the ``query`` URI component"
+msgstr ""
+
+#, fuzzy
+msgid ":ref:`uri.QUERY_PART <uri-query-part>`"
+msgstr ":ref:`uri.parse() <uri-parse>`"
+
+msgid "Options used to encode specific ``query`` parts"
+msgstr ""
+
+#, fuzzy
+msgid ":ref:`uri.FRAGMENT <uri-fragment>`"
+msgstr ":ref:`uri.format() <uri-format>`"
+
+msgid "Options used to encode the ``fragment`` URI component"
+msgstr ""
+
+#, fuzzy
+msgid ":ref:`uri.FORM_URLENCODED <uri-form-url-encoded>`"
+msgstr ":ref:`uri.format() <uri-format>`"
+
+msgid ""
+"Options used to encode ``application/x-www-form-urlencoded`` form parameters"
+msgstr ""
+
+msgid "**Related objects**"
+msgstr ""
+
+#, fuzzy
+msgid ":ref:`uri_components <uri_components>`"
+msgstr ":ref:`uri.format() <uri-format>`"
+
+#, fuzzy
+msgid "URI components"
+msgstr "Получение таблицы URI-компонентов"
+
+msgid ":ref:`uri_encoding_opts <uri_encoding_opts>`"
+msgstr ""
+
+msgid "URI encoding options"
+msgstr ""
+
+msgid "Functions"
+msgstr ""
+
+#, fuzzy
+msgid "Parse a URI string into components."
+msgstr "Создание URI из компонентов"
+
+#, fuzzy
+msgid "**See also:** :ref:`uri.format() <uri-format>`"
+msgstr ":ref:`uri.format() <uri-format>`"
 
 msgid "Parameters"
 msgstr "Параметры"
 
-msgid "a Uniform Resource Identifier"
-msgstr "Унифицированный идентификатор ресурса"
+#, fuzzy
+msgid "a URI string"
+msgstr "строка"
 
 msgid "return"
 msgstr "возвращает"
 
-msgid ""
-"URI-components-table. Possible components are fragment, host, login, "
-"password, path, query, scheme, service."
+msgid "a URI components table (see :ref:`uri_components <uri_components>`)"
 msgstr ""
-"таблица с компонентами URI. Доступные компоненты: fragment (фрагмент), host "
-"(хост), login (имя для входа), password (пароль), path (путь), query "
-"(запрос), scheme (схема), service (сервис)."
 
 msgid "rtype"
 msgstr "тип возвращаемого значения"
 
-msgid "Table"
+#, fuzzy
+msgid "table"
 msgstr "Таблица"
 
 msgid "**Example:**"
 msgstr "**Пример:**"
 
 msgid ""
-"tarantool> uri = require('uri')\n"
-"---\n"
-"...\n"
+"local uri = require('uri')\n"
 "\n"
-"tarantool> uri.parse('http://x.html#y')\n"
+"parsed_uri = uri.parse('https://www.tarantool.io/doc/latest/reference/reference_lua/http/#api-reference')\n"
+"--[[\n"
 "---\n"
-"- host: x.html\n"
-"  scheme: http\n"
-"  fragment: y\n"
-"..."
+"- host: www.tarantool.io\n"
+"  fragment: api-reference\n"
+"  scheme: https\n"
+"  path: /doc/latest/reference/reference_lua/http/\n"
+"...\n"
+"--]]\n"
 msgstr ""
-"tarantool> uri = require('uri')\n"
-"---\n"
-"...\n"
-"\n"
-"tarantool> uri.parse('http://x.html#y')\n"
-"---\n"
-"- host: x.html\n"
-"  scheme: http\n"
-"  fragment: y\n"
-"..."
 
-msgid "a series of name:value pairs, one for each component"
+#, fuzzy
+msgid "Construct a URI from the specified components."
+msgstr "Создание URI из компонентов"
+
+#, fuzzy
+msgid "**See also:** :ref:`uri.parse() <uri-parse>`"
+msgstr ":ref:`uri.parse() <uri-parse>`"
+
+#, fuzzy
+msgid ""
+"a series of ``name=value`` pairs, one for each component (see "
+":ref:`uri_components <uri_components>`)"
 msgstr "ряд пар ключ-значение, одна для каждого компонента"
 
+#, fuzzy
 msgid ""
-"boolean. If this is supplied and is ``true``, then the password component is"
-" rendered in clear text, otherwise it is omitted."
+"specify whether the password component is rendered in clear text; otherwise,"
+" it is omitted"
 msgstr ""
 "логическое значение. Если указать значение ``true``, то компонент пароля "
 "отображается открытым текстом, в остальных случаях не отображается."
 
-msgid "URI-string. Thus uri.format() is the reverse of uri.parse()."
-msgstr ""
-"URI-строка. Таким образом, uri.format() -- это операция, обратная "
-"uri.parse()."
+#, fuzzy
+msgid "URI string"
+msgstr "строка"
 
 msgid "string"
 msgstr "строка"
 
 msgid ""
-"tarantool> uri.format({host = 'x.html', scheme = 'http', fragment = 'y'})\n"
+"local uri = require('uri')\n"
+"\n"
+"formatted_uri = uri.format({ scheme = 'https',\n"
+"                             host = 'www.tarantool.io',\n"
+"                             path = '/doc/latest/reference/reference_lua/http/',\n"
+"                             fragment = 'api-reference' })\n"
+"--[[\n"
 "---\n"
-"- http://x.html#y\n"
-"..."
+"- https://www.tarantool.io/doc/latest/reference/reference_lua/http/#api-reference\n"
+"...\n"
+"--]]\n"
 msgstr ""
-"tarantool> uri.format({host = 'x.html', scheme = 'http', fragment = 'y'})\n"
+
+msgid "**Since:** :doc:`2.11.0 </release/2.11.0>`"
+msgstr ""
+
+msgid "Encode a string using the specified encoding options."
+msgstr ""
+
+msgid ""
+"By default, ``uri.escape()`` uses encoding options defined by the "
+":ref:`uri.RFC3986 <uri-rfc3986>` table. If required, you can customize "
+"encoding options using the ``uri_encoding_opts`` optional parameter, for "
+"example:"
+msgstr ""
+
+msgid ""
+"Pass the predefined set of options targeted for encoding a specific URI part"
+" (for example, :ref:`uri.PATH <uri-path>` or :ref:`uri.QUERY <uri-query>`)."
+msgstr ""
+
+msgid ""
+"Pass custom encoding options using the :ref:`uri_encoding_opts "
+"<uri_encoding_opts>` object."
+msgstr ""
+
+msgid "a string to encode"
+msgstr ""
+
+msgid ""
+"encoding options (optional, see :ref:`uri_encoding_opts "
+"<uri_encoding_opts>`)"
+msgstr ""
+
+msgid "an encoded string"
+msgstr ""
+
+#, fuzzy
+msgid "**Example 1:**"
+msgstr "**Пример:**"
+
+msgid ""
+"This example shows how to encode a string using the default encoding "
+"options."
+msgstr ""
+
+msgid ""
+"local uri = require('uri')\n"
+"\n"
+"escaped_string = uri.escape('C++')\n"
+"--[[\n"
 "---\n"
-"- http://x.html#y\n"
-"..."
+"- C%2B%2B\n"
+"...\n"
+"--]]\n"
+msgstr ""
+
+#, fuzzy
+msgid "**Example 2:**"
+msgstr "**Пример:**"
+
+msgid ""
+"This example shows how to encode a string using the "
+":ref:`uri.FORM_URLENCODED <uri-form-url-encoded>` encoding options."
+msgstr ""
+
+msgid ""
+"local uri = require('uri')\n"
+"\n"
+"escaped_string_url_enc = uri.escape('John Smith', uri.FORM_URLENCODED)\n"
+"--[[\n"
+"---\n"
+"- John+Smith\n"
+"...\n"
+"--]]\n"
+msgstr ""
+
+#, fuzzy
+msgid "**Example 3:**"
+msgstr "**Пример:**"
+
+msgid ""
+"This example shows how to encode a string using custom encoding options."
+msgstr ""
+
+#, python-format
+msgid ""
+"local uri = require('uri')\n"
+"\n"
+"local escape_opts = {\n"
+"    plus = true,\n"
+"    unreserved = uri.unreserved(\"a-z\")\n"
+"}\n"
+"escaped_string_custom = uri.escape('Hello World', escape_opts)\n"
+"--[[\n"
+"---\n"
+"- '%48ello+%57orld'\n"
+"...\n"
+"--]]\n"
+msgstr ""
+
+msgid "Decode a string using the specified encoding options."
+msgstr ""
+
+msgid "a string to decode"
+msgstr ""
+
+msgid "a decoded string"
+msgstr ""
+
+msgid ""
+"This example shows how to decode a string using the default encoding "
+"options."
+msgstr ""
+
+msgid ""
+"local uri = require('uri')\n"
+"\n"
+"unescaped_string = uri.unescape('C%2B%2B')\n"
+"--[[\n"
+"---\n"
+"- C++\n"
+"...\n"
+"--]]\n"
+msgstr ""
+
+msgid ""
+"This example shows how to decode a string using the "
+":ref:`uri.FORM_URLENCODED <uri-form-url-encoded>` encoding options."
+msgstr ""
+
+msgid ""
+"local uri = require('uri')\n"
+"\n"
+"unescaped_string_url_enc = uri.unescape('John+Smith', uri.FORM_URLENCODED)\n"
+"--[[\n"
+"---\n"
+"- John Smith\n"
+"...\n"
+"--]]\n"
+msgstr ""
+
+msgid ""
+"This example shows how to decode a string using custom encoding options."
+msgstr ""
+
+#, python-format
+msgid ""
+"local uri = require('uri')\n"
+"\n"
+"local escape_opts = {\n"
+"    plus = true,\n"
+"    unreserved = uri.unreserved(\"a-z\")\n"
+"}\n"
+"unescaped_string_custom = uri.unescape('%48ello+%57orld', escape_opts)\n"
+"--[[\n"
+"---\n"
+"- Hello World\n"
+"...\n"
+"--]]\n"
+msgstr ""
+
+msgid "Properties"
+msgstr ""
+
+msgid ""
+"Encoding options that use unreserved symbols defined in RFC 3986. These are "
+"default options used to encode and decode using the :ref:`uri.escape() <uri-"
+"escape>` and :ref:`uri.unescape() <uri-unescape>` functions, respectively."
+msgstr ""
+
+msgid "**See also:** :ref:`uri_encoding_opts <uri_encoding_opts>`"
+msgstr ""
+
+msgid "Options used to encode the ``path`` URI component."
+msgstr ""
+
+msgid "Options used to encode specific ``path`` parts."
+msgstr ""
+
+msgid "Options used to encode the ``query`` URI component."
+msgstr ""
+
+msgid "Options used to encode specific ``query`` parts."
+msgstr ""
+
+msgid "Options used to encode the ``fragment`` URI component."
+msgstr ""
+
+msgid ""
+"Options used to encode ``application/x-www-form-urlencoded`` form "
+"parameters."
+msgstr ""
+
+msgid "Related objects"
+msgstr ""
+
+#, fuzzy
+msgid "uri_components"
+msgstr "Получение таблицы URI-компонентов"
+
+msgid ""
+"URI components. The ``uri_components`` object is used in the following "
+"functions:"
+msgstr ""
+
+msgid ""
+"The :ref:`uri.parse() <uri-parse>` function returns the ``uri_components`` "
+"object."
+msgstr ""
+
+msgid ""
+"The :ref:`uri.format() <uri-format>` function accepts the ``uri_components``"
+" object as an argument."
+msgstr ""
+
+msgid "A URI scheme."
+msgstr ""
+
+msgid "**Examples:** ``https``, ``http``"
+msgstr ""
+
+msgid "A user name, which is a part of the ``userinfo`` subcomponent."
+msgstr ""
+
+msgid "A password, which is a part of the ``userinfo`` subcomponent."
+msgstr ""
+
+msgid "A host subcomponent."
+msgstr ""
+
+msgid "**Example:** ``www.tarantool.io``"
+msgstr ""
+
+msgid ""
+"A service subcomponent. This property might return different values "
+"depending on the used URI scheme, for example:"
+msgstr ""
+
+msgid ""
+"If the ``https`` or ``http`` scheme is used, ``service`` returns the port "
+"value."
+msgstr ""
+
+msgid ""
+"If the Unix domain socket is used, ``service`` returns the socket path."
+msgstr ""
+
+msgid "**Examples:** ``3301``, ``/tmp/unix.sock``"
+msgstr ""
+
+msgid "A path component."
+msgstr ""
+
+msgid "**Example:** ``/doc/latest/reference/reference_lua/http/``"
+msgstr ""
+
+msgid "A query component."
+msgstr ""
+
+msgid "**Example:** ``key1=value1&key2=value2``"
+msgstr ""
+
+msgid "A fragment component."
+msgstr ""
+
+msgid "**Example:** ``api-reference``"
+msgstr ""
+
+msgid "An IPv4 address."
+msgstr ""
+
+#, fuzzy
+msgid "**Example:** ``127.0.0.1``"
+msgstr "**Пример:**"
+
+msgid "An IPv6 address."
+msgstr ""
+
+msgid "**Example:** ``2a00:1148:b0ba:2016:12bf:48ff:fe78:fd10``"
+msgstr ""
+
+msgid "A Unix domain socket."
+msgstr ""
+
+msgid "**Example:** ``/tmp/unix.sock``"
+msgstr ""
+
+msgid "uri_encoding_opts"
+msgstr ""
+
+msgid ""
+"URI encoding options. These options can be passed to the :ref:`uri.escape() "
+"<uri-escape>` and :ref:`uri.unescape() <uri-unescape>` functions."
+msgstr ""
+
+msgid ""
+"The example below shows how to encode a string using custom encoding "
+"options."
+msgstr ""
+
+msgid ""
+"The ``uri`` module also provides several sets of predefined options targeted"
+" for encoding a specific URI part (for example, :ref:`uri.PATH <uri-path>` "
+"or :ref:`uri.QUERY <uri-query>`)."
+msgstr ""
+
+msgid ""
+"Enable encoding of ``+`` as the space character. By default, this property "
+"is set to ``false``."
+msgstr ""
+
+msgid "boolean"
+msgstr ""
+
+msgid ""
+"Specify a Lua pattern defining unreserved symbols that are not encoded."
+msgstr ""
+
+msgid "**Example:** ``'a-zA-Z0-9%-._~'``"
+msgstr ""
+
+#~ msgid ""
+#~ "A \"URI\" is a \"Uniform Resource Identifier\". The `IETF standard "
+#~ "<https://www.ietf.org/rfc/rfc2396.txt>`_ says a URI string looks like this:"
+#~ msgstr ""
+#~ "URI -- это Унифицированный идентификатор ресурса (Uniform Resource "
+#~ "Identifier). Согласно `стандарту IETF "
+#~ "<https://www.ietf.org/rfc/rfc2396.txt>`_, URI-строка выглядит следующим "
+#~ "образом:"
+
+#~ msgid "[scheme:]scheme-specific-part[#fragment]"
+#~ msgstr "[схема:]специальная-часть-схемы[#фрагмент]"
+
+#~ msgid "A common type, a hierarchical URI, looks like this:"
+#~ msgstr "Общий тип, иерархический URI, выглядит так:"
+
+#~ msgid "[scheme:][//authority][path][?query][#fragment]"
+#~ msgstr "[схема:][//адрес][путь][?запрос][#фрагмент]"
+
+#~ msgid ""
+#~ "For example the string ``'https://tarantool.org/x.html#y'`` has three "
+#~ "components:"
+#~ msgstr ""
+#~ "Например, строка ``'https://tarantool.org/x.html#y'`` содержит три "
+#~ "компонента:"
+
+#~ msgid "``https`` is the scheme,"
+#~ msgstr "``https`` -- схема,"
+
+#~ msgid "``tarantool.org/x.html`` is the path,"
+#~ msgstr "``tarantool.org/x.html`` -- путь,"
+
+#~ msgid "``y`` is the fragment."
+#~ msgstr "``y`` -- фрагмент."
+
+#~ msgid "Index"
+#~ msgstr "Указатель"
+
+#~ msgid "Name"
+#~ msgstr "Имя"
+
+#~ msgid "Use"
+#~ msgstr "Назначение"
+
+#~ msgid "a Uniform Resource Identifier"
+#~ msgstr "Унифицированный идентификатор ресурса"
+
+#~ msgid ""
+#~ "URI-components-table. Possible components are fragment, host, login, "
+#~ "password, path, query, scheme, service."
+#~ msgstr ""
+#~ "таблица с компонентами URI. Доступные компоненты: fragment (фрагмент), host "
+#~ "(хост), login (имя для входа), password (пароль), path (путь), query "
+#~ "(запрос), scheme (схема), service (сервис)."
+
+#~ msgid ""
+#~ "tarantool> uri = require('uri')\n"
+#~ "---\n"
+#~ "...\n"
+#~ "\n"
+#~ "tarantool> uri.parse('http://x.html#y')\n"
+#~ "---\n"
+#~ "- host: x.html\n"
+#~ "  scheme: http\n"
+#~ "  fragment: y\n"
+#~ "..."
+#~ msgstr ""
+#~ "tarantool> uri = require('uri')\n"
+#~ "---\n"
+#~ "...\n"
+#~ "\n"
+#~ "tarantool> uri.parse('http://x.html#y')\n"
+#~ "---\n"
+#~ "- host: x.html\n"
+#~ "  scheme: http\n"
+#~ "  fragment: y\n"
+#~ "..."
+
+#~ msgid "URI-string. Thus uri.format() is the reverse of uri.parse()."
+#~ msgstr ""
+#~ "URI-строка. Таким образом, uri.format() -- это операция, обратная "
+#~ "uri.parse()."
+
+#~ msgid ""
+#~ "tarantool> uri.format({host = 'x.html', scheme = 'http', fragment = 'y'})\n"
+#~ "---\n"
+#~ "- http://x.html#y\n"
+#~ "..."
+#~ msgstr ""
+#~ "tarantool> uri.format({host = 'x.html', scheme = 'http', fragment = 'y'})\n"
+#~ "---\n"
+#~ "- http://x.html#y\n"
+#~ "..."

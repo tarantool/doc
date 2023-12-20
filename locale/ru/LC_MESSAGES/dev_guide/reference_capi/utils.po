@@ -1,5 +1,6 @@
 
-msgid "Module `lua/utils`"
+#, fuzzy
+msgid "Module lua/utils"
 msgstr "Модуль `lua/utils`"
 
 msgid "Push cdata of given ``ctypeid`` onto the stack."

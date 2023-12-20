@@ -1,0 +1,447 @@
+
+msgid "Documenting the API"
+msgstr ""
+
+msgid ""
+"This document contains general guidelines for describing the Tarantool API, "
+"as well as examples and templates."
+msgstr ""
+
+msgid "Style"
+msgstr ""
+
+msgid ""
+"Please write as simply as possible. Describe functionality using short "
+"sentences in the present simple tense. A short sentence consists of no more "
+"than two clauses. Consider using `LanguageTool <https://languagetool.org/>`_"
+" or `Grammarly <https://www.grammarly.com/>`_ to check your English. For "
+"more style-related specifics, consult the :doc:`Language and style "
+"</contributing/docs/style>` section."
+msgstr ""
+
+msgid "Indicating the version"
+msgstr ""
+
+msgid ""
+"For every new module, function, or method, specify the version it first "
+"appears in."
+msgstr ""
+
+msgid ""
+"For a new parameter, specify the version it first appears in if this "
+"parameter is a \"feature\" and the version it's been introduced in differs "
+"from the version introducing the function/method and all other parameters."
+msgstr ""
+
+msgid "To specify the version, use the following Sphinx directive:"
+msgstr ""
+
+msgid ""
+"Since :doc:`2.10.0 </release/2.10.0>`.\n"
+"This is a link to the release notes on the Tarantool documentation website."
+msgstr ""
+
+msgid "The result looks like this:"
+msgstr ""
+
+msgid ""
+"Since Tarantool :doc:`2.10.0 </release/2.10.0>`. This is a link to the "
+"release notes on the Tarantool documentation website."
+msgstr ""
+
+msgid "Language of the general description"
+msgstr ""
+
+msgid "Use one of the two options:"
+msgstr ""
+
+msgid "Start with a verb in the imperative mood. Example: *Create a fiber.*"
+msgstr ""
+
+msgid ""
+"Start with a noun. Example: *The directory where memtx stores snapshot "
+"files.*"
+msgstr ""
+
+msgid "Checklist"
+msgstr ""
+
+msgid ""
+"Each list item is a characteristic to be described. Some items can be "
+"optional."
+msgstr ""
+
+msgid "Function or method"
+msgstr ""
+
+msgid ":ref:`Since which Tarantool version <contributing-docs-api_version>`"
+msgstr ""
+
+msgid ":ref:`General description <contributing-api-docs_general-description>`"
+msgstr ""
+
+msgid ":ref:`Parameters <documenting_parameters>`"
+msgstr ""
+
+msgid "What this function returns (if nothing, write 'none')"
+msgstr ""
+
+msgid "Return type (if exists)"
+msgstr ""
+
+msgid ":ref:`Possible errors <contributing-docs-possible_errors>` (if exist)"
+msgstr ""
+
+msgid ""
+":ref:`Complexity factors <index-box_complexity-factors>` (for :doc:`CRUD "
+"operations </reference/reference_lua/box_space>` and :doc:`index access "
+"functions </reference/reference_lua/box_index/>`)"
+msgstr ""
+
+msgid "Usage with memtx and vinyl (if differs)"
+msgstr ""
+
+msgid "Example(s)"
+msgstr ""
+
+msgid "Extra information (if needed)"
+msgstr ""
+
+msgid ""
+"See :ref:`module function example <contributing-api-docs_function-example>`,"
+" :ref:`class method example <contributing-api-docs_class-example>`."
+msgstr ""
+
+msgid "Data"
+msgstr ""
+
+msgid "Return type"
+msgstr ""
+
+msgid "Example"
+msgstr ""
+
+msgid "See :ref:`class data example <contributing-api-docs_class-example>`."
+msgstr ""
+
+msgid "Function and method parameters"
+msgstr ""
+
+msgid ""
+":ref:`Since which Tarantool version <contributing-docs-api_version>` (if "
+"added later)"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "Default value (if optional), possible values"
+msgstr ""
+
+msgid ""
+"If the parameter is optional, make sure it is enclosed in square brackets in"
+" the function declaration (in the \"heading\"). Do not mark parameters "
+"additionaly as \"optional\" or \"required\":"
+msgstr ""
+
+msgid ""
+"..  function:: format(URI-components-table[, include-password])\n"
+"\n"
+"    Construct a URI from components.\n"
+"\n"
+"    :param URI-components-table: a series of ``name:value`` pairs, one for each component\n"
+"    :param include-password: boolean. If this is supplied and is ``true``, then\n"
+"                             the password component is rendered in clear text,\n"
+"                             otherwise it is omitted."
+msgstr ""
+
+msgid "Configuration parameters"
+msgstr ""
+
+msgid ""
+"Configuration parameters are not to be confused with class and method "
+"parameters. Configuration parameters are passed to Tarantool via the command"
+" line or in an initialization file. You can find a list of Tarantool "
+"configuration parameters in the :doc:`configuration reference "
+"</reference/configuration/index>`."
+msgstr ""
+
+msgid "Corresponding environment variable (if applicable)"
+msgstr ""
+
+msgid "Default value"
+msgstr ""
+
+msgid ""
+"Possible values (can be included in the general description, for example, as"
+" a list)"
+msgstr ""
+
+msgid "Dynamic (yes or no)"
+msgstr ""
+
+msgid ""
+"See :ref:`configuration parameter example <contributing-api-docs_confval-"
+"example>`."
+msgstr ""
+
+msgid "Documenting possible errors"
+msgstr ""
+
+msgid ""
+"In the \"Possible errors\" section of a function or class method, consider "
+"explaining what happens if any parameter hasn't been defined or has the "
+"wrong value."
+msgstr ""
+
+msgid "Examples and templates"
+msgstr ""
+
+msgid "Module functions"
+msgstr ""
+
+msgid ""
+"We use the Sphinx directives ``.. module::`` and ``.. function::`` to "
+"describe functions of Tarantool modules:"
+msgstr ""
+
+msgid ""
+"..  module:: fiber\n"
+"\n"
+"..  function:: create(function [, function-arguments])\n"
+"\n"
+"    Create and start a fiber. The fiber is created and begins to run immediately.\n"
+"\n"
+"    :param function: the function to be associated with the fiber\n"
+"    :param function-arguments: what will be passed to function.\n"
+"\n"
+"    :return: created fiber object\n"
+"    :rtype: userdata\n"
+"\n"
+"    **Example:**\n"
+"\n"
+"    ..  code-block:: tarantoolsession\n"
+"\n"
+"        tarantool> fiber = require('fiber')\n"
+"        ---\n"
+"        ...\n"
+"        tarantool> function function_name()\n"
+"                 >   print(\"I'm a fiber\")\n"
+"                 > end\n"
+"        ---\n"
+"        ...\n"
+"        tarantool> fiber_object = fiber.create(function_name); print(\"Fiber started\")\n"
+"        I'm a fiber\n"
+"        Fiber started\n"
+"        ---\n"
+"        ...\n"
+msgstr ""
+
+msgid "The resulting output looks like this:"
+msgstr ""
+
+msgid ""
+"Create and start a fiber. The fiber is created and begins to run "
+"immediately."
+msgstr ""
+
+msgid "Parameters"
+msgstr ""
+
+msgid "the function to be associated with the fiber"
+msgstr ""
+
+msgid "what will be passed to function."
+msgstr ""
+
+msgid "return"
+msgstr ""
+
+msgid "created fiber object"
+msgstr ""
+
+msgid "rtype"
+msgstr ""
+
+msgid "userdata"
+msgstr ""
+
+msgid "**Example:**"
+msgstr ""
+
+msgid ""
+"tarantool> fiber = require('fiber')\n"
+"---\n"
+"...\n"
+"tarantool> function function_name()\n"
+"         >   print(\"I'm a fiber\")\n"
+"         > end\n"
+"---\n"
+"...\n"
+"tarantool> fiber_object = fiber.create(function_name); print(\"Fiber started\")\n"
+"I'm a fiber\n"
+"Fiber started\n"
+"---\n"
+"..."
+msgstr ""
+
+msgid "Class methods and data"
+msgstr ""
+
+msgid ""
+"Methods are described similarly to functions, but the ``.. class::`` "
+"directive, unlike ``.. module::``, requires nesting."
+msgstr ""
+
+msgid ""
+"As for data, it's enough to write the description, the return type, and an "
+"example."
+msgstr ""
+
+msgid ""
+"Here is the example documentation describing the method and data of the "
+"``index_object`` class:"
+msgstr ""
+
+msgid ""
+"..  class:: index_object\n"
+"\n"
+"    ..  method:: get(key)\n"
+"\n"
+"        Search for a tuple :ref:`via the given index <box_index-note>`.\n"
+"\n"
+"        :param index_object index_object: :ref:`object reference\n"
+"                                          <app_server-object_reference>`\n"
+"        :param scalar/table      key: values to be matched against the index key\n"
+"\n"
+"        :return: the tuple whose index-key fields are equal to the passed key values\n"
+"        :rtype:  tuple\n"
+"\n"
+"        **Possible errors:**\n"
+"\n"
+"        * No such index\n"
+"        * Wrong type\n"
+"        * More than one tuple matches\n"
+"\n"
+"        **Complexity factors:** index size, index type.\n"
+"        See also :ref:`space_object:get() <box_space-get>`.\n"
+"\n"
+"        **Example:**\n"
+"\n"
+"        ..  code-block:: tarantoolsession\n"
+"\n"
+"            tarantool> box.space.tester.index.primary:get(2)\n"
+"            ---\n"
+"            - [2, 'Music']\n"
+"            ...\n"
+"\n"
+"    ..  data:: unique\n"
+"\n"
+"        True if the index is unique, false if the index is not unique.\n"
+"\n"
+"        :rtype: boolean\n"
+"\n"
+"        ..  code-block:: tarantoolsession\n"
+"\n"
+"            tarantool> box.space.tester.index.primary.unique\n"
+"            ---\n"
+"            - true\n"
+"            ...\n"
+msgstr ""
+
+msgid "And the resulting output looks like this:"
+msgstr ""
+
+msgid "Search for a tuple :ref:`via the given index <box_index-note>`."
+msgstr ""
+
+msgid ":ref:`object reference <app_server-object_reference>`"
+msgstr ""
+
+msgid "values to be matched against the index key"
+msgstr ""
+
+msgid "the tuple whose index-key fields are equal to the passed key values"
+msgstr ""
+
+msgid "tuple"
+msgstr ""
+
+msgid "**Possible errors:**"
+msgstr ""
+
+msgid "No such index"
+msgstr ""
+
+msgid "Wrong type"
+msgstr ""
+
+msgid "More than one tuple matches"
+msgstr ""
+
+msgid ""
+"**Complexity factors:** index size, index type. See also "
+":ref:`space_object:get() <box_space-get>`."
+msgstr ""
+
+msgid ""
+"tarantool> box.space.tester.index.primary:get(2)\n"
+"---\n"
+"- [2, 'Music']\n"
+"..."
+msgstr ""
+
+msgid "True if the index is unique, false if the index is not unique."
+msgstr ""
+
+msgid "boolean"
+msgstr ""
+
+msgid ""
+"tarantool> box.space.tester.index.primary.unique\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+
+msgid "Example:"
+msgstr ""
+
+msgid ""
+".. confval:: wal_dir\n"
+"\n"
+"    Since version 1.6.2.\n"
+"    A directory where write-ahead log (.xlog) files are stored. Can be relative\n"
+"    to :ref:`work_dir <cfg_basic-work_dir>`. Sometimes ``wal_dir`` and\n"
+"    :ref:`memtx_dir <cfg_basic-memtx_dir>` are specified with different values, so\n"
+"    that write-ahead log files and snapshot files can be stored on different\n"
+"    disks. If not specified, defaults to ``work_dir``.\n"
+"\n"
+"    | Type: string\n"
+"    | Default: \".\"\n"
+"    | Environment variable: TT_WAL_DIR\n"
+"    | Dynamic: no\n"
+msgstr ""
+
+msgid "Result:"
+msgstr ""
+
+msgid ""
+"Since version 1.6.2. A directory where write-ahead log (.xlog) files are "
+"stored. Can be relative to :ref:`work_dir <cfg_basic-work_dir>`. Sometimes "
+"``wal_dir`` and :ref:`memtx_dir <cfg_basic-memtx_dir>` are specified with "
+"different values, so that write-ahead log files and snapshot files can be "
+"stored on different disks. If not specified, defaults to ``work_dir``."
+msgstr ""
+
+msgid "Type: string"
+msgstr ""
+
+msgid "Default: \".\""
+msgstr ""
+
+msgid "Environment variable: TT_WAL_DIR"
+msgstr ""
+
+msgid "Dynamic: no"
+msgstr ""

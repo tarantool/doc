@@ -1,0 +1,59 @@
+
+msgid "box.watch()"
+msgstr ""
+
+msgid "Subscribe to events broadcast by a local host."
+msgstr ""
+
+msgid "Parameters"
+msgstr ""
+
+msgid "key name of the event to subscribe to"
+msgstr ""
+
+msgid "callback to invoke when the key value is updated"
+msgstr ""
+
+msgid "return"
+msgstr ""
+
+msgid ""
+"a watcher handle. The handle consists of one method -- ``unregister()``, "
+"which unregisters the watcher."
+msgstr ""
+
+msgid ""
+"To read more about watchers, see the :ref:`Functions for watchers <box-"
+"watchers>` section."
+msgstr ""
+
+msgid ""
+"Keep in mind that garbage collection of a watcher handle doesn't lead to the"
+" watcher's destruction. In this case, the watcher remains registered. It is "
+"okay to discard the result of ``watch`` function if the watcher will never "
+"be unregistered."
+msgstr ""
+
+msgid "**Example:**"
+msgstr ""
+
+#, python-format
+msgid ""
+"-- Broadcast value 42 for the 'foo' key.\n"
+"box.broadcast('foo', 42)\n"
+"\n"
+"local log = require('log')\n"
+"-- Subscribe to updates of the 'foo' key.\n"
+"local w = box.watch('foo', function(key, value)\n"
+"    assert(key == 'foo')\n"
+"    log.info(\"The box.id value is '%d'\", value)\n"
+"end)"
+msgstr ""
+
+msgid ""
+"If you don't need the watcher anymore, you can unregister it using the "
+"command below:"
+msgstr ""
+
+msgid "w:unregister()"
+msgstr ""

@@ -1,0 +1,11 @@
+
+msgid "Module compress"
+msgstr ""
+
+msgid "**Since:** :doc:`2.11.0 </release/2.11.0>`"
+msgstr ""
+
+msgid ""
+"The ``compress`` module provides a set of submodules for compressing and "
+"decompressing data using different algorithms:"
+msgstr ""

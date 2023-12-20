@@ -1,3 +1,279 @@
 
 msgid "Building Tarantool Docs"
 msgstr ""
+
+msgid "How to build Tarantool documentation using Docker"
+msgstr ""
+
+msgid "See `Docker <https://www.docker.com>`_"
+msgstr ""
+
+msgid "Prepare for work"
+msgstr ""
+
+msgid "First of all, pull the image for building the docs."
+msgstr ""
+
+msgid "docker pull tarantool/doc-builder:fat-4.3"
+msgstr ""
+
+msgid "Next, initialize a Makefile for your OS:"
+msgstr ""
+
+msgid ""
+"docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.3 sh -c "
+"\"cmake .\""
+msgstr ""
+
+msgid "Update submodules and generate documentation sources from code"
+msgstr ""
+
+msgid ""
+"A big part of documentation sources comes from several other projects, "
+"connected as Git submodules. To include their latest contents in the docs, "
+"run these two steps."
+msgstr ""
+
+msgid "Update the submodules:"
+msgstr ""
+
+msgid ""
+"git submodule update --init\n"
+"git fetch --recurse-submodules\n"
+"git submodule update --remote --checkout"
+msgstr ""
+
+msgid ""
+"This will initialize Git submodules and update them to the top of the stable"
+" branch in each repository."
+msgstr ""
+
+msgid ""
+"``git submodule update`` can sometimes fail, for example, when you have "
+"changes in submodules' files. You can reinitialize submodules to fix the "
+"problem."
+msgstr ""
+
+msgid "**Caution:** all untracked changes in submodules will be lost!"
+msgstr ""
+
+msgid ""
+"git submodule deinit -f .\n"
+"git submodule update --init"
+msgstr ""
+
+msgid ""
+"Note that there's an option to update submodule repositories with a ``make``"
+" command. However, it's intended for use in a CI environment and not on a "
+"local machine."
+msgstr ""
+
+msgid ""
+"docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.3 sh -c "
+"\"make pull-modules\""
+msgstr ""
+
+msgid "Build the submodules content:"
+msgstr ""
+
+msgid ""
+"docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.3 sh -c "
+"\"make build-modules\""
+msgstr ""
+
+msgid "This command will do two things:"
+msgstr ""
+
+msgid "Generate documentation source files from the source code"
+msgstr ""
+
+msgid "Copy these files to the right places under the ``./doc/`` directory."
+msgstr ""
+
+msgid ""
+"If you're editing submodules locally, repeat this step to view the updated "
+"results."
+msgstr ""
+
+msgid "Now you're ready to build and preview the documentation locally."
+msgstr ""
+
+msgid "Build and run the documentation on your machine"
+msgstr ""
+
+msgid ""
+"When editing the documentation, you can set up a live-reload server. It will"
+" build your documentation and serve it on `127.0.0.1:8000 "
+"<http://127.0.0.1:8000>`_. Every time you make changes in the source files, "
+"it will rebuild the docs and refresh the browser page."
+msgstr ""
+
+msgid ""
+"docker run --rm -it -p 8000:8000 -v $(pwd):/doc tarantool/doc-"
+"builder:fat-4.3 sh -c \"make autobuild\""
+msgstr ""
+
+msgid ""
+"First build will take some time. When it's done, open `127.0.0.1:8000 "
+"<http://127.0.0.1:8000>`_ in the browser. Now when you make changes, they "
+"will be rebuilt in a few seconds, and the browser tab with preview will "
+"reload automatically."
+msgstr ""
+
+msgid ""
+"You can also build the docs manually with ``make html``, and then serve them"
+" using python3 built-in server:"
+msgstr ""
+
+msgid ""
+"docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.3 sh -c \"make html\"\n"
+"docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.3 sh -c \"make html-ru\"\n"
+"python3 -m http.server --directory output/html"
+msgstr ""
+
+msgid "or python2 built-in server:"
+msgstr ""
+
+msgid ""
+"cd output/html\n"
+"python -m SimpleHTTPServer"
+msgstr ""
+
+msgid "then go to `localhost:8000 <http://localhost:8000>`_ in your browser."
+msgstr ""
+
+msgid ""
+"There are other commands which can run in the ``tarantool/doc-builder`` "
+"container:"
+msgstr ""
+
+msgid ""
+"docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.3 sh -c \"make html\"\n"
+"docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.3 sh -c \"make html-ru\"\n"
+"docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.3 sh -c \"make singlehtml\"\n"
+"docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.3 sh -c \"make singlehtml-ru\"\n"
+"docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.3 sh -c \"make pdf\"\n"
+"docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.3 sh -c \"make pdf-ru\"\n"
+"docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.3 sh -c \"make json\"\n"
+"docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.3 sh -c \"make json-ru\"\n"
+"docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.3 sh -c \"make epub\"\n"
+"docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.3 sh -c \"make epub-ru\"\n"
+"docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.3 sh -c \"make update-po\""
+msgstr ""
+
+msgid "Linkcheck"
+msgstr ""
+
+msgid ""
+"There's a specific build mode which checks internal and external links "
+"instead of producing a document."
+msgstr ""
+
+msgid ""
+"docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.3 sh -c "
+"\"make linkcheck\""
+msgstr ""
+
+msgid ""
+"If you need to save the linkcheck's report in a file, you can use the "
+"following trick:"
+msgstr ""
+
+msgid ""
+"docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.3 sh -c "
+"\"make linkcheck\" 2>&1 | tee linkcheck.log"
+msgstr ""
+
+msgid ""
+"Here ``2>&1`` redirects the ``stderr`` output to ``stdout``, and then "
+"``tee`` both shows in on screen and writes to a file."
+msgstr ""
+
+msgid "Vale"
+msgstr ""
+
+msgid ""
+"Tarantool documentation uses the Vale linter for checking grammar, style, "
+"and word usage. Its configuration is placed in the ``vale.ini`` file located"
+" in the root project directory."
+msgstr ""
+
+msgid ""
+"To enable RST support in Vale, you need to install Sphinx. Then, you can "
+"enable Vale integration in your IDE, for example:"
+msgstr ""
+
+msgid ""
+"`VS Code <https://marketplace.visualstudio.com/items?itemName=errata-"
+"ai.vale-server>`_"
+msgstr ""
+
+msgid ""
+"`IntelliJ-based IDEs <https://plugins.jetbrains.com/plugin/16136-grazie-"
+"professional/docs/project-style-guides.html#vanilla-vale>`_"
+msgstr ""
+
+msgid "Localization"
+msgstr ""
+
+msgid "Terms:"
+msgstr ""
+
+msgid ""
+"**translation unit** (TU) is an atomic piece of text which can be "
+"translated. A paragraph, a list item, a heading, image's alt-text and so on."
+msgstr ""
+
+msgid ""
+"**translation source files** are the files with translation units in English"
+" only. They're located in ``locale/en``."
+msgstr ""
+
+msgid ""
+"**translation files** are the files which match original text to translated "
+"text. They're located in ``locale/ru``."
+msgstr ""
+
+msgid "To update the translation files, run the `make update-po` task:"
+msgstr ""
+
+msgid ""
+"docker run --rm -it -v $(pwd):/doc tarantool/doc-builder:fat-4.3 sh -c "
+"\"make update-po\""
+msgstr ""
+
+msgid ""
+"Translate the strings in the updated files and then commit the changes."
+msgstr ""
+
+msgid "How to contribute"
+msgstr ""
+
+msgid ""
+"To contribute to documentation, use the `REST "
+"<http://docutils.sourceforge.net/docs/user/rst/quickstart.html>`_ format for"
+" drafting and submit your updates as a `pull request "
+"<https://help.github.com/articles/creating-a-pull-request>`_ via GitHub."
+msgstr ""
+
+msgid ""
+"To comply with the writing and formatting style, use the `guidelines "
+"<https://www.tarantool.io/en/doc/latest/contributing/docs/>`_ provided in "
+"the documentation, common sense and existing documents."
+msgstr ""
+
+msgid "Notes:"
+msgstr ""
+
+msgid ""
+"If you suggest creating a new documentation section (a whole new page), it "
+"has to be saved to the relevant section at GitHub."
+msgstr ""
+
+msgid ""
+"If you want to contribute to localizing this documentation (for example, "
+"into Russian), add your translation strings to ``.po`` files stored in the "
+"corresponding locale directory (for example, ``/locale/ru/LC_MESSAGES/`` for"
+" Russian). See more about localizing with Sphinx at http://www.sphinx-"
+"doc.org/en/stable/intl.html."
+msgstr ""

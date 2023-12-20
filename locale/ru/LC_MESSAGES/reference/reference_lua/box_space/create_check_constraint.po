@@ -3,6 +3,12 @@ msgid "box.space.create_check_constraint()"
 msgstr "box.space.create_check_constraint()"
 
 msgid ""
+"This function was removed in :doc:`2.11.0 </release/2.11.0>`. The check "
+"constraint mechanism is replaced with the new tuple constraints. Learn more "
+"about tuple constraints in :ref:`Constraints <index-constraints>`."
+msgstr ""
+
+msgid ""
 "Create a check constraint. A check constraint is a requirement that must be "
 "met when a tuple is inserted or updated in a space. Check constraints "
 "created with ``space_object:create_check_constraint`` have the same effect "

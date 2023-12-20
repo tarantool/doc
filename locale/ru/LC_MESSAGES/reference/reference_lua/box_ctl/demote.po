@@ -1,0 +1,41 @@
+
+msgid "box.ctl.demote()"
+msgstr ""
+
+msgid "Since version :doc:`2.10.0 </release/2.10.0>`."
+msgstr ""
+
+msgid "Revoke the leader role from the instance."
+msgstr ""
+
+msgid ""
+"On :ref:`synchronous transaction queue owner <box_info_synchro>`, the "
+"function works in the following way:"
+msgstr ""
+
+msgid ""
+"If :ref:`box.cfg.election_mode <cfg_replication-election_mode>` is ``off``, "
+"the function writes a ``DEMOTE`` request to WAL. The ``DEMOTE`` request "
+"clears the ownership of the synchronous transaction queue, while the "
+"``PROMOTE`` request assigns it to a new instance."
+msgstr ""
+
+msgid ""
+"If :ref:`box.cfg.election_mode <cfg_replication-election_mode>` is enabled "
+"in any mode, then the function makes the instance start a new term and give "
+"up the leader role."
+msgstr ""
+
+msgid ""
+"On instances that are not queue owners, the function does nothing and "
+"returns immediately."
+msgstr ""
+
+msgid "Parameters: none"
+msgstr ""
+
+msgid "return"
+msgstr ""
+
+msgid "nil"
+msgstr ""

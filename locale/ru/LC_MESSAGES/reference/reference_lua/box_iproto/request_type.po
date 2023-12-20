@@ -1,0 +1,22 @@
+
+msgid "box.iproto.type"
+msgstr ""
+
+msgid ""
+"Contains all available request types. Learn more about the requests: "
+":ref:`Client-server requests and responses <internals-requests_responses>`."
+msgstr ""
+
+msgid "**Example**"
+msgstr ""
+
+msgid ""
+"tarantool> box.iproto.type.UNKNOWN\n"
+"---\n"
+"- -1\n"
+"...\n"
+"tarantool> box.iproto.type.CHUNK\n"
+"---\n"
+"- 128\n"
+"..."
+msgstr ""

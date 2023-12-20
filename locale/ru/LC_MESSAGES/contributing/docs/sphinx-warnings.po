@@ -138,6 +138,26 @@ msgstr ""
 msgid "..  _box_space-index_func:"
 msgstr ""
 
+msgid "Anonymous hyperlink mismatch"
+msgstr ""
+
+msgid ""
+"**Warning example:** Anonymous hyperlink mismatch: 1 references but 0 "
+"targets."
+msgstr ""
+
+msgid "Check the hyperlink formatting."
+msgstr ""
+
+msgid "Read more in `Lua Manual <https://www.lua.org/manual/5.3`__."
+msgstr ""
+
+msgid "A closing greater-than sign is missing in the tag definition:"
+msgstr ""
+
+msgid "Read more in `Lua Manual <https://www.lua.org/manual/5.3>`__."
+msgstr ""
+
 msgid "Toctree contains reference to nonexisting document '...'"
 msgstr ""
 
@@ -148,9 +168,8 @@ msgid "Check the path."
 msgstr ""
 
 msgid ""
-"If the path points to ``cartridge`` or another submodule, check that you've "
-":doc:`built the submodules content </contributing/docs/build>` before "
-"building docs."
+"If the path points to a submodule, check that you've :doc:`built the "
+"submodules content </contributing/docs/build>` before building docs."
 msgstr ""
 
 msgid ""
@@ -216,3 +235,9 @@ msgstr ""
 
 msgid ":doc:`/reference/reference_lua/box_space/update`"
 msgstr ""
+
+#~ msgid ""
+#~ "If the path points to ``cartridge`` or another submodule, check that you've "
+#~ ":doc:`built the submodules content </contributing/docs/build>` before "
+#~ "building docs."
+#~ msgstr ""

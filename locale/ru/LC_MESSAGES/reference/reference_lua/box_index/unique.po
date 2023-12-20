@@ -2,7 +2,8 @@
 msgid "index_object.unique"
 msgstr ""
 
-msgid "True if the index is unique, false if the index is not unique."
+#, fuzzy
+msgid "``true`` if the index is unique, ``false`` if the index is not unique."
 msgstr "Если индекс уникальный -- true, если индекс не уникален -- false."
 
 msgid "rtype"
@@ -10,3 +11,6 @@ msgstr "тип возвращаемого значения"
 
 msgid "boolean"
 msgstr "boolean (логический)"
+
+msgid "**See also:** :ref:`index_opts.unique <index_opts_unique>`"
+msgstr ""

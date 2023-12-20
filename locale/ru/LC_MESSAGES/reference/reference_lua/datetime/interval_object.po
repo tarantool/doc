@@ -1,0 +1,105 @@
+
+msgid "interval_object"
+msgstr ""
+
+msgid "Since :doc:`2.10.0 </release/2.10.0>`."
+msgstr ""
+
+msgid ""
+"Convert the information from an ``interval`` object into the table format. "
+"Resulting table has the following fields:"
+msgstr ""
+
+msgid "Field name"
+msgstr ""
+
+msgid "Description"
+msgstr ""
+
+msgid "nsec"
+msgstr ""
+
+msgid "Nanosecods"
+msgstr ""
+
+msgid "sec"
+msgstr ""
+
+msgid "Seconds"
+msgstr ""
+
+msgid "min"
+msgstr ""
+
+msgid "Minutes"
+msgstr ""
+
+msgid "hour"
+msgstr ""
+
+msgid "Hours"
+msgstr ""
+
+msgid "day"
+msgstr ""
+
+msgid "Day number"
+msgstr ""
+
+msgid "month"
+msgstr ""
+
+msgid "Month number"
+msgstr ""
+
+msgid "year"
+msgstr ""
+
+msgid "Year"
+msgstr ""
+
+msgid "week"
+msgstr ""
+
+msgid "Week number"
+msgstr ""
+
+msgid "adjust"
+msgstr ""
+
+msgid "Defines how to round days in a month after an arithmetic operation."
+msgstr ""
+
+msgid "return"
+msgstr ""
+
+msgid "table with the date and time parameters"
+msgstr ""
+
+msgid "rtype"
+msgstr ""
+
+msgid "table"
+msgstr ""
+
+msgid "**Example:**"
+msgstr ""
+
+msgid ""
+"tarantool> iv = datetime.interval.new{month = 1, adjust = 'last'}\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> iv:totable()\n"
+"---\n"
+"- adjust: last\n"
+"  sec: 0\n"
+"  nsec: 0\n"
+"  day: 0\n"
+"  week: 0\n"
+"  hour: 0\n"
+"  month: 1\n"
+"  year: 0\n"
+"  min: 0\n"
+"..."
+msgstr ""

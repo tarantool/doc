@@ -1,0 +1,91 @@
+
+msgid "Module datetime"
+msgstr ""
+
+msgid "Since :doc:`2.10.0 </release/2.10.0>`."
+msgstr ""
+
+msgid ""
+"The ``datetime`` module provides support for the :ref:`datetime and interval"
+" data types <index-box_datetime>`. It allows creating the date and time "
+"values either via the object interface or via parsing string values "
+"conforming to the ISO-8601 standard."
+msgstr ""
+
+msgid "Below is a list of the ``datetime`` module functions and methods."
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "Use"
+msgstr ""
+
+msgid ":doc:`./datetime/new`"
+msgstr ""
+
+msgid "Create a ``datetime`` object from a table of time units."
+msgstr ""
+
+msgid ":ref:`format() <datetime-format>`"
+msgstr ""
+
+msgid ""
+"Convert the standard presentation of a ``datetime`` object into a formatted "
+"string."
+msgstr ""
+
+msgid ":ref:`datetime_object:totable() <datetime-totable>`"
+msgstr ""
+
+msgid ""
+"Convert the information from a ``datetime`` object into the table format."
+msgstr ""
+
+msgid ":ref:`set() <datetime-set>`"
+msgstr ""
+
+msgid "Update the field values in the existing ``datetime`` object."
+msgstr ""
+
+msgid ":ref:`parse() <datetime-parse>`"
+msgstr ""
+
+msgid ""
+"Convert an input string with the date and time information into a "
+"``datetime`` object."
+msgstr ""
+
+msgid ":ref:`add() <datetime-add>`"
+msgstr ""
+
+msgid ""
+"Modify an existing datetime object by adding values of the input arguments."
+msgstr ""
+
+msgid ":ref:`sub() <datetime-sub>`"
+msgstr ""
+
+msgid ""
+"Modify an existing datetime object by subtracting values of the input "
+"arguments."
+msgstr ""
+
+msgid ":doc:`./datetime/interval_new`"
+msgstr ""
+
+msgid "Create an ``interval`` object from a table of time units."
+msgstr ""
+
+msgid ":ref:`interval_object:totable() <interval-totable>`"
+msgstr ""
+
+msgid ""
+"Convert the information from an ``interval`` object into the table format."
+msgstr ""
+
+msgid ":doc:`./datetime/interval_arithm`"
+msgstr ""
+
+msgid "Arithmetic operations with datetime and interval objects."
+msgstr ""

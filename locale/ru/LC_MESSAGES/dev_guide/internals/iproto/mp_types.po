@@ -1,0 +1,89 @@
+
+msgid "MP_* MessagePack types"
+msgstr ""
+
+msgid ""
+"The binary protocol handles data in the  `MessagePack "
+"<http://MessagePack.org>`_ format. Short descriptions of the basic "
+"MessagePack data types are on MessagePack's `specification page "
+"<https://github.com/msgpack/msgpack/blob/master/spec.md>`_. Tarantool also "
+"introduces several MessagePack type :ref:`extensions <internals-"
+"msgpack_ext>`."
+msgstr ""
+
+msgid ""
+"In this document, MessagePack types are described by words that start with "
+"**MP_**. See this table:"
+msgstr ""
+
+msgid "**MP_NIL**"
+msgstr ""
+
+msgid "nil"
+msgstr ""
+
+msgid "**MP_UINT**"
+msgstr ""
+
+msgid "unsigned integer"
+msgstr ""
+
+msgid "**MP_INT**"
+msgstr ""
+
+msgid "either integer or unsigned integer"
+msgstr ""
+
+msgid "**MP_STR**"
+msgstr ""
+
+msgid "string"
+msgstr ""
+
+msgid "**MP_BIN**"
+msgstr ""
+
+msgid "binary string"
+msgstr ""
+
+msgid "**MP_ARRAY**"
+msgstr ""
+
+msgid "array"
+msgstr ""
+
+msgid "**MP_MAP**"
+msgstr ""
+
+msgid "map"
+msgstr ""
+
+msgid "**MP_BOOL**"
+msgstr ""
+
+msgid "boolean"
+msgstr ""
+
+msgid "**MP_FLOAT**"
+msgstr ""
+
+msgid "float"
+msgstr ""
+
+msgid "**MP_DOUBLE**"
+msgstr ""
+
+msgid "double"
+msgstr ""
+
+msgid "**MP_EXT**"
+msgstr ""
+
+msgid ":ref:`extension <internals-msgpack_ext>`"
+msgstr ""
+
+msgid "**MP_OBJECT**"
+msgstr ""
+
+msgid "any MessagePack object"
+msgstr ""

@@ -1,5 +1,6 @@
 
-msgid "Tarantool Release Policy"
+#, fuzzy
+msgid "Tarantool release policy"
 msgstr "Принципы выпуска версий Tarantool"
 
 msgid "Summary"
@@ -213,11 +214,12 @@ msgstr ""
 "релизов. В случае мажорного релиза, нет регрессии в функциональности из "
 "предыдущей серии."
 
+#, fuzzy
 msgid ""
 "Backwards compatibility is guaranteed between all versions in the same "
 "release series. It is also appreciated, but not guaranteed between different"
-" release series (major number changes). A detailed description of "
-"compatibility guarantees will be published later."
+" release series (major number changes). See :doc:`compatibility guarantees "
+"page </release/compatibility>` for details."
 msgstr ""
 "Обратная совместимость между всеми версиями одной релизной серии "
 "гарантирована. Между разными сериями (у которых различается первая часть "
@@ -628,3 +630,8 @@ msgstr ""
 "Со временем стадия поддержки подходит к концу, и релизная серия выходит на "
 "стадию прекращения поддержки (end of life, EOL). С этого момента новые "
 "версии не выпускаются."
+
+msgid ""
+"See all currently supported Tarantool versions visualised as :doc:`a "
+"calendar <calendar>` or as :ref:`a release lifetime table <release-table>`."
+msgstr ""

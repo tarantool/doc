@@ -36,7 +36,10 @@ msgstr "Важные изменения:"
 msgid "Tarantool is now able to set multiple iproto threads."
 msgstr "Теперь в Tarantool можно задавать несколько потоков (threads) IPROTO."
 
-msgid "Setting ``box.cfg`` options with environment variables."
+#, fuzzy
+msgid ""
+"Setting ``box.cfg`` options with :ref:`environment variables <box-cfg-"
+"params-env>`."
 msgstr ""
 "Параметры ``box.cfg`` можно определять, используя переменные окружения."
 
@@ -184,9 +187,10 @@ msgstr ""
 "Новый модуль ``box.lib`` позволяет загружать и выполнять хранимые процедуры "
 "на языке C на узлах, доступных только для чтения (:tarantool-issue:`4642`)."
 
+#, fuzzy
 msgid ""
-"Configuration options in ``box.cfg`` can now be defined with environment "
-"variables (:tarantool-issue:`5602`)."
+"Configuration options in ``box.cfg`` can now be :ref:`defined with "
+"environment variables <box-cfg-params-env>` (:tarantool-issue:`5602`)."
 msgstr ""
 "Параметры конфигурации в ``box.cfg`` теперь можно задавать с помощью "
 "переменных окружения (:tarantool-issue:`5602`)."

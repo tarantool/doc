@@ -2,6 +2,7 @@
 msgid "Storing data with vinyl"
 msgstr "Хранение данных с помощью vinyl"
 
+#, python-format
 msgid ""
 "Tarantool is a transactional and persistent DBMS that maintains 100% of its "
 "data in RAM. The greatest advantages of in-memory databases are their speed "
@@ -44,6 +45,7 @@ msgstr ""
 "популярных. Есть также несколько менее известных библиотек: WiredTiger, "
 "ForestDB, NestDB, LMDB."
 
+#, python-format
 msgid ""
 "Nevertheless, after studying the source code of existing libraries and "
 "considering the pros and cons, we opted for our own storage engine. One "
@@ -265,17 +267,13 @@ msgstr "DELETE"
 msgid "UPSERT"
 msgstr "UPSERT"
 
-msgid ""
-"Every statement is marked by LSN"
-msgstr ""
-"Для каждого оператора назначается LSN"
+msgid "Every statement is marked by LSN"
+msgstr "Для каждого оператора назначается LSN"
 
-msgid ""
-"Append-only files, garbage is collected "
-"after a checkpoint"
-msgstr "Обновление файлов происходит только "
-"путем присоединения новых записей, сборка мусора проводится после "
-"контрольной точки"
+msgid "Append-only files, garbage is collected after a checkpoint"
+msgstr ""
+"Обновление файлов происходит только путем присоединения новых записей, "
+"сборка мусора проводится после контрольной точки"
 
 msgid "Transactional log of all filesystem changes: vylog"
 msgstr "Журнал транзакций при любых изменениях в системе: vylog"
@@ -781,6 +779,7 @@ msgstr ""
 "зарезервировать около 26 MБ доступной оперативной памяти, сократив реальный "
 "полезный размер L0 до 230 MБ."
 
+#, fuzzy
 msgid ""
 "Tarantool does all of these calculations automatically, constantly updating "
 "the rolling average of the DBMS workload and the histogram of the disk "
@@ -789,7 +788,7 @@ msgid ""
 "time is still possible. That’s why we also introduced an insertion timeout "
 "(the ``vinyl_timeout`` parameter), which is set to 60 seconds by default. "
 "The write operation itself is executed in dedicated threads. The number of "
-"these threads (2 by default) is controlled by the ``vinyl_write_threads`` "
+"these threads (4 by default) is controlled by the ``vinyl_write_threads`` "
 "parameter. The default value of 2 allows doing dumps and compactions in "
 "parallel, which is also necessary for ensuring system predictability."
 msgstr ""
@@ -1037,6 +1036,7 @@ msgstr ""
 "вероятность того, что во всех битовых массивах одновременно произойдет "
 "коллизия, очень мала."
 
+#, python-format
 msgid ""
 "The key advantage of Bloom filters in Tarantool is that they’re easily "
 "configurable. The only parameter that can be specified separately for each "
@@ -1385,12 +1385,13 @@ msgstr ""
 "либо обновляют текущее время, редкие операции чтения. Нагрузочные тесты "
 "показали отличные результаты."
 
+#, python-format
 msgid ""
 "Nevertheless, after a couple of days, the Tarantool process started eating "
 "up 100% of our CPU, and the system performance dropped close to zero."
 msgstr ""
-"Тем не менее, после пары дней работы процесс Tarantool начал потреблять "
-"100 % CPU, а производительность системы упала практически до нуля."
+"Тем не менее, после пары дней работы процесс Tarantool начал потреблять 100 "
+"% CPU, а производительность системы упала практически до нуля."
 
 msgid ""
 "We started digging into the issue and found out that the distribution of "
@@ -1442,6 +1443,7 @@ msgstr ""
 "старое значение: его нужно независимо удалить из вторичных индексов, а "
 "вставка нового элемента может этого не сделать, оставив в индексе мусор."
 
+#, python-format
 msgid ""
 "If secondary indexes are not unique, then collecting \"garbage\" from them "
 "can be put off until a compaction, which is what we do in Tarantool. The "

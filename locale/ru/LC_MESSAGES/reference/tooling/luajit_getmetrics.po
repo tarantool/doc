@@ -148,9 +148,10 @@ msgstr "количество шагов сборщика мусора, фаза 
 msgid "gc_steps_sweep"
 msgstr "gc_steps_sweep"
 
+#, fuzzy
 msgid ""
-"number of steps of garbage collector, sweep phases See external `Sweep Phase"
-" Description`_"
+"number of steps of garbage collector, sweep phases (see the `Sweep phase "
+"description`_)"
 msgstr ""
 "количество шагов сборщика мусора, фаза sweep. См. `описание фазы sweep`_"
 
@@ -245,9 +246,10 @@ msgstr ""
 "getmetrics>`_ возвращает похожие имена. Однако многие значения, используемые"
 " в uJIT, не монотонны."
 
+#, fuzzy
 msgid ""
 "Note: Although value names are similar to value names in :ref:`LuaJIT "
-"metrics <metrics-luajit>`, and the values are exactly the same, "
+"metrics <metrics-reference-luajit>`, and the values are exactly the same, "
 "misc.getmetrics() is slightly easier because there is no need to ‘require’ "
 "the misc module."
 msgstr ""
@@ -304,6 +306,7 @@ msgstr ""
 "<f_c_tutorial-c_stored_procedures>` перейдите к примеру с файлом ``easy.c``."
 " Удалите содержимое файла и вставьте следующий код:"
 
+#, python-format
 msgid ""
 "#include \"module.h\"\n"
 "#include <lmisclib.h>\n"

@@ -5,7 +5,7 @@ msgstr ""
 msgid "Release: :tarantool-release:`1.10.7`"
 msgstr ""
 
-msgid "Date: 2019-07-17 Tag: 1.10.7-1-gb93a33a"
+msgid "Date: 2020-07-17 Tag: 1.10.7-1-gb93a33a"
 msgstr ""
 
 msgid "Overview"
@@ -120,3 +120,6 @@ msgid ""
 "Fixed crash during squash of many (more than 4000) upserts modifying the "
 "same key (:tarantool-issue:`4957`)."
 msgstr ""
+
+#~ msgid "Date: 2019-07-17 Tag: 1.10.7-1-gb93a33a"
+#~ msgstr ""

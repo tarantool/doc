@@ -1,0 +1,104 @@
+
+msgid "Event watchers"
+msgstr ""
+
+msgid "Since :doc:`2.10.0 </release/2.10.0>`."
+msgstr ""
+
+msgid ""
+"The ``box`` module contains some features related to event subscriptions, "
+"also known as :term:`watchers <watcher>`. The subscriptions are used to "
+"inform the client about server-side :term:`events <event>`. Each event "
+"subscription is defined by a certain key."
+msgstr ""
+
+msgid "Event"
+msgstr ""
+
+msgid ""
+"An event is a state change or a system update that triggers the action of "
+"other systems. To read more about built-in events in Tarantool, check the "
+":doc:`system events </reference/reference_lua/box_events/system_events>` "
+"section."
+msgstr ""
+
+msgid "State"
+msgstr ""
+
+msgid ""
+"A state is an internally stored key-value pair. The key is a string. The "
+"value is an arbitrary type that can be encoded as MsgPack. To update a "
+"state, use the ``box.broadcast()`` function."
+msgstr ""
+
+msgid "Watcher"
+msgstr ""
+
+msgid ""
+"A watcher is a :doc:`callback </concepts/triggers>` that is invoked when a "
+"state change occurs. To register a local watcher, use the ``box.watch()`` "
+"function. To create a remote watcher, use the ``watch()`` function from the "
+"``net.box`` module. Note that it is possible to register more than one "
+"watcher for the same key."
+msgstr ""
+
+msgid "How a watcher works"
+msgstr ""
+
+msgid ""
+"First, you register a watcher. After that, the watcher callback is invoked "
+"for the first time. In this case, the callback is triggered whether or not "
+"the key has already been broadcast. All subsequent invocations are triggered"
+" with :doc:`box.broadcast() </reference/reference_lua/box_events/broadcast>`"
+" called on the remote host. If a watcher is subscribed for a key that has "
+"not been broadcast yet, the callback is triggered only once, after the "
+"registration of the watcher."
+msgstr ""
+
+msgid ""
+"The watcher callback takes two arguments. The first argument is the name of "
+"the key for which it was registered. The second one contains current key "
+"data. The callback is always invoked in a new fiber. It means that it is "
+"allowed to yield in it. A watcher callback is never executed in parallel "
+"with itself. If the key is updated while the watcher callback is running, "
+"the callback will be invoked again with the new value as soon as it returns."
+msgstr ""
+
+msgid ""
+"``box.watch`` and ``box.broadcast`` functions can be used before "
+":doc:`box.cfg </reference/reference_lua/box_cfg>`."
+msgstr ""
+
+msgid ""
+"Below is a list of all functions and pages related to watchers or events."
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "Use"
+msgstr ""
+
+msgid ":doc:`./box_events/watch`"
+msgstr ""
+
+msgid "Create a local watcher."
+msgstr ""
+
+msgid ":ref:`conn:watch() <conn-watch>`"
+msgstr ""
+
+msgid "Create a watcher for the remote host."
+msgstr ""
+
+msgid ":doc:`./box_events/broadcast`"
+msgstr ""
+
+msgid "Update a state."
+msgstr ""
+
+msgid ":ref:`Built-in events <system-events>`"
+msgstr ""
+
+msgid "Predefined events in Tarantool"
+msgstr ""

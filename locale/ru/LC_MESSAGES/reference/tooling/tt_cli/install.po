@@ -1,0 +1,113 @@
+
+msgid "Installing Tarantool software"
+msgstr ""
+
+msgid "$ tt install PROGRAM_NAME [VERSION] [OPTION ...]"
+msgstr ""
+
+msgid ""
+"``tt install`` installs the latest or an explicitly specified version of "
+"Tarantool or ``tt``. The possible values of ``PROGRAM_NAME`` are:"
+msgstr ""
+
+msgid "``tarantool``: Install Tarantool Community Edition."
+msgstr ""
+
+msgid "``tarantool-dev``: Install Tarantool from a local build directory."
+msgstr ""
+
+msgid "``tarantool-ee``: Install Tarantool Enterprise Edition."
+msgstr ""
+
+msgid "``tt``: Install the ``tt`` command-line utility."
+msgstr ""
+
+msgid ""
+"For ``tarantool-ee``, account credentials are required. Specify them in a "
+"file (see the :ref:`ee section <tt-config_file_ee>` of the configuration "
+"file) or provide them interactively."
+msgstr ""
+
+msgid "Options"
+msgstr ""
+
+msgid "**Applicable to:** ``tarantool``, ``tarantool-ee``"
+msgstr ""
+
+msgid "Use dynamic linking for building Tarantool."
+msgstr ""
+
+msgid "Skip dependency check before installation."
+msgstr ""
+
+msgid ""
+"Install a program from the local repository, which is specified in the "
+":ref:`repo section <tt-config_file_repo>` of the ``tt`` configuration file."
+msgstr ""
+
+msgid "Don't delete temporary files."
+msgstr ""
+
+msgid "Reinstall a previously installed program."
+msgstr ""
+
+msgid "Build Tarantool in an Ubuntu 18.04 Docker container."
+msgstr ""
+
+msgid "Details"
+msgstr ""
+
+msgid ""
+"When called without an explicitly specified version, ``tt install`` installs"
+" the latest available version. To check versions available for installation,"
+" use :doc:`tt search <search>`."
+msgstr ""
+
+msgid ""
+"By default, available versions of Tarantool Community Edition and ``tt`` are"
+" taken from their git repositories. Their installation includes building "
+"from sources, which requires some tools and dependencies, such as a C "
+"compiler. Make sure they are available in the system."
+msgstr ""
+
+msgid "Tarantool Enterprise Edition is installed from prebuilt packages."
+msgstr ""
+
+msgid ""
+"You can also set up a local repository with installation files you need. To "
+"use it, specify its location in the :ref:`repo section <tt-"
+"config_file_repo>` of the ``tt`` configuration file and run ``tt install`` "
+"with the ``--local-repo`` flag."
+msgstr ""
+
+msgid ""
+"To uninstall a Tarantool or ``tt`` version, use :doc:`tt uninstall "
+"<uninstall>`."
+msgstr ""
+
+msgid "Example"
+msgstr ""
+
+msgid "Install the latest available version of Tarantool:"
+msgstr ""
+
+msgid "$ tt install tarantool"
+msgstr ""
+
+msgid "Install Tarantool 2.11.1 from the local repository:"
+msgstr ""
+
+msgid "$ tt install tarantool 2.11.1 --local-repo"
+msgstr ""
+
+msgid "Reinstall Tarantool 2.10.8:"
+msgstr ""
+
+msgid "$ tt install tarantool 2.10.8 --reinstall"
+msgstr ""
+
+msgid "Install Tarantool :ref:`built from sources <building_from_source>`:"
+msgstr ""
+
+msgid "$ tt install tarantool-dev ~/src/tarantool/build"
+msgstr ""

@@ -1,0 +1,203 @@
+
+msgid "SQL-specific requests and responses"
+msgstr ""
+
+msgid ""
+"Below are considered the :ref:`IPROTO_EXECUTE <box_protocol-execute>` and "
+":ref:`IPROTO_PREPARE <box_protocol-prepare>` requests, followed by a "
+"description of :ref:`responses <box_protocol-sql_protocol>`."
+msgstr ""
+
+msgid "Basic request description"
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "Code"
+msgstr ""
+
+msgid "Description"
+msgstr ""
+
+msgid ":ref:`IPROTO_EXECUTE <box_protocol-execute>`"
+msgstr ""
+
+msgid "0x0b"
+msgstr ""
+
+msgid "Execute an SQL statement (:ref:`box.execute() <box-sql_box_execute>`)"
+msgstr ""
+
+msgid ":ref:`IPROTO_PREPARE <box_protocol-prepare>`"
+msgstr ""
+
+msgid "0x0d"
+msgstr ""
+
+msgid "Prepare an SQL statement (:ref:`box.prepare() <box-sql_box_prepare>`)"
+msgstr ""
+
+msgid "IPROTO_EXECUTE"
+msgstr ""
+
+msgid "Code: 0x0b."
+msgstr ""
+
+msgid "The body is a 3-item map:"
+msgstr ""
+
+msgid ""
+"Use IPROTO_STMT_ID (0x43) and statement-id (MP_INT) if executing a prepared "
+"statement. Use IPROTO_SQL_TEXT (0x40) and statement-text (MP_STR) if "
+"executing an SQL string."
+msgstr ""
+
+msgid ""
+"IPROTO_SQL_BIND (0x41) corresponds to the array of parameter values to match"
+" ? placeholders or :name placeholders."
+msgstr ""
+
+msgid ""
+"IPROTO_OPTIONS (0x2b) corresponds to the array of options. It is usually "
+"empty."
+msgstr ""
+
+msgid "Example 1"
+msgstr ""
+
+msgid ""
+"Suppose we prepare a statement with two ? placeholders, and execute with two"
+" parameters, thus:"
+msgstr ""
+
+msgid ""
+"n = conn:prepare([[VALUES (?, ?);]])\n"
+"conn:execute(n.stmt_id, {1,'a'})"
+msgstr ""
+
+msgid "Then the body will look like this:"
+msgstr ""
+
+msgid ""
+"The :ref:`Understanding binary protocol <box_protocol-illustration>` "
+"tutorial shows actual byte codes of the IPROTO_EXECUTE message."
+msgstr ""
+
+msgid ""
+"To call a prepared statement with named parameters from a connector pass the"
+" parameters within an array of maps. A client should wrap each element into "
+"a map, where the key holds a name of the parameter (with a colon) and the "
+"value holds an actual value. So, to bind foo and bar to 42 and 43, a client "
+"should send ``IPROTO_SQL_TEXT: <...>, IPROTO_SQL_BIND: [{\"foo\": 42}, "
+"{\"bar\": 43}]``."
+msgstr ""
+
+msgid ""
+"If a statement has both named and non-named parameters, wrap only named ones"
+" into a map. The rest of the parameters are positional and will be "
+"substituted in order."
+msgstr ""
+
+msgid "Example 2"
+msgstr ""
+
+msgid ""
+"Let's ask for full metadata and then select the two rows from a table named "
+"t1 that has columns named DD and Д:"
+msgstr ""
+
+msgid ""
+"conn.space._session_settings:update('sql_full_metadata', {{'=', 'value', true}})\n"
+"conn:prepare([[SELECT dd, дд AS д FROM t1;]])"
+msgstr ""
+
+msgid ""
+"In the iproto request, there would be no IPROTO_DATA and there would be two "
+"additional items:"
+msgstr ""
+
+msgid ""
+"``34 00 = IPROTO_BIND_COUNT and MP_UINT = 0`` (there are no parameters to "
+"bind)."
+msgstr ""
+
+msgid ""
+"``33 90 = IPROTO_BIND_METADATA and MP_ARRAY, size 0`` (there are no "
+"parameters to bind)."
+msgstr ""
+
+msgid "Here is what the request body looks like:"
+msgstr ""
+
+msgid "IPROTO_PREPARE"
+msgstr ""
+
+msgid "Code: 0x0d."
+msgstr ""
+
+msgid "The body is a 1-item map:"
+msgstr ""
+
+msgid ""
+"The IPROTO_PREPARE map item is the same as the first item of the "
+":ref:`IPROTO_EXECUTE <box_protocol-execute>` body for an SQL string."
+msgstr ""
+
+msgid "Responses for SQL"
+msgstr ""
+
+msgid ""
+"After the :ref:`header <box_protocol-header>`, for a response to an SQL "
+"statement, there will be a body that is slightly different from the body for"
+" non-SQL requests/responses."
+msgstr ""
+
+msgid "Responses to SELECT, VALUES, or PRAGMA"
+msgstr ""
+
+msgid ""
+"If the SQL statement is SELECT or VALUES or PRAGMA, the response contains:"
+msgstr ""
+
+msgid "Example"
+msgstr ""
+
+msgid ""
+"conn.space._session_settings:update('sql_full_metadata', {{'=', 'value', true}})\n"
+"conn:execute([[SELECT dd, дд AS д FROM t1;]])"
+msgstr ""
+
+msgid "The response body might look like this:"
+msgstr ""
+
+msgid ""
+"The tutorial :ref:`Understanding the binary protocol <box_protocol-"
+"illustration>` shows actual byte codes of responses to the above SQL "
+"messages."
+msgstr ""
+
+msgid "Responses to other requests"
+msgstr ""
+
+msgid ""
+"If the SQL request is not SELECT or VALUES or PRAGMA, then the response body"
+" contains only IPROTO_SQL_INFO (0x42). Usually IPROTO_SQL_INFO is a map with"
+" only one item -- SQL_INFO_ROW_COUNT (0x00) -- which is the number of "
+"changed rows."
+msgstr ""
+
+msgid ""
+"For example, if the request is :samp:`INSERT INTO {table-name} VALUES (1), "
+"(2), (3)`, then the response body contains an :samp:`IPROTO_SQL_INFO` map "
+"with :samp:`SQL_INFO_ROW_COUNT = 3`."
+msgstr ""
+
+msgid ""
+"The IPROTO_SQL_INFO map may contain a second item -- "
+":samp:`SQL_INFO_AUTO_INCREMENT_IDS (0x01)` -- which is the new primary-key "
+"value (or values) for an INSERT in a table defined with PRIMARY KEY "
+"AUTOINCREMENT. In this case the MP_MAP will have two keys, and  one of the "
+"two keys will be 0x01: SQL_INFO_AUTO_INCREMENT_IDS, which is an array of "
+"unsigned integers."
+msgstr ""
