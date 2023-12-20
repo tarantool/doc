@@ -217,10 +217,6 @@ The full example in the terminal looks like this:
     ---
     ...
 
-            iproto:
-              listen:
-                - uri: '127.0.0.1:3301'
-
 ..  _connecting-remotely:
 
 Connecting remotely

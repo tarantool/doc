@@ -5,8 +5,8 @@ function create_space()
         { name = 'band_name', type = 'string' },
         { name = 'year', type = 'unsigned' }
     })
-    box.space.bands:create_index('primary', { parts = { 'id' } })
-    box.space.bands:create_index('secondary', { parts = { 'band_name' } })
+    box.space.bands:create_index('primary', { type = "tree", parts = { 'id' } })
+    box.space.bands:create_index('secondary', { type = "tree", parts = { 'band_name' } })
     box.schema.user.grant('guest', 'read,write,execute', 'universe')
 end
 
