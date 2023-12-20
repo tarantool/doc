@@ -16,10 +16,39 @@ msgstr ""
 "после успешного выполнения или же заканчивается неявным вызовом "
 ":ref:`box.rollback() <box-rollback>` в случае ошибки."
 
+msgid "Parameters"
+msgstr ""
+
+msgid ""
+"(optional) transaction options:  *   ``txn_isolation`` -- the "
+":ref:`transaction isolation level <txn_mode_mvcc-options>` *   ``timeout`` "
+"-- a timeout (in seconds), after which the transaction is rolled back"
+msgstr ""
+
+msgid "(optional) transaction options:"
+msgstr ""
+
+msgid ""
+"``txn_isolation`` -- the :ref:`transaction isolation level <txn_mode_mvcc-"
+"options>`"
+msgstr ""
+
+msgid ""
+"``timeout`` -- a timeout (in seconds), after which the transaction is rolled"
+" back"
+msgstr ""
+
+msgid "the function name"
+msgstr ""
+
+msgid "(optional) arguments passed to the function"
+msgstr ""
+
 msgid "return"
 msgstr "возвращает"
 
-msgid "the result of the function passed to ``atomic()`` as an argument."
+#, fuzzy
+msgid "the result of the function passed to ``atomic()`` as an argument"
 msgstr ""
 "результат функции, которая передается в ``atomic()`` в качестве аргумента."
 
@@ -29,8 +58,38 @@ msgstr "**Возможные ошибки:**"
 msgid "error and abort the transaction in case of a conflict."
 msgstr "ошибка и прерывание транзакции в случае конфликта."
 
+#, fuzzy
+msgid "error and abort the transaction if the timeout is exceeded."
+msgstr "ошибка и прерывание транзакции в случае конфликта."
+
 msgid "error if the operation fails to write to disk."
 msgstr "ошибка, если операция не может выполнить запись на диск."
 
 msgid "error if for some reason memory cannot be allocated."
 msgstr "ошибка, если по какой-либо причине нельзя выделить память."
+
+msgid "**Example**"
+msgstr ""
+
+msgid ""
+"-- Create an index with the specified sequence --\n"
+"box.schema.sequence.create('id_sequence', { min = 1 })\n"
+"box.space.bands:create_index('primary', { parts = { 'id' }, sequence = 'id_sequence' })\n"
+"\n"
+"-- Insert test data --\n"
+"box.space.bands:insert { 1, 'Roxette', 1986 }\n"
+"box.space.bands:insert { 2, 'Scorpions', 1965 }\n"
+"box.space.bands:insert { 3, 'Ace of Base', 1987 }\n"
+"\n"
+"-- Define a function --\n"
+"local function insert_band(band_name, year)\n"
+"    box.space.bands:insert { nil, band_name, year }\n"
+"end\n"
+"\n"
+"-- Begin and commit the transaction implicitly --\n"
+"box.atomic(insert_band, 'The Beatles', 1960)\n"
+"\n"
+"-- Begin the transaction with the specified isolation level --\n"
+"box.atomic({ txn_isolation = 'read-committed' },\n"
+"        insert_band, 'The Rolling Stones', 1962)\n"
+msgstr ""

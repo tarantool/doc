@@ -81,9 +81,10 @@ msgstr ""
 "которое необходимо для запуска значительного слияния в любом диапазоне LSM-"
 "дерева."
 
+#, fuzzy
 msgid ""
 "Summary index statistics are also available via :ref:`box.stat.vinyl() "
-"<box_introspection-box_stat_vinyl_details>`."
+"<box_introspection-box_stat_vinyl>`."
 msgstr ""
 "С помощью :ref:`box.stat.vinyl() <box_introspection-box_stat_vinyl_details>`"
 " можно получить сводную статистику по индексу."

@@ -1,5 +1,6 @@
 
-msgid "Module `tuple`"
+#, fuzzy
+msgid "Module tuple"
 msgstr "Модуль `tuple`"
 
 msgid "Tuple format."

@@ -1,0 +1,222 @@
+
+msgid "Using sequences"
+msgstr ""
+
+msgid "A **sequence** is a generator of ordered integer values."
+msgstr ""
+
+msgid ""
+"As with spaces and indexes, you should specify the sequence **name** and let"
+" Tarantool generate a unique numeric identifier (sequence ID)."
+msgstr ""
+
+msgid ""
+"As well, you can specify several options when creating a new sequence. The "
+"options determine the values that are generated whenever the sequence is "
+"used."
+msgstr ""
+
+msgid "Options for box.schema.sequence.create()"
+msgstr ""
+
+msgid "Option name"
+msgstr ""
+
+msgid "Type and meaning"
+msgstr ""
+
+msgid "Default"
+msgstr ""
+
+msgid "Examples"
+msgstr ""
+
+msgid "``start``"
+msgstr ""
+
+msgid "Integer. The value to generate the first time a sequence is used"
+msgstr ""
+
+msgid "1"
+msgstr ""
+
+msgid "``start=0``"
+msgstr ""
+
+msgid "``min``"
+msgstr ""
+
+msgid "Integer. Values smaller than this cannot be generated"
+msgstr ""
+
+msgid "``min=-1000``"
+msgstr ""
+
+msgid "``max``"
+msgstr ""
+
+msgid "Integer. Values larger than this cannot be generated"
+msgstr ""
+
+msgid "9223372036854775807"
+msgstr ""
+
+msgid "``max=0``"
+msgstr ""
+
+msgid "``cycle``"
+msgstr ""
+
+msgid "Boolean. Whether to start again when values cannot be generated"
+msgstr ""
+
+msgid "false"
+msgstr ""
+
+msgid "``cycle=true``"
+msgstr ""
+
+msgid "``cache``"
+msgstr ""
+
+msgid "Integer. The number of values to store in a cache"
+msgstr ""
+
+msgid "0"
+msgstr ""
+
+msgid "``cache=0``"
+msgstr ""
+
+msgid "``step``"
+msgstr ""
+
+msgid ""
+"Integer. What to add to the previous generated value, when generating a new "
+"value"
+msgstr ""
+
+msgid "``step=-1``"
+msgstr ""
+
+msgid "``if_not_exists``"
+msgstr ""
+
+msgid ""
+"Boolean. If this is true and a sequence with this name exists already, "
+"ignore other options and use the existing values"
+msgstr ""
+
+msgid "``false``"
+msgstr ""
+
+msgid "``if_not_exists=true``"
+msgstr ""
+
+msgid ""
+"Once a sequence exists, it can be altered, dropped, reset, forced to "
+"generate the next value, or associated with an index."
+msgstr ""
+
+msgid "Associating a sequence with an index"
+msgstr ""
+
+msgid "First, create a sequence:"
+msgstr ""
+
+msgid ""
+"-- Create a sequence --\n"
+"box.schema.sequence.create('id_seq',{min=1000, start=1000})\n"
+"--[[\n"
+"---\n"
+"- step: 1\n"
+"  id: 1\n"
+"  min: 1000\n"
+"  cache: 0\n"
+"  uid: 1\n"
+"  cycle: false\n"
+"  name: id_seq\n"
+"  start: 1000\n"
+"  max: 9223372036854775807\n"
+"...\n"
+"--]]\n"
+msgstr ""
+
+msgid ""
+"The result shows that the new sequence has all default values, except for "
+"the two that were specified, ``min`` and ``start``."
+msgstr ""
+
+msgid ""
+"Get the next value from the sequence by calling the ``next()`` function:"
+msgstr ""
+
+msgid ""
+"-- Get the next item --\n"
+"box.sequence.id_seq:next()\n"
+"--[[\n"
+"---\n"
+"- 1000\n"
+"...\n"
+"--]]\n"
+msgstr ""
+
+msgid ""
+"The result is the same as the start value. The next call increases the value"
+" by one (the default sequence step)."
+msgstr ""
+
+msgid ""
+"Create a space and specify that its primary key should be generated from the"
+" sequence:"
+msgstr ""
+
+msgid ""
+"-- Create a space --\n"
+"box.schema.space.create('customers')\n"
+"\n"
+"-- Create an index that uses the sequence --\n"
+"box.space.customers:create_index('primary',{ sequence = 'id_seq' })\n"
+"--[[\n"
+"---\n"
+"- parts:\n"
+"  - type: unsigned\n"
+"    is_nullable: false\n"
+"    fieldno: 1\n"
+"  sequence_id: 1\n"
+"  id: 0\n"
+"  space_id: 513\n"
+"  unique: true\n"
+"  hint: true\n"
+"  type: TREE\n"
+"  name: primary\n"
+"  sequence_fieldno: 1\n"
+"...\n"
+"--]]\n"
+msgstr ""
+
+msgid "Insert a tuple without specifying a value for the primary key:"
+msgstr ""
+
+msgid ""
+"\n"
+"-- Insert a tuple without the primary key value --\n"
+"box.space.customers:insert{ nil, 'Adams' }\n"
+"--[[\n"
+"---\n"
+"- [1001, 'Adams']\n"
+"...\n"
+"--]]\n"
+msgstr ""
+
+msgid ""
+"The result is a new tuple where the first field is assigned the next value "
+"from the sequence. This arrangement, where the system automatically "
+"generates the values for a primary key, is sometimes called \"auto-"
+"incrementing\" or \"identity\"."
+msgstr ""
+
+msgid ""
+"For syntax and implementation details, see the reference for "
+":doc:`box.schema.sequence </reference/reference_lua/box_schema_sequence>`."
+msgstr ""

@@ -45,6 +45,13 @@ msgstr ""
 "(DC):"
 
 msgid ""
+"$ curl -X POST http://HOST:PORT/api/v1/zone \\\n"
+"    -d '{\n"
+"  \"name\": \"Caucasian Boulevard\"\n"
+"  }'"
+msgstr ""
+
+msgid ""
 "To check whether the DC registration was successful, try the following "
 "instruction. It retrieves the list of all registered nodes in the JSON "
 "format:"
@@ -52,6 +59,9 @@ msgstr ""
 "Чтобы проверить, была ли выполнена регистрация DC, попробуйте использовать "
 "следующую команду. Результатом будет список всех зарегистрированных узлов в "
 "формате JSON:"
+
+msgid "$ curl http://HOST:PORT/api/v1/zone| python -m json.tool"
+msgstr ""
 
 msgid ""
 "To apply the new configuration directly on the Tarantool nodes, increase the"
@@ -62,32 +72,33 @@ msgstr ""
 "увеличьте номер версии конфигурации после вызова API-функции. Для этого "
 "используйте запрос POST к ``/api/v1/version``:"
 
+msgid "$ curl -X POST http://HOST:PORT/api/v1/version"
+msgstr ""
+
 msgid "Altogether, to update the cluster configuration:"
 msgstr "В целом, чтобы обновить конфигурацию кластера:"
 
-msgid "Call the ``POST/PUT`` method of the ``orchestrator``."
-msgstr "Вызовите метод ``POST/PUT`` в ``orchestrator``."
-
+#, fuzzy
 msgid ""
-"As a result, the ZooKeeper nodes are updated, and a subsequent update of the"
-" Tarantool nodes is initiated."
+"Call the ``POST/PUT`` method of the ``orchestrator``. As a result, the "
+"ZooKeeper nodes are updated, and a subsequent update of the Tarantool nodes "
+"is initiated."
 msgstr ""
 "В результате будут обновлены узлы в ZooKeeper, а также будет инициировано "
 "последующее обновление узлов Tarantool."
 
+#, fuzzy
 msgid ""
 "Update the configuration version using the ``POST`` request to "
-"``/api/v1/version``."
+"``/api/v1/version``. As a result, the configuration is applied to the "
+"Tarantool nodes."
 msgstr ""
 "Обновите версию конфигурации, используя запрос ``POST`` к "
 "``/api/v1/version``."
 
-msgid "As a result, the configuration is applied to the Tarantool nodes."
-msgstr "В результате конфигурация применится к узлам Tarantool."
-
 msgid ""
-"See the :ref:`Orchestrator API reference <enterprise_orchestrator_api>` for the detailed orchestrator "
-"API."
+"See the :ref:`Orchestrator API reference <enterprise_orchestrator_api>` for "
+"the detailed orchestrator API."
 msgstr ""
 "Для получения дополнительной информации об API оркестратора см. "
 ":ref:`Справочник по Orchestrator API <enterprise_orchestrator_api>`."
@@ -144,3 +155,9 @@ msgstr ""
 " и начинает использовать эту реплику для чтения. Если эта реплика "
 "недоступна, то выбирается следующая ближайшая реплика с учетом расстояний, "
 "указанных в конфигурации."
+
+#~ msgid "Call the ``POST/PUT`` method of the ``orchestrator``."
+#~ msgstr "Вызовите метод ``POST/PUT`` в ``orchestrator``."
+
+#~ msgid "As a result, the configuration is applied to the Tarantool nodes."
+#~ msgstr "В результате конфигурация применится к узлам Tarantool."

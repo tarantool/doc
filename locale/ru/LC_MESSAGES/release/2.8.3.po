@@ -1,0 +1,212 @@
+
+msgid "Tarantool 2.8.3"
+msgstr ""
+
+msgid "Released on 2021-12-22."
+msgstr ""
+
+msgid "Release: :tarantool-release:`2.8.3`."
+msgstr ""
+
+msgid "Tag: ``2.8.3``."
+msgstr ""
+
+msgid "Overview"
+msgstr ""
+
+msgid ""
+"2.8.3 is the third :doc:`stable </release/policy/>` version of the 2.8 "
+"release series. It introduces 3 improvements and resolves 24 bugs since "
+"version :doc:`2.8.2 </release/2.8.2>`."
+msgstr ""
+
+msgid ""
+"The “stable” label means that we have all planned features implemented and "
+"we see no high-impact issues. However, if you encounter an issue, feel free "
+"to `report it <https://github.com/tarantool/tarantool/issues>`__ on GitHub."
+msgstr ""
+
+msgid "Compatibility"
+msgstr ""
+
+msgid ""
+"Tarantool 2.x is backward compatible with Tarantool 1.10.x in the binary "
+"data layout, client-server protocol, and replication protocol."
+msgstr ""
+
+msgid ""
+"Please `upgrade "
+"<https://www.tarantool.io/en/doc/latest/book/admin/upgrades/>`__ using the "
+"``box.schema.upgrade()`` procedure to unlock all the new features of the 2.x"
+" series."
+msgstr ""
+
+msgid "Functionality added or changed"
+msgstr ""
+
+msgid "LuaJIT"
+msgstr ""
+
+msgid ""
+"Introduced support for ``LJ_DUALNUM`` mode in luajit-gdb.py (:tarantool-"
+"issue:`6224`)."
+msgstr ""
+
+msgid "Build"
+msgstr ""
+
+msgid "Stop support of Ubuntu Trusty (14.04). (:tarantool-issue:`6502`)"
+msgstr ""
+
+msgid ""
+"Bump debian package compatibility level to 10 (:tarantool-issue:`5429`). "
+"Bump minimal required debhelper to version 10 (except for Ubuntu Xenial)."
+msgstr ""
+
+msgid "Bugs fixed"
+msgstr ""
+
+msgid "Core"
+msgstr ""
+
+msgid ""
+"Disallow yields after DDL operations in MVCC mode. It fixes crash which "
+"takes place in case several transactions refer to system spaces (:tarantool-"
+"issue:`5998`)."
+msgstr ""
+
+msgid ""
+"Fixed bug in MVCC connected which happens on rollback after DDL operation "
+"(:tarantool-issue:`5998`)."
+msgstr ""
+
+msgid ""
+"Fix a bug when rollback resulted in unserializable behaviour (:tarantool-"
+"issue:`6325`)"
+msgstr ""
+
+msgid ""
+"Fixed a crash during replace of malformed tuple into \\_schema system space "
+"(:tarantool-issue:`6332`)."
+msgstr ""
+
+msgid ""
+"Fix memory leak in case of replace during background alter of primary index "
+"(:tarantool-issue:`6290`)"
+msgstr ""
+
+msgid ""
+"Fix a bug when rollbacked changes appears in built-in-background index "
+"(:tarantool-issue:`5958`)"
+msgstr ""
+
+msgid ""
+"Fix a bug when index was inconsistent after background build in case when "
+"the primary index is hash (:tarantool-issue:`5977`)"
+msgstr ""
+
+msgid ""
+"Now inserting a tuple with the wrong “id” field into the \\_priv space will "
+"return the correct error (:tarantool-issue:`6295`)."
+msgstr ""
+
+msgid ""
+"Fixed dirty read in MVCC after space alter (:tarantool-issue:`6263`, "
+":tarantool-issue:`6318`)."
+msgstr ""
+
+msgid ""
+"Fixed a crash caused by a race between box.session.push() and closing "
+"connection (:tarantool-issue:`6520`)."
+msgstr ""
+
+msgid ""
+"Fixed crash in case a fiber changing box.cfg.listen is woken up (:tarantool-"
+"issue:`6480`)."
+msgstr ""
+
+msgid ""
+"Fixed box.cfg.listen not reverted to the old address in case the new one is "
+"invalid (:tarantool-issue:`6092`)."
+msgstr ""
+
+msgid ""
+"Fixed a bug because of which the garbage collector could remove an xlog file"
+" that is still in use (:tarantool-issue:`6554`)."
+msgstr ""
+
+msgid ""
+"Fix crash during granting priveleges from guest (:tarantool-issue:`5389`)."
+msgstr ""
+
+msgid "Replication"
+msgstr ""
+
+msgid ""
+"Fixed replica reconnecting to a living master on any "
+"``box.cfg{replication=...}`` change. Such reconnects could lead to replica "
+"failing to restore connection for ``replication_timeout`` seconds "
+"(:tarantool-issue:`4669`)."
+msgstr ""
+
+msgid ""
+"Fixed the order VM registers are allocated by LuaJIT frontend in case of "
+"``BC_ISGE`` and ``BC_ISGT`` (:tarantool-issue:`6227`)."
+msgstr ""
+
+msgid ""
+"Fixed inconsistency while searching for an error function when unwinding a C"
+" protected frame to handle a runtime error (e.g. an error in \\__gc "
+"handler)."
+msgstr ""
+
+msgid "Lua"
+msgstr ""
+
+msgid ""
+"When error is raised during encoding call results, auxiliary lightuserdata "
+"value is not removed from the main Lua coroutine stack. Prior to the fix it "
+"leads to undefined behaviour during the next usage of this Lua coroutine "
+"(:tarantool-issue:`4617`)."
+msgstr ""
+
+msgid ""
+"Fixed Lua C API misuse, when the error is raised during call results "
+"encoding on unprotected coroutine and expected to be catched on the "
+"different one, that is protected (:tarantool-issue:`6248`)."
+msgstr ""
+
+msgid ""
+"Fixed net.box error in case connections are frequently opened and closed "
+"(:tarantool-issue:`6217`)."
+msgstr ""
+
+msgid ""
+"Fixed incorrect handling of variable number of arguments in box.func:call() "
+"(:tarantool-issue:`6405`)."
+msgstr ""
+
+msgid "Triggers"
+msgstr ""
+
+msgid ""
+"Fixed possibility crash in case when trigger removes itself. Fixed "
+"possibility crash in case when someone destroy trigger, when it’s yield "
+"(:tarantool-issue:`6266`)."
+msgstr ""
+
+msgid "SQL"
+msgstr ""
+
+msgid ""
+"Now, when copying an empty string, an error will not be set unnecessarily "
+"(:tarantool-issue:`6157`, :tarantool-issue:`6399`)."
+msgstr ""
+
+msgid ""
+"The Debian package does not depend on binutils anymore (:tarantool-"
+"issue:`6699`)."
+msgstr ""
+
+msgid "Fix build errors with glibc-2.34 (:tarantool-issue:`6686`)."
+msgstr ""

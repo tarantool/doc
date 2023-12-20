@@ -1,0 +1,8 @@
+
+msgid "SQL guides"
+msgstr ""
+
+msgid ""
+"This section contains hands-on SQL guides. You might also want to read the "
+"in-depth :ref:`SQL reference <reference_sql>`."
+msgstr ""

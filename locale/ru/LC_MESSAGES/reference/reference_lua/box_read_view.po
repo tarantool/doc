@@ -1,0 +1,18 @@
+
+msgid "Submodule box.read_view"
+msgstr ""
+
+msgid "The box.read_view submodule contains functions related to read views."
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "Use"
+msgstr ""
+
+msgid ":doc:`./box_read_view/list`"
+msgstr ""
+
+msgid "Return an array of all active database read views."
+msgstr ""

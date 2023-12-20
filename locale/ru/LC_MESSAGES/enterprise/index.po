@@ -1,0 +1,39 @@
+
+msgid "Tarantool Enterprise Edition"
+msgstr ""
+
+msgid ""
+"This section describes the Enterprise Edition of Tarantool software -- a Lua"
+" application server integrated with a DBMS for deploying fault-tolerant "
+"distributed data storages."
+msgstr ""
+
+msgid ""
+"The Enterprise Edition provides an `extended feature set "
+"<https://www.tarantool.io/en/compare/>`__ for developing and managing "
+"clustered Tarantool applications, for example:"
+msgstr ""
+
+msgid "Static package for standalone Linux systems."
+msgstr ""
+
+msgid "Tarantool bindings to OpenLDAP."
+msgstr ""
+
+msgid "Security :ref:`audit log <enterprise-logging>`."
+msgstr ""
+
+msgid ""
+"Enterprise database connectivity: Oracle and any ODBC-supported DBMS (for "
+"example, MySQL, Microsoft SQL Server)."
+msgstr ""
+
+msgid ""
+"SSL support for :ref:`traffic encryption <enterprise-iproto-encryption>`."
+msgstr ""
+
+msgid ":doc:`Tuple compression <tuple_compression>`."
+msgstr ""
+
+msgid ":doc:`Non-blocking DDL <space_upgrade>`."
+msgstr ""

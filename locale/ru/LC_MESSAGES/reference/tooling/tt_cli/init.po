@@ -1,0 +1,84 @@
+
+msgid "Creating a tt environment"
+msgstr ""
+
+msgid "$ tt init"
+msgstr ""
+
+msgid ""
+"``tt init`` creates a ``tt`` environment in the current directory. This "
+"includes:"
+msgstr ""
+
+msgid ""
+"Setting up directories for working files: binaries, templates, and so on."
+msgstr ""
+
+msgid ""
+"Creating a corresponding ``tt.yaml`` :ref:`configuration file <tt-"
+"config_file>`."
+msgstr ""
+
+msgid "Details"
+msgstr ""
+
+msgid ""
+"The Tarantool Cartridge framework is deprecated and is not compatible with "
+"Tarantool 3.0 and later. This command is added for backward compatibility "
+"with earlier versions."
+msgstr ""
+
+msgid ""
+"``tt init`` checks the existence of configuration files for Cartridge "
+"(``cartridge.yml``) or the ``tarantoolctl`` utility (``.tarantoolctl``) in "
+"the current directory. If such files are found, ``tt`` generates an "
+"environment that uses the same directories:"
+msgstr ""
+
+msgid "``cartridge.yml`` -- the directories specified in the file."
+msgstr ""
+
+msgid ""
+"``.tarantoolctl`` -- the directories specified in the ``default_cfg`` table."
+msgstr ""
+
+msgid ""
+"``init`` is the only ``tt`` command that invokes ``.tarantoolctl`` files. "
+"Thus, variables defined in this script will not be available in applications"
+" launched by a ``tt start`` call."
+msgstr ""
+
+msgid ""
+"If there is no ``cartridge.yml`` or ``.tarantoolctl`` files in the current "
+"directory, ``tt init`` creates a default environment in it. This includes "
+"creating the following directories and files:"
+msgstr ""
+
+msgid "``bin`` -- the directory for storing binary files."
+msgstr ""
+
+msgid "``include`` -- the directory for storing  header files."
+msgstr ""
+
+msgid "``distfiles`` -- the directory for storing installation files."
+msgstr ""
+
+msgid ""
+"``instances.enabled`` -- the directory for storing running applications or "
+"symlinks."
+msgstr ""
+
+msgid "``modules`` -- the directory for storing external modules."
+msgstr ""
+
+msgid "``tt.yaml`` -- the configuration file."
+msgstr ""
+
+msgid "``templates`` -- the directory for storing application templates."
+msgstr ""
+
+msgid "Example"
+msgstr ""
+
+msgid "Create a ``tt`` environment in the current directory:"
+msgstr ""

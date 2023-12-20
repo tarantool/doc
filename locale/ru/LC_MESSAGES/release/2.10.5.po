@@ -1,0 +1,407 @@
+
+msgid "Tarantool 2.10.5"
+msgstr ""
+
+msgid "Released on 2023-02-20."
+msgstr ""
+
+msgid "Release: :tarantool-release:`2.10.5`."
+msgstr ""
+
+msgid "Tag: ``2.10.5``."
+msgstr ""
+
+msgid "Overview"
+msgstr ""
+
+msgid ""
+"2.10.5 is the sixth :doc:`stable </release/policy/>` version of the 2.10 "
+"release series. It introduces 5 improvements and resolves 44 bugs since "
+"2.10.4."
+msgstr ""
+
+msgid ""
+"The “stable” label means that we have all planned features implemented and "
+"we see no high-impact issues. However, if you encounter an issue, feel free "
+"to `report it <https://github.com/tarantool/tarantool/issues>`__ on GitHub."
+msgstr ""
+
+msgid "Compatibility"
+msgstr ""
+
+msgid ""
+"Tarantool 2.x is backward compatible with Tarantool 1.10.x in the binary "
+"data layout, client-server protocol, and replication protocol."
+msgstr ""
+
+msgid ""
+"Please :doc:`upgrade </book/admin/upgrades>` using the "
+"``box.schema.upgrade()`` procedure to unlock all the new features of the 2.x"
+" series."
+msgstr ""
+
+msgid "Functionality added or changed"
+msgstr ""
+
+msgid "Core"
+msgstr ""
+
+msgid ""
+"Introduced the ``_vspace_sequence`` system space view of the "
+"``_space_sequence`` system space (:tarantool-issue:`7858`)."
+msgstr ""
+
+msgid ""
+"The log produced during ``box.cfg{}`` now contains the build target triplet "
+"(for example, ``Linux-x86_64-RelWithDebInfo``)."
+msgstr ""
+
+msgid "Build"
+msgstr ""
+
+msgid "OpenSUSE 15.1 and 15.2 are no longer supported."
+msgstr ""
+
+msgid "Updated libcurl to version 7.87.0 (:tarantool-issue:`8150`)."
+msgstr ""
+
+msgid "Alpine Linux 3.16 is now supported."
+msgstr ""
+
+msgid "Bugs fixed"
+msgstr ""
+
+msgid ""
+"Fixed a bug in fiber switching that could lead to a segmentation fault error"
+" on AArch64 systems (:tarantool-issue:`7523`, :tarantool-issue:`7985`)."
+msgstr ""
+
+msgid ""
+"Fixed wrong CPU architecture reported in ``tarantool.build.target`` on M1/M2"
+" Macs (:tarantool-issue:`7495`)."
+msgstr ""
+
+msgid ""
+"Fixed a bug when fields could be removed from a table stored in a variable "
+"when a logging function was called on this variable (for example, "
+"``log.info(a)``) (:tarantool-issue:`3853`)."
+msgstr ""
+
+msgid ""
+"Fixed a logging bug: when logging tables with fields that have reserved "
+"internal names (such as ``pid``) in the plain log format, such fields "
+"weren’t logged (:tarantool-issue:`3853`)."
+msgstr ""
+
+msgid ""
+"Added the ``message`` field when logging tables without such field in the "
+"JSON log format (:tarantool-issue:`3853`)."
+msgstr ""
+
+msgid ""
+"Fixed an assertion on malformed JSON message written to the log (:tarantool-"
+"issue:`7955`)."
+msgstr ""
+
+msgid ""
+"Fixed the bug because of which ``box.session.on_auth`` triggers were not "
+"invoked if the authenticated user didn’t exist (:tarantool-issue:`8017`)."
+msgstr ""
+
+msgid ""
+"Eliminated the possibility of user enumeration by analyzing errors sent in "
+"reply to malformed authentication requests (:tarantool-sec-issue:`21`)."
+msgstr ""
+
+msgid ""
+"Fixed a bug when Tarantool could execute random bytes as a Lua code after "
+"fork on systems with a glibc version earlier than 2.29 (:tarantool-"
+"issue:`7886`)."
+msgstr ""
+
+msgid ""
+"A referenced space or a function being used in a constraint can now be "
+"dropped in the same transaction with the referencing constraint or space "
+"(:tarantool-issue:`7339`)."
+msgstr ""
+
+msgid ""
+"Fixed Tarantool being stuck during a crash on macOS (:tarantool-"
+"issue:`8023`)."
+msgstr ""
+
+msgid ""
+"Fixed a bug that prevented collection of crash reports (:tarantool-"
+"issue:`8083`)."
+msgstr ""
+
+#, python-format
+msgid ""
+"Fixed a crash in ``net.box`` that happened if the error message raised by "
+"the server contained ``printf`` formatting specifiers, such as ``%d`` or "
+"``%s`` (:tarantool-issue:`8043`)."
+msgstr ""
+
+msgid ""
+"Fixed read-only statements executing successfully in transactions that were "
+"aborted by yield or timeout. Now, read-only statements fail in this case, "
+"just like write statements (:tarantool-issue:`8123`)."
+msgstr ""
+
+msgid ""
+"Fixed a transaction conflict reported mistakenly when a key was deleted "
+"twice with MVCC engine enabled (:tarantool-issue:`8122`)."
+msgstr ""
+
+msgid ""
+"``net.box`` connections now contain information about sequences used by "
+"remote spaces (:tarantool-issue:`7858`)."
+msgstr ""
+
+msgid ""
+"Fixed a crash that happened if a transaction was aborted (for example, by "
+"fiber yield with MVCC off) while the space’s ``on_replace`` or "
+"``before_replace`` trigger was running (:tarantool-issue:`8027`)."
+msgstr ""
+
+msgid ""
+"Fixed a possible crash when attempting to update the same field in "
+"``tuple/space/index:update()`` more than once (:tarantool-issue:`8216`)."
+msgstr ""
+
+msgid ""
+"Fixed empty BITSET indexes crashing on ``len`` calls (:tarantool-"
+"issue:`5809`)."
+msgstr ""
+
+msgid ""
+"Fixed a crash when functional indexes were used with very specific chunk "
+"size (:tarantool-issue:`6786`)."
+msgstr ""
+
+msgid "Memtx"
+msgstr ""
+
+msgid ""
+"Fixed a possible repeatable read violation with reverse iterators "
+"(:tarantool-issue:`7755`)."
+msgstr ""
+
+msgid ""
+"Fixed a crash on series of transactions in memtx (:tarantool-issue:`7756`)."
+msgstr ""
+
+msgid ""
+"Fixed a phantom read that could happen after reads from different indexes "
+"followed by a rollback (:tarantool-issue:`7828`)."
+msgstr ""
+
+msgid "Fixed an assert in the MVCC engine (:tarantool-issue:`7945`)."
+msgstr ""
+
+msgid ""
+"Fixed an assertion failure in MVCC during statement preparation (:tarantool-"
+"issue:`8104`)."
+msgstr ""
+
+msgid ""
+"Fixed possible loss of a committed tuple after rollback of a prepared "
+"transaction (:tarantool-issue:`7930`)."
+msgstr ""
+
+msgid "Vinyl"
+msgstr ""
+
+msgid ""
+"Fixed a bug that could result in ``select()`` skipping an existing tuple "
+"after a rolled back ``delete()`` (:tarantool-issue:`7947`)."
+msgstr ""
+
+msgid "Replication"
+msgstr ""
+
+msgid ""
+"Fixed local space writes failing with error ``Found uncommitted sync "
+"transactions from other instance with id 1`` when synchronous transaction "
+"queue belongs to another instance and isn’t empty (:tarantool-issue:`7592`)."
+msgstr ""
+
+msgid ""
+"Fixed an assertion failure on master when a replica resubscribes with a "
+"smaller vclock than previously seen (:tarantool-issue:`5158`)."
+msgstr ""
+
+msgid ""
+"A warning is now raised when ``replica_id`` is changed by a "
+"``before_replace`` trigger while adding a new replica. Previously, there was"
+" an assertion checking this (:tarantool-issue:`7846`)."
+msgstr ""
+
+msgid ""
+"Fixed a segmentation fault that happened when a ``before_replace`` trigger "
+"set on space ``_cluster`` returned nil (:tarantool-issue:`7846`)."
+msgstr ""
+
+msgid ""
+"Fixed possible transaction conflict errors on applying a replication stream "
+"(:tarantool-issue:`8121`)."
+msgstr ""
+
+msgid "Raft"
+msgstr ""
+
+msgid ""
+"Fixed an assertion failure in case when an election candidate is "
+"reconfigured to a voter during an ongoning WAL write (:tarantool-"
+"issue:`8169`)."
+msgstr ""
+
+msgid ""
+"Fixed nodes configured with ``election_mode = \"manual\"`` sometimes "
+"increasing the election term excessively after their promotion (:tarantool-"
+"issue:`8168`)."
+msgstr ""
+
+msgid "LuaJIT"
+msgstr ""
+
+msgid ""
+"Backported patches from vanilla LuaJIT trunk (:tarantool-issue:`7230`). In "
+"the scope of this activity, the following issues have been resolved:"
+msgstr ""
+
+msgid "Fix ``io.close()`` for already closed standard output."
+msgstr ""
+
+msgid ""
+"Fix trace execution and stitching inside vmevent handler (:tarantool-"
+"issue:`6782`)."
+msgstr ""
+
+msgid ""
+"Fixed ``emit_loadi()`` on x86/x64 emitting xor between condition check and "
+"jump instructions."
+msgstr ""
+
+msgid ""
+"Fix stack top for error message when raising the OOM error (:tarantool-"
+"issue:`3840`)."
+msgstr ""
+
+msgid ""
+"Enabled external unwinding on several LuaJIT platforms. Now it is possible "
+"to handle ABI exceptions from Lua code (:tarantool-issue:`6096`)."
+msgstr ""
+
+msgid ""
+"Disabled math.modf compilation due to its rare usage and difficulties with "
+"proper implementation of the corresponding JIT machinery."
+msgstr ""
+
+msgid ""
+"Fixed inconsistent behaviour on signed zeros for JIT-compiled unary minus "
+"(:tarantool-issue:`6976`)."
+msgstr ""
+
+msgid ""
+"Fixed ``IR_HREF`` hash calculations for non-string GC objects for GC64."
+msgstr ""
+
+msgid "Fixed assembling of type-check-only variant of ``IR_SLOAD``."
+msgstr ""
+
+msgid ""
+"Enabled the platform profiler for Tarantool built with GC64 mode "
+"(:tarantool-issue:`7919`)."
+msgstr ""
+
+msgid ""
+"Added full-range lightuserdata support to the ``luajit-gdb.py`` extension "
+"(:tarantool-issue:`6481`)."
+msgstr ""
+
+msgid ""
+"Backported patches from vanilla LuaJIT trunk (:tarantool-issue:`8069`). In "
+"the scope of this activity, the following issues have been resolved:"
+msgstr ""
+
+msgid "Fixed loop realigment for dual-number mode"
+msgstr ""
+
+msgid "Fixed os.date() for wider libc strftime() compatibility."
+msgstr ""
+
+msgid "Fix interval parsing for sysprof for dual-number mode."
+msgstr ""
+
+msgid "Lua"
+msgstr ""
+
+msgid ""
+"Fixed alias detection in the YAML serializer in case the input contains "
+"objects that implement the ``__serialize`` meta method (:tarantool-"
+"issue:`8240`)."
+msgstr ""
+
+msgid "SQL"
+msgstr ""
+
+msgid ""
+"Fixed a bug when collation could change the type of a built-in function "
+"argument (:tarantool-issue:`7992`)."
+msgstr ""
+
+msgid ""
+"Fixed several bugs happening because of improper handling of ``malloc()`` "
+"failures (:tarantool-sec-issue:`65`, :tarantool-sec-issue:`66`, :tarantool-"
+"sec-issue:`67`, :tarantool-sec-issue:`68`)."
+msgstr ""
+
+msgid "Box"
+msgstr ""
+
+msgid ""
+"Fixed a possible error during rollback of read-only transaction statements "
+"(:tarantool-issue:`5501`)."
+msgstr ""
+
+msgid ""
+"Fixed a bug in ``space_object:create_index()`` when ``collation`` option is "
+"not set. Now it is inherited from the space format (:tarantool-"
+"issue:`5104`)."
+msgstr ""
+
+msgid ""
+"Eliminated a code injection vulnerability in the processing of the "
+"``replication_synchro_quorum`` ``box.cfg()`` option (:tarantool-sec-"
+"issue:`20`, `GHSA-74jr-2fq7-vp42 "
+"<https://github.com/tarantool/tarantool/security/advisories/GHSA-74jr-2fq7-vp42>`__)."
+msgstr ""
+
+msgid "Datetime"
+msgstr ""
+
+#, python-format
+msgid ""
+"Fixed a segmentation fault that happened when the value passed to the ``%f``"
+" modifier of ``datetime_object:format()`` was too big (:tarantool-sec-"
+"issue:`31`)."
+msgstr ""
+
+msgid "Fiber"
+msgstr ""
+
+msgid ""
+"Fixed the assertion fail in ``cord_on_yield`` (:tarantool-issue:`6647`)."
+msgstr ""
+
+msgid "Log"
+msgstr ""
+
+msgid ""
+"Fixed an incorrect facility value in syslog on Alpine and OpenBSD "
+"(:tarantool-issue:`8269`)."
+msgstr ""
+
+msgid "Fixed ``-Werror`` build fail on Clang 15 (:tarantool-issue:`8110`)."
+msgstr ""

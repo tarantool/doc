@@ -1,0 +1,234 @@
+
+msgid "Tarantool 1.10.11"
+msgstr ""
+
+msgid "Released on 2021-08-19."
+msgstr ""
+
+msgid "Release :tarantool-release:`1.10.11`."
+msgstr ""
+
+msgid "Tagged ``1.10.11-0-gf0b0e7e``"
+msgstr ""
+
+msgid "Overview"
+msgstr ""
+
+msgid ""
+"1.10.11 is the next stable release in the :doc:`long-term support (LTS) "
+"version </release/policy>` 1.10.x release series."
+msgstr ""
+
+msgid ""
+"The label \"stable\" means there are 1.10.x-based applications running in "
+"production for quite a while without known crashes, incorrect results or "
+"other showstopper bugs."
+msgstr ""
+
+msgid ""
+"This release introduces 2 improvements and resolves roughly 18 issues since "
+"version :doc:`1.10.10 </release/1.10.10>`."
+msgstr ""
+
+msgid "Compatibility"
+msgstr ""
+
+msgid ""
+"Tarantool 1.10.x is backward compatible with Tarantool 1.9.x in binary data "
+"layout, client-server protocol and replication protocol."
+msgstr ""
+
+msgid ""
+"Please `upgrade "
+"<https://www.tarantool.io/en/doc/1.10/book/admin/upgrades/>`__ using the "
+"``box.schema.upgrade()`` procedure to unlock all the new features of the "
+"1.10.x series."
+msgstr ""
+
+msgid ""
+"Some changes are labeled as **[Breaking change]**. It means that the old "
+"behavior was considered error-prone and therefore changed to protect users "
+"from unintended mistakes. However, there is a small probability that someone"
+" can rely on the old behavior, and this label is to bring attention to the "
+"things that have been changed."
+msgstr ""
+
+msgid "Functionality added or changed"
+msgstr ""
+
+msgid "LuaJIT"
+msgstr ""
+
+msgid ""
+"Introduced support for ``LJ_DUALNUM`` mode in ``luajit-gdb.py`` (:tarantool-"
+"issue:`6224`)."
+msgstr ""
+
+msgid "Build"
+msgstr ""
+
+msgid "Fedora 34 builds are now supported (:tarantool-issue:`6074`)."
+msgstr ""
+
+msgid "Fedora 28 and 29 builds are no longer supported."
+msgstr ""
+
+msgid "Bugs fixed"
+msgstr ""
+
+msgid "Core"
+msgstr ""
+
+msgid ""
+"**[Breaking change]** ``fiber.wakeup()`` in Lua and ``fiber_wakeup()`` in C "
+"became NOP on the currently running fiber. Previously they allowed "
+"“ignoring” the next yield or sleep, which resulted in unexpected erroneous "
+"wake-ups. Calling these functions right before ``fiber.create()`` in Lua or "
+"``fiber_start()`` in C could lead to a crash (in debug build) or undefined "
+"behaviour (in release build) (:tarantool-issue:`6043`)."
+msgstr ""
+
+msgid ""
+"There was a single use case for the previous behaviour: rescheduling in the "
+"same event loop iteration, which is not the same as ``fiber.sleep(0)`` in "
+"Lua and ``fiber_sleep(0)`` in C. It could be done in the following way:"
+msgstr ""
+
+msgid "in C:"
+msgstr ""
+
+msgid ""
+"fiber_wakeup(fiber_self());\n"
+"fiber_yield();"
+msgstr ""
+
+msgid "and in Lua:"
+msgstr ""
+
+msgid ""
+"fiber.self():wakeup()\n"
+"fiber.yield()"
+msgstr ""
+
+msgid ""
+"To get the same effect in C, one can now use ``fiber_reschedule()``. In Lua,"
+" it is now impossible to reschedule the current fiber directly in the same "
+"event loop iteration. One can reschedule self through a second fiber, but it"
+" is strongly discouraged:"
+msgstr ""
+
+msgid ""
+"-- do not use this code\n"
+"local self = fiber.self()\n"
+"fiber.new(function() self:wakeup() end)\n"
+"fiber.sleep(0)"
+msgstr ""
+
+msgid ""
+"Fixed memory leak on ``box.on_commit()`` and ``box.on_rollback()`` "
+"(:tarantool-issue:`6025`)."
+msgstr ""
+
+msgid ""
+"Fixed invalid results of the ``json`` module’s ``encode`` function when it "
+"was used from the Lua garbage collector. For example, this could happen in "
+"functions used as ``ffi.gc()`` (:tarantool-issue:`6050`)."
+msgstr ""
+
+msgid ""
+"Fixed console client connection failure in case of request timeout "
+"(:tarantool-issue:`6249`)."
+msgstr ""
+
+msgid ""
+"Added a missing broadcast to ``net.box.future:discard()`` so that now fibers"
+" waiting for a request result wake up when the request is discarded "
+"(:tarantool-issue:`6250`)."
+msgstr ""
+
+msgid ""
+"Fixed a bug when iterators became invalid (up to crash) after schema change "
+"(:tarantool-issue:`6147`)."
+msgstr ""
+
+msgid ""
+"Fixed crash in case of reloading a compiled module when the new module lacks"
+" some functions present in the former code. In turn, this event triggers a "
+"fallback procedure where we restore old functions, but instead of restoring "
+"each function, we process a sole entry only, leading to the crash later when"
+" these restored functions are called (:tarantool-issue:`5968`)."
+msgstr ""
+
+msgid "Vinyl"
+msgstr ""
+
+msgid ""
+"Fixed possible keys divergence during secondary index build, which might "
+"lead to missing tuples (:tarantool-issue:`6045`)."
+msgstr ""
+
+msgid ""
+"Fix crash which may occur while switching read_only mode due to duplicating "
+"transaction in tx writer list (:tarantool-issue:`5934`)."
+msgstr ""
+
+msgid ""
+"Fixed the race between Vinyl garbage collection and compaction that resulted"
+" in a broken vylog and recovery failure (:tarantool-issue:`5436`)."
+msgstr ""
+
+msgid "Replication"
+msgstr ""
+
+msgid ""
+"Fixed replication occasionally stopping with ``ER_INVALID_MSGPACK`` when the"
+" replica is under high load (:tarantool-issue:`4040`)."
+msgstr ""
+
+msgid ""
+"Fixed optimization for single-char strings in the ``IR_BUFPUT`` assembly "
+"routine."
+msgstr ""
+
+msgid ""
+"Fixed slots alignment in the ``lj-stack`` command output when ``LJ_GC64`` is"
+" enabled (:tarantool-issue:`5876`)."
+msgstr ""
+
+msgid "Fixed dummy frame unwinding in the ``lj-stack`` command."
+msgstr ""
+
+msgid ""
+"Fixed detection of inconsistent renames even in the presence of sunk values "
+"(:tarantool-issue:`4252`, :tarantool-issue:`5049`, :tarantool-issue:`5118`)."
+msgstr ""
+
+msgid ""
+"Fixed the VM register allocation order provided by LuaJIT frontend in case "
+"of ``BC_ISGE`` and ``BC_ISGT`` (:tarantool-issue:`6227`)."
+msgstr ""
+
+msgid "Lua"
+msgstr ""
+
+msgid ""
+"When an error occurs during encoding call results, the auxiliary "
+"lightuserdata value is not removed from the main Lua coroutine stack. Before"
+" the fix, it led to undefined behaviour during the next usage of this Lua "
+"coroutine (:tarantool-issue:`4617`)."
+msgstr ""
+
+msgid ""
+"Fixed a Lua C API misuse when the error is raised during call results "
+"encoding in an unprotected coroutine and expected to be caught in a "
+"different, protected coroutine (:tarantool-issue:`6248`)."
+msgstr ""
+
+msgid "Triggers"
+msgstr ""
+
+msgid ""
+"Fixed a possible crash in case trigger removes itself. Fixed a possible "
+"crash in case someone destroys a trigger when it yields (:tarantool-"
+"issue:`6266`)."
+msgstr ""

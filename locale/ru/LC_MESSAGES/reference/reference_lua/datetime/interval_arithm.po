@@ -1,0 +1,120 @@
+
+msgid "Interval arithmetic"
+msgstr ""
+
+msgid "Since :doc:`2.10.0 </release/2.10.0>`."
+msgstr ""
+
+msgid ""
+"The :doc:`datetime module </reference/reference_lua/datetime>` enables "
+"creating objects of two types: ``datetime`` and ``interval``."
+msgstr ""
+
+msgid ""
+"If you need to shift the ``datetime`` object values, you can use either the "
+"modifier methods, that is, the :ref:`:add <datetime-add>` or :ref:`:sub "
+"<datetime-sub>` methods, or apply interval arithmetic using overloaded `+ "
+"(__add)` or `- (__sub)` methods."
+msgstr ""
+
+msgid ""
+"``:add``/``:sub`` modify the current object, but ``+``/``-`` create copy of "
+"the object as the operation result."
+msgstr ""
+
+msgid ""
+"In the interval operation, each of the interval subcomponents are "
+"sequentially calculated starting from the largest (``year``) to the smallest"
+" (``nsec``):"
+msgstr ""
+
+msgid "``year`` -- years"
+msgstr ""
+
+msgid "``month`` -- months"
+msgstr ""
+
+msgid "``week`` -- weeks"
+msgstr ""
+
+msgid "``day`` -- days"
+msgstr ""
+
+msgid "``hour`` -- hours"
+msgstr ""
+
+msgid "``min`` -- minutes"
+msgstr ""
+
+msgid "``sec`` -- seconds"
+msgstr ""
+
+msgid "``nsec`` -- nanoseconds."
+msgstr ""
+
+msgid ""
+"If results of the operation exceed the allowed range for any of the "
+"components, an exception is raised."
+msgstr ""
+
+msgid ""
+"The ``datetime`` and ``interval`` objects can participate in arithmetic "
+"operations:"
+msgstr ""
+
+msgid ""
+"The sum of two intervals is an interval object, which fields are sum of each"
+" particular component of operands."
+msgstr ""
+
+msgid ""
+"The result of subtraction of two intervals is similar: it's an interval "
+"object where each subcomponent is the result of subtraction of particular "
+"fields in the original operands."
+msgstr ""
+
+msgid ""
+"If you add datetime and interval objects, the result is a datetime object. "
+"Addition is being performed in a determined order from the largest component"
+" (``year``) to the smallest (``nsec``)."
+msgstr ""
+
+msgid ""
+"Subtraction of two datetime objects produce an interval object. Difference "
+"of two time values is performed not as difference of the epoch seconds, but "
+"as difference of all the subcomponents, that is, years, months, days, hours,"
+" minutes, and seconds."
+msgstr ""
+
+msgid ""
+"An untyped table object can be used in each context where the typed datetime"
+" or interval objects are used if left operand is typed object with "
+"overloaded operation of ``+`` or ``-``."
+msgstr ""
+
+msgid ""
+"The matrix of the ``addition`` operands eligibility and their result types:"
+msgstr ""
+
+msgid "datetime"
+msgstr ""
+
+msgid "interval"
+msgstr ""
+
+msgid "table"
+msgstr ""
+
+msgid "**datetime**"
+msgstr ""
+
+msgid "**interval**"
+msgstr ""
+
+msgid "**table**"
+msgstr ""
+
+msgid ""
+"The matrix of the ``subtraction`` operands eligibility and their result "
+"types:"
+msgstr ""

@@ -1,13 +1,183 @@
 
-msgid "Database"
-msgstr "Функциональность СУБД"
+msgid "Concepts"
+msgstr ""
+
+msgid "Data model"
+msgstr ""
 
 msgid ""
-"In this chapter, we introduce the basic concepts of working with Tarantool "
-"as a database manager."
+"Tarantool is a NoSQL database. It stores data in :ref:`spaces <index-"
+"box_space>`, which can be thought of as tables in a relational database, and"
+" :ref:`tuples <index-box_tuple>`, which are analogous to rows. There are six"
+" basic :ref:`data operations <index-box_operations>` in Tarantool."
 msgstr ""
-"В данной главе мы рассмотрим основные понятия при работе с Tarantool в "
-"качестве системы управления базой данных."
 
-msgid "This chapter contains the following sections:"
-msgstr "Эта глава состоит из следующих разделов:"
+msgid ""
+"The platform allows :ref:`describing the data schema <index-box-"
+"data_schema_description>` but does not require it."
+msgstr ""
+
+msgid ""
+"Tarantool supports highly customizable :ref:`indexes <index-box_index>` of "
+"various types."
+msgstr ""
+
+msgid ""
+"To ensure :ref:`data persistence <index-box_persistence>` and recover "
+"quickly in case of failure, Tarantool uses mechanisms like the write-ahead "
+"log (WAL) and snapshots."
+msgstr ""
+
+msgid "For details, check the :ref:`Data model <box_data_model>` page."
+msgstr ""
+
+msgid "Fibers and cooperative multitasking"
+msgstr ""
+
+msgid ""
+"Tarantool executes code in :ref:`fibers <concepts-coop_multitasking>` that "
+"are managed via :ref:`cooperative multitasking <concepts-"
+"coop_multitasking>`. Learn more about Tarantool's :ref:`thread model "
+"<thread_model>`."
+msgstr ""
+
+msgid ""
+"For details, check the page :ref:`Fibers, yields, and cooperative "
+"multitasking <concepts-coop_multitasking>`."
+msgstr ""
+
+msgid "Transactions"
+msgstr ""
+
+msgid ""
+"Tarantool's ACID-compliant :ref:`transaction model <atomic-"
+"atomic_execution>` lets the user choose between two modes of transactions."
+msgstr ""
+
+msgid ""
+"The :ref:`default mode <txn_mode-default>` allows for fast monopolistic "
+"atomic transactions. It doesn't support interactive transactions, and in "
+"case of an error, all transaction changes are rolled back."
+msgstr ""
+
+msgid ""
+"The :ref:`MVCC mode <txn_mode_transaction-manager>` relies on a multi-"
+"version concurrency control engine that allows yielding within a longer "
+"transaction. This mode only works with the default in-memory :ref:`memtx "
+"<engines-chapter>` storage engine."
+msgstr ""
+
+msgid ""
+"For details, check the :ref:`Transactions <atomic-atomic_execution>` page."
+msgstr ""
+
+msgid "Application server"
+msgstr ""
+
+msgid ""
+"Using Tarantool as an application server, you can write applications in Lua,"
+" C, or C++. You can also create reusable :ref:`modules <concepts-modules>`."
+msgstr ""
+
+msgid ""
+"To increase the speed of code execution, Tarantool has a Lua Just-In-Time "
+"compiler (LuaJIT) on board. LuaJIT compiles hot paths in the code -- paths "
+"that are used many times -- thus making the application work faster. To "
+"enable developers to work with LuaJIT, Tarantool provides tools like the "
+":ref:`memory profiler <luajit_memprof>` and the :ref:`getmetrics "
+"<luajit_getmetrics>` module."
+msgstr ""
+
+msgid ""
+"For details on Tarantool's modular structure, check the :ref:`Modules "
+"<concepts-modules>` page."
+msgstr ""
+
+msgid ""
+"To learn how to use Tarantool as an application server, refer to the "
+":ref:`guides <how-to-app-server>` in the How-to section."
+msgstr ""
+
+msgid "Sharding"
+msgstr ""
+
+msgid ""
+"Tarantool implements database sharding via the ``vshard`` module. For "
+"details, go to the :ref:`Sharding <sharding>` page."
+msgstr ""
+
+msgid "Triggers"
+msgstr ""
+
+msgid ""
+"Tarantool allows specifying callback functions that run upon certain "
+"database events. They can be useful for resolving replication conflicts. For"
+" details, go to the :ref:`Triggers <triggers>` page."
+msgstr ""
+
+msgid "Replication"
+msgstr ""
+
+msgid ""
+"Replication allows keeping the data in copies of the same database for "
+"better reliability."
+msgstr ""
+
+msgid ""
+"Several Tarantool instances can be organized in a replica set. They "
+"communicate and transfer data via the :ref:`iproto <box_protocol-"
+"iproto_protocol>` binary protocol. Learn more about Tarantool's "
+":ref:`replication architecture <replication-architecture>`."
+msgstr ""
+
+msgid ""
+"By default, replication in Tarantool is asynchronous. A transaction "
+"committed locally on the master node may not get replicated onto other "
+"instances before the client receives a success response. Thus, if the master"
+" reports success and then dies, the client might not see the result of the "
+"transaction."
+msgstr ""
+
+msgid ""
+"With :ref:`synchronous replication <repl_sync>`, transactions on the master "
+"node are not considered committed or successful before they are replicated "
+"onto a number of instances. This is slower, but more reliable. Synchronous "
+"replication in Tarantool is based on an :ref:`implementation of the RAFT "
+"algorithm <repl_leader_elect>`."
+msgstr ""
+
+msgid "For details, check the :ref:`Replication <replication>` section."
+msgstr ""
+
+msgid "Storage engines"
+msgstr ""
+
+msgid ""
+"A storage engine is a set of low-level routines that store and retrieve "
+"values. Tarantool offers a choice of two storage engines:"
+msgstr ""
+
+msgid ""
+":ref:`memtx <engines-memtx>` is the in-memory storage engine used by "
+"default."
+msgstr ""
+
+msgid ":ref:`vinyl <engines-vinyl>` is the on-disk storage engine."
+msgstr ""
+
+msgid ""
+"For details, check the :ref:`Storage engines <engines-chapter>` section."
+msgstr ""
+
+#~ msgid "Database"
+#~ msgstr "Функциональность СУБД"
+
+#~ msgid ""
+#~ "In this chapter, we introduce the basic concepts of working with Tarantool "
+#~ "as a database manager."
+#~ msgstr ""
+#~ "В данной главе мы рассмотрим основные понятия при работе с Tarantool в "
+#~ "качестве системы управления базой данных."
+
+#~ msgid "This chapter contains the following sections:"
+#~ msgstr "Эта глава состоит из следующих разделов:"

@@ -1,0 +1,23 @@
+
+msgid "box.iproto.raft"
+msgstr ""
+
+msgid ""
+"Contains the keys from the ``IPROTO_RAFT_*`` requests. Learn more: "
+":ref:`Synchronous replication keys <internals-iproto-keys-synchro-"
+"replication>`."
+msgstr ""
+
+msgid "**Example**"
+msgstr ""
+
+msgid ""
+"tarantool> box.iproto.raft_key.TERM\n"
+"---\n"
+"- 0\n"
+"...\n"
+"tarantool> box.iproto.raft_key.VOTE\n"
+"---\n"
+"- 1\n"
+"..."
+msgstr ""

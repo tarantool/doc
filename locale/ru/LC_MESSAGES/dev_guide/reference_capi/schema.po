@@ -1,5 +1,6 @@
 
-msgid "Module `schema`"
+#, fuzzy
+msgid "Module schema"
 msgstr "Модуль `schema`"
 
 msgid "Start of the reserved range of system spaces."

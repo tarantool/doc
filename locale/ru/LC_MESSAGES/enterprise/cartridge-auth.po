@@ -1,0 +1,3 @@
+
+msgid "LDAP authorization"
+msgstr ""

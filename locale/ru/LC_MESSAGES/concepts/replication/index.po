@@ -1,5 +1,6 @@
 
-msgid "Replication tutorials"
+#, fuzzy
+msgid "Replication"
 msgstr "Руководство по репликации"
 
 msgid ""
@@ -7,10 +8,17 @@ msgid ""
 "same databases. The databases are kept in sync because each instance can "
 "communicate its changes to all the other instances."
 msgstr ""
-"Механизм репликации позволяет сразу многим экземплярам Tarantool работать "
-"с копиями одних и тех же баз данных. При этом все базы остаются в "
+"Механизм репликации позволяет сразу многим экземплярам Tarantool работать с "
+"копиями одних и тех же баз данных. При этом все базы остаются в "
 "синхронизированном состоянии благодаря тому, что каждый экземпляр может "
 "сообщать другим экземплярам о совершенных им изменениях."
 
-msgid "This chapter includes the following sections:"
+#, fuzzy
+msgid "This section includes the following topics:"
 msgstr "Эта глава включает в себя следующие разделы:"
+
+msgid ""
+"For practical guides to replication, see :ref:`Replication tutorials <how-"
+"to-replication>`. You can learn about bootstrapping a replica set, adding "
+"instances to the replica set, or removing them."
+msgstr ""

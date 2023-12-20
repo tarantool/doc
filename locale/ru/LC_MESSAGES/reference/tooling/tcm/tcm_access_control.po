@@ -1,0 +1,619 @@
+
+msgid "Access control"
+msgstr ""
+
+msgid "Enterprise Edition"
+msgstr ""
+
+msgid ""
+"|tcm_full_name| is a part of the `Enterprise Edition "
+"<https://www.tarantool.io/compare/>`_."
+msgstr ""
+
+msgid ""
+"|tcm_full_name| features a role-based access control system. It enables "
+"flexible management of access to |tcm| functions, connected clusters, and "
+"stored data. The |tcm| access system uses three main entities: permissions, "
+"roles, and users (or user accounts). They work as follows:"
+msgstr ""
+
+msgid ""
+"Permissions correspond to specific functions or objects in |tcm| "
+"(*administrative permissions*) or operations on clusters (*cluster "
+"permissions*)."
+msgstr ""
+
+msgid ""
+"Roles are predefined sets of *administrative* permissions to assign to "
+"users."
+msgstr ""
+
+msgid ""
+"Users have roles that define their access rights to |tcm| functions and "
+"objects, and *cluster* permissions that are assigned for each cluster "
+"separately."
+msgstr ""
+
+msgid ""
+"|tcm| users, roles, and permissions are not to be confused with similar "
+"subjects of the :ref:`Tarantool access control system <authentication>`. To "
+"access Tarantool instances directly, Tarantool users with corresponding "
+"roles are required."
+msgstr ""
+
+msgid "Permissions"
+msgstr ""
+
+msgid ""
+"Permissions define access to specific actions that users can do in |tcm|. "
+"For example, there are permissions to view connected clusters or to manage "
+"users."
+msgstr ""
+
+msgid ""
+"There are two types of permissions in |tcm|: *administrative* and *cluster* "
+"permissions."
+msgstr ""
+
+msgid ""
+"*Administrative permissions* provide access to |tcm| functions. They define "
+"which pages and controls are available to users in the web UI. Typically, "
+"*read* permissions define pages shown in the left menu. *Write* permissions "
+"define the availability of controls for managing objects on the pages. For "
+"example, users with read permission to clusters can view the **Clusters** "
+"page but they don't see **Add**, **Edit**, or **Remove** buttons unless they"
+" have the write permission."
+msgstr ""
+
+msgid ""
+"Administrative permissions are assigned to users through :ref:`roles "
+"<tcm_access_control_roles>`."
+msgstr ""
+
+msgid ""
+"*Cluster permissions* enable actions with connected Tarantool clusters. "
+"These permissions are granted to users on a per-cluster level: each user has"
+" a separate set of permissions for each cluster."
+msgstr ""
+
+msgid ""
+"Cluster permissions define which pages of the **Cluster** menu section users"
+" see and what actions they can take on these pages. For example, users with "
+"the read configuration permission to a cluster configuration see the "
+"**Configuration** page when this cluster is selected."
+msgstr ""
+
+msgid ""
+"Cluster permissions are assigned to users individually when creating or "
+"editing them."
+msgstr ""
+
+msgid ""
+"Permissions are predefined in |tcm|, there is no way to change, add, or "
+"delete them. The complete lists of administrative and cluster permissions in"
+" |tcm| are provided in the :ref:`Permissions reference "
+"<tcm_access_control_permissions_ref>`."
+msgstr ""
+
+msgid "Roles"
+msgstr ""
+
+msgid ""
+"Roles are groups of :ref:`administrative permissions "
+"<tcm_access_control_permissions>` that are assigned to users together."
+msgstr ""
+
+msgid ""
+"The assigned roles define pages that users see in |tcm| and actions "
+"available on these pages."
+msgstr ""
+
+msgid ""
+"Roles don't include cluster permissions. Access to connected clusters is "
+"configured for each user individually."
+msgstr ""
+
+msgid "Default roles"
+msgstr ""
+
+msgid ""
+"|tcm| comes with default roles that cover three common usage scenarios:"
+msgstr ""
+
+msgid ""
+"**Super Admin Role** is a default role with all available "
+":ref:`administrative permissions <tcm_access_control_permissions_admin>`. "
+"Additionally, the users with this role automatically gain all :ref:`cluster "
+"permissions <tcm_access_control_permissions_cluster>` to all clusters."
+msgstr ""
+
+msgid ""
+"**Cluster Admin Role** is a default role for cluster administration. It "
+"includes administrative permissions for cluster management."
+msgstr ""
+
+msgid ""
+"**Default User Role** is a default role for working with clusters. It "
+"includes basic administrative *read* permissions that are required to log in"
+" to |tcm| and navigate to a cluster."
+msgstr ""
+
+msgid "Managing roles"
+msgstr ""
+
+msgid "Administrators can create new roles, edit, and delete existing ones."
+msgstr ""
+
+msgid "Roles are listed on the **Roles** page."
+msgstr ""
+
+msgid ""
+"To create a new role, click **Add**, enter the role name, and select the "
+"permissions to include in the role."
+msgstr ""
+
+msgid ""
+"To edit an existing role, click **Edit** in the **Actions** menu of the "
+"corresponding table row."
+msgstr ""
+
+msgid ""
+"To delete a role, click **Delete** in the **Actions** menu of the "
+"corresponding table row."
+msgstr ""
+
+msgid "You can delete a role only if there are no users with this role."
+msgstr ""
+
+msgid "Users"
+msgstr ""
+
+msgid ""
+"|tcm| users gain access to objects and actions through assigned :ref:`roles "
+"<tcm_access_control_roles>` and :ref:`cluster permissions "
+"<tcm_access_control_permissions>`."
+msgstr ""
+
+msgid ""
+"A user can have any number of roles or none of them. Users without roles "
+"have access only to clusters that are assigned to them."
+msgstr ""
+
+msgid ""
+"|tcm| uses password authentication for users. For information on password "
+"management, see the :ref:`Passwords <tcm_access_control_password>` section "
+"below."
+msgstr ""
+
+msgid "Default admin"
+msgstr ""
+
+msgid ""
+"There is one default user **Default Admin**. It has all the available "
+"permissions, both administrative and cluster ones. When new clusters are "
+"added in |tcm|, **Default Admin** automatically receives all cluster "
+"permissions for them as well."
+msgstr ""
+
+msgid "Managing users"
+msgstr ""
+
+msgid "Administrators can create new users, edit, and delete existing ones."
+msgstr ""
+
+msgid "The tools for managing users are located on the **Users** page."
+msgstr ""
+
+msgid "To create a user:"
+msgstr ""
+
+msgid "Click **Add**."
+msgstr ""
+
+msgid "Fill in the user information: username, full name, and description."
+msgstr ""
+
+msgid "Generate or type in a password."
+msgstr ""
+
+msgid "Select roles to assign to the user."
+msgstr ""
+
+msgid ""
+"Add clusters to give the user access to, and select cluster permissions for "
+"each of them."
+msgstr ""
+
+msgid ""
+"To edit a  user, click **Edit** in the **Actions** menu of the corresponding"
+" table row."
+msgstr ""
+
+msgid ""
+"To delete a user, click **Delete**  in the **Actions** menu of the "
+"corresponding table row."
+msgstr ""
+
+msgid "Passwords"
+msgstr ""
+
+msgid ""
+"|tcm| uses the general term *secret* for user authentication keys. A secret "
+"is any pair of a public and a private key that can be used for "
+"authentication. In |tcm| |tcm_version|, *password* is the only supported "
+"secret type. In this case, the public key is a username, and the private key"
+" is a password."
+msgstr ""
+
+msgid ""
+"Users receive their first passwords during their :ref:`account creation "
+"<tcm_access_control_users_manage>`."
+msgstr ""
+
+msgid ""
+"All passwords are governed by the :ref:`password policy "
+"<tcm_access_control_password_policy>`. It can be flexibly configured to "
+"follow the security requirements of your organization."
+msgstr ""
+
+msgid "Changing your password"
+msgstr ""
+
+msgid ""
+"To change your own password, click your name in the top-right corner and go "
+"to **Settings** > **Change password**."
+msgstr ""
+
+msgid "Changing users' passwords"
+msgstr ""
+
+msgid ""
+"Administrators can manage a user's password on this user's **Secrets** page."
+" To open it, click **Secrets** in the **Actions** menu of the corresponding "
+"**Users** table row."
+msgstr ""
+
+msgid ""
+"To change a user's password, click **Edit** in the **Actions** menu of the "
+"corresponding **Secrets** table row and enter the new password in the **New "
+"secret key** field."
+msgstr ""
+
+msgid "Password expiry"
+msgstr ""
+
+msgid ""
+"Passwords expire automatically after the expiration period defined in the "
+":ref:`password policy <tcm_access_control_password_policy>`. When a user "
+"logs in to |tcm| with an expired password, the only action available to them"
+" is a password change. All other |tcm| functions and objects are unavailable"
+" until the new password is set."
+msgstr ""
+
+msgid ""
+"Administrators can also set users' passwords to expired manually. To set a "
+"user's password to expired, click **Expire** in the **Actions** menu of the "
+"corresponding **Secrets** table row."
+msgstr ""
+
+msgid "Password expiration can't be reverted."
+msgstr ""
+
+msgid "Blocking passwords"
+msgstr ""
+
+msgid ""
+"To forbid users' access to |tcm|, administrators can temporarily block their"
+" passwords. A blocked password can't be used to log into |tcm| until it's "
+"unblocked manually or the blocking period expires."
+msgstr ""
+
+msgid ""
+"To block a user's password, click **Block** in the **Actions** menu of the "
+"corresponding **Secrets** table row. Then provide a blocking reason and "
+"enter the blocking period."
+msgstr ""
+
+msgid ""
+"To unblock a blocked password, click **Unblock** in the **Actions** menu of "
+"the corresponding **Secrets** table row."
+msgstr ""
+
+msgid "Password policy"
+msgstr ""
+
+msgid ""
+"Password policy helps improve security and comply with security requirements"
+" that can apply to your organization."
+msgstr ""
+
+msgid ""
+"You can edit the |tcm| password policy on the **Password policy** page. "
+"There are the following password policy settings:"
+msgstr ""
+
+msgid "**Minimal password length**."
+msgstr ""
+
+msgid "**Do not use last N passwords**."
+msgstr ""
+
+msgid ""
+"**Password expiration in days**. Users' passwords :ref:`expire "
+"<tcm_access_control_password_expiry>` after this number of days since they "
+"were set. Users with expired passwords lose access to any objects and "
+"functions except password change until they set a new password."
+msgstr ""
+
+msgid ""
+"**Password expiration warning in days**. After this number of days, the user"
+" sees a warning that their password expires soon."
+msgstr ""
+
+msgid ""
+"**Block after N login attempts**. Temporarily block users if they enter "
+"their username or password incorrectly this number of times consecutively."
+msgstr ""
+
+msgid ""
+"**User lockout time in seconds**. The time interval for which users can't "
+"log in after spending all failed login attempts."
+msgstr ""
+
+msgid ""
+"**Password must include**. Characters and symbols that must be present in "
+"passwords:"
+msgstr ""
+
+msgid "**Lowercase characters (a-z)**"
+msgstr ""
+
+msgid "**Uppercase characters (A-Z)**"
+msgstr ""
+
+msgid "**Digits (0-9)**"
+msgstr ""
+
+msgid "**Symbols (such as !@#$%^&\\*()_+№\"':,.;=][{}`?>/.)**"
+msgstr ""
+
+msgid "Sessions"
+msgstr ""
+
+msgid ""
+"Administrators can view and revoke user sessions in |tcm|. All active "
+"sessions are listed on the **Sessions** page. To revoke a session, click "
+"**Revoke** in the **Actions** menu of the corresponding table row."
+msgstr ""
+
+msgid ""
+"To revoke all sessions of a user, go to **Users** and click **Revoke all "
+"sessions** in the **Actions** menu of the corresponding table row."
+msgstr ""
+
+msgid "Permissions reference"
+msgstr ""
+
+msgid "Administrative permissions"
+msgstr ""
+
+msgid "The following administrative permissions are available in |tcm|:"
+msgstr ""
+
+msgid "Permission"
+msgstr ""
+
+msgid "Description"
+msgstr ""
+
+msgid "``admin.clusters.read``"
+msgstr ""
+
+msgid "View connected clusters' details"
+msgstr ""
+
+msgid "``admin.clusters.write``"
+msgstr ""
+
+msgid "Edit cluster details and add new clusters"
+msgstr ""
+
+msgid "``admin.users.read``"
+msgstr ""
+
+msgid "View users' details"
+msgstr ""
+
+msgid "``admin.users.write``"
+msgstr ""
+
+msgid "Edit user details and add new users"
+msgstr ""
+
+msgid "``admin.roles.read``"
+msgstr ""
+
+msgid "View roles' details"
+msgstr ""
+
+msgid "``admin.roles.write``"
+msgstr ""
+
+msgid "Edit roles and add new roles"
+msgstr ""
+
+msgid "``admin.addons.read``"
+msgstr ""
+
+msgid "View add-ons"
+msgstr ""
+
+msgid "``admin.addons.write``"
+msgstr ""
+
+msgid "Edit add-on flags"
+msgstr ""
+
+msgid "``admin.addons.upload``"
+msgstr ""
+
+msgid "Upload new add-ons"
+msgstr ""
+
+msgid "``admin.auditlog.read``"
+msgstr ""
+
+msgid "View audit log configuration and read audit log in |tcm|"
+msgstr ""
+
+msgid "``admin.auditlog.write``"
+msgstr ""
+
+msgid "Edit audit log configuration"
+msgstr ""
+
+msgid "``admin.sessions.read``"
+msgstr ""
+
+msgid "View users' sessions"
+msgstr ""
+
+msgid "``admin.sessions.write``"
+msgstr ""
+
+msgid "Revoke users' sessions"
+msgstr ""
+
+msgid "``admin.ldap.read``"
+msgstr ""
+
+msgid "View LDAP configurations"
+msgstr ""
+
+msgid "``admin.ldap.write``"
+msgstr ""
+
+msgid "Manage LDAP configurations"
+msgstr ""
+
+msgid "``admin.passwordpolicy.read``"
+msgstr ""
+
+msgid "View password policy"
+msgstr ""
+
+msgid "``admin.passwordpolicy.write``"
+msgstr ""
+
+msgid "Manage password policy"
+msgstr ""
+
+msgid "``admin.devmode.toggle``"
+msgstr ""
+
+msgid "Toggle development mode"
+msgstr ""
+
+msgid "``admin.secrets.read``"
+msgstr ""
+
+msgid "View information about users' secrets"
+msgstr ""
+
+msgid "``admin.secrets.write``"
+msgstr ""
+
+msgid "Manage users' secrets: add, edit, expire, block, delete"
+msgstr ""
+
+msgid "``user.password.change``"
+msgstr ""
+
+msgid "User's permission to change their own password"
+msgstr ""
+
+msgid "``admin.lowlevel.state.read``"
+msgstr ""
+
+msgid "Read low-level information from |tcm| storage (for debug purposes)"
+msgstr ""
+
+msgid "``admin.lowlevel.state.write``"
+msgstr ""
+
+msgid "Write low-level information to |tcm| storage (for debug purposes)"
+msgstr ""
+
+msgid "Cluster permissions"
+msgstr ""
+
+msgid "The following cluster permissions are available in |tcm|:"
+msgstr ""
+
+msgid "``cluster.config.read``"
+msgstr ""
+
+msgid "View cluster configuration"
+msgstr ""
+
+msgid "``cluster.config.write``"
+msgstr ""
+
+msgid "Manage cluster configuration"
+msgstr ""
+
+msgid "``cluster.stateboard.read``"
+msgstr ""
+
+msgid "View cluster stateboard"
+msgstr ""
+
+msgid "``cluster.explorer.read``"
+msgstr ""
+
+msgid "Read data from cluster instances"
+msgstr ""
+
+msgid "``cluster.explorer.write``"
+msgstr ""
+
+msgid "Write data to cluster instances"
+msgstr ""
+
+msgid "``cluster.explorer.call``"
+msgstr ""
+
+msgid "Execute stored functions on cluster instances"
+msgstr ""
+
+msgid "``cluster.explorer.eval``"
+msgstr ""
+
+msgid "Execute code on cluster instances"
+msgstr ""
+
+msgid "``cluster.space.read``"
+msgstr ""
+
+msgid "Read cluster data schema"
+msgstr ""
+
+msgid "``cluster.space.write``"
+msgstr ""
+
+msgid "Modify cluster data schema"
+msgstr ""
+
+msgid "``cluster.lowlevel.state.read``"
+msgstr ""
+
+msgid ""
+"Read low-level information about cluster configuration (for debug purposes)"
+msgstr ""
+
+msgid "``cluster.lowlevel.state.write``"
+msgstr ""
+
+msgid ""
+"Write low-level information about cluster configuration (for debug purposes)"
+msgstr ""

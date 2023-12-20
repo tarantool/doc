@@ -1,58 +1,45 @@
 
-msgid "space_object:user_defined()"
+#, fuzzy
+msgid "space_object extensions"
 msgstr "space_object:user_defined()"
 
-msgid ""
-"Users can define any functions they want, and associate them with spaces: in"
-" effect they can make their own space methods. They do this by:"
+msgid "You can extend ``space_object`` with custom functions as follows:"
 msgstr ""
-"Пользователи могут сами определять любые желаемые функции и связывать их со "
-"спейсами: фактически они могут создавать собственные методы для работы со "
-"спейсом. Это можно сделать так:"
 
-msgid "creating a Lua function,"
+#, fuzzy
+msgid "Create a Lua function."
 msgstr "создать Lua-функцию,"
 
+#, fuzzy
 msgid ""
-"adding the function name to a predefined global variable which has type = "
-"table, and"
-msgstr ""
-"добавить имя функции в заданную глобальную переменную с типом \"таблица\" "
-"(table),"
-
-msgid ""
-"invoking the function any time thereafter, as long as the server is up, by "
-"saying ``space_object:function-name([parameters])``."
-msgstr ""
-"впоследствии в любое время, пока работает сервер, вызвать функцию с помощью "
-"``объект_спейса:имя-функции([параметры])``."
-
-msgid ""
-"The predefined global variable is ``box.schema.space_mt``. Adding to "
-"``box.schema.space_mt`` makes the method available for all spaces."
+"Add the function name to a predefined global variable "
+"``box.schema.space_mt``, which has the ``table`` type. Adding to "
+"``box.schema.space_mt`` makes the function available for all spaces."
 msgstr ""
 "Задана глобальная переменная ``box.schema.space_mt``. Метод, добавленный в "
 "``box.schema.space_mt``, будет доступен для всех спейсов."
 
+#, fuzzy
 msgid ""
-"Alternatively, user-defined methods can be made available for only one "
-"space, by calling ``getmetatable(space_object)`` and then adding the "
-"function name to the meta table. See also the example for "
-":doc:`/reference/reference_lua/box_index/user_defined`."
+"Call the function on the ``space_object``: ``space_object:function-"
+"name([parameters])``."
+msgstr ""
+"впоследствии в любое время, пока работает сервер, вызвать функцию с помощью "
+"``объект_спейса:имя-функции([параметры])``."
+
+#, fuzzy
+msgid ""
+"Alternatively, you can make a user-defined function available for only one "
+"space by calling ``getmetatable(space_object)`` and then adding the function"
+" name to the meta table."
 msgstr ""
 "Можно также сделать задаваемый пользователем метод доступным только для "
 "одного индекса путем вызова ``getmetatable(объект_спейса)`` и последующего "
 "добавления имени функции в метатаблицу. См. также пример для "
 ":doc:`/reference/reference_lua/box_index/user_defined`."
 
-msgid "Parameters"
-msgstr "Параметры"
-
-msgid "an :ref:`object reference <app_server-object_reference>`."
-msgstr ":ref:`ссылка на объект <app_server-object_reference>`."
-
-msgid "whatever the user defines"
-msgstr "то, что определяет пользователь"
+msgid "See also: :doc:`/reference/reference_lua/box_index/user_defined`."
+msgstr ""
 
 msgid "**Example:**"
 msgstr "**Пример:**"
@@ -75,3 +62,27 @@ msgstr ""
 "function f(space_arg) global_variable = global_variable + 1 end\n"
 "box.schema.space_mt.counter = f\n"
 "box.space.t:counter()"
+
+#~ msgid ""
+#~ "Users can define any functions they want, and associate them with spaces: in"
+#~ " effect they can make their own space methods. They do this by:"
+#~ msgstr ""
+#~ "Пользователи могут сами определять любые желаемые функции и связывать их со "
+#~ "спейсами: фактически они могут создавать собственные методы для работы со "
+#~ "спейсом. Это можно сделать так:"
+
+#~ msgid ""
+#~ "adding the function name to a predefined global variable which has type = "
+#~ "table, and"
+#~ msgstr ""
+#~ "добавить имя функции в заданную глобальную переменную с типом \"таблица\" "
+#~ "(table),"
+
+#~ msgid "Parameters"
+#~ msgstr "Параметры"
+
+#~ msgid "an :ref:`object reference <app_server-object_reference>`."
+#~ msgstr ":ref:`ссылка на объект <app_server-object_reference>`."
+
+#~ msgid "whatever the user defines"
+#~ msgstr "то, что определяет пользователь"

@@ -1,0 +1,20 @@
+
+msgid "Rotating instance logs"
+msgstr ""
+
+msgid "$ tt logrotate {INSTANCE | APPLICATION[:APP_INSTANCE]}"
+msgstr ""
+
+msgid ""
+"``tt logrotate`` rotates logs of a specified Tarantool instance. Learn more "
+"about :ref:`rotating logs <admin-logs>`."
+msgstr ""
+
+msgid "Examples"
+msgstr ""
+
+msgid "Rotate logs of the ``app`` instance:"
+msgstr ""
+
+msgid "$ tt logrotate app"
+msgstr ""

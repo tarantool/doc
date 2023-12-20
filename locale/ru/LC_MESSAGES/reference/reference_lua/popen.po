@@ -707,7 +707,47 @@ msgid "options"
 msgstr "параметры"
 
 msgid ""
-"Possible errors, raised on incorrect parameters or when the fiber is "
+"``opts.stdout`` (boolean, default ``true``, if ``true`` then read from "
+"stdout)"
+msgstr ""
+"``opts.stdout`` (boolean, значение по умолчанию --- ``true``, при значении "
+"``true`` выполняется считывание из stdout)"
+
+msgid ""
+"``opts.stderr`` (boolean, default ``false``, if ``true`` then read from "
+"stderr)"
+msgstr ""
+"``opts.stderr`` (boolean, значение по умолчанию --- ``false``, при значении "
+"``true`` выполняется считывание из stderr)"
+
+msgid "``opts.timeout`` (number, default 100 years, time quota in seconds)"
+msgstr ""
+"``opts.timeout`` (число, значение по умолчанию --- 100 лет, временная квота "
+"в секундах)"
+
+#, fuzzy
+msgid ""
+"In other words: by default ``read()`` reads from stdout, but reads from "
+"stderr if one sets ``opts.stderr`` to ``true``. It is not legal to set both "
+"``opts.stdout`` and ``opts.stderr`` to ``true``."
+msgstr ""
+"Другими словами: по умолчанию ``read()`` выполняет считывание из stdout, но "
+"если установить ``opts.stderr`` в ``true``, то считывание происходит из "
+"stderr (нельзя одновременно установить ``opts.stdout`` и ``opts.stderr`` в "
+"``true``)."
+
+msgid "(if success) string with read value, empty string if EOF"
+msgstr ""
+"(при успешном выполнении) строка со считанным значением, пустая строка при "
+"EOF"
+
+#, fuzzy
+msgid "**Possible errors**"
+msgstr "Возможные ошибки:"
+
+#, fuzzy
+msgid ""
+"These errors are raised on incorrect parameters or when the fiber is "
 "cancelled:"
 msgstr ""
 "Возможные ошибки при некорректно заданных параметрах или при отмене файбера:"
@@ -733,48 +773,12 @@ msgstr ""
 "IllegalParams:    попытка произвести операцию над закрытым файловым "
 "дескриптором"
 
-msgid "FiberIsCancelled: cancelled by an outside code"
+#, fuzzy
+msgid "FiberIsCancelled: cancelled by external code"
 msgstr "FiberIsCancelled: файбер отменен во внешней программе"
 
-msgid "``true`` on success, ``false`` on error"
+msgid "``nil, err`` is returned on following failures:"
 msgstr ""
-
-msgid "rtype"
-msgstr "возвращаемое значение"
-
-msgid "(if success) string with read value, empty string if EOF"
-msgstr ""
-"(при успешном выполнении) строка со считанным значением, пустая строка при "
-"EOF"
-
-msgid ""
-"``opts.stdout`` (boolean, default ``true``, if ``true`` then read from "
-"stdout)"
-msgstr ""
-"``opts.stdout`` (boolean, значение по умолчанию --- ``true``, при значении "
-"``true`` выполняется считывание из stdout)"
-
-msgid ""
-"``opts.stderr`` (boolean, default ``false``, if ``true`` then read from "
-"stderr)"
-msgstr ""
-"``opts.stderr`` (boolean, значение по умолчанию --- ``false``, при значении "
-"``true`` выполняется считывание из stderr)"
-
-msgid "``opts.timeout`` (number, default 100 years, time quota in seconds)"
-msgstr ""
-"``opts.timeout`` (число, значение по умолчанию --- 100 лет, временная квота "
-"в секундах)"
-
-msgid ""
-"In other words: by default ``read()`` reads from stdout, but reads from "
-"stderr if one sets ``opts.stderr`` to ``true`` (it is not legal to set both "
-"``opts.stdout`` and ``opts.stderr`` to ``true``)."
-msgstr ""
-"Другими словами: по умолчанию ``read()`` выполняет считывание из stdout, но "
-"если установить ``opts.stderr`` в ``true``, то считывание происходит из "
-"stderr (нельзя одновременно установить ``opts.stdout`` и ``opts.stderr`` в "
-"``true``)."
 
 msgid "SocketError: an IO error occurs at read()"
 msgstr "SocketError: ошибка ввода-вывода при выполнении read()"
@@ -794,6 +798,12 @@ msgstr "Запись строки ``str`` в поток stdin дочернего
 msgid "string to write"
 msgstr "строка для записи"
 
+msgid "``true`` on success, ``false`` on error"
+msgstr ""
+
+msgid "rtype"
+msgstr "возвращаемое значение"
+
 msgid "(if success) boolean = true"
 msgstr "(при успешном выполнении) boolean = true"
 
@@ -811,6 +821,9 @@ msgid ""
 msgstr ""
 "IllegalParams:    запрашиваемая операция ввода-вывода не поддерживается "
 "дескриптором (вывод stdin не перенаправлен)"
+
+msgid "FiberIsCancelled: cancelled by an outside code"
+msgstr "FiberIsCancelled: файбер отменен во внешней программе"
 
 msgid "SocketError: an IO error occurs at write()"
 msgstr "SocketError: ошибка ввода-вывода при выполнении write()"

@@ -1,0 +1,25 @@
+
+msgid "Generating completion for tt"
+msgstr ""
+
+msgid "$ tt completion SHELL"
+msgstr ""
+
+msgid ""
+"``tt completion`` generates tab-based completion for ``tt`` commands in the "
+"specified shell: ``bash`` or ``zsh``."
+msgstr ""
+
+msgid "Examples"
+msgstr ""
+
+msgid "Generate ``tt`` completion for the current ``bash`` terminal:"
+msgstr ""
+
+msgid "$ . <(tt completion bash)"
+msgstr ""
+
+msgid ""
+"You can add an execution of the completion script to a user's ``.bashrc`` "
+"file to make the completion work for this user in all their terminals."
+msgstr ""

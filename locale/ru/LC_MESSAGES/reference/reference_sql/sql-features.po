@@ -2,19 +2,21 @@
 msgid "SQL features"
 msgstr "Возможности SQL"
 
+#, fuzzy
 msgid ""
-"In this section we will go through SQL:2016's \"Feature taxonomy and "
-"definition for mandatory features\"."
+"This section compares Tarantool's features with SQL:2016's \"Feature "
+"taxonomy and definition for mandatory features\"."
 msgstr ""
 "В этом разделе мы рассмотрим основные возможности SQL, описанные в документе"
 " Feature taxonomy and definition for mandatory features (SQL:2016)."
 
+#, fuzzy
 msgid ""
-"For each feature in that list, we will come up with a simple example SQL "
-"statement. If Tarantool appears to handle the example, we will mark it "
-"\"Okay\", else we will mark it \"Fail\". Since this is rough and arbitrary, "
-"we believe that tests which are unfairly marked \"Okay\" will probably be "
-"balanced by tests which are unfairly marked \"Fail\"."
+"For each feature in that list, there will be a simple example SQL statement."
+" If Tarantool appears to handle the example, it will be marked \"Okay\", "
+"else it will be marked \"Fail\". Since this is rough and arbitrary, the hope"
+" is that tests which are unfairly marked \"Okay\" will probably be balanced "
+"by tests which are unfairly marked \"Fail\"."
 msgstr ""
 "Для каждой возможности в списке приводится простой пример SQL-инструкции. "
 "Если Tarantool его обрабатывает, возможность будет помечена как «Работает», "
@@ -88,11 +90,9 @@ msgid "``CREATE TABLE td (s1 NUMERIC PRIMARY KEY);``"
 msgstr "``CREATE TABLE td (s1 NUMERIC PRIMARY KEY);``"
 
 msgid ""
-"Fail, NUMERIC data types are not supported, and a number containing post-"
-"decimal digits will be treated as approximate numeric."
+"Fail, NUMERIC data types are not supported, although the DECIMAL data type "
+"is supported."
 msgstr ""
-"Ошибка, типы данных NUMERIC не поддерживаются, а число с цифрами после "
-"десятичной точки будет обрабатываться как приблизительное числовое значение."
 
 msgid "E011-04"
 msgstr "E011-04"
@@ -1683,3 +1683,10 @@ msgstr "Количество элементов с отметкой \"Ошибк
 
 msgid "Total number of items marked \"Okay\": 79"
 msgstr "Количество элементов с отметкой \"Работает\": 79."
+
+#~ msgid ""
+#~ "Fail, NUMERIC data types are not supported, and a number containing post-"
+#~ "decimal digits will be treated as approximate numeric."
+#~ msgstr ""
+#~ "Ошибка, типы данных NUMERIC не поддерживаются, а число с цифрами после "
+#~ "десятичной точки будет обрабатываться как приблизительное числовое значение."

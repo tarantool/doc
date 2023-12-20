@@ -1,0 +1,695 @@
+
+msgid "Audit log"
+msgstr ""
+
+msgid "Enterprise Edition"
+msgstr ""
+
+msgid ""
+"|tcm_full_name| is a part of the `Enterprise Edition "
+"<https://www.tarantool.io/compare/>`_."
+msgstr ""
+
+msgid ""
+"|tcm_full_name| provides the audit logging functionality for tracking user "
+"activity and security-related events, such as:"
+msgstr ""
+
+msgid "Successful and failed login attempts."
+msgstr ""
+
+msgid ""
+"Access to clusters, their configurations, data models, and stored data."
+msgstr ""
+
+msgid ""
+"Changes in the access control system: users, roles, passwords, LDAP "
+"configurations."
+msgstr ""
+
+msgid ""
+"The complete list of |tcm| audit events is provided in :ref:`Event types "
+"<tcm_audit_log_event_types>`."
+msgstr ""
+
+msgid ""
+"|tcm| audit log records only events that happen in |tcm| itself. For "
+"information about Tarantool audit logging, see :ref:`Audit module "
+"<enterprise_audit_module>`."
+msgstr ""
+
+msgid ""
+"Audit logging is disabled in |tcm| by default. To start recording events, "
+"you need to :ref:`enable <tcm_audit_log_enable>` and :ref:`configure "
+"<tcm_audit_log_config>` it."
+msgstr ""
+
+msgid ""
+"The audit log stores event details in the JSON format. Each log entry "
+"contains the event type, description, time, impacted objects, and other "
+"information that may be used for incident investigation. The complete list "
+"of fields is provided in :ref:`Structure of audit log events "
+"<tcm_audit_log_structure>`."
+msgstr ""
+
+msgid ""
+"|tcm| also provides a built-in interface for reading and searching the audit"
+" log. For details, see :ref:`Viewing audit log <tcm_audit_log_view>`."
+msgstr ""
+
+msgid "Enabling audit logging"
+msgstr ""
+
+msgid ""
+"To enable audit logging in |tcm|, go to **Audit settings** and click "
+"**Enable**."
+msgstr ""
+
+msgid ""
+"To additionally send audit log events to the standard output, click **Send "
+"to stdout**."
+msgstr ""
+
+msgid "Audit log configuration"
+msgstr ""
+
+msgid ""
+"|tcm| audit events can be logged to a local file or sent to a `syslog "
+"<https://datatracker.ietf.org/doc/rfc5424/>`__ server. To configure audit "
+"logging, go to **Audit settings**."
+msgstr ""
+
+msgid "Writing to a file"
+msgstr ""
+
+msgid "To write |tcm| audit logs to a file:"
+msgstr ""
+
+msgid "Go to **Audit settings** and select the **file** protocol."
+msgstr ""
+
+msgid ""
+"Specify the name of the audit log file. The file appears in the |tcm| "
+"working directory."
+msgstr ""
+
+msgid ""
+"Configure the log files rotation: the maximum file size and age, and the "
+"number of files to store simultaneously."
+msgstr ""
+
+msgid "(Optional) Enable compression of audit log files."
+msgstr ""
+
+msgid "Configuration parameters:"
+msgstr ""
+
+msgid ""
+"**Output file name**. The name of the audit log file. Default: ``audit.log``"
+msgstr ""
+
+msgid ""
+"**Max size (in MB)**. The maximum size of the log file before it gets "
+"rotated, in megabytes. Default: 100."
+msgstr ""
+
+msgid ""
+"**Max backups**. The maximum number of stored audit log files. Default: 10."
+msgstr ""
+
+msgid ""
+"**Max age (in days)**. The maximum age of audit log files in days. Default: "
+"30."
+msgstr ""
+
+msgid ""
+"**Compress**. Compress audit log files into ``gzip`` archives when rotating."
+msgstr ""
+
+msgid "Sending to syslog"
+msgstr ""
+
+msgid ""
+"If you use a centralized log management system based on `syslog "
+"<https://datatracker.ietf.org/doc/rfc5424/>`__, you can configure |tcm| to "
+"send its audit log to your syslog server:"
+msgstr ""
+
+msgid "Go to **Audit settings** and select the **syslog** protocol."
+msgstr ""
+
+msgid ""
+"Enter the syslog server URI and select the network protocol. Typically, "
+"``syslogd`` listens on port 514 and uses the UDP protocol."
+msgstr ""
+
+msgid ""
+"Specify the syslog logging parameters: timeout, priority, and facility."
+msgstr ""
+
+msgid ""
+"**Protocol**. The network protocol used for connecting to the syslog server."
+" Default: ``udp``."
+msgstr ""
+
+msgid "**Output**. The syslog server URI. Default: 127.0.0.1:514 (localhost)."
+msgstr ""
+
+msgid ""
+"**Timeout**. The syslog write timeout in the `ISO 8601 duration format "
+"<https://en.wikipedia.org/wiki/ISO_8601#Durations>`__. Default: ``PT2S`` "
+"(two seconds)."
+msgstr ""
+
+msgid "**Priority**. The syslog severity level. Default: ``info``."
+msgstr ""
+
+msgid "**Facility**. The syslog facility. Default: ``local0``."
+msgstr ""
+
+msgid "Selecting audit events to record"
+msgstr ""
+
+msgid ""
+"When the audit log is enabled, |tcm| records all audit events listed in "
+":ref:`Event types <tcm_audit_log_event_types>`. To decrease load and make "
+"the audit log comply with specific security requirements, you can record "
+"only selected events. For example, these can be events of user account "
+"management or events of cluster data access."
+msgstr ""
+
+msgid ""
+"To select events to record into the audit log, go to **Audit settings** and "
+"enter their :ref:`types <tcm_audit_log_event_types>` into the **Filters** "
+"field one-by-one, pressing the **Enter** key after each type."
+msgstr ""
+
+msgid ""
+"To remove an event type from a filters list, click the cross icon beside it."
+msgstr ""
+
+msgid "Viewing audit log"
+msgstr ""
+
+msgid ""
+"If the audit log is written to a file, you can view it in |tcm| on the "
+"**Audit log** page. On this page, you can view or search for events."
+msgstr ""
+
+msgid ""
+"To view the details of a logged audit event, click the corresponding line in"
+" the table."
+msgstr ""
+
+msgid ""
+"To search for an event, use the search bar at the top of the page. Note that"
+" the search is case-sensitive. For example, to find events with the "
+"``ALARM`` severity, enter ``ALARM``, not ``alarm``."
+msgstr ""
+
+msgid "Structure of audit log events"
+msgstr ""
+
+msgid ""
+"All entries of the |tcm| audit log include the mandatory fields listed in "
+"the table below."
+msgstr ""
+
+msgid "Field"
+msgstr ""
+
+msgid "Description"
+msgstr ""
+
+msgid "Example"
+msgstr ""
+
+msgid "``time``"
+msgstr ""
+
+msgid "Time of the event"
+msgstr ""
+
+msgid "2023-11-23T12:05:27.099+07:00"
+msgstr ""
+
+msgid "``severity``"
+msgstr ""
+
+msgid "Event severity: ``VERBOSE``, ``INFO``, ``WARNING``, or ``ALARM``"
+msgstr ""
+
+msgid "INFO"
+msgstr ""
+
+msgid "``type``"
+msgstr ""
+
+msgid "Audit :ref:`event type <tcm_audit_log_event_types>`"
+msgstr ""
+
+msgid "user.update"
+msgstr ""
+
+msgid "``description``"
+msgstr ""
+
+msgid "Human-readable event description"
+msgstr ""
+
+msgid "Update user"
+msgstr ""
+
+msgid "``uuid``"
+msgstr ""
+
+msgid "Event UUID"
+msgstr ""
+
+msgid "f8744f51-5760-40c3-ae2d-0b4d6b44836f"
+msgstr ""
+
+msgid "``user``"
+msgstr ""
+
+msgid "UUID of the user who triggered the event"
+msgstr ""
+
+msgid "942a4f54-cf7f-4f46-80ce-3511dbbb57b7"
+msgstr ""
+
+msgid "``remote``"
+msgstr ""
+
+msgid "Remote host that triggered the event"
+msgstr ""
+
+msgid "100.96.163.226:48722"
+msgstr ""
+
+msgid "``host``"
+msgstr ""
+
+msgid "The |tcm| host on which the event happened"
+msgstr ""
+
+msgid "100.96.163.226:8080"
+msgstr ""
+
+msgid "``userAgent``"
+msgstr ""
+
+msgid ""
+"Information about the client application and platform that was used to "
+"trigger the event"
+msgstr ""
+
+msgid ""
+"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, "
+"like Gecko) Chrome/119.0.0.0 Safari/537.36"
+msgstr ""
+
+msgid "``permission``"
+msgstr ""
+
+msgid "The permission that was used to trigger the event"
+msgstr ""
+
+msgid "[\"admin.users.write\"]"
+msgstr ""
+
+msgid "``result``"
+msgstr ""
+
+msgid "Event result: ``ok`` or ``nok``"
+msgstr ""
+
+msgid "ok"
+msgstr ""
+
+msgid "``err``"
+msgstr ""
+
+msgid "Human-readable error description for events with ``nok`` result"
+msgstr ""
+
+msgid "failed to login"
+msgstr ""
+
+msgid "``fields``"
+msgstr ""
+
+msgid "Additional fields for specific event types in the key-value format"
+msgstr ""
+
+msgid "Key examples:"
+msgstr ""
+
+msgid "``clusterId`` in cluster-related events"
+msgstr ""
+
+msgid "``payload`` in events that include sending data to the server"
+msgstr ""
+
+msgid "``username`` in ``current.*`` or ``auth.*`` events"
+msgstr ""
+
+msgid ""
+"This is an example of an audit log entry on a successful login attempt:"
+msgstr ""
+
+msgid ""
+"{\n"
+"    \"time\": \"2023-11-23T12:01:27.247+07:00\",\n"
+"    \"severity\": \"INFO\",\n"
+"    \"description\": \"Login user\",\n"
+"    \"type\": \"current.login\",\n"
+"    \"uuid\": \"4b9c2dd1-d9a1-4b40-a448-6bef4a0e5c79\",\n"
+"    \"user\": \"\",\n"
+"    \"remote\": \"127.0.0.1:63370\",\n"
+"    \"user-agent\": \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36\",\n"
+"    \"host\": \"127.0.0.1:8080\",\n"
+"    \"permissions\": [],\n"
+"    \"result\": \"ok\",\n"
+"    \"fields\": [\n"
+"        {\n"
+"            \"Key\": \"username\",\n"
+"            \"Value\": \"admin\"\n"
+"        },\n"
+"        {\n"
+"            \"Key\": \"method\",\n"
+"            \"Value\": \"null\"\n"
+"        },\n"
+"        {\n"
+"            \"Key\": \"output\",\n"
+"            \"Value\": \"true\"\n"
+"        }\n"
+"    ]\n"
+"}"
+msgstr ""
+
+msgid "Event types"
+msgstr ""
+
+msgid ""
+"The following table lists all possible values of the ``type`` field of |tcm|"
+" audit log events."
+msgstr ""
+
+msgid "Event type"
+msgstr ""
+
+msgid "``auth.fail``"
+msgstr ""
+
+msgid "Authentication failed"
+msgstr ""
+
+msgid "``auth.ok``"
+msgstr ""
+
+msgid "Authentication successful"
+msgstr ""
+
+msgid "``access.denied``"
+msgstr ""
+
+msgid "An attempt to access an object without the required permission"
+msgstr ""
+
+msgid "``user.add``"
+msgstr ""
+
+msgid "User added"
+msgstr ""
+
+msgid "``user.update``"
+msgstr ""
+
+msgid "User updated"
+msgstr ""
+
+msgid "``user.delete``"
+msgstr ""
+
+msgid "User deleted"
+msgstr ""
+
+msgid "``secret.add``"
+msgstr ""
+
+msgid "User secret added"
+msgstr ""
+
+msgid "``secret.update``"
+msgstr ""
+
+msgid "User secret updated"
+msgstr ""
+
+msgid "``secret.block``"
+msgstr ""
+
+msgid "User secret blocked"
+msgstr ""
+
+msgid "``secret.unblock``"
+msgstr ""
+
+msgid "User secret unblocked"
+msgstr ""
+
+msgid "``secret.delete``"
+msgstr ""
+
+msgid "User secret deleted"
+msgstr ""
+
+msgid "``secret.expire``"
+msgstr ""
+
+msgid "User secret expired"
+msgstr ""
+
+msgid "``session.revoke``"
+msgstr ""
+
+msgid "Session revoked"
+msgstr ""
+
+msgid "``session.revokeuser``"
+msgstr ""
+
+msgid "All user's sessions revoked"
+msgstr ""
+
+msgid "``explorer.insert``"
+msgstr ""
+
+msgid "Data inserted in a cluster"
+msgstr ""
+
+msgid "``explorer.delete``"
+msgstr ""
+
+msgid "Data deleted from a cluster"
+msgstr ""
+
+msgid "``explorer.replace``"
+msgstr ""
+
+msgid "Data replaced in a cluster"
+msgstr ""
+
+msgid "``explorer.call``"
+msgstr ""
+
+msgid "Stored function called on a cluster"
+msgstr ""
+
+msgid "``explorer.evaluate``"
+msgstr ""
+
+msgid "Code executed on a cluster"
+msgstr ""
+
+msgid "``explorer.switchover``"
+msgstr ""
+
+msgid "Master switched manually"
+msgstr ""
+
+msgid "``test.devmode``"
+msgstr ""
+
+msgid "Switched to development mode"
+msgstr ""
+
+msgid "``auditlog.config``"
+msgstr ""
+
+msgid "Audit log configuration changed"
+msgstr ""
+
+msgid "``passwordpolicy.save``"
+msgstr ""
+
+msgid "Password policy changed"
+msgstr ""
+
+msgid "``passwordpolicy.resetpasswords``"
+msgstr ""
+
+msgid "All passwords expired by an administrator"
+msgstr ""
+
+msgid "``ddl.save``"
+msgstr ""
+
+msgid "Cluster data model saved"
+msgstr ""
+
+msgid "``ddl.apply``"
+msgstr ""
+
+msgid "Cluster data model applied"
+msgstr ""
+
+msgid "``cluster.config.save``"
+msgstr ""
+
+msgid "Cluster configuration saved"
+msgstr ""
+
+msgid "``cluster.config.reset``"
+msgstr ""
+
+msgid "Saved cluster configuration reset"
+msgstr ""
+
+msgid "``cluster.config.apply``"
+msgstr ""
+
+msgid "Cluster configuration applied"
+msgstr ""
+
+msgid "``current.logout``"
+msgstr ""
+
+msgid "User logged out their own session"
+msgstr ""
+
+msgid "``current.revoke``"
+msgstr ""
+
+msgid "User revoked their own session"
+msgstr ""
+
+msgid "``current.revokeall``"
+msgstr ""
+
+msgid "User revoked all their active sessions"
+msgstr ""
+
+msgid "``current.changepassword``"
+msgstr ""
+
+msgid "User changed their password"
+msgstr ""
+
+msgid "``role.add``"
+msgstr ""
+
+msgid "Role added"
+msgstr ""
+
+msgid "``role.update``"
+msgstr ""
+
+msgid "Role updated"
+msgstr ""
+
+msgid "``role.delete``"
+msgstr ""
+
+msgid "Role deleted"
+msgstr ""
+
+msgid "``cluster.add``"
+msgstr ""
+
+msgid "Cluster added"
+msgstr ""
+
+msgid "``cluster.update``"
+msgstr ""
+
+msgid "Cluster updated"
+msgstr ""
+
+msgid "``cluster.delete``"
+msgstr ""
+
+msgid "Cluster removed"
+msgstr ""
+
+msgid "``ldap.testlogin``"
+msgstr ""
+
+msgid "Login test executed for a LDAP configuration"
+msgstr ""
+
+msgid "``ldap.testconnection``"
+msgstr ""
+
+msgid "Connection test executed for a LDAP configuration"
+msgstr ""
+
+msgid "``ldap.add``"
+msgstr ""
+
+msgid "LDAP configuration added"
+msgstr ""
+
+msgid "``ldap.update``"
+msgstr ""
+
+msgid "LDAP configuration updated"
+msgstr ""
+
+msgid "``ldap.delete``"
+msgstr ""
+
+msgid "LDAP configuration deleted"
+msgstr ""
+
+msgid "``addon.enable``"
+msgstr ""
+
+msgid "Add-on enabled"
+msgstr ""
+
+msgid "``addon.disable``"
+msgstr ""
+
+msgid "Add-on disabled"
+msgstr ""
+
+msgid "``addon.delete``"
+msgstr ""
+
+msgid "Add-on removed"
+msgstr ""
+
+msgid "``tcmstate.save``"
+msgstr ""
+
+msgid "Low-level information saved in the TCM storage (for debug purposes)"
+msgstr ""
+
+msgid "``tcmstate.delete``"
+msgstr ""
+
+msgid ""
+"Low-level information deleted from the TCM storage (for debug purposes)"
+msgstr ""

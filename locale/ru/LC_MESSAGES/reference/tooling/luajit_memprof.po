@@ -52,8 +52,8 @@ msgstr ""
 "вставьте этот участок кода между функциями ``misc.memprof.start()`` и "
 "``misc.memprof.stop()``, а затем выполните его в Tarantool."
 
-msgid ""
-"Below is a chunk of simple Lua code named ``test.lua`` to illustrate this."
+#, fuzzy
+msgid "Below is a chunk of Lua code named ``test.lua`` to illustrate this."
 msgstr ""
 "Для наглядности ниже приведен фрагмент кода на Lua под названием "
 "``test.lua``."
@@ -222,11 +222,11 @@ msgstr ""
 msgid "Parsing binary profile and generating profiling report"
 msgstr "Парсинг бинарного профиля и формирование отчета о профилировании"
 
+#, fuzzy
 msgid ""
 "After getting the memory profile in binary format, the next step is to parse"
 " it to get a human-readable profiling report. You can do this via Tarantool "
-"by using the following command (mind the hyphen ``-`` prior to the file "
-"name):"
+"by using the following command (mind the hyphen ``-`` before the filename):"
 msgstr ""
 "Получив профиль памяти в двоичном формате, нужно выполнить парсинг, чтобы "
 "отчет было удобно читать. Парсинг можно выполнить в Tarantool, "
@@ -317,9 +317,10 @@ msgstr ""
 "@test.lua:9 holds 32 bytes: 1 allocs, 0 frees\n"
 "@test.lua:8 holds 20 bytes: 1 allocs, 0 frees"
 
+#, fuzzy
 msgid ""
-"On MacOS, a report will be different for the same chunk of code because "
-"Tarantool and LuaJIT are built with the GC64 mode enabled for MacOS."
+"On macOS, a report will be different for the same chunk of code because "
+"Tarantool and LuaJIT are built with the GC64 mode enabled for macOS."
 msgstr ""
 "В macOS отчет по той же части кода выглядит по-другому, поскольку Tarantool "
 "и LuaJIT собраны с поддержкой режима GC64 для macOS."
@@ -575,6 +576,7 @@ msgstr ""
 "**О**: Да. Вот пример кода, который можно вставить в консоль Tarantool, "
 "когда приложение уже запущено:"
 
+#, python-format
 msgid ""
 "local fiber = require \"fiber\"\n"
 "local log = require \"log\"\n"
@@ -657,6 +659,7 @@ msgstr ""
 "Ниже приведен код на Lua --- файл ``format_concat.lua``. Этот код будет "
 "исследован с применением отчетов о профилировании памяти."
 
+#, python-format
 msgid ""
 "-- Prevent allocations on new traces.\n"
 "jit.off()\n"
@@ -778,7 +781,8 @@ msgstr "Почему нет событий по функции ``concat()``?"
 msgid "Why is the number of allocations not a round number?"
 msgstr "Почему количество событий — это не целое число?"
 
-msgid "Why are there approximately 20K allocations instead of 10K?"
+#, fuzzy
+msgid "Why are there about 20K allocations instead of 10K?"
 msgstr "Почему в отчете не 10 тысяч событий, а около 20 тысяч?"
 
 msgid ""
@@ -808,6 +812,7 @@ msgstr ""
 "10000...``. Некоторые строки Tarantool создает для внутренних нужд и "
 "встроенных модулей, поэтому часть строк уже существует."
 
+#, python-format
 msgid ""
 "But why are there so many allocations? It's almost twice as big as the "
 "expected amount. This is because the ``string.format()`` built‑in function "
@@ -825,10 +830,11 @@ msgstr ""
 "string_i_value)``. Добавив строку ``local _ = tostring(i)`` между строками "
 "22 и 23, вы увидите разницу в поведении."
 
+#, fuzzy
 msgid ""
 "To profile only the ``concat()`` function, comment out line 23 (which is "
-"``local f = format(i)``) and run the profiler. Now the output will look like"
-" this:"
+"``local f = format(i)``) and run the profiler. Now the output looks like "
+"this:"
 msgstr ""
 "Чтобы профилировать только функцию ``concat()``, закомментируйте строку 23 "
 "(``local f = format(i)``) и запустите профилировщик. Теперь результат будет "
@@ -991,6 +997,7 @@ msgid ""
 msgstr ""
 "**В**: Откуда так много событий аллокации по сравнению с ``concat()``?"
 
+#, python-format
 msgid ""
 "**A**: The answer is simple: the ``string.format()`` function with the "
 "``%s`` identifier is not yet compiled via LuaJIT. So, a trace can't be "
@@ -1007,6 +1014,7 @@ msgstr ""
 "Изменим функцию ``format`` в строках 9--12 :ref:`примера для анализа отчета "
 "о профилировании <profiler_usage_example03>` следующим образом:"
 
+#, python-format
 msgid ""
 "local function format(a)\n"
 "  local nstr = string.format(\"%sa\", tostring(a))\n"

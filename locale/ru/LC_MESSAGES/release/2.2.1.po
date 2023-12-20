@@ -328,8 +328,8 @@ msgid "Tertiary - \"s3\""
 msgstr ""
 
 msgid ""
-"The following list contains so-called \"stable\" collations -- the ones whose"
-" sort order doesn't depend on the ICU version:"
+"The following list contains so-called \"stable\" collations -- the ones "
+"whose sort order doesn't depend on the ICU version:"
 msgstr ""
 
 msgid ""

@@ -2,8 +2,38 @@
 msgid "box.schema.space.create()"
 msgstr ""
 
-msgid "Create a :ref:`space <index-box_space>`."
-msgstr "Создание :ref:`спейса <index-box_space>`."
+#, fuzzy
+msgid ""
+"Create a :ref:`space <index-box_space>`. You can use either syntax. For "
+"example, ``s = box.schema.space.create('tester')`` has the same effect as "
+"``s = box.schema.create_space('tester')``."
+msgstr ""
+"Можно использовать любой вариант синтаксиса. Например, ``s = "
+"box.schema.space.create('tester')`` эквивалентно ``s = "
+"box.schema.create_space('tester')``."
+
+#, fuzzy
+msgid ""
+"There are :ref:`three syntax variations <app_server-object_reference>` for "
+"object references targeting space objects, for example "
+":samp:`box.schema.space.drop({space-id})` drops a space. However, the common"
+" approach is to use functions attached to the space objects, for example "
+":ref:`space_object:drop() <box_space-drop>`."
+msgstr ""
+"Существуют три :ref:`варианта синтаксиса <app_server-object_reference>` для "
+"ссылок на объекты спейса, например, :samp:`box.schema.space.drop({id-"
+"спейса})` удалит спейс. Однако общий подход заключается в использовании "
+"функций, прикрепленных к объектам спейса, например :ref:`space_object:drop()"
+" <box_space-drop>`."
+
+msgid ""
+"After a space is created, usually the next step is to :ref:`create an index "
+"<box_space-create_index>` for it, and then it is available for insert, "
+"select, and all the other :ref:`box.space <box_space>` functions."
+msgstr ""
+"Следующим шагом после создания спейса будет :ref:`создание индекса "
+"<box_space-create_index>` для него, после чего можно будет выполнять "
+"вставку, выборку и другие функции :ref:`box.space <box_space>`."
 
 msgid "Parameters"
 msgstr "Параметры"
@@ -15,8 +45,8 @@ msgstr ""
 "имя спейса, которое должно соответствовать :ref:`правилам именования "
 "объектов <app_server-names>`"
 
-msgid "see \"Options for box.schema.space.create\" chart, below"
-msgstr "см. таблицу \"Параметры для box.schema.space.create\" ниже"
+msgid "space options (see :ref:`space_opts <space_opts_object>`)"
+msgstr ""
 
 msgid "return"
 msgstr "возвращает"
@@ -30,65 +60,94 @@ msgstr "тип возвращаемого значения"
 msgid "userdata"
 msgstr "пользовательские данные"
 
+#, fuzzy
+msgid "space_opts"
+msgstr "объект спейса"
+
 msgid ""
-"You can use either syntax. For example, ``s = "
-"box.schema.space.create('tester')`` has the same effect as ``s = "
-"box.schema.create_space('tester')``."
+"Space options that include the space id, format, field count, constraints "
+"and foreign keys, and so on. These options are passed to the "
+":ref:`box.schema.space.create() <box_schema-space_create>` method."
 msgstr ""
-"Можно использовать любой вариант синтаксиса. Например, ``s = "
-"box.schema.space.create('tester')`` эквивалентно ``s = "
-"box.schema.create_space('tester')``."
 
-msgid "**Options for box.schema.space.create**"
-msgstr "**Параметры для box.schema.space.create**"
+msgid ""
+"These options are also passed to "
+":doc:`/reference/reference_lua/box_space/alter`."
+msgstr ""
 
-msgid "Name"
-msgstr "Имя"
+#, fuzzy
+msgid ""
+"Create a space only if a space with the same name does not exist already. "
+"Otherwise, do nothing but do not cause an error."
+msgstr ""
+"спейс создается, только если спейса с таким же именем нет в базе данных, в "
+"противном случае эффект отсутствует, но ошибка не выдается"
 
-msgid "Effect"
-msgstr "Эффект"
+#, fuzzy
+msgid "Type: boolean"
+msgstr "boolean (логический)"
 
-msgid "Type"
-msgstr "Тип"
+msgid "Default: ``false``"
+msgstr ""
 
-msgid "Default"
-msgstr "Значение по умолчанию"
+msgid "A :ref:`storage engine <engines-chapter>`."
+msgstr ""
 
-msgid "engine"
-msgstr "engine (движок)"
-
-msgid "'memtx' or 'vinyl'"
-msgstr "'memtx' или 'vinyl'"
-
-msgid "string"
+#, fuzzy
+msgid "Type: string"
 msgstr "string (строка)"
 
-msgid "'memtx'"
-msgstr "'memtx'"
+#, fuzzy
+msgid "Default: `memtx`"
+msgstr "Значение по умолчанию"
 
-msgid "field_count"
-msgstr "field_count (количество полей)"
+msgid "Possible values: ``memtx``, ``vinyl``"
+msgstr ""
 
+#, fuzzy
 msgid ""
-"fixed count of :ref:`fields <index-box_tuple>`: for example if "
-"field_count=5, it is illegal to insert a tuple with fewer than or more than "
-"5 fields"
+"A unique numeric identifier of the space: users can refer to spaces with "
+"this id instead of the name."
+msgstr ""
+"уникальный идентификатор: пользователи могут ссылаться на спейсы посредством"
+" идентификатора вместо имени"
+
+#, fuzzy
+msgid "Type: number"
+msgstr "число"
+
+#, fuzzy
+msgid "Default: last space's ID + 1"
+msgstr "идентификатор последнего спейса +1"
+
+#, fuzzy
+msgid ""
+"A fixed count of :ref:`fields <index-box_tuple>`. For example, if "
+"``field_count=5``, it is illegal to insert a tuple with fewer than or more "
+"than 5 fields."
 msgstr ""
 "заданное количество :ref:`полей <index-box_tuple>`: например, если "
 "field_count=5, нельзя вставить кортеж с количеством полей, большим или "
 "меньшим, чем 5"
 
-msgid "number"
-msgstr "число"
+msgid "Default: ``0`` (not fixed)"
+msgstr ""
 
-msgid "0 i.e. not fixed"
-msgstr "0, то есть не задано"
-
-msgid "format"
-msgstr "format (формат)"
-
+#, fuzzy
 msgid ""
-"field names and types: See the illustrations of format clauses in the "
+"The name of the user who is considered to be the space's :ref:`owner "
+"<authentication-owners_privileges>` for authorization purposes."
+msgstr ""
+"имя пользователя, который считается :ref:`владельцем <authentication-"
+"owners_privileges>` спейса, для целей авторизации"
+
+#, fuzzy
+msgid "Default: current user's name"
+msgstr "имя текущего пользователя"
+
+#, fuzzy
+msgid ""
+"Field names and types. See the illustrations of format clauses in the "
 ":ref:`space_object:format() <box_space-format>` description and in the "
 ":ref:`box.space._space <box_space-space>` example. Optional and usually not "
 "specified."
@@ -97,45 +156,17 @@ msgstr ""
 ":ref:`space_object:format() <box_space-format>` и в :ref:`box.space._space "
 "<box_space-space>`. Необязательный параметр, обычно значение не указывается."
 
-msgid "table"
+#, fuzzy
+msgid "Type: table"
 msgstr "таблица"
 
-msgid "(blank)"
-msgstr "(пустое)"
+#, fuzzy
+msgid "Default: blank"
+msgstr "Значение по умолчанию"
 
-msgid "id"
-msgstr "id"
-
+#, fuzzy
 msgid ""
-"unique identifier: users can refer to spaces with the id instead of the name"
-msgstr ""
-"уникальный идентификатор: пользователи могут ссылаться на спейсы посредством"
-" идентификатора вместо имени"
-
-msgid "last space's id, +1"
-msgstr "идентификатор последнего спейса +1"
-
-msgid "if_not_exists"
-msgstr "if_not_exists (если отсутствует)"
-
-msgid ""
-"create space only if a space with the same name does not exist already, "
-"otherwise do nothing but do not cause an error"
-msgstr ""
-"спейс создается, только если спейса с таким же именем нет в базе данных, в "
-"противном случае эффект отсутствует, но ошибка не выдается"
-
-msgid "boolean"
-msgstr "boolean (логический)"
-
-msgid "false"
-msgstr "false (ложь)"
-
-msgid "is_local"
-msgstr "is_local"
-
-msgid ""
-"space contents are :ref:`replication-local <replication-local>`: changes are"
+"Space contents are :ref:`replication-local <replication-local>`: changes are"
 " stored in the :ref:`write-ahead log <internals-wal>` of the local node but "
 "there is no :ref:`replication <replication>`."
 msgstr ""
@@ -143,37 +174,65 @@ msgstr ""
 "изменения сохраняются в :ref:`журнале упреждающей записи <internals-wal>` "
 "локального узла, но не происходит :ref:`репликация <replication>`."
 
-msgid "is_sync"
-msgstr ""
-
-msgid "any transaction doing a DML request on this space becomes synchronous"
-msgstr ""
-
-msgid "temporary"
-msgstr "temporary (временный)"
-
+#, fuzzy
 msgid ""
-"space contents are temporary: changes are not stored in the :ref:`write-"
+"Space contents are temporary: changes are not stored in the :ref:`write-"
 "ahead log <internals-wal>` and there is no :ref:`replication <replication>`."
-" Note re storage engine: vinyl does not support temporary spaces."
 msgstr ""
 "содержимое спейса хранится временно: изменения не хранятся в :ref:`журнале "
 "упреждающей записи <internals-wal>`, и не проводится :ref:`репликация "
 "<replication>`. Примечание по движку базы данных: vinyl не поддерживает "
 "временные спейсы."
 
-msgid "user"
-msgstr "user (пользователь)"
+msgid "Vinyl does not support temporary spaces."
+msgstr ""
 
 msgid ""
-"name of the user who is considered to be the space's :ref:`owner "
-"<authentication-owners_privileges>` for authorization purposes"
+"Any transaction doing a DML request on this space becomes :ref:`synchronous "
+"<repl_sync>`."
 msgstr ""
-"имя пользователя, который считается :ref:`владельцем <authentication-"
-"owners_privileges>` спейса, для целей авторизации"
 
-msgid "current user's name"
-msgstr "имя текущего пользователя"
+msgid "**Example:**"
+msgstr "**Пример:**"
+
+msgid "box.schema.space.create('bands', { is_sync = true })\n"
+msgstr ""
+
+msgid ""
+"The :ref:`constraints <index-constraints>` that space tuples must satisfy."
+msgstr ""
+
+msgid ""
+"-- Define a tuple constraint function --\n"
+"box.schema.func.create('check_person', {\n"
+"    language = 'LUA',\n"
+"    is_deterministic = true,\n"
+"    body = 'function(t, c) return (t.age >= 0 and #(t.name) > 3) end'\n"
+"})\n"
+"\n"
+"-- Create a space with a tuple constraint --\n"
+"customers = box.schema.space.create('customers', {constraint = 'check_person'})\n"
+msgstr ""
+
+msgid "The :ref:`foreign keys <index-box_foreign_keys>` for space fields."
+msgstr ""
+
+msgid ""
+"-- Create a space with a tuple foreign key --\n"
+"box.schema.space.create(\"orders\", {\n"
+"    foreign_key = {\n"
+"        space = 'customers',\n"
+"        field = {customer_id = 'id', customer_name = 'name'}\n"
+"    }\n"
+"})\n"
+"\n"
+"box.space.orders:format({\n"
+"    {name = \"id\", type = \"number\"},\n"
+"    {name = \"customer_id\" },\n"
+"    {name = \"customer_name\"},\n"
+"    {name = \"price_total\", type = \"number\"},\n"
+"})\n"
+msgstr ""
 
 msgid ""
 "Saying ``box.cfg{read_only=true...}`` during :ref:`configuration <cfg_basic-"
@@ -208,21 +267,11 @@ msgstr "нет"
 msgid "yes"
 msgstr "да"
 
-msgid ""
-"There are three :ref:`syntax variations <app_server-object_reference>` for "
-"object references targeting space objects, for example "
-":samp:`box.schema.space.drop({space-id})` will drop a space. However, the "
-"common approach is to use functions attached to the space objects, for "
-"example :ref:`space_object:drop() <box_space-drop>`."
-msgstr ""
-"Существуют три :ref:`варианта синтаксиса <app_server-object_reference>` для "
-"ссылок на объекты спейса, например, :samp:`box.schema.space.drop({id-"
-"спейса})` удалит спейс. Однако общий подход заключается в использовании "
-"функций, прикрепленных к объектам спейса, например :ref:`space_object:drop()"
-" <box_space-drop>`."
+msgid "temporary"
+msgstr "temporary (временный)"
 
-msgid "**Example:**"
-msgstr "**Пример:**"
+msgid "is_local"
+msgstr "is_local"
 
 msgid ""
 "tarantool> s = box.schema.space.create('space55')\n"
@@ -242,11 +291,59 @@ msgid ""
 "..."
 msgstr ""
 
-msgid ""
-"After a space is created, usually the next step is to :ref:`create an index "
-"<box_space-create_index>` for it, and then it is available for insert, "
-"select, and all the other :ref:`box.space <box_space>` functions."
-msgstr ""
-"Следующим шагом после создания спейса будет :ref:`создание индекса "
-"<box_space-create_index>` для него, после чего можно будет выполнять "
-"вставку, выборку и другие функции :ref:`box.space <box_space>`."
+#~ msgid "Create a :ref:`space <index-box_space>`."
+#~ msgstr "Создание :ref:`спейса <index-box_space>`."
+
+#~ msgid "see \"Options for box.schema.space.create\" chart, below"
+#~ msgstr "см. таблицу \"Параметры для box.schema.space.create\" ниже"
+
+#~ msgid "**Options for box.schema.space.create**"
+#~ msgstr "**Параметры для box.schema.space.create**"
+
+#~ msgid "Name"
+#~ msgstr "Имя"
+
+#~ msgid "Effect"
+#~ msgstr "Эффект"
+
+#~ msgid "Type"
+#~ msgstr "Тип"
+
+#~ msgid "engine"
+#~ msgstr "engine (движок)"
+
+#~ msgid "'memtx' or 'vinyl'"
+#~ msgstr "'memtx' или 'vinyl'"
+
+#~ msgid "'memtx'"
+#~ msgstr "'memtx'"
+
+#~ msgid "field_count"
+#~ msgstr "field_count (количество полей)"
+
+#~ msgid "0 i.e. not fixed"
+#~ msgstr "0, то есть не задано"
+
+#~ msgid "format"
+#~ msgstr "format (формат)"
+
+#~ msgid "(blank)"
+#~ msgstr "(пустое)"
+
+#~ msgid "id"
+#~ msgstr "id"
+
+#~ msgid "if_not_exists"
+#~ msgstr "if_not_exists (если отсутствует)"
+
+#~ msgid "false"
+#~ msgstr "false (ложь)"
+
+#~ msgid "is_sync"
+#~ msgstr ""
+
+#~ msgid "any transaction doing a DML request on this space becomes synchronous"
+#~ msgstr ""
+
+#~ msgid "user"
+#~ msgstr "user (пользователь)"

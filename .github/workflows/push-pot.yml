@@ -16,6 +16,7 @@ jobs:
         run: |
          cmake .
          make update-pot  
+         make update-po
 
       - name: Commit generated pots
         run: |
@@ -29,6 +30,7 @@ jobs:
           fi
 
           git add locale/en
-          git commit -m "updated pot"
+          git add locale/ru
+          git commit -m "updated locale"
           git push origin 3.0 
 

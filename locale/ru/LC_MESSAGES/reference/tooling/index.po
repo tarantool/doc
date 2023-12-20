@@ -1,0 +1,8 @@
+
+msgid "Tooling"
+msgstr ""
+
+msgid ""
+"This chapter describes the tools that enable developers and administrators "
+"to work with Tarantool."
+msgstr ""

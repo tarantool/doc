@@ -18,6 +18,7 @@ msgstr ""
 "осуществляет вставку кортежа ``[99999,'B']`` в спейс :code:`examples` с "
 "помощью высокоуровневого API для языка C."
 
+#, python-format
 msgid ""
 "#include <stdio.h>\n"
 "#include <stdlib.h>\n"
@@ -100,7 +101,8 @@ msgstr ""
 "$ make\n"
 "$ make install"
 
-msgid "To compile and link the program, say:"
+#, fuzzy
+msgid "To compile and link the program, run:"
 msgstr ""
 "Чтобы скомпилировать и слинковать тестовую программу, выполните следующую  "
 "команду:"
@@ -114,6 +116,7 @@ msgstr ""
 "$ export LD_LIBRARY_PATH=/usr/local/lib\n"
 "$ gcc -o example example.c -ltarantool"
 
+#, fuzzy
 msgid ""
 "Before trying to run, check that a server instance is listening at "
 "``localhost:3301`` and that the space ``examples`` exists, as "
@@ -123,7 +126,7 @@ msgid ""
 "address = 3301, the program will print “Connection refused”. If the insert "
 "fails, the program will print \"Insert failed\" and an error number (see all"
 " error codes in the source file `/src/box/errcode.h "
-"<https://github.com/tarantool/tarantool/blob/2.1/src/box/errcode.h>`_)."
+"<https://github.com/tarantool/tarantool/blob/2.1/src/box/errcode.h>`__)."
 msgstr ""
 "Перед запуском проверьте, что у экземпляра задан порт для прослушивания "
 "на``localhost:3301``, и в базе создан спейс ``examples``, как :ref:`описано "
@@ -141,7 +144,11 @@ msgstr ""
 "Далее следуют примечания, на которые мы ссылались в комментариях к исходному"
 " коду тестовой программы."
 
-msgid "**SETUP:** The setup begins by creating a stream."
+msgid "SETUP"
+msgstr ""
+
+#, fuzzy
+msgid "The setup begins by creating a stream."
 msgstr ""
 "**НАСТРОЙКА:** Настройка начинается с создания потока (``tnt_stream``)."
 
@@ -175,9 +182,13 @@ msgstr ""
 "struct tnt_stream *tnt_net(struct tnt_stream *s)\n"
 "int tnt_set(struct tnt_stream *s, int option, variant option-value)"
 
+msgid "CONNECT"
+msgstr ""
+
+#, fuzzy
 msgid ""
-"**CONNECT:** Now that the stream named ``tnt`` exists and is associated with"
-" a URI, this example program can connect to a server instance."
+"Now that the stream named ``tnt`` exists and is associated with a URI, this "
+"example program can connect to a server instance."
 msgstr ""
 "**СОЕДИНЕНИЕ:** Теперь когда мы создали поток с именем ``tnt`` и связали его"
 " с конкретным URI, наша программа может устанавливать соединение с "
@@ -202,13 +213,18 @@ msgstr ""
 "Tarantool-сервер не запущен или в URI-строке указан неверный :ref:`пароль "
 "<authentication-passwords>`. В случае неудачи функция вернет -1."
 
+msgid "MAKE REQUEST"
+msgstr ""
+
+#, fuzzy
 msgid ""
-"**MAKE REQUEST:** Most requests require passing a structured value, such as "
-"the contents of a tuple."
+"Most requests require passing a structured value, such as the contents of a "
+"tuple."
 msgstr ""
 "**СОЗДАНИЕ ЗАПРОСА:** В большинстве запросов требуется передавать "
 "структурированные данные, например содержимое кортежа."
 
+#, python-format
 msgid ""
 "struct tnt_stream *tuple = tnt_object(NULL);\n"
 "tnt_object_format(tuple, \"[%d%s]\", 99999, \"B\");"
@@ -216,6 +232,7 @@ msgstr ""
 "struct tnt_stream *tuple = tnt_object(NULL);\n"
 "tnt_object_format(tuple, \"[%d%s]\", 99999, \"B\");"
 
+#, python-format
 msgid ""
 "In this program, the request will be an :ref:`INSERT<box_space-insert>`, and"
 " the tuple contents will be an integer and a string. This is a simple serial"
@@ -236,9 +253,13 @@ msgstr ""
 msgid "ssize_t tnt_object_format(struct tnt_stream *s, const char *fmt, ...)"
 msgstr "ssize_t tnt_object_format(struct tnt_stream *s, const char *fmt, ...)"
 
+msgid "SEND REQUEST"
+msgstr ""
+
+#, fuzzy
 msgid ""
-"**SEND REQUEST:** The database-manipulation requests are analogous to the "
-"requests in the box library."
+"The database-manipulation requests are analogous to the requests in the box "
+"library."
 msgstr ""
 "**ОТПРАВКА ЗАПРОСА:** Отправка запросов на изменение данных в базе делается "
 "аналогично тому, как это делается в Tarantool-библиотеке ``box``."
@@ -278,14 +299,19 @@ msgstr ""
 "ssize_t tnt_update(struct tnt_stream *s, uint32_t space, uint32_t index,\n"
 "                   struct tnt_stream *key, struct tnt_stream *ops)"
 
+msgid "GET REPLY"
+msgstr ""
+
+#, fuzzy
 msgid ""
-"**GET REPLY:** For most requests, the client will receive a reply containing"
-" some indication whether the result was successful, and a set of tuples."
+"For most requests, the client will receive a reply containing some "
+"indication whether the result was successful, and a set of tuples."
 msgstr ""
 "**ПОЛУЧЕНИЕ ОТВЕТА:** На большинство запросов клиент получает ответ, который"
 " содержит информацию о том, был ли данный запрос успешно выполнен,  а также "
 "содержит набор кортежей."
 
+#, python-format
 msgid ""
 "struct tnt_reply reply;  tnt_reply_init(&reply);\n"
 "tnt->read_reply(tnt, &reply);\n"
@@ -312,10 +338,14 @@ msgstr ""
 "tnt->read_reply(struct tnt_stream *s, struct tnt_reply *r)\n"
 "void tnt_reply_free(struct tnt_reply *r)"
 
+msgid "TEARDOWN"
+msgstr ""
+
+#, fuzzy
 msgid ""
-"**TEARDOWN:** When a session ends, the connection that was made with "
-":c:func:`tarantoolc:tnt_connect()` should be closed, and the objects that "
-"were made in the setup should be destroyed."
+"When a session ends, the connection that was made with "
+":c:func:`tarantoolc:tnt_connect` should be closed, and the objects that were"
+" made in the setup should be destroyed."
 msgstr ""
 "**ЗАВЕРШЕНИЕ:** По окончании сессии нам нужно закрыть соединение, созданное "
 "с помощью функции :c:func:`tarantoolc:tnt_connect()`, и удалить  объекты, "
@@ -340,12 +370,13 @@ msgstr ""
 msgid "Example 2"
 msgstr "Пример 2"
 
+#, fuzzy
 msgid ""
 "Here is a complete C program that selects, using index key ``[99999]``, from"
 " space ``examples`` via the high-level C API. To display the results, the "
 "program uses functions in the `MsgPuck "
-"<https://github.com/tarantool/msgpuck>`_ library which allow decoding of "
-"`MessagePack <https://en.wikipedia.org/wiki/MessagePack>`_  arrays."
+"<https://github.com/tarantool/msgpuck>`__ library which allow decoding of "
+"`MessagePack <https://en.wikipedia.org/wiki/MessagePack>`__  arrays."
 msgstr ""
 "Далее приводится пример полноценной программы на языке C, которая "
 "осуществляет выборку по индекс-ключу ``[99999]`` из спейса ``examples`` с "
@@ -355,6 +386,7 @@ msgstr ""
 "массивов значений в формате `MessagePack "
 "<https://en.wikipedia.org/wiki/MessagePack>`_."
 
+#, python-format
 msgid ""
 "#include <stdio.h>\n"
 "#include <stdlib.h>\n"
@@ -493,18 +525,24 @@ msgstr ""
 "Аналогично первому примеру, сохраните исходный код программы в файле с "
 "именем :file:`example2.c`."
 
+msgid "To compile and link the program, say:"
+msgstr ""
+"Чтобы скомпилировать и слинковать тестовую программу, выполните следующую  "
+"команду:"
+
 msgid "$ gcc -o example2 example2.c -ltarantool"
 msgstr "$ gcc -o example2 example2.c -ltarantool"
 
 msgid "To run the program, say :samp:`./example2`."
 msgstr "Для запуска программы выполните команду :samp:`./example2`."
 
+#, fuzzy
 msgid ""
 "The two example programs only show a few requests and do not show all that's"
 " necessary for good practice. See more in the `tarantool-c documentation at "
-"GitHub <http://github.com/tarantool/tarantool-c>`_."
+"GitHub <http://github.com/tarantool/tarantool-c>`__."
 msgstr ""
 "В этих двух программах мы привели пример использования лишь двух запросов. "
-"Для полноценной работы с Tarantool с помощью C API, пожалуйста, "
-"обратитесь к документации из `проекта tarantool-c на GitHub "
+"Для полноценной работы с Tarantool с помощью C API, пожалуйста, обратитесь к"
+" документации из `проекта tarantool-c на GitHub "
 "<http://github.com/tarantool/tarantool-c>`_."

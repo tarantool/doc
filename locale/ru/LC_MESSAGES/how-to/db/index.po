@@ -1,0 +1,7 @@
+
+msgid "Defining and manipulating data"
+msgstr ""
+
+msgid ""
+"This section contains guides on performing data operations in Tarantool."
+msgstr ""

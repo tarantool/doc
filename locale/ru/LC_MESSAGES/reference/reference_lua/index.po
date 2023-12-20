@@ -6,8 +6,7 @@ msgid "Built-in modules reference"
 msgstr "Справочник по встроенным модулям"
 
 msgid "This reference covers Tarantool's built-in Lua modules."
-msgstr ""
-"В данном справочнике рассматриваются встроенные Lua-модули Tarantool."
+msgstr "В данном справочнике рассматриваются встроенные Lua-модули Tarantool."
 
 msgid ""
 "Some functions in these modules are analogs to functions from `standard Lua "

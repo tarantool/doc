@@ -2,6 +2,9 @@
 msgid "box.ctl.is_recovery_finished()"
 msgstr ""
 
+msgid "Since version :doc:`2.5.3 </release/2.5.3>`."
+msgstr ""
+
 msgid ""
 "Check whether the :ref:`recovery process <internals-recovery_process>` has "
 "finished. Until it has finished, space changes such as ``insert`` or "
@@ -20,5 +23,5 @@ msgstr "возвращаемое значение"
 msgid "boolean"
 msgstr "boolean (логический)"
 
-msgid "Added in release :doc:`2.5.3 </release/2.5.3>`."
-msgstr ""
+#~ msgid "Added in release :doc:`2.5.3 </release/2.5.3>`."
+#~ msgstr ""

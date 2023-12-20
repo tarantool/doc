@@ -1,0 +1,242 @@
+
+msgid "Release calendar"
+msgstr ""
+
+msgid ""
+"Every Tarantool release series has :ref:`the same lifecycle <release-series-"
+"lifecycle>`. Below you can find the lifecycle of all Tarantool versions "
+"starting from 1.10.x, as well as currently supported versions visualised as "
+"a calendar:"
+msgstr ""
+
+msgid "releases_calendar.svg"
+msgstr ""
+
+msgid "Release lifetime table"
+msgstr ""
+
+msgid ""
+"The release lifetime table lists all Tarantool versions starting from 1.10.x"
+" up to the current latest versions. Each link leads to the release notes "
+"page of the corresponding version. *End of life* means the release series "
+"will no longer receive any patches, updates, or feature improvements after "
+"the specified date. *End of support* means that we won't provide technical "
+"support to product versions after the specified date."
+msgstr ""
+
+msgid "Version"
+msgstr ""
+
+msgid "Release date"
+msgstr ""
+
+msgid "End of life"
+msgstr ""
+
+msgid "End of support"
+msgstr ""
+
+msgid ""
+"`2.11.1 LTS <https://github.com/tarantool/tarantool/releases/tag/2.11.1>`_"
+msgstr ""
+
+msgid "August 17, 2023"
+msgstr ""
+
+msgid "May 24, 2025"
+msgstr ""
+
+msgid "Not planned yet"
+msgstr ""
+
+msgid ":doc:`2.11.0 LTS </release/2.11.0>`"
+msgstr ""
+
+msgid "May 24, 2023"
+msgstr ""
+
+msgid ":doc:`2.10.8 </release/2.10.8>`"
+msgstr ""
+
+msgid "September 14, 2023"
+msgstr ""
+
+msgid ":doc:`2.10.7 </release/2.10.7>`"
+msgstr ""
+
+msgid ":doc:`2.10.6 </release/2.10.6>`"
+msgstr ""
+
+msgid "March 22, 2023"
+msgstr ""
+
+msgid ":doc:`2.10.5 </release/2.10.5>`"
+msgstr ""
+
+msgid "February 20, 2023"
+msgstr ""
+
+msgid ":doc:`2.10.4 </release/2.10.4>`"
+msgstr ""
+
+msgid "November 11, 2022"
+msgstr ""
+
+msgid ":doc:`2.10.3 </release/2.10.3>`"
+msgstr ""
+
+msgid "September 30, 2022"
+msgstr ""
+
+msgid ":doc:`2.10.2 </release/2.10.2>`"
+msgstr ""
+
+msgid "September 1, 2022"
+msgstr ""
+
+msgid ":doc:`2.10.1 </release/2.10.1>`"
+msgstr ""
+
+msgid "August 8, 2022"
+msgstr ""
+
+msgid ":doc:`2.10.0 </release/2.10.0>`"
+msgstr ""
+
+msgid "May 22, 2022"
+msgstr ""
+
+msgid ":doc:`2.8.4 </release/2.8.4>`"
+msgstr ""
+
+msgid "April 25, 2022"
+msgstr ""
+
+msgid ":doc:`2.8.3 </release/2.8.3>`"
+msgstr ""
+
+msgid "December 22, 2021"
+msgstr ""
+
+msgid ":doc:`2.8.2 </release/2.8.2>`"
+msgstr ""
+
+msgid "August 19, 2021"
+msgstr ""
+
+msgid ":doc:`2.7.3 </release/2.7.3>`"
+msgstr ""
+
+msgid ":doc:`2.7.2 </release/2.7.2>`"
+msgstr ""
+
+msgid "April 21, 2021"
+msgstr ""
+
+msgid ":doc:`2.6.3 </release/2.6.3>`"
+msgstr ""
+
+msgid ":doc:`2.6.2 </release/2.6.2>`"
+msgstr ""
+
+msgid "December 30, 2020"
+msgstr ""
+
+msgid ":doc:`2.5.3 </release/2.5.3>`"
+msgstr ""
+
+msgid ":doc:`2.5.2 </release/2.5.2>`"
+msgstr ""
+
+msgid "October 22, 2020"
+msgstr ""
+
+msgid ":doc:`2.4.3 </release/2.4.3>`"
+msgstr ""
+
+msgid ":doc:`2.4.2 </release/2.4.2>`"
+msgstr ""
+
+msgid "July 17, 2020"
+msgstr ""
+
+msgid ":doc:`2.3.3 </release/2.3.3>`"
+msgstr ""
+
+msgid ":doc:`2.3.2 </release/2.3.2>`"
+msgstr ""
+
+msgid "April 20, 2020"
+msgstr ""
+
+msgid ":doc:`2.2.3 </release/2.2.3>`"
+msgstr ""
+
+msgid ":doc:`2.2.2 </release/2.2.2>`"
+msgstr ""
+
+msgid "December 31, 2019"
+msgstr ""
+
+msgid ":doc:`1.10.15 LTS </release/1.10.15>`"
+msgstr ""
+
+msgid "February, 2024"
+msgstr ""
+
+msgid ":doc:`1.10.14 LTS </release/1.10.14>`"
+msgstr ""
+
+msgid ":doc:`1.10.13 LTS </release/1.10.13>`"
+msgstr ""
+
+msgid ":doc:`1.10.12 LTS </release/1.10.12>`"
+msgstr ""
+
+msgid "February 20, 2022"
+msgstr ""
+
+msgid ":doc:`1.10.11 LTS </release/1.10.11>`"
+msgstr ""
+
+msgid ":doc:`1.10.10 LTS </release/1.10.10>`"
+msgstr ""
+
+msgid "April 24, 2021"
+msgstr ""
+
+msgid ":doc:`1.10.9 LTS </release/1.10.9>`"
+msgstr ""
+
+msgid ":doc:`1.10.8 LTS </release/1.10.8>`"
+msgstr ""
+
+msgid ":doc:`1.10.7 LTS </release/1.10.7>`"
+msgstr ""
+
+msgid ":doc:`1.10.6 LTS </release/1.10.6>`"
+msgstr ""
+
+msgid ":doc:`1.10.5 LTS </release/1.10.5>`"
+msgstr ""
+
+msgid "January 14, 2020"
+msgstr ""
+
+msgid ":ref:`1.10.4 LTS <whats_new_1104>`"
+msgstr ""
+
+msgid "September 26, 2019"
+msgstr ""
+
+msgid ":ref:`1.10.3 LTS <whats_new_1103>`"
+msgstr ""
+
+msgid "April 1, 2019"
+msgstr ""
+
+msgid ":ref:`1.10.2 LTS <whats_new_1102>`"
+msgstr ""
+
+msgid "October 13, 2018"
+msgstr ""

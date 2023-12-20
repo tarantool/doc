@@ -1,0 +1,32 @@
+
+msgid "box.iproto.feature"
+msgstr ""
+
+msgid ""
+"Contains the IPROTO protocol features that are supported by the server. Each"
+" feature is mapped to its corresponding code. Learn more: "
+":ref:`IPROTO_FEATURES <internals-iproto-keys-features>`."
+msgstr ""
+
+msgid "The features in the namespace are written"
+msgstr ""
+
+msgid "in lowercase letters"
+msgstr ""
+
+msgid "without the ``IPROTO_FEATURE_`` prefix"
+msgstr ""
+
+msgid "**Example**"
+msgstr ""
+
+msgid ""
+"tarantool> box.iproto.feature.streams\n"
+"---\n"
+"- 0\n"
+"...\n"
+"tarantool> box.iproto.feature.transactions\n"
+"---\n"
+"- 1\n"
+"..."
+msgstr ""

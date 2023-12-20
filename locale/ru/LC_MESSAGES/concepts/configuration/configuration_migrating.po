@@ -1,0 +1,3 @@
+
+msgid "Migrating to declarative configuration"
+msgstr ""

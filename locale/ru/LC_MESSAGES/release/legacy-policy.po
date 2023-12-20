@@ -1,5 +1,5 @@
 
-msgid "Tarantool Legacy Release Policy"
+msgid "Tarantool legacy release policy"
 msgstr ""
 
 msgid ""
@@ -259,3 +259,6 @@ msgstr ""
 "быть запущен на основе данных ``X.(Y+1)`` или ``1.10.z``). Бинарный протокол"
 " также обратно совместим (как клиент-серверный протокол, так и протокол "
 "репликации)."
+
+#~ msgid "Tarantool Legacy Release Policy"
+#~ msgstr ""

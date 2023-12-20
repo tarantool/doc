@@ -1,0 +1,44 @@
+
+msgid ""
+"The diagrams in the SQL reference are generated using "
+"[Syntrax](https://github.com/kevinpt/syntrax)."
+msgstr ""
+
+msgid "Install Syntrax"
+msgstr ""
+
+msgid "pip install syntrax\n"
+msgstr ""
+
+msgid "Troubleshooting installation issues"
+msgstr ""
+
+msgid "pip: command not found"
+msgstr ""
+
+msgid "Ensure that Python is installed"
+msgstr ""
+
+msgid "Try `pip3` instead of `pip`"
+msgstr ""
+
+msgid "error in syntrax setup command: use_2to3 is invalid."
+msgstr ""
+
+msgid "Run `pip3 install \"setuptools<58.0.0\"`"
+msgstr ""
+
+msgid "ModuleNotFoundError: No module named 'cairo'|'gi'|'pango'"
+msgstr ""
+
+msgid "Search on stackoverflow %)"
+msgstr ""
+
+msgid "Generate a diagram"
+msgstr ""
+
+msgid "Generate an SVG with the same file name:"
+msgstr ""
+
+msgid "syntrax <filename>.spec -o svg\n"
+msgstr ""

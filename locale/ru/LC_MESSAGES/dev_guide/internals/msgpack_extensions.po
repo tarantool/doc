@@ -4,18 +4,18 @@ msgstr "Дополнительные типы MessagePack"
 
 msgid ""
 "Tarantool uses predefined MessagePack extension types to represent some of "
-"the special values. Extension types include ``MP_DECIMAL``, ``MP_UUID``,"
-" ``MP_ERROR``, ``MP_DATETIME``, and ``MP_INTERVAL``. "
-"These types require special attention from the connector "
-"developers, as they must be treated separately from the default MessagePack "
-"types, and correctly mapped to programming language types."
+"the special values. Extension types include ``MP_DECIMAL``, ``MP_UUID``, "
+"``MP_ERROR``, ``MP_DATETIME``, and ``MP_INTERVAL``. These types require "
+"special attention from the connector developers, as they must be treated "
+"separately from the default MessagePack types, and correctly mapped to "
+"programming language types."
 msgstr ""
 "Tarantool использует предопределенные дополнительные типы MessagePack для "
 "представления некоторых специальных значений. Дополнительные типы включают "
-"``MP_DECIMAL``, ``MP_UUID``,``MP_ERROR``, ``MP_DATETIME``, and ``MP_INTERVAL``. "
-"Эти типы требуют особого внимания со стороны разработчиков коннекторов, так как должны "
-"рассматриваться отдельно от типов MessagePack по умолчанию и корректно "
-"приводиться к типам языков программирования."
+"``MP_DECIMAL``, ``MP_UUID``,``MP_ERROR``, ``MP_DATETIME``, and "
+"``MP_INTERVAL``. Эти типы требуют особого внимания со стороны разработчиков "
+"коннекторов, так как должны рассматриваться отдельно от типов MessagePack по"
+" умолчанию и корректно приводиться к типам языков программирования."
 
 msgid "The DECIMAL type"
 msgstr "Тип DECIMAL"
@@ -31,8 +31,9 @@ msgid "``MP_DECIMAL`` type is 1."
 msgstr "MP_DECIMAL -- это 1."
 
 msgid ""
-"`MessagePack specification <https://github.com/msgpack/msgpack/blob/master/spec.md>`_"
-" defines two kinds of types:"
+"`MessagePack specification "
+"<https://github.com/msgpack/msgpack/blob/master/spec.md>`_ defines two kinds"
+" of types:"
 msgstr ""
 "`Спецификация MessagePack "
 "<https://github.com/msgpack/msgpack/blob/master/spec.md>`_ определяет два "
@@ -170,10 +171,12 @@ msgstr "Тип UUID"
 
 msgid ""
 "The MessagePack EXT type ``MP_EXT`` together with the extension type "
-"``MP_UUID`` for values of the UUID type. Since version :doc:`2.4.1 </release/2.4.1>`."
+"``MP_UUID`` for values of the UUID type. Since version :doc:`2.4.1 "
+"</release/2.4.1>`."
 msgstr ""
 "Тип MessagePack EXT ``MP_EXT`` вместе с типом расширения ``MP_UUID`` "
-"является заголовком для значений типа UUID. Доступно с версии :doc:`2.4.1 </release/2.4.1>`."
+"является заголовком для значений типа UUID. Доступно с версии :doc:`2.4.1 "
+"</release/2.4.1>`."
 
 msgid "``MP_UUID`` type is 2."
 msgstr "MP_UUID -- это 2."
@@ -196,42 +199,39 @@ msgid ""
 "+--------+------------+-----------------+"
 msgstr ""
 
+#, fuzzy
 msgid ""
-"The 16-byte value has 2 digits per byte. Typically, it consists of 11 fields,"
-" which are encoded as big-endian unsigned integers in the following order: "
+"The 16-byte value has 2 digits per byte. Typically, it consists of 11 "
+"fields, which are encoded as big-endian unsigned integers in the following "
+"order:"
 msgstr ""
 "16-байтовое значение имеет 2 цифры на байт. Обычно оно состоит из 11 полей, "
-"которые кодируются от большего к меньшему беззнаковыми целыми числами в следующем порядке:"
+"которые кодируются от большего к меньшему беззнаковыми целыми числами в "
+"следующем порядке:"
 
-msgid ""
-"time_low (4 bytes)"
-msgstr ""
-"time_low (4 байта)"
+#, fuzzy
+msgid "``time_low`` (4 bytes)"
+msgstr "time_low (4 байта)"
 
-msgid ""
-"time_mid (2 bytes)"
-msgstr ""
-"time_mid (2 байта)"
+#, fuzzy
+msgid "``time_mid`` (2 bytes)"
+msgstr "time_mid (2 байта)"
 
-msgid ""
-"time_hi_and_version (2 bytes)"
-msgstr ""
-"time_hi_and_version (2 байта)"
+#, fuzzy
+msgid "``time_hi_and_version`` (2 bytes)"
+msgstr "time_hi_and_version (2 байта)"
 
-msgid ""
-"clock_seq_hi_and_reserved (1 byte)"
-msgstr ""
-"clock_seq_hi_and_reserved (1 байт)"
+#, fuzzy
+msgid "``clock_seq_hi_and_reserved`` (1 byte)"
+msgstr "clock_seq_hi_and_reserved (1 байт)"
 
-msgid ""
-"clock_seq_low (1 byte)"
-msgstr ""
-"clock_seq_low (1 байт)"
+#, fuzzy
+msgid "``clock_seq_low`` (1 byte)"
+msgstr "clock_seq_low (1 байт)"
 
-msgid ""
-"node[0], ..., node[5] (1 byte each)"
-msgstr ""
-"node[0], ..., node[5] (по 1 байту)"
+#, fuzzy
+msgid "``node[0]``, ..., ``node[5]`` (1 byte each)"
+msgstr "node[0], ..., node[5] (по 1 байту)"
 
 msgid ""
 "Some of the functions in :ref:`Module uuid <uuid-module>` can produce values"
@@ -264,8 +264,8 @@ msgid ""
 "enhancement, because clients that expect old-style server responses should "
 "ignore map components that they do not recognize. Notice, however, that "
 "there has been a renaming of a constant: formerly ``IPROTO_ERROR`` in "
-":file:`./box/iproto_constants.h` was ``0x31``, now ``IPROTO_ERROR`` is ``0x52`` and "
-"``IPROTO_ERROR_24`` is ``0x31``."
+":file:`./box/iproto_constants.h` was ``0x31``, now ``IPROTO_ERROR`` is "
+"``0x52`` and ``IPROTO_ERROR_24`` is ``0x31``."
 msgstr ""
 "Начиная с версии :doc:`2.4.1 </release/2.4.1>`, в ответах на ошибки "
 "содержится дополнительная информация, соответствующая описанию в разделе "
@@ -273,8 +273,8 @@ msgstr ""
 "Это \"совместимое\" улучшение, потому что клиенты, которые ожидают ответы "
 "сервера старого образца, должны игнорировать компоненты ассоциативного "
 "массива, которые они не распознают. Обратите внимание, что константа "
-"``IPROTO_ERROR`` в :file:`./box/iproto_constants.h` была ``0x31``, а теперь ``IPROTO_ERROR`` -- "
-"``0x52``, а ``IPROTO_ERROR_24`` -- ``0x31``."
+"``IPROTO_ERROR`` в :file:`./box/iproto_constants.h` была ``0x31``, а теперь "
+"``IPROTO_ERROR`` -- ``0x52``, а ``IPROTO_ERROR_24`` -- ``0x31``."
 
 msgid "``MP_ERROR`` type is 3."
 msgstr "MP_ERROR -- это 3."
@@ -415,4 +415,240 @@ msgid ""
 "        00                              MP_UINT = error number\n"
 "        05                              MP_ERROR_ERRCODE\n"
 "        0a                              MP_UINT = eror code ER_SPACE_EXISTS"
+msgstr ""
+
+#, fuzzy
+msgid "The DATETIME type"
+msgstr "Тип DECIMAL"
+
+#, fuzzy
+msgid ""
+"Since version :doc:`2.10.0 </release/2.10.0>`. The MessagePack EXT type "
+"``MP_EXT`` together with the extension type ``MP_DATETIME`` is a header for "
+"values of the DATETIME type. It creates a container with a payload of 8 or "
+"16 bytes."
+msgstr ""
+"Тип MessagePack EXT ``MP_EXT`` вместе с типом расширения ``MP_DECIMAL`` "
+"является заголовком для значений типа DECIMAL."
+
+#, fuzzy
+msgid "``MP_DATETIME`` type is 4."
+msgstr "MP_DECIMAL -- это 1."
+
+#, fuzzy
+msgid ""
+"The `MessagePack specification "
+"<https://github.com/msgpack/msgpack/blob/master/spec.md>`_ defines ``d7`` to"
+" mean ``fixext`` with size 8 or ``d8`` to mean ``fixext`` with size 16."
+msgstr ""
+"`Спецификация MessagePack "
+"<https://github.com/msgpack/msgpack/blob/master/spec.md>`_ определяет два "
+"вида типов:"
+
+#, fuzzy
+msgid "So the datetime MessagePack representation looks like this:"
+msgstr "Десятичное представление MessagePack выглядит следующим образом:"
+
+msgid ""
+"+---------+----------------+==========+-----------------+\n"
+"| MP_EXT  | MP_DATETIME    | seconds  | nsec; tzoffset; |\n"
+"| = d7/d8 | = 4            |          | tzindex;        |\n"
+"+---------+----------------+==========+-----------------+"
+msgstr ""
+
+#, fuzzy
+msgid "MessagePack data contains:"
+msgstr "Дополнительные типы MessagePack"
+
+msgid ""
+"Seconds (8 bytes) as an unencoded 64-bit signed integer stored in the "
+"little-endian order."
+msgstr ""
+
+msgid ""
+"The optional fields (8 bytes), if any of them have a non-zero value. The "
+"fields include ``nsec``, ``tzoffset``, and ``tzindex`` packed in the little-"
+"endian order."
+msgstr ""
+
+msgid ""
+"For more information about the datetime type, see :ref:`datetime field type "
+"details <index-box_datetime>` and :doc:`reference for the datetime module "
+"</reference/reference_lua/datetime>`."
+msgstr ""
+
+#, fuzzy
+msgid "The INTERVAL type"
+msgstr "Тип DECIMAL"
+
+#, fuzzy
+msgid ""
+"Since version :doc:`2.10.0 </release/2.10.0>`. The MessagePack EXT type "
+"``MP_EXT`` together with the extension type ``MP_INTERVAL`` is a header for "
+"values of the INTERVAL type."
+msgstr ""
+"Тип MessagePack EXT ``MP_EXT`` вместе с типом расширения ``MP_DECIMAL`` "
+"является заголовком для значений типа DECIMAL."
+
+#, fuzzy
+msgid "``MP_INTERVAL`` type is 6."
+msgstr "MP_DECIMAL -- это 1."
+
+msgid ""
+"The interval is saved as a variant of a map with a predefined number of "
+"known attribute names. If some attributes are undefined, they are omitted "
+"from the generated payload."
+msgstr ""
+
+#, fuzzy
+msgid "The interval MessagePack representation looks like this:"
+msgstr "Десятичное представление MessagePack выглядит следующим образом:"
+
+msgid ""
+"+--------+-------------------------+-------------+----------------+\n"
+"| MP_EXT | Size of packed interval | MP_INTERVAL | PackedInterval |\n"
+"+--------+-------------------------+-------------+----------------+"
+msgstr ""
+
+msgid "Packed interval consists of:"
+msgstr ""
+
+msgid "Packed number of non-zero fields."
+msgstr ""
+
+msgid "Packed non-null fields."
+msgstr ""
+
+#, fuzzy
+msgid "Each packed field has the following structure:"
+msgstr "``PackedDecimal`` имеет следующую структуру:"
+
+#, fuzzy
+msgid ""
+"+----------+=====================+\n"
+"| field ID |     field value     |\n"
+"+----------+=====================+"
+msgstr ""
+" <--- длина в байтах -->\n"
+"+-------+=============+\n"
+"| scale |     BCD     |\n"
+"+-------+=============+"
+
+msgid ""
+"The number of defined (non-null) fields can be zero. In this case, the "
+"packed interval will be encoded as integer 0."
+msgstr ""
+
+msgid "List of the field IDs:"
+msgstr ""
+
+msgid "0 -- year"
+msgstr ""
+
+msgid "1 -- month"
+msgstr ""
+
+msgid "2 -- week"
+msgstr ""
+
+msgid "3 -- day"
+msgstr ""
+
+msgid "4 -- hour"
+msgstr ""
+
+msgid "5 -- minute"
+msgstr ""
+
+msgid "6 -- second"
+msgstr ""
+
+msgid "7 -- nanosecond"
+msgstr ""
+
+msgid "8 -- adjust"
+msgstr ""
+
+#, fuzzy
+msgid "**Example**"
+msgstr "**Примеры**"
+
+msgid ""
+"Interval value ``1 years, 200 months, -77 days`` is encoded in the following"
+" way:"
+msgstr ""
+
+#, python-format
+msgid ""
+"tarantool> I = datetime.interval.new{year = 1, month = 200, day = -77}\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> I\n"
+"---\n"
+"- +1 years, 200 months, -77 days\n"
+"...\n"
+"\n"
+"tarantool> M = msgpack.encode(I)\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> M\n"
+"---\n"
+"- !!binary xwsGBAABAczIA9CzCAE=\n"
+"...\n"
+"\n"
+"tarantool> tohex = function(s) return (s:gsub('.', function(c) return string.format('%02X ', string.byte(c)) end)) end\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> tohex(M)\n"
+"---\n"
+"- 'C7 0B 06 04 00 01 01 CC C8 03 D0 B3 08 01 '\n"
+"..."
+msgstr ""
+
+msgid "Where:"
+msgstr ""
+
+msgid "C7 -- MP_EXT"
+msgstr ""
+
+msgid "0B -- size of a packed interval value (11 bytes)"
+msgstr ""
+
+msgid "06 -- MP_INTERVAL type"
+msgstr ""
+
+msgid "04 -- number of defined fields"
+msgstr ""
+
+msgid "00 -- field ID (year)"
+msgstr ""
+
+msgid "01 -- packed value ``1``"
+msgstr ""
+
+msgid "01 -- field ID (month)"
+msgstr ""
+
+msgid "CCC8 -- packed value ``200``"
+msgstr ""
+
+msgid "03 -- field ID (day)"
+msgstr ""
+
+msgid "D0B3 -- packed value ``-77``"
+msgstr ""
+
+msgid "08 -- field ID (adjust)"
+msgstr ""
+
+msgid "01 -- packed value ``1`` (DT_LIMIT)"
+msgstr ""
+
+msgid ""
+"For more information about the interval type, see :ref:`interval field type "
+"details <index-box_interval>` and :doc:`description of the datetime module "
+"</reference/reference_lua/datetime>`."
 msgstr ""

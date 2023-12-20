@@ -30,6 +30,28 @@ msgstr ""
 msgid "Upgrade a database"
 msgstr "Обновить базу данных"
 
+#, fuzzy
+msgid ":doc:`./box_schema/downgrade`"
+msgstr ":doc:`./box_schema/space_create`"
+
+#, fuzzy
+msgid "Downgrade a database"
+msgstr "Обновить базу данных"
+
+#, fuzzy
+msgid ":doc:`./box_schema/downgrade_issues`"
+msgstr ":doc:`./box_schema/space_create`"
+
+msgid "List downgrade issues for the specified Tarantool version"
+msgstr ""
+
+#, fuzzy
+msgid ":doc:`./box_schema/downgrade_versions`"
+msgstr ":doc:`./box_schema/space_create`"
+
+msgid "List Tarantool versions available for downgrade"
+msgstr ""
+
 msgid ":doc:`./box_schema/user_create`"
 msgstr ""
 

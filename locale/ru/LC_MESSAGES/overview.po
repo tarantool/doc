@@ -1,0 +1,171 @@
+
+msgid "Overview"
+msgstr ""
+
+msgid "What is Tarantool?"
+msgstr ""
+
+msgid ""
+"Tarantool combines an in-memory DBMS and a Lua server in a single platform "
+"providing ACID-compliant storage. It comes in two :ref:`editions <overview-"
+"editions>`: Community and Enterprise. The :ref:`use cases <overview-"
+"use_cases>` for Tarantool vary from ultra-fast cache to product data marts "
+"and smart queue services."
+msgstr ""
+
+msgid "Here are some of Tarantool's key characteristics:"
+msgstr ""
+
+msgid ""
+"**Easy handling of OLTP workloads**: processes hundreds of thousands RPS"
+msgstr ""
+
+msgid ""
+"**Data integrity**: :ref:`write-ahead log (WAL) <concepts-data_model-"
+"persistence>` and :ref:`data snapshots <concepts-data_model-persistence>`"
+msgstr ""
+
+msgid ""
+"**Cooperative multitasking**: transactions are performed in "
+":ref:`lightweight coroutines <concepts-coop_multitasking>` with no "
+"interthread locking"
+msgstr ""
+
+msgid ""
+"**Advanced indexing**: :ref:`composite indexes <concepts-"
+"data_model_indexes>`, :ref:`locale support <index-collation>`, indexing by "
+":ref:`nested fields and arrays <index-box_indexed-field-types>`"
+msgstr ""
+
+msgid ""
+"**Compute close to data**: :ref:`Lua server <concepts-application_server>` "
+"and Just-In-Time compiler on board"
+msgstr ""
+
+msgid ""
+"**Durable distributed storage**: multiple failover modes and :ref:`RAFT-"
+"based synchronous replication <repl_sync>` available"
+msgstr ""
+
+msgid ""
+"Tarantool allows executing code alongside data, which helps increase the "
+"speed of operations. Developers can :ref:`implement any business logic with "
+"Lua <app_server-creating_app>`, and a single Tarantool instance can also "
+"receive :ref:`SQL requests <sql_tutorial>`."
+msgstr ""
+
+msgid ""
+"Tarantool has a variety of compatible `modules "
+"<https://www.tarantool.io/en/download/rocks>`__ (Lua rocks). You can pick "
+"the ones that you need and install them manually."
+msgstr ""
+
+msgid ""
+"Tarantool runs on Linux (x86_64, aarch64), Mac OS X (x86_64, M1), and "
+"FreeBSD (x86_64)."
+msgstr ""
+
+msgid ""
+"You can use Tarantool with a programming language you're familiar with. For "
+"this purpose, a number of :ref:`connectors <getting_started_connectors>` are"
+" provided."
+msgstr ""
+
+msgid "Editions"
+msgstr ""
+
+msgid ""
+"Tarantool comes in two editions: the open-source **Community Edition (CE)** "
+"and the commercial **Enterprise Edition (EE)**."
+msgstr ""
+
+msgid ""
+"**Tarantool Community Edition** lets you develop applications and speed up a"
+" system in operation. It features :ref:`synchronous replication "
+"<repl_sync>`, affords easy :ref:`scalability <sharding>`, and includes tools"
+" to develop efficient :ref:`applications <app_server>`. The `Tarantool "
+"community <https://t.me/tarantool>`__ helps with any practical questions "
+"regarding the Community Edition."
+msgstr ""
+
+msgid ""
+"**Tarantool Enterprise Edition** `provides advanced tools "
+"<https://www.tarantool.io/en/compare/>`__ for administration, deployment, "
+"and security management, along with premium support services. This edition "
+"includes all the Community Edition features and is more predictable in terms"
+" of solution cost and maintenance. The Enterprise Edition is shipped as an "
+"SDK and includes a number of closed-source modules. See the :ref:`Tarantool "
+"Enterprise Edition <tarantool_enterprise>` documentation."
+msgstr ""
+
+msgid "Use cases"
+msgstr ""
+
+msgid "Fast first-class storage"
+msgstr ""
+
+msgid "Primary storage"
+msgstr ""
+
+msgid "No secondary storage required"
+msgstr ""
+
+msgid "Tolerance to high write loads"
+msgstr ""
+
+msgid "Support of relational approaches"
+msgstr ""
+
+msgid "Composite secondary indexes"
+msgstr ""
+
+msgid "Data access, data slices"
+msgstr ""
+
+msgid "Predictable request latency"
+msgstr ""
+
+msgid "Advanced cache"
+msgstr ""
+
+msgid "Write-behind caching"
+msgstr ""
+
+msgid "Secondary index support"
+msgstr ""
+
+msgid "Complex invalidation algorithm support"
+msgstr ""
+
+msgid "Smart queue"
+msgstr ""
+
+msgid "Support of various identification techniques"
+msgstr ""
+
+msgid "Advanced task lifecycle management"
+msgstr ""
+
+msgid "Task scheduling"
+msgstr ""
+
+msgid "Archiving of completed tasks"
+msgstr ""
+
+msgid "Data-centric applications"
+msgstr ""
+
+msgid "Arbitrary data flows from many sources"
+msgstr ""
+
+msgid "Incoming data processing"
+msgstr ""
+
+msgid "Storage"
+msgstr ""
+
+msgid "Background cycle processing"
+msgstr ""
+
+msgid "Scheduling support"
+msgstr ""

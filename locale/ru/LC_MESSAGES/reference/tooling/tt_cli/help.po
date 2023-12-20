@@ -1,0 +1,30 @@
+
+msgid "Displaying help for tt and its commands"
+msgstr ""
+
+msgid "$ tt help [COMMAND]"
+msgstr ""
+
+msgid "``tt help`` displays help:"
+msgstr ""
+
+msgid "for ``tt`` utility when called without a ``COMMAND``."
+msgstr ""
+
+msgid "for a specified ``tt`` command."
+msgstr ""
+
+msgid "Examples"
+msgstr ""
+
+msgid "Display ``tt`` help"
+msgstr ""
+
+msgid "$ tt help"
+msgstr ""
+
+msgid "Display help for the ``start`` command:"
+msgstr ""
+
+msgid "$ tt help start"
+msgstr ""

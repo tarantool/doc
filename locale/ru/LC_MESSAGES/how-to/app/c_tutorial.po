@@ -2,13 +2,6 @@
 msgid "C tutorial"
 msgstr "Практическое задание на C"
 
-msgid ""
-"Here is one C tutorial: :ref:`C stored procedures <f_c_tutorial-"
-"c_stored_procedures>`."
-msgstr ""
-"Ниже приводится практическое занятие на языке C: :ref:`Хранимые процедуры на"
-" языке C <f_c_tutorial-c_stored_procedures>`."
-
 msgid "C stored procedures"
 msgstr "Хранимые процедуры на языке C"
 
@@ -31,8 +24,8 @@ msgid ""
 "development package and a C compiler, there are five tasks:"
 msgstr ""
 "Данное практическое задание могут выполнить те, у кого есть пакет программ "
-"для разработки Tarantool и компилятор языка программирования C. Оно "
-"состоит из пяти задач:"
+"для разработки Tarantool и компилятор языка программирования C. Оно состоит "
+"из пяти задач:"
 
 msgid ":ref:`easy.c <f_c_tutorial-easy>` -- prints \"hello world\";"
 msgstr ":ref:`easy.c <f_c_tutorial-easy>` -- выводит \"hello world\";"
@@ -70,7 +63,8 @@ msgstr ""
 "По окончании задания, вы увидите описанные здесь результаты и сможете "
 "самостоятельно написать хранимые процедуры."
 
-msgid "**Preparation**"
+#, fuzzy
+msgid "Preparation"
 msgstr "**Подготовка**"
 
 msgid "Check that these items exist on the computer:"
@@ -182,7 +176,8 @@ msgid ""
 "Leave the client running. It will be necessary to enter more requests later."
 msgstr "Не закрывайте клиент. Он понадобится для последующих запросов."
 
-msgid "**easy.c**"
+#, fuzzy
+msgid "easy.c"
 msgstr "**easy.c**"
 
 msgid ""
@@ -325,7 +320,8 @@ msgstr "... и на этот раз результатом будет: \"hello w
 msgid "Conclusion: calling a C function is easy."
 msgstr "Вывод: вызвать C-функцию легко."
 
-msgid "**harder.c**"
+#, fuzzy
+msgid "harder.c"
 msgstr "**harder.c**"
 
 msgid "Go back to the shell where the ``easy.c`` program was created."
@@ -336,6 +332,7 @@ msgstr ""
 "Создайте файл. Назовите его ``harder.c``. Запишите в него следующие 17 "
 "строк:"
 
+#, python-format
 msgid ""
 "#include \"module.h\"\n"
 "#include \"msgpuck.h\"\n"
@@ -467,7 +464,8 @@ msgstr ""
 "C-функцию непросто, но существуют документированные процедуры для этих "
 "целей, и их не так много."
 
-msgid "**hardest.c**"
+#, fuzzy
+msgid "hardest.c"
 msgstr "**hardest.c**"
 
 msgid ""
@@ -584,7 +582,8 @@ msgstr ""
 ":ref:`box_insert() <box-box_insert>`? Ответ: :ref:`API для языка C <index-"
 "c_api_reference>`."
 
-msgid "**read.c**"
+#, fuzzy
+msgid "read.c"
 msgstr "**read.c**"
 
 msgid ""
@@ -598,6 +597,7 @@ msgid "Create a file. Name it ``read.c``. Put these 43 lines in it:"
 msgstr ""
 "Создайте файл. Назовите его ``read.c``. Запишите в него следующие 43 строки:"
 
+#, fuzzy, python-format
 msgid ""
 "#include \"module.h\"\n"
 "#include <msgpuck.h>\n"
@@ -609,13 +609,12 @@ msgid ""
 "  uint32_t key = 10000;      /* The key value that box_insert() used */\n"
 "  mp_encode_array(tuple_buf, 0); /* clear */\n"
 "  box_tuple_format_t *fmt = box_tuple_format_default();\n"
-"  box_tuple_t *tuple = box_tuple_new(fmt, tuple_buf, tuple_buf+512);\n"
-"  assert(tuple != NULL);\n"
+"  box_tuple_t *tuple = NULL;\n"
 "  char key_buf[16];          /* Pass key_buf = encoded key = 1000 */\n"
 "  char *key_end = key_buf;\n"
 "  key_end = mp_encode_array(key_end, 1);\n"
 "  key_end = mp_encode_uint(key_end, key);\n"
-"  assert(key_end < key_buf + sizeof(key_buf));\n"
+"  assert(key_end <= key_buf + sizeof(key_buf));\n"
 "  /* Get the tuple. There's no box_select() but there's this. */\n"
 "  int r = box_index_get(space_id, index_id, key_buf, key_end, &tuple);\n"
 "  assert(r == 0);\n"
@@ -767,7 +766,8 @@ msgstr ""
 "box_tuple_field>` -- пришли из :ref:`API для языка C <index-"
 "c_api_reference>`."
 
-msgid "**write.c**"
+#, fuzzy
+msgid "write.c"
 msgstr "**write.c**"
 
 msgid ""
@@ -782,6 +782,7 @@ msgstr ""
 "Создайте файл. Назовите его ``write.c``. Запишите в него следующие 24 "
 "строки:"
 
+#, python-format
 msgid ""
 "#include \"module.h\"\n"
 "#include <msgpuck.h>\n"
@@ -916,7 +917,8 @@ msgstr ""
 "Таким образом, хранимые процедуры на языке C получают полный доступ к базе "
 "данных."
 
-msgid "**Cleaning up**"
+#, fuzzy
+msgid "Cleaning up"
 msgstr "**Очистка данных**"
 
 msgid ""
@@ -939,7 +941,8 @@ msgstr ""
 "Удалите файлы с разрешением ``.c`` и ``.so``, созданные для данного "
 "практического задания."
 
-msgid "**An example in the test suite**"
+#, fuzzy
+msgid "An example in the test suite"
 msgstr "**Пример из набора тестов**"
 
 msgid ""
@@ -963,3 +966,10 @@ msgstr ""
 "Вывод: некоторые тесты из стандартного набора используют хранимые процедуры "
 "на языке C, а они должны работать, поскольку мы не можем выпустить "
 "Tarantool, если он не прошел тестирование."
+
+#~ msgid ""
+#~ "Here is one C tutorial: :ref:`C stored procedures <f_c_tutorial-"
+#~ "c_stored_procedures>`."
+#~ msgstr ""
+#~ "Ниже приводится практическое занятие на языке C: :ref:`Хранимые процедуры на"
+#~ " языке C <f_c_tutorial-c_stored_procedures>`."

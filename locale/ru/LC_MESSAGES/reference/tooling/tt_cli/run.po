@@ -1,0 +1,67 @@
+
+msgid "Running code in a Tarantool instance"
+msgstr ""
+
+msgid "$ tt run [SCRIPT|-e EXPR] [OPTION ...]"
+msgstr ""
+
+msgid "``tt run`` executes Lua code in a Tarantool instance."
+msgstr ""
+
+msgid "Options"
+msgstr ""
+
+msgid "Execute the specified expression in a Tarantool instance."
+msgstr ""
+
+msgid "Require the specified library."
+msgstr ""
+
+msgid "Enter the interactive mode after the script execution."
+msgstr ""
+
+msgid "Print the Tarantool version that is used for script execution."
+msgstr ""
+
+msgid "Details"
+msgstr ""
+
+msgid ""
+"``tt run`` executes arbitrary Lua code in a Tarantool instance. The code can"
+" be provided either in a Lua file, or in a string passed after the "
+"``-e``/``--evaluate`` flag. When called without arguments or flags, ``tt "
+"run`` opens the Tarantool console."
+msgstr ""
+
+msgid ""
+"If libraries are required for execution, pass their names after the "
+"``-l``/``--library`` flag."
+msgstr ""
+
+msgid ""
+"By default, a Tarantool instance started by ``tt run`` shuts down after code"
+" execution completes. To leave this instance running and continue working in"
+" its console, add the ``-i``/``--interactive`` flag."
+msgstr ""
+
+msgid "Examples"
+msgstr ""
+
+msgid "Execute the ``app.lua`` file in a Tarantool instance:"
+msgstr ""
+
+msgid "$ tt run app.lua"
+msgstr ""
+
+msgid "Execute an expression in a Tarantool instance:"
+msgstr ""
+
+msgid "$ tt run -e \"print('hi there')\""
+msgstr ""
+
+msgid ""
+"Execute the ``app.lua`` file in a Tarantool instance and leave it running:"
+msgstr ""
+
+msgid "$ tt run app.lua -i"
+msgstr ""

@@ -1,0 +1,87 @@
+
+msgid "Tarantool 2.10.6"
+msgstr ""
+
+msgid "Released on 2023-03-22."
+msgstr ""
+
+msgid "Release: :tarantool-release:`2.10.6`."
+msgstr ""
+
+msgid "Tag: ``2.10.6``."
+msgstr ""
+
+msgid "Overview"
+msgstr ""
+
+msgid ""
+"2.10.6 is the 7th :doc:`stable </release/policy/>` version of the 2.10 "
+"release series. It resolves 3 bugs since 2.10.5."
+msgstr ""
+
+msgid ""
+"The “stable” label means that we have all planned features implemented and "
+"we see no high-impact issues. However, if you encounter an issue, feel free "
+"to `report it <https://github.com/tarantool/tarantool/issues>`__ on GitHub."
+msgstr ""
+
+msgid "Compatibility"
+msgstr ""
+
+msgid ""
+"Tarantool 2.x is backward compatible with Tarantool 1.10.x in the binary "
+"data layout, client-server protocol, and replication protocol."
+msgstr ""
+
+msgid ""
+"Please :doc:`upgrade </book/admin/upgrades>` using the "
+"``box.schema.upgrade()`` procedure to unlock all the new features of the 2.x"
+" series."
+msgstr ""
+
+msgid "Bugs fixed"
+msgstr ""
+
+msgid "Core"
+msgstr ""
+
+msgid ""
+"Fixed various bugs related to unsafe (i.e., coming from an unknown source) "
+"decoding and validating of MsgPack extensions (:tarantool-sec-issue:`73`)."
+msgstr ""
+
+msgid "LuaJIT"
+msgstr ""
+
+msgid ""
+"Backported patches from the vanilla LuaJIT trunk (:tarantool-issue:`8069`). "
+"The following issues were fixed as part of this activity:"
+msgstr ""
+
+msgid ""
+"Fixed successful ``math.min/math.max`` call with no args (:tarantool-"
+"issue:`6163`)."
+msgstr ""
+
+msgid ""
+"Fixed inconsistencies in ``math.min/math.max`` calls with a NaN arg "
+"(:tarantool-issue:`6163`)."
+msgstr ""
+
+msgid "Fixed ``pcall()`` call without arguments on arm64."
+msgstr ""
+
+msgid ""
+"Fixed assembling of ``IR_{AHUV}LOAD`` specialized to boolean for aarch64."
+msgstr ""
+
+msgid "Fixed constant rematerialization on arm64."
+msgstr ""
+
+msgid "Box"
+msgstr ""
+
+msgid ""
+"Fixed a bug where ``box.cfg.force_recovery`` doesn’t work when there is no "
+"user spaces in a snapshot (:tarantool-issue:`7974`)."
+msgstr ""

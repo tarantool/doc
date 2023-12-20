@@ -1,0 +1,168 @@
+
+msgid "WAL extensions"
+msgstr ""
+
+msgid ""
+"WAL extensions available in Tarantool Enterprise Edition allow you to add "
+"auxiliary information to each :ref:`write-ahead log <internals-wal>` record."
+" For example, you can enable storing an old and new tuple for each CRUD "
+"operation performed. This information might be helpful for implementing a "
+"CDC (Change Data Capture) utility that transforms a data replication stream."
+msgstr ""
+
+msgid "Configuration"
+msgstr ""
+
+msgid ""
+"To configure WAL extensions, use the ``wal_ext`` :ref:`configuration "
+"property <index-book_cfg>`. Inside the ``wal_ext`` block, you can enable "
+"storing old and new tuples as follows:"
+msgstr ""
+
+msgid ""
+"Set the ``old`` and ``new`` options to ``true`` to store old and new tuples "
+"in a write-ahead log for all spaces."
+msgstr ""
+
+msgid ""
+"box.cfg {\n"
+"    wal_ext = { old = true, new = true }\n"
+"}"
+msgstr ""
+
+msgid ""
+"To adjust these options for specific spaces, use the ``spaces`` option."
+msgstr ""
+
+msgid ""
+"box.cfg {\n"
+"    wal_ext = {\n"
+"        old = true, new = true,\n"
+"        spaces = {\n"
+"            space1 = { old = false },\n"
+"            space2 = { new = false }\n"
+"        }\n"
+"    }\n"
+"}"
+msgstr ""
+
+msgid ""
+"The configuration for specific spaces has priority over the global "
+"configuration, so only new tuples are added to the log for ``space1`` and "
+"only old tuples for ``space2``."
+msgstr ""
+
+msgid ""
+"Note that records with additional fields are :ref:`replicated <replication-"
+"architecture>` as follows:"
+msgstr ""
+
+msgid ""
+"If a replica doesn't support the extended format configured on a master, "
+"auxiliary fields are skipped."
+msgstr ""
+
+msgid ""
+"If a replica and master have different configurations for WAL records, a "
+"master's configuration is ignored."
+msgstr ""
+
+msgid "Example"
+msgstr ""
+
+msgid ""
+"The table below demonstrates how write-ahead log records might look for the "
+"specific :ref:`CRUD operations <box_space_examples>` if storing old and new "
+"tuples is enabled for the ``bands`` space."
+msgstr ""
+
+msgid "Operation"
+msgstr ""
+
+msgid "WAL information"
+msgstr ""
+
+msgid "insert"
+msgstr ""
+
+msgid "``bands:insert{4, 'The Beatles', 1960}``"
+msgstr ""
+
+msgid "**new_tuple**: [4, 'The Beatles', 1960]"
+msgstr ""
+
+msgid "tuple: [4, 'The Beatles', 1960]"
+msgstr ""
+
+msgid "delete"
+msgstr ""
+
+msgid "``bands:delete{4}``"
+msgstr ""
+
+msgid "key: [4]"
+msgstr ""
+
+msgid "**old_tuple**: [4, 'The Beatles', 1960]"
+msgstr ""
+
+msgid "update"
+msgstr ""
+
+msgid "``bands:update({2}, {{'=', 2, 'Pink Floyd'}})``"
+msgstr ""
+
+msgid "**new_tuple**: [2, 'Pink Floyd', 1965]"
+msgstr ""
+
+msgid "**old_tuple**: [2, 'Scorpions', 1965]"
+msgstr ""
+
+msgid "key: [2]"
+msgstr ""
+
+msgid "tuple: [['=', 2, 'Pink Floyd']]"
+msgstr ""
+
+msgid "upsert"
+msgstr ""
+
+msgid "``bands:upsert({2, 'Pink Floyd', 1965}, {{'=', 2, 'The Doors'}})``"
+msgstr ""
+
+msgid "**new_tuple**: [2, 'The Doors', 1965]"
+msgstr ""
+
+msgid "**old_tuple**: [2, 'Pink Floyd', 1965]"
+msgstr ""
+
+msgid "operations: [['=', 2, 'The Doors']]"
+msgstr ""
+
+msgid "tuple: [2, 'Pink Floyd', 1965]"
+msgstr ""
+
+msgid "replace"
+msgstr ""
+
+msgid "``bands:replace{1, 'The Beatles', 1960}``"
+msgstr ""
+
+msgid "**old_tuple**: [1, 'Roxette', 1986]"
+msgstr ""
+
+msgid "**new_tuple**: [1, 'The Beatles', 1960]"
+msgstr ""
+
+msgid "tuple: [1, 'The Beatles', 1960]"
+msgstr ""
+
+msgid ""
+"Storing both old and new tuples is especially useful for the ``update`` "
+"operation because a write-ahead log record contains only a key value."
+msgstr ""
+
+msgid ""
+"You can use the :doc:`tt cat </reference/tooling/tt_cli/cat>` command to see"
+" the contents of a write-ahead log."
+msgstr ""

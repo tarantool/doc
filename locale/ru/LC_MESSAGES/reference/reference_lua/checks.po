@@ -1,0 +1,727 @@
+
+msgid "Module checks"
+msgstr ""
+
+msgid "**Since:** :doc:`2.11.0 </release/2.11.0>`"
+msgstr ""
+
+msgid ""
+"The ``checks`` module provides the ability to check the types of arguments "
+"passed to a Lua function. You need to call the :ref:`checks(type_1, ...) "
+"<checks-checks>` function inside the target Lua function and pass :ref:`one "
+"or more <checks_number_of_arguments>` type qualifiers to check the "
+"corresponding argument types. There are two types of type qualifiers:"
+msgstr ""
+
+msgid ""
+"A :ref:`string type qualifier <checks_string_type_qualifier>` checks whether"
+" a function's argument conforms to the specified type. Example: "
+"``'string'``."
+msgstr ""
+
+msgid ""
+"A :ref:`table type qualifier <checks_table_type_qualifiers>` checks whether "
+"the values of a table passed as an argument conform to the specified types. "
+"Example: ``{ 'string', 'number' }``."
+msgstr ""
+
+msgid ""
+"For earlier versions, you can install the ``checks`` module from the "
+"`Tarantool rocks repository <https://www.tarantool.io/en/download/rocks>`_."
+msgstr ""
+
+msgid "Loading checks"
+msgstr ""
+
+msgid ""
+"In Tarantool :doc:`2.11.0 </release/2.11.0>` and later versions, the "
+":ref:`checks API <checks_api_reference>` is available in a script without "
+"loading the module."
+msgstr ""
+
+msgid ""
+"For earlier versions, you need to install the ``checks`` module from the "
+"Tarantool rocks repository and load the module using the ``require()`` "
+"directive:"
+msgstr ""
+
+msgid "local checks = require('checks')"
+msgstr ""
+
+msgid "Number of arguments to check"
+msgstr ""
+
+msgid ""
+"For each argument to check, you need to specify its own type qualifier in "
+"the :ref:`checks(type_1, ...) <checks-checks>` function."
+msgstr ""
+
+msgid "One argument"
+msgstr ""
+
+msgid ""
+"In the example below, the ``checks`` function accepts a ``string`` type "
+"qualifier to verify that only a string value can be passed to the ``greet`` "
+"function. Otherwise, an error is raised."
+msgstr ""
+
+msgid ""
+"function greet(name)\n"
+"    checks('string')\n"
+"    return 'Hello, ' .. name\n"
+"end\n"
+"--[[\n"
+"greet('John')\n"
+"-- returns 'Hello, John'\n"
+"\n"
+"greet(123)\n"
+"-- raises an error: bad argument #1 to nil (string expected, got number)\n"
+"--]]\n"
+"\n"
+msgstr ""
+
+msgid "Multiple arguments"
+msgstr ""
+
+msgid ""
+"To check the types of several arguments, you need to pass the corresponding "
+"type qualifiers to the ``checks`` function. In the example below, both "
+"arguments should be string values."
+msgstr ""
+
+msgid ""
+"function greet_fullname(firstname, lastname)\n"
+"    checks('string', 'string')\n"
+"    return 'Hello, ' .. firstname .. ' ' .. lastname\n"
+"end\n"
+"--[[\n"
+"greet_fullname('John', 'Smith')\n"
+"-- returns 'Hello, John Smith'\n"
+"\n"
+"greet_fullname('John', 1)\n"
+"-- raises an error: bad argument #2 to nil (string expected, got number)\n"
+"--]]\n"
+"\n"
+msgstr ""
+
+msgid ""
+"To skip checking specific arguments, use the :ref:`? placeholder "
+"<checks_any_type>`."
+msgstr ""
+
+msgid "Variable number of arguments"
+msgstr ""
+
+msgid ""
+"You can check the types of explicitly specified arguments for functions that"
+" accept a variable number of arguments."
+msgstr ""
+
+msgid ""
+"function extra_arguments_num(a, b, ...)\n"
+"    checks('string', 'number')\n"
+"    return select('#', ...)\n"
+"end\n"
+"--[[\n"
+"extra_arguments_num('a', 2, 'c')\n"
+"-- returns 1\n"
+"\n"
+"extra_arguments_num('a', 'b', 'c')\n"
+"-- raises an error: bad argument #1 to nil (string expected, got number)\n"
+"--]]\n"
+"\n"
+msgstr ""
+
+msgid "String type qualifier"
+msgstr ""
+
+msgid ""
+"This section describes how to check a specific argument type using a string "
+"type qualifier:"
+msgstr ""
+
+msgid ""
+"The :ref:`Supported types <checks_string_supported_types>` section describes"
+" all the types supported by the ``checks`` module."
+msgstr ""
+
+msgid ""
+"If required, you can make a :ref:`union type <checks_union_type>` to allow "
+"an argument to accept several types."
+msgstr ""
+
+msgid ""
+"You can make any of the supported types :ref:`optional "
+"<checks_optional_type>`."
+msgstr ""
+
+msgid "Supported types"
+msgstr ""
+
+msgid "Lua types"
+msgstr ""
+
+msgid ""
+"A string type qualifier can accept any of the `Lua types "
+"<https://www.lua.org/pil/2.html>`_, for example, ``string``, ``number``, "
+"``table``, or ``nil``. In the example below, the ``checks`` function accepts"
+" ``string`` to validate that only a string value can be passed to the "
+"``greet`` function."
+msgstr ""
+
+msgid "Tarantool types"
+msgstr ""
+
+msgid ""
+"You can use :ref:`Tarantool-specific types <index_box_field_type_details>` "
+"in a string qualifier. The example below shows how to check that a function "
+"argument is a decimal value."
+msgstr ""
+
+msgid ""
+"local decimal = require('decimal')\n"
+"function sqrt(value)\n"
+"    checks('decimal')\n"
+"    return decimal.sqrt(value)\n"
+"end\n"
+"--[[\n"
+"sqrt(decimal.new(16))\n"
+"-- returns 4\n"
+"\n"
+"sqrt(16)\n"
+"-- raises an error: bad argument #1 to nil (decimal expected, got number)\n"
+"--]]\n"
+"\n"
+msgstr ""
+
+msgid "This table lists all the checks available for Tarantool types:"
+msgstr ""
+
+msgid "Check"
+msgstr ""
+
+msgid "Description"
+msgstr ""
+
+msgid "See also"
+msgstr ""
+
+msgid "``checks('datetime')``"
+msgstr ""
+
+msgid ""
+"Check whether the specified value is :ref:`datetime_object <datetime_obj>`"
+msgstr ""
+
+msgid ":ref:`checkers.datetime(value) <checks-checkers-datetime>`"
+msgstr ""
+
+msgid "``checks('decimal')``"
+msgstr ""
+
+msgid ""
+"Check whether the specified value has the :ref:`decimal <decimal>` type"
+msgstr ""
+
+msgid ":ref:`checkers.decimal(value) <checks-checkers-decimal>`"
+msgstr ""
+
+msgid "``checks('error')``"
+msgstr ""
+
+msgid ""
+"Check whether the specified value is :ref:`error_object <box_error-"
+"error_object>`"
+msgstr ""
+
+msgid ":ref:`checkers.error(value) <checks-checkers-error>`"
+msgstr ""
+
+msgid "``checks('int64')``"
+msgstr ""
+
+msgid "Check whether the specified value is an ``int64`` value"
+msgstr ""
+
+msgid ":ref:`checkers.int64(value) <checks-checkers-int64>`"
+msgstr ""
+
+msgid "``checks('interval')``"
+msgstr ""
+
+msgid ""
+"Check whether the specified value is :ref:`interval_object <interval_obj>`"
+msgstr ""
+
+msgid ":ref:`checkers.interval(value) <checks-checkers-interval>`"
+msgstr ""
+
+msgid "``checks('tuple')``"
+msgstr ""
+
+msgid "Check whether the specified value is a :ref:`tuple <box_tuple-new>`"
+msgstr ""
+
+msgid ":ref:`checkers.tuple(value) <checks-checkers-tuple>`"
+msgstr ""
+
+msgid "``checks('uint64')``"
+msgstr ""
+
+msgid "Check whether the specified value is a ``uint64`` value"
+msgstr ""
+
+msgid ":ref:`checkers.uint64(value) <checks-checkers-uint64>`"
+msgstr ""
+
+msgid "``checks('uuid')``"
+msgstr ""
+
+msgid "Check whether the specified value is :ref:`uuid_object <uuid-module>`"
+msgstr ""
+
+msgid ":ref:`checkers.uuid(value) <checks-checkers-uuid>`"
+msgstr ""
+
+msgid "``checks('uuid_bin')``"
+msgstr ""
+
+msgid ""
+"Check whether the specified value is :ref:`uuid <uuid-module>` represented "
+"by a 16-byte binary string"
+msgstr ""
+
+msgid ":ref:`checkers.uuid_bin(value) <checks-checkers-uuid_bin>`"
+msgstr ""
+
+msgid "``checks('uuid_str')``"
+msgstr ""
+
+msgid ""
+"Check whether the specified value is :ref:`uuid <uuid-module>` represented "
+"by a 36-byte hexadecimal string"
+msgstr ""
+
+msgid ":ref:`checkers.uuid_str(value) <checks-checkers-uuid_str>`"
+msgstr ""
+
+msgid "Custom function"
+msgstr ""
+
+msgid ""
+"A string type qualifier can accept the name of a custom function that "
+"performs arbitrary validations. To achieve this, create a function returning"
+" ``true`` if the value is valid and add this function to the :ref:`checkers "
+"<checks-checkers>` table."
+msgstr ""
+
+msgid ""
+"The example below shows how to use the ``positive`` function to check that "
+"an argument value is a positive number."
+msgstr ""
+
+msgid ""
+"function checkers.positive(value)\n"
+"    return (type(value) == 'number') and (value > 0)\n"
+"end\n"
+"\n"
+"function get_doubled_number(value)\n"
+"    checks('positive')\n"
+"    return value * 2\n"
+"end\n"
+"--[[\n"
+"get_doubled_number(10)\n"
+"-- returns 20\n"
+"\n"
+"get_doubled_number(-5)\n"
+"-- raises an error: bad argument #1 to nil (positive expected, got number)\n"
+"--]]\n"
+"\n"
+msgstr ""
+
+msgid "Metatable type"
+msgstr ""
+
+msgid ""
+"A string qualifier can accept a value stored in the ``__type`` field of the "
+"argument `metatable <https://www.lua.org/pil/13.html>`_."
+msgstr ""
+
+msgid ""
+"local blue = setmetatable({ 0, 0, 255 }, { __type = 'color' })\n"
+"function get_blue_value(color)\n"
+"    checks('color')\n"
+"    return color[3]\n"
+"end\n"
+"--[[\n"
+"get_blue_value(blue)\n"
+"-- returns 255\n"
+"\n"
+"get_blue_value({0, 0, 255})\n"
+"-- raises an error: bad argument #1 to nil (color expected, got table)\n"
+"--]]\n"
+"\n"
+msgstr ""
+
+msgid "Union types"
+msgstr ""
+
+msgid ""
+"To allow an argument to accept several types (a union type), concatenate "
+"type names with a pipe (``|``). In the example below, the argument can be "
+"both a ``number`` and ``string`` value."
+msgstr ""
+
+msgid ""
+"function get_argument_type(value)\n"
+"    checks('number|string')\n"
+"    return type(value)\n"
+"end\n"
+"--[[\n"
+"get_argument_type(1)\n"
+"-- returns 'number'\n"
+"\n"
+"get_argument_type('key1')\n"
+"-- returns 'string'\n"
+"\n"
+"get_argument_type(true)\n"
+"-- raises an error: bad argument #1 to nil (number|string expected, got boolean)\n"
+"--]]\n"
+"\n"
+msgstr ""
+
+msgid "Optional types"
+msgstr ""
+
+msgid ""
+"To make any of the supported types optional, prefix its name with a question"
+" mark (``?``). In the example below, the ``name`` argument is optional. This"
+" means that the ``greet`` function can accept ``string`` and ``nil`` values."
+msgstr ""
+
+msgid ""
+"function greet(name)\n"
+"    checks('?string')\n"
+"    if name ~= nil then\n"
+"        return 'Hello, ' .. name\n"
+"    else\n"
+"        return 'Hello from Tarantool'\n"
+"    end\n"
+"end\n"
+"--[[\n"
+"greet('John')\n"
+"-- returns 'Hello, John'\n"
+"\n"
+"greet()\n"
+"-- returns 'Hello from Tarantool'\n"
+"\n"
+"greet(123)\n"
+"-- raises an error: bad argument #1 to nil (string expected, got number)\n"
+"--]]\n"
+"\n"
+msgstr ""
+
+msgid ""
+"As for a specific type, you can make a :ref:`union type <checks_union_type>`"
+" value optional: ``?number|string``."
+msgstr ""
+
+msgid "Skipping argument checking"
+msgstr ""
+
+msgid ""
+"You can skip checking of the specified arguments using the question mark "
+"(``?``) placeholder. In this case, the argument can be any type."
+msgstr ""
+
+msgid ""
+"function greet_fullname_any(firstname, lastname)\n"
+"    checks('string', '?')\n"
+"    return 'Hello, ' .. firstname .. ' ' .. tostring(lastname)\n"
+"end\n"
+"--[[\n"
+"greet_fullname_any('John', 'Doe')\n"
+"-- returns 'Hello, John Doe'\n"
+"\n"
+"greet_fullname_any('John', 1)\n"
+"-- returns 'Hello, John 1'\n"
+"--]]\n"
+"\n"
+msgstr ""
+
+msgid "Table type qualifier"
+msgstr ""
+
+msgid ""
+"A table type qualifier checks whether the values of a table passed as an "
+"argument conform to the specified types. In this case, the following checks "
+"are made:"
+msgstr ""
+
+msgid ""
+"The argument is checked to conform to the ``?table`` type, and its content "
+"is validated."
+msgstr ""
+
+msgid ""
+"Table values are validated against the specified :ref:`string type "
+"qualifiers <checks_string_type_qualifier>`."
+msgstr ""
+
+msgid ""
+"Table keys missing in ``checks`` are validated against the ``nil`` type."
+msgstr ""
+
+msgid ""
+"The code below checks that the first and second table values have the "
+"``string`` and ``number`` types."
+msgstr ""
+
+msgid ""
+"function configure_connection(options)\n"
+"    checks({ 'string', 'number' })\n"
+"    local ip_address = options[1] or '127.0.0.1'\n"
+"    local port = options[2] or 3301\n"
+"    return ip_address .. ':' .. port\n"
+"end\n"
+"--[[\n"
+"configure_connection({'0.0.0.0', 3303})\n"
+"-- returns '0.0.0.0:3303'\n"
+"\n"
+"configure_connection({'0.0.0.0', '3303'})\n"
+"-- raises an error: bad argument options[2] to nil (number expected, got string)\n"
+"--]]\n"
+"\n"
+msgstr ""
+
+msgid "In the next example, the same checks are made for the specified keys."
+msgstr ""
+
+msgid ""
+"function configure_connection_opts(options)\n"
+"    checks({ ip_address = 'string', port = 'number' })\n"
+"    local ip_address = options.ip_address or '127.0.0.1'\n"
+"    local port = options.port or 3301\n"
+"    return ip_address .. ':' .. port\n"
+"end\n"
+"--[[\n"
+"configure_connection_opts({ip_address = '0.0.0.0', port = 3303})\n"
+"-- returns '0.0.0.0:3303'\n"
+"\n"
+"configure_connection_opts({ip_address = '0.0.0.0', port = '3303'})\n"
+"-- raises an error: bad argument options.port to nil (number expected, got string)\n"
+"\n"
+"configure_connection_opts({login = 'testuser', ip_address = '0.0.0.0', port = 3303})\n"
+"-- raises an error: unexpected argument options.login to nil\n"
+"--]]\n"
+"\n"
+msgstr ""
+
+msgid "Table qualifiers can be nested and use tables, too."
+msgstr ""
+
+msgid "API Reference"
+msgstr ""
+
+msgid "**Members**"
+msgstr ""
+
+msgid ":ref:`checks() <checks-checks>`"
+msgstr ""
+
+msgid ""
+"When called inside a function, checks that the function's arguments conform "
+"to the specified types"
+msgstr ""
+
+msgid ":ref:`checkers <checks-checkers>`"
+msgstr ""
+
+msgid "A global variable that provides access to checkers for different types"
+msgstr ""
+
+msgid "checks()"
+msgstr ""
+
+msgid ""
+"When called inside a function, checks that the function's arguments conform "
+"to the specified types."
+msgstr ""
+
+msgid "Parameters"
+msgstr ""
+
+msgid ""
+"a :ref:`string <checks_string_type_qualifier>` or :ref:`table "
+"<checks_table_type_qualifiers>` type qualifier used to check the argument "
+"type"
+msgstr ""
+
+msgid ""
+"optional type qualifiers used to check the types of :ref:`other arguments "
+"<checks_number_of_arguments>`"
+msgstr ""
+
+msgid "checkers"
+msgstr ""
+
+msgid ""
+"The ``checkers`` global variable provides access to checkers for different "
+"types. You can use this variable to add a :ref:`custom checker "
+"<checks_custom_function>` that performs arbitrary validations."
+msgstr ""
+
+msgid ""
+"The ``checkers`` variable also provides access to checkers for Tarantool-"
+"specific types. These checkers can be used in a custom checker."
+msgstr ""
+
+msgid ""
+"Check whether the specified value is :ref:`datetime_object <datetime_obj>`."
+msgstr ""
+
+msgid "the value to check the type for"
+msgstr ""
+
+msgid "return"
+msgstr ""
+
+msgid ""
+"``true`` if the specified value is ``datetime_object``; otherwise, ``false``"
+msgstr ""
+
+msgid "rtype"
+msgstr ""
+
+msgid "boolean"
+msgstr ""
+
+msgid "**Example**"
+msgstr ""
+
+msgid ""
+"local datetime = require('datetime')\n"
+"local is_datetime = checkers.datetime(datetime.new { day = 1, month = 6, year = 2023 })\n"
+"local is_interval = checkers.interval(datetime.interval.new { day = 1 })\n"
+msgstr ""
+
+msgid ""
+"Check whether the specified value has the :ref:`decimal <decimal>` type."
+msgstr ""
+
+msgid ""
+"``true`` if the specified value has the ``decimal`` type; otherwise, "
+"``false``"
+msgstr ""
+
+msgid ""
+"local decimal = require('decimal')\n"
+"local is_decimal = checkers.decimal(decimal.new(16))\n"
+msgstr ""
+
+msgid ""
+"Check whether the specified value is :ref:`error_object <box_error-"
+"error_object>`."
+msgstr ""
+
+msgid ""
+"``true`` if the specified value is ``error_object``; otherwise, ``false``"
+msgstr ""
+
+msgid ""
+"local server_error = box.error.new({ code = 500, reason = 'Server error' })\n"
+"local is_error = checkers.error(server_error)\n"
+msgstr ""
+
+msgid ""
+"Check whether the specified value is one of the following ``int64`` values:"
+msgstr ""
+
+msgid "a Lua number in a range from -2^53+1 to 2^53-1 (inclusive)"
+msgstr ""
+
+msgid "Lua cdata ``ctype<uint64_t>`` in a range from 0 to ``LLONG_MAX``"
+msgstr ""
+
+msgid "Lua cdata ``ctype<int64_t>``"
+msgstr ""
+
+msgid ""
+"``true`` if the specified value is an ``int64`` value; otherwise, ``false``"
+msgstr ""
+
+msgid ""
+"local is_int64 = checkers.int64(-1024)\n"
+"local is_uint64 = checkers.uint64(2048)\n"
+msgstr ""
+
+msgid ""
+"Check whether the specified value is :ref:`interval_object <interval_obj>`."
+msgstr ""
+
+msgid ""
+"``true`` if the specified value is ``interval_object``; otherwise, ``false``"
+msgstr ""
+
+msgid "Check whether the specified value is a :ref:`tuple <box_tuple-new>`."
+msgstr ""
+
+msgid "``true`` if the specified value is a tuple; otherwise, ``false``"
+msgstr ""
+
+msgid "local is_tuple = checkers.tuple(box.tuple.new(1, 'The Beatles', 1960))\n"
+msgstr ""
+
+msgid ""
+"Check whether the specified value is one of the following ``uint64`` values:"
+msgstr ""
+
+msgid "a Lua number in a range from 0 to 2^53-1 (inclusive)"
+msgstr ""
+
+msgid "Lua cdata ``ctype<uint64_t>``"
+msgstr ""
+
+msgid "Lua cdata ``ctype<int64_t>`` in range from 0 to ``LLONG_MAX``"
+msgstr ""
+
+msgid ""
+"``true`` if the specified value is an ``uint64`` value; otherwise, ``false``"
+msgstr ""
+
+msgid "Check whether the specified value is :ref:`uuid_object <uuid-module>`."
+msgstr ""
+
+msgid ""
+"``true`` if the specified value is ``uuid_object``; otherwise, ``false``"
+msgstr ""
+
+msgid ""
+"local uuid = require('uuid')\n"
+"local is_uuid = checkers.uuid(uuid())\n"
+"local is_uuid_bin = checkers.uuid_bin(uuid.bin())\n"
+"local is_uuid_str = checkers.uuid_str(uuid.str())\n"
+msgstr ""
+
+msgid ""
+"Check whether the specified value is :ref:`uuid <uuid-module>` represented "
+"by a 16-byte binary string."
+msgstr ""
+
+msgid ""
+"``true`` if the specified value is ``uuid`` represented by a 16-byte binary "
+"string; otherwise, ``false``"
+msgstr ""
+
+msgid "**See also:** :ref:`uuid(value) <checks-checkers-uuid>`"
+msgstr ""
+
+msgid ""
+"Check whether the specified value is :ref:`uuid <uuid-module>` represented "
+"by a 36-byte hexadecimal string."
+msgstr ""
+
+msgid ""
+"``true`` if the specified value is ``uuid`` represented by a 36-byte "
+"hexadecimal string; otherwise, ``false``"
+msgstr ""

@@ -1,5 +1,6 @@
 
-msgid "Module `txn`"
+#, fuzzy
+msgid "Module txn"
 msgstr "Модуль `txn`"
 
 msgid "Return true if there is an active transaction."

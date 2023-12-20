@@ -1,5 +1,6 @@
 
-msgid "Module `say` (logging)"
+#, fuzzy
+msgid "Module say (logging)"
 msgstr "Модуль `say` (запись в журнал)"
 
 msgid "do not use this value directly"
@@ -26,5 +27,6 @@ msgstr "См. также :manpage:`printf(3)`, :ref:`say_level<c_api-say-say_lev
 msgid "**Example:**"
 msgstr "**Пример:**"
 
+#, python-format
 msgid "say_info(\"Some useful information: %s\", status);"
 msgstr "say_info(\"Some useful information: %s\", status);"

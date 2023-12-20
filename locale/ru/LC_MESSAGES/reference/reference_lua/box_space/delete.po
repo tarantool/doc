@@ -2,7 +2,8 @@
 msgid "space_object:delete()"
 msgstr "space_object:delete()"
 
-msgid "Delete a tuple identified by a primary key."
+#, fuzzy
+msgid "Delete a tuple identified by the primary key."
 msgstr "Удаление кортежа по первичному ключу."
 
 msgid "Parameters"
@@ -33,8 +34,8 @@ msgid "**Possible errors:**"
 msgstr "**Возможные ошибки:**"
 
 msgid ""
-":errcode:`ER_TRANSACTION_CONFLICT` if a transaction conflict is detected in the "
-":ref:`MVCC transaction mode <txn_mode_transaction-manager>`."
+":errcode:`ER_TRANSACTION_CONFLICT` if a transaction conflict is detected in "
+"the :ref:`MVCC transaction mode <txn_mode_transaction-manager>`."
 msgstr ""
 ":errcode:`ER_TRANSACTION_CONFLICT`, если транзакция стала конфликтной в "
 ":ref:`транзакционном режиме MVCC <txn_mode_transaction-manager>`."
@@ -42,9 +43,10 @@ msgstr ""
 msgid "**Complexity factors:** Index size, Index type"
 msgstr "**Факторы сложности:** Размер индекса, тип индекса"
 
+#, fuzzy
 msgid ""
-"**Note re storage engine:** vinyl will return ``nil``, rather than the "
-"deleted tuple."
+"**Note regarding storage engine:** vinyl will return ``nil``, rather than "
+"the deleted tuple."
 msgstr ""
 "**Примечание про движок базы данных:** vinyl вернет ``nil``, а не удаленный "
 "кортеж."
