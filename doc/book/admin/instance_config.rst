@@ -11,11 +11,11 @@ This information is helpful for understanding how to administer Tarantool instan
 
 The main steps of creating and preparing the application for deployment are:
 
-1.  :ref:`Initializing a local environment <admin-instance_config-init-environment>`.
+1.  :ref:`admin-instance_config-init-environment`.
 
-2.  :ref:`Creating and developing an application <admin-instance_config-develop-app>`.
+2.  :ref:`admin-instance_config-develop-app`.
 
-3.  :ref:`Packaging the application <admin-instance_config-package-app>`.
+3.  :ref:`admin-instance_config-package-app`.
 
 In this section, a `sharded_cluster <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster>`_ application is used as an example.
 This cluster includes 5 instances: one router and 4 storages, which constitute two replica sets.
@@ -149,7 +149,7 @@ The application's layout looks similar to the one defined when :ref:`developing 
 
 -   ``sharded_cluster``: a packed application. In addition to files created during the application development, includes the ``.rocks`` directory containing application dependencies (for example, ``vshard``).
 
--   ``tt.yaml``: a tt configuration file.
+-   ``tt.yaml``: a ``tt`` configuration file.
 
 
 

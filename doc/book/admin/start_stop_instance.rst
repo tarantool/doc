@@ -6,7 +6,7 @@ Starting and stopping instances
 This section describes how to manage instances in a Tarantool cluster using the :ref:`tt <tt-cli>` utility.
 A cluster can include multiple instances that run different code.
 A typical example is a cluster application that includes router and storage instances.
-For example, you can manage instances in the following ways:
+Particularly, you can perform the following actions:
 
 *   start all instances in a cluster or only specific ones
 *   check the status of instances
