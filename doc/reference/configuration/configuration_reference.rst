@@ -810,7 +810,7 @@ replicasets
     ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/manual_leader/config.yaml
         :language: yaml
         :start-at: replication:
-        :end-at: listen: 127.0.0.1:3303
+        :end-at: 127.0.0.1:3303
         :dedent:
 
 

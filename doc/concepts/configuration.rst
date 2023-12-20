@@ -156,9 +156,9 @@ You can learn more about configuring replication from :ref:`Replication tutorial
 -   ``iproto`` (*global*, *instance*)
 
     The ``iproto`` section is specified on both global and instance levels.
-    The ``iproto.advertise.peer`` option specifies a URI used by an instance to connect to another instance as a replica.
-    In the example above, the URI includes a user name only.
-    A host value is taken from ``iproto.listen`` that is set on the instance level.
+    The ``iproto.advertise.peer`` option specifies the parameters used by an instance to connect to another instance as a replica, for example, a URI, a login and password, or SSL parameters .
+    In the example above, the option includes ``login`` only.
+    An URI is taken from ``iproto.listen`` that is set on the instance level.
 
 -   ``replication``: (*global*)
 

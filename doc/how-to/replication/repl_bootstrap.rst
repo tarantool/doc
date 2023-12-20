@@ -68,7 +68,7 @@ Define a replica set topology inside the :ref:`groups <configuration_reference_g
 ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/manual_leader/config.yaml
     :language: yaml
     :start-at: groups:
-    :end-at: listen: 127.0.0.1:3302
+    :end-at: 127.0.0.1:3302
     :dedent:
 
 
@@ -96,7 +96,7 @@ Set :ref:`iproto.advertise.peer <configuration_reference_iproto_advertise_peer>`
 ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/manual_leader/config.yaml
     :language: yaml
     :start-at: iproto:
-    :end-at: peer: replicator@
+    :end-at: login: replicator
     :dedent:
 
 .. _replication-master_replica_configuring_result:
@@ -108,7 +108,7 @@ The resulting replica set configuration should look as follows:
 
 ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/manual_leader/config.yaml
     :language: yaml
-    :end-at: listen: 127.0.0.1:3302
+    :end-at: 127.0.0.1:3302
     :dedent:
 
 
@@ -267,7 +267,7 @@ Adding an instance to the configuration
     ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/manual_leader/config.yaml
         :language: yaml
         :start-at: groups:
-        :end-at: listen: 127.0.0.1:3303
+        :end-at: 127.0.0.1:3303
         :dedent:
 
 
@@ -584,7 +584,7 @@ Removing an instance from the configuration
     ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/manual_leader/config.yaml
         :language: yaml
         :start-at: instances
-        :end-at: listen: 127.0.0.1:3302
+        :end-at: 127.0.0.1:3302
         :dedent:
 
 3.  Reload configurations on ``instance001`` and ``instance002``:
