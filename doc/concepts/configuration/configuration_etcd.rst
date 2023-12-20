@@ -112,7 +112,7 @@ Starting Tarantool instances
 ----------------------------
 
 The :ref:`tt <tt-cli>` utility is the recommended way to start Tarantool instances.
-You can learn how to do this from the :ref:`Starting instances using the tt utility <configuration_run_instance_tt>` section.
+You can learn how to do this from the :ref:`Starting and stopping instances <admin-start_stop_instance>` section.
 
 You can also use the ``tarantool`` command to :ref:`start a Tarantool instance <configuration_run_instance_tarantool>`.
 In this case, you can eliminate creating a :ref:`local etcd configuration  <etcd_local_configuration>` and provide etcd connection settings using the ``TT_CONFIG_ETCD_ENDPOINTS`` and ``TT_CONFIG_ETCD_PREFIX`` :ref:`environment variables <configuration_environment_variable>`.

@@ -1,0 +1,30 @@
+description: Basic template
+vars:
+  - prompt: A name of the user for replication
+    name: replicator_user_name
+    default: replicator
+
+  - prompt: A password for a replicator user
+    name: replicator_user_password
+    re: ^\w+$
+
+  - prompt: A name of the user for sharding
+    name: sharding_user_name
+    default: storage
+
+  - prompt: A password for a sharding user
+    name: sharding_user_password
+    re: ^\w+$
+
+  - prompt: The number of buckets in a cluster
+    name: sharding_bucket_count
+    default: '1000'
+
+  - prompt: A listen URI
+    name: listen_uri
+    default: '127.0.0.1'
+include:
+  - config.yaml
+  - instances.yaml
+  - router.lua
+  - storage.lua
