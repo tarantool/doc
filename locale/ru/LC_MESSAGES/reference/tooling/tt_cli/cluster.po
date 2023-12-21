@@ -1,0 +1,6 @@
+
+msgid "Managing a cluster's configuration"
+msgstr ""
+
+msgid "$ tt cluster"
+msgstr ""

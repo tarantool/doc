@@ -1,0 +1,22 @@
+
+msgid "Listing enabled applications"
+msgstr ""
+
+msgid "$ tt instances"
+msgstr ""
+
+msgid "``tt instances`` shows the list of enabled applications."
+msgstr ""
+
+msgid ""
+"*Enabled* applications are applications that are stored inside the "
+"``instances_enabled`` directory specified in the :ref:`tt configuration file"
+" <tt-config_file_app>`. They can be either running or not. To check if an "
+"application is running, use :doc:`tt status <status>`."
+msgstr ""
+
+msgid "Example"
+msgstr ""
+
+msgid "Show the list of enabled applications:"
+msgstr ""

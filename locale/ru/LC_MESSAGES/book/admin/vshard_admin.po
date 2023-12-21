@@ -3,11 +3,11 @@ msgid "Sharding with vshard"
 msgstr "Шардирование с vshard"
 
 msgid ""
-"Sharding in Tarantool is implemented in the ``vshard`` module. "
-"For a quick start with ``vshard``, refer to the :ref:`guide <vshard-quick-start>`."
+"Sharding in Tarantool is implemented in the ``vshard`` module. For a quick "
+"start with ``vshard``, refer to the :ref:`guide <vshard-quick-start>`."
 msgstr ""
-"Шардирование БД в Tarantool реализует модуль ``vshard``. "
-"Вы можете обратиться к :ref:`руководству по быстрому запуску <vshard-quick-start>` "
+"Шардирование БД в Tarantool реализует модуль ``vshard``. Вы можете "
+"обратиться к :ref:`руководству по быстрому запуску <vshard-quick-start>` "
 "этого модуля."
 
 msgid "Installation"
@@ -20,7 +20,8 @@ msgstr ""
 "Модуль ``vshard`` не входит в основной дистрибутив Tarantool. Чтобы "
 "установить модуль, выполните команду:"
 
-msgid "$ tarantoolctl rocks install vshard"
+#, fuzzy
+msgid "$ tt rocks install vshard"
 msgstr "$ tarantoolctl rocks install vshard"
 
 msgid ""
@@ -38,14 +39,16 @@ msgstr "Настройка"
 msgid "Any viable sharded cluster consists of:"
 msgstr "Любой рабочий сегментированный кластер состоит из:"
 
+#, fuzzy
 msgid ""
 "one or more replica sets, each containing two or more :ref:`storage <vshard-"
-"storage>` instances,"
+"architecture-storage>` instances,"
 msgstr ""
 "одного или нескольких наборов реплик с двумя или несколькими "
 ":ref:`хранилищами <vshard-storage>` в каждом,"
 
-msgid "one or more :ref:`router <vshard-router>` instances."
+#, fuzzy
+msgid "one or more :ref:`router <vshard-architecture-router>` instances."
 msgstr "одного или нескольких :ref:`роутеров <vshard-router>`."
 
 msgid ""
@@ -90,14 +93,6 @@ msgid ""
 msgstr ""
 "Все хранилища можно развернуть, используя один набор файлов экземпляра "
 "(конфигурационных файлов)."
-
-msgid "Self-identification is currently performed using ``tarantoolctl``:"
-msgstr ""
-"Самоопределение в настоящий момент осуществляется с помощью "
-"``tarantoolctl``:"
-
-msgid "$ tarantoolctl instance_name"
-msgstr "$ tarantoolctl имя_экземпляра"
 
 msgid ""
 "All ``router`` instances can also be deployed using identical instance "
@@ -504,6 +499,7 @@ msgstr ""
 msgid "**Example #2:**"
 msgstr "**Пример №2:**"
 
+#, python-format
 msgid ""
 "You have 100000 buckets and each bucket stores ~0.001% of your data. The "
 "cluster has 10 replica sets. And you never can afford > 0.1% of data locked "
@@ -1196,3 +1192,11 @@ msgstr ""
 "мастер набора реплик становится недоступным, файбер перенаправляет запросы "
 "на чтение к репликам. Запросы на запись отклоняются с ошибкой до тех пор, "
 "пока мастер не будет доступен."
+
+#~ msgid "Self-identification is currently performed using ``tarantoolctl``:"
+#~ msgstr ""
+#~ "Самоопределение в настоящий момент осуществляется с помощью "
+#~ "``tarantoolctl``:"
+
+#~ msgid "$ tarantoolctl instance_name"
+#~ msgstr "$ tarantoolctl имя_экземпляра"

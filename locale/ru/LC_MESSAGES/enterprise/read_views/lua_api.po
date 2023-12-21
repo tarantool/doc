@@ -1,0 +1,107 @@
+
+msgid "Read views: Lua API"
+msgstr ""
+
+msgid ""
+"This topic describes the Lua API for working with :ref:`read views "
+"<read_views>`."
+msgstr ""
+
+msgid "Create a :ref:`new read view <creating_read_view>`."
+msgstr ""
+
+msgid "Parameters"
+msgstr ""
+
+msgid ""
+"(optional) configurations options for a read view. For example, the ``name``"
+" option specifies a read view name. If ``name`` is not specified, a read "
+"view name is set to ``unknown``."
+msgstr ""
+
+msgid "return"
+msgstr ""
+
+msgid "a created read view object"
+msgstr ""
+
+msgid "rtype"
+msgstr ""
+
+msgid "read_view_object"
+msgstr ""
+
+msgid "**Example:**"
+msgstr ""
+
+msgid "tarantool> read_view1 = box.read_view.open({name = 'read_view1'})"
+msgstr ""
+
+msgid "An object that represents a :ref:`read view <read_views>`."
+msgstr ""
+
+msgid ""
+"Get information about a read view such as a name, status, or ID. All the "
+"available fields are listed below in the object options."
+msgstr ""
+
+msgid "information about a read view"
+msgstr ""
+
+msgid "table"
+msgstr ""
+
+msgid ""
+"Close a read view. After the read view is closed, its :ref:`status "
+"<read_view_object-status>` is set to ``closed``. On an attempt to use it, an"
+" error is raised."
+msgstr ""
+
+msgid "A read view status. The possible values are ``open`` and ``closed``."
+msgstr ""
+
+msgid "string"
+msgstr ""
+
+msgid "A unique numeric identifier of a read view."
+msgstr ""
+
+msgid "number"
+msgstr ""
+
+msgid ""
+"A read view name. You can specify a read view name in the "
+":ref:`box.read_view.open() <box-read_view-open>` arguments."
+msgstr ""
+
+msgid ""
+"Determine whether a read view is system. For example, system read views can "
+"be created to make a :ref:`checkpoint <book_cfg_checkpoint_daemon>` or join "
+"a new :ref:`replica <replication-architecture>`."
+msgstr ""
+
+msgid "boolean"
+msgstr ""
+
+msgid ""
+"The :ref:`fiber.clock() <fiber-clock>` value at the moment of opening a read"
+" view."
+msgstr ""
+
+msgid ""
+"The :ref:`box.info.vclock <box_introspection-box_info>` value at the moment "
+"of opening a read view."
+msgstr ""
+
+msgid ""
+"The :ref:`box.info.signature <box_introspection-box_info>` value at the "
+"moment of opening a read view."
+msgstr ""
+
+msgid ""
+"Get access to database spaces included in a read view. You can use this "
+"field to :ref:`query space data <querying_data>`."
+msgstr ""
+
+msgid "space object"
+msgstr ""

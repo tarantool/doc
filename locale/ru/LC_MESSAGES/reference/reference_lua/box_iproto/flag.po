@@ -1,0 +1,22 @@
+
+msgid "box.iproto.flag"
+msgstr ""
+
+msgid ""
+"Contains the flags from the ``IPROTO_FLAGS`` key. Learn more: "
+":ref:`IPROTO_FLAGS key <box_protocol-flags>`."
+msgstr ""
+
+msgid "**Example**"
+msgstr ""
+
+msgid ""
+"tarantool> box.iproto.flag.COMMIT\n"
+"---\n"
+"- 1\n"
+"...\n"
+"tarantool> box.iproto.flag.WAIT_SYNC\n"
+"---\n"
+"- 2\n"
+"..."
+msgstr ""

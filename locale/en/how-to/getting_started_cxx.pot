@@ -1,0 +1,724 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-20 12:25+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/how-to/getting_started_cxx.rst:3
+msgid "Connecting to Tarantool from C++"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:5
+msgid "To simplify the start of your working with the Tarantool C++ connector, we will use the `example application <https://github.com/tarantool/tntcxx/blob/master/examples/Simple.cpp>`_ from the connector repository. We will go step by step through the application code and explain what each part does."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:10
+msgid "The following main topics are discussed in this manual:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:19
+msgid "Pre-requisites"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:21
+msgid "To go through this Getting Started exercise, you need the following pre-requisites to be done:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:24
+msgid ":ref:`clone the connector source code and ensure having Tarantool and third-party software <gs_cxx_prereq_install>`"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:25
+msgid ":ref:`start Tarantool and create a database <gs_cxx_prereq_tnt_run>`"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:26
+msgid ":ref:`set up access rights <gs_cxx_prereq_access>`."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:31
+msgid "Installation"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:33
+msgid "The Tarantool C++ connector is currently supported for Linux only."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:35
+msgid "The connector itself is a header-only library, so, it doesn't require installation and building as such. All you need is to clone the connector source code and :ref:`embed <gs_cxx_connect_embed>` it in your C++ project."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:39
+msgid "Also, make sure you have other necessary software and Tarantool installed."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:43
+msgid "Make sure you have the following third-party software. If you miss some of the items, install them:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:46
+msgid "`Git <https://git-scm.com/book/en/v2/Getting-Started-Installing-Git>`_, a version control system"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:47
+msgid "`unzip utility <https://linuxize.com/post/how-to-unzip-files-in-linux/#installing-unzip>`_"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:48
+msgid "`gcc compiler <https://gcc.gnu.org/install/>`_ complied with the `C++17 standard <https://gcc.gnu.org/projects/cxx-status.html#cxx17>`_"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:49
+msgid "`cmake and make tools <https://cmake.org/install/>`_."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:51
+msgid "If you don't have Tarantool on your OS, install it in one of the ways:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:53
+msgid "from a package--refer to `OS-specific instructions <https://www.tarantool.io/en/download/>`_"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:54
+msgid "from the `source <https://www.tarantool.io/en/download/os-installation/building-from-source/>`_."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:56
+msgid "Clone the Tarantool C++ connector repository."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:58
+msgid "git clone git@github.com:tarantool/tntcxx.git"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:65
+msgid "Starting Tarantool and creating a database"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:67
+msgid "Start Tarantool :ref:`locally <getting_started-using_package_manager>` or :ref:`in Docker <getting_started-using_docker>` and create a space with the following schema and index:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:71
+msgid "box.cfg{listen = 3301}\n"
+"t = box.schema.space.create('t')\n"
+"t:format({\n"
+"         {name = 'id', type = 'unsigned'},\n"
+"         {name = 'a', type = 'string'},\n"
+"         {name = 'b', type = 'number'}\n"
+"         })\n"
+"t:create_index('primary', {\n"
+"         type = 'hash',\n"
+"         parts = {'id'}\n"
+"         })"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:87
+msgid "Do not close the terminal window where Tarantool is running. You will need it later to connect to Tarantool from your C++ application."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:93
+msgid "Setting up access rights"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:95
+msgid "To be able to execute the necessary operations in Tarantool, you need to grant the ``guest`` user with the read-write rights. The simplest way is to grant the user with the :ref:`super role <authentication-roles>`:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:99
+msgid "box.schema.user.grant('guest', 'super')"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:106
+msgid "Connecting to Tarantool"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:108
+msgid "There are three main parts of the C++ connector: the IO-zero-copy buffer, the msgpack encoder/decoder, and the client that handles requests."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:111
+msgid "To set up connection to a Tarantool instance from a C++ application, you need to do the following:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:114
+msgid ":ref:`embed the connector into the application <gs_cxx_connect_embed>`"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:115
+msgid ":ref:`instantiate a connector client and a connection object <gs_cxx_connect_instantiate>`"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:116
+msgid ":ref:`define connection parameters and invoke the method to connect <gs_cxx_connect_connecting>`"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:117
+msgid ":ref:`define error handling behavior <gs_cxx_connect_error>`."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:122
+msgid "Embedding connector"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:124
+msgid "Embed the connector in your C++ application by including the main header:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:126
+msgid "#include \"../src/Client/Connector.hpp\"\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:134
+msgid "Instantiating objects"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:136
+msgid "First, we should create a connector client. It can handle many connections to Tarantool instances asynchronously. To instantiate a client, you should specify the buffer and the network provider implementations as template parameters. The connector's main class has the following signature:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:141
+msgid "template<class BUFFER, class NetProvider = EpollNetProvider<BUFFER>>\n"
+"class Connector;"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:146
+msgid "The buffer is parametrized by allocator. It means that users can choose which allocator will be used to provide memory for the buffer's blocks. Data is organized into a linked list of blocks of fixed size that is specified as the template parameter of the buffer."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:151
+msgid "You can either implement your own buffer or network provider or use the default ones as we do in our example. So, the default connector instantiation looks as follows:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:155
+msgid "using Buf_t = tnt::Buffer<16 * 1024>;\n"
+"#include \"../src/Client/LibevNetProvider.hpp\"\n"
+"using Net_t = LibevNetProvider<Buf_t, DefaultStream>;\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:160
+msgid "Connector<Buf_t, Net_t> client;\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:166
+msgid "To use the ``BUFFER`` class, the buffer header should also be included:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:168
+msgid "#include \"../src/Buffer/Buffer.hpp\"\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:173
+msgid "A client itself is not enough to work with Tarantool instances--we also need to create connection objects. A connection also takes the buffer and the network provider as template parameters. Note that they must be the same as ones of the client:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:178
+msgid "Connection<Buf_t, Net_t> conn(client);\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:187
+msgid "Connecting"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:189
+msgid "Our :ref:`Tarantool instance <gs_cxx_prereq_tnt_run>` is listening to the ``3301`` port on ``localhost``. Let's define the corresponding variables as well as the ``WAIT_TIMEOUT`` variable for connection timeout."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:194
+msgid "const char *address = \"127.0.0.1\";\n"
+"int port = 3301;\n"
+"int WAIT_TIMEOUT = 1000; //milliseconds\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:199
+msgid "To connect to the Tarantool instance, we should invoke the ``Connector::connect()`` method of the client object and pass three arguments: connection instance, address, and port."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:203
+msgid "int rc = client.connect(conn, {.address = address,\n"
+"			       .service = std::to_string(port),\n"
+"			       /*.user = ...,*/\n"
+"			       /*.passwd = ...,*/\n"
+"			       /* .transport = STREAM_SSL, */});\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:212
+msgid "Error handling"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:214
+msgid "Implementation of the connector is exception free, so we rely on the return codes: in case of fail, the ``connect()`` method returns ``rc < 0``. To get the error message corresponding to the last error occured during communication with the instance, we can invoke the ``Connection::getError()`` method."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:220
+msgid "if (rc != 0) {\n"
+"	//assert(conn.getError().saved_errno != 0);\n"
+"	std::cerr << conn.getError().msg << std::endl;\n"
+"	return -1;\n"
+"}\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:226
+msgid "To reset connection after errors, that is, to clean up the error message and connection status, the ``Connection::reset()`` method is used."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:234
+msgid "Working with requests"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:236
+msgid "In this section, we will show how to:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:238
+msgid ":ref:`prepare different types of requests <gs_cxx_requests_prepare>`"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:239
+msgid ":ref:`send the requests <gs_cxx_requests_send>`"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:240
+msgid ":ref:`receive and handle responses <gs_cxx_requests_response>`."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:242
+msgid "We will also go through the :ref:`case of having several connections <gs_cxx_requests_several>` and executing a number of requests from different connections simultaneously."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:245
+msgid "In our example C++ application, we execute the following types of requests:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:247
+msgid "``ping``"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:248
+msgid "``replace``"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:249
+msgid "``select``."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:253
+msgid "Examples on other request types, namely, ``insert``, ``delete``, ``upsert``, and ``update``, will be added to this manual later."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:256
+msgid "Each request method returns a request ID that is a sort of `future <https://en.wikipedia.org/wiki/Futures_and_promises>`_. This ID can be used to get the response message when it is ready. Requests are queued in the output buffer of connection until the ``Connector::wait()`` method is called."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:264
+msgid "Preparing requests"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:266
+msgid "At this step, requests are encoded in the `MessagePack <https://msgpack.org/>`_ format and saved in the output connection buffer. They are ready to be sent but the network communication itself will be done later."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:271
+msgid "Let's remind that for the requests manipulating with data we are dealing with the Tarantool space ``t`` :ref:`created earlier <gs_cxx_prereq_tnt_run>`, and the space has the following format:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:275
+msgid "t:format({\n"
+"         {name = 'id', type = 'unsigned'},\n"
+"         {name = 'a', type = 'string'},\n"
+"         {name = 'b', type = 'number'}\n"
+"         })"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:283
+msgid "**ping**"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:285
+msgid "rid_t ping = conn.ping();\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:291
+msgid "**replace**"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:293
+msgid "Equals to Lua request ``<space_name>:replace(pk_value, \"111\", 1)``."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:295
+msgid "uint32_t space_id = 512;\n"
+"int pk_value = 666;\n"
+"std::tuple data = std::make_tuple(pk_value /* field 1*/, \"111\" /* field 2*/, 1.01 /* field 3*/);\n"
+"rid_t replace = conn.space[space_id].replace(data);\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:301
+msgid "**select**"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:303
+msgid "Equals to Lua request ``<space_name>.index[0]:select({pk_value}, {limit = 1})``."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:305
+msgid "uint32_t index_id = 0;\n"
+"uint32_t limit = 1;\n"
+"uint32_t offset = 0;\n"
+"IteratorType iter = IteratorType::EQ;\n"
+"auto i = conn.space[space_id].index[index_id];\n"
+"rid_t select = i.select(std::make_tuple(pk_value), limit, offset, iter);\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:314
+msgid "Sending requests"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:316
+msgid "To send requests to the server side, invoke the ``client.wait()`` method."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:319
+msgid "client.wait(conn, ping, WAIT_TIMEOUT);"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:323
+msgid "The ``wait()`` method takes the connection to poll, the request ID, and, optionally, the timeout as parameters. Once a response for the specified request is ready, ``wait()`` terminates. It also provides a negative return code in case of system related fails, for example, a broken or timeouted connection. If ``wait()`` returns ``0``, then a response has been received and expected to be parsed."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:330
+msgid "Now let's send our requests to the Tarantool instance. The ``futureIsReady()`` function checks availability of a future and returns ``true`` or ``false``."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:334
+msgid "while (! conn.futureIsReady(ping)) {\n"
+"	/*\n"
+"	 * wait() is the main function responsible for sending/receiving\n"
+"	 * requests and implements event-loop under the hood. It may\n"
+"	 * fail due to several reasons:\n"
+"	 *  - connection is timed out;\n"
+"	 *  - connection is broken (e.g. closed);\n"
+"	 *  - epoll is failed.\n"
+"	 */\n"
+"	if (client.wait(conn, ping, WAIT_TIMEOUT) != 0) {\n"
+"		std::cerr << conn.getError().msg << std::endl;\n"
+"		conn.reset();\n"
+"	}\n"
+"}\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:345
+msgid "Receiving responses"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:347
+msgid "To get the response when it is ready, use the ``Connection::getResponse()`` method. It takes the request ID and returns an optional object containing the response. If the response is not ready yet, the method returns ``std::nullopt``. Note that on each future, ``getResponse()`` can be called only once: it erases the request ID from the internal map once it is returned to a user."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:354
+msgid "A response consists of a header and a body (``response.header`` and ``response.body``). Depending on success of the request execution on the server side, body may contain either runtime error(s) accessible by ``response.body.error_stack`` or data (tuples)--``response.body.data``. In turn, data is a vector of tuples. However, tuples are not decoded and come in the form of pointers to the start and the end of msgpacks. See the :ref:`\"Decoding and reading the data\" <gs_cxx_reader>` section to understand how to decode tuples."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:363
+msgid "There are two options for single connection it regards to receiving responses: we can either wait for one specific future or for all of them at once. We'll try both options in our example. For the ``ping`` request, let's use the first option."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:368
+msgid "std::optional<Response<Buf_t>> response = conn.getResponse(ping);\n"
+"/*\n"
+" * Since conn.futureIsReady(ping) returned <true>, then response\n"
+" * must be ready.\n"
+" */\n"
+"assert(response != std::nullopt);\n"
+"/*\n"
+" * If request is successfully executed on server side, response\n"
+" * will contain data (i.e. tuple being replaced in case of :replace()\n"
+" * request or tuples satisfying search conditions in case of :select();\n"
+" * responses for pings contain nothing - empty map).\n"
+" * To tell responses containing data from error responses, one can\n"
+" * rely on response code storing in the header or check\n"
+" * Response->body.data and Response->body.error_stack members.\n"
+" */\n"
+"printResponse<Buf_t>(conn, *response);\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:374
+msgid "For the ``replace`` and ``select`` requests, let's examine the option of waiting for both futures at once."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:377
+msgid "/* Let's wait for both futures at once. */\n"
+"std::vector<rid_t> futures;\n"
+"futures[0] = replace;\n"
+"futures[1] = select;\n"
+"/* No specified timeout means that we poll futures until they are ready.*/\n"
+"client.waitAll(conn, futures);\n"
+"for (size_t i = 0; i < futures.size(); ++i) {\n"
+"	assert(conn.futureIsReady(futures[i]));\n"
+"	response = conn.getResponse(futures[i]);\n"
+"	assert(response != std::nullopt);\n"
+"	printResponse<Buf_t>(conn, *response);\n"
+"}\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:388
+msgid "Several connections at once"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:390
+msgid "Now, let's have a look at the case when we establish two connections to Tarantool instance simultaneously."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:393
+msgid "/* Let's create another connection. */\n"
+"Connection<Buf_t, Net_t> another(client);\n"
+"if (client.connect(another, {.address = address,\n"
+"			     .service = std::to_string(port),\n"
+"			     /* .transport = STREAM_SSL, */}) != 0) {\n"
+"	std::cerr << conn.getError().msg << std::endl;\n"
+"	return -1;\n"
+"}\n"
+"/* Simultaneously execute two requests from different connections. */\n"
+"rid_t f1 = conn.ping();\n"
+"rid_t f2 = another.ping();\n"
+"/*\n"
+" * waitAny() returns the first connection received response.\n"
+" * All connections registered via :connect() call are participating.\n"
+" */\n"
+"std::optional<Connection<Buf_t, Net_t>> conn_opt = client.waitAny(WAIT_TIMEOUT);\n"
+"Connection<Buf_t, Net_t> first = *conn_opt;\n"
+"if (first == conn) {\n"
+"	assert(conn.futureIsReady(f1));\n"
+"	(void) f1;\n"
+"} else {\n"
+"	assert(another.futureIsReady(f2));\n"
+"	(void) f2;\n"
+"}\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:404
+msgid "Closing connections"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:406
+msgid "Finally, a user is responsible for closing connections."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:408
+msgid "client.close(conn);\n"
+"client.close(another);\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:417
+msgid "Building and launching C++ application"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:419
+msgid "Now, we are going to build our example C++ application, launch it to connect to the Tarantool instance and execute all the requests defined."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:422
+msgid "Make sure you are in the root directory of the cloned C++ connector repository. To build the example application:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:425
+msgid "cd examples\n"
+"cmake .\n"
+"make"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:431
+msgid "Make sure the :ref:`Tarantool session <gs_cxx_prereq_tnt_run>` you started earlier is running. Launch the application:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:434
+msgid "./Simple"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:438
+msgid "As you can see from the execution log, all the connections to Tarantool defined in our application have been established and all the requests have been executed successfully."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:447
+msgid "Decoding and reading the data"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:449
+msgid "Responses from a Tarantool instance contain raw data, that is, the data encoded into the `MessagePack <https://msgpack.org/>`_ tuples. To decode client's data, the user has to write their own decoders (readers) based on the database schema and include them in one's application:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:455
+msgid "\n"
+"#include \"Reader.hpp\"\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:460
+msgid "To show the logic of decoding a response, we will use `the reader from our example <https://github.com/tarantool/tntcxx/blob/master/examples/Reader.hpp>`_."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:463
+msgid "First, the structure corresponding our :ref:`example space format <gs_cxx_prereq_tnt_run>` is defined:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:466
+msgid "/**\n"
+" * Corresponds to tuples stored in user's space:\n"
+" * box.execute(\"CREATE TABLE t (id UNSIGNED PRIMARY KEY, a TEXT, d DOUBLE);\")\n"
+" */\n"
+"struct UserTuple {\n"
+"	uint64_t field1;\n"
+"	std::string field2;\n"
+"	double field3;\n"
+"};\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:474
+msgid "Base reader prototype"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:476
+msgid "Prototype of the base reader is given in ``src/mpp/Dec.hpp``:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:478
+msgid "template <class BUFFER, Type TYPE>\n"
+"struct SimpleReaderBase : DefaultErrorHandler {\n"
+"   using BufferIterator_t = typename BUFFER::iterator;\n"
+"   /* Allowed type of values to be parsed. */\n"
+"   static constexpr Type VALID_TYPES = TYPE;\n"
+"   BufferIterator_t* StoreEndIterator() { return nullptr; }\n"
+"};"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:488
+msgid "Every new reader should inherit from it or directly from the ``DefaultErrorHandler``."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:494
+msgid "Parsing values"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:496
+msgid "To parse a particular value, we should define the ``Value()`` method. First two arguments of the method are common and unused as a rule, but the third one defines the parsed value. In case of `POD (Plain Old Data) <https://en.wikipedia.org/wiki/Passive_data_structure>`_ structures, it's enough to provide a byte-to-byte copy. Since there are fields of three different types in our schema, let's define the corresponding ``Value()`` functions:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:503
+msgid "struct UserTupleValueReader : mpp::DefaultErrorHandler {\n"
+"	explicit UserTupleValueReader(UserTuple& t) : tuple(t) {}\n"
+"	static constexpr mpp::Family VALID_TYPES = mpp::MP_UINT | mpp::MP_STR | mpp::MP_DBL;\n"
+"	template <class T>\n"
+"	void Value(BufIter_t&, mpp::compact::Family, T v)\n"
+"	{\n"
+"		using A = UserTuple;\n"
+"		static constexpr std::tuple map(&A::field1, &A::field3);\n"
+"		auto ptr = std::get<std::decay_t<T> A::*>(map);\n"
+"		tuple.*ptr = v;\n"
+"	}\n"
+"	void Value(BufIter_t& itr, mpp::compact::Family, mpp::StrValue v)\n"
+"	{\n"
+"		BufIter_t tmp = itr;\n"
+"		tmp += v.offset;\n"
+"		std::string &dst = tuple.field2;\n"
+"		while (v.size) {\n"
+"			dst.push_back(*tmp);\n"
+"			++tmp;\n"
+"			--v.size;\n"
+"		}\n"
+"	}\n"
+"	void WrongType(mpp::Family expected, mpp::Family got)\n"
+"	{\n"
+"		std::cout << \"expected type is \" << expected <<\n"
+"			     \" but got \" << got << std::endl;\n"
+"	}\n"
+"\n"
+"	BufIter_t* StoreEndIterator() { return nullptr; }\n"
+"	UserTuple& tuple;\n"
+"};\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:511
+msgid "Parsing array"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:513
+msgid "It's also important to understand that a tuple itself is wrapped in an array, so, in fact, we should parse the array first. Let's define another reader for that purpose."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:517
+msgid "template <class BUFFER>\n"
+"struct UserTupleReader : mpp::SimpleReaderBase<BUFFER, mpp::MP_ARR> {\n"
+"\n"
+"	UserTupleReader(mpp::Dec<BUFFER>& d, UserTuple& t) : dec(d), tuple(t) {}\n"
+"\n"
+"	void Value(const iterator_t<BUFFER>&, mpp::compact::Family, mpp::ArrValue u)\n"
+"	{\n"
+"		assert(u.size == 3);\n"
+"		(void) u;\n"
+"		dec.SetReader(false, UserTupleValueReader{tuple});\n"
+"	}\n"
+"	mpp::Dec<BUFFER>& dec;\n"
+"	UserTuple& tuple;\n"
+"};\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:525
+msgid "Setting reader"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:527
+msgid "The ``SetReader()`` method sets the reader that is invoked while each of the array's entries is parsed. To make two readers defined above work, we should create a decoder, set its iterator to the position of the encoded tuple, and invoke the ``Read()`` method (the code block below is from the `example application <https://github.com/tarantool/tntcxx/blob/master/examples/Simple.cpp>`_)."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_cxx.rst:533
+msgid "template <class BUFFER>\n"
+"std::vector<UserTuple>\n"
+"decodeUserTuple(BUFFER &buf, Data<BUFFER> &data)\n"
+"{\n"
+"	std::vector<UserTuple> results;\n"
+"	for(auto& t: data.tuples) {\n"
+"		UserTuple tuple;\n"
+"		mpp::Dec dec(buf);\n"
+"		dec.SetPosition(t.begin);\n"
+"		dec.SetReader(false, UserTupleReader<BUFFER>{dec, tuple});\n"
+"		mpp::ReadResult_t res = dec.Read();\n"
+"		assert(res == mpp::READ_SUCCESS);\n"
+"		(void) res;\n"
+"		results.push_back(tuple);\n"
+"	}\n"
+"	return results;\n"
+"}\n"
+""
+msgstr ""

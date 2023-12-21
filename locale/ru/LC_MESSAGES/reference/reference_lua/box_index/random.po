@@ -35,7 +35,9 @@ msgstr "tuple"
 msgid "**Complexity factors:** Index size, Index type."
 msgstr "**Факторы сложности:** Размер индекса, тип индекса"
 
-msgid "**Note re storage engine:** vinyl does not support ``random()``."
+#, fuzzy
+msgid ""
+"**Note regarding storage engine:** vinyl does not support ``random()``."
 msgstr ""
 "**Примечание про движок базы данных:** vinyl не поддерживает ``random()``."
 

@@ -1,0 +1,2668 @@
+
+msgid "Configuration reference"
+msgstr ""
+
+msgid "Enterprise Edition"
+msgstr ""
+
+msgid ""
+"|tcm_full_name| is a part of the `Enterprise Edition "
+"<https://www.tarantool.io/compare/>`_."
+msgstr ""
+
+msgid ""
+"This topic describes :ref:`configuration parameters <tcm_configuration>` of "
+"|tcm_full_name|."
+msgstr ""
+
+msgid "There are the following groups of |tcm| configuration parameters:"
+msgstr ""
+
+msgid ":ref:`cluster <tcm_configuration_reference_cluster>`"
+msgstr ""
+
+msgid ":ref:`http <tcm_configuration_reference_http>`"
+msgstr ""
+
+msgid ":ref:`log <tcm_configuration_reference_log>`"
+msgstr ""
+
+msgid ":ref:`storage <tcm_configuration_reference_storage>`"
+msgstr ""
+
+msgid ":ref:`addon <tcm_configuration_reference_addon>`"
+msgstr ""
+
+msgid ":ref:`limits <tcm_configuration_reference_limits>`"
+msgstr ""
+
+msgid ":ref:`security <tcm_configuration_reference_security>`"
+msgstr ""
+
+msgid ":ref:`mode <tcm_configuration_reference_mode>`"
+msgstr ""
+
+msgid "cluster"
+msgstr ""
+
+msgid ""
+"The ``cluster`` group defines parameters of |tcm| interaction with connected"
+" Tarantool clusters."
+msgstr ""
+
+msgid ":ref:`on-air-limit <tcm_configuration_reference_cluster_on-air-limit>`"
+msgstr ""
+
+msgid ""
+":ref:`connection-rate-limit <tcm_configuration_reference_cluster_connection-"
+"rate-limit>`"
+msgstr ""
+
+msgid ""
+":ref:`tarantool-timeout <tcm_configuration_reference_cluster_tarantool-"
+"timeout>`"
+msgstr ""
+
+msgid ""
+":ref:`tarantool-ping-timeout <tcm_configuration_reference_cluster_tarantool-"
+"ping-timeout>`"
+msgstr ""
+
+msgid ""
+"The maximum number of on-air requests from |tcm| to all connected clusters."
+msgstr ""
+
+msgid "Type: int64"
+msgstr ""
+
+msgid "Default: 4096"
+msgstr ""
+
+msgid "Environment variable: TCM_CLUSTER_ON_AIR_LIMIT"
+msgstr ""
+
+msgid "Command-line option: ``--cluster-on-air-limit``"
+msgstr ""
+
+msgid "A rate limit for connections to Tarantool instances."
+msgstr ""
+
+msgid "Type: uint"
+msgstr ""
+
+msgid "Default: 512"
+msgstr ""
+
+msgid "Environment variable: TCM_CLUSTER_CONNECTION_RATE_LIMIT"
+msgstr ""
+
+msgid "Command-line option: ``--cluster-connection-rate-limit``"
+msgstr ""
+
+msgid "A timeout for receiving a response from Tarantool instances."
+msgstr ""
+
+msgid "Type: time.Duration"
+msgstr ""
+
+msgid "Default: 10s"
+msgstr ""
+
+msgid "Environment variable: TCM_CLUSTER_TARANTOOL_TIMEOUT"
+msgstr ""
+
+msgid "Command-line option: ``--cluster-tarantool-timeout``"
+msgstr ""
+
+msgid "A timeout for receiving a ping response from Tarantool instances."
+msgstr ""
+
+msgid "Default: 5s"
+msgstr ""
+
+msgid "Environment variable: TCM_CLUSTER_TARANTOOL_PING_TIMEOUT"
+msgstr ""
+
+msgid "Command-line option: ``--cluster-tarantool-ping-timeout``"
+msgstr ""
+
+msgid "http"
+msgstr ""
+
+msgid ""
+"The ``http`` group defines parameters of HTTP connections between |tcm| and "
+"clients."
+msgstr ""
+
+msgid ""
+":ref:`http.basic_auth.enabled <tcm_configuration_reference_http_basic-"
+"auth_enabled>`"
+msgstr ""
+
+msgid ":ref:`http.network <tcm_configuration_reference_http_network>`"
+msgstr ""
+
+msgid ":ref:`http.host <tcm_configuration_reference_http_host>`"
+msgstr ""
+
+msgid ":ref:`http.port <tcm_configuration_reference_http_port>`"
+msgstr ""
+
+msgid ""
+":ref:`http.request-size <tcm_configuration_reference_http_request-size>`"
+msgstr ""
+
+msgid ""
+":ref:`http.websocket.read-buffer-size "
+"<tcm_configuration_reference_http_websocket_read-buffer-size>`"
+msgstr ""
+
+msgid ""
+":ref:`http.websocket.write-buffer-size "
+"<tcm_configuration_reference_http_websocket_write-buffer-size>`"
+msgstr ""
+
+msgid ""
+":ref:`http.websocket.keepalive-ping-interval "
+"<tcm_configuration_reference_http_websocket_keepalive-ping-interval>`"
+msgstr ""
+
+msgid ""
+":ref:`http.websocket.handshake-timeout "
+"<tcm_configuration_reference_http_websocket_handshake-timeout>`"
+msgstr ""
+
+msgid ""
+":ref:`http.websocket.init-timeout "
+"<tcm_configuration_reference_http_websocket_init-timeout>`"
+msgstr ""
+
+msgid ""
+":ref:`http.websession-cookie.name "
+"<tcm_configuration_reference_http_websession-cookie_name>`"
+msgstr ""
+
+msgid ""
+":ref:`http.websession-cookie.path "
+"<tcm_configuration_reference_http_websession-cookie_path>`"
+msgstr ""
+
+msgid ""
+":ref:`http.websession-cookie.domain "
+"<tcm_configuration_reference_http_websession-cookie_domain>`"
+msgstr ""
+
+msgid ""
+":ref:`http.websession-cookie.ttl "
+"<tcm_configuration_reference_http_websession-cookie_ttl>`"
+msgstr ""
+
+msgid ""
+":ref:`http.websession-cookie.secure "
+"<tcm_configuration_reference_http_websession-cookie_secure>`"
+msgstr ""
+
+msgid ""
+":ref:`http.websession-cookie.http-only "
+"<tcm_configuration_reference_http_websession-cookie_http-only>`"
+msgstr ""
+
+msgid ""
+":ref:`http.websession-cookie.same-site "
+"<tcm_configuration_reference_http_websession-cookie_same-site>`"
+msgstr ""
+
+msgid ""
+":ref:`http.cors.enabled <tcm_configuration_reference_http_cors_enabled>`"
+msgstr ""
+
+msgid ""
+":ref:`http.cors.allowed-origins "
+"<tcm_configuration_reference_http_cors_allowed-origins>`"
+msgstr ""
+
+msgid ""
+":ref:`http.cors.allowed-methods "
+"<tcm_configuration_reference_http_cors_allowed-methods>`"
+msgstr ""
+
+msgid ""
+":ref:`http.cors.allowed-headers "
+"<tcm_configuration_reference_http_cors_allowed-headers>`"
+msgstr ""
+
+msgid ""
+":ref:`http.cors.exposed-headers "
+"<tcm_configuration_reference_http_cors_exposed-headers>`"
+msgstr ""
+
+msgid ""
+":ref:`http.cors.allow-credentials "
+"<tcm_configuration_reference_http_cors_allow-credentials>`"
+msgstr ""
+
+msgid ":ref:`http.cors.debug <tcm_configuration_reference_http_cors_debug>`"
+msgstr ""
+
+msgid ""
+":ref:`http.metrics-endpoint <tcm_configuration_reference_http_metrics-"
+"endpoint>`"
+msgstr ""
+
+msgid ":ref:`http.tls.enabled <tcm_configuration_reference_http_tls_enabled>`"
+msgstr ""
+
+msgid ""
+":ref:`http.tls.cert-file <tcm_configuration_reference_http_tls_cert-file>`"
+msgstr ""
+
+msgid ""
+":ref:`http.tls.key-file <tcm_configuration_reference_http_tls_key-file>`"
+msgstr ""
+
+msgid ":ref:`http.tls.server <tcm_configuration_reference_http_tls_server>`"
+msgstr ""
+
+msgid ""
+":ref:`http.tls.min-version <tcm_configuration_reference_http_tls_min-"
+"version>`"
+msgstr ""
+
+msgid ""
+":ref:`http.tls.max-version <tcm_configuration_reference_http_tls_max-"
+"version>`"
+msgstr ""
+
+msgid ""
+":ref:`http.tls.curve-preferences "
+"<tcm_configuration_reference_http_tls_curve-preferences>`"
+msgstr ""
+
+msgid ""
+":ref:`http.tls.cipher-suites <tcm_configuration_reference_http_tls_cipher-"
+"suites>`"
+msgstr ""
+
+msgid ""
+":ref:`http.read-timeout <tcm_configuration_reference_http_read-timeout>`"
+msgstr ""
+
+msgid ""
+":ref:`http.read-header-timeout <tcm_configuration_reference_http_read-"
+"header-timeout>`"
+msgstr ""
+
+msgid ""
+":ref:`http.write-timeout <tcm_configuration_reference_http_write-timeout>`"
+msgstr ""
+
+msgid ""
+":ref:`http.idle-timeout <tcm_configuration_reference_http_idle-timeout>`"
+msgstr ""
+
+msgid ""
+":ref:`http.disable-general-options-handler "
+"<tcm_configuration_reference_http_disable-general-options-handler>`"
+msgstr ""
+
+msgid ""
+":ref:`http.max-header-bytes <tcm_configuration_reference_http_max-header-"
+"bytes>`"
+msgstr ""
+
+msgid ":ref:`http.api-timeout <tcm_configuration_reference_http_api-timeout>`"
+msgstr ""
+
+msgid ""
+":ref:`http.api-update-interval <tcm_configuration_reference_http_api-update-"
+"interval>`"
+msgstr ""
+
+msgid ""
+":ref:`http.frontend-dir <tcm_configuration_reference_http_frontend-dir>`"
+msgstr ""
+
+msgid ""
+":ref:`http.show-stack-trace <tcm_configuration_reference_http_show-stack-"
+"trace>`"
+msgstr ""
+
+msgid ":ref:`http.trace <tcm_configuration_reference_http_trace>`"
+msgstr ""
+
+msgid ""
+":ref:`http.max-static-size <tcm_configuration_reference_http_max-static-"
+"size>`"
+msgstr ""
+
+msgid ""
+":ref:`http.graphql.complexity "
+"<tcm_configuration_reference_http_graphql_complexity>`"
+msgstr ""
+
+msgid ""
+"Whether to use the `HTTP basic authentication "
+"<https://www.ietf.org/rfc/rfc2617.txt>`__."
+msgstr ""
+
+msgid "Type: bool"
+msgstr ""
+
+msgid "Default: false"
+msgstr ""
+
+msgid "Environment variable: TCM_HTTP_BASIC_AUTH_ENABLED"
+msgstr ""
+
+msgid "Command-line option: ``--http-basic-auth-enabled``"
+msgstr ""
+
+msgid "An addressing scheme that |tcm| uses."
+msgstr ""
+
+msgid "Possible values:"
+msgstr ""
+
+msgid "``tcp``: IPv4 address"
+msgstr ""
+
+msgid "``tcp6``: IPv6 address"
+msgstr ""
+
+msgid "``unix``: Unix domain socket"
+msgstr ""
+
+msgid "Type: string"
+msgstr ""
+
+msgid "Default: tcp"
+msgstr ""
+
+msgid "Environment variable: TCM_HTTP_NETWORK"
+msgstr ""
+
+msgid "Command-line option: ``--http-network``"
+msgstr ""
+
+msgid "A host name on which |tcm| serves."
+msgstr ""
+
+msgid "Default: 127.0.0.1"
+msgstr ""
+
+msgid "Environment variable: TCM_HTTP_HOST"
+msgstr ""
+
+msgid "Command-line option: ``--http-host``"
+msgstr ""
+
+msgid "A port on which |tcm| serves."
+msgstr ""
+
+msgid "Type: int"
+msgstr ""
+
+msgid "Default: 8080"
+msgstr ""
+
+msgid "Environment variable: TCM_HTTP_PORT"
+msgstr ""
+
+msgid "Command-line option: ``--http-port``"
+msgstr ""
+
+msgid "The maximum size (in bytes) of a client HTTP request to |tcm|."
+msgstr ""
+
+msgid "Default: 1572864"
+msgstr ""
+
+msgid "Environment variable: TCM_HTTP_REQUEST_SIZE"
+msgstr ""
+
+msgid "Command-line option: ``--http-request-size``"
+msgstr ""
+
+msgid ""
+"The size (in bytes) of the read buffer for `WebSocket "
+"<https://developer.mozilla.org/en-US/docs/Glossary/WebSockets>`__ "
+"connections."
+msgstr ""
+
+msgid "Default: 16384"
+msgstr ""
+
+msgid "Environment variable: TCM_HTTP_WEBSOCKET_READ_BUFFER_SIZE"
+msgstr ""
+
+msgid "Command-line option: ``--http-websocket-read-buffer-size``"
+msgstr ""
+
+msgid ""
+"The size (in bytes) of the write buffer for `WebSocket "
+"<https://developer.mozilla.org/en-US/docs/Glossary/WebSockets>`__ "
+"connections."
+msgstr ""
+
+msgid "Environment variable: TCM_HTTP_WEBSOCKET_WRITE_BUFFER_SIZE"
+msgstr ""
+
+msgid "Command-line option: ``--http-websocket-write-buffer-size``"
+msgstr ""
+
+msgid ""
+"The time interval for sending `WebSocket <https://developer.mozilla.org/en-"
+"US/docs/Glossary/WebSockets>`__ keepalive pings."
+msgstr ""
+
+msgid "Default: 20s"
+msgstr ""
+
+msgid "Environment variable: TCM_HTTP_WEBSOCKET_KEEPALIVE_PING_INTERVAL"
+msgstr ""
+
+msgid "Command-line option: ``--http-websocket-keepalive-ping-interval``"
+msgstr ""
+
+msgid ""
+"The time limit for completing a `WebSocket "
+"<https://developer.mozilla.org/en-US/docs/Glossary/WebSockets>`__ opening "
+"handshake with a client."
+msgstr ""
+
+msgid "Environment variable: TCM_HTTP_WEBSOCKET_HANDSHAKE_TIMEOUT"
+msgstr ""
+
+msgid "Command-line option: ``--http-websocket-handshake-timeout``"
+msgstr ""
+
+msgid ""
+"The time limit for establishing a `WebSocket "
+"<https://developer.mozilla.org/en-US/docs/Glossary/WebSockets>`__ connection"
+" with a client."
+msgstr ""
+
+msgid "Default: 15s"
+msgstr ""
+
+msgid "Environment variable: TCM_HTTP_WEBSOCKET_INIT_TIMEOUT"
+msgstr ""
+
+msgid "Command-line option: ``--http-websocket-init-timeout``"
+msgstr ""
+
+msgid "The name of the cookie that |tcm| sends to clients."
+msgstr ""
+
+msgid ""
+"This value is used as the cookie name in the `Set-Cookie "
+"<https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie>`__ "
+"HTTP response header."
+msgstr ""
+
+msgid "Default: tcm"
+msgstr ""
+
+msgid "Environment variable: TCM_HTTP_WEBSESSION_COOKIE_NAME"
+msgstr ""
+
+msgid "Command-line option: ``--http-websession-cookie-name``"
+msgstr ""
+
+msgid ""
+"The URL path that must be present in the requested URL in order to send the "
+"cookie."
+msgstr ""
+
+msgid ""
+"This value is used in the ``Path`` attribute of the `Set-Cookie "
+"<https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie>`__ "
+"HTTP response header."
+msgstr ""
+
+msgid "Default: \"\""
+msgstr ""
+
+msgid "Environment variable: TCM_HTTP_WEBSESSION_COOKIE_PATH"
+msgstr ""
+
+msgid "Command-line option: ``--http-websession-cookie-path``"
+msgstr ""
+
+msgid "The domain to which the cookie can be sent."
+msgstr ""
+
+msgid ""
+"This value is used in the ``Domain`` attribute of the `Set-Cookie "
+"<https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie>`__ "
+"HTTP response header."
+msgstr ""
+
+msgid "Environment variable: TCM_HTTP_WEBSESSION_COOKIE_DOMAIN"
+msgstr ""
+
+msgid "Command-line option: ``--http-websession-cookie-domain``"
+msgstr ""
+
+msgid "The maximum lifetime of the |tcm| cookie."
+msgstr ""
+
+msgid ""
+"This value is used in the ``Max-Age`` attribute of the `Set-Cookie "
+"<https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie>`__ "
+"HTTP response header."
+msgstr ""
+
+msgid "Default: 2h0m0s"
+msgstr ""
+
+msgid "Environment variable: TCM_HTTP_WEBSESSION_COOKIE_TTL"
+msgstr ""
+
+msgid "Command-line option: ``--http-websession-cookie-ttl``"
+msgstr ""
+
+msgid ""
+"Indicates whether the cookie can be sent only over the HTTPS protocol. In "
+"this case, it's never sent over the unencrypted HTTP, therefore preventing "
+"man-in-the-middle attacks."
+msgstr ""
+
+msgid ""
+"When ``true``, the ``Secure`` attribute is added to the `Set-Cookie "
+"<https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie>`__ "
+"HTTP response header."
+msgstr ""
+
+msgid "Environment variable: TCM_HTTP_WEBSESSION_COOKIE_SECURE"
+msgstr ""
+
+msgid "Command-line option: ``--http-websession-cookie-secure``"
+msgstr ""
+
+msgid ""
+"Indicates that the cookie can't be accessed from the JavaScript "
+"`Document.cookie <https://developer.mozilla.org/en-"
+"US/docs/Web/API/Document/cookie>`__ API. This helps mitigate cross-site "
+"scripting attacks."
+msgstr ""
+
+msgid ""
+"When ``true``, the ``HttpOnly`` attribute is added to the `Set-Cookie "
+"<https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie>`__ "
+"HTTP response header."
+msgstr ""
+
+msgid "Default: true"
+msgstr ""
+
+msgid "Environment variable: TCM_HTTP_WEBSESSION_COOKIE_HTTP_ONLY"
+msgstr ""
+
+msgid "Command-line option: ``--http-websession-cookie-http-only``"
+msgstr ""
+
+msgid ""
+"Indicates if it is possible to send the |tcm| cookie along with cross-site "
+"requests. Possible values are the Go's `http.SameSite "
+"<https://pkg.go.dev/net/http#SameSite>`__ constants:"
+msgstr ""
+
+msgid "``SameSiteDefaultMode``"
+msgstr ""
+
+msgid "``SameSiteLaxMode``"
+msgstr ""
+
+msgid "``SameSiteStrictMode``"
+msgstr ""
+
+msgid "``SameSiteNoneMode``"
+msgstr ""
+
+msgid ""
+"For details on ``SameSite`` modes, see the `Set-Cookie header documentation "
+"<https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-"
+"Cookie#samesitesamesite-value>`__ in the MDN web docs."
+msgstr ""
+
+msgid ""
+"This value is used in the ``SameSite`` attribute of the `Set-Cookie "
+"<https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie>`__ "
+"HTTP response header."
+msgstr ""
+
+msgid "Type: http.SameSite"
+msgstr ""
+
+msgid "Default: SameSiteDefaultMode"
+msgstr ""
+
+msgid "Environment variable: TCM_HTTP_WEBSESSION_COOKIE_SAME_SITE"
+msgstr ""
+
+msgid "Command-line option: ``--http-websession-cookie-same-site``"
+msgstr ""
+
+msgid ""
+"Indicates whether to use the `Cross-Origin Resource Sharing "
+"<https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS>`__ (*CORS*)."
+msgstr ""
+
+msgid "Environment variable: TCM_HTTP_CORS_ENABLED"
+msgstr ""
+
+msgid "Command-line option: ``--http-cors-enabled``"
+msgstr ""
+
+msgid ""
+"The `origins <https://developer.mozilla.org/en-US/docs/Glossary/Origin>`__ "
+"with which the HTTP response can be shared, separated by semicolons."
+msgstr ""
+
+msgid ""
+"The specified values are sent in the `Access-Control-Allow-Origin "
+"<https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-"
+"Allow-Origin>`__ HTTP response headers."
+msgstr ""
+
+msgid "Type: []string"
+msgstr ""
+
+msgid "Default: []"
+msgstr ""
+
+msgid "Environment variable: TCM_HTTP_CORS_ALLOWED_ORIGINS"
+msgstr ""
+
+msgid "Command-line option: ``--http-cors-allowed-origins``"
+msgstr ""
+
+msgid ""
+"HTTP request methods that are allowed when accessing a resource, separated "
+"by semicolons."
+msgstr ""
+
+msgid ""
+"The specified values are sent in the `Access-Control-Allow-Methods "
+"<https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-"
+"Allow-Methods>`__ HTTP header of a response to a `CORS preflight request "
+"<https://developer.mozilla.org/en-US/docs/Glossary/Preflight_request>`__."
+msgstr ""
+
+msgid "Environment variable: TCM_HTTP_CORS_ALLOWED_METHODS"
+msgstr ""
+
+msgid "Command-line option: ``--http-cors-allowed-methods``"
+msgstr ""
+
+msgid ""
+"HTTP headers that are allowed during the actual request, separated by "
+"semicolons."
+msgstr ""
+
+msgid ""
+"The specified values are sent in the `Access-Control-Allow-Headers "
+"<https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-"
+"Allow-Headers>`__ HTTP header of a response to a `CORS preflight request "
+"<https://developer.mozilla.org/en-US/docs/Glossary/Preflight_request>`__."
+msgstr ""
+
+msgid "Environment variable: TCM_HTTP_CORS_ALLOWED_HEADERS"
+msgstr ""
+
+msgid "Command-line option: ``--http-cors-allowed-headers``"
+msgstr ""
+
+msgid ""
+"Response headers that should be made available to scripts running in the "
+"browser, in response to a cross-origin request, separated by semicolons."
+msgstr ""
+
+msgid ""
+"The specified values are sent in the `Access-Control-Expose-Headers "
+"<https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-"
+"Expose-Headers>`__ HTTP response headers."
+msgstr ""
+
+msgid "Environment variable: TCM_HTTP_CORS_EXPOSED_HEADERS"
+msgstr ""
+
+msgid "Command-line option: ``--http-cors-exposed-headers``"
+msgstr ""
+
+msgid ""
+"Whether to expose the response to the frontend JavaScript code when the "
+"`request's credentials <https://developer.mozilla.org/en-"
+"US/docs/Web/API/Request/credentials>`__ mode is ``include``."
+msgstr ""
+
+msgid ""
+"When ``true``, the `Access-Control-Allow-Credentials "
+"<https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-"
+"Allow-Credentials>`__ HTTP response header is sent."
+msgstr ""
+
+msgid "Environment variable: TCM_HTTP_CORS_ALLOW_CREDENTIALS"
+msgstr ""
+
+msgid "Command-line option: ``--http-cors-allow-credentials``"
+msgstr ""
+
+msgid "For debug purposes."
+msgstr ""
+
+msgid ""
+"The HTTP endpoint for |tcm| metrics in the `Prometheus "
+"<https://prometheus.io/>`__ format."
+msgstr ""
+
+msgid "Default: /metrics"
+msgstr ""
+
+msgid "Environment variable: TCM_HTTP_METRICS_ENDPOINT"
+msgstr ""
+
+msgid "Command-line option: ``--http-metrics-endpoint``"
+msgstr ""
+
+msgid "Indicates whether TLS is enabled for client connections to |tcm|."
+msgstr ""
+
+msgid "Environment variable: TCM_HTTP_TLS_ENABLED"
+msgstr ""
+
+msgid "Command-line option: ``--http-tls-enabled``"
+msgstr ""
+
+msgid "A path to a TLS certificate file. Mandatory when TLS is enabled."
+msgstr ""
+
+msgid "Environment variable: TCM_HTTP_TLS_CERT_FILE"
+msgstr ""
+
+msgid "Command-line option: ``--http-tls-cert-file``"
+msgstr ""
+
+msgid "A path to a TLS private key file. Mandatory when TLS is enabled."
+msgstr ""
+
+msgid "Environment variable: TCM_HTTP_TLS_KEY_FILE"
+msgstr ""
+
+msgid "Command-line option: ``--http-tls-key-file``"
+msgstr ""
+
+msgid "The TSL server."
+msgstr ""
+
+msgid "Environment variable: TCM_HTTP_TLS_SERVER"
+msgstr ""
+
+msgid "Command-line option: ``--http-tls-server``"
+msgstr ""
+
+msgid "The minimum version of the TLS protocol."
+msgstr ""
+
+msgid "Type: uint16"
+msgstr ""
+
+msgid "Default: 0"
+msgstr ""
+
+msgid "Environment variable: TCM_HTTP_TLS_MIN_VERSION"
+msgstr ""
+
+msgid "Command-line option: ``--http-tls-min-version``"
+msgstr ""
+
+msgid "The maximum version of the TLS protocol."
+msgstr ""
+
+msgid "Environment variable: TCM_HTTP_TLS_MAX_VERSION"
+msgstr ""
+
+msgid "Command-line option: ``--http-tls-max-version``"
+msgstr ""
+
+msgid ""
+"Elliptic curves that are used for TLS connections. Possible values are the "
+"Go's `tls.CurveID <https://pkg.go.dev/crypto/tls#CurveID>`__ constants:"
+msgstr ""
+
+msgid "``CurveP256``"
+msgstr ""
+
+msgid "``CurveP384``"
+msgstr ""
+
+msgid "``CurveP521``"
+msgstr ""
+
+msgid "``X25519``"
+msgstr ""
+
+msgid "Type: []tls.CurveID"
+msgstr ""
+
+msgid "Environment variable: TCM_HTTP_TLS_CURVE_PREFERENCES"
+msgstr ""
+
+msgid "Command-line option: ``--http-tls-curve-preferences``"
+msgstr ""
+
+msgid ""
+"Enabled TLS cipher suites. Possible values are the Golang `tls.TLS_* "
+"<https://pkg.go.dev/crypto/tls#pkg-constants>`__ constants."
+msgstr ""
+
+msgid "Type: []uint16"
+msgstr ""
+
+msgid "Environment variable: TCM_HTTP_TLS_CIPHER_SUITES"
+msgstr ""
+
+msgid "Command-line option: ``--http-tls-cipher-suites``"
+msgstr ""
+
+msgid "A timeout for reading an incoming request."
+msgstr ""
+
+msgid "Default: 30s"
+msgstr ""
+
+msgid "Environment variable: TCM_HTTP_READ_TIMEOUT"
+msgstr ""
+
+msgid "Command-line option: ``--http-read-timeout``"
+msgstr ""
+
+msgid "A timeout for reading headers of an incoming request."
+msgstr ""
+
+msgid "Environment variable: TCM_HTTP_READ_HEADER_TIMEOUT"
+msgstr ""
+
+msgid "Command-line option: ``--http-read-header-timeout``"
+msgstr ""
+
+msgid "A timeout for writing a response."
+msgstr ""
+
+msgid "Environment variable: TCM_HTTP_WRITE_TIMEOUT"
+msgstr ""
+
+msgid "Command-line option: ``--http-write-timeout``"
+msgstr ""
+
+msgid "The timeout for idle connections."
+msgstr ""
+
+msgid "Environment variable: TCM_HTTP_IDLE_TIMEOUT"
+msgstr ""
+
+msgid "Command-line option: ``--http-idle-timeout``"
+msgstr ""
+
+msgid ""
+"Whether the client requests with the ``OPTIONS`` HTTP method are allowed."
+msgstr ""
+
+msgid "Environment variable: TCM_HTTP_DISABLE_GENERAL_OPTIONS_HANDLER"
+msgstr ""
+
+msgid "Command-line option: ``--http-disable-general-options-handler``"
+msgstr ""
+
+msgid ""
+"The maximum size (in bytes) of a header in a client's request to |TCM|."
+msgstr ""
+
+msgid "Environment variable: TCM_HTTP_MAX_HEADER_BYTES"
+msgstr ""
+
+msgid "Command-line option: ``--http-max-header-bytes``"
+msgstr ""
+
+msgid "The stateboard update timeout."
+msgstr ""
+
+msgid "Default: 8s"
+msgstr ""
+
+msgid "Environment variable: TCM_HTTP_API_TIMEOUT"
+msgstr ""
+
+msgid "Command-line option: ``--http-api-timeout``"
+msgstr ""
+
+msgid "The stateboard update interval."
+msgstr ""
+
+msgid "Environment variable: TCM_HTTP_API_UPDATE_INTERVAL"
+msgstr ""
+
+msgid "Command-line option: ``--http-api-update-interval``"
+msgstr ""
+
+msgid ""
+"The directory with custom |tcm| frontend files (for development purposes)."
+msgstr ""
+
+msgid "Environment variable: TCM_HTTP_FRONTEND_DIR"
+msgstr ""
+
+msgid "Command-line option: ``--http-frontend-dir``"
+msgstr ""
+
+msgid "Whether error stack traces are shown in the web UI."
+msgstr ""
+
+msgid "Environment variable: TCM_HTTP_SHOW_STACK_TRACE"
+msgstr ""
+
+msgid "Command-line option: ``--http-show-stack-trace``"
+msgstr ""
+
+msgid "Whether all query tracing information is written in logs."
+msgstr ""
+
+msgid "Environment variable: TCM_HTTP_TRACE"
+msgstr ""
+
+msgid "Command-line option: ``--http-trace``"
+msgstr ""
+
+msgid "The maximum size (in bytes) of a static content sent to |TCM|."
+msgstr ""
+
+msgid "Default: 104857600"
+msgstr ""
+
+msgid "Environment variable: TCM_HTTP_MAX_STATIC_SIZE"
+msgstr ""
+
+msgid "Command-line option: ``--http-max-static-size``"
+msgstr ""
+
+msgid ""
+"The maximum `complexity <https://typegraphql.com/docs/complexity.html>`__ of"
+" GraphQL queries that |tcm| processes. If this value is exceeded, |tcm| "
+"returns an error."
+msgstr ""
+
+msgid "Default: 40"
+msgstr ""
+
+msgid "Environment variable: TCM_HTTP_GRAPHQL_COMPLEXITY"
+msgstr ""
+
+msgid "Command-line option: ``--http-graphql-complexity``"
+msgstr ""
+
+msgid "log"
+msgstr ""
+
+msgid "The ``log`` section defines the |tcm|  logging parameters."
+msgstr ""
+
+msgid ""
+":ref:`log.default.add-source <tcm_configuration_reference_log_default_add-"
+"source>`"
+msgstr ""
+
+msgid ""
+":ref:`log.default.show-stack-trace "
+"<tcm_configuration_reference_log_default_show-stack-trace>`"
+msgstr ""
+
+msgid ""
+":ref:`log.default.level <tcm_configuration_reference_log_default_level>`"
+msgstr ""
+
+msgid ""
+":ref:`log.default.format <tcm_configuration_reference_log_default_format>`"
+msgstr ""
+
+msgid ""
+":ref:`log.default.output <tcm_configuration_reference_log_default_output>`"
+msgstr ""
+
+msgid ""
+":ref:`log.default.no-colorized <tcm_configuration_reference_log_default_no-"
+"colorized>`"
+msgstr ""
+
+msgid ""
+":ref:`log.default.file.name "
+"<tcm_configuration_reference_log_default_file_name>`"
+msgstr ""
+
+msgid ""
+":ref:`log.default.file.maxsize "
+"<tcm_configuration_reference_log_default_file_maxsize>`"
+msgstr ""
+
+msgid ""
+":ref:`log.default.file.maxage "
+"<tcm_configuration_reference_log_default_file_maxage>`"
+msgstr ""
+
+msgid ""
+":ref:`log.default.file.maxbackups "
+"<tcm_configuration_reference_log_default_file_maxbackups>`"
+msgstr ""
+
+msgid ""
+":ref:`log.default.file.compress "
+"<tcm_configuration_reference_log_default_file_compress>`"
+msgstr ""
+
+msgid ""
+":ref:`log.default.syslog.protocol "
+"<tcm_configuration_reference_log_default_syslog_protocol>`"
+msgstr ""
+
+msgid ""
+":ref:`log.default.syslog.output "
+"<tcm_configuration_reference_log_default_syslog_output>`"
+msgstr ""
+
+msgid ""
+":ref:`log.default.syslog.priority "
+"<tcm_configuration_reference_log_default_syslog_priority>`"
+msgstr ""
+
+msgid ""
+":ref:`log.default.syslog.facility "
+"<tcm_configuration_reference_log_default_syslog_facility>`"
+msgstr ""
+
+msgid ""
+":ref:`log.default.syslog.tag "
+"<tcm_configuration_reference_log_default_syslog_tag>`"
+msgstr ""
+
+msgid ""
+":ref:`log.default.syslog.timeout "
+"<tcm_configuration_reference_log_default_syslog_timeout>`"
+msgstr ""
+
+msgid ":ref:`log.outputs <tcm_configuration_reference_log_outputs>`"
+msgstr ""
+
+msgid "Whether sources are added to the |tcm| log."
+msgstr ""
+
+msgid "Environment variable: TCM_LOG_DEFAULT_ADD_SOURCE"
+msgstr ""
+
+msgid "Command-line option: ``--log-default-add-source``"
+msgstr ""
+
+msgid "Whether stack traces are added to the |tcm| log."
+msgstr ""
+
+msgid "Environment variable: TCM_LOG_DEFAULT_SHOW_STACK_TRACE"
+msgstr ""
+
+msgid "Command-line option: ``--log-default-show-stack-trace``"
+msgstr ""
+
+msgid "The default |tcm| logging level."
+msgstr ""
+
+msgid "``VERBOSE``"
+msgstr ""
+
+msgid "``INFO``"
+msgstr ""
+
+msgid "``WARN``"
+msgstr ""
+
+msgid "``ALARM``"
+msgstr ""
+
+msgid "Default: INFO"
+msgstr ""
+
+msgid "Environment variable: TCM_LOG_DEFAULT_LEVEL"
+msgstr ""
+
+msgid "Command-line option: ``--log-default-level``"
+msgstr ""
+
+msgid "|tcm| log entries format."
+msgstr ""
+
+msgid "``struct``"
+msgstr ""
+
+msgid "``json``"
+msgstr ""
+
+msgid "Default: struct"
+msgstr ""
+
+msgid "Environment variable: TCM_LOG_DEFAULT_FORMAT"
+msgstr ""
+
+msgid "Command-line option: ``--log-default-format``"
+msgstr ""
+
+msgid "The output used for |tcm| log."
+msgstr ""
+
+msgid "``stdout``"
+msgstr ""
+
+msgid "``stderr``"
+msgstr ""
+
+msgid "``file``"
+msgstr ""
+
+msgid "``syslog``"
+msgstr ""
+
+msgid "Default: stdout"
+msgstr ""
+
+msgid "Environment variable: TCM_LOG_DEFAULT_OUTPUT"
+msgstr ""
+
+msgid "Command-line option: ``--log-default-output``"
+msgstr ""
+
+msgid "Whether the stdout log is not colorized."
+msgstr ""
+
+msgid "Environment variable: TCM_LOG_DEFAULT_NO_COLORIZED"
+msgstr ""
+
+msgid "Command-line option: ``--log-default-no-colorized``"
+msgstr ""
+
+msgid "The name of the |tcm| log file."
+msgstr ""
+
+msgid "Environment variable: TCM_LOG_DEFAULT_FILE_NAME"
+msgstr ""
+
+msgid "Command-line option: ``--log-default-file-name``"
+msgstr ""
+
+msgid "The maximum size (in bytes) of the |tcm| log file."
+msgstr ""
+
+msgid "Environment variable: TCM_LOG_DEFAULT_FILE_MAXSIZE"
+msgstr ""
+
+msgid "Command-line option: ``--log-default-file-maxsize``"
+msgstr ""
+
+msgid "The maximum age of a |tcm| log file, in days."
+msgstr ""
+
+msgid "Environment variable: TCM_LOG_DEFAULT_FILE_MAXAGE"
+msgstr ""
+
+msgid "Command-line option: ``--log-default-file-maxage``"
+msgstr ""
+
+msgid "The maximum number of users in |tcm|."
+msgstr ""
+
+msgid "Environment variable: TCM_LOG_DEFAULT_FILE_MAXBACKUPS"
+msgstr ""
+
+msgid "Command-line option: ``--log-default-file-maxbackups``"
+msgstr ""
+
+msgid "Indicated that |tcm| compresses log files upon rotation."
+msgstr ""
+
+msgid "Environment variable: TCM_LOG_DEFAULT_FILE_COMPRESS"
+msgstr ""
+
+msgid "Command-line option: ``--log-default-file-compress``"
+msgstr ""
+
+msgid ""
+"The network protocol used for connecting to the syslog server. Typically, "
+"it's ``tcp``, ``udp``, or ``unix``. All possible values are listed in the "
+"Go's `net.Dial <https://pkg.go.dev/net#Dial>`__ documentation."
+msgstr ""
+
+msgid "Environment variable: TCM_LOG_DEFAULT_SYSLOG_PROTOCOL"
+msgstr ""
+
+msgid "Command-line option: ``--log-default-syslog-protocol``"
+msgstr ""
+
+msgid "The syslog server URI."
+msgstr ""
+
+msgid "Default: 127.0.0.1:5514"
+msgstr ""
+
+msgid "Environment variable: TCM_LOG_DEFAULT_SYSLOG_OUTPUT"
+msgstr ""
+
+msgid "Command-line option: ``--log-default-syslog-output``"
+msgstr ""
+
+msgid "The syslog severity level."
+msgstr ""
+
+msgid "Environment variable: TCM_LOG_DEFAULT_SYSLOG_PRIORITY"
+msgstr ""
+
+msgid "Command-line option: ``--log-default-syslog-priority``"
+msgstr ""
+
+msgid "The syslog facility."
+msgstr ""
+
+msgid "Environment variable: TCM_LOG_DEFAULT_SYSLOG_FACILITY"
+msgstr ""
+
+msgid "Command-line option: ``--log-default-syslog-facility``"
+msgstr ""
+
+msgid "The syslog tag."
+msgstr ""
+
+msgid "Environment variable: TCM_LOG_DEFAULT_SYSLOG_TAG"
+msgstr ""
+
+msgid "Command-line option: ``--log-default-syslog-tag``"
+msgstr ""
+
+msgid "The timeout for connecting to the syslog server."
+msgstr ""
+
+msgid "Environment variable: TCM_LOG_DEFAULT_SYSLOG_TIMEOUT"
+msgstr ""
+
+msgid "Command-line option: ``--log-default-syslog-timeout``"
+msgstr ""
+
+msgid ""
+"An array of log outputs that |tcm| uses **in addition** to the default one "
+"that is defined by the ``log.default.*`` parameters. Each array item can "
+"include the parameters of the ``log.default`` group. If a parameter is "
+"skipped, its value is taken from ``log.default``."
+msgstr ""
+
+msgid "Type: []LogOuputConfig"
+msgstr ""
+
+msgid "Environment variable: TCM_LOG_OUTPUTS"
+msgstr ""
+
+msgid "Command-line option: ``--log-outputs``"
+msgstr ""
+
+msgid "storage"
+msgstr ""
+
+msgid ""
+"The ``storage`` section defines the parameters of the configuration storage "
+"that |tcm| uses for connected clusters."
+msgstr ""
+
+msgid ":ref:`storage.provider <tcm_configuration_reference_storage_provider>`"
+msgstr ""
+
+msgid "etcd storage parameters:"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.prefix <tcm_configuration_reference_storage_etcd_prefix>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.endpoints "
+"<tcm_configuration_reference_storage_etcd_endpoints>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.dial-timeout "
+"<tcm_configuration_reference_storage_etcd_dial-timeout>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.auto-sync-interval "
+"<tcm_configuration_reference_storage_etcd_auto-sync-interval>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.dial-keep-alive-time "
+"<tcm_configuration_reference_storage_etcd_dial-keep-alive-time>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.dial-keep-alive-timeout "
+"<tcm_configuration_reference_storage_etcd_dial-keep-alive-timeout>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.bootstrap-timeout "
+"<tcm_configuration_reference_storage_etcd_bootstrap-timeout>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.max-call-send-msg-size "
+"<tcm_configuration_reference_storage_etcd_max-call-send-msg-size>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.username "
+"<tcm_configuration_reference_storage_etcd_username>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.password "
+"<tcm_configuration_reference_storage_etcd_password>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.tls.enabled "
+"<tcm_configuration_reference_storage_etcd_tls_enabled>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.tls.auto "
+"<tcm_configuration_reference_storage_etcd_tls_auto>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.tls.cert-file "
+"<tcm_configuration_reference_storage_etcd_tls_cert-file>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.tls.key-file "
+"<tcm_configuration_reference_storage_etcd_tls_key-file>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.tls.trusted-ca-file "
+"<tcm_configuration_reference_storage_etcd_tls_trusted-ca-file>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.tls.client-cert-auth "
+"<tcm_configuration_reference_storage_etcd_tls_client-cert-auth>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.tls.crl-file "
+"<tcm_configuration_reference_storage_etcd_tls_crl-file>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.tls.insecure-skip-verify "
+"<tcm_configuration_reference_storage_etcd_tls_insecure-skip-verify>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.tls.skip-client-san-verify "
+"<tcm_configuration_reference_storage_etcd_tls_skip-client-san-verify>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.tls.server-name "
+"<tcm_configuration_reference_storage_etcd_tls_server-name>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.tls.cipher-suites "
+"<tcm_configuration_reference_storage_etcd_tls_cipher-suites>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.tls.allowed-cn "
+"<tcm_configuration_reference_storage_etcd_tls_allowed-cn>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.tls.allowed-hostname "
+"<tcm_configuration_reference_storage_etcd_tls_allowed-hostname>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.tls.empty-cn "
+"<tcm_configuration_reference_storage_etcd_tls_empty-cn>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.permit-without-stream "
+"<tcm_configuration_reference_storage_etcd_permit-without-stream>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.embed.enabled "
+"<tcm_configuration_reference_storage_etcd_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.embed.endpoints "
+"<tcm_configuration_reference_storage_etcd_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.embed.advertises "
+"<tcm_configuration_reference_storage_etcd_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.embed.tls.enabled "
+"<tcm_configuration_reference_storage_etcd_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.embed.tls.auto "
+"<tcm_configuration_reference_storage_etcd_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.embed.tls.cert-file "
+"<tcm_configuration_reference_storage_etcd_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.embed.tls.key-file "
+"<tcm_configuration_reference_storage_etcd_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.embed.tls.trusted-ca-file "
+"<tcm_configuration_reference_storage_etcd_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.embed.tls.client-cert-auth "
+"<tcm_configuration_reference_storage_etcd_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.embed.tls.crl-file "
+"<tcm_configuration_reference_storage_etcd_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.embed.tls.insecure-skip-verify "
+"<tcm_configuration_reference_storage_etcd_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.embed.tls.skip-client-san-verify "
+"<tcm_configuration_reference_storage_etcd_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.embed.tls.server-name "
+"<tcm_configuration_reference_storage_etcd_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.embed.tls.cipher-suites "
+"<tcm_configuration_reference_storage_etcd_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.embed.tls.allowed-cn "
+"<tcm_configuration_reference_storage_etcd_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.embed.tls.allowed-hostname "
+"<tcm_configuration_reference_storage_etcd_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.embed.tls.empty-cn "
+"<tcm_configuration_reference_storage_etcd_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.embed.peer-endpoints "
+"<tcm_configuration_reference_storage_etcd_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.embed.peer-advertises "
+"<tcm_configuration_reference_storage_etcd_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.embed.peer-tls.enabled "
+"<tcm_configuration_reference_storage_etcd_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.embed.peer-tls.auto "
+"<tcm_configuration_reference_storage_etcd_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.embed.peer-tls.cert-file "
+"<tcm_configuration_reference_storage_etcd_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.embed.peer-tls.key-file "
+"<tcm_configuration_reference_storage_etcd_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.embed.peer-tls.trusted-ca-file "
+"<tcm_configuration_reference_storage_etcd_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.embed.peer-tls.client-cert-auth "
+"<tcm_configuration_reference_storage_etcd_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.embed.peer-tls.crl-file "
+"<tcm_configuration_reference_storage_etcd_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.embed.peer-tls.insecure-skip-verify "
+"<tcm_configuration_reference_storage_etcd_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.embed.peer-tls.skip-client-san-verify "
+"<tcm_configuration_reference_storage_etcd_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.embed.peer-tls.server-name "
+"<tcm_configuration_reference_storage_etcd_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.embed.peer-tls.cipher-suites "
+"<tcm_configuration_reference_storage_etcd_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.embed.peer-tls.allowed-cn "
+"<tcm_configuration_reference_storage_etcd_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.embed.peer-tls.allowed-hostname "
+"<tcm_configuration_reference_storage_etcd_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.embed.peer-tls.empty-cn "
+"<tcm_configuration_reference_storage_etcd_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.embed.grpc-keep-alive-timeout "
+"<tcm_configuration_reference_storage_etcd_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.embed.grpc-keep-alive-interval "
+"<tcm_configuration_reference_storage_etcd_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.embed.grpc-keep-alive-min-time "
+"<tcm_configuration_reference_storage_etcd_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.embed.workdir "
+"<tcm_configuration_reference_storage_etcd_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.embed.waldir "
+"<tcm_configuration_reference_storage_etcd_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.embed.max-request-bytes "
+"<tcm_configuration_reference_storage_etcd_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.embed.debug "
+"<tcm_configuration_reference_storage_etcd_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.embed.start-timeout "
+"<tcm_configuration_reference_storage_etcd_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.embed.log-level "
+"<tcm_configuration_reference_storage_etcd_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.embed.initial-cluster "
+"<tcm_configuration_reference_storage_etcd_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.embed.initial-cluster-token "
+"<tcm_configuration_reference_storage_etcd_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.embed.name "
+"<tcm_configuration_reference_storage_etcd_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.embed.initial-cluster-state "
+"<tcm_configuration_reference_storage_etcd_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.etcd.embed.self-signed-cert-validity "
+"<tcm_configuration_reference_storage_etcd_embed>`"
+msgstr ""
+
+msgid "Tarantool storage parameters:"
+msgstr ""
+
+msgid ""
+":ref:`storage.tarantool.prefix "
+"<tcm_configuration_reference_storage_tarantool_prefix>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.tarantool.addr "
+"<tcm_configuration_reference_storage_tarantool_addr>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.tarantool.auth "
+"<tcm_configuration_reference_storage_tarantool_timeout>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.tarantool.reconnect "
+"<tcm_configuration_reference_storage_tarantool_reconnect>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.tarantool.max-reconnects "
+"<tcm_configuration_reference_storage_tarantool_max-reconnects>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.tarantool.user "
+"<tcm_configuration_reference_storage_tarantool_user>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.tarantool.pass "
+"<tcm_configuration_reference_storage_tarantool_pass>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.tarantool.rate-limit "
+"<tcm_configuration_reference_storage_tarantool_rate-limit>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.tarantool.rate-limit-action "
+"<tcm_configuration_reference_storage_tarantool_rate-limit-action>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.tarantool.concurrency "
+"<tcm_configuration_reference_storage_tarantool_concurrency>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.tarantool.skip-schema "
+"<tcm_configuration_reference_storage_tarantool_skip-schema>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.tarantool.transport "
+"<tcm_configuration_reference_storage_tarantool_transport>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.tarantool.ssl.key-file "
+"<tcm_configuration_reference_storage_tarantool_ssl_key-file>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.tarantool.ssl.cert-file "
+"<tcm_configuration_reference_storage_tarantool_ssl_cert-file>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.tarantool.ssl.ca-file "
+"<tcm_configuration_reference_storage_tarantool_ssl_ca-file>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.tarantool.ssl.ciphers "
+"<tcm_configuration_reference_storage_tarantool_ssl_ciphers>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.tarantool.ssl.password "
+"<tcm_configuration_reference_storage_tarantool_ssl_password>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.tarantool.required-protocol-info.auth "
+"<tcm_configuration_reference_storage_tarantool_required-protocol-info_auth>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.tarantool.required-protocol-info.version "
+"<tcm_configuration_reference_storage_tarantool_required-protocol-"
+"info_version>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.tarantool.required-protocol-info.features "
+"<tcm_configuration_reference_storage_tarantool_required-protocol-"
+"info_features>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.tarantool.embed.enabled "
+"<tcm_configuration_reference_storage_tarantool_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.tarantool.embed.workdir "
+"<tcm_configuration_reference_storage_tarantool_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.tarantool.embed.executable "
+"<tcm_configuration_reference_storage_tarantool_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.tarantool.embed.config-filename "
+"<tcm_configuration_reference_storage_tarantool_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.tarantool.embed.config "
+"<tcm_configuration_reference_storage_tarantool_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.tarantool.embed.args "
+"<tcm_configuration_reference_storage_tarantool_embed>`"
+msgstr ""
+
+msgid ""
+":ref:`storage.tarantool.embed.env "
+"<tcm_configuration_reference_storage_tarantool_embed>`"
+msgstr ""
+
+msgid "The type of the storage used for storing |tcm| configuration."
+msgstr ""
+
+msgid "``etcd``"
+msgstr ""
+
+msgid "``tarantool``"
+msgstr ""
+
+msgid "Default: etcd"
+msgstr ""
+
+msgid "Environment variable: TCM_STORAGE_PROVIDER"
+msgstr ""
+
+msgid "Command-line option: ``--storage-provider``"
+msgstr ""
+
+msgid "A prefix for the |tcm| configuration parameters in etcd."
+msgstr ""
+
+msgid "Default: \"/tcm\""
+msgstr ""
+
+msgid "Environment variable: TCM_STORAGE_ETCD_PREFIX"
+msgstr ""
+
+msgid "Command-line option: ``--storage-etcd-prefix``"
+msgstr ""
+
+msgid ""
+"An array of node URIs of the etcd cluster where the |tcm| configuration is "
+"stored, separated by semicolons (``;``)."
+msgstr ""
+
+msgid "Default: [\"http://127.0.0.1:2379\"]"
+msgstr ""
+
+msgid "Environment variable: TCM_STORAGE_ETCD_ENDPOINTS"
+msgstr ""
+
+msgid "Command-line option: ``--storage-etcd-endpoints``"
+msgstr ""
+
+msgid "An etcd dial timeout."
+msgstr ""
+
+msgid "Environment variable: TCM_STORAGE_ETCD_DIAL_TIMEOUT"
+msgstr ""
+
+msgid "Command-line option: ``--storage-etcd-dial-timeout``"
+msgstr ""
+
+msgid "An automated sync interval."
+msgstr ""
+
+msgid "Default: 0s"
+msgstr ""
+
+msgid "Environment variable: TCM_STORAGE_ETCD_AUTO_SYNC_INTERVAL"
+msgstr ""
+
+msgid "Command-line option: ``--storage-etcd-auto-sync-interval``"
+msgstr ""
+
+msgid "A dial keep-alive time."
+msgstr ""
+
+msgid "Environment variable: TCM_STORAGE_ETCD_DIAL_KEEP_ALIVE_TIME"
+msgstr ""
+
+msgid "Command-line option: ``--storage-etcd-dial-keep-alive-time``"
+msgstr ""
+
+msgid "A dial keep-alive timeout."
+msgstr ""
+
+msgid "Environment variable: TCM_STORAGE_ETCD_DIAL_KEEP_ALIVE_TIMEOUT"
+msgstr ""
+
+msgid "Command-line option: ``--storage-etcd-dial-keep-alive-timeout``"
+msgstr ""
+
+msgid "A bootstrap timeout."
+msgstr ""
+
+msgid "Environment variable: TCM_STORAGE_ETCD_BOOTSTRAP_TIMEOUT"
+msgstr ""
+
+msgid "Command-line option: ``--storage-etcd-bootstrap-timeout``"
+msgstr ""
+
+msgid "The maximum size (in bytes) of a transaction between |tcm| and etcd."
+msgstr ""
+
+msgid "Default: 2097152"
+msgstr ""
+
+msgid "Environment variable: TCM_STORAGE_ETCD_MAX_CALL_SEND_MSG_SIZE"
+msgstr ""
+
+msgid "Command-line option: ``--storage-etcd-max-call-send-msg-size``"
+msgstr ""
+
+msgid "A username for accessing the etcd storage."
+msgstr ""
+
+msgid "Environment variable: TCM_STORAGE_ETCD_USERNAME"
+msgstr ""
+
+msgid "Command-line option: ``--storage-etcd-username``"
+msgstr ""
+
+msgid "A password for accessing the etcd storage."
+msgstr ""
+
+msgid "Environment variable: TCM_STORAGE_ETCD_PASSWORD"
+msgstr ""
+
+msgid "Command-line option: ``--storage-etcd-password``"
+msgstr ""
+
+msgid "Indicates whether TLS is enabled for etcd connections."
+msgstr ""
+
+msgid "Environment variable: TCM_STORAGE_ETCD_TLS_ENABLED"
+msgstr ""
+
+msgid "Command-line option: ``--storage-etcd-tls-enabled``"
+msgstr ""
+
+msgid "Use generated certificates for etcd connections."
+msgstr ""
+
+msgid "Environment variable: TCM_STORAGE_ETCD_TLS_AUTO"
+msgstr ""
+
+msgid "Command-line option: ``--storage-etcd-tls-auto``"
+msgstr ""
+
+msgid "A path to a TLS certificate file to use for etcd connections."
+msgstr ""
+
+msgid "Environment variable: TCM_STORAGE_ETCD_TLS_CERT_FILE"
+msgstr ""
+
+msgid "Command-line option: ``--storage-etcd-tls-cert-file``"
+msgstr ""
+
+msgid "A path to a TLS private key file to use for etcd connections."
+msgstr ""
+
+msgid "Environment variable: TCM_STORAGE_ETCD_TLS_KEY_FILE"
+msgstr ""
+
+msgid "Command-line option: ``--storage-etcd-tls-key-file``"
+msgstr ""
+
+msgid "A path to a trusted CA certificate file to use for etcd connections."
+msgstr ""
+
+msgid "Environment variable: TCM_STORAGE_ETCD_TLS_TRUSTED_CA_FILE"
+msgstr ""
+
+msgid "Command-line option: ``--storage-etcd-tls-trusted-ca-file``"
+msgstr ""
+
+msgid "Indicates whether client cert authentication is enabled."
+msgstr ""
+
+msgid "Environment variable: TCM_STORAGE_ETCD_TLS_CLIENT_CERT_AUTH"
+msgstr ""
+
+msgid "Command-line option: ``--storage-etcd-tls-client-cert-auth``"
+msgstr ""
+
+msgid "A path to the client certificate revocation list file."
+msgstr ""
+
+msgid "Environment variable: TCM_STORAGE_ETCD_TLS_CRL_FILE"
+msgstr ""
+
+msgid "Command-line option: ``--storage-etcd-tls-crl-file``"
+msgstr ""
+
+msgid "Skip checking client certificate in etcd connections."
+msgstr ""
+
+msgid "Environment variable: TCM_STORAGE_ETCD_TLS_INSECURE_SKIP_VERIFY"
+msgstr ""
+
+msgid "Command-line option: ``--storage-etcd-tls-insecure-skip-verify``"
+msgstr ""
+
+msgid ""
+"Skip verification of SAN field in client certificate for etcd connections."
+msgstr ""
+
+msgid "Environment variable: TCM_STORAGE_ETCD_TLS_SKIP_CLIENT_SAN_VERIFY"
+msgstr ""
+
+msgid "Command-line option: ``--storage-etcd-tls-skip-client-san-verify``"
+msgstr ""
+
+msgid "Name of the TLS server for etcd connections."
+msgstr ""
+
+msgid "Environment variable: TCM_STORAGE_ETCD_TLS_SERVER_NAME"
+msgstr ""
+
+msgid "Command-line option: ``--storage-etcd-tls-server-name``"
+msgstr ""
+
+msgid ""
+"TLS cipher suites for etcd connections. Possible values are the Golang "
+"`tls.TLS_* <https://pkg.go.dev/crypto/tls#pkg-constants>`__ constants."
+msgstr ""
+
+msgid "Environment variable: TCM_STORAGE_ETCD_TLS_CIPHER_SUITES"
+msgstr ""
+
+msgid "Command-line option: ``--storage-etcd-tls-cipher-suites``"
+msgstr ""
+
+msgid "An allowed common name for authentication in etcd connections."
+msgstr ""
+
+msgid "Environment variable: TCM_STORAGE_ETCD_TLS_ALLOWED_CN"
+msgstr ""
+
+msgid "Command-line option: ``--storage-etcd-tls-allowed-cn``"
+msgstr ""
+
+msgid ""
+"An allowed TLS certificate name for authentication in etcd connections."
+msgstr ""
+
+msgid "Environment variable: TCM_STORAGE_ETCD_TLS_ALLOWED_HOSTNAME"
+msgstr ""
+
+msgid "Command-line option: ``--storage-etcd-tls-allowed-hostname``"
+msgstr ""
+
+msgid "Whether the empty common name is allowed in etcd connections."
+msgstr ""
+
+msgid "Environment variable: TCM_STORAGE_ETCD_TLS_EMPTY_CN"
+msgstr ""
+
+msgid "Command-line option: ``--storage-etcd-tls-empty-cn``"
+msgstr ""
+
+msgid ""
+"Whether keepalive pings can be send to the etcd server without active "
+"streams."
+msgstr ""
+
+msgid "Environment variable: TCM_STORAGE_ETCD_PERMIT_WITHOUT_STREAM"
+msgstr ""
+
+msgid "Command-line option: ``--storage-etcd-permit-without-stream``"
+msgstr ""
+
+msgid "storage.etcd.embed.*"
+msgstr ""
+
+msgid ""
+"The ``storage.etcd.embed`` group defines the configuration of the embedded "
+"etcd cluster that can used as a |tcm| configuration storage. This cluster "
+"can be used for development purposes when the production or testing etcd "
+"cluster is not available or not needed."
+msgstr ""
+
+msgid ""
+"A prefix for the TCM configuration parameters in the Tarantool |tcm| "
+"configuration storage."
+msgstr ""
+
+msgid "Default: \"_tcm:"
+msgstr ""
+
+msgid "Environment variable: TCM_STORAGE_TARANTOOL_PREFIX"
+msgstr ""
+
+msgid "Command-line option: ``--storage-tarantool-prefix``"
+msgstr ""
+
+msgid "The URI for connecting to the Tarantool |tcm| configuration storage."
+msgstr ""
+
+msgid "Default: \"unix/:/tmp/tnt_config_instance.sock\""
+msgstr ""
+
+msgid "Environment variable: TCM_STORAGE_TARANTOOL_ADDR"
+msgstr ""
+
+msgid "Command-line option: ``--storage-tarantool-ADDR``"
+msgstr ""
+
+msgid ""
+"An authentication method for the Tarantool |tcm| configuration storage."
+msgstr ""
+
+msgid ""
+"Possible values are the Go's `go-tarantool/Auth "
+"<https://pkg.go.dev/github.com/tarantool/go-tarantool#Auth>`__ constants:"
+msgstr ""
+
+msgid "``AutoAuth`` (0)"
+msgstr ""
+
+msgid "``ChapSha1Auth``"
+msgstr ""
+
+msgid "``PapSha256Auth``"
+msgstr ""
+
+msgid "Environment variable: TCM_STORAGE_TARANTOOL_AUTH"
+msgstr ""
+
+msgid "Command-line option: ``--storage-tarantool-auth``"
+msgstr ""
+
+msgid "A request timeout for the Tarantool |tcm| configuration storage."
+msgstr ""
+
+msgid ""
+"See also `go-tarantool.Opts <https://pkg.go.dev/github.com/tarantool/go-"
+"tarantool#Opts>`__."
+msgstr ""
+
+msgid "Environment variable: TCM_STORAGE_TARANTOOL_TIMEOUT"
+msgstr ""
+
+msgid "Command-line option: ``--storage-tarantool-timeout``"
+msgstr ""
+
+msgid ""
+"A timeout between reconnect attempts for the Tarantool |tcm| configuration "
+"storage."
+msgstr ""
+
+msgid "Environment variable: TCM_STORAGE_TARANTOOL_RECONNECT"
+msgstr ""
+
+msgid "Command-line option: ``--storage-tarantool-reconnect``"
+msgstr ""
+
+msgid ""
+"The maximum number of reconnect attempts for the Tarantool |tcm| "
+"configuration storage."
+msgstr ""
+
+msgid "Environment variable: TCM_STORAGE_TARANTOOL_MAX_RECONNECTS"
+msgstr ""
+
+msgid "Command-line option: ``--storage-tarantool-max-reconnects``"
+msgstr ""
+
+msgid ""
+"A username for connecting to the Tarantool |tcm| configuration storage."
+msgstr ""
+
+msgid "Environment variable: TCM_STORAGE_TARANTOOL_USER"
+msgstr ""
+
+msgid "Command-line option: ``--storage-tarantool-user``"
+msgstr ""
+
+msgid ""
+"A password for connecting to the Tarantool |tcm| configuration storage."
+msgstr ""
+
+msgid "Environment variable: TCM_STORAGE_TARANTOOL_PASS"
+msgstr ""
+
+msgid "Command-line option: ``--storage-tarantool-pass``"
+msgstr ""
+
+msgid ""
+"A rate limit for connecting to the Tarantool |tcm| configuration storage."
+msgstr ""
+
+msgid "Environment variable: TCM_STORAGE_TARANTOOL_RATE_LIMIT"
+msgstr ""
+
+msgid "Command-line option: ``--storage-tarantool-rate-limit``"
+msgstr ""
+
+msgid ""
+"An action to perform when the "
+":ref:`tcm_configuration_reference_storage_tarantool_rate-limit` is reached."
+msgstr ""
+
+msgid "Environment variable: TCM_STORAGE_TARANTOOL_RATE_LIMIT_ACTION"
+msgstr ""
+
+msgid "Command-line option: ``--storage-tarantool-rate-limit-action``"
+msgstr ""
+
+msgid ""
+"An amount of separate mutexes for request queues and buffers inside of a "
+"connection to the Tarantool |tcm| configuration storage."
+msgstr ""
+
+msgid "Environment variable: TCM_STORAGE_TARANTOOL_CONCURRENCY"
+msgstr ""
+
+msgid "Command-line option: ``--storage-tarantool-concurrency``"
+msgstr ""
+
+msgid ""
+"Whether the schema is loaded from the Tarantool |tcm| configuration storage."
+msgstr ""
+
+msgid "Environment variable: TCM_STORAGE_TARANTOOL_SKIP_SCHEMA"
+msgstr ""
+
+msgid "Command-line option: ``--storage-tarantool-skip-schema``"
+msgstr ""
+
+msgid "The connection type for the Tarantool |tcm| configuration storage."
+msgstr ""
+
+msgid "Environment variable: TCM_STORAGE_TARANTOOL_TRANSPORT"
+msgstr ""
+
+msgid "Command-line option: ``--storage-tarantool-transport``"
+msgstr ""
+
+msgid ""
+"A path to a TLS private key file to use for connecting to the Tarantool "
+"|tcm| configuration storage."
+msgstr ""
+
+msgid "See also: :ref:`Traffic encryption <enterprise-iproto-encryption>`."
+msgstr ""
+
+msgid "Environment variable: TCM_STORAGE_TARANTOOL_SSL_KEY_FILE"
+msgstr ""
+
+msgid "Command-line option: ``--storage-tarantool-ssl-key-file``"
+msgstr ""
+
+msgid ""
+"A path to an SSL certificate to use for connecting to the Tarantool |tcm| "
+"configuration storage."
+msgstr ""
+
+msgid "Environment variable: TCM_STORAGE_TARANTOOL_SSL_CERT_FILE"
+msgstr ""
+
+msgid "Command-line option: ``--storage-tarantool-ssl-cert-file``"
+msgstr ""
+
+msgid ""
+"A path to a trusted CA certificate to use for connecting to the Tarantool "
+"|tcm| configuration storage."
+msgstr ""
+
+msgid "Environment variable: TCM_STORAGE_TARANTOOL_SSL_CA_FILE"
+msgstr ""
+
+msgid "Command-line option: ``--storage-tarantool-ssl-ca-file``"
+msgstr ""
+
+msgid ""
+"A list of SSL cipher suites that can be used for connecting to the Tarantool"
+" |tcm| configuration storage. Possible values are listed in :ref:`Supported "
+"ciphers <enterprise-iproto-encryption-ciphers>`."
+msgstr ""
+
+msgid "Environment variable: TCM_STORAGE_TARANTOOL_SSL_CIPHERS"
+msgstr ""
+
+msgid "Command-line option: ``--storage-tarantool-ssl-ciphers``"
+msgstr ""
+
+msgid ""
+"A password for an encrypted private SSL key to use for connecting to the "
+"Tarantool |tcm| configuration storage."
+msgstr ""
+
+msgid "Environment variable: TCM_STORAGE_TARANTOOL_SSL_PASSWORD"
+msgstr ""
+
+msgid "Command-line option: ``--storage-tarantool-ssl-password``"
+msgstr ""
+
+msgid ""
+"A text file with passwords for encrypted private SSL keys to use for "
+"connecting to the Tarantool |tcm| configuration storage."
+msgstr ""
+
+msgid "Environment variable: TCM_STORAGE_TARANTOOL_SSL_PASSWORD_FILE"
+msgstr ""
+
+msgid "Command-line option: ``--storage-tarantool-ssl-password-file``"
+msgstr ""
+
+msgid ""
+"See also `go-tarantool.ProtocolInfo "
+"<https://pkg.go.dev/github.com/tarantool/go-tarantool#ProtocolInfo>`__."
+msgstr ""
+
+msgid ""
+"Environment variable: TCM_STORAGE_TARANTOOL_SSL_REQUIRED_PROTOCOL_INFO_AUTH"
+msgstr ""
+
+msgid ""
+"Command-line option: ``--storage-tarantool-required-protocol-info-auth``"
+msgstr ""
+
+msgid "A Tarantool protocol version."
+msgstr ""
+
+msgid "Type: uint64"
+msgstr ""
+
+msgid ""
+"Environment variable: "
+"TCM_STORAGE_TARANTOOL_SSL_REQUIRED_PROTOCOL_INFO_VERSION"
+msgstr ""
+
+msgid ""
+"Command-line option: ``--storage-tarantool-required-protocol-info-version``"
+msgstr ""
+
+msgid "An array of Tarantool protocol features."
+msgstr ""
+
+msgid "Type: []int"
+msgstr ""
+
+msgid ""
+"Environment variable: "
+"TCM_STORAGE_TARANTOOL_SSL_REQUIRED_PROTOCOL_INFO_FEATURES"
+msgstr ""
+
+msgid ""
+"Command-line option: ``--storage-tarantool-required-protocol-info-features``"
+msgstr ""
+
+msgid "storage.tarantool.embed.*"
+msgstr ""
+
+msgid ""
+"The ``storage.tarantool.embed`` group parameters define the configuration of"
+" the embedded Tarantool cluster that can used as a |tcm| configuration "
+"storage. This cluster can be used for development purposes when the "
+"production or testing cluster is not available or not needed."
+msgstr ""
+
+msgid "addon"
+msgstr ""
+
+msgid "The ``addon`` section defines settings related to |tcm| add-ons."
+msgstr ""
+
+msgid ":ref:`addon.enabled <tcm_configuration_reference_addon_enabled>`"
+msgstr ""
+
+msgid ":ref:`addon.addons-dir <tcm_configuration_reference_addon_addons-dir>`"
+msgstr ""
+
+msgid ""
+":ref:`addon.max-upload-size <tcm_configuration_reference_addon_max-upload-"
+"size>`"
+msgstr ""
+
+msgid ""
+":ref:`addon.dev-addons-dir <tcm_configuration_reference_addon_dev-addons-"
+"dir>`"
+msgstr ""
+
+msgid "Whether to enable the add-on functionality in |tcm|."
+msgstr ""
+
+msgid "Environment variable: TCM_ADDON_ENABLED"
+msgstr ""
+
+msgid "Command-line option: ``--addon-enabled``"
+msgstr ""
+
+msgid "The directory from which |tcm| takes add-ons."
+msgstr ""
+
+msgid "Default: addons"
+msgstr ""
+
+msgid "Environment variable: TCM_ADDON_ADDONS_DIR"
+msgstr ""
+
+msgid "Command-line option: ``--addon-addons-dir``"
+msgstr ""
+
+msgid "The maximum size (in bytes) of addon to upload to |tcm|."
+msgstr ""
+
+msgid "Environment variable: TCM_ADDON_MAX_UPLOAD_SIZE"
+msgstr ""
+
+msgid "Command-line option: ``--addon-max-upload-size``"
+msgstr ""
+
+msgid ""
+"Additional add-on directories for development purposes, separated by "
+"semicolons (``;``)."
+msgstr ""
+
+msgid "Environment variable: TCM_ADDON_DEV_ADDONS_DIR"
+msgstr ""
+
+msgid "Command-line option: ``--addon-dev-addons-dir``"
+msgstr ""
+
+msgid "limits"
+msgstr ""
+
+msgid ""
+"The ``limits`` section defines limits on various |tcm| objects and relations"
+" between them."
+msgstr ""
+
+msgid ""
+":ref:`limits.users-count <tcm_configuration_reference_limits_users-count>`"
+msgstr ""
+
+msgid ""
+":ref:`limits.clusters-count <tcm_configuration_reference_limits_clusters-"
+"count>`"
+msgstr ""
+
+msgid ""
+":ref:`limits.roles-count <tcm_configuration_reference_limits_roles-count>`"
+msgstr ""
+
+msgid ""
+":ref:`limits.user-secrets-count <tcm_configuration_reference_limits_user-"
+"secrets-count>`"
+msgstr ""
+
+msgid ""
+":ref:`limits.user-websessions-count "
+"<tcm_configuration_reference_limits_user-websessions-count>`"
+msgstr ""
+
+msgid ""
+":ref:`limits.linked-cluster-users "
+"<tcm_configuration_reference_limits_linked-cluster-users>`"
+msgstr ""
+
+msgid "Default: 1000"
+msgstr ""
+
+msgid "Environment variable: TCM_LIMITS_USERS_COUNT"
+msgstr ""
+
+msgid "Command-line option: ``--limits-users-count``"
+msgstr ""
+
+msgid "The maximum number of clusters in |tcm|."
+msgstr ""
+
+msgid "Default: 10"
+msgstr ""
+
+msgid "Environment variable: TCM_LIMITS_CLUSTERS_COUNT"
+msgstr ""
+
+msgid "Command-line option: ``--limits-clusters-count``"
+msgstr ""
+
+msgid "The maximum number of roles in |tcm|."
+msgstr ""
+
+msgid "Default: 100"
+msgstr ""
+
+msgid "Environment variable: TCM_LIMITS_ROLES_COUNT"
+msgstr ""
+
+msgid "Command-line option: ``--limits-roles-count``"
+msgstr ""
+
+msgid "The maximum number secrets that a |tcm| user can have."
+msgstr ""
+
+msgid "Environment variable: TCM_LIMITS_USER_SECRETS_COUNT"
+msgstr ""
+
+msgid "Command-line option: ``--limits-user-secrets-count``"
+msgstr ""
+
+msgid "The maximum number of open sessions that a |tcm| user can have."
+msgstr ""
+
+msgid "Environment variable: TCM_LIMITS_USER_WEBSESSIONS_COUNT"
+msgstr ""
+
+msgid "Command-line option: ``--limits-user-websessions-count``"
+msgstr ""
+
+msgid "The maximum number of clusters to which a single user can have access."
+msgstr ""
+
+msgid "Environment variable: TCM_LIMITS_LINKED_CLUSTER_USERS"
+msgstr ""
+
+msgid "Command-line option: ``--limits-linked-cluster-users``"
+msgstr ""
+
+msgid "security"
+msgstr ""
+
+msgid "The ``security`` section defines the security parameters of |tcm|."
+msgstr ""
+
+msgid ":ref:`security.auth <tcm_configuration_reference_security_auth>`"
+msgstr ""
+
+msgid ""
+":ref:`security.hash-cost <tcm_configuration_reference_security_hash-cost>`"
+msgstr ""
+
+msgid ""
+":ref:`security.encryption-key "
+"<tcm_configuration_reference_security_encryption-key>`"
+msgstr ""
+
+msgid ""
+":ref:`security.encryption-key-file "
+"<tcm_configuration_reference_security_encryption-key-file_>`"
+msgstr ""
+
+msgid ""
+":ref:`security.bootstrap-password "
+"<tcm_configuration_reference_security_bootstrap-password>`"
+msgstr ""
+
+msgid ""
+":ref:`security.integrity-check "
+"<tcm_configuration_reference_security_integrity-check>`"
+msgstr ""
+
+msgid ""
+":ref:`security.signature-private-key-file "
+"<tcm_configuration_reference_security_signature-private-key-file>`"
+msgstr ""
+
+msgid "Ways to log into |tcm|."
+msgstr ""
+
+msgid "``local``"
+msgstr ""
+
+msgid "``ldap``"
+msgstr ""
+
+msgid "Default: [local]"
+msgstr ""
+
+msgid "Environment variable: TCM_SECURITY_AUTH"
+msgstr ""
+
+msgid "Command-line option: ``--security-auth``"
+msgstr ""
+
+msgid "A hash cost for hashing users' passwords."
+msgstr ""
+
+msgid "Default: 12"
+msgstr ""
+
+msgid "Environment variable: TCM_SECURITY_HASH_COST"
+msgstr ""
+
+msgid "Command-line option: ``--security-hash-cost``"
+msgstr ""
+
+msgid ""
+"An encryption key for passwords used by |tcm| for accessing Tarantool and "
+"etcd clusters."
+msgstr ""
+
+msgid "Environment variable: TCM_SECURITY_ENCRYPTION_KEY"
+msgstr ""
+
+msgid "Command-line option: ``--security-encryption-key``"
+msgstr ""
+
+msgid ""
+"A path to the file with the encryption key for passwords used by |tcm| for "
+"accessing Tarantool and etcd clusters."
+msgstr ""
+
+msgid "Environment variable: TCM_SECURITY_ENCRYPTION_KEY_FILE"
+msgstr ""
+
+msgid "Command-line option: ``--security-encryption-key-file``"
+msgstr ""
+
+msgid ""
+"A password for the first login of the ``admin`` user. Must be changed after "
+"the successful login. Only for testing purposes."
+msgstr ""
+
+msgid "Environment variable: TCM_SECURITY_BOOTSTRAP_PASSWORD"
+msgstr ""
+
+msgid "Command-line option: ``--security-bootstrap-password``"
+msgstr ""
+
+msgid "A path to a file with the private key to sign |tcm| data."
+msgstr ""
+
+msgid "Environment variable: TCM_SECURITY_SIGNATURE_PRIVATE_KEY_FILE"
+msgstr ""
+
+msgid "Command-line option: ``--security-signature-private-key-file``"
+msgstr ""
+
+msgid ""
+"Whether to check the digital signature. If ``true``, the error is raised in "
+"case an incorrect signature is detected."
+msgstr ""
+
+msgid "Environment variable: TCM_SECURITY_INTEGRITY_CHECK"
+msgstr ""
+
+msgid "Command-line option: ``--security-integrity-check``"
+msgstr ""
+
+msgid "mode"
+msgstr ""
+
+msgid "The |tcm| mode: ``production``, ``development``, or ``test``."
+msgstr ""
+
+msgid "Default: production"
+msgstr ""
+
+msgid "Environment variable: TCM_MODE"
+msgstr ""
+
+msgid "Command-line option: ``--mode``"
+msgstr ""

@@ -2,24 +2,25 @@
 msgid "CRUD operations"
 msgstr "CRUD-операции"
 
-msgid "Streams"
-msgstr "Стримы"
-
-msgid "Tarantool --- Documentation"
+#, fuzzy
+msgid "Tarantool -- Documentation"
 msgstr "Документация по Tarantool"
 
-msgid "|nbsp|"
-msgstr "|nbsp|"
+#~ msgid "Streams"
+#~ msgstr "Стримы"
 
-msgid "Tarantool documentation"
-msgstr "Руководство по Tarantool"
+#~ msgid "|nbsp|"
+#~ msgstr "|nbsp|"
 
-msgid ""
-"This manual embraces all aspects of using Tarantool: from introductory "
-"information and exercises for beginners -- to advanced instructions and "
-"detailed references for power users and contributors."
-msgstr ""
-"Данное руководство охватывает все аспекты использования Tarantool: от "
-"вводной информации и упражнений для начинающих -- до продвинутых инструкций "
-"и подробных справочников для опытных пользователей и сторонних "
-"разработчиков."
+#~ msgid "Tarantool documentation"
+#~ msgstr "Руководство по Tarantool"
+
+#~ msgid ""
+#~ "This manual embraces all aspects of using Tarantool: from introductory "
+#~ "information and exercises for beginners -- to advanced instructions and "
+#~ "detailed references for power users and contributors."
+#~ msgstr ""
+#~ "Данное руководство охватывает все аспекты использования Tarantool: от "
+#~ "вводной информации и упражнений для начинающих -- до продвинутых инструкций "
+#~ "и подробных справочников для опытных пользователей и сторонних "
+#~ "разработчиков."

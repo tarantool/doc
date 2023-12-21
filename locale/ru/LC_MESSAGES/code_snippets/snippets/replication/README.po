@@ -1,0 +1,18 @@
+
+msgid "Replication"
+msgstr ""
+
+msgid "A sample application demonstrating various replication features."
+msgstr ""
+
+msgid "Running"
+msgstr ""
+
+msgid ""
+"To run applications placed in [instances.enabled](instances.enabled), go to "
+"the `replication` directory in the terminal and execute the `tt start` "
+"command, for example:"
+msgstr ""
+
+msgid "$ tt start auto_leader\n"
+msgstr ""

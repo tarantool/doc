@@ -35,9 +35,10 @@ msgstr "тип возвращаемого значения"
 msgid "tuple"
 msgstr "кортеж"
 
+#, fuzzy
 msgid ""
-"**Note re storage engine:** vinyl will return `nil`, rather than the deleted"
-" tuple."
+"**Note regarding storage engine:** vinyl will return `nil`, rather than the "
+"deleted tuple."
 msgstr ""
 "**Примечание про движок базы данных:** vinyl вернет `nil`, а не удаленный "
 "кортеж."

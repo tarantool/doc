@@ -1,0 +1,102 @@
+
+msgid "Manipulating Tarantool core dumps"
+msgstr ""
+
+msgid "$ tt coredump COMMAND [COMMAND_OPTION ...]"
+msgstr ""
+
+msgid ""
+"``tt coredump`` provides commands for manipulating Tarantool core dumps."
+msgstr ""
+
+msgid ""
+"To be able to investigate Tarantool crashes, make sure that core dumps are "
+"enabled on the host. Here is the :ref:`instruction on enabling core dumps on"
+" Unix systems <admin-core_dumps>`."
+msgstr ""
+
+msgid "``tt coredump`` does not support macOS."
+msgstr ""
+
+msgid "Commands"
+msgstr ""
+
+msgid "pack"
+msgstr ""
+
+msgid "$ tt coredump pack COREDUMP_FILE"
+msgstr ""
+
+msgid ""
+"Pack a Tarantool core dump and supporting data into a ``tar.gz`` archive. It"
+" includes:"
+msgstr ""
+
+msgid "the Tarantool executable"
+msgstr ""
+
+msgid "Tarantool version information"
+msgstr ""
+
+msgid "OS information"
+msgstr ""
+
+msgid "Shared libraries"
+msgstr ""
+
+msgid "Option: a path to a core dump file."
+msgstr ""
+
+msgid "unpack"
+msgstr ""
+
+msgid "$ tt coredump unpack ARCHIVE"
+msgstr ""
+
+msgid ""
+"Unpack a Tarantool core dump created with ``tt coredump pack`` into a new "
+"directory."
+msgstr ""
+
+msgid "Option: a path to a ``tar.gz`` archive packed by ``tt coredump pack``."
+msgstr ""
+
+msgid "inspect"
+msgstr ""
+
+msgid "$ tt coredump inspect DIRECTORY"
+msgstr ""
+
+msgid ""
+"Inspect a Tarantool core dump directory with the `GNU debugger "
+"<https://www.sourceware.org/gdb/>`__ (``gdb``) The directory being inspected"
+" must have the same structure as the core dump archive created by ``tt "
+"coredump pack``."
+msgstr ""
+
+msgid "``tt coredump inspect`` requires ``gdb`` installed on the host."
+msgstr ""
+
+msgid "Option: a path to a directory with an unpacked core dump archive."
+msgstr ""
+
+msgid "Examples"
+msgstr ""
+
+msgid "Pack a ``tar.gz`` file with a Tarantool core dump and supporting data:"
+msgstr ""
+
+msgid "$ tt coredump pack name.core"
+msgstr ""
+
+msgid "Unpack a ``tar.gz`` archive packed by ``tt coredump pack``:"
+msgstr ""
+
+msgid "$ tt coredump unpack tarantool-core-dump.tar.gz"
+msgstr ""
+
+msgid "Inspect the unpacked core dump with ``gdb``:"
+msgstr ""
+
+msgid "$ tt coredump inspect tarantool-core-dump"
+msgstr ""

@@ -1,0 +1,160 @@
+
+msgid "Submodule compress.zstd"
+msgstr ""
+
+msgid "Overview"
+msgstr ""
+
+msgid ""
+"The ``compress.zstd`` submodule provides the ability to compress and "
+"decompress data using the `zstd <https://en.wikipedia.org/wiki/Zstd>`_ "
+"algorithm. You can use the ``zstd`` compressor as follows:"
+msgstr ""
+
+msgid ""
+"Create a compressor instance using the :ref:`compress.zstd.new() <compress-"
+"zstd-new>` function:"
+msgstr ""
+
+msgid ""
+"local zstd_compressor = require('compress.zstd').new()\n"
+"-- or --\n"
+"local zstd_compressor = require('compress').zstd.new()"
+msgstr ""
+
+msgid ""
+"Optionally, you can pass compression options (:ref:`zstd_opts "
+"<zstd_opts_class>`) specific for ``zstd``:"
+msgstr ""
+
+msgid ""
+"local zstd_compressor = require('compress.zstd').new({\n"
+"    level = 5\n"
+"})\n"
+msgstr ""
+
+msgid ""
+"To compress the specified data, use the :ref:`compress() <zstd_compressor-"
+"compress>` method:"
+msgstr ""
+
+msgid "compressed_data = zstd_compressor:compress('Hello world!')\n"
+msgstr ""
+
+msgid ""
+"To decompress data, call :ref:`decompress() <zstd_compressor-decompress>`:"
+msgstr ""
+
+msgid "decompressed_data = zstd_compressor:decompress(compressed_data)\n"
+msgstr ""
+
+msgid "API Reference"
+msgstr ""
+
+msgid "**Functions**"
+msgstr ""
+
+msgid ":ref:`compress.zstd.new() <compress-zstd-new>`"
+msgstr ""
+
+msgid "Create a ``zstd`` compressor instance."
+msgstr ""
+
+msgid "**Objects**"
+msgstr ""
+
+msgid ":ref:`zstd_compressor <zstd_compressor_class>`"
+msgstr ""
+
+msgid "A ``zstd`` compressor instance."
+msgstr ""
+
+msgid ":ref:`zstd_opts <zstd_opts_class>`"
+msgstr ""
+
+msgid "Configuration options of the ``zstd`` compressor."
+msgstr ""
+
+msgid "compress.zstd.new()"
+msgstr ""
+
+msgid "Parameters"
+msgstr ""
+
+msgid "``zstd`` compression options (see :ref:`zstd_opts <zstd_opts_class>`)"
+msgstr ""
+
+msgid "return"
+msgstr ""
+
+msgid ""
+"a new ``zstd`` compressor instance (see :ref:`zstd_compressor "
+"<zstd_compressor_class>`)"
+msgstr ""
+
+msgid "rtype"
+msgstr ""
+
+msgid "userdata"
+msgstr ""
+
+msgid "**Example**"
+msgstr ""
+
+msgid "zstd_compressor"
+msgstr ""
+
+msgid ""
+"A compressor instance that exposes the API for compressing and decompressing"
+" data using the ``zstd`` algorithm. To create the ``zstd`` compressor, call "
+":ref:`compress.zstd.new() <compress-zstd-new>`."
+msgstr ""
+
+msgid "Compress the specified data."
+msgstr ""
+
+msgid "data to be compressed"
+msgstr ""
+
+msgid "compressed data"
+msgstr ""
+
+msgid "string"
+msgstr ""
+
+msgid "Decompress the specified data."
+msgstr ""
+
+msgid "data to be decompressed"
+msgstr ""
+
+msgid "decompressed data"
+msgstr ""
+
+msgid "zstd_opts"
+msgstr ""
+
+msgid ""
+"Configuration options of the :ref:`zstd_compressor <zstd_compressor_class>`."
+" These options can be passed to the :ref:`compress.zstd.new() <compress-"
+"zstd-new>` function."
+msgstr ""
+
+msgid ""
+"Specifies the ``zstd`` compression level that enables you to adjust the "
+"compression ratio and speed. The lower level improves the compression speed "
+"at the cost of compression ratio. For example, you can use level 1 if speed "
+"is most important and level 22 if size is most important."
+msgstr ""
+
+msgid "Default: 3"
+msgstr ""
+
+msgid "Minimum: -131072"
+msgstr ""
+
+msgid "Maximum: 22"
+msgstr ""
+
+msgid "Assigning 0 to ``level`` resets its value to the default (3)."
+msgstr ""

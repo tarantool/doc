@@ -4,3 +4,705 @@ msgstr ""
 
 msgid "More about Luatest API see :ref:`below <luatest-api>`."
 msgstr ""
+
+#~ msgid "Overview"
+#~ msgstr ""
+
+#~ msgid "Tool for testing tarantool applications."
+#~ msgstr ""
+
+#~ msgid "Highlights:"
+#~ msgstr ""
+
+#~ msgid "executable to run tests in directory or specific files,"
+#~ msgstr ""
+
+#~ msgid "before/after suite hooks,"
+#~ msgstr ""
+
+#~ msgid "before/after test group hooks,"
+#~ msgstr ""
+
+#~ msgid "`output capturing <Capturing output_>`_,"
+#~ msgstr ""
+
+#~ msgid "`helpers <Test helpers_>`_ for testing tarantool applications,"
+#~ msgstr ""
+
+#~ msgid "`luacov integration <luacov integration_>`_."
+#~ msgstr ""
+
+#~ msgid "Requirements"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Tarantool (it requires tarantool-specific ``fio`` module and ``ffi`` from "
+#~ "LuaJIT)."
+#~ msgstr ""
+
+#~ msgid "Installation"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "tarantoolctl rocks install luatest\n"
+#~ ".rocks/bin/luatest --help # list available options"
+#~ msgstr ""
+
+#~ msgid "Usage"
+#~ msgstr ""
+
+#~ msgid "Define tests."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "-- test/feature_test.lua\n"
+#~ "local t = require('luatest')\n"
+#~ "local g = t.group('feature')\n"
+#~ "-- Default name is inferred from caller filename when possible.\n"
+#~ "-- For `test/a/b/c_d_test.lua` it will be `a.b.c_d`.\n"
+#~ "-- So `local g = t.group()` works the same way.\n"
+#~ "\n"
+#~ "-- Tests. All properties with name staring with `test` are treated as test cases.\n"
+#~ "g.test_example_1 = function() ... end\n"
+#~ "g.test_example_n = function() ... end\n"
+#~ "\n"
+#~ "-- Define suite hooks\n"
+#~ "t.before_suite(function() ... end)\n"
+#~ "t.before_suite(function() ... end)\n"
+#~ "\n"
+#~ "-- Hooks to run once for tests group\n"
+#~ "g.before_all(function() ... end)\n"
+#~ "g.after_all(function() ... end)\n"
+#~ "\n"
+#~ "-- Hooks to run for each test in group\n"
+#~ "g.before_each(function() ... end)\n"
+#~ "g.after_each(function() ... end)\n"
+#~ "\n"
+#~ "-- Hooks to run for a specified test in group\n"
+#~ "g.before_test('test_example_1', function() ... end)\n"
+#~ "g.after_test('test_example_2', function() ... end)\n"
+#~ "-- before_test runs after before_each\n"
+#~ "-- after_test runs before after_each\n"
+#~ "\n"
+#~ "-- test/other_test.lua\n"
+#~ "local t = require('luatest')\n"
+#~ "local g = t.group('other')\n"
+#~ "-- ...\n"
+#~ "g.test_example_2 = function() ... end\n"
+#~ "g.test_example_m = function() ... end\n"
+#~ "\n"
+#~ "-- Define parametrized groups\n"
+#~ "local pg = t.group('pgroup', {{engine = 'memtx'}, {engine = 'vinyl'}})\n"
+#~ "pg.test_example_3 = function(cg)\n"
+#~ "    -- Use cg.params here\n"
+#~ "    box.schema.space.create('test', {\n"
+#~ "        engine = cg.params.engine,\n"
+#~ "    })\n"
+#~ "end\n"
+#~ "\n"
+#~ "-- Hooks can be specified for one parameter\n"
+#~ "pg.before_all({engine = 'memtx'}, function() ... end)\n"
+#~ "pg.before_each({engine = 'memtx'}, function() ... end)\n"
+#~ "pg.before_test('test_example_3', {engine = 'vinyl'}, function() ... end)"
+#~ msgstr ""
+
+#~ msgid "Run tests from a path."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "luatest                               # run all tests from the ./test directory\n"
+#~ "luatest test/integration              # run all tests from the specified directory\n"
+#~ "luatest test/feature_test.lua         # run all tests from the specified file"
+#~ msgstr ""
+
+#~ msgid "Run tests from a group."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "luatest feature                       # run all tests from the specified group\n"
+#~ "luatest other.test_example_2          # run one test from the specified group\n"
+#~ "luatest feature other.test_example_2  # run tests by group and test name"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Note that luatest recognizes an input parameter as a path only if it "
+#~ "contains ``/``, otherwise, it will be considered as a group name."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "luatest feature                       # considered as a group name\n"
+#~ "luatest ./feature                     # considered as a path\n"
+#~ "luatest feature/                      # considered as a path"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "You can also use ``-p`` option in combination with the examples above for "
+#~ "running tests matching to some name pattern."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "luatest feature -p test_example       # run all tests from the specified "
+#~ "group matching to the specified pattern"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Luatest automatically requires ``test/helper.lua`` file if it's present. You"
+#~ " can configure luatest or run any bootstrap code there."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "See the `getting-started example <https://github.com/tarantool/cartridge-"
+#~ "cli/tree/master/examples/getting-started-app/test>`_ in cartridge-cli repo."
+#~ msgstr ""
+
+#~ msgid "Tests order"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Use the ``--shuffle`` option to tell luatest how to order the tests. The "
+#~ "available ordering schemes are ``group``, ``all`` and ``none``."
+#~ msgstr ""
+
+#~ msgid "``group`` shuffles tests within the groups."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "``all`` randomizes execution order across all available tests. Be careful: "
+#~ "``before_all/after_all`` hooks run always when test group is changed, so it "
+#~ "may run multiple time."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "``none`` is the default, which executes examples within the group in the "
+#~ "order they are defined (eventually they are ordered by functions line "
+#~ "numbers)."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "With ``group`` and ``all`` you can also specify a ``seed`` to reproduce "
+#~ "specific order."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "--shuffle none\n"
+#~ "--shuffle group\n"
+#~ "--shuffle all --seed 123\n"
+#~ "--shuffle all:123 # same as above"
+#~ msgstr ""
+
+#~ msgid "To change default order use:"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "-- test/helper.lua\n"
+#~ "local t = require('luatest')\n"
+#~ "t.configure({shuffle = 'group'})"
+#~ msgstr ""
+
+#~ msgid "List of luatest functions"
+#~ msgstr ""
+
+#~ msgid "**Assertions**"
+#~ msgstr ""
+
+#~ msgid "``assert (value[, message])``"
+#~ msgstr ""
+
+#~ msgid "Check that value is truthy."
+#~ msgstr ""
+
+#~ msgid "``assert_almost_equals (actual, expected, margin[, message])``"
+#~ msgstr ""
+
+#~ msgid "Check that two floats are close by margin."
+#~ msgstr ""
+
+#~ msgid "``assert_covers (actual, expected[, message])``"
+#~ msgstr ""
+
+#~ msgid "Checks that actual map includes expected one."
+#~ msgstr ""
+
+#~ msgid "``assert_lt (left, right[, message])``"
+#~ msgstr ""
+
+#~ msgid "Compare numbers."
+#~ msgstr ""
+
+#~ msgid "``assert_le (left, right[, message])``"
+#~ msgstr ""
+
+#~ msgid "``assert_gt (left, right[, message])``"
+#~ msgstr ""
+
+#~ msgid "``assert_ge (left, right[, message])``"
+#~ msgstr ""
+
+#~ msgid "``assert_equals (actual, expected[, message[, deep_analysis]])``"
+#~ msgstr ""
+
+#~ msgid "Check that two values are equal."
+#~ msgstr ""
+
+#~ msgid "``assert_error (fn, ...)``"
+#~ msgstr ""
+
+#~ msgid "Check that calling fn raises an error."
+#~ msgstr ""
+
+#~ msgid "``assert_error_msg_contains (expected_partial, fn, ...)``"
+#~ msgstr ""
+
+#~ msgid "``assert_error_msg_content_equals (expected, fn, ...)``"
+#~ msgstr ""
+
+#~ msgid "Strips location info from message text."
+#~ msgstr ""
+
+#~ msgid "``assert_error_msg_equals (expected, fn, ...)``"
+#~ msgstr ""
+
+#~ msgid "Checks full error: location and text."
+#~ msgstr ""
+
+#~ msgid "``assert_error_msg_matches (pattern, fn, ...)``"
+#~ msgstr ""
+
+#~ msgid "``assert_eval_to_false (value[, message])``"
+#~ msgstr ""
+
+#~ msgid "Alias for assert_not."
+#~ msgstr ""
+
+#~ msgid "``assert_eval_to_true (value[, message])``"
+#~ msgstr ""
+
+#~ msgid "Alias for assert."
+#~ msgstr ""
+
+#~ msgid "``assert_items_include (actual, expected[, message])``"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Checks that one table includes all items of another, irrespective of their "
+#~ "keys."
+#~ msgstr ""
+
+#~ msgid "``assert_is (actual, expected[, message])``"
+#~ msgstr ""
+
+#~ msgid "Check that values are the same."
+#~ msgstr ""
+
+#~ msgid "``assert_is_not (actual, expected[, message])``"
+#~ msgstr ""
+
+#~ msgid "Check that values are not the same."
+#~ msgstr ""
+
+#~ msgid "``assert_items_equals (actual, expected[, message])``"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Checks that two tables contain the same items, irrespective of their keys."
+#~ msgstr ""
+
+#~ msgid "``assert_nan (value[, message])``"
+#~ msgstr ""
+
+#~ msgid "``assert_not (value[, message])``"
+#~ msgstr ""
+
+#~ msgid "Check that value is falsy."
+#~ msgstr ""
+
+#~ msgid "``assert_not_almost_equals (actual, expected, margin[, message])``"
+#~ msgstr ""
+
+#~ msgid "Check that two floats are not close by margin"
+#~ msgstr ""
+
+#~ msgid "``assert_not_covers (actual, expected[, message])``"
+#~ msgstr ""
+
+#~ msgid "Checks that map does not contain the other one."
+#~ msgstr ""
+
+#~ msgid "``assert_not_equals (actual, expected[, message])``"
+#~ msgstr ""
+
+#~ msgid "Check that two values are not equal."
+#~ msgstr ""
+
+#~ msgid "``assert_not_nan (value[, message])``"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "``assert_not_str_contains (actual, expected[, is_pattern[, message]])``"
+#~ msgstr ""
+
+#~ msgid "Case-sensitive strings comparison."
+#~ msgstr ""
+
+#~ msgid "``assert_not_str_icontains (value, expected[, message])``"
+#~ msgstr ""
+
+#~ msgid "Case-insensitive strings comparison."
+#~ msgstr ""
+
+#~ msgid "``assert_str_contains (value, expected[, is_pattern[, message]])``"
+#~ msgstr ""
+
+#~ msgid "``assert_str_icontains (value, expected[, message])``"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "``assert_str_matches (value, pattern[, start=1[, final=value:len() [, "
+#~ "message]]])``"
+#~ msgstr ""
+
+#~ msgid "Verify a full match for the string."
+#~ msgstr ""
+
+#~ msgid "``assert_type (value, expected_type[, message])``"
+#~ msgstr ""
+
+#~ msgid "Check value's type."
+#~ msgstr ""
+
+#~ msgid "**Flow control**"
+#~ msgstr ""
+
+#~ msgid "``fail (message)``"
+#~ msgstr ""
+
+#~ msgid "Stops a test due to a failure."
+#~ msgstr ""
+
+#~ msgid "``fail_if (condition, message)``"
+#~ msgstr ""
+
+#~ msgid "Stops a test due to a failure if condition is met."
+#~ msgstr ""
+
+#~ msgid "``xfail (message)``"
+#~ msgstr ""
+
+#~ msgid "Mark test as xfail."
+#~ msgstr ""
+
+#~ msgid "``xfail_if (condition, message)``"
+#~ msgstr ""
+
+#~ msgid "Mark test as xfail if condition is met."
+#~ msgstr ""
+
+#~ msgid "``skip (message)``"
+#~ msgstr ""
+
+#~ msgid "Skip a running test."
+#~ msgstr ""
+
+#~ msgid "``skip_if (condition, message)``"
+#~ msgstr ""
+
+#~ msgid "Skip a running test if condition is met."
+#~ msgstr ""
+
+#~ msgid "``success ()``"
+#~ msgstr ""
+
+#~ msgid "Stops a test with a success."
+#~ msgstr ""
+
+#~ msgid "``success_if (condition)``"
+#~ msgstr ""
+
+#~ msgid "Stops a test with a success if condition is met."
+#~ msgstr ""
+
+#~ msgid "**Suite and groups**"
+#~ msgstr ""
+
+#~ msgid "``after_suite (fn)``"
+#~ msgstr ""
+
+#~ msgid "Add after suite hook."
+#~ msgstr ""
+
+#~ msgid "``before_suite (fn)``"
+#~ msgstr ""
+
+#~ msgid "Add before suite hook."
+#~ msgstr ""
+
+#~ msgid "``group (name)``"
+#~ msgstr ""
+
+#~ msgid "Create group of tests."
+#~ msgstr ""
+
+#~ msgid "XFail"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The ``xfail`` mark makes test results to be interpreted vice versa: it's "
+#~ "threated as passed when an assertion fails, and it fails if no errors are "
+#~ "raised. It allows one to mark a test as temporarily broken due to a bug in "
+#~ "some other component which can't be fixed immediately. It's also a good "
+#~ "practice to keep xfail tests in sync with an issue tracker."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "local g = t.group()\n"
+#~ "g.test_fail = function()\n"
+#~ "    t.xfail('Must fail no matter what')\n"
+#~ "    t.assert_equals(3, 4)\n"
+#~ "end"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "XFail only applies to the errors raised by the luatest assertions. Regular "
+#~ "Lua errors still cause the test failure."
+#~ msgstr ""
+
+#~ msgid "Capturing output"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "By default runner captures all stdout/stderr output and shows it only for "
+#~ "failed tests. Capturing can be disabled with ``-c`` flag."
+#~ msgstr ""
+
+#~ msgid "Tests repeating"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Runners can repeat tests with flags ``-r`` / ``--repeat`` (to repeat all the"
+#~ " tests) or ``-R`` / ``--repeat-group`` (to repeat all the tests within the "
+#~ "group)."
+#~ msgstr ""
+
+#~ msgid "Parametrization"
+#~ msgstr ""
+
+#~ msgid "Test group can be parametrized."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "local g = t.group('pgroup', {{a = 1, b = 4}, {a = 2, b = 3}})\n"
+#~ "\n"
+#~ "g.test_params = function(cg)\n"
+#~ "    ...\n"
+#~ "    log.info('a = %s', cg.params.a)\n"
+#~ "    log.info('b = %s', cg.params.b)\n"
+#~ "    ...\n"
+#~ "end"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Group can be parametrized with a matrix of parameters using "
+#~ "`luatest.helpers`:"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "local g = t.group('pgroup', t.helpers.matrix({a = {1, 2}, b = {3, 4}}))\n"
+#~ "-- Will run:\n"
+#~ "-- * a = 1, b = 3\n"
+#~ "-- * a = 1, b = 4\n"
+#~ "-- * a = 2, b = 3\n"
+#~ "-- * a = 2, b = 4"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Each test will be performed for every params combination. Hooks will work as"
+#~ " usual unless there are specified params. The order of execution in the hook"
+#~ " group is determined by the order of declaration."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "-- called before every test\n"
+#~ "g.before_each(function(cg) ... end)\n"
+#~ "\n"
+#~ "-- called before tests when a == 1\n"
+#~ "g.before_each({a = 1}, function(cg) ... end)\n"
+#~ "\n"
+#~ "-- called only before the test when a == 1 and b == 3\n"
+#~ "g.before_each({a = 1, b = 3}, function(cg) ... end)\n"
+#~ "\n"
+#~ "-- called before test named 'test_something' when a == 1\n"
+#~ "g.before_test('test_something', {a = 1}, function(cg) ... end)\n"
+#~ "\n"
+#~ "--etc"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Test from a parameterized group can be called from the command line in such "
+#~ "a way:"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "luatest pgroup.a:1.b:4.test_params\n"
+#~ "luatest pgroup.a:2.b:3.test_params"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Note that values for ``a`` and ``b`` have to match to defined group params. "
+#~ "The command below will give you an error because such params are not defined"
+#~ " for the group."
+#~ msgstr ""
+
+#~ msgid "luatest pgroup.a:2.b:2.test_params  # will raise an error"
+#~ msgstr ""
+
+#~ msgid "Test helpers"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "There are helpers to run tarantool applications and perform basic "
+#~ "interaction with it. If application follows configuration conventions it is "
+#~ "possible to use options to configure server instance and helpers at the same"
+#~ " time. For example ``http_port`` is used to perform http request in tests "
+#~ "and passed in ``TARANTOOL_HTTP_PORT`` to server process."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "local server = luatest.Server:new({\n"
+#~ "    command = '/path/to/executable.lua',\n"
+#~ "    -- arguments for process\n"
+#~ "    args = {'--no-bugs', '--fast'},\n"
+#~ "    -- additional envars to pass to process\n"
+#~ "    env = {SOME_FIELD = 'value'},\n"
+#~ "    -- passed as TARANTOOL_WORKDIR\n"
+#~ "    workdir = '/path/to/test/workdir',\n"
+#~ "    -- passed as TARANTOOL_HTTP_PORT, used in http_request\n"
+#~ "    http_port = 8080,\n"
+#~ "    -- passed as TARANTOOL_LISTEN, used in connect_net_box\n"
+#~ "    net_box_port = 3030,\n"
+#~ "    -- passed to net_box.connect in connect_net_box\n"
+#~ "    net_box_credentials = {user = 'username', password = 'secret'},\n"
+#~ "})\n"
+#~ "server:start()\n"
+#~ "-- Wait until server is ready to accept connections.\n"
+#~ "-- This may vary from app to app: for one server:connect_net_box() is enough,\n"
+#~ "-- for another more complex checks are required.\n"
+#~ "luatest.helpers.retrying({}, function() server:http_request('get', '/ping') end)\n"
+#~ "\n"
+#~ "-- http requests\n"
+#~ "server:http_request('get', '/path')\n"
+#~ "server:http_request('post', '/path', {body = 'text'})\n"
+#~ "server:http_request('post', '/path', {json = {field = value}, http = {\n"
+#~ "    -- http client options\n"
+#~ "    headers = {Authorization = 'Basic ' .. credentials},\n"
+#~ "    timeout = 1,\n"
+#~ "}})\n"
+#~ "\n"
+#~ "-- This method throws error when response status is outside of then range 200..299.\n"
+#~ "-- To change this behaviour, path `raise = false`:\n"
+#~ "t.assert_equals(server:http_request('get', '/not_found', {raise = false}).status, 404)\n"
+#~ "t.assert_error(function() server:http_request('get', '/not_found') end)\n"
+#~ "\n"
+#~ "-- using net_box\n"
+#~ "server:connect_net_box()\n"
+#~ "server:eval('return do_something(...)', {arg1, arg2})\n"
+#~ "server:call('function_name', {arg1, arg2})\n"
+#~ "server:exec(function() return box.info() end)\n"
+#~ "server:stop()"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "``luatest.Process:start(path, args, env)`` provides low-level interface to "
+#~ "run any other application."
+#~ msgstr ""
+
+#~ msgid "There are several small helpers for common actions:"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "luatest.helpers.uuid('ab', 2, 1) == 'abababab-0002-0000-0000-000000000001'\n"
+#~ "\n"
+#~ "luatest.helpers.retrying({timeout = 1, delay = 0.1}, failing_function, arg1, arg2)\n"
+#~ "-- wait until server is up\n"
+#~ "luatest.helpers.retrying({}, function() server:http_request('get', '/status') end)"
+#~ msgstr ""
+
+#~ msgid "luacov integration"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Install `luacov <https://github.com/keplerproject/luacov>`_ with "
+#~ "``tarantoolctl rocks install luacov``"
+#~ msgstr ""
+
+#~ msgid "Configure it with ``.luacov`` file"
+#~ msgstr ""
+
+#~ msgid "Clean old reports ``rm -f luacov.*.out*``"
+#~ msgstr ""
+
+#~ msgid "Run luatest with ``--coverage`` option"
+#~ msgstr ""
+
+#~ msgid "Generate report with ``.rocks/bin/luacov .``"
+#~ msgstr ""
+
+#~ msgid "Show summary with ``grep -A999 '^Summary' luacov.report.out``"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "When running integration tests with coverage collector enabled, luatest "
+#~ "automatically starts new tarantool instances with luacov enabled. So "
+#~ "coverage is collected from all the instances. However this has some "
+#~ "limitations:"
+#~ msgstr ""
+
+#~ msgid "It works only for instances started with ``Server`` helper."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Process command should be executable lua file or tarantool with script "
+#~ "argument."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Instance must be stopped with ``server:stop()``, because this is the point "
+#~ "where stats are saved."
+#~ msgstr ""
+
+#~ msgid "Don't save stats concurrently to prevent corruption."
+#~ msgstr ""
+
+#~ msgid "Development"
+#~ msgstr ""
+
+#~ msgid "Check out the repo."
+#~ msgstr ""
+
+#~ msgid "Prepare makefile with ``cmake .``."
+#~ msgstr ""
+
+#~ msgid "Install dependencies with ``make bootstrap``."
+#~ msgstr ""
+
+#~ msgid "Run it with ``make lint`` before committing changes."
+#~ msgstr ""
+
+#~ msgid "Run tests with ``bin/luatest``."
+#~ msgstr ""
+
+#~ msgid "Contributing"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Bug reports and pull requests are welcome on at "
+#~ "https://github.com/tarantool/luatest."
+#~ msgstr ""
+
+#~ msgid "License"
+#~ msgstr ""
+
+#~ msgid "MIT"
+#~ msgstr ""
+
+#~ msgid "API"
+#~ msgstr ""

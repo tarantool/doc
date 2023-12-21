@@ -1,0 +1,92 @@
+
+msgid "Sharded cluster"
+msgstr ""
+
+msgid ""
+"A sample application demonstrating how to configure a "
+"[sharded](https://www.tarantool.io/en/doc/latest/concepts/sharding/) "
+"cluster."
+msgstr ""
+
+msgid "Running"
+msgstr ""
+
+msgid ""
+"To run the cluster, go to the `sharding` directory in the terminal and "
+"perform the following steps:"
+msgstr ""
+
+msgid "Install `vshard`:"
+msgstr ""
+
+msgid "$ tt rocks install vshard\n"
+msgstr ""
+
+msgid "Run the cluster:"
+msgstr ""
+
+msgid "$ tt start sharded_cluster\n"
+msgstr ""
+
+msgid "Connect to the router:"
+msgstr ""
+
+msgid "$ tt connect sharded_cluster:router-a-001\n"
+msgstr ""
+
+msgid "Insert test data:"
+msgstr ""
+
+msgid ""
+"sharded_cluster:router-a-001> insert_data()\n"
+"---\n"
+"...\n"
+msgstr ""
+
+msgid ""
+"Connect to storages in different replica sets to see how data is distributed"
+" across nodes:"
+msgstr ""
+
+msgid "a. `storage-a-001`:"
+msgstr ""
+
+msgid ""
+"sharded_cluster:storage-a-001> box.space.bands:select()\n"
+"---\n"
+"- - [1, 614, 'Roxette', 1986]\n"
+"  - [2, 986, 'Scorpions', 1965]\n"
+"  - [5, 755, 'Pink Floyd', 1965]\n"
+"  - [7, 998, 'The Doors', 1965]\n"
+"  - [8, 762, 'Nirvana', 1987]\n"
+"...\n"
+msgstr ""
+
+msgid "b. `storage-b-001`:"
+msgstr ""
+
+msgid ""
+"sharded_cluster:storage-b-001> box.space.bands:select()\n"
+"---\n"
+"- - [3, 11, 'Ace of Base', 1987]\n"
+"  - [4, 42, 'The Beatles', 1960]\n"
+"  - [6, 55, 'The Rolling Stones', 1962]\n"
+"  - [9, 299, 'Led Zeppelin', 1968]\n"
+"  - [10, 167, 'Queen', 1970]\n"
+"...\n"
+msgstr ""
+
+msgid "Packaging"
+msgstr ""
+
+msgid ""
+"To package an application into a `.tgz` archive, use the `tt pack` command:"
+msgstr ""
+
+msgid "$ tt pack tgz --app-list sharded_cluster\n"
+msgstr ""
+
+msgid ""
+"Note that the necessary `vshard` dependency is specified in the "
+"[sharded_cluster-scm-1.rockspec](sharded_cluster-scm-1.rockspec) file."
+msgstr ""

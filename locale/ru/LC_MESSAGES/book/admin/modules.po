@@ -1,4 +1,14 @@
 
+#, fuzzy
+msgid "Managing modules"
+msgstr "Установка модуля"
+
+msgid ""
+"This section covers the installation and reloading of Tarantool modules. To "
+"learn about writing your own module and contributing it, check the "
+":ref:`Contributing a module <app_server-contributing_module>` section."
+msgstr ""
+
 msgid "Installing a module"
 msgstr "Установка модуля"
 
@@ -47,9 +57,10 @@ msgstr ""
 "Установите Tarantool в соответствии с рекомендациями на `странице загрузки "
 "<https://www.tarantool.io/download>`_."
 
+#, fuzzy
 msgid ""
 "Install the module you need. Look up the module's name on `Tarantool rocks "
-"page <http://tarantool.org/rocks.html>`_ and put the prefix \"tarantool-\" "
+"page <https://tarantool.io/rocks.html>`_ and put the prefix \"tarantool-\" "
 "before the module name to avoid ambiguity:"
 msgstr ""
 "Установите необходимый модуль. Найдите имя модуля на `странице со сторонними"
@@ -141,14 +152,13 @@ msgstr ""
 "Знаки вопроса стоят вместо имени модуля, которое было указано ранее при "
 "вызове ``require('module-name')``."
 
-
 msgid "Reloading a module"
 msgstr "Перезагрузка модуля"
 
 msgid "You can reload any Tarantool application or module with zero downtime."
 msgstr ""
-"Любое приложение или модуль Tarantool можно перезагрузить с нулевым "
-"временем простоя."
+"Любое приложение или модуль Tarantool можно перезагрузить с нулевым временем"
+" простоя."
 
 msgid "Reloading a module in Lua"
 msgstr "Перезагрузка модуля на Lua"
@@ -160,10 +170,11 @@ msgstr ""
 "Ниже представлен пример, который иллюстрирует наиболее типичный случай -- "
 "\"обновление и перезагрузка\"."
 
+#, fuzzy
 msgid ""
 "In this example, we use recommended :ref:`administration practices <admin>` "
-"based on :ref:`instance files <admin-instance_file>` and :ref:`tarantoolctl "
-"<tarantoolctl>` utility."
+"based on :ref:`instance files <admin-instance_file>` and :ref:`tt <tt-cli>` "
+"utility."
 msgstr ""
 "В этом примере используются рекомендованные :ref:`методики администрирования"
 " <admin>` на основании :ref:`файлов экземпляров <admin-instance_file>` и "
@@ -317,10 +328,12 @@ msgstr "Самое главное -- правильно разгрузить п�
 msgid "Manually reload the application file."
 msgstr "Вручную перезагрузите файл приложения."
 
-msgid "For example, using ``tarantoolctl``:"
+#, fuzzy
+msgid "For example, using ``tt``:"
 msgstr "Например, используя ``tarantoolctl``:"
 
-msgid "$ tarantoolctl eval my_app /etc/tarantool/instances.enabled/my_app.lua"
+#, fuzzy
+msgid "$ tt connect my_app -f /etc/tarantool/instances.enabled/my_app.lua"
 msgstr ""
 "$ tarantoolctl eval my_app /etc/tarantool/instances.enabled/my_app.lua"
 
@@ -337,4 +350,3 @@ msgstr ""
 "``*.so``),  вызовите функцию :doc:`box.schema.func.reload('module-name') "
 "</reference/reference_lua/box_schema/func_reload>` из Lua-скрипта для "
 "перезагрузки модуля."
-

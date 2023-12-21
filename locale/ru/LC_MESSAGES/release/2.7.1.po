@@ -105,8 +105,8 @@ msgstr ""
 
 msgid ""
 "Introduced the LuaJIT memory profiler (:tarantool-issue:`5442`) and the "
-"profile parser (:tarantool-issue:`5490`). Read more: "
-":ref:`LuaJIT memory profiler <luajit_memprof>`."
+"profile parser (:tarantool-issue:`5490`). Read more: :ref:`LuaJIT memory "
+"profiler <luajit_memprof>`."
 msgstr ""
 
 msgid "Lua"

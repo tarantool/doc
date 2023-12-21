@@ -1,5 +1,6 @@
 
-msgid "Module `coio`"
+#, fuzzy
+msgid "Module coio"
 msgstr "Модуль `coio`"
 
 msgid "READ event"

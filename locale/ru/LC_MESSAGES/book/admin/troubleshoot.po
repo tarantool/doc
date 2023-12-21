@@ -24,11 +24,10 @@ msgstr ""
 "Чтобы проверить значения данных параметров, выполните соответствующие "
 "команды:"
 
+#, fuzzy
 msgid ""
 "$ # attaching to a Tarantool instance\n"
-"$ tarantoolctl enter <instance_name>\n"
-"$ # -- OR --\n"
-"$ tarantoolctl connect <URI>"
+"$ tt connect <instance_name|URI>"
 msgstr ""
 "$ # подключаемся к админ-консоли нужного экземпляра\n"
 "$ tarantoolctl enter <instance_name>\n"
@@ -63,6 +62,7 @@ msgstr ""
 "увеличить значение параметра :ref:`box.cfg{memtx_memory} <cfg_storage-"
 "memtx_memory>` (при наличии свободных ресурсов)."
 
+#, python-format
 msgid ""
 "In versions of Tarantool before 1.10, the server needs to be restarted to "
 "change this parameter. The Tarantool server will be unavailable while "
@@ -108,16 +108,18 @@ msgstr ""
 msgid "Problem: Tarantool generates too heavy CPU load"
 msgstr "Проблема: Tarantool создает большую нагрузку на CPU"
 
+#, fuzzy
 msgid ""
-"The :ref:`transaction processor thread <atomic-threads_fibers_yields>` "
-"consumes over 60% CPU."
+"The :ref:`transaction processor thread <thread_model>` consumes over 60% "
+"CPU."
 msgstr ""
 ":ref:`Поток обработки транзакций <atomic-threads_fibers_yields>` нагружает "
 "ЦП более чем на 60%."
 
+#, fuzzy
 msgid ""
-"Attach to the Tarantool instance with :ref:`tarantoolctl <tarantoolctl>` "
-"utility, analyze the query statistics with :doc:`box.stat() "
+"Attach to the Tarantool instance with :ref:`tt <tt-cli>` utility, analyze "
+"the query statistics with :doc:`box.stat() "
 "</reference/reference_lua/box_stat>` and spot the CPU consumption leader. "
 "The following commands can help:"
 msgstr ""
@@ -194,11 +196,11 @@ msgstr ""
 "Увеличить размер readahead-буфера (:ref:`box.cfg{readahead} <cfg_networking-"
 "readahead>`)."
 
+#, fuzzy
 msgid ""
 "This parameter can be changed on the fly, so you don't need to restart "
-"Tarantool. Attach to the Tarantool instance with :ref:`tarantoolctl "
-"<tarantoolctl>` utility and call ``box.cfg{}`` with a new ``readahead`` "
-"value:"
+"Tarantool. Attach to the Tarantool instance with :ref:`tt <tt-cli>` utility "
+"and call ``box.cfg{}`` with a new ``readahead`` value:"
 msgstr ""
 "Перезапускать Tarantool при этом не требуется. Для обновления конфигурации "
 "необходимо подключиться к Tarantool с помощью утилиты :ref:`tarantoolctl "
@@ -508,6 +510,7 @@ msgstr ""
 "Реализация подходящего финализатора для определенного типа FFI "
 "(``custom_t``)."
 
+#, python-format
 msgid ""
 "local ffi = require('ffi')\n"
 "local fiber = require('fiber')\n"
@@ -559,6 +562,7 @@ msgstr ""
 msgid "``custom.c``"
 msgstr "``custom.c``"
 
+#, python-format
 msgid ""
 "#include <lauxlib.h>\n"
 "#include <lua.h>\n"
@@ -782,6 +786,7 @@ msgstr ""
 msgid "``init.lua``"
 msgstr ""
 
+#, python-format
 msgid ""
 "local ffi = require('ffi')\n"
 "local fiber = require('fiber')\n"

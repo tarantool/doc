@@ -2,9 +2,6 @@
 msgid "Glossaries"
 msgstr ""
 
-msgid "Tarantool Core"
-msgstr ""
-
 msgid "Term [en]"
 msgstr ""
 
@@ -26,12 +23,6 @@ msgstr ""
 msgid "A space is a container for tuples."
 msgstr ""
 
-msgid "https://www.tarantool.io/en/doc/latest/book/box/data_model/#spaces\""
-msgstr ""
-
-msgid "NOUN"
-msgstr ""
-
 msgid "tuple"
 msgstr ""
 
@@ -40,8 +31,7 @@ msgstr ""
 
 msgid ""
 "A tuple plays the same role as a “row” or a “record”. The number of tuples "
-"in a space is unlimited. Tuples in Tarantool are stored as MsgPack arrays. "
-"https://www.tarantool.io/en/doc/latest/book/box/data_model/#tuples"
+"in a space is unlimited. Tuples in Tarantool are stored as MsgPack arrays."
 msgstr ""
 
 msgid "Tarantool"
@@ -178,9 +168,6 @@ msgstr ""
 msgid ""
 "Fields are distinct data values, contained in a tuple. They play the same "
 "role as «row columns» or «record fields» in relational databases."
-msgstr ""
-
-msgid "https://www.tarantool.io/ru/doc/latest/book/box/data_model/#term-field\""
 msgstr ""
 
 msgid "leader election"
@@ -365,9 +352,6 @@ msgid ""
 "of each column. A result set is effectively a table."
 msgstr ""
 
-msgid "resultset"
-msgstr ""
-
 msgid "statement"
 msgstr ""
 
@@ -412,6 +396,9 @@ msgid "конфигурация производственной среды"
 msgstr ""
 
 msgid "deployment"
+msgstr ""
+
+msgid "развертывание"
 msgstr ""
 
 msgid ""
@@ -466,26 +453,6 @@ msgid ""
 "into a target system environment."
 msgstr ""
 
-msgid "Cartridge"
-msgstr ""
-
-msgid "приложение на Tarantool Cartridge"
-msgstr ""
-
-msgid ""
-"Если без предлога, то теряется  смысл: читается так, как будто Tarantool "
-"Cartridge — это название приложения. А это не так."
-msgstr ""
-
-msgid "Tarantool Cartridge application"
-msgstr ""
-
-msgid "Tarantool Cartridge — это фреймворк"
-msgstr ""
-
-msgid "на базе которого можно разработать свое приложение.\""
-msgstr ""
-
 msgid "production environment"
 msgstr ""
 
@@ -512,9 +479,6 @@ msgid ""
 "network."
 msgstr ""
 
-msgid "replicaset"
-msgstr ""
-
 msgid "directory"
 msgstr ""
 
@@ -527,7 +491,7 @@ msgstr ""
 msgid "сегмент"
 msgstr ""
 
-msgid "check"
+msgid "select"
 msgstr ""
 
 msgid "выберите, выбрать"
@@ -535,3 +499,50 @@ msgstr ""
 
 msgid "To select a checkbox"
 msgstr ""
+
+#~ msgid "Tarantool Core"
+#~ msgstr ""
+
+#~ msgid "https://www.tarantool.io/en/doc/latest/book/box/data_model/#spaces\""
+#~ msgstr ""
+
+#~ msgid "NOUN"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "A tuple plays the same role as a “row” or a “record”. The number of tuples "
+#~ "in a space is unlimited. Tuples in Tarantool are stored as MsgPack arrays. "
+#~ "https://www.tarantool.io/en/doc/latest/book/box/data_model/#tuples"
+#~ msgstr ""
+
+#~ msgid "https://www.tarantool.io/ru/doc/latest/book/box/data_model/#term-field\""
+#~ msgstr ""
+
+#~ msgid "resultset"
+#~ msgstr ""
+
+#~ msgid "Cartridge"
+#~ msgstr ""
+
+#~ msgid "приложение на Tarantool Cartridge"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Если без предлога, то теряется  смысл: читается так, как будто Tarantool "
+#~ "Cartridge — это название приложения. А это не так."
+#~ msgstr ""
+
+#~ msgid "Tarantool Cartridge application"
+#~ msgstr ""
+
+#~ msgid "Tarantool Cartridge — это фреймворк"
+#~ msgstr ""
+
+#~ msgid "на базе которого можно разработать свое приложение.\""
+#~ msgstr ""
+
+#~ msgid "replicaset"
+#~ msgstr ""
+
+#~ msgid "check"
+#~ msgstr ""

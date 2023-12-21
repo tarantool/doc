@@ -94,10 +94,12 @@ msgstr ""
 msgid ":ref:`UUID field type <index-box_uuid>`"
 msgstr ""
 
-msgid ":ref:`mapping UUID field to index types <box_space-index_field_types>`"
+msgid ""
+":ref:`mapping UUID field to index types <index-box_indexed-field-types>`"
 msgstr ""
 
-msgid ":ref:`uuid.new() <uuid-new>`."
+#, fuzzy
+msgid ":ref:`uuid.new() <uuid-new>`"
 msgstr ":ref:`uuid.new() <uuid-new>`."
 
 msgid ""
@@ -523,3 +525,6 @@ msgid ""
 "Fix static build (``-DBUILD_STATIC=ON``) when ``libunwind`` depends on "
 "``liblzma`` (:tarantool-issue:`4551`)."
 msgstr ""
+
+#~ msgid ":ref:`mapping UUID field to index types <box_space-index_field_types>`"
+#~ msgstr ""

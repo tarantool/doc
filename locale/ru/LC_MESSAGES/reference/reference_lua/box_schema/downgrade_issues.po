@@ -1,0 +1,21 @@
+
+msgid "box.schema.downgrade_issues()"
+msgstr ""
+
+msgid ""
+"Return a list of downgrade issues for the specified Tarantool version. To "
+"learn how to downgrade a database to the specified Tarantool version, see "
+":ref:`box.schema.downgrade() <box_schema-downgrade>`."
+msgstr ""
+
+msgid "return"
+msgstr ""
+
+msgid "a list of downgrade issues"
+msgstr ""
+
+msgid "rtype"
+msgstr ""
+
+msgid "table"
+msgstr ""

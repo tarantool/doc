@@ -2,15 +2,17 @@
 msgid "box.session.id()"
 msgstr ""
 
-msgid "return"
-msgstr "возвращает"
-
-msgid ""
-"the unique identifier (ID) for the current session. The result can be 0 or "
-"-1 meaning there is no session."
+#, fuzzy
+msgid "Return the unique identifier (ID) for the current session."
 msgstr ""
 "уникальный идентификатор (ID) для текущей сессии. Результатом может быть 0 "
 "или -1, что означает, что сессии нет."
+
+msgid "return"
+msgstr "возвращает"
+
+msgid "the session identifier; 0 or -1 if there is no session"
+msgstr ""
 
 msgid "rtype"
 msgstr "тип возвращаемого значения"

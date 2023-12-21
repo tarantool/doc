@@ -115,7 +115,7 @@ msgstr "Проверка соответствия значения опреде�
 msgid ":ref:`taptest.strict <taptest-strict>`"
 msgstr ":ref:`taptest.strict <taptest-strict>`"
 
-msgid "Flag, true if comparisons with nil should be strict"
+msgid "Flag, true if comparisons with ``nil`` should be strict"
 msgstr ""
 
 msgid "Initialize."
@@ -330,8 +330,9 @@ msgstr "ожидаемый результат"
 msgid "This is the negation of :ref:`taptest:is() <taptest-is>`."
 msgstr "Отрицание :ref:`taptest:is() <taptest-is>`."
 
+#, fuzzy
 msgid ""
-"Recursive version of ``taptest:is(...)``, which can be be used to compare "
+"Recursive version of ``taptest:is(...)``, which can be used to compare "
 "tables as well as scalar values."
 msgstr ""
 "Рекурсивная версия ``taptest:is(...)``, которую можно использовать для "
@@ -388,7 +389,20 @@ msgid ""
 "``false``."
 msgstr ""
 
-msgid "Note that ``taptest.strict`` is the same for all subtests:"
+msgid ""
+"Since :tarantool-release:`2.8.3`, ``taptest.strict`` is inherited in all "
+"subtests:"
+msgstr ""
+
+msgid ""
+"t = require('tap').test('123')\n"
+"t.strict = true\n"
+"\n"
+"t:is_deeply({a = box.NULL}, {}) -- false\n"
+"\n"
+"t:test('subtest', function(t)\n"
+"    t:is_deeply({a = box.NULL}, {}) -- also false\n"
+"end)"
 msgstr ""
 
 msgid "Example"
@@ -453,3 +467,8 @@ msgstr ""
 "    # Some subtests for test2: end\n"
 "ok - some subtests for test2"
 
+#~ msgid "Flag, true if comparisons with nil should be strict"
+#~ msgstr ""
+
+#~ msgid "Note that ``taptest.strict`` is the same for all subtests:"
+#~ msgstr ""

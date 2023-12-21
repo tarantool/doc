@@ -1,0 +1,230 @@
+
+msgid "Submodule box.iproto"
+msgstr ""
+
+msgid "Since :doc:`2.11.0 </release/2.11.0>`."
+msgstr ""
+
+msgid ""
+"The ``box.iproto`` submodule provides the ability to work with the network "
+"subsystem of Tarantool. It allows you to extend the :ref:`IPROTO "
+"<box_protocol>` functionality from Lua. With this submodule, you can:"
+msgstr ""
+
+msgid ""
+":ref:`parse unknown IPROTO request types <reference_lua-"
+"box_iproto_override>`"
+msgstr ""
+
+msgid ":ref:`send arbitrary IPROTO packets <reference_lua-box_iproto_send>`"
+msgstr ""
+
+msgid ""
+":ref:`override the behavior <reference_lua-box_iproto_override>` of the "
+"existing and unknown request types in the binary protocol"
+msgstr ""
+
+msgid ""
+"The submodule exports all IPROTO :ref:`constants <internals-box_protocol>` "
+"and :ref:`features <internals-iproto-keys-features>` to Lua."
+msgstr ""
+
+msgid "IPROTO constants"
+msgstr ""
+
+msgid ""
+"IPROTO constants in the ``box.iproto`` namespace are written in uppercase "
+"letters without the ``IPROTO_`` prefix. The constants are divided into "
+"several groups:"
+msgstr ""
+
+msgid ""
+":ref:`key <reference_lua-box_iproto_key>`. Example: :ref:`IPROTO_SYNC "
+"<internals-iproto-keys-sync>`."
+msgstr ""
+
+msgid ""
+":ref:`request type <reference_lua-box_iproto_type>`. Example: "
+":ref:`IPROTO_OK <internals-iproto-ok>`."
+msgstr ""
+
+msgid ""
+":ref:`flag <reference_lua-box_iproto_flag>`. Example: :ref:`IPROTO_COMMIT "
+"<box_protocol-commit>`."
+msgstr ""
+
+msgid ""
+":ref:`ballot key <reference_lua-box_iproto_ballot>`. Example: "
+":ref:`IPROTO_FLAG_COMMIT <box_protocol-flags>`."
+msgstr ""
+
+msgid ""
+":ref:`metadata key <reference_lua-box_iproto_metadata>`. Example: "
+":ref:`IPROTO_FIELD_IS_NULLABLE <internals-iproto-keys-sql-specific>`."
+msgstr ""
+
+msgid ""
+":ref:`RAFT key <reference_lua-box_iproto_raft>`. Example: :ref:`IPROTO_TERM "
+"<internals-iproto-keys-term>`."
+msgstr ""
+
+msgid ""
+"Each group is located in the corresponding subnamespace without the prefix. "
+"For example:"
+msgstr ""
+
+msgid ""
+"box.iproto.key.SYNC = 0x01\n"
+"-- ...\n"
+"box.iproto.type.SELECT = 1\n"
+"-- ...\n"
+"box.iproto.flag.COMMIT = 1\n"
+"-- ...\n"
+"box.iproto.ballot_key.VCLOCK = 2\n"
+"-- ...\n"
+"box.iproto.metadata_key.IS_NULLABLE = 3\n"
+"-- ...\n"
+"box.iproto.raft_key.TERM = 0\n"
+"-- ..."
+msgstr ""
+
+msgid "IPROTO features"
+msgstr ""
+
+msgid "The submodule exports:"
+msgstr ""
+
+msgid ""
+"the current IPROTO protocol version (:ref:`box.iproto.protocol_version "
+"<reference_lua-box_iproto_version>`)"
+msgstr ""
+
+msgid ""
+"the set of IPROTO protocol features supported by the server "
+"(:ref:`box.iproto.protocol_features <reference_lua-box_iproto_protocol-"
+"features>`)"
+msgstr ""
+
+msgid ""
+"IPROTO protocol features with the corresponding code "
+"(:ref:`box.iproto.feature <reference_lua-box_iproto_feature>`)"
+msgstr ""
+
+msgid "**Example**"
+msgstr ""
+
+msgid ""
+"The example converts the feature names from ``box.iproto.protocol_features``"
+" set into codes:"
+msgstr ""
+
+msgid ""
+"-- Features supported by the server\n"
+"box.iproto.protocol_features = {\n"
+"    streams = true,\n"
+"    transactions = true,\n"
+"    error_extension = true,\n"
+"    watchers = true,\n"
+"    pagination = true,\n"
+"}\n"
+"\n"
+"-- Convert the feature names into codes\n"
+"features = {}\n"
+"for name in pairs(box.iproto.protocol_features) do\n"
+"    table.insert(features, box.iproto.feature[name])\n"
+"end\n"
+"return features -- [0, 1, 2, 3, 4]"
+msgstr ""
+
+msgid "Handling the unknown IPROTO request types"
+msgstr ""
+
+msgid ""
+"Every IPROTO request has a static handler. That is, before version "
+":doc:`2.11.0 </release/2.11.0>`, any unknown request raised an error. Since "
+":doc:`2.11.0 </release/2.11.0>`, a new request type is introduced -- "
+":ref:`IPROTO_UNKNOWN <internals-iproto-unknown>`. This type is used to "
+"override the handlers of the unknown IPROTO request types. For details, see "
+":ref:`box.iproto.override() <reference_lua-box_iproto_override>` and "
+":ref:`box_iproto_override <box_box_iproto_override>` functions."
+msgstr ""
+
+msgid "API reference"
+msgstr ""
+
+msgid "The table lists all available functions and data of the submodule:"
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "Use"
+msgstr ""
+
+msgid ":doc:`./box_iproto/key`"
+msgstr ""
+
+msgid "Request keys"
+msgstr ""
+
+msgid ":doc:`./box_iproto/request_type`"
+msgstr ""
+
+msgid "Request types"
+msgstr ""
+
+msgid ":doc:`./box_iproto/flag`"
+msgstr ""
+
+msgid "Flags from the :ref:`IPROTO_FLAGS <box_protocol-flags>` key"
+msgstr ""
+
+msgid ":doc:`./box_iproto/ballot`"
+msgstr ""
+
+msgid "Keys from the :ref:`IPROTO_BALLOT <box_protocol-ballots>` requests"
+msgstr ""
+
+msgid ":doc:`./box_iproto/metadata`"
+msgstr ""
+
+msgid ""
+"Keys nested in the :ref:`IPROTO_METADATA <internals-iproto-keys-metadata>` "
+"key"
+msgstr ""
+
+msgid ":doc:`./box_iproto/raft`"
+msgstr ""
+
+msgid "Keys from the ``IPROTO_RAFT_`` requests"
+msgstr ""
+
+msgid ":doc:`./box_iproto/protocol_version`"
+msgstr ""
+
+msgid "The current IPROTO protocol version"
+msgstr ""
+
+msgid ":doc:`./box_iproto/protocol_features`"
+msgstr ""
+
+msgid "The set of supported IPROTO protocol features"
+msgstr ""
+
+msgid ":doc:`./box_iproto/feature`"
+msgstr ""
+
+msgid "IPROTO protocol :ref:`features <internals-iproto-keys-features>`"
+msgstr ""
+
+msgid ":doc:`./box_iproto/override`"
+msgstr ""
+
+msgid "Set a new IPROTO request handler callback for the given request type"
+msgstr ""
+
+msgid ":doc:`./box_iproto/send`"
+msgstr ""
+
+msgid "Send an IPROTO packet over the session's socket"
+msgstr ""

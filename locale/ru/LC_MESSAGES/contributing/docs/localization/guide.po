@@ -1,5 +1,5 @@
 
-msgid "Tarantool Translation Guidelines"
+msgid "Localization guidelines"
 msgstr ""
 
 msgid "Use this guide when localizing Tarantool into Russian."
@@ -54,9 +54,9 @@ msgid ""
 msgstr ""
 
 msgid ""
-"If you feel like the older Russian term may sound more familiar for a part "
-"of the audience (for example, those with a math background), consider adding"
-" it in parentheses along with the English equivalent. Don’t repeat the "
+"If you feel like an older Russian term may sound more familiar for a part of"
+" the audience (for example, those with a math background), consider adding "
+"it in parentheses along with the English equivalent. Don’t repeat the "
 "parentheses throughout the text. A similar rule applies to :ref:`introducing"
 " terms in Tarantool documentation <introduce-terms>`."
 msgstr ""
@@ -168,7 +168,7 @@ msgstr ""
 
 msgid ""
 "To learn how to clear your Russian texts of bureaucratese, check `Timur "
-"Anikin's training The Writing Dead "
+"Anikin's training \"The Writing Dead\" "
 "<https://www.timuroki.ink/thewritingdead>`_."
 msgstr ""
 
@@ -181,7 +181,7 @@ msgstr ""
 msgid "Проверка истечения срока действия паролей производится раз в 30 минут."
 msgstr ""
 
-msgid "Система раз в 30 минут проверяет, не истек ли срок действия паролей."
+msgid "Раз в 30 минут система проверяет, не истек ли срок действия паролей."
 msgstr ""
 
 msgid "Consistency"
@@ -218,8 +218,8 @@ msgid ""
 msgstr ""
 
 msgid ""
-"In the example, it is not quite clear what «к ней» means---to the record or "
-"to the configuration. For more on this issue, check out `the writers' "
+"In the example, it is not quite clear what «к ней» means -- to the record or"
+" to the configuration. For more on this issue, check out `the writers' "
 "reference at «Ошибкариум» <https://lapsus.timuroki.ink/pest/wanderer/>`_."
 msgstr ""
 
@@ -238,3 +238,29 @@ msgid ""
 "mistakes, and nobody likes to be punished for them. You can use phrasings "
 "like \"I suggest\" or \"it's a good idea to... .\""
 msgstr ""
+
+#~ msgid "Tarantool Translation Guidelines"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "If you feel like the older Russian term may sound more familiar for a part "
+#~ "of the audience (for example, those with a math background), consider adding"
+#~ " it in parentheses along with the English equivalent. Don’t repeat the "
+#~ "parentheses throughout the text. A similar rule applies to :ref:`introducing"
+#~ " terms in Tarantool documentation <introduce-terms>`."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "To learn how to clear your Russian texts of bureaucratese, check `Timur "
+#~ "Anikin's training The Writing Dead "
+#~ "<https://www.timuroki.ink/thewritingdead>`_."
+#~ msgstr ""
+
+#~ msgid "Система раз в 30 минут проверяет, не истек ли срок действия паролей."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "In the example, it is not quite clear what «к ней» means---to the record or "
+#~ "to the configuration. For more on this issue, check out `the writers' "
+#~ "reference at «Ошибкариум» <https://lapsus.timuroki.ink/pest/wanderer/>`_."
+#~ msgstr ""

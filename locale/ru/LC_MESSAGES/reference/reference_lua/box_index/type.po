@@ -2,5 +2,17 @@
 msgid "index_object.type"
 msgstr ""
 
-msgid "Index type, 'TREE' or 'HASH' or 'BITSET' or 'RTREE'."
-msgstr "Тип индекса: 'TREE' или 'HASH' или 'BITSET' или 'RTREE'."
+msgid "The :ref:`index type <index-types>`."
+msgstr ""
+
+msgid "rtype"
+msgstr ""
+
+msgid "string"
+msgstr ""
+
+msgid "**See also:** :ref:`index_opts.type <index_opts_type>`"
+msgstr ""
+
+#~ msgid "Index type, 'TREE' or 'HASH' or 'BITSET' or 'RTREE'."
+#~ msgstr "Тип индекса: 'TREE' или 'HASH' или 'BITSET' или 'RTREE'."

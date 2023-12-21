@@ -2,8 +2,9 @@
 msgid "Python"
 msgstr "Python"
 
+#, fuzzy
 msgid ""
-"`tarantool-python <http://github.com/tarantool/tarantool-python>`_ is the "
+"`tarantool-python <http://github.com/tarantool/tarantool-python>`__ is the "
 "official Python connector for Tarantool. It is not supplied as part of the "
 "Tarantool repository and must be installed separately (see below for "
 "details)."
@@ -51,15 +52,16 @@ msgstr ""
 "--user` (для установки в директорию :file:`~`, т.е. в используемую по "
 "умолчанию директорию текущего пользователя)."
 
+#, fuzzy
 msgid ""
 "Before trying to run, check that the server instance is :ref:`listening "
 "<cfg_basic-listen>` at ``localhost:3301`` and that the space ``examples`` "
 "exists, as :ref:`described earlier <index-connector_setting>`. To run the "
 "program, say :samp:`python example.py`. The program will connect to the "
-"Tarantool server, will send the :ref:`INSERT<box_space-insert>` request, and"
-" will not throw any exception if all went well. If the tuple already exists,"
-" the program will throw ``tarantool.error.DatabaseError: (3, \"Duplicate key"
-" exists in unique index 'primary' in space 'examples'\")``."
+"Tarantool server, will send the :ref:`INSERT <box_space-insert>` request, "
+"and will not throw any exception if all went well. If the tuple already "
+"exists, the program will throw ``tarantool.error.DatabaseError: (3, "
+"\"Duplicate key exists in unique index 'primary' in space 'examples'\")``."
 msgstr ""
 "Перед запуском данной программы проверьте, что у Tarantool-сервера задан "
 "порт ``localhost:3301`` для :ref:`прослушивания <cfg_basic-listen>` и в базе"
@@ -72,13 +74,11 @@ msgstr ""
 "`tarantool.error.DatabaseError: (3, \"Duplicate key exists in unique index "
 "'primary' in space 'examples'\")`."
 
+#, fuzzy
 msgid ""
 "The example program only shows one request and does not show all that's "
 "necessary for good practice. For that, please see `tarantool-python "
-"<http://github.com/tarantool/tarantool-python>`_ project at GitHub. For an "
-"example of using Python API with `queue managers for Tarantool "
-"<https://github.com/tarantool/queue>`_, see `queue-python "
-"<https://github.com/tarantool/queue-python>`_ project at GitHub."
+"<http://github.com/tarantool/tarantool-python>`__ project at GitHub."
 msgstr ""
 "В этой программе мы привели пример использования лишь одного запроса. Для "
 "полноценной работы с Tarantool обратитесь к документации из `проекта "
@@ -92,21 +92,254 @@ msgid "Also there are several community-driven Python connectors:"
 msgstr ""
 "Кроме того, сообщество разработчиков поддерживает другие Python-коннекторы:"
 
+#, fuzzy
 msgid ""
-"`asynctnt <https://github.com/igorcoding/asynctnt>`_ with asyncio support"
+"`asynctnt <https://github.com/igorcoding/asynctnt>`__ with asyncio support"
+msgstr ""
+"`asynctnt <https://github.com/igorcoding/asynctnt>`_ с поддержкой asyncio"
+
+#, fuzzy
+msgid ""
+"`aiotarantool <https://github.com/shveenkov/aiotarantool>`__ also with "
+"asyncio support, **no active maintenance**"
+msgstr ""
+"`gtarantool <https://github.com/shveenkov/gtarantool>`_ с поддержкой gevent "
+"**не обновляется**"
+
+#, fuzzy
+msgid ""
+"`gtarantool <https://github.com/shveenkov/gtarantool>`__ with gevent "
+"support, **no active maintenance**"
+msgstr ""
+"`gtarantool <https://github.com/shveenkov/gtarantool>`_ с поддержкой gevent "
+"**не обновляется**"
+
+msgid ""
+"The table below contains a feature comparison for asynctnt and tarantool-"
+"python. aiotarantool and gtarantool are absent there because they are quite "
+"outdated and unmaintained."
+msgstr ""
+
+msgid "Feature comparison"
+msgstr ""
+
+msgid "Last update: September 2023"
+msgstr ""
+
+msgid "Parameter"
+msgstr ""
+
+#, fuzzy
+msgid "`igorcoding/asynctnt <https://github.com/igorcoding/asynctnt>`__"
 msgstr ""
 "`asynctnt <https://github.com/igorcoding/asynctnt>`_ с поддержкой asyncio"
 
 msgid ""
-"`aiotarantool <https://github.com/shveenkov/aiotarantool>`_ also with "
-"asyncio support"
+"`tarantool/tarantool-python <https://github.com/tarantool/tarantool-"
+"python>`__"
 msgstr ""
-"`aiotarantool <https://github.com/shveenkov/aiotarantool>`_ также с "
-"поддержкой asyncio"
+
+msgid "License"
+msgstr ""
+
+msgid "Apache License 2.0"
+msgstr ""
+
+msgid "BSD-2"
+msgstr ""
+
+msgid "Is maintained"
+msgstr ""
+
+msgid "Yes"
+msgstr ""
+
+msgid "Known Issues"
+msgstr ""
+
+msgid "None"
+msgstr ""
+
+msgid "Documentation"
+msgstr ""
+
+msgid "Yes (`github.io <https://igorcoding.github.io/asynctnt/>`__)"
+msgstr ""
 
 msgid ""
-"`gtarantool <https://github.com/shveenkov/gtarantool>`_ with gevent support "
-"**no active maintenance**"
+"Yes (`readthedocs <https://tarantool-python.readthedocs.io/en/latest/quick-"
+"start.en.html>`__ and :ref:`tarantool.io <getting_started-python>`)"
 msgstr ""
-"`gtarantool <https://github.com/shveenkov/gtarantool>`_ с поддержкой gevent "
-"**не обновляется**"
+
+msgid "Testing / CI / CD"
+msgstr ""
+
+msgid "GitHub Actions"
+msgstr ""
+
+msgid "GitHub Stars"
+msgstr ""
+
+msgid "73"
+msgstr ""
+
+msgid "92"
+msgstr ""
+
+msgid "Static Analysis"
+msgstr ""
+
+msgid "Yes (Flake8)"
+msgstr ""
+
+msgid "Yes (Flake8, Pylint)"
+msgstr ""
+
+msgid "Packaging"
+msgstr ""
+
+msgid "`pip <https://pypi.org/project/asynctnt/>`__"
+msgstr ""
+
+msgid ""
+"`pip, deb, rpm <https://github.com/tarantool/tarantool-python#download-and-"
+"install>`__"
+msgstr ""
+
+msgid "Code coverage"
+msgstr ""
+
+msgid "Support asynchronous mode"
+msgstr ""
+
+msgid "Yes, `asyncio <https://docs.python.org/3/library/asyncio.html>`__"
+msgstr ""
+
+msgid "No"
+msgstr ""
+
+msgid "Batching support"
+msgstr ""
+
+msgid "Yes (with CRUD API)"
+msgstr ""
+
+msgid "Schema reload"
+msgstr ""
+
+msgid ""
+"Yes (automatically, see `auto_refetch_schema "
+"<https://igorcoding.github.io/asynctnt/api.html>`__)"
+msgstr ""
+
+msgid "Yes (automatically)"
+msgstr ""
+
+msgid "Space / index names"
+msgstr ""
+
+msgid "Access tuple fields by names"
+msgstr ""
+
+msgid ":ref:`SQL support <reference_sql>`"
+msgstr ""
+
+msgid ""
+":ref:`Interactive transactions <txn_mode_stream-interactive-transactions>`"
+msgstr ""
+
+msgid ""
+"No (`issue #163 <https://github.com/tarantool/tarantool-"
+"python/issues/163>`__)"
+msgstr ""
+
+msgid ":ref:`Varbinary support <index-box_data-types>`"
+msgstr ""
+
+msgid "Yes (in ``MP_BIN`` fields)"
+msgstr ""
+
+msgid ":ref:`Decimal support <msgpack_ext-decimal>`"
+msgstr ""
+
+msgid ":ref:`UUID support <msgpack_ext-uuid>`"
+msgstr ""
+
+msgid ":ref:`EXT_ERROR support <msgpack_ext-error>`"
+msgstr ""
+
+msgid ":ref:`Datetime support <msgpack_ext-datetime>`"
+msgstr ""
+
+msgid ":ref:`Interval support <msgpack_ext-interval>`"
+msgstr ""
+
+#, fuzzy
+msgid "No (`issue #30 <https://github.com/igorcoding/asynctnt/issues/30>`__)"
+msgstr ""
+"`asynctnt <https://github.com/igorcoding/asynctnt>`_ с поддержкой asyncio"
+
+msgid ":ref:`box.session.push() responses <box_session-push>`"
+msgstr ""
+
+msgid ":ref:`Session settings <box_space-session_settings>`"
+msgstr ""
+
+msgid ""
+"`Graceful shutdown <https://github.com/tarantool/tarantool/issues/5924>`__"
+msgstr ""
+
+msgid ""
+"`IPROTO_ID (feature discovery) "
+"<https://github.com/tarantool/doc/issues/2419>`__"
+msgstr ""
+
+msgid "`CRUD support <https://github.com/tarantool/crud>`__"
+msgstr ""
+
+msgid "Transparent request retrying"
+msgstr ""
+
+msgid "Transparent reconnecting"
+msgstr ""
+
+msgid "Autoreconnect"
+msgstr ""
+
+msgid ""
+"Yes (reconnect_max_attempts, reconnect_delay), checking of connection "
+"liveness"
+msgstr ""
+
+msgid "Connection pool"
+msgstr ""
+
+msgid "Yes (with master discovery)"
+msgstr ""
+
+msgid ""
+"Support of `PEP 249 -- Python Database API Specification v2.0 "
+"<https://www.python.org/dev/peps/pep-0249/>`__"
+msgstr ""
+
+msgid ""
+"`Yes <https://github.com/tarantool/tarantool-python/wiki/PEP-249-Database-"
+"API>`__"
+msgstr ""
+
+msgid ""
+":ref:`Encrypted connection (Enterprise Edition) <enterprise-iproto-"
+"encryption>`"
+msgstr ""
+
+#, fuzzy
+msgid "No (`issue #22 <https://github.com/igorcoding/asynctnt/issues/22>`__)"
+msgstr ""
+"`asynctnt <https://github.com/igorcoding/asynctnt>`_ с поддержкой asyncio"
+
+#~ msgid ""
+#~ "`aiotarantool <https://github.com/shveenkov/aiotarantool>`_ also with "
+#~ "asyncio support"
+#~ msgstr ""
+#~ "`aiotarantool <https://github.com/shveenkov/aiotarantool>`_ также с "
+#~ "поддержкой asyncio"

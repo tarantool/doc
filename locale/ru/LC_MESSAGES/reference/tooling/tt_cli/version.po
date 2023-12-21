@@ -1,0 +1,9 @@
+
+msgid "Displaying the tt version"
+msgstr ""
+
+msgid "$ tt version"
+msgstr ""
+
+msgid "``tt version`` shows the version of the ``tt`` utility being used."
+msgstr ""

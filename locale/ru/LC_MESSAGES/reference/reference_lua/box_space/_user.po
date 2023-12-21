@@ -11,20 +11,31 @@ msgstr ""
 msgid "Tuples in this space contain the following fields:"
 msgstr "Кортежи в данном спейсе включают в себя следующие поля:"
 
-msgid "the numeric id of the tuple (\"id\"),"
+#, fuzzy
+msgid "a numeric id of the tuple (\"id\")"
 msgstr "числовой идентификатор кортежа (\"id\"),"
 
-msgid "the numeric id of the tuple’s creator,"
+#, fuzzy
+msgid "a numeric id of the tuple’s creator"
 msgstr "числовой идентификатор создателя кортежа,"
 
-msgid "the name,"
-msgstr "имя,"
+#, fuzzy
+msgid "a name"
+msgstr "Имя"
 
-msgid "the type: 'user' or 'role',"
+#, fuzzy
+msgid "a type: 'user' or 'role'"
 msgstr "тип: 'user' (пользователь) или 'role' (роль),"
 
-msgid "optional password."
+#, fuzzy
+msgid "(optional) a password hash"
 msgstr "пароль по желанию"
+
+msgid "(optional) an array of previous authentication data"
+msgstr ""
+
+msgid "(optional) a timestamp of the last password update"
+msgstr ""
 
 msgid ""
 "There are five special tuples in the ``_user`` space: 'guest', 'admin', "
@@ -54,8 +65,9 @@ msgstr "0"
 msgid "user"
 msgstr "user (пользователь)"
 
+#, fuzzy
 msgid ""
-"Default user when connecting remotely. Usually an untrusted user with few "
+"Default user when connecting remotely. Usually, an untrusted user with few "
 "privileges."
 msgstr ""
 "Пользователь, который используется по умолчанию при удаленном подключении. "
@@ -68,13 +80,14 @@ msgstr "admin"
 msgid "1"
 msgstr "1"
 
+#, fuzzy
 msgid ""
-"Default user when using Tarantool as a console. Usually an "
+"Default user when using Tarantool as a console. Usually, an "
 ":ref:`administrative user <authentication-owners_privileges>` with all "
 "privileges."
 msgstr ""
-"Пользователь, который используется по умолчанию при работе с Tarantool "
-"как с консолью. Как правило, это :ref:`административный пользователь "
+"Пользователь, который используется по умолчанию при работе с Tarantool как с"
+" консолью. Как правило, это :ref:`административный пользователь "
 "<authentication-owners_privileges>` со всеми правами."
 
 msgid "public"
@@ -129,11 +142,11 @@ msgstr ""
 "роли 'super' такие права выданы на 'universe': чтение, запись, выполнение, "
 "создание, удаление, изменение."
 
+#, fuzzy
 msgid ""
 "To select a tuple from the ``_user`` space, use "
-"``box.space._user:select()``. For example, here is what happens with a "
-"select for user id = 0, which is the 'guest' user, which by default has no "
-"password:"
+"``box.space._user:select()``. In the example below, ``select`` is executed "
+"for a user with id = 0. This is the 'guest' user that has no password."
 msgstr ""
 "Чтобы выбрать кортеж из спейса ``_user``, используйте "
 "``box.space._user:select()``. Например, при выборке от пользователя с id = "
@@ -151,10 +164,11 @@ msgstr ""
 "- - [0, 1, 'guest', 'user']\n"
 "..."
 
+#, fuzzy
 msgid ""
 "To change tuples in the ``_user`` space, do not use ordinary ``box.space`` "
-"functions for insert or update or delete. The ``_user`` space is special, so"
-" there are special functions which have appropriate error checking."
+"functions for insert, update, or delete. The ``_user`` space is special, so "
+"there are special functions that have appropriate error checking.\\"
 msgstr ""
 "Чтобы изменить кортежи в спейсе ``_user``, не пользуйтесь стандартными "
 "функциями ``box.space`` для вставки, обновления или удаления. Речь идет об "
@@ -177,9 +191,10 @@ msgstr ""
 "box.schema.user.create(*user-name*, {if_not_exists = true})\n"
 "box.schema.user.create(*user-name*, {password = *password*})"
 
+#, fuzzy
 msgid ""
 "To change the user's password, use "
-":doc:`/reference/reference_lua/box_schema/user_password`:"
+":doc:`/reference/reference_lua/box_schema/user_passwd`:"
 msgstr ""
 "Чтобы изменить пароль пользователя, воспользуйтесь "
 ":doc:`/reference/reference_lua/box_schema/user_password`:"
@@ -273,3 +288,6 @@ msgid ""
 msgstr ""
 ":ref:`Представление системного спейса <box_space-sysviews>` ``_user`` --- "
 "``_vuser``."
+
+#~ msgid "the name,"
+#~ msgstr "имя,"

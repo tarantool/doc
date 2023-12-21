@@ -1,0 +1,63 @@
+
+msgid "How to write release notes"
+msgstr ""
+
+msgid ""
+"Below are some best practices to make changelogs consistent, neat, and "
+"human-oriented."
+msgstr ""
+
+msgid "Language"
+msgstr ""
+
+msgid "Use the past tense to describe changed or fixed behavior."
+msgstr ""
+
+msgid "Examples"
+msgstr ""
+
+msgid "Fixed false positive panic when yielding in debug hook (gh-5649)."
+msgstr ""
+
+msgid ""
+"Fedora 32 is supported now. Added per-commit testing, updated YUM "
+"repositories (gh-4966)."
+msgstr ""
+
+msgid "Use the present tense to describe new behavior."
+msgstr ""
+
+msgid "Example"
+msgstr ""
+
+msgid "Data changes in read-only mode are now forbidden (gh-5231)."
+msgstr ""
+
+msgid "Start with a capital letter, end with a period."
+msgstr ""
+
+msgid ""
+"Note that these guidelines differ from the best practice for commit message "
+"titles that suggests using the imperative mood."
+msgstr ""
+
+msgid "Formatting"
+msgstr ""
+
+msgid ""
+"In release notes, use the following Sphinx syntax when referring to a "
+"specific version of Tarantool:"
+msgstr ""
+
+msgid ""
+"Tarantool :tarantool-release:`2.10.0`.\n"
+"This is a link to the release notes on GitHub."
+msgstr ""
+
+msgid "The result looks like this:"
+msgstr ""
+
+msgid ""
+"Tarantool :tarantool-release:`2.10.0`. This is a link to the release notes "
+"on GitHub."
+msgstr ""

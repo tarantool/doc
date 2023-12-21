@@ -1,5 +1,6 @@
 
-msgid "Module `index`"
+#, fuzzy
+msgid "Module index"
 msgstr "Модуль `index`"
 
 msgid "A space iterator"

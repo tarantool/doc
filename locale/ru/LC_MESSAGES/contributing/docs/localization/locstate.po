@@ -11,7 +11,7 @@ msgstr ""
 msgid "Volume, words"
 msgstr ""
 
-msgid "Tarantool Community"
+msgid "Tarantool Community Edition"
 msgstr ""
 
 msgid "|doc|"
@@ -21,18 +21,6 @@ msgid "doc"
 msgstr ""
 
 msgid "352 000"
-msgstr ""
-
-msgid "Cartridge"
-msgstr ""
-
-msgid "|cartridge|"
-msgstr ""
-
-msgid "cartridge"
-msgstr ""
-
-msgid "14 000"
 msgstr ""
 
 msgid "Tarantool Ansible Role"
@@ -47,19 +35,7 @@ msgstr ""
 msgid "11 000"
 msgstr ""
 
-msgid "Cartridge CLI"
-msgstr ""
-
-msgid "|cartridge-cli|"
-msgstr ""
-
-msgid "cartridge-cli"
-msgstr ""
-
-msgid "6 500"
-msgstr ""
-
-msgid "Tarantool Enterprise"
+msgid "Tarantool Enterprise Edition"
 msgstr ""
 
 msgid "|tarantool-enterprise|"
@@ -136,3 +112,33 @@ msgstr ""
 
 msgid "500"
 msgstr ""
+
+#~ msgid "Tarantool Community"
+#~ msgstr ""
+
+#~ msgid "Cartridge"
+#~ msgstr ""
+
+#~ msgid "|cartridge|"
+#~ msgstr ""
+
+#~ msgid "cartridge"
+#~ msgstr ""
+
+#~ msgid "14 000"
+#~ msgstr ""
+
+#~ msgid "Cartridge CLI"
+#~ msgstr ""
+
+#~ msgid "|cartridge-cli|"
+#~ msgstr ""
+
+#~ msgid "cartridge-cli"
+#~ msgstr ""
+
+#~ msgid "6 500"
+#~ msgstr ""
+
+#~ msgid "Tarantool Enterprise"
+#~ msgstr ""

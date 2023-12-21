@@ -1,0 +1,26 @@
+
+msgid "Other rocks"
+msgstr ""
+
+msgid ""
+"This page features a list of links to third-party Tarantool module "
+"documentation that is hosted externally -- mostly on GitHub pages or in "
+"READMEs:"
+msgstr ""
+
+msgid "`crud <https://github.com/tarantool/crud#readme>`_"
+msgstr ""
+
+msgid "`expirationd <https://tarantool.github.io/expirationd/>`_"
+msgstr ""
+
+msgid "`icu-date <https://github.com/tarantool/icu-date#readme>`_"
+msgstr ""
+
+msgid "`tracing <https://github.com/tarantool/tracing/>`_"
+msgstr ""
+
+msgid ""
+"For Tarantool Enterprise modules, see the :ref:`Tarantool EE <enterprise-"
+"rocks>` documentation."
+msgstr ""

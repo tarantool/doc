@@ -145,6 +145,14 @@ msgstr ""
 msgid "Remove unused index space"
 msgstr "Удаление неиспользуемого пространства индекса"
 
+#, fuzzy
+msgid ":doc:`./box_index/tuple_pos`"
+msgstr ":doc:`./box_space/create_index`"
+
+#, fuzzy
+msgid "Return a tuple's position for an index"
+msgstr "Выбор кортежа по индексу"
+
 msgid ":doc:`./box_index/user_defined`"
 msgstr ""
 
