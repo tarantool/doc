@@ -313,7 +313,7 @@ To do this:
 
         $ tt connect mysql:instance001
 
-#.   To see the replicated data in Tarantool, run the following command:
+#.  To see the replicated data in Tarantool, run the following command:
 
     ..  code-block:: tarantoolsession
 
