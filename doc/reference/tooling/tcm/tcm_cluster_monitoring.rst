@@ -98,8 +98,8 @@ find:
 *   its configuration overview
 *   current state (with warning and error messages if any)
 *   the detailed Tarantool information returned by the instance introspection functions
-    from :ref:`box_introspection-box_info`, :ref:`box_introspection-box_stat`, and other
-    built-in modules.
+    from :ref:`box.info <box_introspection-box_info>`, :ref:`box.stat <box_introspection-box_stat>`,
+    and other built-in modules.
 
 Additionally, on the instance details page there is a terminal in which you can execute
 arbitrary Lua code on the instance.
