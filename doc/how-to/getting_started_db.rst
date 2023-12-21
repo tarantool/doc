@@ -10,15 +10,10 @@ Installing Tarantool
 --------------------
 
 For production purposes, we recommend that you install Tarantool via the
-`official package manager <http://tarantool.org/download.html>`_.
-You can choose one of three versions: LTS, stable, or beta.
-An automatic build system creates, tests, and publishes packages for every
-push into a corresponding branch at
-`Tarantool's GitHub repository <https://github.com/tarantool/tarantool>`_.
-
+`official package manager <https://www.tarantool.io/en/download/>`_.
 To download and install the package that's appropriate for your OS,
 start a shell (terminal) and enter the command-line instructions provided
-for your OS at Tarantool's `download page <http://tarantool.org/download.html>`_.
+for your OS at Tarantool `download page <http://tarantool.org/download.html>`_.
 
 ..  _getting_started_tt-cli:
 
@@ -152,70 +147,70 @@ To create a test database after installation:
         :lines: 10
         :dedent:
 
-The full example in the terminal looks like this:
+#.  The full example in the terminal looks like this:
 
-..  code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
-    create_db:instance001> box.schema.space.create('bands')
-    ---
-    ...
-    create_db:instance001> box.space.bands:format({
-                         > {name = 'id', type = 'unsigned'},
-                         > {name = 'band_name', type = 'string'},
-                         > {name = 'year', type = 'unsigned'}
-                         > })
-    ---
-    ...
-    create_db:instance001> box.space.bands:create_index('primary', { parts = { 'id' } })
-    ---
-    - unique: true
-      parts:
-      - type: unsigned
-        is_nullable: false
-        fieldno: 1
-      id: 0
-      space_id: 512
-      name: primary
-      type: TREE
-    ...
-    create_db:instance001> box.space.bands:insert { 1, 'Roxette', 1986 }
-    ---
-    - [1, 'Roxette', 1986]
-    ...
-    create_db:instance001> box.space.bands:insert { 2, 'Scorpions', 1965 }
-    ---
-    - [2, 'Scorpions', 1965]
-    ...
-    create_db:instance001> box.space.bands:insert { 3, 'Ace of Base', 1987 }
-    ---
-    - [3, 'Ace of Base', 1987]
-    ...
-    create_db:instance001> box.space.bands:select { 3 }
-    ---
-    - - [3, 'Ace of Base', 1987]
-    ...
-    create_db:instance001> box.space.bands:create_index('secondary', { parts = { 'band_name' } })
-    ---
-    - unique: true
-      parts:
-      - fieldno: 2
-        sort_order: asc
-        type: string
-        exclude_null: false
-        is_nullable: false
-      hint: true
-      id: 1
-      type: TREE
-      space_id: 512
-      name: secondary
-    ...
-    create_db:instance001> s.index.secondary:select{'Scorpions'}
-    ---
-    - - [2, 'Scorpions', 1965]
-    ...
-    create_db:instance001> box.schema.user.grant('guest', 'read,write,execute', 'universe')
-    ---
-    ...
+        create_db:instance001> box.schema.space.create('bands')
+        ---
+        ...
+        create_db:instance001> box.space.bands:format({
+                             > {name = 'id', type = 'unsigned'},
+                             > {name = 'band_name', type = 'string'},
+                             > {name = 'year', type = 'unsigned'}
+                             > })
+        ---
+        ...
+        create_db:instance001> box.space.bands:create_index('primary', { parts = { 'id' } })
+        ---
+        - unique: true
+          parts:
+          - type: unsigned
+            is_nullable: false
+            fieldno: 1
+          id: 0
+          space_id: 512
+          name: primary
+          type: TREE
+        ...
+        create_db:instance001> box.space.bands:insert { 1, 'Roxette', 1986 }
+        ---
+        - [1, 'Roxette', 1986]
+        ...
+        create_db:instance001> box.space.bands:insert { 2, 'Scorpions', 1965 }
+        ---
+        - [2, 'Scorpions', 1965]
+        ...
+        create_db:instance001> box.space.bands:insert { 3, 'Ace of Base', 1987 }
+        ---
+        - [3, 'Ace of Base', 1987]
+        ...
+        create_db:instance001> box.space.bands:select { 3 }
+        ---
+        - - [3, 'Ace of Base', 1987]
+        ...
+        create_db:instance001> box.space.bands:create_index('secondary', { parts = { 'band_name' } })
+        ---
+        - unique: true
+          parts:
+          - fieldno: 2
+            sort_order: asc
+            type: string
+            exclude_null: false
+            is_nullable: false
+          hint: true
+          id: 1
+          type: TREE
+          space_id: 512
+          name: secondary
+        ...
+        create_db:instance001> s.index.secondary:select{'Scorpions'}
+        ---
+        - - [2, 'Scorpions', 1965]
+        ...
+        create_db:instance001> box.schema.user.grant('guest', 'read,write,execute', 'universe')
+        ---
+        ...
 
 ..  _connecting-remotely:
 
@@ -226,7 +221,7 @@ In the configuration file (``config.yaml``), the instance listens on ``127.0.0.1
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/create_db/config.yaml
     :language: yaml
-    :lines: 6-8
+    :lines: 6-9
     :dedent:
 
 The ``listen`` value can be any form of a :ref:`URI <index-uri>` (uniform resource identifier).
@@ -277,6 +272,6 @@ When the tutorial is over, you can use :ref:`box.space.s:drop() <box_space-drop>
 To exit interactive console, enter ``Ctrl+D``.
 After that, to stop Tarantool instances, use the following command:
 
-    ..  code-block:: console
+..  code-block:: console
 
-        $ tt stop create_db
+    $ tt stop create_db
