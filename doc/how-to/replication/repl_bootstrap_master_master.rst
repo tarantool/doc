@@ -209,6 +209,9 @@ Checking a replica set status
             name: instance001
         ...
 
+    To see the diagrams that illustrate how the ``upstream`` and ``downstream`` connections look,
+    refer to :ref:`Monitoring a replica set <replication-monitoring>`.
+
 ..  include:: /how-to/replication/repl_bootstrap.rst
     :start-after: vclock_0th_component_note_start
     :end-before: vclock_0th_component_note_end
@@ -366,6 +369,13 @@ To insert conflicting records to ``instance001`` and ``instance002``, follow the
             name: instance001
         ...
 
+    The diagram below illustrates how the ``upstream`` and ``downstream`` connections look like:
+
+    ..  image:: box_info_replication_master_master_stopped.png
+        :width: 600
+        :align: center
+        :alt: replication status on a new master
+
 
 .. _replication-master-master-reseed-replica:
 
@@ -466,6 +476,13 @@ After :ref:`reseeding a replica <replication-master-master-reseed-replica>`, you
             lsn: 6
             name: instance001
         ...
+
+    The diagram below illustrates how the ``upstream`` and ``downstream`` connections look like:
+
+    ..  image:: box_info_replication_master_master_follow_stopped.png
+        :width: 600
+        :align: center
+        :alt: replication status after reseeding a replica
 
 
 2.  In the ``config.yaml`` file, clear the ``iproto`` option for ``instance001`` by setting its value to ``{}`` to disconnect this instance from ``instance002``.

@@ -202,6 +202,9 @@ Checking a replica set status
               lag: 0
         ...
 
+    To see the diagrams that illustrate how the ``upstream`` and ``downstream`` connections look,
+    refer to :ref:`Monitoring a replica set <replication-monitoring>`.
+
 
 .. _replication-master_replica_add_data:
 
@@ -341,6 +344,8 @@ This is required to allow ``instance001`` and ``instance002`` to get data from t
 3.  Execute ``box.info.replication`` to check a replica set status.
     Make sure that ``upstream.status`` and ``downstream.status`` are ``follow`` for ``instance003``.
 
+    .. box_info_replication_manual_leader_start
+
     .. code-block:: console
 
         manual_leader:instance001> box.info.replication
@@ -381,6 +386,8 @@ This is required to allow ``instance001`` and ``instance002`` to get data from t
               vclock: {1: 21}
               lag: 0
                 ...
+
+    .. box_info_replication_manual_leader_end
 
 
 

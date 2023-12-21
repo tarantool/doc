@@ -2,7 +2,7 @@ Replication administration
 ==========================
 
 ..  toctree::
-    :maxdepth: 2
+    :maxdepth: 1
 
     repl_monitoring
     repl_recover

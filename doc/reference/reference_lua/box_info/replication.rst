@@ -136,9 +136,3 @@ box.info.replication
       from socket'``, and ``system_message = 'Broken pipe'``.
       See also :ref:`degraded state <replication-recover>`.
 
-
-    For better understanding, see the following diagram illustrating the ``upstream`` and ``downstream`` connections within the replica set of three instances:
-
-    ..  image:: /concepts/replication/images/replication.svg
-        :align: left
-
