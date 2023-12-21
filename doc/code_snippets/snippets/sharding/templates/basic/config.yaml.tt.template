@@ -5,7 +5,7 @@ credentials:
       roles: [replication]
     {{.sharding_user_name}}:
       password: '{{.sharding_user_password}}'
-      roles: [super]
+      roles: [sharding]
 
 iproto:
   advertise:

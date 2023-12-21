@@ -5,7 +5,7 @@ credentials:
       roles: [replication]
     storage:
       password: 'secret'
-      roles: [super]
+      roles: [sharding]
 
 iproto:
   advertise:

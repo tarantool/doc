@@ -439,12 +439,12 @@ The ``credentials`` section allows you to create users and grant them the specif
 In the example below, there are two users:
 
 *   The *replicator* user is used for replication and has a corresponding role.
-*   The *storage* user has the ``super`` role and can perform any action on Tarantool instances.
+*   The *storage* user has the ``sharding`` role.
 
 ..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster/config.yaml
     :language: yaml
     :start-at: credentials:
-    :end-at: roles: [super]
+    :end-at: roles: [sharding]
     :dedent:
 
 To learn more, see the :ref:`Access control <authentication>` section.
