@@ -523,13 +523,28 @@ The ``iproto`` section is used to configure parameters related to communicating 
     ``iproto`` can be defined in any :ref:`scope <configuration_scopes>`.
 
 
--   :ref:`iproto.advertise.client <configuration_reference_iproto_advertise_client>`
--   :ref:`iproto.advertise.peer <configuration_reference_iproto_advertise_peer>`
--   :ref:`iproto.advertise.sharding <configuration_reference_iproto_advertise_sharding>`
--   :ref:`iproto.listen <configuration_reference_iproto_listen>`
--   :ref:`iproto.net_msg_max <configuration_reference_iproto_net_msg_max>`
--   :ref:`iproto.readahead <configuration_reference_iproto_readahead>`
--   :ref:`iproto.threads <configuration_reference_iproto_threads>`
+-   :ref:`iproto.advertise.* <configuration_reference_iproto_advertise>`
+
+    -   :ref:`iproto.advertise.client <configuration_reference_iproto_advertise_client>`
+    -   :ref:`iproto.advertise.peer <configuration_reference_iproto_advertise_peer>`
+    -   :ref:`iproto.advertise.sharding <configuration_reference_iproto_advertise_sharding>`
+    -   :ref:`iproto.advertise.\<peer_or_sharding\>.* <configuration_reference_iproto_advertise.peer_sharding>`
+
+-   :ref:`iproto.* <configuration_reference_iproto_misc>`
+
+    -   :ref:`iproto.listen <configuration_reference_iproto_listen>`
+    -   :ref:`iproto.net_msg_max <configuration_reference_iproto_net_msg_max>`
+    -   :ref:`iproto.readahead <configuration_reference_iproto_readahead>`
+    -   :ref:`iproto.threads <configuration_reference_iproto_threads>`
+
+-   :ref:`<uri>.params.* <configuration_reference_iproto_uri_params>`
+
+
+
+.. _configuration_reference_iproto_advertise:
+
+iproto.advertise.*
+~~~~~~~~~~~~~~~~~~
 
 
 .. _configuration_reference_iproto_advertise_client:
@@ -551,7 +566,7 @@ The ``iproto`` section is used to configure parameters related to communicating 
 
     .. NOTE::
 
-        The ``host`` value cannot be ``0.0.0.0``/``[::]`` and the ``port`` value cannot be ``0``.
+        The host value cannot be ``0.0.0.0``/``[::]`` and the port value cannot be ``0``.
 
     .. host_port_limitations_end
 
@@ -566,22 +581,7 @@ The ``iproto`` section is used to configure parameters related to communicating 
 
     An URI used to advertise the current instance to other cluster members.
 
-    The ``iproto.advertise.peer`` option accepts an URI in the following formats:
-
-    -   User :ref:`credentials <configuration_reference_credentials>` and an address: ``username@host:port`` or ``username:password@host:port``.
-
-    -   User credentials: ``username@`` or ``username:password@``.
-        In this case, an advertise address is taken from :ref:`iproto.listen <configuration_reference_iproto_listen>`.
-
-    -   An address: ``host:port``.
-
-    If ``password`` is missing, it is taken from :ref:`credentials <configuration_reference_credentials>` for the specified ``username``.
-
-    You can also use a Unix domain socket (``unix/:``) instead of ``host:port``.
-
-    ..  include:: /reference/configuration/configuration_reference.rst
-        :start-after: host_port_limitations_start
-        :end-before: host_port_limitations_end
+    The ``iproto.advertise.peer`` option accepts an URI in the format described in :ref:`iproto_advertise.\<peer_or_sharding\>.* <configuration_reference_iproto_advertise.peer_sharding>`.
 
     **Example**
 
@@ -593,12 +593,11 @@ The ``iproto`` section is used to configure parameters related to communicating 
     ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/auto_leader/config.yaml
         :language: yaml
         :start-at: credentials:
-        :end-at: listen: 127.0.0.1:3303
+        :end-at: 127.0.0.1:3303
         :dedent:
 
-    | Type: string
-    | Default: :ref:`box.NULL <box-null>`
-    | Environment variable: TT_IPROTO_ADVERTISE_PEER
+    | Type: map
+    | Environment variable: see :ref:`iproto.advertise.\<peer_or_sharding\>.* <configuration_reference_iproto_advertise.peer_sharding>`
 
 .. _configuration_reference_iproto_advertise_sharding:
 
@@ -606,7 +605,7 @@ The ``iproto`` section is used to configure parameters related to communicating 
 
     An advertise URI used by a router and rebalancer.
 
-    The ``iproto.advertise.sharding`` option accepts an URI in the same formats as :ref:`iproto.advertise.peer <configuration_reference_iproto_advertise_peer>`.
+    The ``iproto.advertise.sharding`` option accepts an URI in the format described in :ref:`iproto_advertise.\<peer_or_sharding\>.* <configuration_reference_iproto_advertise.peer_sharding>`.
 
     **Example**
 
@@ -619,20 +618,78 @@ The ``iproto`` section is used to configure parameters related to communicating 
     ..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster/config.yaml
         :language: yaml
         :start-at: credentials:
-        :end-at: sharding: storage@
+        :end-at: login: storage
         :dedent:
 
-    | Type: string
-    | Default: :ref:`box.NULL <box-null>`
-    | Environment variable: TT_IPROTO_ADVERTISE_SHARDING
+    | Type: map
+    | Environment variable: see :ref:`iproto.advertise.\<peer_or_sharding\>.* <configuration_reference_iproto_advertise.peer_sharding>`
 
+
+.. _configuration_reference_iproto_advertise.peer_sharding:
+
+iproto.advertise.<peer_or_sharding>.*
+*************************************
+
+.. _configuration_reference_iproto_advertise.peer_sharding.uri:
+
+.. confval:: iproto_advertise.<peer_or_sharding>.uri
+
+    An URI used to advertise the current instance.
+
+    ..  include:: /reference/configuration/configuration_reference.rst
+        :start-after: host_port_limitations_start
+        :end-before: host_port_limitations_end
+
+    |
+    | Type: string
+    | Default: nil
+    | Environment variable: TT_IPROTO_ADVERTISE_PEER_URI, TT_IPROTO_ADVERTISE_SHARDING_URI
+
+.. _configuration_reference_iproto_advertise.peer_sharding.login:
+
+.. confval:: iproto_advertise.<peer_or_sharding>.login
+
+    A username that should be used to connect to the current instance.
+
+    |
+    | Type: string
+    | Default: nil
+    | Environment variable: TT_IPROTO_ADVERTISE_PEER_LOGIN, TT_IPROTO_ADVERTISE_SHARDING_LOGIN
+
+.. _configuration_reference_iproto_advertise.peer_sharding.password:
+
+.. confval:: iproto_advertise.<peer_or_sharding>.password
+
+    A password for the specified user.
+    If a password is missing, it is taken from :ref:`credentials <configuration_reference_credentials>` for the specified username.
+
+    |
+    | Type: string
+    | Default: nil
+    | Environment variable: TT_IPROTO_ADVERTISE_PEER_PASSWORD, TT_IPROTO_ADVERTISE_SHARDING_PASSWORD
+
+.. _configuration_reference_iproto_advertise.peer_sharding.params:
+
+.. confval:: iproto_advertise.<peer_or_sharding>.params
+
+    Additional parameters required for connecting to the current instance.
+    These parameters are described in :ref:`<uri>.params.* <configuration_reference_iproto_uri_params>`.
+
+
+
+.. _configuration_reference_iproto_misc:
+
+iproto.*
+~~~~~~~~
 
 .. _configuration_reference_iproto_listen:
 
 .. confval:: iproto.listen
 
-    An address used to listen for incoming requests.
-    This address is used for different purposes, for example:
+    An array of URIs used to listen for incoming requests.
+    In required, you can enable SSL for specific URIs by providing additional parameters (:ref:`<uri>.params.* <configuration_reference_iproto_uri_params>`).
+
+    These URIs are used for different purposes, for example:
 
     -   Communicating between replica set peers or cluster members.
     -   Remote administration using :ref:`tt connect <tt-connect>`.
@@ -653,8 +710,8 @@ The ``iproto`` section is used to configure parameters related to communicating 
     See also: :ref:`Connection settings <configuration_options_connection>`.
 
     |
-    | Type: string
-    | Default: :ref:`box.NULL <box-null>`
+    | Type: array
+    | Default: nil
     | Environment variable: TT_IPROTO_LISTEN
 
 
@@ -731,6 +788,75 @@ The ``iproto`` section is used to configure parameters related to communicating 
     | Type: integer
     | Default: 1
     | Environment variable: TT_IPROTO_THREADS
+
+
+.. _configuration_reference_iproto_uri_params:
+
+<uri>.params.*
+~~~~~~~~~~~~~~
+
+.. _configuration_reference_iproto_uri_params_transport:
+
+.. confval:: <uri>.params.transport
+
+    |
+    | Type: string
+    | Default: nil
+    | Environment variable: TT_IPROTO_ADVERTISE_PEER_PARAMS_TRANSPORT, TT_IPROTO_ADVERTISE_SHARDING_PARAMS_TRANSPORT
+
+.. _configuration_reference_iproto_uri_params_ssl_ca_file:
+
+.. confval:: <uri>.params.ssl_ca_file
+
+    |
+    | Type: string
+    | Default: nil
+    | Environment variable: TT_IPROTO_ADVERTISE_PEER_PARAMS_SSL_CA_FILE, TT_IPROTO_ADVERTISE_SHARDING_PARAMS_SSL_CA_FILE
+
+.. _configuration_reference_iproto_uri_params_ssl_cert_file:
+
+.. confval:: <uri>.params.ssl_cert_file
+
+    |
+    | Type: string
+    | Default: nil
+    | Environment variable: TT_IPROTO_ADVERTISE_PEER_PARAMS_SSL_CERT_FILE, TT_IPROTO_ADVERTISE_SHARDING_PARAMS_SSL_CERT_FILE
+
+.. _configuration_reference_iproto_uri_params_ssl_ciphers:
+
+.. confval:: <uri>.params.ssl_ciphers
+
+    |
+    | Type: string
+    | Default: nil
+    | Environment variable: TT_IPROTO_ADVERTISE_PEER_PARAMS_SSL_CIPHERS, TT_IPROTO_ADVERTISE_SHARDING_PARAMS_SSL_CIPHERS
+
+.. _configuration_reference_iproto_uri_params_ssl_key_file:
+
+.. confval:: <uri>.params.ssl_key_file
+
+    |
+    | Type: string
+    | Default: nil
+    | Environment variable: TT_IPROTO_ADVERTISE_PEER_PARAMS_SSL_KEY_FILE, TT_IPROTO_ADVERTISE_SHARDING_PARAMS_SSL_KEY_FILE
+
+.. _configuration_reference_iproto_uri_params_ssl_password:
+
+.. confval:: <uri>.params.ssl_password
+
+    |
+    | Type: string
+    | Default: nil
+    | Environment variable: TT_IPROTO_ADVERTISE_PEER_PARAMS_SSL_PASSWORD, TT_IPROTO_ADVERTISE_SHARDING_PARAMS_SSL_PASSWORD
+
+.. _configuration_reference_iproto_uri_params_ssl_password_file:
+
+.. confval:: <uri>.params.ssl_password_file
+
+    |
+    | Type: string
+    | Default: nil
+    | Environment variable: TT_IPROTO_ADVERTISE_PEER_PARAMS_SSL_PASSWORD_FILE, TT_IPROTO_ADVERTISE_SHARDING_PARAMS_SSL_PASSWORD_FILE
 
 
 
@@ -810,7 +936,7 @@ replicasets
     ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/manual_leader/config.yaml
         :language: yaml
         :start-at: replication:
-        :end-at: listen: 127.0.0.1:3303
+        :end-at: 127.0.0.1:3303
         :dedent:
 
 
@@ -826,7 +952,7 @@ replicasets
     ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/bootstrap_strategy/config.yaml
         :language: yaml
         :start-at: groups:
-        :end-at: listen: 127.0.0.1:3303
+        :end-at: 127.0.0.1:3303
         :dedent:
 
 

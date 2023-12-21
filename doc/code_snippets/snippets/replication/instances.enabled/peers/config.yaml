@@ -18,10 +18,13 @@ groups:
         instances:
           instance001:
             iproto:
-              listen: 127.0.0.1:3301
+              listen:
+              - uri: '127.0.0.1:3301'
           instance002:
             iproto:
-              listen: 127.0.0.1:3302
+              listen:
+              - uri: '127.0.0.1:3302'
           instance003:
             iproto:
-              listen: 127.0.0.1:3303
+              listen:
+              - uri: '127.0.0.1:3303'

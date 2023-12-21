@@ -6,10 +6,10 @@ A sample application demonstrating how to configure a [sharded](https://www.tara
 
 To run the cluster, go to the `sharding` directory in the terminal and perform the following steps:
 
-1. Install `vshard`:
+1. Install dependencies defined in the `*.rockspec` file:
 
    ```console
-   $ tt rocks install vshard
+   $ tt build
    ```
    
 2. Run the cluster:

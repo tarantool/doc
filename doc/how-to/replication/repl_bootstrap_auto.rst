@@ -65,7 +65,7 @@ The :ref:`iproto.listen <configuration_reference_iproto_listen>` option specifie
 ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/auto_leader/config.yaml
     :language: yaml
     :start-at: groups:
-    :end-at: listen: 127.0.0.1:3303
+    :end-at: 127.0.0.1:3303
     :dedent:
 
 
@@ -93,7 +93,7 @@ Set :ref:`iproto.advertise.peer <configuration_reference_iproto_advertise_peer>`
 ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/auto_leader/config.yaml
     :language: yaml
     :start-at: iproto:
-    :end-at: peer: replicator@
+    :end-at: login: replicator
     :dedent:
 
 .. _replication-automated-failover_configuring_result:
@@ -105,7 +105,7 @@ The resulting replica set configuration should look as follows:
 
 ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/auto_leader/config.yaml
     :language: yaml
-    :end-at: listen: 127.0.0.1:3303
+    :end-at: 127.0.0.1:3303
     :dedent:
 
 

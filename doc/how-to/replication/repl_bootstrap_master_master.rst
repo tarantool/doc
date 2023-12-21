@@ -71,7 +71,7 @@ Define a replica set topology inside the :ref:`groups <configuration_reference_g
 ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/master_master/config.yaml
     :language: yaml
     :start-at: groups:
-    :end-at: listen: 127.0.0.1:3302
+    :end-at: 127.0.0.1:3302
     :dedent:
 
 
@@ -99,7 +99,7 @@ Set :ref:`iproto.advertise.peer <configuration_reference_iproto_advertise_peer>`
 ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/master_master/config.yaml
     :language: yaml
     :start-at: iproto:
-    :end-at: peer: replicator@
+    :end-at: login: replicator
     :dedent:
 
 
@@ -112,7 +112,7 @@ The resulting replica set configuration should look as follows:
 
 ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/master_master/config.yaml
     :language: yaml
-    :end-at: listen: 127.0.0.1:3302
+    :end-at: 127.0.0.1:3302
     :dedent:
 
 
@@ -491,7 +491,7 @@ After :ref:`reseeding a replica <replication-master-master-reseed-replica>`, you
     ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/master_master/config.yaml
         :language: yaml
         :start-at: instance001
-        :end-at: listen: 127.0.0.1:3302
+        :end-at: 127.0.0.1:3302
         :dedent:
 
 5.  Reload configurations on both instances one more time:
