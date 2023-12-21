@@ -98,7 +98,7 @@ In this section, you configure MySQL and create a database.
         mysql menagerie -u root -p < cr_event_tbl.sql
 
 #.  Enter MySQL console and massage the data for use with the
-    Tarantool replicator. On this step, you:
+    Tarantool replicator. In this step, you:
 
     *   add an ID
     *   change a field name to avoid conflict
@@ -208,9 +208,9 @@ In this section, you install Tarantool and set up spaces for replication.
 
     ..  code-block:: tarantoolsession
 
-        tarantool> box.space._space:select()
+        mysql:instance001> box.space._space:select()
 
-    At the bottom you will see ``mysqldaemon`` and ``mysqldata`` spaces. Then exit with "CTRL+C".
+    At the bottom, you will see ``mysqldaemon`` and ``mysqldata`` spaces. Then exit with "CTRL+C".
 
 ..  _improving_mysql-replicator:
 
@@ -276,7 +276,7 @@ MySQL and Tarantool are now set up. You can proceed to configure the replicator.
 
     ..  code-block:: tarantoolsession
 
-        mysql> box.space.mysqldata:select()
+        mysql:instance001> box.space.mysqldata:select()
         ---
         - - [1, 'Fluffy', 'Harold', 'cat']
           - [2, 'Claws', 'Gwen', 'cat']
@@ -311,10 +311,10 @@ To do this:
 
     ..  code-block:: bash
 
-        $ tt connect mysql
+        $ tt connect mysql:instance001
 
 #.   To see the replicated data in Tarantool, run the following command:
 
     ..  code-block:: tarantoolsession
 
-        mysql> box.space.mysqldata:select()
+        mysql:instance001> box.space.mysqldata:select()

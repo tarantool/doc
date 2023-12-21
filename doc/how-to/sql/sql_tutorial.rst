@@ -47,13 +47,13 @@ After configuration, start a Tarantool instance from the tt environment director
 
 ..  code-block:: console
 
-    $ tt connect sql_tutorial
+    $ tt start sql_tutorial
 
 After that, connect to the instance:
 
 ..  code-block:: console
 
-    $ tt connect sql_tutorial
+    $ tt connect sql_tutorial:instance001
 
 This command opens an interactive Tarantool console.
 Now you can start working with the database.
@@ -69,8 +69,8 @@ semicolon as a delimiter:
 
 ..  code-block:: tarantoolsession
 
-    tarantool> \set language sql
-    tarantool> \set delimiter ;
+    sql_tutorial:instance001> \set language sql
+    sql_tutorial:instance001> \set delimiter ;
 
 
 CREATE, INSERT, UPDATE, SELECT
@@ -89,7 +89,7 @@ The result of the ``SELECT`` statement looks like this:
 
 ..  code-block:: tarantoolsession
 
-    tarantool> SELECT * FROM table1 WHERE column1 = 1;
+    sql_tutorial:instance001> SELECT * FROM table1 WHERE column1 = 1;
     ---
     - metadata:
       - name: COLUMN1
@@ -718,7 +718,7 @@ of statements written in SQL:
 
 ..  code-block:: tarantoolsession
 
-    tarantool> \set language lua
+    sql_tutorial:instance001> \set language lua
 
 box.execute()
 ~~~~~~~~~~~~~
@@ -726,7 +726,7 @@ You can invoke SQL statements using the Lua function ``box.execute(string)``.
 
 ..  code-block:: tarantoolsession
 
-    tarantool> box.execute([[SELECT * FROM SEQSCAN table3;]]);
+    sql_tutorial:instance001> box.execute([[SELECT * FROM SEQSCAN table3;]]);
 
 The result is:
 
@@ -809,15 +809,15 @@ These statements must be entered separately.
 
 ..  code-block:: tarantoolsession
 
-    tarantool> \set language sql
-    tarantool> DROP TABLE tester;
-    tarantool> DROP TABLE table1;
-    tarantool> DROP VIEW v3;
-    tarantool> DROP TRIGGER tr;
-    tarantool> DROP TABLE table5;
-    tarantool> DROP TABLE table4;
-    tarantool> DROP TABLE table3;
-    tarantool> DROP TABLE table2;
-    tarantool> DROP TABLE t6;
-    tarantool> \set language lua
-    tarantool> os.exit();
+    sql_tutorial:instance001> \set language sql
+    sql_tutorial:instance001> DROP TABLE tester;
+    sql_tutorial:instance001> DROP TABLE table1;
+    sql_tutorial:instance001> DROP VIEW v3;
+    sql_tutorial:instance001> DROP TRIGGER tr;
+    sql_tutorial:instance001> DROP TABLE table5;
+    sql_tutorial:instance001> DROP TABLE table4;
+    sql_tutorial:instance001> DROP TABLE table3;
+    sql_tutorial:instance001> DROP TABLE table2;
+    sql_tutorial:instance001> DROP TABLE t6;
+    sql_tutorial:instance001> \set language lua
+    sql_tutorial:instance001> os.exit();
