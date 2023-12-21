@@ -4,7 +4,7 @@
 Reseeding a replica
 ================================================================================
 
-If any of a replica's write-ahead log or snapshot files are corrupted or deleted, you can "re-seed" the replica.
+If any of a replica's write-ahead log or snapshot files are corrupted or deleted, you can reseed the replica.
 This procedure works only if the master's write-ahead logs are present.
 
 1.  Stop the replica using the :ref:`tt stop <tt-stop>` command.
