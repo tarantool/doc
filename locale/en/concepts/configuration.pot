@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-20 07:42+0000\n"
+"POT-Creation-Date: 2023-12-21 13:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -121,11 +121,12 @@ msgid "groups:\n"
 "        instances:\n"
 "          instance001:\n"
 "            iproto:\n"
-"              listen: \"3301\""
+"              listen:\n"
+"              - uri: '127.0.0.1:3301'"
 msgstr ""
 
 #: ../../doc/concepts/configuration.rst:80
-msgid "The ``instances`` section includes only one instance named *instance001*. The ``iproto.listen`` option sets a port used to listen for incoming requests."
+msgid "The ``instances`` section includes only one instance named *instance001*. The ``iproto.listen.uri`` option sets an address used to listen for incoming requests."
 msgstr ""
 
 #: ../../doc/concepts/configuration.rst:82
@@ -166,9 +167,10 @@ msgid "groups:\n"
 "    replicasets:\n"
 "      replicaset001:\n"
 "        iproto:\n"
-"          listen: \"3301\"\n"
+"          listen:\n"
+"          - uri: '127.0.0.1:3301'\n"
 "        instances:\n"
-"          instance001: {}"
+"          instance001: { }"
 msgstr ""
 
 #: ../../doc/concepts/configuration.rst:114
@@ -183,11 +185,12 @@ msgstr ""
 msgid "groups:\n"
 "  group001:\n"
 "    iproto:\n"
-"      listen: \"3301\"\n"
+"      listen:\n"
+"      - uri: '127.0.0.1:3301'\n"
 "    replicasets:\n"
 "      replicaset001:\n"
 "        instances:\n"
-"          instance001: {}"
+"          instance001: { }"
 msgstr ""
 
 #: ../../doc/concepts/configuration.rst:123
@@ -200,14 +203,15 @@ msgstr ""
 
 #: ../../doc/concepts/configuration.rst:127
 msgid "iproto:\n"
-"  listen: \"3301\"\n"
+"  listen:\n"
+"  - uri: '127.0.0.1:3301'\n"
 "\n"
 "groups:\n"
 "  group001:\n"
 "    replicasets:\n"
 "      replicaset001:\n"
 "        instances:\n"
-"          instance001: {}"
+"          instance001: { }"
 msgstr ""
 
 #: ../../doc/concepts/configuration.rst:135
@@ -231,7 +235,8 @@ msgid "credentials:\n"
 "\n"
 "iproto:\n"
 "  advertise:\n"
-"    peer: replicator@\n"
+"    peer:\n"
+"      login: replicator\n"
 "\n"
 "replication:\n"
 "  failover: manual\n"
@@ -244,13 +249,16 @@ msgid "credentials:\n"
 "        instances:\n"
 "          instance001:\n"
 "            iproto:\n"
-"              listen: 127.0.0.1:3301\n"
+"              listen:\n"
+"              - uri: '127.0.0.1:3301'\n"
 "          instance002:\n"
 "            iproto:\n"
-"              listen: 127.0.0.1:3302\n"
+"              listen:\n"
+"              - uri: '127.0.0.1:3302'\n"
 "          instance003:\n"
 "            iproto:\n"
-"              listen: 127.0.0.1:3303\n"
+"              listen:\n"
+"              - uri: '127.0.0.1:3303'\n"
 "\n"
 ""
 msgstr ""
@@ -268,7 +276,7 @@ msgid "``iproto`` (*global*, *instance*)"
 msgstr ""
 
 #: ../../doc/concepts/configuration.rst:158
-msgid "The ``iproto`` section is specified on both global and instance levels. The ``iproto.advertise.peer`` option specifies a URI used by an instance to connect to another instance as a replica. In the example above, the URI includes a user name only. A host value is taken from ``iproto.listen`` that is set on the instance level."
+msgid "The ``iproto`` section is specified on both global and instance levels. The ``iproto.advertise.peer`` option specifies the parameters used by an instance to connect to another instance as a replica, for example, a URI, a login and password, or SSL parameters . In the example above, the option includes ``login`` only. An URI is taken from ``iproto.listen`` that is set on the instance level."
 msgstr ""
 
 #: ../../doc/concepts/configuration.rst:163
@@ -312,7 +320,8 @@ msgid "app:\n"
 "        instances:\n"
 "          instance001:\n"
 "            iproto:\n"
-"              listen: \"3301\""
+"              listen:\n"
+"              - uri: '127.0.0.1:3301'"
 msgstr ""
 
 #: ../../doc/concepts/configuration.rst:187
@@ -425,74 +434,82 @@ msgid "Below are a few examples that show how to set environment variables of di
 msgstr ""
 
 #: ../../doc/concepts/configuration.rst:264
-msgid "String. In the example below, ``TT_IPROTO_LISTEN`` is used to specify a :ref:`listening host and port <configuration_options_connection>` values:"
+msgid "String. In this example, ``TT_LOG_LEVEL`` is used to set a logging level to ``CRITICAL``:"
 msgstr ""
 
 #: ../../doc/concepts/configuration.rst:266
-msgid "$ export TT_IPROTO_LISTEN='127.0.0.1:3311'"
+msgid "$ export TT_LOG_LEVEL='crit'"
 msgstr ""
 
 #: ../../doc/concepts/configuration.rst:270
-msgid "To specify several listening addresses, separate them by a comma without space:"
+msgid "Number. In this example, a logging level is set to ``CRITICAL`` using a corresponding numeric value:"
 msgstr ""
 
 #: ../../doc/concepts/configuration.rst:272
-msgid "$ export TT_IPROTO_LISTEN='127.0.0.1:3311,127.0.0.1:3312'"
-msgstr ""
-
-#: ../../doc/concepts/configuration.rst:276
-msgid "Number. In this example, ``TT_LOG_LEVEL`` is used to set a logging level to 3 (``CRITICAL``):"
-msgstr ""
-
-#: ../../doc/concepts/configuration.rst:278
 msgid "$ export TT_LOG_LEVEL=3"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:282
+#: ../../doc/concepts/configuration.rst:276
 msgid "Array. The examples below show how to set the ``TT_SHARDING_ROLES`` variable that accepts an array value. Arrays can be passed in two ways: using a *simple* ..."
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:285
+#: ../../doc/concepts/configuration.rst:279
 msgid "$ export TT_SHARDING_ROLES=router,storage"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:289
+#: ../../doc/concepts/configuration.rst:283
 msgid "... or *JSON* format:"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:291
+#: ../../doc/concepts/configuration.rst:285
 msgid "$ export TT_SHARDING_ROLES='[\"router\", \"storage\"]'"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:295
+#: ../../doc/concepts/configuration.rst:289
 msgid "The *simple* format is applicable only to arrays containing scalar values."
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:297
+#: ../../doc/concepts/configuration.rst:291
 msgid "Map. To assign map values to environment variables, you can also use *simple* or *JSON* formats. In the example below, ``TT_LOG_MODULES`` sets different logging levels for different modules using a *simple* format:"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:300
+#: ../../doc/concepts/configuration.rst:294
 msgid "$ export TT_LOG_MODULES=module1=info,module2=error"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:304
+#: ../../doc/concepts/configuration.rst:298
 msgid "In the next example, ``TT_APP_CFG`` is used to specify the value of a custom configuration property for a :ref:`loaded application <configuration_application>` using a *JSON* format:"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:306
+#: ../../doc/concepts/configuration.rst:300
 msgid "$ export TT_APP_CFG='{\"greeting\":\"Hi\"}'"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:310
+#: ../../doc/concepts/configuration.rst:304
 msgid "The *simple* format is applicable only to maps containing scalar values."
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:315
+#: ../../doc/concepts/configuration.rst:306
+msgid "Array of maps. In the example below, ``TT_IPROTO_LISTEN`` is used to specify a :ref:`listening host and port <configuration_options_connection>` values:"
+msgstr ""
+
+#: ../../doc/concepts/configuration.rst:308
+msgid "$ export TT_IPROTO_LISTEN=['{\"uri\":\"127.0.0.1:3311\"}']"
+msgstr ""
+
+#: ../../doc/concepts/configuration.rst:312
+msgid "You can also pass several listening addresses:"
+msgstr ""
+
+#: ../../doc/concepts/configuration.rst:314
+msgid "$ export TT_IPROTO_LISTEN=['{\"uri\":\"127.0.0.1:3311\"}','{\"uri\":\"127.0.0.1:3312\"}']"
+msgstr ""
+
+#: ../../doc/concepts/configuration.rst:321
 msgid "There are also special ``TT_INSTANCE_NAME`` and ``TT_CONFIG`` environment variables that can be used to :ref:`start <configuration_run_instance_tarantool>` the specified Tarantool instance with configuration from the given file."
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:325
+#: ../../doc/concepts/configuration.rst:331
 msgid "Configuration in etcd"
 msgstr ""
 
@@ -504,15 +521,15 @@ msgstr ""
 msgid "Storing configuration in etcd is supported by the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only."
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:331
+#: ../../doc/concepts/configuration.rst:337
 msgid "Tarantool enables you to store configuration data in one reliable place using `etcd <https://etcd.io/>`_. To achieve this, you need to:"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:334
+#: ../../doc/concepts/configuration.rst:340
 msgid "Provide a local YAML configuration with an etcd endpoint address and key prefix in the ``config`` section:"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:336
+#: ../../doc/concepts/configuration.rst:342
 msgid "config:\n"
 "  etcd:\n"
 "    endpoints:\n"
@@ -520,124 +537,135 @@ msgid "config:\n"
 "    prefix: /example"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:340
+#: ../../doc/concepts/configuration.rst:346
 msgid "Publish a cluster's configuration to an etcd server."
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:342
+#: ../../doc/concepts/configuration.rst:348
 msgid "Learn more from the following guide: :ref:`Storing configuration in etcd <configuration_etcd>`."
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:348
+#: ../../doc/concepts/configuration.rst:354
 msgid "Configuration precedence"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:350
+#: ../../doc/concepts/configuration.rst:356
 msgid "Tarantool configuration options are applied from multiple sources with the following precedence, from highest to lowest:"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:352
+#: ../../doc/concepts/configuration.rst:358
 msgid "`TT_*` :ref:`environment variables <configuration_environment_variable>`."
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:353
+#: ../../doc/concepts/configuration.rst:359
 msgid "Configuration from a :ref:`local YAML file <configuration_file>`."
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:354
+#: ../../doc/concepts/configuration.rst:360
 msgid ":ref:`Centralized configuration <configuration_etcd_overview>` stored in etcd."
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:355
+#: ../../doc/concepts/configuration.rst:361
 msgid "`TT_*_DEFAULT` :ref:`environment variables <configuration_environment_variable>`."
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:357
+#: ../../doc/concepts/configuration.rst:363
 msgid "If the same option is defined in two or more locations, the option with the highest precedence is applied."
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:364
+#: ../../doc/concepts/configuration.rst:370
 msgid "Configuration options overview"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:366
+#: ../../doc/concepts/configuration.rst:372
 msgid "This section gives an overview of some useful configuration options. All the available options are documented in the :ref:`Configuration reference <configuration_reference>`."
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:372
+#: ../../doc/concepts/configuration.rst:378
 msgid "Connection settings"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:374
+#: ../../doc/concepts/configuration.rst:380
 msgid "To configure an address used to listen for incoming requests, use the ``iproto.listen`` option. Below are a few examples on how to do this:"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:377
+#: ../../doc/concepts/configuration.rst:383
 msgid "Set a listening port to ``3301``:"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:379
+#: ../../doc/concepts/configuration.rst:385
 msgid "iproto:\n"
-"  listen: \"3301\""
+"  listen:\n"
+"  - uri: '3301'"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:384
+#: ../../doc/concepts/configuration.rst:391
 msgid "Set a listening address to ``127.0.0.1:3301``:"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:386
+#: ../../doc/concepts/configuration.rst:393
 msgid "iproto:\n"
-"  listen: \"127.0.0.1:3301\""
-msgstr ""
-
-#: ../../doc/concepts/configuration.rst:392
-msgid "Configure several listening addresses:"
-msgstr ""
-
-#: ../../doc/concepts/configuration.rst:394
-msgid "iproto:\n"
-"  listen: \"127.0.0.1:3301,127.0.0.1:3303\""
+"  listen:\n"
+"  - uri: '127.0.0.1:3301'"
 msgstr ""
 
 #: ../../doc/concepts/configuration.rst:399
-msgid "Enables :ref:`traffic encryption <enterprise-iproto-encryption>` for a connection using corresponding URI parameters:"
+msgid "Configure several listening addresses:"
 msgstr ""
 
 #: ../../doc/concepts/configuration.rst:401
 msgid "iproto:\n"
-"  listen: \"127.0.0.1:3301?transport=ssl&ssl_key_file=localhost.key&ssl_cert_file=localhost.crt&ssl_ca_file=ca.crt\""
+"  listen:\n"
+"  - uri: '127.0.0.1:3301'\n"
+"  - uri: '127.0.0.1:3302'"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:406
+#: ../../doc/concepts/configuration.rst:408
+msgid "Enable :ref:`traffic encryption <enterprise-iproto-encryption>` for a connection using the ``params`` section of the specified URI:"
+msgstr ""
+
+#: ../../doc/concepts/configuration.rst:410
+msgid "iproto:\n"
+"  listen:\n"
+"  - uri: '127.0.0.1:3301'\n"
+"    params:\n"
+"      transport: 'ssl'\n"
+"      ssl_ca_file: 'ca.crt'\n"
+"      ssl_cert_file: 'localhost.crt'\n"
+"      ssl_key_file: 'localhost.key'"
+msgstr ""
+
+#: ../../doc/concepts/configuration.rst:421
 msgid "Note that traffic encryption is supported by the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only."
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:409
+#: ../../doc/concepts/configuration.rst:424
 msgid "Use a Unix domain socket:"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:411
+#: ../../doc/concepts/configuration.rst:426
 msgid "iproto:\n"
-"  listen: \"unix/:./var/run/{{ instance_name }}/tarantool.iproto\""
+"  listen:\n"
+"  - uri: 'unix/:./var/run/{{ instance_name }}/tarantool.iproto'"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:420
+#: ../../doc/concepts/configuration.rst:436
 msgid "Access control"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:422
+#: ../../doc/concepts/configuration.rst:438
 msgid "The ``credentials`` section allows you to create users and grant them the specified privileges. In the example below, there are two users:"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:425
+#: ../../doc/concepts/configuration.rst:441
 msgid "The *replicator* user is used for replication and has a corresponding role."
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:426
-msgid "The *storage* user has the ``super`` role and can perform any action on Tarantool instances."
+#: ../../doc/concepts/configuration.rst:442
+msgid "The *storage* user has the ``sharding`` role."
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:428
+#: ../../doc/concepts/configuration.rst:444
 msgid "credentials:\n"
 "  users:\n"
 "    replicator:\n"
@@ -645,40 +673,40 @@ msgid "credentials:\n"
 "      roles: [replication]\n"
 "    storage:\n"
 "      password: 'secret'\n"
-"      roles: [super]\n"
+"      roles: [sharding]\n"
 ""
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:434
+#: ../../doc/concepts/configuration.rst:450
 msgid "To learn more, see the :ref:`Access control <authentication>` section."
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:440
+#: ../../doc/concepts/configuration.rst:456
 msgid "Memory"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:442
+#: ../../doc/concepts/configuration.rst:458
 msgid "The ``memtx.memory`` option specifies how much :ref:`memory <engines-memtx>` Tarantool allocates to actually store data."
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:444
+#: ../../doc/concepts/configuration.rst:460
 msgid "memtx:\n"
 "  memory: 100000000"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:449
+#: ../../doc/concepts/configuration.rst:465
 msgid "When the limit is reached, ``INSERT`` or ``UPDATE`` requests fail with :ref:`ER_MEMORY_ISSUE <admin-troubleshoot-memory-issues>`."
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:455
+#: ../../doc/concepts/configuration.rst:471
 msgid "Snapshots and write-ahead logs"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:457
+#: ../../doc/concepts/configuration.rst:473
 msgid "The ``snapshot.dir`` and ``wal.dir`` options can be used to configure directories for storing snapshots and write-ahead logs. For example, you can place snapshots and write-ahead logs on different hard drives for better reliability."
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:460
+#: ../../doc/concepts/configuration.rst:476
 msgid "instance001:\n"
 "  snapshot:\n"
 "    dir: '/media/drive1/snapshots'\n"
@@ -686,6 +714,6 @@ msgid "instance001:\n"
 "    dir: '/media/drive2/wals'"
 msgstr ""
 
-#: ../../doc/concepts/configuration.rst:468
+#: ../../doc/concepts/configuration.rst:484
 msgid "To learn more about the persistence mechanism in Tarantool, see the :ref:`Persistence <concepts-data_model-persistence>` section."
 msgstr ""
