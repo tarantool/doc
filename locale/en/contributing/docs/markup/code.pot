@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"POT-Creation-Date: 2023-12-21 21:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -109,11 +109,11 @@ msgid "For code snippets, we use the ``code-block:: language`` `directive <https
 msgstr ""
 
 #: ../../doc/contributing/docs/markup/code.rst:59
-msgid "``tarantoolsession``—interactive Tarantool session, where command lines start with ``tarantool>`` prompt."
+msgid "``tarantoolsession`` -- interactive Tarantool session, where command lines start with ``tarantool>`` prompt."
 msgstr ""
 
 #: ../../doc/contributing/docs/markup/code.rst:61
-msgid "``console``—interactive console session, where command lines start with ``$`` or ``#``."
+msgid "``console`` -- interactive console session, where command lines start with ``$`` or ``#``."
 msgstr ""
 
 #: ../../doc/contributing/docs/markup/code.rst:63

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"POT-Creation-Date: 2023-12-21 21:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,126 +16,126 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../../doc/reference/tooling/tt_cli/installation.rst:2
+#: ../../doc/reference/tooling/tt_cli/installation.rst:4
 msgid "Installation"
 msgstr ""
 
-#: ../../doc/reference/tooling/tt_cli/installation.rst:4
+#: ../../doc/reference/tooling/tt_cli/installation.rst:6
 msgid "To install the ``tt`` command-line utility, use a package manager -- Yum or APT on Linux, or Homebrew on macOS. If you need a specific build, you can build ``tt`` from sources."
 msgstr ""
 
-#: ../../doc/reference/tooling/tt_cli/installation.rst:10
+#: ../../doc/reference/tooling/tt_cli/installation.rst:12
 msgid "A Tarantool Enterprise Edition's :ref:`release package <enterprise-package-contents>` includes the `tt` utility extended with additional features like :ref:`importing <tt-import>` and :ref:`exporting <tt-export>` data."
 msgstr ""
 
-#: ../../doc/reference/tooling/tt_cli/installation.rst:14
+#: ../../doc/reference/tooling/tt_cli/installation.rst:16
 msgid "Using Linux package managers"
 msgstr ""
 
-#: ../../doc/reference/tooling/tt_cli/installation.rst:16
+#: ../../doc/reference/tooling/tt_cli/installation.rst:18
 msgid "On Linux systems, you can install ``tt`` with ``yum`` or ``apt`` package managers from the ``tarantool/modules`` repository. Learn how to `add this repository <https://www.tarantool.io/en/download/os-installation/>`_."
 msgstr ""
 
-#: ../../doc/reference/tooling/tt_cli/installation.rst:20
+#: ../../doc/reference/tooling/tt_cli/installation.rst:22
 msgid "The installation command looks like this:"
 msgstr ""
 
-#: ../../doc/reference/tooling/tt_cli/installation.rst:22
+#: ../../doc/reference/tooling/tt_cli/installation.rst:24
 msgid "On Ubuntu:"
 msgstr ""
 
-#: ../../doc/reference/tooling/tt_cli/installation.rst:24
+#: ../../doc/reference/tooling/tt_cli/installation.rst:26
 msgid "$ sudo apt-get install tt"
 msgstr ""
 
-#: ../../doc/reference/tooling/tt_cli/installation.rst:28
+#: ../../doc/reference/tooling/tt_cli/installation.rst:30
 msgid "On CentOS:"
 msgstr ""
 
-#: ../../doc/reference/tooling/tt_cli/installation.rst:30
+#: ../../doc/reference/tooling/tt_cli/installation.rst:32
 msgid "$ sudo yum install tt"
 msgstr ""
 
-#: ../../doc/reference/tooling/tt_cli/installation.rst:35
+#: ../../doc/reference/tooling/tt_cli/installation.rst:37
 msgid "Using Homebrew on macOS"
 msgstr ""
 
-#: ../../doc/reference/tooling/tt_cli/installation.rst:37
+#: ../../doc/reference/tooling/tt_cli/installation.rst:39
 msgid "On macOS, use Homebrew to install ``tt``:"
 msgstr ""
 
-#: ../../doc/reference/tooling/tt_cli/installation.rst:39
+#: ../../doc/reference/tooling/tt_cli/installation.rst:41
 msgid "$ brew install tt"
 msgstr ""
 
-#: ../../doc/reference/tooling/tt_cli/installation.rst:44
+#: ../../doc/reference/tooling/tt_cli/installation.rst:46
 msgid "Building from sources"
 msgstr ""
 
-#: ../../doc/reference/tooling/tt_cli/installation.rst:46
+#: ../../doc/reference/tooling/tt_cli/installation.rst:48
 msgid "To build ``tt`` from sources:"
 msgstr ""
 
-#: ../../doc/reference/tooling/tt_cli/installation.rst:48
+#: ../../doc/reference/tooling/tt_cli/installation.rst:50
 msgid "Install third-party software required for building ``tt``:"
 msgstr ""
 
-#: ../../doc/reference/tooling/tt_cli/installation.rst:50
+#: ../../doc/reference/tooling/tt_cli/installation.rst:52
 msgid "`git <https://git-scm.com/book/en/v2/Getting-Started-Installing-Git>`__, the version control system."
 msgstr ""
 
-#: ../../doc/reference/tooling/tt_cli/installation.rst:52
+#: ../../doc/reference/tooling/tt_cli/installation.rst:54
 msgid "`Go language <https://golang.org/doc/install>`__, version 1.18 or later."
 msgstr ""
 
-#: ../../doc/reference/tooling/tt_cli/installation.rst:53
+#: ../../doc/reference/tooling/tt_cli/installation.rst:55
 msgid "`mage <https://magefile.org/>`__ build tool."
 msgstr ""
 
-#: ../../doc/reference/tooling/tt_cli/installation.rst:55
+#: ../../doc/reference/tooling/tt_cli/installation.rst:57
 msgid "Clone the `tarantool/tt <https://github.com/tarantool/tt>`_ repository:"
 msgstr ""
 
-#: ../../doc/reference/tooling/tt_cli/installation.rst:57
+#: ../../doc/reference/tooling/tt_cli/installation.rst:59
 msgid "git clone https://github.com/tarantool/tt --recursive"
 msgstr ""
 
-#: ../../doc/reference/tooling/tt_cli/installation.rst:61
+#: ../../doc/reference/tooling/tt_cli/installation.rst:63
 msgid "Go to the ``tt/`` directory:"
 msgstr ""
 
-#: ../../doc/reference/tooling/tt_cli/installation.rst:63
+#: ../../doc/reference/tooling/tt_cli/installation.rst:65
 msgid "cd tt"
 msgstr ""
 
-#: ../../doc/reference/tooling/tt_cli/installation.rst:67
+#: ../../doc/reference/tooling/tt_cli/installation.rst:69
 msgid "(Optional) Checkout a release tag to build a specific version:"
 msgstr ""
 
-#: ../../doc/reference/tooling/tt_cli/installation.rst:69
+#: ../../doc/reference/tooling/tt_cli/installation.rst:71
 msgid "git checkout tags/v1.0.0"
 msgstr ""
 
-#: ../../doc/reference/tooling/tt_cli/installation.rst:73
+#: ../../doc/reference/tooling/tt_cli/installation.rst:75
 msgid "Build ``tt`` using mage:"
 msgstr ""
 
-#: ../../doc/reference/tooling/tt_cli/installation.rst:75
+#: ../../doc/reference/tooling/tt_cli/installation.rst:77
 msgid "mage build"
 msgstr ""
 
-#: ../../doc/reference/tooling/tt_cli/installation.rst:79
+#: ../../doc/reference/tooling/tt_cli/installation.rst:81
 msgid "``tt`` will appear in the current directory."
 msgstr ""
 
-#: ../../doc/reference/tooling/tt_cli/installation.rst:82
+#: ../../doc/reference/tooling/tt_cli/installation.rst:84
 msgid "Enabling shell completion"
 msgstr ""
 
-#: ../../doc/reference/tooling/tt_cli/installation.rst:84
+#: ../../doc/reference/tooling/tt_cli/installation.rst:86
 msgid "To enable the completion for ``tt`` commands, run the following command specifying the shell (``bash`` or ``zsh``):"
 msgstr ""
 
-#: ../../doc/reference/tooling/tt_cli/installation.rst:87
+#: ../../doc/reference/tooling/tt_cli/installation.rst:89
 msgid ". <(tt completion bash)"
 msgstr ""
