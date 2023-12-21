@@ -386,7 +386,7 @@ Below are a few examples on how to do this:
 
         iproto:
           listen:
-            - uri: '3301'
+          - uri: '3301'
 
 *   Set a listening address to ``127.0.0.1:3301``:
 
@@ -394,7 +394,7 @@ Below are a few examples on how to do this:
 
         iproto:
           listen:
-            - uri: '127.0.0.1:3301'
+          - uri: '127.0.0.1:3301'
 
 *   Configure several listening addresses:
 
@@ -402,8 +402,8 @@ Below are a few examples on how to do this:
 
         iproto:
           listen:
-            - uri: '127.0.0.1:3301'
-            - uri: '127.0.0.1:3302'
+          - uri: '127.0.0.1:3301'
+          - uri: '127.0.0.1:3302'
 
 *   Enable :ref:`traffic encryption <enterprise-iproto-encryption>` for a connection using the ``params`` section of the specified URI:
 
@@ -411,12 +411,12 @@ Below are a few examples on how to do this:
 
         iproto:
           listen:
-            - uri: '127.0.0.1:3301'
-              params:
-                transport: 'ssl'
-                ssl_ca_file: 'ca.crt'
-                ssl_cert_file: 'localhost.crt'
-                ssl_key_file: 'localhost.key'
+          - uri: '127.0.0.1:3301'
+            params:
+              transport: 'ssl'
+              ssl_ca_file: 'ca.crt'
+              ssl_cert_file: 'localhost.crt'
+              ssl_key_file: 'localhost.key'
 
     Note that traffic encryption is supported by the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only.
 
@@ -427,7 +427,7 @@ Below are a few examples on how to do this:
 
         iproto:
           listen:
-            - uri: 'unix/:./var/run/{{ instance_name }}/tarantool.iproto'
+          - uri: 'unix/:./var/run/{{ instance_name }}/tarantool.iproto'
 
 
 .. _configuration_options_access_control:

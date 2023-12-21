@@ -22,13 +22,13 @@ groups:
               mode: rw
             iproto:
               listen:
-                - uri: '127.0.0.1:3301'
+              - uri: '127.0.0.1:3301'
           instance002:
             database:
               mode: rw
             iproto:
               listen:
-                - uri: '127.0.0.1:3302'
+              - uri: '127.0.0.1:3302'
 
 # Load sample data
 app:

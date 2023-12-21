@@ -20,15 +20,15 @@ groups:
           instance001:
             iproto:
               listen:
-                - uri: '127.0.0.1:3301'
+              - uri: '127.0.0.1:3301'
           instance002:
             iproto:
               listen:
-                - uri: '127.0.0.1:3302'
+              - uri: '127.0.0.1:3302'
           instance003:
             iproto:
               listen:
-                - uri: '127.0.0.1:3303'
+              - uri: '127.0.0.1:3303'
 
 # Load sample data
 app:

@@ -4,6 +4,6 @@ groups:
       replicaset001:
         iproto:
           listen:
-            - uri: '127.0.0.1:3301'
+          - uri: '127.0.0.1:3301'
         instances:
           instance001: { }
