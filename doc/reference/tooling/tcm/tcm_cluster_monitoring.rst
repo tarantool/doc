@@ -43,7 +43,7 @@ Graph view
 ~~~~~~~~~~
 
 The graph view of the cluster topology is shown in a tree-like structure where
-leafs are the cluster's instance. Each instance's state is shown by its color.
+leafs are the cluster's instances. Each instance's state is shown by its color.
 You can move the graph vertexes to arrange them as you like, and zoom in and out,
 which is helpful for bigger clusters.
 
