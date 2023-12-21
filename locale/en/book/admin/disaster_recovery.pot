@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"POT-Creation-Date: 2023-12-21 17:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,150 +16,208 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../../doc/book/admin/disaster_recovery.rst:5
+#: ../../doc/book/admin/disaster_recovery.rst:4
 msgid "Disaster recovery"
 msgstr ""
 
-#: ../../doc/book/admin/disaster_recovery.rst:7
-msgid "The minimal fault-tolerant Tarantool configuration would be a :ref:`replication cluster<replication-topologies>` that includes a master and a replica, or two masters."
+#: ../../doc/book/admin/disaster_recovery.rst:6
+msgid "The minimal fault-tolerant Tarantool configuration would be a :ref:`replica set <replication-architecture>` that includes a master and a replica, or two masters. The basic recommendation is to configure all Tarantool instances in a replica set to create :ref:`snapshot files <index-box_persistence>` on a regular basis."
 msgstr ""
 
-#: ../../doc/book/admin/disaster_recovery.rst:11
-msgid "The basic recommendation is to configure all Tarantool instances in a cluster to create :ref:`snapshot files <index-box_persistence>` at a regular basis."
+#: ../../doc/book/admin/disaster_recovery.rst:10
+msgid "Here are action plans for typical crash scenarios."
 msgstr ""
 
-#: ../../doc/book/admin/disaster_recovery.rst:14
-msgid "Here follow action plans for typical crash scenarios."
-msgstr ""
-
-#: ../../doc/book/admin/disaster_recovery.rst:20
+#: ../../doc/book/admin/disaster_recovery.rst:16
 msgid "Master-replica"
 msgstr ""
 
-#: ../../doc/book/admin/disaster_recovery.rst:22
-msgid "Configuration: One master and one replica."
+#: ../../doc/book/admin/disaster_recovery.rst:21
+msgid "Master crash: manual failover"
 msgstr ""
 
-#: ../../doc/book/admin/disaster_recovery.rst:24
-msgid "Problem: The master has crashed."
+#: ../../doc/book/admin/disaster_recovery.rst:23
+msgid "**Configuration:** master-replica (:ref:`manual failover <replication-master_replica_bootstrap>`)."
 msgstr ""
 
-#: ../../doc/book/admin/disaster_recovery.rst:26
-#: ../../doc/book/admin/disaster_recovery.rst:93
-msgid "Your actions:"
+#: ../../doc/book/admin/disaster_recovery.rst:25
+#: ../../doc/book/admin/disaster_recovery.rst:52
+msgid "**Problem:** The master has crashed."
 msgstr ""
 
-#: ../../doc/book/admin/disaster_recovery.rst:28
-msgid "Ensure the master is stopped for good. For example, log in to the master machine and use ``systemctl stop tarantool@<instance_name>``."
+#: ../../doc/book/admin/disaster_recovery.rst:27
+#: ../../doc/book/admin/disaster_recovery.rst:54
+#: ../../doc/book/admin/disaster_recovery.rst:74
+#: ../../doc/book/admin/disaster_recovery.rst:117
+#: ../../doc/book/admin/disaster_recovery.rst:136
+msgid "**Actions:**"
 msgstr ""
 
-#: ../../doc/book/admin/disaster_recovery.rst:31
-msgid "Switch the replica to master mode by setting :ref:`box.cfg.read_only <cfg_basic-read_only>` parameter to *false* and let the load be handled by the replica (effective master)."
+#: ../../doc/book/admin/disaster_recovery.rst:29
+msgid "Ensure the master is stopped. For example, log in to the master machine and use ``tt stop``."
 msgstr ""
 
-#: ../../doc/book/admin/disaster_recovery.rst:35
-msgid "Set up a replacement for the crashed master on a spare host, with :ref:`replication <cfg_replication-replication>` parameter set to replica (effective master), so it begins to catch up with the new master’s state. The new instance should have :ref:`box.cfg.read_only <cfg_basic-read_only>` parameter set to *true*."
+#: ../../doc/book/admin/disaster_recovery.rst:32
+msgid "Configure a new replica set leader using the :ref:`<replicaset_name>.leader <configuration_reference_replicasets_name_leader>` option."
 msgstr ""
 
-#: ../../doc/book/admin/disaster_recovery.rst:41
-msgid "You lose the few transactions in the master :ref:`write ahead log file <index-box_persistence>`, which it may have not transferred to the replica before crash. If you were able to salvage the master .xlog file, you may be able to recover these. In order to do it:"
+#: ../../doc/book/admin/disaster_recovery.rst:34
+msgid "Reload configuration on all instances using :ref:`config:reload() <config-module>`."
 msgstr ""
 
-#: ../../doc/book/admin/disaster_recovery.rst:46
-msgid "Find out the position of the crashed master, as reflected on the new master."
+#: ../../doc/book/admin/disaster_recovery.rst:36
+msgid "Make sure that a new replica set leader is a master using :ref:`box.info.ro <box_introspection-box_info>`."
+msgstr ""
+
+#: ../../doc/book/admin/disaster_recovery.rst:38
+#: ../../doc/book/admin/disaster_recovery.rst:58
+msgid "On a new master, :ref:`remove a crashed instance from the '_cluster' space <replication-remove_instances-remove_cluster>`."
+msgstr ""
+
+#: ../../doc/book/admin/disaster_recovery.rst:40
+#: ../../doc/book/admin/disaster_recovery.rst:60
+msgid "Set up a replacement for the crashed master on a spare host."
+msgstr ""
+
+#: ../../doc/book/admin/disaster_recovery.rst:42
+msgid "See also: :ref:`Performing manual failover <replication-controlled_failover>`."
 msgstr ""
 
 #: ../../doc/book/admin/disaster_recovery.rst:48
-msgid "Find out instance UUID from the crashed master :ref:`xlog <internals-wal>`:"
+msgid "Master crash: automated failover"
 msgstr ""
 
 #: ../../doc/book/admin/disaster_recovery.rst:50
-msgid "$ head -5 *.xlog | grep Instance\n"
-"Instance: ed607cad-8b6d-48d8-ba0b-dae371b79155"
+msgid "**Configuration:** master-replica (:ref:`automated failover <replication-bootstrap-auto>`)."
 msgstr ""
 
-#: ../../doc/book/admin/disaster_recovery.rst:55
-msgid "On the new master, use the UUID to find the position:"
+#: ../../doc/book/admin/disaster_recovery.rst:56
+msgid "Use ``box.info.election`` to make sure a new master is elected automatically."
 msgstr ""
 
-#: ../../doc/book/admin/disaster_recovery.rst:57
-msgid "tarantool> box.info.vclock[box.space._cluster.index.uuid:select{'ed607cad-8b6d-48d8-ba0b-dae371b79155'}[1][1]]\n"
-"---\n"
-"- 23425\n"
-"<...>"
+#: ../../doc/book/admin/disaster_recovery.rst:62
+msgid "See also: :ref:`Testing automated failover <replication-automated-failover-testing>`."
 msgstr ""
 
-#: ../../doc/book/admin/disaster_recovery.rst:64
-msgid "Play the records from the crashed .xlog to the new master, starting from the new master position:"
-msgstr ""
-
-#: ../../doc/book/admin/disaster_recovery.rst:67
-msgid "Issue this request locally at the new master's machine to find out instance ID of the new master:"
-msgstr ""
-
-#: ../../doc/book/admin/disaster_recovery.rst:70
-msgid "tarantool> box.space._cluster:select{}\n"
-"---\n"
-"- - [1, '88580b5c-4474-43ab-bd2b-2409a9af80d2']\n"
-"..."
-msgstr ""
-
-#: ../../doc/book/admin/disaster_recovery.rst:77
-msgid "Play the records to the new master:"
-msgstr ""
-
-#: ../../doc/book/admin/disaster_recovery.rst:79
-msgid "$ tt play <new_master_uri> <xlog_file> --from 23425 --replica 1"
-msgstr ""
-
-#: ../../doc/book/admin/disaster_recovery.rst:87
-msgid "Master-master"
-msgstr ""
-
-#: ../../doc/book/admin/disaster_recovery.rst:89
-msgid "Configuration: Two masters."
-msgstr ""
-
-#: ../../doc/book/admin/disaster_recovery.rst:91
-msgid "Problem: Master#1 has crashed."
-msgstr ""
-
-#: ../../doc/book/admin/disaster_recovery.rst:95
-msgid "Let the load be handled by master#2 (effective master) alone."
-msgstr ""
-
-#: ../../doc/book/admin/disaster_recovery.rst:97
-msgid "2. Follow the same steps as in the :ref:`master-replica <admin-disaster_recovery-master_replica>` recovery scenario to create a new master and salvage lost data."
-msgstr ""
-
-#: ../../doc/book/admin/disaster_recovery.rst:105
+#: ../../doc/book/admin/disaster_recovery.rst:68
 msgid "Data loss"
 msgstr ""
 
-#: ../../doc/book/admin/disaster_recovery.rst:107
-msgid "Configuration: Master-master or master-replica."
+#: ../../doc/book/admin/disaster_recovery.rst:70
+msgid "**Configuration:** master-replica."
 msgstr ""
 
-#: ../../doc/book/admin/disaster_recovery.rst:109
-msgid "Problem: Data was deleted at one master and this data loss was propagated to the other node (master or replica)."
+#: ../../doc/book/admin/disaster_recovery.rst:72
+msgid "**Problem:** Some transactions are missing on a replica after the master has crashed."
 msgstr ""
 
-#: ../../doc/book/admin/disaster_recovery.rst:112
-msgid "The following steps are applicable only to data in memtx storage engine. Your actions:"
+#: ../../doc/book/admin/disaster_recovery.rst:76
+msgid "You lose a few transactions in the master :ref:`write-ahead log file <index-box_persistence>`, which may have not transferred to the replica before the crash. If you were able to salvage the master ``.xlog`` file, you may be able to recover these."
+msgstr ""
+
+#: ../../doc/book/admin/disaster_recovery.rst:81
+msgid "Find out instance UUID from the crashed master :ref:`xlog <internals-wal>`:"
+msgstr ""
+
+#: ../../doc/book/admin/disaster_recovery.rst:83
+msgid "$ head -5 var/lib/instance001/*.xlog | grep Instance\n"
+"Instance: 9bb111c2-3ff5-36a7-00f4-2b9a573ea660"
+msgstr ""
+
+#: ../../doc/book/admin/disaster_recovery.rst:88
+msgid "On the new master, use the UUID to find the position:"
+msgstr ""
+
+#: ../../doc/book/admin/disaster_recovery.rst:90
+msgid "app:instance002> box.info.vclock[box.space._cluster.index.uuid:select{'9bb111c2-3ff5-36a7-00f4-2b9a573ea660'}[1][1]]\n"
+"---\n"
+"- 999\n"
+"..."
+msgstr ""
+
+#: ../../doc/book/admin/disaster_recovery.rst:97
+msgid ":ref:`Play the records <tt-play>` from the crashed ``.xlog`` to the new master, starting from the new master position:"
+msgstr ""
+
+#: ../../doc/book/admin/disaster_recovery.rst:100
+msgid "$ tt play 127.0.0.1:3302 var/lib/instance001/00000000000000000000.xlog \\\n"
+"          --from 1000 \\\n"
+"          --replica 1 \\\n"
+"          --username admin --password secret"
+msgstr ""
+
+#: ../../doc/book/admin/disaster_recovery.rst:111
+msgid "Master-master"
+msgstr ""
+
+#: ../../doc/book/admin/disaster_recovery.rst:113
+msgid "**Configuration:** :ref:`master-master <replication-bootstrap-master-master>`."
 msgstr ""
 
 #: ../../doc/book/admin/disaster_recovery.rst:115
-msgid "Put all nodes in :ref:`read-only mode <cfg_basic-read_only>` and disable deletion of expired checkpoints with :doc:`/reference/reference_lua/box_backup/start`. This will prevent the Tarantool garbage collector from removing files made with older checkpoints until :doc:`/reference/reference_lua/box_backup/stop` is called."
+msgid "**Problem:** one master has crashed."
 msgstr ""
 
-#: ../../doc/book/admin/disaster_recovery.rst:120
-msgid "Get the latest valid :ref:`.snap file <internals-snapshot>` and use ``tt cat`` command to calculate at which lsn the data loss occurred."
+#: ../../doc/book/admin/disaster_recovery.rst:119
+msgid "Let the load be handled by another master alone."
+msgstr ""
+
+#: ../../doc/book/admin/disaster_recovery.rst:121
+msgid "Remove a crashed master from a replica set."
 msgstr ""
 
 #: ../../doc/book/admin/disaster_recovery.rst:123
-msgid "Start a new instance (instance#1) and use ``tt play`` command to play to it the contents of .snap/.xlog files up to the calculated lsn."
+msgid "Set up a replacement for the crashed master on a spare host. Learn more from :ref:`Adding and removing instances <replication-master-master-add-remove-instances>`."
 msgstr ""
 
-#: ../../doc/book/admin/disaster_recovery.rst:126
-msgid "Bootstrap a new replica from the recovered master (instance#1)."
+#: ../../doc/book/admin/disaster_recovery.rst:130
+msgid "Master-replica/master-master: data loss"
+msgstr ""
+
+#: ../../doc/book/admin/disaster_recovery.rst:132
+msgid "**Configuration:** master-replica or master-master."
+msgstr ""
+
+#: ../../doc/book/admin/disaster_recovery.rst:134
+msgid "**Problem:** Data was deleted at one master and this data loss was propagated to the other node (master or replica)."
+msgstr ""
+
+#: ../../doc/book/admin/disaster_recovery.rst:138
+msgid "Put all nodes in read-only mode. Depending on the :ref:`replication.failover <configuration_reference_replication_failover>` mode, this can be done as follows:"
+msgstr ""
+
+#: ../../doc/book/admin/disaster_recovery.rst:141
+msgid "``manual``: change a replica set leader to ``null``."
+msgstr ""
+
+#: ../../doc/book/admin/disaster_recovery.rst:142
+msgid "``election``: set :ref:`replication.election_mode <configuration_reference_replication_election_mode>` to ``voter`` or ``off`` at the replica set level."
+msgstr ""
+
+#: ../../doc/book/admin/disaster_recovery.rst:143
+msgid "``off``: set ``database.mode`` to ``ro``."
+msgstr ""
+
+#: ../../doc/book/admin/disaster_recovery.rst:145
+msgid "Reload configurations on all instances using the ``reload()`` function provided by the :ref:`config <config-module>` module."
+msgstr ""
+
+#: ../../doc/book/admin/disaster_recovery.rst:147
+msgid "Turn off deletion of expired checkpoints with :doc:`/reference/reference_lua/box_backup/start`. This prevents the Tarantool garbage collector from removing files made with older checkpoints until :doc:`/reference/reference_lua/box_backup/stop` is called."
+msgstr ""
+
+#: ../../doc/book/admin/disaster_recovery.rst:151
+msgid "Get the latest valid :ref:`.snap file <internals-snapshot>` and use ``tt cat`` command to calculate at which LSN the data loss occurred."
+msgstr ""
+
+#: ../../doc/book/admin/disaster_recovery.rst:154
+msgid "Start a new instance and use :ref:`tt play <tt-play>` command to play to it the contents of ``.snap`` and ``.xlog`` files up to the calculated LSN."
+msgstr ""
+
+#: ../../doc/book/admin/disaster_recovery.rst:157
+msgid "Bootstrap a new replica from the recovered master."
+msgstr ""
+
+#: ../../doc/book/admin/disaster_recovery.rst:161
+msgid "The steps above are applicable only to data in the memtx storage engine."
 msgstr ""

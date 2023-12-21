@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-21 13:25+0000\n"
+"POT-Creation-Date: 2023-12-21 17:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -248,9 +248,9 @@ msgid "Check that both instances are writable using ``box.info.ro``:"
 msgstr ""
 
 #: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:165
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:264
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:388
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:499
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:267
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:398
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:516
 msgid "``instance001``:"
 msgstr ""
 
@@ -262,9 +262,9 @@ msgid "master_master:instance001> box.info.ro\n"
 msgstr ""
 
 #: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:174
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:273
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:396
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:507
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:276
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:406
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:524
 msgid "``instance002``:"
 msgstr ""
 
@@ -305,23 +305,27 @@ msgid "master_master:instance001> box.info.replication\n"
 "..."
 msgstr ""
 
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:212
+msgid "To see the diagrams that illustrate how the ``upstream`` and ``downstream`` connections look, refer to :ref:`Monitoring a replica set <replication-monitoring>`."
+msgstr ""
+
 #: ../../doc/how-to/replication/repl_bootstrap.rst:5
 msgid "Note that a ``vclock`` value might include the ``0`` component that is related to local space operations and might differ for different instances in a replica set."
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:222
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:225
 msgid "Adding data"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:224
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:227
 msgid "To check that both instances get updates from each other, follow the steps below:"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:226
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:229
 msgid "On ``instance001``, create a space, format it, and create a primary index:"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:228
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:231
 msgid "box.schema.space.create('bands')\n"
 "box.space.bands:format({\n"
 "    { name = 'id', type = 'unsigned' },\n"
@@ -332,21 +336,21 @@ msgid "box.schema.space.create('bands')\n"
 ""
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:234
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:237
 msgid "Then, add sample data to this space:"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:236
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:239
 msgid "box.space.bands:insert { 1, 'Roxette', 1986 }\n"
 "box.space.bands:insert { 2, 'Scorpions', 1965 }\n"
 ""
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:242
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:245
 msgid "On ``instance002``, use the ``select`` operation to make sure data is replicated:"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:244
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:247
 msgid "master_master:instance002> box.space.bands:select()\n"
 "---\n"
 "- - [1, 'Roxette', 1986]\n"
@@ -354,108 +358,108 @@ msgid "master_master:instance002> box.space.bands:select()\n"
 "..."
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:252
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:255
 msgid "Add more data to the created space on ``instance002``:"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:254
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:257
 msgid "box.space.bands:insert { 3, 'Ace of Base', 1987 }\n"
 "box.space.bands:insert { 4, 'The Beatles', 1960 }\n"
 ""
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:260
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:263
 msgid "Get back to ``instance001`` and use ``select`` to make sure new records are replicated."
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:262
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:265
 msgid "Check that :ref:`box.info.vclock <box_introspection-box_info>` values are the same on both instances:"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:266
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:269
 msgid "master_master:instance001> box.info.vclock\n"
 "---\n"
 "- {2: 5, 1: 9}\n"
 "..."
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:275
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:278
 msgid "master_master:instance002> box.info.vclock\n"
 "---\n"
 "- {2: 5, 1: 9}\n"
 "..."
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:287
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:290
 msgid "Resolving replication conflicts"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:291
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:294
 msgid "To learn how to fix and prevent replication conflicts using trigger functions, see :ref:`Resolving replication conflicts <replication-problem_solving>`."
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:296
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:299
 msgid "Inserting conflicting records"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:298
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:301
 msgid "To insert conflicting records to ``instance001`` and ``instance002``, follow the steps below:"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:300
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:303
 msgid "Stop ``instance001`` using the ``tt stop`` command:"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:302
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:305
 msgid "$ tt stop master_master:instance001"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:306
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:309
 msgid "On ``instance002``, insert a new record:"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:308
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:311
 msgid "box.space.bands:insert { 5, 'incorrect data', 0 }"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:312
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:315
 msgid "Stop ``instance002`` using ``tt stop``:"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:314
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:317
 msgid "$ tt stop master_master:instance002"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:318
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:321
 msgid "Start ``instance001`` back:"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:320
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:323
 msgid "$ tt start master_master:instance001"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:324
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:327
 msgid "Connect to ``instance001`` and insert a record that should conflict with a record already inserted on ``instance002``:"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:326
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:329
 msgid "box.space.bands:insert { 5, 'Pink Floyd', 1965 }\n"
 ""
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:332
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:335
 msgid "Start ``instance002`` back:"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:334
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:337
 msgid "$ tt start master_master:instance002"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:338
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:341
 msgid "Then, check ``box.info.replication`` on ``instance001``. ``upstream.status`` should be ``stopped`` because of the ``Duplicate key exists`` error:"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:341
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:344
 msgid "master_master:instance001> box.info.replication\n"
 "---\n"
 "- 1:\n"
@@ -483,64 +487,73 @@ msgid "master_master:instance001> box.info.replication\n"
 "..."
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:373
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:372
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:480
+msgid "The diagram below illustrates how the ``upstream`` and ``downstream`` connections look like:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:0
+msgid "replication status on a new master"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:383
 msgid "Reseeding a replica"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:375
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:385
 msgid "To resolve a replication conflict, ``instance002`` should get the correct data from ``instance001`` first. To achieve this, ``instance002`` should be rebootstrapped:"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:378
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:388
 msgid "In the ``config.yaml`` file, change ``database.mode`` of ``instance002`` to ``ro``:"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:380
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:390
 msgid "instance002:\n"
 "  database:\n"
 "    mode: ro"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:386
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:396
 msgid "Reload configurations on both instances using the ``reload()`` function provided by the :ref:`config <config-module>` module:"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:390
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:483
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:501
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:400
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:500
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:518
 msgid "master_master:instance001> require('config'):reload()\n"
 "---\n"
 "..."
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:398
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:509
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:408
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:526
 msgid "master_master:instance002> require('config'):reload()\n"
 "---\n"
 "..."
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:404
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:414
 msgid "Delete write-ahead logs and snapshots stored in the ``var/lib/instance002`` directory."
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:408
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:418
 msgid "``var/lib`` is the default directory used by tt to store write-ahead logs and snapshots. Learn more from :ref:`Configuration <tt-config>`."
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:411
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:421
 msgid "Restart ``instance002`` using the :ref:`tt restart <tt-restart>` command:"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:413
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:423
 msgid "$ tt restart master_master:instance002"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:417
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:427
 msgid "Connect to ``instance002`` and make sure it received the correct data from ``instance001``:"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:419
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:429
 msgid "master_master:instance002> box.space.bands:select()\n"
 "---\n"
 "- - [1, 'Roxette', 1986]\n"
@@ -551,19 +564,19 @@ msgid "master_master:instance002> box.space.bands:select()\n"
 "..."
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:434
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:444
 msgid "Restarting replication"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:436
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:446
 msgid "After :ref:`reseeding a replica <replication-master-master-reseed-replica>`, you need to resolve a replication conflict that keeps replication stopped:"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:438
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:448
 msgid "Execute ``box.info.replication`` on ``instance001``. ``upstream.status`` is still stopped:"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:441
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:451
 msgid "master_master:instance001> box.info.replication\n"
 "---\n"
 "- 1:\n"
@@ -592,26 +605,30 @@ msgid "master_master:instance001> box.info.replication\n"
 "..."
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:471
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:0
+msgid "replication status after reseeding a replica"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:488
 msgid "In the ``config.yaml`` file, clear the ``iproto`` option for ``instance001`` by setting its value to ``{}`` to disconnect this instance from ``instance002``. Set ``database.mode`` to ``ro``:"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:474
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:491
 msgid "instance001:\n"
 "  database:\n"
 "    mode: ro\n"
 "  iproto: {}"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:481
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:498
 msgid "Reload configuration on ``instance001`` only:"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:489
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:506
 msgid "Change ``database.mode`` values back to ``rw`` for both instances and restore ``iproto.listen`` for ``instance001``:"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:491
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:508
 msgid "instance001:\n"
 "  database:\n"
 "    mode: rw\n"
@@ -627,15 +644,15 @@ msgid "instance001:\n"
 ""
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:497
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:514
 msgid "Reload configurations on both instances one more time:"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:515
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:532
 msgid "Check ``box.info.replication``. ``upstream.status`` be ``follow`` now."
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:518
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:535
 msgid "master_master:instance001> box.info.replication\n"
 "---\n"
 "- 1:\n"
@@ -661,22 +678,22 @@ msgid "master_master:instance001> box.info.replication\n"
 "..."
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:549
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:566
 msgid "Adding and removing instances"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:551
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:568
 msgid "The process of adding instances to a replica set and removing them is similar for all failover modes. Learn how to do this from the :ref:`Master-replica: manual failover <replication-bootstrap>` tutorial:"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:554
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:571
 msgid ":ref:`Adding instances <replication-add_instances>`"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:555
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:572
 msgid ":ref:`Removing instances <replication-remove_instances>`"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:557
+#: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:574
 msgid "Before removing an instance from a replica set with :ref:`replication.failover <configuration_reference_replication_failover>` set to ``off``, make sure this instance is in read-only mode."
 msgstr ""

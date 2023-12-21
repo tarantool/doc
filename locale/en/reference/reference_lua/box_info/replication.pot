@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"POT-Creation-Date: 2023-12-21 17:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -146,8 +146,4 @@ msgstr ""
 
 #: ../../doc/reference/reference_lua/box_info/replication.rst:131
 msgid ":samp:`replication[{n}].downstream.message` and :samp:`replication[{n}].downstream.system_message` will be ``nil`` unless a problem occurs with the connection. For example, if instance *n* goes down, then one may see ``status = 'stopped'``, ``message = 'unexpected EOF when reading from socket'``, and ``system_message = 'Broken pipe'``. See also :ref:`degraded state <replication-recover>`."
-msgstr ""
-
-#: ../../doc/reference/reference_lua/box_info/replication.rst:140
-msgid "For better understanding, see the following diagram illustrating the ``upstream`` and ``downstream`` connections within the replica set of three instances:"
 msgstr ""

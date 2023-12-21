@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-21 13:25+0000\n"
+"POT-Creation-Date: 2023-12-21 17:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -310,66 +310,70 @@ msgid "auto_leader:instance001> box.info.replication\n"
 "..."
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:230
-msgid "Adding data"
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:226
+msgid "To see the diagrams that illustrate how the ``upstream`` and ``downstream`` connections look, refer to :ref:`Monitoring a replica set <replication-monitoring>`."
 msgstr ""
 
 #: ../../doc/how-to/replication/repl_bootstrap_auto.rst:232
-msgid "To check that replicas (``instance001`` and ``instance003``) get all updates from the master (``instance002``), follow the steps below:"
+msgid "Adding data"
 msgstr ""
 
 #: ../../doc/how-to/replication/repl_bootstrap_auto.rst:234
-msgid "Connect to ``instance002`` using ``tt connect``:"
+msgid "To check that replicas (``instance001`` and ``instance003``) get all updates from the master (``instance002``), follow the steps below:"
 msgstr ""
 
 #: ../../doc/how-to/replication/repl_bootstrap_auto.rst:236
+msgid "Connect to ``instance002`` using ``tt connect``:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:238
 msgid "$ tt connect auto_leader:instance002\n"
 "   • Connecting to the instance...\n"
 "   • Connected to auto_leader:instance002"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:242
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:244
 msgid "Create a space and add data as described in :ref:`CRUD operation examples <box_space_examples>`."
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:244
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:246
 msgid "Use the ``select`` operation on ``instance001`` and ``instance003`` to make sure data is replicated."
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:246
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:248
 msgid "Check that the ``1`` component of :ref:`box.info.vclock <box_introspection-box_info>` values are the same on all instances:"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:248
-#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:375
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:250
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:388
 msgid "``instance001``:"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:250
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:252
 msgid "auto_leader:instance001> box.info.vclock\n"
 "---\n"
 "- {0: 1, 1: 32}\n"
 "..."
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:257
-#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:384
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:259
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:397
 msgid "``instance002``:"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:259
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:261
 msgid "auto_leader:instance002> box.info.vclock\n"
 "---\n"
 "- {0: 1, 1: 32}\n"
 "..."
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:266
-#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:394
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:268
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:407
 msgid "``instance003``:"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:268
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:270
 msgid "auto_leader:instance003> box.info.vclock\n"
 "---\n"
 "- {0: 1, 1: 32}\n"
@@ -380,28 +384,28 @@ msgstr ""
 msgid "Note that a ``vclock`` value might include the ``0`` component that is related to local space operations and might differ for different instances in a replica set."
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:284
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:286
 msgid "Testing automated failover"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:286
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:288
 msgid "To test how automated failover works if the current master is stopped, follow the steps below:"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:288
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:290
 msgid "Stop the current master instance (``instance002``) using the ``tt stop`` command:"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:290
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:292
 msgid "$ tt stop auto_leader:instance002\n"
 "   • The Instance auto_leader:instance002 (PID = 24769) has been terminated."
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:296
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:298
 msgid "On ``instance001``, check  ``box.info.election``. In this example, a new replica set leader is ``instance001``."
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:299
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:301
 msgid "auto_leader:instance001> box.info.election\n"
 "---\n"
 "- leader_idle: 0\n"
@@ -413,19 +417,19 @@ msgid "auto_leader:instance001> box.info.election\n"
 "..."
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:311
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:313
 msgid "Check replication status using ``box.info.replication`` for ``instance002``:"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:313
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:315
 msgid "``upstream.status`` is ``disconnected``."
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:314
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:316
 msgid "``downstream.status`` is ``stopped``."
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:316
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:320
 msgid "auto_leader:instance001> box.info.replication\n"
 "---\n"
 "- 1:\n"
@@ -468,59 +472,67 @@ msgid "auto_leader:instance001> box.info.replication\n"
 "..."
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:360
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:365
+msgid "The diagram below illustrates how the ``upstream`` and ``downstream`` connections look like:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:0
+msgid "replication status on a new master"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:373
 msgid "Start ``instance002`` back using ``tt start``:"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:362
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:375
 msgid "$ tt start auto_leader:instance002\n"
 "   • Starting an instance [auto_leader:instance002]..."
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:371
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:384
 msgid "Choosing a leader manually"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:373
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:386
 msgid "Make sure that :ref:`box.info.vclock <box_introspection-box_info>` values (except the ``0`` components) are the same on all instances:"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:377
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:390
 msgid "auto_leader:instance001> box.info.vclock\n"
 "---\n"
 "- {0: 2, 1: 32, 2: 1}\n"
 "..."
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:386
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:399
 msgid "auto_leader:instance002> box.info.vclock\n"
 "---\n"
 "- {0: 2, 1: 32, 2: 1}\n"
 "..."
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:396
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:409
 msgid "auto_leader:instance003> box.info.vclock\n"
 "---\n"
 "- {0: 3, 1: 32, 2: 1}\n"
 "..."
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:403
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:416
 msgid "On ``instance002``, run :ref:`box.ctl.promote() <box_ctl-promote>` to choose it as a new replica set leader:"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:405
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:418
 msgid "auto_leader:instance002> box.ctl.promote()\n"
 "---\n"
 "..."
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:411
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:424
 msgid "Check ``box.info.election`` to make sure ``instance002`` is a leader now:"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:413
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:426
 msgid "auto_leader:instance002> box.info.election\n"
 "---\n"
 "- leader_idle: 0\n"
@@ -532,22 +544,22 @@ msgid "auto_leader:instance002> box.info.election\n"
 "..."
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:430
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:443
 msgid "Adding and removing instances"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:432
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:445
 msgid "The process of adding instances to a replica set and removing them is similar for all failover modes. Learn how to do this from the :ref:`Master-replica: manual failover <replication-bootstrap>` tutorial:"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:435
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:448
 msgid ":ref:`Adding instances <replication-add_instances>`"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:436
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:449
 msgid ":ref:`Removing instances <replication-remove_instances>`"
 msgstr ""
 
-#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:438
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:451
 msgid "Before removing an instance from a replica set with :ref:`replication.failover <configuration_reference_replication_failover>` set to ``election``, make sure this instance is in read-only mode. If the instance is a master, choose a :ref:`new leader manually <replication-automated-failover-new-leader>`."
 msgstr ""

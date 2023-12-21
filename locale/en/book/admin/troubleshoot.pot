@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"POT-Creation-Date: 2023-12-21 17:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,7 +31,7 @@ msgstr ""
 #: ../../doc/book/admin/troubleshoot.rst:199
 #: ../../doc/book/admin/troubleshoot.rst:224
 #: ../../doc/book/admin/troubleshoot.rst:242
-#: ../../doc/book/admin/troubleshoot.rst:275
+#: ../../doc/book/admin/troubleshoot.rst:266
 msgid "**Possible reasons**"
 msgstr ""
 
@@ -46,8 +46,7 @@ msgstr ""
 #: ../../doc/book/admin/troubleshoot.rst:21
 #: ../../doc/book/admin/troubleshoot.rst:81
 #: ../../doc/book/admin/troubleshoot.rst:137
-#: ../../doc/book/admin/troubleshoot.rst:254
-#: ../../doc/book/admin/troubleshoot.rst:288
+#: ../../doc/book/admin/troubleshoot.rst:279
 msgid "$ # attaching to a Tarantool instance\n"
 "$ tt connect <instance_name|URI>"
 msgstr ""
@@ -68,7 +67,7 @@ msgstr ""
 #: ../../doc/book/admin/troubleshoot.rst:204
 #: ../../doc/book/admin/troubleshoot.rst:228
 #: ../../doc/book/admin/troubleshoot.rst:250
-#: ../../doc/book/admin/troubleshoot.rst:279
+#: ../../doc/book/admin/troubleshoot.rst:270
 msgid "**Solution**"
 msgstr ""
 
@@ -249,37 +248,38 @@ msgid "In a master-master replica set of two Tarantool instances, one of the mas
 msgstr ""
 
 #: ../../doc/book/admin/troubleshoot.rst:252
-msgid "Restart replication with the following commands (at each master instance):"
+msgid "This issue can be fixed in two ways:"
 msgstr ""
 
-#: ../../doc/book/admin/troubleshoot.rst:259
-msgid "-- restarting replication\n"
-"tarantool> original_value = box.cfg.replication\n"
-"tarantool> box.cfg{replication={}}\n"
-"tarantool> box.cfg{replication=original_value}"
+#: ../../doc/book/admin/troubleshoot.rst:254
+msgid "Manually: :ref:`reseed <replication-master-master-reseed-replica>` one master from another by removing write-ahead logs and snapshots."
 msgstr ""
 
-#: ../../doc/book/admin/troubleshoot.rst:266
-msgid "We also recommend using text primary keys or setting up :ref:`master-slave replication <replication-master_replica_bootstrap>`."
+#: ../../doc/book/admin/troubleshoot.rst:255
+msgid "Programmatically: set up a :ref:`conflict resolution trigger <replication-problem_solving>`."
 msgstr ""
 
-#: ../../doc/book/admin/troubleshoot.rst:273
+#: ../../doc/book/admin/troubleshoot.rst:257
+msgid "Then, restart replication as described in :ref:`Restarting replication <replication-master-master-resolve-conflict>`."
+msgstr ""
+
+#: ../../doc/book/admin/troubleshoot.rst:264
 msgid "Problem: Tarantool works much slower than before"
 msgstr ""
 
-#: ../../doc/book/admin/troubleshoot.rst:277
+#: ../../doc/book/admin/troubleshoot.rst:268
 msgid "Inefficient memory usage (RAM is cluttered with a huge amount of unused objects)."
 msgstr ""
 
-#: ../../doc/book/admin/troubleshoot.rst:281
+#: ../../doc/book/admin/troubleshoot.rst:272
 msgid "Call the Lua garbage collector with the `collectgarbage('count') function <https://www.lua.org/manual/5.1/manual.html#pdf-collectgarbage>`_ and measure its execution time with the Tarantool functions :ref:`clock.bench() <clock-bench>` or :ref:`clock.proc() <clock-proc>`."
 msgstr ""
 
-#: ../../doc/book/admin/troubleshoot.rst:286
+#: ../../doc/book/admin/troubleshoot.rst:277
 msgid "Example of calculating memory usage statistics:"
 msgstr ""
 
-#: ../../doc/book/admin/troubleshoot.rst:293
+#: ../../doc/book/admin/troubleshoot.rst:284
 msgid "-- loading Tarantool's \"clock\" module with time-related routines\n"
 "tarantool> clock = require 'clock'\n"
 "-- starting the timer\n"
@@ -290,63 +290,63 @@ msgid "-- loading Tarantool's \"clock\" module with time-related routines\n"
 "tarantool> return c, clock.proc() - b"
 msgstr ""
 
-#: ../../doc/book/admin/troubleshoot.rst:304
+#: ../../doc/book/admin/troubleshoot.rst:295
 msgid "If the returned ``clock.proc()`` value is greater than 0.001, this may be an indicator of inefficient memory usage (no active measures are required, but we recommend to optimize your Tarantool application code)."
 msgstr ""
 
-#: ../../doc/book/admin/troubleshoot.rst:308
+#: ../../doc/book/admin/troubleshoot.rst:299
 msgid "If the value is greater than 0.01, your application definitely needs thorough code analysis aimed at optimizing memory usage."
 msgstr ""
 
-#: ../../doc/book/admin/troubleshoot.rst:315
+#: ../../doc/book/admin/troubleshoot.rst:306
 msgid "Problem: Fiber switch is forbidden in '__gc' metamethod"
 msgstr ""
 
-#: ../../doc/book/admin/troubleshoot.rst:319
+#: ../../doc/book/admin/troubleshoot.rst:310
 msgid "Problem description"
 msgstr ""
 
-#: ../../doc/book/admin/troubleshoot.rst:321
+#: ../../doc/book/admin/troubleshoot.rst:312
 msgid "Fiber switch is forbidden in ``__gc`` metamethod since `this change <https://github.com/tarantool/tarantool/issues/4518#issuecomment-704259323>`_ to avoid unexpected Lua OOM. However, one may need to use a yielding function to finalize resources, for example, to close a socket."
 msgstr ""
 
-#: ../../doc/book/admin/troubleshoot.rst:326
+#: ../../doc/book/admin/troubleshoot.rst:317
 msgid "Below are examples of proper implementing such a procedure."
 msgstr ""
 
-#: ../../doc/book/admin/troubleshoot.rst:330
+#: ../../doc/book/admin/troubleshoot.rst:321
 msgid "Solution"
 msgstr ""
 
-#: ../../doc/book/admin/troubleshoot.rst:332
+#: ../../doc/book/admin/troubleshoot.rst:323
 msgid "First, there come two simple examples illustrating the logic of the solution:"
 msgstr ""
 
-#: ../../doc/book/admin/troubleshoot.rst:335
+#: ../../doc/book/admin/troubleshoot.rst:326
 msgid ":ref:`Example 1 <finalizer_yielding_example1>`"
 msgstr ""
 
-#: ../../doc/book/admin/troubleshoot.rst:336
+#: ../../doc/book/admin/troubleshoot.rst:327
 msgid ":ref:`Example 2 <finalizer_yielding_example2>`."
 msgstr ""
 
-#: ../../doc/book/admin/troubleshoot.rst:338
+#: ../../doc/book/admin/troubleshoot.rst:329
 msgid "Next comes the :ref:`Example 3 <finalizer_yielding_example3>` illustrating the usage of the ``sched.lua`` module that is the recommended method."
 msgstr ""
 
-#: ../../doc/book/admin/troubleshoot.rst:341
+#: ../../doc/book/admin/troubleshoot.rst:332
 msgid "All the explanations are given in the comments in the code listing. ``-- >`` indicates the output in console."
 msgstr ""
 
-#: ../../doc/book/admin/troubleshoot.rst:346
+#: ../../doc/book/admin/troubleshoot.rst:337
 msgid "**Example 1**"
 msgstr ""
 
-#: ../../doc/book/admin/troubleshoot.rst:348
+#: ../../doc/book/admin/troubleshoot.rst:339
 msgid "Implementing a valid finalizer for a particular FFI type (``custom_t``)."
 msgstr ""
 
-#: ../../doc/book/admin/troubleshoot.rst:350
+#: ../../doc/book/admin/troubleshoot.rst:341
 msgid "local ffi = require('ffi')\n"
 "local fiber = require('fiber')\n"
 "\n"
@@ -386,19 +386,19 @@ msgid "local ffi = require('ffi')\n"
 "-- > Leaving custom GC finalizer for 42... (after yield)"
 msgstr ""
 
-#: ../../doc/book/admin/troubleshoot.rst:392
+#: ../../doc/book/admin/troubleshoot.rst:383
 msgid "**Example 2**"
 msgstr ""
 
-#: ../../doc/book/admin/troubleshoot.rst:394
+#: ../../doc/book/admin/troubleshoot.rst:385
 msgid "Implementing a valid finalizer for a particular user type (``struct custom``)."
 msgstr ""
 
-#: ../../doc/book/admin/troubleshoot.rst:396
+#: ../../doc/book/admin/troubleshoot.rst:387
 msgid "``custom.c``"
 msgstr ""
 
-#: ../../doc/book/admin/troubleshoot.rst:398
+#: ../../doc/book/admin/troubleshoot.rst:389
 msgid "#include <lauxlib.h>\n"
 "#include <lua.h>\n"
 "#include <module.h>\n"
@@ -505,11 +505,11 @@ msgid "#include <lauxlib.h>\n"
 "}"
 msgstr ""
 
-#: ../../doc/book/admin/troubleshoot.rst:505
+#: ../../doc/book/admin/troubleshoot.rst:496
 msgid "``custom_c.lua``"
 msgstr ""
 
-#: ../../doc/book/admin/troubleshoot.rst:507
+#: ../../doc/book/admin/troubleshoot.rst:498
 msgid "-- Load custom Lua C extension.\n"
 "local custom = require('custom')\n"
 "-- > constructor is initialized\n"
@@ -541,23 +541,23 @@ msgid "-- Load custom Lua C extension.\n"
 "-- > Leaving custom_gc for 9... (after yield)"
 msgstr ""
 
-#: ../../doc/book/admin/troubleshoot.rst:541
+#: ../../doc/book/admin/troubleshoot.rst:532
 msgid "**Example 3**"
 msgstr ""
 
-#: ../../doc/book/admin/troubleshoot.rst:543
+#: ../../doc/book/admin/troubleshoot.rst:534
 msgid "It is important to note that the finalizer implementations in the examples above increase pressure on the platform performance by creating a new fiber on each ``__gc`` call. To prevent such an excessive fibers spawning, it's better to start a single \"scheduler\" fiber and provide the interface to postpone the required asynchronous action."
 msgstr ""
 
-#: ../../doc/book/admin/troubleshoot.rst:549
+#: ../../doc/book/admin/troubleshoot.rst:540
 msgid "For this purpose, the module called ``sched.lua`` is implemented (see the listing below). It is a part of Tarantool and should be made required in your custom code. The usage example is given in the ``init.lua`` file below."
 msgstr ""
 
-#: ../../doc/book/admin/troubleshoot.rst:553
+#: ../../doc/book/admin/troubleshoot.rst:544
 msgid "``sched.lua``"
 msgstr ""
 
-#: ../../doc/book/admin/troubleshoot.rst:555
+#: ../../doc/book/admin/troubleshoot.rst:546
 msgid "local fiber = require('fiber')\n"
 "\n"
 "local worker_next_task = nil\n"
@@ -615,11 +615,11 @@ msgid "local fiber = require('fiber')\n"
 "}"
 msgstr ""
 
-#: ../../doc/book/admin/troubleshoot.rst:613
+#: ../../doc/book/admin/troubleshoot.rst:604
 msgid "``init.lua``"
 msgstr ""
 
-#: ../../doc/book/admin/troubleshoot.rst:615
+#: ../../doc/book/admin/troubleshoot.rst:606
 msgid "local ffi = require('ffi')\n"
 "local fiber = require('fiber')\n"
 "local sched = require('sched')\n"

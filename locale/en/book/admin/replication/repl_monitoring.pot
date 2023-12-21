@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"POT-Creation-Date: 2023-12-21 17:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,78 +21,90 @@ msgid "Monitoring a replica set"
 msgstr ""
 
 #: ../../doc/book/admin/replication/repl_monitoring.rst:6
-msgid "To learn what instances belong to the replica set and obtain statistics for all these instances, issue a :doc:`/reference/reference_lua/box_info/replication` request:"
+msgid "To learn what instances belong to the replica set and obtain statistics for all these instances, execute a :ref:`box.info.replication <box_info_replication>` request. The output below shows the replication status for a replica set containing one :ref:`master and two replicas <replication-master_replica_bootstrap>`:"
 msgstr ""
 
-#: ../../doc/book/admin/replication/repl_monitoring.rst:9
-msgid "tarantool> box.info.replication\n"
+#: ../../doc/how-to/replication/repl_bootstrap.rst:3
+msgid "manual_leader:instance001> box.info.replication\n"
 "---\n"
-"  replication:\n"
-"    1:\n"
-"      id: 1\n"
-"      uuid: b8a7db60-745f-41b3-bf68-5fcce7a1e019\n"
-"      lsn: 88\n"
-"    2:\n"
-"      id: 2\n"
-"      uuid: cd3c7da2-a638-4c5d-ae63-e7767c3a6896\n"
-"      lsn: 31\n"
-"      upstream:\n"
-"        status: follow\n"
-"        idle: 43.187747001648\n"
-"        peer: replicator@192.168.0.102:3301\n"
-"        lag: 0\n"
-"      downstream:\n"
-"        vclock: {1: 31}\n"
-"    3:\n"
-"      id: 3\n"
-"      uuid: e38ef895-5804-43b9-81ac-9f2cd872b9c4\n"
-"      lsn: 54\n"
-"      upstream:\n"
-"        status: follow\n"
-"        idle: 43.187621831894\n"
-"        peer: replicator@192.168.0.103:3301\n"
-"        lag: 2\n"
-"      downstream:\n"
-"        vclock: {1: 54}\n"
-"..."
+"- 1:\n"
+"    id: 1\n"
+"    uuid: 9bb111c2-3ff5-36a7-00f4-2b9a573ea660\n"
+"    lsn: 21\n"
+"    name: instance001\n"
+"  2:\n"
+"    id: 2\n"
+"    uuid: 4cfa6e3c-625e-b027-00a7-29b2f2182f23\n"
+"    lsn: 0\n"
+"    upstream:\n"
+"      status: follow\n"
+"      idle: 0.052655000000414\n"
+"      peer: replicator@127.0.0.1:3302\n"
+"      lag: 0.00010204315185547\n"
+"    name: instance002\n"
+"    downstream:\n"
+"      status: follow\n"
+"      idle: 0.09503500000028\n"
+"      vclock: {1: 21}\n"
+"      lag: 0.00026917457580566\n"
+"  3:\n"
+"    id: 3\n"
+"    uuid: 9a3a1b9b-8a18-baf6-00b3-a6e5e11fd8b6\n"
+"    lsn: 0\n"
+"    upstream:\n"
+"      status: follow\n"
+"      idle: 0.77522099999987\n"
+"      peer: replicator@127.0.0.1:3303\n"
+"      lag: 0.0001838207244873\n"
+"    name: instance003\n"
+"    downstream:\n"
+"      status: follow\n"
+"      idle: 0.33186100000012\n"
+"      vclock: {1: 21}\n"
+"      lag: 0\n"
+"        ..."
 msgstr ""
 
-#: ../../doc/book/admin/replication/repl_monitoring.rst:42
-msgid "This report is for a master-master replica set of three instances, each having its own instance id, UUID and log sequence number."
+#: ../../doc/book/admin/replication/repl_monitoring.rst:14
+msgid "The following diagram illustrates the ``upstream`` and ``downstream`` connections if ``box.info.replication`` executed at the master instance (``instance001``):"
 msgstr ""
 
-#: ../../doc/book/admin/replication/repl_monitoring.rst:48
-msgid "The request was issued at master #1, and the reply includes statistics for the other two masters, given in regard to master #1."
+#: ../../doc/book/admin/replication/repl_monitoring.rst:None
+msgid "replication status on master"
 msgstr ""
 
-#: ../../doc/book/admin/replication/repl_monitoring.rst:51
+#: ../../doc/book/admin/replication/repl_monitoring.rst:21
+msgid "If ``box.info.replication`` is executed on ``instance002``, the ``upstream`` and ``downstream`` connections look as follows:"
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_monitoring.rst:None
+msgid "replication status on replica"
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_monitoring.rst:28
+msgid "This means that statistics for replicas are given in regard to the instance on which ``box.info.replication`` is executed."
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_monitoring.rst:30
 msgid "The primary indicators of replication health are:"
 msgstr ""
 
-#: ../../doc/book/admin/replication/repl_monitoring.rst:55
+#: ../../doc/book/admin/replication/repl_monitoring.rst:34
 msgid ":ref:`idle <box_info_replication_upstream_idle>`: the time (in seconds) since the instance received the last event from a master."
 msgstr ""
 
-#: ../../doc/book/admin/replication/repl_monitoring.rst:58
+#: ../../doc/book/admin/replication/repl_monitoring.rst:37
 msgid "If the master has no updates to send to the replicas, it sends heartbeat messages every :ref:`replication_timeout <cfg_replication-replication_timeout>` seconds. The master is programmed to disconnect if it does not see acknowledgments of the heartbeat messages within ``replication_timeout`` * 4 seconds."
 msgstr ""
 
-#: ../../doc/book/admin/replication/repl_monitoring.rst:63
+#: ../../doc/book/admin/replication/repl_monitoring.rst:42
 msgid "Therefore, in a healthy replication setup, ``idle`` should never exceed ``replication_timeout``: if it does, either the replication is lagging seriously behind, because the master is running ahead of the replica, or the network link between the instances is down."
 msgstr ""
 
-#: ../../doc/book/admin/replication/repl_monitoring.rst:68
-msgid ":ref:`lag <box_info_replication_upstream_lag>`: the time difference between the local time at the instance, recorded when the event was received, and the local time at another master recorded when the event was written to the :ref:`write ahead log <internals-wal>` on that master."
+#: ../../doc/book/admin/replication/repl_monitoring.rst:47
+msgid ":ref:`lag <box_info_replication_upstream_lag>`: the time difference between the local time at the instance, recorded when the event was received, and the local time at another master recorded when the event was written to the :ref:`write-ahead log <internals-wal>` on that master."
 msgstr ""
 
-#: ../../doc/book/admin/replication/repl_monitoring.rst:73
+#: ../../doc/book/admin/replication/repl_monitoring.rst:52
 msgid "Since the ``lag`` calculation uses the operating system clocks from two different machines, do not be surprised if it’s negative: a time drift may lead to the remote master clock being consistently behind the local instance's clock."
-msgstr ""
-
-#: ../../doc/book/admin/replication/repl_monitoring.rst:77
-msgid "For multi-master configurations, ``lag`` is the maximal lag."
-msgstr ""
-
-#: ../../doc/book/admin/replication/repl_monitoring.rst:79
-msgid "For better understanding, see the following diagram illustrating the ``upstream`` and ``downstream`` connections within the replica set of three instances:"
 msgstr ""
