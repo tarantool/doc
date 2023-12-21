@@ -28,7 +28,7 @@ List view
 ~~~~~~~~~
 
 The list view of the cluster topology is used by default. In this view, each row contains
-the general information about the instance: its current state, memory usage and limit,
+the general information about an instance: its current state, memory usage and limit,
 and other parameters.
 
 In the list view, |tcm| additionally displays the Tarantool version information
@@ -42,7 +42,8 @@ To switch to the list view, click the list button on the right of the search bar
 Graph view
 ~~~~~~~~~~
 
-In the graph view, the instance state is shown by its color.
+The graph view of the cluster topology is shown in a tree-like structure where
+leafs are the cluster's instance. Each instance's state is shown by its color.
 You can move the graph vertexes to arrange them as you like, and zoom in and out,
 which is helpful for bigger clusters.
 
@@ -91,13 +92,16 @@ status, used and available memory, read-only status, and virtual buckets for sha
 clusters.
 
 To view the detailed information about an instance or connect to it, click the corresponding
-row in the instances list or vertex of the graph. On the instance page, you can
-find its configuration overview, current state (with warning and error messages if any),
-and the detailed Tarantool information returned by the instance introspection functions
-from :ref:`box_introspection-box_info`, :ref:`box_introspection-box_stat`, and other
-built-in modules.
+row in the instances list or a vertex of the graph. On the instance page, you can
+find:
 
-Additionally, on the instance details page there is a terminal that enables running
+*   its configuration overview
+*   current state (with warning and error messages if any)
+*   the detailed Tarantool information returned by the instance introspection functions
+    from :ref:`box_introspection-box_info`, :ref:`box_introspection-box_stat`, and other
+    built-in modules.
+
+Additionally, on the instance details page there is a terminal in which you can execute
 arbitrary Lua code on the instance.
 
 ..  _tcm_cluster_monitoring_urls:
@@ -109,5 +113,5 @@ When you :ref:`connect a cluster <tcm_connect_clusters>` to |tcm|, you can speci
 URLs of external services linked to this cluster. For example, this can be a Grafana
 server that monitors the cluster metrics.
 
-All the URLs added for a cluster are available in the **Actions** menu on the
-**Stateboard** page.
+All the URLs added for a cluster are available for quick access in the **Actions**
+menu on the **Stateboard** page.
