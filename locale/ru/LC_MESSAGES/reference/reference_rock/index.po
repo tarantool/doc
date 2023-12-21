@@ -1,7 +1,4 @@
 
-msgid "Module metrics"
-msgstr ""
-
 msgid "Module luatest"
 msgstr ""
 
@@ -15,3 +12,6 @@ msgid ""
 "For Tarantool Enterprise modules, see the :ref:`Tarantool EE <enterprise-"
 "rocks>` documentation."
 msgstr ""
+
+#~ msgid "Module metrics"
+#~ msgstr ""

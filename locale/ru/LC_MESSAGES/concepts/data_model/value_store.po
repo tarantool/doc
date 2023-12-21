@@ -558,6 +558,11 @@ msgstr ""
 "<https://www.lua.org/pil/11.1.html>`_). Примеры: списки чисел, которые "
 "обозначают точки геометрической фигуры: ``{10, 11}``, ``{3, 5, 9, 10}``."
 
+msgid ""
+"**Examples:** lists of numbers representing points in geometric figures: "
+"``{10, 11}``, ``{3, 5, 9, 10}``."
+msgstr ""
+
 msgid "table"
 msgstr "кортеж"
 

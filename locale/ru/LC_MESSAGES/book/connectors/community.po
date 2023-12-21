@@ -1,7 +1,4 @@
 
-msgid "C++"
-msgstr ""
-
 msgid "Community-supported connectors"
 msgstr ""
 
@@ -20,3 +17,6 @@ msgid ""
 "For R, use the `tarantoolr <https://github.com/thekvs/tarantoolr>`__ "
 "connector."
 msgstr ""
+
+#~ msgid "C++"
+#~ msgstr ""
