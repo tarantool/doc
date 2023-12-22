@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-15 07:52+0000\n"
+"POT-Creation-Date: 2023-12-22 09:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,9 +37,9 @@ msgid "|tcm| is a standalone application included in the Tarantool Enterprise Ed
 msgstr ""
 
 #: ../../doc/reference/tooling/tcm/index.rst:24
-msgid "|tcm| works only with Tarantool EE clusters that use :ref:`etcd as a configuration storage <configuration_etcd>`. When you create or edit a cluster's configuration in |tcm|, it publishes the saved configuration to etcd. This ensures consistent and reliable configuration storage. A single |tcm| installation can connect to multiple Tarantool EE clusters and switch between them in one click."
+msgid "|tcm| works only with Tarantool EE clusters that use centralized configuration in :ref:`etcd <configuration_etcd>` or a Tarantool-based storage. When you create or edit a cluster's configuration in |tcm|, it publishes the saved configuration to the storage. This ensures consistent and reliable configuration storage. A single |tcm| installation can connect to multiple Tarantool EE clusters and switch between them in one click."
 msgstr ""
 
-#: ../../doc/reference/tooling/tcm/index.rst:30
+#: ../../doc/reference/tooling/tcm/index.rst:31
 msgid "To provide enterprise-grade security, |tcm| features its own role-based access control. You can create users and assign them roles that include required permissions. For example, a user can be an administrator of a specific cluster or only have the right to read data. LDAP authorization is supported as well."
 msgstr ""

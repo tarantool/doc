@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"POT-Creation-Date: 2023-12-22 09:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -54,4 +54,20 @@ msgstr ""
 
 #: ../../doc/enterprise/index.rst:25
 msgid ":doc:`Non-blocking DDL <space_upgrade>`."
+msgstr ""
+
+#: ../../doc/enterprise/index.rst:27
+msgid "The Enterprise Edition is distributed in the form of an SDK, which includes the following key components:"
+msgstr ""
+
+#: ../../doc/enterprise/index.rst:30
+msgid "The Tarantool EE binary, which can use :ref:`centralized configuration <configuration_etcd_overview>`."
+msgstr ""
+
+#: ../../doc/enterprise/index.rst:31
+msgid "The extended Enterprise version of the :ref:`tt <tt-cli>` utility."
+msgstr ""
+
+#: ../../doc/enterprise/index.rst:32
+msgid ":ref:`Tarantool Cluster Manager <tcm>` -- a web-based visual tool for managing Tarantool clusters."
 msgstr ""
