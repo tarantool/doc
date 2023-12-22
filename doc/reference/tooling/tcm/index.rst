@@ -21,9 +21,10 @@ in an instance's console.
 :ref:`distribution package <enterprise-package-contents>`. It is shipped as ready-to-run
 executable for Linux platforms.
 
-|tcm| works only with Tarantool EE clusters that use :ref:`etcd as a configuration storage <configuration_etcd>`.
+|tcm| works only with Tarantool EE clusters that use centralized configuration in
+:ref:`etcd <configuration_etcd>` or a Tarantool-based storage.
 When you create or edit a cluster's configuration in |tcm|, it publishes the saved
-configuration to etcd. This ensures consistent and reliable configuration storage.
+configuration to the storage. This ensures consistent and reliable configuration storage.
 A single |tcm| installation can connect to multiple Tarantool EE clusters and
 switch between them in one click.
 
