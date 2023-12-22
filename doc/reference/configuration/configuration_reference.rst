@@ -24,7 +24,6 @@ The ``config`` section defines various parameters related to centralized configu
     ``config`` can be defined in the global :ref:`scope <configuration_scopes>` only.
 
 * :ref:`config.reload <configuration_reference_config_reload>`
-* :ref:`config.version <configuration_reference_config_version>`
 * :ref:`config.etcd.* <configuration_reference_config_etcd>`
 
 .. _configuration_reference_config_reload:
@@ -46,20 +45,6 @@ The ``config`` section defines various parameters related to centralized configu
     | Possible values: 'auto', 'manual'
     | Default: 'auto'
     | Environment variable: TT_CONFIG_RELOAD
-
-
-.. _configuration_reference_config_version:
-
-.. confval:: config.version
-
-    **Since:** :doc:`3.0.0 </release/3.0.0>`.
-
-    A configuration version.
-
-    |
-    | Type: string
-    | Default: nil
-    | Environment variable: TT_CONFIG_VERSION
 
 
 
