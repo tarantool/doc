@@ -1,0 +1,169 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-22 05:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/tooling/tcm/tcm_cluster_monitoring.rst:4
+msgid "Cluster monitoring"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_cluster_monitoring.rst:6
+msgid "|tcm_full_name| provides means for monitoring various aspects of connected clusters, such as:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_cluster_monitoring.rst:9
+msgid "topology"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_cluster_monitoring.rst:10
+msgid "instance state"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_cluster_monitoring.rst:11
+msgid "memory usage"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_cluster_monitoring.rst:12
+msgid "data distribution"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_cluster_monitoring.rst:13
+msgid "Tarantool versions"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_cluster_monitoring.rst:15
+msgid "Cluster monitoring tools are available on the **Cluster** > **Stateboard** page."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_cluster_monitoring.rst:20
+msgid "Cluster topology"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_cluster_monitoring.rst:22
+msgid "The cluster topology is displayed on the **Stateboard** page in one of two forms: a list or a graph."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_cluster_monitoring.rst:28
+msgid "List view"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_cluster_monitoring.rst:30
+msgid "The list view of the cluster topology is used by default. In this view, each row contains the general information about an instance: its current state, memory usage and limit, and other parameters."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_cluster_monitoring.rst:34
+msgid "In the list view, |tcm| additionally displays the Tarantool version information and instance states on circle diagrams. You can click the sectors of these diagrams to filter the instances with the selected versions and states."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_cluster_monitoring.rst:38
+msgid "To switch to the list view, click the list button on the right of the search bar on the **Stateboard** page."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_cluster_monitoring.rst:43
+msgid "Graph view"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_cluster_monitoring.rst:45
+msgid "The graph view of the cluster topology is shown in a tree-like structure where leafs are the cluster's instances. Each instance's state is shown by its color. You can move the graph vertexes to arrange them as you like, and zoom in and out, which is helpful for bigger clusters."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_cluster_monitoring.rst:50
+msgid "To switch to the graph view, click the graph button on the right of the search bar on the **Stateboard** page."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_cluster_monitoring.rst:55
+msgid "Instance grouping"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_cluster_monitoring.rst:57
+msgid "By default, the cluster topology is shown hierarchically as it's defined in the configuration: instances are grouped by their replica set, and replica sets are grouped by their configuration group."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_cluster_monitoring.rst:61
+msgid "For better navigation across the cluster, you can adjust the instance grouping. For example, you can group instances by their roles or custom tags defined in the configuration. A typical case for such tags is adding a geographical markers to instances. In this case, you see if issues happen in a specific data center or server."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_cluster_monitoring.rst:66
+msgid "To change the instance grouping, click **Group by** in the **Actions** menu on the **Stateboard** page. Then add or remove grouping criteria."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_cluster_monitoring.rst:72
+msgid "Filtering"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_cluster_monitoring.rst:74
+msgid "You can filter the instances shown on the **Stateboard** page using the search bar at the top. It has predefined filters that select:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_cluster_monitoring.rst:77
+msgid "instances with errors or warnings"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_cluster_monitoring.rst:78
+msgid "leader or read-only instances"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_cluster_monitoring.rst:79
+msgid "instances with no issues"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_cluster_monitoring.rst:80
+msgid "stale instances"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_cluster_monitoring.rst:82
+msgid "To display all instances, delete the filter applied in the search bar."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_cluster_monitoring.rst:87
+msgid "Instance details"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_cluster_monitoring.rst:89
+msgid "The general information about the state of cluster instances is shown in the list view of the cluster topology. Each row contains the information about the instance status, used and available memory, read-only status, and virtual buckets for sharded clusters."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_cluster_monitoring.rst:94
+msgid "To view the detailed information about an instance or connect to it, click the corresponding row in the instances list or a vertex of the graph. On the instance page, you can find:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_cluster_monitoring.rst:98
+msgid "its configuration overview"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_cluster_monitoring.rst:99
+msgid "current state (with warning and error messages if any)"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_cluster_monitoring.rst:100
+msgid "the detailed Tarantool information returned by the instance introspection functions from :ref:`box.info <box_introspection-box_info>`, :ref:`box.stat <box_introspection-box_stat>`, and other built-in modules."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_cluster_monitoring.rst:104
+msgid "Additionally, on the instance details page there is a terminal in which you can execute arbitrary Lua code on the instance."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_cluster_monitoring.rst:110
+msgid "Additional monitoring services"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_cluster_monitoring.rst:112
+msgid "When you :ref:`connect a cluster <tcm_connect_clusters>` to |tcm|, you can specify URLs of external services linked to this cluster. For example, this can be a Grafana server that monitors the cluster metrics."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_cluster_monitoring.rst:116
+msgid "All the URLs added for a cluster are available for quick access in the **Actions** menu on the **Stateboard** page."
+msgstr ""
