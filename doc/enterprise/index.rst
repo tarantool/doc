@@ -28,7 +28,7 @@ Tarantool Enterprise Edition
         the following key components:
 
         * The Tarantool EE binary, which can use :ref:`centralized configuration <configuration_etcd_overview>`.
-        * The extended Enterprise version of the :ref:`tt <tt-cli>`` utility.
+        * The extended Enterprise version of the :ref:`tt <tt-cli>` utility.
         * :ref:`Tarantool Cluster Manager <tcm>` -- a web-based visual tool for managing Tarantool clusters.
 
 
@@ -58,7 +58,7 @@ Tarantool Enterprise Edition
         ключевые компоненты:
 
         * Исполняемый файл Tarantool EE binary, который может работать с :ref:`цетрализованной конфигурацией <configuration_etcd_overview>`.
-        * Расширенная Enterprise-версия утилиты :ref:`tt <tt-cli>``.
+        * Расширенная Enterprise-версия утилиты :ref:`tt <tt-cli>`.
         * :ref:`Tarantool Cluster Manager <tcm>` -- визуальный веб-инструмент для управления кластерами Tarantool.
 
 ..  toctree::
