@@ -221,10 +221,22 @@ In the configuration file (``config.yaml``), the instance listens on ``127.0.0.1
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/create_db/config.yaml
     :language: yaml
-    :lines: 6-9
+    :start-at: instance001:
+    :end-at: 127.0.0.1:3301
     :dedent:
 
-The ``listen`` value can be any form of a :ref:`URI <index-uri>` (uniform resource identifier).
+The :ref:`iproto.listen <configuration_reference_iproto_listen>` option is an array of URIs used to listen for incoming requests.
+Each record of the array contains a required :ref:`URI <index-uri>` (uniform resource identifier) field and an optional
+:ref:`params <configuration_reference_iproto_listen>` field.
+The ``iproto.listen.uri`` field may contain:
+
+*   a listening address  (for example, ``127.0.0.1:3301``)
+*   a listening port (for example, `3301`)
+
+The field can't contain parameters, login, or password.
+
+Learn more about the :ref:`connection parameters <configuration_options_connection>`.
+
 You can send requests to the listen URI using:
 
 *   ``telnet``

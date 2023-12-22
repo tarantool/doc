@@ -687,7 +687,7 @@ iproto.*
 .. confval:: iproto.listen
 
     An array of URIs used to listen for incoming requests.
-    In required, you can enable SSL for specific URIs by providing additional parameters (:ref:`<uri>.params.* <configuration_reference_iproto_uri_params>`).
+    If required, you can enable SSL for specific URIs by providing additional parameters (:ref:`<uri>.params.* <configuration_reference_iproto_uri_params>`).
 
     These URIs are used for different purposes, for example:
 
@@ -790,7 +790,7 @@ iproto.*
     | Environment variable: TT_IPROTO_THREADS
 
 
-.. _configuration_reference_iproto_uri_params:
+.. _`configuration_reference_iproto_uri_params`:
 
 <uri>.params.*
 ~~~~~~~~~~~~~~
