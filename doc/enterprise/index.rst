@@ -24,6 +24,15 @@ Tarantool Enterprise Edition
         * :doc:`Tuple compression <tuple_compression>`.
         * :doc:`Non-blocking DDL <space_upgrade>`.
 
+        The Enterprise Edition is distributed in the form of an SDK, which includes
+        the following key components:
+
+        * The Tarantool EE binary, which can use :ref:`centralized configuration <configuration_etcd_overview>`.
+        * The extended Enterprise version of the :ref:`tt <tt-cli>`` utility.
+        * :ref:`Tarantool Cluster Manager <tcm>` -- a web-based visual tool for managing Tarantool clusters.
+
+
+
 .. ifconfig:: language == 'ru'
 
     .. container:: documentation-main-page-description
@@ -45,6 +54,12 @@ Tarantool Enterprise Edition
         * :doc:`Сжатие кортежей <tuple_compression>`.
         * :doc:`Смена схемы данных в фоновом режиме <space_upgrade>`.
 
+        Enterprise-версия распространяется в форме SDK, который включает следующие
+        ключевые компоненты:
+
+        * Исполняемый файл Tarantool EE binary, который может работать с :ref:`цетрализованной конфигурацией <configuration_etcd_overview>`.
+        * Расширенная Enterprise-версия утилиты :ref:`tt <tt-cli>``.
+        * :ref:`Tarantool Cluster Manager <tcm>` -- визуальный веб-инструмент для управления кластерами Tarantool.
 
 ..  toctree::
     :hidden:
