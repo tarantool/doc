@@ -238,7 +238,7 @@ The field can't contain parameters, login, or password.
 
 Learn more about the :ref:`connection parameters <configuration_options_connection>`.
 
-You can send requests to the listen URI using:
+You can send requests to a Tarantool instance using:
 
 *   ``telnet``
 *   a :ref:`connector <index-box_connectors>`
