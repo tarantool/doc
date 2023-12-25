@@ -66,11 +66,8 @@ Tarantool Enterprise Edition
 
     changelog
     setup
-    dev
-    admin
     security
     audit
-    cartridge-auth
     tuple_compression
     wal_extensions
     read_views
