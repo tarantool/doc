@@ -30,7 +30,7 @@ Before starting this tutorial:
 
 #.  Inside ``instances.enabled/create_db``, create the ``instances.yml`` and ``config.yaml`` files:
 
-    *   ``instances.yml`` specifies instances to run in the current environment, for example:
+    *   ``instances.yml`` specifies instances to run in the current environment. In this example, there is one instance:
 
         ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/create_db/instances.yml
             :language: yaml
@@ -89,21 +89,21 @@ To create a test database after installation:
 
 #.  Create a :term:`space <space>` named ``bands``:
 
-    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/create_db/data.lua
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/create_db/myapp.lua
         :language: lua
         :lines: 2
         :dedent:
 
 #.  Format the created space by specifying :term:`field` names and :ref:`types <index-box_data-types>`:
 
-    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/create_db/data.lua
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/create_db/myapp.lua
         :language: lua
         :lines: 3-7
         :dedent:
 
 #.  Create the first :ref:`index <index-box_index>` named ``primary``:
 
-    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/create_db/data.lua
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/create_db/myapp.lua
         :language: lua
         :lines: 8
         :dedent:
@@ -113,28 +113,28 @@ To create a test database after installation:
 
 #.  Insert three :term:`tuples <tuple>` into the space:
 
-    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/create_db/data.lua
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/create_db/myapp.lua
         :language: lua
         :lines: 14-16
         :dedent:
 
 #.  Then select a tuple using the ``primary`` index:
 
-    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/create_db/data.lua
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/create_db/myapp.lua
         :language: lua
         :lines: 27
         :dedent:
 
 #.  Add a secondary index based on the ``band_name`` field:
 
-    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/create_db/data.lua
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/create_db/myapp.lua
         :language: lua
         :lines: 9
         :dedent:
 
 #.  Select tuples using the ``secondary`` index:
 
-    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/create_db/data.lua
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/create_db/myapp.lua
         :language: lua
         :lines: 28
         :dedent:
@@ -142,7 +142,7 @@ To create a test database after installation:
 #.  To prepare for the example in the next section, grant read, write, and execute
     privileges to the current user:
 
-    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/create_db/data.lua
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/create_db/myapp.lua
         :language: lua
         :lines: 10
         :dedent:
@@ -244,23 +244,25 @@ You can send requests to the listen URI using:
 *   another instance of Tarantool (using the :ref:`console <console-module>` module)
 *   :ref:`tt <tt-cli>` administrative utility
 
-In this tutorial, the requests are sent using the second Tarantool instance.
+In previous steps, the requests were sent using the tt utility.
+To connect from another Tarantool instance, start the ``tarantool`` executable
+with the ``-i`` option, which enables the interactive mode.
 
 To start working, switch to another terminal and start another Tarantool instance:
 
 ..  code-block:: console
 
-    $ tt connect create_db:instance001
+    $ tarantool -i
 
-Use ``net.box`` to connect to the Tarantool instance
-that is listening on ``localhost:3301``":
+Use the :ref:`net.box <net_box-module>` module to connect to the remote Tarantool
+instance that is listening on ``localhost:3301``:
 
 ..  code-block:: tarantoolsession
 
-    create_db:instance001> net_box = require('net.box')
+    tarantool> net_box = require('net.box')
     ---
     ...
-    create_db:instance001> conn = net_box.connect(3301)
+    tarantool> conn = net_box.connect(3301)
     ---
     ...
 
@@ -268,12 +270,12 @@ Then send a select request to ``instance001``:
 
 ..  code-block:: tarantoolsession
 
-    create_db:instance001> conn.space.tester:select{2}
+    tarantool> conn.space.bands:select{2}
     ---
-    - - [2, 'Scorpions', 2015]
+    - - [2, 'Scorpions', 1965]
     ...
 
-This request is equivalent to the local request ``box.space.tester:select{2}``.
+This request is equivalent to the local request ``box.space.bands:select{2}``.
 The result in this case is one of the tuples that was inserted earlier.
 
 You can repeat ``box.space...:insert{}`` and ``box.space...:select{}``
