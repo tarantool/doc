@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-25 06:47+0000\n"
+"POT-Creation-Date: 2023-12-25 11:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -835,7 +835,7 @@ msgid "iproto.*"
 msgstr ""
 
 #: ../../doc/reference/configuration/configuration_reference.rst:674
-msgid "An array of URIs used to listen for incoming requests. In required, you can enable SSL for specific URIs by providing additional parameters (:ref:`<uri>.params.* <configuration_reference_iproto_uri_params>`)."
+msgid "An array of URIs used to listen for incoming requests. If required, you can enable SSL for specific URIs by providing additional parameters (:ref:`<uri>.params.* <configuration_reference_iproto_uri_params>`)."
 msgstr ""
 
 #: ../../doc/reference/configuration/configuration_reference.rst:677

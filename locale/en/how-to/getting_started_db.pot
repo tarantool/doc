@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"POT-Creation-Date: 2023-12-25 11:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,421 +16,222 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../../doc/how-to/getting_started_db.rst:5
+#: ../../doc/how-to/getting_started_db.rst:4
 msgid "Creating your first Tarantool database"
 msgstr ""
 
-#: ../../doc/how-to/getting_started_db.rst:7
-msgid "First, let's install Tarantool, start it, and create a simple database."
+#: ../../doc/how-to/getting_started_db.rst:6
+msgid "In this tutorial, you connect to Tarantool instances using the :ref:`tt CLI <tt-installation>` utility, create a database, and establish a remote connection using the :ref:`net.box <net_box-module>` module."
 msgstr ""
 
-#: ../../doc/how-to/getting_started_db.rst:9
-msgid "You can install Tarantool and work with it locally or in Docker."
+#: ../../doc/how-to/getting_started_db.rst:10
+msgid "Installing Tarantool"
 msgstr ""
 
-#: ../../doc/how-to/using_docker.rst:5
-msgid "Using a Docker image"
+#: ../../doc/how-to/getting_started_db.rst:12
+msgid "For production purposes, we recommend that you install Tarantool via the `official package manager <https://www.tarantool.io/en/download/>`_. To download and install the package that's appropriate for your OS, start a shell (terminal) and enter the command-line instructions provided for your OS at Tarantool `download page <http://tarantool.org/download.html>`_."
 msgstr ""
 
-#: ../../doc/how-to/using_docker.rst:7
-msgid "For trial and test purposes, we recommend using `the official Tarantool images for Docker <https://github.com/tarantool/docker>`_. An official image contains a particular Tarantool version and all popular external modules for Tarantool. Everything is already installed and configured in Linux. These images are the easiest way to install and use Tarantool."
+#: ../../doc/how-to/getting_started_db.rst:21
+msgid "Installing tt CLI"
 msgstr ""
 
-#: ../../doc/how-to/using_docker.rst:16
-msgid "If you're new to Docker, we recommend going over `this tutorial <https://docs.docker.com/get-started/>`_ before proceeding with this chapter."
+#: ../../doc/how-to/getting_started_db.rst:23
+msgid "Before starting this tutorial:"
 msgstr ""
 
-#: ../../doc/how-to/using_docker.rst:24
-msgid "Launching a container"
+#: ../../doc/how-to/getting_started_db.rst:25
+msgid "Install the :ref:`tt CLI <tt-installation>` utility."
 msgstr ""
 
-#: ../../doc/how-to/using_docker.rst:26
-msgid "If you don't have Docker installed, please follow the official `installation guide <https://docs.docker.com/get-started/#download-and-install-docker>`_ for your OS."
+#: ../../doc/how-to/getting_started_db.rst:27
+msgid "Create a tt environment in the current directory using the :ref:`tt init <tt-init>` command."
 msgstr ""
 
-#: ../../doc/how-to/using_docker.rst:30
-msgid "To start a fully functional Tarantool instance, run a container with some minimal options:"
+#: ../../doc/how-to/getting_started_db.rst:29
+msgid "Inside the ``instances.enabled`` directory of the created tt environment, create the ``create_db`` directory."
 msgstr ""
 
-#: ../../doc/how-to/using_docker.rst:33
-msgid "$ docker run \\\n"
-"  --name mytarantool \\\n"
-"  -d -p 3301:3301 \\\n"
-"  -v /data/dir/on/host:/var/lib/tarantool \\\n"
-"  tarantool/tarantool:latest"
+#: ../../doc/how-to/getting_started_db.rst:31
+msgid "Inside ``instances.enabled/create_db``, create the ``instances.yml`` and ``config.yaml`` files:"
 msgstr ""
 
-#: ../../doc/how-to/using_docker.rst:41
-msgid "This command runs a new container named ``mytarantool``. Docker starts it from an official image named ``tarantool/tarantool:latest``, with the latest Tarantool version and all external modules already installed."
+#: ../../doc/how-to/getting_started_db.rst:33
+msgid "``instances.yml`` specifies instances to run in the current environment. In this example, there is one instance:"
 msgstr ""
 
-#: ../../doc/how-to/using_docker.rst:45
-msgid "Tarantool will accept incoming connections on ``localhost:3301``. You can start using it as a key-value storage right away."
+#: ../../doc/how-to/getting_started_db.rst:35
+msgid "instance001:"
 msgstr ""
 
-#: ../../doc/how-to/using_docker.rst:48
-msgid "Tarantool :ref:`persists data <index-box_persistence>` inside the container. To make your test data available after you stop the container, this command also mounts the host's directory ``/data/dir/on/host`` (you need to specify here an absolute path to an existing local directory) in the container's directory ``/var/lib/tarantool`` (by convention, Tarantool in a container uses this directory to persist data). Through this, all changes made in the mounted directory on the container's side are applied to the host's disk."
+#: ../../doc/how-to/getting_started_db.rst:39
+msgid "``config.yaml`` contains basic :ref:`configuration <configuration_file>`, for example:"
 msgstr ""
 
-#: ../../doc/how-to/using_docker.rst:57
-msgid "Tarantool's database module in the container is already :doc:`configured </reference/reference_lua/box_cfg>` and started. You don't need to do it manually, unless you use Tarantool as an :ref:`application server <app_server>` and run it with an application."
+#: ../../doc/how-to/getting_started_db.rst:41
+msgid "groups:\n"
+"  group001:\n"
+"    replicasets:\n"
+"      replicaset001:\n"
+"        instances:\n"
+"          instance001:\n"
+"            iproto:\n"
+"              listen:\n"
+"              - uri: '127.0.0.1:3301'"
 msgstr ""
 
-#: ../../doc/how-to/using_docker.rst:64
-msgid "If your container terminates immediately after starting, follow `this page <https://stackoverflow.com/questions/64178499/tarantool-does-not-start-due-to-disk-write-error>`_ for a possible solution."
+#: ../../doc/how-to/getting_started_db.rst:45
+msgid "The instance in the configuration accepts TCP requests on port ``3301``."
 msgstr ""
 
-#: ../../doc/how-to/using_docker.rst:72
-msgid "Attaching to Tarantool"
+#: ../../doc/how-to/getting_started_db.rst:47
+msgid "Read more: :ref:`admin-instance_config-develop-app`."
 msgstr ""
 
-#: ../../doc/how-to/using_docker.rst:74
-msgid "To attach to Tarantool that runs inside the container, run:"
-msgstr ""
-
-#: ../../doc/how-to/using_docker.rst:76
-msgid "$ docker exec -i -t mytarantool console"
-msgstr ""
-
-#: ../../doc/how-to/using_docker.rst:80
-msgid "This command:"
-msgstr ""
-
-#: ../../doc/how-to/using_docker.rst:82
-msgid "Instructs Tarantool to open an interactive console port for incoming connections."
-msgstr ""
-
-#: ../../doc/how-to/using_docker.rst:83
-msgid "Attaches to the Tarantool server inside the container under the ``admin`` user via a standard Unix socket."
-msgstr ""
-
-#: ../../doc/how-to/using_docker.rst:86
-msgid "Tarantool displays a prompt:"
-msgstr ""
-
-#: ../../doc/how-to/using_docker.rst:88
-msgid "tarantool.sock>"
-msgstr ""
-
-#: ../../doc/how-to/using_docker.rst:92
-#: ../../doc/how-to/using_package_manager.rst:35
-msgid "Now you can enter requests on the command line."
-msgstr ""
-
-#: ../../doc/how-to/using_docker.rst:96
-msgid "On production machines, Tarantool's interactive mode is designed for system administration only. We use it for most examples in this manual, because it is convenient for learning."
-msgstr ""
-
-#: ../../doc/how-to/using_docker.rst:102
-#: ../../doc/how-to/using_package_manager.rst:47
-msgid "Creating a database"
-msgstr ""
-
-#: ../../doc/how-to/using_docker.rst:104
-msgid "While we're attached to the console, let's create a simple test database."
-msgstr ""
-
-#: ../../doc/how-to/using_docker.rst:106
-msgid "First, create the first :term:`space` (named ``tester``):"
-msgstr ""
-
-#: ../../doc/how-to/using_docker.rst:108
-msgid "tarantool.sock> s = box.schema.space.create('tester')"
-msgstr ""
-
-#: ../../doc/how-to/using_docker.rst:112
-#: ../../doc/how-to/using_package_manager.rst:102
-msgid "Format the created space by specifying :term:`field` names and :ref:`types <index-box_data-types>`:"
-msgstr ""
-
-#: ../../doc/how-to/using_docker.rst:114
-msgid "tarantool.sock> s:format({\n"
-"              > {name = 'id', type = 'unsigned'},\n"
-"              > {name = 'band_name', type = 'string'},\n"
-"              > {name = 'year', type = 'unsigned'}\n"
-"              > })"
-msgstr ""
-
-#: ../../doc/how-to/using_docker.rst:122
-#: ../../doc/how-to/using_package_manager.rst:112
-msgid "Create the first :ref:`index <index-box_index>` (named ``primary``):"
-msgstr ""
-
-#: ../../doc/how-to/using_docker.rst:124
-msgid "tarantool.sock> s:create_index('primary', {\n"
-"              > type = 'tree',\n"
-"              > parts = {'id'}\n"
-"              > })"
-msgstr ""
-
-#: ../../doc/how-to/using_docker.rst:131
-#: ../../doc/how-to/using_package_manager.rst:121
-msgid "This is a primary index based on the ``id`` field of each tuple. ``TREE`` is the most universal index type. To learn more, check the documentation on Tarantool :ref:`index types <index-types>`."
-msgstr ""
-
-#: ../../doc/how-to/using_docker.rst:134
-#: ../../doc/how-to/using_package_manager.rst:124
-msgid "Insert three :term:`tuples <tuple>` (our name for records) into the space:"
-msgstr ""
-
-#: ../../doc/how-to/using_docker.rst:137
-msgid "tarantool.sock> s:insert{1, 'Roxette', 1986}\n"
-"tarantool.sock> s:insert{2, 'Scorpions', 2015}\n"
-"tarantool.sock> s:insert{3, 'Ace of Base', 1993}"
-msgstr ""
-
-#: ../../doc/how-to/using_docker.rst:143
-#: ../../doc/how-to/using_package_manager.rst:133
-msgid "To select a tuple using the ``primary`` index, run:"
-msgstr ""
-
-#: ../../doc/how-to/using_docker.rst:145
-msgid "tarantool.sock> s:select{3}"
-msgstr ""
-
-#: ../../doc/how-to/using_docker.rst:149
-#: ../../doc/how-to/using_package_manager.rst:139
-msgid "The terminal screen now looks like this:"
-msgstr ""
-
-#: ../../doc/how-to/using_docker.rst:151
-msgid "tarantool.sock> s = box.schema.space.create('tester')\n"
-"---\n"
-"...\n"
-"tarantool.sock> s:format({\n"
-"              > {name = 'id', type = 'unsigned'},\n"
-"              > {name = 'band_name', type = 'string'},\n"
-"              > {name = 'year', type = 'unsigned'}\n"
-"              > })\n"
-"---\n"
-"...\n"
-"tarantool.sock> s:create_index('primary', {\n"
-"              > type = 'tree',\n"
-"              > parts = {'id'}\n"
-"              > })\n"
-"---\n"
-"- unique: true\n"
-"  parts:\n"
-"  - type: unsigned\n"
-"    is_nullable: false\n"
-"    fieldno: 1\n"
-"  id: 0\n"
-"  space_id: 512\n"
-"  name: primary\n"
-"  type: TREE\n"
-"...\n"
-"tarantool.sock> s:insert{1, 'Roxette', 1986}\n"
-"---\n"
-"- [1, 'Roxette', 1986]\n"
-"...\n"
-"tarantool.sock> s:insert{2, 'Scorpions', 2015}\n"
-"---\n"
-"- [2, 'Scorpions', 2015]\n"
-"...\n"
-"tarantool.sock> s:insert{3, 'Ace of Base', 1993}\n"
-"---\n"
-"- [3, 'Ace of Base', 1993]\n"
-"...\n"
-"tarantool.sock> s:select{3}\n"
-"---\n"
-"- - [3, 'Ace of Base', 1993]\n"
-"..."
-msgstr ""
-
-#: ../../doc/how-to/using_docker.rst:195
-#: ../../doc/how-to/using_package_manager.rst:185
-msgid "To add a secondary index based on the ``band_name`` field, run:"
-msgstr ""
-
-#: ../../doc/how-to/using_docker.rst:197
-msgid "tarantool.sock> s:create_index('secondary', {\n"
-"              > type = 'tree',\n"
-"              > parts = {'band_name'}\n"
-"              > })"
-msgstr ""
-
-#: ../../doc/how-to/using_docker.rst:204
-#: ../../doc/how-to/using_package_manager.rst:194
-msgid "To select tuples using the ``secondary`` index, run:"
-msgstr ""
-
-#: ../../doc/how-to/using_docker.rst:206
-msgid "tarantool.sock> s.index.secondary:select{'Scorpions'}\n"
-"---\n"
-"- - [2, 'Scorpions', 2015]\n"
-"..."
-msgstr ""
-
-#: ../../doc/how-to/using_docker.rst:213
-msgid "To drop an index, run:"
-msgstr ""
-
-#: ../../doc/how-to/using_docker.rst:215
-msgid "tarantool> s.index.secondary:drop()\n"
-"---\n"
-"..."
-msgstr ""
-
-#: ../../doc/how-to/using_docker.rst:223
-msgid "Stopping a container"
-msgstr ""
-
-#: ../../doc/how-to/using_docker.rst:225
-msgid "When the testing is over, stop the container politely:"
-msgstr ""
-
-#: ../../doc/how-to/using_docker.rst:227
-msgid "$ docker stop mytarantool"
-msgstr ""
-
-#: ../../doc/how-to/using_docker.rst:231
-msgid "This was a temporary container, and its disk/memory data were flushed when you stopped it. But since you mounted a data directory from the host in the container, Tarantool's data files were persisted to the host's disk. Now if you start a new container and mount that data directory, Tarantool will recover all of the data from disk and continue working with the persisted data."
-msgstr ""
-
-#: ../../doc/how-to/using_package_manager.rst:5
-msgid "Using a package manager"
-msgstr ""
-
-#: ../../doc/how-to/using_package_manager.rst:7
-msgid "For production purposes, we recommend that you install Tarantool via the `official package manager <http://tarantool.org/download.html>`_. You can choose one of three versions: LTS, stable, or beta. An automatic build system creates, tests and publishes packages for every push into a corresponding branch at `Tarantool's GitHub repository <https://github.com/tarantool/tarantool>`_."
-msgstr ""
-
-#: ../../doc/how-to/using_package_manager.rst:14
-msgid "To download and install the package that's appropriate for your OS, start a shell (terminal) and enter the command-line instructions provided for your OS at Tarantool's `download page <http://tarantool.org/download.html>`_."
-msgstr ""
-
-#: ../../doc/how-to/using_package_manager.rst:20
+#: ../../doc/how-to/getting_started_db.rst:52
 msgid "Starting Tarantool"
 msgstr ""
 
-#: ../../doc/how-to/using_package_manager.rst:22
-msgid "To start working with Tarantool, start a terminal and run this:"
+#: ../../doc/how-to/getting_started_db.rst:54
+msgid "First, start the Tarantool instance from the tt environment directory using :ref:`tt start <tt-start>`:"
 msgstr ""
 
-#: ../../doc/how-to/using_package_manager.rst:24
-msgid "$ tarantool\n"
-"$ # by doing this, you create a new Tarantool instance"
+#: ../../doc/how-to/getting_started_db.rst:57
+msgid "$ tt start create_db"
 msgstr ""
 
-#: ../../doc/how-to/using_package_manager.rst:29
-msgid "Tarantool starts in interactive mode and displays a prompt:"
+#: ../../doc/how-to/getting_started_db.rst:61
+msgid "To check the running instances, use the :ref:`tt status <tt-status>` command:"
 msgstr ""
 
-#: ../../doc/how-to/using_package_manager.rst:31
-msgid "tarantool>"
+#: ../../doc/how-to/getting_started_db.rst:63
+msgid "$ tt status create_db\n"
+"INSTANCE                       STATUS      PID\n"
+"create_db:instance001     RUNNING     54560"
 msgstr ""
 
-#: ../../doc/how-to/using_package_manager.rst:39
+#: ../../doc/how-to/getting_started_db.rst:69
+msgid "After that, connect to the instance with :ref:`tt connect <tt-connect>`:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_db.rst:71
+msgid "$ tt connect create_db:instance001"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_db.rst:75
+msgid "This command opens an interactive Tarantool console with the ``create_db:instance001>`` prompt. Now you can enter requests on the command line."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_db.rst:80
 msgid "On production machines, Tarantool's interactive mode is designed for system administration only. We use it for most examples in this manual because it is convenient for learning."
 msgstr ""
 
-#: ../../doc/how-to/using_package_manager.rst:49
-msgid "Here is how to create a simple test database after installation."
+#: ../../doc/how-to/getting_started_db.rst:87
+msgid "Creating a database"
 msgstr ""
 
-#: ../../doc/how-to/using_package_manager.rst:51
-msgid "To let Tarantool store data in a separate place, create a new directory dedicated for tests:"
+#: ../../doc/how-to/getting_started_db.rst:89
+msgid "To create a test database after installation:"
 msgstr ""
 
-#: ../../doc/how-to/using_package_manager.rst:54
-msgid "$ mkdir ~/tarantool_sandbox\n"
-"$ cd ~/tarantool_sandbox"
+#: ../../doc/how-to/getting_started_db.rst:91
+msgid "Create a :term:`space <space>` named ``bands``:"
 msgstr ""
 
-#: ../../doc/how-to/using_package_manager.rst:59
-msgid "You can delete the directory when the tests are completed."
+#: ../../doc/how-to/getting_started_db.rst:93
+msgid "box.schema.space.create('bands')\n"
+""
 msgstr ""
 
-#: ../../doc/how-to/using_package_manager.rst:61
-msgid "Check if the default port that the database instance will listen to is vacant."
+#: ../../doc/how-to/getting_started_db.rst:98
+msgid "Format the created space by specifying :term:`field` names and :ref:`types <index-box_data-types>`:"
 msgstr ""
 
-#: ../../doc/how-to/using_package_manager.rst:63
-msgid "In versions before :doc:`2.4.2 </release/2.4.2>`, during installation the Tarantool packages for Debian and Ubuntu automatically enable and start the demonstrative global ``example.lua`` instance that listens to the ``3301`` port by default. The ``example.lua`` file showcases the basic configuration and can be found in the ``/etc/tarantool/instances.enabled`` or ``/etc/tarantool/instances.available`` directories."
+#: ../../doc/how-to/getting_started_db.rst:100
+msgid "box.space.bands:format({\n"
+"    { name = 'id', type = 'unsigned' },\n"
+"    { name = 'band_name', type = 'string' },\n"
+"    { name = 'year', type = 'unsigned' }\n"
+"})\n"
+""
 msgstr ""
 
-#: ../../doc/how-to/using_package_manager.rst:70
-msgid "However, we encourage you to perform the instance startup manually, so you can learn."
+#: ../../doc/how-to/getting_started_db.rst:105
+msgid "Create the first :ref:`index <index-box_index>` named ``primary``:"
 msgstr ""
 
-#: ../../doc/how-to/using_package_manager.rst:73
-msgid "Make sure the default port is vacant:"
+#: ../../doc/how-to/getting_started_db.rst:107
+msgid "box.space.bands:create_index('primary', { type = \"tree\", parts = { 'id' } })\n"
+""
 msgstr ""
 
-#: ../../doc/how-to/using_package_manager.rst:75
-msgid "To check if the demonstrative instance is running, run:"
+#: ../../doc/how-to/getting_started_db.rst:112
+msgid "This is a primary index based on the ``id`` field of each tuple. ``TREE`` is the most universal index type. To learn more, check the documentation on Tarantool :ref:`index types <index-types>`."
 msgstr ""
 
-#: ../../doc/how-to/using_package_manager.rst:77
-msgid "$ lsof -i :3301\n"
-"COMMAND    PID USER   FD   TYPE DEVICE SIZE/OFF NODE NAME\n"
-"tarantool 6851 root   12u  IPv4  40827      0t0  TCP *:3301 (LISTEN)"
+#: ../../doc/how-to/getting_started_db.rst:115
+msgid "Insert three :term:`tuples <tuple>` into the space:"
 msgstr ""
 
-#: ../../doc/how-to/using_package_manager.rst:83
-msgid "If it is running, kill the corresponding process. In this example:"
+#: ../../doc/how-to/getting_started_db.rst:117
+msgid "box.space.bands:insert { 1, 'Roxette', 1986 }\n"
+"box.space.bands:insert { 2, 'Scorpions', 1965 }\n"
+"box.space.bands:insert { 3, 'Ace of Base', 1987 }\n"
+""
 msgstr ""
 
-#: ../../doc/how-to/using_package_manager.rst:85
-msgid "$ kill 6851"
+#: ../../doc/how-to/getting_started_db.rst:122
+msgid "Then select a tuple using the ``primary`` index:"
 msgstr ""
 
-#: ../../doc/how-to/using_package_manager.rst:89
-msgid "To start Tarantool's database module and make the instance accept TCP requests on port ``3301``, run:"
+#: ../../doc/how-to/getting_started_db.rst:124
+msgid "box.space.bands:select { 3 }\n"
+""
 msgstr ""
 
-#: ../../doc/how-to/using_package_manager.rst:92
-msgid "tarantool> box.cfg{listen = 3301}"
+#: ../../doc/how-to/getting_started_db.rst:129
+msgid "Add a secondary index based on the ``band_name`` field:"
 msgstr ""
 
-#: ../../doc/how-to/using_package_manager.rst:96
-msgid "Create the first :term:`space <space>` (named ``tester``):"
+#: ../../doc/how-to/getting_started_db.rst:131
+msgid "box.space.bands:create_index('secondary', { type = \"tree\", parts = { 'band_name' } })\n"
+""
 msgstr ""
 
-#: ../../doc/how-to/using_package_manager.rst:98
-msgid "tarantool> s = box.schema.space.create('tester')"
+#: ../../doc/how-to/getting_started_db.rst:136
+msgid "Select tuples using the ``secondary`` index:"
 msgstr ""
 
-#: ../../doc/how-to/using_package_manager.rst:104
-msgid "tarantool> s:format({\n"
-"         > {name = 'id', type = 'unsigned'},\n"
-"         > {name = 'band_name', type = 'string'},\n"
-"         > {name = 'year', type = 'unsigned'}\n"
-"         > })"
+#: ../../doc/how-to/getting_started_db.rst:138
+msgid "box.space.bands.index.secondary:select{'Scorpions'}\n"
+""
 msgstr ""
 
-#: ../../doc/how-to/using_package_manager.rst:114
-msgid "tarantool> s:create_index('primary', {\n"
-"         > type = 'tree',\n"
-"         > parts = {'id'}\n"
-"         > })"
+#: ../../doc/how-to/getting_started_db.rst:143
+msgid "To prepare for the example in the next section, grant read, write, and execute privileges to the current user:"
 msgstr ""
 
-#: ../../doc/how-to/using_package_manager.rst:127
-msgid "tarantool> s:insert{1, 'Roxette', 1986}\n"
-"tarantool> s:insert{2, 'Scorpions', 2015}\n"
-"tarantool> s:insert{3, 'Ace of Base', 1993}"
+#: ../../doc/how-to/getting_started_db.rst:146
+msgid "box.schema.user.grant('guest', 'read,write,execute', 'universe')\n"
+""
 msgstr ""
 
-#: ../../doc/how-to/using_package_manager.rst:135
-msgid "tarantool> s:select{3}"
+#: ../../doc/how-to/getting_started_db.rst:151
+msgid "The full example in the terminal looks like this:"
 msgstr ""
 
-#: ../../doc/how-to/using_package_manager.rst:141
-msgid "tarantool> s = box.schema.space.create('tester')\n"
+#: ../../doc/how-to/getting_started_db.rst:153
+msgid "create_db:instance001> box.schema.space.create('bands')\n"
 "---\n"
 "...\n"
-"tarantool> s:format({\n"
-"         > {name = 'id', type = 'unsigned'},\n"
-"         > {name = 'band_name', type = 'string'},\n"
-"         > {name = 'year', type = 'unsigned'}\n"
-"         > })\n"
+"create_db:instance001> box.space.bands:format({\n"
+"                     > {name = 'id', type = 'unsigned'},\n"
+"                     > {name = 'band_name', type = 'string'},\n"
+"                     > {name = 'year', type = 'unsigned'}\n"
+"                     > })\n"
 "---\n"
 "...\n"
-"tarantool> s:create_index('primary', {\n"
-"         > type = 'tree',\n"
-"         > parts = {'id'}\n"
-"         > })\n"
+"create_db:instance001> box.space.bands:create_index('primary', { parts = { 'id' } })\n"
 "---\n"
 "- unique: true\n"
 "  parts:\n"
@@ -442,91 +243,118 @@ msgid "tarantool> s = box.schema.space.create('tester')\n"
 "  name: primary\n"
 "  type: TREE\n"
 "...\n"
-"tarantool> s:insert{1, 'Roxette', 1986}\n"
+"create_db:instance001> box.space.bands:insert { 1, 'Roxette', 1986 }\n"
 "---\n"
 "- [1, 'Roxette', 1986]\n"
 "...\n"
-"tarantool> s:insert{2, 'Scorpions', 2015}\n"
+"create_db:instance001> box.space.bands:insert { 2, 'Scorpions', 1965 }\n"
 "---\n"
-"- [2, 'Scorpions', 2015]\n"
+"- [2, 'Scorpions', 1965]\n"
 "...\n"
-"tarantool> s:insert{3, 'Ace of Base', 1993}\n"
+"create_db:instance001> box.space.bands:insert { 3, 'Ace of Base', 1987 }\n"
 "---\n"
-"- [3, 'Ace of Base', 1993]\n"
+"- [3, 'Ace of Base', 1987]\n"
 "...\n"
-"tarantool> s:select{3}\n"
+"create_db:instance001> box.space.bands:select { 3 }\n"
 "---\n"
-"- - [3, 'Ace of Base', 1993]\n"
+"- - [3, 'Ace of Base', 1987]\n"
+"...\n"
+"create_db:instance001> box.space.bands:create_index('secondary', { parts = { 'band_name' } })\n"
+"---\n"
+"- unique: true\n"
+"  parts:\n"
+"  - fieldno: 2\n"
+"    sort_order: asc\n"
+"    type: string\n"
+"    exclude_null: false\n"
+"    is_nullable: false\n"
+"  hint: true\n"
+"  id: 1\n"
+"  type: TREE\n"
+"  space_id: 512\n"
+"  name: secondary\n"
+"...\n"
+"create_db:instance001> s.index.secondary:select{'Scorpions'}\n"
+"---\n"
+"- - [2, 'Scorpions', 1965]\n"
+"...\n"
+"create_db:instance001> box.schema.user.grant('guest', 'read,write,execute', 'universe')\n"
+"---\n"
 "..."
 msgstr ""
 
-#: ../../doc/how-to/using_package_manager.rst:187
-msgid "tarantool> s:create_index('secondary', {\n"
-"         > type = 'tree',\n"
-"         > parts = {'band_name'}\n"
-"         > })"
-msgstr ""
-
-#: ../../doc/how-to/using_package_manager.rst:196
-msgid "tarantool> s.index.secondary:select{'Scorpions'}\n"
-"---\n"
-"- - [2, 'Scorpions', 2015]\n"
-"..."
-msgstr ""
-
-#: ../../doc/how-to/using_package_manager.rst:203
-msgid "Now, to prepare for the example in the next section, try this:"
-msgstr ""
-
-#: ../../doc/how-to/using_package_manager.rst:205
-msgid "tarantool> box.schema.user.grant('guest', 'read,write,execute', 'universe')"
-msgstr ""
-
-#: ../../doc/how-to/using_package_manager.rst:213
+#: ../../doc/how-to/getting_started_db.rst:219
 msgid "Connecting remotely"
 msgstr ""
 
-#: ../../doc/how-to/using_package_manager.rst:215
-msgid "In the request ``box.cfg{listen = 3301}`` that we made earlier, the ``listen`` value can be any form of a :ref:`URI <index-uri>` (uniform resource identifier). In this case, it’s just a local port: port ``3301``. You can send requests to the listen URI via:"
+#: ../../doc/how-to/getting_started_db.rst:221
+msgid "In the configuration file (``config.yaml``), the instance listens on ``127.0.0.1:3301``:"
 msgstr ""
 
-#: ../../doc/how-to/using_package_manager.rst:220
-msgid "``telnet``,"
+#: ../../doc/how-to/getting_started_db.rst:223
+msgid "instance001:\n"
+"  iproto:\n"
+"    listen:\n"
+"    - uri: '127.0.0.1:3301'"
 msgstr ""
 
-#: ../../doc/how-to/using_package_manager.rst:221
-msgid "a :ref:`connector <index-box_connectors>`,"
+#: ../../doc/how-to/getting_started_db.rst:229
+msgid "The :ref:`iproto.listen <configuration_reference_iproto_listen>` option is an array of URIs used to listen for incoming requests. Each record of the array contains a required :ref:`URI <index-uri>` (uniform resource identifier) field and an optional :ref:`params <configuration_reference_iproto_listen>` field. The ``iproto.listen.uri`` field may contain:"
 msgstr ""
 
-#: ../../doc/how-to/using_package_manager.rst:222
-msgid "another instance of Tarantool (using the :ref:`console <console-module>` module), or"
+#: ../../doc/how-to/getting_started_db.rst:234
+msgid "a listening address  (for example, ``127.0.0.1:3301``)"
 msgstr ""
 
-#: ../../doc/how-to/using_package_manager.rst:223
-msgid ":ref:`tt <tt-cli>` administrative utility."
+#: ../../doc/how-to/getting_started_db.rst:235
+msgid "a listening port (for example, `3301`)"
 msgstr ""
 
-#: ../../doc/how-to/using_package_manager.rst:225
-msgid "Let’s try (3)."
+#: ../../doc/how-to/getting_started_db.rst:237
+msgid "The field can't contain parameters, login, or password."
 msgstr ""
 
-#: ../../doc/how-to/using_package_manager.rst:227
-msgid "Switch to another terminal. On Linux, for example, this means starting another instance of a Bash shell. You can switch to any working directory in the new terminal, not necessarily to ``~/tarantool_sandbox``."
+#: ../../doc/how-to/getting_started_db.rst:239
+msgid "Learn more about the :ref:`connection parameters <configuration_options_connection>`."
 msgstr ""
 
-#: ../../doc/how-to/using_package_manager.rst:231
-msgid "Start another instance of ``tarantool``:"
+#: ../../doc/how-to/getting_started_db.rst:241
+msgid "You can send requests to a Tarantool instance using:"
 msgstr ""
 
-#: ../../doc/how-to/using_package_manager.rst:233
-msgid "$ tarantool"
+#: ../../doc/how-to/getting_started_db.rst:243
+msgid "``telnet``"
 msgstr ""
 
-#: ../../doc/how-to/using_package_manager.rst:237
-msgid "Use ``net.box`` to connect to the Tarantool instance that’s listening on ``localhost:3301``\":"
+#: ../../doc/how-to/getting_started_db.rst:244
+msgid "a :ref:`connector <index-box_connectors>`"
 msgstr ""
 
-#: ../../doc/how-to/using_package_manager.rst:240
+#: ../../doc/how-to/getting_started_db.rst:245
+msgid "another instance of Tarantool (using the :ref:`console <console-module>` module)"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_db.rst:246
+msgid ":ref:`tt <tt-cli>` administrative utility"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_db.rst:248
+msgid "In previous steps, the requests were sent using the tt utility. To connect from another Tarantool instance, start the ``tarantool`` executable with the ``-i`` option, which enables the interactive mode."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_db.rst:252
+msgid "To start working, switch to another terminal and start another Tarantool instance:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_db.rst:254
+msgid "$ tarantool -i"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_db.rst:258
+msgid "Use the :ref:`net.box <net_box-module>` module to connect to the remote Tarantool instance that is listening on ``localhost:3301``:"
+msgstr ""
+
+#: ../../doc/how-to/getting_started_db.rst:261
 msgid "tarantool> net_box = require('net.box')\n"
 "---\n"
 "...\n"
@@ -535,59 +363,29 @@ msgid "tarantool> net_box = require('net.box')\n"
 "..."
 msgstr ""
 
-#: ../../doc/how-to/using_package_manager.rst:249
-msgid "Try this request:"
+#: ../../doc/how-to/getting_started_db.rst:270
+msgid "Then send a select request to ``instance001``:"
 msgstr ""
 
-#: ../../doc/how-to/using_package_manager.rst:251
-msgid "tarantool> conn.space.tester:select{2}"
-msgstr ""
-
-#: ../../doc/how-to/using_package_manager.rst:255
-msgid "This means \"send a request to that Tarantool instance, and display the result\". It is equivalent to the local request ``box.space.tester:select{2}``. The result in this case is one of the tuples that was inserted earlier. Your terminal screen should now look like this:"
-msgstr ""
-
-#: ../../doc/how-to/using_package_manager.rst:260
-msgid "$ tarantool\n"
-"\n"
-"Tarantool 2.6.1-32-g53dbba7c2\n"
-"type 'help' for interactive help\n"
-"tarantool> net_box = require('net.box')\n"
+#: ../../doc/how-to/getting_started_db.rst:272
+msgid "tarantool> conn.space.bands:select{2}\n"
 "---\n"
-"...\n"
-"tarantool> conn = net_box.connect(3301)\n"
-"---\n"
-"...\n"
-"tarantool> conn.space.tester:select{2}\n"
-"---\n"
-"- - [2, 'Scorpions', 2015]\n"
+"- - [2, 'Scorpions', 1965]\n"
 "..."
 msgstr ""
 
-#: ../../doc/how-to/using_package_manager.rst:277
+#: ../../doc/how-to/getting_started_db.rst:279
+msgid "This request is equivalent to the local request ``box.space.bands:select{2}``. The result in this case is one of the tuples that was inserted earlier."
+msgstr ""
+
+#: ../../doc/how-to/getting_started_db.rst:282
 msgid "You can repeat ``box.space...:insert{}`` and ``box.space...:select{}`` (or ``conn.space...:insert{}`` and ``conn.space...:select{}``) indefinitely, on either Tarantool instance."
 msgstr ""
 
-#: ../../doc/how-to/using_package_manager.rst:281
-msgid "When the testing is over:"
+#: ../../doc/how-to/getting_started_db.rst:286
+msgid "When the tutorial is over, you can use :ref:`box.space.s:drop() <box_space-drop>` to drop the space. To exit interactive console, enter ``Ctrl+D``. After that, to stop Tarantool instances, use the :ref:`tt stop <tt-stop>` command:"
 msgstr ""
 
-#: ../../doc/how-to/using_package_manager.rst:283
-msgid "To drop the space: ``s:drop()``"
-msgstr ""
-
-#: ../../doc/how-to/using_package_manager.rst:284
-msgid "To stop ``tarantool``: Ctrl+C or Ctrl+D"
-msgstr ""
-
-#: ../../doc/how-to/using_package_manager.rst:285
-msgid "To stop Tarantool (an alternative): the standard Lua function `os.exit() <http://www.lua.org/manual/5.1/manual.html#pdf-os.exit>`_"
-msgstr ""
-
-#: ../../doc/how-to/using_package_manager.rst:287
-msgid "To stop Tarantool (from another terminal): ``sudo pkill -f tarantool``"
-msgstr ""
-
-#: ../../doc/how-to/using_package_manager.rst:288
-msgid "To destroy the test: ``rm -r ~/tarantool_sandbox``"
+#: ../../doc/how-to/getting_started_db.rst:290
+msgid "$ tt stop create_db"
 msgstr ""
