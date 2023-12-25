@@ -44,20 +44,21 @@ Before starting this tutorial:
 
         The instance in the configuration accepts TCP requests on port ``3301``.
 
-Read more: :ref:`Starting instances using the tt utility <configuration_run_instance_tt>`.
+Read more: :ref:`admin-instance-environment-overview`.
 
 ..  _getting_started_db-start:
 
 Starting Tarantool
 ------------------
 
-First, start a Tarantool instance from the tt environment directory:
+First, start the Tarantool instance from the tt environment directory using
+:ref:`tt start <tt-start>`:
 
 ..  code-block:: console
 
     $ tt start create_db
 
-To check the running instances, you can use the following command:
+To check the running instances, use the :ref:`tt status <tt-status>` command:
 
 ..  code-block:: console
 
@@ -65,7 +66,7 @@ To check the running instances, you can use the following command:
     INSTANCE                       STATUS      PID
     create_db:instance001     RUNNING     54560
 
-After that, connect to the instance:
+After that, connect to the instance with :ref:`tt connect <tt-connect>`:
 
 ..  code-block:: console
 
@@ -284,7 +285,7 @@ indefinitely, on either Tarantool instance.
 
 When the tutorial is over, you can use :ref:`box.space.s:drop() <box_space-drop>` to drop the space.
 To exit interactive console, enter ``Ctrl+D``.
-After that, to stop Tarantool instances, use the following command:
+After that, to stop Tarantool instances, use the :ref:`tt stop <tt-stop>` command:
 
 ..  code-block:: console
 
