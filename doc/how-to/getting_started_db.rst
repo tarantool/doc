@@ -44,7 +44,7 @@ Before starting this tutorial:
 
         The instance in the configuration accepts TCP requests on port ``3301``.
 
-Read more: :ref:`admin-instance-environment-overview`.
+Read more: :ref:`admin-instance_config-develop-app`.
 
 ..  _getting_started_db-start:
 
