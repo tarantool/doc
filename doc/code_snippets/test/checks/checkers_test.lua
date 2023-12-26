@@ -20,7 +20,7 @@ local is_uint64 = checkers.uint64(2048)
 -- is_int64/is_uint64 = true
 
 -- tuple checker
-local is_tuple = checkers.tuple(box.tuple.new(1, 'The Beatles', 1960))
+local is_tuple = checkers.tuple(box.tuple.new{1, 'The Beatles', 1960})
 -- is_tuple = true
 
 -- uuid checkers

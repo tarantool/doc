@@ -5,7 +5,7 @@ local mp_from_number = msgpack.object(123)
 local mp_from_string = msgpack.object('hello world')
 local mp_from_array = msgpack.object({ 10, 20, 30 })
 local mp_from_table = msgpack.object({ band_name = 'The Beatles', year = 1960 })
-local mp_from_tuple = msgpack.object(box.tuple.new(1, 'The Beatles', 1960))
+local mp_from_tuple = msgpack.object(box.tuple.new{1, 'The Beatles', 1960})
 
 -- Create a MsgPack object from a raw MsgPack string
 local raw_mp_string = msgpack.encode({ 10, 20, 30 })
