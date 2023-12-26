@@ -56,7 +56,7 @@ g.test_constraints = function(cg)
         -- Tests --
         t.assert_equals(customers:count(), 1)
         t.assert_equals(customers:get(1), { 1, "Alice", 30 })
-        t.assert_equals(age_err:unpack().message, 'Check constraint \'check_person\' failed for tuple')
-        t.assert_equals(name_err:unpack().message, 'Check constraint \'check_person\' failed for tuple')
+        t.assert_equals(age_err:unpack().message, 'Check constraint \'check_person\' failed for a tuple')
+        t.assert_equals(name_err:unpack().message, 'Check constraint \'check_person\' failed for a tuple')
     end)
 end
