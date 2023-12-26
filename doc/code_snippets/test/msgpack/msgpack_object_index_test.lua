@@ -2,7 +2,7 @@ local msgpack = require('msgpack')
 
 local mp_from_array = msgpack.object({ 10, 20, 30 })
 local mp_from_table = msgpack.object({ band_name = 'The Beatles', year = 1960 })
-local mp_from_tuple = msgpack.object(box.tuple.new(1, 'The Beatles', 1960))
+local mp_from_tuple = msgpack.object(box.tuple.new{1, 'The Beatles', 1960})
 
 -- Get MsgPack data by the specified index or key
 local mp_array_get_by_index = mp_from_array[1] -- Returns 10

@@ -11,8 +11,8 @@ g.before_each(function(cg)
 end)
 
 g.after_each(function(cg)
-    cg.server:stop()
     cg.server:drop()
+    fio.rmtree(cg.server.workdir)
 end)
 
 g.test_json_path_index = function(cg)

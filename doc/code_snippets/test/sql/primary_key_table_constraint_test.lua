@@ -11,8 +11,8 @@ g.before_each(function(cg)
 end)
 
 g.after_each(function(cg)
-    cg.server:stop()
     cg.server:drop()
+    fio.rmtree(cg.server.workdir)
 end)
 
 g.test_space_is_updated = function(cg)
@@ -35,7 +35,7 @@ g.test_space_is_updated = function(cg)
             -- insert_duplicate_author_start
             INSERT INTO author VALUES (2, 'Alexander Pushkin');
             /*
-            - Duplicate key exists in unique index "pk_unnamed_AUTHOR_1" in space "AUTHOR" with
+            - Duplicate key exists in unique index "pk_unnamed_author_1" in space "author" with
               old tuple - [2, "Fyodor Dostoevsky"] and new tuple - [2, "Alexander Pushkin"]
             */
             -- insert_duplicate_author_end
@@ -59,14 +59,14 @@ g.test_space_is_updated = function(cg)
             -- insert_duplicate_book_start
             INSERT INTO book VALUES (2, 'Crime and Punishment');
             /*
-            - Duplicate key exists in unique index "pk_unnamed_BOOK_1" in space "BOOK" with old
+            - Duplicate key exists in unique index "pk_unnamed_book_1" in space "BOOK" with old
               tuple - [2, "Crime and Punishment"] and new tuple - [2, "Crime and Punishment"]
             */
             -- insert_duplicate__book_end
         ]])
 
         -- Tests
-        t.assert_equals(insert_author_err:unpack().message, "Duplicate key exists in unique index \"pk_unnamed_AUTHOR_1\" in space \"AUTHOR\" with old tuple - [2, \"Fyodor Dostoevsky\"] and new tuple - [2, \"Alexander Pushkin\"]")
-        t.assert_equals(insert_book_err:unpack().message, "Duplicate key exists in unique index \"pk_unnamed_BOOK_1\" in space \"BOOK\" with old tuple - [2, \"Crime and Punishment\"] and new tuple - [2, \"Crime and Punishment\"]")
+        t.assert_equals(insert_author_err:unpack().message, "Duplicate key exists in unique index \"pk_unnamed_author_1\" in space \"author\" with old tuple - [2, \"Fyodor Dostoevsky\"] and new tuple - [2, \"Alexander Pushkin\"]")
+        t.assert_equals(insert_book_err:unpack().message, "Duplicate key exists in unique index \"pk_unnamed_book_1\" in space \"book\" with old tuple - [2, \"Crime and Punishment\"] and new tuple - [2, \"Crime and Punishment\"]")
     end)
 end
