@@ -6,7 +6,7 @@ Release date: December 26, 2023
 Releases on GitHub: :tarantool-release:`3.0.0`
 
 The 3.0 release of Tarantool introduces a new declarative approach for configuring a cluster,
-a visual tool for managing, configuring, and monitoring Tarantool EE clusters,
+a new visual tool -- Tarantool Cluster Manager,
 and many other new features and fixes.
 This document provides an overview of the most important features for the Community and Enterprise editions.
 
@@ -24,7 +24,7 @@ New declarative configuration
 -----------------------------
 
 Starting with the 3.0 version, Tarantool provides the ability to :ref:`configure the full topology of a cluster <configuration>` using a declarative YAML configuration instead of configuring each instance using a dedicated Lua script.
-Using a new approach, you can use local configuration in a YAML file for each instance or store configuration data in one reliable place, for example, a Tarantool or an etcd cluster.
+With a new approach, you can write a local configuration in a YAML file for each instance or store configuration data in one reliable place, for example, a Tarantool or an etcd cluster.
 
 The example below shows how a configuration of a small sharded cluster might look.
 In the diagram below, the cluster includes 5 instances: one router and 4 storages, which constitute two replica sets.
@@ -113,7 +113,7 @@ Administration and maintenance
 Database statistics
 ~~~~~~~~~~~~~~~~~~~
 
-Starting with 3.0, Tarantool provides extended statistics about memory consumption for the given space or even specific tuples.
+Starting with 3.0, Tarantool provides extended statistics about memory consumption for the given space or specific tuples.
 
 Usually, the :ref:`space_object:bsize() <box_space-bsize>` method is used to get the size of memory occupied by the specified space:
 
@@ -206,7 +206,7 @@ Then, use the ``<replicaset_name>.bootstrap_leader`` option to specify a bootstr
 Security (EE)
 ~~~~~~~~~~~~~
 
-With the 3.0 version, Tarantool Enterprise Edition provides a set of new features that enhance :ref:`security <enterprise-security>` in your cluster.
+With the 3.0 version, Tarantool Enterprise Edition provides a set of new features that enhance :ref:`security <enterprise-security>` in your cluster:
 
 -   Introduced the ``secure_erasing`` configuration option that forces Tarantool to overwrite a data file a few times before deletion to render recovery of a deleted file impossible.
     With the new configuration approach, you can enable this capability as follows:
@@ -248,7 +248,7 @@ Tarantool Enterprise Edition includes the following new features for :ref:`audit
     Each system audit event now has a severity level determined by its importance.
 -   Added the ``audit_log.audit_spaces`` option that configures the list of spaces for which data operation events should be logged.
 -   Added the ``audit_log.audit_extract_key`` option that forces the audit subsystem to log the primary key instead of a full tuple in DML operations.
-    This might be useful for reducing an audit log's size in the case of large tuples.
+    This might be useful for reducing audit log size in the case of large tuples.
 
 The sample audit log configuration in the 3.0 version might look as follows, including new ``audit_spaces`` and ``audit_extract_key`` options:
 
@@ -359,7 +359,7 @@ Then, you can use the Lua API to open and read ``*.ttfr`` files:
 New DEB and RPM packages
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-With this release, the approach to delivering Tarantool to end users using DEB and RPM packages is slightly revised.
+With this release, the approach to delivering Tarantool to end users in DEB and RPM packages is slightly revised.
 In the previous versions, Tarantool was built for the most popular Linux distributions and their latest version.
 
 Starting with this release, only two sets of DEB and RPM packages are delivered.
@@ -379,8 +379,8 @@ Developing applications
 varbinary in Lua
 ~~~~~~~~~~~~~~~~
 
-In the previous versions, Tarantool already supported a ``varbinary`` type for :ref:`storing data <index_box_field_type_details>`.
-But working with ``varbinary`` database fields required using various workarounds, for example, using C to process such data.
+In the previous versions, Tarantool already supported the ``varbinary`` type for :ref:`storing data <index_box_field_type_details>`.
+But working with ``varbinary`` database fields required workarounds, such as using C to process such data.
 
 The 3.0 version includes a new ``varbinary`` module for working with varbinary objects.
 The module implements the following functions:
@@ -514,7 +514,7 @@ The 2.11 release introduced the following features:
 -   :ref:`Read views <2-11-read_views>` are in-memory snapshots of the entire database that aren't affected by future data modifications.
 -   :ref:`Pagination <2-11-pagination>` for getting data in chunks.
 
-With this release, a read view object supports the ``after`` and ``fetch_pos`` arguments for the ``select`` and ``pairs`` methods:
+With the 3.0 release, a read view object supports the ``after`` and ``fetch_pos`` arguments for the ``select`` and ``pairs`` methods:
 
 .. code-block:: tarantoolsession
 
