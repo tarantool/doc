@@ -86,19 +86,31 @@ Tarantool Cluster Manager (EE)
 Tarantool 3.0 Enterprise Edition comes with a brand new visual tool – :ref:`Tarantool Cluster Manager <tcm>` (TCM).
 It provides a web-based user interface for managing, configuring, and monitoring Tarantool EE clusters that use centralized configuration storage.
 
-[TODO: stateboard image]
+.. image:: _images/3_0_whats_new_tcm_stateboard.png
+    :align: left
+    :width: 700
+    :alt: TCM stateboard
 
 TCM can manage multiple clusters and covers a wide range of tasks, from writing a cluster’s configuration to executing commands interactively on specific instances.
 
-[TODO: config image]
+.. image:: _images/3_0_whats_new_tcm_config.png
+    :align: left
+    :width: 700
+    :alt: TCM cluster configuration
 
 TCM's role-based access control system lets you manage users’ access to clusters, their configurations, and stored data.
 
-[TODO: users image]
+.. image:: _images/3_0_whats_new_tcm_users.png
+    :align: left
+    :width: 700
+    :alt: TCM users
 
 The built-in customizable audit logging mechanism and LDAP authentication make TCM a suitable solution for different enterprise security requirements.
 
-[TODO: audit log image]
+.. image:: _images/3_0_whats_new_audit_log.png
+    :align: left
+    :width: 700
+    :alt: TCM audit log
 
 
 
