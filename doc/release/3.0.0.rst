@@ -285,6 +285,75 @@ The entry includes the new ``uuid`` and ``severity`` fields.
 The last ``description`` field gives only the information about the key of the deleted tuple.
 
 
+
+
+.. _3-0-flight-recorder:
+
+Reading flight recordings (EE)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The :ref:`flight recorder <enterprise-flight-recorder>` available in the Enterprise Edition is an event collection tool that gathers various information about a working Tarantool instance.
+With the 3.0 version, you can read flight recordings using the API provided by the ``flightrec`` module.
+
+To enable the flight recorder in a YAML file, set ``flightrec.enabled`` to true:
+
+.. code-block:: yaml
+
+    flightrec:
+      enabled: true
+
+Then, you can use the Lua API to open and read ``*.ttfr`` files:
+
+..  code-block:: tarantoolsession
+
+    app:instance001> flightrec = require('flightrec')
+    ---
+    ...
+
+    app:instance001> flightrec_file = flightrec.open('var/lib/instance001/20231225T085435.ttfr')
+    ---
+    ...
+
+    app:instance001> flightrec_file
+    ---
+    - sections: &0
+        requests:
+          size: 10485760
+        metrics:
+          size: 368640
+        logs:
+          size: 10485760
+      was_closed: false
+      version: 0
+      pid: 1350
+    ...
+
+    app:instance001> for i, r in flightrec_file.sections.logs:pairs() do record = r; break end
+    ---
+    ...
+
+    app:instance001> record
+    ---
+    - level: INFO
+      fiber_name: interactive
+      fiber_id: 103
+      cord_name: main
+      file: ./src/box/flightrec.c
+      time: 2023-12-25 08:50:12.275
+      message: 'Flight recorder: configuration has been done'
+      line: 727
+    ...
+
+    app:instance001> flightrec_file:close()
+    ---
+    ...
+
+
+
+
+
+
+
 .. _3-0-deb_rpm_package:
 
 New DEB and RPM packages
@@ -523,71 +592,6 @@ This means that the query below tries to find the ``MyTable`` table and then ``M
 .. code-block:: sql
 
     SELECT * FROM MyTable;
-
-
-
-
-
-.. _3-0-flight-recorder:
-
-Reading flight recordings (EE)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The :ref:`flight recorder <enterprise-flight-recorder>` available in the Enterprise Edition is an event collection tool that gathers various information about a working Tarantool instance.
-With the 3.0 version, you can read flight recordings using the API provided by the ``flightrec`` module.
-
-To enable the flight recorder in a YAML file, set ``flightrec.enabled`` to true:
-
-.. code-block:: yaml
-
-    flightrec:
-      enabled: true
-
-Then, you can use the Lua API to open and read ``*.ttfr`` files:
-
-..  code-block:: tarantoolsession
-
-    app:instance001> flightrec = require('flightrec')
-    ---
-    ...
-
-    app:instance001> flightrec_file = flightrec.open('var/lib/instance001/20231225T085435.ttfr')
-    ---
-    ...
-
-    app:instance001> flightrec_file
-    ---
-    - sections: &0
-        requests:
-          size: 10485760
-        metrics:
-          size: 368640
-        logs:
-          size: 10485760
-      was_closed: false
-      version: 0
-      pid: 1350
-    ...
-
-    app:instance001> for i, r in flightrec_file.sections.logs:pairs() do record = r; break end
-    ---
-    ...
-
-    app:instance001> record
-    ---
-    - level: INFO
-      fiber_name: interactive
-      fiber_id: 103
-      cord_name: main
-      file: ./src/box/flightrec.c
-      time: 2023-12-25 08:50:12.275
-      message: 'Flight recorder: configuration has been done'
-      line: 727
-    ...
-
-    app:instance001> flightrec_file:close()
-    ---
-    ...
 
 
 
