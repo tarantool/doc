@@ -53,7 +53,7 @@ g.test_space_is_updated = function(cg)
             -- insert_error_start
             INSERT INTO book VALUES (3, 'Eugene Onegin', 3);
             /*
-            - 'Foreign key constraint ''fk_unnamed_BOOK_1'' failed: foreign tuple was not found'
+            - 'Foreign key constraint ''fk_unnamed_book_1'' failed: foreign tuple was not found'
             */
             -- insert_error_end
         ]])
@@ -61,7 +61,7 @@ g.test_space_is_updated = function(cg)
             -- update_error_start
             UPDATE book SET author_id = 10 WHERE id = 1;
             /*
-            - 'Foreign key constraint ''fk_unnamed_BOOK_1'' failed: foreign tuple was not found'
+            - 'Foreign key constraint ''fk_unnamed_book_1'' failed: foreign tuple was not found'
             */
             -- update_error_end
         ]])
@@ -69,14 +69,14 @@ g.test_space_is_updated = function(cg)
             -- delete_error_start
             DELETE FROM author WHERE id = 2;
             /*
-            - 'Foreign key ''fk_unnamed_BOOK_1'' integrity check failed: tuple is referenced'
+            - 'Foreign key ''fk_unnamed_book_1'' integrity check failed: tuple is referenced'
             */
             -- delete_error_end
         ]])
 
         -- Tests
-        t.assert_equals(insert_err:unpack().message, "Foreign key constraint 'fk_unnamed_BOOK_1' failed: foreign tuple was not found")
-        t.assert_equals(update_err:unpack().message, "Foreign key constraint 'fk_unnamed_BOOK_1' failed: foreign tuple was not found")
-        t.assert_equals(delete_err:unpack().message, "Foreign key 'fk_unnamed_BOOK_1' integrity check failed: tuple is referenced")
+        t.assert_equals(insert_err:unpack().message, "Foreign key constraint 'fk_unnamed_book_1' failed: foreign tuple was not found")
+        t.assert_equals(update_err:unpack().message, "Foreign key constraint 'fk_unnamed_book_1' failed: foreign tuple was not found")
+        t.assert_equals(delete_err:unpack().message, "Foreign key 'fk_unnamed_book_1' integrity check failed: tuple is referenced")
     end)
 end

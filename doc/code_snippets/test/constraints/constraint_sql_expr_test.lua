@@ -42,14 +42,14 @@ g.test_constraints = function(cg)
         local _, age_err = pcall(function()
             -- insert_age_error_start
             customers:insert { 2, "Bob", 18 }
-            -- error: Check constraint 'check_person' failed for tuple
+            -- error: Check constraint 'check_person' failed for a tuple
             -- insert_age_error_end
         end)
 
         local _, name_err = pcall(function()
             -- insert_name_error_start
             customers:insert { 3, "Admin", 25 }
-            -- error: Check constraint 'check_person' failed for tuple
+            -- error: Check constraint 'check_person' failed for a tuple
             -- insert_name_error_end
         end)
 

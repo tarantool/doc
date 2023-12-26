@@ -35,7 +35,7 @@ g.test_space_is_updated = function(cg)
             -- insert_duplicate_author_start
             INSERT INTO author VALUES (3, 'Leo Tolstoy');
             /*
-            - Duplicate key exists in unique index "unique_unnamed_AUTHOR_2" in space "AUTHOR"
+            - Duplicate key exists in unique index "unique_unnamed_author_2" in space "author"
               with old tuple - [1, "Leo Tolstoy"] and new tuple - [3, "Leo Tolstoy"]
             */
             -- insert_duplicate_author_end
@@ -60,14 +60,14 @@ g.test_space_is_updated = function(cg)
             -- insert_duplicate_book_start
             INSERT INTO book VALUES (3, 'War and Peace', 1);
             /*
-            - Duplicate key exists in unique index "unique_unnamed_BOOK_2" in space "BOOK" with
+            - Duplicate key exists in unique index "unique_unnamed_book_2" in space "book" with
               old tuple - [1, "War and Peace", 1] and new tuple - [3, "War and Peace", 1]
             */
             -- insert_duplicate__book_end
         ]])
 
         -- Tests
-        t.assert_equals(insert_author_err:unpack().message, "Duplicate key exists in unique index \"unique_unnamed_AUTHOR_2\" in space \"AUTHOR\" with old tuple - [1, \"Leo Tolstoy\"] and new tuple - [3, \"Leo Tolstoy\"]")
-        t.assert_equals(insert_book_err:unpack().message, "Duplicate key exists in unique index \"unique_unnamed_BOOK_2\" in space \"BOOK\" with old tuple - [1, \"War and Peace\", 1] and new tuple - [3, \"War and Peace\", 1]")
+        t.assert_equals(insert_author_err:unpack().message, "Duplicate key exists in unique index \"unique_unnamed_author_2\" in space \"author\" with old tuple - [1, \"Leo Tolstoy\"] and new tuple - [3, \"Leo Tolstoy\"]")
+        t.assert_equals(insert_book_err:unpack().message, "Duplicate key exists in unique index \"unique_unnamed_book_2\" in space \"book\" with old tuple - [1, \"War and Peace\", 1] and new tuple - [3, \"War and Peace\", 1]")
     end)
 end

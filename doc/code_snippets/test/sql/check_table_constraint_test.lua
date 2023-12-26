@@ -36,12 +36,12 @@ g.test_space_is_updated = function(cg)
             -- insert_short_name_start
             INSERT INTO author VALUES (3, 'Alex');
             /*
-            - Check constraint 'CHECK_NAME_LENGTH' failed for tuple
+            - Check constraint 'check_name_length' failed for a tuple
             */
             -- insert_short_name_end
         ]])
 
         -- Tests
-        t.assert_equals(insert_author_err:unpack().message, "Check constraint 'CHECK_NAME_LENGTH' failed for tuple")
+        t.assert_equals(insert_author_err:unpack().message, "Check constraint 'check_name_length' failed for a tuple")
     end)
 end
