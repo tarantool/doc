@@ -303,8 +303,7 @@ varbinary in Lua
 ~~~~~~~~~~~~~~~~
 
 In the previous versions, Tarantool already supported a ``varbinary`` type for storing data.
-But there was no capability to work with binary data in Lua code.
-This required using various workarounds to work with ``varbinary`` fields, for example, using C to work with such data.
+But working with ``varbinary`` database fields required using various workarounds, for example, using C to process such data.
 
 The 3.0 version includes a new ``varbinary`` module for working with varbinary objects.
 The module implements the following functions:
@@ -599,7 +598,7 @@ Handling LuaJIT compiler errors
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The 3.0 release includes a fix for the `gh-562 <https://github.com/tarantool/tarantool/issues/562>`__ LuaJIT issue related to the inability to handle internal compiler on-trace errors using ``pcall``.
-This issue could lead to the following errors:
+The examples of such errors are:
 
 -   An ``Out of memory`` error might occur for ``select`` queries returning a large amount of data.
 -   A ``Table overflow`` error is raised when exceeding the maximum number of keys in a table.
