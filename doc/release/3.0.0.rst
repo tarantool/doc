@@ -5,8 +5,16 @@ Release date: December 26, 2023
 
 Releases on GitHub: :tarantool-release:`3.0.0`
 
-The 3.0 release of Tarantool includes many new features and fixes.
-This document provides an overview of the most important features for the Enterprise and Community editions.
+The 3.0 release of Tarantool introduces a new declarative approach for configuring a cluster,
+a visual tool for managing, configuring, and monitoring Tarantool EE clusters,
+and many other new features and fixes.
+This document provides an overview of the most important features for the Community and Enterprise editions.
+
+-   :ref:`New declarative configuration <3-0-new_declarative_configuration>`
+-   :ref:`Tarantool Cluster Manager <3-0-tarantool_cluster_manager>`
+-   :ref:`Administration and maintenance <3-0-enhancements_for_administration_and_maintenance>`
+-   :ref:`Developing applications <3-0-features_for_developers>`
+-   :ref:`Stability <3-0-stability>`
 
 
 
