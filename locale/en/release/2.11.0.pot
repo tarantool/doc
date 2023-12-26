@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tarantool 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"POT-Creation-Date: 2023-12-26 10:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,7 +25,7 @@ msgid "Release date: May 24, 2023"
 msgstr ""
 
 #: ../../doc/release/2.11.0.rst:6
-msgid "Releases on GitHub: :tarantool-release:`2.11.1`, :tarantool-release:`2.11.0`"
+msgid "Releases on GitHub: :tarantool-release:`2.11.2`, :tarantool-release:`2.11.1`, :tarantool-release:`2.11.0`"
 msgstr ""
 
 #: ../../doc/release/2.11.0.rst:8
