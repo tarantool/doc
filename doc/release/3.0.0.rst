@@ -115,7 +115,7 @@ Database statistics
 
 Starting with 3.0, Tarantool provides extended statistics about memory consumption for the given space or even specific tuples.
 
-Usually, the ``space_object:bsize()`` method is used to get the size of memory occupied by the specified space.
+Usually, the :ref:`space_object:bsize() <box_space-bsize>` method is used to get the size of memory occupied by the specified space:
 
 
 .. code-block:: console
@@ -126,7 +126,7 @@ Usually, the ``space_object:bsize()`` method is used to get the size of memory o
     ...
 
 In addition to the actual data, the space requires additional memory to store supplementary information.
-You can see the total memory usage using ``box.slab.info()``:
+You can see the total memory usage using :ref:`box.slab.info() <box_slab_info>`:
 
 .. code-block:: console
 
@@ -206,7 +206,7 @@ Then, use the ``<replicaset_name>.bootstrap_leader`` option to specify a bootstr
 Security (EE)
 ~~~~~~~~~~~~~
 
-With the 3.0 version, Tarantool Enterprise Edition provides a set of new features that enhance security in your cluster.
+With the 3.0 version, Tarantool Enterprise Edition provides a set of new features that enhance :ref:`security <enterprise-security>` in your cluster.
 
 -   Introduced the ``secure_erasing`` configuration option that forces Tarantool to overwrite a data file a few times before deletion to render recovery of a deleted file impossible.
     With the new configuration approach, you can enable this capability as follows:
@@ -379,7 +379,7 @@ Developing applications
 varbinary in Lua
 ~~~~~~~~~~~~~~~~
 
-In the previous versions, Tarantool already supported a ``varbinary`` type for storing data.
+In the previous versions, Tarantool already supported a ``varbinary`` type for :ref:`storing data <index_box_field_type_details>`.
 But working with ``varbinary`` database fields required using various workarounds, for example, using C to process such data.
 
 The 3.0 version includes a new ``varbinary`` module for working with varbinary objects.
@@ -430,7 +430,7 @@ It's possible to revert to the old behavior by toggling the new ``binary_data_de
 Default field values
 ~~~~~~~~~~~~~~~~~~~~
 
-You can now assign the default values for specific fields when defining a space format.
+You can now assign the default values for specific fields when defining a :ref:`space format <box_space-format>`.
 In this example, the ``isbn`` and ``title`` fields have the specified default values:
 
 ..  code-block:: lua
@@ -567,7 +567,7 @@ It's possible to revert to the old behavior by toggling the ``box_tuple_extensio
 SQL: case-sensitive names
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Starting with 3.0, names in SQL, for example, table, column, or constraint names are case-sensitive.
+Starting with 3.0, names in :ref:`SQL <sql_tutorial>`, for example, table, column, or constraint names are case-sensitive.
 Before the 3.0 version, the query below created a ``MYTABLE`` table:
 
 .. code-block:: sql
