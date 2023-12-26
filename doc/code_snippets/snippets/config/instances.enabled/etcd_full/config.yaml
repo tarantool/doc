@@ -1,7 +1,7 @@
 config:
   etcd:
     endpoints:
-      - http://localhost:2379
+    - http://localhost:2379
     prefix: /example
     username: testuser
     password: foobar

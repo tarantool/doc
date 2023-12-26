@@ -6,9 +6,9 @@ credentials:
 
 replication:
   peers:
-    - replicator:topsecret@127.0.0.1:3301
-    - replicator:topsecret@127.0.0.1:3302
-    - replicator:topsecret@127.0.0.1:3303
+  - replicator:topsecret@127.0.0.1:3301
+  - replicator:topsecret@127.0.0.1:3302
+  - replicator:topsecret@127.0.0.1:3303
   failover: election
 
 groups:
