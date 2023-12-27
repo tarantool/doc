@@ -1,0 +1,59 @@
+credentials:
+  users:
+    admin:
+      password: 'topsecret'
+      roles: [ super ]
+    replicator:
+      password: 'topsecret'
+      roles: [replication]
+
+iproto:
+  advertise:
+    peer:
+      login: replicator
+
+replication:
+  failover: manual
+
+groups:
+  group001:
+    replicasets:
+      replicaset001:
+        leader: instance001
+        instances:
+          instance001:
+            iproto:
+              listen:
+              - uri: '127.0.0.1:3301'
+                params:
+                  transport: 'ssl'
+                  ssl_ca_file: 'certs/root_ca.crt'
+                  ssl_cert_file: 'certs/instance001/server001.crt'
+                  ssl_key_file: 'certs/instance001/server001.key'
+                  ssl_password: 'qwerty'
+                  ssl_ciphers: 'ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256'
+          instance002:
+            iproto:
+              listen:
+              - uri: '127.0.0.1:3302'
+                params:
+                  transport: 'ssl'
+                  ssl_ca_file: 'certs/root_ca.crt'
+                  ssl_cert_file: 'certs/instance002/server002.crt'
+                  ssl_key_file: 'certs/instance002/server002.key'
+                  ssl_password_file: 'certs/ssl_passwords.txt'
+                  ssl_ciphers: 'ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256'
+          instance003:
+            iproto:
+              listen:
+              - uri: '127.0.0.1:3303'
+                params:
+                  transport: 'ssl'
+                  ssl_ca_file: 'certs/root_ca.crt'
+                  ssl_cert_file: 'certs/instance003/server003.crt'
+                  ssl_key_file: 'certs/instance003/server003.key'
+                  ssl_password_file: 'certs/ssl_passwords.txt'
+                  ssl_ciphers: 'ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256'
+
+app:
+  file: 'myapp.lua'

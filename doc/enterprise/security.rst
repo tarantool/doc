@@ -440,12 +440,11 @@ In the :ref:`next section <enterprise-iproto-encryption-config-sc>`, you can fin
 
     Example:
 
-    ..  code-block:: lua
-
-        c = require('net.box').connect({
-            uri = 'localhost:3301',
-            params = {transport = 'ssl'}
-        })
+    ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/ssl/myapp.lua
+        :language: lua
+        :start-at: net.box
+        :end-before: return connection
+        :dedent:
 
 *   ``ssl_key_file`` -- a path to a private SSL key file.
     Mandatory for a server.

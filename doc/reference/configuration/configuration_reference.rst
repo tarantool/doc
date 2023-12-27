@@ -619,7 +619,8 @@ iproto.advertise.<peer_or_sharding>.*
 
 .. confval:: iproto_advertise.<peer_or_sharding>.uri
 
-    An URI used to advertise the current instance.
+    (Optional) An URI used to advertise the current instance.
+    By default, the URI defined in :ref:`iproto.listen <configuration_reference_iproto_listen>` is used to advertise the current instance.
 
     ..  include:: /reference/configuration/configuration_reference.rst
         :start-after: host_port_limitations_start
@@ -634,7 +635,8 @@ iproto.advertise.<peer_or_sharding>.*
 
 .. confval:: iproto_advertise.<peer_or_sharding>.login
 
-    A username that should be used to connect to the current instance.
+    (Optional) A username that should be used to connect to the current instance.
+    If a username is not set, the ``guest`` user is used.
 
     |
     | Type: string
@@ -645,8 +647,8 @@ iproto.advertise.<peer_or_sharding>.*
 
 .. confval:: iproto_advertise.<peer_or_sharding>.password
 
-    A password for the specified user.
-    If a password is missing, it is taken from :ref:`credentials <configuration_reference_credentials>` for the specified username.
+    (Optional) A password for the specified user.
+    If ``login`` is specified but a password is missing, it is taken from :ref:`credentials <configuration_reference_credentials>` for this user.
 
     |
     | Type: string
@@ -657,9 +659,7 @@ iproto.advertise.<peer_or_sharding>.*
 
 .. confval:: iproto_advertise.<peer_or_sharding>.params
 
-    Additional parameters required for connecting to the current instance.
-    These parameters are described in :ref:`<uri>.params.* <configuration_reference_iproto_uri_params>`.
-
+    (Optional) URI parameters (:ref:`<uri>.params.* <configuration_reference_iproto_uri_params>`) required for connecting to the current instance.
 
 
 .. _configuration_reference_iproto_misc:
@@ -676,8 +676,9 @@ iproto.*
 
     These URIs are used for different purposes, for example:
 
-    -   Communicating between replica set peers or cluster members.
+    -   Communicating between replica set peers or cluster members. See also: :ref:`iproto.advertise.* <configuration_reference_iproto_advertise>`.
     -   Remote administration using :ref:`tt connect <tt-connect>`.
+    -   Connecting to an instance using the :ref:`net.box <net_box-module>` module.
     -   Connecting to an instance using :ref:`connectors <index-box_connectors>` for different languages.
 
     To grant the specified privileges for connecting to an instance, use the :ref:`credentials <configuration_reference_credentials>` configuration section.
@@ -775,23 +776,83 @@ iproto.*
     | Environment variable: TT_IPROTO_THREADS
 
 
-.. _`configuration_reference_iproto_uri_params`:
+.. _configuration_reference_iproto_uri_params:
 
 <uri>.params.*
 ~~~~~~~~~~~~~~
+
+..  admonition:: Enterprise Edition
+    :class: fact
+
+    TLS traffic encryption is supported by the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only.
+
+URI parameters that can be used in the following options:
+
+-   :ref:`iproto_advertise.\<peer_or_sharding\>.params <configuration_reference_iproto_advertise.peer_sharding.params>`
+-   :ref:`iproto.listen <configuration_reference_iproto_listen>`
+
+..  NOTE::
+
+    Note that ``<uri>.params.*`` options don't have corresponding :ref:`environment variables <configuration_environment_variable>` for URIs specified in ``iproto.listen``.
 
 .. _configuration_reference_iproto_uri_params_transport:
 
 .. confval:: <uri>.params.transport
 
+    Allows you to enable traffic encryption for client-server communications over :ref:`binary connections <box_protocol-iproto_protocol>`:
+
+    -   A server is a Tarantool instance.
+    -   A client might be one of the following:
+
+        -   Another Tarantool instance from this cluster. This means that one instance might act as the server that accepts connections from other instances and the client that connects to other instances.
+        -   A remote administrative console (:ref:`tt connect <tt-connect>`).
+        -   A :ref:`net.box <net_box-module>` connector.
+        -   :ref:`Connectors <index-box_connectors>` provided for different languages.
+
+    ``<uri>.params.transport`` accepts one of the following values:
+
+    -   ``plain`` (default): turn off traffic encryption.
+    -   ``ssl``: encrypt traffic by using the TLS 1.2 protocol (`Enterprise Edition <https://www.tarantool.io/compare/>`_ only).
+
+    **Example**
+
+    The example below demonstrates how to enable traffic encryption for connections between replica set peers.
+    The following parameters are specified for each instance:
+
+    -   ``ssl_ca_file``: a path to a trusted certificate authorities (CA) file.
+    -   ``ssl_cert_file``: a path to an SSL certificate file.
+    -   ``ssl_key_file``: a path to a private SSL key file.
+    -   ``ssl_password`` (``instance001``): a password for an encrypted private SSL key.
+        For ``instance002`` and ``instance003``, passwords for encrypted SSL keys are provided in ``ssl_password_file``.
+    -   ``ssl_ciphers``: a colon-separated list of SSL cipher suites the connection can use.
+
+    ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/ssl/config.yaml
+        :language: yaml
+        :start-at: groups:
+        :end-before: app:
+        :dedent:
+
+    You can find the full example here: `ssl <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/replication/instances.enabled/ssl>`_.
+
     |
     | Type: string
-    | Default: nil
+    | Default: 'plain'
     | Environment variable: TT_IPROTO_ADVERTISE_PEER_PARAMS_TRANSPORT, TT_IPROTO_ADVERTISE_SHARDING_PARAMS_TRANSPORT
 
 .. _configuration_reference_iproto_uri_params_ssl_ca_file:
 
 .. confval:: <uri>.params.ssl_ca_file
+
+    (Optional) A path to a trusted certificate authorities (CA) file.
+    If not set, the peer won't be checked for authenticity.
+
+    Both a server and a client can use the ``ssl_ca_file`` parameter:
+
+    -   If it's on the server side, the server verifies the client.
+    -   If it's on the client side, the client verifies the server.
+    -   If both sides have the CA files, the server and the client verify each other.
+
+    **See also:** :ref:`<uri>.params.transport <configuration_reference_iproto_uri_params_transport>`.
 
     |
     | Type: string
@@ -802,6 +863,13 @@ iproto.*
 
 .. confval:: <uri>.params.ssl_cert_file
 
+    A path to an SSL certificate file:
+
+    -   For a server, it's mandatory.
+    -   For a client, it's mandatory if the :ref:`ssl_ca_file <configuration_reference_iproto_uri_params_ssl_ca_file>` parameter is set for a server; otherwise, optional.
+
+    **See also:** :ref:`<uri>.params.transport <configuration_reference_iproto_uri_params_transport>`.
+
     |
     | Type: string
     | Default: nil
@@ -810,6 +878,45 @@ iproto.*
 .. _configuration_reference_iproto_uri_params_ssl_ciphers:
 
 .. confval:: <uri>.params.ssl_ciphers
+
+    (Optional) A colon-separated (``:``) list of SSL cipher suites the connection can use.
+    Note that the list is not validated: if a cipher suite is unknown, Tarantool ignores it, doesn't establish the connection, and writes to the log that no shared cipher was found.
+
+    The supported cipher suites are:
+
+    *   ECDHE-ECDSA-AES256-GCM-SHA384
+    *   ECDHE-RSA-AES256-GCM-SHA384
+    *   DHE-RSA-AES256-GCM-SHA384
+    *   ECDHE-ECDSA-CHACHA20-POLY1305
+    *   ECDHE-RSA-CHACHA20-POLY1305
+    *   DHE-RSA-CHACHA20-POLY1305
+    *   ECDHE-ECDSA-AES128-GCM-SHA256
+    *   ECDHE-RSA-AES128-GCM-SHA256
+    *   DHE-RSA-AES128-GCM-SHA256
+    *   ECDHE-ECDSA-AES256-SHA384
+    *   ECDHE-RSA-AES256-SHA384
+    *   DHE-RSA-AES256-SHA256
+    *   ECDHE-ECDSA-AES128-SHA256
+    *   ECDHE-RSA-AES128-SHA256
+    *   DHE-RSA-AES128-SHA256
+    *   ECDHE-ECDSA-AES256-SHA
+    *   ECDHE-RSA-AES256-SHA
+    *   DHE-RSA-AES256-SHA
+    *   ECDHE-ECDSA-AES128-SHA
+    *   ECDHE-RSA-AES128-SHA
+    *   DHE-RSA-AES128-SHA
+    *   AES256-GCM-SHA384
+    *   AES128-GCM-SHA256
+    *   AES256-SHA256
+    *   AES128-SHA256
+    *   AES256-SHA
+    *   AES128-SHA
+    *   GOST2012-GOST8912-GOST8912
+    *   GOST2001-GOST89-GOST89
+
+    For detailed information on SSL ciphers and their syntax, refer to `OpenSSL documentation <https://www.openssl.org/docs/man1.1.1/man1/ciphers.html>`__.
+
+    **See also:** :ref:`<uri>.params.transport <configuration_reference_iproto_uri_params_transport>`.
 
     |
     | Type: string
@@ -820,6 +927,15 @@ iproto.*
 
 .. confval:: <uri>.params.ssl_key_file
 
+    A path to a private SSL key file:
+
+    -   For a server, it's mandatory.
+    -   For a client, it's mandatory if the :ref:`ssl_ca_file <configuration_reference_iproto_uri_params_ssl_ca_file>` parameter is set for a server; otherwise, optional.
+
+    If the private key is encrypted, provide a password for it in the ``ssl_password`` or ``ssl_password_file`` parameter.
+
+    **See also:** :ref:`<uri>.params.transport <configuration_reference_iproto_uri_params_transport>`.
+
     |
     | Type: string
     | Default: nil
@@ -829,6 +945,19 @@ iproto.*
 
 .. confval:: <uri>.params.ssl_password
 
+    (Optional) A password for an encrypted private SSL key provided using ``ssl_key_file``.
+    Alternatively, the password can be provided in ``ssl_password_file``.
+
+    Tarantool applies the ``ssl_password`` and ``ssl_password_file`` parameters in the following order:
+
+    1.  If ``ssl_password`` is provided, Tarantool tries to decrypt the private key with it.
+    2.  If ``ssl_password`` is incorrect or isn't provided, Tarantool tries all passwords from ``ssl_password_file``
+        one by one in the order they are written.
+    3.  If ``ssl_password`` and all passwords from ``ssl_password_file`` are incorrect,
+        or none of them is provided, Tarantool treats the private key as unencrypted.
+
+    **See also:** :ref:`<uri>.params.transport <configuration_reference_iproto_uri_params_transport>`.
+
     |
     | Type: string
     | Default: nil
@@ -837,6 +966,11 @@ iproto.*
 .. _configuration_reference_iproto_uri_params_ssl_password_file:
 
 .. confval:: <uri>.params.ssl_password_file
+
+    (Optional) A text file with one or more passwords for encrypted private SSL keys provided using ``ssl_key_file`` (each on a separate line).
+    Alternatively, the password can be provided in ``ssl_password``.
+
+    **See also:** :ref:`<uri>.params.transport <configuration_reference_iproto_uri_params_transport>`.
 
     |
     | Type: string
