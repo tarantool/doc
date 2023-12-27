@@ -1,0 +1,1611 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-26 10:36+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/configuration/configuration_reference.rst:4
+msgid "Configuration reference"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:9
+msgid "This topic describes all :ref:`configuration parameters <configuration>` provided by Tarantool."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:11
+msgid "Most of the configuration options described in this reference can be applied to a specific instance, replica set, group, or to all instances globally. To do so, you need to define the required option at the :ref:`specified level <configuration_scopes>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:18
+msgid "config"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:20
+msgid "The ``config`` section defines various parameters related to centralized configuration."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:24
+msgid "``config`` can be defined in the global :ref:`scope <configuration_scopes>` only."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:26
+msgid ":ref:`config.reload <configuration_reference_config_reload>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:27
+msgid ":ref:`config.etcd.* <configuration_reference_config_etcd>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:33
+#: ../../doc/reference/configuration/configuration_reference.rst:80
+#: ../../doc/reference/configuration/configuration_reference.rst:96
+#: ../../doc/reference/configuration/configuration_reference.rst:113
+#: ../../doc/reference/configuration/configuration_reference.rst:126
+#: ../../doc/reference/configuration/configuration_reference.rst:140
+#: ../../doc/reference/configuration/configuration_reference.rst:154
+#: ../../doc/reference/configuration/configuration_reference.rst:168
+#: ../../doc/reference/configuration/configuration_reference.rst:182
+#: ../../doc/reference/configuration/configuration_reference.rst:196
+#: ../../doc/reference/configuration/configuration_reference.rst:210
+#: ../../doc/reference/configuration/configuration_reference.rst:223
+msgid "**Since:** :doc:`3.0.0 </release/3.0.0>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:35
+msgid "Specify how the configuration is reloaded. This option accepts the following values:"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:38
+msgid "``auto``: configuration is reloaded automatically when it is changed."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:39
+msgid "``manual``: configuration should be reloaded manually. In this case, you can reload the configuration in the application code using :ref:`config:reload() <config-module>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:41
+msgid "See also: :ref:`Reloading configuration <etcd_reloading_configuration>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:44
+#: ../../doc/reference/configuration/configuration_reference.rst:105
+#: ../../doc/reference/configuration/configuration_reference.rst:118
+#: ../../doc/reference/configuration/configuration_reference.rst:131
+#: ../../doc/reference/configuration/configuration_reference.rst:145
+#: ../../doc/reference/configuration/configuration_reference.rst:159
+#: ../../doc/reference/configuration/configuration_reference.rst:173
+#: ../../doc/reference/configuration/configuration_reference.rst:228
+#: ../../doc/reference/configuration/configuration_reference.rst:407
+#: ../../doc/reference/configuration/configuration_reference.rst:435
+#: ../../doc/reference/configuration/configuration_reference.rst:452
+#: ../../doc/reference/configuration/configuration_reference.rst:464
+#: ../../doc/reference/configuration/configuration_reference.rst:559
+#: ../../doc/reference/configuration/configuration_reference.rst:629
+#: ../../doc/reference/configuration/configuration_reference.rst:640
+#: ../../doc/reference/configuration/configuration_reference.rst:652
+#: ../../doc/reference/configuration/configuration_reference.rst:788
+#: ../../doc/reference/configuration/configuration_reference.rst:797
+#: ../../doc/reference/configuration/configuration_reference.rst:806
+#: ../../doc/reference/configuration/configuration_reference.rst:815
+#: ../../doc/reference/configuration/configuration_reference.rst:824
+#: ../../doc/reference/configuration/configuration_reference.rst:833
+#: ../../doc/reference/configuration/configuration_reference.rst:842
+#: ../../doc/reference/configuration/configuration_reference.rst:1052
+#: ../../doc/reference/configuration/configuration_reference.rst:1095
+#: ../../doc/reference/configuration/configuration_reference.rst:1151
+#: ../../doc/reference/configuration/configuration_reference.rst:1214
+msgid "Type: string"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:45
+msgid "Possible values: 'auto', 'manual'"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:46
+msgid "Default: 'auto'"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:47
+msgid "Environment variable: TT_CONFIG_RELOAD"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:54
+msgid "config.etcd.*"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_etcd.rst:3
+msgid "Enterprise Edition"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_etcd.rst:6
+msgid "Storing configuration in etcd is supported by the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:60
+msgid "This section describes options related to :ref:`storing configuration in etcd <configuration_etcd>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:62
+msgid ":ref:`config.etcd.endpoints <config_etcd_endpoints>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:63
+msgid ":ref:`config.etcd.prefix <config_etcd_prefix>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:64
+msgid ":ref:`config.etcd.username <config_etcd_username>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:65
+msgid ":ref:`config.etcd.password <config_etcd_password>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:66
+msgid ":ref:`config.etcd.ssl.ca_file <config_etcd_ssl_ca_file>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:67
+msgid ":ref:`config.etcd.ssl.ca_path <config_etcd_ssl_ca_path>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:68
+msgid ":ref:`config.etcd.ssl.ssl_key <config_etcd_ssl_ssl_key>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:69
+msgid ":ref:`config.etcd.ssl.verify_host <config_etcd_ssl_verify_host>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:70
+msgid ":ref:`config.etcd.ssl.verify_peer <config_etcd_ssl_verify_peer>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:71
+msgid ":ref:`config.etcd.http.request.timeout <config_etcd_http_request_timeout>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:72
+msgid ":ref:`config.etcd.http.request.unix_socket <config_etcd_http_request_unix_socket>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:82
+msgid "The list of endpoints used to access an etcd server."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:84
+#: ../../doc/reference/configuration/configuration_reference.rst:102
+msgid "See also: :ref:`Local etcd configuration <etcd_local_configuration>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:87
+#: ../../doc/reference/configuration/configuration_reference.rst:698
+#: ../../doc/reference/configuration/configuration_reference.rst:1241
+msgid "Type: array"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:88
+#: ../../doc/reference/configuration/configuration_reference.rst:106
+#: ../../doc/reference/configuration/configuration_reference.rst:119
+#: ../../doc/reference/configuration/configuration_reference.rst:132
+#: ../../doc/reference/configuration/configuration_reference.rst:146
+#: ../../doc/reference/configuration/configuration_reference.rst:160
+#: ../../doc/reference/configuration/configuration_reference.rst:174
+#: ../../doc/reference/configuration/configuration_reference.rst:188
+#: ../../doc/reference/configuration/configuration_reference.rst:202
+#: ../../doc/reference/configuration/configuration_reference.rst:216
+#: ../../doc/reference/configuration/configuration_reference.rst:229
+#: ../../doc/reference/configuration/configuration_reference.rst:257
+#: ../../doc/reference/configuration/configuration_reference.rst:266
+#: ../../doc/reference/configuration/configuration_reference.rst:630
+#: ../../doc/reference/configuration/configuration_reference.rst:641
+#: ../../doc/reference/configuration/configuration_reference.rst:653
+#: ../../doc/reference/configuration/configuration_reference.rst:699
+#: ../../doc/reference/configuration/configuration_reference.rst:789
+#: ../../doc/reference/configuration/configuration_reference.rst:798
+#: ../../doc/reference/configuration/configuration_reference.rst:807
+#: ../../doc/reference/configuration/configuration_reference.rst:816
+#: ../../doc/reference/configuration/configuration_reference.rst:825
+#: ../../doc/reference/configuration/configuration_reference.rst:834
+#: ../../doc/reference/configuration/configuration_reference.rst:843
+msgid "Default: nil"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:89
+msgid "Environment variable: TT_CONFIG_ETCD_ENDPOINTS"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:98
+msgid "A key prefix used to search a configuration on an etcd server. Tarantool searches keys by the following path: ``<prefix>/config/*``. Note that ``<prefix>`` should start with a slash (``/``)."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:107
+msgid "Environment variable: TT_CONFIG_ETCD_PREFIX"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:115
+msgid "A username used for authentication."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:120
+msgid "Environment variable: TT_CONFIG_ETCD_USERNAME"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:128
+msgid "A password used for authentication."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:133
+msgid "Environment variable: TT_CONFIG_ETCD_PASSWORD"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:142
+msgid "A path to a trusted certificate authorities (CA) file."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:147
+msgid "Environment variable: TT_CONFIG_ETCD_SSL_CA_FILE"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:156
+msgid "A path to a directory holding certificates to verify the peer with."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:161
+msgid "Environment variable: TT_CONFIG_ETCD_SSL_CA_PATH"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:170
+msgid "A path to a private SSL key file."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:175
+msgid "Environment variable: TT_CONFIG_ETCD_SSL_SSL_KEY"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:184
+msgid "Enable verification of the certificate's name (CN) against the specified host."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:187
+#: ../../doc/reference/configuration/configuration_reference.rst:201
+#: ../../doc/reference/configuration/configuration_reference.rst:376
+#: ../../doc/reference/configuration/configuration_reference.rst:491
+#: ../../doc/reference/configuration/configuration_reference.rst:1027
+#: ../../doc/reference/configuration/configuration_reference.rst:1259
+msgid "Type: boolean"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:189
+msgid "Environment variable: TT_CONFIG_ETCD_SSL_VERIFY_HOST"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:198
+msgid "Enable verification of the peer's SSL certificate."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:203
+msgid "Environment variable: TT_CONFIG_ETCD_SSL_VERIFY_PEER"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:212
+msgid "A time period required to process an HTTP request to an etcd server: from sending a request to receiving a response."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:215
+#: ../../doc/reference/configuration/configuration_reference.rst:479
+#: ../../doc/reference/configuration/configuration_reference.rst:1070
+#: ../../doc/reference/configuration/configuration_reference.rst:1120
+#: ../../doc/reference/configuration/configuration_reference.rst:1277
+#: ../../doc/reference/configuration/configuration_reference.rst:1292
+#: ../../doc/reference/configuration/configuration_reference.rst:1336
+#: ../../doc/reference/configuration/configuration_reference.rst:1369
+msgid "Type: number"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:217
+msgid "Environment variable: TT_CONFIG_ETCD_HTTP_REQUEST_TIMEOUT"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:225
+msgid "A Unix domain socket used to connect to an etcd server."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:230
+msgid "Environment variable: TT_CONFIG_ETCD_HTTP_REQUEST_UNIX_SOCKET"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:238
+msgid "credentials"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:244
+msgid "``credentials`` can be defined in any :ref:`scope <configuration_scopes>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:247
+msgid ":ref:`credentials.roles.* <configuration_reference_credentials_roles>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:248
+msgid ":ref:`credentials.users.* <configuration_reference_credentials_users>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:249
+msgid ":ref:`<user_or_role_name>.privileges.* <configuration_reference_credentials_privileges>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:256
+#: ../../doc/reference/configuration/configuration_reference.rst:265
+#: ../../doc/reference/configuration/configuration_reference.rst:584
+#: ../../doc/reference/configuration/configuration_reference.rst:609
+msgid "Type: map"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:258
+msgid "Environment variable: TT_CREDENTIALS_ROLES"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:267
+msgid "Environment variable: TT_CREDENTIALS_USERS"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:274
+msgid "credentials.roles.*"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:285
+#: ../../doc/reference/configuration/configuration_reference.rst:308
+msgid "See :ref:`privileges <configuration_reference_credentials_privileges>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:291
+msgid "credentials.users.*"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:314
+msgid "<user_or_role_name>.privileges.*"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:356
+msgid "database"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:358
+msgid "The ``database`` section defines database-specific configuration parameters, such as an instance's read-write mode or transaction isolation level."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:362
+msgid "``database`` can be defined in any :ref:`scope <configuration_scopes>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:364
+msgid ":ref:`database.hot_standby <configuration_reference_database_hot_standby>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:365
+msgid ":ref:`database.instance_uuid <configuration_reference_database_instance_uuid>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:366
+msgid ":ref:`database.mode <configuration_reference_database_mode>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:367
+msgid ":ref:`database.replicaset_uuid <configuration_reference_database_replicaset_uuid>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:368
+msgid ":ref:`database.txn_isolation <configuration_reference_database_txn_isolation>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:369
+msgid ":ref:`database.txn_timeout <configuration_reference_database_txn_timeout>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:370
+msgid ":ref:`database.use_mvcc_engine <configuration_reference_database_use_mvcc_engine>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:377
+#: ../../doc/reference/configuration/configuration_reference.rst:492
+#: ../../doc/reference/configuration/configuration_reference.rst:1260
+msgid "Default: false"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:378
+msgid "Environment variable: TT_DATABASE_HOT_STANDBY"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:385
+msgid "An :ref:`instance UUID <replication_uuid>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:387
+msgid "By default, instance UUIDs are generated automatically. ``database.instance_uuid`` can be used to specify an instance identifier manually."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:390
+msgid "UUIDs should follow these rules:"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:392
+msgid "The values must be true unique identifiers, not shared by other instances or replica sets within the common infrastructure."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:395
+msgid "The values must be used consistently, not changed after the initial setup. The initial values are stored in :ref:`snapshot files <index-box_persistence>` and are checked whenever the system is restarted."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:401
+msgid "The values must comply with `RFC 4122 <https://tools.ietf.org/html/rfc4122>`_. The `nil UUID <https://tools.ietf.org/html/rfc4122#section-4.1.7>`_ is not allowed."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:404
+msgid "See also: :ref:`database.replicaset_uuid <configuration_reference_database_replicaset_uuid>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:408
+#: ../../doc/reference/configuration/configuration_reference.rst:453
+#: ../../doc/reference/configuration/configuration_reference.rst:560
+#: ../../doc/reference/configuration/configuration_reference.rst:1242
+msgid "Default: :ref:`box.NULL <box-null>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:409
+msgid "Environment variable: TT_DATABASE_INSTANCE_UUID"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:416
+msgid "An instance's operating mode. This option is in effect if :ref:`replication.failover <configuration_reference_replication_failover>` is set to ``off``."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:419
+msgid "The following modes are available:"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:421
+msgid "``rw``: an instance is in read-write mode."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:422
+msgid "``ro``: an instance is in read-only mode."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:424
+msgid "If not specified explicitly, the default value depends on the number of instances in a replica set. For a single instance, the ``rw`` mode is used, while for multiple instances, the ``ro`` mode is used."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:426
+#: ../../doc/reference/configuration/configuration_reference.rst:571
+#: ../../doc/reference/configuration/configuration_reference.rst:595
+#: ../../doc/reference/configuration/configuration_reference.rst:685
+#: ../../doc/reference/configuration/configuration_reference.rst:919
+#: ../../doc/reference/configuration/configuration_reference.rst:935
+#: ../../doc/reference/configuration/configuration_reference.rst:1200
+#: ../../doc/reference/configuration/configuration_reference.rst:1228
+msgid "**Example**"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:428
+msgid "You can set the ``database.mode`` option to ``rw`` on all instances in a replica set to make a :ref:`master-master <replication-roles>` configuration. In this case, ``replication.failover`` should be set to ``off``."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:431
+msgid "credentials:\n"
+"  users:\n"
+"    replicator:\n"
+"      password: 'topsecret'\n"
+"      roles: [replication]\n"
+"\n"
+"iproto:\n"
+"  advertise:\n"
+"    peer:\n"
+"      login: replicator\n"
+"\n"
+"replication:\n"
+"  failover: off\n"
+"\n"
+"groups:\n"
+"  group001:\n"
+"    replicasets:\n"
+"      replicaset001:\n"
+"        instances:\n"
+"          instance001:\n"
+"            database:\n"
+"              mode: rw\n"
+"            iproto:\n"
+"              listen:\n"
+"              - uri: '127.0.0.1:3301'\n"
+"          instance002:\n"
+"            database:\n"
+"              mode: rw\n"
+"            iproto:\n"
+"              listen:\n"
+"              - uri: '127.0.0.1:3302'\n"
+"\n"
+"# Load sample data\n"
+"app:\n"
+"  file: 'myapp.lua'"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:436
+msgid "Default: :ref:`box.NULL <box-null>` (the actual default value depends on the number of instances in a replica set)"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:437
+msgid "Environment variable: TT_DATABASE_MODE"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:444
+msgid "A :ref:`replica set UUID <replication_uuid>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:446
+msgid "By default, replica set UUIDs are generated automatically. ``database.replicaset_uuid`` can be used to specify a replica set identifier manually."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:449
+msgid "See also: :ref:`database.instance_uuid <configuration_reference_database_instance_uuid>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:454
+msgid "Environment variable: TT_DATABASE_REPLICASET_UUID"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:461
+msgid "A transaction :ref:`isolation level <transaction_model_levels>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:465
+msgid "Default: ``best-effort``"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:466
+msgid "Possible values: ``best-effort``, ``read-committed``, ``read-confirmed``"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:467
+msgid "Environment variable: TT_DATABASE_TXN_ISOLATION"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:474
+msgid "A timeout (in seconds) after which the transaction is rolled back."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:476
+msgid "See also: :ref:`box.begin() <box-begin>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:480
+msgid "Default: 3153600000 (~100 years)"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:481
+msgid "Environment variable: TT_DATABASE_TXN_TIMEOUT"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:488
+msgid "Whether the :ref:`transactional manager <txn_mode_transaction-manager>` is enabled."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:493
+msgid "Environment variable: TT_DATABASE_USE_MVCC_ENGINE"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:502
+msgid "iproto"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:504
+msgid "The ``iproto`` section is used to configure parameters related to communicating to and between cluster instances."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:508
+msgid "``iproto`` can be defined in any :ref:`scope <configuration_scopes>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:511
+msgid ":ref:`iproto.advertise.* <configuration_reference_iproto_advertise>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:513
+msgid ":ref:`iproto.advertise.client <configuration_reference_iproto_advertise_client>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:514
+msgid ":ref:`iproto.advertise.peer <configuration_reference_iproto_advertise_peer>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:515
+msgid ":ref:`iproto.advertise.sharding <configuration_reference_iproto_advertise_sharding>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:516
+msgid ":ref:`iproto.advertise.\\<peer_or_sharding\\>.* <configuration_reference_iproto_advertise.peer_sharding>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:518
+msgid ":ref:`iproto.* <configuration_reference_iproto_misc>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:520
+msgid ":ref:`iproto.listen <configuration_reference_iproto_listen>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:521
+msgid ":ref:`iproto.net_msg_max <configuration_reference_iproto_net_msg_max>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:522
+msgid ":ref:`iproto.readahead <configuration_reference_iproto_readahead>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:523
+msgid ":ref:`iproto.threads <configuration_reference_iproto_threads>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:525
+msgid ":ref:`<uri>.params.* <configuration_reference_iproto_uri_params>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:532
+msgid "iproto.advertise.*"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:539
+msgid "An URI used to advertise the current instance to clients."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:541
+msgid "The ``iproto.advertise.client`` option accepts an URI in the following formats:"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:543
+msgid "An address: ``host:port``."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:545
+msgid "A Unix domain socket: ``unix/:``."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:547
+msgid "Note that this option doesn't allow to set a username and password. If a remote client needs this information, it should be delivered outside of the cluster configuration."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:554
+#: ../../doc/reference/configuration/configuration_reference.rst:5
+msgid "The host value cannot be ``0.0.0.0``/``[::]`` and the port value cannot be ``0``."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:561
+msgid "Environment variable: TT_IPROTO_ADVERTISE_CLIENT"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:567
+msgid "An URI used to advertise the current instance to other cluster members."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:569
+msgid "The ``iproto.advertise.peer`` option accepts an URI in the format described in :ref:`iproto_advertise.\\<peer_or_sharding\\>.* <configuration_reference_iproto_advertise.peer_sharding>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:573
+#: ../../doc/reference/configuration/configuration_reference.rst:597
+#: ../../doc/reference/configuration/configuration_reference.rst:1202
+#: ../../doc/reference/configuration/configuration_reference.rst:1230
+msgid "In the example below, the following configuration options are specified:"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:575
+#: ../../doc/reference/configuration/configuration_reference.rst:1204
+#: ../../doc/reference/configuration/configuration_reference.rst:1232
+msgid "In the :ref:`credentials <configuration_reference_credentials>` section, the ``replicator`` user with the ``replication`` role is created."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:576
+msgid "``iproto.advertise.peer`` specifies that other instances should connect to an address defined in :ref:`iproto.listen <configuration_reference_iproto_listen>` using the ``replicator`` user."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:578
+msgid "credentials:\n"
+"  users:\n"
+"    replicator:\n"
+"      password: 'topsecret'\n"
+"      roles: [replication]\n"
+"\n"
+"iproto:\n"
+"  advertise:\n"
+"    peer:\n"
+"      login: replicator\n"
+"\n"
+"replication:\n"
+"  failover: election\n"
+"\n"
+"groups:\n"
+"  group001:\n"
+"    replicasets:\n"
+"      replicaset001:\n"
+"        instances:\n"
+"          instance001:\n"
+"            iproto:\n"
+"              listen:\n"
+"              - uri: '127.0.0.1:3301'\n"
+"          instance002:\n"
+"            iproto:\n"
+"              listen:\n"
+"              - uri: '127.0.0.1:3302'\n"
+"          instance003:\n"
+"            iproto:\n"
+"              listen:\n"
+"              - uri: '127.0.0.1:3303'\n"
+""
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:585
+#: ../../doc/reference/configuration/configuration_reference.rst:610
+msgid "Environment variable: see :ref:`iproto.advertise.\\<peer_or_sharding\\>.* <configuration_reference_iproto_advertise.peer_sharding>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:591
+msgid "An advertise URI used by a router and rebalancer."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:593
+msgid "The ``iproto.advertise.sharding`` option accepts an URI in the format described in :ref:`iproto_advertise.\\<peer_or_sharding\\>.* <configuration_reference_iproto_advertise.peer_sharding>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:599
+msgid "In the :ref:`credentials <configuration_reference_credentials>` section, the ``replicator`` and ``storage`` users are created."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:600
+msgid "``iproto.advertise.peer`` specifies that other instances should connect to an address defined in :ref:`iproto.listen <configuration_reference_iproto_listen>` with the ``replicator`` user."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:601
+msgid "``iproto.advertise.sharding`` specifies that a router should connect to storages using an address defined in :ref:`iproto.listen <configuration_reference_iproto_listen>` with the ``storage`` user."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:603
+msgid "credentials:\n"
+"  users:\n"
+"    replicator:\n"
+"      password: 'topsecret'\n"
+"      roles: [replication]\n"
+"    storage:\n"
+"      password: 'secret'\n"
+"      roles: [sharding]\n"
+"\n"
+"iproto:\n"
+"  advertise:\n"
+"    peer:\n"
+"      login: replicator\n"
+"    sharding:\n"
+"      login: storage\n"
+""
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:616
+msgid "iproto.advertise.<peer_or_sharding>.*"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:622
+msgid "An URI used to advertise the current instance."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:631
+msgid "Environment variable: TT_IPROTO_ADVERTISE_PEER_URI, TT_IPROTO_ADVERTISE_SHARDING_URI"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:637
+msgid "A username that should be used to connect to the current instance."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:642
+msgid "Environment variable: TT_IPROTO_ADVERTISE_PEER_LOGIN, TT_IPROTO_ADVERTISE_SHARDING_LOGIN"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:648
+msgid "A password for the specified user. If a password is missing, it is taken from :ref:`credentials <configuration_reference_credentials>` for the specified username."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:654
+msgid "Environment variable: TT_IPROTO_ADVERTISE_PEER_PASSWORD, TT_IPROTO_ADVERTISE_SHARDING_PASSWORD"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:660
+msgid "Additional parameters required for connecting to the current instance. These parameters are described in :ref:`<uri>.params.* <configuration_reference_iproto_uri_params>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:668
+msgid "iproto.*"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:674
+msgid "An array of URIs used to listen for incoming requests. If required, you can enable SSL for specific URIs by providing additional parameters (:ref:`<uri>.params.* <configuration_reference_iproto_uri_params>`)."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:677
+msgid "These URIs are used for different purposes, for example:"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:679
+msgid "Communicating between replica set peers or cluster members."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:680
+msgid "Remote administration using :ref:`tt connect <tt-connect>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:681
+msgid "Connecting to an instance using :ref:`connectors <index-box_connectors>` for different languages."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:683
+msgid "To grant the specified privileges for connecting to an instance, use the :ref:`credentials <configuration_reference_credentials>` configuration section."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:687
+msgid "In the example below, ``iproto.listen`` is set explicitly for each instance in a cluster:"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:689
+msgid "groups:\n"
+"  group001:\n"
+"    replicasets:\n"
+"      replicaset001:\n"
+"        instances:\n"
+"          instance001:\n"
+"            iproto:\n"
+"              listen:\n"
+"              - uri: '127.0.0.1:3301'\n"
+"          instance002:\n"
+"            iproto:\n"
+"              listen:\n"
+"              - uri: '127.0.0.1:3302'\n"
+"          instance003:\n"
+"            iproto:\n"
+"              listen:\n"
+"              - uri: '127.0.0.1:3303'\n"
+"\n"
+""
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:695
+msgid "See also: :ref:`Connection settings <configuration_options_connection>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:700
+msgid "Environment variable: TT_IPROTO_LISTEN"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:707
+msgid "To handle messages, Tarantool allocates :ref:`fibers <app-fibers>`. To prevent fiber overhead from affecting the whole system, Tarantool restricts how many messages the fibers handle, so that some pending requests are blocked."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:712
+msgid "On powerful systems, increase ``net_msg_max``, and the scheduler starts processing pending requests immediately."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:715
+msgid "On weaker systems, decrease ``net_msg_max``, and the overhead may decrease. Although this may take some time because the scheduler must wait until already-running requests finish."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:719
+msgid "When ``net_msg_max`` is reached, Tarantool suspends processing of incoming packages until it has processed earlier messages. This is not a direct restriction of the number of fibers that handle network messages, rather it is a system-wide restriction of channel bandwidth. This in turn restricts the number of incoming network messages that the :ref:`transaction processor thread <thread_model>` handles, and therefore indirectly affects the fibers that handle network messages."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:732
+msgid "The number of fibers is smaller than the number of messages because messages can be released as soon as they are delivered, while incoming requests might not be processed until some time after delivery."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:736
+#: ../../doc/reference/configuration/configuration_reference.rst:755
+#: ../../doc/reference/configuration/configuration_reference.rst:773
+#: ../../doc/reference/configuration/configuration_reference.rst:1352
+msgid "Type: integer"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:737
+msgid "Default: 768"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:738
+msgid "Environment variable: TT_IPROTO_NET_MSG_MAX"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:745
+msgid "The size of the read-ahead buffer associated with a client connection. The larger the buffer, the more memory an active connection consumes, and the more requests can be read from the operating system buffer in a single system call."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:750
+msgid "The recommendation is to make sure that the buffer can contain at least a few dozen requests. Therefore, if a typical tuple in a request is large, e.g. a few kilobytes or even megabytes, the read-ahead buffer size should be increased. If batched request processing is not used, it’s prudent to leave this setting at its default."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:756
+msgid "Default: 16320"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:757
+msgid "Environment variable: TT_IPROTO_READAHEAD"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:764
+msgid "The number of :ref:`network threads <thread_model>`. There can be unusual workloads where the network thread is 100% loaded and the transaction processor thread is not, so the network thread is a bottleneck. In that case, set ``iproto_threads`` to 2 or more. The operating system kernel determines which connection goes to which thread."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:774
+#: ../../doc/reference/configuration/configuration_reference.rst:1353
+#: ../../doc/reference/configuration/configuration_reference.rst:1370
+msgid "Default: 1"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:775
+msgid "Environment variable: TT_IPROTO_THREADS"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:781
+msgid "<uri>.params.*"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:790
+msgid "Environment variable: TT_IPROTO_ADVERTISE_PEER_PARAMS_TRANSPORT, TT_IPROTO_ADVERTISE_SHARDING_PARAMS_TRANSPORT"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:799
+msgid "Environment variable: TT_IPROTO_ADVERTISE_PEER_PARAMS_SSL_CA_FILE, TT_IPROTO_ADVERTISE_SHARDING_PARAMS_SSL_CA_FILE"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:808
+msgid "Environment variable: TT_IPROTO_ADVERTISE_PEER_PARAMS_SSL_CERT_FILE, TT_IPROTO_ADVERTISE_SHARDING_PARAMS_SSL_CERT_FILE"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:817
+msgid "Environment variable: TT_IPROTO_ADVERTISE_PEER_PARAMS_SSL_CIPHERS, TT_IPROTO_ADVERTISE_SHARDING_PARAMS_SSL_CIPHERS"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:826
+msgid "Environment variable: TT_IPROTO_ADVERTISE_PEER_PARAMS_SSL_KEY_FILE, TT_IPROTO_ADVERTISE_SHARDING_PARAMS_SSL_KEY_FILE"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:835
+msgid "Environment variable: TT_IPROTO_ADVERTISE_PEER_PARAMS_SSL_PASSWORD, TT_IPROTO_ADVERTISE_SHARDING_PARAMS_SSL_PASSWORD"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:844
+msgid "Environment variable: TT_IPROTO_ADVERTISE_PEER_PARAMS_SSL_PASSWORD_FILE, TT_IPROTO_ADVERTISE_SHARDING_PARAMS_SSL_PASSWORD_FILE"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:853
+msgid "groups"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:855
+msgid "The ``groups`` section provides the ability to define the :ref:`full topology of a Tarantool cluster <configuration_overview>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:859
+msgid "``groups`` can be defined in the global :ref:`scope <configuration_scopes>` only."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:861
+msgid ":ref:`groups.\\<group_name\\> <configuration_reference_groups_name>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:862
+msgid ":ref:`groups.\\<group_name\\>.replicasets <configuration_reference_groups_name_replicasets>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:863
+msgid ":ref:`groups.\\<group_name\\>.\\<config_parameter\\> <configuration_reference_groups_name_config_parameter>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:869
+msgid "A group name."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:876
+msgid "Replica sets that belong to this group. See :ref:`replicasets <configuration_reference_replicasets>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:883
+msgid "Any configuration parameter that can be defined in the group :ref:`scope <configuration_scopes>`. For example, :ref:`iproto <configuration_reference_iproto>` and :ref:`database <configuration_reference_database>` configuration parameters defined at the group level are applied to all instances in this group."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:891
+msgid "replicasets"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:895
+msgid "``replicasets`` can be defined in the group :ref:`scope <configuration_scopes>` only."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:897
+msgid ":ref:`replicasets.\\<replicaset_name\\> <configuration_reference_replicasets_name>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:898
+msgid ":ref:`replicasets.\\<replicaset_name\\>.leader <configuration_reference_replicasets_name_leader>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:899
+msgid ":ref:`replicasets.\\<replicaset_name\\>.bootstrap_leader <configuration_reference_replicasets_name_bootstrap_leader>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:900
+msgid ":ref:`replicasets.\\<replicaset_name\\>.instances <configuration_reference_replicasets_name_instances>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:901
+msgid ":ref:`replicasets.\\<replicaset_name\\>.\\<config_parameter\\> <configuration_reference_replicasets_name_config_parameter>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:907
+msgid "A replica set name."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:914
+msgid "A replica set leader. This option can be used to set a replica set leader when ``manual`` :ref:`replication.failover <configuration_reference_replication_failover>` is used."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:917
+msgid "To perform :ref:`controlled failover <replication-controlled_failover>`, ``<replicaset_name>.leader`` can be temporarily removed or set to ``null``."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:921
+msgid "replication:\n"
+"  failover: manual\n"
+"\n"
+"groups:\n"
+"  group001:\n"
+"    replicasets:\n"
+"      replicaset001:\n"
+"        leader: instance001\n"
+"        instances:\n"
+"          instance001:\n"
+"            iproto:\n"
+"              listen:\n"
+"              - uri: '127.0.0.1:3301'\n"
+"          instance002:\n"
+"            iproto:\n"
+"              listen:\n"
+"              - uri: '127.0.0.1:3302'\n"
+"          instance003:\n"
+"            iproto:\n"
+"              listen:\n"
+"              - uri: '127.0.0.1:3303'\n"
+""
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:932
+msgid "A bootstrap leader for a replica set. To specify a bootstrap leader manually, you need to set :ref:`replication.bootstrap_strategy <configuration_reference_replication_bootstrap_strategy>` to ``config``."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:937
+msgid "groups:\n"
+"  group001:\n"
+"    replicasets:\n"
+"      replicaset001:\n"
+"        replication:\n"
+"          bootstrap_strategy: config\n"
+"        bootstrap_leader: instance001\n"
+"        instances:\n"
+"          instance001:\n"
+"            iproto:\n"
+"              listen:\n"
+"              - uri: '127.0.0.1:3301'\n"
+"          instance002:\n"
+"            iproto:\n"
+"              listen:\n"
+"              - uri: '127.0.0.1:3302'\n"
+"          instance003:\n"
+"            iproto:\n"
+"              listen:\n"
+"              - uri: '127.0.0.1:3303'"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:948
+msgid "Instances that belong to this replica set. See :ref:`instances <configuration_reference_instances>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:955
+msgid "Any configuration parameter that can be defined in the replica set :ref:`scope <configuration_scopes>`. For example, :ref:`iproto <configuration_reference_iproto>` and :ref:`database <configuration_reference_database>` configuration parameters defined at the replica set level are applied to all instances in this replica set."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:963
+msgid "instances"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:967
+msgid "``instances`` can be defined in the replica set :ref:`scope <configuration_scopes>` only."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:969
+msgid ":ref:`instances.\\<instance_name\\> <configuration_reference_instances_name>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:970
+msgid ":ref:`instances.\\<instance_name\\>.\\<config_parameter\\> <configuration_reference_instances_name_config_parameter>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:976
+msgid "An instance name."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:983
+msgid "Any configuration parameter that can be defined in the instance :ref:`scope <configuration_scopes>`. For example, :ref:`iproto <configuration_reference_iproto>` and :ref:`database <configuration_reference_database>` configuration parameters defined at the instance level are applied to this instance only."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1002
+msgid "replication"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1004
+msgid "The ``replication`` section defines configuration parameters related to :ref:`replication <replication>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1006
+msgid ":ref:`replication.anon <configuration_reference_replication_anon>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1007
+msgid ":ref:`replication.bootstrap_strategy <configuration_reference_replication_bootstrap_strategy>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1008
+msgid ":ref:`replication.connect_timeout <configuration_reference_replication_connect_timeout>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1009
+msgid ":ref:`replication.election_mode <configuration_reference_replication_election_mode>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1010
+msgid ":ref:`replication.election_timeout <configuration_reference_replication_election_timeout>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1011
+msgid ":ref:`replication.election_fencing_mode <configuration_reference_replication_election_fencing_mode>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1012
+msgid ":ref:`replication.failover <configuration_reference_replication_failover>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1013
+msgid ":ref:`replication.peers <configuration_reference_replication_peers>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1014
+msgid ":ref:`replication.skip_conflict <configuration_reference_replication_skip_conflict>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1015
+msgid ":ref:`replication.sync_lag <configuration_reference_replication_sync_lag>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1016
+msgid ":ref:`replication.sync_timeout <configuration_reference_replication_sync_timeout>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1017
+msgid ":ref:`replication.synchro_quorum <configuration_reference_replication_synchro_quorum>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1018
+msgid ":ref:`replication.synchro_timeout <configuration_reference_replication_synchro_timeout>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1019
+msgid ":ref:`replication.threads <configuration_reference_replication_threads>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1020
+msgid ":ref:`replication.timeout <configuration_reference_replication_timeout>`"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1028
+msgid "Default: ``false``"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1029
+msgid "Environment variable: TT_REPLICATION_ANON"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1036
+msgid "Specifies a strategy used to bootstrap a :ref:`replica set <replication-bootstrap>`. The following strategies are available:"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1039
+msgid "``auto``: a node doesn't boot if half or more of the other nodes in a replica set are not connected. For example, if a replica set contains 2 or 3 nodes, a node requires 2 connected instances. In the case of 4 or 5 nodes, at least 3 connected instances are required. Moreover, a bootstrap leader fails to boot unless every connected node has chosen it as a bootstrap leader."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1044
+msgid "``config``: use the specified node to bootstrap a replica set. To specify the bootstrap leader, use the :ref:`<replicaset_name>.bootstrap_leader <configuration_reference_replicasets_name_bootstrap_leader>` option."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1047
+msgid "``supervised``: a bootstrap leader isn't chosen automatically but should be appointed using :ref:`box.ctl.make_bootstrap_leader() <box_ctl-make_bootstrap_leader>` on the desired node."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1049
+msgid "``legacy`` (deprecated since :doc:`2.11.0 </release/2.11.0>`): a node requires the :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>` number of other nodes to be connected. This option is added to keep the compatibility with the current versions of Cartridge and might be removed in the future."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1053
+msgid "Default: ``auto``"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1054
+msgid "Environment variable: TT_REPLICATION_BOOTSTRAP_STRATEGY"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1061
+msgid "A timeout (in seconds) a replica waits when trying to connect to a master in a cluster. See :ref:`orphan status <replication-orphan_status>` for details."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1064
+msgid "This parameter is different from :ref:`replication.timeout <configuration_reference_replication_timeout>`, which a master uses to disconnect a replica when the master receives no acknowledgments of heartbeat messages."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1071
+msgid "Default: 30"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1072
+msgid "Environment variable: TT_REPLICATION_CONNECT_TIMEOUT"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1079
+msgid "A role of a replica set node in the :ref:`leader election process <repl_leader_elect>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1081
+msgid "The possible values are:"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1083
+msgid "``off``: a node doesn't participate in the election activities."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1085
+msgid "``voter``: a node can participate in the election process but can't be a leader."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1087
+msgid "``candidate``: a node should be able to become a leader."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1089
+msgid "``manual``: allow to control which instance is the leader explicitly instead of relying on automated leader election. By default, the instance acts like a voter -- it is read-only and may vote for other candidate instances. Once :ref:`box.ctl.promote() <box_ctl-promote>` is called, the instance becomes a candidate and starts a new election round. If the instance wins the elections, it becomes a leader but won't participate in any new elections."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1096
+msgid "Default: :ref:`box.NULL <box-null>` (the actual default value depends on :ref:`replication.failover <configuration_reference_replication_failover>`)"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1097
+msgid "Environment variable: TT_REPLICATION_ELECTION_MODE"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1104
+msgid "Specifies the timeout (in seconds) between election rounds in the :ref:`leader election process <repl_leader_elect>` if the previous round ended up with a split vote."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1108
+msgid "It is quite big, and for most of the cases, it can be lowered to 300-400 ms."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1111
+msgid "To avoid the split vote repeat, the timeout is randomized on each node during every new election, from 100% to 110% of the original timeout value. For example, if the timeout is 300 ms and there are 3 nodes started the election simultaneously in the same term, they can set their election timeouts to 300, 310, and 320 respectively, or to 305, 302, and 324, and so on. In that way, the votes will never be split because the election on different nodes won't be restarted simultaneously."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1121
+#: ../../doc/reference/configuration/configuration_reference.rst:1337
+msgid "Default: 5"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1122
+msgid "Environment variable: TT_REPLICATION_ELECTION_TIMEOUT"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1129
+msgid "Specifies the :ref:`leader fencing mode <repl_leader_elect_fencing>` that affects the leader election process. When the parameter is set to ``soft`` or ``strict``, the leader resigns its leadership if it has less than :ref:`replication.synchro_quorum <configuration_reference_replication_synchro_quorum>` of alive connections to the cluster nodes. The resigning leader receives the status of a follower in the current election term and becomes read-only."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1137
+msgid "In ``soft`` mode, a connection is considered dead if there are no responses for :ref:`4 * replication.timeout <configuration_reference_replication_timeout>` seconds both on the current leader and the followers."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1140
+msgid "In ``strict`` mode, a connection is considered dead if there are no responses for :ref:`2 * replication.timeout <configuration_reference_replication_timeout>` seconds on the current leader and :ref:`4 * replication.timeout <configuration_reference_replication_timeout>` seconds on the followers. This improves the chances that there is only one leader at any time."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1146
+msgid "Fencing applies to the instances that have the :ref:`replication.election_mode <configuration_reference_replication_election_mode>` set to ``candidate`` or ``manual``. To turn off leader fencing, set ``election_fencing_mode`` to ``off``."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1152
+msgid "Default: ``soft``"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1153
+msgid "Possible values: ``off``, ``soft``, ``strict``"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1154
+msgid "Environment variable: TT_REPLICATION_ELECTION_FENCING_MODE"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1161
+msgid "A failover mode used to take over a master role when the current master instance fails. The following modes are available:"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1164
+msgid "``off``"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1166
+msgid "Leadership in a replica set is controlled using the :ref:`database.mode <configuration_reference_database_mode>` option. In this case, you can set the ``database.mode`` option to ``rw`` on all instances in a replica set to make a :ref:`master-master <replication-roles>` configuration."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1169
+msgid "The default ``database.mode`` is determined as follows: ``rw`` if there is one instance in a replica set; ``ro`` if there are several instances."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1171
+msgid "``manual``"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1173
+msgid "Leadership in a replica set is controlled using the :ref:`<replicaset_name>.leader <configuration_reference_replicasets_name_leader>` option. In this case, a :ref:`master-master <replication-roles>` configuration is forbidden."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1176
+msgid "In the ``manual`` mode, the :ref:`database.mode <configuration_reference_database_mode>` option cannot be set explicitly. The leader is configured in the read-write mode, all the other instances are read-only."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1179
+msgid "``election``"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1181
+msgid ":ref:`Automated leader election <repl_leader_elect>` is used to control leadership in a replica set."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1183
+msgid "In the ``election`` mode, :ref:`database.mode <configuration_reference_database_mode>` and :ref:`<replicaset_name>.leader <configuration_reference_replicasets_name_leader>` shouldn't be set explicitly."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1185
+msgid "``supervised`` (`Enterprise Edition <https://www.tarantool.io/compare/>`_ only)"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1187
+msgid "Leadership in a replica set is controlled using an external failover agent."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1189
+msgid "In the ``supervised`` mode, :ref:`database.mode <configuration_reference_database_mode>` and :ref:`<replicaset_name>.leader <configuration_reference_replicasets_name_leader>` shouldn't be set explicitly."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1194
+msgid "See also: :ref:`Replication tutorials <how-to-replication>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1198
+msgid "``replication.failover`` can be defined in the global, group, and replica set :ref:`scope <configuration_scopes>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1205
+msgid ":ref:`iproto.advertise.peer <configuration_reference_iproto_advertise_peer>` specifies that other instances should connect to an address defined in :ref:`iproto.listen <configuration_reference_iproto_listen>` using the ``replicator`` user."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1206
+msgid "``replication.failover`` specifies that a master instance should be set manually."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1207
+msgid ":ref:`<replicaset_name>.leader <configuration_reference_replicasets_name_leader>` sets ``instance001`` as a replica set leader."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1209
+msgid "credentials:\n"
+"  users:\n"
+"    replicator:\n"
+"      password: 'topsecret'\n"
+"      roles: [replication]\n"
+"\n"
+"iproto:\n"
+"  advertise:\n"
+"    peer:\n"
+"      login: replicator\n"
+"\n"
+"replication:\n"
+"  failover: manual\n"
+"\n"
+"groups:\n"
+"  group001:\n"
+"    replicasets:\n"
+"      replicaset001:\n"
+"        leader: instance001\n"
+"        instances:\n"
+"          instance001:\n"
+"            iproto:\n"
+"              listen:\n"
+"              - uri: '127.0.0.1:3301'\n"
+"          instance002:\n"
+"            iproto:\n"
+"              listen:\n"
+"              - uri: '127.0.0.1:3302'\n"
+"          instance003:\n"
+"            iproto:\n"
+"              listen:\n"
+"              - uri: '127.0.0.1:3303'\n"
+"\n"
+""
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1215
+msgid "Default: ``off``"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1216
+msgid "Environment variable: TT_REPLICATION_FAILOVER"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1223
+msgid "URIs of instances that constitute a replica set. These URIs are used by an instance to connect to another instance as a replica."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1226
+msgid "Alternatively, you can use :ref:`iproto.advertise.peer <configuration_reference_iproto_advertise_peer>` to specify a URI used to advertise the current instance to other cluster members."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1233
+msgid "``replication.peers`` specifies URIs of replica set instances."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1235
+msgid "credentials:\n"
+"  users:\n"
+"    replicator:\n"
+"      password: 'topsecret'\n"
+"      roles: [replication]\n"
+"\n"
+"replication:\n"
+"  peers:\n"
+"  - replicator:topsecret@127.0.0.1:3301\n"
+"  - replicator:topsecret@127.0.0.1:3302\n"
+"  - replicator:topsecret@127.0.0.1:3303\n"
+""
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1243
+msgid "Environment variable: TT_REPLICATION_PEERS"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1250
+msgid "By default, if a replica adds a unique key that another replica has added, replication :ref:`stops <replication-replication_stops>` with the ``ER_TUPLE_FOUND`` :ref:`error <error_codes>`. If ``replication.skip_conflict`` is set to ``true``, such errors are ignored."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1257
+msgid "Instead of saving the broken transaction to the write-ahead log, it is written as ``NOP`` (No operation)."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1261
+msgid "Environment variable: TT_REPLICATION_SKIP_CONFLICT"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1268
+msgid "The maximum delay (in seconds) between the time when data is written to the master and the time when it is written to a replica. If ``replication.sync_lag`` is set to ``nil`` or 365 * 100 * 86400 (``TIMEOUT_INFINITY``), a replica is always considered to be \"synced\"."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1274
+msgid "This parameter is ignored during bootstrap. See :ref:`orphan status <replication-orphan_status>` for details."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1278
+msgid "Default: 10"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1279
+msgid "Environment variable: TT_REPLICATION_SYNC_LAG"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1286
+msgid "The timeout (in seconds) that a node waits when trying to sync with other nodes in a replica set after connecting or during a :ref:`configuration update <replication-configuration_update>`. This could fail indefinitely if :ref:`replication.sync_lag <configuration_reference_replication_sync_lag>` is smaller than network latency, or if the replica cannot keep pace with master updates. If ``replication.sync_timeout`` expires, the replica enters :ref:`orphan status <replication-orphan_status>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1293
+msgid "Default: 0"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1294
+msgid "Environment variable: TT_REPLICATION_SYNC_TIMEOUT"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1301
+msgid "A number of replicas that should confirm the receipt of a :ref:`synchronous <repl_sync>` transaction before it can finish its commit."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1303
+msgid "This option supports dynamic evaluation of the quorum number. For example, the default value is ``N / 2 + 1`` where ``N`` is the current number of replicas registered in a cluster. Once any replicas are added or removed, the expression is re-evaluated automatically."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1307
+msgid "Note that the default value (``at least 50% of the cluster size + 1``) guarantees data reliability. Using a value less than the canonical one might lead to unexpected results, including a :ref:`split-brain <repl_leader_elect_splitbrain>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1311
+msgid "``replication.synchro_quorum`` is not used on replicas. If the master fails, the pending synchronous transactions will be kept waiting on the replicas until a new master is elected."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1316
+msgid "``replication.synchro_quorum`` does not account for anonymous replicas."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1318
+msgid "Type: string, number"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1319
+msgid "Default: ``N / 2 + 1``"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1320
+msgid "Environment variable: TT_REPLICATION_SYNCHRO_QUORUM"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1327
+msgid "For :ref:`synchronous replication <repl_sync>` only. Specify how many seconds to wait for a synchronous transaction quorum replication until it is declared failed and is rolled back."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1331
+msgid "It is not used on replicas, so if the master fails, the pending synchronous transactions will be kept waiting on the replicas until a new master is elected."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1338
+msgid "Environment variable: TT_REPLICATION_SYNCHRO_TIMEOUT"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1345
+msgid "The number of threads spawned to decode the incoming replication data."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1347
+msgid "In most cases, one thread is enough for all incoming data. Possible values range from 1 to 1000. If there are multiple replication threads, connections to serve are distributed evenly between the threads."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1354
+msgid "Environment variable: TT_REPLICATION_THREADS"
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1361
+msgid "A time interval (in seconds) used by a master to send heartbeat requests to a replica when there are no updates to send to this replica. For each request, a replica should return a heartbeat acknowledgment."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1364
+msgid "If a master or replica gets no heartbeat message for ``4 * replication.timeout`` seconds, a connection is dropped and a replica tries to reconnect to the master."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1366
+msgid "See also: :ref:`Monitoring a replica set <replication-monitoring>`."
+msgstr ""
+
+#: ../../doc/reference/configuration/configuration_reference.rst:1371
+msgid "Environment variable: TT_REPLICATION_TIMEOUT"
+msgstr ""

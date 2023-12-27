@@ -1,0 +1,109 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_txn_management/atomic.rst:5
+msgid "box.atomic()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management/atomic.rst:9
+msgid "Execute a function, acting as if the function starts with an implicit :doc:`/reference/reference_lua/box_txn_management/begin` and ends with an implicit :doc:`/reference/reference_lua/box_txn_management/commit` if successful, or ends with an implicit :doc:`/reference/reference_lua/box_txn_management/rollback` if there is an error."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management/atomic.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management/atomic.rst:14
+msgid "(optional) transaction options:  *   ``txn_isolation`` -- the :ref:`transaction isolation level <txn_mode_mvcc-options>` *   ``timeout`` -- a timeout (in seconds), after which the transaction is rolled back"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management/atomic.rst:14
+msgid "(optional) transaction options:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management/atomic.rst:16
+msgid "``txn_isolation`` -- the :ref:`transaction isolation level <txn_mode_mvcc-options>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management/atomic.rst:17
+msgid "``timeout`` -- a timeout (in seconds), after which the transaction is rolled back"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management/atomic.rst:19
+msgid "the function name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management/atomic.rst:21
+msgid "(optional) arguments passed to the function"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management/atomic.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management/atomic.rst:23
+msgid "the result of the function passed to ``atomic()`` as an argument"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management/atomic.rst:25
+msgid "**Possible errors:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management/atomic.rst:27
+msgid "error and abort the transaction in case of a conflict."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management/atomic.rst:28
+msgid "error and abort the transaction if the timeout is exceeded."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management/atomic.rst:29
+msgid "error if the operation fails to write to disk."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management/atomic.rst:30
+msgid "error if for some reason memory cannot be allocated."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management/atomic.rst:33
+msgid "**Example**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management/atomic.rst:35
+msgid "-- Create an index with the specified sequence --\n"
+"box.schema.sequence.create('id_sequence', { min = 1 })\n"
+"box.space.bands:create_index('primary', { parts = { 'id' }, sequence = 'id_sequence' })\n"
+"\n"
+"-- Insert test data --\n"
+"box.space.bands:insert { 1, 'Roxette', 1986 }\n"
+"box.space.bands:insert { 2, 'Scorpions', 1965 }\n"
+"box.space.bands:insert { 3, 'Ace of Base', 1987 }\n"
+"\n"
+"-- Define a function --\n"
+"local function insert_band(band_name, year)\n"
+"    box.space.bands:insert { nil, band_name, year }\n"
+"end\n"
+"\n"
+"-- Begin and commit the transaction implicitly --\n"
+"box.atomic(insert_band, 'The Beatles', 1960)\n"
+"\n"
+"-- Begin the transaction with the specified isolation level --\n"
+"box.atomic({ txn_isolation = 'read-committed' },\n"
+"        insert_band, 'The Rolling Stones', 1962)\n"
+""
+msgstr ""

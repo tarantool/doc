@@ -14,16 +14,24 @@ Tarantool Enterprise Edition
         The Enterprise Edition provides an `extended feature set <https://www.tarantool.io/en/compare/>`__ for developing
         and managing clustered Tarantool applications, for example:
 
-        * :ref:`Static package <enterprise-env-independent-apps>`
-          for standalone Linux systems.
-        * Tarantool :ref:`bindings to OpenLDAP <ldap_auth>`.
+        * Static package for standalone Linux systems.
+        * Tarantool bindings to OpenLDAP.
         * Security :ref:`audit log <enterprise-logging>`.
-        * Enterprise :ref:`database connectivity <enterprise-run-app>`:
+        * Enterprise database connectivity:
           Oracle and any ODBC-supported DBMS
           (for example, MySQL, Microsoft SQL Server).
         * SSL support for :ref:`traffic encryption <enterprise-iproto-encryption>`.
         * :doc:`Tuple compression <tuple_compression>`.
         * :doc:`Non-blocking DDL <space_upgrade>`.
+
+        The Enterprise Edition is distributed in the form of an SDK, which includes
+        the following key components:
+
+        * The Tarantool EE binary, which can use :ref:`centralized configuration <configuration_etcd_overview>`.
+        * The extended Enterprise version of the :ref:`tt <tt-cli>` utility.
+        * :ref:`Tarantool Cluster Manager <tcm>` -- a web-based visual tool for managing Tarantool clusters.
+
+
 
 .. ifconfig:: language == 'ru'
 
@@ -36,35 +44,36 @@ Tarantool Enterprise Edition
         Enterprise-версия предлагает `дополнительные возможности <https://www.tarantool.io/ru/compare/>`__ по
         разработке и эксплуатации кластерных приложений, например:
 
-        * :ref:`Статическая сборка <enterprise-env-independent-apps>`
-          для автономных Linux-систем.
-        * :ref:`Модуль интеграции с OpenLDAP <ldap_auth>`.
+        * Статическая сборка для автономных Linux-систем.
+        * Модуль интеграции с OpenLDAP.
         * :ref:`Журнал аудита безопасности <enterprise-logging>`.
-        * Подключения к :ref:`корпоративным базам данных <enterprise-run-app>`:
+        * Подключения к корпоративным базам данных:
           Oracle и любым СУБД с интерфейсом ODBC (MySQL, Microsoft SQL Server и т.д.).
           (например, MySQL, Microsoft SQL Server).
         * :ref:`Шифрование трафика <enterprise-iproto-encryption>` с помощью SSL.
         * :doc:`Сжатие кортежей <tuple_compression>`.
         * :doc:`Смена схемы данных в фоновом режиме <space_upgrade>`.
 
+        Enterprise-версия распространяется в форме SDK, который включает следующие
+        ключевые компоненты:
+
+        * Исполняемый файл Tarantool EE binary, который может работать с :ref:`цетрализованной конфигурацией <configuration_etcd_overview>`.
+        * Расширенная Enterprise-версия утилиты :ref:`tt <tt-cli>`.
+        * :ref:`Tarantool Cluster Manager <tcm>` -- визуальный веб-инструмент для управления кластерами Tarantool.
 
 ..  toctree::
     :hidden:
 
     changelog
     setup
-    dev
-    admin
     security
     audit
-    cartridge-auth
     tuple_compression
     wal_extensions
     read_views
     flight_recorder
     audit_log
     space_upgrade
-    migration
     system_metrics
     deprecated
     rocksref

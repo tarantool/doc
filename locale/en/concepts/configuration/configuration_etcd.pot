@@ -1,0 +1,205 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-26 10:36+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/concepts/configuration/configuration_etcd.rst:4
+msgid "Storing configuration in etcd"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_etcd.rst:8
+msgid "Enterprise Edition"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_etcd.rst:11
+msgid "Storing configuration in etcd is supported by the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only."
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_etcd.rst:15
+msgid "Tarantool enables you to store configuration data in one place using `etcd <https://etcd.io/>`_. To achieve this, you need to define how to access etcd and publish a cluster's :ref:`YAML configuration <configuration_file>` to an etcd server."
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_etcd.rst:22
+msgid "Local etcd configuration"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_etcd.rst:24
+msgid "To store a cluster's configuration in etcd, you need to provide etcd connection settings in a local configuration file. These settings are used to :ref:`publish <etcd_publishing_configuration>` a cluster's configuration and :ref:`show <etcd_showing_configuration>` it."
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_etcd.rst:27
+msgid "Connection options for etcd should be specified in the ``config.etcd`` section of the configuration file. At least, the following options should be specified:"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_etcd.rst:30
+msgid "config:\n"
+"  etcd:\n"
+"    endpoints:\n"
+"    - http://localhost:2379\n"
+"    prefix: /example"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_etcd.rst:34
+msgid ":ref:`config.etcd.endpoints <config_etcd_endpoints>` specifies the list of etcd endpoints."
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_etcd.rst:35
+msgid ":ref:`config.etcd.prefix <config_etcd_prefix>` sets a key prefix used to search a configuration. Tarantool searches keys by the following path: ``<prefix>/config/*``. Note that ``<prefix>`` should start with a slash (``/``)."
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_etcd.rst:37
+msgid "You can also provide additional etcd connection options. In the example below, the following options are configured in addition to an endpoint and key prefix:"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_etcd.rst:40
+msgid "config:\n"
+"  etcd:\n"
+"    endpoints:\n"
+"    - http://localhost:2379\n"
+"    prefix: /example\n"
+"    username: testuser\n"
+"    password: foobar\n"
+"    ssl:\n"
+"      ca_file: ca.crt\n"
+"    http:\n"
+"      request:\n"
+"        timeout: 3"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_etcd.rst:44
+msgid ":ref:`config.etcd.username <config_etcd_username>` and :ref:`config.etcd.password <config_etcd_password>` specify credentials used for authentication."
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_etcd.rst:45
+msgid ":ref:`config.etcd.ssl.ca_file <config_etcd_ssl_ca_file>` specifies a path to a trusted certificate authorities (CA) file."
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_etcd.rst:46
+msgid ":ref:`config.etcd.http.request.timeout <config_etcd_http_request_timeout>` configures a request timeout for an etcd server."
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_etcd.rst:48
+msgid "You can find all the available configuration options in the :ref:`etcd <configuration_reference_config_etcd>` section."
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_etcd.rst:55
+msgid "Publishing a cluster's configuration to etcd"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_etcd.rst:60
+msgid "Publishing configuration using the tt utility"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_etcd.rst:62
+msgid "The tt utility provides the :ref:`tt cluster <tt-cluster>` command for managing a cluster's configuration. The ``tt cluster publish`` command can be used to publish a cluster's configuration to etcd."
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_etcd.rst:65
+msgid "The example below shows how a :ref:`layout <admin-start_stop_instance-multi-instance-layout>` of the application called ``app`` might look:"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_etcd.rst:67
+msgid "├── tt.yaml\n"
+"└── instances.enabled\n"
+"    └── app\n"
+"        ├── config.yaml\n"
+"        ├── cluster.yaml\n"
+"        └── instances.yml"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_etcd.rst:76
+msgid "``config.yaml`` contains a :ref:`local configuration <etcd_local_configuration>` used to connect to etcd."
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_etcd.rst:77
+msgid "``cluster.yaml`` contains a cluster's configuration to be published."
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_etcd.rst:78
+msgid "``instances.yml`` specifies :ref:`instances <admin-start_stop_instance-multi-instance>` to run in the current environment. ``tt cluster publish`` ignores the configured instances."
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_etcd.rst:80
+msgid "To publish a cluster's configuration (``cluster.yaml``) to an etcd server, execute ``tt cluster publish`` as follows:"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_etcd.rst:82
+msgid "$ tt cluster publish \"http://localhost:2379/example\" instances.enabled/app/cluster.yaml"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_etcd.rst:88
+msgid "You can see a cluster's configuration using the :ref:`tt cluster show <tt-cluster>` command."
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_etcd.rst:94
+msgid "Publishing configuration using etcdctl"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_etcd.rst:96
+msgid "To publish a cluster's configuration using the ``etcdctl`` utility, use the ``put`` command:"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_etcd.rst:98
+msgid "$ etcdctl put /example/config/all < cluster.yaml"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_etcd.rst:104
+msgid "For etcd versions earlier than 3.4, you need to set the ``ETCDCTL_API`` environment variable to ``3``."
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_etcd.rst:112
+msgid "Starting Tarantool instances"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_etcd.rst:114
+msgid "The :ref:`tt <tt-cli>` utility is the recommended way to start Tarantool instances. You can learn how to do this from the :ref:`Starting and stopping instances <admin-start_stop_instance>` section."
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_etcd.rst:117
+msgid "You can also use the ``tarantool`` command to :ref:`start a Tarantool instance <configuration_run_instance_tarantool>`. In this case, you can eliminate creating a :ref:`local etcd configuration  <etcd_local_configuration>` and provide etcd connection settings using the ``TT_CONFIG_ETCD_ENDPOINTS`` and ``TT_CONFIG_ETCD_PREFIX`` :ref:`environment variables <configuration_environment_variable>`."
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_etcd.rst:120
+msgid "$ export TT_CONFIG_ETCD_ENDPOINTS=http://localhost:2379\n"
+"$ export TT_CONFIG_ETCD_PREFIX=/example\n"
+"\n"
+"$ tarantool --name instance001\n"
+"$ tarantool --name instance002\n"
+"$ tarantool --name instance003"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_etcd.rst:135
+msgid "Reloading configuration"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_etcd.rst:137
+msgid "By default, Tarantool watches etcd keys with the :ref:`specified prefix <etcd_local_configuration>` for changes in a cluster's configuration and reloads a changed configuration automatically. If necessary, you can set the :ref:`config.reload <configuration_reference_config_reload>` option to ``manual`` to turn off configuration reloading:"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_etcd.rst:140
+msgid "config:\n"
+"  reload: 'manual'\n"
+"  etcd:\n"
+"    # ..."
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_etcd.rst:147
+msgid "In this case, you can reload a configuration in an :ref:`admin console <admin-security>` or :ref:`application code <configuration_application>` using the ``reload()`` function provided by the :ref:`config <config-module>` module:"
+msgstr ""
+
+#: ../../doc/concepts/configuration/configuration_etcd.rst:149
+msgid "require('config'):reload()"
+msgstr ""

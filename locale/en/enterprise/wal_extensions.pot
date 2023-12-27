@@ -1,0 +1,200 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/enterprise/wal_extensions.rst:4
+msgid "WAL extensions"
+msgstr ""
+
+#: ../../doc/enterprise/wal_extensions.rst:6
+msgid "WAL extensions available in Tarantool Enterprise Edition allow you to add auxiliary information to each :ref:`write-ahead log <internals-wal>` record. For example, you can enable storing an old and new tuple for each CRUD operation performed. This information might be helpful for implementing a CDC (Change Data Capture) utility that transforms a data replication stream."
+msgstr ""
+
+#: ../../doc/enterprise/wal_extensions.rst:15
+msgid "Configuration"
+msgstr ""
+
+#: ../../doc/enterprise/wal_extensions.rst:17
+msgid "To configure WAL extensions, use the ``wal_ext`` :ref:`configuration property <index-book_cfg>`. Inside the ``wal_ext`` block, you can enable storing old and new tuples as follows:"
+msgstr ""
+
+#: ../../doc/enterprise/wal_extensions.rst:20
+msgid "Set the ``old`` and ``new`` options to ``true`` to store old and new tuples in a write-ahead log for all spaces."
+msgstr ""
+
+#: ../../doc/enterprise/wal_extensions.rst:22
+msgid "box.cfg {\n"
+"    wal_ext = { old = true, new = true }\n"
+"}"
+msgstr ""
+
+#: ../../doc/enterprise/wal_extensions.rst:28
+msgid "To adjust these options for specific spaces, use the ``spaces`` option."
+msgstr ""
+
+#: ../../doc/enterprise/wal_extensions.rst:30
+msgid "box.cfg {\n"
+"    wal_ext = {\n"
+"        old = true, new = true,\n"
+"        spaces = {\n"
+"            space1 = { old = false },\n"
+"            space2 = { new = false }\n"
+"        }\n"
+"    }\n"
+"}"
+msgstr ""
+
+#: ../../doc/enterprise/wal_extensions.rst:43
+msgid "The configuration for specific spaces has priority over the global configuration, so only new tuples are added to the log for ``space1`` and only old tuples for ``space2``."
+msgstr ""
+
+#: ../../doc/enterprise/wal_extensions.rst:46
+msgid "Note that records with additional fields are :ref:`replicated <replication-architecture>` as follows:"
+msgstr ""
+
+#: ../../doc/enterprise/wal_extensions.rst:48
+msgid "If a replica doesn't support the extended format configured on a master, auxiliary fields are skipped."
+msgstr ""
+
+#: ../../doc/enterprise/wal_extensions.rst:49
+msgid "If a replica and master have different configurations for WAL records, a master's configuration is ignored."
+msgstr ""
+
+#: ../../doc/enterprise/wal_extensions.rst:55
+#: ../../doc/enterprise/wal_extensions.rst:68
+msgid "Example"
+msgstr ""
+
+#: ../../doc/enterprise/wal_extensions.rst:57
+msgid "The table below demonstrates how write-ahead log records might look for the specific :ref:`CRUD operations <box_space_examples>` if storing old and new tuples is enabled for the ``bands`` space."
+msgstr ""
+
+#: ../../doc/enterprise/wal_extensions.rst:67
+msgid "Operation"
+msgstr ""
+
+#: ../../doc/enterprise/wal_extensions.rst:69
+msgid "WAL information"
+msgstr ""
+
+#: ../../doc/enterprise/wal_extensions.rst:70
+msgid "insert"
+msgstr ""
+
+#: ../../doc/enterprise/wal_extensions.rst:71
+msgid "``bands:insert{4, 'The Beatles', 1960}``"
+msgstr ""
+
+#: ../../doc/enterprise/wal_extensions.rst:0
+msgid "**new_tuple**: [4, 'The Beatles', 1960]"
+msgstr ""
+
+#: ../../doc/enterprise/wal_extensions.rst:0
+msgid "tuple: [4, 'The Beatles', 1960]"
+msgstr ""
+
+#: ../../doc/enterprise/wal_extensions.rst:74
+msgid "delete"
+msgstr ""
+
+#: ../../doc/enterprise/wal_extensions.rst:75
+msgid "``bands:delete{4}``"
+msgstr ""
+
+#: ../../doc/enterprise/wal_extensions.rst:0
+msgid "key: [4]"
+msgstr ""
+
+#: ../../doc/enterprise/wal_extensions.rst:0
+msgid "**old_tuple**: [4, 'The Beatles', 1960]"
+msgstr ""
+
+#: ../../doc/enterprise/wal_extensions.rst:78
+msgid "update"
+msgstr ""
+
+#: ../../doc/enterprise/wal_extensions.rst:79
+msgid "``bands:update({2}, {{'=', 2, 'Pink Floyd'}})``"
+msgstr ""
+
+#: ../../doc/enterprise/wal_extensions.rst:0
+msgid "**new_tuple**: [2, 'Pink Floyd', 1965]"
+msgstr ""
+
+#: ../../doc/enterprise/wal_extensions.rst:0
+msgid "**old_tuple**: [2, 'Scorpions', 1965]"
+msgstr ""
+
+#: ../../doc/enterprise/wal_extensions.rst:0
+msgid "key: [2]"
+msgstr ""
+
+#: ../../doc/enterprise/wal_extensions.rst:0
+msgid "tuple: [['=', 2, 'Pink Floyd']]"
+msgstr ""
+
+#: ../../doc/enterprise/wal_extensions.rst:84
+msgid "upsert"
+msgstr ""
+
+#: ../../doc/enterprise/wal_extensions.rst:85
+msgid "``bands:upsert({2, 'Pink Floyd', 1965}, {{'=', 2, 'The Doors'}})``"
+msgstr ""
+
+#: ../../doc/enterprise/wal_extensions.rst:0
+msgid "**new_tuple**: [2, 'The Doors', 1965]"
+msgstr ""
+
+#: ../../doc/enterprise/wal_extensions.rst:0
+msgid "**old_tuple**: [2, 'Pink Floyd', 1965]"
+msgstr ""
+
+#: ../../doc/enterprise/wal_extensions.rst:0
+msgid "operations: [['=', 2, 'The Doors']]"
+msgstr ""
+
+#: ../../doc/enterprise/wal_extensions.rst:0
+msgid "tuple: [2, 'Pink Floyd', 1965]"
+msgstr ""
+
+#: ../../doc/enterprise/wal_extensions.rst:90
+msgid "replace"
+msgstr ""
+
+#: ../../doc/enterprise/wal_extensions.rst:91
+msgid "``bands:replace{1, 'The Beatles', 1960}``"
+msgstr ""
+
+#: ../../doc/enterprise/wal_extensions.rst:0
+msgid "**old_tuple**: [1, 'Roxette', 1986]"
+msgstr ""
+
+#: ../../doc/enterprise/wal_extensions.rst:0
+msgid "**new_tuple**: [1, 'The Beatles', 1960]"
+msgstr ""
+
+#: ../../doc/enterprise/wal_extensions.rst:0
+msgid "tuple: [1, 'The Beatles', 1960]"
+msgstr ""
+
+#: ../../doc/enterprise/wal_extensions.rst:96
+msgid "Storing both old and new tuples is especially useful for the ``update`` operation because a write-ahead log record contains only a key value."
+msgstr ""
+
+#: ../../doc/enterprise/wal_extensions.rst:101
+msgid "You can use the :doc:`tt cat </reference/tooling/tt_cli/cat>` command to see the contents of a write-ahead log."
+msgstr ""

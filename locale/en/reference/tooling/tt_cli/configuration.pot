@@ -1,0 +1,228 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/tooling/tt_cli/configuration.rst:4
+msgid "Configuration"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/configuration.rst:9
+msgid "Configuration file"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/configuration.rst:11
+msgid "The key artifact that defines the ``tt`` environment and various aspects of its execution is its configuration file."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/configuration.rst:14
+msgid "By default, the configuration file is called ``tt.yaml``. The location where ``tt`` searches for it depends on the :ref:`launch mode <tt-config_modes>`. You can also pass the configuration file explicitly in the ``--cfg`` :ref:`option <tt-global-options>`."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/configuration.rst:19
+msgid "The ``tt`` configuration file is a YAML file with the following content:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/configuration.rst:21
+msgid "tt:\n"
+"  modules:\n"
+"    directory: path/to/modules/dir\n"
+"  app:\n"
+"    instances_enabled: path/to/applications\n"
+"    run_dir: path/to/run_dir\n"
+"    log_dir: path/to/log_dir\n"
+"    bin_dir: path/to/bin_dir\n"
+"    inc_dir: path/to/inc_dir\n"
+"    wal_dir: path/to/wal_dir\n"
+"    vinyl_dir: path/to/vinyl_dir\n"
+"    memtx_dir: path/to/memtx_dir\n"
+"    log_maxsize: num (MB)\n"
+"    log_maxage: num (days)\n"
+"    log_maxbackups: num\n"
+"    restart_on_failure: bool\n"
+"  repo:\n"
+"    rocks: path/to/rocks\n"
+"    distfiles: path/to/install\n"
+"  ee:\n"
+"    credential_path: path/to/file\n"
+"  templates:\n"
+"    - path: path/to/app/templates1\n"
+"    - path: path/to/app/templates2"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/configuration.rst:49
+msgid "modules section"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/configuration.rst:51
+msgid "``directory`` -- the directory where :doc:`external modules <external_modules>` are stored."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/configuration.rst:57
+msgid "app section"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/configuration.rst:59
+msgid "``instances_enabled`` -- the directory where :ref:`instances <admin-instance_file>` are stored."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/configuration.rst:61
+msgid "``run_dir``-- the directory for instance runtime artifacts, such as console sockets or PID files. Default: ``var/run``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/configuration.rst:63
+msgid "``log_dir`` -- the directory where log files are stored. Default: ``var/log``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/configuration.rst:64
+msgid "``bin_dir`` -- the directory where binary files are stored. Default: ``bin``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/configuration.rst:65
+msgid "``inc_dir`` -- the base directory for storing header files. They will be placed in the ``include`` subdirectory inside the specified directory. Default: ``include``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/configuration.rst:68
+msgid "``wal_dir`` -- the directory where write-ahead log (``.xlog``) files are stored. Default: ``var/lib``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/configuration.rst:70
+msgid "``memtx_dir`` -- the directory where memtx stores snapshot (``.snap``) files. Default: ``var/lib``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/configuration.rst:72
+msgid "``vinyl_dir`` -- the directory where vinyl files or subdirectories are stored. Default: ``var/lib``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/configuration.rst:77
+msgid "In all directories specified in ``*_dir`` parameters, ``tt`` creates a directory for each application and instance directories inside it. Names of these directories match the names of applications and instances."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/configuration.rst:81
+msgid "``log_maxsize`` -- the maximum size of the log file before it gets rotated, in megabytes. Default: 100."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/configuration.rst:83
+msgid "``log_maxage`` -- the maximum age of log files in days. The age of a log file is defined by the timestamp encoded in its name. Default: not defined (log files aren't deleted based on their age)."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/configuration.rst:89
+msgid "A day is defined as exactly 24 hours. It may not exactly correspond to calendar days due to daylight savings, leap seconds, and other time adjustments."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/configuration.rst:92
+msgid "``log_maxbackups`` -- the maximum number of stored log files. Default: not defined (log files aren't deleted based on their count)."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/configuration.rst:94
+msgid "``restart_on_failure`` -- restart the instance on failure: ``true`` or ``false``. Default: ``false``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/configuration.rst:100
+msgid "repo section"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/configuration.rst:102
+msgid "``rocks`` -- the directory where rocks files are stored."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/configuration.rst:103
+msgid "``distfiles`` -- the directory where installation files are stored."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/configuration.rst:108
+msgid "ee section"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/configuration.rst:110
+msgid "``credential_path`` -- a path to the file with credentials used for downloading Tarantool Enterprise Edition."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/configuration.rst:114
+msgid "templates section"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/configuration.rst:116
+msgid "``path`` -- a path to application templates used for creating applications with :ref:`tt create <tt-create>`. May be specified more than once."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/configuration.rst:122
+msgid "Launch modes"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/configuration.rst:124
+msgid "``tt`` launch mode defines its working directory and the way it searches for the configuration file. There are three launch modes:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/configuration.rst:127
+msgid "default"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/configuration.rst:128
+msgid "system"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/configuration.rst:129
+msgid "local"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/configuration.rst:132
+msgid "Default launch"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/configuration.rst:134
+msgid "**Argument**: none"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/configuration.rst:136
+msgid "**Configuration file**: searched from the current directory to the root. Taken from ``/etc/tarantool`` if the file is not found."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/configuration.rst:139
+msgid "**Working directory**: The directory where the configuration file is found."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/configuration.rst:144
+msgid "System launch"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/configuration.rst:146
+msgid "**Argument**: ``--system`` or ``-S``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/configuration.rst:148
+msgid "**Configuration file**: Taken from ``/etc/tarantool``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/configuration.rst:150
+msgid "**Working directory**: Current directory."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/configuration.rst:155
+msgid "Local launch"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/configuration.rst:157
+msgid "**Argument**: ``--local=DIRECTORY`` or ``-L=DIRECTORY``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/configuration.rst:159
+msgid "**Configuration file**: Searched from the specified directory to the root. Taken from ``/etc/tarantool`` if the file is not found."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/configuration.rst:162
+msgid "**Working directory**: The specified directory. If ``tarantool`` or ``tt`` executable files are found in the working directory, they will be used."
+msgstr ""

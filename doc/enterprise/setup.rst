@@ -88,9 +88,7 @@ the administration server should be able to access the following TCP ports on
 Tarantool servers:
 
 * 22 to use the SSH protocol,
-* ports specified in
-  :ref:`instance configuration <cartridge-config>`
-  (``http_port`` parameter) to monitor the HTTP-metrics.
+* ports specified in instance configuration to monitor the HTTP-metrics.
 
 Additionally, it is recommended to apply the following settings for ``sysctl``
 on all Tarantool servers:
@@ -122,27 +120,25 @@ at Tarantool website. Please contact ``support@tarantool.io`` for access.
 Each package is distributed as a ``tar + gzip`` archive and includes
 the following components and features:
 
-* static Tarantool binary for simplified deployment in Linux environments,
-* selection of open and closed source modules,
-* sample application walking you through all included modules.
+* Static Tarantool binary for simplified deployment in Linux environments.
+* ``tt`` command-line utility that provides a unified command-line interface for
+  managing Tarantool-based applications. See :ref:`tt-cli` for details.
+* |tcm_full_name| -- a web-based interface for managing Tarantool EE clusters.
+  See :ref:`tcm` for details.
+* Selection of open and closed source modules.
+* Sample application walking you through all included modules
 
 Archive contents:
 
 * ``tarantool`` is the main executable of Tarantool.
-* ``tt`` is the utility that provides a unified command-line interface for managing Tarantool-based applications.
+* ``tt`` command-line utility.
+* ``tcm`` is the |tcm_full_name| executable.
 * ``tarantoolctl`` is the utility script for installing supplementary modules
   and connecting to the administrative console.
 
   .. important::
 
     ``tarantoolctl`` is deprecated in favor of the :ref:`tt CLI utility <tt-cli>`.
-
-* ``cartridge`` is the utility script to help you set up a development
-  environment for applications and pack them for easy deployment.
-
-  .. important::
-
-    ``cartridge`` utility is deprecated in favor of the :ref:`tt CLI utility <tt-cli>`.
 
 * ``examples/`` is the directory containing sample applications:
 

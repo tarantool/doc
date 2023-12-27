@@ -1,0 +1,114 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/release/2.10.2.rst:2
+msgid "Tarantool 2.10.2"
+msgstr ""
+
+#: ../../doc/release/2.10.2.rst:4
+msgid "Released on 2022-09-01."
+msgstr ""
+
+#: ../../doc/release/2.10.2.rst:6
+msgid "Release: :tarantool-release:`2.10.2`."
+msgstr ""
+
+#: ../../doc/release/2.10.2.rst:7
+msgid "Tag: ``2.10.2``."
+msgstr ""
+
+#: ../../doc/release/2.10.2.rst:10
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/release/2.10.2.rst:12
+msgid "2.10.2 is the third :doc:`stable </release/policy/>` version of the 2.10 release series. It introduces 1 improvement and resolves 8 bugs since 2.10.1."
+msgstr ""
+
+#: ../../doc/release/2.10.2.rst:16
+msgid "The “stable” label means that we have all planned features implemented and we see no high-impact issues. However, if you encounter an issue, feel free to `report it <https://github.com/tarantool/tarantool/issues>`__ on GitHub."
+msgstr ""
+
+#: ../../doc/release/2.10.2.rst:22
+msgid "Compatibility"
+msgstr ""
+
+#: ../../doc/release/2.10.2.rst:24
+msgid "Tarantool 2.x is backward compatible with Tarantool 1.10.x in the binary data layout, client-server protocol, and replication protocol."
+msgstr ""
+
+#: ../../doc/release/2.10.2.rst:27
+msgid "Please :doc:`upgrade </book/admin/upgrades>` using the ``box.schema.upgrade()`` procedure to unlock all the new features of the 2.x series."
+msgstr ""
+
+#: ../../doc/release/2.10.2.rst:32
+msgid "Functionality added or changed"
+msgstr ""
+
+#: ../../doc/release/2.10.2.rst:35
+#: ../../doc/release/2.10.2.rst:45
+msgid "Core"
+msgstr ""
+
+#: ../../doc/release/2.10.2.rst:37
+msgid "Certain internal fibers, such as the connection’s worker fiber, vinyl fibers, and some other fibers, cannot be cancelled from the Lua public API anymore (:tarantool-issue:`7473`)."
+msgstr ""
+
+#: ../../doc/release/2.10.2.rst:42
+msgid "Bugs fixed"
+msgstr ""
+
+#: ../../doc/release/2.10.2.rst:47
+msgid "Fixed a crash of secondary indexes without hints (a critical regression found in 2.10.1) (:tarantool-issue:`7605`)."
+msgstr ""
+
+#: ../../doc/release/2.10.2.rst:49
+msgid "Fixed a possible crash on concurrent ``fiber_object:join()`` (:tarantool-issue:`7489`)."
+msgstr ""
+
+#: ../../doc/release/2.10.2.rst:51
+msgid "Fixed a potential nil dereference and a crash in case of an active log rotation during the program exit stage (:tarantool-issue:`4450`)."
+msgstr ""
+
+#: ../../doc/release/2.10.2.rst:53
+msgid "Fixed crashes and undefined behaviour of triggers clearing other triggers (:tarantool-issue:`4264`)."
+msgstr ""
+
+#: ../../doc/release/2.10.2.rst:57
+msgid "Replication"
+msgstr ""
+
+#: ../../doc/release/2.10.2.rst:59
+msgid "Fixed ``box.info.replication[id].downstream.lag`` growing indefinitely on a server when it’s not writing any new transactions (:tarantool-issue:`7581`)."
+msgstr ""
+
+#: ../../doc/release/2.10.2.rst:64
+msgid "Box"
+msgstr ""
+
+#: ../../doc/release/2.10.2.rst:66
+msgid "Fixed multiline commands being saved to ``~/.tarantool_history`` as separate lines (:tarantool-issue:`7320`)."
+msgstr ""
+
+#: ../../doc/release/2.10.2.rst:68
+msgid "Fixed inheritance of field options in indexes when index parts are specified the old Tarantool 1.6 style: ``{<field>, <type>, ...}`` (:tarantool-issue:`7614`)."
+msgstr ""
+
+#: ../../doc/release/2.10.2.rst:71
+msgid "Fixed unauthorized inserts into the ``_truncate`` space (:tarantool-sec-issue:`5`)."
+msgstr ""

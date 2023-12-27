@@ -11,8 +11,8 @@ g.before_each(function(cg)
 end)
 
 g.after_each(function(cg)
-    cg.server:stop()
     cg.server:drop()
+    fio.rmtree(cg.server.workdir)
 end)
 
 g.test_constraints = function(cg)
@@ -42,21 +42,21 @@ g.test_constraints = function(cg)
         local _, age_err = pcall(function()
             -- insert_age_error_start
             customers:insert { 2, "Bob", 18 }
-            -- error: Check constraint 'check_person' failed for tuple
+            -- error: Check constraint 'check_person' failed for a tuple
             -- insert_age_error_end
         end)
 
         local _, name_err = pcall(function()
             -- insert_name_error_start
             customers:insert { 3, "Admin", 25 }
-            -- error: Check constraint 'check_person' failed for tuple
+            -- error: Check constraint 'check_person' failed for a tuple
             -- insert_name_error_end
         end)
 
         -- Tests --
         t.assert_equals(customers:count(), 1)
         t.assert_equals(customers:get(1), { 1, "Alice", 30 })
-        t.assert_equals(age_err:unpack().message, 'Check constraint \'check_person\' failed for tuple')
-        t.assert_equals(name_err:unpack().message, 'Check constraint \'check_person\' failed for tuple')
+        t.assert_equals(age_err:unpack().message, 'Check constraint \'check_person\' failed for a tuple')
+        t.assert_equals(name_err:unpack().message, 'Check constraint \'check_person\' failed for a tuple')
     end)
 end

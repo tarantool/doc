@@ -1,0 +1,433 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-20 07:42+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/admin/start_stop_instance.rst:4
+msgid "Starting and stopping instances"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:6
+msgid "This section describes how to manage instances in a Tarantool cluster using the :ref:`tt <tt-cli>` utility. A cluster can include multiple instances that run different code. A typical example is a cluster application that includes router and storage instances. Particularly, you can perform the following actions:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:11
+msgid "start all instances in a cluster or only specific ones"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:12
+msgid "check the status of instances"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:13
+msgid "connect to a specific instance"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:14
+msgid "stop all instances or only specific ones"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:16
+msgid "To get more context on how the application's environment might look, refer to :ref:`Application environment <admin-instance_config>`."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:20
+msgid "In this section, a `sharded_cluster <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster>`_ application is used to demonstrate how to start, stop, and manage instances in a cluster."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:26
+msgid "Starting Tarantool instances"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:31
+msgid "Starting instances using the tt utility"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:33
+msgid "The :ref:`tt <tt-cli>` utility is the recommended way to start Tarantool instances."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:35
+msgid "$ tt start sharded_cluster\n"
+"   • Starting an instance [sharded_cluster:storage-a-001]...\n"
+"   • Starting an instance [sharded_cluster:storage-a-002]...\n"
+"   • Starting an instance [sharded_cluster:storage-b-001]...\n"
+"   • Starting an instance [sharded_cluster:storage-b-002]...\n"
+"   • Starting an instance [sharded_cluster:router-a-001]..."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:44
+msgid "After the cluster has started and worked for some time, you can find its artifacts in the directories specified in the ``tt`` configuration. These are the default locations in the local :ref:`launch mode <tt-config_modes>`:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:48
+msgid "``sharded_cluster/var/log/<instance_name>/`` -- instance :ref:`logs <admin-logs>`."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:49
+msgid "``sharded_cluster/var/lib/<instance_name>/`` -- :ref:`snapshots and write-ahead logs <concepts-data_model-persistence>`."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:50
+msgid "``sharded_cluster/var/run/<instance_name>/`` -- control sockets and PID files."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:52
+msgid "In the system launch mode, artifacts are created in these locations:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:54
+msgid "``/var/log/tarantool/<instance_name>/``"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:55
+msgid "``/var/lib/tarantool/<instance_name>/``"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:56
+msgid "``/var/run/tarantool/<instance_name>/``"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:62
+msgid "Starting an instance using the tarantool command"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:64
+msgid "The ``tarantool`` command provides additional :ref:`options <configuration_command_options>` that might be helpful for development purposes. Below is the syntax for starting a Tarantool instance configured in a file:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:67
+msgid "$ tarantool [OPTION ...] --name INSTANCE_NAME --config CONFIG_FILE_PATH"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:71
+msgid "The command below starts ``router-a-001`` configured in the ``config.yaml`` file:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:73
+msgid "$ tarantool --name router-a-001 --config config.yaml"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:82
+msgid "Basic instance management"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:84
+msgid "Most of the commands described in this section can be called with or without an instance name. Without the instance name, they are executed for all instances defined in ``instances.yaml``."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:91
+msgid "Checking an instance's status"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:93
+msgid "To check the status of instances, execute :ref:`tt status <tt-status>`:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:95
+msgid "$ tt status sharded_cluster\n"
+"INSTANCE                          STATUS      PID\n"
+"sharded_cluster:storage-a-001     RUNNING     2023\n"
+"sharded_cluster:storage-a-002     RUNNING     2026\n"
+"sharded_cluster:storage-b-001     RUNNING     2020\n"
+"sharded_cluster:storage-b-002     RUNNING     2021\n"
+"sharded_cluster:router-a-001      RUNNING     2022"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:105
+msgid "To check the status of a specific instance, you need to specify its name:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:107
+msgid "$ tt status sharded_cluster:storage-a-001\n"
+"INSTANCE                          STATUS      PID\n"
+"sharded_cluster:storage-a-001     RUNNING     2023"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:117
+msgid "Connecting to an instance"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:119
+msgid "To connect to the instance, use the :ref:`tt connect <tt-connect>` command:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:121
+msgid "$ tt connect sharded_cluster:storage-a-001\n"
+"   • Connecting to the instance...\n"
+"   • Connected to sharded_cluster:storage-a-001\n"
+"\n"
+"sharded_cluster:storage-a-001>"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:129
+msgid "In the instance's console, you can execute commands provided by the :ref:`box <box-module>` module. For example, :ref:`box.info <box_introspection-box_info>` can be used to get various information about a running instance:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:132
+msgid "sharded_cluster:storage-a-001> box.info.ro\n"
+"---\n"
+"- false\n"
+"..."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:144
+msgid "Restarting instances"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:146
+msgid "To restart an instance, use :ref:`tt restart <tt-restart>`:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:148
+msgid "$ tt restart sharded_cluster:storage-a-002"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:152
+msgid "After executing ``tt restart``, you need to confirm this operation:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:154
+msgid "Confirm restart of 'sharded_cluster:storage-a-002' [y/n]: y\n"
+"   • The Instance sharded_cluster:storage-a-002 (PID = 2026) has been terminated.\n"
+"   • Starting an instance [sharded_cluster:storage-a-002]..."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:164
+msgid "Stopping instances"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:166
+msgid "To stop the specific instance, use :ref:`tt stop <tt-stop>` as follows:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:168
+msgid "$ tt stop sharded_cluster:storage-a-002"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:172
+msgid "You can also stop all the instances at once as follows:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:174
+msgid "$ tt stop sharded_cluster\n"
+"   • The Instance sharded_cluster:storage-b-001 (PID = 2020) has been terminated.\n"
+"   • The Instance sharded_cluster:storage-b-002 (PID = 2021) has been terminated.\n"
+"   • The Instance sharded_cluster:router-a-001 (PID = 2022) has been terminated.\n"
+"   • The Instance sharded_cluster:storage-a-001 (PID = 2023) has been terminated.\n"
+"   • can't \"stat\" the PID file. Error: \"stat /home/testuser/myapp/instances.enabled/sharded_cluster/var/run/storage-a-002/tt.pid: no such file or directory\""
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:185
+msgid "The error message indicates that ``storage-a-002`` is already not running."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:191
+msgid "Removing instance artifacts"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:193
+msgid "The :ref:`tt clean <tt-clean>` command removes instance artifacts (such as logs or snapshots):"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:195
+msgid "$ tt clean sharded_cluster\n"
+"   • List of files to delete:\n"
+"\n"
+"   • /home/testuser/myapp/instances.enabled/sharded_cluster/var/log/storage-a-001/tt.log\n"
+"   • /home/testuser/myapp/instances.enabled/sharded_cluster/var/lib/storage-a-001/00000000000000001062.snap\n"
+"   • /home/testuser/myapp/instances.enabled/sharded_cluster/var/lib/storage-a-001/00000000000000001062.xlog\n"
+"   • ...\n"
+"\n"
+"Confirm [y/n]:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:207
+msgid "Enter ``y`` and press ``Enter`` to confirm removing of artifacts for each instance."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:211
+msgid "The ``-f`` option of the ``tt clean`` command can be used to remove the files without confirmation."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:220
+msgid "Preloading Lua scripts and modules"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:222
+msgid "Tarantool supports loading and running chunks of Lua code before starting instances. To load or run Lua code immediately upon Tarantool startup, specify the ``TT_PRELOAD`` environment variable. Its value can be either a path to a Lua script or a Lua module name:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:226
+msgid "To run the Lua script ``preload_script.lua`` from the ``sharded_cluster`` directory, set ``TT_PRELOAD`` as follows:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:228
+msgid "$ TT_PRELOAD=preload_script.lua tt start sharded_cluster"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:232
+msgid "Tarantool runs the ``preload_script.lua`` code, waits for it to complete, and then starts instances."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:235
+msgid "To load the ``preload_module`` from the ``sharded_cluster`` directory, set ``TT_PRELOAD`` as follows:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:237
+msgid "$ TT_PRELOAD=preload_module tt start sharded_cluster"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:243
+msgid "``TT_PRELOAD`` values that end with ``.lua`` are considered scripts, so avoid module names with this ending."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:246
+msgid "To load several scripts or modules, pass them in a single quoted string, separated by semicolons:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:249
+msgid "$ TT_PRELOAD=\"preload_script.lua;preload_module\" tt start sharded_cluster"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:253
+msgid "If an error happens during the execution of the preload script or module, Tarantool reports the problem and exits."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:262
+msgid "tarantool command-line options"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:264
+msgid "Options that can be passed when :ref:`starting a Tarantool instance <configuration_run_instance_tarantool>`:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:268
+msgid "Print an annotated list of all available options and exit."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:272
+#: ../../doc/book/admin/start_stop_instance.rst:302
+#: ../../doc/book/admin/start_stop_instance.rst:311
+msgid "**Since:** :doc:`3.0.0 </release/3.0.0>`."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:274
+msgid "Show a list of :ref:`environment variables <configuration_environment_variable>` that can be used to configure Tarantool."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:280
+msgid "Print the product name and version."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:282
+#: ../../doc/book/admin/start_stop_instance.rst:323
+#: ../../doc/book/admin/start_stop_instance.rst:334
+#: ../../doc/book/admin/start_stop_instance.rst:345
+#: ../../doc/book/admin/start_stop_instance.rst:355
+#: ../../doc/book/admin/start_stop_instance.rst:365
+#: ../../doc/book/admin/start_stop_instance.rst:375
+msgid "**Example**"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:284
+msgid "$ tarantool --version\n"
+"Tarantool Enterprise 3.0.0-beta1-2-gcbb569b4c-r607-gc64\n"
+"Target: Linux-x86_64-RelWithDebInfo\n"
+"..."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:291
+msgid "In this example:"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:293
+msgid "``3.0.0`` is a Tarantool version. Tarantool follows semantic versioning, which is described in the :ref:`Tarantool release policy <release-policy>` section."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:296
+msgid "``Target`` is the platform Tarantool is built on. Platform-specific details may follow this line."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:304
+msgid "Set a path to a :ref:`YAML configuration file <configuration_file>`. You can also configure this value using the ``TT_CONFIG`` environment variable."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:307
+#: ../../doc/book/admin/start_stop_instance.rst:316
+msgid "See also: :ref:`Starting an instance using the tarantool command <configuration_run_instance_tarantool>`"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:313
+msgid "Set the name of an instance to run. You can also configure this value using the ``TT_INSTANCE_NAME`` environment variable."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:321
+msgid "Enter an :ref:`interactive mode <interactive_console>`."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:325
+msgid "$ tarantool -i"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:332
+msgid "Execute the 'EXPR' string. See also: `lua man page <https://www.lua.org/manual/5.3/lua.html>`_."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:336
+msgid "$ tarantool -e 'print(\"Hello, world!\")'\n"
+"Hello, world!"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:343
+msgid "Require the 'NAME' library. See also: `lua man page <https://www.lua.org/manual/5.3/lua.html>`_."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:347
+msgid "$ tarantool -l luatest.coverage script.lua"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:353
+msgid "Perform a LuaJIT control command. See also: `Command Line Options <https://luajit.org/running.html>`_."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:357
+msgid "$ tarantool -j off app.lua"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:363
+msgid "Save or list bytecode. See also: `Command Line Options <https://luajit.org/running.html>`_."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:367
+msgid "$ tarantool -b test.lua test.out"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:373
+msgid "Activate a debugging session for 'SCRIPT'. See also: `luadebug.lua <https://github.com/tarantool/tarantool/blob/master/third_party/lua/README-luadebug.md>`_."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:377
+msgid "$ tarantool -d app.lua"
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:384
+msgid "Stop handling options. See also: `lua man page <https://www.lua.org/manual/5.3/lua.html>`_."
+msgstr ""
+
+#: ../../doc/book/admin/start_stop_instance.rst:389
+msgid "Stop handling options and execute the standard input as a file. See also: `lua man page <https://www.lua.org/manual/5.3/lua.html>`_."
+msgstr ""

@@ -1,0 +1,85 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_txn_management/begin.rst:4
+msgid "box.begin()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management/begin.rst:8
+msgid "Begin the transaction. Disable :ref:`implicit yields <app-implicit-yields>` until the transaction ends. Signal that writes to the :ref:`write-ahead log <internals-wal>` will be deferred until the transaction ends. In effect the fiber which executes ``box.begin()`` is starting an \"active multi-request transaction\", blocking all other fibers."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management/begin.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management/begin.rst:15
+msgid "(optional) transaction options:  *   ``txn_isolation`` -- the :ref:`transaction isolation level <txn_mode_mvcc-options>` *   ``timeout`` -- a timeout (in seconds), after which the transaction is rolled back"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management/begin.rst:15
+msgid "(optional) transaction options:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management/begin.rst:17
+msgid "``txn_isolation`` -- the :ref:`transaction isolation level <txn_mode_mvcc-options>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management/begin.rst:18
+msgid "``timeout`` -- a timeout (in seconds), after which the transaction is rolled back"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management/begin.rst:20
+msgid "**Possible errors:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management/begin.rst:22
+msgid "error if this operation is not permitted because there is already an active transaction."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management/begin.rst:23
+msgid "error if for some reason memory cannot be allocated."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management/begin.rst:24
+msgid "error and abort the transaction if the timeout is exceeded."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management/begin.rst:26
+msgid "**Example**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_txn_management/begin.rst:28
+msgid "-- Insert test data --\n"
+"box.space.bands:insert { 1, 'Roxette', 1986 }\n"
+"box.space.bands:insert { 2, 'Scorpions', 1965 }\n"
+"box.space.bands:insert { 3, 'Ace of Base', 1987 }\n"
+"\n"
+"-- Begin and commit the transaction explicitly --\n"
+"box.begin()\n"
+"box.space.bands:insert { 4, 'The Beatles', 1960 }\n"
+"box.space.bands:replace { 1, 'Pink Floyd', 1965 }\n"
+"box.commit()\n"
+"\n"
+"-- Begin the transaction with the specified isolation level --\n"
+"box.begin({ txn_isolation = 'read-committed' })\n"
+"box.space.bands:insert { 5, 'The Rolling Stones', 1962 }\n"
+"box.space.bands:replace { 1, 'The Doors', 1965 }\n"
+"box.commit()\n"
+""
+msgstr ""

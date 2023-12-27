@@ -1,0 +1,275 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/release/1.10.5.rst:2
+msgid "Tarantool 1.10.5"
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:4
+msgid "Release: :tarantool-release:`1.10.5`"
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:6
+msgid "Date: 2020-01-14 Tag: 1.10.5-0-g83a2ae9"
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:9
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:11
+msgid "1.10.5 is the next stable release of the 1.10.x series. The label “stable” means there are 1.10.x-based applications running in production for quite a while without known crashes, incorrect results or other showstopper bugs."
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:16
+msgid "This release resolves roughly 30 issues since 1.10.4. There may be bugs in less common areas. If you find any, feel free to report an issue at `GitHub <https://github.com/tarantool/tarantool/issues>`_."
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:21
+msgid "Compatibility"
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:23
+msgid "Tarantool 1.10.x is backward compatible with Tarantool 1.9.x in binary data layout, client-server protocol and replication protocol. Please `upgrade <https://www.tarantool.io/en/doc/1.10/book/admin/upgrades/>`_ using the ``box.schema.upgrade()`` procedure to unlock all the new features of the 1.10.x series."
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:30
+msgid "Functionality added or changed"
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:33
+#: ../../doc/release/1.10.5.rst:126
+msgid "Lua"
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:35
+msgid "Exit gracefully when a main script throws an error: notify systemd, log the error (:tarantool-issue:`4382`)."
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:37
+msgid "Enable ``__pairs`` and ``__ipairs`` metamethods from Lua 5.2 (:tarantool-issue:`4560`). We still conform Lua 5.1 API that is not always compatible with Lua 5.2. The change is only about those metamethods."
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:42
+#: ../../doc/release/1.10.5.rst:180
+msgid "Misc"
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:44
+msgid "Add package builds and deployment for the following Linux distros:"
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:46
+msgid "Ubuntu 19.10 Eoan Ermine, (:tarantool-issue:`4583`)"
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:47
+msgid "CentOS 8, (:tarantool-issue:`4543`)"
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:48
+msgid "Fedora 31, (:tarantool-issue:`4612`)"
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:51
+msgid "Bugs fixed"
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:54
+msgid "Core"
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:56
+msgid "fiber: make sure the guard page is created; refuse to create a new fiber otherwise (:tarantool-issue:`4541`). It is possible in case of heavy memory usage, say, when there is no resources to split VMAs."
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:59
+msgid "Forbid ``00000000-0000-0000-0000-000000000000`` as the value of ``box.cfg({<...>})`` options: ``replicaset_uuid`` and ``instance_uuid`` (:tarantool-issue:`4282`). It did not work as expected: the nil UUID was treated as absence of the value."
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:63
+msgid "Update cache of universe privileges without reconnect (:tarantool-issue:`2763`)."
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:64
+msgid "net.box: don’t fire the ``on_connect`` trigger on schema update (:tarantool-issue:`4593`). Also don’t fire the ``on_disconnect`` trigger if a connection never entered into the ``active`` state (e.g. when the first schema fetch is failed)."
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:68
+msgid "func: fix use-after-free on function unload. `fce9cf96 <https://github.com/tarantool/tarantool/commit/fce9cf96bfcbf0d0e9e5e4612218eeed3c7248ae>`_"
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:70
+msgid "Don’t destroy a session until ``box.session.on_disconnect(<...>)`` triggers are finished (:tarantool-issue:`4627`). This means, for example, that ``box.session.id()`` can be safely invoked from the ``on_disconnect`` trigger. Before this change ``box.session.id()`` returned garbage (usually 0) after yield in the ``on_disconnect`` trigger. *Note*: `tarantool/queue <https://github.com/tarantool/queue>`_ module is affected by this problem in `some scenarios <https://github.com/tarantool/queue/issues/103>`__. It is especially suggested to update Tarantool at least to this release if you’re using this module."
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:80
+msgid "Handle OOM gracefully during allocating a buffer for binary protocol response. `5c5a4e2d <https://github.com/tarantool/tarantool/commit/5c5a4e2d349004ae6ad062d96968a2b4cf4cc8ad>`_"
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:83
+msgid "func: Fix ``box.schema.func.drop(<..>)`` to unload unused modules (:tarantool-issue:`4648`). Also fix ``box.schema.func.create(<..>)`` to avoid loading a module again when another function from the module is loaded."
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:86
+msgid "Encode Lua number -2^63 as integer in ``msgpack.encode()`` and box’s functions (:tarantool-issue:`4672`)."
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:90
+msgid "Replication"
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:92
+msgid "Prefer to bootstrap a replica from a fully bootstrapped instance rather than from an instance that is in the process of bootstrapping (:tarantool-issue:`4527`)."
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:96
+msgid "This change enables the case when two nodes (B, C) are being bootstrapped simultaneously using the one that is already bootstrapped (A), while A is configured to replicate from {B, C} and B – from {A, C}."
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:100
+msgid "Return immediately from ``box.cfg{<...>}`` when an instance is reconfigured with ``replication_connect_quorum = 0`` (:tarantool-issue:`3760`)."
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:104
+msgid "This change also fixes the behaviour of reconfiguration with non-zero ``replication_connect_quorum``: ``box.cfg{<...>}`` returns immediately regardless of whether connections to upstreams are established."
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:108
+msgid "Auto reconnect a replica if password is invalid (:tarantool-issue:`4550`)."
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:109
+msgid "Use empty password when a URI in ``box.cfg{replication = <...>}`` is like ``login@host:port`` (:tarantool-issue:`4605`)."
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:112
+msgid "This behaviour matches the net.box’s one now. Explicit ``login:@host:port`` was necessary before, otherwise a replica displayed the following error:"
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:116
+msgid "Missing mandatory field 'tuple' in request"
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:118
+msgid "Fix segfault during replication configuration (``box.cfg{replication = <...>}`` call) (:tarantool-issue:`4440`, :tarantool-issue:`4576`, :tarantool-issue:`4586`, :tarantool-issue:`4643`)."
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:122
+msgid "Apply replication settings of ``box.cfg({<...>})`` in the strict order (:tarantool-issue:`4433`)."
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:128
+msgid "Fix handling of a socket read error in the console client (``console.connect(<URI>)`` or ``tarantoolctl connect/enter <...>``). `1f86e6cc <https://github.com/tarantool/tarantool/commit/1f86e6cc1f6a332676c2d53b92d71077652cb425>`_"
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:131
+msgid "Handle the “not enough memory” error gracefully when it is raised from ``lua_newthread()`` (:tarantool-issue:`4556`). There are several cases when a new Lua thread is created:"
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:135
+msgid "Start executing a Lua function call or an eval request (from a binary protocol, SQL or with ``box.func.<...>:call()``)."
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:137
+msgid "Create of a new fiber."
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:138
+msgid "Start execution of a trigger."
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:139
+msgid "Start of encoding into a YAML format (``yaml.encode()``)."
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:141
+msgid "Fix stack-use-after-scope in ``json.decode()`` (:tarantool-issue:`4637`)."
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:142
+msgid "Allow to use ``cdata<struct ibuf *>`` (e.g. buffer.IBUF_SHARED) as the argument to ``msgpack.encode()``. `6d38f0c5 <https://github.com/tarantool/tarantool/commit/6d38f0c5117b77de061f9843209ff391fa09924a>`_ Before this change the ``cdata<struct ibuf>`` type was allowed, but not the corresponding pointer type."
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:147
+msgid "A pointer returned by ``msgpack.decode*(cdata<[char] const *>)`` functions can be assigned to buffer.rpos now (and the same for msgpackffi) (:tarantool-issue:`3926`)."
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:151
+msgid "All those functions now return ``cdata<char *>`` or ``cdata<const char *>`` depending of a passed argument. Example of the code that did not work: ``res, buf.rpos = msgpack.decode(buf.rpos, buf:size())``."
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:155
+msgid "Fix race in ``fio.mktree()`` when two tarantool processes create the same directory tree simultaneously (:tarantool-issue:`4660`). This problem affects `tarantool/cartrige <https://github.com/tarantool/cartrige>`_, see `cartrige#gh-382 <https://github.com/tarantool/cartridge/issues/382>`_."
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:161
+msgid "HTTP client"
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:163
+msgid "Disable verbose mode when ``{verbose = false}`` is passed. `28f8a5eb <https://github.com/tarantool/tarantool/commit/28f8a5eb5ad29447f5e27c7ccbf1eb7a857aa490>`_"
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:165
+msgid "Fix assertion fail after a curl write error (:tarantool-issue:`4232`)."
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:168
+msgid "LuaJIT"
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:170
+msgid "Fix the “Data segment size exceeds process limit” error on FreeBSD/x64: do not change resource limits when it is not necessary (:tarantool-issue:`4537`)."
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:173
+msgid "fold: keep type of emitted CONV in sync with its mode. `LuaJIT#524 <https://github.com/LuaJIT/LuaJIT/issues/524>`_ This fixes the following assertion fail:"
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:177
+msgid "asm_conv: Assertion \\`((IRType)((ir->t).irt & IRT_TYPE)) != st’ failed"
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:182
+msgid "Fix CLI boolean options handling in ``tarantoolctl cat <...>``, such as ``--show-system`` (:tarantool-issue:`4076`)."
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:184
+msgid "Fix segfault (out of bounds access) when a stack unwinding error occurs at backtrace printing (:tarantool-issue:`4636`). Backtrace is printed on SIGFPE and SIGSEGV signals or when LuaJIT finds itself in the unrecoverable state (``lua_atpanic()``)."
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:188
+msgid "Clear terminal state on panic (:tarantool-issue:`4466`)."
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:191
+msgid "Building from sources"
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:193
+msgid "Fix OpenSSL linking problems on FreeBSD (:tarantool-issue:`4490`)."
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:194
+msgid "Fix linking problems on Mac OS when several toolchains are in PATH (:tarantool-issue:`4587`)."
+msgstr ""
+
+#: ../../doc/release/1.10.5.rst:196
+msgid "Fix GCC 9 warning on ``strncpy()`` (:tarantool-issue:`4515`)."
+msgstr ""

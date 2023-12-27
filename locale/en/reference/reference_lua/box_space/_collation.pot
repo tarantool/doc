@@ -1,0 +1,40 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_space/_collation.rst:5
+msgid "box.space._collation"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_collation.rst:11
+msgid "``_collation`` is a system space with a list of :ref:`collations <index-collation>`. There are over 270 built-in collations and users may add more. Here is one example:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_collation.rst:14
+msgid "tarantool> box.space._collation:select(239)\n"
+"---\n"
+"- - [239, 'unicode_uk_s2', 1, 'ICU', 'uk', {'strength': 'secondary'}]\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_collation.rst:21
+msgid "Explanation of the fields in the example: id = 239 i.e. Tarantool's primary key is 239, name = 'unicode_uk_s2' i.e. according to Tarantool's naming convention this is a Unicode collation + it is for the uk locale + it has secondary strength, owner = 1 i.e. :ref:`the admin user <authentication-owners_privileges>`, type = 'ICU' i.e. the rules are according to `International Components for Unicode <http://site.icu-project.org/home>`_, locale = 'uk' i.e. `Ukrainian <http://www.unicode.org/cldr/charts/29/collation/uk.html>`_, opts = 'strength:secondary' i.e. with this collation comparisons use both primary and secondary `weights <https://unicode.org/reports/tr10/#Weight_Level_Defn>`_."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_collation.rst:30
+msgid "The :ref:`system space view <box_space-sysviews>` for ``_collation`` is ``_vcollation``."
+msgstr ""

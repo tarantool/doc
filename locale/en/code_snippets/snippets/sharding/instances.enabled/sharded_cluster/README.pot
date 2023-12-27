@@ -1,0 +1,124 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-21 13:25+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster/README.md:1
+msgid "Sharded cluster"
+msgstr ""
+
+#: ../../doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster/README.md:3
+msgid "A sample application demonstrating how to configure a [sharded](https://www.tarantool.io/en/doc/latest/concepts/sharding/) cluster."
+msgstr ""
+
+#: ../../doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster/README.md:5
+msgid "Running"
+msgstr ""
+
+#: ../../doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster/README.md:7
+msgid "To run the cluster, go to the `sharding` directory in the terminal and perform the following steps:"
+msgstr ""
+
+#: ../../doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster/README.md:9
+msgid "Install dependencies defined in the `*.rockspec` file:"
+msgstr ""
+
+#: ../../doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster/README.md:11
+msgid "$ tt build\n"
+""
+msgstr ""
+
+#: ../../doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster/README.md:15
+msgid "Run the cluster:"
+msgstr ""
+
+#: ../../doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster/README.md:17
+msgid "$ tt start sharded_cluster\n"
+""
+msgstr ""
+
+#: ../../doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster/README.md:21
+msgid "Connect to the router:"
+msgstr ""
+
+#: ../../doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster/README.md:23
+msgid "$ tt connect sharded_cluster:router-a-001\n"
+""
+msgstr ""
+
+#: ../../doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster/README.md:27
+msgid "Insert test data:"
+msgstr ""
+
+#: ../../doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster/README.md:29
+msgid "sharded_cluster:router-a-001> insert_data()\n"
+"---\n"
+"...\n"
+""
+msgstr ""
+
+#: ../../doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster/README.md:35
+msgid "Connect to storages in different replica sets to see how data is distributed across nodes:"
+msgstr ""
+
+#: ../../doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster/README.md:37
+msgid "a. `storage-a-001`:"
+msgstr ""
+
+#: ../../doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster/README.md:39
+msgid "sharded_cluster:storage-a-001> box.space.bands:select()\n"
+"---\n"
+"- - [1, 614, 'Roxette', 1986]\n"
+"  - [2, 986, 'Scorpions', 1965]\n"
+"  - [5, 755, 'Pink Floyd', 1965]\n"
+"  - [7, 998, 'The Doors', 1965]\n"
+"  - [8, 762, 'Nirvana', 1987]\n"
+"...\n"
+""
+msgstr ""
+
+#: ../../doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster/README.md:50
+msgid "b. `storage-b-001`:"
+msgstr ""
+
+#: ../../doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster/README.md:52
+msgid "sharded_cluster:storage-b-001> box.space.bands:select()\n"
+"---\n"
+"- - [3, 11, 'Ace of Base', 1987]\n"
+"  - [4, 42, 'The Beatles', 1960]\n"
+"  - [6, 55, 'The Rolling Stones', 1962]\n"
+"  - [9, 299, 'Led Zeppelin', 1968]\n"
+"  - [10, 167, 'Queen', 1970]\n"
+"...\n"
+""
+msgstr ""
+
+#: ../../doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster/README.md:64
+msgid "Packaging"
+msgstr ""
+
+#: ../../doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster/README.md:66
+msgid "To package an application into a `.tgz` archive, use the `tt pack` command:"
+msgstr ""
+
+#: ../../doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster/README.md:68
+msgid "$ tt pack tgz --app-list sharded_cluster\n"
+""
+msgstr ""
+
+#: ../../doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster/README.md:72
+msgid "Note that the necessary `vshard` dependency is specified in the [sharded_cluster-scm-1.rockspec](sharded_cluster-scm-1.rockspec) file."
+msgstr ""

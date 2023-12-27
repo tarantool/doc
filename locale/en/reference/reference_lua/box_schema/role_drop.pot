@@ -1,0 +1,45 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_schema/role_drop.rst:5
+msgid "box.schema.role.drop()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/role_drop.rst:11
+msgid "Drop a role. For explanation of how Tarantool maintains role data, see section :ref:`Roles <authentication-roles>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/role_drop.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/role_drop.rst:15
+msgid "the name of the role"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/role_drop.rst:16
+msgid "``if_exists`` = ``true|false`` (default = ``false``) - boolean; ``true`` means there should be no error if the role does not exist."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/role_drop.rst:19
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/role_drop.rst:21
+msgid "box.schema.role.drop('Accountant')"
+msgstr ""

@@ -1,0 +1,34 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/index.rst:18
+#: ../../doc/reference/reference_lua/index.rst:18
+msgid "List of Lua modules"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/index.rst:6
+msgid "Built-in modules reference"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/index.rst:10
+msgid "This reference covers Tarantool's built-in Lua modules."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/index.rst:14
+msgid "Some functions in these modules are analogs to functions from `standard Lua libraries <http://www.lua.org/manual/>`_. For better results, we recommend using functions from Tarantool's built-in modules."
+msgstr ""

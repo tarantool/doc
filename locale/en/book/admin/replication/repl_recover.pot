@@ -1,0 +1,113 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-21 17:20+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/admin/replication/repl_recover.rst:4
+msgid "Recovering from a degraded state"
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_recover.rst:6
+msgid "\"Degraded state\" is a situation when the master becomes unavailable -- due to hardware or network failure, or due to a programming bug."
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_recover.rst:12
+msgid "In a master-replica set with :ref:`manual failover <replication-master_replica_bootstrap>`, if a master disappears, error messages appear on the replicas stating that the connection is lost:"
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_recover.rst:15
+msgid "2023-12-04 13:19:04.724 [16755] main/110/applier/replicator@127.0.0.1:3301 I> can't read row\n"
+"2023-12-04 13:19:04.724 [16755] main/110/applier/replicator@127.0.0.1:3301 coio.c:349 E> SocketError: unexpected EOF when reading from socket, called on fd 19, aka 127.0.0.1:55932, peer of 127.0.0.1:3301: Broken pipe\n"
+"2023-12-04 13:19:04.724 [16755] main/110/applier/replicator@127.0.0.1:3301 I> will retry every 1.00 second\n"
+"2023-12-04 13:19:04.724 [16755] relay/127.0.0.1:55940/101/main coio.c:349 E> SocketError: unexpected EOF when reading from socket, called on fd 23, aka 127.0.0.1:3302, peer of 127.0.0.1:55940: Broken pipe\n"
+"2023-12-04 13:19:04.724 [16755] relay/127.0.0.1:55940/101/main I> exiting the relay loop"
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_recover.rst:23
+msgid "In a master-replica set with :ref:`automated failover <replication-bootstrap-auto>`, a log also includes Raft messages showing the process of a new master's election:"
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_recover.rst:25
+msgid "2023-12-04 13:16:56.340 [16615] main/111/applier/replicator@127.0.0.1:3302 I> can't read row\n"
+"2023-12-04 13:16:56.340 [16615] main/111/applier/replicator@127.0.0.1:3302 coio.c:349 E> SocketError: unexpected EOF when reading from socket, called on fd 24, aka 127.0.0.1:55687, peer of 127.0.0.1:3302: Broken pipe\n"
+"2023-12-04 13:16:56.340 [16615] main/111/applier/replicator@127.0.0.1:3302 I> will retry every 1.00 second\n"
+"2023-12-04 13:16:56.340 [16615] relay/127.0.0.1:55695/101/main coio.c:349 E> SocketError: unexpected EOF when reading from socket, called on fd 25, aka 127.0.0.1:3301, peer of 127.0.0.1:55695: Broken pipe\n"
+"2023-12-04 13:16:56.340 [16615] relay/127.0.0.1:55695/101/main I> exiting the relay loop\n"
+"2023-12-04 13:16:59.690 [16615] main/112/applier/replicator@127.0.0.1:3303 I> RAFT: message {term: 3, vote: 2, state: candidate, vclock: {1: 9}} from 2\n"
+"2023-12-04 13:16:59.690 [16615] main/112/applier/replicator@127.0.0.1:3303 I> RAFT: received a newer term from 2\n"
+"2023-12-04 13:16:59.690 [16615] main/112/applier/replicator@127.0.0.1:3303 I> RAFT: bump term to 3, follow\n"
+"2023-12-04 13:16:59.690 [16615] main/112/applier/replicator@127.0.0.1:3303 I> RAFT: vote for 2, follow\n"
+"2023-12-04 13:16:59.691 [16615] main/119/raft_worker I> RAFT: persisted state {term: 3}\n"
+"2023-12-04 13:16:59.691 [16615] main/119/raft_worker I> RAFT: persisted state {term: 3, vote: 2}\n"
+"2023-12-04 13:16:59.691 [16615] main/112/applier/replicator@127.0.0.1:3303 I> RAFT: message {term: 3, vote: 2, leader: 2, state: leader} from 2\n"
+"2023-12-04 13:16:59.691 [16615] main/112/applier/replicator@127.0.0.1:3303 I> RAFT: vote request is skipped - this is a notification about a vote for a third node, not a request\n"
+"2023-12-04 13:16:59.691 [16615] main/112/applier/replicator@127.0.0.1:3303 I> RAFT: leader is 2, follow"
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_recover.rst:44
+msgid "The master's upstream status is reported as ``disconnected`` when executing :ref:`box.info.replication <replication-monitoring>` on a replica:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:3
+msgid "auto_leader:instance001> box.info.replication\n"
+"---\n"
+"- 1:\n"
+"    id: 1\n"
+"    uuid: 4cfa6e3c-625e-b027-00a7-29b2f2182f23\n"
+"    lsn: 32\n"
+"    upstream:\n"
+"      peer: replicator@127.0.0.1:3302\n"
+"      lag: 0.00032305717468262\n"
+"      status: disconnected\n"
+"      idle: 48.352504000002\n"
+"      message: 'connect, called on fd 20, aka 127.0.0.1:62575: Connection refused'\n"
+"      system_message: Connection refused\n"
+"    name: instance002\n"
+"    downstream:\n"
+"      status: stopped\n"
+"      message: 'unexpected EOF when reading from socket, called on fd 32, aka 127.0.0.1:3301,\n"
+"        peer of 127.0.0.1:62204: Broken pipe'\n"
+"      system_message: Broken pipe\n"
+"  2:\n"
+"    id: 2\n"
+"    uuid: 9bb111c2-3ff5-36a7-00f4-2b9a573ea660\n"
+"    lsn: 1\n"
+"    name: instance001\n"
+"  3:\n"
+"    id: 3\n"
+"    uuid: 9a3a1b9b-8a18-baf6-00b3-a6e5e11fd8b6\n"
+"    lsn: 0\n"
+"    upstream:\n"
+"      status: follow\n"
+"      idle: 0.18620999999985\n"
+"      peer: replicator@127.0.0.1:3303\n"
+"      lag: 0.00012516975402832\n"
+"    name: instance003\n"
+"    downstream:\n"
+"      status: follow\n"
+"      idle: 0.19718099999955\n"
+"      vclock: {2: 1, 1: 32}\n"
+"      lag: 0.00051403045654297\n"
+"..."
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_recover.rst:51
+msgid "To learn how to perform manual failover in a master-replica set, see the :ref:`Performing manual failover <replication-controlled_failover>` section."
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_recover.rst:53
+msgid "In a master-replica configuration with automated failover, a new master should be elected :ref:`automatically <replication-automated-failover-testing>`."
+msgstr ""

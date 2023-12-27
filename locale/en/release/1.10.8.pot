@@ -1,0 +1,106 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/release/1.10.8.rst:2
+msgid "Tarantool 1.10.8"
+msgstr ""
+
+#: ../../doc/release/1.10.8.rst:4
+msgid "Release: :tarantool-release:`1.10.8`"
+msgstr ""
+
+#: ../../doc/release/1.10.8.rst:6
+msgid "Date: 2020-10-22 Tag: 1.10.8-1-ge69e130"
+msgstr ""
+
+#: ../../doc/release/1.10.8.rst:9
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/release/1.10.8.rst:11
+msgid "1.10.8 is the next stable release of the 1.10.x series. The label “stable” means there are 1.10.x-based applications running in production for quite a while without known crashes, incorrect results or other showstopper bugs."
+msgstr ""
+
+#: ../../doc/release/1.10.8.rst:16
+msgid "This release resolves roughly 7 issues since the 1.10.7 version. There may be bugs in less common areas. If you find any, feel free to report an issue at `GitHub <https://github.com/tarantool/tarantool/issues>`_."
+msgstr ""
+
+#: ../../doc/release/1.10.8.rst:21
+msgid "Compatibility"
+msgstr ""
+
+#: ../../doc/release/1.10.8.rst:23
+msgid "Tarantool 1.10.x is backward compatible with Tarantool 1.9.x in binary data layout, client-server protocol and replication protocol. Please upgrade using the box.schema.upgrade() procedure to unlock all the new features of the 1.10.x series."
+msgstr ""
+
+#: ../../doc/release/1.10.8.rst:29
+msgid "Functionality added or changed"
+msgstr ""
+
+#: ../../doc/release/1.10.8.rst:32
+#: ../../doc/release/1.10.8.rst:76
+msgid "Module API"
+msgstr ""
+
+#: ../../doc/release/1.10.8.rst:34
+msgid "Exposed the box region, key_def and several other functions in order to implement external tuple.keydef and tuple.merger modules on top of them (:tarantool-issue:`5273`, :tarantool-issue:`5384`)."
+msgstr ""
+
+#: ../../doc/release/1.10.8.rst:39
+msgid "Bugs fixed"
+msgstr ""
+
+#: ../../doc/release/1.10.8.rst:42
+msgid "Core"
+msgstr ""
+
+#: ../../doc/release/1.10.8.rst:44
+msgid "Fixed fibers switch-over to prevent JIT machinery misbehavior. Trace recording is aborted when fiber yields the execution. The yield occurring while the compiled code is being run (it’s likely a function with a yield underneath called via LuaJIT FFI) leads to the platform panic (:tarantool-issue:`1700`, :tarantool-issue:`4491`)."
+msgstr ""
+
+#: ../../doc/release/1.10.8.rst:49
+msgid "Fixed fibers switch-over to prevent implicit GC disabling. The yield occurring while user-defined \\__gc metamethod is running leads to the platform panic."
+msgstr ""
+
+#: ../../doc/release/1.10.8.rst:54
+msgid "Lua"
+msgstr ""
+
+#: ../../doc/release/1.10.8.rst:56
+msgid "Fixed unhandled Lua error that might lead to memory leaks and inconsistencies in ``<space_object>:frommap()``, ``<key_def_object>:compare()``, ``<merge_source>:select()`` (:tarantool-issue:`5382`)."
+msgstr ""
+
+#: ../../doc/release/1.10.8.rst:62
+msgid "LuaJIT"
+msgstr ""
+
+#: ../../doc/release/1.10.8.rst:64
+msgid "Fixed the error occurring on loading luajit-gdb.py with Python2 (:tarantool-issue:`4828`)."
+msgstr ""
+
+#: ../../doc/release/1.10.8.rst:68
+msgid "Misc"
+msgstr ""
+
+#: ../../doc/release/1.10.8.rst:70
+msgid "Fixed potential lag on boot up procedure when system’s password database is slow in access (:tarantool-issue:`5034`)."
+msgstr ""
+
+#: ../../doc/release/1.10.8.rst:78
+msgid "Get rid of typedef redefinitions for compatibility with C99 (:tarantool-issue:`5313`)."
+msgstr ""

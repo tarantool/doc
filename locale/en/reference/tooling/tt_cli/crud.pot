@@ -1,0 +1,45 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/tooling/tt_cli/crud.rst:4
+msgid "Interacting with the CRUD module"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/crud.rst:6
+msgid "Enterprise Edition"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/crud.rst:9
+msgid "This command is supported by the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/crud.rst:11
+msgid "$ tt crud COMMAND [COMMAND_OPTION ...]"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/crud.rst:15
+msgid "``tt crud`` enables the interaction with a cluster using the `CRUD <https://github.com/tarantool/crud>`_ module. ``COMMAND`` is one of the following:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/crud.rst:18
+msgid "``export``: export a cluster's data to a file. Learn more at :ref:`Exporting data <tt-export>`."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/crud.rst:19
+msgid "``import``: import data from a file. Learn more at :ref:`Importing data <tt-import>`."
+msgstr ""

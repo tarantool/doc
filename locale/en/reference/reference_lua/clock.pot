@@ -1,0 +1,240 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/clock.rst:5
+msgid "Module clock"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/clock.rst:9
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/clock.rst:11
+msgid "The ``clock`` module returns time values derived from the Posix / C CLOCK_GETTIME_ function or equivalent. Most functions in the module return a number of seconds; functions whose names end in \"64\" return a 64-bit number of nanoseconds."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/clock.rst:18
+msgid "Index"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/clock.rst:20
+msgid "Below is a list of all ``clock`` functions."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/clock.rst:28
+msgid "Name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/clock.rst:28
+msgid "Use"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/clock.rst:30
+msgid ":ref:`clock.time() <clock-time>` |br| :ref:`clock.realtime() <clock-time>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/clock.rst:31
+msgid "Get the wall clock time in seconds"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/clock.rst:35
+msgid ":ref:`clock.time64() <clock-time>` |br| :ref:`clock.realtime64() <clock-time>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/clock.rst:36
+msgid "Get the wall clock time in nanoseconds"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/clock.rst:40
+msgid ":ref:`clock.monotonic() <clock-monotonic>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/clock.rst:40
+msgid "Get the monotonic time in seconds"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/clock.rst:43
+msgid ":ref:`clock.monotonic64() <clock-monotonic>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/clock.rst:43
+msgid "Get the monotonic time in nanoseconds"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/clock.rst:46
+msgid ":ref:`clock.proc() <clock-proc>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/clock.rst:46
+msgid "Get the processor time in seconds"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/clock.rst:49
+msgid ":ref:`clock.proc64() <clock-proc>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/clock.rst:49
+msgid "Get the processor time in nanoseconds"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/clock.rst:52
+msgid ":ref:`clock.thread() <clock-thread>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/clock.rst:52
+msgid "Get the thread time in seconds"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/clock.rst:55
+msgid ":ref:`clock.thread64() <clock-thread>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/clock.rst:55
+msgid "Get the thread time in nanoseconds"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/clock.rst:58
+msgid ":ref:`clock.bench() <clock-bench>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/clock.rst:58
+msgid "Measure the time a function takes within a processor"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/clock.rst:71
+msgid "The wall clock time. Derived from C function ``clock_gettime(CLOCK_REALTIME)``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/clock.rst:0
+#: ../../doc/reference/reference_lua/clock.rst:0
+#: ../../doc/reference/reference_lua/clock.rst:0
+#: ../../doc/reference/reference_lua/clock.rst:0
+#: ../../doc/reference/reference_lua/clock.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/clock.rst:73
+msgid "seconds or nanoseconds since epoch (1970-01-01 00:00:00), adjusted."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/clock.rst:0
+#: ../../doc/reference/reference_lua/clock.rst:0
+#: ../../doc/reference/reference_lua/clock.rst:0
+#: ../../doc/reference/reference_lua/clock.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/clock.rst:74
+#: ../../doc/reference/reference_lua/clock.rst:99
+#: ../../doc/reference/reference_lua/clock.rst:120
+#: ../../doc/reference/reference_lua/clock.rst:141
+msgid "number or cdata (ctype<int64_t>)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/clock.rst:76
+#: ../../doc/reference/reference_lua/clock.rst:101
+#: ../../doc/reference/reference_lua/clock.rst:122
+#: ../../doc/reference/reference_lua/clock.rst:143
+#: ../../doc/reference/reference_lua/clock.rst:165
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/clock.rst:78
+msgid "-- This will print an approximate number of years since 1970.\n"
+"clock = require('clock')\n"
+"print(clock.time() / (365*24*60*60))"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/clock.rst:84
+msgid "See also :ref:`fiber.time64 <fiber-time64>` and the standard Lua function `os.clock <http://www.lua.org/manual/5.1/manual.html#pdf-os.clock>`_."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/clock.rst:92
+msgid "The monotonic time. Derived from C function ``clock_gettime(CLOCK_MONOTONIC)``. Monotonic time is similar to wall clock time but is not affected by changes to or from daylight saving time, or by changes done by a user. This is the best function to use with benchmarks that need to calculate elapsed time."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/clock.rst:98
+msgid "seconds or nanoseconds since the last time that the computer was booted."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/clock.rst:103
+msgid "-- This will print nanoseconds since the start.\n"
+"clock = require('clock')\n"
+"print(clock.monotonic64())"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/clock.rst:114
+msgid "The processor time. Derived from C function ``clock_gettime(CLOCK_PROCESS_CPUTIME_ID)``. This is the best function to use with benchmarks that need to calculate how much time has been spent within a CPU."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/clock.rst:119
+msgid "seconds or nanoseconds since processor start."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/clock.rst:124
+msgid "-- This will print nanoseconds in the CPU since the start.\n"
+"clock = require('clock')\n"
+"print(clock.proc64())"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/clock.rst:135
+msgid "The thread time. Derived from C function ``clock_gettime(CLOCK_THREAD_CPUTIME_ID)``. This is the best function to use with benchmarks that need to calculate how much time has been spent within a thread within a CPU."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/clock.rst:140
+msgid "seconds or nanoseconds since the transaction processor thread started."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/clock.rst:145
+msgid "-- This will print seconds in the thread since the start.\n"
+"clock = require('clock')\n"
+"print(clock.thread64())"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/clock.rst:155
+msgid "The time that a function takes within a processor. This function uses ``clock.proc()``, therefore it calculates elapsed CPU time. Therefore it is not useful for showing actual elapsed time."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/clock.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/clock.rst:159
+msgid "function or function reference"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/clock.rst:160
+msgid "whatever values are required by the function."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/clock.rst:162
+msgid "**table**. first element -- seconds of CPU time, second element -- whatever the function returns."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/clock.rst:167
+msgid "-- Benchmark a function which sleeps 10 seconds.\n"
+"-- NB: bench() will not calculate sleep time.\n"
+"-- So the returned value will be {a number less than 10, 88}.\n"
+"clock = require('clock')\n"
+"fiber = require('fiber')\n"
+"function f(param)\n"
+"  fiber.sleep(param)\n"
+"  return 88\n"
+"end\n"
+"clock.bench(f, 10)"
+msgstr ""

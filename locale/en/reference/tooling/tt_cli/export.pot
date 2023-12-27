@@ -1,0 +1,194 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/tooling/tt_cli/export.rst:4
+msgid "Exporting data"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/export.rst:6
+msgid "Enterprise Edition"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/export.rst:9
+msgid "This command is supported by the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/export.rst:12
+msgid "$ tt [crud] export URI FILE SPACE [EXPORT_OPTION ...]"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/export.rst:16
+msgid "``tt [crud] export`` exports a space's data to a file. The ``crud`` command is optional and can be used to export a cluster's data by using the `CRUD <https://github.com/tarantool/crud>`_ module. Without ``crud``, data is exported using the :ref:`box.space <box_space>` API."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/export.rst:19
+msgid "``tt [crud] export`` takes the following arguments:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/export.rst:21
+msgid "``URI``: The URI of a router instance if ``crud`` is used. Otherwise, it should specify the URI of a storage."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/export.rst:22
+msgid "``FILE``: The name of a file for storing exported data."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/export.rst:23
+msgid "``SPACE``: The name of a space from which data is exported."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/export.rst:27
+msgid ":ref:`Read access <authentication-owners_privileges>` to the space is required to export its data."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/export.rst:32
+msgid "Limitations"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/export.rst:34
+msgid "Exporting isn't supported for the :ref:`interval <index-box_interval>` field type."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/export.rst:40
+msgid "Exporting with default settings"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/export.rst:42
+msgid "The command below exports data of the ``customers`` space to the ``customers.csv`` file:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/export.rst:44
+msgid "$ tt crud export localhost:3301 customers.csv customers"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/export.rst:48
+msgid "If the ``customers`` space has five fields (``id``, ``bucket_id``, ``firstname``, ``lastname``, and ``age``), the file with exported data might look like this:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/export.rst:50
+msgid "1,477,Andrew,Fuller,38\n"
+"2,401,Michael,Suyama,46\n"
+"3,2804,Robert,King,33\n"
+"# ..."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/export.rst:57
+msgid "If a tuple contains a ``null`` value, for example, ``[1, 477, 'Andrew', null, 38]``, it is exported as an empty value:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/export.rst:59
+msgid "1,477,Andrew,,38"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/export.rst:67
+msgid "Exporting headers"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/export.rst:69
+msgid "To export data with a space's field names in the first row, use the ``--header`` option:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/export.rst:71
+msgid "$ tt crud export localhost:3301 customers.csv customers \\\n"
+"                 --header"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/export.rst:76
+msgid "In this case, field values start from the second row, for example:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/export.rst:78
+msgid "id,bucket_id,firstname,lastname,age\n"
+"1,477,Andrew,Fuller,38\n"
+"2,401,Michael,Suyama,46\n"
+"3,2804,Robert,King,33\n"
+"# ..."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/export.rst:90
+msgid "Exporting compound data"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/export.rst:92
+msgid "By default, ``tt`` exports empty values for fields containing compound data such as arrays or maps. To export compound values in a specific format, use the ``--compound-value-format`` option. For example, the command below exports compound values serialized in JSON:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/export.rst:96
+msgid "$ tt crud export localhost:3301 customers.csv customers \\\n"
+"                 --compound-value-format json"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/export.rst:105
+msgid "Options"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/export.rst:109
+msgid "The maximum number of tuple batches in a queue between a fetch and write threads (the default is ``32``)."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/export.rst:111
+msgid "``tt`` exports data using two threads:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/export.rst:113
+msgid "A *fetch* thread makes requests and receives data from a Tarantool instance."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/export.rst:114
+msgid "A *write* thread encodes received data and writes it to the output."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/export.rst:116
+msgid "The fetch thread uses a queue to pass received tuple batches to the write thread. If a queue is full, the fetch thread waits until the write thread takes a batch from the queue."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/export.rst:121
+msgid "The number of tuples to transfer per request (the default is ``10000``)."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/export.rst:125
+msgid "A format used to export compound values like arrays or maps. By default, ``tt`` exports empty values for fields containing such values."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/export.rst:128
+msgid "Supported formats: ``json``."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/export.rst:130
+msgid "See also: :ref:`Exporting compound data <tt-export-compound-data>`."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/export.rst:134
+msgid "Add field names in the first row."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/export.rst:136
+msgid "See also: :ref:`Exporting headers <tt-export-header>`."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/export.rst:140
+msgid "A password used to connect to the instance."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/export.rst:144
+msgid "Export data using a :ref:`read view <read_views>`."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/export.rst:148
+msgid "A username for connecting to the instance."
+msgstr ""

@@ -1,0 +1,37 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-11 13:03+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_ctl/make_bootstrap_leader.rst:4
+msgid "box.ctl.make_bootstrap_leader()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/make_bootstrap_leader.rst:8
+msgid "**Since:** :doc:`3.0.0 </release/3.0.0>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/make_bootstrap_leader.rst:10
+msgid "Make the instance a bootstrap leader of a replica set."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/make_bootstrap_leader.rst:12
+msgid "To be able to make the instance a bootstrap leader manually, the :ref:`replication.bootstrap_strategy <configuration_reference_replication_bootstrap_strategy>` configuration option should be set to ``supervised``. In this case, the instances do not choose a bootstrap leader automatically but wait for it to be appointed manually. Configuration fails if no bootstrap leader is appointed during a :ref:`replication.connect_timeout <configuration_reference_replication_connect_timeout>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl/make_bootstrap_leader.rst:18
+msgid "When a new instance joins a replica set configured with the ``supervised`` bootstrap strategy, this instance doesn't choose the bootstrap leader automatically but joins to the instance on which ``box.ctl.make_bootstrap_leader()`` was executed last time."
+msgstr ""

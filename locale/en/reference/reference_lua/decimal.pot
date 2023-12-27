@@ -1,0 +1,129 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/decimal.rst:5
+msgid "Module decimal"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/decimal.rst:9
+msgid "The ``decimal`` module has functions for working with exact numbers. This is important when numbers are large or even the slightest inaccuracy is unacceptable. For example Lua calculates ``0.16666666666667 * 6`` with floating-point so the result is 1. But with the decimal module (using ``decimal.new`` to convert the number to decimal type) ``decimal.new('0.16666666666667') * 6`` is 1.00000000000002."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/decimal.rst:18
+msgid "To construct a decimal number, bring in the module with ``require('decimal')`` and then use ``decimal.new(n)`` or any function in the decimal module:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/decimal.rst:22
+msgid ":ref:`abs(n) <decimal-abs>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/decimal.rst:23
+msgid ":ref:`exp(n) <decimal-exp>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/decimal.rst:24
+msgid ":ref:`is_decimal(n) <decimal-is_decimal>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/decimal.rst:25
+msgid ":ref:`ln(n) <decimal-ln>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/decimal.rst:26
+msgid ":ref:`log10(n) <decimal-log10>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/decimal.rst:27
+msgid ":ref:`new(n) <decimal-new>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/decimal.rst:28
+msgid ":ref:`precision(n) <decimal-precision>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/decimal.rst:29
+msgid ":ref:`rescale(decimal-number, new-scale) <decimal-rescale>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/decimal.rst:30
+msgid ":ref:`scale(n) <decimal-scale>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/decimal.rst:31
+msgid ":ref:`sqrt(n) <decimal-sqrt>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/decimal.rst:32
+msgid ":ref:`trim(decimal-number) <decimal-trim>`,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/decimal.rst:34
+msgid "where n can be a string or a non-decimal number or a decimal number. If it is a string or a non-decimal number, Tarantool converts it to a decimal number before working with it. It is best to construct from strings, and to convert back to strings after calculations, because Lua numbers have only 15 digits of precision. Decimal numbers have 38 digits of precision, that is, the total number of digits before and after the decimal point can be 38. Tarantool supports the usual arithmetic and comparison operators + - * / % ^ < > <= >= ~= ==. If an operation has both decimal and non-decimal operands, then the non-decimal operand is converted to decimal before the operation happens."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/decimal.rst:49
+msgid "Use ``tostring(decimal-number)`` to convert back to a string."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/decimal.rst:51
+msgid "A decimal operation will fail if overflow happens (when a number is greater than 10^38 - 1 or less than -10^38 - 1). A decimal operation will fail if arithmetic is impossible (such as division by zero or square root of minus 1). A decimal operation will not fail if rounding of post-decimal digits is necessary to get 38-digit precision."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/decimal.rst:62
+msgid "Returns absolute value of a decimal number. For example if ``a`` is ``-1`` then ``decimal.abs(a)`` returns ``1``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/decimal.rst:69
+msgid "Returns *e* raised to the power of a decimal number. For example if ``a`` is ``1`` then ``decimal.exp(a)`` returns ``2.7182818284590452353602874713526624978``. Compare ``math.exp(1)`` from the `Lua math library <https://www.lua.org/pil/18.html>`_, which returns ``2.718281828459``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/decimal.rst:80
+msgid "Returns ``true`` if the specified value is a decimal, and ``false`` otherwise. For example if ``a`` is ``123`` then ``decimal.is_decimal(a)`` returns ``false``. if ``a`` is ``decimal.new(123)`` then ``decimal.is_decimal(a)`` returns ``true``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/decimal.rst:88
+msgid "Returns natural logarithm of a decimal number. For example if ``a`` is ``1`` then ``decimal.ln(a)`` returns ``0``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/decimal.rst:95
+msgid "Returns base-10 logarithm of a decimal number. For example if ``a`` is ``100`` then ``decimal.log10(a)`` returns ``2``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/decimal.rst:102
+msgid "Returns the value of the input as a decimal number. For example if ``a`` is ``1E-1`` then ``decimal.new(a)`` returns ``0.1``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/decimal.rst:110
+msgid "Returns the number of digits in a decimal number. For example if ``a`` is ``123.4560`` then ``decimal.precision(a)`` returns ``7``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/decimal.rst:117
+msgid "Returns the number after possible rounding or padding. If the number of post-decimal digits is greater than new-scale, then rounding occurs. The rounding rule is: round half away from zero. If the number of post-decimal digits is less than new-scale, then padding of zeros occurs. For example if ``a`` is ``-123.4550`` then ``decimal.rescale(a, 2)`` returns ``-123.46``, and ``decimal.rescale(a, 5)`` returns ``-123.45500``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/decimal.rst:129
+msgid "Returns the number of post-decimal digits in a decimal number. For example if ``a`` is ``123.4560`` then ``decimal.scale(a)`` returns ``4``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/decimal.rst:136
+msgid "Returns the square root of a decimal number. For example if ``a`` is ``2`` then ``decimal.sqrt(a)`` returns ``1.4142135623730950488016887242096980786``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/decimal.rst:144
+msgid "Returns a decimal number after possible removing of trailing post-decimal zeros. For example if ``a`` is ``2.20200`` then ``decimal.trim(a)`` returns ``2.202``."
+msgstr ""

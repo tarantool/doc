@@ -1,0 +1,41 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_space/_sequence_data.rst:5
+msgid "box.space._sequence_data"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_sequence_data.rst:11
+msgid "``_sequence_data`` is a system space for support of the :ref:`sequence feature <index-box_sequence>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_sequence_data.rst:14
+msgid "Each tuple in ``_sequence_data`` contains two fields:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_sequence_data.rst:16
+msgid "the id of the sequence, and"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_sequence_data.rst:17
+msgid "the last value that the sequence generator returned (non-persistent information)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/_sequence_data.rst:20
+msgid "There is no guarantee that this space will be updated immediately after every data-change request."
+msgstr ""

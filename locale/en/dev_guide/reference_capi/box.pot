@@ -1,0 +1,585 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-21 08:10+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/dev_guide/reference_capi/box.rst:3
+msgid "Module box"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:7
+msgid "Opaque structure passed to a C stored procedure"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:13
+msgid "Return a tuple from a C stored procedure."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:15
+msgid "The returned tuple is automatically reference-counted by Tarantool. An example program that uses ``box_return_tuple()`` is :ref:`write.c <f_c_tutorial-write>`."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:19
+#: ../../doc/dev_guide/reference_capi/box.rst:46
+msgid "an opaque structure passed to the C stored procedure by Tarantool"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:21
+msgid "a tuple to return"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+msgid "Returns"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:23
+#: ../../doc/dev_guide/reference_capi/box.rst:51
+msgid "-1 on error (perhaps, out of memory; check :ref:`box_error_last()<c_api-error-box_error_last>`)"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:25
+#: ../../doc/dev_guide/reference_capi/box.rst:53
+#: ../../doc/dev_guide/reference_capi/box.rst:106
+#: ../../doc/dev_guide/reference_capi/box.rst:123
+#: ../../doc/dev_guide/reference_capi/box.rst:139
+#: ../../doc/dev_guide/reference_capi/box.rst:160
+#: ../../doc/dev_guide/reference_capi/box.rst:181
+#: ../../doc/dev_guide/reference_capi/box.rst:204
+msgid "0 otherwise"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:32
+msgid "Return a pointer to a series of bytes in MessagePack format."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:34
+msgid "This can be used instead of :ref:`box_return_tuple() <box-box_return_tuple>` -- it can send the same value, but as MessagePack instead of as a tuple object. It may be simpler than ``box_return_tuple()`` when the result is small, for example a number or a boolean or a short string. It will also be faster than ``box_return_tuple()``, if the result is that users save time by not creating a tuple every time they want to return something from a C function."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:42
+msgid "On the other hand, if an already-existing tuple was obtained from an iterator, then it would be faster to return the tuple via ``box_return_tuple()`` rather than extracting its parts and sending them via ``box_return_mp()``."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:48
+msgid "the first MessagePack byte"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:49
+msgid "after the last MessagePack byte"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:55
+msgid "For example, if ``mp`` is a buffer, and ``mp_end`` is a return value produced by encoding a single MP_UINT scalar value with ``mp_end=mp_encode_uint(mp,1);``, then ``box_return_mp(ctx,mp,mp_end);`` should return ``0``."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:64
+msgid "Find space id by name."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:66
+msgid "This function performs a SELECT request on the ``_vspace`` system space."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:68
+msgid "space name"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:69
+#: ../../doc/dev_guide/reference_capi/box.rst:85
+msgid "length of ``name``"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:71
+#: ../../doc/dev_guide/reference_capi/box.rst:87
+msgid ":c:macro:`BOX_ID_NIL` on error or if not found (check :ref:`box_error_last()<c_api-error-box_error_last>`)"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:73
+#: ../../doc/dev_guide/reference_capi/box.rst:89
+msgid "space_id otherwise"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:75
+msgid "See also: :c:type:`box_index_id_by_name`"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:79
+msgid "Find index id by name."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:81
+msgid "This function performs a SELECT request on the ``_vindex`` system space."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:83
+#: ../../doc/dev_guide/reference_capi/box.rst:99
+#: ../../doc/dev_guide/reference_capi/box.rst:116
+#: ../../doc/dev_guide/reference_capi/box.rst:131
+#: ../../doc/dev_guide/reference_capi/box.rst:147
+#: ../../doc/dev_guide/reference_capi/box.rst:168
+#: ../../doc/dev_guide/reference_capi/box.rst:189
+msgid "space identifier"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:84
+msgid "index name"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:91
+msgid "See also: :c:type:`box_space_id_by_name`"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:97
+msgid "Execute an INSERT/REPLACE request."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:100
+#: ../../doc/dev_guide/reference_capi/box.rst:117
+#: ../../doc/dev_guide/reference_capi/box.rst:170
+msgid "encoded tuple in MsgPack Array format ([ field1, field2, ...])"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:101
+#: ../../doc/dev_guide/reference_capi/box.rst:118
+#: ../../doc/dev_guide/reference_capi/box.rst:171
+msgid "end of a ``tuple``"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:102
+#: ../../doc/dev_guide/reference_capi/box.rst:119
+msgid "output argument. Resulting tuple. Can be set to NULL to discard result"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:105
+#: ../../doc/dev_guide/reference_capi/box.rst:122
+#: ../../doc/dev_guide/reference_capi/box.rst:138
+#: ../../doc/dev_guide/reference_capi/box.rst:159
+#: ../../doc/dev_guide/reference_capi/box.rst:180
+#: ../../doc/dev_guide/reference_capi/box.rst:203
+msgid "-1 on error (check :ref:`box_error_last()<c_api-error-box_error_last>`)"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:108
+msgid "See also: :ref:`space_object.insert()<box_space-insert>`"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:114
+msgid "Execute a REPLACE request."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:125
+msgid "See also: :ref:`space_object.replace()<box_space-replace>`"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:129
+msgid "Execute a DELETE request."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:132
+#: ../../doc/dev_guide/reference_capi/box.rst:148
+#: ../../doc/dev_guide/reference_capi/box.rst:169
+msgid "index identifier"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:133
+#: ../../doc/dev_guide/reference_capi/box.rst:149
+msgid "encoded key in MsgPack Array format ([ field1, field2, ...])"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:134
+#: ../../doc/dev_guide/reference_capi/box.rst:150
+msgid "end of a ``key``"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:135
+#: ../../doc/dev_guide/reference_capi/box.rst:156
+#: ../../doc/dev_guide/reference_capi/box.rst:177
+msgid "output argument. An old tuple. Can be set to NULL to discard result"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:141
+msgid "See also: :ref:`space_object.delete()<box_space-delete>`"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:145
+msgid "Execute an UPDATE request."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:151
+#: ../../doc/dev_guide/reference_capi/box.rst:172
+msgid "encoded operations in MsgPack Array format, e.g. ``[[ '=', field_id,  value ], ['!', 2, 'xxx']]``"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:153
+msgid "end of an ``ops`` section"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:154
+#: ../../doc/dev_guide/reference_capi/box.rst:175
+msgid "0 if field_ids are zero-based as in C, 1 if field ids are 1-based as in Lua"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:162
+msgid "See also: :ref:`space_object.update()<box_space-update>`"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:166
+msgid "Execute an UPSERT request."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:174
+msgid "end of a ``ops``"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:183
+msgid "See also: :ref:`space_object.upsert()<box_space-upsert>`"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:187
+msgid "Truncate a space."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:195
+msgid "Since version :doc:`2.4.1 </release/2.4.1>`. Push MessagePack data into a session data channel -- socket, console or whatever is behind the session. Behaves just like Lua :doc:`/reference/reference_lua/box_session/push`."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:200
+msgid "begin of MessagePack to push"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:201
+msgid "end of MessagePack to push"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:210
+msgid "Since version :doc:`2.4.1 </release/2.4.1>`. Return the last retrieved value of the specified sequence."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:213
+msgid "sequence identifier"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:214
+msgid "pointer to a variable where the current sequence value will be stored on success."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:217
+msgid "0 on success and -1 otherwise. In case of an error user could get it via ``box_error_last()``."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:224
+msgid "Since version :doc:`2.11.0 </release/2.11.0>`. Return the database schema version. A schema version is a number that indicates whether the :ref:`database schema <index-box-data_schema_description>` is changed. For example, the ``schema_version`` value grows if a :ref:`space <index-box_space>` or :ref:`index <index-box_index>` is added or deleted, or a space, index, or field name is changed."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:230
+msgid "the database schema version"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+#: ../../doc/dev_guide/reference_capi/box.rst:0
+msgid "Return type"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:231
+#: ../../doc/dev_guide/reference_capi/box.rst:243
+#: ../../doc/dev_guide/reference_capi/box.rst:265
+#: ../../doc/dev_guide/reference_capi/box.rst:337
+msgid "number"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:233
+msgid "See also: :ref:`box.info.schema_version <box_info_schema_version>` and :ref:`IPROTO_SCHEMA_VERSION <internals-iproto-keys-schema_version>`"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:239
+msgid "Since version :doc:`2.11.0 </release/2.11.0>`. Return the unique identifier (ID) for the current session."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:242
+msgid "the session identifier; 0 or -1 if there is no session"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:245
+msgid "See also: :ref:`box.session.id() <box_session-id>`"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:251
+msgid "Since version :doc:`2.11.0 </release/2.11.0>`. Send an :ref:`IPROTO <internals-iproto-format>` packet over the session's socket with the given MsgPack header and body. The function yields. The function works for binary sessions only. For details, see :ref:`box.session.type() <box_session-type>`."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:257
+msgid "the IPROTO session identifier (see :ref:`box_session_id() <box_box_session_id>`)"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:258
+msgid "a MsgPack-encoded header"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:259
+msgid "end of a header encoded as MsgPack"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:260
+msgid "a MsgPack-encoded body. If the ``body`` and ``body_end`` parameters are omitted, the packet consists of the header only."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:262
+msgid "end of a body encoded as MsgPack"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:264
+#: ../../doc/dev_guide/reference_capi/box.rst:336
+msgid "0 on success; -1 on error (check :ref:`box_error_last() <c_api-error-box_error_last>`)"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:267
+msgid "See also: :ref:`box.iproto.send() <reference_lua-box_iproto_send>`"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:269
+#: ../../doc/dev_guide/reference_capi/box.rst:341
+msgid "**Possible errors:**"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:271
+msgid ":errcode:`ER_SESSION_CLOSED` -- the session is closed."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:272
+msgid ":errcode:`ER_NO_SUCH_SESSION` -- the session does not exist."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:273
+msgid ":errcode:`ER_MEMORY_ISSUE` -- out-of-memory limit has been reached."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:274
+msgid ":errcode:`ER_WRONG_SESSION_TYPE` -- the session type is not binary."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:276
+#: ../../doc/dev_guide/reference_capi/box.rst:349
+msgid "For details, see `src/box/errcode.h <https://github.com/tarantool/tarantool/blob/master/src/box/errcode.h>`__."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:278
+msgid "**Example**"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:280
+msgid "/* IPROTO constants are not exported to C.\n"
+"* That is, the user encodes them by himself.\n"
+"*/\n"
+"#define IPROTO_REQUEST_TYPE 0x00\n"
+"#define IPROTO_OK 0x00\n"
+"#define IPROTO_SYNC 0x01\n"
+"#define IPROTO_SCHEMA_VERSION 0x05\n"
+"#define IPROTO_DATA 0x30\n"
+"\n"
+"char buf[256] = {};\n"
+"char *header = buf;\n"
+"char *header_end = header;\n"
+"header_end = mp_encode_map(header_end, 3);\n"
+"header_end = mp_encode_uint(header_end, IPROTO_REQUEST_TYPE);\n"
+"header_end = mp_encode_uint(header_end, IPROTO_OK);\n"
+"header_end = mp_encode_uint(header_end, IPROTO_SYNC);\n"
+"header_end = mp_encode_uint(header_end, 10);\n"
+"header_end = mp_encode_uint(header_end, IPROTO_SCHEMA_VERSION);\n"
+"header_end = mp_encode_uint(header_end, box_schema_version());\n"
+"\n"
+"char *body = header_end;\n"
+"char *body_end = body;\n"
+"body_end = mp_encode_map(body_end, 1);\n"
+"body_end = mp_encode_uint(body_end, IPROTO_DATA);\n"
+"body_end = mp_encode_uint(body_end, 1);\n"
+"\n"
+"/* The packet contains both the header and body. */\n"
+"box_iproto_send(box_session_id(), header, header_end, body, body_end);\n"
+"\n"
+"/* The packet contains the header only. */\n"
+"box_iproto_send(box_session_id(), header, header_end, NULL, NULL);"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:318
+msgid "Since version :doc:`2.11.0 </release/2.11.0>`. Set a new IPROTO request handler with the provided context for the given request type. The function yields."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:322
+msgid "IPROTO request type code (for example, ``IPROTO_SELECT``). For details, check :ref:`Client-server requests and responses <internals-requests_responses>`.  To override the handler of unknown request types, use the :ref:`IPROTO_UNKNOWN <internals-iproto-keys-unknown>` type code."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:322
+msgid "IPROTO request type code (for example, ``IPROTO_SELECT``). For details, check :ref:`Client-server requests and responses <internals-requests_responses>`."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:325
+msgid "To override the handler of unknown request types, use the :ref:`IPROTO_UNKNOWN <internals-iproto-keys-unknown>` type code."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:327
+msgid "IPROTO request handler. To reset the request handler, set the ``handler`` parameter to ``NULL``. See the full parameter description in the :ref:`Handler function <box_box_iproto_override-handler>` section."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:330
+msgid "IPROTO request handler destructor. The destructor is called when the corresponding handler is removed. See the full parameter description in the :ref:`Handler destructor function <box_box_iproto_override-destroy>` section."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:334
+msgid "a context passed to the ``handler`` and ``destroy`` callbacks"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:339
+msgid "See also: :ref:`box.iproto.override() <reference_lua-box_iproto_override>`"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:343
+msgid "If a Lua handler throws an exception, the behavior is similar to that of a remote procedure call. The following errors are returned to the client over IPROTO (see `src/lua/utils.h <https://github.com/tarantool/tarantool/blob/dec0e0221e183fa972efa65bb0fb658112f2196f/src/lua/utils.h#L366-L371>`__):"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:346
+msgid ":errcode:`ER_PROC_LUA` -- an exception is thrown from a Lua handler, diagnostic is not set."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:347
+msgid "diagnostics from ``src/box/errcode.h`` -- an exception is thrown, diagnostic is set."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:353
+msgid "**Handler function**"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:355
+msgid "The signature of a handler function (the ``handler`` parameter):"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:357
+msgid "enum iproto_handler_status {\n"
+"        IPROTO_HANDLER_OK,\n"
+"        IPROTO_HANDLER_ERROR,\n"
+"        IPROTO_HANDLER_FALLBACK,\n"
+"}\n"
+"\n"
+"typedef enum iproto_handler_status\n"
+"(*iproto_handler_t)(const char *header, const char *header_end,\n"
+"                    const char *body, const char *body_end, void *ctx);"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:369
+#: ../../doc/dev_guide/reference_capi/box.rst:395
+msgid "where:"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:371
+msgid "``header`` (const char*) -- a MsgPack-encoded header"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:372
+msgid "``header_end`` (const char*) -- end of a header encoded as MsgPack"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:373
+msgid "``body`` (const char*) -- a MsgPack-encoded body"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:374
+msgid "``header_end`` (const char*) -- end of a body encoded as MsgPack"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:376
+msgid "The handler returns a status code. Possible statuses:"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:378
+msgid "``IPROTO_REQUEST_HANDLER_OK`` -- success"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:379
+msgid "``IPROTO_REQUEST_HANDLER_ERROR`` -- error, diagnostic must be set by handler (see :ref:`box_error_set() <c_api-error-box_error_set>` and :ref:`box_error_raise() <c_api-error-box_error_raise>`)"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:382
+msgid "``IPROTO_REQUEST_HANDLER_FALLBACK`` -- fallback to the default handler"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:386
+msgid "**Handler destructor function**"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:388
+msgid "The destructor is called when the handler is reset. The signature of a destructor function (the ``destroy`` parameter):"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:391
+msgid "typedef void (*iproto_handler_destroy_t)(void *ctx);"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:397
+msgid "``ctx`` (void*): the context provided by ``box_iproto_override()`` function."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:399
+msgid "**Examples**"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/box.rst:401
+msgid "box_iproto_override(1000, iproto_request_handler_с, NULL)\n"
+"box_iproto_override(IPROTO_SELECT, iproto_request_handler_с, (uintptr_t)23)\n"
+"box_iproto_override(IPROTO_SELECT, NULL, NULL)\n"
+"box_iproto_override(IPROTO_UNKNOWN, iproto_unknown_request_handler_с, &ctx)"
+msgstr ""

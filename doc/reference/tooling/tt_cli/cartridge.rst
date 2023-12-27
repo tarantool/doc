@@ -3,6 +3,8 @@
 Managing a Cartridge application
 ================================
 
+..  include:: _includes/cartridge_deprecation_note.rst
+
 ..  code-block:: console
 
     $ tt cartridge COMMAND {[OPTION ...]|SUBCOMMAND}

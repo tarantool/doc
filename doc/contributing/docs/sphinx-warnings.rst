@@ -163,7 +163,7 @@ This may happen when you refer to a wrong path to a document.
 
 Check the path.
 
-If the path points to ``cartridge`` or another submodule, check that you've
+If the path points to a submodule, check that you've
 :doc:`built the submodules content </contributing/docs/build>`
 before building docs.
 

@@ -1,0 +1,213 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_index.rst:5
+msgid "Submodule box.index"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:7
+msgid "The ``box.index`` submodule provides read-only access for index definitions and index keys. Indexes are contained in :samp:`box.space.{space-name}.index` array within each space object. They provide an API for ordered iteration over tuples. This API is a direct binding to corresponding methods of index objects of type ``box.index`` in the storage engine."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:13
+msgid "Below is a list of all ``box.index`` functions and members."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:24
+msgid "Name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:25
+msgid "Use"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:27
+msgid ":doc:`./box_index/examples`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:28
+msgid "Some useful examples"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:30
+msgid ":doc:`./box_space/create_index`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:31
+msgid "Create an index"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:33
+msgid ":doc:`./box_index/unique`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:34
+msgid "Flag, true if an index is unique"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:36
+msgid ":doc:`./box_index/type`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:37
+msgid "Index type"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:39
+msgid ":doc:`./box_index/parts`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:40
+msgid "Array of index key fields"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:42
+msgid ":doc:`./box_index/pairs`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:43
+msgid "Prepare for iterating"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:45
+msgid ":doc:`./box_index/select`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:46
+msgid "Select one or more tuples via index"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:48
+msgid ":doc:`./box_index/get`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:49
+msgid "Select a tuple via index"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:51
+msgid ":doc:`./box_index/min`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:52
+msgid "Find the minimum value in index"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:54
+msgid ":doc:`./box_index/max`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:55
+msgid "Find the maximum value in index"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:57
+msgid ":doc:`./box_index/random`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:58
+msgid "Find a random value in index"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:60
+msgid ":doc:`./box_index/count`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:61
+msgid "Count tuples matching key value"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:63
+msgid ":doc:`./box_index/update`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:64
+msgid "Update a tuple"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:66
+msgid ":doc:`./box_index/delete`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:67
+msgid "Delete a tuple by key"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:69
+msgid ":doc:`./box_index/alter`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:70
+msgid "Alter an index"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:72
+msgid ":doc:`./box_index/drop`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:73
+msgid "Drop an index"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:75
+msgid ":doc:`./box_index/rename`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:76
+msgid "Rename an index"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:78
+msgid ":doc:`./box_index/bsize`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:79
+msgid "Get count of bytes for an index"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:81
+msgid ":doc:`./box_index/stat`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:82
+msgid "Get statistics for an index"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:84
+msgid ":doc:`./box_index/compact`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:85
+msgid "Remove unused index space"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:87
+msgid ":doc:`./box_index/tuple_pos`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:88
+msgid "Return a tuple's position for an index"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:90
+msgid ":doc:`./box_index/user_defined`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index.rst:91
+msgid "Any function / method that any user wants to add"
+msgstr ""

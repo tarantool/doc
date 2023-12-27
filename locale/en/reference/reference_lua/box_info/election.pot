@@ -1,0 +1,77 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-07 07:21+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_info/election.rst:5
+msgid "box.info.election"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/election.rst:11
+msgid "Since version :doc:`2.6.1 </release/2.6.1>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/election.rst:13
+msgid "Show the current state of a replica set node in regards to :ref:`leader election <repl_leader_elect>`. The following information is provided:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/election.rst:16
+msgid "``state`` -- the election state (mode) of the node. Possible values are ``leader``, ``follower``, or ``candidate``. For more details, refer to description of the :ref:`leader election process <repl_leader_elect_process>`. When :ref:`replication.failover <configuration_reference_replication_failover>` is set to ``election``, the node is writable only in the ``leader`` state."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/election.rst:20
+msgid "``term`` -- the current election term."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/election.rst:22
+msgid "``vote`` -- the ID of a node the current node votes for. If the value is ``0``, it means the node hasn't voted in the current term yet."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/election.rst:24
+msgid "``leader`` -- a leader node ID in the current term. If the value is ``0``, it means the node doesn't know which node is the leader in the current term."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/election.rst:26
+msgid "``leader_name`` -- a leader name. Returns ``nil`` if there is no leader in a cluster or :ref:`box.NULL <box-null>` if a leader does not have a name. Since version :doc:`3.0.0 </release/3.0.0>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/election.rst:28
+msgid "``leader_idle`` -- time in seconds since the last interaction with the known leader. Since version :doc:`2.10.0 </release/2.10.0>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/election.rst:32
+msgid "IDs in the ``box.info.election`` output are the replica IDs visible in the ``box.info.id`` output on each node and in the ``_cluster`` space."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/election.rst:34
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/election.rst:36
+msgid "auto_leader:instance001> box.info.election\n"
+"---\n"
+"- leader_idle: 0\n"
+"  leader_name: instance001\n"
+"  state: leader\n"
+"  vote: 2\n"
+"  term: 3\n"
+"  leader: 2\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_info/election.rst:48
+msgid "See also: :ref:`Master-replica: automated failover <replication-bootstrap-auto>`."
+msgstr ""

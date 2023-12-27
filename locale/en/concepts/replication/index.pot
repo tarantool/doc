@@ -1,0 +1,33 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-07 07:21+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/concepts/replication/index.rst:7
+msgid "Replication"
+msgstr ""
+
+#: ../../doc/concepts/replication/index.rst:9
+msgid "Replication allows multiple Tarantool instances to work on copies of the same databases. The databases are kept in sync because each instance can communicate its changes to all the other instances."
+msgstr ""
+
+#: ../../doc/concepts/replication/index.rst:13
+msgid "This section includes the following topics:"
+msgstr ""
+
+#: ../../doc/concepts/replication/index.rst:23
+msgid "For practical guides to replication, see :ref:`Replication tutorials <how-to-replication>`. You can learn about bootstrapping a replica set, adding instances to the replica set, or removing them."
+msgstr ""

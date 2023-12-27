@@ -1,0 +1,157 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-21 08:10+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/dev_guide/internals/iproto/format.rst:4
+msgid "Request and response format"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/format.rst:6
+msgid "The types referred to in this document are `MessagePack <http://MessagePack.org>`_ types. For their definitions, see the :ref:`MP_* MessagePack types <box_protocol-notation>` section."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/format.rst:12
+msgid "Packet structure"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/format.rst:14
+msgid "Requests and responses have similar structure. They contain three sections: size, header, and body."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/format.rst:19
+msgid "It is legal to put more than one request in a packet."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/format.rst:22
+msgid "Size"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/format.rst:24
+msgid "The size is an MP_UINT -- unsigned integer, usually 32-bit. It is the size of the header plus the size of the body. It may be useful to compare it with the number of bytes remaining in the packet."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/format.rst:31
+msgid "Header"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/format.rst:33
+msgid "The header is an MP_MAP. It may contain, in any order:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/format.rst:38
+msgid "Both the request and response use the :ref:`IPROTO_REQUEST_TYPE <internals-iproto-keys-request_type>` key. It denotes the type of the packet."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/format.rst:41
+msgid "The request and the matching response have the same sync number (:ref:`IPROTO_SYNC <internals-iproto-keys-sync>`)."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/format.rst:43
+msgid ":ref:`IPROTO_SCHEMA_VERSION <internals-iproto-keys-schema_version>` is an optional key that indicates whether there was a major change in the schema."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/format.rst:46
+msgid "In :ref:`interactive transactions <txn_mode_stream-interactive-transactions>`, every stream is identified by a unique :ref:`IPROTO_STREAM_ID <box_protocol-iproto_stream_id>`."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/format.rst:49
+msgid "In case of replicating :ref:`synchronous transactions <repl_sync>`, the header also contains the :ref:`IPROTO_FLAGS <box_protocol-flags>` key."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/format.rst:53
+msgid "Encoding and decoding"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/format.rst:55
+msgid "To see how Tarantool encodes the header, have a look at file `xrow.c <https://github.com/tarantool/tarantool/blob/master/src/box/xrow.c>`_, function ``xrow_header_encode``."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/format.rst:59
+msgid "To see how Tarantool decodes the header, have a look at file `net_box.c <https://github.com/tarantool/tarantool/blob/master/src/box/lua/net_box.c>`__, function ``netbox_decode_data``."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/format.rst:63
+msgid "For example, in a successful response to ``box.space:select()``, the IPROTO_REQUEST_TYPE value is 0 = ``IPROTO_OK`` and the array has all the tuples of the result."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/format.rst:67
+msgid "Read the source code file `net_box.c <https://github.com/tarantool/tarantool/blob/master/src/box/lua/net_box.c>`__ where the function ``decode_metadata_optional`` is an example of how Tarantool itself decodes extra items."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/format.rst:74
+msgid "Body"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/format.rst:76
+msgid "The body is an MP_MAP. Maximal iproto package body length is 2 GiB."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/format.rst:78
+msgid "The body has the details of the request or response. In a request, it can also be absent or be an empty map. Both these states are interpreted equally. Responses contain the body anyway even for an :ref:`IPROTO_PING <box_protocol-ping>` request, where it is an empty MP_MAP."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/format.rst:83
+msgid "A lot of responses contain the IPROTO_DATA map:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/format.rst:88
+msgid "For most data-access requests (:ref:`IPROTO_SELECT <box_protocol-select>`, :ref:`IPROTO_INSERT <box_protocol-insert>`, :ref:`IPROTO_DELETE <box_protocol-delete>`, etc.) the body is an IPROTO_DATA map with an array of tuples that contain an array of fields."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/format.rst:92
+msgid "IPROTO_DATA is what we get with net_box and :ref:`Module buffer <buffer-module>` so if we were using net_box we could decode with :ref:`msgpack.decode_unchecked() <msgpack-decode_unchecked_string>`, or we could convert to a string with :samp:`ffi.string({pointer},{length})`. The :ref:`pickle.unpack() <pickle-unpack>` function might also be helpful."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/format.rst:100
+msgid "For SQL-specific requests and responses, the body is a bit different. :ref:`Learn more <internals-iproto-sql>` about this type of packets."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/format.rst:106
+msgid "Error responses"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/format.rst:108
+msgid "Instead of :ref:`IPROTO_OK <internals-iproto-ok>`, an error response header has IPROTO_REQUEST_TYPE = :ref:`IPROTO_TYPE_ERROR <internals-iproto-type_error>`. Its code is ``0x8XXX``, where ``XXX`` is the error code -- a value in `src/box/errcode.h <https://github.com/tarantool/tarantool/blob/master/src/box/errcode.h>`_. ``src/box/errcode.h`` also has some convenience macros which define hexadecimal constants for return codes."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/format.rst:115
+msgid "The error response body is a map that contains two keys: :ref:`IPROTO_ERROR <internals-iproto-keys-error>` and :ref:`IPROTO_ERROR_24 <internals-iproto-keys-error>`. While IPROTO_ERROR contains an MP_MAP value, IPROTO_ERROR_24 contains a string. The two keys are provided to accommodate clients with older and newer Tarantool versions."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/format.rst:124
+msgid "Error responses before 2.4.1"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/format.rst:126
+msgid "Before Tarantool v. :doc:`2.4.1 </release/2.4.1>`, the key IPROTO_ERROR contained a string and was identical to the current IPROTO_ERROR_24 key."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/format.rst:129
+msgid "Let's consider an example. This is the fifth message, and the request was to create a duplicate space with ``conn:eval([[box.schema.space.create('_space');]])``. The unsuccessful response looks like this:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/format.rst:136
+msgid "The tutorial :ref:`Understanding the binary protocol <box_protocol-illustration>` shows actual byte codes of the response to the IPROTO_EVAL message."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/format.rst:139
+msgid "Looking in `errcode.h <https://github.com/tarantool/tarantool/blob/master/src/box/errcode.h>`__, we find that the error code ``0x0a`` (decimal 10) is ER_SPACE_EXISTS, and the string associated with ER_SPACE_EXISTS is \"Space '%s' already exists\"."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/format.rst:144
+msgid "Since version :doc:`2.4.1 </release/2.4.1>`, responses for errors have extra information following what was described above. This extra information is given via the MP_ERROR extension type. See details in the :ref:`MessagePack extensions <msgpack_ext-error>` section."
+msgstr ""

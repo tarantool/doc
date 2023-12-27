@@ -1,0 +1,73 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/tooling/tt_cli/restart.rst:4
+msgid "Restarting a Tarantool instance"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/restart.rst:6
+msgid "$ tt restart {INSTANCE | APPLICATION[:APP_INSTANCE]} [OPTION ...]"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/restart.rst:10
+msgid "``tt restart`` restarts the specified running Tarantool instance. A ``tt restart`` call is equivalent to consecutive calls of :doc:`tt stop <stop>` and :doc:`tt start <start>`."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/restart.rst:15
+msgid "Options"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/restart.rst:19
+msgid "Automatic \"Yes\" to confirmation prompt."
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/restart.rst:22
+msgid "Examples"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/restart.rst:25
+msgid "Single instance"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/restart.rst:27
+msgid "Restart the ``app`` instance with automatic confirmation:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/restart.rst:29
+msgid "$ tt restart app -y"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/restart.rst:34
+msgid "Multiple instances"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/restart.rst:36
+msgid "Restart all instances of the application stored in the ``app/`` directory inside ``instances_enabled`` in accordance with the :ref:`instances configuration <tt-instances>`:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/restart.rst:39
+msgid "$ tt restart app"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/restart.rst:43
+msgid "Restart only the ``master`` instance of the application stored in the ``app/`` directory inside ``instances_enabled``:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tt_cli/restart.rst:45
+msgid "$ tt restart app:master"
+msgstr ""

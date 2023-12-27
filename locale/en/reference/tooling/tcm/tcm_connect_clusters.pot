@@ -1,0 +1,256 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-15 07:52+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:4
+msgid "Сonnecting clusters"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/index.rst:3
+msgid "Enterprise Edition"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/index.rst:6
+msgid "|tcm_full_name| is a part of the `Enterprise Edition <https://www.tarantool.io/compare/>`_."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:10
+msgid "|tcm_full_name| works with clusters that:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:12
+msgid "run on Tarantool EE 3.0 or later"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:13
+msgid "use :ref:`centralized configuration <configuration>` stored in etcd or another Tarantool cluster."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:15
+msgid "A single |tcm| installation can have multiple connected clusters. A connection to |tcm| doesn't affect the cluster's functioning. You can connect clusters to |tcm| and disconnect them on the fly."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:19
+msgid "There are two ways to add a cluster to |tcm|:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:21
+msgid "Connect an existing cluster."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:22
+msgid "Add a new cluster and :ref:`write its configuration <tcm_cluster_config>` from scratch in the |tcm| web UI."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:24
+msgid "In both cases, you need to deploy Tarantool and start the cluster instances using the :ref:`tt-cli` or another suitable way."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:30
+msgid "Connection parameters"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:32
+msgid "When connecting a cluster to |tcm|, you need to provide two sets of connection parameters: for the cluster instances and for the centralized configuration storage."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:36
+msgid "Configuration storage connection"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:38
+msgid "The cluster configuration can be stored in either an :ref:`etcd <configuration_etcd>` cluster or a separate Tarantool-based storage. In both cases, the following connection parameters are required:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:42
+msgid "A key prefix used to identify the cluster in the configuration storage. A prefix must be unique for each cluster in storage."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:44
+msgid "URIs of all instances of the configuration storage."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:45
+msgid "The credentials for accessing the configuration storage: an `etcd user <https://etcd.io/docs/v3.5/op-guide/authentication/rbac/>`__ or a :ref:`Tarantool user <authentication>`."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:48
+msgid "Additionally, if SSL or TLS encryption is enabled for the configuration storage, provide the corresponding encryption configuration: keys, certificates, and other parameters. For the complete list of parameters, consult the `etcd documentation <https://etcd.io/docs/v3.5/op-guide/configuration/#security>`__ or Tarantool :ref:`enterprise-iproto-encryption`."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:54
+msgid "Cluster connection"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:56
+msgid "For interaction with the cluster instances, |tcm| needs the following access parameters:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:58
+msgid "A :ref:`Tarantool user <authentication>` that exists in the cluster and their password. |tcm| connects to the cluster on behalf of this user."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:60
+msgid "An :ref:`SSL configuration <enterprise-iproto-encryption>` if the traffic encryption is enabled on the cluster."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:64
+msgid "Managing connected clusters"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:66
+msgid "Administrators can add new clusters, edit, and remove existing ones from |tcm|."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:68
+msgid "Connected clusters are listed on the **Clusters** page."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:73
+msgid "Connecting a pre-configured cluster"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:75
+msgid "If you already have a cluster and want to connect it to |tcm|, follow these steps:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:78
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:115
+msgid "Go to **Clusters**  and click **Add**."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:79
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:116
+msgid "Fill in the general cluster information:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:81
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:118
+msgid "Specify an arbitrary name."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:82
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:119
+msgid "Optionally, provide a description and select a color to mark this cluster in |tcm|."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:83
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:120
+msgid "Optionally, enter the URLs of additional services for the cluster. For example, a Grafana dashboard that monitors the cluster metrics, or a syslog server for viewing the cluster logs. |tcm| provides quick access to these URLs on the cluster **Stateboard** page."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:88
+msgid "Provide the details of the cluster configuration storage:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:90
+msgid "Storage type: **etcd** or **tarantool**."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:91
+msgid "The **Prefix** specified in the cluster configuration."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:92
+msgid "The URIs of the configuration storage instances."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:93
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:130
+msgid "The credentials for accessing the configuration storage."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:94
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:131
+msgid "The SSL/TLS parameters if the connection encryption is enabled on the storage."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:96
+msgid "Provide the credentials for accessing the cluster: a Tarantool user's name, their password, and SSL parameters in case :ref:`traffic encryption <enterprise-iproto-encryption>` is enabled on the cluster."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:103
+msgid "Adding a new cluster"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:105
+msgid "If you don't have a cluster yet, you can add one in |tcm| and write its configuration from scratch using the :ref:`built-in configuration editor <tcm_configuring_clusters>`."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:110
+msgid "When adding a new cluster, you need to have a storage for its configuration up and running so that |tcm| can connect to it. Cluster instances can be deployed later."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:113
+msgid "To add a new cluster:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:125
+msgid "Select the type of the cluster configuration storage: **etcd** or **tarantool**."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:126
+msgid "Define a unique **Prefix** for identifying this cluster in the configuration storage."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:127
+msgid "Provide the connection details for the cluster configuration storage:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:129
+msgid "The URIs of configuration storage instances."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:133
+msgid "Provide the cluster credentials: a username, a password, and SSL parameters in case :ref:`traffic encryption <enterprise-iproto-encryption>` is enabled on the cluster."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:137
+msgid "Once you add the cluster:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:139
+msgid "Set up the cluster configuration using the |tcm| :ref:`configuration editor <tcm_configuring_clusters>`."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:140
+msgid "Deploy Tarantool on the cluster nodes using the :ref:`tt-cli` or other suitable tools."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:141
+msgid "Start the cluster using the :ref:`tt-cli` or other suitable tools."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:146
+msgid "Editing a connected cluster"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:148
+msgid "To edit a connected cluster, go to **Clusters** and click **Edit** in the **Actions** menu of the corresponding table row."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:154
+msgid "Disconnecting a cluster"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:156
+msgid "To disconnect a cluster from |tcm|, go to **Clusters** and click **Disconnect** in the **Actions** menu of the corresponding table row."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_connect_clusters.rst:161
+msgid "Disconnecting a cluster does not affect its functioning. The only thing that changes is that it's no longer shown in |tcm|. You can connect this cluster again at any time."
+msgstr ""

@@ -1,0 +1,45 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-21 17:20+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/admin/replication/repl_reseed.rst:5
+msgid "Reseeding a replica"
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_reseed.rst:7
+msgid "If any of a replica's write-ahead log or snapshot files are corrupted or deleted, you can reseed the replica. This procedure works only if the master's write-ahead logs are present."
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_reseed.rst:10
+msgid "Stop the replica using the :ref:`tt stop <tt-stop>` command."
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_reseed.rst:12
+msgid "Delete write-ahead logs and snapshots stored in the ``var/lib/<instance_name>`` directory."
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_reseed.rst:16
+msgid "``var/lib`` is the default directory used by tt to store write-ahead logs and snapshots. Learn more from :ref:`Configuration <tt-config>`."
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_reseed.rst:19
+msgid "Start the replica using the :ref:`tt start <tt-start>` command. The replica should catch up with the master by retrieving all the master's tuples."
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_reseed.rst:22
+msgid "(Optional) If you're reseeding a replica after a replication conflict, you also need to :ref:`restart replication <replication-master-master-resolve-conflict>`."
+msgstr ""

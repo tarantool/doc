@@ -1,0 +1,64 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_space/len.rst:5
+msgid "space_object:len()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/len.rst:11
+msgid "Return the number of tuples in the space. If compared with :doc:`count() </reference/reference_lua/box_space/count>`, this method works faster because ``len()`` does not scan the entire space to count the tuples."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/len.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/len.rst:16
+msgid "an :ref:`object reference <app_server-object_reference>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/len.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/len.rst:19
+msgid "Number of tuples in the space."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/len.rst:21
+msgid "**Possible errors:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/len.rst:23
+msgid ":errcode:`ER_TRANSACTION_CONFLICT` if a transaction conflict is detected in the :ref:`MVCC transaction mode <txn_mode_transaction-manager>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/len.rst:26
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/len.rst:28
+msgid "tarantool> box.space.tester:len()\n"
+"---\n"
+"- 2\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/len.rst:35
+msgid "**Note regarding storage engine:** vinyl supports ``len()`` but the result may be approximate. If an exact result is necessary then use :doc:`count() </reference/reference_lua/box_space/count>` or :doc:`pairs():length() </reference/reference_lua/box_space/pairs>`."
+msgstr ""

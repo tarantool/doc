@@ -3,9 +3,8 @@
 Modules
 =======
 
-Any logic that is used in Tarantool can be packaged as an application
-(like a :ref:`Cartridge application <tarantool-cartridge>`) or a reusable **module**. 
-A module is an optional library that enhances Tarantool functionality.
+Any logic that is used in Tarantool can be packaged as an application or a reusable **module**.
+A module is an optional library that extends Tarantool functionality.
 It can be used by Tarantool applications or other modules.
 Modules allow for easier code management and hot code reload without restarting the Tarantool instance.
 Like applications, modules in Tarantool can be written in Lua,

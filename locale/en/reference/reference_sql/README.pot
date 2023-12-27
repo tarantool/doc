@@ -1,0 +1,75 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_sql/README.md:1
+msgid "The diagrams in the SQL reference are generated using [Syntrax](https://github.com/kevinpt/syntrax)."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/README.md:3
+msgid "Install Syntrax"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/README.md:5
+msgid "pip install syntrax\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_sql/README.md:9
+msgid "Troubleshooting installation issues"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/README.md:11
+msgid "pip: command not found"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/README.md:13
+msgid "Ensure that Python is installed"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/README.md:14
+msgid "Try `pip3` instead of `pip`"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/README.md:16
+msgid "error in syntrax setup command: use_2to3 is invalid."
+msgstr ""
+
+#: ../../doc/reference/reference_sql/README.md:18
+msgid "Run `pip3 install \"setuptools<58.0.0\"`"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/README.md:20
+msgid "ModuleNotFoundError: No module named 'cairo'|'gi'|'pango'"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/README.md:22
+msgid "Search on stackoverflow %)"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/README.md:24
+msgid "Generate a diagram"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/README.md:26
+msgid "Generate an SVG with the same file name:"
+msgstr ""
+
+#: ../../doc/reference/reference_sql/README.md:28
+msgid "syntrax <filename>.spec -o svg\n"
+""
+msgstr ""

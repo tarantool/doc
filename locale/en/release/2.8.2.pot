@@ -1,0 +1,425 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/release/2.8.2.rst:2
+msgid "Tarantool 2.8.2"
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:4
+msgid "Released on 2021-08-19."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:6
+msgid "Release: :tarantool-release:`2.8.2`."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:7
+msgid "Tag: ``2.8.2-0-gfc96d10``."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:10
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:12
+msgid "2.8.2 is the second :doc:`stable </release/policy/>` version of the 2.8 release series. It introduces 6 improvements and resolves 51 bugs since version :doc:`2.8.1 </release/2.8.1>`."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:17
+msgid "The “stable” label means that we have all planned features implemented and we see no high-impact issues. However, if you encounter an issue, feel free to `report it <https://github.com/tarantool/tarantool/issues>`__ on GitHub."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:22
+msgid "Compatibility"
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:24
+msgid "Tarantool 2.x is backward compatible with Tarantool 1.10.x in the binary data layout, client-server protocol, and replication protocol."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:27
+msgid "Please `upgrade <https://www.tarantool.io/en/doc/latest/book/admin/upgrades/>`__ using the ``box.schema.upgrade()`` procedure to unlock all the new features of the 2.x series."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:33
+msgid "Functionality added or changed"
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:36
+#: ../../doc/release/2.8.2.rst:322
+msgid "LuaJIT"
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:38
+msgid "Introduced support for ``LJ_DUALNUM`` mode in ``luajit-gdb.py`` (:tarantool-issue:`6224`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:42
+#: ../../doc/release/2.8.2.rst:339
+msgid "Lua"
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:44
+msgid "Introduced the new method ``table.equals``. It compares two tables by value with respect to the ``__eq`` metamethod."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:48
+msgid "Logging"
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:50
+msgid "The ``log`` module now supports symbolic representation of log levels. Now it is possible to specify levels the same way as in the ``box.cfg{}`` call (:tarantool-issue:`5882`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:55
+msgid "For example, instead of"
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:57
+msgid "require('log').cfg{level = 6}"
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:61
+msgid "it is possible to use"
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:63
+msgid "require('log').cfg{level = 'verbose'}"
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:68
+#: ../../doc/release/2.8.2.rst:358
+msgid "SQL"
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:70
+msgid "Descriptions of type mismatch error and inconsistent type error have become more informative (:tarantool-issue:`6176`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:74
+msgid "Removed explicit cast from ``BOOLEAN`` to numeric types and vice versa (:tarantool-issue:`4770`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:78
+msgid "For example, ``CAST(FALSE AS INTEGER)`` was ``0`` in version 2.8. Now it causes an error."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:81
+msgid "Removed explicit cast from ``VARBINARY`` to numeric types and vice versa (:tarantool-issue:`4772`, :tarantool-issue:`5852`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:85
+msgid "Fixed a bug where a string that is not ``NULL``-terminated could not be cast to ``BOOLEAN``, even if the conversion would be successful according to the rules."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:90
+msgid "Build"
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:92
+msgid "Fedora 34 builds are now supported (:tarantool-issue:`6074`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:95
+msgid "Fedora 28 and 29 builds are no longer supported."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:98
+msgid "Bugs fixed"
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:101
+msgid "Core"
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:103
+msgid "**[Breaking change]** ``fiber.wakeup()`` in Lua and ``fiber_wakeup()`` in C became NOP on the currently running fiber. Previously they allowed “ignoring” the next yield or sleep, which resulted in unexpected erroneous wake-ups. Calling these functions right before ``fiber.create()`` in Lua or ``fiber_start()`` in C could lead to a crash (in debug build) or undefined behaviour (in release build) (:tarantool-issue:`6043`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:111
+msgid "There was a single use case for the previous behaviour: rescheduling in the same event loop iteration, which is not the same as ``fiber.sleep(0)`` in Lua and ``fiber_sleep(0)`` in C. It could be done in the following way:"
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:116
+msgid "in C:"
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:118
+msgid "fiber_wakeup(fiber_self());\n"
+"fiber_yield();"
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:123
+msgid "and in Lua:"
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:125
+msgid "fiber.self():wakeup()\n"
+"fiber.yield()"
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:130
+msgid "To get the same effect in C, one can now use ``fiber_reschedule()``. In Lua, it is now impossible to reschedule the current fiber directly in the same event loop iteration. One can reschedule self through a second fiber, but it is strongly discouraged:"
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:135
+msgid "-- do not use this code\n"
+"local self = fiber.self()\n"
+"fiber.new(function() self:wakeup() end)\n"
+"fiber.sleep(0)"
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:142
+msgid "Fixed memory leak on ``box.on_commit()`` and ``box.on_rollback()`` (:tarantool-issue:`6025`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:145
+msgid "``fiber_join()`` now checks if the argument is a joinable fiber. The absence of this check could lead to unpredictable results. Note that the change affects the C level only; in the Lua interface, ``fiber:join()`` protection is already enabled."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:150
+msgid "Now Tarantool yields when it scans ``.xlog`` files for the latest applied vclock and finds the right place to start recovering from. It means that the instance becomes responsive right after the ``box.cfg`` call even if an empty ``.xlog`` was not created on the previous exit."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:156
+msgid "This fix also prevents the relay from timing out when a freshly subscribed replica needs rows from the end of a relatively long (hundreds of MBs) ``.xlog`` file (:tarantool-issue:`5979`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:161
+msgid "The counter in ``N rows processed`` log messages no longer resets on each newly recovered ``xlog``."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:164
+msgid "Fixed a crash in JSON update on tuple/space, where the update included two or more operations that accessed fields in reversed order and these fields didn’t exist. Example: ``box.tuple.new({1}):update({{'=', 4, 4}, {'=', 3, 3}})`` (:tarantool-issue:`6069`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:170
+msgid "Fixed invalid results of the ``json`` module’s ``encode`` function when it was used from the Lua garbage collector. For example, this could happen in functions used as ``ffi.gc()`` (:tarantool-issue:`6050`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:175
+msgid "Added a check for user input of the number of iproto threads: value must be greater than zero and less than or equal to 1000 (:tarantool-issue:`6005`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:179
+msgid "Changing a listed address can no longer cause iproto threads to close the same socket several times."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:182
+msgid "Tarantool now always removes the Unix socket correctly when it exits."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:184
+msgid "Simultaneously updating a key in different transactions does not longer result in a MVCC crash (:tarantool-issue:`6131`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:188
+msgid "Fixed a bug where memtx MVCC crashed during reading uncommitted DDL (:tarantool-issue:`5515`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:191
+msgid "Fixed a bug where memtx MVCC crashed if an index was created in the transaction thread (:tarantool-issue:`6137`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:195
+msgid "Fixed a MVCC segmentation fault that arose when updating the entire space concurrently (:tarantool-issue:`5892`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:199
+msgid "Fixed a bug with failed assertion after a stress update of the same key (:tarantool-issue:`6193`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:203
+msgid "Fixed a crash where ``box.snapshot`` could be called during an incomplete transaction (:tarantool-issue:`6229`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:207
+msgid "Fixed console client connection failure in case of request timeout (:tarantool-issue:`6249`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:210
+msgid "Added a missing broadcast to ``net.box.future:discard()`` so that now fibers waiting for a request result wake up when the request is discarded (:tarantool-issue:`6250`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:214
+msgid "``box.info.uuid``, ``box.info.cluster.uuid``, and ``tostring(decimal)`` with any decimal number in Lua could sometimes return garbage if there were ``__gc`` handlers in the user’s code (:tarantool-issue:`6259`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:219
+msgid "Fixed an error message that appeared in a particular case during MVCC operation (:tarantool-issue:`6247`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:222
+msgid "Fixed a repeatable read violation after delete (:tarantool-issue:`6206`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:225
+msgid "Fixed a bug where the MVCC engine didn't track the ``select{}`` hash (:tarantool-issue:`6040`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:228
+msgid "Fixed a crash in MVCC after a drop of space with several indexes (:tarantool-issue:`6274`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:231
+msgid "Fixed a bug where the GC could leave tuples in secondary indexes (:tarantool-issue:`6234`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:234
+msgid "Disallow yields after DDL operations in MVCC mode. It fixes a crash that took place when several transactions referred to system spaces (:tarantool-issue:`5998`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:238
+msgid "Fixed a bug in MVCC that happened on rollback after a DDL operation (:tarantool-issue:`5998`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:241
+msgid "Fixed a bug where rollback resulted in unserializable behavior (:tarantool-issue:`6325`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:245
+msgid "Vinyl"
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:247
+msgid "Fixed possible keys divergence during secondary index build, which might lead to missing tuples (:tarantool-issue:`6045`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:251
+msgid "Fixed the race between Vinyl garbage collection and compaction that resulted in a broken vylog and recovery failure (:tarantool-issue:`5436`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:256
+msgid "Replication"
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:258
+msgid "Fixed the use after free in the relay thread when using elections (:tarantool-issue:`6031`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:261
+msgid "Fixed a possible crash when a synchronous transaction was followed by an asynchronous transaction right when its confirmation was being written (:tarantool-issue:`6057`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:266
+msgid "Fixed an error where a replica, while attempting to subscribe to a foreign cluster with a different replicaset UUID, didn’t notice it is impossible and instead became stuck in an infinite retry loop printing a ``TOO_EARLY_SUBSCRIBE`` error (:tarantool-issue:`6094`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:272
+msgid "Fixed an error where a replica, while attempting to join a cluster with exclusively read-only replicas available, just booted its own replicaset, instead of failing or retrying. Now it fails with an error about the other nodes being read-only so they can’t register the new replica (:tarantool-issue:`5613`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:279
+msgid "Fixed error reporting associated with transactions received from remote instances via replication. Any error raised while such a transaction was being applied was always reported as ``Failed to write to disk`` regardless of what really happened. Now the correct error is shown. For example, ``Out of memory``, or ``Transaction has been aborted by conflict``, and so on (:tarantool-issue:`6027`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:287
+msgid "Fixed replication occasionally stopping with ``ER_INVALID_MSGPACK`` when the replica is under high load (:tarantool-issue:`4040`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:290
+msgid "Fixed a cluster sometimes being unable to bootstrap if it contains nodes with ``election_mode`` set to ``manual`` or ``voter`` (:tarantool-issue:`6018`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:294
+msgid "Fixed a possible crash when ``box.ctl.promote()`` was called in a cluster with more than three instances. The crash happened in the debug build. In the release build, it could lead to undefined behaviour. It was likely to happen if a new node was added shortly before the promotion (:tarantool-issue:`5430`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:300
+msgid "Fixed a rare error appearing when MVCC (``box.cfg.memtx_use_mvcc_engine``) was enabled and more than one replica joined the cluster. The join could fail with the error ``\"ER_TUPLE_FOUND: Duplicate key exists in unique index 'primary' in space '_cluster'\"``. The same could happen at the bootstrap of a cluster having more than three nodes (:tarantool-issue:`5601`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:308
+msgid "Raft"
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:310
+msgid "Fixed a rare crash with leader election enabled (any mode except ``off``), which could happen if a leader resigned from its role while another node was writing something elections-related to WAL. The crash was in the debug build, and in the release build it would lead to undefined behaviour (:tarantool-issue:`6129`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:317
+msgid "Fixed an error where a new replica in a Raft cluster tried to join from a follower instead of a leader and failed with the error ``ER_READONLY`` (:tarantool-issue:`6127`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:324
+msgid "Fixed optimization for single-char strings in the ``IR_BUFPUT`` assembly routine."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:327
+msgid "Fixed slots alignment in the ``lj-stack`` command output when ``LJ_GC64`` is enabled (:tarantool-issue:`5876`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:330
+msgid "Fixed dummy frame unwinding in the ``lj-stack`` command."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:332
+msgid "Fixed detection of inconsistent renames even in the presence of sunk values (:tarantool-issue:`4252`, :tarantool-issue:`5049`, :tarantool-issue:`5118`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:335
+msgid "Fixed the VM register allocation order provided by LuaJIT frontend in case of ``BC_ISGE`` and ``BC_ISGT`` (:tarantool-issue:`6227`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:341
+msgid "When an error occurs during encoding call results, the auxiliary lightuserdata value is not removed from the main Lua coroutine stack. Before the fix, it led to undefined behaviour during the next usage of this Lua coroutine (:tarantool-issue:`4617`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:346
+msgid "Fixed a Lua C API misuse when the error is raised during call results encoding in an unprotected coroutine and expected to be caught in a different, protected coroutine (:tarantool-issue:`6248`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:351
+msgid "Triggers"
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:353
+msgid "Fixed a possible crash in case trigger removes itself. Fixed a possible crash in case someone destroys a trigger when it yields (:tarantool-issue:`6266`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:360
+msgid "User-defined functions can now return a VARBINARY result to SQL (:tarantool-issue:`6024`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:363
+msgid "Fixed assert when a DOUBLE value greater than -1.0 and less than 0.0 is cast to INTEGER and UNSIGNED (:tarantool-issue:`6225`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:367
+msgid "Removed spontaneous conversion from INTEGER to DOUBLE in a field of the NUMBER type (:tarantool-issue:`5335`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:371
+msgid "All arithmetic operations can now accept numeric values only (:tarantool-issue:`5756`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:375
+msgid "MVCC"
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:377
+msgid "Fixed MVCC interaction with ephemeral spaces: TX manager now ignores them (:tarantool-issue:`6095`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:380
+msgid "Fixed loss of tuples after a conflict exception (:tarantool-issue:`6132`)."
+msgstr ""
+
+#: ../../doc/release/2.8.2.rst:383
+msgid "Fixed a segfault during update/delete of the same tuple (:tarantool-issue:`6021`)."
+msgstr ""

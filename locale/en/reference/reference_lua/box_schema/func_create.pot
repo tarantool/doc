@@ -1,0 +1,317 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-26 14:24+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:5
+msgid "box.schema.func.create()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:13
+msgid "Create a function. The created function can be used in different usage scenarios, for example, in :ref:`field or tuple constraints <index-constraints>` or :ref:`functional indexes <box_space-index_func>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:18
+msgid "Using the :ref:`body <function_options_body>` option, you can make a function *persistent*. In this case, the function is \"persistent\" because its definition is stored in a snapshot (the :ref:`box.space._func <box_space-func>` system space) and can be recovered if the server restarts."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:21
+msgid "a name of the function, which should conform to the :ref:`rules for object names <app_server-names>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:23
+msgid "see :ref:`function_options <func_create_function_options>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:25
+msgid "nil"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:29
+msgid ":ref:`box.schema.user.grant() <box_schema-user_grant>` can be used to allow the specified user or role to execute the created function."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:32
+msgid "**Example 1: a non-persistent Lua function**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:34
+msgid "The example below shows how to create a non-persistent Lua function:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:36
+msgid "box.schema.func.create('calculate')\n"
+"box.schema.func.create('calculate', {if_not_exists = false})\n"
+"box.schema.func.create('calculate', {setuid = false})\n"
+"box.schema.func.create('calculate', {language = 'LUA'})"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:44
+msgid "**Example 2: a persistent Lua function**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:46
+msgid "The example below shows how to create a persistent Lua function, show its definition using ``box.func.{func-name}``, and call this function using ``box.func.{func-name}:call([parameters])``:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:50
+msgid "tarantool> lua_code = [[function(a, b) return a + b end]]\n"
+"tarantool> box.schema.func.create('sum', {body = lua_code})\n"
+"\n"
+"tarantool> box.func.sum\n"
+"---\n"
+"- is_sandboxed: false\n"
+"  is_deterministic: false\n"
+"  id: 2\n"
+"  setuid: false\n"
+"  body: function(a, b) return a + b end\n"
+"  name: sum\n"
+"  language: LUA\n"
+"...\n"
+"\n"
+"tarantool> box.func.sum:call({1, 2})\n"
+"---\n"
+"- 3\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:71
+msgid "To call functions using ``net.box``, use :ref:`net_box:call() <net_box-call>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:75
+msgid "**Example 3: a persistent SQL expression used in a tuple constraint**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:77
+msgid "The code snippet below defines a function that checks a tuple's data using the SQL expression:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:79
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:220
+msgid "box.schema.func.create('check_person', {\n"
+"    language = 'SQL_EXPR',\n"
+"    is_deterministic = true,\n"
+"    body = [[\"age\" > 21 AND \"name\" != 'Admin']]\n"
+"})\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:85
+msgid "Then, this function is used to create a tuple :ref:`constraint <index-constraints>`:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:87
+msgid "local customers = box.schema.space.create('customers', { constraint = 'check_person' })\n"
+"customers:format({\n"
+"    { name = 'id', type = 'number' },\n"
+"    { name = 'name', type = 'string' },\n"
+"    { name = 'age', type = 'number' },\n"
+"})\n"
+"customers:create_index('primary', { parts = { 1 } })\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:93
+msgid "On an attempt to insert a tuple that doesn't meet the required criteria, an error is raised:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:95
+msgid "customers:insert { 2, \"Bob\", 18 }\n"
+"-- error: Check constraint 'check_person' failed for a tuple\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:104
+msgid "function_options"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:108
+msgid "A table containing options passed to the :ref:`box.schema.func.create(func-name [, function_options]) <box_schema-func_create_with-body>` function."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:114
+msgid "Specify whether there should be no error if the function already exists."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:116
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:128
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:182
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:191
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:201
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:252
+msgid "Type: boolean"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:117
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:129
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:183
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:192
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:202
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:253
+msgid "Default: ``false``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:123
+msgid "Make Tarantool treat the function's caller as the function's creator, with full privileges. Note that ``setuid`` works only over :ref:`binary ports <admin-security>`. ``setuid`` doesn't work if you invoke a function using the :ref:`admin console <admin-security>` or inside a Lua script."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:135
+msgid "Specify the function language. The possible values are:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:138
+msgid "``LUA``: define a Lua function in the :ref:`body <function_options_body>` attribute."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:139
+msgid "``SQL_EXPR``: define an :ref:`SQL expression <sql_expressions>` in the :ref:`body <function_options_body>` attribute. An SQL expression can only be used as a field or tuple :ref:`constraint <index-constraints>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:140
+msgid "``C``: import a C function using its name from a ``.so`` file. Learn how to call C code from Lua in the :ref:`C tutorial <f_c_tutorial-c_stored_procedures>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:144
+msgid "To reload a C module with all its functions without restarting the server, call :ref:`box.schema.func.reload() <box_schema-func_reload>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:146
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:228
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:291
+msgid "Type: string"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:147
+msgid "Default: ``LUA``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:153
+msgid "Whether the function should be executed in an isolated environment. This means that any operation that accesses the world outside the sandbox is forbidden or has no effect. Therefore, a sandboxed function can only use modules and functions that cannot affect isolation:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:158
+msgid "`assert <https://www.lua.org/manual/5.1/manual.html#pdf-assert>`_, `assert <https://www.lua.org/manual/5.1/manual.html#pdf-assert>`_, `error <https://www.lua.org/manual/5.1/manual.html#pdf-error>`_, `ipairs <https://www.lua.org/manual/5.1/manual.html#pdf-ipairs>`_, `math.* <https://www.lua.org/manual/5.1/manual.html#5.6>`_, `next <https://www.lua.org/manual/5.1/manual.html#pdf-next>`_, `pairs <https://www.lua.org/manual/5.1/manual.html#pdf-pairs>`_, `pcall <https://www.lua.org/manual/5.1/manual.html#pdf-pcall>`_, `print <https://www.lua.org/manual/5.1/manual.html#pdf-print>`_, `select <https://www.lua.org/manual/5.1/manual.html#pdf-select>`_, `string.* <https://www.lua.org/manual/5.1/manual.html#5.4>`_, `table.* <https://www.lua.org/manual/5.1/manual.html#5.5>`_, `tonumber <https://www.lua.org/manual/5.1/manual.html#pdf-tonumber>`_, `tostring <https://www.lua.org/manual/5.1/manual.html#pdf-tostring>`_, `type <https://www.lua.org/manual/5.1/manual.html#pdf-type>`_, `unpack <https://www.lua.org/manual/5.1/manual.html#pdf-unpack>`_, `xpcall <https://www.lua.org/manual/5.1/manual.html#pdf-xpcall>`_, :ref:`utf8.* <utf8-module>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:177
+msgid "Also, a sandboxed function cannot refer to global variables -- they are treated as local variables because the sandbox is established with `setfenv <https://www.lua.org/manual/5.1/manual.html#pdf-setfenv>`_. So, a sandboxed function is stateless and deterministic."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:189
+msgid "Specify whether a function should be deterministic."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:198
+msgid "If ``true`` is set in the function definition for a functional index, the function returns multiple keys. For details, see the :ref:`example <box_space-index_func_multikey>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:208
+msgid "Specify a function body. You can set a function's language using the :ref:`language <function_options_language>` attribute."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:211
+msgid "The code snippet below defines a :ref:`constraint <index-constraints>` function that checks a tuple's data using a Lua function:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:213
+msgid "box.schema.func.create('check_person', {\n"
+"    language = 'LUA',\n"
+"    is_deterministic = true,\n"
+"    body = 'function(t, c) return (t.age >= 0 and #(t.name) > 3) end'\n"
+"})\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:218
+msgid "In the following example, an SQL expression is used to check a tuple's data:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:226
+msgid "Example: :ref:`A persistent SQL expression used in a tuple constraint <box_schema-func_example-sql>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:229
+msgid "Default: ``nil``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:235
+msgid "**Since:** :doc:`2.10.0 </release/2.10.0>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:237
+msgid "If set to ``true`` for a Lua function and the function is called via ``net.box`` (:ref:`conn:call() <net_box-call>`) or by ``box.func.<func-name>:call()``, the function arguments are passed being wrapped in a :ref:`MsgPack object <msgpack-object-info>`:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:240
+msgid "local msgpack = require('msgpack')\n"
+"box.schema.func.create('my_func', {takes_raw_args = true})\n"
+"local my_func = function(mp)\n"
+"    assert(msgpack.is_object(mp))\n"
+"    local args = mp:decode() -- array of arguments\n"
+"end"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:249
+msgid "If a function forwards most of its arguments to another Tarantool instance or writes them to a database, the usage of this option can improve performance because it skips the MsgPack data decoding in Lua."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:260
+msgid "Specify the languages that can call the function."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:262
+msgid "Example: ``exports = {'LUA', 'SQL'}``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:264
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:277
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:289
+msgid "See also: :ref:`Calling Lua routines from SQL <sql_calling_lua>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:266
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:279
+msgid "Type: table"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:267
+msgid "Default: ``{'LUA'}``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:273
+msgid "Specify the Lua type names for each parameter of the function."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:275
+msgid "Example: ``param_list = {'number', 'number'}``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:285
+msgid "Specify the Lua type name for a function's return value."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/func_create.rst:287
+msgid "Example: ``returns = 'number'``"
+msgstr ""

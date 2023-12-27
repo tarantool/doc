@@ -1,0 +1,504 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/contributing/docs/api.rst:2
+msgid "Documenting the API"
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:4
+msgid "This document contains general guidelines for describing the Tarantool API, as well as examples and templates."
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:8
+msgid "Style"
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:10
+msgid "Please write as simply as possible. Describe functionality using short sentences in the present simple tense. A short sentence consists of no more than two clauses. Consider using `LanguageTool <https://languagetool.org/>`_ or `Grammarly <https://www.grammarly.com/>`_ to check your English. For more style-related specifics, consult the :doc:`Language and style </contributing/docs/style>` section."
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:19
+msgid "Indicating the version"
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:21
+msgid "For every new module, function, or method, specify the version it first appears in."
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:23
+msgid "For a new parameter, specify the version it first appears in if this parameter is a \"feature\" and the version it's been introduced in differs from the version introducing the function/method and all other parameters."
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:27
+msgid "To specify the version, use the following Sphinx directive:"
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:29
+msgid "Since :doc:`2.10.0 </release/2.10.0>`.\n"
+"This is a link to the release notes on the Tarantool documentation website."
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:34
+msgid "The result looks like this:"
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:36
+msgid "Since Tarantool :doc:`2.10.0 </release/2.10.0>`. This is a link to the release notes on the Tarantool documentation website."
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:42
+msgid "Language of the general description"
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:44
+msgid "Use one of the two options:"
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:46
+msgid "Start with a verb in the imperative mood. Example: *Create a fiber.*"
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:47
+msgid "Start with a noun. Example: *The directory where memtx stores snapshot files.*"
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:50
+msgid "Checklist"
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:52
+msgid "Each list item is a characteristic to be described. Some items can be optional."
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:55
+msgid "Function or method"
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:57
+#: ../../doc/contributing/docs/api.rst:76
+#: ../../doc/contributing/docs/api.rst:118
+msgid ":ref:`Since which Tarantool version <contributing-docs-api_version>`"
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:58
+#: ../../doc/contributing/docs/api.rst:77
+#: ../../doc/contributing/docs/api.rst:90
+#: ../../doc/contributing/docs/api.rst:119
+msgid ":ref:`General description <contributing-api-docs_general-description>`"
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:59
+msgid ":ref:`Parameters <documenting_parameters>`"
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:60
+msgid "What this function returns (if nothing, write 'none')"
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:61
+msgid "Return type (if exists)"
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:62
+msgid ":ref:`Possible errors <contributing-docs-possible_errors>` (if exist)"
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:63
+msgid ":ref:`Complexity factors <index-box_complexity-factors>` (for :doc:`CRUD operations </reference/reference_lua/box_space>` and :doc:`index access functions </reference/reference_lua/box_index/>`)"
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:66
+msgid "Usage with memtx and vinyl (if differs)"
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:67
+msgid "Example(s)"
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:68
+msgid "Extra information (if needed)"
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:70
+msgid "See :ref:`module function example <contributing-api-docs_function-example>`, :ref:`class method example <contributing-api-docs_class-example>`."
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:74
+msgid "Data"
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:78
+msgid "Return type"
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:79
+msgid "Example"
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:81
+msgid "See :ref:`class data example <contributing-api-docs_class-example>`."
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:86
+msgid "Function and method parameters"
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:88
+msgid ":ref:`Since which Tarantool version <contributing-docs-api_version>` (if added later)"
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:91
+#: ../../doc/contributing/docs/api.rst:120
+msgid "Type"
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:92
+msgid "Default value (if optional), possible values"
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:94
+msgid "If the parameter is optional, make sure it is enclosed in square brackets in the function declaration (in the \"heading\"). Do not mark parameters additionaly as \"optional\" or \"required\":"
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:98
+msgid "..  function:: format(URI-components-table[, include-password])\n"
+"\n"
+"    Construct a URI from components.\n"
+"\n"
+"    :param URI-components-table: a series of ``name:value`` pairs, one for each component\n"
+"    :param include-password: boolean. If this is supplied and is ``true``, then\n"
+"                             the password component is rendered in clear text,\n"
+"                             otherwise it is omitted."
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:112
+#: ../../doc/contributing/docs/api.rst:178
+msgid "Configuration parameters"
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:114
+msgid "Configuration parameters are not to be confused with class and method parameters. Configuration parameters are passed to Tarantool via the command line or in an initialization file. You can find a list of Tarantool configuration parameters in the :doc:`configuration reference </reference/configuration/index>`."
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:121
+msgid "Corresponding environment variable (if applicable)"
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:122
+msgid "Default value"
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:123
+msgid "Possible values (can be included in the general description, for example, as a list)"
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:124
+msgid "Dynamic (yes or no)"
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:126
+msgid "See :ref:`configuration parameter example <contributing-api-docs_confval-example>`."
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:131
+msgid "Documenting possible errors"
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:133
+msgid "In the \"Possible errors\" section of a function or class method, consider explaining what happens if any parameter hasn't been defined or has the wrong value."
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:137
+msgid "Examples and templates"
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:142
+msgid "Module functions"
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:144
+msgid "We use the Sphinx directives ``.. module::`` and ``.. function::`` to describe functions of Tarantool modules:"
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:147
+msgid "..  module:: fiber\n"
+"\n"
+"..  function:: create(function [, function-arguments])\n"
+"\n"
+"    Create and start a fiber. The fiber is created and begins to run immediately.\n"
+"\n"
+"    :param function: the function to be associated with the fiber\n"
+"    :param function-arguments: what will be passed to function.\n"
+"\n"
+"    :return: created fiber object\n"
+"    :rtype: userdata\n"
+"\n"
+"    **Example:**\n"
+"\n"
+"    ..  code-block:: tarantoolsession\n"
+"\n"
+"        tarantool> fiber = require('fiber')\n"
+"        ---\n"
+"        ...\n"
+"        tarantool> function function_name()\n"
+"                 >   print(\"I'm a fiber\")\n"
+"                 > end\n"
+"        ---\n"
+"        ...\n"
+"        tarantool> fiber_object = fiber.create(function_name); print(\"Fiber started\")\n"
+"        I'm a fiber\n"
+"        Fiber started\n"
+"        ---\n"
+"        ...\n"
+""
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:150
+msgid "The resulting output looks like this:"
+msgstr ""
+
+#: ../../doc/contributing/docs/_includes/function_template.rst:5
+msgid "Create and start a fiber. The fiber is created and begins to run immediately."
+msgstr ""
+
+#: ../../internal padding after doc/contributing/docs/_includes/function_template.rst:0
+#: ../../doc/contributing/docs/_includes/class_template.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/contributing/docs/_includes/function_template.rst:7
+msgid "the function to be associated with the fiber"
+msgstr ""
+
+#: ../../doc/contributing/docs/_includes/function_template.rst:8
+msgid "what will be passed to function."
+msgstr ""
+
+#: ../../doc/contributing/docs/_includes/function_template.rst:0
+#: ../../doc/contributing/docs/_includes/class_template.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/contributing/docs/_includes/function_template.rst:10
+msgid "created fiber object"
+msgstr ""
+
+#: ../../doc/contributing/docs/_includes/function_template.rst:0
+#: ../../doc/contributing/docs/_includes/class_template.rst:0
+#: ../../doc/contributing/docs/_includes/class_template.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/contributing/docs/_includes/function_template.rst:11
+msgid "userdata"
+msgstr ""
+
+#: ../../doc/contributing/docs/_includes/function_template.rst:13
+#: ../../doc/contributing/docs/_includes/class_template.rst:23
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/contributing/docs/_includes/function_template.rst:15
+msgid "tarantool> fiber = require('fiber')\n"
+"---\n"
+"...\n"
+"tarantool> function function_name()\n"
+"         >   print(\"I'm a fiber\")\n"
+"         > end\n"
+"---\n"
+"...\n"
+"tarantool> fiber_object = fiber.create(function_name); print(\"Fiber started\")\n"
+"I'm a fiber\n"
+"Fiber started\n"
+"---\n"
+"..."
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:158
+msgid "Class methods and data"
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:160
+msgid "Methods are described similarly to functions, but the ``.. class::`` directive, unlike ``.. module::``, requires nesting."
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:163
+msgid "As for data, it's enough to write the description, the return type, and an example."
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:165
+msgid "Here is the example documentation describing the method and data of the ``index_object`` class:"
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:168
+msgid "..  class:: index_object\n"
+"\n"
+"    ..  method:: get(key)\n"
+"\n"
+"        Search for a tuple :ref:`via the given index <box_index-note>`.\n"
+"\n"
+"        :param index_object index_object: :ref:`object reference\n"
+"                                          <app_server-object_reference>`\n"
+"        :param scalar/table      key: values to be matched against the index key\n"
+"\n"
+"        :return: the tuple whose index-key fields are equal to the passed key values\n"
+"        :rtype:  tuple\n"
+"\n"
+"        **Possible errors:**\n"
+"\n"
+"        * No such index\n"
+"        * Wrong type\n"
+"        * More than one tuple matches\n"
+"\n"
+"        **Complexity factors:** index size, index type.\n"
+"        See also :ref:`space_object:get() <box_space-get>`.\n"
+"\n"
+"        **Example:**\n"
+"\n"
+"        ..  code-block:: tarantoolsession\n"
+"\n"
+"            tarantool> box.space.tester.index.primary:get(2)\n"
+"            ---\n"
+"            - [2, 'Music']\n"
+"            ...\n"
+"\n"
+"    ..  data:: unique\n"
+"\n"
+"        True if the index is unique, false if the index is not unique.\n"
+"\n"
+"        :rtype: boolean\n"
+"\n"
+"        ..  code-block:: tarantoolsession\n"
+"\n"
+"            tarantool> box.space.tester.index.primary.unique\n"
+"            ---\n"
+"            - true\n"
+"            ...\n"
+""
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:171
+msgid "And the resulting output looks like this:"
+msgstr ""
+
+#: ../../doc/contributing/docs/_includes/class_template.rst:5
+msgid "Search for a tuple :ref:`via the given index <box_index-note>`."
+msgstr ""
+
+#: ../../doc/contributing/docs/_includes/class_template.rst:7
+msgid ":ref:`object reference <app_server-object_reference>`"
+msgstr ""
+
+#: ../../doc/contributing/docs/_includes/class_template.rst:9
+msgid "values to be matched against the index key"
+msgstr ""
+
+#: ../../doc/contributing/docs/_includes/class_template.rst:11
+msgid "the tuple whose index-key fields are equal to the passed key values"
+msgstr ""
+
+#: ../../doc/contributing/docs/_includes/class_template.rst:12
+msgid "tuple"
+msgstr ""
+
+#: ../../doc/contributing/docs/_includes/class_template.rst:14
+msgid "**Possible errors:**"
+msgstr ""
+
+#: ../../doc/contributing/docs/_includes/class_template.rst:16
+msgid "No such index"
+msgstr ""
+
+#: ../../doc/contributing/docs/_includes/class_template.rst:17
+msgid "Wrong type"
+msgstr ""
+
+#: ../../doc/contributing/docs/_includes/class_template.rst:18
+msgid "More than one tuple matches"
+msgstr ""
+
+#: ../../doc/contributing/docs/_includes/class_template.rst:20
+msgid "**Complexity factors:** index size, index type. See also :ref:`space_object:get() <box_space-get>`."
+msgstr ""
+
+#: ../../doc/contributing/docs/_includes/class_template.rst:25
+msgid "tarantool> box.space.tester.index.primary:get(2)\n"
+"---\n"
+"- [2, 'Music']\n"
+"..."
+msgstr ""
+
+#: ../../doc/contributing/docs/_includes/class_template.rst:34
+msgid "True if the index is unique, false if the index is not unique."
+msgstr ""
+
+#: ../../doc/contributing/docs/_includes/class_template.rst:36
+msgid "boolean"
+msgstr ""
+
+#: ../../doc/contributing/docs/_includes/class_template.rst:38
+msgid "tarantool> box.space.tester.index.primary.unique\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:180
+msgid "Example:"
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:182
+msgid ".. confval:: wal_dir\n"
+"\n"
+"    Since version 1.6.2.\n"
+"    A directory where write-ahead log (.xlog) files are stored. Can be relative\n"
+"    to :ref:`work_dir <cfg_basic-work_dir>`. Sometimes ``wal_dir`` and\n"
+"    :ref:`memtx_dir <cfg_basic-memtx_dir>` are specified with different values, so\n"
+"    that write-ahead log files and snapshot files can be stored on different\n"
+"    disks. If not specified, defaults to ``work_dir``.\n"
+"\n"
+"    | Type: string\n"
+"    | Default: \".\"\n"
+"    | Environment variable: TT_WAL_DIR\n"
+"    | Dynamic: no\n"
+""
+msgstr ""
+
+#: ../../doc/contributing/docs/api.rst:186
+msgid "Result:"
+msgstr ""
+
+#: ../../doc/reference/configuration/cfg_basic.rst:2
+msgid "Since version 1.6.2. A directory where write-ahead log (.xlog) files are stored. Can be relative to :ref:`work_dir <cfg_basic-work_dir>`. Sometimes ``wal_dir`` and :ref:`memtx_dir <cfg_basic-memtx_dir>` are specified with different values, so that write-ahead log files and snapshot files can be stored on different disks. If not specified, defaults to ``work_dir``."
+msgstr ""
+
+#: ../../internal padding after doc/reference/configuration/cfg_basic.rst:0
+msgid "Type: string"
+msgstr ""
+
+#: ../../internal padding after doc/reference/configuration/cfg_basic.rst:0
+msgid "Default: \".\""
+msgstr ""
+
+#: ../../internal padding after doc/reference/configuration/cfg_basic.rst:0
+msgid "Environment variable: TT_WAL_DIR"
+msgstr ""
+
+#: ../../internal padding after doc/reference/configuration/cfg_basic.rst:0
+msgid "Dynamic: no"
+msgstr ""

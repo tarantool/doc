@@ -1,0 +1,61 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_index/delete.rst:5
+msgid "index_object:delete()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/delete.rst:11
+msgid "Delete a tuple identified by a key."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/delete.rst:13
+msgid "Same as :ref:`box.space...delete() <box_space-delete>`, but key is searched in this index instead of in the primary-key index. This index ought to be unique."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/delete.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/delete.rst:17
+msgid "an :ref:`object reference <app_server-object_reference>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/delete.rst:19
+msgid "values to be matched against the index key"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/delete.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/delete.rst:21
+msgid "the deleted tuple."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/delete.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/delete.rst:22
+msgid "tuple"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/delete.rst:24
+msgid "**Note regarding storage engine:** vinyl will return `nil`, rather than the deleted tuple."
+msgstr ""

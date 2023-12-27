@@ -1,0 +1,61 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-21 08:10+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/dev_guide/internals/box_protocol.rst:31
+msgid "Examples"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/box_protocol.rst:6
+msgid "Binary protocol"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/box_protocol.rst:8
+msgid "This section provides information on the Tarantool binary protocol, iproto. The protocol is called \"binary\" because the database is most frequently accessed via binary code instead of Lua request text. Tarantool experts use it:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/box_protocol.rst:12
+msgid "to write their own connectors"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/box_protocol.rst:13
+msgid "to understand network messages"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/box_protocol.rst:14
+msgid "to support new features that their favorite connector doesn't support yet"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/box_protocol.rst:15
+msgid "to avoid repetitive parsing by the server"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/box_protocol.rst:17
+msgid "The binary protocol provides complete access to Tarantool functionality, including:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/box_protocol.rst:19
+msgid "request multiplexing, for example ability to issue multiple requests asynchronously via the same connection"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/box_protocol.rst:21
+msgid "response format that supports zero-copy writes"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/box_protocol.rst:25
+msgid "Since version :doc:`2.11.0 </release/2.11.0>`, you can use the :ref:`box.iproto <box_iproto>` submodule to access IPROTO constants and features from Lua. The submodule enables to :ref:`send arbitrary IPROTO packets <reference_lua-box_iproto_send>` over the session's socket and :ref:`override the behavior <reference_lua-box_iproto_override>` for all IPROTO request types. Also, :ref:`IPROTO_UNKNOWN <box_iproto-unknown>` constant is introduced. The constant is used for the :ref:`box.iproto.override() <reference_lua-box_iproto_override>` API, which allows setting a handler for incoming requests with an unknown type."
+msgstr ""

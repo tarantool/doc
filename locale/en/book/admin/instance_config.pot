@@ -1,0 +1,263 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-20 07:42+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/admin/instance_config.rst:6
+msgid "Application environment"
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:8
+msgid "This section provides a high-level overview on how to prepare a Tarantool application for deployment and how the application's environment and layout might look. This information is helpful for understanding how to administer Tarantool instances using :ref:`tt CLI <tt-cli>` in both development and production environments."
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:12
+msgid "The main steps of creating and preparing the application for deployment are:"
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:14
+msgid ":ref:`admin-instance_config-init-environment`."
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:16
+msgid ":ref:`admin-instance_config-develop-app`."
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:18
+msgid ":ref:`admin-instance_config-package-app`."
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:20
+msgid "In this section, a `sharded_cluster <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster>`_ application is used as an example. This cluster includes 5 instances: one router and 4 storages, which constitute two replica sets."
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:None
+#: ../../doc/book/admin/instance_config.rst:0
+#: ../../doc/book/admin/instance_config.rst:0
+msgid "Cluster topology"
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:34
+msgid "Initializing a local environment"
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:36
+msgid "Before creating an application, you need to set up a local environment for ``tt``:"
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:38
+msgid "Create a home directory for the environment."
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:40
+msgid "Run ``tt init`` in this directory:"
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:42
+msgid "~/myapp$ tt init\n"
+"   • Environment config is written to 'tt.yaml'"
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:47
+msgid "This command creates a default ``tt`` configuration file ``tt.yaml`` for a local environment and the directories for applications, control sockets, logs, and other artifacts:"
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:51
+msgid "~/myapp$ ls\n"
+"bin  distfiles  include  instances.enabled  modules  templates  tt.yaml"
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:56
+msgid "Find detailed information about the ``tt`` configuration parameters and launch modes on the :ref:`tt configuration page <tt-config>`."
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:66
+msgid "Creating and developing an application"
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:68
+msgid "You can create an application in two ways:"
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:70
+msgid "Manually by preparing its layout in a directory inside ``instances_enabled``. The directory name is used as the application identifier."
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:73
+msgid "From a template by using the :ref:`tt create <tt-create>` command."
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:75
+msgid "In this example, the application's layout is prepared manually and looks as follows."
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:77
+msgid "~/myapp$ tree\n"
+".\n"
+"├── bin\n"
+"├── distfiles\n"
+"├── include\n"
+"├── instances.enabled\n"
+"│   └── sharded_cluster\n"
+"│       ├── config.yaml\n"
+"│       ├── instances.yaml\n"
+"│       ├── router.lua\n"
+"│       ├── sharded_cluster-scm-1.rockspec\n"
+"│       └── storage.lua\n"
+"├── modules\n"
+"├── templates\n"
+"└── tt.yaml"
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:96
+msgid "The ``sharded_cluster`` directory contains the following files:"
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:98
+msgid "``config.yaml``: contains the :ref:`configuration <configuration>` of the cluster. This file might include the entire cluster topology or provide connection settings to a centralized configuration storage."
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:99
+msgid "``instances.yml``: specifies instances to run in the current environment. For example, on the developer’s machine, this file might include all the instances defined in the cluster configuration. In the production environment, this file includes :ref:`instances to run on the specific machine <admin-instances_to_run>`."
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:100
+msgid "``router.lua``: includes code specific for a :ref:`router <vshard-architecture-router>`."
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:101
+msgid "``sharded_cluster-scm-1.rockspec``: specifies the required external dependencies (for example, ``vshard``)."
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:102
+msgid "``storage.lua``: includes code specific for :ref:`storages <vshard-architecture-storage>`."
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:104
+msgid "You can find the full example here: `sharded_cluster <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster>`_."
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:114
+msgid "Packaging the application"
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:116
+msgid "To package the ready application, use the :ref:`tt pack <tt-pack>` command. This command can create an installable DEB/RPM package or generate ``.tgz`` archive."
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:119
+msgid "The structure below reflects the content of the packed ``.tgz`` archive for the `sharded_cluster <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster>`_ application:"
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:121
+msgid "~/myapp$ tree -a\n"
+".\n"
+"├── bin\n"
+"│   ├── tarantool\n"
+"│   └── tt\n"
+"├── include\n"
+"├── instances.enabled\n"
+"│   └── sharded_cluster -> ../sharded_cluster\n"
+"├── modules\n"
+"├── sharded_cluster\n"
+"│   ├── .rocks\n"
+"│   │   └── share\n"
+"│   │       └── ...\n"
+"│   ├── config.yaml\n"
+"│   ├── instances.yaml\n"
+"│   ├── router.lua\n"
+"│   ├── sharded_cluster-scm-1.rockspec\n"
+"│   └── storage.lua\n"
+"└── tt.yaml"
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:144
+msgid "The application's layout looks similar to the one defined when :ref:`developing the application <admin-instance_config-develop-app>` with some differences:"
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:146
+msgid "``bin``: contains the ``tarantool`` and ``tt`` binaries packed with the application bundle."
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:148
+msgid "``instances.enabled``: contains a symlink to the packed ``sharded_cluster`` application."
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:150
+msgid "``sharded_cluster``: a packed application. In addition to files created during the application development, includes the ``.rocks`` directory containing application dependencies (for example, ``vshard``)."
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:152
+msgid "``tt.yaml``: a ``tt`` configuration file."
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:159
+msgid "Instances to run"
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:161
+msgid "One more difference for a deployed application is the content of the ``instances.yaml`` file that specifies instances to run in the current environment."
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:163
+msgid "On the developer's machine, this file might include all the instances defined in the cluster configuration."
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:170
+msgid "``instances.yaml``:"
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:172
+msgid "storage-a-001:\n"
+"storage-a-002:\n"
+"storage-b-001:\n"
+"storage-b-002:\n"
+"router-a-001:"
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:176
+msgid "In the production environment, this file includes instances to run on the specific machine."
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:183
+msgid "``instances.yaml`` (Server-001):"
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:185
+msgid "router-a-001:"
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:189
+msgid "``instances.yaml`` (Server-002):"
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:191
+msgid "storage-a-001:\n"
+"storage-b-001:"
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:196
+msgid "``instances.yaml`` (Server-003):"
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:198
+msgid "storage-a-002:\n"
+"storage-b-002:"
+msgstr ""
+
+#: ../../doc/book/admin/instance_config.rst:204
+msgid "The :ref:`Starting and stopping instances <admin-start_stop_instance>` section describes how to start and stop Tarantool instances."
+msgstr ""

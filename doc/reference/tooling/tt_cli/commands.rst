@@ -26,6 +26,8 @@ help for the given command.
             -   Check an application file for syntax errors
         *   -   :doc:`clean <clean>`
             -   Clean instance files
+        *   -   :doc:`cluster <cluster>`
+            -   Manage a cluster's configuration
         *   -   :doc:`completion <completion>`
             -   Generate completion for a specified shell
         *   -   :doc:`connect <connect>`
@@ -83,6 +85,7 @@ help for the given command.
     cfg <cfg>
     check <check>
     clean <clean>
+    cluster <cluster>
     completion <completion>
     connect <connect>
     coredump <coredump>

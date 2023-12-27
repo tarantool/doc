@@ -1,0 +1,93 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_space/upsert.rst:5
+msgid "space_object:upsert()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/upsert.rst:11
+msgid "Update or insert a tuple."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/upsert.rst:13
+msgid "If there is an existing tuple which matches the key fields of ``tuple``, then the request has the same effect as :doc:`/reference/reference_lua/box_space/update` and the ``{{operator, field_identifier, value}, ...}`` parameter is used. If there is no existing tuple which matches the key fields of ``tuple``, then the request has the same effect as :doc:`/reference/reference_lua/box_space/insert` and the ``{tuple}`` parameter is used. However, unlike ``insert`` or ``update``, ``upsert`` will not read a tuple and perform error checks before returning -- this is a design feature which enhances throughput but requires more caution on the part of the user."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/upsert.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/upsert.rst:25
+msgid "an :ref:`object reference <app_server-object_reference>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/upsert.rst:27
+msgid "default tuple to be inserted, if analogue isn't found"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/upsert.rst:29
+msgid "operation type represented in string"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/upsert.rst:30
+msgid "what field the operation will apply to"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/upsert.rst:31
+msgid "what value will be applied"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/upsert.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/upsert.rst:33
+msgid "null"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/upsert.rst:35
+msgid "**Possible errors:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/upsert.rst:37
+msgid "It is illegal to modify a primary-key field."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/upsert.rst:38
+msgid "It is illegal to use upsert with a space that has a unique secondary index."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/upsert.rst:40
+msgid ":errcode:`ER_TRANSACTION_CONFLICT` if a transaction conflict is detected in the :ref:`MVCC transaction mode <txn_mode_transaction-manager>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/upsert.rst:43
+msgid "**Complexity factors:** Index size, Index type, number of indexes accessed, WAL settings."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/upsert.rst:46
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/upsert.rst:48
+msgid "box.space.tester:upsert({12,'c'}, {{'=', 3, 'a'}, {'=', 4, 'b'}})"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/upsert.rst:52
+msgid "For more usage scenarios and typical errors see :ref:`Example: using data operations <box_space-operations-detailed-examples>` further in this section."
+msgstr ""

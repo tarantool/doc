@@ -1,0 +1,136 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/lua_tips.rst:5
+msgid "Tips on Lua syntax"
+msgstr ""
+
+#: ../../doc/reference/lua_tips.rst:7
+msgid "The Lua syntax for :ref:`data-manipulation functions <index-box_data-operations>` can vary. Here are examples of the variations with ``select()`` requests. The same rules exist for the other data-manipulation functions."
+msgstr ""
+
+#: ../../doc/reference/lua_tips.rst:11
+msgid "Every one of the examples does the same thing: select a tuple set from a space named 'tester' where the primary-key field value equals 1. For these examples, we assume that the numeric id of 'tester' is 512, which happens to be the case in our sandbox example only."
+msgstr ""
+
+#: ../../doc/reference/lua_tips.rst:20
+msgid "Object reference variations"
+msgstr ""
+
+#: ../../doc/reference/lua_tips.rst:22
+msgid "First, there are three **object reference variations**:"
+msgstr ""
+
+#: ../../doc/reference/lua_tips.rst:24
+msgid "-- #1 module . submodule . name\n"
+"tarantool> box.space.tester:select{1}\n"
+"-- #2 replace name with a literal in square brackets\n"
+"tarantool> box.space['tester']:select{1}\n"
+"-- #3 use a variable for the entire object reference\n"
+"tarantool> s = box.space.tester\n"
+"tarantool> s:select{1}"
+msgstr ""
+
+#: ../../doc/reference/lua_tips.rst:34
+msgid "Examples in this manual usually have the \":samp:`box.space.{tester}:`\" form (#1). However, this is a matter of user preference and all the variations exist in the wild."
+msgstr ""
+
+#: ../../doc/reference/lua_tips.rst:38
+msgid "Also, descriptions in this manual use the syntax \"``space_object:``\" for references to objects which are spaces, and \"``index_object:``\" for references to objects which are indexes (for example :samp:`box.space.{tester}.index.{primary}:`)."
+msgstr ""
+
+#: ../../doc/reference/lua_tips.rst:47
+msgid "Parameter variations"
+msgstr ""
+
+#: ../../doc/reference/lua_tips.rst:49
+msgid "Then, there are seven **parameter variations**:"
+msgstr ""
+
+#: ../../doc/reference/lua_tips.rst:51
+msgid "-- #1\n"
+"tarantool> box.space.tester:select{1}\n"
+"-- #2\n"
+"tarantool> box.space.tester:select({1})\n"
+"-- #3\n"
+"tarantool> box.space.tester:select(1)\n"
+"-- #4\n"
+"tarantool> box.space.tester.select(box.space.tester,1)\n"
+"-- #5\n"
+"tarantool> box.space.tester:select({1},{iterator='EQ'})\n"
+"-- #6\n"
+"tarantool> variable = 1\n"
+"tarantool> box.space.tester:select{variable}\n"
+"-- #7\n"
+"tarantool> variable = {1}\n"
+"tarantool> box.space.tester:select(variable)"
+msgstr ""
+
+#: ../../doc/reference/lua_tips.rst:70
+msgid "Lua allows to omit parentheses ``()`` when invoking a function if its only argument is a Lua table, and we use it sometimes in our examples. This is why ``select{1}`` is equivalent to ``select({1})``. Literal values such as ``1`` (a scalar value) or ``{1}`` (a Lua table value) may be replaced by variable names, as in examples #6 and #7."
+msgstr ""
+
+#: ../../doc/reference/lua_tips.rst:76
+msgid "Although there are special cases where braces can be omitted, they are preferable because they signal \"Lua table\". Examples and descriptions in this manual have the ``{1}`` form. However, this too is a matter of user preference and all the variations exist in the wild."
+msgstr ""
+
+#: ../../doc/reference/lua_tips.rst:85
+msgid "Rules for object names"
+msgstr ""
+
+#: ../../doc/reference/lua_tips.rst:87
+msgid "Database objects have loose **rules for names**: the maximum length is 65000 bytes (not characters), and almost any legal Unicode character is allowed, including spaces, ideograms and punctuation."
+msgstr ""
+
+#: ../../doc/reference/lua_tips.rst:92
+msgid "In those cases, to prevent confusion with Lua operators and separators, object references should have the literal-in-square-brackets form (#2), or the variable form (#3). For example:"
+msgstr ""
+
+#: ../../doc/reference/lua_tips.rst:96
+msgid "tarantool> box.space['1*A']:select{1}\n"
+"tarantool> s = box.space['1*A !@$%^&*()_+12345678901234567890']\n"
+"tarantool> s:select{1}"
+msgstr ""
+
+#: ../../doc/reference/lua_tips.rst:102
+msgid "Disallowed:"
+msgstr ""
+
+#: ../../doc/reference/lua_tips.rst:104
+msgid "characters which are unassigned code points,"
+msgstr ""
+
+#: ../../doc/reference/lua_tips.rst:105
+msgid "line and paragraph separators,"
+msgstr ""
+
+#: ../../doc/reference/lua_tips.rst:106
+msgid "control characters,"
+msgstr ""
+
+#: ../../doc/reference/lua_tips.rst:107
+msgid "the replacement character (U+FFFD)."
+msgstr ""
+
+#: ../../doc/reference/lua_tips.rst:109
+msgid "Not recommended: characters which cannot be displayed."
+msgstr ""
+
+#: ../../doc/reference/lua_tips.rst:111
+msgid "Names are \"case sensitive\", so 'A' and 'a' are not the same."
+msgstr ""

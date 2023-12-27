@@ -1,0 +1,174 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/concepts/atomic/transaction_model.rst:4
+msgid "Transaction model"
+msgstr ""
+
+#: ../../doc/concepts/atomic/transaction_model.rst:9
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/concepts/atomic/transaction_model.rst:11
+msgid "The transaction model of Tarantool corresponds to the properties ACID (atomicity, consistency, isolation, durability)."
+msgstr ""
+
+#: ../../doc/concepts/atomic/transaction_model.rst:15
+msgid "Tarantool has two modes of transaction behavior:"
+msgstr ""
+
+#: ../../doc/concepts/atomic/transaction_model.rst:17
+msgid ":ref:`Default <txn_mode-default>` -- suitable for fast monopolistic atomic transactions"
+msgstr ""
+
+#: ../../doc/concepts/atomic/transaction_model.rst:19
+msgid ":ref:`MVCC <txn_mode_transaction-manager>` -- designed for long-running concurrent transactions"
+msgstr ""
+
+#: ../../doc/concepts/atomic/transaction_model.rst:22
+msgid "Each transaction in Tarantool is executed in a single fiber on a single thread, sees a consistent database state and commits all changes atomically."
+msgstr ""
+
+#: ../../doc/concepts/atomic/transaction_model.rst:25
+msgid "All transaction changes are written to the WAL (:ref:`Write Ahead Log <internals-wal>`) in a single batch in a specific order at the time of the :doc:`commit </reference/reference_lua/box_txn_management/commit>`. If needed, transaction changes can also be rolled back -- :doc:`completely </reference/reference_lua/box_txn_management/rollback>` or to a specified :doc:`savepoint </reference/reference_lua/box_txn_management/rollback_to_savepoint>`."
+msgstr ""
+
+#: ../../doc/concepts/atomic/transaction_model.rst:32
+msgid "Therefore, every transaction in Tarantool has the highest `transaction isolation level <https://en.wikipedia.org/wiki/Isolation_(database_systems)#Isolation_levels>`_ -- *serializable*."
+msgstr ""
+
+#: ../../doc/concepts/atomic/transaction_model.rst:38
+msgid "Isolation level"
+msgstr ""
+
+#: ../../doc/concepts/atomic/transaction_model.rst:40
+msgid "By :ref:`default <txn_mode-default>`, the isolation level of Tarantool is *serializable*. The exception is a failure during writing to the WAL, which can occur, for example, when the disk space is over. In this case, the isolation level of the concurrent read transaction would be ``read-committed``."
+msgstr ""
+
+#: ../../doc/concepts/atomic/transaction_model.rst:44
+msgid "The :ref:`MVСС mode <txn_mode_transaction-manager>` provides several options that enable you to tune the visibility behavior during transaction execution."
+msgstr ""
+
+#: ../../doc/concepts/atomic/transaction_model.rst:51
+msgid "Read-committed"
+msgstr ""
+
+#: ../../doc/concepts/atomic/transaction_model.rst:53
+msgid "The ``read-committed`` isolation level makes visible all transactions that started commit (:ref:`box.commit() <box-commit>` was called)."
+msgstr ""
+
+#: ../../doc/concepts/atomic/transaction_model.rst:55
+msgid "*Write transactions with reads*"
+msgstr ""
+
+#: ../../doc/concepts/atomic/transaction_model.rst:57
+msgid "Manual usage of ``read-committed`` for write transactions with reads is completely safe, as this transaction will eventually result in a commit. If a previous transactions fails, this transaction will inevitably fail as well due to the *serializable* isolation level."
+msgstr ""
+
+#: ../../doc/concepts/atomic/transaction_model.rst:60
+#: ../../doc/concepts/atomic/transaction_model.rst:74
+msgid "*Read transactions*"
+msgstr ""
+
+#: ../../doc/concepts/atomic/transaction_model.rst:62
+msgid "Manual usage of ``read-committed`` for read transactions may be unsafe, as it may lead to phantom reads."
+msgstr ""
+
+#: ../../doc/concepts/atomic/transaction_model.rst:68
+msgid "Read-confirmed"
+msgstr ""
+
+#: ../../doc/concepts/atomic/transaction_model.rst:70
+msgid "The ``read-confirmed`` isolation level makes visible all transactions that finished the commit (:ref:`box.commit() <box-commit>` was returned). This means that new data is already on disk or even on other replicas."
+msgstr ""
+
+#: ../../doc/concepts/atomic/transaction_model.rst:76
+msgid "The use of ``read-confirmed`` is safe for read transactions given that data is on disk (for asynchronous replication) or even in other replicas (for synchronous replication)."
+msgstr ""
+
+#: ../../doc/concepts/atomic/transaction_model.rst:80
+msgid "*Write transactions*"
+msgstr ""
+
+#: ../../doc/concepts/atomic/transaction_model.rst:82
+msgid "To achieve *serializable*, any write transaction should read all data that has already been committed. Otherwise, it may conflict when it reaches its commit."
+msgstr ""
+
+#: ../../doc/concepts/atomic/transaction_model.rst:90
+msgid "Linearizable read"
+msgstr ""
+
+#: ../../doc/concepts/atomic/transaction_model.rst:92
+msgid "Linearizability of read operations implies that if a response for a write request arrived earlier than a read request was made, this read request should return the results of the write request. When called with ``linearizable``, :ref:`box.begin() <box-begin>` yields until the instance receives enough data from remote peers to be sure that the transaction is linearizable."
+msgstr ""
+
+#: ../../doc/concepts/atomic/transaction_model.rst:95
+msgid "Linearizable transactions may only perform requests to the following memtx space types:"
+msgstr ""
+
+#: ../../doc/concepts/atomic/transaction_model.rst:97
+msgid ":ref:`synchronous <repl_sync>`"
+msgstr ""
+
+#: ../../doc/concepts/atomic/transaction_model.rst:98
+msgid "local (:doc:`created </reference/reference_lua/box_schema/space_create>` with ``is_local = true``)"
+msgstr ""
+
+#: ../../doc/concepts/atomic/transaction_model.rst:99
+msgid "temporary (:doc:`created </reference/reference_lua/box_schema/space_create>` with ``temporary = true``)"
+msgstr ""
+
+#: ../../doc/concepts/atomic/transaction_model.rst:101
+msgid "A linearizable transaction can fail with an error in the following cases:"
+msgstr ""
+
+#: ../../doc/concepts/atomic/transaction_model.rst:103
+msgid "If the node can't contact enough remote peers to determine which data is committed."
+msgstr ""
+
+#: ../../doc/concepts/atomic/transaction_model.rst:104
+msgid "If the data isn't received during the ``timeout`` specified in ``box.begin()``."
+msgstr ""
+
+#: ../../doc/concepts/atomic/transaction_model.rst:108
+msgid "To start a linearizable transaction, the node should be the replication source for at least ``N - Q + 1`` remote replicas. Here ``N`` is the count of registered nodes in the cluster and ``Q`` is :ref:`replication_synchro_quorum <cfg_replication-replication_synchro_quorum>`. So, for example, you can't perform a linearizable transaction on anonymous replicas because they can't be the source of replication for other nodes."
+msgstr ""
+
+#: ../../doc/concepts/atomic/transaction_model.rst:116
+msgid "Best-effort (default)"
+msgstr ""
+
+#: ../../doc/concepts/atomic/transaction_model.rst:118
+msgid "To minimize the possibility of conflicts, MVCC uses what is called ``best-effort`` visibility:"
+msgstr ""
+
+#: ../../doc/concepts/atomic/transaction_model.rst:120
+msgid "for write transactions, MVCC chooses :ref:`read-committed <level_read_committed>`"
+msgstr ""
+
+#: ../../doc/concepts/atomic/transaction_model.rst:121
+msgid "for read transactions, MVCC chooses :ref:`read-confirmed <level_read_confirmed>`"
+msgstr ""
+
+#: ../../doc/concepts/atomic/transaction_model.rst:123
+msgid "This inevitably leads to the *serializable* isolation level. Since there is no option for MVCC to analyze the whole transaction to make a decision, it makes the choice on the first operation."
+msgstr ""
+
+#: ../../doc/concepts/atomic/transaction_model.rst:129
+msgid "If the *serializable* isolation level becomes unreachable, the transaction is marked as \"conflicted\" and rolled back."
+msgstr ""

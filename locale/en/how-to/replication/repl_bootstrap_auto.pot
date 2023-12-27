@@ -1,0 +1,565 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-21 17:20+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:4
+msgid "Master-replica: automated failover"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:6
+msgid "**Example on GitHub**: `auto_leader <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/replication/instances.enabled/auto_leader>`_"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:8
+msgid "This tutorial shows how to configure and work with a replica set with automated failover."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:14
+msgid "Prerequisites"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:16
+msgid "Before starting this tutorial:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:18
+msgid "Install the :ref:`tt <tt-cli>` utility."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:20
+msgid "Create a tt environment in the current directory by executing the :ref:`tt init <tt-init>` command."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:22
+msgid "Inside the ``instances.enabled`` directory of the created tt environment, create the ``auto_leader`` directory."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:24
+msgid "Inside ``instances.enabled/auto_leader``, create the ``instances.yml`` and ``config.yaml`` files:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:26
+msgid "``instances.yml`` specifies instances to :ref:`run <replication-automated-failover-start-instances>` in the current environment and should look like this:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:28
+msgid "instance001:\n"
+"instance002:\n"
+"instance003:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:32
+msgid "The ``config.yaml`` file is intended to store a :ref:`replica set configuration <replication-automated-failover-configure-cluster>`."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:40
+msgid "Configuring a replica set"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:42
+msgid "This section describes how to configure a replica set in ``config.yaml``."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:47
+msgid "Step 1: Configuring a failover mode"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:49
+msgid "First, set the :ref:`replication.failover <configuration_reference_replication_failover>` option to ``election``:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:51
+msgid "replication:\n"
+"  failover: election\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:60
+msgid "Step 2: Defining a replica set topology"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:62
+msgid "Define a replica set topology inside the :ref:`groups <configuration_reference_groups>` section. The :ref:`iproto.listen <configuration_reference_iproto_listen>` option specifies an address used to listen for incoming requests and allows replicas to communicate with each other."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:65
+msgid "groups:\n"
+"  group001:\n"
+"    replicasets:\n"
+"      replicaset001:\n"
+"        instances:\n"
+"          instance001:\n"
+"            iproto:\n"
+"              listen:\n"
+"              - uri: '127.0.0.1:3301'\n"
+"          instance002:\n"
+"            iproto:\n"
+"              listen:\n"
+"              - uri: '127.0.0.1:3302'\n"
+"          instance003:\n"
+"            iproto:\n"
+"              listen:\n"
+"              - uri: '127.0.0.1:3303'\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:75
+msgid "Step 3: Creating a user for replication"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:77
+msgid "In the :ref:`credentials <configuration_reference_credentials>` section, create the ``replicator`` user with the ``replication`` role:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:79
+msgid "credentials:\n"
+"  users:\n"
+"    replicator:\n"
+"      password: 'topsecret'\n"
+"      roles: [replication]\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:89
+msgid "Step 4: Specifying advertise URIs"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:91
+msgid "Set :ref:`iproto.advertise.peer <configuration_reference_iproto_advertise_peer>` to advertise the current instance to other replica set members:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:93
+msgid "iproto:\n"
+"  advertise:\n"
+"    peer:\n"
+"      login: replicator\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:102
+msgid "Resulting configuration"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:104
+msgid "The resulting replica set configuration should look as follows:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:106
+msgid "credentials:\n"
+"  users:\n"
+"    replicator:\n"
+"      password: 'topsecret'\n"
+"      roles: [replication]\n"
+"\n"
+"iproto:\n"
+"  advertise:\n"
+"    peer:\n"
+"      login: replicator\n"
+"\n"
+"replication:\n"
+"  failover: election\n"
+"\n"
+"groups:\n"
+"  group001:\n"
+"    replicasets:\n"
+"      replicaset001:\n"
+"        instances:\n"
+"          instance001:\n"
+"            iproto:\n"
+"              listen:\n"
+"              - uri: '127.0.0.1:3301'\n"
+"          instance002:\n"
+"            iproto:\n"
+"              listen:\n"
+"              - uri: '127.0.0.1:3302'\n"
+"          instance003:\n"
+"            iproto:\n"
+"              listen:\n"
+"              - uri: '127.0.0.1:3303'\n"
+""
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:117
+msgid "Working with a replica set"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:122
+msgid "Starting instances"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:124
+msgid "After configuring a replica set, execute the :ref:`tt start <tt-start>` command from the :ref:`tt environment directory <replication-automated-failover-tt-env>`:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:126
+msgid "$ tt start auto_leader\n"
+"   • Starting an instance [auto_leader:instance001]...\n"
+"   • Starting an instance [auto_leader:instance002]...\n"
+"   • Starting an instance [auto_leader:instance003]..."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:133
+msgid "Check that instances are in the ``RUNNING`` status using the :ref:`tt status <tt-status>` command:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:135
+msgid "$ tt status auto_leader\n"
+"INSTANCE                    STATUS      PID\n"
+"auto_leader:instance001     RUNNING     24768\n"
+"auto_leader:instance002     RUNNING     24769\n"
+"auto_leader:instance003     RUNNING     24767"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:148
+msgid "Checking a replica set status"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:150
+msgid "Connect to ``instance001`` using :ref:`tt connect <tt-connect>`:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:152
+msgid "$ tt connect auto_leader:instance001\n"
+"   • Connecting to the instance...\n"
+"   • Connected to auto_leader:instance001"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:158
+msgid "Check the instance state in regard to :ref:`leader election <repl_leader_elect_process>` using :ref:`box.info.election <box_info_election>`. The output below shows that ``instance001`` is a follower while ``instance002`` is a replica set leader."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:161
+msgid "auto_leader:instance001> box.info.election\n"
+"---\n"
+"- leader_idle: 0.77491499999815\n"
+"  leader_name: instance002\n"
+"  state: follower\n"
+"  vote: 0\n"
+"  term: 2\n"
+"  leader: 1\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:173
+msgid "Check that ``instance001`` is in read-only mode using ``box.info.ro``:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:175
+msgid "auto_leader:instance001> box.info.ro\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:182
+msgid "Execute ``box.info.replication`` to check a replica set status. Make sure that ``upstream.status`` and ``downstream.status`` are ``follow`` for ``instance002`` and ``instance003``."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:185
+msgid "auto_leader:instance001> box.info.replication\n"
+"---\n"
+"- 1:\n"
+"    id: 1\n"
+"    uuid: 4cfa6e3c-625e-b027-00a7-29b2f2182f23\n"
+"    lsn: 9\n"
+"    upstream:\n"
+"      status: follow\n"
+"      idle: 0.8257709999998\n"
+"      peer: replicator@127.0.0.1:3302\n"
+"      lag: 0.00012326240539551\n"
+"    name: instance002\n"
+"    downstream:\n"
+"      status: follow\n"
+"      idle: 0.81174199999805\n"
+"      vclock: {1: 9}\n"
+"      lag: 0\n"
+"  2:\n"
+"    id: 2\n"
+"    uuid: 9bb111c2-3ff5-36a7-00f4-2b9a573ea660\n"
+"    lsn: 0\n"
+"    name: instance001\n"
+"  3:\n"
+"    id: 3\n"
+"    uuid: 9a3a1b9b-8a18-baf6-00b3-a6e5e11fd8b6\n"
+"    lsn: 0\n"
+"    upstream:\n"
+"      status: follow\n"
+"      idle: 0.83125499999733\n"
+"      peer: replicator@127.0.0.1:3303\n"
+"      lag: 0.00010204315185547\n"
+"    name: instance003\n"
+"    downstream:\n"
+"      status: follow\n"
+"      idle: 0.83213399999659\n"
+"      vclock: {1: 9}\n"
+"      lag: 0\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:226
+msgid "To see the diagrams that illustrate how the ``upstream`` and ``downstream`` connections look, refer to :ref:`Monitoring a replica set <replication-monitoring>`."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:232
+msgid "Adding data"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:234
+msgid "To check that replicas (``instance001`` and ``instance003``) get all updates from the master (``instance002``), follow the steps below:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:236
+msgid "Connect to ``instance002`` using ``tt connect``:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:238
+msgid "$ tt connect auto_leader:instance002\n"
+"   • Connecting to the instance...\n"
+"   • Connected to auto_leader:instance002"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:244
+msgid "Create a space and add data as described in :ref:`CRUD operation examples <box_space_examples>`."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:246
+msgid "Use the ``select`` operation on ``instance001`` and ``instance003`` to make sure data is replicated."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:248
+msgid "Check that the ``1`` component of :ref:`box.info.vclock <box_introspection-box_info>` values are the same on all instances:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:250
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:388
+msgid "``instance001``:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:252
+msgid "auto_leader:instance001> box.info.vclock\n"
+"---\n"
+"- {0: 1, 1: 32}\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:259
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:397
+msgid "``instance002``:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:261
+msgid "auto_leader:instance002> box.info.vclock\n"
+"---\n"
+"- {0: 1, 1: 32}\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:268
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:407
+msgid "``instance003``:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:270
+msgid "auto_leader:instance003> box.info.vclock\n"
+"---\n"
+"- {0: 1, 1: 32}\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap.rst:5
+msgid "Note that a ``vclock`` value might include the ``0`` component that is related to local space operations and might differ for different instances in a replica set."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:286
+msgid "Testing automated failover"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:288
+msgid "To test how automated failover works if the current master is stopped, follow the steps below:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:290
+msgid "Stop the current master instance (``instance002``) using the ``tt stop`` command:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:292
+msgid "$ tt stop auto_leader:instance002\n"
+"   • The Instance auto_leader:instance002 (PID = 24769) has been terminated."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:298
+msgid "On ``instance001``, check  ``box.info.election``. In this example, a new replica set leader is ``instance001``."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:301
+msgid "auto_leader:instance001> box.info.election\n"
+"---\n"
+"- leader_idle: 0\n"
+"  leader_name: instance001\n"
+"  state: leader\n"
+"  vote: 2\n"
+"  term: 3\n"
+"  leader: 2\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:313
+msgid "Check replication status using ``box.info.replication`` for ``instance002``:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:315
+msgid "``upstream.status`` is ``disconnected``."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:316
+msgid "``downstream.status`` is ``stopped``."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:320
+msgid "auto_leader:instance001> box.info.replication\n"
+"---\n"
+"- 1:\n"
+"    id: 1\n"
+"    uuid: 4cfa6e3c-625e-b027-00a7-29b2f2182f23\n"
+"    lsn: 32\n"
+"    upstream:\n"
+"      peer: replicator@127.0.0.1:3302\n"
+"      lag: 0.00032305717468262\n"
+"      status: disconnected\n"
+"      idle: 48.352504000002\n"
+"      message: 'connect, called on fd 20, aka 127.0.0.1:62575: Connection refused'\n"
+"      system_message: Connection refused\n"
+"    name: instance002\n"
+"    downstream:\n"
+"      status: stopped\n"
+"      message: 'unexpected EOF when reading from socket, called on fd 32, aka 127.0.0.1:3301,\n"
+"        peer of 127.0.0.1:62204: Broken pipe'\n"
+"      system_message: Broken pipe\n"
+"  2:\n"
+"    id: 2\n"
+"    uuid: 9bb111c2-3ff5-36a7-00f4-2b9a573ea660\n"
+"    lsn: 1\n"
+"    name: instance001\n"
+"  3:\n"
+"    id: 3\n"
+"    uuid: 9a3a1b9b-8a18-baf6-00b3-a6e5e11fd8b6\n"
+"    lsn: 0\n"
+"    upstream:\n"
+"      status: follow\n"
+"      idle: 0.18620999999985\n"
+"      peer: replicator@127.0.0.1:3303\n"
+"      lag: 0.00012516975402832\n"
+"    name: instance003\n"
+"    downstream:\n"
+"      status: follow\n"
+"      idle: 0.19718099999955\n"
+"      vclock: {2: 1, 1: 32}\n"
+"      lag: 0.00051403045654297\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:365
+msgid "The diagram below illustrates how the ``upstream`` and ``downstream`` connections look like:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:0
+msgid "replication status on a new master"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:373
+msgid "Start ``instance002`` back using ``tt start``:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:375
+msgid "$ tt start auto_leader:instance002\n"
+"   • Starting an instance [auto_leader:instance002]..."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:384
+msgid "Choosing a leader manually"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:386
+msgid "Make sure that :ref:`box.info.vclock <box_introspection-box_info>` values (except the ``0`` components) are the same on all instances:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:390
+msgid "auto_leader:instance001> box.info.vclock\n"
+"---\n"
+"- {0: 2, 1: 32, 2: 1}\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:399
+msgid "auto_leader:instance002> box.info.vclock\n"
+"---\n"
+"- {0: 2, 1: 32, 2: 1}\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:409
+msgid "auto_leader:instance003> box.info.vclock\n"
+"---\n"
+"- {0: 3, 1: 32, 2: 1}\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:416
+msgid "On ``instance002``, run :ref:`box.ctl.promote() <box_ctl-promote>` to choose it as a new replica set leader:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:418
+msgid "auto_leader:instance002> box.ctl.promote()\n"
+"---\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:424
+msgid "Check ``box.info.election`` to make sure ``instance002`` is a leader now:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:426
+msgid "auto_leader:instance002> box.info.election\n"
+"---\n"
+"- leader_idle: 0\n"
+"  leader_name: instance002\n"
+"  state: leader\n"
+"  vote: 1\n"
+"  term: 4\n"
+"  leader: 1\n"
+"..."
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:443
+msgid "Adding and removing instances"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:445
+msgid "The process of adding instances to a replica set and removing them is similar for all failover modes. Learn how to do this from the :ref:`Master-replica: manual failover <replication-bootstrap>` tutorial:"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:448
+msgid ":ref:`Adding instances <replication-add_instances>`"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:449
+msgid ":ref:`Removing instances <replication-remove_instances>`"
+msgstr ""
+
+#: ../../doc/how-to/replication/repl_bootstrap_auto.rst:451
+msgid "Before removing an instance from a replica set with :ref:`replication.failover <configuration_reference_replication_failover>` set to ``election``, make sure this instance is in read-only mode. If the instance is a master, choose a :ref:`new leader manually <replication-automated-failover-new-leader>`."
+msgstr ""

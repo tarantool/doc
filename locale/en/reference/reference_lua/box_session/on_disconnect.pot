@@ -1,0 +1,108 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_session/on_disconnect.rst:6
+msgid "box.session.on_disconnect()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/on_disconnect.rst:12
+msgid "Define a trigger for execution after a client has disconnected. If the trigger function causes an error, the error is logged but otherwise is ignored. The trigger is invoked while the session associated with the client still exists and can access session properties, such as :doc:`/reference/reference_lua/box_session/id`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/on_disconnect.rst:18
+msgid "Since version 1.10, the trigger function is invoked immediately after the disconnect, even if requests that were made during the session have not finished."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/on_disconnect.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/on_disconnect.rst:22
+msgid "function which will become the trigger function"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/on_disconnect.rst:24
+msgid "existing trigger function which will be replaced by trigger-function"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/on_disconnect.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/on_disconnect.rst:26
+msgid "nil or function pointer"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/on_disconnect.rst:28
+msgid "If the parameters are (nil, old-trigger-function), then the old trigger is deleted."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/on_disconnect.rst:31
+msgid "If both parameters are omitted, then the response is a list of existing trigger functions."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/on_disconnect.rst:34
+msgid "Details about trigger characteristics are in the :ref:`triggers <triggers-box_triggers>` section."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/on_disconnect.rst:37
+msgid "**Example #1**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/on_disconnect.rst:39
+msgid "tarantool> function f ()\n"
+"         >   x = x + 1\n"
+"         > end\n"
+"tarantool> box.session.on_disconnect(f)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/on_disconnect.rst:46
+msgid "**Example #2**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/on_disconnect.rst:48
+msgid "After the following series of requests, a Tarantool instance will write a message using the :ref:`log <log-module>` module whenever any user connects or disconnects."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/on_disconnect.rst:52
+msgid "function log_connect ()\n"
+"  local log = require('log')\n"
+"  local m = 'Connection. user=' .. box.session.user() .. ' id=' .. box.session.id()\n"
+"  log.info(m)\n"
+"end\n"
+"\n"
+"function log_disconnect ()\n"
+"  local log = require('log')\n"
+"  local m = 'Disconnection. user=' .. box.session.user() .. ' id=' .. box.session.id()\n"
+"  log.info(m)\n"
+"end\n"
+"\n"
+"box.session.on_connect(log_connect)\n"
+"box.session.on_disconnect(log_disconnect)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/on_disconnect.rst:69
+msgid "Here is what might appear in the log file in a typical installation:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_session/on_disconnect.rst:71
+msgid "2014-12-15 13:21:34.444 [11360] main/103/iproto I>\n"
+"    Connection. user=guest id=3\n"
+"2014-12-15 13:22:19.289 [11360] main/103/iproto I>\n"
+"    Disconnection. user=guest id=3"
+msgstr ""

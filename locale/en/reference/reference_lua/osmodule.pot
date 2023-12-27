@@ -1,0 +1,342 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/osmodule.rst:5
+msgid "Module os"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:11
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:13
+msgid "The ``os`` module contains the functions :ref:`execute() <os-execute>`, :ref:`rename() <os-rename>`, :ref:`getenv() <os-getenv>`, :ref:`remove() <os-remove>`, :ref:`date() <os-date>`, :ref:`exit() <os-exit>`, :ref:`time() <os-time>`, :ref:`clock() <os-clock>`, :ref:`tmpname() <os-tmpname>`, :ref:`environ() <os-environ>`, :ref:`setenv() <os-setenv>`, :ref:`setlocale() <os-setlocale>`, :ref:`difftime() <os-difftime>`. Most of these functions are described in the Lua manual Chapter 22 `The Operating System Library <https://www.lua.org/pil/contents.html#22>`_."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:28
+msgid "Index"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:30
+msgid "Below is a list of all ``os`` functions."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:38
+msgid "Name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:38
+msgid "Use"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:40
+msgid ":ref:`os.execute() <os-execute>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:40
+msgid "Execute by passing to the shell"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:43
+msgid ":ref:`os.rename() <os-rename>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:43
+msgid "Rename a file or directory"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:46
+msgid ":ref:`os.getenv() <os-getenv>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:46
+msgid "Get an environment variable"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:49
+msgid ":ref:`os.remove() <os-remove>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:49
+msgid "Remove a file or directory"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:52
+msgid ":ref:`os.date() <os-date>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:52
+msgid "Get a formatted date"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:55
+msgid ":ref:`os.exit() <os-exit>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:55
+msgid "Exit the program"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:58
+msgid ":ref:`os.time() <os-time>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:58
+msgid "Get the number of seconds since the epoch"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:61
+msgid ":ref:`os.clock() <os-clock>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:61
+msgid "Get the number of CPU seconds since the program start"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:64
+msgid ":ref:`os.tmpname() <os-tmpname>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:64
+msgid "Get the name of a temporary file"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:67
+msgid ":ref:`os.environ() <os-environ>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:67
+msgid "Get a table with all environment variables"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:70
+msgid ":ref:`os.setenv() <os-setenv>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:70
+msgid "Set an environment variable"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:73
+msgid ":ref:`os.setlocale() <os-setlocale>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:73
+msgid "Change the locale"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:76
+msgid ":ref:`os.difftime() <os-difftime>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:76
+msgid "Get the number of seconds between two times"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:84
+msgid "Execute by passing to the shell."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:0
+#: ../../doc/reference/reference_lua/osmodule.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:86
+msgid "what to execute."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:88
+#: ../../doc/reference/reference_lua/osmodule.rst:111
+#: ../../doc/reference/reference_lua/osmodule.rst:130
+#: ../../doc/reference/reference_lua/osmodule.rst:147
+#: ../../doc/reference/reference_lua/osmodule.rst:165
+#: ../../doc/reference/reference_lua/osmodule.rst:180
+#: ../../doc/reference/reference_lua/osmodule.rst:193
+#: ../../doc/reference/reference_lua/osmodule.rst:208
+#: ../../doc/reference/reference_lua/osmodule.rst:223
+#: ../../doc/reference/reference_lua/osmodule.rst:238
+#: ../../doc/reference/reference_lua/osmodule.rst:253
+#: ../../doc/reference/reference_lua/osmodule.rst:269
+#: ../../doc/reference/reference_lua/osmodule.rst:284
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:90
+msgid "tarantool> os.execute('ls -l /usr')\n"
+"total 200\n"
+"drwxr-xr-x   2 root root 65536 Apr 22 15:49 bin\n"
+"drwxr-xr-x  59 root root 20480 Apr 18 07:58 include\n"
+"drwxr-xr-x 210 root root 65536 Apr 18 07:59 lib\n"
+"drwxr-xr-x  12 root root  4096 Apr 22 15:49 local\n"
+"drwxr-xr-x   2 root root 12288 Jan 31 09:50 sbin\n"
+"---\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:106
+msgid "Rename a file or directory."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:108
+msgid "name of existing file or directory,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:109
+msgid "changed name of file or directory."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:113
+msgid "tarantool> os.rename('local','foreign')\n"
+"---\n"
+"- null\n"
+"- 'local: No such file or directory'\n"
+"- 2\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:126
+msgid "Get environment variable."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:128
+msgid "Parameters: (string) variable-name = environment variable name."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:132
+msgid "tarantool> os.getenv('PATH')\n"
+"---\n"
+"- /usr/local/sbin:/usr/local/bin:/usr/sbin\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:143
+msgid "Remove file or directory."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:145
+msgid "Parameters: (string) name = name of file or directory which will be removed."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:149
+msgid "tarantool> os.remove('file')\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:160
+msgid "Return a formatted date."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:162
+msgid "Parameters: (string) format-string = instructions; (string) time-since-epoch = number of seconds since 1970-01-01. If time-since-epoch is omitted, it is assumed to be the current time."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:167
+msgid "tarantool> os.date(\"%A %B %d\")\n"
+"---\n"
+"- Sunday April 24\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:178
+msgid "Exit the program. If this is done on a server instance, then the instance stops."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:182
+msgid "tarantool> os.exit()\n"
+"user@user-shell:~/tarantool_sandbox$"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:191
+msgid "Return the number of seconds since the epoch."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:195
+msgid "tarantool> os.time()\n"
+"---\n"
+"- 1461516945\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:206
+msgid "Return the number of CPU seconds since the program start."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:210
+msgid "tarantool> os.clock()\n"
+"---\n"
+"- 0.05\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:221
+msgid "Return a name for a temporary file."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:225
+msgid "tarantool> os.tmpname()\n"
+"---\n"
+"- /tmp/lua_7SW1m2\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:236
+msgid "Return a table containing all environment variables."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:240
+msgid "tarantool> os.environ()['TERM']..os.environ()['SHELL']\n"
+"---\n"
+"- xterm/bin/bash\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:251
+msgid "Set an environment variable."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:255
+msgid "tarantool> os.setenv('VERSION','99')\n"
+"---\n"
+"-\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:266
+msgid "Change the locale. If new-locale-string is not specified, return the current locale."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:271
+msgid "tarantool> string.sub(os.setlocale(),1,20)\n"
+"---\n"
+"- LC_CTYPE=en_US.UTF-8\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:282
+msgid "Return the number of seconds between two times."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/osmodule.rst:286
+msgid "tarantool> os.difftime(os.time() - 0)\n"
+"---\n"
+"- 1486594859\n"
+"..."
+msgstr ""

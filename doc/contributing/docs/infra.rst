@@ -15,9 +15,8 @@ The documentation source files are mainly stored in the
 `documentation repository <https://github.com/tarantool/doc>`_.
 However, in some cases, they are stored in the
 repositories of other Tarantool-related products
-or modules -- `Cartridge <https://github.com/tarantool/cartridge>`_,
-`Monitoring <https://github.com/tarantool/metrics/tree/master/doc/monitoring>`__,
-and others.
+or modules, such as
+`Monitoring <https://github.com/tarantool/metrics/tree/master/doc/monitoring>`__.
 
 If you are working with source files from a product or module repository,
 add that repository as a submodule to the
@@ -102,32 +101,6 @@ Here are the corresponding lines in ``build_submodules.sh``:
 The ``${project_root}`` variable is defined earlier in the file as ``project_root=$(pwd)``.
 This is because the documentation build has to start from the documentation repository root
 directory.
-
-cartridge_cli
-^^^^^^^^^^^^^
-
-The content source file for the ``cartridge_cli`` submodule is
-``README.rst``, located in the directory of the submodule repository.
-In the final documentation view, the content should appear here:
-``https://www.tarantool.io/en/doc/latest/book/cartridge/cartridge_cli/``.
-
-To make this work:
-
-*   Create a directory at ``./doc/book/cartridge/cartridge_cli``.
-*   Copy ``./modules/cartridge_cli/README.rst`` to
-    ``./doc/book/cartridge/cartridge_cli/index.rst``.
-
-Here ar the corresponding settings in ``build_submodules.sh``:
-
-..  code-block:: bash
-
-    rst_dest="${project_root}/doc/book/cartridge"
-    cartridge_cli_root="${project_root}/modules/cartridge-cli"
-    cartridge_cli_dest="${rst_dest}/cartridge_cli"
-    cartridge_cli_index_dest="${cartridge_cli_dest}/index.rst"
-
-    mkdir -p "${cartridge_cli_dest}"
-    yes | cp -rf "${cartridge_cli_root}/README.rst" "${cartridge_cli_index_dest}"
 
 .. _guidelines_doc_submodules_gitignore:
 

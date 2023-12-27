@@ -1,0 +1,821 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-26 10:36+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/release/3.0.0.rst:2
+msgid "Tarantool 3.0"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:4
+msgid "Release date: December 26, 2023"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:6
+msgid "Releases on GitHub: :tarantool-release:`3.0.0`"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:8
+msgid "The 3.0 release of Tarantool introduces a new declarative approach for configuring a cluster, a new visual tool -- Tarantool Cluster Manager, and many other new features and fixes. This document provides an overview of the most important features for the Community and Enterprise editions."
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:13
+msgid ":ref:`New declarative configuration <3-0-new_declarative_configuration>`"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:14
+msgid ":ref:`Tarantool Cluster Manager <3-0-tarantool_cluster_manager>`"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:15
+msgid ":ref:`Administration and maintenance <3-0-enhancements_for_administration_and_maintenance>`"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:16
+msgid ":ref:`Developing applications <3-0-features_for_developers>`"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:17
+msgid ":ref:`Stability <3-0-stability>`"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:24
+msgid "New declarative configuration"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:26
+msgid "Starting with the 3.0 version, Tarantool provides the ability to :ref:`configure the full topology of a cluster <configuration>` using a declarative YAML configuration instead of configuring each instance using a dedicated Lua script. With a new approach, you can write a local configuration in a YAML file for each instance or store configuration data in one reliable place, for example, a Tarantool or an etcd cluster."
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:29
+msgid "The example below shows how a configuration of a small sharded cluster might look. In the diagram below, the cluster includes 5 instances: one router and 4 storages, which constitute two replica sets. For each replica set, the master instance is specified manually."
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:None
+msgid "Cluster topology"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:38
+msgid "The example below demonstrates how a topology of such a cluster might look in a YAML configuration file:"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:40
+msgid "groups:\n"
+"  storages:\n"
+"    app:\n"
+"      module: storage\n"
+"    sharding:\n"
+"      roles: [storage]\n"
+"    replication:\n"
+"      failover: manual\n"
+"    replicasets:\n"
+"      storage-a:\n"
+"        leader: storage-a-001\n"
+"        instances:\n"
+"          storage-a-001:\n"
+"            iproto:\n"
+"              listen:\n"
+"              - uri: '127.0.0.1:3301'\n"
+"          storage-a-002:\n"
+"            iproto:\n"
+"              listen:\n"
+"              - uri: '127.0.0.1:3302'\n"
+"      storage-b:\n"
+"        leader: storage-b-001\n"
+"        instances:\n"
+"          storage-b-001:\n"
+"            iproto:\n"
+"              listen:\n"
+"              - uri: '127.0.0.1:3303'\n"
+"          storage-b-002:\n"
+"            iproto:\n"
+"              listen:\n"
+"              - uri: '127.0.0.1:3304'\n"
+"  routers:\n"
+"    app:\n"
+"      module: router\n"
+"    sharding:\n"
+"      roles: [router]\n"
+"    replicasets:\n"
+"      router-a:\n"
+"        instances:\n"
+"          router-a-001:\n"
+"            iproto:\n"
+"              listen:\n"
+"              - uri: '127.0.0.1:3300'"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:45
+msgid "You can find the full sample in the GitHub documentation repository: `sharded_cluster <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster>`_."
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:47
+msgid "The latest version of the tt utility provides the ability to :ref:`manage Tarantool instances <admin-start_stop_instance>` configured using a new approach. You can start all instances in a cluster by executing one command, check the status of instances, or stop them:"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:50
+msgid "$ tt start sharded_cluster\n"
+"   • Starting an instance [sharded_cluster:storage-a-001]...\n"
+"   • Starting an instance [sharded_cluster:storage-a-002]...\n"
+"   • Starting an instance [sharded_cluster:storage-b-001]...\n"
+"   • Starting an instance [sharded_cluster:storage-b-002]...\n"
+"   • Starting an instance [sharded_cluster:router-a-001]..."
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:64
+msgid "Centralized configuration (EE)"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:66
+msgid "Tarantool Enterprise Edition enables you to store configuration data in one reliable place, for example, an :ref:`etcd <configuration_etcd>` cluster. To achieve this, you need to configure connection options in the ``config.etcd`` section of the configuration file, for example:"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:68
+msgid "config:\n"
+"  etcd:\n"
+"    endpoints:\n"
+"    - http://localhost:2379\n"
+"    prefix: /example"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:72
+msgid "Using the configuration above, a Tarantool instance searches for a cluster configuration by the following path:"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:74
+msgid "http://localhost:2379/example/config/*"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:84
+msgid "Tarantool Cluster Manager (EE)"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:86
+msgid "Tarantool 3.0 Enterprise Edition comes with a brand new visual tool – :ref:`Tarantool Cluster Manager <tcm>` (TCM). It provides a web-based user interface for managing, configuring, and monitoring Tarantool EE clusters that use centralized configuration storage."
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:None
+msgid "TCM stateboard"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:94
+msgid "TCM can manage multiple clusters and covers a wide range of tasks, from writing a cluster’s configuration to executing commands interactively on specific instances."
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:None
+msgid "TCM cluster configuration"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:101
+msgid "TCM's role-based access control system lets you manage users’ access to clusters, their configurations, and stored data."
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:None
+msgid "TCM users"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:108
+msgid "The built-in customizable audit logging mechanism and LDAP authentication make TCM a suitable solution for different enterprise security requirements."
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:None
+msgid "TCM audit log"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:121
+msgid "Administration and maintenance"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:126
+msgid "Database statistics"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:128
+msgid "Starting with 3.0, Tarantool provides extended statistics about memory consumption for the given space or specific tuples."
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:130
+msgid "Usually, the :ref:`space_object:bsize() <box_space-bsize>` method is used to get the size of memory occupied by the specified space:"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:133
+msgid "app:instance001> box.space.books:bsize()\n"
+"---\n"
+"- 70348673\n"
+"..."
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:140
+msgid "In addition to the actual data, the space requires additional memory to store supplementary information. You can see the total memory usage using :ref:`box.slab.info() <box_slab_info>`:"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:143
+msgid "app:instance001> box.slab.info().items_used\n"
+"---\n"
+"- 75302024\n"
+"..."
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:150
+msgid "A new ``space_object:stat()`` method allows you to determine how the additional 5 Mb of memory is used:"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:152
+msgid "app:instance001> box.space.books:stat()\n"
+"---\n"
+"- tuple:\n"
+"    memtx:\n"
+"      waste_size: 1744011\n"
+"      data_size: 70348673\n"
+"      header_size: 2154132\n"
+"      field_map_size: 0\n"
+"    malloc:\n"
+"      waste_size: 0\n"
+"      data_size: 0\n"
+"      header_size: 0\n"
+"      field_map_size: 0\n"
+"..."
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:169
+msgid "The above report gives the following information:"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:171
+msgid "``header_size`` and ``field_map_size``: the size of service information."
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:172
+msgid "``data_size``: the actual size of data, which equals to ``space_object:bsize()``."
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:173
+msgid "``waste_size``: the size of memory wasted due to internal fragmentation in the `slab allocator <https://github.com/tarantool/small>`_."
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:175
+msgid "To get such information about a specific tuple, use ``tuple_object:info()``:"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:177
+msgid "app:instance001> box.space.books:get('1853260622'):info()\n"
+"---\n"
+"- data_size: 277\n"
+"  waste_size: 9\n"
+"  arena: memtx\n"
+"  field_map_size: 0\n"
+"  header_size: 10\n"
+"..."
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:193
+msgid "Bootstrapping a replica set"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:195
+msgid "The new version includes the capability to choose a bootstrap leader for a replica set manually. The bootstrap leader is a node that creates an initial snapshot and registers all the replicas in a replica set."
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:198
+msgid "First, you need to set :ref:`replication.bootstrap_strategy <configuration_reference_replication_bootstrap_strategy>` to ``config``. Then, use the ``<replicaset_name>.bootstrap_leader`` option to specify a bootstrap leader."
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:201
+msgid "groups:\n"
+"  group001:\n"
+"    replicasets:\n"
+"      replicaset001:\n"
+"        replication:\n"
+"          bootstrap_strategy: config\n"
+"        bootstrap_leader: instance001\n"
+"        instances:\n"
+"          instance001:\n"
+"            iproto:\n"
+"              listen:\n"
+"              - uri: '127.0.0.1:3301'\n"
+"          instance002:\n"
+"            iproto:\n"
+"              listen:\n"
+"              - uri: '127.0.0.1:3302'\n"
+"          instance003:\n"
+"            iproto:\n"
+"              listen:\n"
+"              - uri: '127.0.0.1:3303'"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:209
+msgid "Note that in 3.0, the :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>` option is removed. This option was used to specify the number of nodes to be up and running for starting a replica set."
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:219
+msgid "Security (EE)"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:221
+msgid "With the 3.0 version, Tarantool Enterprise Edition provides a set of new features that enhance :ref:`security <enterprise-security>` in your cluster:"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:223
+msgid "Introduced the ``secure_erasing`` configuration option that forces Tarantool to overwrite a data file a few times before deletion to render recovery of a deleted file impossible. With the new configuration approach, you can enable this capability as follows:"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:226
+msgid "security:\n"
+"  secure_erasing: true"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:231
+msgid "This option can be also set using the ``TT_SECURITY_SECURE_ERASING`` environment variable."
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:233
+msgid "Added the ``auth_retries`` option that configures the maximum number of authentication retries before throttling is enabled. You can configure this option as follows:"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:236
+msgid "security:\n"
+"  auth_retries: 3"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:241
+msgid "Added the capability to use the new SSL certificate with the same name by reloading the configuration. To do this, use the ``reload()`` function provided by the new ``config`` module:"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:244
+msgid "app:instance001> require('config'):reload()\n"
+"---\n"
+"..."
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:254
+msgid "Audit logging (EE)"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:256
+msgid "Tarantool Enterprise Edition includes the following new features for :ref:`audit logging <enterprise_audit_module>`:"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:258
+msgid "Added a unique identifier (UUID) to each audit log entry."
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:259
+msgid "Introduced audit log severity levels. Each system audit event now has a severity level determined by its importance."
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:261
+msgid "Added the ``audit_log.audit_spaces`` option that configures the list of spaces for which data operation events should be logged."
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:262
+msgid "Added the ``audit_log.audit_extract_key`` option that forces the audit subsystem to log the primary key instead of a full tuple in DML operations. This might be useful for reducing audit log size in the case of large tuples."
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:265
+msgid "The sample audit log configuration in the 3.0 version might look as follows, including new ``audit_spaces`` and ``audit_extract_key`` options:"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:267
+msgid "audit_log:\n"
+"  to: file\n"
+"  file: audit_tarantool.log\n"
+"  filter: [ddl,dml]\n"
+"  spaces: [books]\n"
+"  extract_key: true"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:278
+msgid "With this configuration, an audit log entry for a DELETE operation may look like below:"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:280
+msgid "{\n"
+"  \"time\": \"2023-12-19T10:09:44.664+0000\",\n"
+"  \"uuid\": \"65901190-f8a6-45c1-b3a4-1a11cf5c7355\",\n"
+"  \"severity\": \"VERBOSE\",\n"
+"  \"remote\": \"unix/:(socket)\",\n"
+"  \"session_type\": \"console\",\n"
+"  \"module\": \"tarantool\",\n"
+"  \"user\": \"admin\",\n"
+"  \"type\": \"space_delete\",\n"
+"  \"tag\": \"\",\n"
+"  \"description\": \"Delete key [\\\"0671623249\\\"] from space books\"\n"
+"}"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:296
+msgid "The entry includes the new ``uuid`` and ``severity`` fields. The last ``description`` field gives only the information about the key of the deleted tuple."
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:305
+msgid "Reading flight recordings (EE)"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:307
+msgid "The :ref:`flight recorder <enterprise-flight-recorder>` available in the Enterprise Edition is an event collection tool that gathers various information about a working Tarantool instance. With the 3.0 version, you can read flight recordings using the API provided by the ``flightrec`` module."
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:310
+msgid "To enable the flight recorder in a YAML file, set ``flightrec.enabled`` to true:"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:312
+msgid "flightrec:\n"
+"  enabled: true"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:317
+msgid "Then, you can use the Lua API to open and read ``*.ttfr`` files:"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:319
+msgid "app:instance001> flightrec = require('flightrec')\n"
+"---\n"
+"...\n"
+"\n"
+"app:instance001> flightrec_file = flightrec.open('var/lib/instance001/20231225T085435.ttfr')\n"
+"---\n"
+"...\n"
+"\n"
+"app:instance001> flightrec_file\n"
+"---\n"
+"- sections: &0\n"
+"    requests:\n"
+"      size: 10485760\n"
+"    metrics:\n"
+"      size: 368640\n"
+"    logs:\n"
+"      size: 10485760\n"
+"  was_closed: false\n"
+"  version: 0\n"
+"  pid: 1350\n"
+"...\n"
+"\n"
+"app:instance001> for i, r in flightrec_file.sections.logs:pairs() do record = r; break end\n"
+"---\n"
+"...\n"
+"\n"
+"app:instance001> record\n"
+"---\n"
+"- level: INFO\n"
+"  fiber_name: interactive\n"
+"  fiber_id: 103\n"
+"  cord_name: main\n"
+"  file: ./src/box/flightrec.c\n"
+"  time: 2023-12-25 08:50:12.275\n"
+"  message: 'Flight recorder: configuration has been done'\n"
+"  line: 727\n"
+"...\n"
+"\n"
+"app:instance001> flightrec_file:close()\n"
+"---\n"
+"..."
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:372
+msgid "New DEB and RPM packages"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:374
+msgid "With this release, the approach to delivering Tarantool to end users in DEB and RPM packages is slightly revised. In the previous versions, Tarantool was built for the most popular Linux distributions and their latest version."
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:377
+msgid "Starting with this release, only two sets of DEB and RPM packages are delivered. The difference is that these packages include a statically compiled Tarantool binary. This approach provides the ability to install DEB and RPM packages on any Linux distributions that are based on СentOS and Debian."
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:381
+msgid "To ensure that Tarantool works for a wide range of different distributions and their versions, RPM and DEB packages are prepared on CentOS 7 with glibc 2.17."
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:387
+msgid "Developing applications"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:392
+msgid "varbinary in Lua"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:394
+msgid "In the previous versions, Tarantool already supported the ``varbinary`` type for :ref:`storing data <index_box_field_type_details>`. But working with ``varbinary`` database fields required workarounds, such as using C to process such data."
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:397
+msgid "The 3.0 version includes a new ``varbinary`` module for working with varbinary objects. The module implements the following functions:"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:400
+msgid "``varbinary.new()`` - constructs a varbinary object from a plain string."
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:401
+msgid "``varbinary.is()`` - returns true if the argument is a varbinary object."
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:403
+msgid "In the example below, an object is created from a string:"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:405
+msgid "local varbinary = require('varbinary')\n"
+"local bin = varbinary.new('Hello world!')"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:410
+msgid "The built-in decoders now decode binary data fields to a varbinary object by default:"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:412
+msgid "local varbinary = require('varbinary')\n"
+"local msgpack = require('msgpack')\n"
+"varbinary.is(msgpack.decode('\\xC4\\x02\\xFF\\xFE'))\n"
+"--[[\n"
+"---\n"
+"- true\n"
+"...\n"
+"]]\n"
+"varbinary.is(yaml.decode('!!binary //4='))\n"
+"--[[\n"
+"---\n"
+"- true\n"
+"...\n"
+"]]"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:429
+msgid "This also implies that the data stored in the database under the ``varbinary`` field type is now returned to Lua not as a plain string but as a varbinary object."
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:431
+msgid "It's possible to revert to the old behavior by toggling the new ``binary_data_decoding`` :ref:`compat <compat-module>` option because this change may break backward compatibility:"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:433
+msgid "compat:\n"
+"  binary_data_decoding: old"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:443
+msgid "Default field values"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:445
+msgid "You can now assign the default values for specific fields when defining a :ref:`space format <box_space-format>`. In this example, the ``isbn`` and ``title`` fields have the specified default values:"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:448
+msgid "box.schema.space.create('books')\n"
+"box.space.books:format({\n"
+"    { name = 'id', type = 'unsigned' },\n"
+"    { name = 'isbn', type = 'string', default = '9990000000000' },\n"
+"    { name = 'title', type = 'string', default = 'New awesome book' },\n"
+"    { name = 'year_of_publication', type = 'unsigned', default = 2023 }\n"
+"})\n"
+"box.space.books:create_index('primary', { parts = { 'isbn' } })"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:459
+msgid "If you insert a tuple with missing fields, the default values are inserted:"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:462
+msgid "app:instance001> box.space.books:insert({ 1000, nil, nil, nil })\n"
+"---\n"
+"- [1000, '9990000000000', 'New awesome book', 2023]\n"
+"..."
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:469
+msgid "You can also provide a custom logic for generating a default value. To achieve this, create a function using ``box.schema.func.create``:"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:472
+msgid "box.schema.func.create('current_year', {\n"
+"    language = 'Lua',\n"
+"    body = \"function() return require('datetime').now().year end\"\n"
+"})"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:479
+msgid "Then, assign the function name to ``default_func`` when defining a space format:"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:481
+msgid "box.space.books:format({\n"
+"    -- ... --\n"
+"    { name = 'year_of_publication', type = 'unsigned', default_func = 'current_year' }\n"
+"})"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:493
+msgid "Triggers"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:495
+msgid "In the 3.0 version, the API for creating :ref:`triggers <triggers>` is completely reworked. A new ``trigger`` module is introduced, allowing you to set handlers on both predefined and custom events."
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:498
+msgid "To create the trigger, you need to:"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:500
+msgid "Provide an event name used to associate the trigger with."
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:501
+msgid "Define the trigger name."
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:502
+msgid "Provide a trigger handler function."
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:504
+msgid "The code snippet below shows how to subscribe to changes in the ``books`` space:"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:506
+msgid "local trigger = require('trigger')\n"
+"trigger.set(\n"
+"        'box.space.books.on_replace', -- event name\n"
+"        'some-custom-trigger',        -- trigger name\n"
+"        function(...)\n"
+"            -- trigger handler\n"
+"        end\n"
+")"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:522
+msgid "Pagination in read views (EE)"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:524
+msgid "The 2.11 release introduced the following features:"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:526
+msgid ":ref:`Read views <2-11-read_views>` are in-memory snapshots of the entire database that aren't affected by future data modifications."
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:527
+msgid ":ref:`Pagination <2-11-pagination>` for getting data in chunks."
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:529
+msgid "With the 3.0 release, a read view object supports the ``after`` and ``fetch_pos`` arguments for the ``select`` and ``pairs`` methods:"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:531
+msgid "-- Select first 3 tuples and fetch a last tuple's position --\n"
+"app:instance001> result, position = read_view1.space.bands:select({}, { limit = 3, fetch_pos = true })\n"
+"---\n"
+"...\n"
+"\n"
+"app:instance001> result\n"
+"---\n"
+"- - [1, 'Roxette', 1986]\n"
+"  - [2, 'Scorpions', 1965]\n"
+"  - [3, 'Ace of Base', 1987]\n"
+"...\n"
+"\n"
+"app:instance001> position\n"
+"---\n"
+"- kQM\n"
+"...\n"
+"\n"
+"-- Then, you can pass this position as the 'after' parameter --\n"
+"app:instance001> read_view1.space.bands:select({}, { limit = 3, after = position })\n"
+"---\n"
+"- - [4, 'The Beatles', 1960]\n"
+"  - [5, 'Pink Floyd', 1965]\n"
+"  - [6, 'The Rolling Stones', 1962]\n"
+"..."
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:563
+msgid "IPROTO tuple format"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:565
+msgid "Starting with the 3.0 version, the IPROTO protocol is extended to support for sending names of tuple fields in the :ref:`IPROTO_CALL <box_protocol-call>` and other IPROTO responses. This simplifies the development of Tarantool connectors and also simplifies handling tuples received from remote procedure calls or from routers."
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:568
+msgid "It's possible to revert to the old behavior by toggling the ``box_tuple_extension`` :ref:`compat <compat-module>` option:"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:570
+msgid "compat:\n"
+"  box_tuple_extension: old"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:580
+msgid "SQL: case-sensitive names"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:582
+msgid "Starting with 3.0, names in :ref:`SQL <sql_tutorial>`, for example, table, column, or constraint names are case-sensitive. Before the 3.0 version, the query below created a ``MYTABLE`` table:"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:585
+#: ../../doc/release/3.0.0.rst:597
+msgid "CREATE TABLE MyTable (i INT  PRIMARY KEY);"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:589
+msgid "To create the ``MyTable`` table, you needed to enclose the name into double quotes:"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:591
+msgid "CREATE TABLE \"MyTable\" (i INT  PRIMARY KEY);"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:595
+msgid "Starting with 3.0, names are case-sensitive, and double quotes are no longer needed:"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:601
+msgid "For backward compatibility, the new version also supports a second lookup using an uppercase name. This means that the query below tries to find the ``MyTable`` table and then ``MYTABLE``:"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:604
+msgid "SELECT * FROM MyTable;"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:617
+msgid "Stability"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:622
+msgid "Handling LuaJIT compiler errors"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:624
+msgid "The 3.0 release includes a fix for the `gh-562 <https://github.com/tarantool/tarantool/issues/562>`__ LuaJIT issue related to the inability to handle internal compiler on-trace errors using ``pcall``. The examples of such errors are:"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:627
+msgid "An ``Out of memory`` error might occur for ``select`` queries returning a large amount of data."
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:628
+msgid "A ``Table overflow`` error is raised when exceeding the maximum number of keys in a table."
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:630
+msgid "The script below tries to fill a Lua table with a large number of keys:"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:632
+msgid "local function memory_payload()\n"
+"    local t = {}\n"
+"    for i = 1, 1e10 do\n"
+"        t[ffi.new('uint64_t')] = i\n"
+"    end\n"
+"end\n"
+"local res, err = pcall(memory_payload)\n"
+"print(res, err)"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:643
+msgid "In the previous Tarantool version with the 32-bit Lua GC, this script causes the following error despite using ``pcall``:"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:645
+msgid "PANIC: unprotected error in call to Lua API (not enough memory)"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:649
+msgid "For Tarantool with the 64-bit Lua GC, this script causes a ``Table overflow`` error:"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:651
+msgid "PANIC: unprotected error in call to Lua API (table overflow)"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:656
+msgid "Starting with the 3.0 version, these errors are handled correctly with the following outputs:"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:658
+msgid "false    not enough memory -- 32-bit Lua GC\n"
+"false    table overflow    -- 64-bit Lua GC"
+msgstr ""
+
+#: ../../doc/release/3.0.0.rst:664
+msgid "As a result, Tarantool 3.0 becomes more stable in cases when user scripts include erroneous code."
+msgstr ""

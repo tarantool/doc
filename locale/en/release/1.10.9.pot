@@ -1,0 +1,140 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/release/1.10.9.rst:2
+msgid "Tarantool 1.10.9"
+msgstr ""
+
+#: ../../doc/release/1.10.9.rst:4
+msgid "Release: :tarantool-release:`1.10.9`"
+msgstr ""
+
+#: ../../doc/release/1.10.9.rst:6
+msgid "Date: 2020-12-30 Tag: 1.10.9-0-g720ffdd23"
+msgstr ""
+
+#: ../../doc/release/1.10.9.rst:9
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/release/1.10.9.rst:11
+msgid "1.10.9 is the next stable release in the :doc:`long-term support (LTS) version </release/policy>` 1.10.x release series. The label “stable” means there are 1.10.x-based applications running in production for quite a while without known crashes, incorrect results or other showstopper bugs."
+msgstr ""
+
+#: ../../doc/release/1.10.9.rst:17
+msgid "This release introduces one improvement and resolves roughly 7 issues since the 1.10.8 version."
+msgstr ""
+
+#: ../../doc/release/1.10.9.rst:21
+msgid "Compatibility"
+msgstr ""
+
+#: ../../doc/release/1.10.9.rst:23
+msgid "Tarantool 1.10.x is backward compatible with Tarantool 1.9.x in binary data layout, client-server protocol and replication protocol. Please `upgrade <https://www.tarantool.io/en/doc/1.10/book/admin/upgrades/>`_ using the ``box.schema.upgrade()`` procedure to unlock all the new features of the 1.10.x series."
+msgstr ""
+
+#: ../../doc/release/1.10.9.rst:30
+msgid "Functionality added or changed"
+msgstr ""
+
+#: ../../doc/release/1.10.9.rst:33
+msgid "Build"
+msgstr ""
+
+#: ../../doc/release/1.10.9.rst:35
+msgid "Deploy packages for Fedora 32 (:tarantool-issue:`4966`)."
+msgstr ""
+
+#: ../../doc/release/1.10.9.rst:36
+msgid "Deploy packages for Debian Bullseye (:tarantool-issue:`5638`)."
+msgstr ""
+
+#: ../../doc/release/1.10.9.rst:39
+msgid "Misc"
+msgstr ""
+
+#: ../../doc/release/1.10.9.rst:41
+msgid "Don’t start an ‘example’ instance after installing Tarantool (:tarantool-issue:`4507`)."
+msgstr ""
+
+#: ../../doc/release/1.10.9.rst:44
+msgid "Before this release the ``tarantool`` package for Debian and Ubuntu used to automatically enable and start an 'example' instance, which would listen on the TCP port ``3301``. Since this release the instance file is installed to ``/etc/tarantool/instances.available/example.lua``, but isn’t enabled by default and not started anymore. You can enable and start it with the following commands:"
+msgstr ""
+
+#: ../../doc/release/1.10.9.rst:51
+msgid "ln -s /etc/tarantool/instances.available/example.lua \\\n"
+"    /etc/tarantool/instances.enabled/example.lua\n"
+"systemctl start tarantool@example"
+msgstr ""
+
+#: ../../doc/release/1.10.9.rst:57
+msgid "Existing configuration will not be updated automatically at package update. If you don’t the need example instance, you can stop and disable it with the following commands:"
+msgstr ""
+
+#: ../../doc/release/1.10.9.rst:61
+msgid "systemctl stop tarantool@example\n"
+"rm /etc/tarantool/instances.enabled/example.lua"
+msgstr ""
+
+#: ../../doc/release/1.10.9.rst:67
+msgid "Bugs fixed"
+msgstr ""
+
+#: ../../doc/release/1.10.9.rst:70
+msgid "Core"
+msgstr ""
+
+#: ../../doc/release/1.10.9.rst:72
+msgid "``fiber.cond:wait()`` now correctly throws an error when a fiber is cancelled, instead of ignoring the timeout and returning without any signs of an error (:tarantool-issue:`5013`)."
+msgstr ""
+
+#: ../../doc/release/1.10.9.rst:75
+msgid "Fixed a memory corruption issue, which was most visible on macOS, but could affect any system (:tarantool-issue:`5312`)."
+msgstr ""
+
+#: ../../doc/release/1.10.9.rst:77
+msgid "A dynamic module now gets correctly unloaded from memory in case of an attempt to load a non-existing function from it (:tarantool-issue:`5475`)."
+msgstr ""
+
+#: ../../doc/release/1.10.9.rst:79
+msgid "The fiber region (the box region) won’t be invalidated on a read-only transaction (:tarantool-issue:`5427`, :tarantool-issue:`5623`)."
+msgstr ""
+
+#: ../../doc/release/1.10.9.rst:83
+msgid "LuaJIT"
+msgstr ""
+
+#: ../../doc/release/1.10.9.rst:85
+msgid "Dispatching ``__call`` metamethod no longer causes address clashing (:tarantool-issue:`4518`, (:tarantool-issue:`4649`)."
+msgstr ""
+
+#: ../../doc/release/1.10.9.rst:87
+msgid "Fixed a false positive panic when yielding in debug hook (:tarantool-issue:`5649`)."
+msgstr ""
+
+#: ../../doc/release/1.10.9.rst:91
+msgid "Lua"
+msgstr ""
+
+#: ../../doc/release/1.10.9.rst:93
+msgid "An attempt to use a ``net.box`` connection which is not established yet now results in a correctly reported error (:tarantool-issue:`4787`)."
+msgstr ""
+
+#: ../../doc/release/1.10.9.rst:95
+msgid "Fixed a hang which occurred when ``tarantool`` ran a user script with the ``-e`` option and this script exited with an error (like with ``tarantool -e 'assert(false)'``) (:tarantool-issue:`4983`)."
+msgstr ""

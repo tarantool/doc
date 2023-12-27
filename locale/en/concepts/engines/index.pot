@@ -1,0 +1,37 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/concepts/engines/index.rst:6
+msgid "Storage engines"
+msgstr ""
+
+#: ../../doc/concepts/engines/index.rst:8
+msgid "A storage engine is a set of low-level routines which actually store and retrieve :term:`tuple <tuple>` values. Tarantool offers a choice of two storage engines:"
+msgstr ""
+
+#: ../../doc/concepts/engines/index.rst:11
+msgid ":doc:`memtx <memtx>` is the in-memory storage engine used by default."
+msgstr ""
+
+#: ../../doc/concepts/engines/index.rst:12
+msgid ":doc:`vinyl <vinyl>` is the on-disk storage engine."
+msgstr ""
+
+#: ../../doc/concepts/engines/index.rst:14
+msgid "All the details on the engines you can find in the dedicated sections:"
+msgstr ""

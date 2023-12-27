@@ -1,0 +1,38 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-07 07:21+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/code_snippets/snippets/replication/instances.enabled/auto_leader/README.md:1
+msgid "Master-replica: automated failover"
+msgstr ""
+
+#: ../../doc/code_snippets/snippets/replication/instances.enabled/auto_leader/README.md:3
+msgid "A sample application demonstrating how to bootstrap a replica set with [automated failover](https://www.tarantool.io/en/doc/latest/how-to/replication/repl_bootstrap_auto/)."
+msgstr ""
+
+#: ../../doc/code_snippets/snippets/replication/instances.enabled/auto_leader/README.md:5
+msgid "Running"
+msgstr ""
+
+#: ../../doc/code_snippets/snippets/replication/instances.enabled/auto_leader/README.md:7
+msgid "To start all instances, execute the following command in the [replication](../../../replication) directory:"
+msgstr ""
+
+#: ../../doc/code_snippets/snippets/replication/instances.enabled/auto_leader/README.md:9
+msgid "$ tt start auto_leader\n"
+""
+msgstr ""

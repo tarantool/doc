@@ -1,0 +1,113 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_index/user_defined.rst:5
+msgid "index_object extensions"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/user_defined.rst:7
+msgid "You can extend ``index_object`` with custom functions as follows:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/user_defined.rst:9
+msgid "Create a Lua function."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/user_defined.rst:10
+msgid "Add the function name to a predefined global variable, which has the ``table`` type."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/user_defined.rst:11
+msgid "Call the function on the ``index_object``: ``index_object:function-name([parameters])``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/user_defined.rst:13
+msgid "There are three predefined global variables:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/user_defined.rst:15
+msgid "Adding to ``box_schema.index_mt`` makes the function available for all indexes."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/user_defined.rst:16
+msgid "Adding to ``box_schema.memtx_index_mt`` makes the function available for all memtx indexes."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/user_defined.rst:17
+msgid "Adding to ``box_schema.vinyl_index_mt`` makes the function available for all vinyl indexes."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/user_defined.rst:19
+msgid "Alternatively, you can make a user-defined function available for only one index by calling ``getmetatable(index_object)`` and then adding the function name to the meta table."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/user_defined.rst:24
+msgid "**Example 1:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/user_defined.rst:26
+msgid "The example below shows how to extend all memtx indexes with the custom function:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/user_defined.rst:28
+msgid "box.schema.space.create('tester1', { engine = 'memtx' })\n"
+"box.space.tester1:create_index('index1')\n"
+"global_counter = 5\n"
+"\n"
+"-- Create a custom function.\n"
+"function increase_global_counter()\n"
+"    global_counter = global_counter + 1\n"
+"end\n"
+"\n"
+"-- Extend all memtx indexes with the created function.\n"
+"box.schema.memtx_index_mt.increase_global_counter = increase_global_counter\n"
+"\n"
+"-- Call the 'increase_global_counter' function on 'index1'\n"
+"-- to change the 'global_counter' value from 5 to 6.\n"
+"box.space.tester1.index.index1:increase_global_counter()\n"
+""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/user_defined.rst:33
+msgid "**Example 2:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/user_defined.rst:35
+msgid "The example below shows how to extend the specified index with the custom function with parameters:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_index/user_defined.rst:37
+msgid "box.schema.space.create('tester2', { engine = 'memtx', id = 1000 })\n"
+"box.space.tester2:create_index('index2')\n"
+"local_counter = 0\n"
+"\n"
+"-- Create a custom function.\n"
+"function increase_local_counter(i_arg, param)\n"
+"    local_counter = local_counter + param + i_arg.space_id\n"
+"end\n"
+"\n"
+"-- Extend only the 'index2' index with the created function.\n"
+"box.schema.memtx_index_mt.increase_local_counter = increase_local_counter\n"
+"meta = getmetatable(box.space.tester2.index.index2)\n"
+"meta.increase_local_counter = increase_local_counter\n"
+"\n"
+"-- Call the 'increase_local_counter' function on 'index2'\n"
+"-- to change the 'local_counter' value from 0 to 1005.\n"
+"box.space.tester2.index.index2:increase_local_counter(5)\n"
+""
+msgstr ""

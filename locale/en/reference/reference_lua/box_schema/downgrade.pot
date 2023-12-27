@@ -1,0 +1,59 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_schema/downgrade.rst:4
+msgid "box.schema.downgrade()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/downgrade.rst:10
+msgid "Allows you to downgrade a database to the specified Tarantool version. This might be useful if you need to run a database on older Tarantool versions."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/downgrade.rst:13
+msgid "To prepare a database for using it on an older Tarantool instance, call ``box.schema.downgrade`` and pass the desired Tarantool version:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/downgrade.rst:16
+msgid "tarantool> box.schema.downgrade('2.8.4')"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/downgrade.rst:22
+msgid "The Tarantool's downgrade procedure is similar to the upgrade process that is described in the :ref:`Upgrades <admin-upgrades>` topic. You need to run ``box.schema.downgrade()`` only on master and execute `box.shapshot()` on every instance in a replica set before restart to an older version."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/downgrade.rst:25
+msgid "To see Tarantool versions available for downgrade, call :ref:`box.schema.downgrade_versions() <box_schema-downgrade_versions>`. The oldest release available for downgrade is ``2.8.2``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/downgrade.rst:27
+msgid "Note that the downgrade process might fail if the database enables specific features not supported in the target Tarantool version. You can see all such issues using the :ref:`box.schema.downgrade_issues() <box_schema-downgrade_issues>` method, which accepts the target version. For example, ``downgrade`` to the ``2.8.4`` version fails if you use :ref:`tuple compression <tuple_compression>` or field :ref:`constraints <index-constraint_functions>` in your database:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/downgrade.rst:33
+msgid "tarantool> box.schema.downgrade_issues('2.8.4')\n"
+"---\n"
+"- - Tuple compression is found in space 'bands', field 'band_name'. It is supported\n"
+"    starting from version 2.10.0.\n"
+"  - Field constraint is found in space 'bands', field 'year'. It is supported starting\n"
+"    from version 2.10.0.\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_schema/downgrade.rst:43
+msgid "See also: :ref:`box.schema.upgrade() <box_schema-upgrade>`"
+msgstr ""

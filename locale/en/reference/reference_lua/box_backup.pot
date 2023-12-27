@@ -1,0 +1,53 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_backup.rst:3
+msgid "Submodule box.backup"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_backup.rst:5
+msgid "The box.backup submodule contains two functions that are helpful for :ref:`backup <admin-backups>` in certain situations."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_backup.rst:8
+msgid "Below is a list of all ``box.backup`` functions."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_backup.rst:19
+msgid "Name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_backup.rst:20
+msgid "Use"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_backup.rst:22
+msgid ":doc:`./box_backup/start`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_backup.rst:23
+msgid "Ask server to suspend activities before the removal of outdated backups"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_backup.rst:25
+msgid ":doc:`./box_backup/stop`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_backup.rst:26
+msgid "Inform server that normal operations may resume"
+msgstr ""

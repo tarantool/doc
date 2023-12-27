@@ -61,7 +61,7 @@ source_suffix = {
 project = u'Tarantool'
 
 # |release| The full version, including alpha/beta/rc tags.
-release = "2.11.1"
+release = "3.0.0"
 # |version| The short X.Y version.
 version = '.'.join(release.split('.')[0:2])
 
@@ -73,10 +73,6 @@ exclude_patterns = [
     'how-to/using_docker.rst',
     'reference/configuration/cfg_*',
     'images',
-    'book/cartridge/cartridge_overview.rst',
-    'book/cartridge/CONTRIBUTING.rst',
-    'book/cartridge/topics',
-    'book/cartridge/cartridge_api/modules/cartridge.test-helpers.rst',
     'reference/reference_rock/luatest/README.rst',
     'reference/reference_rock/luatest/modules/luatest.rst',
     '**/_includes/*'

@@ -1,0 +1,77 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_events/watch.rst:5
+msgid "box.watch()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/watch.rst:9
+msgid "Subscribe to events broadcast by a local host."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/watch.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/watch.rst:11
+msgid "key name of the event to subscribe to"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/watch.rst:12
+msgid "callback to invoke when the key value is updated"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/watch.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/watch.rst:14
+msgid "a watcher handle. The handle consists of one method -- ``unregister()``, which unregisters the watcher."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/watch.rst:16
+msgid "To read more about watchers, see the :ref:`Functions for watchers <box-watchers>` section."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/watch.rst:20
+msgid "Keep in mind that garbage collection of a watcher handle doesn't lead to the watcher's destruction. In this case, the watcher remains registered. It is okay to discard the result of ``watch`` function if the watcher will never be unregistered."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/watch.rst:24
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/watch.rst:26
+msgid "-- Broadcast value 42 for the 'foo' key.\n"
+"box.broadcast('foo', 42)\n"
+"\n"
+"local log = require('log')\n"
+"-- Subscribe to updates of the 'foo' key.\n"
+"local w = box.watch('foo', function(key, value)\n"
+"    assert(key == 'foo')\n"
+"    log.info(\"The box.id value is '%d'\", value)\n"
+"end)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/watch.rst:38
+msgid "If you don't need the watcher anymore, you can unregister it using the command below:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_events/watch.rst:40
+msgid "w:unregister()"
+msgstr ""

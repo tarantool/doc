@@ -1,0 +1,137 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_slab/slab_info.rst:5
+msgid "box.slab.info()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/slab_info.rst:11
+msgid "Show an aggregated memory usage report (in bytes) for the slab allocator. This report is useful for assessing out-of-memory risks."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/slab_info.rst:14
+msgid "``box.slab.info`` gives a few ratios:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/slab_info.rst:16
+msgid "items_used_ratio"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/slab_info.rst:17
+msgid "arena_used_ratio"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/slab_info.rst:18
+msgid "quota_used_ratio"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/slab_info.rst:20
+msgid "Here are two possible cases for monitoring memtx memory usage:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/slab_info.rst:22
+msgid "**Case 1:** 0.5 < ``items_used_ratio`` < 0.9"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/slab_info.rst:27
+msgid "Apparently your memory is highly fragmented. Check how many slab classes you have by looking at ``box.slab.stats()`` and counting the number of different classes. If there are many slab classes (more than a few dozens), you may run out of memory even though memory utilization is not high. While each slab may have few items used, whenever a tuple of a size different from any existing slab class size is allocated, Tarantool may need to get a new slab from the slab arena, and since the arena has few empty slabs left, it will attempt to increase its quota usage, which, in turn, may end up with an out-of-memory error due to the low remaining quota."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/slab_info.rst:37
+msgid "**Case 2:** ``items_used_ratio`` > 0.9"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/slab_info.rst:42
+msgid "You are running out of memory. All memory utilization indicators are high. Your memory is not fragmented, but there are few reserves left on each slab allocator level. You should consider increasing Tarantool's memory limit (``box.cfg.memtx_memory``)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/slab_info.rst:47
+msgid "**To sum up:** your main out-of-memory indicator is ``quota_used_ratio``. However, there are lots of perfectly stable setups with a high ``quota_used_ratio``, so you only need to pay attention to it when both arena and item used ratio are also high."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/slab_info.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/slab_info.rst:54
+msgid "``quota_size`` - memory limit for slab allocator (as configured in the :ref:`memtx_memory <cfg_storage-memtx_memory>` parameter, the default is 2^28 bytes = 268,435,456 bytes)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/slab_info.rst:57
+msgid "``quota_used`` - used by slab allocator"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/slab_info.rst:58
+msgid "``items_size`` - allocated only for tuples"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/slab_info.rst:59
+msgid "``items_used`` - used only for tuples"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/slab_info.rst:60
+msgid "``arena_size`` - allocated for both tuples and indexes"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/slab_info.rst:61
+msgid "``arena_used`` - used for both tuples and indexes"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/slab_info.rst:62
+msgid "``items_used_ratio`` = ``items_used`` / ``items_size``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/slab_info.rst:63
+msgid "``quota_used_ratio`` = ``quota_used`` / ``quota_size``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/slab_info.rst:64
+msgid "``arena_used_ratio`` = ``arena_used`` / ``arena_size``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/slab_info.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/slab_info.rst:66
+msgid "table"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/slab_info.rst:68
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_slab/slab_info.rst:70
+msgid "tarantool> box.slab.info()\n"
+"---\n"
+"- items_size: 228128\n"
+"  items_used_ratio: 1.8%\n"
+"  quota_size: 1073741824\n"
+"  quota_used_ratio: 0.8%\n"
+"  arena_used_ratio: 43.2%\n"
+"  items_used: 4208\n"
+"  quota_used: 8388608\n"
+"  arena_size: 2325176\n"
+"  arena_used: 1003632\n"
+"...\n"
+"\n"
+"tarantool> box.slab.info().arena_used\n"
+"---\n"
+"- 1003632\n"
+"..."
+msgstr ""

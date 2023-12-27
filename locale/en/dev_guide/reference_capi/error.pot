@@ -1,0 +1,114 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-21 08:10+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/dev_guide/reference_capi/error.rst:3
+msgid "Module error"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/error.rst:11
+msgid "For a complete list of errors, refer to the Tarantool `error code header file <https://github.com/tarantool/tarantool/blob/master/src/box/errcode.h>`__."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/error.rst:16
+msgid "Error -- contains information about error."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/error.rst:20
+msgid "Return the error type, e.g. \"ClientError\", \"SocketError\", etc."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/error.rst:0
+#: ../../doc/dev_guide/reference_capi/error.rst:0
+#: ../../doc/dev_guide/reference_capi/error.rst:0
+#: ../../doc/dev_guide/reference_capi/error.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/error.rst:22
+#: ../../doc/dev_guide/reference_capi/error.rst:31
+#: ../../doc/dev_guide/reference_capi/error.rst:38
+msgid "error"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/error.rst:0
+#: ../../doc/dev_guide/reference_capi/error.rst:0
+#: ../../doc/dev_guide/reference_capi/error.rst:0
+#: ../../doc/dev_guide/reference_capi/error.rst:0
+msgid "Returns"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/error.rst:23
+#: ../../doc/dev_guide/reference_capi/error.rst:39
+msgid "not-null string"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/error.rst:29
+msgid "Return IPROTO error code"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/error.rst:32
+msgid ":ref:`box_error_code <capi-box_error_code>`"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/error.rst:36
+msgid "Return the error message"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/error.rst:45
+msgid "Get the information about the last API call error."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/error.rst:47
+msgid "The Tarantool error handling works most like libc's errno. All API calls return -1 or NULL in the event of error. An internal pointer to box_error_t type is set by API functions to indicate what went wrong. This value is only significant if API call failed (returned -1 or NULL)."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/error.rst:52
+msgid "Successful function can also touch the last error in some cases. You don't have to clear the last error before calling API functions. The returned object is valid only until next call to **any** API function."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/error.rst:56
+msgid "You must set the last error using box_error_set() in your stored C procedures if you want to return a custom error message. You can re-throw the last API error to IPROTO client by keeping the current value and returning -1 to Tarantool from your stored procedure."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/error.rst:61
+msgid "last error"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/error.rst:65
+msgid "Clear the last error."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/error.rst:71
+msgid "Set the last error."
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/error.rst:75
+msgid "IPROTO :ref:`error code<capi-box_error_code>`"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/error.rst:77
+msgid "format arguments"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/error.rst:79
+msgid "See also: IPROTO :ref:`error code<capi-box_error_code>`"
+msgstr ""
+
+#: ../../doc/dev_guide/reference_capi/error.rst:85
+msgid "A backward-compatible API define."
+msgstr ""

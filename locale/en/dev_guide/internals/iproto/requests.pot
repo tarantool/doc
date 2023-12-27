@@ -1,0 +1,578 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-21 08:10+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:4
+msgid "Client-server requests and responses"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:6
+msgid "This section describes client requests, their arguments, and the values returned by the server."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:8
+msgid "Some requests are described on separate pages. Those are the requests related to:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:10
+msgid ":ref:`stream transactions <internals-iproto-streams>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:11
+msgid ":ref:`asynchronous server-client notifications <internals-events>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:12
+msgid ":ref:`replication <internals-iproto-replication>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:13
+msgid ":ref:`SQL <internals-iproto-sql>` -- :ref:`IPROTO_EXECUTE <box_protocol-execute>` and :ref:`IPROTO_PREPARE <box_protocol-prepare>`."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:17
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:25
+msgid "Name"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:26
+msgid "Code"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:27
+msgid "Description"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:29
+msgid ":ref:`IPROTO_OK <internals-iproto-ok>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:30
+msgid "0x00 |br| MP_UINT"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:31
+msgid "Successful response"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:33
+msgid ":ref:`IPROTO_CHUNK <internals-iproto-chunk>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:34
+msgid "0x80 |br| MP_UINT"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:35
+msgid "Out-of-band response"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:37
+msgid ":ref:`IPROTO_TYPE_ERROR <internals-iproto-type_error>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:38
+msgid "0x8XXX |br| MP_INT"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:39
+msgid "Error response"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:41
+msgid ":ref:`IPROTO_UNKNOWN <internals-iproto-unknown>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:42
+msgid "-1 |br| MP_UINT"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:43
+msgid "An unknown request type"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:45
+msgid ":ref:`IPROTO_SELECT <box_protocol-select>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:46
+msgid "0x01"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:47
+msgid ":ref:`Select <box_space-select>` request"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:49
+msgid ":ref:`IPROTO_INSERT <box_protocol-insert>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:50
+msgid "0x02"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:51
+msgid ":ref:`Insert <box_space-insert>` request"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:53
+msgid ":ref:`IPROTO_REPLACE <box_protocol-replace>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:54
+msgid "0x03"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:55
+msgid ":ref:`Replace <box_space-insert>` request"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:57
+msgid ":ref:`IPROTO_UPDATE <box_protocol-update>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:58
+msgid "0x04"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:59
+msgid ":ref:`Update <box_space-update>` request"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:61
+msgid ":ref:`IPROTO_UPSERT <box_protocol-upsert>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:62
+msgid "0x09"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:63
+msgid ":ref:`Upsert <box_space-upsert>` request"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:65
+msgid ":ref:`IPROTO_DELETE <box_protocol-delete>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:66
+msgid "0x05"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:67
+msgid ":ref:`Delete <box_space-delete>` request"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:69
+msgid ":ref:`IPROTO_CALL <box_protocol-call>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:70
+msgid "0x0a"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:71
+msgid "Function remote call (:ref:`conn:call() <net_box-call>`)"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:73
+msgid ":ref:`IPROTO_AUTH <box_protocol-auth>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:74
+msgid "0x07"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:75
+msgid "Authentication request"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:77
+msgid ":ref:`IPROTO_EVAL <box_protocol-eval>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:78
+msgid "0x08"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:79
+msgid "Evaluate a Lua expression (:ref:`conn:eval() <net_box-eval>`)"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:81
+msgid ":ref:`IPROTO_NOP <box_protocol-nop>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:82
+msgid "0x0c"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:83
+msgid "Increment the LSN and do nothing else"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:85
+msgid ":ref:`IPROTO_PING <box_protocol-ping>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:86
+msgid "0x40"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:87
+msgid "Ping (:ref:`conn:ping() <conn-ping>`)"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:89
+msgid ":ref:`IPROTO_ID <box_protocol-id>`"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:90
+msgid "0x49"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:91
+msgid "Share iproto version and supported features"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:98
+msgid "IPROTO_OK"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:100
+msgid "Code: 0x00."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:102
+msgid "This request/response type is contained in the header and signifies success. Here is an example:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:110
+msgid "IPROTO_CHUNK"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:112
+msgid "Code: 0x80."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:114
+msgid "If the response is out-of-band, due to use of :ref:`box.session.push() <box_session-push>`, then IPROTO_REQUEST_TYPE is IPROTO_CHUNK instead of IPROTO_OK."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:120
+msgid "IPROTO_TYPE_ERROR"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:122
+msgid "Code: 0x8XXX (see below)."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:124
+msgid "Instead of :ref:`IPROTO_OK <internals-iproto-ok>`, an error response header has ``0x8XXX`` for IPROTO_REQUEST_TYPE. ``XXX`` is the error code -- a value in `src/box/errcode.h <https://github.com/tarantool/tarantool/blob/master/src/box/errcode.h>`_. ``src/box/errcode.h`` also has some convenience macros which define hexadecimal constants for return codes."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:130
+msgid "To learn more about error responses, check the section :ref:`Request and response format <box_protocol-responses_error>`."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:136
+msgid "IPROTO_UNKNOWN"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:138
+msgid "Since :doc:`2.11.0 </release/2.11.0>`."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:140
+msgid "Code: -1."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:142
+msgid "An unknown request type. The constant is used to override the handler of unknown IPROTO request types. Learn more: :ref:`box.iproto.override() <reference_lua-box_iproto_override>` and :ref:`box_iproto_override <box_box_iproto_override>`."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:148
+msgid "IPROTO_SELECT"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:150
+msgid "Code: 0x01."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:152
+msgid "See :ref:`space_object:select() <box_space-select>`. The body is a 6-item map."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:159
+#: ../../doc/dev_guide/internals/iproto/requests.rst:190
+#: ../../doc/dev_guide/internals/iproto/requests.rst:324
+msgid "Example"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:161
+msgid "If the ID of ``tspace`` is 512 and this is the fifth message, |br| :samp:`{conn}.`:code:`space.tspace:select({0},{iterator='GT',offset=1,limit=2})` will cause the following request packet:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:167
+msgid "In the :ref:`examples <box_protocol-illustration>`, you can find actual byte codes of an IPROTO_SELECT message."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:173
+msgid "IPROTO_INSERT"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:175
+msgid "Code: 0x02."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:177
+msgid "See :ref:`space_object:insert()  <box_space-insert>`. The body is a 2-item map:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:183
+msgid "For example, if the request is :samp:`INSERT INTO {table-name} VALUES (1), (2), (3)`, then the response body contains an :samp:`IPROTO_SQL_INFO` map with :samp:`SQL_INFO_ROW_COUNT = 3`. :samp:`SQL_INFO_ROW_COUNT` can be 0 for statements that do not change rows, but can be 1 for statements that create new objects."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:192
+msgid "If the ID of ``tspace`` is 512 and this is the fifth message, |br| :samp:`{conn}.`:code:`space.tspace:insert{1, 'AAA'}` will produce the following request and response packets:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:198
+msgid "The tutorial :ref:`Understanding the binary protocol <box_protocol-illustration>` shows actual byte codes of the response to the IPROTO_INSERT message."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:204
+msgid "IPROTO_REPLACE"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:206
+msgid "Code: 0x03."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:208
+msgid "See :ref:`space_object:replace()  <box_space-replace>`. The body is a 2-item map, the same as for IPROTO_INSERT:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:217
+msgid "IPROTO_UPDATE"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:219
+msgid "Code: 0x04."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:221
+msgid "See :ref:`space_object:update()  <box_space-update>`."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:223
+#: ../../doc/dev_guide/internals/iproto/requests.rst:269
+msgid "The body is usually a 4-item map:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:229
+msgid "Examples"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:231
+msgid "If the operation specifies no values, then IPROTO_TUPLE is a 2-item array:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:236
+msgid "Normally field numbers start with 1."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:238
+msgid "If the operation specifies one value, then IPROTO_TUPLE is a 3-item array:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:243
+msgid "Otherwise IPROTO_TUPLE is a 5-item array:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:249
+msgid "If the ID of ``tspace`` is 512 and this is the fifth message, |br| :samp:`{conn}.`:code:`space.tspace:update(999, {{'=', 2, 'B'}})` will cause the following request packet:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:255
+msgid "The map item IPROTO_INDEX_BASE is optional."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:257
+msgid "The tutorial :ref:`Understanding the binary protocol <box_protocol-illustration>` shows the actual byte codes of an IPROTO_UPDATE message."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:263
+msgid "IPROTO_UPSERT"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:265
+msgid "Code: 0x09."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:267
+msgid "See :ref:`space_object:upsert()  <box_space-upsert>`."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:274
+msgid "IPROTO_OPS is the array of operations. It is the same as the IPROTO_TUPLE of :ref:`IPROTO_UPDATE <box_protocol-update>`."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:276
+msgid "IPROTO_TUPLE is an array of primary-key field values."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:281
+msgid "IPROTO_DELETE"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:283
+msgid "Code: 0x05."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:285
+msgid "See :ref:`space_object:delete()  <box_space-delete>`. The body is a 3-item map:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:294
+msgid "IPROTO_EVAL"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:296
+msgid "Code: 0x08."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:298
+msgid "See :ref:`conn:eval() <net_box-eval>`. Since the argument is a Lua expression, this is Tarantool's way to handle non-binary with the binary protocol. Any request that does not have its own code, for example :samp:`box.space.{space-name}:drop()`, will be handled either with :ref:`IPROTO_CALL <box_protocol-call>` or IPROTO_EVAL."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:306
+msgid "The :ref:`tt <tt-cli>` administrative utility makes extensive use of ``eval``."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:309
+#: ../../doc/dev_guide/internals/iproto/requests.rst:420
+msgid "The body is a 2-item map:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:314
+msgid "For :ref:`IPROTO_EVAL <box_protocol-eval>` and :ref:`IPROTO_CALL <box_protocol-call>` the response body will usually be an array but, since Lua requests can result in a wide variety of structures, bodies can have a wide variety of structures."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:320
+#: ../../doc/dev_guide/internals/iproto/requests.rst:351
+msgid "For SQL-specific responses, the body is a bit different. :ref:`Learn more <internals-iproto-sql>` about this type of packets."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:326
+msgid "If this is the fifth message, :samp:`conn:eval('return 5;')` will cause:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:334
+msgid "IPROTO_CALL"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:336
+msgid "Code: 0x0a."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:338
+msgid "See :ref:`conn:call() <net_box-call>`. This is a remote stored-procedure call. :doc:`/release/1.6` and earlier made use of the IPROTO_CALL_16 request (code: 0x06). It is now deprecated and superseded by IPROTO_CALL."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:343
+msgid "The body is a 2-item map. The response will be a list of values, similar to the :ref:`IPROTO_EVAL <box_protocol-eval>` response. The return from conn:call is whatever the function returns."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:357
+msgid "IPROTO_AUTH"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:359
+msgid "Code: 0x07."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:361
+msgid "For general information, see the :ref:`Access control <authentication-users>` section in the administrator's guide."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:363
+msgid "For more on how authentication is handled in the binary protocol, see the :ref:`Authentication <box_protocol-authentication>` section of this document."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:366
+msgid "The client sends an authentication packet as an IPROTO_AUTH message:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:371
+msgid "IPROTO_USERNAME holds the user name. IPROTO_TUPLE must be an array of 2 fields: authentication mechanism and scramble, encrypted according to the specified mechanism."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:375
+msgid "The server instance responds to an authentication packet with a standard response with 0 tuples."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:377
+msgid "To see how Tarantool handles this, look at `net_box.c <https://github.com/tarantool/tarantool/blob/master/src/box/lua/net_box.c>`_ function ``netbox_encode_auth``."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:384
+msgid "IPROTO_NOP"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:386
+msgid "Code: 0x0c."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:388
+msgid "There is no Lua request exactly equivalent to IPROTO_NOP. It causes the LSN to be incremented. It could be sometimes used for updates where the old and new values are the same, but the LSN must be increased because a data-change must be recorded. The body is: nothing."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:399
+msgid "IPROTO_PING"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:401
+msgid "Code: 0x40."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:403
+msgid "See :ref:`conn:ping() <conn-ping>`. The body will be an empty map because IPROTO_PING in the header contains all the information that the server instance needs."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:412
+msgid "IPROTO_ID"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:414
+msgid "Code: 0x49."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:416
+msgid "Clients send this message to inform the server about the protocol version and features they support. Based on this information, the server can enable or disable certain features in interacting with these clients."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:425
+msgid "The response body has the same structure as the request body. It informs the client about the protocol version, features supported by the server, and a protocol used to generate user authentication data."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/requests.rst:429
+msgid "IPROTO_ID requests can be processed without authentication."
+msgstr ""

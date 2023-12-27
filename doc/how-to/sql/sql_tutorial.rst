@@ -1,4 +1,4 @@
-.. _sql_tutorial:
+..  _sql_tutorial:
 
 SQL tutorial
 ============
@@ -6,22 +6,56 @@ SQL tutorial
 This tutorial is a demonstration of the support for SQL in Tarantool.
 It includes the functionality that you'd encounter in an "SQL-101" course.
 
-.. _sql_tutorial-starting_up_with_a_first_table_and_selects:
+..  _sql_tutorial-prerequisites:
 
-Starting up with a first table and SELECTs
-------------------------------------------
+Prerequisites
+-------------
 
-Initialize
-~~~~~~~~~~
+Before starting this tutorial:
 
-In this tutorial, the requests are done in the Tarantool interactive console.
-Start Tarantool and initialize it with :ref:`default settings <box_introspection-box_cfg>`
-by calling ``box.cfg{}``:
+#.  Install the :ref:`tt CLI <tt-installation>` utility.
 
-.. code-block:: tarantoolsession
+#.  Create a tt environment in the current directory using the :ref:`tt init <tt-init>` command.
 
-    tarantool> box.cfg{}
+#.  Inside the ``instances.enabled`` directory of the created tt environment, create the ``sql_tutorial`` directory.
 
+#.  Inside ``instances.enabled/sql_tutorial``, create the ``instances.yml`` and ``config.yaml`` files:
+
+    *   ``instances.yml`` specifies instances to run in the current environment:
+
+        ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/instance_scope/instances.yml
+            :language: yaml
+            :dedent:
+
+    *   ``config.yaml`` contains basic :ref:`configuration <configuration_file>`:
+
+        ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/instance_scope/config.yaml
+            :language: yaml
+            :dedent:
+
+Read more: :ref:`Starting instances using the tt utility <configuration_run_instance_tt>`.
+
+..  _sql_tutorial-starting_up_with_a_first_table_and_selects:
+
+Create a table and execute SQL statements
+-----------------------------------------
+
+Start Tarantool
+~~~~~~~~~~~~~~~
+
+After configuration, start a Tarantool instance from the tt environment directory using the following command:
+
+..  code-block:: console
+
+    $ tt start sql_tutorial
+
+After that, connect to the instance:
+
+..  code-block:: console
+
+    $ tt connect sql_tutorial:instance001
+
+This command opens an interactive Tarantool console.
 Now you can start working with the database.
 
 Switch to the SQL language
@@ -30,21 +64,21 @@ Switch to the SQL language
 A feature of the client console program is that you can switch languages and
 specify the end-of-statement delimiter.
 
-Run the following commands to set the console input language to SQL and use
+Run the following commands to set the :ref:`console input <interactive_console_input_output>` language to SQL and use
 semicolon as a delimiter:
 
 ..  code-block:: tarantoolsession
 
-    tarantool> \set language sql
-    tarantool> \set delimiter ;
+    sql_tutorial:instance001> \set language sql
+    sql_tutorial:instance001> \set delimiter ;
 
 
 CREATE, INSERT, UPDATE, SELECT
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To get started, enter simple SQL statements:
+To get started, enter these SQL statements:
 
-.. code-block:: sql
+..  code-block:: sql
 
     CREATE TABLE table1 (column1 INTEGER PRIMARY KEY, column2 VARCHAR(100));
     INSERT INTO table1 VALUES (1, 'A');
@@ -53,9 +87,9 @@ To get started, enter simple SQL statements:
 
 The result of the ``SELECT`` statement looks like this:
 
-.. code-block:: tarantoolsession
+..  code-block:: tarantoolsession
 
-    tarantool> SELECT * FROM table1 WHERE column1 = 1;
+    sql_tutorial:instance001> SELECT * FROM table1 WHERE column1 = 1;
     ---
     - metadata:
       - name: COLUMN1
@@ -68,8 +102,8 @@ The result of the ``SELECT`` statement looks like this:
 
 The result includes:
 
--   Metadata: the names and data types of each column
--   Result rows
+*   metadata: the names and data types of each column
+*   result rows
 
 For conciseness, metadata is skipped in query results in this tutorial.
 Only the result rows are shown.
@@ -82,7 +116,9 @@ Here is ``CREATE TABLE`` with more details:
 *   There are multiple columns, with different data types.
 *   There is a ``PRIMARY KEY`` (unique and not-null) for two of the columns.
 
-.. code-block:: sql
+Create another table:
+
+..  code-block:: sql
 
     CREATE TABLE table2 (column1 INTEGER,
                          column2 VARCHAR(100),
@@ -95,13 +131,13 @@ The result is: ``row_count: 1``.
 INSERT
 ~~~~~~
 
-Put four rows in the table:
+Put four rows in the table (``table2``):
 
 *   The INTEGER and DOUBLE columns get numbers
 *   The VARCHAR and SCALAR columns get strings
     (the SCALAR strings are expressed as hexadecimals)
 
-.. code-block:: sql
+..  code-block:: sql
 
     INSERT INTO table2 VALUES (1, 'AB', X'4142', 5.5);
     INSERT INTO table2 VALUES (1, 'CD', X'2020', 1E4);
@@ -110,7 +146,7 @@ Put four rows in the table:
 
 Then try to put another row:
 
-.. code-block:: sql
+..  code-block:: sql
 
     INSERT INTO table2 VALUES (1, 'AB', X'A5', -5.5);
 
@@ -120,17 +156,17 @@ key ``1, 'AB'`` already exists.
 The SEQSCAN keyword
 ~~~~~~~~~~~~~~~~~~~
 
-In Tarantool, ``SELECT`` SQL queries that perform sequential scans (that is, go
-through all the table rows instead of using indexes) are prohibited by default.
+Sequential scan is the scan through all the table rows instead of using indexes.
+In Tarantool, ``SELECT`` SQL queries that perform sequential scans are prohibited by default.
 For example, this query leads to the error ``Scanning is not allowed for 'table2'``:
 
-.. code-block:: sql
+..  code-block:: sql
 
     SELECT * FROM table2;
 
 To execute a scan query, put the ``SEQSCAN`` keyword before the table name:
 
-.. code-block:: sql
+..  code-block:: sql
 
     SELECT * FROM SEQSCAN table2;
 
@@ -145,7 +181,7 @@ The result is:
 
 *   The first query returns rows:
 
-    .. code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
         - [1, 'AB', 'AB', 10.5]
         - [1, 'CD', '  ', 10005]
@@ -154,12 +190,12 @@ The result is:
     Although ``column1`` is indexed, the expression ``column1 + 1`` is not calculated
     from the index, which makes this ``SELECT`` a scan query.
 
-.. note::
+..  note::
 
-    You can allow SQL scan queries without ``SEQSCAN`` for the current session
-    by running the command:
+    To enable SQL scan queries without ``SEQSCAN`` for the current session,
+    run this command:
 
-    .. code-block:: sql
+    ..  code-block:: sql
 
         SET SESSION "sql_seq_scan" = true;
 
@@ -174,17 +210,14 @@ Retrieve the 4 rows in the table, in descending order by ``column2``, then
 
 ``*`` is short for "all columns".
 
-.. code-block:: sql
+..  code-block:: sql
 
     SELECT * FROM SEQSCAN table2 ORDER BY column2 DESC, column4 ASC;
 
-.. important::
-
-    Tarantool has its own
 
 The result is:
 
-.. code-block:: tarantoolsession
+..  code-block:: tarantoolsession
 
     - - [1, 'CD', '  ', 10000]
       - [1, 'AB', 'AB', 5.5]
@@ -196,14 +229,13 @@ SELECT with WHERE clauses
 
 Retrieve some of what you inserted:
 
-*   The first statement uses
-    the ``LIKE`` comparison operator which is asking
+*   The first statement uses the ``LIKE`` comparison operator which is asking
     for "first character must be 'A', the next characters can be anything."
-*   The second statement uses logical operators and parentheses,
-    so the ANDed expressions must be true, or the ORed expression
-    must be true. Notice the columns don't have to be indexed.
 
-.. code-block:: sql
+*   The second statement uses logical operators and parentheses, so the ``AND`` expressions must be true, or the ``OR``
+    expression must be true. Notice the columns don't have to be indexed.
+
+..  code-block:: sql
 
     SELECT column1, column2, column1 * column4 FROM SEQSCAN table2 WHERE column2
     LIKE 'A%';
@@ -211,16 +243,16 @@ Retrieve some of what you inserted:
         WHERE (column1 < 2 AND column4 < 10)
         OR column3 = X'2020';
 
-The results are:
+The first result is:
 
-.. code-block:: tarantoolsession
+..  code-block:: tarantoolsession
 
     - - [1, 'AB', 5.5]
       - [2, 'AB', 24.69134]
 
-and
+The second result is:
 
-.. code-block:: tarantoolsession
+..  code-block:: tarantoolsession
 
     - - [-1000, '', '', 0]
       - [1, 'AB', 'AB', 5.5]
@@ -232,10 +264,10 @@ SELECT with GROUP BY and aggregate functions
 
 Retrieve with grouping.
 
-The rows which have the same values for ``column2`` are grouped and are aggregated
+The rows that have the same values for ``column2`` are grouped and are aggregated
 -- summed, counted, averaged -- for ``column4``.
 
-.. code-block:: sql
+..  code-block:: sql
 
     SELECT column2, SUM(column4), COUNT(column4), AVG(column4)
     FROM SEQSCAN table2
@@ -243,7 +275,7 @@ The rows which have the same values for ``column2`` are grouped and are aggregat
 
 The result is:
 
-.. code-block:: tarantoolsession
+..  code-block:: tarantoolsession
 
     - - ['', 0, 1, 0]
       - ['AB', 17.84567, 2, 8.922835]
@@ -262,7 +294,7 @@ Insert rows that contain ``NULL`` values.
 ``NULL`` is not the same as Lua ``nil``; it commonly is used in SQL for unknown
 or not-applicable.
 
-.. code-block:: sql
+..  code-block:: sql
 
     INSERT INTO table2 VALUES (1, NULL, X'4142', 5.5);
     INSERT INTO table2 VALUES (0, '!!@', NULL, NULL);
@@ -270,10 +302,11 @@ or not-applicable.
 
 The results are:
 
-* The first ``INSERT`` fails because ``NULL`` is not
-  permitted for a column that was defined with a
-  ``PRIMARY KEY`` clause.
-* The other ``INSERT`` statements succeed.
+*   The first ``INSERT`` fails because ``NULL`` is not
+    permitted for a column that was defined with a
+    ``PRIMARY KEY`` clause.
+
+*   The other ``INSERT`` statements succeed.
 
 Indexes
 ~~~~~~~
@@ -285,7 +318,7 @@ faster. In this case, the index also acts as a constraint, because it prevents
 two rows from having the same values in ``column4``. However, it is not an error
 that ``column4`` has multiple occurrences of NULLs.
 
-.. code-block:: sql
+..  code-block:: sql
 
     CREATE UNIQUE INDEX i ON table2 (column4);
 
@@ -300,7 +333,7 @@ and a subset of the ``table2`` rows.
 You can do this by combining ``INSERT`` with ``SELECT``. Then select everything
 from the result table.
 
-.. code-block:: sql
+..  code-block:: sql
 
     CREATE TABLE table3 (column1 INTEGER, column2 VARCHAR(100), PRIMARY KEY
     (column2));
@@ -309,7 +342,7 @@ from the result table.
 
 The result is:
 
-.. code-block:: tarantoolsession
+..  code-block:: tarantoolsession
 
     - - [-1000, '']
       - [0, '!!!']
@@ -325,7 +358,7 @@ A subquery is a query within a query.
 Find all the rows in ``table2`` whose ``(column1, column2)`` values are not
 present in ``table3``.
 
-.. code-block:: sql
+..  code-block:: sql
 
     SELECT * FROM SEQSCAN table2 WHERE (column1, column2) NOT IN (SELECT column1,
     column2 FROM SEQSCAN table3);
@@ -333,7 +366,7 @@ present in ``table3``.
 The result is the single row that was excluded when inserting the rows with
 the ``INSERT ... SELECT`` statement:
 
-.. code-block:: tarantoolsession
+..  code-block:: tarantoolsession
 
     - - [2, 'AB', '  ', 12.34567]
 
@@ -341,12 +374,12 @@ SELECT with a join
 ~~~~~~~~~~~~~~~~~~
 
 A join is a combination of two tables. There is more than one way to do them in
-Tarantool: "Cartesian joins", "left outer joins", and so on.
+Tarantool, for example, "Cartesian joins" or "left outer joins".
 
 This example shows the most typical case, where column values from one table match
 column values from another table.
 
-.. code-block:: sql
+..  code-block:: sql
 
     SELECT * FROM SEQSCAN table2, table3
         WHERE table2.column1 = table3.column1 AND table2.column2 = table3.column2
@@ -354,7 +387,7 @@ column values from another table.
 
 The result is:
 
-.. code-block:: tarantoolsession
+..  code-block:: tarantoolsession
 
     - - [0, '!!!', "\0", null, 0, '!!!']
       - [0, '!!@', null, null, 0, '!!@']
@@ -362,7 +395,7 @@ The result is:
       - [1, 'AB', 'AB', 5.5, 1, 'AB']
       - [1, 'CD', ' ', 10000, 1, 'CD']
 
-.. _sql_tutorial-constraints_and_foreign_keys:
+..  _sql_tutorial-constraints_and_foreign_keys:
 
 Constraints and foreign keys
 -----------------------------
@@ -370,10 +403,10 @@ Constraints and foreign keys
 CREATE TABLE with a CHECK clause
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Create a table which includes a constraint that there must not be any rows
-containing ``13`` in ``column2``. Then try to insert such a row.
+Create a table that includes a constraint -- there must not be any rows
+containing ``13`` in ``column2``. After that, try to insert the following row:
 
-.. code-block:: sql
+..  code-block:: sql
 
     CREATE TABLE table4 (column1 INTEGER PRIMARY KEY, column2 INTEGER, CHECK
     (column2 <> 13));
@@ -385,10 +418,10 @@ Result: the insert fails, as it should, with the message
 CREATE TABLE with a FOREIGN KEY clause
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Create a table which includes a constraint that there must not be any rows containing
+Create a table that includes a constraint: there must not be any rows containing
 values that do not appear in ``table2``.
 
-.. code-block:: sql
+..  code-block:: sql
 
     CREATE TABLE table5 (column1 INTEGER, column2 VARCHAR(100),
         PRIMARY KEY (column1),
@@ -400,6 +433,7 @@ Result:
 
 *   The first ``INSERT`` statement succeeds because
     ``table3`` contains a row with ``[2, 'AB', ' ', 12.34567]``.
+
 *   The second ``INSERT`` statement, correctly, fails with the message
     ``Foreign key constraint ''fk_unnamed_TABLE5_1'' failed: foreign tuple was not found``.
 
@@ -411,7 +445,7 @@ Due to earlier ``INSERT`` statements, these values are in ``column4`` of ``table
 Adding ``5`` to ``NULL`` results in NULL, as SQL arithmetic requires.
 Use ``SELECT`` to see what happened to ``column4``.
 
-.. code-block:: sql
+..  code-block:: sql
 
     UPDATE table2 SET column4 = column4 + 5 WHERE column4 <> 0;
     SELECT column4 FROM SEQSCAN table2 ORDER BY column4;
@@ -423,7 +457,7 @@ DELETE
 
 Due to earlier ``INSERT`` statements, there are 6 rows in ``table2``:
 
-.. code-block:: tarantoolsession
+..  code-block:: tarantoolsession
 
     - - [-1000, '', '', 0]
       - [0, '!!!', "\0", null]
@@ -434,7 +468,7 @@ Due to earlier ``INSERT`` statements, there are 6 rows in ``table2``:
 
 Try to delete the last and first of these rows:
 
-.. code-block:: sql
+..  code-block:: sql
 
     DELETE FROM table2 WHERE column1 = 2;
     DELETE FROM table2 WHERE column1 = -1000;
@@ -444,7 +478,9 @@ The result is:
 
 *   The first ``DELETE`` statement causes an error because
     there's a foreign-key constraint.
+
 *   The second ``DELETE`` statement succeeds.
+
 *   The ``SELECT`` statement shows that there are 5 rows remaining.
 
 ALTER TABLE with a FOREIGN KEY clause
@@ -455,7 +491,7 @@ containing values that do not appear in ``table5``. This was impossible
 during the ``table1`` creation because at that time ``table5`` did not exist.
 You can add constraints to existing tables with the ``ALTER TABLE`` statement.
 
-.. code-block:: sql
+..  code-block:: sql
 
     ALTER TABLE table1 ADD CONSTRAINT c
         FOREIGN KEY (column1) REFERENCES table5 (column1);
@@ -512,13 +548,13 @@ in many ways. For example:
 * concatenate strings with the ``||`` operator
 * extract substrings with the ``SUBSTR`` function
 
-.. code-block:: sql
+..  code-block:: sql
 
     SELECT column2, column2 || column2, SUBSTR(column2, 2, 1) FROM SEQSCAN table2;
 
 The result is:
 
-.. code-block:: tarantoolsession
+..  code-block:: tarantoolsession
 
     - - ['!!!', '!!!!!!', '!']
       - ['!!@', '!!@!!@', '!']
@@ -532,16 +568,16 @@ Number operations
 You can also manipulate number data (usually defined with ``INTEGER``
 or ``DOUBLE`` data types) in many ways. For example:
 
-* shift left with the ``<<`` operator
-* get modulo with the ``%`` operator
+*   shift left with the ``<<`` operator
+*   get modulo with the ``%`` operator
 
-.. code-block:: sql
+..  code-block:: sql
 
     SELECT column1, column1 << 1, column1 << 2, column1 % 2 FROM SEQSCAN table2;
 
 The result is:
 
-.. code-block:: tarantoolsession
+..  code-block:: tarantoolsession
 
     - - [0, 0, 0, 0]
       - [0, 0, 0, 0]
@@ -588,7 +624,7 @@ in the database, their values are calculated from other tables.
 
 Create a view ``v3`` based on ``table3`` and select from it:
 
-.. code-block:: sql
+..  code-block:: sql
 
     CREATE VIEW v3 AS SELECT SUBSTR(column2,1,2), column4 FROM SEQSCAN t6
     WHERE column4 >= 0;
@@ -596,7 +632,7 @@ Create a view ``v3`` based on ``table3`` and select from it:
 
 The result is:
 
-.. code-block:: tarantoolsession
+..  code-block:: tarantoolsession
 
     - - ['АБ', 123456.123456]
       - ['FA', 1e-06]
@@ -610,7 +646,7 @@ temporary view that lasts for the duration of the statement.
 
 Create such a view and select from it:
 
-.. code-block:: sql
+..  code-block:: sql
 
     WITH cte AS (
                  SELECT SUBSTR(column2,1,2), column4 FROM SEQSCAN t6
@@ -619,7 +655,7 @@ Create such a view and select from it:
 
 The result is the same as the ``CREATE VIEW`` result:
 
-.. code-block:: tarantoolsession
+..  code-block:: tarantoolsession
 
     - - ['АБ', 123456.123456]
       - ['FA', 1e-06]
@@ -632,14 +668,14 @@ Tarantool can handle statements like ``SELECT 55;`` (select without ``FROM``)
 like some other popular DBMSs. But it also handles the more standard statement
 ``VALUES (expression [, expression ...]);``.
 
-.. code-block:: sql
+..  code-block:: sql
 
     SELECT 55 * 55, 'The rain in Spain';
     VALUES (55 * 55, 'The rain in Spain');
 
 The result of both these statements is:
 
-.. code-block:: tarantoolsession
+..  code-block:: tarantoolsession
 
     - - [3025, 'The rain in Spain']
 
@@ -659,13 +695,13 @@ Actually, these statements select from NoSQL "system spaces".
 
 Select from ``_space`` by a table name:
 
-.. code-block:: sql
+..  code-block:: sql
 
     SELECT "id", "name", "owner", "engine" FROM "_space" WHERE "name"='TABLE3';
 
 The result is:
 
-.. code-block:: tarantoolsession
+..  code-block:: tarantoolsession
 
     - - [517, 'TABLE3', 1, 'memtx']
 
@@ -680,21 +716,21 @@ the SQL input.
 Change the settings so that the console accepts statements written in Lua instead
 of statements written in SQL:
 
-.. code-block:: tarantoolsession
+..  code-block:: tarantoolsession
 
-    tarantool> \set language lua
+    sql_tutorial:instance001> \set language lua
 
 box.execute()
 ~~~~~~~~~~~~~
 You can invoke SQL statements using the Lua function ``box.execute(string)``.
 
-.. code-block:: tarantoolsession
+..  code-block:: tarantoolsession
 
-    tarantool> box.execute([[SELECT * FROM SEQSCAN table3;]]);
+    sql_tutorial:instance001> box.execute([[SELECT * FROM SEQSCAN table3;]]);
 
 The result is:
 
-.. code-block:: tarantoolsession
+..  code-block:: tarantoolsession
 
     - - [-1000, '']
       - [0, '!!!']
@@ -712,28 +748,28 @@ The following Lua code generates one million rows with random data and
 inserts them into a table. Copy this code into the Tarantool console and wait
 a bit:
 
-.. code-block:: lua
+..  code-block:: lua
 
     box.execute("CREATE TABLE tester (s1 INT PRIMARY KEY, s2 VARCHAR(10))");
 
     function string_function()
-       local random_number
-       local random_string
-       random_string = ""
-       for x = 1,10,1 do
-         random_number = math.random(65, 90)
-         random_string = random_string .. string.char(random_number)
-       end
-       return random_string
+        local random_number
+        local random_string
+        random_string = ""
+        for x = 1, 10, 1 do
+            random_number = math.random(65, 90)
+            random_string = random_string .. string.char(random_number)
+        end
+        return random_string
     end;
 
     function main_function()
-       local string_value, t, sql_statement
-       for i = 1,1000000,1 do
-         string_value = string_function()
-         sql_statement = "INSERT INTO tester VALUES (" .. i .. ",'" .. string_value .. "')"
-         box.execute(sql_statement)
-       end
+        local string_value, t, sql_statement
+        for i = 1, 1000000, 1 do
+            string_value = string_function()
+            sql_statement = "INSERT INTO tester VALUES (" .. i .. ",'" .. string_value .. "')"
+            box.execute(sql_statement)
+        end
     end;
     start_time = os.clock();
     main_function();
@@ -741,7 +777,7 @@ a bit:
     print('insert done in ' .. end_time - start_time .. ' seconds');
 
 The result is: you now have a table with a million rows, with a message saying
-"``insert done in 88.570578 seconds``".
+``insert done in 88.570578 seconds``.
 
 
 Select from a million-row table
@@ -752,7 +788,7 @@ Check how ``SELECT`` works on the million-row table:
 *   the first query goes by an index because ``s1`` is the primary key
 *   the second query does not go by an index
 
-.. code-block:: lua
+..  code-block:: lua
 
     box.execute([[SELECT * FROM tester WHERE s1 = 73446;]]);
     box.execute([[SELECT * FROM SEQSCAN tester WHERE s2 LIKE 'QFML%';]]);
@@ -771,17 +807,17 @@ and triggers.
 
 These statements must be entered separately.
 
-.. code-block:: tarantoolsession
+..  code-block:: tarantoolsession
 
-    tarantool> \set language sql
-    tarantool> DROP TABLE tester;
-    tarantool> DROP TABLE table1;
-    tarantool> DROP VIEW v3;
-    tarantool> DROP TRIGGER tr;
-    tarantool> DROP TABLE table5;
-    tarantool> DROP TABLE table4;
-    tarantool> DROP TABLE table3;
-    tarantool> DROP TABLE table2;
-    tarantool> DROP TABLE t6;
-    tarantool> \set language lua
-    tarantool> os.exit();
+    sql_tutorial:instance001> \set language sql
+    sql_tutorial:instance001> DROP TABLE tester;
+    sql_tutorial:instance001> DROP TABLE table1;
+    sql_tutorial:instance001> DROP VIEW v3;
+    sql_tutorial:instance001> DROP TRIGGER tr;
+    sql_tutorial:instance001> DROP TABLE table5;
+    sql_tutorial:instance001> DROP TABLE table4;
+    sql_tutorial:instance001> DROP TABLE table3;
+    sql_tutorial:instance001> DROP TABLE table2;
+    sql_tutorial:instance001> DROP TABLE t6;
+    sql_tutorial:instance001> \set language lua
+    sql_tutorial:instance001> os.exit();

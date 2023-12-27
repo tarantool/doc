@@ -1,0 +1,83 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/how-to/app/creating_app/bootstrapping_a_database.rst:4
+msgid "Bootstrapping a database"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/bootstrapping_a_database.rst:6
+msgid "Let's discuss game initialization. In ``start()`` method, we need to populate Tarantool spaces with pokémon data. Why not keep all game data in memory? Why use a database? The answer is: :ref:`persistence <index-box_persistence>`. Without a database, we risk losing data on power outage, for example. But if we store our data in an in-memory database, Tarantool takes care to persist it on disk whenever it's changed. This gives us one more benefit: quick startup in case of failure. Tarantool has a :ref:`smart algorithm <internals-recovery_process>` that quickly loads all data from disk into memory on startup, so the warm-up takes little time."
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/bootstrapping_a_database.rst:16
+msgid "We'll be using functions from Tarantool built-in :ref:`box <box-module>` module:"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/bootstrapping_a_database.rst:18
+msgid "``box.schema.create_space('pokemons')`` to create a space named ``pokemon`` for storing information about pokémons (we don't create a similar space for players, because we intend to only send/receive player information via API calls, so we needn't store it);"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/bootstrapping_a_database.rst:22
+msgid "``box.space.pokemons:create_index('primary', {type = 'hash', parts = {1, 'unsigned'}})`` to create a primary HASH index by pokémon ID;"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/bootstrapping_a_database.rst:24
+msgid "``box.space.pokemons:create_index('status', {type = 'tree', parts = {2, 'str'}})`` to create a secondary TREE index by pokémon status."
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/bootstrapping_a_database.rst:27
+msgid "Notice the ``parts =`` argument in the index specification. The pokémon ID is the first field in a Tarantool tuple since it’s the first member of the respective Avro type. So does the pokémon status. The actual JSON document may have ID or status fields at any position of the JSON map."
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/bootstrapping_a_database.rst:32
+msgid "The implementation of ``start()`` method looks like this:"
+msgstr ""
+
+#: ../../doc/how-to/app/creating_app/bootstrapping_a_database.rst:34
+msgid "-- create game object\n"
+"start = function(self)\n"
+"    -- create spaces and indexes\n"
+"    box.once('init', function()\n"
+"        box.schema.create_space('pokemons')\n"
+"        box.space.pokemons:create_index(\n"
+"            \"primary\", {type = 'hash', parts = {1, 'unsigned'}}\n"
+"        )\n"
+"        box.space.pokemons:create_index(\n"
+"            \"status\", {type = \"tree\", parts = {2, 'str'}}\n"
+"        )\n"
+"    end)\n"
+"\n"
+"    -- create models\n"
+"    local ok_m, pokemon = avro.create(schema.pokemon)\n"
+"    local ok_p, player = avro.create(schema.player)\n"
+"    if ok_m and ok_p then\n"
+"        -- compile models\n"
+"        local ok_cm, compiled_pokemon = avro.compile(pokemon)\n"
+"        local ok_cp, compiled_player = avro.compile(player)\n"
+"        if ok_cm and ok_cp then\n"
+"            -- start the game\n"
+"            <...>\n"
+"        else\n"
+"            log.error('Schema compilation failed')\n"
+"        end\n"
+"    else\n"
+"        log.info('Schema creation failed')\n"
+"    end\n"
+"    return false\n"
+"end"
+msgstr ""

@@ -1,0 +1,35 @@
+credentials:
+  users:
+    replicator:
+      password: 'topsecret'
+      roles: [replication]
+
+iproto:
+  advertise:
+    peer:
+      login: replicator
+
+replication:
+  failover: off
+
+groups:
+  group001:
+    replicasets:
+      replicaset001:
+        instances:
+          instance001:
+            database:
+              mode: rw
+            iproto:
+              listen:
+              - uri: '127.0.0.1:3301'
+          instance002:
+            database:
+              mode: rw
+            iproto:
+              listen:
+              - uri: '127.0.0.1:3302'
+
+# Load sample data
+app:
+  file: 'myapp.lua'

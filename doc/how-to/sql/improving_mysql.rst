@@ -1,275 +1,250 @@
 .. _improving_mysql:
 
-================================================================================
 Improving MySQL with Tarantool
-================================================================================
+==============================
 
 Replicating MySQL is one of the Tarantool’s killer functions.
 It allows you to keep your existing MySQL database while at the same time
 accelerating it and scaling it out horizontally. Even if you aren’t interested
-in extensive expansion, simply replacing existing replicas with Tarantool can
+in extensive expansion, replacing existing replicas with Tarantool can
 save you money, because Tarantool is more efficient per core than MySQL. To read
-a testimonial of a company that implemented Tarantool replication on a large scale,
-please see
-`here <https://dzone.com/articles/next-level-mysql-performance-tarantool-as-a-replic>`_.
+a testimonial of a company that implemented Tarantool replication on a large scale, see
+`the following article <https://dzone.com/articles/next-level-mysql-performance-tarantool-as-a-replic>`_.
 
-Notes:
+If you run into any trouble with regards to the basics of Tarantool, see the
+:ref:`Getting started guide <getting_started_db>` or the :ref:`Data model description <box_data_model>`.
+A helpful log for troubleshooting during this tutorial is ``replicatord.log`` in ``/var/log``.
+You can also have a look at the instance’s log ``example.log`` in ``/var/log/tarantool``.
 
-* if you run into any trouble with regards to the basics of Tarantool, you may
-  wish to consult the :ref:`Getting started guide <getting_started_db>` or
-  the :ref:`Data model description <box_data_model>`.
+The tutorial is intended for **CentOS 7.5** and **MySQL 5.7**.
+The tutorial requires that ``systemd`` and MySQL are installed.
 
-* these instructions are for **CentOS 7.5** and **MySQL 5.7**. They also assume
-  that you have systemd installed and are working with an existing MySQL installation.
+..  _improving_mysql-setup-mysql:
 
-* a helpful log for troubleshooting during this tutorial is ``replicatord.log``
-  in ``/var/log``. You can also have a look at the instance’s log ``example.log``
-  in ``/var/log/tarantool``.
+Setting up MySQL
+----------------
 
-So let’s proceed.
+In this section, you configure MySQL and create a database.
 
-#. First we’ll install the necessary packages in CentOS:
+#.  First, install the necessary packages in CentOS:
 
-   .. code-block:: bash
+    ..  code-block:: console
 
-       yum -y install git ncurses-devel cmake gcc-c++ boost boost-devel wget unzip nano bzip2 mysql-devel mysql-lib
+        $ yum -y install git ncurses-devel cmake gcc-c++ boost boost-devel wget unzip nano bzip2 mysql-devel mysql-lib
 
-#. Next we’ll clone the Tarantool-MySQL replication package from GitHub:
+#.  Clone the Tarantool-MySQL replication package from GitHub:
 
-   .. code-block:: bash
+    ..  code-block:: console
 
-       git clone https://github.com/tarantool/mysql-tarantool-replication.git
+        $ git clone https://github.com/tarantool/mysql-tarantool-replication.git
 
-#. Now we can build the replicator with cmake:
+#.  Build the replicator with ``cmake``:
 
-   .. code-block:: bash
+    ..  code-block:: console
 
-       cd mysql-tarantool-replication
-       git submodule update --init --recursive
-       cmake .
-       make
+        $ cd mysql-tarantool-replication
+        $ git submodule update --init --recursive
+        $ cmake .
+        $ make
 
-#. Our replicator will run as a systemd daemon called replicatord, so let’s edit
-   its systemd service file, ``replicatord.service``, in the
-   mysql-tarantool-replication repo.
+#.  The replicator will run as a ``systemd`` daemon called ``replicatord``, so, edit
+    its ``systemd`` service file (``replicatord.service``) in the
+    ``mysql-tarantool-replication`` repository:
 
-   .. code-block:: bash
+    ..  code-block:: console
 
-       nano replicatord.service
+        $ nano replicatord.service
 
-   Change the following line:
+    The following line should be changed:
 
-   .. code-block:: bash
+    ..  code-block:: bash
 
-       ExecStart=/usr/local/sbin/replicatord -c /usr/local/etc/replicatord.cfg
+        ExecStart=/usr/local/sbin/replicatord -c /usr/local/etc/replicatord.cfg
 
-   Replace the ``.cfg`` extension with ``.yml``:
+    To change it, replace the ``.cfg`` extension with ``.yml``:
 
-   .. code-block:: bash
+    ..  code-block:: bash
 
-       ExecStart=/usr/local/sbin/replicatord -c /usr/local/etc/replicatord.yml
+        ExecStart=/usr/local/sbin/replicatord -c /usr/local/etc/replicatord.yml
 
-#. Next let’s copy some files from our replicatord repo to other necessary locations:
+#.  Next, copy the files from the ``replicatord`` repository to other necessary locations:
 
-   .. code-block:: bash
+    ..  code-block:: console
 
-       cp replicatord /usr/local/sbin/replicatord
-       cp replicatord.service /etc/systemd/system
+        $ cp replicatord /usr/local/sbin/replicatord
+        $ cp replicatord.service /etc/systemd/system
 
-#. Now let’s enter the MySQL console and create a sample database (depending on
-   your existing installation, you may of course be a user other than root):
+#.  Enter MySQL console and create a sample database (depending on
+    your existing installation, you may be a user other than root):
 
-   .. code-block:: sql
+    ..  code-block:: sql
 
-       mysql -u root -p
-       CREATE DATABASE menagerie;
-       QUIT
+        mysql -u root -p
+        CREATE DATABASE menagerie;
+        QUIT
 
-#. Next we’ll get some sample data from MySQL, which we’ll pull into our root
-   directory, then install from the terminal:
+#.  Get some sample data from MySQL. The data will be pulled into the root
+    directory. After that, install it from the terminal.
 
-   .. code-block:: sql
+    ..  code-block:: sql
 
-       cd
-       wget http://downloads.mysql.com/docs/menagerie-db.zip
-       unzip menagerie-db.zip
-       cd menagerie-db
-       mysql -u root -p menagerie < cr_pet_tbl.sql
-       mysql -u root -p menagerie < load_pet_tbl.sql
-       mysql menagerie -u root -p < ins_puff_rec.sql
-       mysql menagerie -u root -p < cr_event_tbl.sql
+        cd
+        wget http://downloads.mysql.com/docs/menagerie-db.zip
+        unzip menagerie-db.zip
+        cd menagerie-db
+        mysql -u root -p menagerie < cr_pet_tbl.sql
+        mysql -u root -p menagerie < load_pet_tbl.sql
+        mysql menagerie -u root -p < ins_puff_rec.sql
+        mysql menagerie -u root -p < cr_event_tbl.sql
 
-#. Let’s enter the MySQL console now and massage the data for use with the
-   Tarantool replicator (we are adding an ID, changing a field name to avoid
-   conflict, and cutting down the number of fields; note that with real data,
-   this is the step that will involve the most tweaking):
+#.  Enter MySQL console and massage the data for use with the
+    Tarantool replicator. In this step, you:
 
-   .. code-block:: sql
+    *   add an ID
+    *   change a field name to avoid conflict
+    *   cut down the number of fields
 
-      mysql -u root -p
-      USE menagerie;
-      ALTER TABLE pet ADD id INT PRIMARY KEY AUTO_INCREMENT FIRST;
-      ALTER TABLE pet CHANGE COLUMN 'name' 'name2' VARCHAR(255);
-      ALTER TABLE pet DROP sex, DROP birth, DROP death;
-      QUIT
-
-#. Now that we have the sample data set up, we’ll need to edit MySQL’s
-   configuration file for use with the replicator.
-
-   .. code-block:: bash
+    With real data, this is the step that involves the most tweaking.
 
-      cd
-      nano /etc/my.cnf
+    ..  code-block:: sql
 
-   Note that your ``my.cnf`` for MySQL could be in a slightly different location.
-   Set:
+        mysql -u root -p
+        USE menagerie;
+        ALTER TABLE pet ADD id INT PRIMARY KEY AUTO_INCREMENT FIRST;
+        ALTER TABLE pet CHANGE COLUMN 'name' 'name2' VARCHAR(255);
+        ALTER TABLE pet DROP sex, DROP birth, DROP death;
+        QUIT
 
-   .. code-block:: bash
+#.  The sample data is set up. Edit MySQL
+    configuration file to use it with the replicator:
 
-      [mysqld]
-      binlog_format = ROW
-      server_id = 1
-      log-bin = mysql-bin
-      interactive_timeout = 3600
-      wait_timeout = 3600
-      max_allowed_packet = 32M
-      socket = /var/lib/mysql/mysql.sock
-      bind-address = 127.0.0.1
+    ..  code-block:: console
 
-      [client]
-      socket = /var/lib/mysql/mysql.sock
+        $ cd
+        $ nano /etc/my.cnf
 
-#. After exiting nano, we’ll restart mysqld:
+    Note that your ``my.cnf`` for MySQL could be in a slightly different location.
+    Set:
 
-   .. code-block:: bash
+    ..  code-block:: bash
 
-      systemctl restart mysqld
+        [mysqld]
+        binlog_format = ROW
+        server_id = 1
+        log-bin = mysql-bin
+        interactive_timeout = 3600
+        wait_timeout = 3600
+        max_allowed_packet = 32M
+        socket = /var/lib/mysql/mysql.sock
+        bind-address = 127.0.0.1
 
-#. Next, let’s install Tarantool and set up spaces for replication.
-   Go to the `Download page
-   <https://www.tarantool.io/en/download/os-installation/rhel-centos/>`_ and
-   follow the instructions there to install Tarantool.
+        [client]
+        socket = /var/lib/mysql/mysql.sock
 
-#. Now we will write a standard Tarantool program by editing the Lua example,
-   which comes with Tarantool:
+#.  After exiting ``nano``, restart ``mysqld``:
 
-   .. code-block:: bash
+    ..  code-block:: console
 
-      cd
-      nano /etc/tarantool/instances.available/example.lua
+        $ systemctl restart mysqld
 
-#. Replace the entire contents of the file with the following:
+..  _improving_mysql-setup-tarantool:
 
-   .. code-block:: lua
+Installing and configuring Tarantool
+------------------------------------
 
-      box.cfg {
-          listen = 3301;
-          memtx_memory = 128 * 1024 * 1024; -- 128Mb
-          memtx_min_tuple_size = 16;
-          memtx_max_tuple_size = 128 * 1024 * 1024; -- 128Mb
-          vinyl_memory = 128 * 1024 * 1024; -- 128Mb
-          vinyl_cache = 128 * 1024 * 1024; -- 128Mb
-          vinyl_max_tuple_size = 128 * 1024 * 1024; -- 128Mb
-          vinyl_write_threads = 2;
-          wal_mode = "none";
-          wal_max_size = 256 * 1024 * 1024;
-          checkpoint_interval = 60 * 60; -- one hour
-          checkpoint_count = 6;
-          force_recovery = true;
+In this section, you install Tarantool and set up spaces for replication.
 
-           -- 1 – SYSERROR
-           -- 2 – ERROR
-           -- 3 – CRITICAL
-           -- 4 – WARNING
-           -- 5 – INFO
-           -- 6 – VERBOSE
-           -- 7 – DEBUG
-           log_level = 7;
-           too_long_threshold = 0.5;
-       }
+#.  Go to the `Download page <https://www.tarantool.io/en/download/os-installation/rhel-centos/>`_ and
+    follow the installation instructions.
 
-      box.schema.user.grant('guest','read,write,execute','universe')
+#.  Install the :ref:`tt CLI <tt-installation>` utility.
 
-      local function bootstrap()
+#.  Create a new tt environment in the current directory using the :ref:`tt init <tt-init>` command.
 
-          if not box.space.mysqldaemon then
-              s = box.schema.space.create('mysqldaemon')
-              s:create_index('primary',
-              {type = 'tree', parts = {1, 'unsigned'}, if_not_exists = true})
-          end
+#.  In the ``/etc/tarantool/instances.available/mysql`` directory, create the ``tt`` instance configuration files:
 
-          if not box.space.mysqldata then
-              t = box.schema.space.create('mysqldata')
-              t:create_index('primary',
-              {type = 'tree', parts = {1, 'unsigned'}, if_not_exists = true})
-          end
+    *   ``config.yaml`` -- specifies the following configuration
 
-      end
+        ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/mysql/config.yaml
+            :language: yaml
+            :dedent:
 
-      bootstrap()
+    *   ``instances.yml`` -- specifies instances to run in the current environment
 
-   To understand more of what’s happening here, it would be best to have a look
-   back at the earlier
-   `articles <https://dzone.com/articles/tarantool-101-10-steps-for-absolute-beginners-the>`_
-   in the Tarantool 101 series or use the :ref:`getting-started <getting_started_db>` guide.
+        ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/mysql/instances.yml
+            :language: yaml
+            :dedent:
 
-#. Now we need to create a symlink from ``instances.available`` to a directory named
-   ``instances.enabled`` (similar to NGINX). So in ``/etc/tarantool`` run the
-   following:
+    *   ``myapp.lua`` -- contains a Lua script with an application to load
 
-   .. code-block:: bash
+        ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/mysql/myapp.lua
+            :language: lua
+            :lines: 3-17
+            :dedent:
 
-      mkdir instances.enabled
-      ln -s /instances.available/example.lua instances.enabled
+    For details, see the :ref:`Configuration <configuration>` section.
 
-#. Next we can start up our Lua program with ``tt``, the Tarantool command-line
-   utility:
+#.  Inside the ``instances.enabled`` directory of the created tt environment, create a symlink (``mysql``)
+    to the directory from the previous step:
 
-   .. code-block:: bash
+    ..  code-block:: console
 
-      tt start example
+        $ ln -s /etc/tarantool/instances.available/mysql mysql
 
-#. Now let’s enter our Tarantool instance, where we can check that our target
-   spaces were successfully created:
+#.  Next, start up the Lua program with ``tt``, the Tarantool command-line
+    utility:
 
-   .. code-block:: bash
+    ..  code-block:: console
 
-      tt connect example
+        $ tt start mysql
 
-   .. code-block:: tarantoolsession
+#.  Enter the Tarantool instance:
 
-      tarantool> box.space._space:select()
+    ..  code-block:: console
 
-   At the bottom you will see "mysqldaemon" and "mysqldata" spaces. Then exit with "CTRL+C".
+        $ tt connect mysql:instance001
 
-#. Now that we have MySQL and Tarantool set up, we can proceed to configure
-   our replicator. First let’s work with ``replicatord.yml`` in the main
-   ``tarantool-mysql-replication`` directory.
+#.  Check that the target spaces were successfully created:
 
-   .. code-block:: bash
+    ..  code-block:: tarantoolsession
 
-      nano replicatord.yml
+        mysql:instance001> box.space._space:select()
 
-   Change the entire file as follows, making sure to add your MySQL password and
-   to set the appropriate user:
+    At the bottom, you will see ``mysqldaemon`` and ``mysqldata`` spaces. Then exit with "CTRL+C".
 
-   .. code-block:: bash
+..  _improving_mysql-replicator:
 
-     mysql:
-         host: 127.0.0.1
-         port: 3306
-         user: root
-         password:
-         connect_retry: 15 # seconds
+Setting up the replicator
+-------------------------
 
-     tarantool:
-         host: 127.0.0.1:3301
-         binlog_pos_space: 512
-         binlog_pos_key: 0
-         connect_retry: 15 # seconds
-         sync_retry: 1000 # milliseconds
+MySQL and Tarantool are now set up. You can proceed to configure the replicator.
 
-     mappings:
+#.  Edit the ``replicatord.yml`` file in the main ``tarantool-mysql-replication`` directory:
+
+    ..  code-block:: bash
+
+        nano replicatord.yml
+
+#.  Change the entire file as follows. Don't forget to add your MySQL password and
+    set the appropriate user:
+
+    ..  code-block:: bash
+
+        mysql:
+            host: 127.0.0.1
+            port: 3306
+            user: root
+            password:
+            connect_retry: 15 # seconds
+
+        tarantool:
+            host: 127.0.0.1:3301
+            binlog_pos_space: 512
+            binlog_pos_key: 0
+            connect_retry: 15 # seconds
+            sync_retry: 1000 # milliseconds
+
+        mappings:
          - database: menagerie
            table: pet
            columns: [ id, name2, owner, species ]
@@ -279,59 +254,67 @@ So let’s proceed.
            # update_call: function_name
            # delete_call: function_name
 
-#. Now we need to copy replicatord.yml to the location where systemd looks for it:
+#.  Copy ``replicatord.yml`` to the location where ``systemd`` looks for it:
 
-   .. code-block:: bash
+    ..  code-block:: console
 
-      cp replicatord.yml /usr/local/etc/replicatord.yml
+        $ cp replicatord.yml /usr/local/etc/replicatord.yml
 
-#. Next we can start up the replicator:
+#.  Next, start up the replicator:
 
-   .. code-block:: bash
+    ..  code-block:: console
 
-      systemctl start replicatord
+        $ systemctl start replicatord
 
-   Now we can enter our Tarantool instance and do a select on the “mysqldata”
-   space. We will see the replicated content from MySQL:
+#.  Enter the Tarantool instance:
 
-   .. code-block:: bash
+    ..  code-block:: console
 
-      tt connect example
+        $ tt connect mysql:instance001
 
-   .. code-block:: tarantoolsession
+#.  Do a select on the ``mysqldata`` space. The replicated content from MySQL looks the following way:
 
-       tarantool> box.space.mysqldata:select()
-       ---
-       - - [1, 'Fluffy', 'Harold', 'cat']
-         - [2, 'Claws', 'Gwen', 'cat']
-         - [3, 'Buffy', 'Harold', 'dog']
-         - [4, 'Fang', 'Benny', 'dog']
-         - [5, 'Bowser', 'Diane', 'dog']
-         - [6, 'Chirpy', 'Gwen', 'bird']
-         - [7, 'Whistler', 'Gwen', 'bird']
-         - [8, 'Slim', 'Benny', 'snake']
-         - [9, 'Puffball', 'Diane', 'hamster']
+    ..  code-block:: tarantoolsession
 
+        mysql:instance001> box.space.mysqldata:select()
+        ---
+        - - [1, 'Fluffy', 'Harold', 'cat']
+          - [2, 'Claws', 'Gwen', 'cat']
+          - [3, 'Buffy', 'Harold', 'dog']
+          - [4, 'Fang', 'Benny', 'dog']
+          - [5, 'Bowser', 'Diane', 'dog']
+          - [6, 'Chirpy', 'Gwen', 'bird']
+          - [7, 'Whistler', 'Gwen', 'bird']
+          - [8, 'Slim', 'Benny', 'snake']
+          - [9, 'Puffball', 'Diane', 'hamster']
 
-#. Finally let’s enter a record into MySQL and then go back to Tarantool to make
-   sure it’s replicated. So first we’ll exit our Tarantool instance with
-   ``CTRL-C``, and then say:
+..  _improving_mysql-replicator:
 
-   .. code-block:: sql
+Testing the replication
+-----------------------
 
-      mysql -u root -p
-      USE menagerie;
-      INSERT INTO pet(name2, owner, species) VALUES ('Spot', 'Brad', 'dog');
-      QUIT
+In this section, you enter a record into MySQL and check that the record is replicated to Tarantool.
+To do this:
 
-   Once back in the terminal enter:
+#.  Exit the Tarantool instance with ``CTRL-D``.
 
-   .. code-block:: bash
+#.  Insert a record into MySQL:
 
-      tt connect example
+    ..  code-block:: sql
 
-   .. code-block:: tarantoolsession
+        mysql -u root -p
+        USE menagerie;
+        INSERT INTO pet(name2, owner, species) VALUES ('Spot', 'Brad', 'dog');
+        QUIT
 
-      tarantool> box.space.mysqldata:select()
+#.  In the terminal, enter the Tarantool instance:
 
-   You should see the replicated data in Tarantool!
+    ..  code-block:: bash
+
+        $ tt connect mysql:instance001
+
+#.  To see the replicated data in Tarantool, run the following command:
+
+    ..  code-block:: tarantoolsession
+
+        mysql:instance001> box.space.mysqldata:select()

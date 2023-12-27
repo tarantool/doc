@@ -1,0 +1,115 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/admin/upgrades/1.6-1.10.rst:4
+msgid "Live upgrade from Tarantool 1.6 to 1.10"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/1.6-1.10.rst:6
+msgid "This page includes explanations and solutions to some common issues when upgrading a replica set from Tarantool 1.6 to 1.10."
+msgstr ""
+
+#: ../../doc/book/admin/_includes/1.6-to-2.x-condition.rst:1
+msgid "Versions later that 1.6 have incompatible :ref:`.snap <internals-snapshot>` and :ref:`.xlog <internals-wal>` file formats: 1.6 files are supported during upgrade, but you won’t be able to return to 1.6 after running under 1.10 or 2.x for a while. A few configuration parameters are also renamed."
+msgstr ""
+
+#: ../../doc/book/admin/_includes/1.6-to-2.x-condition.rst:6
+msgid "To perform a **live** upgrade from Tarantool 1.6 to a more recent version, like :doc:`2.8.4 </release/2.8.4>`, :doc:`2.10.1 </release/2.10.1>` and such, it is necessary to take an intermediate step by upgrading 1.6 -> **1.10** -> 2.x. This is the only way to perform the upgrade **without downtime**."
+msgstr ""
+
+#: ../../doc/book/admin/_includes/1.6-to-2.x-condition.rst:11
+msgid "However, a direct upgrade of a replica set from 1.6 to 2.x is also possible, but only **with downtime**."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/1.6-1.10.rst:11
+msgid "The procedure of live upgrade from 1.6 to 1.10 is similar to the general :ref:`cluster upgrade procedure <admin-upgrades-replication-cluster>`, but with slight differences in the :ref:`Upgrading storages <admin-upgrades-cluster-storages>` step. Find below the general storage upgrade procedure and the 1.6-specific notes for its steps."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/1.6-1.10.rst:18
+msgid "General storage upgrade"
+msgstr ""
+
+#: ../../doc/book/admin/_includes/upgrade_storages.rst:5
+msgid "Upgrade storage instances by performing the following steps for each replica set:"
+msgstr ""
+
+#: ../../doc/book/admin/_includes/upgrade_storages.rst:9
+msgid "To detect possible upgrade issues early, we recommend that you perform a :ref:`replication check <admin-upgrades-replication-check>` on all instances of the replica set **after each step**."
+msgstr ""
+
+#: ../../doc/book/admin/_includes/upgrade_storages.rst:14
+msgid "Pick a replica (a **read-only** instance) from the replica set. Stop this replica and start it again on the target Tarantool version. Wait until it reaches the ``running`` status (``box.info.status == running``)."
+msgstr ""
+
+#: ../../doc/book/admin/_includes/upgrade_storages.rst:17
+msgid "Restart all other **read-only** instances of the replica set on the target version one by one."
+msgstr ""
+
+#: ../../doc/book/admin/_includes/upgrade_storages.rst:19
+msgid "Make one of the updated replicas the new master using the applicable instruction from :ref:`Switching the master <admin-upgrades-switch-master>`."
+msgstr ""
+
+#: ../../doc/book/admin/_includes/upgrade_storages.rst:21
+msgid "Restart the last instance of the replica set (the former master, now a replica) on the target version."
+msgstr ""
+
+#: ../../doc/book/admin/_includes/upgrade_storages.rst:26
+msgid "Run :ref:`box.schema.upgrade() <box_schema-upgrade>` on the new master. This will update the Tarantool system spaces to match the currently installed version of Tarantool. The changes will be propagated to other nodes via the replication mechanism later."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/1.6-1.10.rst:22
+msgid "Run ``box.snapshot()`` on every node in the replica set to make sure that the replicas immediately see the upgraded database state in case of restart."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/1.6-1.10.rst:26
+msgid "1.6 storage upgrade specifics"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/1.6-1.10.rst:28
+msgid "**Replication check:** New Tarantool nodes follow 1.6 nodes just fine, but some 1.6 nodes might disconnect from new nodes with an ER_LOADING error. This is not critical, the error goes away when replication on 1.6 is restarted:"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/1.6-1.10.rst:32
+msgid "old_repl = box.cfg.replication\n"
+"box.cfg{replication = \"\"}\n"
+"box.cfg{replication = old_repl}"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/1.6-1.10.rst:38
+msgid "**Point of no return:** When upgrading from Tarantool 1.6, the step 3 (switching the master) is the point of no return. Оnce you complete it, **the schema is no longer compatible with the initial version**."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/1.6-1.10.rst:42
+msgid "**Restarting on the target version (steps 1, 2, and 4):** Tarantool 1.10+ fails to recover from 1.6 xlogs, unless ``box.cfg{force_recovery = true}`` is set. There is a slight difference between 1.6 and 1.10 xlogs, which makes 1.6 xlogs appear erroneous to 1.10+ instances. In order to work around this, start the instance in ``force_recovery`` mode. To do so, add the line ``force_recovery = true`` to the file where the instance is initialized -- for example, to ``init.lua``."
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/1.6-1.10.rst:48
+msgid "**Running box.schema.upgrade() (step 5):** There was a breaking change between 1.6 and 1.10 -- in 1.6, the field type ``num`` was an alias to ``number``, and in 1.10, ``num`` is converted to ``unsigned``. This means that after ``box.schema.upgrade()`` is performed on the master, the user might have some spaces with ``unsigned`` fields containing non-unsigned values: ``double``, ``int``, and so on. This will make the snapshot inconsistent, unless an extra action is performed after ``box.schema.upgrade()``. Run this code in the Tarantool console on the new master:"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/1.6-1.10.rst:56
+msgid "-- First find all spaces containing unsigned fields with non-unsigned values in them.\n"
+"-- Say, we have one such space denoted problematic_space and the problem is in field problematic_field_no.\n"
+"a = box.space.problematic_space:format()\n"
+"a[problematic_field_no].type = 'number'\n"
+"box.space.problematic_space:format(a)"
+msgstr ""
+
+#: ../../doc/book/admin/upgrades/1.6-1.10.rst:64
+msgid "**Taking snapshots (step 6):** The user might be concerned with snapshot size in 1.10 -- it's drastically smaller than the one created by 1.6 (for example, ~300 Mb vs. 6 Gb in some corner cases). There is nothing to worry about. Tarantool 1.6 didn't compress snapshots, while Tarantool 1.10 and above does that."
+msgstr ""

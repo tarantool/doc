@@ -1,0 +1,86 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/dev_guide/internals/iproto/authentication.rst:4
+msgid "Session start and authentication"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/authentication.rst:6
+msgid "Every iproto session begins with a greeting and optional authentication."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/authentication.rst:9
+msgid "Greeting message"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/authentication.rst:11
+msgid "When a client connects to the server instance, the instance responds with a 128-byte text greeting message, not in MsgPack format:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/authentication.rst:14
+msgid "Tarantool <version> (<protocol>) <instance-uuid>\n"
+"<salt>"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/authentication.rst:19
+msgid "For example:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/authentication.rst:21
+msgid "Tarantool 2.10.0 (Binary) 29b74bed-fdc5-454c-a828-1d4bf42c639a\n"
+"QK2HoFZGXTXBq2vFj7soCsHqTo6PGTF575ssUBAJLAI="
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/authentication.rst:26
+msgid "The greeting contains two 64-byte lines of ASCII text. Each line ends with a newline character (:code:`\\n`). If the line content is less than 64 bytes long, the rest of the line is filled up with symbols with an ASCII code of 0 that aren't displayed in the console."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/authentication.rst:30
+msgid "The first line contains the instance version and protocol type. The second line contains the session salt -- a base64-encoded random string, which is usually 44 bytes long. The salt is used in the authentication packet -- the :ref:`IPROTO_AUTH message <box_protocol-auth>`."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/authentication.rst:38
+msgid "Authentication"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/authentication.rst:40
+msgid "If authentication is skipped, then the session user is ``'guest'`` (the ``'guest'`` user does not need a password)."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/authentication.rst:43
+msgid "If authentication is not skipped, then at any time an :ref:`authentication packet <box_protocol-auth>` can be prepared using the greeting, the user's name and password, and `sha-1 <https://en.wikipedia.org/wiki/SHA-1>`_ functions, as follows."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/iproto/authentication.rst:47
+msgid "PREPARE SCRAMBLE:\n"
+"\n"
+"    size_of_encoded_salt_in_greeting = 44;\n"
+"    size_of_salt_after_base64_decode = 32;\n"
+"     /* sha1() will only use the first 20 bytes */\n"
+"    size_of_any_sha1_digest = 20;\n"
+"    size_of_scramble = 20;\n"
+"\n"
+"prepare 'chap-sha1' scramble:\n"
+"\n"
+"    salt = base64_decode(encoded_salt);\n"
+"    step_1 = sha1(password);\n"
+"    step_2 = sha1(step_1);\n"
+"    step_3 = sha1(first_20_bytes_of_salt, step_2);\n"
+"    scramble = xor(step_1, step_3);\n"
+"    return scramble;"
+msgstr ""

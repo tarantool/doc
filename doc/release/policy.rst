@@ -49,8 +49,6 @@ each with its own lifecycle, pre-release and release versions.
         A series has a distinct lifecycle and certain compatibility guarantees within itself and with other series.
         The intended support time for each series is at least two years since the first release.
 
-        At the moment when this document is published, there are two release series: series ``1.10`` and series ``2``.
-
     Release version
 
         Release version is a Tarantool distribution which is thoroughly tested and ready for production usage.

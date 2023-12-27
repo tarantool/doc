@@ -1,0 +1,530 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:5
+msgid "MessagePack extensions"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:7
+msgid "Tarantool uses predefined MessagePack extension types to represent some of the special values. Extension types include ``MP_DECIMAL``, ``MP_UUID``, ``MP_ERROR``, ``MP_DATETIME``, and ``MP_INTERVAL``. These types require special attention from the connector developers, as they must be treated separately from the default MessagePack types, and correctly mapped to programming language types."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:18
+msgid "The DECIMAL type"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:20
+msgid "The MessagePack EXT type ``MP_EXT`` together with the extension type ``MP_DECIMAL`` is a header for values of the DECIMAL type."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:23
+msgid "``MP_DECIMAL`` type is 1."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:25
+msgid "`MessagePack specification <https://github.com/msgpack/msgpack/blob/master/spec.md>`_ defines two kinds of types:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:28
+msgid "``fixext 1/2/4/8/16`` types have fixed length so the length is not encoded explicitly."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:29
+msgid "``ext 8/16/32`` types require the data length to be encoded."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:31
+msgid "``MP_EXP`` + optional ``length`` imply using one of these types."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:33
+msgid "The decimal MessagePack representation looks like this:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:35
+msgid "+--------+-------------------+------------+===============+\n"
+"| MP_EXT | length (optional) | MP_DECIMAL | PackedDecimal |\n"
+"+--------+-------------------+------------+===============+"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:41
+msgid "Here ``length`` is the length of ``PackedDecimal`` field, and it is of type ``MP_UINT``, when encoded explicitly (i.e. when the type is ``ext 8/16/32``)."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:44
+msgid "``PackedDecimal`` has the following structure:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:46
+msgid " <--- length bytes -->\n"
+"+-------+=============+\n"
+"| scale |     BCD     |\n"
+"+-------+=============+"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:53
+msgid "Here ``scale`` is either ``MP_INT`` or ``MP_UINT``. |br| ``scale`` = number of digits after the decimal point"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:56
+msgid "``BCD`` is a sequence of bytes representing decimal digits of the encoded number (each byte has two decimal digits each encoded using 4-bit ``nibbles``), so ``byte >> 4`` is the first digit and ``byte & 0x0f`` is the second digit. The leftmost digit in the array is the most significant. The rightmost digit in the array is the least significant."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:62
+msgid "The first byte of the ``BCD`` array contains the first digit of the number, represented as follows:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:65
+msgid "|  4 bits           |  4 bits           |\n"
+"   = 0x                = the 1st digit"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:70
+msgid "(The first ``nibble`` contains 0 if the decimal number has an even number of digits.) The last byte of the ``BCD`` array contains the last digit of the number and the final ``nibble``, represented as follows:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:74
+msgid "|  4 bits           |  4 bits           |\n"
+"   = the last digit    = nibble"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:79
+msgid "The final ``nibble`` represents the number's sign:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:81
+msgid "``0x0a``, ``0x0c``, ``0x0e``, ``0x0f`` stand for plus,"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:82
+msgid "``0x0b`` and ``0x0d`` stand for minus."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:84
+msgid "**Examples**"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:86
+msgid "The decimal ``-12.34`` will be encoded as ``0xd6,0x01,0x02,0x01,0x23,0x4d``:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:88
+msgid "|MP_EXT (fixext 4) | MP_DECIMAL | scale |  1   |  2,3 |  4 (minus) |\n"
+"|       0xd6       |    0x01    | 0x02  | 0x01 | 0x23 | 0x4d       |"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:93
+msgid "The decimal 0.000000000000000000000000000000000010 will be encoded as ``0xc7,0x03,0x01,0x24,0x01,0x0c``:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:96
+msgid "| MP_EXT (ext 8) | length | MP_DECIMAL | scale |  1   | 0 (plus) |\n"
+"|      0xc7      |  0x03  |    0x01    | 0x24  | 0x01 | 0x0c     |"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:106
+msgid "The UUID type"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:108
+msgid "The MessagePack EXT type ``MP_EXT`` together with the extension type ``MP_UUID`` for values of the UUID type. Since version :doc:`2.4.1 </release/2.4.1>`."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:111
+msgid "``MP_UUID`` type is 2."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:113
+msgid "The `MessagePack specification <https://github.com/msgpack/msgpack/blob/master/spec.md>`_ defines ``d8`` to mean ``fixext`` with size 16, and a UUID's size is always 16. So the UUID MessagePack representation looks like this:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:117
+msgid "+--------+------------+-----------------+\n"
+"| MP_EXT | MP_UUID    | UuidValue       |\n"
+"| = d8   | = 2        | = 16-byte value |\n"
+"+--------+------------+-----------------+"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:124
+msgid "The 16-byte value has 2 digits per byte. Typically, it consists of 11 fields, which are encoded as big-endian unsigned integers in the following order:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:128
+msgid "``time_low`` (4 bytes)"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:129
+msgid "``time_mid`` (2 bytes)"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:130
+msgid "``time_hi_and_version`` (2 bytes)"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:131
+msgid "``clock_seq_hi_and_reserved`` (1 byte)"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:132
+msgid "``clock_seq_low`` (1 byte)"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:133
+msgid "``node[0]``, ..., ``node[5]`` (1 byte each)"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:135
+msgid "Some of the functions in :ref:`Module uuid <uuid-module>` can produce values which are compatible with the UUID data type. For example, after"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:139
+msgid "uuid = require('uuid')\n"
+"box.schema.space.create('t')\n"
+"box.space.t:create_index('i', {parts={1,'uuid'}})\n"
+"box.space.t:insert{uuid.fromstr('f6423bdf-b49e-4913-b361-0740c9702e4b')}\n"
+"box.space.t:select()"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:147
+msgid "a peek at the server response packet will show that it contains"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:149
+msgid "d8 02 f6 42 3b df b4 9e 49 13 b3 61 07 40 c9 70 2e 4b"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:157
+msgid "The ERROR type"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:159
+msgid "Since version :doc:`2.4.1 </release/2.4.1>`, responses for errors have extra information following what was described in :ref:`Box protocol -- responses for errors <box_protocol-responses_error>`. This is a \"compatible\" enhancement, because clients that expect old-style server responses should ignore map components that they do not recognize. Notice, however, that there has been a renaming of a constant: formerly ``IPROTO_ERROR`` in :file:`./box/iproto_constants.h` was ``0x31``, now ``IPROTO_ERROR`` is ``0x52`` and ``IPROTO_ERROR_24`` is ``0x31``."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:168
+msgid "``MP_ERROR`` type is 3."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:170
+msgid "++=========================+============================+\n"
+"||                         |                            |\n"
+"||   0x31: IPROTO_ERROR_24 |   0x52: IPROTO_ERROR       |\n"
+"|| MP_INT: MP_STRING       | MP_MAP: extra information  |\n"
+"||                         |                            |\n"
+"++=========================+============================+\n"
+"                        MP_MAP"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:180
+msgid "The extra information, most of which is also in :doc:`error object </reference/reference_lua/box_error/new>` fields, is:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:183
+msgid "``MP_ERROR_TYPE`` (0x00) (MP_STR) Type that implies source, as in :samp:`{error_object}.base_type`, for example \"ClientError\"."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:185
+msgid "``MP_ERROR_FILE`` (0x01) (MP_STR)  Source code file where error was caught, as in :samp:`{error_object}.trace`."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:187
+msgid "``MP_ERROR_LINE`` (0x02) (MP_UINT) Line number in source code file, as in :samp:`{error_object}.trace`."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:189
+msgid "``MP_ERROR_MESSAGE`` (0x03) (MP_STR) Text of reason, as in :samp:`{error_object}.message`. The value here will be the same as in the ``IPROTO_ERROR_24`` value."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:192
+msgid "``MP_ERROR_ERRNO`` (0x04) (MP_UINT) Ordinal number of the error, as in :samp:`{error_object}.errno`. Not to be confused with ``MP_ERROR_ERRCODE``."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:195
+msgid "``MP_ERROR_ERRCODE`` (0x05) (MP_UINT) Number of the error as defined in errcode.h, as in :samp:`{error_object}.code`, which can also be retrieved with the C function :ref:`box_error_code() <capi-box_error_code_code>`. The value here will be the same as the lower part of the Response-Code-Indicator value."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:199
+msgid "``MP_ERROR_FIELDS`` (0x06) (MP_MAPs) Additional fields depending on error type. For example, if ``MP_ERROR_TYPE`` is \"AccessDeniedError\", then ``MP_ERROR_FIELDS`` will include \"object_type\", \"object_name\", \"access_type\". This field will be omitted from the response body if there are no additional fields available."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:204
+msgid "Client and connector programmers should ensure that unknown map keys are ignored, and should check for addition of new keys in the Tarantool source code file where error object creation is defined. In version 2.4.1 the name of this source code file is mp_error.cc."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:209
+msgid "For example, in version 2.4.1 or later, if we try to create a duplicate space with |br| ``conn:eval([[box.schema.space.create('_space');]])`` |br| the server response will look like this:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:213
+msgid "ce 00 00 00 88                  MP_UINT = HEADER + BODY SIZE\n"
+"83                              MP_MAP, size 3 (i.e. 3 items in header)\n"
+"  00                              Response-Code-Indicator\n"
+"  ce 00 00 80 0a                  MP_UINT = hexadecimal 800a\n"
+"  01                              IPROTO_SYNC\n"
+"  cf 00 00 00 00 00 00 00 05      MP_UINT = sync value\n"
+"  05                              IPROTO_SCHEMA_VERSION\n"
+"  ce 00 00 00 4e                  MP_UINT = schema version value\n"
+"82                              MP_MAP, size 2\n"
+"  31                              IPROTO_ERROR_24\n"
+"  bd 53 70 61 63 etc.             MP_STR = \"Space '_space' already exists\"\n"
+"  52                              IPROTO_ERROR\n"
+"  81                              MP_MAP, size 1\n"
+"    00                              MP_ERROR_STACK\n"
+"    91                              MP_ARRAY, size 1\n"
+"      86                              MP_MAP, size 6\n"
+"        00                              MP_ERROR_TYPE\n"
+"        ab 43 6c 69 65 6e 74 etc.       MP_STR = \"ClientError\"\n"
+"        02                              MP_ERROR_LINE\n"
+"        cd                              MP_UINT = line number\n"
+"        01                              MP_ERROR_FILE\n"
+"        aa 01 b6 62 75 69 6c etc.       MP_STR \"builtin/box/schema.lua\"\n"
+"        03                              MP_ERROR_MESSAGE\n"
+"        bd 53 70 61 63 65 20 etc.       MP_STR = Space.'_space'.already.exists\"\n"
+"        04                              MP_ERROR_ERRNO\n"
+"        00                              MP_UINT = error number\n"
+"        05                              MP_ERROR_ERRCODE\n"
+"        0a                              MP_UINT = eror code ER_SPACE_EXISTS"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:249
+msgid "The DATETIME type"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:251
+msgid "Since version :doc:`2.10.0 </release/2.10.0>`. The MessagePack EXT type ``MP_EXT`` together with the extension type ``MP_DATETIME`` is a header for values of the DATETIME type. It creates a container with a payload of 8 or 16 bytes."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:256
+msgid "``MP_DATETIME`` type is 4."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:258
+msgid "The `MessagePack specification <https://github.com/msgpack/msgpack/blob/master/spec.md>`_ defines ``d7`` to mean ``fixext`` with size 8 or ``d8`` to mean ``fixext`` with size 16."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:261
+msgid "So the datetime MessagePack representation looks like this:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:263
+msgid "+---------+----------------+==========+-----------------+\n"
+"| MP_EXT  | MP_DATETIME    | seconds  | nsec; tzoffset; |\n"
+"| = d7/d8 | = 4            |          | tzindex;        |\n"
+"+---------+----------------+==========+-----------------+"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:270
+msgid "MessagePack data contains:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:272
+msgid "Seconds (8 bytes) as an unencoded 64-bit signed integer stored in the little-endian order."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:274
+msgid "The optional fields (8 bytes), if any of them have a non-zero value. The fields include ``nsec``, ``tzoffset``, and ``tzindex`` packed in the little-endian order."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:277
+msgid "For more information about the datetime type, see :ref:`datetime field type details <index-box_datetime>` and :doc:`reference for the datetime module </reference/reference_lua/datetime>`."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:284
+msgid "The INTERVAL type"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:286
+msgid "Since version :doc:`2.10.0 </release/2.10.0>`. The MessagePack EXT type ``MP_EXT`` together with the extension type ``MP_INTERVAL`` is a header for values of the INTERVAL type."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:290
+msgid "``MP_INTERVAL`` type is 6."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:292
+msgid "The interval is saved as a variant of a map with a predefined number of known attribute names. If some attributes are undefined, they are omitted from the generated payload."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:295
+msgid "The interval MessagePack representation looks like this:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:297
+msgid "+--------+-------------------------+-------------+----------------+\n"
+"| MP_EXT | Size of packed interval | MP_INTERVAL | PackedInterval |\n"
+"+--------+-------------------------+-------------+----------------+"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:303
+msgid "Packed interval consists of:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:305
+msgid "Packed number of non-zero fields."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:306
+msgid "Packed non-null fields."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:308
+msgid "Each packed field has the following structure:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:310
+msgid "+----------+=====================+\n"
+"| field ID |     field value     |\n"
+"+----------+=====================+"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:316
+msgid "The number of defined (non-null) fields can be zero. In this case, the packed interval will be encoded as integer 0."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:319
+msgid "List of the field IDs:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:321
+msgid "0 -- year"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:322
+msgid "1 -- month"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:323
+msgid "2 -- week"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:324
+msgid "3 -- day"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:325
+msgid "4 -- hour"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:326
+msgid "5 -- minute"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:327
+msgid "6 -- second"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:328
+msgid "7 -- nanosecond"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:329
+msgid "8 -- adjust"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:331
+msgid "**Example**"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:333
+msgid "Interval value ``1 years, 200 months, -77 days`` is encoded in the following way:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:335
+msgid "tarantool> I = datetime.interval.new{year = 1, month = 200, day = -77}\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> I\n"
+"---\n"
+"- +1 years, 200 months, -77 days\n"
+"...\n"
+"\n"
+"tarantool> M = msgpack.encode(I)\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> M\n"
+"---\n"
+"- !!binary xwsGBAABAczIA9CzCAE=\n"
+"...\n"
+"\n"
+"tarantool> tohex = function(s) return (s:gsub('.', function(c) return string.format('%02X ', string.byte(c)) end)) end\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> tohex(M)\n"
+"---\n"
+"- 'C7 0B 06 04 00 01 01 CC C8 03 D0 B3 08 01 '\n"
+"..."
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:364
+msgid "Where:"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:366
+msgid "C7 -- MP_EXT"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:367
+msgid "0B -- size of a packed interval value (11 bytes)"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:368
+msgid "06 -- MP_INTERVAL type"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:369
+msgid "04 -- number of defined fields"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:370
+msgid "00 -- field ID (year)"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:371
+msgid "01 -- packed value ``1``"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:372
+msgid "01 -- field ID (month)"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:373
+msgid "CCC8 -- packed value ``200``"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:374
+msgid "03 -- field ID (day)"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:375
+msgid "D0B3 -- packed value ``-77``"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:376
+msgid "08 -- field ID (adjust)"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:377
+msgid "01 -- packed value ``1`` (DT_LIMIT)"
+msgstr ""
+
+#: ../../doc/dev_guide/internals/msgpack_extensions.rst:379
+msgid "For more information about the interval type, see :ref:`interval field type details <index-box_interval>` and :doc:`description of the datetime module </reference/reference_lua/datetime>`."
+msgstr ""

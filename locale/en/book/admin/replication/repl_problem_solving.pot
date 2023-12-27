@@ -1,0 +1,263 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-21 17:20+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/book/admin/replication/repl_problem_solving.rst:5
+msgid "Resolving replication conflicts"
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_problem_solving.rst:7
+msgid "Tarantool guarantees that every update is applied only once on every replica. However, due to the asynchronous nature of replication, the order of updates is not guaranteed. This topic describes how to solve problems in :ref:`master-master <replication-bootstrap-master-master>` replication."
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_problem_solving.rst:15
+msgid "Replacing the same primary key"
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_problem_solving.rst:17
+msgid "**Case 1:** You have two instances of Tarantool. For example, you try to make a ``replace`` operation with the same primary key on both instances at the same time. This causes a conflict over which tuple to save and which one to discard."
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_problem_solving.rst:21
+msgid "Tarantool :ref:`trigger functions <triggers>` can help here to implement the rules of conflict resolution on some condition. For example, if you have a timestamp, you can declare saving the tuple with the bigger one."
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_problem_solving.rst:25
+msgid "First, you need a :ref:`before_replace() <box_space-before_replace>` trigger on the space which may have conflicts. In this trigger, you can compare the old and new replica records and choose which one to use (or skip the update entirely, or merge two records together)."
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_problem_solving.rst:30
+msgid "Then you need to set the trigger at the right time before the space starts to receive any updates. The way you usually set the ``before_replace`` trigger is right when the space is created, so you need a trigger to set another trigger on the system space ``_space``, to capture the moment when your space is created and set the trigger there. This can be an :ref:`on_replace() <box_space-on_replace>` trigger."
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_problem_solving.rst:37
+msgid "The difference between ``before_replace`` and ``on_replace`` is that ``on_replace`` is called after a row is inserted into the space, and ``before_replace`` is called before that."
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_problem_solving.rst:41
+msgid "To set a ``_space:on_replace()`` trigger correctly, you also need the right timing. The best timing to use it is when ``_space`` is just created, which is the :ref:`box.ctl.on_schema_init() <box_ctl-on_schema_init>` trigger."
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_problem_solving.rst:45
+msgid "You also need to utilize ``box.on_commit`` to get access to the space being created. The resulting snippet would be the following:"
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_problem_solving.rst:48
+msgid "local my_space_name = 'my_space'\n"
+"local my_trigger = function(old, new) ... end -- your function resolving a conflict\n"
+"box.ctl.on_schema_init(function()\n"
+"    box.space._space:on_replace(function(old_space, new_space)\n"
+"        if not old_space and new_space and new_space.name == my_space_name then\n"
+"            box.on_commit(function()\n"
+"                box.space[my_space_name]:before_replace(my_trigger)\n"
+"            end\n"
+"        end\n"
+"    end)\n"
+"end)"
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_problem_solving.rst:67
+msgid "Preventing duplicate insert"
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_problem_solving.rst:71
+msgid "**Case 2:** In a replica set of two masters, both of them try to insert data by the same unique key:"
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_problem_solving.rst:73
+msgid "tarantool> box.space.tester:insert{1, 'data'}"
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_problem_solving.rst:77
+msgid "This would cause an error saying ``Duplicate key exists in unique index 'primary' in space 'tester'`` and the replication would be stopped. (This is the behavior when the :ref:`replication_skip_conflict <cfg_replication-replication_skip_conflict>` configuration parameter has its default recommended value, ``false``.)"
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_problem_solving.rst:83
+msgid "$ # error messages from master #1\n"
+"2017-06-26 21:17:03.233 [30444] main/104/applier/rep_user@100.96.166.1 I> can't read row\n"
+"2017-06-26 21:17:03.233 [30444] main/104/applier/rep_user@100.96.166.1 memtx_hash.cc:226 E> ER_TUPLE_FOUND:\n"
+"Duplicate key exists in unique index 'primary' in space 'tester'\n"
+"2017-06-26 21:17:03.233 [30444] relay/[::ffff:100.96.166.178]/101/main I> the replica has closed its socket, exiting\n"
+"2017-06-26 21:17:03.233 [30444] relay/[::ffff:100.96.166.178]/101/main C> exiting the relay loop\n"
+"\n"
+"$ # error messages from master #2\n"
+"2017-06-26 21:17:03.233 [30445] main/104/applier/rep_user@100.96.166.1 I> can't read row\n"
+"2017-06-26 21:17:03.233 [30445] main/104/applier/rep_user@100.96.166.1 memtx_hash.cc:226 E> ER_TUPLE_FOUND:\n"
+"Duplicate key exists in unique index 'primary' in space 'tester'\n"
+"2017-06-26 21:17:03.234 [30445] relay/[::ffff:100.96.166.178]/101/main I> the replica has closed its socket, exiting\n"
+"2017-06-26 21:17:03.234 [30445] relay/[::ffff:100.96.166.178]/101/main C> exiting the relay loop"
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_problem_solving.rst:99
+msgid "If we check replication statuses with ``box.info``, we will see that replication at master #1 is stopped (``1.upstream.status = stopped``). Additionally, no data is replicated from that master (section ``1.downstream`` is missing in the report), because the downstream has encountered the same error:"
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_problem_solving.rst:104
+msgid "# replication statuses (report from master #3)\n"
+"tarantool> box.info\n"
+"---\n"
+"- version: 1.7.4-52-g980d30092\n"
+"  id: 3\n"
+"  ro: false\n"
+"  vclock: {1: 9, 2: 1000000, 3: 3}\n"
+"  uptime: 557\n"
+"  lsn: 3\n"
+"  vinyl: []\n"
+"  cluster:\n"
+"    uuid: 34d13b1a-f851-45bb-8f57-57489d3b3c8b\n"
+"  pid: 30445\n"
+"  status: running\n"
+"  signature: 1000012\n"
+"  replication:\n"
+"    1:\n"
+"      id: 1\n"
+"      uuid: 7ab6dee7-dc0f-4477-af2b-0e63452573cf\n"
+"      lsn: 9\n"
+"      upstream:\n"
+"        peer: replicator@192.168.0.101:3301\n"
+"        lag: 0.00050592422485352\n"
+"        status: stopped\n"
+"        idle: 445.8626639843\n"
+"        message: Duplicate key exists in unique index 'primary' in space 'tester'\n"
+"    2:\n"
+"      id: 2\n"
+"      uuid: 9afbe2d9-db84-4d05-9a7b-e0cbbf861e28\n"
+"      lsn: 1000000\n"
+"      upstream:\n"
+"        status: follow\n"
+"        idle: 201.99915885925\n"
+"        peer: replicator@192.168.0.102:3301\n"
+"        lag: 0.0015020370483398\n"
+"      downstream:\n"
+"        vclock: {1: 8, 2: 1000000, 3: 3}\n"
+"    3:\n"
+"      id: 3\n"
+"      uuid: e826a667-eed7-48d5-a290-64299b159571\n"
+"      lsn: 3\n"
+"  uuid: e826a667-eed7-48d5-a290-64299b159571\n"
+"..."
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_problem_solving.rst:151
+msgid "To learn how to resolve a replication conflict by reseeding a replica, see :ref:`Resolving replication conflicts <replication-master-master-resolve-conflicts>`."
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_problem_solving.rst:157
+msgid "Replication runs out of sync"
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_problem_solving.rst:159
+msgid "In a master-master cluster of two instances, suppose we make the following operation:"
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_problem_solving.rst:162
+msgid "tarantool> box.space.tester:upsert({1}, {{'=', 2, box.info.uuid}})"
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_problem_solving.rst:166
+msgid "When this operation is applied on both instances in the replica set:"
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_problem_solving.rst:168
+msgid "# at master #1\n"
+"tarantool> box.space.tester:upsert({1}, {{'=', 2, box.info.uuid}})\n"
+"# at master #2\n"
+"tarantool> box.space.tester:upsert({1}, {{'=', 2, box.info.uuid}})"
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_problem_solving.rst:175
+msgid "... we can have the following results, depending on the order of execution:"
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_problem_solving.rst:177
+msgid "each master’s row contains the UUID from master #1,"
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_problem_solving.rst:178
+msgid "each master’s row contains the UUID from master #2,"
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_problem_solving.rst:179
+msgid "master #1 has the UUID of master #2, and vice versa."
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_problem_solving.rst:184
+msgid "Commutative changes"
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_problem_solving.rst:186
+msgid "The cases described in the previous paragraphs represent examples of **non-commutative** operations, that is operations whose result depends on the execution order. On the contrary, for **commutative operations**, the execution order does not matter."
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_problem_solving.rst:191
+msgid "Consider for example the following command:"
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_problem_solving.rst:193
+msgid "tarantool> box.space.tester:upsert{{1, 0}, {{'+', 2, 1)}"
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_problem_solving.rst:197
+msgid "This operation is commutative: we get the same result no matter in which order the update is applied on the other masters."
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_problem_solving.rst:203
+msgid "Trigger usage"
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_problem_solving.rst:205
+msgid "The logic and the snippet setting a trigger will be the same here as in :ref:`case 1 <replication-problem_solving_replacing_primary_key>`. But the trigger function will differ. Note that the trigger below assumes that tuple has a timestamp in the second field."
+msgstr ""
+
+#: ../../doc/book/admin/replication/repl_problem_solving.rst:209
+msgid "local my_space_name = 'test'\n"
+"local my_trigger = function(old, new, sp, op)\n"
+"    -- op:  ‘INSERT’, ‘DELETE’, ‘UPDATE’, or ‘REPLACE’\n"
+"    if new == nil then\n"
+"        print(\"No new during \"..op, old)\n"
+"        return -- deletes are ok\n"
+"    end\n"
+"    if old == nil then\n"
+"        print(\"Insert new, no old\", new)\n"
+"        return new  -- insert without old value: ok\n"
+"    end\n"
+"    print(op..\" duplicate\", old, new)\n"
+"    if op == 'INSERT' then\n"
+"        if new[2] > old[2] then\n"
+"            -- Creating new tuple will change op to ‘REPLACE’\n"
+"            return box.tuple.new(new)\n"
+"        end\n"
+"        return old\n"
+"    end\n"
+"    if new[2] > old[2] then\n"
+"        return new\n"
+"    else\n"
+"        return old\n"
+"    end\n"
+"    return\n"
+"end\n"
+"\n"
+"box.ctl.on_schema_init(function()\n"
+"    box.space._space:on_replace(function(old_space, new_space)\n"
+"        if not old_space and new_space and new_space.name == my_space_name then\n"
+"            box.on_commit(function()\n"
+"                box.space[my_space_name]:before_replace(my_trigger)\n"
+"            end)\n"
+"        end\n"
+"    end)\n"
+"end)"
+msgstr ""

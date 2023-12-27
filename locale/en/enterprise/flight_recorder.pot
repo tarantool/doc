@@ -1,0 +1,245 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/enterprise/flight_recorder.rst:4
+msgid "Flight recorder"
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:6
+msgid "The flight recorder available in the Enterprise Edition is an event collection tool that gathers various information about a working Tarantool instance, such as:"
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:9
+msgid "logs"
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:11
+msgid "metrics"
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:13
+msgid "requests and responses"
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:15
+msgid "This information helps you investigate incidents related to :ref:`crashing <admin-disaster_recovery>` a Tarantool instance."
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:22
+msgid "Enabling the flight recorder"
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:24
+msgid "The flight recorder is disabled by default and can be enabled and configured for a specific Tarantool instance. To enable the flight recorder, set the ``flightrec_enabled`` :doc:`configuration option </reference/configuration/index>` to ``true``. This option is :ref:`dynamic <box_cfg_params>` and can be changed at runtime by calling ``box.cfg{}``:"
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:30
+msgid "box.cfg{ flightrec_enabled = true }"
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:34
+msgid "After ``flightrec_enabled`` is set to ``true``, the flight recorder starts collecting data in the flight recording file  ``current.ttfr``. This file is stored in the :ref:`memtx_dir <cfg_basic-memtx_dir>` directory. If the instance crashes and reboots, Tarantool rotates the flight recording: ``current.ttfr`` is renamed to ``<timestamp>.ttfr`` (for example, ``20230411T050721.ttfr``) and the new ``current.ttfr`` file is created for collecting data. In the case of correct shutdown (for example, using ``os.exit()``), Tarantool continues writing to the existing ``current.ttfr`` file after restart."
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:44
+msgid "Note that old flight recordings should be removed manually."
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:51
+msgid "Configuration"
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:53
+msgid "This section describes options related to the flight recorder configuration. Note that all options are :ref:`dynamic <box_cfg_params>` and can be changed at runtime."
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:77
+msgid "Logs"
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:79
+msgid "This section describes the flight recorder settings related to :ref:`logging <cfg_logging-log>`. For example, you can configure a more detailed logging level in the flight recorder for deeper analysis."
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:82
+msgid ":ref:`flightrec_logs_size <cfg_flightrec_logs_size>`"
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:83
+msgid ":ref:`flightrec_logs_max_msg_size <cfg_flightrec_logs_max_msg_size>`"
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:84
+msgid ":ref:`flightrec_logs_log_level <cfg_flightrec_logs_log_level>`"
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:90
+msgid "Specifies the size (in bytes) of the log storage. You can set this option to ``0`` to disable the log storage."
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:93
+#: ../../doc/enterprise/flight_recorder.rst:105
+#: ../../doc/enterprise/flight_recorder.rst:120
+#: ../../doc/enterprise/flight_recorder.rst:144
+#: ../../doc/enterprise/flight_recorder.rst:191
+#: ../../doc/enterprise/flight_recorder.rst:204
+#: ../../doc/enterprise/flight_recorder.rst:216
+msgid "Type: integer"
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:94
+#: ../../doc/enterprise/flight_recorder.rst:192
+msgid "Default: 10485760"
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:95
+msgid "Environment variable: TT_FLIGHTREC_LOGS_SIZE"
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:102
+msgid "Specifies the maximum size (in bytes) of the log message. The log message is truncated if its size exceeds this limit."
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:106
+msgid "Default: 4096"
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:107
+msgid "Maximum: 16384"
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:108
+msgid "Environment variable: TT_FLIGHTREC_LOGS_MAX_MSG_SIZE"
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:115
+msgid "Specifies the level of detail the log has. You can learn more about log levels from the :ref:`log_level <cfg_logging-log_level>` option description. Note that the ``flightrec_logs_log_level`` value might differ from ``log_level``."
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:121
+msgid "Default: 6"
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:122
+msgid "Environment variable: TT_FLIGHTREC_LOGS_LOG_LEVEL"
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:128
+msgid "Metrics"
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:130
+msgid "This section describes the flight recorder settings related to collecting :ref:`metrics <metrics-reference>`."
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:133
+msgid ":ref:`flightrec_metrics_period <cfg_flightrec_metrics_period>`"
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:134
+msgid ":ref:`flightrec_metrics_interval <cfg_flightrec_metrics_interval>`"
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:140
+msgid "Specifies the time period (in seconds) that defines how long metrics are stored from the moment of dump. So, this value defines how much historical metrics data is collected up to the moment of crash. The frequency of metric dumps is defined by :ref:`flightrec_metrics_interval <cfg_flightrec_metrics_interval>`."
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:145
+msgid "Default: 180"
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:146
+msgid "Environment variable: TT_FLIGHTREC_METRICS_PERIOD"
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:153
+msgid "Specifies the time interval (in seconds) that defines the frequency of dumping metrics. This value shouldn't exceed :ref:`flightrec_metrics_period <cfg_flightrec_metrics_period>`."
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:156
+msgid "Type: number"
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:157
+msgid "Default: 1.0"
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:158
+msgid "Minimum: 0.001"
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:159
+msgid "Environment variable: TT_FLIGHTREC_METRICS_INTERVAL"
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:163
+msgid "Given that the average size of a metrics entry is 2 kB, you can estimate the size of the metrics storage as follows:"
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:166
+msgid "(flightrec_metrics_period / flightrec_metrics_interval) * 2 kB"
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:175
+msgid "Requests"
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:177
+msgid "This section lists the flight recorder settings related to storing the :ref:`request and response <internals-requests_responses>` data."
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:180
+msgid ":ref:`flightrec_requests_size <cfg_flightrec_requests_size>`"
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:181
+msgid ":ref:`flightrec_requests_max_req_size <cfg_flightrec_requests_max_req_size>`"
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:182
+msgid ":ref:`flightrec_requests_max_res_size <cfg_flightrec_requests_max_res_size>`"
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:188
+msgid "Specifies the size (in bytes) of storage for the request and response data. You can set this parameter to ``0`` to disable a storage of requests and responses."
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:193
+msgid "Environment variable: TT_FLIGHTREC_REQUESTS_SIZE"
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:201
+msgid "Specifies the maximum size (in bytes) of a request entry. A request entry is truncated if this size is exceeded."
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:205
+#: ../../doc/enterprise/flight_recorder.rst:217
+msgid "Default: 16384"
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:206
+msgid "Environment variable: TT_FLIGHTREC_REQUESTS_MAX_REQ_SIZE"
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:213
+msgid "Specifies the maximum size (in bytes) of a response entry. A response entry is truncated if this size is exceeded."
+msgstr ""
+
+#: ../../doc/enterprise/flight_recorder.rst:218
+msgid "Environment variable: TT_FLIGHTREC_REQUESTS_MAX_RES_SIZE"
+msgstr ""

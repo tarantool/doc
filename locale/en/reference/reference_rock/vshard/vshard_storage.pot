@@ -1,0 +1,609 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:2
+msgid "Storage API"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:12
+msgid ":ref:`Storage public API <vshard-storage_public_api>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:12
+msgid ":ref:`vshard.storage.cfg(cfg, instance_uuid) <storage_api-cfg>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:13
+msgid ":ref:`vshard.storage.info({options}) <storage_api-info>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:14
+msgid ":ref:`vshard.storage.call(bucket_id, mode, function_name, {argument_list}) <storage_api-call>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:15
+msgid ":ref:`vshard.storage.sync(timeout) <storage_api-sync>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:16
+msgid ":ref:`vshard.storage.bucket_pin(bucket_id) <storage_api-bucket_pin>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:17
+msgid ":ref:`vshard.storage.bucket_unpin(bucket_id) <storage_api-bucket_unpin>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:18
+msgid ":ref:`vshard.storage.bucket_ref(bucket_id, mode) <storage_api-bucket_ref>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:19
+msgid ":ref:`vshard.storage.bucket_refro(bucket_id) <storage_api-bucket_refro>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:20
+msgid ":ref:`vshard.storage.bucket_refrw(bucket_id) <storage_api-bucket_refrw>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:21
+msgid ":ref:`vshard.storage.bucket_unref(bucket_id, mode) <storage_api-bucket_unref>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:22
+msgid ":ref:`vshard.storage.bucket_unrefro(bucket_id) <storage_api-bucket_unrefro>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:23
+msgid ":ref:`vshard.storage.bucket_unrefrw(bucket_id) <storage_api-bucket_unrefrw>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:24
+msgid ":ref:`vshard.storage.find_garbage_bucket(bucket_index, control) <storage_api-find_garbage_bucket>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:25
+msgid ":ref:`vshard.storage.rebalancer_disable() <storage_api-rebalancer_disable>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:26
+msgid ":ref:`vshard.storage.rebalancer_enable() <storage_api-rebalancer_enable>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:27
+msgid ":ref:`vshard.storage.is_locked() <storage_api-is_locked>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:28
+msgid ":ref:`vshard.storage.rebalancing_is_in_progress() <storage_api-rebalancing_is_in_progress>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:29
+msgid ":ref:`vshard.storage.buckets_info() <storage_api-buckets_info>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:30
+msgid ":ref:`vshard.storage.buckets_count() <storage_api-buckets_count>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:31
+msgid ":ref:`vshard.storage.sharded_spaces() <storage_api-sharded_spaces>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:32
+msgid ":ref:`vshard.storage.on_bucket_event() <storage_api-on_bucket_event>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:34
+msgid ":ref:`Storage internal API <vshard-storage_internal_api>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:34
+msgid ":ref:`vshard.storage.bucket_stat(bucket_id) <storage_api-bucket_stat>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:35
+msgid ":ref:`vshard.storage.bucket_recv(bucket_id, from, data) <storage_api-bucket_recv>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:36
+msgid ":ref:`vshard.storage.bucket_delete_garbage(bucket_id) <storage_api-bucket_delete_garbage>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:37
+msgid ":ref:`vshard.storage.bucket_collect(bucket_id) <storage_api-bucket_collect>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:38
+msgid ":ref:`vshard.storage.bucket_force_create(first_bucket_id, count) <storage_api-bucket_force_create>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:39
+msgid ":ref:`vshard.storage.bucket_force_drop(bucket_id, to) <storage_api-bucket_force_drop>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:40
+msgid ":ref:`vshard.storage.bucket_send(bucket_id, to) <storage_api-bucket_send>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:41
+msgid ":ref:`vshard.storage.buckets_discovery() <storage_api-buckets_discovery>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:42
+msgid ":ref:`vshard.storage.rebalancer_request_state() <storage_api-rebalancer_request_state>`"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:48
+msgid "Storage public API"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:54
+msgid "Configure the database and start sharding for the specified ``storage`` instance."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:0
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:0
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:0
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:0
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:0
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:0
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:0
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:0
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:0
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:0
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:0
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:0
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:0
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:0
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:0
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:0
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:0
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:0
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:0
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:0
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:57
+msgid "a ``storage`` configuration"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:58
+msgid "UUID of the instance"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:64
+msgid "Return information about the storage instance. Since vshard v.0.1.22, the function also accepts options, which can be used to get additional information."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:68
+msgid "*    ``with_services`` — a bool value. If set to ``true``, the      function returns information about the background services      (such as garbage collector, rebalancer, recovery, or applier      of the routes) that are working on the current instance. See      :ref:`vshard.router.info <router_api-info>` for detailed      reference."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:70
+msgid "``with_services`` — a bool value. If set to ``true``, the function returns information about the background services (such as garbage collector, rebalancer, recovery, or applier of the routes) that are working on the current instance. See :ref:`vshard.router.info <router_api-info>` for detailed reference."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:77
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:370
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:79
+msgid "tarantool> vshard.storage.info()\n"
+"---\n"
+"- replicasets:\n"
+"    c862545d-d966-45ff-93ad-763dce4a9723:\n"
+"      uuid: c862545d-d966-45ff-93ad-763dce4a9723\n"
+"      master:\n"
+"        uri: admin@localhost:3302\n"
+"    1990be71-f06e-4d9a-bcf9-4514c4e0c889:\n"
+"      uuid: 1990be71-f06e-4d9a-bcf9-4514c4e0c889\n"
+"      master:\n"
+"        uri: admin@localhost:3304\n"
+"  bucket:\n"
+"    receiving: 0\n"
+"    active: 15000\n"
+"    total: 15000\n"
+"    garbage: 0\n"
+"    pinned: 0\n"
+"    sending: 0\n"
+"  status: 0\n"
+"  replication:\n"
+"    status: master\n"
+"  alerts: []\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:109
+msgid "Call the specified function on the current ``storage`` instance."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:111
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:139
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:150
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:161
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:174
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:186
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:197
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:210
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:223
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:410
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:430
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:439
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:464
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:482
+msgid "a bucket identifier"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:112
+msgid "a type of the function: 'read' or 'write'"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:113
+msgid "function to execute"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:114
+msgid "array of the function's arguments"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:0
+msgid "Return"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:118
+msgid "The original return value of the executed function, or ``nil`` and error object."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:125
+msgid "Wait until the dataset is synchronized on replicas."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:127
+msgid "a timeout, in seconds"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:0
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:0
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:0
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:0
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:0
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:0
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:0
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:0
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:0
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:0
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:0
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:129
+msgid "``true`` if the dataset was synchronized successfully; or ``nil`` and ``err`` explaining why the dataset cannot be synchronized."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:136
+msgid "Pin a bucket to a replica set. A pinned bucket cannot be moved even if it breaks the cluster balance."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:141
+msgid "``true`` if the bucket is pinned successfully; or ``nil`` and ``err`` explaining why the bucket cannot be pinned"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:148
+msgid "Return a pinned bucket back into the active state."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:152
+msgid "``true`` if the bucket is unpinned successfully; or ``nil`` and ``err`` explaining why the bucket cannot be unpinned"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:159
+msgid "Create an RO or RW :ref:`ref <vshard-ref>`."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:162
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:198
+msgid "'read' or 'write'"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:164
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:176
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:188
+msgid "``true`` if the bucket ref is created successfully; or ``nil`` and ``err`` explaining why the ref cannot be created"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:171
+msgid "An alias for :ref:`vshard.storage.bucket_ref <storage_api-bucket_ref>` in the RO mode."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:183
+msgid "An alias for :ref:`vshard.storage.bucket_ref <storage_api-bucket_ref>` in the RW mode."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:195
+msgid "Remove a RO/RW :ref:`ref <vshard-ref>`."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:200
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:212
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:225
+msgid "``true`` if the bucket ref is removed successfully; or ``nil`` and ``err`` explaining why the ref cannot be removed"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:207
+msgid "An alias for :ref:`vshard.storage.bucket_unref <storage_api-bucket_unref>` in the RO mode."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:220
+msgid "An alias for :ref:`vshard.storage.bucket_unref <storage_api-bucket_unref>` in the RW mode."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:233
+msgid "Find a bucket which has data in a space but is not stored in a ``_bucket`` space; or is in a GARBAGE state."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:236
+msgid "index of a space with the part of a bucket id"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:237
+msgid "a garbage collector controller. If there is an increased buckets generation, then the search should be interrupted."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:240
+msgid "an identifier of the bucket in the garbage state, if found; otherwise, nil"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:247
+msgid "Return information about each bucket located in storage. For example:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:249
+msgid "tarantool> vshard.storage.buckets_info(1)\n"
+"---\n"
+"- 1:\n"
+"    status: active\n"
+"    ref_rw: 1\n"
+"    ref_ro: 1\n"
+"    ro_lock: true\n"
+"    rw_lock: true\n"
+"    id: 1"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:265
+msgid "Return the number of buckets located in storage."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:271
+msgid "Immediately wake up a recovery fiber, if it exists."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:277
+msgid "Return a flag indicating whether rebalancing is in progress. The result is true if the node is currently applying routes received from a rebalancer node in the special fiber."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:285
+msgid "Return a flag indicating whether storage is invisible to the rebalancer."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:291
+msgid "Disable rebalancing. A disabled rebalancer sleeps until it is enabled again with vshard.storage.rebalancer_enable()."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:298
+msgid "Enable rebalancing."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:304
+msgid "Show the spaces that are visible to rebalancer and garbage collector fibers."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:306
+msgid "tarantool> vshard.storage.sharded_spaces()\n"
+"---\n"
+"- 513:\n"
+"    engine: memtx\n"
+"    before_replace: 'function: 0x010e50e738'\n"
+"    field_count: 0\n"
+"    id: 513\n"
+"    on_replace: 'function: 0x010e50e700'\n"
+"    temporary: false\n"
+"    index:\n"
+"      0: &0\n"
+"        unique: true\n"
+"        parts:\n"
+"        - type: number\n"
+"          fieldno: 1\n"
+"          is_nullable: false\n"
+"        id: 0\n"
+"        type: TREE\n"
+"        name: primary\n"
+"        space_id: 513\n"
+"      1: &1\n"
+"        unique: false\n"
+"        parts:\n"
+"        - type: number\n"
+"          fieldno: 2\n"
+"          is_nullable: false\n"
+"        id: 1\n"
+"        type: TREE\n"
+"        name: bucket_id\n"
+"        space_id: 513\n"
+"      primary: *0\n"
+"      bucket_id: *1\n"
+"    is_local: false\n"
+"    enabled: true\n"
+"    name: actors\n"
+"    ck_constraint: []\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:350
+msgid "Since vshard v.0.1.22. Define a trigger for execution when the data from the user spaces is changed (deleted or inserted) due to the rebalancing process. The trigger is invoked each time the data batch changes."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:354
+msgid "function which will become the trigger function."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:355
+msgid "existing trigger function which will be replaced by trigger-function."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:358
+msgid "nil or function pointer"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:360
+msgid "The ``trigger-function`` can have up to three parameters:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:362
+msgid "``event_type`` (string) -- in order to distinguish event, you can compare this argument with the supported event types, ``bucket_data_recv_txn`` and ``bucket_data_gc_txn``."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:365
+msgid "``bucket_id`` (unsigned) -- bucket id."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:366
+msgid "``data`` (table) -- additional information about data change transaction. Currently it only includes an array of all spaces (``data.spaces``), affected by a transaction in which trigger-function is executed."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:372
+msgid "vshard.storage.on_bucket_event(function(event, bucket_id, data)\n"
+"    if event == 'bucket_data_recv_txn' then\n"
+"        -- Handle it.\n"
+"        for idx, space in ipairs(data.spaces) do\n"
+"            ...\n"
+"        end\n"
+"    elseif event == 'bucket_data_gc_txn' then\n"
+"        -- Handle it.\n"
+"        ...\n"
+"    end\n"
+"end)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:388
+msgid "As everything executed inside triggers is already in a transaction, you shouldn't use transactions, yield-operations (:ref:`explicit <app-yields>` or not), changes to different space engines (see :ref:`rule #2 <box-txn_management>`)."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:392
+msgid "If the parameters are ``(nil, old-trigger-function)``, then the old trigger is deleted. If both parameters are omitted, then the response is a list of existing trigger functions."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:396
+msgid "Details about trigger characteristics are in the :ref:`triggers <triggers-box_triggers>` section."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:402
+msgid "Storage internal API"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:408
+msgid "Receive a bucket identified by bucket id from a remote replica set."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:411
+msgid "UUID of source replica set"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:412
+msgid "data logically stored in a bucket identified by bucket_id, in the same format as the return value from ``bucket_collect() <storage_api-bucket_collect>``"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:419
+msgid "Return information about the bucket id:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:421
+msgid "tarantool> vshard.storage.bucket_stat(1)\n"
+"---\n"
+"- 0\n"
+"- status: active\n"
+"  id: 1\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:436
+msgid "Force garbage collection for the bucket identified by bucket_id in case the bucket was transferred to a different replica set."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:445
+msgid "Collect all the data that is logically stored in the bucket identified by bucket_id:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:447
+msgid "tarantool> vshard.storage.bucket_collect(1)\n"
+"---\n"
+"- 0\n"
+"- - - 514\n"
+"    - - [10, 1, 1, 100, 'Account 10']\n"
+"      - [11, 1, 1, 100, 'Account 11']\n"
+"      - [12, 1, 1, 100, 'Account 12']\n"
+"      - [50, 5, 1, 100, 'Account 50']\n"
+"      - [51, 5, 1, 100, 'Account 51']\n"
+"      - [52, 5, 1, 100, 'Account 52']\n"
+"  - - 513\n"
+"    - - [1, 1, 'Customer 1']\n"
+"      - [5, 1, 'Customer 5']\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:470
+msgid "Force creation of the buckets (single or multiple) on the current replica set. Use only for manual emergency recovery or for initial bootstrap."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:473
+msgid "an identifier of the first bucket in a range"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:474
+msgid "the number of buckets to insert (default = 1)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:480
+msgid "Drop a bucket manually for tests or emergency cases."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:488
+msgid "Send a specified bucket from the current replica set to a remote replica set."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:490
+msgid "bucket identifier"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:491
+msgid "UUID of a remote replica set"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:497
+msgid "Check all buckets of the host storage that have the SENT or ACTIVE state, return the number of active buckets."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:500
+msgid "the number of buckets in the active state, if found; otherwise, nil"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/vshard/vshard_storage.rst:506
+msgid "Collect an array of active bucket identifiers for discovery."
+msgstr ""

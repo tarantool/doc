@@ -1,0 +1,62 @@
+credentials:
+  users:
+    {{.replicator_user_name}}:
+      password: '{{.replicator_user_password}}'
+      roles: [replication]
+    {{.sharding_user_name}}:
+      password: '{{.sharding_user_password}}'
+      roles: [sharding]
+
+iproto:
+  advertise:
+    peer:
+      login: {{.replicator_user_name}}
+    sharding:
+      login: {{.sharding_user_name}}
+
+sharding:
+  bucket_count: {{.sharding_bucket_count}}
+
+groups:
+  storages:
+    app:
+      module: storage
+    sharding:
+      roles: [storage]
+    replication:
+      failover: manual
+    replicasets:
+      storage-a:
+        leader: storage-a-001
+        instances:
+          storage-a-001:
+            iproto:
+              listen:
+              - uri: '{{.listen_uri}}:3301'
+          storage-a-002:
+            iproto:
+              listen:
+              - uri: '{{.listen_uri}}:3302'
+      storage-b:
+        leader: storage-b-001
+        instances:
+          storage-b-001:
+            iproto:
+              listen:
+              - uri: '{{.listen_uri}}:3303'
+          storage-b-002:
+            iproto:
+              listen:
+              - uri: '{{.listen_uri}}:3304'
+  routers:
+    app:
+      module: router
+    sharding:
+      roles: [router]
+    replicasets:
+      router-a:
+        instances:
+          router-a-001:
+            iproto:
+              listen:
+              - uri: '{{.listen_uri}}:3300'

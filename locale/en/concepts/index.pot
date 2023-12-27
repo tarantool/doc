@@ -1,0 +1,157 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/concepts/index.rst:6
+msgid "Concepts"
+msgstr ""
+
+#: ../../doc/concepts/index.rst:9
+msgid "Data model"
+msgstr ""
+
+#: ../../doc/concepts/index.rst:11
+msgid "Tarantool is a NoSQL database. It stores data in :ref:`spaces <index-box_space>`, which can be thought of as tables in a relational database, and :ref:`tuples <index-box_tuple>`, which are analogous to rows. There are six basic :ref:`data operations <index-box_operations>` in Tarantool."
+msgstr ""
+
+#: ../../doc/concepts/index.rst:15
+msgid "The platform allows :ref:`describing the data schema <index-box-data_schema_description>` but does not require it."
+msgstr ""
+
+#: ../../doc/concepts/index.rst:17
+msgid "Tarantool supports highly customizable :ref:`indexes <index-box_index>` of various types."
+msgstr ""
+
+#: ../../doc/concepts/index.rst:19
+msgid "To ensure :ref:`data persistence <index-box_persistence>` and recover quickly in case of failure, Tarantool uses mechanisms like the write-ahead log (WAL) and snapshots."
+msgstr ""
+
+#: ../../doc/concepts/index.rst:22
+msgid "For details, check the :ref:`Data model <box_data_model>` page."
+msgstr ""
+
+#: ../../doc/concepts/index.rst:25
+msgid "Fibers and cooperative multitasking"
+msgstr ""
+
+#: ../../doc/concepts/index.rst:27
+msgid "Tarantool executes code in :ref:`fibers <concepts-coop_multitasking>` that are managed via :ref:`cooperative multitasking <concepts-coop_multitasking>`. Learn more about Tarantool's :ref:`thread model <thread_model>`."
+msgstr ""
+
+#: ../../doc/concepts/index.rst:31
+msgid "For details, check the page :ref:`Fibers, yields, and cooperative multitasking <concepts-coop_multitasking>`."
+msgstr ""
+
+#: ../../doc/concepts/index.rst:34
+msgid "Transactions"
+msgstr ""
+
+#: ../../doc/concepts/index.rst:36
+msgid "Tarantool's ACID-compliant :ref:`transaction model <atomic-atomic_execution>` lets the user choose between two modes of transactions."
+msgstr ""
+
+#: ../../doc/concepts/index.rst:39
+msgid "The :ref:`default mode <txn_mode-default>` allows for fast monopolistic atomic transactions. It doesn't support interactive transactions, and in case of an error, all transaction changes are rolled back."
+msgstr ""
+
+#: ../../doc/concepts/index.rst:42
+msgid "The :ref:`MVCC mode <txn_mode_transaction-manager>` relies on a multi-version concurrency control engine that allows yielding within a longer transaction. This mode only works with the default in-memory :ref:`memtx <engines-chapter>` storage engine."
+msgstr ""
+
+#: ../../doc/concepts/index.rst:46
+msgid "For details, check the :ref:`Transactions <atomic-atomic_execution>` page."
+msgstr ""
+
+#: ../../doc/concepts/index.rst:51
+msgid "Application server"
+msgstr ""
+
+#: ../../doc/concepts/index.rst:53
+msgid "Using Tarantool as an application server, you can write applications in Lua, C, or C++. You can also create reusable :ref:`modules <concepts-modules>`."
+msgstr ""
+
+#: ../../doc/concepts/index.rst:56
+msgid "To increase the speed of code execution, Tarantool has a Lua Just-In-Time compiler (LuaJIT) on board. LuaJIT compiles hot paths in the code -- paths that are used many times -- thus making the application work faster. To enable developers to work with LuaJIT, Tarantool provides tools like the :ref:`memory profiler <luajit_memprof>` and the :ref:`getmetrics <luajit_getmetrics>` module."
+msgstr ""
+
+#: ../../doc/concepts/index.rst:62
+msgid "For details on Tarantool's modular structure, check the :ref:`Modules <concepts-modules>` page."
+msgstr ""
+
+#: ../../doc/concepts/index.rst:64
+msgid "To learn how to use Tarantool as an application server, refer to the :ref:`guides <how-to-app-server>` in the How-to section."
+msgstr ""
+
+#: ../../doc/concepts/index.rst:67
+msgid "Sharding"
+msgstr ""
+
+#: ../../doc/concepts/index.rst:69
+msgid "Tarantool implements database sharding via the ``vshard`` module. For details, go to the :ref:`Sharding <sharding>` page."
+msgstr ""
+
+#: ../../doc/concepts/index.rst:73
+msgid "Triggers"
+msgstr ""
+
+#: ../../doc/concepts/index.rst:75
+msgid "Tarantool allows specifying callback functions that run upon certain database events. They can be useful for resolving replication conflicts. For details, go to the :ref:`Triggers <triggers>` page."
+msgstr ""
+
+#: ../../doc/concepts/index.rst:80
+msgid "Replication"
+msgstr ""
+
+#: ../../doc/concepts/index.rst:82
+msgid "Replication allows keeping the data in copies of the same database for better reliability."
+msgstr ""
+
+#: ../../doc/concepts/index.rst:84
+msgid "Several Tarantool instances can be organized in a replica set. They communicate and transfer data via the :ref:`iproto <box_protocol-iproto_protocol>` binary protocol. Learn more about Tarantool's :ref:`replication architecture <replication-architecture>`."
+msgstr ""
+
+#: ../../doc/concepts/index.rst:88
+msgid "By default, replication in Tarantool is asynchronous. A transaction committed locally on the master node may not get replicated onto other instances before the client receives a success response. Thus, if the master reports success and then dies, the client might not see the result of the transaction."
+msgstr ""
+
+#: ../../doc/concepts/index.rst:93
+msgid "With :ref:`synchronous replication <repl_sync>`, transactions on the master node are not considered committed or successful before they are replicated onto a number of instances. This is slower, but more reliable. Synchronous replication in Tarantool is based on an :ref:`implementation of the RAFT algorithm <repl_leader_elect>`."
+msgstr ""
+
+#: ../../doc/concepts/index.rst:97
+msgid "For details, check the :ref:`Replication <replication>` section."
+msgstr ""
+
+#: ../../doc/concepts/index.rst:100
+msgid "Storage engines"
+msgstr ""
+
+#: ../../doc/concepts/index.rst:102
+msgid "A storage engine is a set of low-level routines that store and retrieve values. Tarantool offers a choice of two storage engines:"
+msgstr ""
+
+#: ../../doc/concepts/index.rst:105
+msgid ":ref:`memtx <engines-memtx>` is the in-memory storage engine used by default."
+msgstr ""
+
+#: ../../doc/concepts/index.rst:106
+msgid ":ref:`vinyl <engines-vinyl>` is the on-disk storage engine."
+msgstr ""
+
+#: ../../doc/concepts/index.rst:108
+msgid "For details, check the :ref:`Storage engines <engines-chapter>` section."
+msgstr ""

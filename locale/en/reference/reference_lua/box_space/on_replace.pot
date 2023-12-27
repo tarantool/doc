@@ -1,0 +1,165 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_space/on_replace.rst:5
+msgid "space_object:on_replace()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/on_replace.rst:11
+msgid "Create a \"replace :ref:`trigger <triggers>`\". The ``trigger-function`` will be executed whenever a ``replace()`` or ``insert()`` or ``update()`` or ``upsert()`` or ``delete()`` happens to a tuple in ``<space-name>``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/on_replace.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/on_replace.rst:16
+msgid "function which will become the trigger function; see Example 2 below for details about trigger function parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/on_replace.rst:20
+msgid "existing trigger function which will be replaced by ``trigger-function``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/on_replace.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/on_replace.rst:23
+msgid "nil or function pointer"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/on_replace.rst:25
+msgid "If the parameters are ``(nil, old-trigger-function)``, then the old trigger is deleted."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/on_replace.rst:28
+msgid "If both parameters are omitted, then the response is a list of existing trigger functions."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/on_replace.rst:31
+msgid "If it is necessary to know whether the trigger activation happened due to replication or on a specific connection type, the function can refer to :doc:`/reference/reference_lua/box_session/type`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/on_replace.rst:35
+msgid "Details about trigger characteristics are in the :ref:`triggers <triggers-box_triggers>` section."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/on_replace.rst:38
+msgid "See also :doc:`/reference/reference_lua/box_space/before_replace`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/on_replace.rst:40
+msgid "**Example 1:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/on_replace.rst:42
+msgid "tarantool> x = 0\n"
+"         > function f ()\n"
+"         >   x = x + 1\n"
+"         > end\n"
+"tarantool> box.space.my_space_name:on_replace(f)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/on_replace.rst:50
+msgid "**Example 2:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/on_replace.rst:52
+msgid "The ``trigger-function`` can have up to four parameters:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/on_replace.rst:54
+msgid "(tuple) old value which has the contents before the request started,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/on_replace.rst:55
+msgid "(tuple) new value which has the contents after the request ended,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/on_replace.rst:56
+msgid "(string) space name,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/on_replace.rst:57
+msgid "(string) type of request which is ``INSERT``, ``DELETE``, ``UPDATE``, or ``REPLACE``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/on_replace.rst:60
+msgid "For example, the following code causes ``nil`` and ``INSERT`` to be printed when the insert request is processed and causes ``[1, 'Hi']`` and ``DELETE`` to be printed when the delete request is processed:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/on_replace.rst:65
+msgid "box.schema.space.create('space_1')\n"
+"box.space.space_1:create_index('space_1_index',{})\n"
+"function on_replace_function (old, new, s, op) print(old) print(op) end\n"
+"box.space.space_1:on_replace(on_replace_function)\n"
+"box.space.space_1:insert{1,'Hi'}\n"
+"box.space.space_1:delete{1}"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/on_replace.rst:74
+msgid "**Example 3:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/on_replace.rst:76
+msgid "The following series of requests will create a space, create an index, create a function which increments a counter, create a trigger, do two inserts, drop the space, and display the counter value - which is 2, because the function is executed once after each insert."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/on_replace.rst:81
+msgid "tarantool> s = box.schema.space.create('space53')\n"
+"tarantool> s:create_index('primary', {parts = {{field = 1, type = 'unsigned'}}})\n"
+"tarantool> function replace_trigger()\n"
+"         >   replace_counter = replace_counter + 1\n"
+"         > end\n"
+"tarantool> s:on_replace(replace_trigger)\n"
+"tarantool> replace_counter = 0\n"
+"tarantool> t = s:insert{1, 'First replace'}\n"
+"tarantool> t = s:insert{2, 'Second replace'}\n"
+"tarantool> s:drop()\n"
+"tarantool> replace_counter"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/on_replace.rst:97
+msgid "As everything executed inside triggers is already in a transaction, you shouldn't use in trigger-functions for ``on_replace`` and ``before_replace``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/on_replace.rst:101
+msgid "transactions,"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/on_replace.rst:102
+msgid "yield-operations (:ref:`explicit <app-yields>` or not),"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/on_replace.rst:103
+msgid "actions that are not allowed to be used in transactions (see :ref:`rule #2 <box-txn_management>`)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/on_replace.rst:108
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_space/on_replace.rst:110
+msgid "tarantool> box.space.test:on_replace(fiber.yield)\n"
+"tarantool> box.space.test:replace{1, 2, 3}\n"
+"2020-02-02 21:22:03.073 [73185] main/102/init.lua txn.c:532 E> ER_TRANSACTION_YIELD: Transaction has been aborted by a fiber yield\n"
+"---\n"
+"- error: Transaction has been aborted by a fiber yield\n"
+"..."
+msgstr ""

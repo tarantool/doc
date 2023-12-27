@@ -1,0 +1,655 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-15 07:52+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:4
+msgid "Access control"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/index.rst:3
+msgid "Enterprise Edition"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/index.rst:6
+msgid "|tcm_full_name| is a part of the `Enterprise Edition <https://www.tarantool.io/compare/>`_."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:10
+msgid "|tcm_full_name| features a role-based access control system. It enables flexible management of access to |tcm| functions, connected clusters, and stored data. The |tcm| access system uses three main entities: permissions, roles, and users (or user accounts). They work as follows:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:15
+msgid "Permissions correspond to specific functions or objects in |tcm| (*administrative permissions*) or operations on clusters (*cluster permissions*)."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:17
+msgid "Roles are predefined sets of *administrative* permissions to assign to users."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:19
+msgid "Users have roles that define their access rights to |tcm| functions and objects, and *cluster* permissions that are assigned for each cluster separately."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:24
+msgid "|tcm| users, roles, and permissions are not to be confused with similar subjects of the :ref:`Tarantool access control system <authentication>`. To access Tarantool instances directly, Tarantool users with corresponding roles are required."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:31
+msgid "Permissions"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:33
+msgid "Permissions define access to specific actions that users can do in |tcm|. For example, there are permissions to view connected clusters or to manage users."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:36
+msgid "There are two types of permissions in |tcm|: *administrative* and *cluster* permissions."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:38
+msgid "*Administrative permissions* provide access to |tcm| functions. They define which pages and controls are available to users in the web UI. Typically, *read* permissions define pages shown in the left menu. *Write* permissions define the availability of controls for managing objects on the pages. For example, users with read permission to clusters can view the **Clusters** page but they don't see **Add**, **Edit**, or **Remove** buttons unless they have the write permission."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:46
+msgid "Administrative permissions are assigned to users through :ref:`roles <tcm_access_control_roles>`."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:48
+msgid "*Cluster permissions* enable actions with connected Tarantool clusters. These permissions are granted to users on a per-cluster level: each user has a separate set of permissions for each cluster."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:52
+msgid "Cluster permissions define which pages of the **Cluster** menu section users see and what actions they can take on these pages. For example, users with the read configuration permission to a cluster configuration see the **Configuration** page when this cluster is selected."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:57
+msgid "Cluster permissions are assigned to users individually when creating or editing them."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:59
+msgid "Permissions are predefined in |tcm|, there is no way to change, add, or delete them. The complete lists of administrative and cluster permissions in |tcm| are provided in the :ref:`Permissions reference <tcm_access_control_permissions_ref>`."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:66
+msgid "Roles"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:68
+msgid "Roles are groups of :ref:`administrative permissions <tcm_access_control_permissions>` that are assigned to users together."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:71
+msgid "The assigned roles define pages that users see in |tcm| and actions available on these pages."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:76
+msgid "Roles don't include cluster permissions. Access to connected clusters is configured for each user individually."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:80
+msgid "Default roles"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:82
+msgid "|tcm| comes with default roles that cover three common usage scenarios:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:84
+msgid "**Super Admin Role** is a default role with all available :ref:`administrative permissions <tcm_access_control_permissions_admin>`. Additionally, the users with this role automatically gain all :ref:`cluster permissions <tcm_access_control_permissions_cluster>` to all clusters."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:89
+msgid "**Cluster Admin Role** is a default role for cluster administration. It includes administrative permissions for cluster management."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:91
+msgid "**Default User Role** is a default role for working with clusters. It includes basic administrative *read* permissions that are required to log in to |tcm| and navigate to a cluster."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:96
+msgid "Managing roles"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:98
+msgid "Administrators can create new roles, edit, and delete existing ones."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:100
+msgid "Roles are listed on the **Roles** page."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:102
+msgid "To create a new role, click **Add**, enter the role name, and select the permissions to include in the role."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:105
+msgid "To edit an existing role, click **Edit** in the **Actions** menu of the corresponding table row."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:108
+msgid "To delete a role, click **Delete** in the **Actions** menu of the corresponding table row."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:113
+msgid "You can delete a role only if there are no users with this role."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:116
+msgid "Users"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:118
+msgid "|tcm| users gain access to objects and actions through assigned :ref:`roles <tcm_access_control_roles>` and :ref:`cluster permissions <tcm_access_control_permissions>`."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:121
+msgid "A user can have any number of roles or none of them. Users without roles have access only to clusters that are assigned to them."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:124
+msgid "|tcm| uses password authentication for users. For information on password management, see the :ref:`Passwords <tcm_access_control_password>` section below."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:128
+msgid "Default admin"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:130
+msgid "There is one default user **Default Admin**. It has all the available permissions, both administrative and cluster ones. When new clusters are added in |tcm|, **Default Admin** automatically receives all cluster permissions for them as well."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:137
+msgid "Managing users"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:139
+msgid "Administrators can create new users, edit, and delete existing ones."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:141
+msgid "The tools for managing users are located on the **Users** page."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:143
+msgid "To create a user:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:145
+msgid "Click **Add**."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:146
+msgid "Fill in the user information: username, full name, and description."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:147
+msgid "Generate or type in a password."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:148
+msgid "Select roles to assign to the user."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:149
+msgid "Add clusters to give the user access to, and select cluster permissions for each of them."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:152
+msgid "To edit a  user, click **Edit** in the **Actions** menu of the corresponding table row."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:154
+msgid "To delete a user, click **Delete**  in the **Actions** menu of the corresponding table row."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:159
+msgid "Passwords"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:161
+msgid "|tcm| uses the general term *secret* for user authentication keys. A secret is any pair of a public and a private key that can be used for authentication. In |tcm| |tcm_version|, *password* is the only supported secret type. In this case, the public key is a username, and the private key is a password."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:166
+msgid "Users receive their first passwords during their :ref:`account creation <tcm_access_control_users_manage>`."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:168
+msgid "All passwords are governed by the :ref:`password policy <tcm_access_control_password_policy>`. It can be flexibly configured to follow the security requirements of your organization."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:172
+msgid "Changing your password"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:174
+msgid "To change your own password, click your name in the top-right corner and go to **Settings** > **Change password**."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:178
+msgid "Changing users' passwords"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:180
+msgid "Administrators can manage a user's password on this user's **Secrets** page. To open it, click **Secrets** in the **Actions** menu of the corresponding **Users** table row."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:183
+msgid "To change a user's password, click **Edit** in the **Actions** menu of the corresponding **Secrets** table row and enter the new password in the **New secret key** field."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:189
+msgid "Password expiry"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:191
+msgid "Passwords expire automatically after the expiration period defined in the :ref:`password policy <tcm_access_control_password_policy>`. When a user logs in to |tcm| with an expired password, the only action available to them is a password change. All other |tcm| functions and objects are unavailable until the new password is set."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:196
+msgid "Administrators can also set users' passwords to expired manually. To set a user's password to expired, click **Expire** in the **Actions** menu of the corresponding **Secrets** table row."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:202
+msgid "Password expiration can't be reverted."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:205
+msgid "Blocking passwords"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:207
+msgid "To forbid users' access to |tcm|, administrators can temporarily block their passwords. A blocked password can't be used to log into |tcm| until it's unblocked manually or the blocking period expires."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:211
+msgid "To block a user's password, click **Block** in the **Actions** menu of the corresponding **Secrets** table row. Then provide a blocking reason and enter the blocking period."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:214
+msgid "To unblock a blocked password, click **Unblock** in the **Actions** menu of the corresponding **Secrets** table row."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:220
+msgid "Password policy"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:222
+msgid "Password policy helps improve security and comply with security requirements that can apply to your organization."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:225
+msgid "You can edit the |tcm| password policy on the **Password policy** page. There are the following password policy settings:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:228
+msgid "**Minimal password length**."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:229
+msgid "**Do not use last N passwords**."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:230
+msgid "**Password expiration in days**. Users' passwords :ref:`expire <tcm_access_control_password_expiry>` after this number of days since they were set. Users with expired passwords lose access to any objects and functions except password change until they set a new password."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:234
+msgid "**Password expiration warning in days**. After this number of days, the user sees a warning that their password expires soon."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:236
+msgid "**Block after N login attempts**. Temporarily block users if they enter their username or password incorrectly this number of times consecutively."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:238
+msgid "**User lockout time in seconds**. The time interval for which users can't log in after spending all failed login attempts."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:240
+msgid "**Password must include**. Characters and symbols that must be present in passwords:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:242
+msgid "**Lowercase characters (a-z)**"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:243
+msgid "**Uppercase characters (A-Z)**"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:244
+msgid "**Digits (0-9)**"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:245
+msgid "**Symbols (such as !@#$%^&\\*()_+№\"':,.;=][{}`?>/.)**"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:250
+msgid "Sessions"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:252
+msgid "Administrators can view and revoke user sessions in |tcm|. All active sessions are listed on the **Sessions** page. To revoke a session, click **Revoke** in the **Actions** menu of the corresponding table row."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:256
+msgid "To revoke all sessions of a user, go to **Users** and click **Revoke all sessions** in the **Actions** menu of the corresponding table row."
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:262
+msgid "Permissions reference"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:267
+msgid "Administrative permissions"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:269
+msgid "The following administrative permissions are available in |tcm|:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:275
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:358
+msgid "Permission"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:276
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:359
+msgid "Description"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:278
+msgid "``admin.clusters.read``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:279
+msgid "View connected clusters' details"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:281
+msgid "``admin.clusters.write``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:282
+msgid "Edit cluster details and add new clusters"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:284
+msgid "``admin.users.read``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:285
+msgid "View users' details"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:287
+msgid "``admin.users.write``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:288
+msgid "Edit user details and add new users"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:290
+msgid "``admin.roles.read``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:291
+msgid "View roles' details"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:293
+msgid "``admin.roles.write``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:294
+msgid "Edit roles and add new roles"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:296
+msgid "``admin.addons.read``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:297
+msgid "View add-ons"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:299
+msgid "``admin.addons.write``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:300
+msgid "Edit add-on flags"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:302
+msgid "``admin.addons.upload``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:303
+msgid "Upload new add-ons"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:305
+msgid "``admin.auditlog.read``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:306
+msgid "View audit log configuration and read audit log in |tcm|"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:308
+msgid "``admin.auditlog.write``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:309
+msgid "Edit audit log configuration"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:311
+msgid "``admin.sessions.read``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:312
+msgid "View users' sessions"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:314
+msgid "``admin.sessions.write``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:315
+msgid "Revoke users' sessions"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:317
+msgid "``admin.ldap.read``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:318
+msgid "View LDAP configurations"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:320
+msgid "``admin.ldap.write``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:321
+msgid "Manage LDAP configurations"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:323
+msgid "``admin.passwordpolicy.read``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:324
+msgid "View password policy"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:326
+msgid "``admin.passwordpolicy.write``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:327
+msgid "Manage password policy"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:329
+msgid "``admin.devmode.toggle``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:330
+msgid "Toggle development mode"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:332
+msgid "``admin.secrets.read``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:333
+msgid "View information about users' secrets"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:335
+msgid "``admin.secrets.write``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:336
+msgid "Manage users' secrets: add, edit, expire, block, delete"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:338
+msgid "``user.password.change``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:339
+msgid "User's permission to change their own password"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:341
+msgid "``admin.lowlevel.state.read``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:342
+msgid "Read low-level information from |tcm| storage (for debug purposes)"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:344
+msgid "``admin.lowlevel.state.write``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:345
+msgid "Write low-level information to |tcm| storage (for debug purposes)"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:350
+msgid "Cluster permissions"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:352
+msgid "The following cluster permissions are available in |tcm|:"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:361
+msgid "``cluster.config.read``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:362
+msgid "View cluster configuration"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:364
+msgid "``cluster.config.write``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:365
+msgid "Manage cluster configuration"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:367
+msgid "``cluster.stateboard.read``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:368
+msgid "View cluster stateboard"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:370
+msgid "``cluster.explorer.read``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:371
+msgid "Read data from cluster instances"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:373
+msgid "``cluster.explorer.write``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:374
+msgid "Write data to cluster instances"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:376
+msgid "``cluster.explorer.call``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:377
+msgid "Execute stored functions on cluster instances"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:379
+msgid "``cluster.explorer.eval``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:380
+msgid "Execute code on cluster instances"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:382
+msgid "``cluster.space.read``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:383
+msgid "Read cluster data schema"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:385
+msgid "``cluster.space.write``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:386
+msgid "Modify cluster data schema"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:388
+msgid "``cluster.lowlevel.state.read``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:389
+msgid "Read low-level information about cluster configuration (for debug purposes)"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:391
+msgid "``cluster.lowlevel.state.write``"
+msgstr ""
+
+#: ../../doc/reference/tooling/tcm/tcm_access_control.rst:392
+msgid "Write low-level information about cluster configuration (for debug purposes)"
+msgstr ""

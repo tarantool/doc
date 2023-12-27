@@ -1,0 +1,242 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-08 07:55+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/enterprise/setup.rst:5
+msgid "Setup"
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:7
+msgid "This chapter explains how to download and set up Tarantool Enterprise Edition and run a sample application provided with it."
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:14
+msgid "System requirements"
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:16
+msgid "The recommended system requirements for running Tarantool Enterprise are as follows."
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:23
+msgid "Hardware requirements"
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:25
+msgid "To fully ensure the fault tolerance of a distributed data storage system, at least **three** physical computers or virtual servers are required."
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:28
+msgid "For testing/development purposes, the system can be deployed using a smaller number of servers; however, it is not recommended to use such configurations for production."
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:35
+msgid "Software requirements"
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:37
+msgid "As host operating systems, Tarantool Enterprise Edition supports **Red Hat Enterprise Linux** and **CentOS** versions 7.5 and higher."
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:42
+msgid "Tarantool Enterprise can run on other ``systemd``-based Linux distributions but it is not tested on them and may not work as expected."
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:45
+msgid "``glibc`` 2.17-260.el7_6.6 and higher is required. Take care to check and update, if needed:"
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:48
+msgid "$ rpm -q glibc\n"
+"glibc-2.17-196.el7_4.2\n"
+"$ yum update glibc"
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:58
+msgid "Network requirements"
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:60
+msgid "Hereinafter, **\"storage servers\"** or **\"Tarantool servers\"** are the computers used to store and process data, and **\"administration server\"** is the computer used by the system operator to install and configure the product."
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:64
+msgid "The Tarantool cluster has a full mesh topology, therefore all Tarantool servers should be able to communicate and send traffic from and to TCP/UDP ports used by the cluster's instances (see ``advertise_uri: <host>:<port>`` and ``config: advertise_uri: '<host>:<port>'`` in ``/etc/tarantool/conf.d/*.yml`` for each instance). For example:"
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:70
+msgid "# /etc/tarantool/conf.d/*.yml\n"
+"\n"
+"myapp.s2-replica:\n"
+"  advertise_uri: localhost:3305 # this is a TCP/UDP port\n"
+"  http_port: 8085\n"
+"\n"
+"all:\n"
+"  ...\n"
+"  hosts:\n"
+"    storage-1:\n"
+"      config:\n"
+"        advertise_uri: 'vm1:3301' # this is a TCP/UDP port\n"
+"        http_port: 8081"
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:86
+msgid "To configure remote monitoring or to connect via the administrative console, the administration server should be able to access the following TCP ports on Tarantool servers:"
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:90
+msgid "22 to use the SSH protocol,"
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:91
+msgid "ports specified in instance configuration to monitor the HTTP-metrics."
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:93
+msgid "Additionally, it is recommended to apply the following settings for ``sysctl`` on all Tarantool servers:"
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:96
+msgid "$ # TCP KeepAlive setting\n"
+"$ sysctl -w net.ipv4.tcp_keepalive_time=60\n"
+"$ sysctl -w net.ipv4.tcp_keepalive_intvl=5\n"
+"$ sysctl -w net.ipv4.tcp_keepalive_probes=5"
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:103
+msgid "This optional setup of the Linux network stack helps speed up the troubleshooting of network connectivity when the server physically fails. To achieve maximum performance, you may also need to configure other network stack parameters that are not specific to the Tarantool DBMS. For more information, please refer to the `Network Performance Tuning Guide <https://access.redhat.com/sites/default/files/attachments/20150325_network_performance_tuning.pdf>`_ section of the RHEL7 user documentation."
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:114
+msgid "Package contents"
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:116
+msgid "The latest release packages of Tarantool Enterprise are available in the `customer zone <https://www.tarantool.io/accounts/customer_zone/packages/enterprise>`_ at Tarantool website. Please contact ``support@tarantool.io`` for access."
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:120
+msgid "Each package is distributed as a ``tar + gzip`` archive and includes the following components and features:"
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:123
+msgid "Static Tarantool binary for simplified deployment in Linux environments."
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:124
+msgid "``tt`` command-line utility that provides a unified command-line interface for managing Tarantool-based applications. See :ref:`tt-cli` for details."
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:126
+msgid "|tcm_full_name| -- a web-based interface for managing Tarantool EE clusters. See :ref:`tcm` for details."
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:128
+msgid "Selection of open and closed source modules."
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:129
+msgid "Sample application walking you through all included modules"
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:131
+msgid "Archive contents:"
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:133
+msgid "``tarantool`` is the main executable of Tarantool."
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:134
+msgid "``tt`` command-line utility."
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:135
+msgid "``tcm`` is the |tcm_full_name| executable."
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:136
+msgid "``tarantoolctl`` is the utility script for installing supplementary modules and connecting to the administrative console."
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:141
+msgid "``tarantoolctl`` is deprecated in favor of the :ref:`tt CLI utility <tt-cli>`."
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:143
+msgid "``examples/`` is the directory containing sample applications:"
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:145
+msgid "``pg_writethrough_cache/`` is an application showcasing how Tarantool can cache data written to, for example, a PostgreSQL database;"
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:147
+msgid "``ora_writebehind_cache/`` is an application showcasing how Tarantool can cache writes and queue them to, for example, an Oracle database;"
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:149
+msgid "``docker/`` is an application designed to be easily packed into a Docker container;"
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:152
+msgid "``rocks/`` is the directory containing a selection of additional open and closed source modules included in the distribution as an offline rocks repository. See the :ref:`rocks reference <enterprise-rocks>` for details."
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:155
+msgid "``templates/`` is the directory containing template files for your application development environment."
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:157
+msgid "``deprecated/`` is a set of modules that are no longer supported:"
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:159
+msgid "``vshard-zookeeper-orchestrator`` is a Python application for launching ``orchestrator``,"
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:161
+msgid "``zookeeper-scm`` files are the ZooKeeper integration modules (require ``usr/`` libraries)."
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:169
+msgid "Installation"
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:171
+msgid "The delivered ``tar + gzip`` archive should be uploaded to a server and unpacked:"
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:173
+msgid "$ tar xvf tarantool-enterprise-sdk-<version>.tar.gz"
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:177
+msgid "No further installation is required as the unpacked binaries are almost ready to go. Go to the directory with the binaries (``tarantool-enterprise``) and add them to the executable path by running the script provided by the distribution:"
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:181
+msgid "$ source ./env.sh"
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:185
+msgid "Make sure you have enough privileges to run the script and that the file is executable. Otherwise, try ``chmod`` and ``chown`` commands to adjust it."
+msgstr ""
+
+#: ../../doc/enterprise/setup.rst:188
+msgid "Next, set up your development environment as described in :ref:`the developer's guide <enterprise-app-development>`."
+msgstr ""

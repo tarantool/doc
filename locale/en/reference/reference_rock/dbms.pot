@@ -1,0 +1,691 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_rock/dbms.rst:5
+msgid "SQL DBMS Modules"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:7
+msgid "The discussion here in the reference is about incorporating and using two modules that have already been created: the \"SQL DBMS rocks\" for MySQL and PostgreSQL."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:11
+msgid "To call another DBMS from Tarantool, the essential requirements are: another DBMS, and Tarantool. The module which connects Tarantool to another DBMS may be called a \"connector\". Within the module there is a shared library which may be called a \"driver\"."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:16
+msgid "Tarantool supplies DBMS connector modules with the module manager for Lua, LuaRocks. So the connector modules may be called \"rocks\"."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:19
+msgid "The Tarantool rocks allow for connecting to SQL servers and executing SQL statements the same way that a MySQL or PostgreSQL client does. The SQL statements are visible as Lua methods. Thus Tarantool can serve as a \"MySQL Lua Connector\" or \"PostgreSQL Lua Connector\", which would be useful even if that was all Tarantool could do. But of course Tarantool is also a DBMS, so the module also is useful for any operations, such as database copying and accelerating, which work best when the application can work on both SQL and Tarantool inside the same Lua routine. The methods for connect/select/insert/etc. are similar to the ones in the :ref:`net.box <net_box-module>` module."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:30
+msgid "From a user's point of view the MySQL and PostgreSQL rocks are very similar, so the following sections -- \"MySQL Example\" and \"PostgreSQL Example\" -- contain some redundancy."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:38
+msgid "MySQL Example"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:40
+msgid "This example assumes that MySQL 5.5 or MySQL 5.6 or MySQL 5.7 has been installed. Recent MariaDB versions will also work, the MariaDB C connector is used. The package that matters most is the MySQL client developer package, typically named something like libmysqlclient-dev. The file that matters most from this package is libmysqlclient.so or a similar name. One can use ``find`` or ``whereis`` to see what directories these files are installed in."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:47
+msgid "It will be necessary to install Tarantool's MySQL driver shared library, load it, and use it to connect to a MySQL server instance. After that, one can pass any MySQL statement to the server instance and receive results, including multiple result sets."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:53
+#: ../../doc/reference/reference_rock/dbms.rst:406
+msgid "Installation"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:55
+#: ../../doc/reference/reference_rock/dbms.rst:408
+msgid "Check the instructions for `downloading and installing a binary package <http://tarantool.org/download.html>`_ that apply for the environment where Tarantool was installed. In addition to installing ``tarantool``, install ``tarantool-dev``. For example, on Ubuntu, add the line:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:61
+#: ../../doc/reference/reference_rock/dbms.rst:414
+msgid "$ sudo apt-get install tarantool-dev"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:65
+msgid "Now, for the MySQL driver shared library, there are two ways to install:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:69
+#: ../../doc/reference/reference_rock/dbms.rst:422
+msgid "With LuaRocks"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:71
+msgid "Begin by installing luarocks and making sure that tarantool is among the upstream servers, as in the instructions on `rocks.tarantool.org <https://rocks.tarantool.org/>`_, the Tarantool luarocks page. Now execute this:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:123
+msgid "luarocks install mysql [MYSQL_LIBDIR = *path*]\n"
+"                       [MYSQL_INCDIR = *path*]\n"
+"                       [--local]"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:82
+#: ../../doc/reference/reference_rock/dbms.rst:435
+msgid "For example:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:84
+msgid "$ luarocks install mysql MYSQL_LIBDIR=/usr/local/mysql/lib"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:90
+#: ../../doc/reference/reference_rock/dbms.rst:443
+msgid "With GitHub"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:92
+msgid "Go the site `github.com/tarantool/mysql <https://github.com/tarantool/mysql>`_. Follow the instructions there, saying:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:94
+msgid "$ git clone https://github.com/tarantool/mysql.git\n"
+"$ cd mysql && cmake . -DCMAKE_BUILD_TYPE=RelWithDebInfo\n"
+"$ make\n"
+"$ make install"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:101
+#: ../../doc/reference/reference_rock/dbms.rst:454
+msgid "At this point it is a good idea to check that the installation produced a file named ``driver.so``, and to check that this file is on a directory that is searched by the ``require`` request."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:107
+#: ../../doc/reference/reference_rock/dbms.rst:460
+msgid "Connecting"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:109
+msgid "Begin by making a ``require`` request for the mysql driver. We will assume that the name is ``mysql`` in further examples."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:112
+msgid "mysql = require('mysql')"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:116
+#: ../../doc/reference/reference_rock/dbms.rst:469
+msgid "Now, say:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:166
+msgid "*connection_name* = mysql.connect(*connection options*)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:123
+#: ../../doc/reference/reference_rock/dbms.rst:476
+msgid "The connection-options parameter is a table. Possible options are:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:125
+#: ../../doc/reference/reference_rock/dbms.rst:478
+msgid ":samp:`host = {host-name}` - string, default value = 'localhost'"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:126
+msgid ":samp:`port = {port-number}` - number, default value = 3306"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:127
+#: ../../doc/reference/reference_rock/dbms.rst:480
+msgid ":samp:`user = {user-name}` - string, default value is operating-system user name"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:128
+msgid ":samp:`password = {password}` - string, default value is blank"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:129
+#: ../../doc/reference/reference_rock/dbms.rst:482
+msgid ":samp:`db = {database-name}` - string, default value is blank"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:130
+msgid ":samp:`raise = {true|false}` - boolean, default value is false"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:132
+msgid "The option names, except for `raise`, are similar to the names that MySQL's mysql client uses, for details see the MySQL manual at `dev.mysql.com/doc/refman/5.6/en/connecting.html <https://dev.mysql.com/doc/refman/5.6/en/connecting.html>`_. The `raise` option should be set to :codenormal:`true` if errors should be raised when encountered. To connect with a Unix socket rather than with TCP, specify ``host = 'unix/'`` and :samp:`port = {socket-name}`."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:139
+#: ../../doc/reference/reference_rock/dbms.rst:486
+msgid "Example, using a table literal enclosed in {braces}:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:141
+msgid "conn = mysql.connect({\n"
+"    host = '127.0.0.1',\n"
+"    port = 3306,\n"
+"    user = 'p',\n"
+"    password = 'p',\n"
+"    db = 'test',\n"
+"    raise = true\n"
+"})\n"
+"-- OR\n"
+"conn = mysql.connect({\n"
+"    host = 'unix/',\n"
+"    port = '/var/run/mysqld/mysqld.sock'\n"
+"})"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:157
+#: ../../doc/reference/reference_rock/dbms.rst:498
+msgid "Example, creating a function which sets each option in a separate line:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:159
+msgid "tarantool> -- Connection function. Usage: conn = mysql_connect()\n"
+"tarantool> function mysql_connection()\n"
+"         >   local p = {}\n"
+"         >   p.host = 'widgets.com'\n"
+"         >   p.db = 'test'\n"
+"         >   conn = mysql.connect(p)\n"
+"         >   return conn\n"
+"         > end\n"
+"---\n"
+"...\n"
+"tarantool> conn = mysql_connect()\n"
+"---\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:175
+#: ../../doc/reference/reference_rock/dbms.rst:517
+msgid "We will assume that the name is 'conn' in further examples."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:179
+#: ../../doc/reference/reference_rock/dbms.rst:521
+msgid "How to ping"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:181
+#: ../../doc/reference/reference_rock/dbms.rst:523
+msgid "To ensure that a connection is working, the request is:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:231
+#: ../../doc/reference/reference_rock/dbms.rst:573
+msgid "*connection-name*:ping()"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:188
+#: ../../doc/reference/reference_rock/dbms.rst:212
+#: ../../doc/reference/reference_rock/dbms.rst:236
+#: ../../doc/reference/reference_rock/dbms.rst:530
+#: ../../doc/reference/reference_rock/dbms.rst:554
+#: ../../doc/reference/reference_rock/dbms.rst:577
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:190
+#: ../../doc/reference/reference_rock/dbms.rst:532
+msgid "tarantool> conn:ping()\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:199
+#: ../../doc/reference/reference_rock/dbms.rst:541
+msgid "Executing a statement"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:201
+msgid "For all MySQL statements, the request is:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:251
+#: ../../doc/reference/reference_rock/dbms.rst:593
+msgid "*connection-name*:execute(*sql-statement* [, *parameters*])"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:208
+msgid "where ``sql-statement`` is a string, and the optional ``parameters`` are extra values that can be plugged in to replace any question marks (\"?\"s) in the SQL statement."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:214
+msgid "tarantool> conn:execute('select table_name from information_schema.tables')\n"
+"---\n"
+"- - table_name: ALL_PLUGINS\n"
+"  - table_name: APPLICABLE_ROLES\n"
+"  - table_name: CHARACTER_SETS\n"
+"  <...>\n"
+"- 78\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:227
+#: ../../doc/reference/reference_rock/dbms.rst:568
+msgid "Closing connection"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:229
+msgid "To end a session that began with ``mysql.connect``, the request is:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:279
+#: ../../doc/reference/reference_rock/dbms.rst:620
+msgid "*connection-name*:close()"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:238
+#: ../../doc/reference/reference_rock/dbms.rst:579
+msgid "tarantool> conn:close()\n"
+"---\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:244
+msgid "For further information, including examples of rarely-used requests, see the README.md file at `github.com/tarantool/mysql <https://github.com/tarantool/mysql>`_."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:249
+#: ../../doc/reference/reference_rock/dbms.rst:590
+msgid "Example"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:251
+msgid "The example was run on an Ubuntu 12.04 (\"precise\") machine where tarantool had been installed in a /usr subdirectory, and a copy of MySQL had been installed on ~/mysql-5.5. The mysqld server instance is already running on the local host 127.0.0.1."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:255
+msgid "$ export TMDIR=~/mysql-5.5\n"
+"$ # Check that the include subdirectory exists by looking\n"
+"$ # for .../include/mysql.h. (If this fails, there's a chance\n"
+"$ # that it's in .../include/mysql/mysql.h instead.)\n"
+"$ [ -f $TMDIR/include/mysql.h ] && echo \"OK\" || echo \"Error\"\n"
+"OK\n"
+"\n"
+"$ # Check that the library subdirectory exists and has the\n"
+"$ # necessary .so file.\n"
+"$ [ -f $TMDIR/lib/libmysqlclient.so ] && echo \"OK\" || echo \"Error\"\n"
+"OK\n"
+"\n"
+"$ # Check that the mysql client can connect using some factory\n"
+"$ # defaults: port = 3306, user = 'root', user password = '',\n"
+"$ # database = 'test'. These can be changed, provided one uses\n"
+"$ # the changed values in all places.\n"
+"$ $TMDIR/bin/mysql --port=3306 -h 127.0.0.1 --user=root \\\n"
+"    --password= --database=test\n"
+"Welcome to the MySQL monitor.  Commands end with ; or \\g.\n"
+"Your MySQL connection id is 25\n"
+"Server version: 5.5.35 MySQL Community Server (GPL)\n"
+"...\n"
+"Type 'help;' or '\\h' for help. Type '\\c' to clear ...\n"
+"\n"
+"$ # Insert a row in database test, and quit.\n"
+"mysql> CREATE TABLE IF NOT EXISTS test (s1 INT, s2 VARCHAR(50));\n"
+"Query OK, 0 rows affected (0.13 sec)\n"
+"mysql> INSERT INTO test.test VALUES (1,'MySQL row');\n"
+"Query OK, 1 row affected (0.02 sec)\n"
+"mysql> QUIT\n"
+"Bye\n"
+"\n"
+"$ # Install luarocks\n"
+"$ sudo apt-get -y install luarocks | grep -E \"Setting up|already\"\n"
+"Setting up luarocks (2.0.8-2) ...\n"
+"\n"
+"$ # Set up the Tarantool rock list in ~/.luarocks,\n"
+"$ # following instructions at rocks.tarantool.org\n"
+"$ mkdir ~/.luarocks\n"
+"$ echo \"rocks_servers = {[[http://rocks.tarantool.org/]]}\" >> \\\n"
+"    ~/.luarocks/config.lua\n"
+"\n"
+"$ # Ensure that the next \"install\" will get files from Tarantool\n"
+"$ # master repository. The resultant display is normal for Ubuntu\n"
+"$ # 12.04 precise\n"
+"$ cat /etc/apt/sources.list.d/tarantool.list\n"
+"deb http://tarantool.org/dist/2.1/ubuntu/ precise main\n"
+"deb-src http://tarantool.org/dist/2.1/ubuntu/ precise main\n"
+"\n"
+"$ # Install tarantool-dev. The displayed line should show version = 2.1\n"
+"$ sudo apt-get -y install tarantool-dev | grep -E \"Setting up|already\"\n"
+"Setting up tarantool-dev (2.1.0.222.g48b98bb~precise-1) ...\n"
+"$\n"
+"\n"
+"$ # Use luarocks to install locally, that is, relative to $HOME\n"
+"$ luarocks install mysql MYSQL_LIBDIR=/usr/local/mysql/lib --local\n"
+"Installing http://rocks.tarantool.org/mysql-scm-1.rockspec...\n"
+"... (more info about building the Tarantool/MySQL driver appears here)\n"
+"mysql scm-1 is now built and installed in ~/.luarocks/\n"
+"\n"
+"$ # Ensure driver.so now has been created in a place\n"
+"$ # tarantool will look at\n"
+"$ find ~/.luarocks -name \"driver.so\"\n"
+"~/.luarocks/lib/lua/5.1/mysql/driver.so\n"
+"\n"
+"$ # Change directory to a directory which can be used for\n"
+"$ # temporary tests. For this example we assume that the name\n"
+"$ # of this directory is /home/pgulutzan/tarantool_sandbox.\n"
+"$ # (Change \"/home/pgulutzan\" to whatever is the user's actual\n"
+"$ # home directory for the machine that's used for this test.)\n"
+"$ cd /home/pgulutzan/tarantool_sandbox\n"
+"\n"
+"$ # Start the Tarantool server instance. Do not use a Lua initialization file.\n"
+"\n"
+"$ tarantool\n"
+"tarantool: version 2.1.0-222-g48b98bb\n"
+"type 'help' for interactive help\n"
+"tarantool>"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:336
+msgid "Configure tarantool and load mysql module. Make sure that tarantool doesn't reply \"error\" for the call to \"require()\"."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:339
+msgid "tarantool> box.cfg{}\n"
+"...\n"
+"tarantool> mysql = require('mysql')\n"
+"---\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:347
+msgid "Create a Lua function that will connect to the MySQL server instance, (using some factory default values for the port and user and password), retrieve one row, and display the row. For explanations of the statement types used here, read the Lua tutorial earlier in the Tarantool user manual."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:352
+msgid "tarantool> function mysql_select ()\n"
+"         >   local conn = mysql.connect({\n"
+"         >     host = '127.0.0.1',\n"
+"         >     port = 3306,\n"
+"         >     user = 'root',\n"
+"         >     db = 'test'\n"
+"         >   })\n"
+"         >   local test = conn:execute('SELECT * FROM test WHERE s1 = 1')\n"
+"         >   local row = ''\n"
+"         >   for i, card in pairs(test) do\n"
+"         >       row = row .. card.s2 .. ' '\n"
+"         >       end\n"
+"         >   conn:close()\n"
+"         >   return row\n"
+"         > end\n"
+"---\n"
+"...\n"
+"tarantool> mysql_select()\n"
+"---\n"
+"- 'MySQL row '\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:376
+msgid "Observe the result. It contains \"MySQL row\". So this is the row that was inserted into the MySQL database. And now it's been selected with the Tarantool client."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:383
+msgid "PostgreSQL Example"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:385
+msgid "This example assumes that PostgreSQL 8 or PostgreSQL 9 has been installed. More recent versions should also work. The package that matters most is the PostgreSQL developer package, typically named something like libpq-dev. On Ubuntu this can be installed with:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:390
+msgid "$ sudo apt-get install libpq-dev"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:394
+msgid "However, because not all platforms are alike, for this example the assumption is that the user must check that the appropriate PostgreSQL files are present and must explicitly state where they are when building the Tarantool/PostgreSQL driver. One can use ``find`` or ``whereis`` to see what directories PostgreSQL files are installed in."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:400
+msgid "It will be necessary to install Tarantool's PostgreSQL driver shared library, load it, and use it to connect to a PostgreSQL server instance. After that, one can pass any PostgreSQL statement to the server instance and receive results."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:418
+msgid "Now, for the PostgreSQL driver shared library, there are two ways to install:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:424
+msgid "Begin by installing luarocks and making sure that tarantool is among the upstream servers, as in the instructions on `rocks.tarantool.org`_, the Tarantool luarocks page. Now execute this:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:476
+msgid "luarocks install pg [POSTGRESQL_LIBDIR = *path*]\n"
+"                    [POSTGRESQL_INCDIR = *path*]\n"
+"                    [--local]"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:437
+msgid "$ luarocks install pg POSTGRESQL_LIBDIR=/usr/local/postgresql/lib"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:445
+msgid "Go the site `github.com/tarantool/pg`_. Follow the instructions there, saying:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:447
+msgid "$ git clone https://github.com/tarantool/pg.git\n"
+"$ cd pg && cmake . -DCMAKE_BUILD_TYPE=RelWithDebInfo\n"
+"$ make\n"
+"$ make install"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:462
+msgid "Begin by making a ``require`` request for the pg driver. We will assume that the name is ``pg`` in further examples."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:465
+msgid "pg = require('pg')"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:519
+msgid "*connection_name* = pg.connect(*connection options*)"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:479
+msgid ":samp:`port = {port-number}` - number, default value = 5432"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:481
+msgid ":samp:`pass = {password}` or :samp:`password = {password}` - string, default value is blank"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:484
+msgid "The names are similar to the names that PostgreSQL itself uses."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:488
+msgid "conn = pg.connect({\n"
+"    host = '127.0.0.1',\n"
+"    port = 5432,\n"
+"    user = 'p',\n"
+"    password = 'p',\n"
+"    db = 'test'\n"
+"})"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:500
+msgid "tarantool> function pg_connect()\n"
+"         >   local p = {}\n"
+"         >   p.host = 'widgets.com'\n"
+"         >   p.db = 'test'\n"
+"         >   p.user = 'postgres'\n"
+"         >   p.password = 'postgres'\n"
+"         >   local conn = pg.connect(p)\n"
+"         >   return conn\n"
+"         > end\n"
+"---\n"
+"...\n"
+"tarantool> conn = pg_connect()\n"
+"---\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:543
+msgid "For all PostgreSQL statements, the request is:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:550
+msgid "where ``sql-statement`` is a string, and the optional ``parameters`` are extra values that can be plugged in to replace any placeholders ($1 $2 $3 etc.) in the SQL statement."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:556
+msgid "tarantool> conn:execute('select tablename from pg_tables')\n"
+"---\n"
+"- - tablename: pg_statistic\n"
+"  - tablename: pg_type\n"
+"  - tablename: pg_authid\n"
+"  <...>\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:570
+msgid "To end a session that began with ``pg.connect``, the request is:"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:585
+msgid "For further information, including examples of rarely-used requests, see the README.md file at `github.com/tarantool/pg <https://github.com/tarantool/pg>`_."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:592
+msgid "The example was run on an Ubuntu 12.04 (\"precise\") machine where tarantool had been installed in a /usr subdirectory, and a copy of PostgreSQL had been installed on /usr. The PostgreSQL server instance is already running on the local host 127.0.0.1."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:596
+msgid "$ # Check that the include subdirectory exists\n"
+"$ # by looking for /usr/include/postgresql/libpq-fe-h.\n"
+"$ [ -f /usr/include/postgresql/libpq-fe.h ] && echo \"OK\" || echo \"Error\"\n"
+"OK\n"
+"\n"
+"$ # Check that the library subdirectory exists and has the necessary .so file.\n"
+"$ [ -f /usr/lib/x86_64-linux-gnu/libpq.so ] && echo \"OK\" || echo \"Error\"\n"
+"OK\n"
+"\n"
+"$ # Check that the psql client can connect using some factory defaults:\n"
+"$ # port = 5432, user = 'postgres', user password = 'postgres',\n"
+"$ # database = 'postgres'. These can be changed, provided one changes\n"
+"$ # them in all places. Insert a row in database postgres, and quit.\n"
+"$ psql -h 127.0.0.1 -p 5432 -U postgres -d postgres\n"
+"Password for user postgres:\n"
+"psql (9.3.10)\n"
+"SSL connection (cipher: DHE-RSA-AES256-SHA, bits: 256)\n"
+"Type \"help\" for help.\n"
+"\n"
+"postgres=# CREATE TABLE test (s1 INT, s2 VARCHAR(50));\n"
+"CREATE TABLE\n"
+"postgres=# INSERT INTO test VALUES (1,'PostgreSQL row');\n"
+"INSERT 0 1\n"
+"postgres=# \\q\n"
+"$\n"
+"\n"
+"$ # Install luarocks\n"
+"$ sudo apt-get -y install luarocks | grep -E \"Setting up|already\"\n"
+"Setting up luarocks (2.0.8-2) ...\n"
+"\n"
+"$ # Set up the Tarantool rock list in ~/.luarocks,\n"
+"$ # following instructions at rocks.tarantool.org\n"
+"$ mkdir ~/.luarocks\n"
+"$ echo \"rocks_servers = {[[http://rocks.tarantool.org/]]}\" >> \\\n"
+"        ~/.luarocks/config.lua\n"
+"\n"
+"$ # Ensure that the next \"install\" will get files from Tarantool master\n"
+"$ # repository. The resultant display is normal for Ubuntu 12.04 precise\n"
+"$ cat /etc/apt/sources.list.d/tarantool.list\n"
+"deb http://tarantool.org/dist/2.0/ubuntu/ precise main\n"
+"deb-src http://tarantool.org/dist/2.0/ubuntu/ precise main\n"
+"\n"
+"$ # Install tarantool-dev. The displayed line should show version = 2.0\n"
+"$ sudo apt-get -y install tarantool-dev | grep -E \"Setting up|already\"\n"
+"Setting up tarantool-dev (2.0.4.222.g48b98bb~precise-1) ...\n"
+"$\n"
+"\n"
+"$ # Use luarocks to install locally, that is, relative to $HOME\n"
+"$ luarocks install pg POSTGRESQL_LIBDIR=/usr/lib/x86_64-linux-gnu --local\n"
+"Installing http://rocks.tarantool.org/pg-scm-1.rockspec...\n"
+"... (more info about building the Tarantool/PostgreSQL driver appears here)\n"
+"pg scm-1 is now built and installed in ~/.luarocks/\n"
+"\n"
+"$ # Ensure driver.so now has been created in a place\n"
+"$ # tarantool will look at\n"
+"$ find ~/.luarocks -name \"driver.so\"\n"
+"~/.luarocks/lib/lua/5.1/pg/driver.so\n"
+"\n"
+"$ # Change directory to a directory which can be used for\n"
+"$ # temporary tests. For this example we assume that the\n"
+"$ # name of this directory is $HOME/tarantool_sandbox.\n"
+"$ # (Change \"$HOME\" to whatever is the user's actual\n"
+"$ # home directory for the machine that's used for this test.)\n"
+"cd $HOME/tarantool_sandbox\n"
+"\n"
+"$ # Start the Tarantool server instance. Do not use a Lua initialization file.\n"
+"\n"
+"$ tarantool\n"
+"tarantool: version 2.0.4-412-g803b15c\n"
+"type 'help' for interactive help\n"
+"tarantool>"
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:670
+msgid "Configure tarantool and load pg module. Make sure that tarantool doesn't reply \"error\" for the call to \"require()\"."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:673
+msgid "tarantool> box.cfg{}\n"
+"...\n"
+"tarantool> pg = require('pg')\n"
+"---\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:681
+msgid "Create a Lua function that will connect to a PostgreSQL server, (using some factory default values for the port and user and password), retrieve one row, and display the row. For explanations of the statement types used here, read the Lua tutorial earlier in the Tarantool user manual."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:686
+msgid "tarantool> function pg_select ()\n"
+"         >   local conn = pg.connect({\n"
+"         >     host = '127.0.0.1',\n"
+"         >     port = 5432,\n"
+"         >     user = 'postgres',\n"
+"         >     password = 'postgres',\n"
+"         >     db = 'postgres'\n"
+"         >   })\n"
+"         >   local test = conn:execute('SELECT * FROM test WHERE s1 = 1')\n"
+"         >   local row = ''\n"
+"         >   for i, card in pairs(test) do\n"
+"         >       row = row .. card.s2 .. ' '\n"
+"         >       end\n"
+"         >   conn:close()\n"
+"         >   return row\n"
+"         > end\n"
+"---\n"
+"...\n"
+"tarantool> pg_select()\n"
+"---\n"
+"- 'PostgreSQL row '\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_rock/dbms.rst:711
+msgid "Observe the result. It contains \"PostgreSQL row\". So this is the row that was inserted into the PostgreSQL database. And now it's been selected with the Tarantool client."
+msgstr ""

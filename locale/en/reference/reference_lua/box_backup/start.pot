@@ -1,0 +1,55 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-17 14:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_backup/start.rst:5
+msgid "box.backup.start()"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_backup/start.rst:9
+msgid "Informs the server that activities related to the removal of outdated backups must be suspended."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_backup/start.rst:12
+msgid "To guarantee an opportunity to copy these files, Tarantool will not delete them. But there will be no read-only mode and checkpoints will continue by schedule as usual."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_backup/start.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_backup/start.rst:16
+msgid "optional argument starting with Tarantool 1.10.1 that indicates the checkpoint to use relative to the latest checkpoint. For example ``n = 0`` means “backup will be based on the latest checkpoint”, ``n = 1`` means \"backup will be based on the first checkpoint before the latest checkpoint (counting backwards)\", and so on. The default value for n is zero."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_backup/start.rst:23
+msgid "**Return:**  a table with the names of snapshot and vinyl files that should be copied"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_backup/start.rst:26
+msgid "**Example:**"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_backup/start.rst:28
+msgid "tarantool> box.backup.start()\n"
+"---\n"
+"- - ./00000000000000000015.snap\n"
+"  - ./00000000000000000000.vylog\n"
+"  - ./513/0/00000000000000000002.index\n"
+"  - ./513/0/00000000000000000002.run\n"
+"..."
+msgstr ""

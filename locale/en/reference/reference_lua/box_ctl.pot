@@ -1,0 +1,129 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-11 13:03+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/box_ctl.rst:5
+msgid "Submodule box.ctl"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl.rst:7
+msgid "The ``wait_ro`` (wait until read-only) and ``wait_rw`` (wait until read-write) functions are useful during server initialization. To see whether a function is already in read-only or read-write mode, check :ref:`box.info.ro <box_introspection-box_info>`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl.rst:11
+msgid "A particular use is for :doc:`box.once() </reference/reference_lua/box_once>`. For example, when a replica is initializing, it may call a ``box.once()`` function while the server is still in read-only mode, and fail to make changes that are necessary only once before the replica is fully initialized. This could cause conflicts between a master and a replica if the master is in read-write mode and the replica is in read-only mode. Waiting until \"read only mode = false\" solves this problem."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl.rst:21
+msgid "Below is a list of all ``box.ctl`` functions."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl.rst:32
+msgid "Name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl.rst:33
+msgid "Use"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl.rst:35
+msgid ":doc:`./box_ctl/wait_ro`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl.rst:36
+msgid "Wait until ``box.info.ro`` is true"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl.rst:38
+msgid ":doc:`./box_ctl/wait_rw`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl.rst:39
+msgid "Wait until ``box.info.ro`` is false"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl.rst:41
+msgid ":doc:`./box_ctl/on_schema_init`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl.rst:42
+msgid "Create a \"schema_init trigger\""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl.rst:44
+msgid ":doc:`./box_ctl/on_shutdown`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl.rst:45
+msgid "Create a \"shutdown trigger\""
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl.rst:47
+msgid ":doc:`./box_ctl/on_recovery_state`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl.rst:48
+msgid "Create a trigger executed on different stages of a node recovery or initial configuration"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl.rst:50
+msgid ":doc:`./box_ctl/on_election`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl.rst:51
+msgid "Create a :ref:`trigger <triggers>` executed every time the current state of a replica set node in regard to :ref:`leader election <repl_leader_elect>` changes"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl.rst:53
+msgid ":doc:`./box_ctl/set_on_shutdown_timeout`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl.rst:54
+msgid "Set a timeout in seconds for the ``on_shutdown`` trigger"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl.rst:56
+msgid ":doc:`./box_ctl/is_recovery_finished`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl.rst:57
+msgid "Check if recovery has finished"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl.rst:59
+msgid ":doc:`./box_ctl/promote`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl.rst:60
+msgid "Wait, then choose replication leader"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl.rst:62
+msgid ":doc:`./box_ctl/demote`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl.rst:63
+msgid "Revoke the leader role from the instance"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl.rst:65
+msgid ":doc:`./box_ctl/make_bootstrap_leader`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/box_ctl.rst:66
+msgid "Make the instance a bootstrap leader of a replica set"
+msgstr ""

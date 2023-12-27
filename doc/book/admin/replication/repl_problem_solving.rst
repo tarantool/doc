@@ -1,36 +1,33 @@
 .. _replication-problem_solving:
 
-================================================================================
-Resolving replication conflicts
-================================================================================
 
---------------------------------------------------------------------------------
-Solving problems with master-master replication
---------------------------------------------------------------------------------
+Resolving replication conflicts
+===============================
 
 Tarantool guarantees that every update is applied only once on every replica.
-However, due to the asynchronous nature of replication, the order of updates is
-not guaranteed. We now analyze this problem with more details, provide examples
-of replication going out of sync, and suggest solutions.
+However, due to the asynchronous nature of replication, the order of updates is not guaranteed.
+This topic describes how to solve problems in :ref:`master-master <replication-bootstrap-master-master>` replication.
 
-*******************************
+
+.. _replication-problem_solving_replacing_primary_key:
+
 Replacing the same primary key
-*******************************
+------------------------------
 
 **Case 1:** You have two instances of Tarantool. For example, you try to make a
-``replace`` operation with the same primary key on both instances in the same time.
-This will cause a conflict over which tuple to save and which one to discard.
+``replace`` operation with the same primary key on both instances at the same time.
+This causes a conflict over which tuple to save and which one to discard.
 
 Tarantool :ref:`trigger functions <triggers>` can help here to implement the
 rules of conflict resolution on some condition. For example, if you have a
 timestamp, you can declare saving the tuple with the bigger one.
 
 First, you need a :ref:`before_replace() <box_space-before_replace>` trigger on
-the space which may have conflicts. In this trigger you can compare the old and new
+the space which may have conflicts. In this trigger, you can compare the old and new
 replica records and choose which one to use (or skip the update entirely,
 or merge two records together).
 
-Then you need to set the trigger at the right time, before the space starts
+Then you need to set the trigger at the right time before the space starts
 to receive any updates. The way you usually set the ``before_replace`` trigger
 is right when the space is created, so you need a trigger to set another trigger
 on the system space ``_space``, to capture the moment when your space is created
@@ -45,7 +42,7 @@ To set a ``_space:on_replace()`` trigger correctly, you also need the right timi
 timing to use it is when ``_space`` is just created, which is
 the :ref:`box.ctl.on_schema_init() <box_ctl-on_schema_init>` trigger.
 
-You will also need to utilize ``box.on_commit`` to get access to the space being
+You also need to utilize ``box.on_commit`` to get access to the space being
 created. The resulting snippet would be the following:
 
 .. code-block:: lua
@@ -62,16 +59,16 @@ created. The resulting snippet would be the following:
         end)
     end)
 
+
+
 .. _replication-duplicates:
 
-****************************
 Preventing duplicate insert
-****************************
+---------------------------
 
 .. _replication-replication_stops:
 
-**Case 2:** In a replica set of two masters, suppose master #1 tries to
-``insert`` a tuple with the same unique key:
+**Case 2:** In a replica set of two masters, both of them try to insert data by the same unique key:
 
 .. code-block:: tarantoolsession
 
@@ -150,20 +147,14 @@ report), because the downstream has encountered the same error:
       uuid: e826a667-eed7-48d5-a290-64299b159571
     ...
 
-When replication is later manually resumed:
 
-.. code-block:: tarantoolsession
+To learn how to resolve a replication conflict by reseeding a replica, see :ref:`Resolving replication conflicts <replication-master-master-resolve-conflicts>`.
 
-    # resuming stopped replication (at all masters)
-    tarantool> original_value = box.cfg.replication
-    tarantool> box.cfg{replication={}}
-    tarantool> box.cfg{replication=original_value}
-
-... the faulty row in the write-ahead-log files is skipped.
 
 .. _replication-runs_out_of_sync:
 
-**Solution #1: replication runs out of sync**
+Replication runs out of sync
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In a master-master cluster of two instances, suppose we make the following
 operation:
@@ -189,10 +180,11 @@ When this operation is applied on both instances in the replica set:
 
 .. _replication-commutative_changes:
 
-**Solution #2: commutative changes**
+Commutative changes
+~~~~~~~~~~~~~~~~~~~
 
 The cases described in the previous paragraphs represent examples of
-**non-commutative** operations, i.e. operations whose result depends on the
+**non-commutative** operations, that is operations whose result depends on the
 execution order. On the contrary, for **commutative operations**, the
 execution order does not matter.
 
@@ -205,10 +197,14 @@ Consider for example the following command:
 This operation is commutative: we get the same result no matter in which order
 the update is applied on the other masters.
 
-**Solution #3: trigger usage**
+.. _replication_trigger_usage:
 
-The logic and the snippet setting a trigger will be the same here as in case 1.
-But the trigger function will differ:
+Trigger usage
+~~~~~~~~~~~~~
+
+The logic and the snippet setting a trigger will be the same here as in :ref:`case 1 <replication-problem_solving_replacing_primary_key>`.
+But the trigger function will differ.
+Note that the trigger below assumes that tuple has a timestamp in the second field.
 
 .. code-block:: lua
 
