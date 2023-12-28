@@ -1,7 +1,5 @@
 local vshard = require('vshard')
 
-vshard.router.bootstrap()
-
 function put(id, band_name, year)
     local bucket_id = vshard.router.bucket_id_mpcrc32({ id })
     vshard.router.callrw(bucket_id, 'put', { id, bucket_id, band_name, year })
