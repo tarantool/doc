@@ -9,7 +9,7 @@ To run the cluster, go to the `sharding` directory in the terminal and perform t
 1. Install dependencies defined in the `*.rockspec` file:
 
    ```console
-   $ tt build
+   $ tt build sharded_cluster
    ```
    
 2. Run the cluster:
@@ -23,8 +23,17 @@ To run the cluster, go to the `sharding` directory in the terminal and perform t
    ```console
    $ tt connect sharded_cluster:router-a-001
    ```
+   
+4. Perform the initial cluster bootstrap:
 
-4. Insert test data:
+   ```console
+   sharded_cluster:router-a-001> require('vshard').router.bootstrap()
+   ---
+   - true
+   ...
+   ```
+
+5. Insert test data:
 
    ```console
    sharded_cluster:router-a-001> insert_data()
@@ -32,7 +41,7 @@ To run the cluster, go to the `sharding` directory in the terminal and perform t
    ...
    ```
    
-5. Connect to storages in different replica sets to see how data is distributed across nodes:
+6. Connect to storages in different replica sets to see how data is distributed across nodes:
 
    a. `storage-a-001`:
 
