@@ -4,8 +4,7 @@ on:
   push:
     branches:
       - 'latest'
-      - '3.0'
-      - 'fix-docx'
+      - '2.11'
 
 jobs:
   generate-singlehtml:
