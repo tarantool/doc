@@ -536,9 +536,9 @@ iproto.advertise.*
 
 .. confval:: iproto.advertise.client
 
-    An URI used to advertise the current instance to clients.
+    A URI used to advertise the current instance to clients.
 
-    The ``iproto.advertise.client`` option accepts an URI in the following formats:
+    The ``iproto.advertise.client`` option accepts a URI in the following formats:
 
     -   An address: ``host:port``.
 
@@ -564,9 +564,9 @@ iproto.advertise.*
 
 .. confval:: iproto.advertise.peer
 
-    An URI used to advertise the current instance to other cluster members.
+    A URI used to advertise the current instance to other cluster members.
 
-    The ``iproto.advertise.peer`` option accepts an URI in the format described in :ref:`iproto_advertise.\<peer_or_sharding\>.* <configuration_reference_iproto_advertise.peer_sharding>`.
+    The ``iproto.advertise.peer`` option accepts a URI in the format described in :ref:`iproto_advertise.\<peer_or_sharding\>.* <configuration_reference_iproto_advertise.peer_sharding>`.
 
     **Example**
 
@@ -590,7 +590,7 @@ iproto.advertise.*
 
     An advertise URI used by a router and rebalancer.
 
-    The ``iproto.advertise.sharding`` option accepts an URI in the format described in :ref:`iproto_advertise.\<peer_or_sharding\>.* <configuration_reference_iproto_advertise.peer_sharding>`.
+    The ``iproto.advertise.sharding`` option accepts a URI in the format described in :ref:`iproto_advertise.\<peer_or_sharding\>.* <configuration_reference_iproto_advertise.peer_sharding>`.
 
     **Example**
 
@@ -619,7 +619,7 @@ iproto.advertise.<peer_or_sharding>.*
 
 .. confval:: iproto_advertise.<peer_or_sharding>.uri
 
-    (Optional) An URI used to advertise the current instance.
+    (Optional) A URI used to advertise the current instance.
     By default, the URI defined in :ref:`iproto.listen <configuration_reference_iproto_listen>` is used to advertise the current instance.
 
     ..  include:: /reference/configuration/configuration_reference.rst
@@ -635,7 +635,7 @@ iproto.advertise.<peer_or_sharding>.*
 
 .. confval:: iproto_advertise.<peer_or_sharding>.login
 
-    (Optional) A username that should be used to connect to the current instance.
+    (Optional) A username used to connect to the current instance.
     If a username is not set, the ``guest`` user is used.
 
     |
@@ -648,7 +648,7 @@ iproto.advertise.<peer_or_sharding>.*
 .. confval:: iproto_advertise.<peer_or_sharding>.password
 
     (Optional) A password for the specified user.
-    If ``login`` is specified but a password is missing, it is taken from :ref:`credentials <configuration_reference_credentials>` for this user.
+    If a ``login`` is specified but a password is missing, it is taken from the user's :ref:`credentials <configuration_reference_credentials>`.
 
     |
     | Type: string
@@ -823,7 +823,7 @@ URI parameters that can be used in the following options:
     -   ``ssl_cert_file``: a path to an SSL certificate file.
     -   ``ssl_key_file``: a path to a private SSL key file.
     -   ``ssl_password`` (``instance001``): a password for an encrypted private SSL key.
-        For ``instance002`` and ``instance003``, passwords for encrypted SSL keys are provided in ``ssl_password_file``.
+    -   ``ssl_password_file`` (``instance002`` and ``instance003``): a text file containing passwords for encrypted SSL keys.
     -   ``ssl_ciphers``: a colon-separated list of SSL cipher suites the connection can use.
 
     ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/ssl/config.yaml
