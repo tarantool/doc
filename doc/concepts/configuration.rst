@@ -303,7 +303,7 @@ Below are a few examples that show how to set environment variables of different
 
     The *simple* format is applicable only to maps containing scalar values.
 
-*   Array of maps. In the example below, ``TT_IPROTO_LISTEN`` is used to specify a :ref:`listening host and port <configuration_options_connection>` values:
+*   Array of maps. In the example below, ``TT_IPROTO_LISTEN`` is used to specify a :ref:`listening host and port <configuration_connections_listen_uri>` values:
 
     ..  code-block:: console
 
@@ -491,4 +491,5 @@ To learn more about the persistence mechanism in Tarantool, see the :ref:`Persis
 
     configuration/configuration_etcd
     configuration/configuration_code
+    configuration/configuration_connections
     .. configuration/configuration_migrating
