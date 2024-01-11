@@ -26,4 +26,4 @@ cp server001.crt server001.key instance001
 cp server002.crt server002.key instance002
 cp server003.crt server003.key instance003
 
-rm -rf root_ca.key server*
+rm -rf server*

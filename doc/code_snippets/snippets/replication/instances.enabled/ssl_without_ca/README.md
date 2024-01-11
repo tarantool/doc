@@ -1,4 +1,4 @@
-# TLS traffic encryption
+# SSL (without CA)
 
 A sample application demonstrating how to enable TLS traffic encryption for connections between replica set peers.
 
@@ -7,5 +7,5 @@ A sample application demonstrating how to enable TLS traffic encryption for conn
 To start all instances, execute the following command in the [replication](../../../replication) directory:
 
 ```console
-$ tt start ssl
+$ tt start ssl_without_ca
 ```

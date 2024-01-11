@@ -7,19 +7,17 @@ credentials:
       password: 'topsecret'
       roles: [replication]
 
-iproto:
-  advertise:
-    peer:
-      login: replicator
-
-replication:
-  failover: manual
-
 groups:
   group001:
     replicasets:
       replicaset001:
+        replication:
+          failover: manual
         leader: instance001
+        iproto:
+          advertise:
+            peer:
+              login: replicator
         instances:
           instance001:
             iproto:
