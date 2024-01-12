@@ -501,7 +501,7 @@ The ``database`` section defines database-specific configuration parameters, suc
 iproto
 ------
 
-The ``iproto`` section is used to configure parameters related to communicating to and between cluster instances.
+The ``iproto`` section is used to configure parameters related to :ref:`communicating to and between cluster instances <configuration_connections>` topic.
 
 .. NOTE::
 
@@ -564,9 +564,8 @@ iproto.advertise.*
 
 .. confval:: iproto.advertise.peer
 
-    A URI used to advertise the current instance to other cluster members.
-
-    The ``iproto.advertise.peer`` option accepts a URI in the format described in :ref:`iproto_advertise.\<peer_or_sharding\>.* <configuration_reference_iproto_advertise.peer_sharding>`.
+    Settings used advertise the current instance to other cluster members.
+    The format of these setting is described in :ref:`iproto_advertise.\<peer_or_sharding\>.* <configuration_reference_iproto_advertise.peer_sharding>`.
 
     **Example**
 
@@ -588,9 +587,8 @@ iproto.advertise.*
 
 .. confval:: iproto.advertise.sharding
 
-    An advertise URI used by a router and rebalancer.
-
-    The ``iproto.advertise.sharding`` option accepts a URI in the format described in :ref:`iproto_advertise.\<peer_or_sharding\>.* <configuration_reference_iproto_advertise.peer_sharding>`.
+    Settings used advertise the current instance to a router and rebalancer.
+    The format of these setting is described in :ref:`iproto_advertise.\<peer_or_sharding\>.* <configuration_reference_iproto_advertise.peer_sharding>`.
 
     **Example**
 
@@ -674,14 +672,7 @@ iproto.*
     An array of URIs used to listen for incoming requests.
     If required, you can enable SSL for specific URIs by providing additional parameters (:ref:`<uri>.params.* <configuration_reference_iproto_uri_params>`).
 
-    These URIs are used for different purposes, for example:
-
-    -   Communicating between replica set peers or cluster members. See also: :ref:`iproto.advertise.* <configuration_reference_iproto_advertise>`.
-    -   Remote administration using :ref:`tt connect <tt-connect>`.
-    -   Connecting to an instance using the :ref:`net.box <net_box-module>` module.
-    -   Connecting to an instance using :ref:`connectors <index-box_connectors>` for different languages.
-
-    To grant the specified privileges for connecting to an instance, use the :ref:`credentials <configuration_reference_credentials>` configuration section.
+    Note that a URI value can't contain parameters, a login, or password.
 
     **Example**
 
@@ -693,7 +684,7 @@ iproto.*
         :end-before: Load sample data
         :dedent:
 
-    See also: :ref:`Connection settings <configuration_options_connection>`.
+    See also: :ref:`Connections <configuration_connections>`.
 
     |
     | Type: array
@@ -799,15 +790,8 @@ URI parameters that can be used in the following options:
 
 .. confval:: <uri>.params.transport
 
-    Allows you to enable traffic encryption for client-server communications over :ref:`binary connections <box_protocol-iproto_protocol>`:
-
-    -   A server is a Tarantool instance.
-    -   A client might be one of the following:
-
-        -   Another Tarantool instance from this cluster. This means that one instance might act as the server that accepts connections from other instances and the client that connects to other instances.
-        -   A remote administrative console (:ref:`tt connect <tt-connect>`).
-        -   A :ref:`net.box <net_box-module>` connector.
-        -   :ref:`Connectors <index-box_connectors>` provided for different languages.
+    Allows you to enable :ref:`traffic encryption <configuration_connections_ssl>` for client-server communications over binary connections.
+    In a Tarantool cluster, one instance might act as the server that accepts connections from other instances and the client that connects to other instances.
 
     ``<uri>.params.transport`` accepts one of the following values:
 
@@ -816,23 +800,18 @@ URI parameters that can be used in the following options:
 
     **Example**
 
-    The example below demonstrates how to enable traffic encryption for connections between replica set peers.
+    The example below demonstrates how to enable traffic encryption by using a self-signed server certificate.
     The following parameters are specified for each instance:
 
-    -   ``ssl_ca_file``: a path to a trusted certificate authorities (CA) file.
     -   ``ssl_cert_file``: a path to an SSL certificate file.
     -   ``ssl_key_file``: a path to a private SSL key file.
-    -   ``ssl_password`` (``instance001``): a password for an encrypted private SSL key.
-    -   ``ssl_password_file`` (``instance002`` and ``instance003``): a text file containing passwords for encrypted SSL keys.
-    -   ``ssl_ciphers``: a colon-separated list of SSL cipher suites the connection can use.
 
-    ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/ssl/config.yaml
+    ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/ssl_without_ca/config.yaml
         :language: yaml
-        :start-at: groups:
-        :end-before: app:
+        :start-at: replicaset001:
         :dedent:
 
-    You can find the full example here: `ssl <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/replication/instances.enabled/ssl>`_.
+    You can find the full example here: `ssl_without_ca <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/replication/instances.enabled/ssl_without_ca>`_.
 
     |
     | Type: string
