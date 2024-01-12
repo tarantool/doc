@@ -160,11 +160,11 @@ You can learn more about configuring replication from :ref:`Replication tutorial
     In the example above, the option includes ``login`` only.
     An URI is taken from ``iproto.listen`` that is set on the instance level.
 
--   ``replication``: (*global*)
+-   ``replication`` (*global*)
 
     The ``replication.failover`` global option sets a manual failover for all replica sets.
 
--   ``leader``: (*replica set*)
+-   ``leader`` (*replica set*)
 
     The ``<replicaset-name>.leader`` option sets a :ref:`master <replication-roles>` instance for *replicaset001*.
 
