@@ -5,7 +5,7 @@ Installing Tarantool software
 
 ..  code-block:: console
 
-    $ tt install PROGRAM_NAME [VERSION] [OPTION ...]
+    $ tt install PROGRAM_NAME [VERSION|COMMIT_HASH|PR_ID] [OPTION ...]
 
 ``tt install`` installs the latest or an explicitly specified version of Tarantool
 or ``tt``. The possible values of ``PROGRAM_NAME`` are:
@@ -20,6 +20,11 @@ or ``tt``. The possible values of ``PROGRAM_NAME`` are:
     For ``tarantool-ee``, account credentials are required. Specify them in a file
     (see the :ref:`ee section <tt-config_file_ee>` of the configuration file) or
     provide them interactively.
+
+Additionally, ``tt install`` can build open source programs ``tarantool`` and ``tt``
+from a specific commit or a pull request on their GitHub repositories.
+
+To uninstall a Tarantool or ``tt`` version, use :doc:`tt uninstall <uninstall>`.
 
 Options
 -------
@@ -66,16 +71,42 @@ dependencies, such as a C compiler. Make sure they are available in the system.
 
 Tarantool Enterprise Edition is installed from prebuilt packages.
 
+Development versions
+~~~~~~~~~~~~~~~~~~~~
+
+``tt install`` can be used to build custom Tarantool and ``tt`` versions for
+development purposes. The sources for such version can be either stored locally
+or exist on GitHub (specific commits or pull requests).
+
+To build Tarantool from a local source, use the ``tarantool-dev`` program name and
+provide a path to the source:
+
+..  code-block:: console
+
+    $ tt install tarantool-dev ~/src/tarantool/build
+
+To build Tarantool or ``tt`` from a specific commit on their GitHub repository,
+pass the commit hash (7 or more characters) after the program name. If you want to use
+a PR as a source, provide a ``pr/<PR_ID>`` argument:
+
+
+..  code-block:: console
+
+    $ tt install tarantool 03c184d
+    $ tt install tt pr/50
+
+
+Local repositories
+~~~~~~~~~~~~~~~~~~
+
 You can also set up a local repository with installation files you need.
 To use it, specify its location in the :ref:`repo section <tt-config_file_repo>`
 of the ``tt`` configuration file and run ``tt install`` with the ``--local-repo`` flag.
 
-To uninstall a Tarantool or ``tt`` version, use :doc:`tt uninstall <uninstall>`.
-
 Example
 --------
 
-*   Install the latest available version of Tarantool:
+*   Install the latest available version of Tarantool CE:
 
     ..  code-block:: console
 
@@ -98,3 +129,16 @@ Example
     ..  code-block:: console
 
         $ tt install tarantool-dev ~/src/tarantool/build
+
+
+*   Install Tarantool from a PR #1234 on the `tarantool/tarantool GitHub repository <https://github.com/tarantool/tarantool>`__:
+
+    ..  code-block:: console
+
+        $ tt install tarantool pr/1234
+
+*   Install ``tt`` from a commit with hash ``00a9e59`` on the `tarantool/tt GitHub repository <https://github.com/tarantool/tt>`__:
+
+    ..  code-block:: console
+
+        $ tt install tt 40e696e
