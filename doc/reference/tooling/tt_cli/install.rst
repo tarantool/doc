@@ -75,15 +75,7 @@ Development versions
 ~~~~~~~~~~~~~~~~~~~~
 
 ``tt install`` can be used to build custom Tarantool and ``tt`` versions for
-development purposes. The sources for such version can be either stored locally
-or exist on GitHub (specific commits or pull requests).
-
-To build Tarantool from a local source, use the ``tarantool-dev`` program name and
-provide a path to the source:
-
-..  code-block:: console
-
-    $ tt install tarantool-dev ~/src/tarantool/build
+development purposes from commits and pull requests on their GitHub repositories.
 
 To build Tarantool or ``tt`` from a specific commit on their GitHub repository,
 pass the commit hash (7 or more characters) after the program name. If you want to use
@@ -95,6 +87,13 @@ a PR as a source, provide a ``pr/<PR_ID>`` argument:
     $ tt install tarantool 03c184d
     $ tt install tt pr/50
 
+If you :ref:`build Tarantool from sources <building_from_source>`, you can install
+local builds to the current ``tt`` environment by running ``tt install`` with
+the ``tarantool-dev`` program name and the path to the build:
+
+..  code-block:: console
+
+    $ tt install tarantool-dev ~/src/tarantool/build
 
 Local repositories
 ~~~~~~~~~~~~~~~~~~
@@ -124,13 +123,6 @@ Example
 
         $ tt install tarantool 2.10.8 --reinstall
 
-*   Install Tarantool :ref:`built from sources <building_from_source>`:
-
-    ..  code-block:: console
-
-        $ tt install tarantool-dev ~/src/tarantool/build
-
-
 *   Install Tarantool from a PR #1234 on the `tarantool/tarantool GitHub repository <https://github.com/tarantool/tarantool>`__:
 
     ..  code-block:: console
@@ -142,3 +134,9 @@ Example
     ..  code-block:: console
 
         $ tt install tt 40e696e
+
+*   Install Tarantool :ref:`built from sources <building_from_source>`:
+
+    ..  code-block:: console
+
+        $ tt install tarantool-dev ~/src/tarantool/build
