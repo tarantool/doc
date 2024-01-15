@@ -129,7 +129,7 @@ Example
 
         $ tt install tarantool pr/1234
 
-*   Install ``tt`` from a commit with hash ``00a9e59`` on the `tarantool/tt GitHub repository <https://github.com/tarantool/tt>`__:
+*   Install ``tt`` from a commit with a hash ``00a9e59`` on the `tarantool/tt GitHub repository <https://github.com/tarantool/tt>`__:
 
     ..  code-block:: console
 
