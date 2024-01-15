@@ -378,56 +378,15 @@ Connection settings
 ~~~~~~~~~~~~~~~~~~~
 
 To configure an address used to listen for incoming requests, use the ``iproto.listen`` option.
-Below are a few examples on how to do this:
+The example below shows how to set a listening IP address for ``instance001`` to ``127.0.0.1:3301``:
 
-*   Set a listening port to ``3301``:
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/iproto_listen_address/config.yaml
+    :start-at: instance001
+    :end-at: '127.0.0.1:3301'
+    :language: yaml
+    :dedent:
 
-    .. code-block:: yaml
-
-        iproto:
-          listen:
-          - uri: '3301'
-
-*   Set a listening address to ``127.0.0.1:3301``:
-
-    .. code-block:: yaml
-
-        iproto:
-          listen:
-          - uri: '127.0.0.1:3301'
-
-*   Configure several listening addresses:
-
-    .. code-block:: yaml
-
-        iproto:
-          listen:
-          - uri: '127.0.0.1:3301'
-          - uri: '127.0.0.1:3302'
-
-*   Enable :ref:`traffic encryption <enterprise-iproto-encryption>` for a connection using the ``params`` section of the specified URI:
-
-    .. code-block:: yaml
-
-        iproto:
-          listen:
-          - uri: '127.0.0.1:3301'
-            params:
-              transport: 'ssl'
-              ssl_ca_file: 'ca.crt'
-              ssl_cert_file: 'localhost.crt'
-              ssl_key_file: 'localhost.key'
-
-    Note that traffic encryption is supported by the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only.
-
-
-*   Use a Unix domain socket:
-
-    .. code-block:: yaml
-
-        iproto:
-          listen:
-          - uri: 'unix/:./var/run/{{ instance_name }}/tarantool.iproto'
+You can learn more from the :ref:`configuration_connections` topic.
 
 
 .. _configuration_options_access_control:
