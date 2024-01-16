@@ -1,6 +1,6 @@
 ..  _tcm_connect_clusters:
 
-Сonnecting clusters
+Connecting clusters
 ===================
 
 ..  include:: index.rst
