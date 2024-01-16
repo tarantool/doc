@@ -1,0 +1,24 @@
+credentials:
+  users:
+    admin:
+      password: 'T0p_Secret_P@$$w0rd'
+      roles: [ super ]
+
+security:
+  password_min_length: 16
+  password_enforce_lowercase: true
+  password_enforce_uppercase: true
+  password_enforce_digits: true
+  password_enforce_specialchars: true
+  password_lifetime_days: 365
+  password_history_length: 3
+
+groups:
+  group001:
+    replicasets:
+      replicaset001:
+        instances:
+          instance001:
+            iproto:
+              listen:
+              - uri: '127.0.0.1:3301'
