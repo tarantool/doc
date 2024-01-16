@@ -123,13 +123,13 @@ Example
 
         $ tt install tarantool 2.10.8 --reinstall
 
-*   Install Tarantool from a PR #1234 on the `tarantool/tarantool GitHub repository <https://github.com/tarantool/tarantool>`__:
+*   Install Tarantool from a PR #1234 on the `tarantool/tarantool <https://github.com/tarantool/tarantool>`__ GitHub repository:
 
     ..  code-block:: console
 
         $ tt install tarantool pr/1234
 
-*   Install ``tt`` from a commit with a hash ``00a9e59`` on the `tarantool/tt GitHub repository <https://github.com/tarantool/tt>`__:
+*   Install ``tt`` from a commit with a hash ``40e696e`` on the `tarantool/tt  <https://github.com/tarantool/tt>`__ GitHub repository:
 
     ..  code-block:: console
 
