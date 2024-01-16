@@ -186,7 +186,7 @@ doesn't exist.
 Deleting data
 ********************************************************************************
 
-To delete a tuple, use ``сonnection.Delete``:
+To delete a tuple, use ``connection.Delete``:
 
 .. code-block:: go
 

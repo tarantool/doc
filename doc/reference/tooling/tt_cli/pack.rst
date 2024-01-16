@@ -124,9 +124,16 @@ Options
 
         $ tt pack deb --postinst post.sh
 
+..  option:: --tarantool-version
+
+    Specify a Tarantool version for packaging in a Docker container.
+    For use with ``--use-docker`` only.
+
 ..  option:: --use-docker
 
-    Build a package in an Ubuntu 18.04 Docker container.
+    Build a package in an Ubuntu 18.04 Docker container. To specify a Tarantool
+    version to use in the container, add the ``--tarantool-version`` option.
+
     Before executing ``tt pack`` with this option, make sure Docker is running.
 
 ..  option:: --version PACKAGE_VERSION

@@ -72,6 +72,8 @@ Commands
         :widths: 20 80
         :header-rows: 0
 
+        *   -   ``admin``
+            -   Use the `luarocks-admin <https://github.com/luarocks/luarocks/wiki/luarocks-admin>`__ tool
         *   -   ``build``
             -   Build and compile a rock
         *   -   ``config``
