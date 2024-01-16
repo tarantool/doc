@@ -451,4 +451,5 @@ To learn more about the persistence mechanism in Tarantool, see the :ref:`Persis
     configuration/configuration_etcd
     configuration/configuration_code
     configuration/configuration_connections
+    configuration/configuration_authentication
     .. configuration/configuration_migrating

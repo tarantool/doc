@@ -1483,3 +1483,226 @@ The ``replication`` section defines configuration parameters related to :ref:`re
     | Default: 1
     | Environment variable: TT_REPLICATION_TIMEOUT
 
+
+
+..  _configuration_reference_security:
+
+security
+--------
+
+..  admonition:: Enterprise Edition
+    :class: fact
+
+    Configuring security parameters is available in the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only.
+
+The ``security`` section defines configuration parameters related to various security settings.
+
+.. NOTE::
+
+    ``security`` can be defined in any :ref:`scope <configuration_scopes>`.
+
+-   :ref:`security.auth_delay <configuration_reference_security_auth_delay>`
+-   :ref:`security.auth_retries <configuration_reference_security_auth_retries>`
+-   :ref:`security.auth_type <configuration_reference_security_auth_type>`
+-   :ref:`security.disable_guest <configuration_reference_security_disable_guest>`
+-   :ref:`security.password_enforce_digits <configuration_reference_security_password_enforce_digits>`
+-   :ref:`security.password_enforce_lowercase <configuration_reference_security_password_enforce_lowercase>`
+-   :ref:`security.password_enforce_specialchars <configuration_reference_security_password_enforce_specialchars>`
+-   :ref:`security.password_enforce_uppercase <configuration_reference_security_password_enforce_uppercase>`
+-   :ref:`security.password_history_length <configuration_reference_security_password_history_length>`
+-   :ref:`security.password_lifetime_days <configuration_reference_security_password_lifetime_days>`
+-   :ref:`security.password_min_length <configuration_reference_security_password_min_length>`
+-   :ref:`security.secure_erasing <configuration_reference_security_secure_erasing>`
+
+
+..  _configuration_reference_security_auth_delay:
+
+..  confval:: security.auth_delay
+
+    Specify a period of time (in seconds) that a specific user should wait for the next attempt after failed authentication.
+
+    The :ref:`security.auth_retries <configuration_reference_security_auth_retries>` option lets a client try to authenticate the specified number of times before ``security.auth_delay`` is enforced.
+
+    In the configuration below, Tarantool lets a client try to authenticate with the same username three times.
+    At the fourth attempt, the authentication delay configured with ``security.auth_delay`` is enforced.
+    This means that a client should wait 10 seconds after the first failed attempt.
+
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/security_auth_restrictions/config.yaml
+        :language: yaml
+        :start-at: security:
+        :end-at: auth_retries: 2
+        :dedent:
+
+
+    |
+    | Type: number
+    | Default: 0
+    | Environment variable: TT_SECURITY_AUTH_DELAY
+
+
+..  _configuration_reference_security_auth_retries:
+
+..  confval:: security.auth_retries
+
+    Specify the maximum number of authentication retries allowed before :ref:`security.auth_delay <configuration_reference_security_auth_delay>` is enforced.
+    The default value is 0, which means ``security.auth_delay`` is enforced after the first failed authentication attempt.
+
+    The retry counter is reset after ``security.auth_delay`` seconds since the first failed attempt.
+    For example, if a client tries to authenticate fewer than ``security.auth_retries`` times within ``security.auth_delay`` seconds, no authentication delay is enforced.
+    The retry counter is also reset after any successful authentication attempt.
+
+    |
+    | Type: integer
+    | Default: 0
+    | Environment variable: TT_SECURITY_AUTH_RETRIES
+
+
+..  _configuration_reference_security_auth_type:
+
+..  confval:: security.auth_type
+
+    Specify a protocol used to authenticate users.
+    The possible values are:
+
+    -   ``chap-sha1``: use the `CHAP <https://en.wikipedia.org/wiki/Challenge-Handshake_Authentication_Protocol>`_ protocol with ``SHA-1`` hashing applied to :ref:`passwords <authentication-passwords>`.
+    -   ``pap-sha256``: use `PAP <https://en.wikipedia.org/wiki/Password_Authentication_Protocol>`_ authentication with the ``SHA256`` hashing algorithm.
+
+    Note that CHAP stores password hashes in the ``_user`` space unsalted.
+    If an attacker gains access to the database, they may crack a password, for example, using a `rainbow table <https://en.wikipedia.org/wiki/Rainbow_table>`_.
+    For PAP, a password is salted with a user-unique salt before saving it in the database,
+    which keeps the database protected from cracking using a rainbow table.
+
+    To enable PAP, specify the ``security.auth_type`` option as follows:
+
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/security_auth_protocol/config.yaml
+        :language: yaml
+        :start-at: security:
+        :end-at: 'pap-sha256'
+        :dedent:
+
+    |
+    | Type: string
+    | Default: 'chap-sha1'
+    | Environment variable: TT_SECURITY_AUTH_TYPE
+
+
+..  _configuration_reference_security_disable_guest:
+
+..  confval:: security.disable_guest
+
+    If **true**, turn off access over remote connections from unauthenticated or :ref:`guest <authentication-passwords>` users.
+    This option affects connections between cluster members and :doc:`net.box </reference/reference_lua/net_box>` connections.
+
+    |
+    | Type: boolean
+    | Default: false
+    | Environment variable: TT_SECURITY_DISABLE_GUEST
+
+
+..  _configuration_reference_security_password_enforce_digits:
+
+..  confval:: security.password_enforce_digits
+
+    If **true**, a password should contain digits (0-9).
+
+    |
+    | Type: boolean
+    | Default: false
+    | Environment variable: TT_SECURITY_PASSWORD_ENFORCE_DIGITS
+
+
+..  _configuration_reference_security_password_enforce_lowercase:
+
+..  confval:: security.password_enforce_lowercase
+
+    If **true**, a password should contain lowercase letters (a-z).
+
+    |
+    | Type: boolean
+    | Default: false
+    | Environment variable: TT_SECURITY_PASSWORD_ENFORCE_LOWERCASE
+
+
+..  _configuration_reference_security_password_enforce_specialchars:
+
+..  confval:: security.password_enforce_specialchars
+
+    If **true**, a password should contain at least one special character (such as ``&|?!@$``).
+
+    |
+    | Type: boolean
+    | Default: false
+    | Environment variable: TT_SECURITY_PASSWORD_ENFORCE_SPECIALCHARS
+
+
+..  _configuration_reference_security_password_enforce_uppercase:
+
+..  confval:: security.password_enforce_uppercase
+
+    If **true**, a password should contain uppercase letters (A-Z).
+
+    |
+    | Type: boolean
+    | Default: false
+    | Environment variable: TT_SECURITY_PASSWORD_ENFORCE_UPPERCASE
+
+
+..  _configuration_reference_security_password_history_length:
+
+..  confval:: security.password_history_length
+
+    Specify the number of unique new user passwords before an old password can be reused.
+
+    .. NOTE::
+
+        Tarantool uses the ``auth_history`` field in the
+        :doc:`box.space._user </reference/reference_lua/box_space/_user>`
+        system space to store user passwords.
+
+    |
+    | Type: integer
+    | Default: 0
+    | Environment variable: TT_SECURITY_PASSWORD_HISTORY_LENGTH
+
+
+..  _configuration_reference_security_password_lifetime_days:
+
+..  confval:: security.password_lifetime_days
+
+    Specify the maximum period of time (in days) a user can use the same password.
+    When this period ends, a user gets the "Password expired" error on a login attempt.
+    To restore access for such users, use :doc:`box.schema.user.passwd </reference/reference_lua/box_schema/user_passwd>`.
+
+    .. note::
+
+        The default 0 value means that a password never expires.
+
+    |
+    | Type: integer
+    | Default: 0
+    | Environment variable: TT_SECURITY_PASSWORD_LIFETIME_DAYS
+
+
+..  _configuration_reference_security_password_min_length:
+
+..  confval:: security.password_min_length
+
+    Specify the minimum number of characters for a password.
+
+    |
+    | Type: integer
+    | Default: 0
+    | Environment variable: TT_SECURITY_PASSWORD_MIN_LENGTH
+
+
+..  _configuration_reference_security_secure_erasing:
+
+..  confval:: security.secure_erasing
+
+    If **true**, forces Tarantool to overwrite a data file a few times before deletion to render recovery of a deleted file impossible.
+    The option applies to both ``.xlog`` and ``.snap`` files as well as Vinyl data files.
+
+    |
+    | Type: boolean
+    | Default: false
+    | Environment variable: TT_SECURITY_SECURE_ERASING
