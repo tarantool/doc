@@ -501,7 +501,7 @@ The ``database`` section defines database-specific configuration parameters, suc
 iproto
 ------
 
-The ``iproto`` section is used to configure parameters related to :ref:`communicating to and between cluster instances <configuration_connections>` topic.
+The ``iproto`` section is used to configure parameters related to :ref:`communicating to and between cluster instances <configuration_connections>`.
 
 .. NOTE::
 
