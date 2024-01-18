@@ -142,7 +142,7 @@ The ``audit_log`` section defines configuration parameters related to :ref:`audi
     ..  note::
 
         The option only has an effect if the :ref:`audit_log.to <configuration_reference_audit_to>` is set to ``syslog``
-        ``pipe``.
+        or ``pipe``.
 
     |
     | Type: boolean

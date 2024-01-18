@@ -1,12 +1,15 @@
-.. _enterprise_audit_module:
+..  _enterprise_audit_module:
 
 Audit module
 ============
 
+**Example on GitHub**: `audit_log <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/audit_log>`_
+
 The audit module available in Tarantool Enterprise Edition writes messages that record Tarantool events in plain text,
 CSV, or JSON format.
-
-It provides detailed reports of security-related activities and helps you find and
+Each :ref:`event <audit-log-events-types>` is an action related to authorization and authentication, data manipulation,
+administrator activity, or system events.
+The module provides detailed reports of these activities and helps you find and
 fix breaches to protect your business. For example, you can see who created a new user
 and when.
 
@@ -14,10 +17,232 @@ It is up to each company to decide exactly what activities to audit and what act
 System administrators, security engineers, and people in charge of the company may want to
 audit different events for different reasons. Tarantool provides such an option for each of them.
 
-.. _audit-log-events:
+..  _audit-log-configure:
+
+Configuring audit log
+---------------------
+
+The section describes how to enable and configure audit logging and write logs to a selected destination -- a file, a pipe,
+or a system logger.
+
+Read more: :ref:`Audit log configuration reference <configuration_reference_audit>`.
+
+..  _audit-log-enable:
+
+Enable audit logging
+~~~~~~~~~~~~~~~~~~~~
+
+To enable audit logging, define the log location using the
+:ref:`audit_log.to <configuration_reference_audit_to>` option in the ``audit_log`` section of the configuration file.
+Possible log locations:
+
+*   a :ref:`file <configuration_reference_audit_file>`
+*   a :ref:`pipe <configuration_reference_audit_pipe>`
+*   a :ref:`system logger <configuration_reference_audit_syslog-server>`
+
+To disable audit logging, set the ``audit_log`` option to ``devnull``.
+
+In the configuration below, the :ref:`audit_log.to <configuration_reference_audit_to>` option is set to ``file``.
+It means that the logs are written to a file.
+In this case, you should also define a file path (for example, ``audit_tarantool.log``) using
+the :ref:`audit_log.file <configuration_reference_audit_file>` option.
+If the option is omitted, the default path is used: ``var/log/instance001/audit.log``.
+
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/audit_log/config.yaml
+    :language: yaml
+    :start-at: audit_log:
+    :end-at: 'audit_tarantool.log'
+    :dedent:
+
+If you log to a file, Tarantool reopens the audit log at `SIGHUP <https://en.wikipedia.org/wiki/SIGHUP>`_.
+
+..  _audit-log-filters:
+
+Filter the events
+~~~~~~~~~~~~~~~~~
+
+Tarantool's extensive filtering options help you write only the events you need to the audit log.
+To select the recorded events, use the :ref:`audit_log.filter <configuration_reference_audit_filter>` option.
+Its value can be a list of events and event groups.
+You can customize the filters and use different combinations of them for your purposes.
+Possible filtering options:
+
+-   Filter by event. You can set a list of :ref:`events <audit-log-events>` to be recorded. For example, select
+    ``password_change`` to monitor the users who have changed their passwords:
+
+    ..  code-block:: yaml
+
+        audit_log:
+          filter: [ password_change ]
+
+-   Filter by group. You can specify a list of :ref:`event groups <audit-log-event-groups>` to be recorded. For example,
+    select ``auth`` and ``priv`` to see the events related to authorization and granted privileges:
+
+    ..  code-block:: yaml
+
+        audit_log:
+          filter: [ auth,priv ]
+
+-   Filter by group and event. You can specify a group and a certain event depending on the purpose.
+    In the configuration below, ``user_create``, ``data_operations``, ``ddl``, and ``custom`` are selected to see the events related to
+
+    *   user creation
+    *   space creation, altering, and dropping
+    *   data modification or selection from spaces
+    *   :ref:`custom events <audit-log-custom>` (any events added manually using the audit module API)
+
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/audit_log/config.yaml
+        :language: yaml
+        :start-at: filter:
+        :end-at: custom ]
+        :dedent:
+
+..  _audit-log-format:
+
+Set the format of audit log events
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Use the :ref:`audit_log.format <configuration_reference_audit_format>` option to choose the format of audit log events
+-- plain text, CSV, or JSON.
+
+JSON is used by default. It is more convenient to receive log events, analyze them, and integrate them with other systems if needed.
+The plain format can be efficiently compressed.
+The CSV format allows you to view audit log events in tabular form.
+
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/audit_log/config.yaml
+    :language: yaml
+    :start-at: format:
+    :end-at: json
+    :dedent:
+
+..  _audit-log-spaces:
+
+Specify the spaces to be logged
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Since :doc:`3.0.0 </release/3.0.0>`, :ref:`audit_log.spaces <configuration_reference_audit_spaces>` is used to specify
+a list of space names for which data operation events should be logged.
+
+In the configuration below, only the events from the ``bands`` space are logged:
+
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/audit_log/config.yaml
+    :language: yaml
+    :start-at: spaces:
+    :end-at: bands ]
+    :dedent:
+
+..  _audit-log-extract:
+
+Specify the logging mode in DML events
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Since :doc:`3.0.0 </release/3.0.0>`, it is possible to
+force the audit subsystem to log the primary key instead of a full tuple in DML operations.
+To do so, set the :ref:`audit_log.extract_key <configuration_reference_audit_extract_key>` option to ``true``.
+
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/audit_log/config.yaml
+    :language: yaml
+    :start-at: extract_key:
+    :end-at: true
+    :dedent:
+
+..  _audit-log-run-read:
+
+Reading audit logs
+------------------
+
+In the example, the logs are written to the ``audit_tarantool.log`` file.
+Let's create a space ``bands`` and check the logs in the file after the creation:
+
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/audit_log/myapp.lua
+    :language: lua
+    :start-after: Create space
+    :end-before: -- Insert data
+    :dedent:
+
+The audit log entry for the ``space_create`` event might look as follows:
+
+..  code-block:: json
+
+    {
+      "time": "2024-01-24T11:43:21.566+0300",
+      "uuid": "26af0a7d-1052-490a-9946-e19eacc822c9",
+      "severity": "INFO",
+      "remote": "unix/:(socket)",
+      "session_type": "console",
+      "module": "tarantool",
+      "user": "admin",
+      "type": "space_create",
+      "tag": "",
+      "description": "Create space Bands"
+    }
+
+Then insert one tuple to space:
+
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/audit_log/myapp.lua
+    :language: lua
+    :start-after: load_data()
+    :end-before: box.space.bands:insert { 2
+    :dedent:
+
+As the ``extract_key`` option is set to ``true``, the audit system prints the primary key instead of the full tuple:
+
+..  code-block:: json
+
+    {
+      "time": "2024-01-24T11:45:42.358+0300",
+      "uuid": "b437934d-62a7-419a-8d59-e3b33c688d7a",
+      "severity": "VERBOSE",
+      "remote": "unix/:(socket)",
+      "session_type": "console",
+      "module": "tarantool",
+      "user": "admin",
+      "type": "space_insert",
+      "tag": "",
+      "description": "Insert key [2] into space bands"
+    }
+
+If the ``extract_key`` option is set to ``false``, the audit system prints the full tuple like this:
+
+..  code-block:: json
+
+    {
+      "time": "2024-01-24T11:45:42.358+0300",
+      "uuid": "b437934d-62a7-419a-8d59-e3b33c688d7a",
+      "severity": "VERBOSE",
+      "remote": "unix/:(socket)",
+      "session_type": "console",
+      "module": "tarantool",
+      "user": "admin",
+      "type": "space_insert",
+      "tag": "",
+      "description": "Insert tuple [1, \"Roxette\", 1986] into space bands"
+    }
+
+..  note::
+
+    To easily read the audit log events in the needed form, you can use these commands:
+
+    *  ``cat`` -- print one or more files
+
+    *  ``grep`` -- print a specific text
+
+    *  ``head`` -- print the first N lines of the file
+
+    *  ``tail`` -- print the last N lines of the file
+
+    These are the basic commands to help you read the logs. If necessary, you can use other commands.
+
+
+..  _audit-log-events:
 
 Audit log events
 ----------------
+
+..  _audit-log-events-types:
+
+Events types
+~~~~~~~~~~~~
 
 The Tarantool audit log module can record various events that you can monitor and
 decide whether you need to take actions:
@@ -33,7 +258,7 @@ decide whether you need to take actions:
 *   System events -- events related to modification or configuration of resources.
     For example, such logs record the replacement of a space.
 
-*   :ref:`User-defined events <audit-log-custom>`-- any events added manually using
+*   :ref:`Custom events <audit-log-custom>`-- any events added manually using
     the audit module API.
 
 The full list of available audit log events is provided in the table below:
@@ -48,7 +273,7 @@ The full list of available audit log events is provided in the table below:
             -   Type of event written to the audit log
             -   Severity level
             -   Example of an event description
-        *   -   Audit log enabled for events   
+        *   -   Audit log enabled for events
             -   ``audit_enable``
             -   ``VERBOSE``
             -
@@ -56,15 +281,15 @@ The full list of available audit log events is provided in the table below:
             -   ``custom``
             -   ``INFO`` (default)
             -
-        *   -   User authorized successfully    
+        *   -   User authorized successfully
             -   ``auth_ok``
             -   ``VERBOSE``
             -   ``Authenticate user <USER>``
-        *   -   User authorization failed    
+        *   -   User authorization failed
             -   ``auth_fail``
             -   ``ALARM``
             -   ``Failed to authenticate user <USER>``
-        *   -   User logged out or quit the session    
+        *   -   User logged out or quit the session
             -   ``disconnect``
             -   ``VERBOSE``
             -   ``Close connection``
@@ -84,11 +309,11 @@ The full list of available audit log events is provided in the table below:
             -   ``role_drop``
             -   ``INFO``
             -   ``Drop role <ROLE>``
-        *   -   User disabled    
+        *   -   User disabled
             -   ``user_disable``
             -   ``INFO``
             -   ``Disable user <USER>``
-        *   -   User enabled   
+        *   -   User enabled
             -   ``user_enable``
             -   ``INFO``
             -   ``Enable user <USER>``
@@ -132,40 +357,40 @@ The full list of available audit log events is provided in the table below:
             -   ``space_create``
             -   ``INFO``
             -   ``Create space <SPACE>``
-        *   -   Space altered 
+        *   -   Space altered
             -   ``space_alter``
             -   ``INFO``
             -   ``Alter space <SPACE>``
-        *   -   Space dropped   
+        *   -   Space dropped
             -   ``space_drop``
             -   ``INFO``
             -   ``Drop space <SPACE>``
-        *   -   Tuple inserted into space     
+        *   -   Tuple inserted into space
             -   ``space_insert``
             -   ``VERBOSE``
             -   ``Insert tuple <TUPLE> into space <SPACE>``
-        *   -   Tuple replaced in space   
+        *   -   Tuple replaced in space
             -   ``space_replace``
             -   ``VERBOSE``
             -   ``Replace tuple <TUPLE> with <NEW_TUPLE> in space <SPACE>``
-        *   -   Tuple deleted from space   
+        *   -   Tuple deleted from space
             -   ``space_delete``
             -   ``VERBOSE``
             -   ``Delete tuple <TUPLE> from space <SPACE>``
 
 
     ..  note::
-    
+
         The ``eval`` event displays data from the ``console`` module
         and the ``eval`` function of the ``net.box`` module.
         For more on how they work, see :ref:`Module console <console-module>`
-        and :ref:`Module net.box -- eval <net_box-eval>`. 
+        and :ref:`Module net.box -- eval <net_box-eval>`.
         To separate the data, specify ``console`` or ``binary`` in the session field.
 
 ..  _audit-log-structure:
 
 Structure of audit log event
-----------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Each audit log event contains a number of fields that can be used to filter and aggregate the resulting logs.
 An example of a Tarantool audit log entry in JSON:
@@ -199,11 +424,13 @@ Each event consists of the following fields:
         *   -   ``time``
             -   Time of the event
             -   ``2024-01-15T16:33:12.368+0300``
-        *   -   ``uuid``. Since :doc:`3.0.0 </release/3.0.0>`
-            -   A unique identifier of audit log event
+        *   -   ``uuid``
+            -    Since :doc:`3.0.0 </release/3.0.0>`. A unique identifier of audit log event
             -   ``cb44fb2b-5c1f-4c4b-8f93-1dd02a76cec0``
-        *   -   ``severity``. Since :doc:`3.0.0 </release/3.0.0>`
-            -   A severity level
+        *   -   ``severity``
+            -   Since :doc:`3.0.0 </release/3.0.0>`. A severity level. Each system audit event has a severity level determined by its importance.
+                :ref:`Custom events <audit-log-custom>` have the ``INFO`` severity level by default.
+
             -   ``VERBOSE``
         *   -   ``remote``
             -   Remote host that triggered the event
@@ -232,10 +459,11 @@ Each event consists of the following fields:
 
         You can set all these parameters only once.
 
+
 ..  _audit-log-event-groups:
 
 Event groups
-------------
+~~~~~~~~~~~~
 
 Built-in event groups are used to filter the event types that you want to audit.
 For example, you can set to record only authorization events,
@@ -243,35 +471,35 @@ or only events related to a space.
 
 Tarantool provides the following event groups:
 
-    *   ``all`` -- all :ref:`events <audit-log-events>`.
+*   ``all`` -- all :ref:`events <audit-log-events>`.
 
-        ..  note::
+    ..  note::
 
-            Events ``call`` and ``eval`` are included only in the ``all`` group.
+        Events ``call`` and ``eval`` are included only in the ``all`` group.
 
-    *   ``audit`` -- ``audit_enable`` event.
+*   ``audit`` -- ``audit_enable`` event.
 
-    *   ``auth`` -- authorization events: ``auth_ok``, ``auth_fail``.
+*   ``auth`` -- authorization events: ``auth_ok``, ``auth_fail``.
 
-    *   ``priv`` -- events related to authentication, authorization, users, and roles:
-        ``user_create``, ``user_drop``, ``role_create``, ``role_drop``, ``user_enable``, ``user_disable``,
-        ``user_grant_rights``, ``user_revoke_rights``, ``role_grant_rights``, ``role_revoke_rights``.
+*   ``priv`` -- events related to authentication, authorization, users, and roles:
+    ``user_create``, ``user_drop``, ``role_create``, ``role_drop``, ``user_enable``, ``user_disable``,
+    ``user_grant_rights``, ``user_revoke_rights``, ``role_grant_rights``, ``role_revoke_rights``.
 
-    *   ``ddl`` -- events of space creation, altering, and dropping:
-        ``space_create``, ``space_alter``, ``space_drop``.
+*   ``ddl`` -- events of space creation, altering, and dropping:
+    ``space_create``, ``space_alter``, ``space_drop``.
 
-    *   ``dml`` -- events of data modification in spaces:
-        ``space_insert``, ``space_replace``, ``space_delete``.
+*   ``dml`` -- events of data modification in spaces:
+    ``space_insert``, ``space_replace``, ``space_delete``.
 
-    *   ``data_operations`` -- events of data modification or selection from spaces:
-        ``space_select``, ``space_insert``, ``space_replace``, ``space_delete``.
+*   ``data_operations`` -- events of data modification or selection from spaces:
+    ``space_select``, ``space_insert``, ``space_replace``, ``space_delete``.
 
-    *   ``compatibility`` -- events available in Tarantool before the version 2.10.0.
-        ``auth_ok``, ``auth_fail``, ``disconnect``, ``user_create``, ``user_drop``,
-        ``role_create``, ``role_drop``, ``user_enable``, ``user_disable``,
-        ``user_grant_rights``, ``user_revoke_rights``, ``role_grant_rights``.
-        ``role_revoke_rights``, ``password_change``, ``access_denied``.
-        This group enables the compatibility with earlier Tarantool versions.
+*   ``compatibility`` -- events available in Tarantool before the version 2.10.0.
+    ``auth_ok``, ``auth_fail``, ``disconnect``, ``user_create``, ``user_drop``,
+    ``role_create``, ``role_drop``, ``user_enable``, ``user_disable``,
+    ``user_grant_rights``, ``user_revoke_rights``, ``role_grant_rights``.
+    ``role_revoke_rights``, ``password_change``, ``access_denied``.
+    This group enables the compatibility with earlier Tarantool versions.
 
 ..  warning::
 
@@ -280,253 +508,123 @@ Tarantool provides the following event groups:
     It is recommended that you select only those groups
     whose events your company needs to monitor and analyze.
 
-.. _audit-log-custom:
+..  _audit-log-custom:
 
-Create user-defined events
---------------------------
+Creating custom events
+----------------------
 
 Tarantool provides an API for writing user-defined audit log events.
-To enable custom events, specify the ``custom`` value in the :ref:`audit_log.filter <configuration_reference_audit_filter>` option.
+To enable custom events, specify the ``custom`` value in the :ref:`audit_log.filter <configuration_reference_audit_filter>` option:
+
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/audit_log/config.yaml
+    :language: yaml
+    :start-at: filter:
+    :end-at: custom ]
+    :dedent:
+
+..  _audit-log-custom-new:
+
+Add a new custom event
+~~~~~~~~~~~~~~~~~~~~~~
 
 To add a new event, use the ``audit.log()`` function that takes one of the following values:
 
-*   Message string. Printed to the audit log with type ``message``.
-    Example: ``audit.log('Hello, World!')``.
+*   Message string. Printed to the audit log with type ``message``:
 
-*   Format string and arguments. Passed to string format and then output to the audit log with type ``message``.
-    Example: ``audit.log('Hello, %s!', 'World')``.
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/audit_log/myapp.lua
+        :language: lua
+        :start-after: Log message string
+        :end-before: Log format string and arguments
+        :dedent:
+
+*   Format string and arguments. Passed to string format and then output to the audit log with type ``message``:
+
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/audit_log/myapp.lua
+        :language: lua
+        :start-after: Log format string and arguments
+        :end-before: Log table with audit log field values
+        :dedent:
 
 *   Table with audit log field values. The table must contain at least one field -- ``description``.
-    Example: ``audit.log({type = 'custom_hello', description = 'Hello, World!'})``.
 
-Using the option ``audit.new()``, you can create a new log module that allows you
-to avoid passing all custom audit log fields each time ``audit.log()`` is called.
-It takes a table of audit log field values (same as ``audit.log()``). The ``type``
-of the log module for writing user-defined events must either be ``message`` or
-have the ``custom_`` prefix.
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/audit_log/myapp.lua
+        :language: lua
+        :start-after: Log table with audit log field values
+        :end-at: description = 'Farewell, Eve!' })
+        :dedent:
 
-Example
-~~~~~~~
+Alternatively, you can use ``audit.new()`` to create a new log module.
+This allows you to avoid passing all custom audit log fields each time ``audit.log()`` is called.
+The ``audit.new()`` function takes a table of audit log field values (same as ``audit.log()``).
+The ``type`` of the log module for writing custom events must either be ``message`` or have the ``custom_`` prefix.
 
-..  code-block:: lua
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/audit_log/myapp.lua
+    :language: lua
+    :start-after: Create a new log module
+    :end-before: Log 'Hello!' message with the VERBOSE severity level
+    :dedent:
 
-    audit.log({type = 'custom_hello', module = 'my_module', description = 'Hello, Alice!' })
-    audit.log({type = 'custom_hello', module = 'my_module', tag = 'admin', description = 'Hello, Bob!'})
+..  _audit-log-custom-field-overwrite:
 
+Overwrite custom event fields
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Some user-defined audit log fields (``time``, ``remote``, ``session_type``)
-are set in the same way as for a system event.
-If a field is not overwritten, it is set to the same value as for a system event.
+It is possible to overwrite most of the custom audit log :ref:`fields <audit-log-structure>` using ``audit.new()`` or ``audit.log()``.
+The only audit log field that cannot be overwritten is ``time``.
 
-Some audit log fields you can overwrite with ``audit.new()`` and ``audit.log()``:
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/audit_log/myapp.lua
+    :language: lua
+    :start-after: Overwrite session_type and remote fields
+    :end-at: remote = 'my_remote' })
+    :dedent:
 
-*   ``type``
-*   ``user``
-*   ``module``
-*   ``tag``
-*   ``description``
+If omitted, the ``session_type`` is set to the current session type, ``remote`` is set to the remote peer address.
 
 ..  note::
 
     To avoid confusion with system events, the value of the type field must either be ``message`` (default)
     or begin with the ``custom_`` prefix. Otherwise, you receive the error message.
-    User-defined events are filtered out by default..
+    User-defined events are filtered out by default.
 
+..  _audit-log-custom-severity:
 
-..  _audit-log-example:
+Severity level
+~~~~~~~~~~~~~~
 
-Example: using Tarantool audit log
-----------------------------------
+By default, custom events have the ``INFO`` :ref:`severity level <audit-log-structure>`.
+To override the level, you can:
 
-The example shows how to enable and configure audit logging and write logs to a selected destination (a file, a pipe,
-or a system logger).
+*   specify the ``severity`` field
+*   use a shortcut function
 
-Before starting this example:
+The following shortcuts are available:
 
-#.  Install the :ref:`tt <tt-cli>` utility.
+..  container:: table
 
-#.  Create a tt environment in the current directory by executing the :ref:`tt init <tt-init>` command.
+    ..  list-table::
+        :widths: 40 60
+        :header-rows: 1
 
-#.  Inside the ``instances.enabled`` directory of the created tt environment, create the ``audit_log`` directory.
+        *   -   Shortcut
+            -   Equivalent
+        *   -   ``audit.verbose(...)``
+            -   ``audit.log({severity = 'VERBOSE', ...})``
+        *   -   ``audit.info(...)``
+            -   ``audit.log({severity = 'INFO', ...})``
+        *   -   ``audit.warning(...)``
+            -   ``audit.log({severity = 'WARNING', ...})``
+        *   -   ``audit.alarm(...)``
+            -   ``audit.log({severity = 'ALARM', ...})``
 
-#.  Inside ``instances.enabled/audit_log``, create the ``instances.yml`` and ``config.yaml`` files:
+**Example**
 
-    -   ``instances.yml`` specifies instances to run in the current environment and should look like this:
-
-        ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/audit_log/instances.yml
-            :language: yaml
-            :end-at: instance001:
-            :dedent:
-
-    -   The ``config.yaml`` file stores an audit log configuration (the ``audit_log`` section). The configuration is described in detail in the next section.
-
-..  _audit-log-enable:
-
-Enable audit logging
-~~~~~~~~~~~~~~~~~~~~
-
-To enable audit logging, define the log location using the
-:ref:`audit_log.to <configuration_reference_audit_to>` option in the ``audit_log`` section of the configuration file.
-Possible logs locations:
-
-*   a :ref:`file <audit-log-file>`
-*   a :ref:`pipe <audit-log-pipe>`
-*   a :ref:`system logger <audit-log-syslog>`
-
-To disable audit logging, set the ``audit_log`` option to ``devnull``.
-
-In this tutorial, the logs are written to a file. To do this, set the
-:ref:`audit_log.to <configuration_reference_audit_to>` option to ``file``.
-After that, you can define a file path (for example, ``audit_tarantool.log``) using
-the :ref:`audit_log.file <configuration_reference_audit_file>` option.
-If the option is omitted, the default path is used: ``var/log/instance001/audit.log``.
-
-The configuration might look as follows:
-
-..  literalinclude:: /code_snippets/snippets/config/instances.enabled/audit_log/config.yaml
-    :language: yaml
-    :start-at: audit_log:
-    :end-at: audit_tarantool.log
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/audit_log/myapp.lua
+    :language: lua
+    :start-at: audit.log({ severity
+    :end-at: description = 'Hello!' })
     :dedent:
 
-If you log to a file, Tarantool reopens the audit log at `SIGHUP <https://en.wikipedia.org/wiki/SIGHUP>`_.
-
-..  _audit-log-filters:
-
-Filter the events
-~~~~~~~~~~~~~~~~~
-
-Tarantool's extensive filtering options help you write only the events you need to the audit log.
-
-To select the recorded events, use the :ref:`audit_log.filter <configuration_reference_audit_filter>` option.
-Its value can be a list of events and event groups.
-You can customize the filters and use different combinations of them for your purposes.
-Possible filtering options:
-
--   Filter by event. You can set a list of :ref:`events <audit-log-events>` to be recorded. For example, select
-    ``password_change`` to monitor the users who have changed their passwords:
-
-    ..  code-block:: yaml
-
-        audit_log:
-          filter: [ password_change ]
-
--   Filter by group. You can specify a list of :ref:`event groups <audit-log-event-groups>` to be recorded. For example,
-    select ``auth`` and ``priv`` to see only events related to authorization and granted privileges.
-
-    ..  code-block:: yaml
-
-        audit_log:
-          filter: [ auth,priv ]
-
--   Filter by group and event. You can specify a group and a certain event depending on the purpose.
-    For example, you can select ``user_create``, ``data_operations``, and ``ddl`` to see the events related to
-
-    *   user creation
-    *   space creation, altering, and dropping
-    *   data modification or selection from spaces
-
-    Let's add this filter to our configuration file:
-
-    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/audit_log/config.yaml
-        :language: yaml
-        :start-at: audit_log:
-        :end-at: audit_tarantool.log
-        :dedent:
-
-
-..  _audit-log-format:
-
-Set the format of audit log events
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Use the :ref:`audit_log.format <configuration_reference_audit_format>` option to choose the format of audit log events
--- plain text, CSV, or JSON.
-
-JSON is used by default. It is more convenient to receive log events, analyze them, and integrate them with other systems if needed.
-The plain format can be efficiently compressed.
-The CSV format allows you to view audit log events in tabular form.
-
-In this tutorial, set the format to JSON:
-
-..  literalinclude:: /code_snippets/snippets/config/instances.enabled/audit_log/config.yaml
-    :language: yaml
-    :start-at: audit_log:
-    :end-at: format: json
-    :dedent:
-
-..  _audit-log-spaces:
-
-Specify the spaces to be logged
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Since: :doc:`3.0.0 </release/3.0.0>`, it is possible to :ref:`specify a list of space names <configuration_reference_audit_spaces>`
-for which data operation events should be logged.
-
-To log the events from the ``bands`` space only, specify the option in the configuration file:
-
-..  literalinclude:: /code_snippets/snippets/config/instances.enabled/audit_log/config.yaml
-    :language: yaml
-    :liines: 15
-    :dedent:
-
-..  _audit-log-extract:
-
-Specify the logging mode in DML events
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Since: :doc:`3.0.0 </release/3.0.0>`, it is possible to
-force the audit subsystem to log the primary key instead of a full tuple in DML operations.
-
-To do so, set the :ref:`audit_log.extract_key <configuration_reference_audit_extract_key>` option to ``true``.
-
-The resulting configuration in ``config.yaml`` now looks as follows:
-
-..  literalinclude:: /code_snippets/snippets/config/instances.enabled/audit_log/config.yaml
-    :language: yaml
-    :dedent:
-
-..  _audit-log-run-example:
-
-Check the example
-~~~~~~~~~~~~~~~~~
-
-After the configuration is done, execute the :ref:`tt start <tt-start>` command from the :ref:`tt environment directory <replication-tt-env>`:
-
-    .. code-block:: console
-
-        $ tt start audit_log
-           • Starting an instance [audit_log:instance001]...
-
-After that, connect to the instance with :ref:`tt connect <tt-connect>`:
-
-..  code-block:: console
-
-    $ tt connect audit_log:instance001
-
-In the interactive console. run the following commands:
-
-
-.. _audit-log-read:
-
-Use read commands
------------------
-
-To easily read the audit log events in the needed form, use the different commands:
-
-*  ``cat`` -- prints one or more files
-
-*  ``grep`` -- prints a specific text
-
-*  ``head`` -- prints the first N lines of the file
-
-*  ``tail`` -- prints the last N lines of the file
-
-    ..  note:: 
-        
-        These are the basic commands to help you read the logs. If necessary, you can use other commands.
-
-.. _audit-log-tips:
+..  _audit-log-tips:
 
 Tips
 ----

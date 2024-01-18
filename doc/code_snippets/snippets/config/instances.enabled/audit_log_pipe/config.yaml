@@ -1,14 +1,13 @@
+audit_log:
+  to: pipe
+  pipe: '| cronolog audit_tarantool.log'
+
 groups:
   group001:
-    iproto:
-      listen:
-      - uri: '127.0.0.1:3301'
     replicasets:
       replicaset001:
         instances:
           instance001:
-            audit_log:
-              to: pipe
-              pipe: 'cronolog audit_tarantool.log'
-              format: json
-              extract_key: false
+            iproto:
+              listen:
+              - uri: '127.0.0.1:3301'
