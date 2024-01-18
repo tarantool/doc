@@ -8,8 +8,8 @@ Connecting to a Tarantool instance
     $ tt connect {URI|INSTANCE} [OPTION ...]
 
 
-``tt connect`` connects to a Tarantool instance by its URI or name specified
-during its startup (``tt start``).
+``tt connect`` connects to a Tarantool instance by its URI or instance name specified
+in the current environment.
 
 Options
 -------
@@ -27,6 +27,20 @@ Options
     Connect and evaluate the script from a file.
 
     ``-`` – read the script from stdin.
+
+.. option:: -i, --interactive
+
+    Enter the interactive mode after evaluating the script passed in ``-f``/``--file``.
+
+..  option:: -l LANGUAGE, --language LANGUAGE
+
+    The input language of the :ref:`tt interactive console <tt-interactive-console>`:
+    ``lua`` (default) or ``sql``.
+
+..  option:: -x FORMAT, --outputformat FORMAT
+
+    The output format of the :ref:`tt interactive console <tt-interactive-console>`:
+    ``yaml`` (default), ``lua``, ``table``, ``ttable``.
 
 Details
 -------
