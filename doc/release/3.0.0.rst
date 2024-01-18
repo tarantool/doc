@@ -316,13 +316,15 @@ To enable the flight recorder in a YAML file, set ``flightrec.enabled`` to true:
 
 Then, you can use the Lua API to open and read ``*.ttfr`` files:
 
+.. _3-0-flight-recorder-begin:
+
 ..  code-block:: tarantoolsession
 
     app:instance001> flightrec = require('flightrec')
     ---
     ...
 
-    app:instance001> flightrec_file = flightrec.open('var/lib/instance001/20231225T085435.ttfr')
+    app:instance001> flightrec_file = flightrec.open('var/lib/instance001/current.ttfr')
     ---
     ...
 
@@ -360,6 +362,7 @@ Then, you can use the Lua API to open and read ``*.ttfr`` files:
     ---
     ...
 
+.. _3-0-flight-recorder-end:
 
 
 

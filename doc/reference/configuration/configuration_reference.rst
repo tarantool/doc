@@ -492,8 +492,192 @@ The ``database`` section defines database-specific configuration parameters, suc
     | Default: false
     | Environment variable: TT_DATABASE_USE_MVCC_ENGINE
 
+..  _configuration_reference_flightrec:
+
+flightrec
+---------
+
+..  admonition:: Enterprise Edition
+    :class: fact
+
+    Configuring ``flightrec`` parameters is available in the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only.
 
 
+The ``flightrec`` section describes options related to the :ref:`flight recorder <enterprise-flight-recorder>` configuration.
+Note that all options are dynamic and can be changed at runtime.
+
+..  NOTE::
+
+    ``flightrec`` can be defined in any :ref:`scope <configuration_scopes>`.
+
+To enable flight recorder, set the ``flightrec.enabled`` option to ``true`.
+
+..  _configuration_reference_flightrec_enabled:
+
+..  confval:: flightrec.enabled
+
+    Whether the :ref:`flight recorder <enterprise-flight-recorder>` is enabled.
+
+    | Type: boolean
+    | Default: false
+    | Environment variable: TT_FLIGHTREC_ENABLED
+
+
+..  TODO not implemented yet
+    .. _config-directory:
+
+    ..  _configuration_reference_flightrec_dir:
+
+    ..  confval:: flightrec.dir
+
+        Specify the directory used to store flight recordings (``*.ttfr`` files).
+
+        | Type: string
+        | Default: :ref:`memtx_dir <cfg_basic-memtx_dir>`
+        | Environment variable: TT_FLIGHTREC_DIR
+
+
+..  _configuration_reference_flightrec_logs:
+
+Logs
+~~~~
+
+This section describes the flight recorder settings related to :ref:`logging <cfg_logging-log>`.
+For example, you can configure a more detailed logging level in the flight recorder for deeper analysis.
+
+* :ref:`flightrec.logs_size <configuration_reference_flightrec_logs_size>`
+* :ref:`flightrec.logs_max_msg_size <configuration_reference_flightrec_logs_max_msg_size>`
+* :ref:`flightrec.logs_log_level <configuration_reference_flightrec_logs_log_level>`
+
+..  _configuration_reference_flightrec_logs_size:
+
+..  confval:: flightrec.logs_size
+
+    Specify the size (in bytes) of the log storage.
+    You can set this option to ``0`` to disable the log storage.
+
+    | Type: integer
+    | Default: 10485760
+    | Environment variable: TT_FLIGHTREC_LOGS_SIZE
+
+..  _configuration_reference_flightrec_logs_max_msg_size:
+
+..  confval:: flightrec.logs_max_msg_size
+
+    Specify the maximum size (in bytes) of the log message.
+    The log message is truncated if its size exceeds this limit.
+
+    | Type: integer
+    | Default: 4096
+    | Maximum: 16384
+    | Environment variable: TT_FLIGHTREC_LOGS_MAX_MSG_SIZE
+
+
+..  _configuration_reference_flightrec_logs_log_level:
+
+..  confval:: flightrec.logs_log_level
+
+    Specify the level of detail the log has.
+    You can learn more about log levels from the :ref:`log_level <cfg_logging-log_level>`
+    option description.
+    Note that the ``flightrec.logs_log_level`` value might differ from ``log_level``.
+
+    | Type: integer
+    | Default: 6
+    | Environment variable: TT_FLIGHTREC_LOGS_LOG_LEVEL
+
+..  _configuration_reference_flightrec_metrics:
+
+Metrics
+~~~~~~~
+
+This section describes the flight recorder settings related to collecting
+:ref:`metrics <metrics-reference>`.
+
+* :ref:`flightrec.metrics_period <configuration_reference_flightrec_metrics_period>`
+* :ref:`flightrec.metrics_interval <configuration_reference_flightrec_metrics_interval>`
+
+..  _configuration_reference_flightrec_metrics_period:
+
+..  confval:: flightrec.metrics_period
+
+    Specify the time period (in seconds) that defines how long metrics are stored from the moment of dump.
+    So, this value defines how much historical metrics data is collected up to the moment of crash.
+    The frequency of metric dumps is defined by :ref:`flightrec.metrics_interval <configuration_reference_flightrec_metrics_interval>`.
+
+    | Type: integer
+    | Default: 180
+    | Environment variable: TT_FLIGHTREC_METRICS_PERIOD
+
+
+..  _configuration_reference_flightrec_metrics_interval:
+
+..  confval:: flightrec.metrics_interval
+
+    Specify the time interval (in seconds) that defines the frequency of dumping metrics.
+    This value shouldn't exceed :ref:`flightrec.metrics_period <configuration_reference_flightrec_metrics_period>`.
+
+    | Type: number
+    | Default: 1.0
+    | Minimum: 0.001
+    | Environment variable: TT_FLIGHTREC_METRICS_INTERVAL
+
+..  NOTE::
+
+    Given that the average size of a metrics entry is 2 kB,
+    you can estimate the size of the metrics storage as follows:
+
+    ..  code-block:: console
+
+        (flightrec_metrics_period / flightrec_metrics_interval) * 2 kB
+
+
+.. _configuration_reference_flightrec_requests:
+
+Requests
+~~~~~~~~
+
+This section lists the flight recorder settings related to
+storing the :ref:`request and response <internals-requests_responses>` data.
+
+* :ref:`flightrec.requests_size <configuration_reference_flightrec_requests_size>`
+* :ref:`flightrec.requests_max_req_size <configuration_reference_flightrec_requests_max_req_size>`
+* :ref:`flightrec.requests_max_res_size <configuration_reference_flightrec_requests_max_res_size>`
+
+..  _configuration_reference_flightrec_requests_size:
+
+..  confval:: flightrec.requests_size
+
+    Specify the size (in bytes) of storage for the request and response data.
+    You can set this parameter to ``0`` to disable a storage of requests and responses.
+
+    | Type: integer
+    | Default: 10485760
+    | Environment variable: TT_FLIGHTREC_REQUESTS_SIZE
+
+
+..  _configuration_reference_flightrec_requests_max_req_size:
+
+..  confval:: flightrec.requests_max_req_size
+
+    Specify the maximum size (in bytes) of a request entry.
+    A request entry is truncated if this size is exceeded.
+
+    | Type: integer
+    | Default: 16384
+    | Environment variable: TT_FLIGHTREC_REQUESTS_MAX_REQ_SIZE
+
+
+..  _configuration_reference_flightrec_requests_max_res_size:
+
+..  confval:: flightrec.requests_max_res_size
+
+    Specify the maximum size (in bytes) of a response entry.
+    A response entry is truncated if this size is exceeded.
+
+    | Type: integer
+    | Default: 16384
+    | Environment variable: TT_FLIGHTREC_REQUESTS_MAX_RES_SIZE
 
 
 ..  _configuration_reference_iproto:
