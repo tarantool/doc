@@ -1,0 +1,20 @@
+credentials:
+  users:
+    admin:
+      password: 'topsecret'
+      roles: [ super ]
+
+security:
+  auth_delay: 10
+  auth_retries: 2
+  disable_guest: true
+
+groups:
+  group001:
+    replicasets:
+      replicaset001:
+        instances:
+          instance001:
+            iproto:
+              listen:
+              - uri: '127.0.0.1:3301'
