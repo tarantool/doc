@@ -155,7 +155,7 @@
 
     Since version :doc:`2.11.0 </release/2.11.0>`.
 
-    (Enterprise Edition only) Allows you to add auxiliary information to each :ref:`write-ahead log <internals-wal>` record.
+    (**Enterprise Edition only**) Allows you to add auxiliary information to each :ref:`write-ahead log <internals-wal>` record.
     For example, you can enable storing an old and new tuple for each CRUD operation performed.
     This information might be helpful for implementing a CDC (Change Data Capture) utility that transforms a data replication stream.
 
@@ -195,6 +195,7 @@
     | Type: map
     | Default: nil
     | Environment variable: TT_WAL_EXT
+    | Dynamic: **yes**
 
 
 .. _cfg_binary_logging_secure_erasing:
@@ -203,7 +204,7 @@
 
     Since version :doc:`3.0.0 </release/3.0.0>`.
 
-    (Enterprise Edition only) If **true**, forces Tarantool to overwrite a data file a few times before deletion to render recovery of a deleted file impossible.
+    (**Enterprise Edition only**) If **true**, forces Tarantool to overwrite a data file a few times before deletion to render recovery of a deleted file impossible.
     The option applies to both ``.xlog`` and ``.snap`` files as well as Vinyl data files.
 
     | Type: boolean

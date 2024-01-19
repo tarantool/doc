@@ -42,6 +42,7 @@
     | Type: integer
     | Default: 10485760
     | Environment variable: TT_FLIGHTREC_LOGS_SIZE
+    | Dynamic: yes
 
 
 .. _cfg_flightrec_logs_max_msg_size:
@@ -57,6 +58,7 @@
     | Default: 4096
     | Maximum: 16384
     | Environment variable: TT_FLIGHTREC_LOGS_MAX_MSG_SIZE
+    | Dynamic: yes
 
 
 .. _cfg_flightrec_logs_log_level:
@@ -73,6 +75,7 @@
     | Type: integer
     | Default: 6
     | Environment variable: TT_FLIGHTREC_LOGS_LOG_LEVEL
+    | Dynamic: yes
 
 
 .. _cfg_flightrec_metrics_period:
@@ -88,6 +91,7 @@
     | Type: integer
     | Default: 180
     | Environment variable: TT_FLIGHTREC_METRICS_PERIOD
+    | Dynamic: yes
 
 
 .. _cfg_flightrec_metrics_interval:
@@ -112,6 +116,7 @@
     | Default: 1.0
     | Minimum: 0.001
     | Environment variable: TT_FLIGHTREC_METRICS_INTERVAL
+    | Dynamic: yes
 
 
 .. _cfg_flightrec_requests_size:
@@ -126,6 +131,7 @@
     | Type: integer
     | Default: 10485760
     | Environment variable: TT_FLIGHTREC_REQUESTS_SIZE
+    | Dynamic: yes
 
 
 
@@ -141,6 +147,7 @@
     | Type: integer
     | Default: 16384
     | Environment variable: TT_FLIGHTREC_REQUESTS_MAX_REQ_SIZE
+    | Dynamic: yes
 
 
 .. _cfg_flightrec_requests_max_res_size:
@@ -155,3 +162,4 @@
     | Type: integer
     | Default: 16384
     | Environment variable: TT_FLIGHTREC_REQUESTS_MAX_RES_SIZE
+    | Dynamic: yes
