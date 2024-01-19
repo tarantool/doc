@@ -5,12 +5,15 @@
 * :ref:`wal_dir_rescan_delay <cfg_binary_logging_snapshots-wal_dir_rescan_delay>`
 * :ref:`wal_queue_max_size <cfg_binary_logging_snapshots-wal_queue_max_size>`
 * :ref:`wal_cleanup_delay <cfg_binary_logging_snapshots-wal_cleanup_delay>`
+* :ref:`wal_ext <cfg_binary_logging_snapshots-wal_ext>`
+* :ref:`secure_erasing <cfg_binary_logging_secure_erasing>`
 
 .. _cfg_binary_logging_snapshots-force_recovery:
 
 .. confval:: force_recovery
 
     Since version 1.7.4.
+
     If ``force_recovery`` equals true, Tarantool tries to continue if there is
     an error while reading a :ref:`snapshot file<index-box_persistence>`
     (at server instance start) or a :ref:`write-ahead log file<internals-wal>`
@@ -31,6 +34,7 @@
 .. confval:: wal_max_size
 
     Since version 1.7.4.
+
     The maximum number of bytes in a single write-ahead log file.
     When a request would cause an .xlog file to become larger than
     ``wal_max_size``, Tarantool creates another WAL file.
@@ -45,6 +49,7 @@
 .. confval:: snap_io_rate_limit
 
     Since version 1.4.9.
+
     Reduce the throttling effect of :doc:`box.snapshot() </reference/reference_lua/box_snapshot>` on
     INSERT/UPDATE/DELETE performance by setting a limit on how many
     megabytes per second it can write to disk. The same can be
@@ -64,7 +69,9 @@
 
 .. confval:: wal_mode
 
-    Since version 1.6.2. Specify fiber-WAL-disk synchronization mode as:
+    Since version 1.6.2.
+
+    Specify fiber-WAL-disk synchronization mode as:
 
     * ``none``: write-ahead log is not maintained.
       A node with ``wal_mode = none`` can't be replication master;
@@ -83,6 +90,7 @@
 .. confval:: wal_dir_rescan_delay
 
     Since version 1.6.2.
+
     Number of seconds between periodic scans of the write-ahead-log
     file directory, when checking for changes to write-ahead-log
     files for the sake of :ref:`replication <replication>` or :ref:`hot standby <index-hot_standby>`.
@@ -97,6 +105,7 @@
 .. confval:: wal_queue_max_size
 
     Since version :doc:`2.8.1 </release/2.8.1>`.
+
     The size of the queue (in bytes) used by a :ref:`replica <replication-roles>` to submit
     new transactions to a :ref:`write-ahead log<internals-wal>` (WAL).
     This option helps limit the rate at which a replica submits transactions to the WAL.
@@ -118,6 +127,7 @@
 .. confval:: wal_cleanup_delay
 
     Since version :doc:`2.6.3 </release/2.6.3>`.
+
     The delay (in seconds) used to prevent the :ref:`Tarantool garbage collector <cfg_checkpoint_daemon-garbage-collector>`
     from immediately removing :ref:`write-ahead log<internals-wal>` files after a node restart.
     This delay eliminates possible erroneous situations when the master deletes WALs
@@ -136,4 +146,67 @@
     | Type: number
     | Default: 14400 seconds
     | Environment variable: TT_WAL_CLEANUP_DELAY
+    | Dynamic: **yes**
+
+
+.. _cfg_binary_logging_snapshots-wal_ext:
+
+.. confval:: wal_ext
+
+    Since version :doc:`2.11.0 </release/2.11.0>`.
+
+    (Enterprise Edition only) Allows you to add auxiliary information to each :ref:`write-ahead log <internals-wal>` record.
+    For example, you can enable storing an old and new tuple for each CRUD operation performed.
+    This information might be helpful for implementing a CDC (Change Data Capture) utility that transforms a data replication stream.
+
+    You can enable storing old and new tuples as follows:
+
+    *   Set the ``old`` and ``new`` options to ``true`` to store old and new tuples in a write-ahead log for all spaces.
+
+        ..  code-block:: lua
+
+            box.cfg {
+                wal_ext = { old = true, new = true }
+            }
+
+    *   To adjust these options for specific spaces, use the ``spaces`` option.
+
+        ..  code-block:: lua
+
+            box.cfg {
+                wal_ext = {
+                    old = true, new = true,
+                    spaces = {
+                        space1 = { old = false },
+                        space2 = { new = false }
+                    }
+                }
+            }
+
+
+        The configuration for specific spaces has priority over the global configuration,
+        so only new tuples are added to the log for ``space1`` and only old tuples for ``space2``.
+
+    Note that records with additional fields are :ref:`replicated <replication-architecture>` as follows:
+
+    *   If a replica doesn't support the extended format configured on a master, auxiliary fields are skipped.
+    *   If a replica and master have different configurations for WAL records, a master's configuration is ignored.
+
+    | Type: map
+    | Default: nil
+    | Environment variable: TT_WAL_EXT
+
+
+.. _cfg_binary_logging_secure_erasing:
+
+.. confval:: secure_erasing
+
+    Since version :doc:`3.0.0 </release/3.0.0>`.
+
+    (Enterprise Edition only) If **true**, forces Tarantool to overwrite a data file a few times before deletion to render recovery of a deleted file impossible.
+    The option applies to both ``.xlog`` and ``.snap`` files as well as Vinyl data files.
+
+    | Type: boolean
+    | Default: false
+    | Environment variable: TT_SECURE_ERASING
     | Dynamic: **yes**
