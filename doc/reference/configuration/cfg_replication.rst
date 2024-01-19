@@ -1,5 +1,6 @@
 * :ref:`replication <cfg_replication-replication>`
 * :ref:`replication_anon <cfg_replication-replication_anon>`
+* :ref:`bootstrap_leader <cfg_replication-bootstrap_leader>`
 * :ref:`bootstrap_strategy <cfg_replication-bootstrap_strategy>`
 * :ref:`replication_connect_timeout <cfg_replication-replication_connect_timeout>`
 * :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>`
@@ -206,6 +207,31 @@
     | Dynamic: **yes**
 
 
+.. _cfg_replication-bootstrap_leader:
+
+.. confval:: bootstrap_leader
+
+    Since :doc:`3.0.0 </release/3.0.0>`.
+
+    A bootstrap leader for a replica set.
+    You can pass a bootstrap leader's URI, UUID, or name.
+
+    To specify a bootstrap leader manually, you need to set :ref:`bootstrap_strategy <cfg_replication-bootstrap_strategy>` to ``config``, for example:
+
+    ..  code-block:: lua
+
+        box.cfg{
+            bootstrap_strategy = 'config',
+            bootstrap_leader = '127.0.0.1:3301',
+            replication = {'127.0.0.1:3301'},
+        }
+
+    | Type: string
+    | Default: null
+    | Environment variable: TT_BOOTSTRAP_LEADER
+    | Dynamic: **yes**
+
+
 .. _cfg_replication-bootstrap_strategy:
 
 .. confval:: bootstrap_strategy
@@ -220,6 +246,11 @@
         a node requires 2 connected instances.
         In the case of 4 or 5 nodes, at least 3 connected instances are required.
         Moreover, a bootstrap leader fails to boot unless every connected node has chosen it as a bootstrap leader.
+
+    *   ``config``: use the specified node to bootstrap a replica set.
+        To specify the bootstrap leader, use the :ref:`bootstrap_leader <cfg_replication-bootstrap_leader>` option.
+
+    *   ``supervised``: a bootstrap leader isn't chosen automatically but should be appointed using :ref:`box.ctl.make_bootstrap_leader() <box_ctl-make_bootstrap_leader>` on the desired node.
 
     *   ``legacy`` (deprecated since :doc:`2.11.0 </release/2.11.0>`): a node requires the :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>` number of other nodes to be connected.
         This option is added to keep the compatibility with the current versions of Cartridge and might be removed in the future.
