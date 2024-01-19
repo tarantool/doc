@@ -42,6 +42,22 @@ Options
     The output format of the :ref:`tt interactive console <tt-interactive-console>`:
     ``yaml`` (default), ``lua``, ``table``, ``ttable``.
 
+..  option:: --sslcertfile FILEPATH
+
+    The path to a trusted certificate authorities (CA) file for encrypted connections.
+
+..  option:: --sslcafile FILEPATH
+
+    The path to an SSL certificate file for encrypted connections.
+
+..  option:: --sslkeyfile FILEPATH
+
+    The path to a private SSL key file for encrypted connections.
+
+..  option:: --sslciphers STRING
+
+    The list of SSL cipher suites used for encrypted connections, separated by colons (``:``).
+
 Details
 -------
 
@@ -52,14 +68,50 @@ You can also connect to instances in the same ``tt`` environment
 (that is, those that use the same :ref:`configuration file <tt-config_file>` and Tarantool installation)
 by their instance names.
 
-If authentication is required, specify the username and the password using the ``-u`` (``--username``)
-and ``-p`` (``--password``) options.
+Authentication
+~~~~~~~~~~~~~~
 
-By default, ``tt connect`` opens an interactive Tarantool console. Alternatively, you
-can open a connection to evaluate a Lua script from a file or stdin. To do this,
-pass the file path in the ``-f`` (``--file``) option or use ``-f -`` to take the script
-from stdin.
+If authentication is required, use one of the following ways to pass the username and
+the password:
 
+*   The ``-u`` (``--username``) and ``-p`` (``--password``) options:
+
+..  code-block:: console
+
+    $ tt connect 192.168.10.10:3301 -u myuser -p p4$$w0rD
+
+*   The connection string:
+
+..  code-block:: console
+
+    $ tt connect myuser:p4$$w0rD@192.168.10.10:3301 -u myuser -p p4$$w0rD
+
+*   Environment variables ``TT_CLI_USERNAME`` and ``TT_CLI_PASSWORD`` :
+
+..  code-block:: console
+
+    $ export TT_CLI_USERNAME=myuser
+    $ export TT_CLI_PASSWORD=p4$$w0rD
+    $ tt connect 192.168.10.10:3301
+
+Encrypted connection
+~~~~~~~~~~~~~~~~~~~~
+
+To connect to instances that use SSL encryption, provide the SSL certificate path and
+other encryption parameters in the options ``--sslcertfile``, ``--sslcafile``,
+``--sslkeyfile``, and ``--sslciphers``.
+
+Script evaluation
+~~~~~~~~~~~~~~~~~
+
+By default, ``tt connect`` opens an :ref:`interactive tt console <tt-interactive-console>`.
+Alternatively, you can open a connection to evaluate a Lua script from a file or stdin.
+To do this, pass the file path in the ``-f`` (``--file``) option or use ``-f -``
+to take the script from stdin.
+
+..  code-block:: console
+
+    $ tt connect app -f test.lua
 
 Examples
 --------
