@@ -60,6 +60,11 @@ Logging
 
 ..  include:: cfg_logging.rst
 
+Flight recorder
+---------------
+
+..  include:: cfg_flight_recorder.rst
+
 Feedback
 --------
 
