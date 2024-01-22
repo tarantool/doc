@@ -97,6 +97,10 @@ username and the password:
 
 If no credentials are provided for a remote connection, the user is automatically ``guest``.
 
+.. note::
+
+    Local connections (by instance name instead of the URI) don't require authentication.
+
 Encrypted connection
 ~~~~~~~~~~~~~~~~~~~~
 

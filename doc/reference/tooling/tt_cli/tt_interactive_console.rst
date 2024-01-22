@@ -29,7 +29,7 @@ Specify the instance URI and the user credentials in the corresponding options:
 If a user is not specified, the connection is established on behalf of the ``guest`` user.
 
 If the instance runs in the same ``tt`` environment, you can establish a local
-connection with it by specifying the``<application>:<instance>`` string instead of the URI:
+connection with it by specifying the ``<application>:<instance>`` string instead of the URI:
 
 ..  code-block:: console
 
@@ -218,7 +218,7 @@ Possible values:
 *   ``lua`` (default)
 *   ``sql``
 
-An analog of the :ref:`tt connect <tt-connect>` option ``-l``/``--language``
+An analog of the :ref:`tt connect <tt-connect>` option ``-l``/``--language``.
 
 \\set output FORMAT, \\x{l|t|T|y}, \\x
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -243,7 +243,7 @@ Possible ``FORMAT`` values:
 The format of ``table`` and ``ttable`` output can be adjusted using the ``\set table_format``,
 ``\set graphics``, and ``\set table_colum_width`` commands.
 
-An analog of the :ref:`tt connect <tt-connect>` option ``-x``/``--outputformat``
+An analog of the :ref:`tt connect <tt-connect>` option ``-x``/``--outputformat``.
 
 \\set table_format
 ~~~~~~~~~~~~~~~~~~
