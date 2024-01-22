@@ -341,11 +341,11 @@ Configuration
 ~~~~~~~~~~~~~
 
 To configure traffic encryption, you need to set the special :ref:`URI parameters <index-uri-several-params>` for a particular connection.
-The parameters can be set for the following ``box.cfg`` options and ``nex.box`` method:
+The parameters can be set for the following ``box.cfg`` options and ``net.box`` method:
 
 *   :ref:`box.cfg.listen <cfg_basic-listen>` -- on the server side.
-*   :ref:`box.cfg.replication <cfg_replication-replication>`--on the client side.
-*   :ref:`net_box_object.connect() <net_box-connect>`--on the client side.
+*   :ref:`box.cfg.replication <cfg_replication-replication>` -- on the client side.
+*   :ref:`net_box_object.connect() <net_box-connect>` -- on the client side.
 
 Below is the list of the parameters.
 In the :ref:`next section <configuration_code_iproto-encryption-config-sc>`, you can find details and examples on what should be configured on both the server side and the client side.
