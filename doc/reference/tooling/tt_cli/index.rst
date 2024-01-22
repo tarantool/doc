@@ -27,6 +27,7 @@ concept explanation, and the ``tt`` command reference.
     global_options
     commands
     external_modules
+    tt_interactive_console
 
 ..  _tt-cli-environments:
 

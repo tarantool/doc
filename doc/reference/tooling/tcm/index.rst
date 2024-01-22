@@ -22,7 +22,7 @@ in an instance's console.
 executable for Linux platforms.
 
 |tcm| works only with Tarantool EE clusters that use centralized configuration in
-:ref:`etcd <configuration_etcd>` or a Tarantool-based storage.
+:ref:`etcd <configuration_etcd>` or a Tarantool-based configuration storage.
 When you create or edit a cluster's configuration in |tcm|, it publishes the saved
 configuration to the storage. This ensures consistent and reliable configuration storage.
 A single |tcm| installation can connect to multiple Tarantool EE clusters and
