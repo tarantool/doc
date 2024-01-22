@@ -3,7 +3,7 @@
 tt interactive console
 ======================
 
-The ``tt`` utility features an command-line console that allows executing requests
+The ``tt`` utility features a command-line console that allows executing requests
 and Lua code interactively on the connected Tarantool instances.
 It is similar to the :ref:`Tarantool interactive console <interactive_console>` with
 one key difference: the ``tt`` console allows connecting to any available instance,
@@ -15,8 +15,8 @@ Entering the console
 --------------------
 
 To connect to a Tarantool instance using the ``tt`` console, run :ref:`tt connect <tt-connect>`.
-Specify the instance URI and connection options, such as the username and the password,
-in the corresponding options.
+
+Specify the instance URI and the user credentials in the corresponding options:
 
 ..  code-block:: console
 
@@ -26,8 +26,10 @@ in the corresponding options.
 
     192.168.10.10:3301>
 
-When connecting to an instance from the same ``tt`` environment, you can use the
-``<application>:<instance>`` string instead of the URI:
+If a user is not specified, the connection is established on behalf of the ``guest`` user.
+
+If the instance runs in the same ``tt`` environment, you can establish a local
+connection with it by specifying the``<application>:<instance>`` string instead of the URI:
 
 ..  code-block:: console
 
@@ -36,6 +38,8 @@ When connecting to an instance from the same ``tt`` environment, you can use the
        • Connected to app:storage001
 
     app:storage001>
+
+Local connections are established on behalf of the ``admin`` user.
 
 To get the list of supported console commands, enter ``\help`` or ``?``.
 To quit the console, enter ``\quit`` or ``\q``.
@@ -46,8 +50,10 @@ Console input
 -------------
 
 Similarly to the :ref:`Tarantool interactive console <interactive_console>`, the
-``tt`` console can handle Lua or SQL input. The default is Lua. To change the input
-language, run ``\set language <language>``, for example:
+``tt`` console can handle Lua or SQL input. The default is Lua. For Lua input,
+the tab-based autocompletion works automatically for loaded modules.
+
+To change the input language to SQL, run ``\set language sql``:
 
 ..  code-block:: console
 
@@ -64,6 +70,8 @@ language, run ``\set language <language>``, for example:
       rows:
       - [1, 'Roxette', 1986]
     ...
+
+To change the input language back to Lua, run ``\set language lua``:
 
 ..  code-block:: console
 
@@ -82,7 +90,6 @@ language, run ``\set language <language>``, for example:
 
         $ tt connect app:storage001 -l sql
 
-For Lua input, the tab-based autocompletion works automatically for loaded modules.
 
 .. _tt-interactive-console-output:
 
@@ -101,7 +108,7 @@ tuple on the new line:
       - [3, 'Ace of Base', 1987]
     ...
 
-You can switch to alternative output formats -- Lua or human-readable tables --
+You can switch to alternative output formats -- Lua or ASCII (pseudographics) tables --
 using the ``\set output`` console command:
 
 ..  code-block:: console
@@ -149,30 +156,37 @@ For ``table`` and ``ttable`` output, more customizations are possible with the
 following commands:
 
 *   ``\set table_format`` -- table format: default (pseudographics, or ASCII table), Markdown,
-    or Jira-compatible format.
-*   ``\set grahpics`` -- enable or disable graphics for table cells in the default format.
+    or Jira-compatible format:
+
+    ..  code-block:: console
+
+        app:storage001> \set table_format jira
+        app:storage001> box.space.bands:select {}
+        | col1 | 1 | 2 | 3 |
+        | col2 | Roxette | Scorpions | Ace of Base |
+        | col3 | 1986 | 1965 | 1987 |
+
+*   ``\set grahpics`` -- enable or disable graphics for table cells in the default format:
+
+    ..  code-block:: console
+
+        app:storage001> \set table_format default
+        app:storage001> \set graphics false
+        app:storage001> box.space.bands:select {}
+         col1  1        2          3
+         col2  Roxette  Scorpions  Ace of Base
+         col3  1986     1965       1987
+
 *   ``\set table_column_width`` -- maximum column width.
 
-..  code-block:: console
+    ..  code-block:: console
 
-    app:storage001> \set table_format jira
-    app:storage001> box.space.bands:select {}
-    | col1 | 1 | 2 | 3 |
-    | col2 | Roxette | Scorpions | Ace of Base |
-    | col3 | 1986 | 1965 | 1987 |
-    app:storage001> \set table_format default
-    app:storage001> \set graphics false
-    app:storage001> box.space.bands:select {}
-     col1  1        2          3
-     col2  Roxette  Scorpions  Ace of Base
-     col3  1986     1965       1987
-
-    app:storage001> \set table_column_width 6
-    app:storage001> box.space.bands:select {}
-     col1  1       2       3
-     col2  Roxett  Scorpi  Ace of
-           +e      +ons    + Base
-     col3  1986    1965    1987
+        app:storage001> \set table_column_width 6
+        app:storage001> box.space.bands:select {}
+         col1  1       2       3
+         col2  Roxett  Scorpi  Ace of
+               +e      +ons    + Base
+         col3  1986    1965    1987
 
 
 .. _tt-interactive-console-commands:
@@ -202,7 +216,7 @@ Set the input language.
 Possible values:
 
 *   ``lua`` (default)
-*   ``sql``.
+*   ``sql``
 
 An analog of the :ref:`tt connect <tt-connect>` option ``-l``/``--language``
 
@@ -227,7 +241,7 @@ Possible ``FORMAT`` values:
     ``yaml`` > ``lua`` > ``table`` > ``ttable``.
 
 The format of ``table`` and ``ttable`` output can be adjusted using the ``\set table_format``,
-``\set graphics`, and ``\set table_colum_width`` commands.
+``\set graphics``, and ``\set table_colum_width`` commands.
 
 An analog of the :ref:`tt connect <tt-connect>` option ``-x``/``--outputformat``
 
@@ -255,7 +269,7 @@ The shorthands are:
 \\set table_colum_width WIDTH, \\xw WIDTH
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Set maximum printed width of a table cell content. If the length exceeds this value,
+Set the maximum printed width of a table cell content. If the length exceeds this value,
 it continues on the next line starting from the `+` (plus) sign.
 
 Shorthand: ``\xw``

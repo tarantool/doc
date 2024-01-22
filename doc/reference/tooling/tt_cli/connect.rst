@@ -16,11 +16,11 @@ Options
 
 ..  option:: -u USERNAME, --username USERNAME
 
-    Username
+    A Tarantool user for connecting to the instance.
 
 ..  option:: -p PASSWORD, --password PASSWORD
 
-    Password
+    The user's password.
 
 ..  option:: -f FILEPATH, --file FILEPATH
 
@@ -44,15 +44,15 @@ Options
 
 ..  option:: --sslcertfile FILEPATH
 
-    The path to a trusted certificate authorities (CA) file for encrypted connections.
-
-..  option:: --sslcafile FILEPATH
-
     The path to an SSL certificate file for encrypted connections.
 
 ..  option:: --sslkeyfile FILEPATH
 
     The path to a private SSL key file for encrypted connections.
+
+..  option:: --sslcafile FILEPATH
+
+    The path to a trusted certificate authorities (CA) file for encrypted connections.
 
 ..  option:: --sslciphers STRING
 
@@ -71,8 +71,9 @@ by their instance names.
 Authentication
 ~~~~~~~~~~~~~~
 
-If authentication is required, use one of the following ways to pass the username and
-the password:
+When connecting to an instance by its URI, ``tt connect`` establishes a remote connection
+for which authentication is required. Use one of the following ways to pass the
+username and the password:
 
 *   The ``-u`` (``--username``) and ``-p`` (``--password``) options:
 
@@ -94,12 +95,14 @@ the password:
     $ export TT_CLI_PASSWORD=p4$$w0rD
     $ tt connect 192.168.10.10:3301
 
+If no credentials are provided for a remote connection, the user is automatically ``guest``.
+
 Encrypted connection
 ~~~~~~~~~~~~~~~~~~~~
 
-To connect to instances that use SSL encryption, provide the SSL certificate path and
-other encryption parameters in the options ``--sslcertfile``, ``--sslcafile``,
-``--sslkeyfile``, and ``--sslciphers``.
+To connect to instances that use SSL encryption, provide the SSL certificate and
+SSL key files in the ``--sslcertfile`` and ``--sslkeyfile`` options. If necessary,
+add other SSL parameters -- ``--sslcafile`` and ``--sslciphers``.
 
 Script evaluation
 ~~~~~~~~~~~~~~~~~
