@@ -564,8 +564,8 @@ iproto.advertise.*
 
 .. confval:: iproto.advertise.peer
 
-    Settings used advertise the current instance to other cluster members.
-    The format of these setting is described in :ref:`iproto_advertise.\<peer_or_sharding\>.* <configuration_reference_iproto_advertise.peer_sharding>`.
+    Settings used to advertise the current instance to other cluster members.
+    The format of these settings is described in :ref:`iproto.advertise.\<peer_or_sharding\>.* <configuration_reference_iproto_advertise.peer_sharding>`.
 
     **Example**
 
@@ -587,8 +587,8 @@ iproto.advertise.*
 
 .. confval:: iproto.advertise.sharding
 
-    Settings used advertise the current instance to a router and rebalancer.
-    The format of these setting is described in :ref:`iproto_advertise.\<peer_or_sharding\>.* <configuration_reference_iproto_advertise.peer_sharding>`.
+    Settings used to advertise the current instance to a router and rebalancer.
+    The format of these settings is described in :ref:`iproto.advertise.\<peer_or_sharding\>.* <configuration_reference_iproto_advertise.peer_sharding>`.
 
     **Example**
 
@@ -615,7 +615,7 @@ iproto.advertise.<peer_or_sharding>.*
 
 .. _configuration_reference_iproto_advertise.peer_sharding.uri:
 
-.. confval:: iproto_advertise.<peer_or_sharding>.uri
+.. confval:: iproto.advertise.<peer_or_sharding>.uri
 
     (Optional) A URI used to advertise the current instance.
     By default, the URI defined in :ref:`iproto.listen <configuration_reference_iproto_listen>` is used to advertise the current instance.
@@ -631,7 +631,7 @@ iproto.advertise.<peer_or_sharding>.*
 
 .. _configuration_reference_iproto_advertise.peer_sharding.login:
 
-.. confval:: iproto_advertise.<peer_or_sharding>.login
+.. confval:: iproto.advertise.<peer_or_sharding>.login
 
     (Optional) A username used to connect to the current instance.
     If a username is not set, the ``guest`` user is used.
@@ -643,7 +643,7 @@ iproto.advertise.<peer_or_sharding>.*
 
 .. _configuration_reference_iproto_advertise.peer_sharding.password:
 
-.. confval:: iproto_advertise.<peer_or_sharding>.password
+.. confval:: iproto.advertise.<peer_or_sharding>.password
 
     (Optional) A password for the specified user.
     If a ``login`` is specified but a password is missing, it is taken from the user's :ref:`credentials <configuration_reference_credentials>`.
@@ -655,7 +655,7 @@ iproto.advertise.<peer_or_sharding>.*
 
 .. _configuration_reference_iproto_advertise.peer_sharding.params:
 
-.. confval:: iproto_advertise.<peer_or_sharding>.params
+.. confval:: iproto.advertise.<peer_or_sharding>.params
 
     (Optional) URI parameters (:ref:`<uri>.params.* <configuration_reference_iproto_uri_params>`) required for connecting to the current instance.
 
@@ -672,7 +672,7 @@ iproto.*
     An array of URIs used to listen for incoming requests.
     If required, you can enable SSL for specific URIs by providing additional parameters (:ref:`<uri>.params.* <configuration_reference_iproto_uri_params>`).
 
-    Note that a URI value can't contain parameters, a login, or password.
+    Note that a URI value can't contain parameters, a login, or a password.
 
     **Example**
 
@@ -705,7 +705,7 @@ iproto.*
         starts processing pending requests immediately.
 
     -   On weaker systems, decrease ``net_msg_max``, and the overhead
-        may decrease. Although this may take some time because the
+        may decrease. However, this may take some time because the
         scheduler must wait until already-running requests finish.
 
     When ``net_msg_max`` is reached,
@@ -779,8 +779,8 @@ iproto.*
 
 URI parameters that can be used in the following options:
 
--   :ref:`iproto_advertise.\<peer_or_sharding\>.params <configuration_reference_iproto_advertise.peer_sharding.params>`
--   :ref:`iproto.listen <configuration_reference_iproto_listen>`
+-   :ref:`iproto.advertise.\<peer_or_sharding\>.params <configuration_reference_iproto_advertise.peer_sharding.params>`
+-   :ref:`iproto.listen.\<uri\>.params <configuration_reference_iproto_listen>`
 
 ..  NOTE::
 

@@ -3,19 +3,21 @@
 Connections
 ===========
 
-Configuring connections is required for different purposes, for example:
-
--   Communicating between cluster members.
--   Connecting to cluster members for administration using :ref:`tt <tt-cli>`.
--   Managing clusters using :ref:`Tarantool Cluster Manager <tcm>`.
--   Connecting to an instance using the :ref:`net.box <net_box-module>` module or :ref:`connectors <index-box_connectors>` for different languages.
-
-To communicate to and between cluster instances, Tarantool uses a :ref:`binary protocol <box_protocol>` called iproto.
-The corresponding :ref:`iproto <configuration_reference_iproto>` section in :ref:`YAML configuration <configuration>` lets you configure various connection settings:
+To set up a Tarantool cluster, you need to enable communication between its instances, regardless of whether they running on one or different hosts.
+This requires :ref:`configuring <configuration>` connection settings that might include:
 
 -   One or several URIs used to listen for incoming requests.
--   An URI used advertise an instance to other cluster members.
+-   An URI used to advertise an instance to other cluster members.
 -   SSL settings used to secure connections.
+
+Configuring connection settings is also required to enable communication of a Tarantool cluster to external systems.
+For example, this might be administering cluster members using :ref:`tt <tt-cli>`, managing clusters using :ref:`Tarantool Cluster Manager <tcm>`, or using :ref:`connectors <index-box_connectors>` for different languages.
+
+This topic describes how to define connection settings in the :ref:`iproto <configuration_reference_iproto>` section of a YAML configuration.
+
+..  NOTE::
+
+    iproto is a :ref:`binary protocol <box_protocol>` used to communicate between cluster instances and with external systems.
 
 
 .. _configuration_connections_listen_uri:
@@ -108,9 +110,9 @@ An advertise URI (:ref:`iproto.advertise.* <configuration_reference_iproto_adver
 -   ``iproto.advertise.sharding`` specifies how to advertise the instance to a router and rebalancer.
 -   ``iproto.advertise.client`` accepts a URI used to advertise the instance to clients.
 
-``iproto_advertise.<peer_or_sharding>`` might include the credentials required to connect to this instance, a URI used to listen for incoming requests, and SSL settings.
+``iproto.advertise.<peer_or_sharding>`` might include the credentials required to connect to this instance, a URI used to listen for incoming requests, and SSL settings.
 
-If ``iproto_advertise.<peer_or_sharding>.uri`` is not specified explicitly, a :ref:`listen URI <configuration_connections_listen_uri>` of this instance is used.
+If ``iproto.advertise.<peer_or_sharding>.uri`` is not specified explicitly, a :ref:`listen URI <configuration_connections_listen_uri>` of this instance is used.
 In this case, you need at least to specify credentials for connecting to this instance.
 
 
@@ -141,7 +143,7 @@ In a sharded cluster, ``iproto.advertise.sharding`` specifies that a router and 
 URI
 ~~~
 
-If required, you can specify an advertise URI explicitly by setting up the :ref:`iproto_advertise.\<peer_or_sharding\>.uri <configuration_reference_iproto_advertise.peer_sharding.uri>` option.
+If required, you can specify an advertise URI explicitly by setting up the :ref:`iproto.advertise.\<peer_or_sharding\>.uri <configuration_reference_iproto_advertise.peer_sharding.uri>` option.
 In the example below, ``iproto.listen`` includes two URIs that can be used to connect to ``instance001`` but only the second one is used to advertise this instance to other replica set peers:
 
 ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/advertise_peer/config.yaml
@@ -150,7 +152,7 @@ In the example below, ``iproto.listen`` includes two URIs that can be used to co
     :end-before: instance002:
     :dedent:
 
-The ``iproto_advertise.<peer_or_sharding>.uri`` option can also accept an FQDN instead of an IP address:
+The ``iproto.advertise.<peer_or_sharding>.uri`` option can also accept an FQDN instead of an IP address:
 
 ..  code-block:: yaml
 
@@ -237,7 +239,7 @@ SSL parameters for an advertise URI should be set only if this :ref:`advertise U
 Otherwise, SSL parameters of a listen URI are used and no additional configuration is required.
 
 Configuring an advertise URI's SSL options depends on whether a trusted certificate authorities (CA) file is set or not.
-Without the CA file, you only need to set ``iproto_advertise.<peer_or_sharding>.params.transport`` to ``ssl`` as shown below:
+Without the CA file, you only need to set ``iproto.advertise.<peer_or_sharding>.params.transport`` to ``ssl`` as shown below:
 
 ..  code-block:: yaml
 
