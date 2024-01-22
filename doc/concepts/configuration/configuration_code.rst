@@ -319,6 +319,282 @@ In case of a single URI, the following syntax also works:
     }
 
 
+..  _configuration_code_iproto-encryption:
+
+Traffic encryption
+------------------
+
+..  admonition:: Enterprise Edition
+    :class: fact
+
+    Traffic encryption is supported by the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only.
+
+Since version 2.10.0, Tarantool Enterprise Edition has the built-in support for using SSL to encrypt the client-server communications over :ref:`binary connections <box_protocol-iproto_protocol>`,
+that is, between Tarantool instances in a cluster or connecting to an instance via connectors using :doc:`net.box </reference/reference_lua/net_box>`.
+
+Tarantool uses the OpenSSL library that is included in the delivery package.
+Note that SSL connections use only TLSv1.2.
+
+..  _configuration_code_iproto-encryption-config:
+
+Configuration
+~~~~~~~~~~~~~
+
+To configure traffic encryption, you need to set the special :ref:`URI parameters <index-uri-several-params>` for a particular connection.
+The parameters can be set for the following ``box.cfg`` options and ``net.box`` method:
+
+*   :ref:`box.cfg.listen <cfg_basic-listen>` -- on the server side.
+*   :ref:`box.cfg.replication <cfg_replication-replication>` -- on the client side.
+*   :ref:`net_box_object.connect() <net_box-connect>` -- on the client side.
+
+Below is the list of the parameters.
+In the :ref:`next section <configuration_code_iproto-encryption-config-sc>`, you can find details and examples on what should be configured on both the server side and the client side.
+
+*   ``transport`` -- enables SSL encryption for a connection if set to ``ssl``.
+    The default value is ``plain``, which means the encryption is off. If the parameter is not set, the encryption is off too.
+    Other encryption-related parameters can be used only if the ``transport = 'ssl'`` is set.
+
+    Example:
+
+    ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/ssl/myapp.lua
+        :language: lua
+        :start-at: net.box
+        :end-before: return connection
+        :dedent:
+
+*   ``ssl_key_file`` -- a path to a private SSL key file.
+    Mandatory for a server.
+    For a client, it's mandatory if the ``ssl_ca_file`` parameter is set for a server; otherwise, optional.
+    If the private key is encrypted, provide a password for it in the ``ssl_password`` or ``ssl_password_file`` parameter.
+
+*   ``ssl_cert_file`` -- a path to an SSL certificate file.
+    Mandatory for a server.
+    For a client, it's mandatory if the ``ssl_ca_file`` parameter is set for a server; otherwise, optional.
+
+*   ``ssl_ca_file`` -- a path to a trusted certificate authorities (CA) file. Optional. If not set, the peer won't be checked for authenticity.
+
+    Both a server and a client can use the ``ssl_ca_file`` parameter:
+
+    *   If it's on the server side, the server verifies the client.
+    *   If it's on the client side, the client verifies the server.
+    *   If both sides have the CA files, the server and the client verify each other.
+
+*   ``ssl_ciphers`` -- a colon-separated (``:``) list of SSL cipher suites the connection can use. See the :ref:`configuration_code_iproto-encryption-ciphers` section for details. Optional.
+    Note that the list is not validated: if a cipher suite is unknown, Tarantool just ignores it, doesn't establish the connection and writes to the log that no shared cipher found.
+
+*   ``ssl_password`` -- a password for an encrypted private SSL key. Optional. Alternatively, the password
+    can be provided in ``ssl_password_file``.
+
+*   ``ssl_password_file`` -- a text file with one or more passwords for encrypted private SSL keys
+    (each on a separate line). Optional. Alternatively, the password can be provided in ``ssl_password``.
+
+    Tarantool applies the ``ssl_password`` and ``ssl_password_file`` parameters in the following order:
+
+    1.  If ``ssl_password`` is provided, Tarantool tries to decrypt the private key with it.
+    2.  If ``ssl_password`` is incorrect or isn't provided, Tarantool tries all passwords from ``ssl_password_file``
+        one by one in the order they are written.
+    3.  If ``ssl_password`` and all passwords from ``ssl_password_file`` are incorrect,
+        or none of them is provided, Tarantool treats the private key as unencrypted.
+
+Configuration example:
+
+..  code-block:: lua
+
+    box.cfg{ listen = {
+        uri = 'localhost:3301',
+        params = {
+            transport = 'ssl',
+            ssl_key_file = '/path_to_key_file',
+            ssl_cert_file = '/path_to_cert_file',
+            ssl_ciphers = 'HIGH:!aNULL',
+            ssl_password = 'topsecret'
+        }
+    }}
+
+..  _configuration_code_iproto-encryption-ciphers:
+
+Supported ciphers
+*****************
+
+Tarantool Enterprise supports the following cipher suites:
+
+*   ECDHE-ECDSA-AES256-GCM-SHA384
+*   ECDHE-RSA-AES256-GCM-SHA384
+*   DHE-RSA-AES256-GCM-SHA384
+*   ECDHE-ECDSA-CHACHA20-POLY1305
+*   ECDHE-RSA-CHACHA20-POLY1305
+*   DHE-RSA-CHACHA20-POLY1305
+*   ECDHE-ECDSA-AES128-GCM-SHA256
+*   ECDHE-RSA-AES128-GCM-SHA256
+*   DHE-RSA-AES128-GCM-SHA256
+*   ECDHE-ECDSA-AES256-SHA384
+*   ECDHE-RSA-AES256-SHA384
+*   DHE-RSA-AES256-SHA256
+*   ECDHE-ECDSA-AES128-SHA256
+*   ECDHE-RSA-AES128-SHA256
+*   DHE-RSA-AES128-SHA256
+*   ECDHE-ECDSA-AES256-SHA
+*   ECDHE-RSA-AES256-SHA
+*   DHE-RSA-AES256-SHA
+*   ECDHE-ECDSA-AES128-SHA
+*   ECDHE-RSA-AES128-SHA
+*   DHE-RSA-AES128-SHA
+*   AES256-GCM-SHA384
+*   AES128-GCM-SHA256
+*   AES256-SHA256
+*   AES128-SHA256
+*   AES256-SHA
+*   AES128-SHA
+*   GOST2012-GOST8912-GOST8912
+*   GOST2001-GOST89-GOST89
+
+Tarantool Enterprise static build has the embedded engine to support the GOST cryptographic algorithms.
+If you use these algorithms for traffic encryption, specify the corresponding cipher suite in the ``ssl_ciphers`` parameter, for example:
+
+..  code-block:: lua
+
+    box.cfg{ listen = {
+        uri = 'localhost:3301',
+        params = {
+            transport = 'ssl',
+            ssl_key_file = '/path_to_key_file',
+            ssl_cert_file = '/path_to_cert_file',
+            ssl_ciphers = 'GOST2012-GOST8912-GOST8912'
+        }
+    }}
+
+For detailed information on SSL ciphers and their syntax, refer to `OpenSSL documentation <https://www.openssl.org/docs/man1.1.1/man1/ciphers.html>`__.
+
+Using environment variables
+***************************
+
+The URI parameters for traffic encryption can also be set via :ref:`environment variables <box-cfg-params-env>`, for example:
+
+..  code-block:: bash
+
+    export TT_LISTEN="localhost:3301?transport=ssl&ssl_cert_file=/path_to_cert_file&ssl_key_file=/path_to_key_file"
+
+
+..  _configuration_code_iproto-encryption-config-sc:
+
+Server-client configuration details
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When configuring the traffic encryption, you need to specify the necessary parameters on both the server side and the client side.
+Below you can find the summary on the options and parameters to be used and :ref:`examples of configuration <configuration_code_iproto-encryption-config-example>`.
+
+**Server side**
+
+*   Is configured via the ``box.cfg.listen`` option.
+*   Mandatory URI parameters: ``transport``, ``ssl_key_file`` and ``ssl_cert_file``.
+*   Optional URI parameters: ``ssl_ca_file``, ``ssl_ciphers``, ``ssl_password``, and ``ssl_password_file``.
+
+
+**Client side**
+
+*   Is configured via the ``box.cfg.replication`` option (see :ref:`details <configuration_code_iproto-encryption-config-example>`) or ``net_box_object.connect()``.
+
+Parameters:
+
+*   If the server side has only the ``transport``, ``ssl_key_file`` and ``ssl_cert_file`` parameters set,
+    on the client side, you need to specify only ``transport = ssl`` as the mandatory parameter.
+    All other URI parameters are optional.
+
+*   If the server side also has the ``ssl_ca_file`` parameter set,
+    on the client side, you need to specify ``transport``, ``ssl_key_file`` and ``ssl_cert_file`` as the mandatory parameters.
+    Other parameters -- ``ssl_ca_file``, ``ssl_ciphers``, ``ssl_password``, and ``ssl_password_file`` -- are optional.
+
+
+..  _configuration_code_iproto-encryption-config-example:
+
+Configuration examples
+**********************
+
+Suppose, there is a :ref:`master-replica <replication-master_replica_bootstrap>` set with two Tarantool instances:
+
+*   127.0.0.1:3301 -- master (server)
+*   127.0.0.1:3302 -- replica (client).
+
+Examples below show the configuration related to connection encryption for two cases:
+when the trusted certificate authorities (CA) file is not set on the server side and when it does.
+Only mandatory URI parameters are mentioned in these examples.
+
+1. **Without CA**
+
+*   127.0.0.1:3301 -- master (server)
+
+    ..  code-block:: lua
+
+        box.cfg{
+            listen = {
+                uri = '127.0.0.1:3301',
+                params = {
+                    transport = 'ssl',
+                    ssl_key_file = '/path_to_key_file',
+                    ssl_cert_file = '/path_to_cert_file'
+                }
+            }
+        }
+
+*   127.0.0.1:3302 -- replica (client)
+
+    ..  code-block:: lua
+
+        box.cfg{
+            listen = {
+                uri = '127.0.0.1:3302',
+                params = {transport = 'ssl'}
+            },
+            replication = {
+                uri = 'username:password@127.0.0.1:3301',
+                params = {transport = 'ssl'}
+            },
+            read_only = true
+        }
+
+2. **With CA**
+
+*   127.0.0.1:3301 -- master (server)
+
+    ..  code-block:: lua
+
+        box.cfg{
+            listen = {
+                uri = '127.0.0.1:3301',
+                params = {
+                    transport = 'ssl',
+                    ssl_key_file = '/path_to_key_file',
+                    ssl_cert_file = '/path_to_cert_file',
+                    ssl_ca_file = '/path_to_ca_file'
+                }
+            }
+        }
+
+*   127.0.0.1:3302 -- replica (client)
+
+    ..  code-block:: lua
+
+        box.cfg{
+            listen = {
+                uri = '127.0.0.1:3302',
+                params = {
+                    transport = 'ssl',
+                    ssl_key_file = '/path_to_key_file',
+                    ssl_cert_file = '/path_to_cert_file'
+                }
+            },
+            replication = {
+                uri = 'username:password@127.0.0.1:3301',
+                params = {
+                    transport = 'ssl',
+                    ssl_key_file = '/path_to_key_file',
+                    ssl_cert_file = '/path_to_cert_file'
+                }
+            },
+            read_only = true
+        }
+
+
 
 .. _configuration_code_run_instance_tarantool:
 

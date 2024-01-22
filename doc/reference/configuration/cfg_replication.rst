@@ -22,6 +22,7 @@
 .. confval:: replication
 
     Since version 1.7.4.
+
     If ``replication`` is not an empty string, the instance is considered to be
     a Tarantool :ref:`replica <replication>`. The replica will
     try to connect to the master specified in ``replication`` with a
@@ -58,13 +59,14 @@
     | Type: string
     | Default: null
     | Environment variable: TT_REPLICATION
-    | Dynamic: **yes**
+    | Dynamic: yes
 
 .. _cfg_replication-replication_anon:
 
 .. confval:: replication_anon
 
     Since version 2.3.1.
+
     A Tarantool replica can be anonymous. This type of replica
     is read-only (but you still can write to temporary and
     replica-local spaces), and it isn't present in the ``_cluster`` table.
@@ -204,7 +206,7 @@
     | Type: boolean
     | Default: false
     | Environment variable: TT_REPLICATION_ANON
-    | Dynamic: **yes**
+    | Dynamic: yes
 
 
 .. _cfg_replication-bootstrap_leader:
@@ -229,7 +231,7 @@
     | Type: string
     | Default: null
     | Environment variable: TT_BOOTSTRAP_LEADER
-    | Dynamic: **yes**
+    | Dynamic: yes
 
 
 .. _cfg_replication-bootstrap_strategy:
@@ -258,7 +260,7 @@
     | Type: string
     | Default: auto
     | Environment variable: TT_BOOTSTRAP_STRATEGY
-    | Dynamic: **yes**
+    | Dynamic: yes
 
 
 .. _cfg_replication-replication_connect_timeout:
@@ -266,6 +268,7 @@
 .. confval:: replication_connect_timeout
 
     Since version 1.9.0.
+
     The number of seconds that a replica will wait when trying to
     connect to a master in a cluster.
     See :ref:`orphan status <replication-orphan_status>` for details.
@@ -278,13 +281,14 @@
     | Type: float
     | Default: 30
     | Environment variable: TT_REPLICATION_CONNECT_TIMEOUT
-    | Dynamic: **yes**
+    | Dynamic: yes
 
 .. _cfg_replication-replication_connect_quorum:
 
 .. confval:: replication_connect_quorum
 
     Deprecated since :doc:`2.11.0 </release/2.11.0>`.
+
     This option is in effect if :ref:`bootstrap_strategy <cfg_replication-bootstrap_strategy>` is set to ``legacy``.
 
     Specifies the number of nodes to be up and running to start a replica set.
@@ -303,13 +307,14 @@
     | Type: integer
     | Default: null
     | Environment variable: TT_REPLICATION_CONNECT_QUORUM
-    | Dynamic: **yes**
+    | Dynamic: yes
 
 .. _cfg_replication-replication_skip_conflict:
 
 .. confval:: replication_skip_conflict
 
     Since version 1.10.1.
+
     By default, if a replica adds a unique key that another replica has
     added, replication :ref:`stops <replication-replication_stops>`
     with error = ER_TUPLE_FOUND.
@@ -327,7 +332,7 @@
     | Type: boolean
     | Default: false
     | Environment variable: TT_REPLICATION_SKIP_CONFLICT
-    | Dynamic: **yes**
+    | Dynamic: yes
 
 
     .. NOTE::
@@ -340,6 +345,7 @@
 .. confval:: replication_sync_lag
 
     Since version 1.9.0.
+
     The maximum :ref:`lag <box_info_replication_upstream_lag>` allowed for a replica.
     When a replica :ref:`syncs <replication-orphan_status>`
     (gets updates from a master), it may not catch up completely.
@@ -358,13 +364,14 @@
     | Type: float
     | Default: 10
     | Environment variable: TT_REPLICATION_SYNC_LAG
-    | Dynamic: **yes**
+    | Dynamic: yes
 
 .. _cfg_replication-replication_sync_timeout:
 
 .. confval:: replication_sync_timeout
 
     Since version 1.10.2.
+
     The number of seconds that a node waits when trying to sync with
     other nodes in a replica set (see :ref:`bootstrap_strategy <cfg_replication-bootstrap_strategy>`),
     after connecting or during :ref:`configuration update <replication-configuration_update>`.
@@ -376,7 +383,7 @@
     | Type: float
     | Default: 300
     | Environment variable: TT_REPLICATION_SYNC_TIMEOUT
-    | Dynamic: **yes**
+    | Dynamic: yes
 
     .. NOTE::
 
@@ -388,6 +395,7 @@
 .. confval:: replication_timeout
 
     Since version 1.7.5.
+
     If the master has no updates to send to the replicas, it sends heartbeat messages
     every ``replication_timeout`` seconds, and each replica sends an ACK packet back.
 
@@ -400,13 +408,15 @@
     | Type: integer
     | Default: 1
     | Environment variable: TT_REPLICATION_TIMEOUT
-    | Dynamic: **yes**
+    | Dynamic: yes
 
 .. _cfg_replication-replicaset_uuid:
 
 .. confval:: replicaset_uuid
 
-    Since version 1.9.0. As described in section
+    Since version 1.9.0.
+
+    As described in section
     :ref:`"Replication architecture" <replication-architecture>`,
     each replica set is identified by a
     `universally unique identifier <https://en.wikipedia.org/wiki/Universally_unique_identifier>`_
@@ -457,6 +467,7 @@
 .. confval:: instance_uuid
 
     Since version 1.9.0.
+
     For replication administration purposes, it is possible to set the
     `universally unique identifiers <https://en.wikipedia.org/wiki/Universally_unique_identifier>`_
     of the instance (``instance_uuid``) and the replica set
@@ -481,6 +492,7 @@
 .. confval:: replication_synchro_quorum
 
     Since version :doc:`2.5.1 </release/2.5.1>`.
+
     For :ref:`synchronous replication <repl_sync>` only.
     This option tells how many replicas should confirm the receipt of a
     synchronous transaction before it can finish its commit.
@@ -519,13 +531,14 @@
     | Type: number
     | Default: N / 2 + 1 (before version :doc:`2.10.0 </release/2.10.0>`, the default value was 1)
     | Environment variable: TT_REPLICATION_SYNCHRO_QUORUM
-    | Dynamic: **yes**
+    | Dynamic: yes
 
 .. _cfg_replication-replication_synchro_timeout:
 
 .. confval:: replication_synchro_timeout
 
     Since version :doc:`2.5.1 </release/2.5.1>`.
+
     For :ref:`synchronous replication <repl_sync>` only.
     Tells how many seconds to wait for a synchronous transaction quorum
     replication until it is declared failed and is rolled back.
@@ -537,13 +550,14 @@
     | Type: number
     | Default: 5
     | Environment variable: TT_REPLICATION_SYNCHRO_TIMEOUT
-    | Dynamic: **yes**
+    | Dynamic: yes
 
 .. _cfg_replication-replication_replication_threads:
 
 .. confval:: replication_threads
 
     Since version :doc:`2.10.0 </release/2.10.0>`.
+
     The number of threads spawned to decode the incoming replication data.
 
     The default value is `1`.
@@ -565,6 +579,7 @@
 ..  confval:: election_mode
 
     Since version :doc:`2.6.1 </release/2.6.1>`.
+
     Specifies the role of a replica set node in the
     :ref:`leader election process <repl_leader_elect>`.
 
@@ -607,13 +622,14 @@
     | Type: string
     | Default: 'off'
     | Environment variable: TT_ELECTION_MODE
-    | Dynamic: **yes**
+    | Dynamic: yes
 
 ..  _cfg_replication-election_timeout:
 
 ..  confval:: election_timeout
 
     Since version :doc:`2.6.1 </release/2.6.1>`.
+
     Specifies the timeout between election rounds in the
     :ref:`leader election process <repl_leader_elect>` if the previous round
     ended up with a split-vote.
@@ -638,13 +654,14 @@
     | Type: number
     | Default: 5
     | Environment variable: TT_ELECTION_TIMEOUT
-    | Dynamic: **yes**
+    | Dynamic: yes
 
 ..  _cfg_replication-election_fencing_mode:
 
 ..  confval:: election_fencing_mode
 
     Since version :doc:`2.11.0 </release/2.11.0>`.
+
     In earlier Tarantool versions, use :ref:`election_fencing_enabled <cfg_election-election_fencing_enabled_deprecated>` instead.
 
     Specifies the :ref:`leader fencing mode <repl_leader_elect_fencing>` that
@@ -672,4 +689,4 @@
     | Type: string
     | Default: 'soft'
     | Environment variable: TT_ELECTION_FENCING_MODE
-    | Dynamic: **yes**
+    | Dynamic: yes

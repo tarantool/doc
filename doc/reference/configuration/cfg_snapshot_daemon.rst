@@ -51,6 +51,7 @@ The checkpoint daemon and the Tarantool garbage collector will not delete a file
 .. confval:: checkpoint_interval
 
     Since version 1.7.4.
+
     The interval between actions by the checkpoint daemon, in seconds. If
     ``checkpoint_interval`` is set to a value greater than zero, and there is
     activity which causes change to a database, then the checkpoint daemon will
@@ -76,7 +77,9 @@ The checkpoint daemon and the Tarantool garbage collector will not delete a file
 
 .. confval:: checkpoint_count
 
-    Since version 1.7.4. The maximum number of snapshots that may exist on the
+    Since version 1.7.4.
+
+    The maximum number of snapshots that may exist on the
     :ref:`memtx_dir <cfg_basic-memtx_dir>` directory
     before the checkpoint daemon will delete old snapshots.
     If ``checkpoint_count`` equals zero, then the checkpoint daemon
@@ -107,6 +110,7 @@ The checkpoint daemon and the Tarantool garbage collector will not delete a file
 .. confval:: checkpoint_wal_threshold
 
     Since version 2.1.2.
+
     The threshold for the total size in bytes of all WAL files created since the last checkpoint.
     Once the configured threshold is exceeded, the WAL thread notifies the
     checkpoint daemon that it must make a new checkpoint and delete old WAL files.

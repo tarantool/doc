@@ -16,6 +16,7 @@ application.
 .. confval:: log_level
 
     Since version 1.6.2.
+
     Specifies the level of detail the :ref:`log <admin-logs>` has. There are seven levels:
 
     * 1 – ``SYSERROR``
@@ -34,7 +35,7 @@ application.
     | Type: integer
     | Default: 5
     | Environment variable: TT_LOG_LEVEL
-    | Dynamic: **yes**
+    | Dynamic: yes
 
     ..  note::
         Prior to Tarantool 1.7.5 there were only six levels and ``DEBUG`` was
@@ -47,6 +48,7 @@ application.
 .. confval:: log
 
     Since version 1.7.4.
+
     By default, Tarantool sends the log to the standard error stream
     (``stderr``). If ``log`` is specified, Tarantool can send the log to a:
 
@@ -130,6 +132,7 @@ application.
 .. confval:: log_nonblock
 
     Since version 1.7.4.
+
     If ``log_nonblock`` equals **true**, Tarantool does not block during logging
     when the system is not ready for writing, and drops the message
     instead. If :ref:`log_level <cfg_logging-log_level>` is high, and many
@@ -158,6 +161,7 @@ application.
 .. confval:: too_long_threshold
 
     Since version 1.6.2.
+
     If processing a request takes longer than the given value (in seconds),
     warn about it in the log. Has effect only if :ref:`log_level
     <cfg_logging-log_level>` is greater than or equal to 4 (WARNING).
@@ -165,13 +169,15 @@ application.
     | Type: float
     | Default: 0.5
     | Environment variable: TT_TOO_LONG_THRESHOLD
-    | Dynamic: **yes**
+    | Dynamic: yes
 
 .. _cfg_logging-log_format:
 
 .. confval:: log_format
 
-    Since version 1.7.6. Log entries have two possible formats:
+    Since version 1.7.6.
+
+    Log entries have two possible formats:
 
     * 'plain' (the default), or
     * 'json' (with more detail and with JSON labels).
@@ -207,7 +213,7 @@ application.
     | Type: string
     | Default: 'plain'
     | Environment variable: TT_LOG_FORMAT
-    | Dynamic: **yes**
+    | Dynamic: yes
 
 
 .. _cfg_logging-log_modules:
@@ -215,6 +221,7 @@ application.
 .. confval:: log_modules
 
     Since version :doc:`2.11.0 </release/2.11.0>`.
+
     Configure the specified log levels (:ref:`log_level <cfg_logging-log_level>`) for different modules.
 
     You can specify a logging level for the following module types:
@@ -231,7 +238,7 @@ application.
     | Type: table
     | Default: blank
     | Environment variable: TT_LOG_MODULES
-    | Dynamic: **yes**
+    | Dynamic: yes
     |
 
 
