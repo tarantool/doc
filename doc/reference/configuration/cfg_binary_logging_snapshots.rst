@@ -63,7 +63,7 @@
     | Type: float
     | Default: null
     | Environment variable: TT_SNAP_IO_RATE_LIMIT
-    | Dynamic: **yes**
+    | Dynamic: yes
 
 .. _cfg_binary_logging_snapshots-wal_mode:
 
@@ -120,7 +120,7 @@
     | Type: number
     | Default: 16777216 bytes
     | Environment variable: TT_WAL_QUEUE_MAX_SIZE
-    | Dynamic: **yes**
+    | Dynamic: yes
 
 .. _cfg_binary_logging_snapshots-wal_cleanup_delay:
 
@@ -146,7 +146,7 @@
     | Type: number
     | Default: 14400 seconds
     | Environment variable: TT_WAL_CLEANUP_DELAY
-    | Dynamic: **yes**
+    | Dynamic: yes
 
 
 .. _cfg_binary_logging_snapshots-wal_ext:
@@ -195,7 +195,7 @@
     | Type: map
     | Default: nil
     | Environment variable: TT_WAL_EXT
-    | Dynamic: **yes**
+    | Dynamic: yes
 
 
 .. _cfg_binary_logging_secure_erasing:
@@ -210,4 +210,4 @@
     | Type: boolean
     | Default: false
     | Environment variable: TT_SECURE_ERASING
-    | Dynamic: **yes**
+    | Dynamic: yes

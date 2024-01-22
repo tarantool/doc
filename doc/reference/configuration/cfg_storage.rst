@@ -20,6 +20,7 @@
 .. confval:: memtx_memory
 
     Since version 1.7.4.
+
     How much memory Tarantool allocates to actually store tuples.
     When the limit is reached, :ref:`INSERT <box_space-insert>` or
     :ref:`UPDATE <box_space-insert>` requests begin failing with
@@ -33,13 +34,14 @@
     | Default: 256 * 1024 * 1024 = 268435456 bytes
     | Minimum: 33554432 bytes (32 MB)
     | Environment variable: TT_MEMTX_MEMORY
-    | Dynamic: **yes** but it cannot be decreased
+    | Dynamic: yes but it cannot be decreased
 
 .. _cfg_storage-memtx_max_tuple_size:
 
 .. confval:: memtx_max_tuple_size
 
     Since version 1.7.4.
+
     Size of the largest allocation unit, for the memtx storage engine. It can be
     increased if it is necessary to store large tuples.
     See also: :ref:`vinyl_max_tuple_size <cfg_storage-vinyl_max_tuple_size>`.
@@ -47,13 +49,14 @@
     | Type: integer
     | Default: 1024 * 1024 = 1048576 bytes
     | Environment variable: TT_MEMTX_MAX_TUPLE_SIZE
-    | Dynamic: **yes**
+    | Dynamic: yes
 
 .. _cfg_storage-memtx_min_tuple_size:
 
 .. confval:: memtx_min_tuple_size
 
     Since version 1.7.4.
+
     Size of the smallest allocation unit. It can be decreased if most
     of the tuples are very small. The value must be between 8 and 1048280
     inclusive.
@@ -68,6 +71,7 @@
 .. confval:: memtx_allocator
 
     Since version :doc:`2.10.0 </release/2.10.0>`.
+
     Specifies the allocator used for memtx tuples.
     The possible values are ``system``  and ``small``:
 
@@ -104,6 +108,7 @@
 .. confval:: slab_alloc_granularity
 
     Since version :doc:`2.8.1 </release/2.8.1>`.
+
     Specifies the granularity (in bytes) of memory allocation in the :ref:`small allocator <cfg_storage-memtx_allocator>`.
     The value of ``slab_alloc_granularity`` should be a power of two and should be greater than or equal to 4.
     Below are few recommendations on how to adjust the ``slab_alloc_granularity`` value:
@@ -125,6 +130,7 @@
 .. confval:: vinyl_bloom_fpr
 
     Since version 1.7.4.
+
     Bloom filter false positive rate -- the suitable probability of the
     `bloom filter <https://en.wikipedia.org/wiki/Bloom_filter>`_
     to give a wrong result.
@@ -147,13 +153,15 @@
     | Type: integer
     | Default: 128 * 1024 * 1024 = 134217728 bytes
     | Environment variable: TT_VINYL_CACHE
-    | Dynamic: **yes**
+    | Dynamic: yes
 
 .. _cfg_storage-vinyl_max_tuple_size:
 
 .. confval:: vinyl_max_tuple_size
 
-    Since version 1.7.5. Size of the largest allocation unit,
+    Since version 1.7.5.
+
+    Size of the largest allocation unit,
     for the vinyl storage engine. It can be increased if it
     is necessary to store large tuples.
     See also: :ref:`memtx_max_tuple_size <cfg_storage-memtx_max_tuple_size>`.
@@ -167,18 +175,21 @@
 
 .. confval:: vinyl_memory
 
-    Since version 1.7.4. The maximum number of in-memory bytes that vinyl uses.
+    Since version 1.7.4.
+
+    The maximum number of in-memory bytes that vinyl uses.
 
     | Type: integer
     | Default: 128 * 1024 * 1024 = 134217728 bytes
     | Environment variable: TT_VINYL_MEMORY
-    | Dynamic: **yes** but it cannot be decreased
+    | Dynamic: yes but it cannot be decreased
 
 .. _cfg_storage-vinyl_page_size:
 
 .. confval:: vinyl_page_size
 
     Since version 1.7.4.
+
     Page size. Page is a read/write unit for vinyl disk operations.
     The ``vinyl_page_size`` setting is a default value for one of the
     options in the :ref:`Options for space_object:create_index() <box_space-create_index>` chart.
@@ -193,6 +204,7 @@
 .. confval:: vinyl_range_size
 
     Since version 1.7.4.
+
     The default maximum range size for a vinyl index, in bytes.
     The maximum range size affects the decision whether to
     :ref:`split <engines-vinyl_split>` a range.
@@ -219,6 +231,7 @@
 .. confval:: vinyl_run_count_per_level
 
     Since version 1.7.4.
+
     The maximal number of runs per level in vinyl LSM tree.
     If this number is exceeded, a new level is created.
     The ``vinyl_run_count_per_level`` setting is a default value for one of the
@@ -234,6 +247,7 @@
 .. confval:: vinyl_run_size_ratio
 
     Since version 1.7.4.
+
     Ratio between the sizes of different levels in the LSM tree.
     The ``vinyl_run_size_ratio`` setting is a default value for one of the
     options in the :ref:`Options for space_object:create_index() <box_space-create_index>` chart.
@@ -248,6 +262,7 @@
 .. confval:: vinyl_read_threads
 
     Since version 1.7.5.
+
     The maximum number of read threads that vinyl can use for some
     concurrent operations, such as I/O and compression.
 
@@ -261,6 +276,7 @@
 .. confval:: vinyl_write_threads
 
     Since version 1.7.5.
+
     The maximum number of write threads that vinyl can use for some
     concurrent operations, such as I/O and compression.
 

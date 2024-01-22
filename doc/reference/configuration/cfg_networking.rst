@@ -8,6 +8,7 @@
 .. confval:: io_collect_interval
 
     Since version 1.4.9.
+
     The instance will sleep for io_collect_interval seconds between iterations
     of the event loop. Can be used to reduce CPU load in deployments in which
     the number of client connections is large, but requests are not so frequent
@@ -16,13 +17,15 @@
     | Type: float
     | Default: null
     | Environment variable: TT_IO_COLLECT_INTERVAL
-    | Dynamic: **yes**
+    | Dynamic: yes
 
 .. _cfg_networking-net_msg_max:
 
 .. confval:: net_msg_max
 
-    Since version 1.10.1. To handle messages, Tarantool allocates fibers.
+    Since version 1.10.1.
+
+    To handle messages, Tarantool allocates fibers.
     To prevent fiber overhead from affecting the whole system,
     Tarantool restricts how many messages the fibers handle,
     so that some pending requests are blocked.
@@ -53,13 +56,14 @@
     | Type: integer
     | Default: 768
     | Environment variable: TT_NET_MSG_MAX
-    | Dynamic: **yes**
+    | Dynamic: yes
 
 .. _cfg_networking-readahead:
 
 .. confval:: readahead
 
     Since version 1.6.2.
+
     The size of the read-ahead buffer associated with a client connection. The
     larger the buffer, the more memory an active connection consumes and the
     more requests can be read from the operating system buffer in a single
@@ -72,13 +76,14 @@
     | Type: integer
     | Default: 16320
     | Environment variable: TT_READAHEAD
-    | Dynamic: **yes**
+    | Dynamic: yes
 
 .. _cfg_networking-iproto_threads:
 
 ..  confval:: iproto_threads
 
     Since version :doc:`2.8.1 </release/2.8.1>`.
+
     The number of :ref:`network threads <thread_model>`.
     There can be unusual workloads where the network thread
     is 100% loaded and the transaction processor thread is not, so the network

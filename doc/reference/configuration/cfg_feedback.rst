@@ -15,7 +15,9 @@ adjust or turn off this feature.
 
 .. confval:: feedback_enabled
 
-    Since version 1.10.1. Whether to send feedback.
+    Since version 1.10.1.
+
+    Whether to send feedback.
 
     If this is set to ``true``, feedback will be sent as described above.
     If this is set to ``false``, no feedback will be sent.
@@ -23,27 +25,31 @@ adjust or turn off this feature.
     | Type: boolean
     | Default: true
     | Environment variable: TT_FEEDBACK_ENABLED
-    | Dynamic: **yes**
+    | Dynamic: yes
 
 .. _cfg_logging-feedback_host:
 
 .. confval:: feedback_host
 
-    Since version 1.10.1. The address to which the packet is sent.
+    Since version 1.10.1.
+
+    The address to which the packet is sent.
     Usually the recipient is Tarantool, but it can be any URL.
 
     | Type: string
     | Default: ``https://feedback.tarantool.io``
     | Environment variable: TT_FEEDBACK_HOST
-    | Dynamic: **yes**
+    | Dynamic: yes
 
 .. _cfg_logging-feedback_interval:
 
 .. confval:: feedback_interval
 
-    Since version 1.10.1. The number of seconds between sendings, usually 3600 (1 hour).
+    Since version 1.10.1.
+
+    The number of seconds between sendings, usually 3600 (1 hour).
 
     | Type: float
     | Default: 3600
     | Environment variable: TT_FEEDBACK_INTERVAL
-    | Dynamic: **yes**
+    | Dynamic: yes
