@@ -63,7 +63,7 @@ The ``flightrec`` configuration might look as follows:
     :end-at: 10485780
     :dedent:
 
-In the configuration, the following options are set:
+In the example, the following options are set:
 
 *   :ref:`flightrec.logs_size <configuration_reference_flightrec_logs_size>` -- a log storage size in bytes
 *   :ref:`flightrec.logs_log_level <configuration_reference_flightrec_logs_log_level>` -- a :ref:`log_level <cfg_logging-log_level>`
