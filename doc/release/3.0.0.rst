@@ -309,10 +309,11 @@ With the 3.0 version, you can read flight recordings using the API provided by t
 
 To enable the flight recorder in a YAML file, set ``flightrec.enabled`` to true:
 
-.. code-block:: yaml
-
-    flightrec:
-      enabled: true
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/flightrec/config.yaml
+    :language: yaml
+    :start-at: flightrec:
+    :end-at: enabled: true
+    :dedent:
 
 Then, you can use the Lua API to open and read ``*.ttfr`` files:
 
@@ -324,7 +325,7 @@ Then, you can use the Lua API to open and read ``*.ttfr`` files:
     ---
     ...
 
-    app:instance001> flightrec_file = flightrec.open('var/lib/instance001/current.ttfr')
+    app:instance001> flightrec_file = flightrec.open('var/lib/instance001/20231225T085435.ttfr')
     ---
     ...
 

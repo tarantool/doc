@@ -502,21 +502,27 @@ flightrec
 
     Configuring ``flightrec`` parameters is available in the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only.
 
-
 The ``flightrec`` section describes options related to the :ref:`flight recorder <enterprise-flight-recorder>` configuration.
-Note that all options are dynamic and can be changed at runtime.
 
 ..  NOTE::
 
     ``flightrec`` can be defined in any :ref:`scope <configuration_scopes>`.
 
-To enable flight recorder, set the ``flightrec.enabled`` option to ``true`.
+* :ref:`flightrec.enabled <configuration_reference_flightrec_enabled>`
+* :ref:`flightrec.logs_size <configuration_reference_flightrec_logs_size>`
+* :ref:`flightrec.logs_max_msg_size <configuration_reference_flightrec_logs_max_msg_size>`
+* :ref:`flightrec.logs_log_level <configuration_reference_flightrec_logs_log_level>`
+* :ref:`flightrec.metrics_period <configuration_reference_flightrec_metrics_period>`
+* :ref:`flightrec.metrics_interval <configuration_reference_flightrec_metrics_interval>`
+* :ref:`flightrec.requests_size <configuration_reference_flightrec_requests_size>`
+* :ref:`flightrec.requests_max_req_size <configuration_reference_flightrec_requests_max_req_size>`
+* :ref:`flightrec.requests_max_res_size <configuration_reference_flightrec_requests_max_res_size>`
 
 ..  _configuration_reference_flightrec_enabled:
 
 ..  confval:: flightrec.enabled
 
-    Whether the :ref:`flight recorder <enterprise-flight-recorder>` is enabled.
+    Enable the :ref:`flight recorder <enterprise-flight-recorder>`.
 
     | Type: boolean
     | Default: false
@@ -533,21 +539,9 @@ To enable flight recorder, set the ``flightrec.enabled`` option to ``true`.
         Specify the directory used to store flight recordings (``*.ttfr`` files).
 
         | Type: string
-        | Default: :ref:`memtx_dir <cfg_basic-memtx_dir>`
+        | Default: memtx.dir
         | Environment variable: TT_FLIGHTREC_DIR
 
-
-..  _configuration_reference_flightrec_logs:
-
-Logs
-~~~~
-
-This section describes the flight recorder settings related to :ref:`logging <cfg_logging-log>`.
-For example, you can configure a more detailed logging level in the flight recorder for deeper analysis.
-
-* :ref:`flightrec.logs_size <configuration_reference_flightrec_logs_size>`
-* :ref:`flightrec.logs_max_msg_size <configuration_reference_flightrec_logs_max_msg_size>`
-* :ref:`flightrec.logs_log_level <configuration_reference_flightrec_logs_log_level>`
 
 ..  _configuration_reference_flightrec_logs_size:
 
@@ -578,6 +572,7 @@ For example, you can configure a more detailed logging level in the flight recor
 ..  confval:: flightrec.logs_log_level
 
     Specify the level of detail the log has.
+    The default value is 6 (``VERBOSE``).
     You can learn more about log levels from the :ref:`log_level <cfg_logging-log_level>`
     option description.
     Note that the ``flightrec.logs_log_level`` value might differ from ``log_level``.
@@ -585,17 +580,6 @@ For example, you can configure a more detailed logging level in the flight recor
     | Type: integer
     | Default: 6
     | Environment variable: TT_FLIGHTREC_LOGS_LOG_LEVEL
-
-..  _configuration_reference_flightrec_metrics:
-
-Metrics
-~~~~~~~
-
-This section describes the flight recorder settings related to collecting
-:ref:`metrics <metrics-reference>`.
-
-* :ref:`flightrec.metrics_period <configuration_reference_flightrec_metrics_period>`
-* :ref:`flightrec.metrics_interval <configuration_reference_flightrec_metrics_interval>`
 
 ..  _configuration_reference_flightrec_metrics_period:
 
@@ -622,27 +606,15 @@ This section describes the flight recorder settings related to collecting
     | Minimum: 0.001
     | Environment variable: TT_FLIGHTREC_METRICS_INTERVAL
 
-..  NOTE::
+    ..  NOTE::
 
-    Given that the average size of a metrics entry is 2 kB,
-    you can estimate the size of the metrics storage as follows:
+        Given that the average size of a metrics entry is 2 kB,
+        you can estimate the size of the metrics storage as follows:
 
-    ..  code-block:: console
+        ..  code-block:: console
 
-        (flightrec_metrics_period / flightrec_metrics_interval) * 2 kB
+            (flightrec_metrics_period / flightrec_metrics_interval) * 2 kB
 
-
-.. _configuration_reference_flightrec_requests:
-
-Requests
-~~~~~~~~
-
-This section lists the flight recorder settings related to
-storing the :ref:`request and response <internals-requests_responses>` data.
-
-* :ref:`flightrec.requests_size <configuration_reference_flightrec_requests_size>`
-* :ref:`flightrec.requests_max_req_size <configuration_reference_flightrec_requests_max_req_size>`
-* :ref:`flightrec.requests_max_res_size <configuration_reference_flightrec_requests_max_res_size>`
 
 ..  _configuration_reference_flightrec_requests_size:
 

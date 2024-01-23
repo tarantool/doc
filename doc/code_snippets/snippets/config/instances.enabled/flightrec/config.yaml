@@ -9,3 +9,8 @@ groups:
               - uri: '127.0.0.1:3301'
               flightrec:
                 enabled: true
+                logs_size: 10485800
+                logs_log_level: 5
+                metrics_period: 240
+                metrics_interval: 0.5
+                requests_size: 10485780

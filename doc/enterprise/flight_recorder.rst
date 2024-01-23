@@ -1,4 +1,4 @@
-.. _enterprise-flight-recorder:
+..  _enterprise-flight-recorder:
 
 Flight recorder
 ===============
@@ -15,7 +15,6 @@ gathers various information about a working Tarantool instance, such as:
 This information helps you investigate incidents related
 to :ref:`crashing <admin-disaster_recovery>` a Tarantool instance.
 
-
 .. _enterprise-flight-recorder_enable:
 
 Enabling the flight recorder
@@ -24,9 +23,9 @@ Enabling the flight recorder
 The flight recorder is disabled by default and can be enabled and configured for
 a specific Tarantool instance.
 To enable the flight recorder, set the :ref:`flightrec.enabled <configuration_reference_flightrec_enabled>`
-configuration option to ``true``. This option is dynamic and can be changed at runtime.
+configuration option to ``true``.
 
-..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/flightrec/config.yaml
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/flightrec/config.yaml
     :language: yaml
     :start-at: flightrec:
     :end-at: enabled: true
@@ -34,7 +33,7 @@ configuration option to ``true``. This option is dynamic and can be changed at r
 
 
 After ``flightrec_enabled`` is set to ``true``, the flight recorder starts collecting data in the flight recording file  ``current.ttfr``.
-This file is stored in the :ref:`memtx_dir <cfg_basic-memtx_dir>` directory.
+This file is stored in the ``memtx.dir`` directory.
 By default, the directory is ``var/log/{{ instance_name }}/<file_name>.ttfr``.
 
 If the instance crashes and reboots, Tarantool rotates the flight recording:
@@ -43,21 +42,33 @@ and the new ``current.ttfr`` file is created for collecting data.
 In the case of correct shutdown (for example, using ``os.exit()``),
 Tarantool continues writing to the existing ``current.ttfr`` file after restart.
 
-.. NOTE::
+..  NOTE::
 
     Note that old flight recordings should be removed manually.
 
 
-See also: :ref:`Flight recorder configuration options <configuration_reference_flightrec>`.
+.. _enterprise-flight-recorder_configure:
 
-Reading flight recordings
--------------------------
+Configuring a flight recorder
+-----------------------------
 
-Since:** :doc:`3.0.0 </release/3.0.0>` version, you can read flight recordings using the API provided by the
-``flightrec`` module. To open and read ``*.ttfr`` files, use the Lua API:
+When the flight recorder is enabled, you can set the options related to :ref:`logging <cfg_logging-log>`,
+:ref:`metrics <metrics-reference>`, and storing the :ref:`request and response <internals-requests_responses>` data.
 
-..  include:: /release/3.0.0.rst
-    :start-after: 3-0-flight-recorder-begin
-    :end-before: 3-0-flight-recorder-end
+The ``flightrec`` configuration might look as follows:
 
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/flightrec/config.yaml
+    :language: yaml
+    :start-at: flightrec:
+    :end-at: 10485780
+    :dedent:
 
+In the configuration, the following options are set:
+
+*   :ref:`flightrec.logs_size <configuration_reference_flightrec_logs_size>` -- a log storage size in bytes
+*   :ref:`flightrec.logs_log_level <configuration_reference_flightrec_logs_log_level>` -- a :ref:`log_level <cfg_logging-log_level>`
+*   :ref:`flightrec.metrics_period <configuration_reference_flightrec_metrics_period>` -- the number of seconds to store metrics after the dump
+*   :ref:`flightrec.metrics_interval <configuration_reference_flightrec_metrics_interval>` -- the frequency of metrics dumps in seconds
+*   :ref:`flightrec.requests_size <configuration_reference_flightrec_requests_size>` -- a storage size for the request and response data in bytes
+
+Read more: :ref:`Flight recorder configuration options <configuration_reference_flightrec>`.
