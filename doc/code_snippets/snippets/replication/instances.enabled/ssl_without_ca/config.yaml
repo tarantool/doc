@@ -1,0 +1,45 @@
+credentials:
+  users:
+    admin:
+      password: 'topsecret'
+      roles: [ super ]
+    replicator:
+      password: 'topsecret'
+      roles: [replication]
+
+groups:
+  group001:
+    replicasets:
+      replicaset001:
+        replication:
+          failover: manual
+        leader: instance001
+        iproto:
+          advertise:
+            peer:
+              login: replicator
+        instances:
+          instance001:
+            iproto:
+              listen:
+              - uri: '127.0.0.1:3301'
+                params:
+                  transport: 'ssl'
+                  ssl_cert_file: 'certs/server.crt'
+                  ssl_key_file: 'certs/server.key'
+          instance002:
+            iproto:
+              listen:
+              - uri: '127.0.0.1:3302'
+                params:
+                  transport: 'ssl'
+                  ssl_cert_file: 'certs/server.crt'
+                  ssl_key_file: 'certs/server.key'
+          instance003:
+            iproto:
+              listen:
+              - uri: '127.0.0.1:3303'
+                params:
+                  transport: 'ssl'
+                  ssl_cert_file: 'certs/server.crt'
+                  ssl_key_file: 'certs/server.key'

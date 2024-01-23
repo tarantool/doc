@@ -160,11 +160,11 @@ You can learn more about configuring replication from :ref:`Replication tutorial
     In the example above, the option includes ``login`` only.
     An URI is taken from ``iproto.listen`` that is set on the instance level.
 
--   ``replication``: (*global*)
+-   ``replication`` (*global*)
 
     The ``replication.failover`` global option sets a manual failover for all replica sets.
 
--   ``leader``: (*replica set*)
+-   ``leader`` (*replica set*)
 
     The ``<replicaset-name>.leader`` option sets a :ref:`master <replication-roles>` instance for *replicaset001*.
 
@@ -303,7 +303,7 @@ Below are a few examples that show how to set environment variables of different
 
     The *simple* format is applicable only to maps containing scalar values.
 
-*   Array of maps. In the example below, ``TT_IPROTO_LISTEN`` is used to specify a :ref:`listening host and port <configuration_options_connection>` values:
+*   Array of maps. In the example below, ``TT_IPROTO_LISTEN`` is used to specify a :ref:`listening host and port <configuration_connections_listen_uri>` values:
 
     ..  code-block:: console
 
@@ -378,56 +378,15 @@ Connection settings
 ~~~~~~~~~~~~~~~~~~~
 
 To configure an address used to listen for incoming requests, use the ``iproto.listen`` option.
-Below are a few examples on how to do this:
+The example below shows how to set a listening IP address for ``instance001`` to ``127.0.0.1:3301``:
 
-*   Set a listening port to ``3301``:
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/iproto_listen_address/config.yaml
+    :start-at: instance001
+    :end-at: '127.0.0.1:3301'
+    :language: yaml
+    :dedent:
 
-    .. code-block:: yaml
-
-        iproto:
-          listen:
-          - uri: '3301'
-
-*   Set a listening address to ``127.0.0.1:3301``:
-
-    .. code-block:: yaml
-
-        iproto:
-          listen:
-          - uri: '127.0.0.1:3301'
-
-*   Configure several listening addresses:
-
-    .. code-block:: yaml
-
-        iproto:
-          listen:
-          - uri: '127.0.0.1:3301'
-          - uri: '127.0.0.1:3302'
-
-*   Enable :ref:`traffic encryption <enterprise-iproto-encryption>` for a connection using the ``params`` section of the specified URI:
-
-    .. code-block:: yaml
-
-        iproto:
-          listen:
-          - uri: '127.0.0.1:3301'
-            params:
-              transport: 'ssl'
-              ssl_ca_file: 'ca.crt'
-              ssl_cert_file: 'localhost.crt'
-              ssl_key_file: 'localhost.key'
-
-    Note that traffic encryption is supported by the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only.
-
-
-*   Use a Unix domain socket:
-
-    .. code-block:: yaml
-
-        iproto:
-          listen:
-          - uri: 'unix/:./var/run/{{ instance_name }}/tarantool.iproto'
+You can learn more from the :ref:`configuration_connections` topic.
 
 
 .. _configuration_options_access_control:
@@ -491,4 +450,6 @@ To learn more about the persistence mechanism in Tarantool, see the :ref:`Persis
 
     configuration/configuration_etcd
     configuration/configuration_code
+    configuration/configuration_connections
+    configuration/configuration_authentication
     .. configuration/configuration_migrating

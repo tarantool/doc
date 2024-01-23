@@ -1,0 +1,15 @@
+credentials:
+  users:
+    admin:
+      password: 'topsecret'
+      roles: [ super ]
+
+groups:
+  group001:
+    replicasets:
+      replicaset001:
+        instances:
+          instance001:
+            iproto:
+              listen:
+              - uri: '3301'

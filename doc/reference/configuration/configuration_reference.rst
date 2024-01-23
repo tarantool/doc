@@ -501,7 +501,7 @@ The ``database`` section defines database-specific configuration parameters, suc
 iproto
 ------
 
-The ``iproto`` section is used to configure parameters related to communicating to and between cluster instances.
+The ``iproto`` section is used to configure parameters related to :ref:`communicating to and between cluster instances <configuration_connections>`.
 
 .. NOTE::
 
@@ -564,9 +564,8 @@ iproto.advertise.*
 
 .. confval:: iproto.advertise.peer
 
-    A URI used to advertise the current instance to other cluster members.
-
-    The ``iproto.advertise.peer`` option accepts a URI in the format described in :ref:`iproto_advertise.\<peer_or_sharding\>.* <configuration_reference_iproto_advertise.peer_sharding>`.
+    Settings used to advertise the current instance to other cluster members.
+    The format of these settings is described in :ref:`iproto.advertise.\<peer_or_sharding\>.* <configuration_reference_iproto_advertise.peer_sharding>`.
 
     **Example**
 
@@ -588,9 +587,12 @@ iproto.advertise.*
 
 .. confval:: iproto.advertise.sharding
 
-    An advertise URI used by a router and rebalancer.
+    Settings used to advertise the current instance to a router and rebalancer.
+    The format of these settings is described in :ref:`iproto.advertise.\<peer_or_sharding\>.* <configuration_reference_iproto_advertise.peer_sharding>`.
 
-    The ``iproto.advertise.sharding`` option accepts a URI in the format described in :ref:`iproto_advertise.\<peer_or_sharding\>.* <configuration_reference_iproto_advertise.peer_sharding>`.
+    .. NOTE::
+
+        If ``iproto.advertise.sharding`` is not specified, advertise settings from :ref:`iproto.advertise.peer <configuration_reference_iproto_advertise_peer>` are used.
 
     **Example**
 
@@ -617,7 +619,7 @@ iproto.advertise.<peer_or_sharding>.*
 
 .. _configuration_reference_iproto_advertise.peer_sharding.uri:
 
-.. confval:: iproto_advertise.<peer_or_sharding>.uri
+.. confval:: iproto.advertise.<peer_or_sharding>.uri
 
     (Optional) A URI used to advertise the current instance.
     By default, the URI defined in :ref:`iproto.listen <configuration_reference_iproto_listen>` is used to advertise the current instance.
@@ -633,7 +635,7 @@ iproto.advertise.<peer_or_sharding>.*
 
 .. _configuration_reference_iproto_advertise.peer_sharding.login:
 
-.. confval:: iproto_advertise.<peer_or_sharding>.login
+.. confval:: iproto.advertise.<peer_or_sharding>.login
 
     (Optional) A username used to connect to the current instance.
     If a username is not set, the ``guest`` user is used.
@@ -645,7 +647,7 @@ iproto.advertise.<peer_or_sharding>.*
 
 .. _configuration_reference_iproto_advertise.peer_sharding.password:
 
-.. confval:: iproto_advertise.<peer_or_sharding>.password
+.. confval:: iproto.advertise.<peer_or_sharding>.password
 
     (Optional) A password for the specified user.
     If a ``login`` is specified but a password is missing, it is taken from the user's :ref:`credentials <configuration_reference_credentials>`.
@@ -657,7 +659,7 @@ iproto.advertise.<peer_or_sharding>.*
 
 .. _configuration_reference_iproto_advertise.peer_sharding.params:
 
-.. confval:: iproto_advertise.<peer_or_sharding>.params
+.. confval:: iproto.advertise.<peer_or_sharding>.params
 
     (Optional) URI parameters (:ref:`<uri>.params.* <configuration_reference_iproto_uri_params>`) required for connecting to the current instance.
 
@@ -674,14 +676,7 @@ iproto.*
     An array of URIs used to listen for incoming requests.
     If required, you can enable SSL for specific URIs by providing additional parameters (:ref:`<uri>.params.* <configuration_reference_iproto_uri_params>`).
 
-    These URIs are used for different purposes, for example:
-
-    -   Communicating between replica set peers or cluster members. See also: :ref:`iproto.advertise.* <configuration_reference_iproto_advertise>`.
-    -   Remote administration using :ref:`tt connect <tt-connect>`.
-    -   Connecting to an instance using the :ref:`net.box <net_box-module>` module.
-    -   Connecting to an instance using :ref:`connectors <index-box_connectors>` for different languages.
-
-    To grant the specified privileges for connecting to an instance, use the :ref:`credentials <configuration_reference_credentials>` configuration section.
+    Note that a URI value can't contain parameters, a login, or a password.
 
     **Example**
 
@@ -693,7 +688,7 @@ iproto.*
         :end-before: Load sample data
         :dedent:
 
-    See also: :ref:`Connection settings <configuration_options_connection>`.
+    See also: :ref:`Connections <configuration_connections>`.
 
     |
     | Type: array
@@ -714,7 +709,7 @@ iproto.*
         starts processing pending requests immediately.
 
     -   On weaker systems, decrease ``net_msg_max``, and the overhead
-        may decrease. Although this may take some time because the
+        may decrease. However, this may take some time because the
         scheduler must wait until already-running requests finish.
 
     When ``net_msg_max`` is reached,
@@ -788,8 +783,8 @@ iproto.*
 
 URI parameters that can be used in the following options:
 
--   :ref:`iproto_advertise.\<peer_or_sharding\>.params <configuration_reference_iproto_advertise.peer_sharding.params>`
--   :ref:`iproto.listen <configuration_reference_iproto_listen>`
+-   :ref:`iproto.advertise.\<peer_or_sharding\>.params <configuration_reference_iproto_advertise.peer_sharding.params>`
+-   :ref:`iproto.listen.\<uri\>.params <configuration_reference_iproto_listen>`
 
 ..  NOTE::
 
@@ -799,15 +794,8 @@ URI parameters that can be used in the following options:
 
 .. confval:: <uri>.params.transport
 
-    Allows you to enable traffic encryption for client-server communications over :ref:`binary connections <box_protocol-iproto_protocol>`:
-
-    -   A server is a Tarantool instance.
-    -   A client might be one of the following:
-
-        -   Another Tarantool instance from this cluster. This means that one instance might act as the server that accepts connections from other instances and the client that connects to other instances.
-        -   A remote administrative console (:ref:`tt connect <tt-connect>`).
-        -   A :ref:`net.box <net_box-module>` connector.
-        -   :ref:`Connectors <index-box_connectors>` provided for different languages.
+    Allows you to enable :ref:`traffic encryption <configuration_connections_ssl>` for client-server communications over binary connections.
+    In a Tarantool cluster, one instance might act as the server that accepts connections from other instances and the client that connects to other instances.
 
     ``<uri>.params.transport`` accepts one of the following values:
 
@@ -816,23 +804,18 @@ URI parameters that can be used in the following options:
 
     **Example**
 
-    The example below demonstrates how to enable traffic encryption for connections between replica set peers.
+    The example below demonstrates how to enable traffic encryption by using a self-signed server certificate.
     The following parameters are specified for each instance:
 
-    -   ``ssl_ca_file``: a path to a trusted certificate authorities (CA) file.
     -   ``ssl_cert_file``: a path to an SSL certificate file.
     -   ``ssl_key_file``: a path to a private SSL key file.
-    -   ``ssl_password`` (``instance001``): a password for an encrypted private SSL key.
-    -   ``ssl_password_file`` (``instance002`` and ``instance003``): a text file containing passwords for encrypted SSL keys.
-    -   ``ssl_ciphers``: a colon-separated list of SSL cipher suites the connection can use.
 
-    ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/ssl/config.yaml
+    ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/ssl_without_ca/config.yaml
         :language: yaml
-        :start-at: groups:
-        :end-before: app:
+        :start-at: replicaset001:
         :dedent:
 
-    You can find the full example here: `ssl <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/replication/instances.enabled/ssl>`_.
+    You can find the full example here: `ssl_without_ca <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/replication/instances.enabled/ssl_without_ca>`_.
 
     |
     | Type: string
@@ -1504,3 +1487,226 @@ The ``replication`` section defines configuration parameters related to :ref:`re
     | Default: 1
     | Environment variable: TT_REPLICATION_TIMEOUT
 
+
+
+..  _configuration_reference_security:
+
+security
+--------
+
+..  admonition:: Enterprise Edition
+    :class: fact
+
+    Configuring security parameters is available in the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only.
+
+The ``security`` section defines configuration parameters related to various security settings.
+
+.. NOTE::
+
+    ``security`` can be defined in any :ref:`scope <configuration_scopes>`.
+
+-   :ref:`security.auth_delay <configuration_reference_security_auth_delay>`
+-   :ref:`security.auth_retries <configuration_reference_security_auth_retries>`
+-   :ref:`security.auth_type <configuration_reference_security_auth_type>`
+-   :ref:`security.disable_guest <configuration_reference_security_disable_guest>`
+-   :ref:`security.password_enforce_digits <configuration_reference_security_password_enforce_digits>`
+-   :ref:`security.password_enforce_lowercase <configuration_reference_security_password_enforce_lowercase>`
+-   :ref:`security.password_enforce_specialchars <configuration_reference_security_password_enforce_specialchars>`
+-   :ref:`security.password_enforce_uppercase <configuration_reference_security_password_enforce_uppercase>`
+-   :ref:`security.password_history_length <configuration_reference_security_password_history_length>`
+-   :ref:`security.password_lifetime_days <configuration_reference_security_password_lifetime_days>`
+-   :ref:`security.password_min_length <configuration_reference_security_password_min_length>`
+-   :ref:`security.secure_erasing <configuration_reference_security_secure_erasing>`
+
+
+..  _configuration_reference_security_auth_delay:
+
+..  confval:: security.auth_delay
+
+    Specify a period of time (in seconds) that a specific user should wait for the next attempt after failed authentication.
+
+    The :ref:`security.auth_retries <configuration_reference_security_auth_retries>` option lets a client try to authenticate the specified number of times before ``security.auth_delay`` is enforced.
+
+    In the configuration below, Tarantool lets a client try to authenticate with the same username three times.
+    At the fourth attempt, the authentication delay configured with ``security.auth_delay`` is enforced.
+    This means that a client should wait 10 seconds after the first failed attempt.
+
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/security_auth_restrictions/config.yaml
+        :language: yaml
+        :start-at: security:
+        :end-at: auth_retries: 2
+        :dedent:
+
+
+    |
+    | Type: number
+    | Default: 0
+    | Environment variable: TT_SECURITY_AUTH_DELAY
+
+
+..  _configuration_reference_security_auth_retries:
+
+..  confval:: security.auth_retries
+
+    Specify the maximum number of authentication retries allowed before :ref:`security.auth_delay <configuration_reference_security_auth_delay>` is enforced.
+    The default value is 0, which means ``security.auth_delay`` is enforced after the first failed authentication attempt.
+
+    The retry counter is reset after ``security.auth_delay`` seconds since the first failed attempt.
+    For example, if a client tries to authenticate fewer than ``security.auth_retries`` times within ``security.auth_delay`` seconds, no authentication delay is enforced.
+    The retry counter is also reset after any successful authentication attempt.
+
+    |
+    | Type: integer
+    | Default: 0
+    | Environment variable: TT_SECURITY_AUTH_RETRIES
+
+
+..  _configuration_reference_security_auth_type:
+
+..  confval:: security.auth_type
+
+    Specify a protocol used to authenticate users.
+    The possible values are:
+
+    -   ``chap-sha1``: use the `CHAP <https://en.wikipedia.org/wiki/Challenge-Handshake_Authentication_Protocol>`_ protocol with ``SHA-1`` hashing applied to :ref:`passwords <authentication-passwords>`.
+    -   ``pap-sha256``: use `PAP <https://en.wikipedia.org/wiki/Password_Authentication_Protocol>`_ authentication with the ``SHA256`` hashing algorithm.
+
+    Note that CHAP stores password hashes in the ``_user`` space unsalted.
+    If an attacker gains access to the database, they may crack a password, for example, using a `rainbow table <https://en.wikipedia.org/wiki/Rainbow_table>`_.
+    For PAP, a password is salted with a user-unique salt before saving it in the database,
+    which keeps the database protected from cracking using a rainbow table.
+
+    To enable PAP, specify the ``security.auth_type`` option as follows:
+
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/security_auth_protocol/config.yaml
+        :language: yaml
+        :start-at: security:
+        :end-at: 'pap-sha256'
+        :dedent:
+
+    |
+    | Type: string
+    | Default: 'chap-sha1'
+    | Environment variable: TT_SECURITY_AUTH_TYPE
+
+
+..  _configuration_reference_security_disable_guest:
+
+..  confval:: security.disable_guest
+
+    If **true**, turn off access over remote connections from unauthenticated or :ref:`guest <authentication-passwords>` users.
+    This option affects connections between cluster members and :doc:`net.box </reference/reference_lua/net_box>` connections.
+
+    |
+    | Type: boolean
+    | Default: false
+    | Environment variable: TT_SECURITY_DISABLE_GUEST
+
+
+..  _configuration_reference_security_password_enforce_digits:
+
+..  confval:: security.password_enforce_digits
+
+    If **true**, a password should contain digits (0-9).
+
+    |
+    | Type: boolean
+    | Default: false
+    | Environment variable: TT_SECURITY_PASSWORD_ENFORCE_DIGITS
+
+
+..  _configuration_reference_security_password_enforce_lowercase:
+
+..  confval:: security.password_enforce_lowercase
+
+    If **true**, a password should contain lowercase letters (a-z).
+
+    |
+    | Type: boolean
+    | Default: false
+    | Environment variable: TT_SECURITY_PASSWORD_ENFORCE_LOWERCASE
+
+
+..  _configuration_reference_security_password_enforce_specialchars:
+
+..  confval:: security.password_enforce_specialchars
+
+    If **true**, a password should contain at least one special character (such as ``&|?!@$``).
+
+    |
+    | Type: boolean
+    | Default: false
+    | Environment variable: TT_SECURITY_PASSWORD_ENFORCE_SPECIALCHARS
+
+
+..  _configuration_reference_security_password_enforce_uppercase:
+
+..  confval:: security.password_enforce_uppercase
+
+    If **true**, a password should contain uppercase letters (A-Z).
+
+    |
+    | Type: boolean
+    | Default: false
+    | Environment variable: TT_SECURITY_PASSWORD_ENFORCE_UPPERCASE
+
+
+..  _configuration_reference_security_password_history_length:
+
+..  confval:: security.password_history_length
+
+    Specify the number of unique new user passwords before an old password can be reused.
+
+    .. NOTE::
+
+        Tarantool uses the ``auth_history`` field in the
+        :doc:`box.space._user </reference/reference_lua/box_space/_user>`
+        system space to store user passwords.
+
+    |
+    | Type: integer
+    | Default: 0
+    | Environment variable: TT_SECURITY_PASSWORD_HISTORY_LENGTH
+
+
+..  _configuration_reference_security_password_lifetime_days:
+
+..  confval:: security.password_lifetime_days
+
+    Specify the maximum period of time (in days) a user can use the same password.
+    When this period ends, a user gets the "Password expired" error on a login attempt.
+    To restore access for such users, use :doc:`box.schema.user.passwd </reference/reference_lua/box_schema/user_passwd>`.
+
+    .. note::
+
+        The default 0 value means that a password never expires.
+
+    |
+    | Type: integer
+    | Default: 0
+    | Environment variable: TT_SECURITY_PASSWORD_LIFETIME_DAYS
+
+
+..  _configuration_reference_security_password_min_length:
+
+..  confval:: security.password_min_length
+
+    Specify the minimum number of characters for a password.
+
+    |
+    | Type: integer
+    | Default: 0
+    | Environment variable: TT_SECURITY_PASSWORD_MIN_LENGTH
+
+
+..  _configuration_reference_security_secure_erasing:
+
+..  confval:: security.secure_erasing
+
+    If **true**, forces Tarantool to overwrite a data file a few times before deletion to render recovery of a deleted file impossible.
+    The option applies to both ``.xlog`` and ``.snap`` files as well as Vinyl data files.
+
+    |
+    | Type: boolean
+    | Default: false
+    | Environment variable: TT_SECURITY_SECURE_ERASING

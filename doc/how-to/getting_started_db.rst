@@ -231,12 +231,10 @@ Each record of the array contains a required :ref:`URI <index-uri>` (uniform res
 :ref:`params <configuration_reference_iproto_listen>` field.
 The ``iproto.listen.uri`` field may contain:
 
-*   a listening address  (for example, ``127.0.0.1:3301``)
+*   a listening address (for example, ``127.0.0.1:3301``)
 *   a listening port (for example, `3301`)
 
-The field can't contain parameters, login, or password.
-
-Learn more about the :ref:`connection parameters <configuration_options_connection>`.
+Learn more about the :ref:`connection parameters <configuration_connections>`.
 
 You can send requests to a Tarantool instance using:
 

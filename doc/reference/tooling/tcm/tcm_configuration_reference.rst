@@ -1677,7 +1677,7 @@ etcd cluster is not available or not needed.
     A path to a TLS private key file to use for connecting to the Tarantool |tcm|
     configuration storage.
 
-    See also: :ref:`Traffic encryption <enterprise-iproto-encryption>`.
+    See also: :ref:`configuration_connections_ssl`.
 
     |
     | Type: string
@@ -1692,7 +1692,7 @@ etcd cluster is not available or not needed.
     A path to an SSL certificate to use for connecting to the Tarantool |tcm|
     configuration storage.
 
-    See also: :ref:`Traffic encryption <enterprise-iproto-encryption>`.
+    See also: :ref:`configuration_connections_ssl`.
 
     |
     | Type: string
@@ -1707,7 +1707,7 @@ etcd cluster is not available or not needed.
     A path to a trusted CA certificate to use for connecting to the Tarantool |tcm|
     configuration storage.
 
-    See also: :ref:`Traffic encryption <enterprise-iproto-encryption>`.
+    See also: :ref:`configuration_connections_ssl`.
 
     |
     | Type: string
@@ -1720,9 +1720,9 @@ etcd cluster is not available or not needed.
 .. confval:: storage.tarantool.ssl.ciphers
 
     A list of SSL cipher suites that can be used for connecting to the Tarantool |tcm|
-    configuration storage. Possible values are listed in :ref:`Supported ciphers <enterprise-iproto-encryption-ciphers>`.
+    configuration storage. Possible values are listed in :ref:`<uri>.params.ssl_ciphers <configuration_reference_iproto_uri_params_ssl_ciphers>`.
 
-    See also: :ref:`Traffic encryption <enterprise-iproto-encryption>`.
+    See also: :ref:`configuration_connections_ssl`.
 
     |
     | Type: string
@@ -1737,7 +1737,7 @@ etcd cluster is not available or not needed.
     A password for an encrypted private SSL key to use for connecting to the Tarantool |tcm|
     configuration storage.
 
-    See also: :ref:`Traffic encryption <enterprise-iproto-encryption>`.
+    See also: :ref:`configuration_connections_ssl`.
 
     |
     | Type: string

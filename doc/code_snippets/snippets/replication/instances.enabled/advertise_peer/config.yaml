@@ -1,0 +1,44 @@
+credentials:
+  users:
+    replicator:
+      password: 'topsecret'
+      roles: [replication]
+
+iproto:
+  advertise:
+    peer:
+      login: replicator
+
+replication:
+  failover: manual
+
+groups:
+  group001:
+    replicasets:
+      replicaset001:
+        leader: instance001
+        instances:
+          instance001:
+            iproto:
+              listen:
+              - uri: '127.0.0.1:3301'
+              - uri: '127.0.0.1:4401'
+              advertise:
+                peer:
+                  uri: '127.0.0.1:4401'
+          instance002:
+            iproto:
+              listen:
+              - uri: '127.0.0.1:3302'
+              - uri: '127.0.0.1:4402'
+              advertise:
+                peer:
+                  uri: '127.0.0.1:4402'
+          instance003:
+            iproto:
+              listen:
+              - uri: '127.0.0.1:3303'
+              - uri: '127.0.0.1:4403'
+              advertise:
+                peer:
+                  uri: '127.0.0.1:4403'
