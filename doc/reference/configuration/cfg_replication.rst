@@ -240,7 +240,7 @@
 
     Since :doc:`2.11.0 </release/2.11.0>`.
 
-    Specifies a strategy used to bootstrap a :ref:`replica set <replication-bootstrap>`.
+    Specify a strategy used to bootstrap a :ref:`replica set <replication-bootstrap>`.
     The following strategies are available:
 
     *   ``auto``: a node doesn't boot if a half or more of other nodes in a replica set are not connected.
@@ -291,7 +291,7 @@
 
     This option is in effect if :ref:`bootstrap_strategy <cfg_replication-bootstrap_strategy>` is set to ``legacy``.
 
-    Specifies the number of nodes to be up and running to start a replica set.
+    Specify the number of nodes to be up and running to start a replica set.
     This parameter has effect during :ref:`bootstrap <replication-leader>` or
     :ref:`configuration update <replication-configuration_update>`.
     Setting ``replication_connect_quorum`` to ``0`` makes Tarantool
@@ -580,7 +580,7 @@
 
     Since version :doc:`2.6.1 </release/2.6.1>`.
 
-    Specifies the role of a replica set node in the
+    Specify the role of a replica set node in the
     :ref:`leader election process <repl_leader_elect>`.
 
     Possible values:
@@ -630,7 +630,7 @@
 
     Since version :doc:`2.6.1 </release/2.6.1>`.
 
-    Specifies the timeout between election rounds in the
+    Specify the timeout between election rounds in the
     :ref:`leader election process <repl_leader_elect>` if the previous round
     ended up with a split-vote.
 
@@ -664,7 +664,7 @@
 
     In earlier Tarantool versions, use :ref:`election_fencing_enabled <cfg_election-election_fencing_enabled_deprecated>` instead.
 
-    Specifies the :ref:`leader fencing mode <repl_leader_elect_fencing>` that
+    Specify the :ref:`leader fencing mode <repl_leader_elect_fencing>` that
     affects the leader election process. When the parameter is set to ``soft``
     or ``strict``, the leader resigns its leadership if it has less than
     :ref:`replication_synchro_quorum <cfg_replication-replication_synchro_quorum>`
