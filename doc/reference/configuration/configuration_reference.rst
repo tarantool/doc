@@ -590,6 +590,10 @@ iproto.advertise.*
     Settings used to advertise the current instance to a router and rebalancer.
     The format of these settings is described in :ref:`iproto.advertise.\<peer_or_sharding\>.* <configuration_reference_iproto_advertise.peer_sharding>`.
 
+    .. NOTE::
+
+        If ``iproto.advertise.sharding`` is not specified, advertise settings from :ref:`iproto.advertise.peer <configuration_reference_iproto_advertise_peer>` are used.
+
     **Example**
 
     In the example below, the following configuration options are specified:

@@ -4,11 +4,11 @@ Connections
 ===========
 
 To set up a Tarantool cluster, you need to enable communication between its instances, regardless of whether they running on one or different hosts.
-This requires :ref:`configuring <configuration>` connection settings that might include:
+This requires :ref:`configuring <configuration>` connection settings that include:
 
 -   One or several URIs used to listen for incoming requests.
--   An URI used to advertise an instance to other cluster members.
--   SSL settings used to secure connections.
+-   An URI used to advertise an instance to other cluster members. This URI lets other cluster members know how to connect to the current Tarantool instance.
+-   (Optional) SSL settings used to secure connections between instances.
 
 Configuring connection settings is also required to enable communication of a Tarantool cluster to external systems.
 For example, this might be administering cluster members using :ref:`tt <tt-cli>`, managing clusters using :ref:`Tarantool Cluster Manager <tcm>`, or using :ref:`connectors <index-box_connectors>` for different languages.
@@ -74,13 +74,15 @@ In this case, this port is used for all IP addresses the server listens on.
 SSL parameters
 ~~~~~~~~~~~~~~
 
-In the Enterprise Edition, you can enable :ref:`traffic encryption <configuration_connections_ssl>` for a connection using the ``params`` section of the specified URI:
+In the Enterprise Edition, you can enable for a connection using the ``params`` section of the specified URI:
 
 ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/ssl_without_ca/config.yaml
     :language: yaml
     :start-at: instance001:
     :end-before: instance002:
     :dedent:
+
+Learn more from :ref:`configuration_connections_ssl`.
 
 
 .. _configuration_connections_unix_socket:
@@ -107,7 +109,7 @@ Advertise URI
 An advertise URI (:ref:`iproto.advertise.* <configuration_reference_iproto_advertise>`) lets other cluster members or clients know how to connect to the current Tarantool instance:
 
 -   ``iproto.advertise.peer`` specifies how to advertise the instance to other cluster members.
--   ``iproto.advertise.sharding`` specifies how to advertise the instance to a router and rebalancer.
+-   ``iproto.advertise.sharding`` specifies how to advertise the instance to a :ref:`router <vshard-architecture-router>` and :ref:`rebalancer <vshard-rebalancer>`.
 -   ``iproto.advertise.client`` accepts a URI used to advertise the instance to clients.
 
 ``iproto.advertise.<peer_or_sharding>`` might include the credentials required to connect to this instance, a URI used to listen for incoming requests, and SSL settings.
