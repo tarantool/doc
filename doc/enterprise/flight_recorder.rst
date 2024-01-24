@@ -33,8 +33,8 @@ configuration option to ``true``.
 
 
 After ``flightrec_enabled`` is set to ``true``, the flight recorder starts collecting data in the flight recording file  ``current.ttfr``.
-This file is stored in the ``memtx.dir`` directory.
-By default, the directory is ``var/log/{{ instance_name }}/<file_name>.ttfr``.
+This file is stored in the ``snapshot.dir`` directory.
+By default, the directory is ``var/lib/{{ instance_name }}/<file_name>.ttfr``.
 
 If the instance crashes and reboots, Tarantool rotates the flight recording:
 ``current.ttfr`` is renamed to ``<timestamp>.ttfr`` (for example, ``20230411T050721.ttfr``)
