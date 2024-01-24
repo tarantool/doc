@@ -32,7 +32,7 @@ configuration option to ``true``.
     :dedent:
 
 
-After ``flightrec_enabled`` is set to ``true``, the flight recorder starts collecting data in the flight recording file  ``current.ttfr``.
+After ``flightrec.enabled`` is set to ``true``, the flight recorder starts collecting data in the flight recording file  ``current.ttfr``.
 This file is stored in the ``snapshot.dir`` directory.
 By default, the directory is ``var/lib/{{ instance_name }}/<file_name>.ttfr``.
 
