@@ -72,7 +72,7 @@
 
     Since version :doc:`2.10.0 </release/2.10.0>`.
 
-    Specifies the allocator used for memtx tuples.
+    Specify the allocator used for memtx tuples.
     The possible values are ``system``  and ``small``:
 
     * ``system`` is based on the ``malloc`` function.
@@ -109,7 +109,7 @@
 
     Since version :doc:`2.8.1 </release/2.8.1>`.
 
-    Specifies the granularity (in bytes) of memory allocation in the :ref:`small allocator <cfg_storage-memtx_allocator>`.
+    Specify the granularity (in bytes) of memory allocation in the :ref:`small allocator <cfg_storage-memtx_allocator>`.
     The value of ``slab_alloc_granularity`` should be a power of two and should be greater than or equal to 4.
     Below are few recommendations on how to adjust the ``slab_alloc_granularity`` value:
 

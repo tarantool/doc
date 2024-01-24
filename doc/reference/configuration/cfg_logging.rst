@@ -11,21 +11,21 @@ application.
 * :ref:`log_format <cfg_logging-log_format>`
 * :ref:`log_modules <cfg_logging-log_modules>`
 
-.. _cfg_logging-log_level:
+..  _cfg_logging-log_level:
 
-.. confval:: log_level
+..  confval:: log_level
 
     Since version 1.6.2.
 
-    Specifies the level of detail the :ref:`log <admin-logs>` has. There are seven levels:
+    Specify the level of detail the :ref:`log <admin-logs>` has. There are seven levels:
 
-    * 1 – ``SYSERROR``
-    * 2 – ``ERROR``
-    * 3 – ``CRITICAL``
-    * 4 – ``WARNING``
-    * 5 – ``INFO``
-    * 6 – ``VERBOSE``
-    * 7 – ``DEBUG``
+    * 1 -- ``SYSERROR``
+    * 2 -- ``ERROR``
+    * 3 -- ``CRITICAL``
+    * 4 -- ``WARNING``
+    * 5 -- ``INFO``
+    * 6 -- ``VERBOSE``
+    * 7 -- ``DEBUG``
 
     By setting ``log_level``, you can enable logging of all events with severities above
     or equal to the given level. Tarantool prints logs to the standard

@@ -36,7 +36,7 @@
 
     Since :doc:`2.11.0 </release/2.11.0>`.
 
-    Specifies the size (in bytes) of the log storage.
+    Specify the size (in bytes) of the log storage.
     You can set this option to ``0`` to disable the log storage.
 
     | Type: integer
@@ -51,7 +51,7 @@
 
     Since :doc:`2.11.0 </release/2.11.0>`.
 
-    Specifies the maximum size (in bytes) of the log message.
+    Specify the maximum size (in bytes) of the log message.
     The log message is truncated if its size exceeds this limit.
 
     | Type: integer
@@ -67,7 +67,7 @@
 
     Since :doc:`2.11.0 </release/2.11.0>`.
 
-    Specifies the level of detail the log has.
+    Specify the level of detail the log has.
     You can learn more about log levels from the :ref:`log_level <cfg_logging-log_level>`
     option description.
     Note that the ``flightrec_logs_log_level`` value might differ from ``log_level``.
@@ -84,7 +84,7 @@
 
     Since :doc:`2.11.0 </release/2.11.0>`.
 
-    Specifies the time period (in seconds) that defines how long metrics are stored from the moment of dump.
+    Specify the time period (in seconds) that defines how long metrics are stored from the moment of dump.
     So, this value defines how much historical metrics data is collected up to the moment of crash.
     The frequency of metric dumps is defined by :ref:`flightrec_metrics_interval <cfg_flightrec_metrics_interval>`.
 
@@ -100,7 +100,7 @@
 
     Since :doc:`2.11.0 </release/2.11.0>`.
 
-    Specifies the time interval (in seconds) that defines the frequency of dumping metrics.
+    Specify the time interval (in seconds) that defines the frequency of dumping metrics.
     This value shouldn't exceed :ref:`flightrec_metrics_period <cfg_flightrec_metrics_period>`.
 
     .. NOTE::
@@ -125,7 +125,7 @@
 
     Since :doc:`2.11.0 </release/2.11.0>`.
 
-    Specifies the size (in bytes) of storage for the request and response data.
+    Specify the size (in bytes) of storage for the request and response data.
     You can set this parameter to ``0`` to disable a storage of requests and responses.
 
     | Type: integer
@@ -141,7 +141,7 @@
 
     Since :doc:`2.11.0 </release/2.11.0>`.
 
-    Specifies the maximum size (in bytes) of a request entry.
+    Specify the maximum size (in bytes) of a request entry.
     A request entry is truncated if this size is exceeded.
 
     | Type: integer
@@ -156,7 +156,7 @@
 
     Since :doc:`2.11.0 </release/2.11.0>`.
 
-    Specifies the maximum size (in bytes) of a response entry.
+    Specify the maximum size (in bytes) of a response entry.
     A response entry is truncated if this size is exceeded.
 
     | Type: integer

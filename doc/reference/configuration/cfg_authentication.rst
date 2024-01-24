@@ -24,7 +24,7 @@
 
     Since :doc:`2.11.0 </release/2.11.0>`.
 
-    Specifies a period of time (in seconds) that a specific user should wait
+    Specify a period of time (in seconds) that a specific user should wait
     for the next attempt after failed authentication.
 
     With the configuration below, Tarantool refuses the authentication attempt if the previous
@@ -105,7 +105,7 @@
 
     Since :doc:`2.11.0 </release/2.11.0>`.
 
-    Specifies the minimum number of characters for a password.
+    Specify the minimum number of characters for a password.
 
     The following example shows how to set the minimum password length to 10.
 
@@ -181,7 +181,7 @@
 
     Since :doc:`2.11.0 </release/2.11.0>`.
 
-    Specifies the maximum period of time (in days) a user can use the same password.
+    Specify the maximum period of time (in days) a user can use the same password.
     When this period ends, a user gets the "Password expired" error on a login attempt.
     To restore access for such users, use :doc:`box.schema.user.passwd </reference/reference_lua/box_schema/user_passwd>`.
 
@@ -207,7 +207,7 @@
 
     Since :doc:`2.11.0 </release/2.11.0>`.
 
-    Specifies the number of unique new user passwords before an old password can be reused.
+    Specify the number of unique new user passwords before an old password can be reused.
 
     In the example below, a new password should differ from the last three passwords.
 

@@ -309,12 +309,15 @@ With the 3.0 version, you can read flight recordings using the API provided by t
 
 To enable the flight recorder in a YAML file, set ``flightrec.enabled`` to true:
 
-.. code-block:: yaml
-
-    flightrec:
-      enabled: true
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/flightrec/config.yaml
+    :language: yaml
+    :start-at: flightrec:
+    :end-at: enabled: true
+    :dedent:
 
 Then, you can use the Lua API to open and read ``*.ttfr`` files:
+
+.. _3-0-flight-recorder-begin:
 
 ..  code-block:: tarantoolsession
 
@@ -360,6 +363,7 @@ Then, you can use the Lua API to open and read ``*.ttfr`` files:
     ---
     ...
 
+.. _3-0-flight-recorder-end:
 
 
 
