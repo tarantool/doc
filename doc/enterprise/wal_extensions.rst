@@ -8,13 +8,12 @@ For example, you can enable storing an old and new tuple for each CRUD operation
 This information might be helpful for implementing a CDC (Change Data Capture) utility
 that transforms a data replication stream.
 
-
 .. _wal_extensions_configuration:
 
 Configuration
 -------------
 
-To configure WAL extensions, use the ``wal_ext`` :ref:`configuration property <index-book_cfg>`.
+To configure WAL extensions, use the ``wal.ext`` :ref:`configuration property <configuration_reference_wal>`.
 Inside the ``wal_ext`` block, you can enable storing old and new tuples as follows:
 
 *   Set the ``old`` and ``new`` options to ``true`` to store old and new tuples in a write-ahead log for all spaces.
