@@ -539,7 +539,7 @@ The ``flightrec`` section describes options related to the :ref:`flight recorder
         Specify the directory used to store flight recordings (``*.ttfr`` files).
 
         | Type: string
-        | Default: memtx.dir
+        | Default: snapshot.dir
         | Environment variable: TT_FLIGHTREC_DIR
 
 
