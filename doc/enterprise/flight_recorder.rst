@@ -65,10 +65,10 @@ The ``flightrec`` configuration might look as follows:
 
 In the example, the following options are set:
 
-*   :ref:`flightrec.logs_size <configuration_reference_flightrec_logs_size>` -- a log storage size in bytes
-*   :ref:`flightrec.logs_log_level <configuration_reference_flightrec_logs_log_level>` -- a :ref:`log_level <cfg_logging-log_level>`
-*   :ref:`flightrec.metrics_period <configuration_reference_flightrec_metrics_period>` -- the number of seconds to store metrics after the dump
-*   :ref:`flightrec.metrics_interval <configuration_reference_flightrec_metrics_interval>` -- the frequency of metrics dumps in seconds
-*   :ref:`flightrec.requests_size <configuration_reference_flightrec_requests_size>` -- a storage size for the request and response data in bytes
+*   :ref:`flightrec.logs_size <configuration_reference_flightrec_logs_size>` -- a log storage size in bytes.
+*   :ref:`flightrec.logs_log_level <configuration_reference_flightrec_logs_log_level>` -- a :ref:`log_level <cfg_logging-log_level>`.
+*   :ref:`flightrec.metrics_period <configuration_reference_flightrec_metrics_period>` -- the number of seconds to store metrics after the dump.
+*   :ref:`flightrec.metrics_interval <configuration_reference_flightrec_metrics_interval>` -- the frequency of metrics dumps in seconds.
+*   :ref:`flightrec.requests_size <configuration_reference_flightrec_requests_size>` -- a storage size for the request and response data in bytes.
 
 Read more: :ref:`Flight recorder configuration options <configuration_reference_flightrec>`.
