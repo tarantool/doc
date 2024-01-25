@@ -19,6 +19,7 @@ If you are new to Tarantool, please see our
     Creating Tarantool database <getting_started_db>
     getting_started_connectors
     db/index
+    getting_started_tcm
     getting_started_net_box
     vshard_quick
     app/index
