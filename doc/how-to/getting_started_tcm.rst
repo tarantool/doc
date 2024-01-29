@@ -30,9 +30,9 @@ Setting up Tarantool EE
     This creates the ``tarantool-enterprise`` directory beside the archive.
     The directory contains three executables for key Tarantool EE components:
 
-    *   ``tarantool`` - Tarantool Enterprise Edition
-    *   the - :ref:`tt <tt-cli>` command-line utility
-    *   ``tcm`` - :ref:`tcm`
+    *   ``tarantool`` -- Tarantool Enterprise Edition.
+    *   ``tt`` -- the :ref:`tt <tt-cli>` command-line utility.
+    *   ``tcm`` -- :ref:`tcm`.
 
 #.  Add the Tarantool EE components to the executable path running the ``env.sh``
     script included in the distribution:
