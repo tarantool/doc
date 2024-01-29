@@ -165,6 +165,11 @@ Next, write the cluster configuration and upload it to the etcd storage:
 
 3. Click **Apply** to send the configuration to etcd.
 
+.. image:: images/tcm_start_cluster_config.png
+    :width: 700
+    :align: center
+    :alt: Cluster configuration in TCM
+
 To check the cluster state, go to **Stateboard**. You see that |tcm| already knows
 the cluster topology, but the instances aren't running.
 
@@ -300,6 +305,8 @@ Check the space's tuples by running a read request on ``instance-001``:
         :lines: 19
         :dedent:
 
+This is how it looks in |tcm|:
+
 .. image:: images/tcm_start_instance_write.png
     :width: 700
     :align: center
@@ -329,9 +336,26 @@ the space tuples in |tcm|:
 
 #.  Click an instance name on the **Stateboard page**.
 #.  Open the **Actions** menu in the top-right corner and click **Explorer**.
+
+    .. image:: images/tcm_start_explorer.png
+        :width: 700
+        :align: center
+        :alt: Opening Explorer in TCM
+
     This opens the page that lists the user spaces that exist on the instance.
+
+    .. image:: images/tcm_start_explorer_spaces.png
+        :width: 700
+        :align: center
+        :alt:  TCM Explorer: spaces
+
 #.  Click **View** in the **Actions** menu of the space you want to see. The page
     shows all the tuples added previously.
+
+    .. image:: images/tcm_start_explorer_tuples.png
+        :width: 700
+        :align: center
+        :alt:  TCM Explorer: space tuples
 
 Next steps
 ----------
