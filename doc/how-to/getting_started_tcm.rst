@@ -6,32 +6,35 @@ Getting started with Tarantool Cluster Manager
 ..  admonition:: Enterprise Edition
     :class: fact
 
-    This tutorial uses `Tarantool Enterprise Edition <https://www.tarantool.io/compare/>`_ .
+    This tutorial uses `Tarantool Enterprise Edition <https://www.tarantool.io/compare/>`_.
 
-In this tutorial, you get :ref:`tcm` up and running on your local system, start
-a Tarantool EE cluster, and learn to manage the cluster from the |tcm| web UI.
+In this tutorial, you get :ref:`tcm` up and running on your local system, deploy
+a local Tarantool EE cluster, and learn to manage the cluster from the |tcm| web UI.
 
 To complete this tutorial, you need:
 
 *   A Linux machine with glibc 2.17 or later and a GUI.
-*   A web browser based on Chromium 108 or later, for example, Google Chrome or Mozilla Firefox.
+*   A web browser: Chromium-based (Chromium version 108 or later), Mozilla Firefox 101 or later, or another browser.
 *   The Tarantool Enterprise Edition SDK 3.0 or later in the ``tar.gz`` archive.
-    See for :ref:`enterprise-setup` for information about getting the archive.
+    See :ref:`enterprise-setup` for information about getting the archive.
 
 Setting up Tarantool EE
 -----------------------
 
-1.  Extract the Tarantool EE SDK archive:
+#.  Extract the Tarantool EE SDK archive:
 
     .. code-block:: console
 
-        $ tar -xvzf tarantool-enterprise-sdk-gc64-<VERSION>-<HASH>>-r<REVISION>>.linux.x86_64.tar.gz
+        $ tar -xvzf tarantool-enterprise-sdk-gc64-<VERSION>-<HASH>-r<REVISION>>.linux.x86_64.tar.gz
 
-    In result, the ``tarantool-enterprise`` directory is created beside the archive.
-    This directory contains three executables of key Tarantool EE components: ``tarantool``,
-    ``tt``, and ``tcm``.
+    This creates the ``tarantool-enterprise`` directory beside the archive.
+    The directory contains three executables for key Tarantool EE components:
 
-2.  Add the Tarantool EE components to the executable path running the ``env.sh``
+    *   ``tarantool`` - Tarantool Enterprise Edition
+    *   the - :ref:`tt <tt-cli>` command-line utility
+    *   ``tcm`` - :ref:`tcm`
+
+#.  Add the Tarantool EE components to the executable path running the ``env.sh``
     script included in the distribution:
 
     .. code-block:: console
@@ -40,8 +43,7 @@ Setting up Tarantool EE
         $ source ./env.sh
 
 Once completed, you can check that the Tarantool EE executables ``tarantool``, ``tt``,
-and ``tcm`` are available in the system by printing their versions. The result
-should look like this:
+and ``tcm`` are available in the system. For example, print their versions:
 
 .. code-block:: console
 
@@ -60,21 +62,27 @@ should look like this:
 Starting TCM
 ------------
 
-TCM is ready to run out of the box. To start it, run the following command:
+|tcm_full_name| is ready to run out of the box. To start it, run the following command:
 
 ..  code-block:: console
 
     $ ./tcm --storage.etcd.embed.enabled
 
-The ``--storage.etcd.embed.enabled`` options makes TCM start its own instance of
-`etcd <https://etcd.io/>`__. This instance serves as a configuration storage for
-TCM itself and can be used for storing configurations of connected Tarantool EE clusters.
+The :ref:`--storage.etcd.embed.enabled <tcm_configuration_reference_storage_etcd_embed>`
+option makes |tcm| start its own instance of `etcd <https://etcd.io/>`__ on bootstrap.
+This ``etcd`` instance is used for storing the :ref:`TCM configuration <tcm_configuration>`.
+
+.. note::
+
+    During the development, it is also convenient to use the TCM-embedded etcd
+    for storing the configurations of connected Tarantool EE clusters in it. Learn more
+    in :ref:`configuration_etcd`.
 
 Logging into TCM
 ----------------
 
-1.  Open the browser and go to ``http://127.0.0.1:8080/``.
-2.  Log in with the ``admin`` username. The initial password is generated automatically
+#.  Open a web browser and go to ``http://127.0.0.1:8080/``.
+#.  Log in with the ``admin`` username. The initial password is generated automatically
     and printed in the TCM log in a message like this:
 
     ..  code-block:: text
@@ -85,40 +93,68 @@ Logging into TCM
 
 After a successful login, you see the |tcm| web UI:
 
-.. image::
+.. image:: tcm_start_empty_cluster.png
+    :width: 700
+    :align: center
+    :alt: TCM stateboard with empty cluster
 
 Setting up a Tarantool EE cluster
 ---------------------------------
 
-The next step is setting up and starting a Tarantool EE cluster. |tcm| manages
-cluster configurations in centralized configuration storages. However, deploying
-Tarantool instances is out of its scope. Thus, the cluster setup includes two steps:
+To prepare a Tarantool EE cluster, complete the following steps:
 
-*   Configuring a cluster in |tcm|.
-*   Deploying and starting the cluster using the :ref:`tt-cli`.
+#.  Configure the cluster in |tcm|. |tcm| provides a web-based editor for writing
+    cluster configurations. It is connected to the configuration storage (etcd in
+    this case): all changes you make in the browser are sent to etcd in one click.
+#.  Deploy the cluster using the :ref:`tt <tt-cli>` utility. Deployment of cluster
+    instances in the system is the responsibility of the ``tt`` command-line utility.
 
 Configuring a cluster in TCM
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-A freshly installed |TCM| has one predefined cluster named **Default cluster**.
+A freshly installed |TCM| has a predefined cluster named **Default cluster**. It
+doesn't have any configuration or topology out of the box. Check its properties to
+find out it's configuration storage.
 
-It's an abstract entity and is
-not connected to any real instances; hasn't topology because its config is empty.
+To view the **Default cluster**'s properties:
 
-To view its properties:
+#.  Go to **Clusters** and click **Edit** in the **Actions** menu opposite the cluster name.
 
-1.  Go to **Clusters** and click **Edit** opposite the cluster name.
-2.  Optionally, add a description and select a color to highlight this cluster in |tcm|. Click **Next**.
-3.  Remember the settings of the configuration storage that the cluster uses.
+    .. image:: tcm_start_cluster_edit.png
+        :width: 700
+        :align: center
+        :alt: TCM edit cluster
+
+#.  Optionally, add a description and select a color to highlight this cluster in |tcm|. Click **Next**.
+
+    .. image:: tcm_start_cluster_general.png
+        :width: 700
+        :align: center
+        :alt: General cluster settings
+
+#.  Remember the settings of the configuration storage that the cluster uses.
     By default, it's an etcd storage with a prefix ``/default`` running on port
     ``2379`` (default etcd port) on the same host. Click **Next**.
-4.  Check the Tarantool user that |tcm| uses to connect to the cluster instances.
-    It's ``guest`` by default. Click **Update**.
+
+    .. image:: tcm_start_cluster_storage.png
+        :width: 700
+        :align: center
+        :alt: Cluster configuration storage settings
+
+#.  Check the Tarantool user that |tcm| uses to connect to the cluster instances.
+    It's ``guest`` by default. Click **Update** to save the changes and return to
+    the **Clusters** page.
+
+    .. image:: tcm_start_cluster_tarantool.png
+        :width: 700
+        :align: center
+        :alt: Cluster Tarantool connection settings
 
 Next, write the cluster configuration and upload it to the etcd storage:
 
-1.  Go to **Configuration**.
-2.  Click **+** and paste the following configuration:
+#.  Go to **Configuration**.
+#.  Click **+** and provide an arbitrary name for the configuration, for example, ``all``.
+#.  Paste the following YAML configuration into the editor:
 
     ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/tcm_get_started_config/config.yaml
         :language: yaml
@@ -127,19 +163,22 @@ Next, write the cluster configuration and upload it to the etcd storage:
     This configuration sets up a cluster of three nodes in one replica set,
     one leader and two followers.
 
-3. Click **Apply**.
+3. Click **Apply** to send the configuration to etcd.
 
 To check the cluster state, go to **Stateboard**. You see that |tcm| already knows
 the cluster topology, but the instances aren't running.
 
-.. image::
+.. image:: tcm_start_stateboard_offline.png
+    :width: 700
+    :align: center
+    :alt: Offline cluster stateboard
 
 Deploying the cluster locally
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+To deploy a local cluster based on the configuration from etcd:
 
-To deploy the cluster based on the configuration from etcd:
-
+#.  Open a system terminal.
 #.  Create a new ``tt`` environment in a directory of your choice:
 
     .. code-block:: console
@@ -155,7 +194,7 @@ To deploy the cluster based on the configuration from etcd:
         $ mkdir instances.enabled/cluster
         $ cd instances.enabled/cluster/
 
-#.  Inside ``instances.enabled/create_db``, create the ``instances.yml`` and ``config.yaml`` files:
+#.  Inside ``instances.enabled/cluster``, create the ``instances.yml`` and ``config.yaml`` files:
 
     *   ``instances.yml`` specifies instances to run in the current environment. In this example, there is one instance:
 
@@ -189,7 +228,6 @@ To check how the cluster started, run ``tt status``. This output should look lik
         myapp:instance-002     RUNNING     2059
         myapp:instance-003     RUNNING     2060
 
-
 Managing the cluster in TCM
 ---------------------------
 
@@ -206,7 +244,10 @@ Checking state
 To check the cluster state in |tcm|, go to **Stateboard**. Here you see the overview
 of the cluster topology, health, memory consumption, and other information.
 
-.. image::
+.. image:: tcm_start_stateboard_online.png
+    :width: 700
+    :align: center
+    :alt: Online cluster stateboard
 
 Connecting to the instance
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -214,11 +255,17 @@ Connecting to the instance
 To view detailed information about an instance, click its name in the instances list
 on the **Stateboard** page.
 
-.. image::
+.. image:: tcm_start_instance_details.png
+    :width: 700
+    :align: center
+    :alt: Instance details in TCM
 
 To connect to the instance interactively and execute code on it, go to the **Terminal** tab.
 
-.. image::
+.. image:: tcm_start_instance_terminal.png
+    :width: 700
+    :align: center
+    :alt: Instance terminal in TCM
 
 Creating a space
 ----------------
@@ -238,28 +285,36 @@ Since ``instance-001`` is a read-write instance (its ``box.info.ro`` is ``false`
 the write requests must be executed on it. Run the following code in the ``instance-001``
 terminal to write tuples in the space:
 
-    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/create_db/myapp.lua
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/tcm_get_started_tt/myapp.lua
         :language: lua
         :lines: 13-15
         :dedent:
-
-
 
 Reading data
 ~~~~~~~~~~~~
 
 Check the space's tuples by running a read request on ``instance-001``:
 
-    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/create_db/myapp.lua
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/tcm_get_started_tt/myapp.lua
         :language: lua
         :lines: 19
         :dedent:
+
+.. image:: tcm_start_instance_write.png
+    :width: 700
+    :align: center
+    :alt: Writing data through TCM
 
 Checking replication
 ~~~~~~~~~~~~~~~~~~~~
 
 To check that the data is replicated across instances, run the read request on any
 other instance -- ``instance-002`` or ``instance-003``. The result is the same as on ``instance-001``
+
+.. image:: tcm_start_instance_read.png
+    :width: 700
+    :align: center
+    :alt: Reading data through TCM
 
 .. note::
 

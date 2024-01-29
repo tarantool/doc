@@ -1,33 +1,34 @@
+
 credentials:
-      users:
-        guest:
-          roles: [super]
+  users:
+    guest:
+      roles: [super]
 
-    wal:
-      dir: '{{ instance_name }}'
+wal:
+  dir: '{{ instance_name }}'
 
-    snapshot:
-      dir: '{{ instance_name }}'
+snapshot:
+  dir: '{{ instance_name }}'
 
-    console:
-      socket: '{{ instance_name }}.control'
+console:
+  socket: '{{ instance_name }}.control'
 
-    iproto:
-      listen:
-        - uri: 'unix/:/tmp/{{ instance_name }}.sock'
-      advertise:
-        client: 'unix/:/tmp/{{ instance_name }}.sock'
+iproto:
+  listen: 
+    - uri: 'unix/:/tmp/{{ instance_name }}.sock'
+  advertise:
+    client: 'unix/:/tmp/{{ instance_name }}.sock'
 
-    groups:
-      group-001:
-        replicasets:
-          replicaset-001:
-            replication:
-              bootstrap_strategy: config
-              failover: manual
-            bootstrap_leader: instance-001
-            leader: instance-001
-            instances:
-              instance-001: {}
-              instance-002: {}
-              instance-003: {}
+groups:
+  group-001:
+    replicasets:
+      replicaset-001:
+        replication:
+          bootstrap_strategy: config
+          failover: manual
+        bootstrap_leader: instance-001
+        leader: instance-001
+        instances:
+          instance-001: {}
+          instance-002: {}
+          instance-003: {}
