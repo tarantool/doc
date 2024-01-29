@@ -93,7 +93,7 @@ Logging into TCM
 
 After a successful login, you see the |tcm| web UI:
 
-.. image:: tcm_start_empty_cluster.png
+.. image:: images/tcm_start_empty_cluster.png
     :width: 700
     :align: center
     :alt: TCM stateboard with empty cluster
@@ -120,14 +120,14 @@ To view the **Default cluster**'s properties:
 
 #.  Go to **Clusters** and click **Edit** in the **Actions** menu opposite the cluster name.
 
-    .. image:: tcm_start_cluster_edit.png
+    .. image:: images/tcm_start_cluster_edit.png
         :width: 700
         :align: center
         :alt: TCM edit cluster
 
 #.  Optionally, add a description and select a color to highlight this cluster in |tcm|. Click **Next**.
 
-    .. image:: tcm_start_cluster_general.png
+    .. image:: images/tcm_start_cluster_general.png
         :width: 700
         :align: center
         :alt: General cluster settings
@@ -136,7 +136,7 @@ To view the **Default cluster**'s properties:
     By default, it's an etcd storage with a prefix ``/default`` running on port
     ``2379`` (default etcd port) on the same host. Click **Next**.
 
-    .. image:: tcm_start_cluster_storage.png
+    .. image:: images/tcm_start_cluster_storage.png
         :width: 700
         :align: center
         :alt: Cluster configuration storage settings
@@ -145,7 +145,7 @@ To view the **Default cluster**'s properties:
     It's ``guest`` by default. Click **Update** to save the changes and return to
     the **Clusters** page.
 
-    .. image:: tcm_start_cluster_tarantool.png
+    .. image:: images/tcm_start_cluster_tarantool.png
         :width: 700
         :align: center
         :alt: Cluster Tarantool connection settings
@@ -168,7 +168,7 @@ Next, write the cluster configuration and upload it to the etcd storage:
 To check the cluster state, go to **Stateboard**. You see that |tcm| already knows
 the cluster topology, but the instances aren't running.
 
-.. image:: tcm_start_stateboard_offline.png
+.. image:: images/tcm_start_stateboard_offline.png
     :width: 700
     :align: center
     :alt: Offline cluster stateboard
@@ -244,7 +244,7 @@ Checking state
 To check the cluster state in |tcm|, go to **Stateboard**. Here you see the overview
 of the cluster topology, health, memory consumption, and other information.
 
-.. image:: tcm_start_stateboard_online.png
+.. image:: images/tcm_start_stateboard_online.png
     :width: 700
     :align: center
     :alt: Online cluster stateboard
@@ -255,14 +255,14 @@ Connecting to the instance
 To view detailed information about an instance, click its name in the instances list
 on the **Stateboard** page.
 
-.. image:: tcm_start_instance_details.png
+.. image:: images/tcm_start_instance_details.png
     :width: 700
     :align: center
     :alt: Instance details in TCM
 
 To connect to the instance interactively and execute code on it, go to the **Terminal** tab.
 
-.. image:: tcm_start_instance_terminal.png
+.. image:: images/tcm_start_instance_terminal.png
     :width: 700
     :align: center
     :alt: Instance terminal in TCM
@@ -300,7 +300,7 @@ Check the space's tuples by running a read request on ``instance-001``:
         :lines: 19
         :dedent:
 
-.. image:: tcm_start_instance_write.png
+.. image:: images/tcm_start_instance_write.png
     :width: 700
     :align: center
     :alt: Writing data through TCM
@@ -311,7 +311,7 @@ Checking replication
 To check that the data is replicated across instances, run the read request on any
 other instance -- ``instance-002`` or ``instance-003``. The result is the same as on ``instance-001``
 
-.. image:: tcm_start_instance_read.png
+.. image:: images/tcm_start_instance_read.png
     :width: 700
     :align: center
     :alt: Reading data through TCM
