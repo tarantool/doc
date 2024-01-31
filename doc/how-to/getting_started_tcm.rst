@@ -13,10 +13,12 @@ a local Tarantool EE cluster, and learn to manage the cluster from the |tcm| web
 
 To complete this tutorial, you need:
 
-*   A Linux machine with glibc 2.17 or later and a GUI.
-*   A web browser: Chromium-based (Chromium version 108 or later), Mozilla Firefox 101 or later, or another browser.
+*   A Linux machine with glibc 2.17 or later.
+*   A web browser: Chromium-based (Chromium version 108 or later), Mozilla Firefox 101 or later, or another up-to-date browser.
 *   The Tarantool Enterprise Edition SDK 3.0 or later in the ``tar.gz`` archive.
     See :ref:`enterprise-setup` for information about getting the archive.
+
+For more detailed information about using |tcm|, refer to :ref:`tcm`.
 
 Setting up Tarantool EE
 -----------------------
@@ -34,7 +36,7 @@ Setting up Tarantool EE
     *   ``tt`` -- the :ref:`tt <tt-cli>` command-line utility.
     *   ``tcm`` -- :ref:`tcm`.
 
-#.  Add the Tarantool EE components to the executable path running the ``env.sh``
+#.  Add the Tarantool EE components to the executable path by executing the ``env.sh``
     script included in the distribution:
 
     .. code-block:: console
@@ -42,8 +44,8 @@ Setting up Tarantool EE
         $ cd tarantool-enterprise
         $ source ./env.sh
 
-Once completed, you can check that the Tarantool EE executables ``tarantool``, ``tt``,
-and ``tcm`` are available in the system. For example, print their versions:
+To check that the Tarantool EE executables ``tarantool``, ``tt``,
+and ``tcm`` are available in the system, print their versions:
 
 .. code-block:: console
 
@@ -66,7 +68,7 @@ Starting TCM
 
 ..  code-block:: console
 
-    $ ./tcm --storage.etcd.embed.enabled
+    $ tcm --storage.etcd.embed.enabled
 
 The :ref:`--storage.etcd.embed.enabled <tcm_configuration_reference_storage_etcd_embed>`
 option makes |tcm| start its own instance of `etcd <https://etcd.io/>`__ on bootstrap.
@@ -75,8 +77,8 @@ This ``etcd`` instance is used for storing the :ref:`TCM configuration <tcm_conf
 .. note::
 
     During the development, it is also convenient to use the TCM-embedded etcd
-    for storing the configurations of connected Tarantool EE clusters in it. Learn more
-    in :ref:`configuration_etcd`.
+    as a configuration storage for Tarantool EE clusters connected to TCM it.
+    Learn more in :ref:`configuration_etcd`.
 
 Logging into TCM
 ----------------
@@ -106,15 +108,15 @@ To prepare a Tarantool EE cluster, complete the following steps:
 #.  Configure the cluster in |tcm|. |tcm| provides a web-based editor for writing
     cluster configurations. It is connected to the configuration storage (etcd in
     this case): all changes you make in the browser are sent to etcd in one click.
-#.  Deploy the cluster using the :ref:`tt <tt-cli>` utility. Deployment of cluster
-    instances in the system is the responsibility of the ``tt`` command-line utility.
+#.  Start the cluster instances locally using the :ref:`tt <tt-cli>` utility.
 
 Configuring a cluster in TCM
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 A freshly installed |TCM| has a predefined cluster named **Default cluster**. It
-doesn't have any configuration or topology out of the box. Check its properties to
-find out it's configuration storage.
+doesn't have any configuration or topology out of the box. Its initial properties
+include the default etcd and Tarantool connection parameters. Check these properties
+to find out where TCM sends the cluster configuration that you write.
 
 To view the **Default cluster**'s properties:
 
@@ -125,14 +127,14 @@ To view the **Default cluster**'s properties:
         :align: center
         :alt: TCM edit cluster
 
-#.  Optionally, add a description and select a color to highlight this cluster in |tcm|. Click **Next**.
+#.  Click **Next** on the **General** tab.
 
     .. image:: images/tcm_start_cluster_general.png
         :width: 700
         :align: center
         :alt: General cluster settings
 
-#.  Remember the settings of the configuration storage that the cluster uses.
+#.  Find the connection properties of the configuration storage that the cluster uses.
     By default, it's an etcd storage with a prefix ``/default`` running on port
     ``2379`` (default etcd port) on the same host. Click **Next**.
 
@@ -170,13 +172,15 @@ Next, write the cluster configuration and upload it to the etcd storage:
     :align: center
     :alt: Cluster configuration in TCM
 
-To check the cluster state, go to **Stateboard**. You see that |tcm| already knows
-the cluster topology, but the instances aren't running.
+To check the cluster state, go to **Stateboard**. When the cluster configuration is
+saved, you can see the cluster topology on this page:
 
 .. image:: images/tcm_start_stateboard_offline.png
     :width: 700
     :align: center
     :alt: Offline cluster stateboard
+
+However, the cluster instances are offline because they aren't deployed yet.
 
 Deploying the cluster locally
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -201,21 +205,18 @@ To deploy a local cluster based on the configuration from etcd:
 
 #.  Inside ``instances.enabled/cluster``, create the ``instances.yml`` and ``config.yaml`` files:
 
-    *   ``instances.yml`` specifies instances to run in the current environment. In this example, there is one instance:
+    *   ``instances.yml`` specifies instances to run in the current environment. In this example, there are three instances:
 
         ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/tcm_get_started_tt/instances.yml
             :language: yaml
             :dedent:
 
-    *   ``config.yaml`` contains basic :ref:`configuration <configuration_file>`, for example:
+    *   ``config.yaml`` instructs ``tt`` to load the cluster configuration from etcd.
+        The specified etcd location matches the configuration storage of the **Default cluster** in TCM:
 
         ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/tcm_get_started_tt/config.yaml
             :language: yaml
             :dedent:
-
-    This ``config.yaml`` file instructs Tarantool to take the cluster configuration
-    from an etcd storage. The specified etcd location matches the configuration
-    storage of the **Default cluster** that was written on the previous step.
 
 #.  Start the cluster from the ``tt`` environment root (the ``cluster-env`` directory):
 
@@ -238,10 +239,10 @@ Managing the cluster in TCM
 
 To learn to interact with a cluster in |tcm|, complete typical database tasks such as:
 
-*   check the cluster state
-*   create a space
-*   write data
-*   view data
+*   Checking the cluster state.
+*   Creating a space.
+*   Writing data.
+*   Viewing data.
 
 Checking state
 ~~~~~~~~~~~~~~
@@ -356,8 +357,3 @@ the space tuples in |tcm|:
         :width: 700
         :align: center
         :alt:  TCM Explorer: space tuples
-
-Next steps
-----------
-
-To learn more about |tcm|, refer to :ref:`tcm`.
