@@ -20,6 +20,8 @@ To complete this tutorial, you need:
 
 For more detailed information about using |tcm|, refer to :ref:`tcm`.
 
+..  _getting_started_tcm_setup:
+
 Setting up Tarantool EE
 -----------------------
 
@@ -61,6 +63,8 @@ and ``tcm`` are available in the system, print their versions:
     $ tcm version
     1.0.0-0-gd38b12c2
 
+..  _getting_started_tcm_start:
+
 Starting TCM
 ------------
 
@@ -79,6 +83,8 @@ This ``etcd`` instance is used for storing the :ref:`TCM configuration <tcm_conf
     During the development, it is also convenient to use the TCM-embedded etcd
     as a configuration storage for Tarantool EE clusters connected to TCM it.
     Learn more in :ref:`configuration_etcd`.
+
+..  _getting_started_tcm_login:
 
 Logging into TCM
 ----------------
@@ -100,6 +106,8 @@ After a successful login, you see the |tcm| web UI:
     :align: center
     :alt: TCM stateboard with empty cluster
 
+..  _getting_started_tcm_cluster:
+
 Setting up a Tarantool EE cluster
 ---------------------------------
 
@@ -109,6 +117,8 @@ To prepare a Tarantool EE cluster, complete the following steps:
     cluster configurations. It is connected to the configuration storage (etcd in
     this case): all changes you make in the browser are sent to etcd in one click.
 #.  Start the cluster instances locally using the :ref:`tt <tt-cli>` utility.
+
+..  _getting_started_tcm_cluster_config:
 
 Configuring a cluster in TCM
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -182,6 +192,8 @@ saved, you can see the cluster topology on this page:
 
 However, the cluster instances are offline because they aren't deployed yet.
 
+..  _getting_started_tcm_cluster_deploy:
+
 Deploying the cluster locally
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -234,6 +246,8 @@ To check how the cluster started, run ``tt status``. This output should look lik
         myapp:instance-002     RUNNING     2059
         myapp:instance-003     RUNNING     2060
 
+..  _getting_started_tcm_manage:
+
 Managing the cluster in TCM
 ---------------------------
 
@@ -243,6 +257,8 @@ To learn to interact with a cluster in |tcm|, complete typical database tasks su
 *   Creating a space.
 *   Writing data.
 *   Viewing data.
+
+..  _getting_started_tcm_manage_check:
 
 Checking state
 ~~~~~~~~~~~~~~
@@ -254,6 +270,8 @@ of the cluster topology, health, memory consumption, and other information.
     :width: 700
     :align: center
     :alt: Online cluster stateboard
+
+..  _getting_started_tcm_manage_connect:
 
 Connecting to the instance
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -273,6 +291,8 @@ To connect to the instance interactively and execute code on it, go to the **Ter
     :align: center
     :alt: Instance terminal in TCM
 
+..  _getting_started_tcm_manage_space:
+
 Creating a space
 ----------------
 
@@ -283,6 +303,8 @@ create a formatted space with a primary index in the cluster:
         :language: lua
         :lines: 2-8
         :dedent:
+
+..  _getting_started_tcm_manage_write:
 
 Writing data
 ~~~~~~~~~~~~
@@ -295,6 +317,8 @@ terminal to write tuples in the space:
         :language: lua
         :lines: 13-15
         :dedent:
+
+..  _getting_started_tcm_manage_read:
 
 Reading data
 ~~~~~~~~~~~~
@@ -313,6 +337,8 @@ This is how it looks in |tcm|:
     :align: center
     :alt: Writing data through TCM
 
+..  _getting_started_tcm_manage_replication:
+
 Checking replication
 ~~~~~~~~~~~~~~~~~~~~
 
@@ -328,6 +354,8 @@ other instance -- ``instance-002`` or ``instance-003``. The result is the same a
 
     If you try to execute a write request on any instance but ``instance-001``,
     you get an error because these instances are configured to be read-only.
+
+..  _getting_started_tcm_manage_view:
 
 Viewing data in TCM
 -------------------
