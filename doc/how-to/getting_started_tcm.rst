@@ -8,6 +8,8 @@ Getting started with Tarantool Cluster Manager
 
     This tutorial uses `Tarantool Enterprise Edition <https://www.tarantool.io/compare/>`_.
 
+**Example on GitHub**: `tcm_get_started <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/tcm_get_started>`_
+
 In this tutorial, you get :ref:`tcm` up and running on your local system, deploy
 a local Tarantool EE cluster, and learn to manage the cluster from the |tcm| web UI.
 
@@ -179,7 +181,7 @@ To write the cluster configuration and upload it to the etcd storage:
 #.  Click **+** and provide an arbitrary name for the configuration file, for example, ``all``.
 #.  Paste the following :ref:`YAML configuration <configuration_overview>` into the editor:
 
-    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/tcm_get_started_config/config.yaml
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/tcm_get_started/cluster.yaml
         :language: yaml
         :dedent:
 
@@ -229,14 +231,14 @@ To deploy a local cluster based on the configuration from etcd:
 
     *   ``instances.yml`` specifies instances to run in the current environment. In this example, there are three instances:
 
-        ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/tcm_get_started_tt/instances.yml
+        ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/tcm_get_started/instances.yml
             :language: yaml
             :dedent:
 
     *   ``config.yaml`` instructs ``tt`` to load the cluster configuration from etcd.
         The specified etcd location matches the configuration storage of the **Default cluster** in TCM:
 
-        ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/tcm_get_started_tt/config.yaml
+        ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/tcm_get_started/config.yaml
             :language: yaml
             :dedent:
 
@@ -309,9 +311,10 @@ Creating a space
 Go to the terminal of ``instance-001`` (the leader instance) and run the following code to
 create a formatted space with a primary index in the cluster:
 
-    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/tcm_get_started_tt/myapp.lua
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/tcm_get_started/myapp.lua
         :language: lua
-        :lines: 2-8
+        :start-at: box.schema.space.create
+        :end-at: box.schema.user.grant
         :dedent:
 
 ..  _getting_started_tcm_manage_write:
@@ -323,9 +326,10 @@ Since ``instance-001`` is a read-write instance (its ``box.info.ro`` is ``false`
 the write requests must be executed on it. Run the following code in the ``instance-001``
 terminal to write tuples in the space:
 
-    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/tcm_get_started_tt/myapp.lua
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/tcm_get_started/myapp.lua
         :language: lua
-        :lines: 13-15
+        :start-at: 'Roxette'
+        :end-at: 'Ace of Base'
         :dedent:
 
 ..  _getting_started_tcm_manage_read:
@@ -335,9 +339,10 @@ Reading data
 
 Check the space's tuples by running a read request on ``instance-001``:
 
-    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/tcm_get_started_tt/myapp.lua
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/tcm_get_started/myapp.lua
         :language: lua
-        :lines: 19
+        :start-at: box.space.bands:select
+        :end-at: box.space.bands:select
         :dedent:
 
 This is how it looks in |tcm|:
