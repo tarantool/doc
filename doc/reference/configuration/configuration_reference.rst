@@ -47,7 +47,6 @@ The ``audit_log`` section defines configuration parameters related to :ref:`audi
 
     **Since:** :doc:`3.0.0 </release/3.0.0>`.
 
-    Specify the logging mode in DML events.
     If set to ``true``, the audit subsystem extracts and prints only the primary key instead of full
     tuples in DML events (``space_insert``, ``space_replace``, ``space_delete``).
     Otherwise, full tuples are logged.
@@ -78,8 +77,8 @@ The ``audit_log`` section defines configuration parameters related to :ref:`audi
     Enable logging for a specified subset of audit events.
     This option accepts the following values:
 
-    *   event names (for example, ``password_change``). For details, see :ref:`Audit log events <audit-log-events>`.
-    *   event groups (for example, ``audit``).  For details, see :ref:`Event groups <audit-log-event-groups>`.
+    *   Event names (for example, ``password_change``). For details, see :ref:`Audit log events <audit-log-events>`.
+    *   Event groups (for example, ``audit``).  For details, see :ref:`Event groups <audit-log-event-groups>`.
 
     The option contains either one value from above or a combination of them.
 
@@ -322,10 +321,12 @@ The ``audit_log`` section defines configuration parameters related to :ref:`audi
 
     **Example**
 
-    The basic audit log configuration in the :doc:`3.0.0 </release/3.0.0>` version might look as follows:
+    The basic audit log configuration might look as follows:
 
     ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/audit_log/config.yaml
         :language: yaml
+        :start-at: audit_log
+        :end-at: extract_key: true
         :dedent:
 
     |
