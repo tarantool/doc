@@ -29,7 +29,7 @@ Setting up Tarantool EE
 
     .. code-block:: console
 
-        $ tar -xvzf tarantool-enterprise-sdk-gc64-<VERSION>-<HASH>-r<REVISION>>.linux.x86_64.tar.gz
+        $ tar -xvzf tarantool-enterprise-sdk-gc64-<VERSION>-<HASH>-r<REVISION>.linux.x86_64.tar.gz
 
     This creates the ``tarantool-enterprise`` directory beside the archive.
     The directory contains three executables for key Tarantool EE components:
@@ -99,7 +99,7 @@ Logging into TCM
 ----------------
 
 #.  Open a web browser and go to ``http://127.0.0.1:8080/``.
-#.  Enter the username and the password you got from the |tcm| bootstrap log on the previous step.
+#.  Enter the username and the password you got from the |tcm| bootstrap log in the previous step.
 #.  Click **Log in**.
 
 After a successful login, you see the |tcm| web UI:
