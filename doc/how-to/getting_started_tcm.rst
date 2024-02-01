@@ -85,8 +85,8 @@ This ``etcd`` instance is used for storing the :ref:`TCM configuration <tcm_conf
 
 .. important::
 
-    The |tcm| bootstrap log in the terminal includes a message with the initial password
-    of the ``admin`` user. Make sure to save it: you will need it to log into |tcm|.
+    The |tcm| bootstrap log in the terminal includes a message with the credentials
+    to use for the first login. Make sure to save them somewhere.
 
     ..  code-block:: text
 
@@ -99,8 +99,7 @@ Logging into TCM
 ----------------
 
 #.  Open a web browser and go to ``http://127.0.0.1:8080/``.
-#.  Enter username ``admin`` and the initial password you got from the
-    |tcm| bootstrap log on the previous step.
+#.  Enter the username and the password you got from the |tcm| bootstrap log on the previous step.
 #.  Click **Log in**.
 
 After a successful login, you see the |tcm| web UI:
@@ -117,19 +116,18 @@ Setting up a Tarantool EE cluster
 
 To prepare a Tarantool EE cluster, complete the following steps:
 
-#.  Configure the cluster in |tcm|. |tcm| provides a web-based editor for writing
-    cluster configurations. It is connected to the configuration storage (etcd in
-    this case): all changes you make in the browser are sent to etcd in one click.
+#.  Define the cluster connection settings in |tcm|.
+#.  Configure the cluster in |tcm|.
 #.  Start the cluster instances locally using the :ref:`tt <tt-cli>` utility.
 
-..  _getting_started_tcm_cluster_config:
+..  _getting_started_tcm_cluster_connection:
 
-Configuring a cluster in TCM
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Defining the cluster's connection settings in TCM
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 A freshly installed |TCM| has a predefined cluster named **Default cluster**. It
 doesn't have any configuration or topology out of the box. Its initial properties
-include the default etcd and Tarantool connection parameters. Check these properties
+include the etcd and Tarantool connection parameters. Check these properties
 to find out where TCM sends the cluster configuration that you write.
 
 To view the **Default cluster**'s properties:
@@ -165,7 +163,17 @@ To view the **Default cluster**'s properties:
         :align: center
         :alt: Cluster Tarantool connection settings
 
-Next, write the cluster configuration and upload it to the etcd storage:
+
+..  _getting_started_tcm_cluster_config:
+
+Configuring a cluster in TCM
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+|tcm| provides a web-based editor for writing cluster configurations. It is connected
+to the configuration storage (etcd in this case): all changes you make in the browser
+are sent to etcd in one click.
+
+To write the cluster configuration and upload it to the etcd storage:
 
 #.  Go to **Configuration**.
 #.  Click **+** and provide an arbitrary name for the configuration file, for example, ``all``.
@@ -178,14 +186,14 @@ Next, write the cluster configuration and upload it to the etcd storage:
     This configuration sets up a cluster of three nodes in one replica set:
     one leader and two followers.
 
-3. Click **Apply** to send the configuration to etcd.
+#. Click **Apply** to send the configuration to etcd.
 
-.. image:: images/tcm_start_cluster_config.png
-    :width: 700
-    :align: center
-    :alt: Cluster configuration in TCM
+    .. image:: images/tcm_start_cluster_config.png
+        :width: 700
+        :align: center
+        :alt: Cluster configuration in TCM
 
-#.  To check the cluster state, go to **Stateboard**. When the cluster configuration is
+To check the cluster state, go to **Stateboard**. When the cluster configuration is
     saved, you can see the cluster topology on this page:
 
 .. image:: images/tcm_start_stateboard_offline.png
@@ -263,8 +271,8 @@ To learn to interact with a cluster in |tcm|, complete typical database tasks su
 
 ..  _getting_started_tcm_manage_check:
 
-Checking state
-~~~~~~~~~~~~~~
+Checking cluster state
+~~~~~~~~~~~~~~~~~~~~~~
 
 To check the cluster state in |tcm|, go to **Stateboard**. Here you see the overview
 of the cluster topology, health, memory consumption, and other information.
@@ -276,8 +284,8 @@ of the cluster topology, health, memory consumption, and other information.
 
 ..  _getting_started_tcm_manage_connect:
 
-Connecting to the instance
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+Connecting to an instance
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To view detailed information about an instance, click its name in the instances list
 on the **Stateboard** page.
