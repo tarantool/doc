@@ -43,11 +43,10 @@ Setting up Tarantool EE
 
     .. code-block:: console
 
-        $ cd tarantool-enterprise
-        $ source ./env.sh
+        $ source tarantool-enterprise/env.sh
 
-To check that the Tarantool EE executables ``tarantool``, ``tt``,
-and ``tcm`` are available in the system, print their versions:
+#.  To check that the Tarantool EE executables ``tarantool``, ``tt``,
+    and ``tcm`` are available in the system, print their versions:
 
 .. code-block:: console
 
@@ -81,7 +80,7 @@ This ``etcd`` instance is used for storing the :ref:`TCM configuration <tcm_conf
 .. note::
 
     During the development, it is also convenient to use the TCM-embedded etcd
-    as a configuration storage for Tarantool EE clusters connected to TCM it.
+    as a configuration storage for Tarantool EE clusters connected to TCM.
     Learn more in :ref:`configuration_etcd`.
 
 ..  _getting_started_tcm_login:
@@ -182,8 +181,8 @@ Next, write the cluster configuration and upload it to the etcd storage:
     :align: center
     :alt: Cluster configuration in TCM
 
-To check the cluster state, go to **Stateboard**. When the cluster configuration is
-saved, you can see the cluster topology on this page:
+#.  To check the cluster state, go to **Stateboard**. When the cluster configuration is
+    saved, you can see the cluster topology on this page:
 
 .. image:: images/tcm_start_stateboard_offline.png
     :width: 700
@@ -236,15 +235,15 @@ To deploy a local cluster based on the configuration from etcd:
 
         $ tt start
 
-To check how the cluster started, run ``tt status``. This output should look like this:
+    To check how the cluster started, run ``tt status``. This output should look like this:
 
     .. code-block:: console
 
         $ tt status
         INSTANCE               STATUS      PID
-        myapp:instance-001     RUNNING     2058
-        myapp:instance-002     RUNNING     2059
-        myapp:instance-003     RUNNING     2060
+        cluster:instance-001     RUNNING     2058
+        cluster:instance-002     RUNNING     2059
+        cluster:instance-003     RUNNING     2060
 
 ..  _getting_started_tcm_manage:
 
@@ -343,7 +342,7 @@ Checking replication
 ~~~~~~~~~~~~~~~~~~~~
 
 To check that the data is replicated across instances, run the read request on any
-other instance -- ``instance-002`` or ``instance-003``. The result is the same as on ``instance-001``
+other instance -- ``instance-002`` or ``instance-003``. The result is the same as on ``instance-001``.
 
 .. image:: images/tcm_start_instance_read.png
     :width: 700
@@ -363,7 +362,7 @@ Viewing data in TCM
 |tcm| web UI includes a tool for viewing data stored in the cluster. To view
 the space tuples in |tcm|:
 
-#.  Click an instance name on the **Stateboard page**.
+#.  Click an instance name on the **Stateboard** page.
 #.  Open the **Actions** menu in the top-right corner and click **Explorer**.
 
     .. image:: images/tcm_start_explorer.png
