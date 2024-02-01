@@ -48,40 +48,30 @@ Setting up Tarantool EE
 #.  To check that the Tarantool EE executables ``tarantool``, ``tt``,
     and ``tcm`` are available in the system, print their versions:
 
-.. code-block:: console
+    .. code-block:: console
 
-    $ tarantool --version
-    Tarantool Enterprise 3.0.0-0-gf58f7d82a-r23-gc64
-    Target: Linux-x86_64-RelWithDebInfo
-    Build options: cmake . -DCMAKE_INSTALL_PREFIX=/home/centos/release/sdk/tarantool/static-build/tarantool-prefix -DENABLE_BACKTRACE=TRUE
-    Compiler: GNU-9.3.1
-    C_FLAGS: -fexceptions -funwind-tables -fasynchronous-unwind-tables -static-libstdc++ -fno-common -msse2  -fmacro-prefix-map=/home/centos/release/sdk/tarantool=. -std=c11 -Wall -Wextra -Wno-gnu-alignof-expression -fno-gnu89-inline -Wno-cast-function-type -O2 -g -DNDEBUG -ggdb -O2
-    CXX_FLAGS: -fexceptions -funwind-tables -fasynchronous-unwind-tables -static-libstdc++ -fno-common -msse2  -fmacro-prefix-map=/home/centos/release/sdk/tarantool=. -std=c++11 -Wall -Wextra -Wno-invalid-offsetof -Wno-gnu-alignof-expression -Wno-cast-function-type -O2 -g -DNDEBUG -ggdb -O2
-    $ tt version
-    Tarantool CLI EE 2.1.0, linux/amd64. commit: d80c2e3
-    $ tcm version
-    1.0.0-0-gd38b12c2
+        $ tarantool --version
+        Tarantool Enterprise 3.0.0-0-gf58f7d82a-r23-gc64
+        Target: Linux-x86_64-RelWithDebInfo
+        Build options: cmake . -DCMAKE_INSTALL_PREFIX=/home/centos/release/sdk/tarantool/static-build/tarantool-prefix -DENABLE_BACKTRACE=TRUE
+        Compiler: GNU-9.3.1
+        C_FLAGS: -fexceptions -funwind-tables -fasynchronous-unwind-tables -static-libstdc++ -fno-common -msse2  -fmacro-prefix-map=/home/centos/release/sdk/tarantool=. -std=c11 -Wall -Wextra -Wno-gnu-alignof-expression -fno-gnu89-inline -Wno-cast-function-type -O2 -g -DNDEBUG -ggdb -O2
+        CXX_FLAGS: -fexceptions -funwind-tables -fasynchronous-unwind-tables -static-libstdc++ -fno-common -msse2  -fmacro-prefix-map=/home/centos/release/sdk/tarantool=. -std=c++11 -Wall -Wextra -Wno-invalid-offsetof -Wno-gnu-alignof-expression -Wno-cast-function-type -O2 -g -DNDEBUG -ggdb -O2
+        $ tt version
+        Tarantool CLI EE 2.1.0, linux/amd64. commit: d80c2e3
+        $ tcm version
+        1.0.0-0-gd38b12c2
 
 ..  _getting_started_tcm_start:
 
 Starting TCM
 ------------
 
-|tcm_full_name| is ready to run out of the box. To start it, run the following command:
+|tcm_full_name| is ready to run out of the box. To start |tcm| run the following command:
 
 ..  code-block:: console
 
     $ tcm --storage.etcd.embed.enabled
-
-The :ref:`--storage.etcd.embed.enabled <tcm_configuration_reference_storage_etcd_embed>`
-option makes |tcm| start its own instance of `etcd <https://etcd.io/>`__ on bootstrap.
-This ``etcd`` instance is used for storing the :ref:`TCM configuration <tcm_configuration>`.
-
-.. note::
-
-    During the development, it is also convenient to use the TCM-embedded etcd
-    as a configuration storage for Tarantool EE clusters connected to TCM.
-    Learn more in :ref:`configuration_etcd`.
 
 .. important::
 
@@ -92,6 +82,16 @@ This ``etcd`` instance is used for storing the :ref:`TCM configuration <tcm_conf
 
         Jan 24 05:51:28.443 WRN Generated super admin credentials login=admin password=qF3A5rjGurjAwmlYccJ7JrL5XqjbIHY6
 
+
+The :ref:`--storage.etcd.embed.enabled <tcm_configuration_reference_storage_etcd_embed>`
+option makes |tcm| start its own instance of `etcd <https://etcd.io/>`__ on bootstrap.
+This ``etcd`` instance is used for storing the :ref:`TCM configuration <tcm_configuration>`.
+
+.. note::
+
+    During the development, it is also convenient to use the TCM-embedded etcd
+    as a configuration storage for Tarantool EE clusters connected to TCM.
+    Learn more in :ref:`configuration_etcd`.
 
 ..  _getting_started_tcm_login:
 
@@ -193,8 +193,7 @@ To write the cluster configuration and upload it to the etcd storage:
         :align: center
         :alt: Cluster configuration in TCM
 
-To check the cluster state, go to **Stateboard**. When the cluster configuration is
-    saved, you can see the cluster topology on this page:
+When the cluster configuration is saved, you can see the cluster topology on the **Stateboard** page:
 
 .. image:: images/tcm_start_stateboard_offline.png
     :width: 700
