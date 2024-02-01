@@ -83,20 +83,25 @@ This ``etcd`` instance is used for storing the :ref:`TCM configuration <tcm_conf
     as a configuration storage for Tarantool EE clusters connected to TCM.
     Learn more in :ref:`configuration_etcd`.
 
+.. important::
+
+    The |tcm| bootstrap log in the terminal includes a message with the initial password
+    of the ``admin`` user. Make sure to save it: you will need it to log into |tcm|.
+
+    ..  code-block:: text
+
+        Jan 24 05:51:28.443 WRN Generated super admin credentials login=admin password=qF3A5rjGurjAwmlYccJ7JrL5XqjbIHY6
+
+
 ..  _getting_started_tcm_login:
 
 Logging into TCM
 ----------------
 
 #.  Open a web browser and go to ``http://127.0.0.1:8080/``.
-#.  Log in with the ``admin`` username. The initial password is generated automatically
-    and printed in the TCM log in a message like this:
-
-    ..  code-block:: text
-
-        Jan 24 05:51:28.443 WRN Generated super admin credentials login=admin password=qF3A5rjGurjAwmlYccJ7JrL5XqjbIHY6
-
-    Paste this password into the login form and click **Log in**.
+#.  Enter username ``admin`` and the initial password you got from the
+    |tcm| bootstrap log on the previous step.
+#.  Click **Log in**.
 
 After a successful login, you see the |tcm| web UI:
 
@@ -144,8 +149,8 @@ To view the **Default cluster**'s properties:
         :alt: General cluster settings
 
 #.  Find the connection properties of the configuration storage that the cluster uses.
-    By default, it's an etcd storage with a prefix ``/default`` running on port
-    ``2379`` (default etcd port) on the same host. Click **Next**.
+    By default, it's an etcd running on port ``2379`` (default etcd port) on the same host.
+    The key prefix used for the cluster configuration is ``/default``. Click **Next**.
 
     .. image:: images/tcm_start_cluster_storage.png
         :width: 700
@@ -153,8 +158,7 @@ To view the **Default cluster**'s properties:
         :alt: Cluster configuration storage settings
 
 #.  Check the Tarantool user that |tcm| uses to connect to the cluster instances.
-    It's ``guest`` by default. Click **Update** to save the changes and return to
-    the **Clusters** page.
+    It's ``guest`` by default.
 
     .. image:: images/tcm_start_cluster_tarantool.png
         :width: 700
@@ -164,14 +168,14 @@ To view the **Default cluster**'s properties:
 Next, write the cluster configuration and upload it to the etcd storage:
 
 #.  Go to **Configuration**.
-#.  Click **+** and provide an arbitrary name for the configuration, for example, ``all``.
-#.  Paste the following YAML configuration into the editor:
+#.  Click **+** and provide an arbitrary name for the configuration file, for example, ``all``.
+#.  Paste the following :ref:`YAML configuration <configuration_overview>` into the editor:
 
     ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/tcm_get_started_config/config.yaml
         :language: yaml
         :dedent:
 
-    This configuration sets up a cluster of three nodes in one replica set,
+    This configuration sets up a cluster of three nodes in one replica set:
     one leader and two followers.
 
 3. Click **Apply** to send the configuration to etcd.
@@ -198,7 +202,7 @@ Deploying the cluster locally
 
 To deploy a local cluster based on the configuration from etcd:
 
-#.  Open a system terminal.
+#.  Go to the system terminal you used when setting up Tarantool.
 #.  Create a new ``tt`` environment in a directory of your choice:
 
     .. code-block:: console
@@ -233,13 +237,13 @@ To deploy a local cluster based on the configuration from etcd:
 
     .. code-block:: console
 
-        $ tt start
+        $ tt start cluster
 
     To check how the cluster started, run ``tt status``. This output should look like this:
 
     .. code-block:: console
 
-        $ tt status
+        $ tt status cluster
         INSTANCE               STATUS      PID
         cluster:instance-001     RUNNING     2058
         cluster:instance-002     RUNNING     2059
@@ -293,9 +297,9 @@ To connect to the instance interactively and execute code on it, go to the **Ter
 ..  _getting_started_tcm_manage_space:
 
 Creating a space
-----------------
+~~~~~~~~~~~~~~~~
 
-Open the terminal of ``instance-001`` (the leader instance) and run the following code to
+Go to the terminal of ``instance-001`` (the leader instance) and run the following code to
 create a formatted space with a primary index in the cluster:
 
     ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/tcm_get_started_tt/myapp.lua
@@ -357,7 +361,7 @@ other instance -- ``instance-002`` or ``instance-003``. The result is the same a
 ..  _getting_started_tcm_manage_view:
 
 Viewing data in TCM
--------------------
+~~~~~~~~~~~~~~~~~~~
 
 |tcm| web UI includes a tool for viewing data stored in the cluster. To view
 the space tuples in |tcm|:
@@ -370,7 +374,7 @@ the space tuples in |tcm|:
         :align: center
         :alt: Opening Explorer in TCM
 
-    This opens the page that lists the user spaces that exist on the instance.
+    This opens the page that lists user-created spaces on the instance.
 
     .. image:: images/tcm_start_explorer_spaces.png
         :width: 700
