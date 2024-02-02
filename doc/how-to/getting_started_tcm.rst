@@ -314,7 +314,7 @@ create a formatted space with a primary index in the cluster:
     ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/tcm_get_started/myapp.lua
         :language: lua
         :start-at: box.schema.space.create
-        :end-at: box.schema.user.grant
+        :end-at: box.space.bands:create_index
         :dedent:
 
 ..  _getting_started_tcm_manage_write:
