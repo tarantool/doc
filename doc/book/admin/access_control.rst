@@ -1,262 +1,769 @@
 .. _authentication:
+.. _access_control:
 
-================================================================================
 Access control
-================================================================================
+==============
 
-This section explains how Tarantool makes it possible for administrators
-to prevent unauthorized access to the database and to certain functions.
+Tarantool enables flexible management of access to various database resources.
+The main concepts of Tarantool access control system are as follows:
 
-Briefly:
+*   A *user* is a person or program that interacts with a Tarantool instance.
+*   An *object* is an entity to which access can be granted, for example, spaces, indexes, or functions.
+*   *Privileges* allow a user to perform certain operations on specific objects, for example, creating spaces, reading or updating data.
+*   A *role* is a named collection of privileges that can be granted to a user.
 
-* There is a method to guarantee with password checks that users really are
-  who they say they are (“authentication”).
 
-* There is a :ref:`_user <box_space-user>` system space, where usernames and
-  password-hashes are stored.
 
-* There are functions for saying that certain users are allowed to do certain
-  things (“privileges”).
+.. _access_control_overview:
 
-* There is a :ref:`_priv <box_space-priv>` system space, where privileges are
-  stored. Whenever a user tries to do an operation, there is a check whether
-  the user has the privilege to do the operation (“access control”).
-
-Details follow.
+Overview
+--------
 
 .. _authentication-users:
+.. _access_control_concepts_users:
 
---------------------------------------------------------------------------------
 Users
---------------------------------------------------------------------------------
+~~~~~
 
-There is a **current user** for any program working with Tarantool,
-local or remote.
-If a remote connection is using a :ref:`binary port <admin-security>`,
-the current user, by default, is '**guest**'.
-If the connection is using an :ref:`admin-console port <admin-security>`,
-the current user is '**admin**'.
-When executing a :ref:`Lua initialization script <index-init_label>`,
-the current user is also ‘**admin**’.
+A user is a person or program that interacts with a Tarantool instance.
+There might be different types of users, for example:
 
-The current user name can be found with
-:doc:`/reference/reference_lua/box_session/user`.
+*   A database administrator is responsible for the overall management and administration of a database.
+    An administrator can create other users and grant them specified privileges.
+*   A regular user has limited access to certain data and stored functions. For example, such users can be used to let :ref:`connectors <index-box_connectors>` communicate to a database.
+*   Users used in communications between Tarantool instances. For example, such users can be created to maintain replication and sharding in a Tarantool cluster.
 
-The current user can be changed:
+There are two built-in users in Tarantool:
 
-* For a binary port connection -- with the
-  :ref:`AUTH protocol command <box_protocol-iproto_protocol>`, supported
-  by most clients;
+*   'admin' is a user with all available administrative permissions.
+    If the connection uses an :ref:`admin-console port <admin-security>`, the current user is 'admin'.
+    For example, 'admin' is used when connecting to the instance using :ref:`tt connect <tt-connect>` locally using the instance name:
 
-* For an admin-console connection and in a Lua initialization script --
-  with :doc:`/reference/reference_lua/box_session/su`;
+    ..  code-block:: console
 
-* For a binary-port connection invoking a stored function with the CALL command --
-  if the :doc:`SETUID </reference/reference_lua/box_schema/func_create>`
-  property is enabled for the function,
-  Tarantool temporarily replaces the current user with the
-  function’s creator, with all the creator's privileges, during function execution.
+        $ tt connect app:instance001
+
+    ..  NOTE::
+
+        To allow remote :ref:`binary port <admin-security>` connections using the 'admin' user, you need to :ref:`set a password <access_control_user_changing_passwords>`.
+
+*   'guest' is a user with minimum permissions used by default for remote :ref:`binary port <admin-security>` connections.
+    For example, 'guest' is used when connecting to the instance using :ref:`tt connect <tt-connect>` using the IP address and port without specifying the name of a user:
+
+    ..  code-block:: console
+
+        $ tt connect 192.168.10.10:3301
+
+
+..  NOTE::
+
+    Information about users is stored in the :ref:`_user <box_space-user>` space.
+
+
+
 
 .. _authentication-passwords:
 
---------------------------------------------------------------------------------
 Passwords
---------------------------------------------------------------------------------
+~~~~~~~~~
 
-Each user (except 'guest') may have a **password**.
+Any user (except 'guest') may have a password.
 The password is any alphanumeric string.
+Tarantool :ref:`password hashes <enterprise-authentication-protocol>` are stored in the :ref:`_user <box_space-user>` system space.
+So, if the password is '123456', the stored hash is a string like 'a7SDfrdDKRBe5FaN2n3GftLKKtk='.
 
-Tarantool passwords are stored in the :ref:`_user <box_space-user>`
-system space with a
-`cryptographic hash function <https://en.wikipedia.org/wiki/Cryptographic_hash_function>`_
-so that, if the password is ‘x’, the stored hash-password is a long string
-like ‘lL3OvhkIPOKh+Vn9Avlkx69M/Ck=‘.
-Tarantool supports two protocols for authenticating users:
+Tarantool Enterprise Edition allows you to improve database security by enforcing the use of strong passwords, setting up a maximum password age, and so on.
+Learn more from the :ref:`configuration_authentication` topic.
 
-*   `CHAP <https://en.wikipedia.org/wiki/Challenge-Handshake_Authentication_Protocol>`_ with ``SHA-1`` hashing
 
-    In this case, password hashes are stored in the ``_user`` space `unsalted <https://en.wikipedia.org/wiki/Salt_(cryptography)>`_.
-    If an attacker gains access to the database, they may crack a password using, for example, a `rainbow table <https://en.wikipedia.org/wiki/Rainbow_table>`_.
 
-*   `PAP <https://en.wikipedia.org/wiki/Password_Authentication_Protocol>`_ with ``SHA256`` hashing (Enterprise Edition)
+.. _access_control_concepts_objects:
 
-    For PAP, a password is salted with a user-unique salt before saving it in the ``_user`` space.
-    This keeps the database protected from cracking using a rainbow table.
-    Note that PAP sends a password as plain text, so you need to configure SSL/TLS for a connection.
+Objects
+~~~~~~~
 
-There are two functions for managing passwords in Tarantool:
+An object is a securable entity to which access can be granted.
+Tarantool has a number of objects that enable flexible management of access to data, stored functions, specific actions, and so on.
 
-*   :doc:`/reference/reference_lua/box_schema/user_passwd` allows you to change a user's password.
+Below are a few examples of objects:
 
-*   :doc:`/reference/reference_lua/box_schema/user_password` returns a hash of a user's password.
+*   'universe' represents a database (:ref:`box.schema <box_schema>`) that contains database objects, including spaces, indexes, users, roles, sequences, and functions.
+    Granting privileges to 'universe' gives a user access to any object in a database.
+*   'space' enables granting privileges to user-created or system :ref:`spaces <index-box_space>`.
+*   'function' enables granting privileges to :ref:`functions <box_schema-func_create>`.
 
-Tarantool Enterprise Edition also allows you to improve database security by enforcing the use of strong passwords, setting up a maximum password age, and so on. Learn more from the :ref:`configuration_authentication` topic.
+..  NOTE::
 
+    The full list of object types is available in the :ref:`access_control_list_objects` section.
 
 
 .. _authentication-owners_privileges:
 
---------------------------------------------------------------------------------
-Owners and privileges
---------------------------------------------------------------------------------
+Privileges
+~~~~~~~~~~
 
-Tarantool has one database. It may be called "box.schema" or "universe".
-The database contains database objects, including
-spaces, indexes, users, roles, sequences, and functions.
+The privileges granted to a user determine which operations the user can perform, for example:
 
-The **owner** of a database object is the user who created it.
-The owner of the database itself, and the owner of objects that
-are created initially (the system spaces and the default users)
-is '**admin**'.
+*   The 'read' and 'write' privileges granted to the 'space' :ref:`object <access_control_concepts_objects>` allow a user to select or update data in the specified space.
+*   The 'create' privilege granted to the 'space' object allows a user to create new spaces.
+*   The 'execute' privilege granted to the 'function' object allows a user to execute the specified function.
 
-Owners automatically have **privileges** for what they create.
-They can share these privileges with other users or with roles,
-using :doc:`/reference/reference_lua/box_schema/user_grant` requests.
-The following privileges can be granted:
+Note that some privileges might require read and write access to certain system spaces.
+For example, the 'create' privilege granted to the 'space' object requires 'read' and 'write' privileges to the :ref:`_space <box_space-space>` system space.
+Similarly, granting the ability to create functions requires 'read' and 'write' access to the :ref:`_func <box_space-func>` space.
 
-* 'read', e.g. allow select from a space
-* 'write', e.g. allow update on a space
-* 'execute', e.g. allow call of a function, or (less commonly) allow use of a role
-* 'create', e.g. allow
-  :doc:`box.schema.space.create </reference/reference_lua/box_schema/user_create>`
-  (access to certain system spaces is also necessary)
-* 'alter', e.g. allow
-  :doc:`box.space.x.index.y:alter </reference/reference_lua/box_index/alter>`
-  (access to certain system spaces is also necessary)
-* 'drop', e.g. allow
-  :doc:`box.sequence.x:drop </reference/reference_lua/box_schema_sequence/drop>`
-  (access to certain system spaces is also necessary)
-* 'usage', e.g. whether any action is allowable regardless of other
-  privileges (sometimes revoking 'usage' is a convenient way to
-  block a user temporarily without dropping the user)
-* 'session', e.g. whether the user can 'connect'.
+..  NOTE::
 
-To **create** objects, users need the 'create' privilege and
-at least 'read' and 'write' privileges
-on the system space with a similar name (for example, on the
-:ref:`_space <box_space-space>` if the user needs to create spaces).
+    Information about privileges is stored in the :ref:`_priv <box_space-priv>` space.
 
-To **access** objects, users need an appropriate privilege
-on the object (for example, the 'execute' privilege on function F
-if the users need to execute function F). See below some
-:ref:`examples for granting specific privileges <authentication-owners_privileges-examples-specific>`
-that a grantor -- that is, 'admin' or the object creator -- can make.
 
-To drop an object, a user must be an 'admin' or have the 'super' role.
-Some objects may also be dropped by their creators.
-As the owner of the entire database, any 'admin' can drop any object,
-including other users.
 
-To grant privileges to a user, the object owner says
-:doc:`/reference/reference_lua/box_schema/user_grant`.
-To revoke privileges from a user, the object owner says
-:doc:`/reference/reference_lua/box_schema/user_revoke`.
-In either case, there are up to five parameters:
+.. _access_control_concepts_roles:
+
+Roles
+~~~~~
+A role is a container for :ref:`privileges <authentication-owners_privileges>` that can be granted to users.
+Roles can also be assigned to other roles, creating a role hierarchy.
+
+There are the following built-in roles in Tarantool:
+
+*   'super' has all available administrative permissions.
+*   'public' is automatically granted to new users when they are created.
+*   'replication' can be granted to a user used to maintain replication in a cluster.
+*   'sharding' can be granted to a user used to maintain sharding in a cluster.
+
+Below are a few diagrams that demonstrate how privileges can be granted to a user without and with using roles.
+
+*   In this example, a user gets privileges directly without using roles.
+
+    ..  code-block:: none
+
+        user1 ── privilege1
+            ├─── privilege2
+            └─── privilege3
+
+*   In this example, a user gets all privileges provided by 'role1' and specific privileges assigned directly.
+
+    ..  code-block:: none
+
+        user1 ── role1 ── privilege1
+            │        └─── privilege2
+            ├─── privilege3
+            └─── privilege4
+
+*   In this example, 'role2' is granted to 'role1'.
+    This means that a user with 'role1' subsequently gets all privileges from both roles 'role1' and 'role2'.
+
+    ..  code-block:: none
+
+        user1 ── role1 ── privilege1
+            │        ├─── privilege2
+            │        └─── role2
+            │                 ├─── privilege3
+            │                 └─── privilege4
+            ├─── privilege5
+            └─── privilege6
+
+..  NOTE::
+
+    Information about roles is stored in the :ref:`_user <box_space-user>` space.
+
+
+
+.. _authentication-owners:
+
+Object owners
+~~~~~~~~~~~~~
+
+An owner of a database :ref:`object <access_control_concepts_objects>` is the user who created it.
+The owner of the database and the owner of objects that are created initially (the system spaces and the default users) is the 'admin' :ref:`user <access_control_concepts_users>`.
+
+Owners automatically have :ref:`privileges <authentication-owners_privileges>` for what they create.
+They can :ref:`share these privileges <access_control_granting_privileges>` with other users or roles using ``box.schema.user.grant()`` and ``box.schema.role.grant()``.
+
+..  NOTE::
+
+    Information about users who gave the specified privileges is stored in the :ref:`_priv <box_space-priv>` space.
+
+
+
+.. _authentication-sessions:
+
+Sessions
+~~~~~~~~
+
+A session is the state of a connection to Tarantool.
+The session contains:
+
+*   An integer ID identifying the connection.
+*   The current :ref:`user <authentication-users>` associated with the connection.
+*   The text description of the connected peer.
+*   A session's local state, such as Lua variables and functions.
+
+In Tarantool, a single session can execute multiple concurrent transactions.
+Each transaction is identified by a unique integer ID, which can be queried
+at the start of the transaction using :doc:`/reference/reference_lua/box_session/sync`.
+
+..  NOTE::
+
+    To track all connects and disconnects, you can use :ref:`connection and authentication triggers <triggers>`.
+
+
+
+
+.. _access_control_users:
+
+Users
+-----
+
+.. _access_control_user_creating:
+
+Creating a user
+~~~~~~~~~~~~~~~
+
+To create a new user, call :ref:`box.schema.user.create() <box_schema-user_create>`.
+In the example below, a user is created without a password:
+
+..  literalinclude:: /code_snippets/test/access_control/grant_user_privileges_test.lua
+    :language: lua
+    :start-after: Create a user without a password
+    :end-before: End: Create a user without a password
+    :dedent:
+
+
+In this example, the password is specified in the ``options`` parameter:
+
+..  literalinclude:: /code_snippets/test/access_control/grant_user_privileges_test.lua
+    :language: lua
+    :start-after: Create a user with a password
+    :end-before: End: Create a user with a password
+    :dedent:
+
+
+.. _access_control_user_changing_passwords:
+
+Changing passwords
+~~~~~~~~~~~~~~~~~~
+
+To set or change a user's password, use :ref:`box.schema.user.passwd() <box_schema-user_create>`.
+In the example below, a user password is set for a :ref:`currently <access_control_users_current_user>` logged-in user:
+
+..  literalinclude:: /code_snippets/test/access_control/grant_user_privileges_test.lua
+    :language: lua
+    :start-after: Set a password for the current user
+    :end-before: End: Set a password for the current user
+    :dedent:
+
+To set the password for the specified user, pass a username and password as shown below:
+
+..  literalinclude:: /code_snippets/test/access_control/grant_user_privileges_test.lua
+    :language: lua
+    :start-after: Set a password for the specified user
+    :end-before: End: Set a password for the specified user
+    :dedent:
+
+..  NOTE::
+
+    :doc:`/reference/reference_lua/box_schema/user_password` returns a hash of the specified password.
+
+
+
+.. _access_control_user_granting_privileges:
+
+Granting privileges to a user
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To grant the specified privileges to a user, use the ``box.schema.user.grant()`` function.
+In the example below, 'testuser' gets read privileges to the ``writers`` space and read/write privileges to the ``books`` space:
+
+..  literalinclude:: /code_snippets/test/access_control/grant_user_privileges_test.lua
+    :language: lua
+    :start-after: Grant privileges to the specified user
+    :end-before: End: Grant privileges to the specified user
+    :dedent:
+
+Learn more about granting privileges to different types of objects from :ref:`access_control_granting_privileges`.
+
+
+
+.. _access_control_user_revoking_privileges:
+
+Revoking user's privileges
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To revoke the specified privileges, use the :ref:`box.schema.user.revoke() <box_schema-user_revoke>` function.
+In the example below, write access to the ``books`` space is revoked:
+
+..  literalinclude:: /code_snippets/test/access_control/grant_user_privileges_test.lua
+    :language: lua
+    :start-after: Revoke space reading
+    :end-before: End: Revoke space reading
+    :dedent:
+
+Revoking the 'session' privilege from 'universe' can be used to disallow a user to connect to a Tarantool instance:
+
+..  literalinclude:: /code_snippets/test/access_control/grant_user_privileges_test.lua
+    :language: lua
+    :start-after: Revoke session
+    :end-before: End: Revoke session
+    :dedent:
+
+
+.. _access_control_user_info:
+
+Getting a user's information
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To check whether the specified user exists, call :ref:`box.schema.user.exists() <box_schema-user_exists>`:
+
+..  code-block:: lua
+
+    box.schema.user.exists('testuser')
+    --[[
+    - true
+    --]]
+
+To get information about privileges granted to a user, call :ref:`box.schema.user.info() <box_schema-user_info>`:
+
+..  code-block:: lua
+
+    box.schema.user.info('testuser')
+    --[[
+    - - - execute
+        - role
+        - public
+      - - read
+        - space
+        - writers
+      - - read,write
+        - space
+        - books
+      - - session,usage
+        - universe
+        -
+      - - alter
+        - user
+        - testuser
+    --]]
+
+In the example above, 'testuser' has the following privileges:
+
+*   The 'execute' privilege to the 'public' role means that this role is assigned to a user.
+
+*   The 'read' privilege to the ``writers`` space means that a user can read data from this space.
+
+*   The 'read,write' privileges to the ``books`` space mean that a user can read and modify data in this space.
+
+*   The 'session,usage' privileges to 'universe' mean the following:
+
+    *   'session': a user can authenticate over an IPROTO connection.
+    *   'usage': lets a user use their privileges on database objects (for example, read and modify data in a space).
+
+*   The 'alter' privilege lets 'testuser' modify its own settings, for example, a password.
+
+.. _access_control_users_dropping:
+
+Dropping users
+~~~~~~~~~~~~~~
+
+To drop the specified user, call :ref:`box.schema.user.drop() <box_schema-user_drop>`:
+
+..  literalinclude:: /code_snippets/test/access_control/grant_user_privileges_test.lua
+    :language: lua
+    :start-after: Drop a user
+    :end-before: End: Drop a user
+    :dedent:
+
+
+.. _access_control_users_current_user:
+
+Changing the current user
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The current user name can be found using :ref:`box.session.user() <box_session-user>`.
+
+..  code-block:: lua
+
+    box.session.user()
+    --[[
+    - admin
+    --]]
+
+The current user can be changed:
+
+*   For an :ref:`admin-console <admin-security>` connection: using :doc:`/reference/reference_lua/box_session/su`:
+
+    ..  code-block:: lua
+
+        box.session.su('testuser')
+        box.session.user()
+        --[[
+        - testuser
+        --]]
+
+*   For a binary port connection: using the
+    :ref:`AUTH protocol command <box_protocol-iproto_protocol>`, supported by most clients.
+
+*   For a binary-port connection invoking a stored function with the CALL command:
+    if the :doc:`SETUID </reference/reference_lua/box_schema/func_create>`
+    property is enabled for the function,
+    Tarantool temporarily replaces the current user with the
+    function's creator, with all the creator's privileges, during function execution.
+
+
+
+.. _authentication-roles:
+.. _access_control_roles:
+
+Roles
+-----
+
+.. _access_control_roles_creating:
+
+Creating a role
+~~~~~~~~~~~~~~~
+
+To create a new role, call :ref:`box.schema.role.create() <box_schema-role_create>`:
+
+..  code-block:: lua
+
+    box.schema.role.create('books_space_reader')
+
+
+.. _access_control_roles_granting_privileges:
+
+Granting privileges to a role
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To grant the specified privileges to a role, use the ``box.schema.role.grant()`` function.
+In the example below, the 'books_space_reader' role gets read privileges to the ``books`` space:
+
+..  code-block:: lua
+
+    box.schema.role.grant('books_space_reader','read','space','books')
+
+Learn more about granting privileges to different types of objects from :ref:`access_control_granting_privileges`.
+
+..  NOTE::
+
+    Not all privileges can be granted to roles.
+    Learn more from :ref:`access_control_list_privileges`.
+
+
+.. _access_control_roles_granting_role:
+
+Granting a role to a role
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Roles can be assigned to other roles.
+In the example below, the 'books_space_manager' role gets all privileges granted to 'books_space_reader':
+
+..  code-block:: lua
+
+    box.schema.role.create('books_space_manager')
+    box.schema.role.grant('books_space_manager', 'books_space_reader')
+
+
+.. _access_control_roles_granting_user:
+
+Granting a role to a user
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To grant the specified role to a user, use the ``box.schema.user.grant()`` function.
+In the example below, 'testuser' gets privileges granted to the 'books_space_reader' role:
+
+..  code-block:: lua
+
+    box.schema.user.grant('testuser','books_space_reader')
+
+
+.. _access_control_roles_info:
+
+Getting a role's information
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To check whether the specified role exists, call :ref:`box.schema.role.exists() <box_schema-role_exists>`:
+
+..  code-block:: lua
+
+    box.schema.role.exists('books_space_reader')
+    --[[
+    - true
+    --]]
+
+To get information about privileges granted to a role, call :ref:`box.schema.role.info() <box_schema-role_info>`:
+
+..  code-block:: lua
+
+    box.schema.role.info('books_space_reader')
+    --[[
+      - - read
+        - space
+        - books
+    --]]
+
+In the example above, the 'read' privilege to the ``books`` space means that a user with the 'books_space_reader' role can read data from this space.
+
+
+.. _access_control_roles_dropping:
+
+Dropping roles
+~~~~~~~~~~~~~~
+
+To drop the specified role, call :ref:`box.schema.role.drop() <box_schema-role_drop>`:
+
+..  code-block:: lua
+
+    box.schema.role.drop('books_space_reader')
+
+
+
+.. _access_control_granting_privileges:
+
+Granting privileges
+-------------------
+
+To grant the specified privileges to a user or role, use the :ref:`box.schema.user.grant() <box_schema-user_grant>` and :ref:`box.schema.role.grant() <box_schema-role_grant>` functions,
+which have similar signatures and accept the same set of arguments.
+For example, the ``box.schema.user.grant()`` signature looks as follows:
 
 .. code-block:: lua
 
-    (user-name, privilege, object-type [, object-name [, options]])
+    box.schema.user.grant(user-name, privileges, object-type, object-name[, {options}])
 
-* ``user-name`` is the user (or role) that will receive or lose the privilege;
-* ``privilege`` is any of 'read', 'write', 'execute', 'create', 'alter', 'drop',
-  'usage', or 'session' (or a comma-separated list);
-* ``object-type`` is any of 'space', 'index',
-  'sequence', 'function', 'user', 'role', or 'universe';
-* ``object-name`` is what the privilege is for
-  (omitted if ``object-type`` is 'universe')
-  (may be omitted or ``nil`` if the intent is to grant for all objects of the same type);
-* ``options`` is a list inside braces, for example ``{if_not_exists=true|false}``
-  (usually omitted because the default is acceptable).
+*   ``user-name``: the name of the user that gets the specified privileges.
+*   ``privileges``: a string value that represents :ref:`privileges <access_control_list_privileges>` granted to the user. If there are several privileges, they should be separated by commas without a space.
+*   ``object-type``: a type of :ref:`object <access_control_list_objects>` to which privileges are granted.
+*   ``object-name``: the name of the object to which privileges are granted.
+    An empty string ("") or ``nil`` provided instead of ``object-name`` grants the specified privileges to all objects of the specified type.
 
-  All updates of user privileges are reflected immediately in the existing sessions
-  and objects, e.g. functions.
+    ..  NOTE::
 
-**Example for granting many privileges at once**
+        ``object-name`` is ignored for the following combinations of privileges and object types:
 
-In this example an 'admin' user grants many privileges on
-many objects to user 'U', using a single request.
+        *   Any privilege granted to 'universe'.
+        *   The 'create' and 'drop' privileges for the following object types: 'user', 'role', 'space', 'function', 'sequence'.
+        *   The 'execute' privilege for the following object types: 'lua_eval', 'lua_call', 'sql'.
 
-.. code-block:: lua
 
-    box.schema.user.grant('U','read,write,execute,create,drop','universe')
+.. _access_control_grant_creating_any_obj:
 
-.. _authentication-owners_privileges-examples-specific:
+Any object
+~~~~~~~~~~
 
-**Examples for granting privileges for specific operations**
+In the example below, 'testuser' gets privileges allowing them to create any object of any type:
 
-In these examples an administrator grants strictly
-the minimal privileges necessary for particular operations,
-to user 'U'.
+..  code-block:: lua
 
-.. code-block:: lua
+    box.schema.user.grant('testuser','read,write,create','universe')
 
-    -- So that 'U' can create spaces:
-      box.schema.user.grant('U','create','space')
-      box.schema.user.grant('U','write', 'space', '_schema')
-      box.schema.user.grant('U','write', 'space', '_space')
-    -- So that 'U' can  create indexes on space T
-      box.schema.user.grant('U','create,read','space','T')
-      box.schema.user.grant('U','read,write','space','_space_sequence')
-      box.schema.user.grant('U','write', 'space', '_index')
-    -- So that 'U' can  alter indexes on space T (assuming 'U' did not create the index)
-      box.schema.user.grant('U','alter','space','T')
-      box.schema.user.grant('U','read','space','_space')
-      box.schema.user.grant('U','read','space','_index')
-      box.schema.user.grant('U','read','space','_space_sequence')
-      box.schema.user.grant('U','write','space','_index')
-    -- So that 'U' can alter indexes on space T (assuming 'U' created the index)
-      box.schema.user.grant('U','read','space','_space_sequence')
-      box.schema.user.grant('U','read,write','space','_index')
-    -- So that 'U' can create users:
-      box.schema.user.grant('U','create','user')
-      box.schema.user.grant('U', 'read,write', 'space', '_user')
-      box.schema.user.grant('U', 'write', 'space', '_priv')
-    -- So that 'U' can create roles:
-      box.schema.user.grant('U','create','role')
-      box.schema.user.grant('U', 'read,write', 'space', '_user')
-      box.schema.user.grant('U', 'write', 'space', '_priv')
-    -- So that 'U' can create sequence generators:
-      box.schema.user.grant('U','create','sequence')
-      box.schema.user.grant('U', 'read,write', 'space', '_sequence')
-    -- So that 'U' can create functions:
-      box.schema.user.grant('U','create','function')
-      box.schema.user.grant('U','read,write','space','_func')
-    -- So that 'U' can create any object of any type
-      box.schema.user.grant('U','read,write,create','universe')
-    -- So that 'U' can grant access on objects that 'U' created
-      box.schema.user.grant('U','write','space','_priv')
-    -- So that 'U' can select or get from a space named 'T'
-      box.schema.user.grant('U','read','space','T')
-    -- So that 'U' can update or insert or delete or truncate a space named 'T'
-      box.schema.user.grant('U','write','space','T')
-    -- So that 'U' can execute a function named 'F'
-      box.schema.user.grant('U','execute','function','F')
-    -- So that 'U' can use the "S:next()" function with a sequence named S
-      box.schema.user.grant('U','read,write','sequence','S')
-    -- So that 'U' can use the "S:set()" or "S:reset() function with a sequence named S
-      box.schema.user.grant('U','write','sequence','S')
-    -- So that 'U' can drop a sequence (assuming 'U' did not create it)
-      box.schema.user.grant('U','drop','sequence')
-      box.schema.user.grant('U','write','space','_sequence_data')
-      box.schema.user.grant('U','write','space','_sequence')
-    -- So that 'U' can drop a function (assuming 'U' did not create it)
-      box.schema.user.grant('U','drop','function')
-      box.schema.user.grant('U','write','space','_func')
-    -- So that 'U' can drop a space that has some associated objects
-      box.schema.user.grant('U','create,drop','space')
-      box.schema.user.grant('U','write','space','_schema')
-      box.schema.user.grant('U','write','space','_space')
-      box.schema.user.grant('U','write','space','_space_sequence')
-      box.schema.user.grant('U','read','space','_trigger')
-      box.schema.user.grant('U','read','space','_fk_constraint')
-      box.schema.user.grant('U','read','space','_ck_constraint')
-      box.schema.user.grant('U','read','space','_func_index')
-    -- So that 'U' can drop any space (ignore if the privilege exists already)
-      box.schema.user.grant('U','drop','space',nil,{if_not_exists=true})
+In this example, 'testuser' can grant access to objects that 'testuser' created:
 
-**Example for creating users and objects then granting privileges**
+..  code-block:: lua
 
-Here a Lua function is created that will be executed under the user ID of its
+    box.schema.user.grant('testuser','write','space','_priv')
+
+
+
+
+.. _access_control_grant_spaces:
+
+Spaces
+~~~~~~
+
+.. _access_control_grant_spaces_create:
+
+Creating and altering spaces
+****************************
+
+In the example below, 'testuser' gets privileges allowing them to create :ref:`spaces <index-box_space>`:
+
+..  code-block:: lua
+
+    box.schema.user.grant('testuser','create','space')
+    box.schema.user.grant('testuser','write', 'space', '_schema')
+    box.schema.user.grant('testuser','write', 'space', '_space')
+
+To allow 'testuser' to drop a space that has associated objects, add the following privileges:
+
+..  code-block:: lua
+
+    box.schema.user.grant('testuser','create,drop','space')
+    box.schema.user.grant('testuser','write','space','_schema')
+    box.schema.user.grant('testuser','write','space','_space')
+    box.schema.user.grant('testuser','write','space','_space_sequence')
+    box.schema.user.grant('testuser','read','space','_trigger')
+    box.schema.user.grant('testuser','read','space','_fk_constraint')
+    box.schema.user.grant('testuser','read','space','_ck_constraint')
+    box.schema.user.grant('testuser','read','space','_func_index')
+
+
+.. _access_control_grant_spaces_indexes:
+
+Creating and altering indexes
+*****************************
+
+In the example below, 'testuser' gets privileges allowing them to create :ref:`indexes <index-box_index>` in the 'writers' space:
+
+..  code-block:: lua
+
+    box.schema.user.grant('testuser','create,read','space','writers')
+    box.schema.user.grant('testuser','read,write','space','_space_sequence')
+    box.schema.user.grant('testuser','write', 'space', '_index')
+
+To allow 'testuser' to alter indexes in the 'writers' space, grant the privileges below.
+This example assumes that indexes in the 'writers' space are not created by 'testuser'.
+
+..  code-block:: lua
+
+    box.schema.user.grant('testuser','alter','space','writers')
+    box.schema.user.grant('testuser','read','space','_space')
+    box.schema.user.grant('testuser','read','space','_index')
+    box.schema.user.grant('testuser','read','space','_space_sequence')
+    box.schema.user.grant('testuser','write','space','_index')
+
+If 'testuser' created indexes in the 'writers' space, granting the following privileges is enough to alter indexes:
+
+..  code-block:: lua
+
+    box.schema.user.grant('testuser','read','space','_space_sequence')
+    box.schema.user.grant('testuser','read,write','space','_index')
+
+
+.. _access_control_grant_spaces_crud:
+
+CRUD operations
+***************
+
+In this example, 'testuser' gets privileges allowing them to :ref:`select data <index-box_data-operations>` from the 'writers' space:
+
+..  code-block:: lua
+
+    box.schema.user.grant('testuser','read','space','writers')
+
+In this example, 'testuser' is allowed to read and modify data in the 'books' space:
+
+..  code-block:: lua
+
+    box.schema.user.grant('testuser','read,write','space','books')
+
+
+
+
+.. _access_control_grant_sequences:
+
+Sequences
+~~~~~~~~~
+
+In this example, 'testuser' gets privileges to create :ref:`sequence <index-box_sequence>` generators:
+
+..  code-block:: lua
+
+    box.schema.user.grant('testuser','create','sequence')
+    box.schema.user.grant('testuser', 'read,write', 'space', '_sequence')
+
+In the next example, 'testuser' is allowed to use the ``id_seq:next()`` function with a sequence named 'id_seq':
+
+..  code-block:: lua
+
+    box.schema.user.grant('testuser','read,write','sequence','id_seq')
+
+In this example, 'testuser' is allowed to use the ``id_seq:set()`` or ``id_seq:reset()`` functions with a sequence named 'id_seq':
+
+..  code-block:: lua
+
+    box.schema.user.grant('testuser','write','sequence','S')
+
+To let 'testuser' drop a sequence, grant them the following privileges:
+
+..  code-block:: lua
+
+    box.schema.user.grant('testuser','drop','sequence')
+    box.schema.user.grant('testuser','write','space','_sequence_data')
+    box.schema.user.grant('testuser','write','space','_sequence')
+
+
+.. _access_control_grant_functions:
+
+Functions
+~~~~~~~~~
+
+In this example, 'testuser' gets privileges to create :ref:`functions <box_schema-func_create>`:
+
+..  code-block:: lua
+
+    box.schema.user.grant('testuser','create','function')
+    box.schema.user.grant('testuser','read,write','space','_func')
+
+To give the ability to execute a function named 'sum', grant the following privileges:
+
+..  code-block:: lua
+
+    box.schema.user.grant('testuser','execute','function','sum')
+
+To let 'testuser' drop a function, grant them the following privileges:
+
+..  code-block:: lua
+
+    box.schema.user.grant('testuser','drop','function')
+    box.schema.user.grant('testuser','write','space','_func')
+
+
+
+.. _access_control_grant_users:
+
+Users
+~~~~~
+
+In this example, 'testuser' gets privileges to create other users:
+
+..  code-block:: lua
+
+    box.schema.user.grant('testuser','create','user')
+    box.schema.user.grant('testuser', 'read,write', 'space', '_user')
+    box.schema.user.grant('testuser', 'write', 'space', '_priv')
+
+.. _access_control_grant_roles:
+
+Roles
+~~~~~
+
+To let 'testuser' create new roles, grant the following privileges:
+
+..  code-block:: lua
+
+    box.schema.user.grant('testuser','create','role')
+    box.schema.user.grant('testuser', 'read,write', 'space', '_user')
+    box.schema.user.grant('testuser', 'write', 'space', '_priv')
+
+
+.. _access_control_grant_execute_code:
+
+Executing code
+~~~~~~~~~~~~~~
+
+To let 'testuser' execute Lua code, grant the 'execute' privilege to the 'lua_eval' object:
+
+..  code-block:: lua
+
+    box.schema.user.grant('testuser','execute','lua_eval')
+
+Similarly, executing an arbitrary SQL expression requires the 'execute' privilege to the 'sql' object:
+
+..  code-block:: lua
+
+    box.schema.user.grant('testuser','execute','sql')
+
+
+
+
+
+.. _creating_users_and_objects_granting_privileges:
+
+Example
+~~~~~~~
+
+In the example below, the created Lua function is executed under the user ID of its
 creator, even if called by another user.
 
 First, the two spaces ('u' and 'i') are created, and a no-password user ('internal')
@@ -264,7 +771,7 @@ is granted full access to them. Then a ('read_and_modify') is defined and the
 no-password user becomes this function's creator. Finally, another user
 ('public_user') is granted access to execute Lua functions created by the no-password user.
 
-.. code-block:: lua
+..  code-block:: lua
 
     box.schema.space.create('u')
     box.schema.space.create('i')
@@ -295,83 +802,179 @@ no-password user becomes this function's creator. Finally, another user
     box.schema.user.create('public_user', {password = 'secret'})
     box.schema.user.grant('public_user', 'execute', 'function', 'read_and_modify')
 
-.. _authentication-roles:
 
---------------------------------------------------------------------------------
-Roles
---------------------------------------------------------------------------------
 
-A **role** is a container for privileges which can be granted to regular users.
-Instead of granting or revoking individual privileges, you can put all the
-privileges in a role and then grant or revoke the role.
 
-Role information is stored in the :ref:`_user <box_space-user>` space, but
-the third field in the tuple -- the type field -- is ‘role’ rather than ‘user’.
+.. _access_control_list:
 
-An important feature in role management is that roles can be **nested**.
-For example, role R1 can be granted a privileged "role R2", so users with the
-role R1 will subsequently get all privileges from both roles R1 and R2.
-In other words, a user gets all the privileges granted to a user’s roles,
-directly or indirectly.
+All object types and privileges
+-------------------------------
 
-There are actually two ways to grant or revoke a role:
-:samp:`box.schema.user.grant-or-revoke({user-name-or-role-name},'execute', 'role',{role-name}...)`
-or
-:samp:`box.schema.user.grant-or-revoke({user-name-or-role-name},{role-name}...)`.
-The second way is preferable.
+.. _access_control_list_objects:
 
-The 'usage' and 'session' privileges cannot be granted to roles.
+Object types
+~~~~~~~~~~~~
 
-**Example**
+..  container:: table
 
-.. code-block:: lua
+    ..  list-table::
+        :header-rows: 1
+        :widths: 20 80
 
-   -- This example will work for a user with many privileges, such as 'admin'
-   -- or a user with the pre-defined 'super' role
-   -- Create space T with a primary index
-   box.schema.space.create('T')
-   box.space.T:create_index('primary', {})
-   -- Create the user U1 so that later the current user can be changed to U1
-   box.schema.user.create('U1')
-   -- Create two roles, R1 and R2
-   box.schema.role.create('R1')
-   box.schema.role.create('R2')
-   -- Grant role R2 to role R1 and role R1 to user U1 (order doesn't matter)
-   -- There are two ways to grant a role; here the shorter way is used
-   box.schema.role.grant('R1', 'R2')
-   box.schema.user.grant('U1', 'R1')
-   -- Grant read/write privileges for space T to role R2
-   -- (but not to role R1, and not to user U1)
-   box.schema.role.grant('R2', 'read,write', 'space', 'T')
-   -- Change the current user to user U1
-   box.session.su('U1')
-   -- An insertion to space T will now succeed because (due to nested roles)
-   -- user U1 has write privilege on space T
-   box.space.T:insert{1}
+        *   -   Object type
+            -   Description
+        *   -   'universe'
+            -   A database (:ref:`box.schema <box_schema>`) that contains database objects, including spaces, indexes, users, roles, sequences, and functions. Granting privileges to 'universe' gives a user access to any object in the database.
+        *   -   'user'
+            -   A :ref:`user <access_control_concepts_users>`.
+        *   -   'role'
+            -   A :ref:`role <access_control_concepts_roles>`.
+        *   -   'space'
+            -   A :ref:`space <index-box_space>`.
+        *   -   'function'
+            -   A :ref:`function <box_schema-func_create>`.
+        *   -   'sequence'
+            -   A :ref:`sequence <index-box_sequence>`.
+        *   -   'lua_eval'
+            -   Executing arbitrary Lua code.
+        *   -   'lua_call'
+            -   Calling any global user-defined Lua function.
+        *   -   'sql'
+            -   Executing an arbitrary SQL expression.
 
-More details are to be found in
-:doc:`/reference/reference_lua/box_schema/user_grant` and
-:doc:`/reference/reference_lua/box_schema/role_grant` in
-the built-in modules reference.
 
-.. _authentication-sessions:
 
---------------------------------------------------------------------------------
-Sessions and security
---------------------------------------------------------------------------------
+.. _access_control_list_privileges:
 
-A **session** is the state of a connection to Tarantool. It contains:
+Privileges
+~~~~~~~~~~
 
-* An integer ID identifying the connection,
-* the :ref:`current user <authentication-users>` associated with the connection,
-* text description of the connected peer, and
-* session local state, such as Lua variables and functions.
+..  container:: table
 
-In Tarantool, a single session can execute multiple concurrent transactions.
-Each transaction is identified by a unique integer ID, which can be queried
-at start of the transaction using :doc:`/reference/reference_lua/box_session/sync`.
+    ..  list-table::
+        :header-rows: 1
+        :widths: 15 15 15 55
 
-.. NOTE::
+        *   -   Privilege
+            -   Object type
+            -   Applied to roles
+            -   Description
+        *   -   'read'
+            -   All
+            -   Yes
+            -   Allows reading data of the specified object.
+                For example, this privilege can be used to allow a user to select data from the specified space.
+        *   -   'write'
+            -   All
+            -   Yes
+            -   Allows updating data of the specified object.
+                For example, this privilege can be used to allow a user to modify data in the specified space.
+        *   -   'create'
+            -   All
+            -   Yes
+            -   Allows creating objects of the specified type.
+                For example, this privilege can be used to allow a user to create new spaces.
 
-   To track all connects and disconnects, you can use
-   :ref:`connection and authentication triggers <triggers>`.
+                Note that this privilege requires read and write access to certain system spaces.
+        *   -   'alter'
+            -   All
+            -   Yes
+            -   Allows altering objects of the specified type.
+
+                Note that this privilege requires read and write access to certain system spaces.
+        *   -   'drop'
+            -   All
+            -   Yes
+            -   Allows dropping objects of the specified type.
+
+                Note that this privilege requires read and write access to certain system spaces.
+        *   -   'execute'
+            -   'role', 'universe', 'function', 'lua_eval', 'lua_call', 'sql'
+            -   Yes
+            -   For 'role', allows using the specified role.
+                For other object types, allows calling a function.
+        *   -   'session'
+            -   'universe'
+            -   No
+            -   Allows a user to connect to the instance over IPROTO.
+        *   -   'usage'
+            -   'universe'
+            -   No
+            -   Allows a user to use their privileges on database objects (for example, read, write, and alter spaces).
+
+
+.. _access_control_list_objects_and_privileges:
+
+Object types and privileges
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+..  container:: table
+
+    ..  list-table::
+        :header-rows: 1
+        :widths: 15 85
+
+        *   -   Object type
+            -   Details
+        *   -   'universe'
+            -   *   'read': Allows reading any object types, including all spaces or sequence objects.
+                *   'write': Allows modifying any object types, including all spaces or sequence objects.
+                *   'execute': Allows execute functions, Lua code, or SQL expressions, including IPROTO calls.
+                *   'session': Allows a user to connect to the instance over IPROTO.
+                *   'usage': Allows a user to use their privileges on database objects (for example, read, write, and alter space).
+                *   'create': Allows creating users, roles, functions, spaces, and sequences.
+                    This privilege requires read and write access to certain system spaces.
+                *   'drop': Allows creating users, roles, functions, spaces, and sequences.
+                    This privilege requires read and write access to certain system spaces.
+                *   'alter': Allows altering user settings or space objects.
+        *   -   'user'
+            -   *   'alter': Allows modifying a user description, for example, change the password.
+                *   'create': Allows creating new users.
+                    This privilege requires read and write access to the ``_user`` system space.
+                *   'drop': Allows dropping users.
+                    This privilege requires read and write access to the ``_user`` system space.
+        *   -   'role'
+            -   *   'execute': Indicates that a role is assigned to the user or another role.
+                *   'create': Allows creating new roles.
+                    This privilege requires read and write access to the ``_user`` system space.
+                *   'drop': Allows dropping roles.
+                    This privilege requires read and write access to the ``_user`` system space.
+        *   -   'space'
+            -   *   'read': Allows selecting data from a space.
+                *   'write': Allows modifying data in a space.
+                *   'create': Allows creating new spaces.
+                    This privilege requires read and write access to the ``_space`` system space.
+                *   'drop': Allows dropping spaces.
+                    This privilege requires read and write access to the ``_space`` system space.
+                *   'alter': Allows modifying spaces.
+                    This privilege requires read and write access to the ``_space`` system space.
+
+                    If a space is created by a user, they can read and write it without granting explicit privileges.
+        *   -   'function'
+            -   *   'execute': Allows calling a function.
+                *   'create': Allows creating a function.
+                    This privilege requires read and write access to the ``_func`` system space.
+
+                    If a function is created by a user, they can execute it without granting explicit privileges.
+                *   'drop': Allows dropping a function.
+                    This privilege requires read and write access to the ``_func`` system space.
+        *   -   'sequence'
+            -   *   'read': Allows using sequences in ``space_obj:create_index()``.
+                *   'write': Allows all operations for a sequence object.
+
+                    ``seq_obj:drop()`` requires a write privilege to the ``_priv`` system space.
+                *   'create': Allows creating sequences.
+                    This privilege requires read and write access to the ``_sequence`` system space.
+
+                    If a sequence is created by a user, they can read/write it without explicit privilege.
+                *   'drop': Allows dropping sequences.
+                    This privilege requires read and write access to the ``_sequence`` system space.
+                *   'alter':  Has no effect.
+                    ``seq_obj:alter()`` and other methods require the 'write' privilege.
+        *   -   'lua_eval'
+            -   *   'execute': Allows executing arbitrary Lua code using the IPROTO_EVAL request.
+        *   -   'lua_call'
+            -   *   'execute': Allows executing any user-defined function using the IPROTO_CALL request.
+                    This privilege doesn't allow a user to call built-in Lua functions (for example, ``loadstring()`` or ``box.session.su()``) and functions defined in the ``_func`` system space.
+        *   -   'sql'
+            -   *   'execute': Allows executing arbitrary SQL expression using the IPROTO_PREPARE and IPROTO_EXECUTE requests.
