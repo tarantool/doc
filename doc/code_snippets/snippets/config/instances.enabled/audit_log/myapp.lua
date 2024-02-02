@@ -2,7 +2,7 @@
 
 -- Create space
 function create_space()
-    box.schema.space.create('Bands')
+    box.schema.space.create('bands')
     box.space.bands:format({
         { name = 'id', type = 'unsigned' },
         { name = 'band_name', type = 'string' },

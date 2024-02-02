@@ -80,9 +80,17 @@ The ``audit_log`` section defines configuration parameters related to :ref:`audi
     *   Event names (for example, ``password_change``). For details, see :ref:`Audit log events <audit-log-events>`.
     *   Event groups (for example, ``audit``).  For details, see :ref:`Event groups <audit-log-event-groups>`.
 
-    The option contains either one value from above or a combination of them.
+    The option contains either one value from ``Possible values`` section (see below) or a combination of them.
 
-    To enable :ref:`user-defined audit log events <audit-log-custom>`, specify the ``custom`` value in this option.
+    To enable :ref:`custom audit log events <audit-log-custom>`, specify the ``custom`` value in this option.
+
+    **Example**
+
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/audit_log/myapp.lua
+        :language: lua
+        :start-at: filter:
+        :end-at: custom ]
+        :dedent:
 
     |
     | Type: array
@@ -154,7 +162,7 @@ The ``audit_log`` section defines configuration parameters related to :ref:`audi
 
     Specify a pipe for the audit log destination.
     You can set the ``pipe`` type using the :ref:`audit_log.to <configuration_reference_audit_to>` option.
-    If log is a program, its pid is stored in the ``audit_log.logger_pid`` variable.
+    If log is a program, its pid is stored in the ``audit.pid`` field.
     You need to send it a signal to rotate logs.
 
     **Example**
@@ -218,7 +226,7 @@ The ``audit_log`` section defines configuration parameters related to :ref:`audi
 
 ..  confval:: audit_log.syslog_identity
 
-    Specify an arbitrary string that will be placed at the beginning of all messages.
+    Specify an application name to show in logs.
     You can enable logging to a system logger using the :ref:`audit_log.to <configuration_reference_audit_to>` option.
 
     See also: :ref:`syslog configuration example <configuration_reference_audit_syslog-example>`.
@@ -251,7 +259,7 @@ The ``audit_log`` section defines configuration parameters related to :ref:`audi
     -   :ref:`audit_log.syslog_facility <configuration_reference_audit_syslog-facility>` -- a system logger keyword that tells syslogd where to send the message.
         The default value is ``local7``.
 
-    -   :ref:`audit_log.syslog_identity <configuration_reference_audit_syslog-identity>` -- a string placed at the beginning of every message.
+    -   :ref:`audit_log.syslog_identity <configuration_reference_audit_syslog-identity>` -- an application name to show in logs.
         The default value is ``tarantool``.
 
     These options are interpreted as a message for the `syslogd <https://datatracker.ietf.org/doc/html/rfc5424>`_ program,
@@ -259,39 +267,9 @@ The ``audit_log`` section defines configuration parameters related to :ref:`audi
 
     An example of a Tarantool audit log entry in the syslog:
 
-    ..  code-block:: json
+    ..  code-block:: text
 
-        {
-          "__CURSOR" : "s=81564632436a4de590e80b89b0151148;i=11519;b=def80c1464fe49d1aac8a64895d6614d;m=8c825ebfc;t=5edb27a75f282;x=7eba320f7cc9ae4d",
-          "__REALTIME_TIMESTAMP" : "1668725698065026",
-          "__MONOTONIC_TIMESTAMP" : "37717666812",
-          "_BOOT_ID" : "def80c1464fe49d1aac8a64895d6614d",
-          "_UID" : "1003",
-          "_GID" : "1004",
-          "_COMM" : "tarantool",
-          "_EXE" : "/app/tarantool/dist/tdg-2.6.4.0.x86_64/tarantool",
-          "_CMDLINE" : "tarantool init.lua <running>: core-03",
-          "_CAP_EFFECTIVE" : "0",
-          "_AUDIT_SESSION" : "1",
-          "_AUDIT_LOGINUID" : "1003",
-          "_SYSTEMD_CGROUP" : "/user.slice/user-1003.slice/user@1003.service/app.slice/app@core-03.service",
-          "_SYSTEMD_OWNER_UID" : "1003",
-          "_SYSTEMD_UNIT" : "user@1003.service",
-          "_SYSTEMD_USER_UNIT" : "app@core-03.service",
-          "_SYSTEMD_SLICE" : "user-1003.slice",
-          "_SYSTEMD_USER_SLICE" : "app.slice",
-          "_SYSTEMD_INVOCATION_ID" : "be368b4243d842ea8c06b010e0df62c2",
-          "_MACHINE_ID" : "2e2339725deb4bc198c54ff4a2e8d626",
-          "_HOSTNAME" : "vm-0.test.env",
-          "_TRANSPORT" : "syslog",
-          "PRIORITY" : "6",
-          "SYSLOG_FACILITY" : "23",
-          "SYSLOG_IDENTIFIER" : "tarantool",
-          "SYSLOG_PID" : "101562",
-          "_PID" : "101562",
-          "MESSAGE" : "remote: session_type:background module:common.admin.auth user: type:custom_tdg_audit tag:tdg_severity_INFO description:[119eae0e-a691-42cc-9b4c-f14c499e6726] subj: \"anonymous\", msg: \"Access granted to anonymous user\"",
-          "_SOURCE_REALTIME_TIMESTAMP" : "1668725698064202"
-        }
+        09:32:52 tarantool: {"time": "2024-02-08T09:32:52.190+0300", "uuid": "94454e46-9a0e-493a-bb9f-d59e44a43581", "severity": "INFO", "remote": "unix/:(socket)", "session_type": "console", "module": "tarantool", "user": "admin", "type": "space_create", "tag": "", "description": "Create space bands"}
 
     ..  warning::
 
@@ -314,7 +292,7 @@ The ``audit_log`` section defines configuration parameters related to :ref:`audi
 
     -   ``devnull``: disable audit logging.
     -   ``file``: write audit logs to a file (see :ref:`audit_log.file <configuration_reference_audit_file>`).
-    -   ``pipe``: write audit logs to a pipe (see :ref:`audit_log.pipe <configuration_reference_audit_pipe>`).
+    -   ``pipe``: start a program and write audit logs to it (see :ref:`audit_log.pipe <configuration_reference_audit_pipe>`).
     -   ``syslog``: write audit logs to a system logger (see :ref:`audit_log.syslog <configuration_reference_audit_pipe>`).
 
     By default, audit logging is disabled.

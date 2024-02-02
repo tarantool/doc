@@ -149,9 +149,15 @@ forces the audit subsystem to log the primary key instead of a full tuple in DML
 Examples of audit log entries
 -----------------------------
 
-In the example, the logs are written to the ``audit_tarantool.log`` file.
+In this example, the following audit log configuration is used:
 
-First, create a space ``bands`` and check the logs in the file after the creation:
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/audit_log/config.yaml
+    :language: yaml
+    :start-at: audit_log
+    :end-at: extract_key: true
+    :dedent:
+
+Create a space ``bands`` and check the logs in the file after the creation:
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/audit_log/myapp.lua
     :language: lua
@@ -611,12 +617,10 @@ Tips
 How many events can be recorded?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-If you write to a file, the size of the Tarantool audit module is limited by the disk space.
-If you write to a system logger, the size of the Tarantool audit module is limited by the system logger.
-If you write to a pipe, the size of the Tarantool audit module is limited by the system buffer.
+If you write to a file, the size of the Tarantool audit log is limited by the disk space.
+If you write to a system logger, the size of the Tarantool audit log is limited by the system logger.
+If you write to a pipe, the size of the Tarantool audit message is limited by the system buffer.
 If the ``audit_log.nonblock = false``, if ``audit_log.nonblock`` = ``true``, there is no limit.
-However, it is not recommended to use the entire memory, as this may cause performance degradation
-and even loss of some logs.
 
 How often should audit logs be reviewed?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
