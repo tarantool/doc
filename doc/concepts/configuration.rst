@@ -426,7 +426,8 @@ When the limit is reached, ``INSERT`` or ``UPDATE`` requests fail with :ref:`ER_
 Snapshots and write-ahead logs
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The ``snapshot.dir`` and ``wal.dir`` options can be used to configure directories for storing snapshots and write-ahead logs.
+The :ref:`snapshot.dir <configuration_reference_snapshot_dir>` and :ref:`wal.dir <configuration_reference_wal_dir>`
+options can be used to configure directories for storing snapshots and write-ahead logs.
 For example, you can place snapshots and write-ahead logs on different hard drives for better reliability.
 
 .. code-block:: yaml
@@ -438,6 +439,7 @@ For example, you can place snapshots and write-ahead logs on different hard driv
         dir: '/media/drive2/wals'
 
 To learn more about the persistence mechanism in Tarantool, see the :ref:`Persistence <concepts-data_model-persistence>` section.
+Read more about snapshot and WAL configuration: :ref:`Persistence <configuration_persistence>`.
 
 
 
@@ -447,6 +449,7 @@ To learn more about the persistence mechanism in Tarantool, see the :ref:`Persis
 
     configuration/configuration_etcd
     configuration/configuration_code
+    configuration/configuration_persistence
     configuration/configuration_connections
     configuration/configuration_credentials
     configuration/configuration_authentication

@@ -150,7 +150,7 @@ resource usage of each function.
                 important than the others.
         *   -   WAL settings
             -   The important setting for the write-ahead log is
-                :ref:`wal_mode <cfg_binary_logging_snapshots-wal_mode>`.
+                :ref:`wal.mode <configuration_reference_wal_mode>`.
                 If the setting causes no writing or
                 delayed writing, this factor is unimportant. If the
                 setting causes every data-change request to wait

@@ -144,21 +144,17 @@ Tarantool records all incoming data in the write-ahead log (WAL).
 The WAL must be enabled to ensure that data will be recovered in case of
 a possible instance restart.
 
-Secure values of ``wal_mode`` are ``write`` and ``fsync``:
+Secure values of the :ref:`wal.mode <configuration_reference_wal_mode>` configuration option are ``write`` and ``fsync``:
 
-..  code-block:: tarantoolsession
-
-    tarantool> box.cfg.wal_mode
-    ---
-    - write
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/persistence_wal/config.yaml
+    :language: yaml
+    :start-at: wal:
+    :end-at: 'write'
+    :dedent:
 
 An exclusion from this requirement is when the instance is processing data,
-which can be freely rejected.
-For example, when Tarantool is used for caching.
-Then WAL can be disabled to reduce i/o load.
-
-For more details, see the
-:ref:`wal_mode reference <cfg_binary_logging_snapshots-wal_mode>`.
+which can be freely rejected - for example, when Tarantool is used for caching.
+In this case, WAL can be disabled to reduce i/o load.
 
 The logging level is INFO or higher
 -----------------------------------

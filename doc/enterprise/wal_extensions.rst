@@ -1,4 +1,4 @@
-.. _wal_extensions:
+..  _wal_extensions:
 
 WAL extensions
 ==============
@@ -8,47 +8,51 @@ For example, you can enable storing an old and new tuple for each CRUD operation
 This information might be helpful for implementing a CDC (Change Data Capture) utility
 that transforms a data replication stream.
 
-.. _wal_extensions_configuration:
+See also: :ref:`Configure the write-ahead log <configuration_persistence_wal>`.
+
+..  _wal_extensions_configuration:
 
 Configuration
 -------------
 
-To configure WAL extensions, use the ``wal.ext`` :ref:`configuration property <configuration_reference_wal>`.
-Inside the ``wal_ext`` block, you can enable storing old and new tuples as follows:
+WAL extensions are disabled by default.
+To configure them, use the :ref:`wal.ext.* <configuration_reference_wal_ext>` configuration options.
+Inside the ``wal.ext`` block, you can enable storing old and new tuples as follows:
 
-*   Set the ``old`` and ``new`` options to ``true`` to store old and new tuples in a write-ahead log for all spaces.
+*   To store old and new tuples in a write-ahead log for all spaces, set the
+    :ref:`wal.ext.old <configuration_reference_wal_ext_old>` and `wal.ext.new <configuration_reference_wal_ext_new>`
+    options to ``true``:
 
-    ..  code-block:: lua
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/persistence/config.yaml
+        :language: yaml
+        :start-at: wal:
+        :end-at: old: true
+        :dedent:
 
-        box.cfg {
-            wal_ext = { old = true, new = true }
-        }
+*   To adjust these options for specific spaces, specify the :ref:`wal.ext.spaces <configuration_reference_wal_ext_spaces>` option:
 
-*   To adjust these options for specific spaces, use the ``spaces`` option.
+    ..  code-block:: yaml
 
-    ..  code-block:: lua
+        wal:
+          ext:
+            old: true
+            new: true
+            spaces:
+              space1:
+                old: false
+              space2:
+                new: false
 
-        box.cfg {
-            wal_ext = {
-                old = true, new = true,
-                spaces = {
-                    space1 = { old = false },
-                    space2 = { new = false }
-                }
-            }
-        }
-
-
-    The configuration for specific spaces has priority over the global configuration,
-    so only new tuples are added to the log for ``space1`` and only old tuples for ``space2``.
+    The configuration for specific spaces has priority over the configuration in the ``wal.ext.new`` and ``wal.ext.old``
+    options.
+    It means that only new tuples are added to the log for ``space1`` and only old tuples for ``space2``.
 
 Note that records with additional fields are :ref:`replicated <replication-architecture>` as follows:
 
 *   If a replica doesn't support the extended format configured on a master, auxiliary fields are skipped.
 *   If a replica and master have different configurations for WAL records, a master's configuration is ignored.
 
-
-.. _wal_extensions_example:
+..  _wal_extensions_example:
 
 Example
 -------

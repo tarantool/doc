@@ -17,8 +17,8 @@ to :ref:`crashing <admin-disaster_recovery>` a Tarantool instance.
 
 .. _enterprise-flight-recorder_enable:
 
-Enabling the flight recorder
-----------------------------
+Enable the flight recorder
+--------------------------
 
 The flight recorder is disabled by default and can be enabled and configured for
 a specific Tarantool instance.
@@ -33,7 +33,7 @@ configuration option to ``true``.
 
 
 After ``flightrec.enabled`` is set to ``true``, the flight recorder starts collecting data in the flight recording file  ``current.ttfr``.
-This file is stored in the ``snapshot.dir`` directory.
+This file is stored in the :ref:`snapshot.dir <configuration_reference_snapshot_dir>` directory.
 By default, the directory is ``var/lib/{{ instance_name }}/<file_name>.ttfr``.
 
 If the instance crashes and reboots, Tarantool rotates the flight recording:
@@ -49,8 +49,8 @@ Tarantool continues writing to the existing ``current.ttfr`` file after restart.
 
 .. _enterprise-flight-recorder_configure:
 
-Configuring a flight recorder
------------------------------
+Configure a flight recorder
+---------------------------
 
 When the flight recorder is enabled, you can set the options related to :ref:`logging <cfg_logging-log>`,
 :ref:`metrics <metrics-reference>`, and storing the :ref:`request and response <internals-requests_responses>` data.

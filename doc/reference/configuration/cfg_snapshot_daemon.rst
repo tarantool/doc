@@ -119,21 +119,6 @@ The checkpoint daemon and the Tarantool garbage collector will not delete a file
     with calculating how much disk space to allocate for a partition containing
     WAL files.
 
-    For example, suppose
-    :ref:`checkpoint_interval <cfg_checkpoint_daemon-checkpoint_interval>`
-    = 2 and
-    :ref:`checkpoint_count <cfg_checkpoint_daemon-checkpoint_count>`
-    = 5
-    and the average amount that Tarantool writes between each checkpoint interval
-    = 1 GB.
-    Then one could calculate that the necessary amount is (2*5*1) 10GB.
-    But this calculation would be wrong if, instead of writing 1 GB
-    during one checkpoint interval,
-    Tarantool encounters an unusual spike and tries to write 11 GB,
-    causing an operating-system ENOSPC ("no space") error.
-    By setting ``checkpoint_wal_threshold`` to a lower value, say 9 GB,
-    an administrator could prevent the error.
-
     | Type: integer
     | Default: 10^18 (a large number so in effect there is no limit by default)
     | Environment variable: TT_CHECKPOINT_WAL_THRESHOLD

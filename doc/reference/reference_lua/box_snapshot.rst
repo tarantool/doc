@@ -9,7 +9,7 @@
     **Memtx**
 
     Take a snapshot of all data and store it in
-    :ref:`memtx_dir <cfg_basic-memtx_dir>`:samp:`/{<latest-lsn>}.snap`.
+    :ref:`snapshot.dir <configuration_reference_snapshot_dir>`:samp:`/{<latest-lsn>}.snap`.
     To take a snapshot, Tarantool first enters the delayed garbage collection
     mode for all data. In this mode, the
     :ref:`Tarantool garbage collector <cfg_checkpoint_daemon-garbage-collector>`
@@ -26,7 +26,7 @@
     performance (averaging to 80MB/second on modern disks), which means an average
     database instance gets saved in a matter of minutes.
     You may restrict the speed by changing
-    :ref:`snap_io_rate_limit <cfg_binary_logging_snapshots-snap_io_rate_limit>`.
+    :ref:`snapshot.snap_io_rate_limit <configuration_reference_snapshot_snap_io_rate_limit>`.
     
     .. NOTE::
     
