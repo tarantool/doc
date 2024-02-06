@@ -10,7 +10,7 @@ Global options
 
     .. code-block:: console
 
-        tt --cfg tt-conf.yaml start app
+        $ tt --cfg tt-conf.yaml start app
 
 ``tt`` has the following global options:
 
