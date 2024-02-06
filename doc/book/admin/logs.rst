@@ -41,31 +41,35 @@ Then check the logs:
 Log rotation
 ------------
 
-When :ref:`logging to a file <cfg_logging-log>`, the system administrator must ensure logs are
-rotated timely and do not take up all the available disk space.
-To prevent log files from growing infinitely, ``tt`` automatically rotates instance
-logs. The following ``tt`` configuration parameters define the log rotation:
-``log_maxsize`` (in megabytes) and ``log_maxage`` (in days). When any of these
-limits is reached, the log is rotated.
-Additionally, there is the ``log_maxbackups`` parameter (the number of stored log
-files for an instance), which enables automatic removal of old log files.
+When :ref:`logging to a file <cfg_logging-log>`, the system administrator must ensure
+logs are rotated timely and do not take up all the available disk space.
+The recommended way to prevent log files from growing infinitely is using an external
+log rotation program, for example, ``logrotate``, which is pre-installed on most
+mainstream Linux distributions.
 
-..  code-block:: yaml
+A Tarantool log rotation configuration for ``logrotate`` can look like this:
 
-    # tt.yaml
-    tt:
-      app:
-        log_maxsize: 100
-        log_maxage: 3
-        log_maxbackups: 50
-        # ...
+.. code-block:: text
 
-There is also the :ref:`tt logrotate <tt-logrotate>` command that performs log
-rotation on demand.
+/var/log/tarantool/*.log {
+    daily
+    size 512k
+    missingok
+    rotate 10
+    compress
+    delaycompress
+    create 0640 tarantool adm
+    postrotate
+        tt -c <tt_config_file> logrotate
+    endscript
+}
 
-..  code-block:: bash
+In this configuration, :ref:`tt logrotate <tt_logrotate>` is called after each log
+rotation to reopen the instance log files after they are moved by the ``logrotate``
+program.
 
-    tt logrotate my_app
+There is also the built-in function :ref:`log.rotate() <log-rotate>`, which reopens
+a log file of a specific instance after rotation.
 
 To learn about log rotation in the deprecated ``tarantoolctl`` utility,
 check its :ref:`documentation <tarantoolctl-log-rotation>`.
