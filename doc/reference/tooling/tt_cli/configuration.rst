@@ -14,36 +14,53 @@ execution is its configuration file.
 By default, the configuration file is called ``tt.yaml``. The location
 where ``tt`` searches for it depends on the :ref:`launch mode <tt-config_modes>`.
 You can also pass the configuration file explicitly in the ``--cfg``
-:ref:`option <tt-global-options>`.
+:ref:`global option <tt-global-options>`.
 
-The ``tt`` configuration file is a YAML file with the following content:
+The ``tt`` configuration file is a YAML file with the following structure:
 
 ..  code-block:: yaml
 
-    tt:
-      modules:
-        directory: path/to/modules/dir
-      app:
-        instances_enabled: path/to/applications
-        run_dir: path/to/run_dir
-        log_dir: path/to/log_dir
-        bin_dir: path/to/bin_dir
-        inc_dir: path/to/inc_dir
-        wal_dir: path/to/wal_dir
-        vinyl_dir: path/to/vinyl_dir
-        memtx_dir: path/to/memtx_dir
-        log_maxsize: num (MB)
-        log_maxage: num (days)
-        log_maxbackups: num
-        restart_on_failure: bool
-      repo:
-        rocks: path/to/rocks
-        distfiles: path/to/install
-      ee:
-        credential_path: path/to/file
-      templates:
-        - path: path/to/app/templates1
-        - path: path/to/app/templates2
+    env:
+      instances_enabled: path/to/available/applications
+      bin_dir: path/to/bin_dir
+      inc_dir: path/to/inc_dir
+      restart_on_failure: bool
+      tarantoolctl_layout: bool
+    modules:
+      directory: path/to/modules/dir
+    app:
+      run_dir: path/to/run_dir
+      log_dir: path/to/log_dir
+      wal_dir: path/to/wal_dir
+      vinyl_dir: path/to/vinyl_dir
+      memtx_dir: path/to/memtx_dir
+    repo:
+      rocks: path/to/rocks
+      distfiles: path/to/install
+    ee:
+      credential_path: path/to/file
+    templates:
+      - path: path/to/app/templates1
+      - path: path/to/app/templates2
+
+.. _tt-config_file_env:
+
+env section
+~~~~~~~~~~~
+
+*   ``instances_enabled`` -- the directory where :ref:`instances <admin-instance_file>`
+    are stored. Default: ``instances.enabled``.
+*   ``bin_dir`` -- the directory where binary files are stored. Default: ``bin``.
+*   ``inc_dir`` -- the base directory for storing header files. They will
+    be placed in the ``include`` subdirectory inside the specified directory.
+    Default: ``include``.
+*   ``restart_on_failure`` -- restart the instance on failure: ``true`` or ``false``.
+    Default: ``false``.
+*   ``tarantoolctl_layout`` -- use a layout compatible with the deprecated ``tarantoolctl``
+    utility for artifact files: control sockets, ``.pid`` files, log files.
+    Default: ``false``.
+
+.. _tt-config_file_modules:
 
 modules section
 ~~~~~~~~~~~~~~~
@@ -56,43 +73,24 @@ modules section
 app section
 ~~~~~~~~~~~
 
-*   ``instances_enabled`` -- the directory where :ref:`instances <admin-instance_file>`
-    are stored.
+.. note::
+
+    All paths specified in ``app.*_dir`` parameters are relative to the application
+    location inside the ``instances.enabled`` directory specified in the ``env``
+    configuration section. For example, the default location of the ``myapp``
+    application's logs is ``instances.enabled/myapp/var/log/``.
+    Inside this location, ``tt`` creates separate directories for each application
+    instance that runs in the current environment.
+
 *   ``run_dir``-- the directory for instance runtime artifacts, such as console
     sockets or PID files. Default: ``var/run``.
 *   ``log_dir`` -- the directory where log files are stored. Default: ``var/log``.
-*   ``bin_dir`` -- the directory where binary files are stored. Default: ``bin``.
-*   ``inc_dir`` -- the base directory for storing header files. They will
-    be placed in the ``include`` subdirectory inside the specified directory.
-    Default: ``include``.
 *   ``wal_dir`` -- the directory where write-ahead log (``.xlog``) files are stored.
     Default: ``var/lib``.
 *   ``memtx_dir`` -- the directory where memtx stores snapshot (``.snap``) files.
     Default: ``var/lib``.
 *   ``vinyl_dir`` -- the directory where vinyl files or subdirectories are stored.
     Default: ``var/lib``.
-
-    .. note::
-
-        In all directories specified in ``*_dir`` parameters, ``tt`` creates a
-        directory for each application and instance directories inside it.
-        Names of these directories match the names of applications and instances.
-
-*   ``log_maxsize`` -- the maximum size of the log file before it gets rotated,
-    in megabytes. Default: 100.
-*   ``log_maxage`` -- the maximum age of log files in days. The age of a log
-    file is defined by the timestamp encoded in its name. Default: not defined
-    (log files aren't deleted based on their age).
-
-    ..  note::
-
-        A day is defined as exactly 24 hours. It may not exactly correspond to
-        calendar days due to daylight savings, leap seconds, and other time adjustments.
-
-*   ``log_maxbackups`` -- the maximum number of stored log files.
-    Default: not defined (log files aren't deleted based on their count).
-*   ``restart_on_failure`` -- restart the instance on failure: ``true`` or ``false``.
-    Default: ``false``.
 
 .. _tt-config_file_repo:
 
