@@ -6,10 +6,11 @@ Global options
 .. important::
 
     Global options of ``tt`` must be passed before its commands and other options.
-    For example: tt --cfg tt-conf.yaml start app
+    For example:
 
     .. code-block:: console
 
+        tt --cfg tt-conf.yaml start app
 
 ``tt`` has the following global options:
 

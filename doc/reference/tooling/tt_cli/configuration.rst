@@ -48,6 +48,11 @@ The ``tt`` configuration file is a YAML file with the following structure:
 env section
 ~~~~~~~~~~~
 
+.. note::
+
+    The paths specified in ``env.*`` parameters are relative to the current ``tt``
+    environment's root.
+
 *   ``instances_enabled`` -- the directory where :ref:`instances <admin-instance_file>`
     are stored. Default: ``instances.enabled``.
 *   ``bin_dir`` -- the directory where binary files are stored. Default: ``bin``.
@@ -75,7 +80,7 @@ app section
 
 .. note::
 
-    All paths specified in ``app.*_dir`` parameters are relative to the application
+    The paths specified in ``app.*_dir`` parameters are relative to the application
     location inside the ``instances.enabled`` directory specified in the ``env``
     configuration section. For example, the default location of the ``myapp``
     application's logs is ``instances.enabled/myapp/var/log/``.

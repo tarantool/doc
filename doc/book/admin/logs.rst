@@ -51,25 +51,25 @@ A Tarantool log rotation configuration for ``logrotate`` can look like this:
 
 .. code-block:: text
 
-/var/log/tarantool/*.log {
-    daily
-    size 512k
-    missingok
-    rotate 10
-    compress
-    delaycompress
-    create 0640 tarantool adm
-    postrotate
-        tt -c <tt_config_file> logrotate
-    endscript
-}
+    /var/log/tarantool/*.log {
+        daily
+        size 512k
+        missingok
+        rotate 10
+        compress
+        delaycompress
+        create 0640 tarantool adm
+        postrotate
+            tt -c <tt_config_file> logrotate
+        endscript
+    }
 
-In this configuration, :ref:`tt logrotate <tt_logrotate>` is called after each log
+In this configuration, :ref:`tt logrotate <tt-logrotate>` is called after each log
 rotation to reopen the instance log files after they are moved by the ``logrotate``
 program.
 
-There is also the built-in function :ref:`log.rotate() <log-rotate>`, which reopens
-a log file of a specific instance after rotation.
+There is also the built-in function :ref:`log.rotate() <log-rotate>`, which you
+can call on an instance to reopen its log file after rotation.
 
 To learn about log rotation in the deprecated ``tarantoolctl`` utility,
 check its :ref:`documentation <tarantoolctl-log-rotation>`.
