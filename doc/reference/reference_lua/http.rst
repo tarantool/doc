@@ -685,7 +685,7 @@ client_object
 
         * ``active_requests`` -- the number of currently executing requests
         * ``sockets_added`` -- the total number of sockets added into an event loop
-        * ``sockets_deleted`` -- the total number of sockets from an event loop
+        * ``sockets_deleted`` -- the total number of sockets deleted from an event loop
         * ``total_requests`` -- the total number of requests
         * ``http_200_responses`` -- the total number of requests that returned HTTP ``200 OK`` responses
         * ``http_other_responses`` -- the total number of requests that returned non-``200 OK`` responses
