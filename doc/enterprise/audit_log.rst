@@ -45,7 +45,7 @@ decide whether you need to take actions:
 *   System events -- events related to modification or configuration of resources.
     For example, such logs record the replacement of a space.
 
-*   :ref:`Custom events <audit-log-custom>`-- any events added manually using
+*   :ref:`Custom events <audit-log-custom>` -- any events added manually using
     the audit module API.
 
 The full list of available audit log events is provided in the table below:
