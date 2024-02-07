@@ -213,8 +213,8 @@ at the start of the transaction using :doc:`/reference/reference_lua/box_session
 
 .. _access_control_users:
 
-Users
------
+Managing users
+--------------
 
 .. _access_control_user_creating:
 
@@ -286,29 +286,6 @@ Learn more about granting privileges to different types of objects from :ref:`ac
 
 
 
-.. _access_control_user_revoking_privileges:
-
-Revoking user's privileges
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-To revoke the specified privileges, use the :ref:`box.schema.user.revoke() <box_schema-user_revoke>` function.
-In the example below, write access to the ``books`` space is revoked:
-
-..  literalinclude:: /code_snippets/test/access_control/grant_user_privileges_test.lua
-    :language: lua
-    :start-after: Revoke space reading
-    :end-before: End: Revoke space reading
-    :dedent:
-
-Revoking the 'session' privilege from 'universe' can be used to disallow a user to connect to a Tarantool instance:
-
-..  literalinclude:: /code_snippets/test/access_control/grant_user_privileges_test.lua
-    :language: lua
-    :start-after: Revoke session
-    :end-before: End: Revoke session
-    :dedent:
-
-
 .. _access_control_user_info:
 
 Getting a user's information
@@ -348,7 +325,7 @@ To get information about privileges granted to a user, call :ref:`box.schema.use
 
 In the example above, 'testuser' has the following privileges:
 
-*   The 'execute' privilege to the 'public' role means that this role is assigned to a user.
+*   The 'execute' privilege to the 'public' role means that this role is :ref:`assigned to a user <access_control_roles_granting_user>`.
 
 *   The 'read' privilege to the ``writers`` space means that a user can read data from this space.
 
@@ -361,17 +338,28 @@ In the example above, 'testuser' has the following privileges:
 
 *   The 'alter' privilege lets 'testuser' modify its own settings, for example, a password.
 
-.. _access_control_users_dropping:
 
-Dropping users
-~~~~~~~~~~~~~~
 
-To drop the specified user, call :ref:`box.schema.user.drop() <box_schema-user_drop>`:
+.. _access_control_user_revoking_privileges:
+
+Revoking user's privileges
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To revoke the specified privileges, use the :ref:`box.schema.user.revoke() <box_schema-user_revoke>` function.
+In the example below, write access to the ``books`` space is revoked:
 
 ..  literalinclude:: /code_snippets/test/access_control/grant_user_privileges_test.lua
     :language: lua
-    :start-after: Drop a user
-    :end-before: End: Drop a user
+    :start-after: Revoke space reading
+    :end-before: End: Revoke space reading
+    :dedent:
+
+Revoking the 'session' privilege from 'universe' can be used to disallow a user to connect to a Tarantool instance:
+
+..  literalinclude:: /code_snippets/test/access_control/grant_user_privileges_test.lua
+    :language: lua
+    :start-after: Revoke session
+    :end-before: End: Revoke session
     :dedent:
 
 
@@ -412,22 +400,41 @@ The current user can be changed:
 
 
 
+.. _access_control_users_dropping:
+
+Dropping users
+~~~~~~~~~~~~~~
+
+To drop the specified user, call :ref:`box.schema.user.drop() <box_schema-user_drop>`:
+
+..  literalinclude:: /code_snippets/test/access_control/grant_user_privileges_test.lua
+    :language: lua
+    :start-after: Drop a user
+    :end-before: End: Drop a user
+    :dedent:
+
+
+
+
 .. _authentication-roles:
 .. _access_control_roles:
 
-Roles
------
+Managing roles
+--------------
 
 .. _access_control_roles_creating:
 
 Creating a role
 ~~~~~~~~~~~~~~~
 
-To create a new role, call :ref:`box.schema.role.create() <box_schema-role_create>`:
+To create a new role, call :ref:`box.schema.role.create() <box_schema-role_create>`.
+In the example below, two roles are created:
 
-..  code-block:: lua
-
-    box.schema.role.create('books_space_reader')
+..  literalinclude:: /code_snippets/test/access_control/grant_roles_test.lua
+    :language: lua
+    :start-after: Create roles
+    :end-before: End: Create roles
+    :dedent:
 
 
 .. _access_control_roles_granting_privileges:
@@ -436,11 +443,21 @@ Granting privileges to a role
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To grant the specified privileges to a role, use the ``box.schema.role.grant()`` function.
-In the example below, the 'books_space_reader' role gets read privileges to the ``books`` space:
+In the example below, the 'books_space_manager' role gets read and write privileges to the ``books`` space:
 
-..  code-block:: lua
+..  literalinclude:: /code_snippets/test/access_control/grant_roles_test.lua
+    :language: lua
+    :start-after: Grant read/write privileges to a role
+    :end-before: Grant write privileges to a role
+    :dedent:
 
-    box.schema.role.grant('books_space_reader','read','space','books')
+The 'writers_space_reader' role gets read privileges to the ``books`` space:
+
+..  literalinclude:: /code_snippets/test/access_control/grant_roles_test.lua
+    :language: lua
+    :start-after: Grant write privileges to a role
+    :end-before: End: Grant privileges to roles
+    :dedent:
 
 Learn more about granting privileges to different types of objects from :ref:`access_control_granting_privileges`.
 
@@ -456,12 +473,13 @@ Granting a role to a role
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Roles can be assigned to other roles.
-In the example below, the 'books_space_manager' role gets all privileges granted to 'books_space_reader':
+In the example below, the newly created 'all_spaces_manager' role gets all privileges granted to 'books_space_manager' and 'writers_space_reader':
 
-..  code-block:: lua
-
-    box.schema.role.create('books_space_manager')
-    box.schema.role.grant('books_space_manager', 'books_space_reader')
+..  literalinclude:: /code_snippets/test/access_control/grant_roles_test.lua
+    :language: lua
+    :start-after: Grant a role to a role
+    :end-before: End: Grant a role to a role
+    :dedent:
 
 
 .. _access_control_roles_granting_user:
@@ -469,12 +487,14 @@ In the example below, the 'books_space_manager' role gets all privileges granted
 Granting a role to a user
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To grant the specified role to a user, use the ``box.schema.user.grant()`` function.
-In the example below, 'testuser' gets privileges granted to the 'books_space_reader' role:
+To grant the specified role to a :ref:`user <access_control_users>`, use the ``box.schema.user.grant()`` function.
+In the example below, 'testuser' gets privileges granted to the 'books_space_manager' and 'writers_space_reader' roles:
 
-..  code-block:: lua
-
-    box.schema.user.grant('testuser','books_space_reader')
+..  literalinclude:: /code_snippets/test/access_control/grant_roles_test.lua
+    :language: lua
+    :start-after: Grant a role to a user
+    :end-before: End: Grant a role to a user
+    :dedent:
 
 
 .. _access_control_roles_info:
@@ -486,7 +506,7 @@ To check whether the specified role exists, call :ref:`box.schema.role.exists() 
 
 ..  code-block:: lua
 
-    box.schema.role.exists('books_space_reader')
+    box.schema.role.exists('books_space_manager')
     --[[
     - true
     --]]
@@ -495,14 +515,45 @@ To get information about privileges granted to a role, call :ref:`box.schema.rol
 
 ..  code-block:: lua
 
-    box.schema.role.info('books_space_reader')
+    box.schema.role.info('books_space_manager')
     --[[
-      - - read
+    - - - read,write
         - space
         - books
     --]]
 
-In the example above, the 'read' privilege to the ``books`` space means that a user with the 'books_space_reader' role can read data from this space.
+If a role has the 'execute' privilege to other roles, this means that these roles are :ref:`granted to this parent role <access_control_roles_granting_role>`:
+
+..  code-block:: lua
+
+    box.schema.role.info('all_spaces_manager')
+    --[[
+    - - - execute
+        - role
+        - books_space_manager
+      - - execute
+        - role
+        - writers_space_reader
+    --]]
+
+
+
+
+.. _access_control_roles_revoking_role:
+
+Revoking a role from a user
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To revoke the specified role from a user, revoke the 'execute' privilege for this role using the :ref:`box.schema.user.revoke() <box_schema-user_revoke>` function.
+In the example below, the 'books_space_reader' role is revoked from 'testuser':
+
+..  literalinclude:: /code_snippets/test/access_control/grant_roles_test.lua
+    :language: lua
+    :start-after: Revoking a role from a user
+    :end-before: End: Revoking a role from a user
+    :dedent:
+
+To revoke role's privileges, use :ref:`box.schema.role.revoke() <box_schema-role_revoke>`.
 
 
 .. _access_control_roles_dropping:
@@ -512,9 +563,11 @@ Dropping roles
 
 To drop the specified role, call :ref:`box.schema.role.drop() <box_schema-role_drop>`:
 
-..  code-block:: lua
-
-    box.schema.role.drop('books_space_reader')
+..  literalinclude:: /code_snippets/test/access_control/grant_roles_test.lua
+    :language: lua
+    :start-after: Dropping a role
+    :end-before: End: Dropping a role
+    :dedent:
 
 
 
@@ -655,24 +708,17 @@ In this example, 'testuser' is allowed to read and modify data in the 'books' sp
 Sequences
 ~~~~~~~~~
 
+.. _access_control_grant_sequences_create_drop:
+
+Creating and dropping sequences
+*******************************
+
 In this example, 'testuser' gets privileges to create :ref:`sequence <index-box_sequence>` generators:
 
 ..  code-block:: lua
 
     box.schema.user.grant('testuser','create','sequence')
     box.schema.user.grant('testuser', 'read,write', 'space', '_sequence')
-
-In the next example, 'testuser' is allowed to use the ``id_seq:next()`` function with a sequence named 'id_seq':
-
-..  code-block:: lua
-
-    box.schema.user.grant('testuser','read,write','sequence','id_seq')
-
-In this example, 'testuser' is allowed to use the ``id_seq:set()`` or ``id_seq:reset()`` functions with a sequence named 'id_seq':
-
-..  code-block:: lua
-
-    box.schema.user.grant('testuser','write','sequence','S')
 
 To let 'testuser' drop a sequence, grant them the following privileges:
 
@@ -682,11 +728,34 @@ To let 'testuser' drop a sequence, grant them the following privileges:
     box.schema.user.grant('testuser','write','space','_sequence_data')
     box.schema.user.grant('testuser','write','space','_sequence')
 
+.. _access_control_grant_sequences_functions:
+
+Using sequence functions
+************************
+
+In this example, 'testuser' is allowed to use the ``id_seq:next()`` function with a sequence named 'id_seq':
+
+..  code-block:: lua
+
+    box.schema.user.grant('testuser','read,write','sequence','id_seq')
+
+In the next example, 'testuser' is allowed to use the ``id_seq:set()`` or ``id_seq:reset()`` functions with a sequence named 'id_seq':
+
+..  code-block:: lua
+
+    box.schema.user.grant('testuser','write','sequence','id_seq')
+
+
 
 .. _access_control_grant_functions:
 
 Functions
 ~~~~~~~~~
+
+.. _access_control_grant_functions_create_drop:
+
+Creating and dropping functions
+*******************************
 
 In this example, 'testuser' gets privileges to create :ref:`functions <box_schema-func_create>`:
 
@@ -695,18 +764,26 @@ In this example, 'testuser' gets privileges to create :ref:`functions <box_schem
     box.schema.user.grant('testuser','create','function')
     box.schema.user.grant('testuser','read,write','space','_func')
 
-To give the ability to execute a function named 'sum', grant the following privileges:
-
-..  code-block:: lua
-
-    box.schema.user.grant('testuser','execute','function','sum')
-
 To let 'testuser' drop a function, grant them the following privileges:
 
 ..  code-block:: lua
 
     box.schema.user.grant('testuser','drop','function')
     box.schema.user.grant('testuser','write','space','_func')
+
+
+.. _access_control_grant_functions_execute:
+
+Executing functions
+*******************
+
+To give the ability to execute a function named 'sum', grant the following privileges:
+
+..  code-block:: lua
+
+    box.schema.user.grant('testuser','execute','function','sum')
+
+
 
 
 
