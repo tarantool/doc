@@ -43,6 +43,11 @@ The ``tt`` configuration file is a YAML file with the following structure:
       - path: path/to/app/templates1
       - path: path/to/app/templates2
 
+.. note::
+
+    The ``tt`` configuration format and application layout have been changed in version
+    2.0. Learn how to upgrade from earlier versions in :ref:`tt-config_migrating-from-1`.
+
 .. _tt-config_file_env:
 
 env section
@@ -167,56 +172,57 @@ executable files are found in the working directory, they will be used.
 
 .. _tt-config_migrating-from-1:
 
-Migrating tt configuration from 1.* to 2.*
-------------------------------------------
+Migrating from tt 1.* to 2.0 or later
+-------------------------------------
 
-In tt 2.0, incompatible changes were introduced into tt configuration and environment
-layout. If you have applications running on tt 1.*, take the following steps to
-migrate to tt 2.0 or later:
+The `tt` configuration and application layout were changed in version 2.0.
+If you are using ``tt`` 1.*, complete the following steps to migrate to ``tt`` 2.0 or later:
 
 #.  **Update the tt configuration file**.
     In tt 2.0, the following changes were made to the configuration file:
 
-    *   The root section ``tt`` was removed. The sections that were directly
-        enclosed into it, such as ``app``, ``repo``, and other, have been moved
-        to the top level.
+    *   The root section ``tt`` was removed. Its child sections -- ``app``, ``repo``,
+        ``modules``, and other -- have been moved to the top level.
     *   Environment configuration parameters were moved from the ``app`` section
         to the new section ``env``. These parameters are ``instances.enabled``,
         ``bin_dir``, ``inc_dir``, and ``restart_on_failure``.
     *   The paths in the ``app`` section are now relative to the app directory in ``instances.enabled``
         instead of the environment root.
 
-#.  **Move existing application artifacts**.
-    The default location for application artifacts (logs, snapshots, and other files)
-    in ``tt`` 1.* was the ``var`` directory inside the environment. Starting from ``tt`` 2.0,
-    the application artifacts are created in the ``var`` directory inside the application
-    directory, which is ``instances.enabled/<app-name>``. Here is an example of
-    an application directory:
+    You can use :ref:`tt init <tt-init>` to generate a configuration file with
+    the new structure and default parameter values.
+
+#.  **Move application artifacts**.
+    With ``tt`` 1.*, application artifacts (logs, snapshots, pid, and other files)
+    were created in the ``var`` directory inside the *environment root*. Starting from
+    ``tt`` 2.0, these artifacts are created in the ``var`` directory inside the
+    *application directory*, which is ``instances.enabled/<app-name>``. This is
+    how an application directory looks:
 
     .. code-block:: text
 
-    instances.enabled/app/
-    ├── init.lua
-    ├── instances.yml
-    └── var
-        ├── lib
-        │   ├── instance1
-        │   └── instance2
-        ├── log
-        │   ├── instance1
-        │   └── instance2
-        └── run
-            ├── instance1
-            └── instance2
+        instances.enabled/app/
+        ├── init.lua
+        ├── instances.yml
+        └── var
+            ├── lib
+            │   ├── instance1
+            │   └── instance2
+            ├── log
+            │   ├── instance1
+            │   └── instance2
+            └── run
+                ├── instance1
+                └── instance2
 
-    To continue using existing artifacts after migration from ``tt`` 1.*:
+    To continue using existing application artifacts after migration from ``tt`` 1.*:
 
     #.  Create the ``var`` directory inside the application directory.
     #.  Create the ``lib``, ``log``, and ``run`` directories inside ``var``.
     #.  Move directories with instance artifacts from the old ``var`` directory
         to the new ``var`` directories in applications' directories.
 
-#.  **Move the files accessed from the application code**
+#.  **Move the files accessed from the application code**.
     The working directory of instance processes was changed from the ``tt`` working
     directory to the application directory inside ``instances.enabled``. If the
     application accesses files using relative paths, move the files accordingly
