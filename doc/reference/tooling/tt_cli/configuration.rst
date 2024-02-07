@@ -83,7 +83,7 @@ app section
     The paths specified in ``app.*_dir`` parameters are relative to the application
     location inside the ``instances.enabled`` directory specified in the ``env``
     configuration section. For example, the default location of the ``myapp``
-    application's logs is ``instances.enabled/myapp/var/log/``.
+    application's logs is ``instances.enabled/myapp/var/log``.
     Inside this location, ``tt`` creates separate directories for each application
     instance that runs in the current environment.
 
@@ -134,7 +134,7 @@ configuration file. There are three launch modes:
 Default launch
 ~~~~~~~~~~~~~~
 
-**Argument**: none
+**Global option**: none
 
 **Configuration file**: searched from the current directory to the root.
 Taken from ``/etc/tarantool`` if the file is not found.
@@ -146,7 +146,7 @@ Taken from ``/etc/tarantool`` if the file is not found.
 System launch
 ~~~~~~~~~~~~~
 
-**Argument**: ``--system`` or ``-S``
+**Global option**: ``--system`` or ``-S``
 
 **Configuration file**: Taken from ``/etc/tarantool``.
 
@@ -157,10 +157,67 @@ System launch
 Local launch
 ~~~~~~~~~~~~
 
-**Argument**: ``--local=DIRECTORY`` or ``-L=DIRECTORY``
+**Global option**: ``--local=DIRECTORY`` or ``-L=DIRECTORY``
 
 **Configuration file**: Searched from the specified directory to the root.
 Taken from ``/etc/tarantool`` if the file is not found.
 
 **Working directory**: The specified directory. If ``tarantool`` or ``tt``
 executable files are found in the working directory, they will be used.
+
+.. _tt-config_migrating-from-1:
+
+Migrating tt configuration from 1.* to 2.*
+------------------------------------------
+
+In tt 2.0, incompatible changes were introduced into tt configuration and environment
+layout. If you have applications running on tt 1.*, take the following steps to
+migrate to tt 2.0 or later:
+
+#.  **Update the tt configuration file**.
+    In tt 2.0, the following changes were made to the configuration file:
+
+    *   The root section ``tt`` was removed. The sections that were directly
+        enclosed into it, such as ``app``, ``repo``, and other, have been moved
+        to the top level.
+    *   Environment configuration parameters were moved from the ``app`` section
+        to the new section ``env``. These parameters are ``instances.enabled``,
+        ``bin_dir``, ``inc_dir``, and ``restart_on_failure``.
+    *   The paths in the ``app`` section are now relative to the app directory in ``instances.enabled``
+        instead of the environment root.
+
+#.  **Move existing application artifacts**.
+    The default location for application artifacts (logs, snapshots, and other files)
+    in ``tt`` 1.* was the ``var`` directory inside the environment. Starting from ``tt`` 2.0,
+    the application artifacts are created in the ``var`` directory inside the application
+    directory, which is ``instances.enabled/<app-name>``. Here is an example of
+    an application directory:
+
+    .. code-block:: text
+
+    instances.enabled/app/
+    ├── init.lua
+    ├── instances.yml
+    └── var
+        ├── lib
+        │   ├── instance1
+        │   └── instance2
+        ├── log
+        │   ├── instance1
+        │   └── instance2
+        └── run
+            ├── instance1
+            └── instance2
+
+    To continue using existing artifacts after migration from ``tt`` 1.*:
+
+    #.  Create the ``var`` directory inside the application directory.
+    #.  Create the ``lib``, ``log``, and ``run`` directories inside ``var``.
+    #.  Move directories with instance artifacts from the old ``var`` directory
+        to the new ``var`` directories in applications' directories.
+
+#.  **Move the files accessed from the application code**
+    The working directory of instance processes was changed from the ``tt`` working
+    directory to the application directory inside ``instances.enabled``. If the
+    application accesses files using relative paths, move the files accordingly
+    or adjust the application code.
