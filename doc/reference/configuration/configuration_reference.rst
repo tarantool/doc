@@ -332,6 +332,7 @@ The ``config`` section defines various parameters related to centralized configu
     ``config`` can be defined in the global :ref:`scope <configuration_scopes>` only.
 
 * :ref:`config.reload <configuration_reference_config_reload>`
+* :ref:`config.context.* <configuration_reference_config_context_all>`
 * :ref:`config.etcd.* <configuration_reference_config_etcd>`
 
 .. _configuration_reference_config_reload:
@@ -353,6 +354,70 @@ The ``config`` section defines various parameters related to centralized configu
     | Possible values: 'auto', 'manual'
     | Default: 'auto'
     | Environment variable: TT_CONFIG_RELOAD
+
+
+.. _configuration_reference_config_context_all:
+
+config.context.*
+~~~~~~~~~~~~~~~~
+
+This section describes options related to loading configuration settings from external storage.
+
+*   :ref:`config.context <configuration_reference_config_context>`
+
+    * :ref:`config.context.\<name\> <configuration_reference_config_context_name>`
+
+        * :ref:`config.context.\<name\>.env <configuration_reference_config_context_name_env>`
+        * :ref:`config.context.\<name\>.from <configuration_reference_config_context_name_from>`
+        * :ref:`config.context.\<name\>.file <configuration_reference_config_context_name_file>`
+        * :ref:`config.context.\<name\>.env <configuration_reference_config_context_name_rstrip>`
+
+..  _configuration_reference_config_context:
+
+..  confval:: config.context
+
+    **Since:** :doc:`3.0.0 </release/3.0.0>`.
+
+    Specify how to load settings from external storage.
+    There are the following storage types:
+
+    *   file
+    *   environment variable
+
+    For example, this option can be used to load passwords from safe storage.
+    You can find the examples in :ref:`configuration_credentials_loading_secrets`.
+
+    |
+    | Type: map
+    | Default: nil
+    | Environment variable: TT_CONFIG_CONTEXT
+
+
+..  _configuration_reference_config_context_name:
+
+..  confval:: config.context.<name>
+
+
+..  _configuration_reference_config_context_name_env:
+
+..  confval:: config.context.<name>.env
+
+
+..  _configuration_reference_config_context_name_from:
+
+..  confval:: config.context.<name>.from
+
+
+..  _configuration_reference_config_context_name_file:
+
+..  confval:: config.context.<name>.file
+
+
+..  _configuration_reference_config_context_name_rstrip:
+
+..  confval:: config.context.<name>.rstrip
+
+
 
 
 

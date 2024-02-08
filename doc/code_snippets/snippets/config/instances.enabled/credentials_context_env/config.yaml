@@ -1,0 +1,25 @@
+config:
+  context:
+    dbadmin_password:
+      from: env
+      env: DBADMIN_PASSWORD
+    sampleuser_password:
+      from: env
+      env: SAMPLEUSER_PASSWORD
+
+credentials:
+  users:
+    dbadmin:
+      password: '{{ context.dbadmin_password }}'
+    sampleuser:
+      password: '{{ context.sampleuser_password }}'
+
+groups:
+  group001:
+    replicasets:
+      replicaset001:
+        instances:
+          instance001:
+            iproto:
+              listen:
+              - uri: '127.0.0.1:3301'

@@ -1,0 +1,27 @@
+config:
+  context:
+    dbadmin_password:
+      from: file
+      file: secrets/dbadmin_password.txt
+      rstrip: true
+    sampleuser_password:
+      from: file
+      file: secrets/sampleuser_password.txt
+      rstrip: true
+
+credentials:
+  users:
+    dbadmin:
+      password: '{{ context.dbadmin_password }}'
+    sampleuser:
+      password: '{{ context.sampleuser_password }}'
+
+groups:
+  group001:
+    replicasets:
+      replicaset001:
+        instances:
+          instance001:
+            iproto:
+              listen:
+              - uri: '127.0.0.1:3301'
