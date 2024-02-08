@@ -3,9 +3,18 @@
 Global options
 ==============
 
+.. important::
+
+    Global options of ``tt`` must be passed before its commands and other options.
+    For example:
+
+    .. code-block:: console
+
+        $ tt --cfg tt-conf.yaml start app
+
 ``tt`` has the following global options:
 
-.. option:: -c=FILE, --cfg=FILE
+.. option:: -c=FILE, --cfg=FILE,
 
     Path to the :ref:`configuration file <tt-config_file>`.
 
