@@ -1,0 +1,17 @@
+audit_log:
+  to: file
+  file: 'audit_tarantool.log'
+  filter: [ user_create,data_operations,ddl,custom ]
+  format: json
+  spaces: [ bands ]
+  extract_key: true
+
+groups:
+  group001:
+    replicasets:
+      replicaset001:
+        instances:
+          instance001:
+            iproto:
+              listen:
+              - uri: '127.0.0.1:3301'

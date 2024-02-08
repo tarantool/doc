@@ -1,0 +1,20 @@
+audit_log:
+  to: syslog
+  syslog_server: 'unix:/dev/log'
+  syslog_facility: 'user'
+  syslog_identity: 'tarantool'
+  filter: 'audit,auth,priv,password_change,access_denied'
+  extract_key: false
+
+groups:
+  group001:
+    iproto:
+      listen:
+      - uri: '127.0.0.1:3301'
+    replicasets:
+      replicaset001:
+        instances:
+          instance001:
+            iproto:
+              listen:
+              - uri: '127.0.0.1:3301'
