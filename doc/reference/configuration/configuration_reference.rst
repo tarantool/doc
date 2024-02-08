@@ -29,17 +29,19 @@ The ``audit_log`` section defines configuration parameters related to :ref:`audi
     ``audit_log`` can be defined in any :ref:`scope <configuration_scopes>`.
 
 
-* :ref:`audit_log.extract_key <configuration_reference_audit_extract_key>`
-* :ref:`audit_log.file <configuration_reference_audit_file>`
-* :ref:`audit_log.filter <configuration_reference_audit_filter>`
-* :ref:`audit_log.format <configuration_reference_audit_format>`
-* :ref:`audit_log.nonblock <configuration_reference_audit_nonblock>`
-* :ref:`audit_log.pipe <configuration_reference_audit_pipe>`
-* :ref:`audit_log.spaces <configuration_reference_audit_spaces>`
-* :ref:`audit_log.syslog_facility <configuration_reference_audit_syslog-facility>`
-* :ref:`audit_log.syslog_identity <configuration_reference_audit_syslog-identity>`
-* :ref:`audit_log.syslog_server <configuration_reference_audit_syslog-server>`
-* :ref:`audit_log.to <configuration_reference_audit_to>`
+*   :ref:`audit_log.extract_key <configuration_reference_audit_extract_key>`
+*   :ref:`audit_log.file <configuration_reference_audit_file>`
+*   :ref:`audit_log.filter <configuration_reference_audit_filter>`
+*   :ref:`audit_log.format <configuration_reference_audit_format>`
+*   :ref:`audit_log.nonblock <configuration_reference_audit_nonblock>`
+*   :ref:`audit_log.pipe <configuration_reference_audit_pipe>`
+*   :ref:`audit_log.spaces <configuration_reference_audit_spaces>`
+*   :ref:`audit_log.to <configuration_reference_audit_to>`
+*   :ref:`audit_log.syslog.* <configuration_reference_audit_syslog>`
+
+    -   :ref:`audit_log.syslog.facility <configuration_reference_audit_syslog-facility>`
+    -   :ref:`audit_log.syslog.identity <configuration_reference_audit_syslog-identity>`
+    -   :ref:`audit_log.syslog.server <configuration_reference_audit_syslog-server>`
 
 ..  _configuration_reference_audit_extract_key:
 
@@ -207,82 +209,6 @@ The ``audit_log`` section defines configuration parameters related to :ref:`audi
     | Default: box.NULL
     | Environment variable: TT_AUDIT_LOG_SPACES
 
-..  _configuration_reference_audit_syslog-facility:
-
-..  confval:: audit_log.syslog_facility
-
-    Specify a system logger keyword that tells `syslogd <https://datatracker.ietf.org/doc/html/rfc5424>`__ where to send the message.
-    You can enable logging to a system logger using the :ref:`audit_log.to <configuration_reference_audit_to>` option.
-
-    See also: :ref:`syslog configuration example <configuration_reference_audit_syslog-example>`.
-
-    |
-    | Type: string
-    | Possible values: 'auth', 'authpriv', 'cron', 'daemon', 'ftp', 'kern', 'lpr', 'mail', 'news', 'security', 'syslog', 'user', 'uucp', 'local0', 'local1', 'local2', 'local3', 'local4', 'local5', 'local6', 'local7'
-    | Default: 'local7'
-    | Environment variable: TT_AUDIT_LOG_SYSLOG_FACILITY
-
-..  _configuration_reference_audit_syslog-identity:
-
-..  confval:: audit_log.syslog_identity
-
-    Specify an application name to show in logs.
-    You can enable logging to a system logger using the :ref:`audit_log.to <configuration_reference_audit_to>` option.
-
-    See also: :ref:`syslog configuration example <configuration_reference_audit_syslog-example>`.
-
-    |
-    | Type: string
-    | Default: 'tarantool'
-    | Environment variable: TT_AUDIT_LOG_SYSLOG_IDENTITY
-
-..  _configuration_reference_audit_syslog-server:
-
-..  confval:: audit_log.syslog_server
-
-    Set a location for the syslog server.
-    It can be a Unix socket path starting with 'unix:' or an ipv4 port number.
-    You can enable logging to a system logger using the :ref:`audit_log.to <configuration_reference_audit_to>` option.
-
-..  _configuration_reference_audit_syslog-example:
-
-    **Example**
-
-    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/audit_log_syslog/config.yaml
-        :language: yaml
-        :start-at: audit_log:
-        :end-at: 'tarantool'
-        :dedent:
-
-    -   :ref:`audit_log.syslog_server <configuration_reference_audit_syslog-server>` -- a syslog server location.
-
-    -   :ref:`audit_log.syslog_facility <configuration_reference_audit_syslog-facility>` -- a system logger keyword that tells syslogd where to send the message.
-        The default value is ``local7``.
-
-    -   :ref:`audit_log.syslog_identity <configuration_reference_audit_syslog-identity>` -- an application name to show in logs.
-        The default value is ``tarantool``.
-
-    These options are interpreted as a message for the `syslogd <https://datatracker.ietf.org/doc/html/rfc5424>`_ program,
-    which runs in the background of any Unix-like platform.
-
-    An example of a Tarantool audit log entry in the syslog:
-
-    ..  code-block:: text
-
-        09:32:52 tarantool: {"time": "2024-02-08T09:32:52.190+0300", "uuid": "94454e46-9a0e-493a-bb9f-d59e44a43581", "severity": "INFO", "remote": "unix/:(socket)", "session_type": "console", "module": "tarantool", "user": "admin", "type": "space_create", "tag": "", "description": "Create space bands"}
-
-    ..  warning::
-
-        Above is an example of writing audit logs to a directory shared with the system logs.
-        Tarantool allows this option, but it is not recommended to do this to avoid difficulties
-        when working with audit logs. System and audit logs should be written separately.
-        To do this, create separate paths and specify them.
-
-    |
-    | Type: string
-    | Default: box.NULL
-    | Environment variable: TT_AUDIT_LOG_SYSLOG_SERVER
-
 ..  _configuration_reference_audit_to:
 
 ..  confval:: audit_log.to
@@ -293,7 +219,7 @@ The ``audit_log`` section defines configuration parameters related to :ref:`audi
     -   ``devnull``: disable audit logging.
     -   ``file``: write audit logs to a file (see :ref:`audit_log.file <configuration_reference_audit_file>`).
     -   ``pipe``: start a program and write audit logs to it (see :ref:`audit_log.pipe <configuration_reference_audit_pipe>`).
-    -   ``syslog``: write audit logs to a system logger (see :ref:`audit_log.syslog <configuration_reference_audit_pipe>`).
+    -   ``syslog``: write audit logs to a system logger (see :ref:`audit_log.syslog.* <configuration_reference_audit_syslog>`).
 
     By default, audit logging is disabled.
 
@@ -312,6 +238,87 @@ The ``audit_log`` section defines configuration parameters related to :ref:`audi
     | Possible values: 'devnull', 'file', 'pipe', 'syslog'
     | Default: 'devnull'
     | Environment variable: TT_AUDIT_LOG_TO
+
+..  _configuration_reference_audit_syslog:
+
+audit_log.syslog.*
+~~~~~~~~~~~~~~~~~~
+
+..  _configuration_reference_audit_syslog-facility:
+
+..  confval:: audit_log.syslog.facility
+
+    Specify a system logger keyword that tells `syslogd <https://datatracker.ietf.org/doc/html/rfc5424>`__ where to send the message.
+    You can enable logging to a system logger using the :ref:`audit_log.to <configuration_reference_audit_to>` option.
+
+    See also: :ref:`syslog configuration example <configuration_reference_audit_syslog-example>`.
+
+    |
+    | Type: string
+    | Possible values: 'auth', 'authpriv', 'cron', 'daemon', 'ftp', 'kern', 'lpr', 'mail', 'news', 'security', 'syslog', 'user', 'uucp', 'local0', 'local1', 'local2', 'local3', 'local4', 'local5', 'local6', 'local7'
+    | Default: 'local7'
+    | Environment variable: TT_AUDIT_LOG_SYSLOG_FACILITY
+
+..  _configuration_reference_audit_syslog-identity:
+
+..  confval:: audit_log.syslog.identity
+
+    Specify an application name to show in logs.
+    You can enable logging to a system logger using the :ref:`audit_log.to <configuration_reference_audit_to>` option.
+
+    See also: :ref:`syslog configuration example <configuration_reference_audit_syslog-example>`.
+
+    |
+    | Type: string
+    | Default: 'tarantool'
+    | Environment variable: TT_AUDIT_LOG_SYSLOG_IDENTITY
+
+..  _configuration_reference_audit_syslog-server:
+
+..  confval:: audit_log.syslog.server
+
+    Set a location for the syslog server.
+    It can be a Unix socket path starting with 'unix:' or an ipv4 port number.
+    You can enable logging to a system logger using the :ref:`audit_log.to <configuration_reference_audit_to>` option.
+
+..  _configuration_reference_audit_syslog-example:
+
+    **Example**
+
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/audit_log_syslog/config.yaml
+        :language: yaml
+        :start-at: audit_log:
+        :end-at: 'tarantool_audit'
+        :dedent:
+
+    -   :ref:`audit_log.syslog.server <configuration_reference_audit_syslog-server>` -- a syslog server location.
+
+    -   :ref:`audit_log.syslog.facility <configuration_reference_audit_syslog-facility>` -- a system logger keyword that tells syslogd where to send the message.
+        The default value is ``local7``.
+
+    -   :ref:`audit_log.syslog.identity <configuration_reference_audit_syslog-identity>` -- an application name to show in logs.
+        The default value is ``tarantool``.
+
+    These options are interpreted as a message for the `syslogd <https://datatracker.ietf.org/doc/html/rfc5424>`_ program,
+    which runs in the background of any Unix-like platform.
+
+    An example of a Tarantool audit log entry in the syslog:
+
+    ..  code-block:: text
+
+        09:32:52 tarantool_audit: {"time": "2024-02-08T09:32:52.190+0300", "uuid": "94454e46-9a0e-493a-bb9f-d59e44a43581", "severity": "INFO", "remote": "unix/:(socket)", "session_type": "console", "module": "tarantool", "user": "admin", "type": "space_create", "tag": "", "description": "Create space bands"}
+
+    ..  warning::
+
+        Above is an example of writing audit logs to a directory shared with the system logs.
+        Tarantool allows this option, but it is not recommended to do this to avoid difficulties
+        when working with audit logs. System and audit logs should be written separately.
+        To do this, create separate paths and specify them.
+
+    |
+    | Type: string
+    | Default: box.NULL
+    | Environment variable: TT_AUDIT_LOG_SYSLOG_SERVER
 
 ..  _configuration_reference_config:
 
