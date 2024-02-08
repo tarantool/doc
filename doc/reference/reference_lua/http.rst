@@ -12,18 +12,47 @@ The HTTP client uses the `libcurl <https://curl.haxx.se/libcurl/>`_ library unde
 takes into account the `environment variables <https://curl.haxx.se/libcurl/c/libcurl-env.html>`_ libcurl understands.
 
 
+.. _http_client_instance:
+
+HTTP client instance
+--------------------
+
+.. _http_client_instance_default:
+
+Default client
+~~~~~~~~~~~~~~
+
+The ``http.client`` submodule provides the default HTTP client instance:
+
+..  literalinclude:: /code_snippets/test/http_client/default_client_get_test.lua
+    :language: lua
+    :lines: 1
+
+In this case, you need to make requests using the dot syntax, for example:
+
+..  literalinclude:: /code_snippets/test/http_client/default_client_get_test.lua
+    :language: lua
+    :lines: 2
+
+
 .. _creating_client:
 
 Creating a client
------------------
+~~~~~~~~~~~~~~~~~
 
-To create an HTTP client, call the :ref:`http.client.new() <http-new>` function:
+If you need to configure specific HTTP client options, use the :ref:`http.client.new() <http-new>` function to create the client instance:
 
 ..  literalinclude:: /code_snippets/test/http_client/get_test.lua
     :language: lua
     :lines: 1
 
-Optionally, this function can accept specific client configuration options.
+In this case, you need to make requests using the colon syntax, for example:
+
+..  literalinclude:: /code_snippets/test/http_client/get_test.lua
+    :language: lua
+    :lines: 2
+
+All the examples in this section use the HTTP client created using ``http.client.new()``.
 
 
 .. _making_requests:
@@ -31,7 +60,7 @@ Optionally, this function can accept specific client configuration options.
 Making requests
 ---------------
 
-After :ref:`creating the client <creating_client>`, you can make HTTP requests.
+The :ref:`client instance <http_client_instance>` enables you to make HTTP requests.
 
 .. _request_http_method:
 
@@ -685,7 +714,7 @@ client_object
 
         * ``active_requests`` -- the number of currently executing requests
         * ``sockets_added`` -- the total number of sockets added into an event loop
-        * ``sockets_deleted`` -- the total number of sockets from an event loop
+        * ``sockets_deleted`` -- the total number of sockets deleted from an event loop
         * ``total_requests`` -- the total number of requests
         * ``http_200_responses`` -- the total number of requests that returned HTTP ``200 OK`` responses
         * ``http_other_responses`` -- the total number of requests that returned non-``200 OK`` responses
