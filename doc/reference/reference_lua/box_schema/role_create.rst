@@ -22,7 +22,10 @@ box.schema.role.create()
 
     **Example:**
 
-    .. code-block:: lua
+    ..  literalinclude:: /code_snippets/test/access_control/grant_roles_test.lua
+        :language: lua
+        :start-after: Create roles
+        :end-before: End: Create roles
+        :dedent:
 
-        box.schema.role.create('Accountant')
-        box.schema.role.create('Accountant', {if_not_exists = false})
+    See also: :ref:`access_control_roles`.

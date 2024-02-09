@@ -12,8 +12,4 @@ box.schema.role.info()
 
     :param string role-name: the name of the role.
 
-    **Example:**
-
-    .. code-block:: lua
-
-        box.schema.role.info('Accountant')
+    See also: :ref:`access_control_roles_info`.
