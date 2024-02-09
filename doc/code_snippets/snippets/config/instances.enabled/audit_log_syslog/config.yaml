@@ -1,8 +1,9 @@
 audit_log:
   to: syslog
-  syslog_server: 'unix:/dev/log'
-  syslog_facility: 'user'
-  syslog_identity: 'tarantool'
+  syslog:
+    server: 'unix:/dev/log'
+    facility: 'user'
+    identity: 'tarantool_audit'
   filter: 'audit,auth,priv,password_change,access_denied'
   extract_key: false
 

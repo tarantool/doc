@@ -92,17 +92,16 @@ The audit log contains:
 
 * timestamps
 * usernames of users who performed actions
-* event types (e.g. ``user_create``, ``user_enable``, ``disconnect``, etc)
+* event types (for example, ``user_create``, ``user_enable``, ``disconnect``)
 * descriptions
 
-You can configure the following audit log parameters:
+You can configure the following audit log options:
 
-*   ``audit_log = <PATH_TO_FILE>`` which is similar to the
-    :ref:`log <cfg_logging-log>`
-    parameter. This parameter tells Tarantool to record audit events to a specific file.
-*   ``audit_nonblock`` which is similar to the
-    :ref:`log_nonblock <cfg_logging-log_nonblock>`
-    parameter.
+*   :ref:`audit_log.to <configuration_reference_audit_to>` -- enable audit logging and define the log location (file, pipe, or syslog).
+    The option is similar to the :ref:`log <cfg_logging-log>`.
+
+*   :ref:`audit_log.nonblock <configuration_reference_audit_nonblock>` -- specify the logging behavior if the system is not ready to write.
+    The option is similar to the :ref:`log_nonblock <cfg_logging-log_nonblock>`.
 
 For more information on logging, see the following:
 
