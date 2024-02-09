@@ -43,9 +43,7 @@ There are two built-in users in Tarantool:
 
         $ tt connect app:instance001
 
-    ..  NOTE::
-
-        To allow remote :ref:`binary port <admin-security>` connections using the 'admin' user, you need to :ref:`set a password <access_control_user_changing_passwords>`.
+    To allow remote :ref:`binary port <admin-security>` connections using the 'admin' user, you need to :ref:`set a password <access_control_user_changing_passwords>`.
 
 *   'guest' is a user with minimum permissions used by default for remote :ref:`binary port <admin-security>` connections.
     For example, 'guest' is used when connecting to the instance using :ref:`tt connect <tt-connect>` using the IP address and port without specifying the name of a user:
@@ -54,6 +52,10 @@ There are two built-in users in Tarantool:
 
         $ tt connect 192.168.10.10:3301
 
+    ..  WARNING::
+
+        Given that the 'guest' user allows unauthenticated access to Tarantool instances, it is not recommended to grant additional privileges to this user.
+        For example, granting the 'execute' access to :ref:`'universe' <access_control_concepts_objects>` allows *remote code execution* on instances.
 
 ..  NOTE::
 
@@ -68,9 +70,13 @@ Passwords
 ~~~~~~~~~
 
 Any user (except 'guest') may have a password.
-The password is any alphanumeric string.
+If a password is not set, a user cannot connect to Tarantool instances.
+
 Tarantool :ref:`password hashes <enterprise-authentication-protocol>` are stored in the :ref:`_user <box_space-user>` system space.
+By default, Tarantool uses the ``CHAP`` protocol to authenticate users and applies ``SHA-1`` hashing to
+:ref:`passwords <authentication-passwords>`.
 So, if the password is '123456', the stored hash is a string like 'a7SDfrdDKRBe5FaN2n3GftLKKtk='.
+In the Enterprise Edition, you can enable ``PAP`` :ref:`authentication <enterprise-authentication-protocol>` with the ``SHA256`` hashing algorithm. In this case, a password is salted with a user-unique salt before saving it in the database.
 
 Tarantool Enterprise Edition allows you to improve database security by enforcing the use of strong passwords, setting up a maximum password age, and so on.
 Learn more from the :ref:`configuration_authentication` topic.
@@ -107,6 +113,7 @@ The privileges granted to a user determine which operations the user can perform
 *   The 'read' and 'write' privileges granted to the 'space' :ref:`object <access_control_concepts_objects>` allow a user to select or update data in the specified space.
 *   The 'create' privilege granted to the 'space' object allows a user to create new spaces.
 *   The 'execute' privilege granted to the 'function' object allows a user to execute the specified function.
+*   The 'session' privilege granted to a user allows connecting to the instance over IPROTO.
 
 Note that some privileges might require read and write access to certain system spaces.
 For example, the 'create' privilege granted to the 'space' object requires 'read' and 'write' privileges to the :ref:`_space <box_space-space>` system space.
@@ -131,6 +138,10 @@ There are the following built-in roles in Tarantool:
 *   'public' is automatically granted to new users when they are created.
 *   'replication' can be granted to a user used to maintain replication in a cluster.
 *   'sharding' can be granted to a user used to maintain sharding in a cluster.
+
+    ..  NOTE::
+
+        The 'sharding' role is created only if an instance is managed using :ref:`YAML configuration <configuration_overview>`.
 
 Below are a few diagrams that demonstrate how privileges can be granted to a user without and with using roles.
 
@@ -178,7 +189,7 @@ Object owners
 An owner of a database :ref:`object <access_control_concepts_objects>` is the user who created it.
 The owner of the database and the owner of objects that are created initially (the system spaces and the default users) is the 'admin' :ref:`user <access_control_concepts_users>`.
 
-Owners automatically have :ref:`privileges <authentication-owners_privileges>` for what they create.
+Owners automatically have :ref:`privileges <authentication-owners_privileges>` for objects they create.
 They can :ref:`share these privileges <access_control_granting_privileges>` with other users or roles using ``box.schema.user.grant()`` and ``box.schema.role.grant()``.
 
 ..  NOTE::
@@ -325,7 +336,7 @@ To get information about privileges granted to a user, call :ref:`box.schema.use
 
 In the example above, 'testuser' has the following privileges:
 
-*   The 'execute' privilege to the 'public' role means that this role is :ref:`assigned to a user <access_control_roles_granting_user>`.
+*   The 'execute' privilege to the 'public' role means that this role is :ref:`assigned to the user <access_control_roles_granting_user>`.
 
 *   The 'read' privilege to the ``writers`` space means that a user can read data from this space.
 
@@ -934,7 +945,7 @@ Privileges
 
         *   -   Privilege
             -   Object type
-            -   Applied to roles
+            -   Granted to roles
             -   Description
         *   -   'read'
             -   All
