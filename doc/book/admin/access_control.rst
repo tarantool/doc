@@ -76,7 +76,7 @@ Tarantool :ref:`password hashes <enterprise-authentication-protocol>` are stored
 By default, Tarantool uses the ``CHAP`` protocol to authenticate users and applies ``SHA-1`` hashing to
 :ref:`passwords <authentication-passwords>`.
 So, if the password is '123456', the stored hash is a string like 'a7SDfrdDKRBe5FaN2n3GftLKKtk='.
-In the Enterprise Edition, you can enable ``PAP`` :ref:`authentication <enterprise-authentication-protocol>` with the ``SHA256`` hashing algorithm. In this case, a password is salted with a user-unique salt before saving it in the database.
+In the Enterprise Edition, you can enable ``PAP`` :ref:`authentication <enterprise-authentication-protocol>` with the ``SHA256`` hashing algorithm.
 
 Tarantool Enterprise Edition allows you to improve database security by enforcing the use of strong passwords, setting up a maximum password age, and so on.
 Learn more from the :ref:`configuration_authentication` topic.
