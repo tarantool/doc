@@ -338,14 +338,14 @@ In the example above, 'testuser' has the following privileges:
 
 *   The 'execute' privilege to the 'public' role means that this role is :ref:`assigned to the user <access_control_roles_granting_user>`.
 
-*   The 'read' privilege to the ``writers`` space means that a user can read data from this space.
+*   The 'read' privilege to the ``writers`` space means that the user can read data from this space.
 
-*   The 'read,write' privileges to the ``books`` space mean that a user can read and modify data in this space.
+*   The 'read,write' privileges to the ``books`` space mean that the user can read and modify data in this space.
 
 *   The 'session,usage' privileges to 'universe' mean the following:
 
-    *   'session': a user can authenticate over an IPROTO connection.
-    *   'usage': lets a user use their privileges on database objects (for example, read and modify data in a space).
+    *   'session': the user can authenticate over an IPROTO connection.
+    *   'usage': lets the user use their privileges on database objects (for example, read and modify data in a space).
 
 *   The 'alter' privilege lets 'testuser' modify its own settings, for example, a password.
 
