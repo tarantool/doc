@@ -8,8 +8,8 @@ Tarantool enables flexible management of access to various database resources.
 The main concepts of Tarantool access control system are as follows:
 
 *   A *user* is a person or program that interacts with a Tarantool instance.
-*   An *object* is an entity to which access can be granted, for example, spaces, indexes, or functions.
-*   *Privileges* allow a user to perform certain operations on specific objects, for example, creating spaces, reading or updating data.
+*   An *object* is an entity to which access can be granted, for example, a space, an index, or a function.
+*   A *privilege* allows a user to perform certain operations on specific objects, for example, creating spaces, reading or updating data.
 *   A *role* is a named collection of privileges that can be granted to a user.
 
 
@@ -136,7 +136,7 @@ Roles can also be assigned to other roles, creating a role hierarchy.
 There are the following built-in roles in Tarantool:
 
 *   ``super`` has all available administrative permissions.
-*   ``public`` is automatically granted to new users when they are created.
+*   ``public`` has certain read permissions. This role is automatically granted to new users when they are created.
 *   ``replication`` can be granted to a user used to maintain :ref:`replication <replication_overview>` in a cluster.
 *   ``sharding`` can be granted to a user used to maintain :ref:`sharding <sharding>` in a cluster.
 
@@ -649,6 +649,8 @@ In the example below, ``testuser`` gets privileges allowing them to create :ref:
     box.schema.user.grant('testuser','write', 'space', '_schema')
     box.schema.user.grant('testuser','write', 'space', '_space')
 
+As you can see, the ability to create spaces also requires ``write`` access to certain system spaces.
+
 To allow ``testuser`` to drop a space that has associated objects, add the following privileges:
 
 ..  code-block:: lua
@@ -852,13 +854,12 @@ Similarly, executing an arbitrary SQL expression requires the ``execute`` privil
 Example
 ~~~~~~~
 
-In the example below, the created Lua function is executed under the user ID of its
+In the example below, the :ref:`created Lua function <box_schema-func_create>` is executed on behalf of its
 creator, even if called by another user.
 
 First, the two spaces (``space1`` and ``space2``) are created, and a no-password user (``private_user``)
-is granted full access to them. Then ``read_and_modify`` is defined and the
-no-password user becomes this function's creator. Finally, another user
-(``public_user``) is granted access to execute Lua functions created by the no-password user.
+is granted full access to them. Then ``read_and_modify`` is defined and ``private_user`` becomes this function's creator.
+Finally, another user (``public_user``) is granted access to execute Lua functions created by ``private_user``.
 
 ..  code-block:: lua
 
@@ -890,6 +891,8 @@ no-password user becomes this function's creator. Finally, another user
     box.session.su('admin')
     box.schema.user.create('public_user', {password = 'secret'})
     box.schema.user.grant('public_user', 'execute', 'function', 'read_and_modify')
+
+Whenever ``public_user`` calls the function, it is executed on behalf of its creator, ``private_user``.
 
 
 
