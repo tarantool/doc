@@ -1,0 +1,18 @@
+memtx:
+  memory: 100000000
+  allocator: 'small'
+  min_tuple_size: 8
+  max_tuple_size: 1048576
+  slab_alloc_factor: 1.05
+  slab_alloc_granularity: 8
+  sort_threads: 256
+
+groups:
+  group001:
+    replicasets:
+      replicaset001:
+        instances:
+          instance001:
+            iproto:
+              listen:
+              - uri: '127.0.0.1:3301'

@@ -27,9 +27,7 @@
     :ref:`UPDATE <box_space-insert>` requests begin failing with
     error :errcode:`ER_MEMORY_ISSUE`. The server does not go beyond the
     ``memtx_memory`` limit to allocate tuples, but there is additional memory
-    used to store indexes and connection information. Depending on actual
-    configuration and workload, Tarantool can consume up to 20% more than the
-    ``memtx_memory`` limit.
+    used to store indexes and connection information.
 
     | Type: float
     | Default: 256 * 1024 * 1024 = 268435456 bytes
@@ -76,12 +74,13 @@
     Specify the allocator used for memtx tuples.
     The possible values are ``system``  and ``small``:
 
-    * ``system`` is based on the ``malloc`` function.
-      This allocator allocates memory as needed, checking that the quota is not exceeded.
+    *   ``system`` is based on the ``malloc`` function.
+        The allocator allocates memory as needed, checking that the quota is not exceeded.
 
-    * ``small`` is a special `slab allocator <https://github.com/tarantool/small>`_.
-      Note that this allocator is prone to unresolvable fragmentation on specific workloads,
-      so you can switch to ``system`` in such cases.
+    *   ``small`` is a special `slab allocator <https://github.com/tarantool/small>`_.
+        The allocator repeatedly uses a memory block to allocate objects of the same type.
+        Note that this allocator is prone to unresolvable fragmentation on specific workloads,
+        so you can switch to ``system`` in such cases.
 
     | Type: string
     | Default: 'small'
@@ -92,7 +91,7 @@
 
 ..  confval:: memtx_sort_threads
 
-    The number of threads used to sort keys of secondary indexes on loading memtx database.
+    The number of threads used to sort keys of secondary indexes on loading ``memtx`` database.
     The maximum value is 256, the minimum value is 1.
     The default is to use all available cores.
 

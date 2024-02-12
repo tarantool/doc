@@ -1780,11 +1780,11 @@ The ``groups`` section provides the ability to define the :ref:`full topology of
 memtx
 ~~~~~
 
-The ``memtx`` section is used to configure parameters related to :ref:`memtx engine <>`.
+The ``memtx`` section is used to configure parameters related to :ref:`memtx engine <configuration_memtx>`.
 
 .. NOTE::
 
-    ``memtx`` can be defined in :ref:`scope <configuration_scopes>`.
+    ``memtx`` can be defined in any :ref:`scope <configuration_scopes>`.
 
 
 -   :ref:`memtx.allocator <configuration_reference_memtx_allocator>`
@@ -1802,12 +1802,13 @@ The ``memtx`` section is used to configure parameters related to :ref:`memtx eng
     Specify the allocator used for memtx tuples.
     The possible values are ``system``  and ``small``:
 
-    * ``system`` is based on the ``malloc`` function.
-      This allocator allocates memory as needed, checking that the quota is not exceeded.
+    *   ``system`` is based on the ``malloc`` function.
+        The allocator allocates memory as needed, checking that the quota is not exceeded.
 
-    * ``small`` is a special `slab allocator <https://github.com/tarantool/small>`_.
-      Note that this allocator is prone to unresolvable fragmentation on specific workloads,
-      so you can switch to ``system`` in such cases.
+    *   ``small`` is a special `slab allocator <https://github.com/tarantool/small>`_.
+        The allocator repeatedly uses a memory block to allocate objects of the same type.
+        Note that this allocator is prone to unresolvable fragmentation on specific workloads,
+        so you can switch to ``system`` in such cases.
 
     |
     | Type: string
@@ -1836,8 +1837,6 @@ The ``memtx`` section is used to configure parameters related to :ref:`memtx eng
     :ref:`UPDATE <box_space-insert>` requests fail with the  :errcode:`ER_MEMORY_ISSUE` error.
     The server does not go beyond the ``memtx.memory`` limit to allocate tuples, but there is additional memory
     used to store indexes and connection information.
-    Depending on actual configuration and workload, Tarantool can consume up to 20% more than the
-    ``memtx.memory`` limit.
 
     |
     | Type: integer
@@ -1897,7 +1896,7 @@ The ``memtx`` section is used to configure parameters related to :ref:`memtx eng
 
 ..  confval:: memtx.sort_threads
 
-    The number of threads used to sort keys of secondary indexes on loading memtx database.
+    The number of threads used to sort keys of secondary indexes on loading ``memtx`` database.
     The maximum value is 256, the minimum value is 1.
     The default is to use all available cores.
 
