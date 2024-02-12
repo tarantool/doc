@@ -6,19 +6,18 @@ box.schema.user.revoke()
 
 .. module:: box.schema
 
-.. function:: box.schema.user.revoke(user-name, privileges, object-type, object-name[, {options} ])
-              box.schema.user.revoke(user-name, privileges, 'universe'[, nil, {options} ])
-              box.schema.user.revoke(user-name, role-name[, nil, nil, {options} ])
+.. function:: box.schema.user.revoke(username, privileges, object-type, object-name[, {options} ])
+              box.schema.user.revoke(username, privileges, 'universe'[, nil, {options} ])
+              box.schema.user.revoke(username, role-name[, nil, nil, {options} ])
 
     Revoke :ref:`privileges <authentication-owners_privileges>` from a user
     or from another role.
 
-    :param string user-name: the name of the user.
-    :param string privilege: 'read' or 'write' or 'execute' or 'create' or
-                             'alter' or 'drop' or a combination.
-    :param string object-type: 'space' or 'function' or 'sequence'.
-    :param string object-name: the name of a function or space or sequence.
-    :param table      options: ``if_exists``.
+    :param string username: the name of the user
+    :param string privilege: one or more :ref:`privileges <access_control_list_privileges>` to revoke from the user (for example, ``read`` or ``read,write``)
+    :param string object-type: a database :ref:`object type <access_control_list_objects>` to revoke privileges from (for example, ``space``, ``role``, or ``function``)
+    :param string object-name: the name of a database object to revoke privileges from
+    :param table      options: ``if_exists``
 
     The user must exist, and the object must exist,
     but if the option setting is ``{if_exists=true}`` then
@@ -31,14 +30,15 @@ box.schema.user.revoke()
     ``role-name`` (see section :ref:`Roles <authentication-roles>`).
 
     **Variation:** instead of
-    :samp:`box.schema.user.revoke('{user-name}','usage,session','universe',nil,` :code:`{if_exists=true})`
-    say :samp:`box.schema.user.disable('{user-name}')`.
+    :samp:`box.schema.user.revoke('{username}','usage,session','universe',nil,` :code:`{if_exists=true})`
+    say :samp:`box.schema.user.disable('{username}')`.
 
     **Example:**
 
-    .. code-block:: lua
+    ..  literalinclude:: /code_snippets/test/access_control/grant_user_privileges_test.lua
+        :language: lua
+        :start-after: Revoke space reading
+        :end-before: End: Revoke space reading
+        :dedent:
 
-        box.schema.user.revoke('Lena', 'read', 'space', 'tester')
-        box.schema.user.revoke('Lena', 'execute', 'function', 'f')
-        box.schema.user.revoke('Lena', 'read,write', 'universe')
-        box.schema.user.revoke('Lena', 'Accountant')
+    See also: :ref:`access_control_users`.

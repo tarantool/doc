@@ -18,6 +18,10 @@ box.schema.role.drop()
 
     **Example:**
 
-    .. code-block:: lua
+    ..  literalinclude:: /code_snippets/test/access_control/grant_roles_test.lua
+        :language: lua
+        :start-after: Dropping a role
+        :end-before: End: Dropping a role
+        :dedent:
 
-        box.schema.role.drop('Accountant')
+    See also: :ref:`access_control_roles`.

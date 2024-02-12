@@ -13,8 +13,4 @@ box.schema.role.exists()
     :param string role-name: the name of the role
     :rtype: bool
 
-    **Example:**
-
-    .. code-block:: lua
-
-        box.schema.role.exists('Accountant')
+    See also: :ref:`access_control_roles_info`.

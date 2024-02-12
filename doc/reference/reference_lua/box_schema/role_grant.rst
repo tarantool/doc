@@ -12,18 +12,17 @@ box.schema.role.grant()
 
     Grant :ref:`privileges <authentication-owners_privileges>` to a role.
 
-    :param string role-name: the name of the role.
-    :param string privilege: 'read' or 'write' or 'execute' or 'create' or
-                             'alter' or 'drop' or a combination.
-    :param string object-type: 'space' or 'function' or 'sequence' or 'role'.
-    :param string object-name: the name of a function or space or sequence or role.
+    :param string role-name: the name of the role
+    :param string privilege: one or more :ref:`privileges <access_control_list_privileges>` to grant to the role (for example, ``read`` or ``read,write``)
+    :param string object-type: a database :ref:`object type <access_control_list_objects>` to grant privileges to (for example, ``space``, ``role``, or ``function``)
+    :param string object-name: the name of a function or space or sequence or role
     :param table option: ``if_not_exists`` = ``true|false`` (default = ``false``) - boolean;
                          ``true`` means there should be no error if the role already
-                         has the privilege.
+                         has the privilege
 
     The role must exist, and the object must exist.
 
-    **Variation:** instead of ``object-type, object-name`` say 'universe'
+    **Variation:** instead of ``object-type, object-name`` say ``universe``
     which means 'all object-types and all objects'. In this case, object name is omitted.
 
     **Variation:** instead of ``privilege, object-type, object-name`` say
@@ -31,10 +30,10 @@ box.schema.role.grant()
 
     **Example:**
 
-    .. code-block:: lua
+    ..  literalinclude:: /code_snippets/test/access_control/grant_roles_test.lua
+        :language: lua
+        :start-after: Grant read/write privileges to a role
+        :end-before: Grant write privileges to a role
+        :dedent:
 
-        box.schema.role.grant('Accountant', 'read', 'space', 'tester')
-        box.schema.role.grant('Accountant', 'execute', 'function', 'f')
-        box.schema.role.grant('Accountant', 'read,write', 'universe')
-        box.schema.role.grant('public', 'Accountant')
-        box.schema.role.grant('role1', 'role2', nil, nil, {if_not_exists=false})
+    See also: :ref:`access_control_roles`.

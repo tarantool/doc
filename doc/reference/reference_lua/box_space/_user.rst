@@ -8,7 +8,8 @@ box.space._user
 
 .. data:: _user
 
-    ``_user`` is a system space where user-names and password hashes are stored.
+    ``_user`` is a system space where user names and password hashes are stored.
+    Learn more about Tarantool's access control system from the :ref:`access_control` topic.
 
     Tuples in this space contain the following fields:
 
@@ -76,68 +77,7 @@ box.space._user
 
     .. WARNING::
 
-       To change tuples in the ``_user`` space, do not use ordinary ``box.space``
-       functions for insert, update, or delete. The ``_user`` space is special,
-       so there are special functions that have appropriate error checking.\
-
-    To create a new user, use :doc:`/reference/reference_lua/box_schema/user_create`:
-
-    .. code-block:: lua
-
-        box.schema.user.create(*user-name*)
-        box.schema.user.create(*user-name*, {if_not_exists = true})
-        box.schema.user.create(*user-name*, {password = *password*})
-
-    To change the user's password, use :doc:`/reference/reference_lua/box_schema/user_passwd`:
-
-    .. code-block:: lua
-
-        -- To change the current user's password
-        box.schema.user.passwd(*password*)
-
-        -- To change a different user's password
-        -- (usually only 'admin' can do it)
-        box.schema.user.passwd(*user-name*, *password*)
-
-    To drop a user, use :doc:`/reference/reference_lua/box_schema/user_drop`:
-
-    .. code-block:: lua
-
-        box.schema.user.drop(*user-name*)
-
-    To check whether a user exists, use :doc:`/reference/reference_lua/box_schema/user_exists`,
-    which returns ``true`` or ``false``:
-
-    .. code-block:: lua
-
-        box.schema.user.exists(*user-name*)
-
-    To find what privileges a user has, use :doc:`/reference/reference_lua/box_schema/user_info`:
-
-    .. code-block:: lua
-
-        box.schema.user.info(*user-name*)
-
-    .. NOTE::
-
-        The maximum number of users is 32.
-
-    **Example:**
-
-    Here is a session which creates a new user with a strong password, selects a
-    tuple in the ``_user`` space, and then drops the user.
-
-    .. code-block:: tarantoolsession
-
-        tarantool> box.schema.user.create('JeanMartin', {password = 'Iwtso_6_os$$'})
-        ---
-        ...
-        tarantool> box.space._user.index.name:select{'JeanMartin'}
-        ---
-        - - [17, 1, 'JeanMartin', 'user', {'chap-sha1': 't3xjUpQdrt857O+YRvGbMY5py8Q='}]
-        ...
-        tarantool> box.schema.user.drop('JeanMartin')
-        ---
-        ...
+        To change tuples in the ``_user`` space, do not use ordinary ``box.space`` functions for insert, update, or delete.
+        Learn more from :ref:`access_control_users`.
 
     The :ref:`system space view <box_space-sysviews>` for ``_user`` is ``_vuser``.

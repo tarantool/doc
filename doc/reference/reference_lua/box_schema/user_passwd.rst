@@ -6,22 +6,25 @@ box.schema.user.passwd()
 
 .. module:: box.schema
 
-.. function:: box.schema.user.passwd([name,] new_password)
+.. function:: box.schema.user.passwd([username,] password)
 
     Sets a password for a currently logged in or a specified user:
 
-    *   A currently logged in user can change their password using
-        ``box.schema.user.passwd(new_password)``.
+    *   A currently logged-in user can change their password using
+        ``box.schema.user.passwd(password)``.
 
     *   An administrator can change the password of another user with
-        ``box.schema.user.passwd(name, new_password)``.
+        ``box.schema.user.passwd(username, password)``.
 
-    :param string user-name: name
-    :param string password: new_password
+    :param string username: a username
+    :param string password: a new password
 
     **Example:**
 
-    .. code-block:: lua
+    ..  literalinclude:: /code_snippets/test/access_control/grant_user_privileges_test.lua
+        :language: lua
+        :start-after: Set a password for the specified user
+        :end-before: End: Set a password for the specified user
+        :dedent:
 
-        box.schema.user.passwd('foobar')
-        box.schema.user.passwd('testuser', 'foobar')
+    See also: :ref:`access_control_users`.

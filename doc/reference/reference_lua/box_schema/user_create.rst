@@ -21,7 +21,7 @@ box.schema.user.create()
     * ``password`` (default = '') - string; the ``password`` = *password*
       specification is good because in a :ref:`URI <index-uri>`
       (Uniform Resource Identifier) it is usually illegal to include a
-      user-name without a password.
+      username without a password.
 
     .. NOTE::
 
@@ -34,8 +34,10 @@ box.schema.user.create()
 
     **Examples:**
 
-    .. code-block:: lua
+    ..  literalinclude:: /code_snippets/test/access_control/grant_user_privileges_test.lua
+        :language: lua
+        :start-after: Create a user with a password
+        :end-before: End: Create a user with a password
+        :dedent:
 
-        box.schema.user.create('testuser')
-        box.schema.user.create('testuser', {password = 'foobar'})
-        box.schema.user.create('testuser', {if_not_exists = false})
+    See also: :ref:`access_control_users`.

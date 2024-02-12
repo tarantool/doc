@@ -6,20 +6,23 @@ box.schema.user.drop()
 
 .. module:: box.schema
 
-.. function:: box.schema.user.drop(user-name [, {options}])
+.. function:: box.schema.user.drop(username [, {options}])
 
     Drop a user.
     For explanation of how Tarantool maintains user data, see
     section :ref:`Users <authentication-users>` and reference on
     :ref:`_user <box_space-user>` space.
 
-    :param string user-name: the name of the user
+    :param string username: the name of the user
     :param table options: ``if_exists`` = ``true|false`` (default = ``false``) - boolean;
                           ``true`` means there should be no error if the user does not exist.
 
     **Examples:**
 
-    .. code-block:: lua
+    ..  literalinclude:: /code_snippets/test/access_control/grant_user_privileges_test.lua
+        :language: lua
+        :start-after: Drop a user
+        :end-before: End: Drop a user
+        :dedent:
 
-        box.schema.user.drop('Lena')
-        box.schema.user.drop('Lena',{if_exists=false})
+    See also: :ref:`access_control_users`.
