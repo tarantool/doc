@@ -46,7 +46,7 @@
 
        Although ``box.snapshot()`` does not cause a fork, there is a separate fiber
        which may produce snapshots at regular intervals -- see the discussion of
-       the :ref:`checkpoint daemon <book_cfg_checkpoint_daemon>`.
+       the :ref:`checkpoint daemon <configuration_persistence_checkpoint_daemon>`.
 
     **Example:**
 

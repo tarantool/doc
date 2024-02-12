@@ -5,8 +5,9 @@ Persistence
 
 To ensure data persistence, Tarantool provides the abilities to:
 
-*   record each data change request into a :ref:`write-ahead log <internals-wal>` (WAL) file (``.xlog`` files)
-*   take :ref:`snapshots <internals-snapshot>` that contain on-disk copy of the entire data set for a given moment (``.snap`` files)
+*   Record each data change request into a :ref:`write-ahead log <internals-wal>` (WAL) file (``.xlog`` files).
+*   Take :ref:`snapshots <internals-snapshot>` that contain on-disk copy of the entire data set for a given moment
+    (``.snap`` files). It is possible to set automatic snapshot creation using the :ref:`checkpoint daemon <configuration_persistence_checkpoint_daemon>`.
 
 During the recovery process, Tarantool can load the latest snapshot file and then read the requests from the WAL files,
 produced after this snapshot was made.
@@ -22,6 +23,34 @@ Configure the snapshots
 **Example on GitHub**: `snapshot <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/persistence_snapshot>`_
 
 This section describes how to define snapshot settings in the :ref:`snapshot <configuration_reference_snapshot>` section of a YAML configuration.
+
+..  _configuration_persistence_snapshot_creation:
+
+Configure the automatic snapshot creation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In Tarantool, it is possible to set automatic :ref:`snapshot creation </reference/reference_lua/box_snapshot>`.
+To enable it, the :ref:`snapshot.by.interval <configuration_reference_snapshot_by_interval>` option is used.
+The option sets up the :ref:`checkpoint daemon <configuration_persistence_checkpoint_daemon>` that takes new snapshots
+every ``snapshot.by.interval`` seconds.
+When the number of snapshots reaches the limit of :ref:`snapshot.count <configuration_reference_snapshot_count>` size,
+the daemon activates Tarantool garbage collector after the new snapshot is taken.
+Tarantool garbage collector deletes the oldest snapshot file and any associated WAL files.
+
+The :ref:`snapshot.by.wal_size <configuration_reference_snapshot_by_wal_size>` option defines the maximum size in bytes
+for of all WAL files created since the last snapshot taken.
+Once this size is exceeded, the checkpoint daemon takes a snapshot and deletes the old WAL files.
+
+The configuration of the checkpoint daemon might look as follows:
+
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/persistence_snapshot/config.yaml
+    :language: yaml
+    :start-at: count:
+    :end-at: 60
+    :dedent:
+
+If the ``snapshot.by.interval`` option is set to zero, the checkpoint daemon is disabled.
+If the ``snapshot.count`` option is set to zero, the checkpoint daemon does not delete old snapshots.
 
 ..  _configuration_persistence_snapshot_dir:
 
@@ -49,35 +78,6 @@ For example, you can place snapshots and write-ahead logs on different hard driv
         dir: '/media/drive1/snapshots'
       wal:
         dir: '/media/drive2/wals'
-
-..  _configuration_persistence_checkpoint_daemon:
-
-Configure the automatic snapshot creation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-In Tarantool, it is possible to set automatic :ref:`snapshot creation </reference/reference_lua/box_snapshot>`.
-To enable it, the :ref:`snapshot.by.interval <configuration_reference_snapshot_by_interval>` option is used.
-The option sets up the :ref:`checkpoint daemon <configuration_reference_checkpoint_daemon>` (snapshot daemon), which is
-a constantly running :ref:`fiber <app-fibers>`.
-The checkpoint daemon takes new snapshots every ``snapshot.by.interval`` seconds.
-When the number of snapshots reaches the limit of :ref:`snapshot.count <configuration_reference_snapshot_count>` size,
-the daemon activates Tarantool garbage collector after the new snapshot is taken.
-Tarantool garbage collector deletes the oldest snapshot file and any associated WAL files.
-
-The :ref:`snapshot.by.wal_size <configuration_reference_snapshot_by_wal_size>` option defines the maximum size in bytes
-for of all WAL files created since the last snapshot taken.
-Once this size is exceeded, the checkpoint daemon takes a snapshot and deletes the old WAL files.
-
-The configuration of the checkpoint daemon might look as follows:
-
-..  literalinclude:: /code_snippets/snippets/config/instances.enabled/persistence_snapshot/config.yaml
-    :language: yaml
-    :start-at: count:
-    :end-at: 60
-    :dedent:
-
-If the ``snapshot.by.interval`` option is set to zero, the checkpoint daemon is disabled.
-If the ``snapshot.count`` option is set to zero, the checkpoint daemon does not delete old snapshots.
 
 ..  _configuration_persistence_wal:
 
@@ -157,7 +157,7 @@ size. The configuration for this option might look as follows:
 Set a delay for the garbage collector
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In Tarantool, the :ref:`checkpoint daemon <configuration_reference_checkpoint_daemon>` (snapshot daemon)
+In Tarantool, the :ref:`checkpoint daemon <configuration_persistence_checkpoint_daemon>`
 takes new snapshots at the given interval (see :ref:`snapshot.by.interval <configuration_reference_snapshot_by_interval>`).
 After an instance restart, the daemon activates the Tarantool garbage collector that deletes the old WAL files.
 
@@ -184,3 +184,50 @@ In Tarantool Enterprise, you can store an old and new tuple for each crud operat
 The detailed description and examples of the WAL extensions are provided in the :ref:`WAL extensions <wal_extensions>` section.
 
 See also: :ref:`wal.ext.* <configuration_reference_wal_ext>` configuration options.
+
+..  _configuration_persistence_checkpoint_daemon:
+
+Checkpoint daemon
+-----------------
+
+The checkpoint daemon (snapshot daemon) is a constantly running :ref:`fiber <app-fibers>`.
+If the checkpoint daemon is enabled, it takes new :ref:`snapshot (.snap) files <index-box_persistence>` at the
+:ref:`given interval <configuration_reference_snapshot_by_interval>` automatically.
+If necessary, the checkpoint daemon also activates the Tarantool garbage collector that deletes old snapshot and WAL files.
+
+..  NOTE::
+
+    This garbage collector is distinct from the `Lua garbage collector <https://www.lua.org/manual/5.1/manual.html#2.10>`_
+    which is for Lua objects, and distinct from the Tarantool garbage collector that specializes in :ref:`handling shard buckets <vshard-gc>`.
+
+This garbage collector is called as follows:
+
+*   When the number of snapshots reaches the limit of :ref:`snapshot.count <configuration_reference_snapshot_count>` size.
+    After a new snapshot is taken, Tarantool garbage collector deletes the oldest snapshot file and any associated WAL files.
+
+*   When the size all WAL files created since the last snapshot reaches the limit of :ref:`snapshot.by.wal_size <configuration_reference_snapshot_by_wal_size>`.
+    Once this size is exceeded, the checkpoint daemon takes a snapshot, then the garbage collector deletes the old WAL files.
+
+If the checkpoint daemon deletes an old snapshot file, the Tarantool garbage collector also deletes
+any :ref:`write-ahead log (.xlog) <internals-wal>` files that meet the following conditions:
+
+*   The WAL files are older than the snapshot file.
+*   The WAL files contain information present in the snapshot file.
+
+Tarantool garbage collector also deletes obsolete vinyl ``.run`` files.
+
+The checkpoint daemon and the Tarantool garbage collector don't delete a file in the following cases:
+
+*   A **backup** is running, and the file has not been backed up
+    (see :ref:`"Hot backup" <admin-backups-hot_backup_vinyl_memtx>`).
+
+*   **Replication** is running, and the file has not been relayed to a replica
+    (see :ref:`"Replication architecture" <replication-architecture>`),
+
+*   A replica is connecting.
+
+*   A replica has fallen behind.
+    The progress of each replica is tracked; if a replica's position is far
+    from being up to date, then the server stops to give it a chance to catch up.
+    If an administrator concludes that a replica is permanently down, then the
+    correct procedure is to restart the server, or (preferably) :ref:`remove the replica from the cluster <replication-remove_instances>`.

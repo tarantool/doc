@@ -2404,9 +2404,9 @@ To learn more about the snapshots' configuration, check the :ref:`Persistence <c
 
 -   :ref:`snapshot.dir <configuration_reference_snapshot_dir>`
 -   :ref:`snapshot.snap_io_rate_limit <configuration_reference_snapshot_snap_io_rate_limit>`
--   :ref:`checkpoint daemon <configuration_reference_checkpoint_daemon>`
+-   :ref:`snapshot.count <configuration_reference_snapshot_count>`
+-   :ref:`snapshot.by.* <configuration_reference_snapshot_by>`
 
-    -   :ref:`snapshot.count <configuration_reference_snapshot_count>`
     -   :ref:`snapshot.by.interval <configuration_reference_snapshot_by_interval>`
     -   :ref:`snapshot.by.wal_size <configuration_reference_snapshot_by_wal_size>`
 
@@ -2442,52 +2442,13 @@ To learn more about the snapshots' configuration, check the :ref:`Persistence <c
     | Default: box.NULL
     | Environment variable: TT_SNAPSHOT_SNAP_IO_RATE_LIMIT
 
-..  _configuration_reference_checkpoint_daemon:
-
-Checkpoint daemon
-~~~~~~~~~~~~~~~~~
-
-The checkpoint daemon is a constantly running :ref:`fiber <app-fibers>`.
-At intervals, it may make new :ref:`snapshot (.snap) files <index-box_persistence>` and then delete old snapshot files.
-The checkpoint daemon may activate the Tarantool garbage collector that deletes old files -- snapshot and WAL files.
-
-..  NOTE::
-
-    This garbage collector is distinct from the `Lua garbage collector <https://www.lua.org/manual/5.1/manual.html#2.10>`_
-    which is for Lua objects, and distinct from the Tarantool garbage collector that specializes in :ref:`handling shard buckets <vshard-gc>`.
-
-If the checkpoint daemon deletes an old snapshot file, the Tarantool garbage collector also deletes
-any :ref:`write-ahead log (.xlog) <internals-wal>` files that meet the following conditions:
-
-*   The WAL files are older than the snapshot file.
-*   The WAL files contain information present in the snapshot file.
-
-Tarantool garbage collector also deletes obsolete vinyl ``.run`` files.
-
-The checkpoint daemon and the Tarantool garbage collector don't delete a file in the following cases:
-
-*   A **backup** is running, and the file has not been backed up
-    (see :ref:`"Hot backup" <admin-backups-hot_backup_vinyl_memtx>`).
-
-*   **Replication** is running, and the file has not been relayed to a replica
-    (see :ref:`"Replication architecture" <replication-architecture>`),
-
-*   A replica is connecting.
-
-*   A replica has fallen behind.
-    The progress of each replica is tracked; if a replica's position is far
-    from being up to date, then the server stops to give it a chance to catch up.
-    If an administrator concludes that a replica is permanently down, then the
-    correct procedure is to restart the server, or (preferably) :ref:`remove the replica from the cluster <replication-remove_instances>`.
-
-
 ..  _configuration_reference_snapshot_count:
 
 ..  confval:: snapshot.count
 
     The maximum number of snapshots that may exist on the
     :ref:`snapshot.dir <configuration_reference_snapshot_dir>` directory
-    before the checkpoint daemon deletes old snapshots.
+    before the :ref:`checkpoint daemon <configuration_persistence_checkpoint_daemon>` deletes old snapshots.
     If ``snapshot.count`` equals zero, then the checkpoint daemon
     does not delete old snapshots.
 
@@ -2514,11 +2475,16 @@ The checkpoint daemon and the Tarantool garbage collector don't delete a file in
     | Default: 2
     | Environment variable: TT_SNAPSHOT_COUNT
 
+..  _configuration_reference_snapshot_by:
+
+snapshot.by.*
+~~~~~~~~~~~~~
+
 ..  _configuration_reference_snapshot_by_interval:
 
 ..  confval:: snapshot.by.interval
 
-    The interval in seconds between actions by the checkpoint daemon.
+    The interval in seconds between actions by the :ref:`checkpoint daemon <configuration_persistence_checkpoint_daemon>`.
     If the option is set to a value greater than zero, and there is
     activity which causes change to a database, then the checkpoint daemon calls
     :doc:`box.snapshot() </reference/reference_lua/box_snapshot>` every ``snapshot.by.interval``
@@ -2546,7 +2512,7 @@ The checkpoint daemon and the Tarantool garbage collector don't delete a file in
 
     The threshold for the total size in bytes of all WAL files created since the last snapshot taken.
     Once the configured threshold is exceeded, the WAL thread notifies the
-    checkpoint daemon that it must make a new snapshot and delete old WAL files.
+    :ref:`checkpoint daemon <configuration_persistence_checkpoint_daemon>` that it must make a new snapshot and delete old WAL files.
 
     |
     | Type: integer
@@ -2581,7 +2547,7 @@ To learn more about the WAL configuration, check the :ref:`Persistence <configur
 
 ..  confval:: wal.cleanup_delay
 
-    The delay in seconds used to prevent the :ref:`checkpoint daemon <configuration_reference_checkpoint_daemon>`
+    The delay in seconds used to prevent the :ref:`checkpoint daemon <configuration_persistence_checkpoint_daemon>`
     from immediately removing :ref:`write-ahead log <internals-wal>` files after a node restart.
     This delay eliminates possible erroneous situations when the master deletes WALs
     needed by :ref:`replicas <replication-roles>` after restart.
