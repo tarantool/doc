@@ -6,17 +6,17 @@ box.schema.user.grant()
 
 .. module:: box.schema
 
-.. function:: box.schema.user.grant(username, privileges, object-type, object-name[, {options} ])
-              box.schema.user.grant(username, privileges, 'universe'[, nil, {options} ])
+.. function:: box.schema.user.grant(username, permissions, object-type, object-name[, {options} ])
+              box.schema.user.grant(username, permissions, 'universe'[, nil, {options} ])
               box.schema.user.grant(username, role-name[, nil, nil, {options} ])
 
     Grant :ref:`privileges <authentication-owners_privileges>` to a user or
     to another role.
 
     :param string   username: the name of a user to grant privileges to
-    :param string  privileges: one or more :ref:`privileges <access_control_list_privileges>` to grant to the user (for example, ``read`` or ``read,write``)
-    :param string object-type: a database :ref:`object type <access_control_list_objects>` to grant privileges to (for example, ``space``, ``role``, or ``function``)
-    :param string object-name: the name of a database object to grant privileges to
+    :param string  permissions: one or more :ref:`permissions <access_control_list_privileges>` to grant to the user (for example, ``read`` or ``read,write``)
+    :param string object-type: a database :ref:`object type <access_control_list_objects>` to grant permissions to (for example, ``space``, ``role``, or ``function``)
+    :param string object-name: the name of a database object to grant permissions to
     :param string   role-name: the name of a role to grant to the user
     :param table      options: ``grantor``, ``if_not_exists``
 
@@ -26,7 +26,7 @@ box.schema.user.grant()
     **Variation:** instead of ``object-type, object-name`` say ``universe`` which
     means 'all object-types and all objects'. In this case, object name is omitted.
 
-    **Variation:** instead of ``privilege, object-type, object-name`` say
+    **Variation:** instead of ``permissions, object-type, object-name`` say
     ``role-name`` (see section :ref:`Roles <authentication-roles>`).
 
     **Variation:** instead of
