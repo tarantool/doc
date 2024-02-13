@@ -24,7 +24,7 @@ A cluster application directory inside ``instances_enabled`` must contain the fo
     the cluster topology and settings.
     It can either contain an explicit configuration in the YAML format, or point
     to a centralized configuration storage (for Enterprise Edition).
-*   ``instances yml`` -- a file that defines the list of cluster instances to run
+*   ``instances.yml`` -- a file that defines the list of cluster instances to run
     in the current environment.
 *   (Optionally) ``*.lua`` files with code to load and run in the cluster.
 
