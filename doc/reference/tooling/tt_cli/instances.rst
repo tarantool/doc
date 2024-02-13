@@ -7,7 +7,8 @@ Listing enabled applications
 
     $ tt instances
 
-``tt instances`` shows the list of enabled applications.
+``tt instances`` shows the list of enabled applications and their instances
+in the current environment.
 
 .. note::
 
@@ -19,7 +20,7 @@ Listing enabled applications
 Example
 --------
 
-*   Show the list of enabled applications:
+*   Show the list of enabled applications and their instances:
 
     ..  code-block:: console
 

@@ -7,7 +7,7 @@ Running code in a Tarantool instance
 
     $ tt run [SCRIPT|-e EXPR] [OPTION ...]
 
-``tt run`` executes Lua code in a Tarantool instance.
+``tt run`` executes Lua code in a new Tarantool instance.
 
 Options
 -------

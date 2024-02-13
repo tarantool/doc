@@ -11,7 +11,7 @@ Exporting data
 
 ..  code-block:: console
 
-    $ tt [crud] export URI FILE SPACE [EXPORT_OPTION ...]
+    $ tt [crud] export URI SPACE:FILE ... [EXPORT_OPTION ...]
 
 ``tt [crud] export`` exports a space's data to a file.
 The ``crud`` command is optional and can be used to export a cluster's data by using the `CRUD <https://github.com/tarantool/crud>`_ module. Without ``crud``, data is exported using the :ref:`box.space <box_space>` API.
@@ -43,7 +43,7 @@ The command below exports data of the ``customers`` space to the ``customers.csv
 
 .. code-block:: console
 
-    $ tt crud export localhost:3301 customers.csv customers
+    $ tt crud export localhost:3301 customers:customers.csv
 
 If the ``customers`` space has five fields (``id``, ``bucket_id``, ``firstname``, ``lastname``, and ``age``), the file with exported data might look like this:
 
@@ -70,7 +70,7 @@ To export data with a space's field names in the first row, use the ``--header``
 
 .. code-block:: console
 
-    $ tt crud export localhost:3301 customers.csv customers \
+    $ tt crud export localhost:3301 customers:customers.csv  \
                      --header
 
 In this case, field values start from the second row, for example:
@@ -95,7 +95,7 @@ For example, the command below exports compound values serialized in JSON:
 
 .. code-block:: console
 
-    $ tt crud export localhost:3301 customers.csv customers \
+    $ tt crud export localhost:3301 customers:customers.csv  \
                      --compound-value-format json
 
 

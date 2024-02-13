@@ -176,14 +176,14 @@ flag to disable the interactive input. In this case, the values are searched in 
         version=2
 
 If a variable isn't initialized in any of these ways, the default value
-from the manifest will be used.
+from the manifest is used.
 
 You can combine different ways of passing variables in a single call of ``tt create``.
 
 Application directory
 ~~~~~~~~~~~~~~~~~~~~~
 
-By default, the application will appear in the directory named after the provided
+By default, the application appears in the directory named after the provided
 application name (``--name`` value).
 
 To change the application location, use the ``-dst`` flag.
@@ -191,17 +191,17 @@ To change the application location, use the ``-dst`` flag.
 Examples
 --------
 
-*   Create the application ``app1`` from the ``simple_app`` template in the current directory:
+*   Create the application ``app1`` from the ``simple_app`` user-defined template in the current directory:
 
     ..  code-block:: console
 
         $ tt create simple_app --name app1
 
 
-*   Create the ``app1`` application in ``/opt/tt/apps/``, set the ``user_name``
-    variable to ``admin``, force rewrite the application directory if it already exists.
+*   Create the ``app1`` application in ``/opt/tt/apps/`` from the built-in ``vshard_cluster`` template,
+    force rewrite the application directory if it already exists.
     User interaction is disabled.
 
     ..  code-block:: console
 
-        $ tt create cartridge --name app1 --var user_name=admin -f --non-interactive -dst /opt/tt/apps/
+        $ tt create vshard_cluster --name app1 -f --non-interactive -dst /opt/tt/apps/
