@@ -36,7 +36,7 @@ There might be different types of users, for example:
 
 There are two built-in users in Tarantool:
 
-*   ``admin`` is a user with all available administrative permissions.
+*   ``admin`` is a user with all available administrative privileges.
     If the connection uses an :ref:`admin-console port <admin-security>`, the current user is ``admin``.
     For example, ``admin`` is used when connecting to an instance using :ref:`tt connect <tt-connect>` locally using the instance name:
 
@@ -46,7 +46,7 @@ There are two built-in users in Tarantool:
 
     To allow remote :ref:`binary port <admin-security>` connections using the ``admin`` user, you need to :ref:`set a password <access_control_user_changing_passwords>`.
 
-*   ``guest`` is a user with minimum permissions used by default for remote :ref:`binary port <admin-security>` connections.
+*   ``guest`` is a user with minimum privileges used by default for remote :ref:`binary port <admin-security>` connections.
     For example, ``guest`` is used when connecting to an instance using :ref:`tt connect <tt-connect>` using the IP address and port without specifying the name of a user:
 
     ..  code-block:: console
@@ -366,7 +366,7 @@ In the example below, write access to the ``books`` space is revoked:
     :end-before: End: Revoke space reading
     :dedent:
 
-Revoking the ``session`` permission from ``universe`` can be used to disallow a user to connect to a Tarantool instance:
+Revoking the ``session`` permission to ``universe`` can be used to disallow a user to connect to a Tarantool instance:
 
 ..  literalinclude:: /code_snippets/test/access_control/grant_user_privileges_test.lua
     :language: lua
@@ -678,7 +678,7 @@ In the example below, ``testuser`` gets privileges allowing them to create :ref:
     box.schema.user.grant('testuser','read,write','space','_space_sequence')
     box.schema.user.grant('testuser','write', 'space', '_index')
 
-To allow ``testuser`` to alter indexes in the ``writers`` space, grant the permissions below.
+To allow ``testuser`` to alter indexes in the ``writers`` space, grant the privileges below.
 This example assumes that indexes in the ``writers`` space are not created by ``testuser``.
 
 ..  code-block:: lua
@@ -689,7 +689,7 @@ This example assumes that indexes in the ``writers`` space are not created by ``
     box.schema.user.grant('testuser','read','space','_space_sequence')
     box.schema.user.grant('testuser','write','space','_index')
 
-If ``testuser`` created indexes in the ``writers`` space, granting the following permissions is enough to alter indexes:
+If ``testuser`` created indexes in the ``writers`` space, granting the following privileges is enough to alter indexes:
 
 ..  code-block:: lua
 
@@ -791,7 +791,7 @@ To let ``testuser`` drop a function, grant them the following privileges:
 Executing functions
 *******************
 
-To give the ability to execute a function named 'sum', grant the following permissions:
+To give the ability to execute a function named 'sum', grant the following privileges:
 
 ..  code-block:: lua
 
