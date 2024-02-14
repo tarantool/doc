@@ -51,16 +51,17 @@ A Tarantool log rotation configuration for ``logrotate`` can look like this:
 
 .. code-block:: text
 
-    /var/log/tarantool/*.log {
+    # /var/log/tarantool/<env>/<app>/<instance>/*.log
+    /var/log/tarantool/*/*/*/*.log {
         daily
         size 512k
         missingok
         rotate 10
         compress
         delaycompress
-        create 0640 tarantool adm
+        sharedscripts # Run tt logrotate only once after all logs are rotated.
         postrotate
-            tt -c <tt_config_file> logrotate
+            /usr/bin/tt -S logrotate
         endscript
     }
 
