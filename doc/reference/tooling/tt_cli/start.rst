@@ -41,31 +41,16 @@ For more information about Tarantool application layout, see :ref:`admin-instanc
 Examples
 --------
 
-*   Start instances of the application stored in the ``app/`` directory inside
+*   Start instances of the application stored in the ``app`` directory inside
     ``instances_enabled`` in accordance with its ``instances.yml``:
 
     ..  code-block:: console
 
         $ tt start app
 
-*   Start only the ``master`` instance of the application stored in the ``app/``
-    directory inside ``instances_enabled``:
+*   Start the ``router`` instance of the ``app`` application:
 
     ..  code-block:: console
 
-        $ tt start app:master
+        $ tt start app:router
 
-
-Single instances
-----------------
-
-``tt start`` can start single Tarantool instances without cluster configurations.
-Such instances are based on Lua code provided in files inside the ``instances_enabled``
-directory.
-
-Example: start an instance with the ``app.lua`` application from the ``instances_enabled``
-directory:
-
-..  code-block:: console
-
-    $ tt start app

@@ -198,7 +198,7 @@ Examples
         $ tt create simple_app --name app1
 
 
-*   Create the ``app1`` application in ``/opt/tt/apps/`` from the built-in ``vshard_cluster`` template,
+*   Create the ``app1`` application in ``/opt/tt/apps`` from the built-in ``vshard_cluster`` template,
     force rewrite the application directory if it already exists.
     User interaction is disabled.
 

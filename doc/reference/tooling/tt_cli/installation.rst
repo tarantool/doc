@@ -60,7 +60,7 @@ To build ``tt`` from sources:
 
       git clone https://github.com/tarantool/tt --recursive
 
-3.  Go to the ``tt/`` directory:
+3.  Go to the ``tt`` directory:
 
     ..  code-block:: bash
 
