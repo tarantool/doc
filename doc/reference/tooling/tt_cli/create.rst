@@ -108,7 +108,7 @@ Variables
 
 Templates variables are replaced with their values provided upon the instantiation.
 
-All templates have the ``name`` variable. Its value is taken from the ``--name`` flag.
+All templates have the ``name`` variable. Its value is taken from the ``--name`` option.
 
 To add other variables, define them in the ``vars`` section of the template manifest.
 A variable can have the following attributes:
@@ -151,17 +151,17 @@ Examples:
 
 Variables receive their values during the template instantiation. By default, ``tt create``
 asks you to provide the values interactively. You can use the ``-s`` (or ``--non-interactive``)
-flag to disable the interactive input. In this case, the values are searched in the following order:
+option to disable the interactive input. In this case, the values are searched in the following order:
 
-*   In the ``--var`` flag. Pass a string of the ``var=value`` format after the ``--var``
-    flag. You can pass multiple variables, each after a separate ``--var`` flag:
+*   In the ``--var`` option. Pass a string of the ``var=value`` format after the ``--var``
+    option. You can pass multiple variables, each after a separate ``--var`` option:
 
     ..  code-block:: console
 
         $ tt create template app --var user_name=admin
 
 *   In a file. Specify ``var=value`` pairs in a plain text file, each on a new line, and
-    pass it as the value of the ``--vars-file`` flag:
+    pass it as the value of the ``--vars-file`` option:
 
     ..  code-block:: console
 
@@ -176,32 +176,32 @@ flag to disable the interactive input. In this case, the values are searched in 
         version=2
 
 If a variable isn't initialized in any of these ways, the default value
-from the manifest will be used.
+from the manifest is used.
 
 You can combine different ways of passing variables in a single call of ``tt create``.
 
 Application directory
 ~~~~~~~~~~~~~~~~~~~~~
 
-By default, the application will appear in the directory named after the provided
+By default, the application appears in the directory named after the provided
 application name (``--name`` value).
 
-To change the application location, use the ``-dst`` flag.
+To change the application location, use the ``-dst`` option.
 
 Examples
 --------
 
-*   Create the application ``app1`` from the ``simple_app`` template in the current directory:
+*   Create the application ``app1`` from the ``simple_app`` user-defined template in the current directory:
 
     ..  code-block:: console
 
         $ tt create simple_app --name app1
 
 
-*   Create the ``app1`` application in ``/opt/tt/apps/``, set the ``user_name``
-    variable to ``admin``, force rewrite the application directory if it already exists.
+*   Create the ``app1`` application in ``/opt/tt/apps`` from the built-in ``vshard_cluster`` template,
+    force rewrite the application directory if it already exists.
     User interaction is disabled.
 
     ..  code-block:: console
 
-        $ tt create cartridge --name app1 --var user_name=admin -f --non-interactive -dst /opt/tt/apps/
+        $ tt create vshard_cluster --name app1 -f --non-interactive -dst /opt/tt/apps/

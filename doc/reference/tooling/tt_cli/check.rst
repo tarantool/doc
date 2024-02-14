@@ -5,52 +5,32 @@ Checking an application file
 
 ..  code-block:: console
 
-    $ tt check {INSTANCE | APPLICATION[:APP_INSTANCE]}
+    $ tt check {FILEPATH | APPLICATION[:APP_INSTANCE]}
 
-``tt check`` checks the specified Tarantool application or instance for syntax errors.
-
-Details
--------
-
-``tt`` searches for ``APP_FILE`` inside the ``instances_enabled`` directory
-specified in the :ref:`tt configuration file <tt-config_file_app>`. ``APP_FILE`` can be:
-
-*   the name of an application file without the ``.lua`` extension.
-*   the name of a directory containing the ``init.lua`` file. In this case, ``init.lua`` is checked.
-
+``tt check`` checks the syntax correctness of Lua files within Tarantool applications
+or separate Lua scripts. The files must be stored inside the ``instances_enabled``
+directory specified in the :ref:`tt configuration file <tt-config_file_app>`.
 
 Examples
 --------
 
-Single instance
-~~~~~~~~~~~~~~~
+To check all Lua files in an application directory at once, specify the directory name:
 
-*   Check the syntax of the ``app.lua`` file from the ``instances_enabled`` directory:
+..  code-block:: console
 
-    ..  code-block:: console
+    $ tt check app
 
-        $ tt check app
+To check a single Lua file from an application directory, add the path to this file:
+
+..  code-block:: console
+
+    $ tt check app/router
+    # or
+    $ tt check app/router.lua
+
+.. note::
+
+    The ``.lua`` extension can be omitted.
 
 
-*   Check the syntax of the ``init.lua`` file from the ``instance1/`` directory inside ``instances_enabled``:
 
-    ..  code-block:: console
-
-        $ tt check instance1
-
-Multiple instances
-~~~~~~~~~~~~~~~~~~
-
-*   Check all source files of the application stored in the ``app/`` directory inside
-    ``instances_enabled`` in accordance with the :ref:`instances configuration <tt-instances>`:
-
-    ..  code-block:: console
-
-        $ tt check app
-
-*   Check the source of the ``master`` instance of the application stored in the
-    ``app/`` directory inside ``instances_enabled``:
-
-    ..  code-block:: console
-
-        $ tt check app:master

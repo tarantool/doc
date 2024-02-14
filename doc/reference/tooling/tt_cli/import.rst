@@ -11,9 +11,9 @@ Importing data
 
 .. code-block:: console
 
-    $ tt [crud] import URI FILE SPACE [IMPORT_OPTION ...]
+    $ tt [crud] import URI FILE:SPACE [IMPORT_OPTION ...]
     # or
-    $ tt [crud] import URI - SPACE < FILE [IMPORT_OPTION ...]
+    $ tt [crud] import URI :SPACE < FILE [IMPORT_OPTION ...]
 
 ``tt [crud] import`` imports data from a file to a space.
 The ``crud`` command is optional and can be used to import data to a cluster by using the `CRUD <https://github.com/tarantool/crud>`_ module. Without ``crud``, data is imported using the :ref:`box.space <box_space>` API.
@@ -62,7 +62,7 @@ If the target ``customers`` space has fields with the same names, you can import
 
 .. code-block:: console
 
-    $ tt crud import localhost:3301 customers.csv customers \
+    $ tt crud import localhost:3301 customers.csv:customers \
                      --header \
                      --match=header
 
@@ -92,7 +92,7 @@ you can configure mapping as follows:
 
 .. code-block:: console
 
-    $ tt crud import localhost:3301 customers.csv customers \
+    $ tt crud import localhost:3301 customers.csv:customers \
                      --header \
                      --match "id=customer_id;firstname=name;lastname=surname;age=customer_age"
 
@@ -100,7 +100,7 @@ Similarly, you can configure mapping using numeric field positions in the input 
 
 .. code-block:: console
 
-    $ tt crud import localhost:3301 customers.csv customers \
+    $ tt crud import localhost:3301 customers.csv:customers \
                      --header \
                      --match "id=1;firstname=2;lastname=3;age=4"
 
@@ -119,7 +119,7 @@ In the example below, values already existing in the space are replaced with new
 
 .. code-block:: console
 
-    $ tt crud import localhost:3301 customers.csv customers \
+    $ tt crud import localhost:3301 customers.csv:customers \
                      --on-exist replace
 
 .. _tt-import-parsing-error:
@@ -131,7 +131,7 @@ To skip rows whose data cannot be parsed correctly, use the ``--on-error`` optio
 
 .. code-block:: console
 
-    $ tt crud import localhost:3301 customers.csv customers \
+    $ tt crud import localhost:3301 customers.csv:customers \
                      --on-error skip
 
 
@@ -156,7 +156,7 @@ Options
 
     .. code-block:: console
 
-        $ tt crud import localhost:3301 customers.csv customers \
+        $ tt crud import localhost:3301 customers.csv:customers \
                          --delimiter tab
 
     .. NOTE::
