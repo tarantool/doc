@@ -18,6 +18,46 @@ For example: ``2.11.1-0-gc42d9735b-r589``.
 -   ``TARANTOOL_BASE_VERSION`` is the Community version which the Enterprise version is based on.
 -   ``REVISION`` is the SDK revision. Besides Tarantool itself, it includes the ``tt`` utility, a set of open and closed source modules, and examples. Learn more from :ref:`Package contents <enterprise-package-contents>`.
 
+616
+---
+
+-   Updated crud to `1.4.3 <https://github.com/tarantool/crud/releases/tag/1.4.3>`__.
+-   Updated luatest to `1.0.1 <https://github.com/tarantool/luatest/releases/tag/1.0.1>`__.
+-   Updated migrations to `0.7.0 <https://github.com/tarantool/migrations/releases/tag/0.7.0>`__.
+-   Updated tt-ee to `2.1.2 <https://github.com/tarantool/tt-ee/releases/tag/v2.1.2>`__.
+
+613
+---
+
+-   Updated cartridge to `2.8.5 <https://github.com/tarantool/cartridge/releases/tag/2.8.5>`__.
+-   Updated crud to `1.4.2 <https://github.com/tarantool/crud/releases/tag/1.4.2>`__.
+-   Added frontend-core `8.2.2 <https://github.com/tarantool/frontend-core/releases/tag/8.2.2>`__.
+-   Updated membership to `2.4.2 <https://github.com/tarantool/membership/releases/tag/2.4.2>`__.
+-   Updated sideservice to `0.2.0 <https://github.com/tarantool/sideservice/releases/tag/0.2.0>`__.
+-   Updated tt-ee to `2.1.1 <https://github.com/tarantool/tt-ee/releases/tag/v2.1.1>`__.
+-   Updated vshard to `0.1.26 <https://github.com/tarantool/vshard/releases/tag/0.1.26>`__.
+
+609
+---
+
+-   Updated httpgo to `0.2.1 <https://github.com/tarantool/httpgo/releases/tag/0.2.1>`__.
+-   Added httpgo-crud `0.1.0 <https://github.com/tarantool/httpgo-crud/releases/tag/0.1.0>`__.
+-   Updated ``tarantool-2.11`` to 2.11.2.
+
+606
+---
+
+-   Updated ``tarantool-master`` to 3.0.0-beta1.
+
+605
+---
+
+-   Updated cartridge to `2.8.4 <https://github.com/tarantool/cartridge/releases/tag/2.8.4>`__.
+-   Updated crud to `1.4.1 <https://github.com/tarantool/crud/releases/tag/1.4.1>`__.
+-   Updated ddl to `1.6.5 <https://github.com/tarantool/ddl/releases/tag/1.6.5>`__.
+-   Added httpgo `0.2.0 <https://github.com/tarantool/httpgo/releases/tag/0.2.0>`__.
+-   Updated tt-ee to `2.0.0 <https://github.com/tarantool/tt-ee/releases/tag/v2.0.0>`__.
+
 598
 ---
 
