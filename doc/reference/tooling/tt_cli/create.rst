@@ -108,7 +108,7 @@ Variables
 
 Templates variables are replaced with their values provided upon the instantiation.
 
-All templates have the ``name`` variable. Its value is taken from the ``--name`` flag.
+All templates have the ``name`` variable. Its value is taken from the ``--name`` option.
 
 To add other variables, define them in the ``vars`` section of the template manifest.
 A variable can have the following attributes:
@@ -151,17 +151,17 @@ Examples:
 
 Variables receive their values during the template instantiation. By default, ``tt create``
 asks you to provide the values interactively. You can use the ``-s`` (or ``--non-interactive``)
-flag to disable the interactive input. In this case, the values are searched in the following order:
+option to disable the interactive input. In this case, the values are searched in the following order:
 
-*   In the ``--var`` flag. Pass a string of the ``var=value`` format after the ``--var``
-    flag. You can pass multiple variables, each after a separate ``--var`` flag:
+*   In the ``--var`` option. Pass a string of the ``var=value`` format after the ``--var``
+    option. You can pass multiple variables, each after a separate ``--var`` option:
 
     ..  code-block:: console
 
         $ tt create template app --var user_name=admin
 
 *   In a file. Specify ``var=value`` pairs in a plain text file, each on a new line, and
-    pass it as the value of the ``--vars-file`` flag:
+    pass it as the value of the ``--vars-file`` option:
 
     ..  code-block:: console
 
@@ -186,7 +186,7 @@ Application directory
 By default, the application appears in the directory named after the provided
 application name (``--name`` value).
 
-To change the application location, use the ``-dst`` flag.
+To change the application location, use the ``-dst`` option.
 
 Examples
 --------

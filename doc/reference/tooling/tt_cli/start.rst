@@ -5,7 +5,7 @@ Starting Tarantool applications
 
 ..  code-block:: console
 
-    $ tt start {APPLICATION[:APP_INSTANCE] | SINGLE_INSTANCE}
+    $ tt start APPLICATION[:APP_INSTANCE]
 
 ``tt start`` starts Tarantool applications. The application files must be stored
 inside the ``instances_enabled`` directory specified in the :ref:`tt configuration file <tt-config_file_app>`.
@@ -14,8 +14,10 @@ For detailed instructions on preparing and running Tarantool applications, see
 
 When called without arguments, starts all enabled applications in the current environment.
 
-Cluster application
--------------------
+See also: :ref:`tt-stop`, :ref:`tt-restart`, :ref:`tt-status`.
+
+Application layout
+------------------
 
 ``tt start`` can start entire Tarantool clusters based on their YAML configurations.
 A cluster application directory inside ``instances_enabled`` must contain the following files:
@@ -30,7 +32,14 @@ A cluster application directory inside ``instances_enabled`` must contain the fo
 
 For more information about Tarantool application layout, see :ref:`admin-instance-environment-overview`.
 
-Examples:
+.. note::
+
+    ``tt`` also supports Tarantool applications with :ref:`configuration in code <configuration_code>`,
+    which is considered a legacy approach since Tarantool 3.0. For information
+    about using ``tt`` with such applications, refer to the Tarantool 2.11 documentation.
+
+Examples
+--------
 
 *   Start instances of the application stored in the ``app/`` directory inside
     ``instances_enabled`` in accordance with its ``instances.yml``:

@@ -5,7 +5,7 @@ Cleaning instance files
 
 ..  code-block:: console
 
-    $ tt clean {APPLICATION[:APP_INSTANCE]} [OPTION ...]
+    $ tt clean APPLICATION[:APP_INSTANCE] [OPTION ...]
 
 ``tt clean`` cleans stored files of Tarantool instances: logs, snapshots, and
 other files. To avoid accidental deletion of files, ``tt clean`` shows
