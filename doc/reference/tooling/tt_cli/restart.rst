@@ -38,7 +38,7 @@ Examples
         This call starts all application instances specified in its ``instances.yml``,
         even those that were not running before the call.
 
- *   Restart only the ``master`` instance of the ``app`` application  with automatic confirmation:
+*   Restart only the ``master`` instance of the ``app`` application  with automatic confirmation:
 
     ..  code-block:: console
 
