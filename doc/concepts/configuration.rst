@@ -395,7 +395,7 @@ Access control
 ~~~~~~~~~~~~~~
 
 The ``credentials`` section allows you to create users and grant them the specified privileges.
-In the example below, a password for the built-in 'admin' user is set:
+In the example below, a ``dbadmin`` user with the specified password is created:
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/credentials/config.yaml
     :language: yaml

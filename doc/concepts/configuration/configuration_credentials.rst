@@ -7,8 +7,7 @@ Tarantool enables flexible management of access to various database resources by
 You can read more about the main concepts of Tarantool access control system in the :ref:`authentication` section.
 
 This topic describes how to create users and grant them the specified privileges in the :ref:`credentials <configuration_reference_credentials>` section of a YAML configuration.
-This might be used to create specific users used in communications between Tarantool instances.
-For example, such users can be created to maintain :ref:`replication <replication-master_replica_configuring_credentials>` and sharding in a Tarantool cluster.
+For example, you can define users with the ``replication`` and ``sharding`` roles to maintain :ref:`replication <replication-master_replica_configuring_credentials>` and sharding in a Tarantool cluster.
 
 
 .. _configuration_credentials_managing_users_roles:
@@ -70,7 +69,7 @@ Then, you can assign this role to a user using :ref:`credentials.users.\<usernam
     :end-at: [ writers_space_reader ]
     :dedent:
 
-Apart from assigning a role to a user, you can grant specific privileges directly using :ref:`credentials.users.\<username\>.privileges <configuration_reference_credentials_users_name_privileges>`.
+You can grant specific privileges directly using :ref:`credentials.users.\<username\>.privileges <configuration_reference_credentials_users_name_privileges>`.
 In this example, ``sampleuser`` gets privileges to select and modify data in the ``books`` space:
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/credentials/config.yaml

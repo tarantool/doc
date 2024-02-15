@@ -803,7 +803,7 @@ credentials.users.*
 
 .. confval:: <user_or_role_name>.privileges.permissions
 
-    Permissions assigned to this user or a user with this role.
+    :ref:`Permissions <access_control_list_privileges>` assigned to this user or a user with this role.
 
     **Example:**
 
