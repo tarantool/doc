@@ -395,18 +395,15 @@ Access control
 ~~~~~~~~~~~~~~
 
 The ``credentials`` section allows you to create users and grant them the specified privileges.
-In the example below, there are two users:
+In the example below, a ``dbadmin`` user with the specified password is created:
 
-*   The *replicator* user is used for replication and has a corresponding role.
-*   The *storage* user has the ``sharding`` role.
-
-..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster/config.yaml
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/credentials/config.yaml
     :language: yaml
     :start-at: credentials:
-    :end-at: roles: [sharding]
+    :end-at: T0p_Secret
     :dedent:
 
-To learn more, see the :ref:`Access control <authentication>` section.
+To learn more, see the :ref:`configuration_credentials` section.
 
 
 .. _configuration_options_memory:
@@ -451,5 +448,6 @@ To learn more about the persistence mechanism in Tarantool, see the :ref:`Persis
     configuration/configuration_etcd
     configuration/configuration_code
     configuration/configuration_connections
+    configuration/configuration_credentials
     configuration/configuration_authentication
     .. configuration/configuration_migrating

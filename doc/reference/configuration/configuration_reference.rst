@@ -332,6 +332,7 @@ The ``config`` section defines various parameters related to centralized configu
     ``config`` can be defined in the global :ref:`scope <configuration_scopes>` only.
 
 * :ref:`config.reload <configuration_reference_config_reload>`
+* :ref:`config.context.* <configuration_reference_config_context_options>`
 * :ref:`config.etcd.* <configuration_reference_config_etcd>`
 
 .. _configuration_reference_config_reload:
@@ -353,6 +354,105 @@ The ``config`` section defines various parameters related to centralized configu
     | Possible values: 'auto', 'manual'
     | Default: 'auto'
     | Environment variable: TT_CONFIG_RELOAD
+
+
+.. _configuration_reference_config_context_options:
+
+config.context.*
+~~~~~~~~~~~~~~~~
+
+This section describes options related to loading configuration settings from external storage such as external files or environment variables.
+
+*   :ref:`config.context <configuration_reference_config_context>`
+
+    * :ref:`config.context.\<name\> <configuration_reference_config_context_name>`
+
+        * :ref:`config.context.\<name\>.env <configuration_reference_config_context_name_env>`
+        * :ref:`config.context.\<name\>.from <configuration_reference_config_context_name_from>`
+        * :ref:`config.context.\<name\>.file <configuration_reference_config_context_name_file>`
+        * :ref:`config.context.\<name\>.env <configuration_reference_config_context_name_rstrip>`
+
+..  _configuration_reference_config_context:
+
+..  confval:: config.context
+
+    **Since:** :doc:`3.0.0 </release/3.0.0>`.
+
+    Specify how to load settings from external storage.
+    For example, this option can be used to load passwords from safe storage.
+    You can find examples in the :ref:`configuration_credentials_loading_secrets` section.
+
+    |
+    | Type: map
+    | Default: nil
+    | Environment variable: TT_CONFIG_CONTEXT
+
+
+..  _configuration_reference_config_context_name:
+
+..  confval:: config.context.<name>
+
+    The name of an entity that identifies a configuration value to load.
+
+..  _configuration_reference_config_context_name_env:
+
+..  confval:: config.context.<name>.env
+
+    The name of an environment variable to load a configuration value from.
+    To load a configuration value from an environment variable, set :ref:`config.context.\<name\>.from <configuration_reference_config_context_name_from>` to ``env``.
+
+    **Example:**
+
+    In this example, passwords are loaded from the ``DBADMIN_PASSWORD`` and ``SAMPLEUSER_PASSWORD`` environment variables:
+
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/credentials_context_env/config.yaml
+        :language: yaml
+        :start-at: config:
+        :end-before: credentials:
+        :dedent:
+
+    See also: :ref:`configuration_credentials_loading_secrets`.
+
+
+..  _configuration_reference_config_context_name_from:
+
+..  confval:: config.context.<name>.from
+
+    The type of storage to load a configuration value from.
+    There are the following storage types:
+
+    *   ``file``: load a configuration value from a file.
+        In this case, you need to specify the path to the file using :ref:`config.context.\<name\>.file <configuration_reference_config_context_name_file>`.
+    *   ``env``: load a configuration value from an environment variable.
+        In this case, specify the environment variable name using :ref:`config.context.\<name\>.env <configuration_reference_config_context_name_env>`.
+
+
+..  _configuration_reference_config_context_name_file:
+
+..  confval:: config.context.<name>.file
+
+    The path to a file to load a configuration value from.
+    To load a configuration value from a file, set :ref:`config.context.\<name\>.from <configuration_reference_config_context_name_from>` to ``file``.
+
+    **Example:**
+
+    In this example, passwords are loaded from the ``dbadmin_password.txt`` and ``sampleuser_password.txt`` files:
+
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/credentials_context_file/config.yaml
+        :language: yaml
+        :start-at: config:
+        :end-before: credentials:
+        :dedent:
+
+    See also: :ref:`configuration_credentials_loading_secrets`.
+
+
+..  _configuration_reference_config_context_name_rstrip:
+
+..  confval:: config.context.<name>.rstrip
+
+    (Optional) Whether to strip whitespace characters and newlines from the end of data.
+
 
 
 
@@ -545,115 +645,230 @@ This section describes options related to :ref:`storing configuration in etcd <c
 credentials
 -----------
 
-..  TODO: https://github.com/tarantool/doc/issues/3666
+The ``credentials`` section allows you to create users and grant them the specified privileges.
+Learn more in :ref:`configuration_credentials`.
 
 .. NOTE::
 
     ``credentials`` can be defined in any :ref:`scope <configuration_scopes>`.
 
 
--   :ref:`credentials.roles.* <configuration_reference_credentials_roles>`
--   :ref:`credentials.users.* <configuration_reference_credentials_users>`
--   :ref:`<user_or_role_name>.privileges.* <configuration_reference_credentials_privileges>`
+*   :ref:`credentials.roles.* <configuration_reference_credentials_roles_options>`
+*   :ref:`credentials.users.* <configuration_reference_credentials_users_options>`
+*   :ref:`<user_or_role_name>.privileges.* <configuration_reference_credentials_privileges_options>`
 
+
+..  _configuration_reference_credentials_roles_options:
+
+credentials.roles.*
+~~~~~~~~~~~~~~~~~~~
+
+*   :ref:`credentials.roles <configuration_reference_credentials_roles>`
+
+    *   :ref:`credentials.roles.\<role_name\>.roles <configuration_reference_credentials_roles_name_roles>`
+    *   :ref:`credentials.roles.\<role_name\>.privileges <configuration_reference_credentials_roles_name_privileges>`
 
 .. _configuration_reference_credentials_roles:
 
 .. confval:: credentials.roles
 
+    An array of :ref:`roles <access_control_concepts_roles>` that can be granted to users or other roles.
+
+    **Example:**
+
+    In the example below, the ``writers_space_reader`` role gets privileges to select data in the ``writers`` space:
+
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/credentials/config.yaml
+        :language: yaml
+        :start-after: spaces: [ books ]
+        :end-at: spaces: [ writers ]
+        :dedent:
+
+    See also: :ref:`configuration_credentials_managing_users_roles`.
+
     | Type: map
     | Default: nil
     | Environment variable: TT_CREDENTIALS_ROLES
 
+.. _configuration_reference_credentials_roles_name_roles:
+
+.. confval:: credentials.roles.<role_name>.roles
+
+    An array of :ref:`roles <access_control_concepts_roles>` granted to this role.
+
+.. _configuration_reference_credentials_roles_name_privileges:
+
+.. confval:: credentials.roles.<role_name>.privileges
+
+    An array of :ref:`privileges <authentication-owners_privileges>` granted to this role.
+
+    See :ref:`\<user_or_role_name\>.privileges.* <configuration_reference_credentials_privileges_options>`.
+
+
+..  _configuration_reference_credentials_users_options:
+
+credentials.users.*
+~~~~~~~~~~~~~~~~~~~
+
+*   :ref:`credentials.users <configuration_reference_credentials_users>`
+
+    *   :ref:`credentials.users.\<username\>.password <configuration_reference_credentials_users_name_password>`
+    *   :ref:`credentials.users.\<username\>.roles <configuration_reference_credentials_users_name_roles>`
+    *   :ref:`credentials.users.\<username\>.privileges <configuration_reference_credentials_users_name_privileges>`
 
 .. _configuration_reference_credentials_users:
 
 .. confval:: credentials.users
+
+    An array of :ref:`users <access_control_concepts_users>`.
+
+    **Example:**
+
+    In this example, ``sampleuser`` gets the following privileges:
+
+    *   Privileges granted to the ``writers_space_reader`` role.
+    *   Privileges to select and modify data in the ``books`` space.
+
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/credentials/config.yaml
+        :language: yaml
+        :start-at: sampleuser:
+        :end-at: [ books ]
+        :dedent:
+
+    See also: :ref:`configuration_credentials_managing_users_roles`.
 
     | Type: map
     | Default: nil
     | Environment variable: TT_CREDENTIALS_USERS
 
 
-
-..  _configuration_reference_credentials_role:
-
-credentials.roles.*
-~~~~~~~~~~~~~~~~~~~
-
-.. _configuration_reference_credentials_roles_name_roles:
-
-.. confval:: credentials.roles.<role_name>.roles
-
-
-.. _configuration_reference_credentials_roles_name_privileges:
-
-.. confval:: credentials.roles.<role_name>.privileges
-
-    See :ref:`privileges <configuration_reference_credentials_privileges>`.
-
-
-..  _configuration_reference_credentials_user:
-
-credentials.users.*
-~~~~~~~~~~~~~~~~~~~
-
-
 .. _configuration_reference_credentials_users_name_password:
 
 .. confval:: credentials.users.<username>.password
 
+    A user's password.
+
+    **Example:**
+
+    In the example below, a password for the ``dbadmin`` user is set:
+
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/credentials/config.yaml
+        :language: yaml
+        :start-at: credentials:
+        :end-at: T0p_Secret
+        :dedent:
+
+    See also: :ref:`configuration_credentials_loading_secrets`.
 
 .. _configuration_reference_credentials_users_name_roles:
 
 .. confval:: credentials.users.<username>.roles
 
+    An array of :ref:`roles <access_control_concepts_roles>` granted to this user.
 
 .. _configuration_reference_credentials_users_name_privileges:
 
 .. confval:: credentials.users.<username>.privileges
 
-    See :ref:`privileges <configuration_reference_credentials_privileges>`.
+    An array of :ref:`privileges <authentication-owners_privileges>` granted to this user.
+
+    See :ref:`\<user_or_role_name\>.privileges.* <configuration_reference_credentials_privileges_options>`.
 
 
-..  _configuration_reference_credentials_privileges:
+..  _configuration_reference_credentials_privileges_options:
 
 <user_or_role_name>.privileges.*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. _configuration_reference_credentials_users_name_privileges_permissions:
+*   :ref:`\<user_or_role_name\>.privileges <configuration_reference_credentials_privileges>`
+
+    *   :ref:`\<user_or_role_name\>.privileges.permissions <configuration_reference_credentials_privileges_permissions>`
+    *   :ref:`\<user_or_role_name\>.privileges.spaces <configuration_reference_credentials_privileges_spaces>`
+    *   :ref:`\<user_or_role_name\>.privileges.functions <configuration_reference_credentials_privileges_functions>`
+    *   :ref:`\<user_or_role_name\>.privileges.sequences <configuration_reference_credentials_privileges_sequences>`
+    *   :ref:`\<user_or_role_name\>.privileges.lua_eval <configuration_reference_credentials_privileges_lua_eval>`
+    *   :ref:`\<user_or_role_name\>.privileges.lua_call <configuration_reference_credentials_privileges_lua_call>`
+    *   :ref:`\<user_or_role_name\>.privileges.sql <configuration_reference_credentials_privileges_sql>`
+
+..  _configuration_reference_credentials_privileges:
+
+.. confval:: <user_or_role_name>.privileges
+
+    Privileges that can be granted to a user or role using the following options:
+
+    *   :ref:`credentials.users.\<username\>.privileges <configuration_reference_credentials_users_name_privileges>`
+    *   :ref:`credentials.roles.\<role_name\>.privileges <configuration_reference_credentials_roles_name_privileges>`
+
+..  _configuration_reference_credentials_privileges_permissions:
 
 .. confval:: <user_or_role_name>.privileges.permissions
 
+    :ref:`Permissions <access_control_list_privileges>` assigned to this user or a user with this role.
 
-.. _configuration_reference_credentials_users_name_privileges_spaces:
+    **Example:**
+
+    In this example, ``sampleuser`` gets privileges to select and modify data in the ``books`` space:
+
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/credentials/config.yaml
+        :language: yaml
+        :start-at: sampleuser:
+        :end-at: [ books ]
+        :dedent:
+
+    See also: :ref:`configuration_credentials_managing_users_roles`.
+
+..  _configuration_reference_credentials_privileges_spaces:
 
 .. confval:: <user_or_role_name>.privileges.spaces
 
+    Spaces to which this user or a user with this role gets the specified permissions.
 
-.. _configuration_reference_credentials_users_name_privileges_functions:
+    **Example:**
+
+    In this example, ``sampleuser`` gets privileges to select and modify data in the ``books`` space:
+
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/credentials/config.yaml
+        :language: yaml
+        :start-at: sampleuser:
+        :end-at: [ books ]
+        :dedent:
+
+    See also: :ref:`configuration_credentials_managing_users_roles`.
+
+
+..  _configuration_reference_credentials_privileges_functions:
 
 .. confval:: <user_or_role_name>.privileges.functions
 
+    Functions to which this user or a user with this role gets the specified permissions.
 
-.. _configuration_reference_credentials_users_name_privileges_sequences:
+
+..  _configuration_reference_credentials_privileges_sequences:
 
 .. confval:: <user_or_role_name>.privileges.sequences
 
+    Sequences to which this user or a user with this role gets the specified permissions.
 
-.. _configuration_reference_credentials_users_name_privileges_lua_eval:
+
+..  _configuration_reference_credentials_privileges_lua_eval:
 
 .. confval:: <user_or_role_name>.privileges.lua_eval
 
+    Whether this user or a user with this role can execute arbitrary Lua code.
 
-.. _configuration_reference_credentials_users_name_privileges_lua_call:
+
+..  _configuration_reference_credentials_privileges_lua_call:
 
 .. confval:: <user_or_role_name>.privileges.lua_call
 
+    Whether this user or a user with this role can call any global user-defined Lua function.
 
-.. _configuration_reference_credentials_users_name_privileges_sql:
+
+..  _configuration_reference_credentials_privileges_sql:
 
 .. confval:: <user_or_role_name>.privileges.sql
+
+    Whether this user or a user with this role can execute an arbitrary SQL expression.
 
 
 

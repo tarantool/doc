@@ -6,17 +6,17 @@ box.schema.user.revoke()
 
 .. module:: box.schema
 
-.. function:: box.schema.user.revoke(username, privileges, object-type, object-name[, {options} ])
-              box.schema.user.revoke(username, privileges, 'universe'[, nil, {options} ])
+.. function:: box.schema.user.revoke(username, permissions, object-type, object-name[, {options} ])
+              box.schema.user.revoke(username, permissions, 'universe'[, nil, {options} ])
               box.schema.user.revoke(username, role-name[, nil, nil, {options} ])
 
     Revoke :ref:`privileges <authentication-owners_privileges>` from a user
     or from another role.
 
     :param string username: the name of the user
-    :param string privilege: one or more :ref:`privileges <access_control_list_privileges>` to revoke from the user (for example, ``read`` or ``read,write``)
-    :param string object-type: a database :ref:`object type <access_control_list_objects>` to revoke privileges from (for example, ``space``, ``role``, or ``function``)
-    :param string object-name: the name of a database object to revoke privileges from
+    :param string permissions: one or more :ref:`permissions <access_control_list_privileges>` to revoke from the user (for example, ``read`` or ``read,write``)
+    :param string object-type: a database :ref:`object type <access_control_list_objects>` to revoke permissions from (for example, ``space``, ``role``, or ``function``)
+    :param string object-name: the name of a database object to revoke permissions from
     :param table      options: ``if_exists``
 
     The user must exist, and the object must exist,
@@ -26,7 +26,7 @@ box.schema.user.revoke()
     **Variation:** instead of ``object-type, object-name`` say 'universe'
     which means 'all object-types and all objects'.
 
-    **Variation:** instead of ``privilege, object-type, object-name`` say
+    **Variation:** instead of ``permissions, object-type, object-name`` say
     ``role-name`` (see section :ref:`Roles <authentication-roles>`).
 
     **Variation:** instead of
