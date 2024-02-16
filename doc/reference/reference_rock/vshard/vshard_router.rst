@@ -407,7 +407,7 @@ Router public API
 
     The scheduler shares storage time between bucket moves and storage refs fairly.
     The distribution depends on how long and frequent the moves and refs are.
-    It can be configured using the storage options ``sched_move_quota`` and ``sched_ref_quota``.
+    It can be configured using the storage options :ref:`sched_move_quota <configuration_reference_sharding_sched_move_quota>` and :ref:`sched_ref_quota <configuration_reference_sharding_sched_ref_quota>`.
     Keep in mind that the scheduler configuration may affect map-reduce requests if used during rebalancing.
 
     During the Map stage, ``map_callrw()`` sends map requests one by one to many servers.
