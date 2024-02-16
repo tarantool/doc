@@ -95,10 +95,16 @@ Add the :ref:`credentials <configuration_reference_credentials>` configuration s
     :end-at: roles: [sharding]
     :dedent:
 
-In this section, two users are created:
+In this section, two users with the specified passwords are created:
 
 *   The ``replicator`` user with the ``replication`` role.
 *   The ``storage`` user with the ``sharding`` role.
+
+..  WARNING::
+
+    It is recommended to load passwords from safe storage such as external files or environment variables.
+    You can learn how to do this from :ref:`configuration_credentials_loading_secrets`.
+
 
 
 ..  _vshard-quick-start-configuring-cluster-advertise:
@@ -170,9 +176,9 @@ Here is a schematic view of the cluster's topology:
         :end-before: routers:
         :dedent:
 
-    The main top-level options here are:
+    The main group-level options here are:
 
-    *   ``app``: The ``app.module`` option specifies that code specific to storages should be loaded from the ``storage`` module. See also: :ref:`vshard-quick-start-storage-code`.
+    *   ``app``: The ``app.module`` option specifies that code specific to storages should be loaded from the ``storage`` module. This is explained below in the :ref:`vshard-quick-start-storage-code` section.
     *   ``sharding``: The ``sharding.roles`` option specifies that all instances inside this group act as storages.
         A rebalancer is selected automatically from two master instances.
     *   ``replication``: The :ref:`replication.failover <configuration_reference_replication_failover>` option specifies that a leader in each replica set should be specified manually.
@@ -187,9 +193,9 @@ Here is a schematic view of the cluster's topology:
         :end-at: 127.0.0.1:3300
         :dedent:
 
-    The main top-level options here are:
+    The main group-level options here are:
 
-    *   ``app``: The ``app.module`` option specifies that code specific to a router should be loaded from the ``router`` module. See also: :ref:`vshard-quick-start-router-code`.
+    *   ``app``: The ``app.module`` option specifies that code specific to a router should be loaded from the ``router`` module. This is explained below in the :ref:`vshard-quick-start-router-code` section.
     *   ``sharding``: The ``sharding.roles`` option specifies that an instance inside this group acts as a router.
     *   ``replicasets``: This section configures one replica set with one router instance.
 
@@ -312,7 +318,7 @@ Open the ``sharded_cluster-scm-1.rockspec`` file and add the following content:
     :language: none
     :dedent:
 
-In the ``dependencies`` section, you can see the specified version of the ``vshard`` module.
+The ``dependencies`` section includes the specified version of the ``vshard`` module.
 To install dependencies, you need to :ref:`build the application <vshard-quick-start-building-app>`.
 
 
@@ -432,14 +438,12 @@ To check the cluster's status, execute :ref:`vshard.router.info() <router_api-in
     ...
 
 
-.. _vshard-quick-start-working-adding-data:
+.. _vshard-quick-start-working-adding-selecting-data:
 
-Adding data
-~~~~~~~~~~~
+Adding and selecting data
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To check how data is distributed across the cluster's nodes, follow the steps below:
-
-1.  On the router, call the ``insert_data()`` function:
+1.  To insert sample data, call the :ref:`insert_data() <vshard-quick-start-router-code>` function on the router:
 
     .. code-block:: console
 
@@ -447,7 +451,36 @@ To check how data is distributed across the cluster's nodes, follow the steps be
         ---
         ...
 
-2.  Connect to any storage in the ``storage-a`` replica set:
+    Calling this function :ref:`distributes data <vshard-quick-start-working-adding-data>` evenly across the cluster's nodes.
+
+2.  To get a tuple by the specified ID, call the ``get()`` function:
+
+    .. code-block:: console
+
+        sharded_cluster:router-a-001> get(4)
+        ---
+        - [4, 'The Beatles', 1960]
+        ...
+
+3.  To insert a new tuple, call the ``put()`` function:
+
+    .. code-block:: console
+
+        sharded_cluster:router-a-001> put(11, 'The Who', 1962)
+        ---
+        ...
+
+
+
+
+.. _vshard-quick-start-working-adding-data:
+
+Checking data distribution
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To check how data is distributed across the cluster's nodes, follow the steps below:
+
+1.  Connect to any storage in the ``storage-a`` replica set:
 
     ..  code-block:: console
 
@@ -461,15 +494,16 @@ To check how data is distributed across the cluster's nodes, follow the steps be
 
         sharded_cluster:storage-a-001> box.space.bands:select()
         ---
-        - - [1, 614, 'Roxette', 1986]
-          - [2, 986, 'Scorpions', 1965]
-          - [5, 755, 'Pink Floyd', 1965]
-          - [7, 998, 'The Doors', 1965]
-          - [8, 762, 'Nirvana', 1987]
+        - - [3, 11, 'Ace of Base', 1987]
+          - [4, 42, 'The Beatles', 1960]
+          - [6, 55, 'The Rolling Stones', 1962]
+          - [9, 299, 'Led Zeppelin', 1968]
+          - [10, 167, 'Queen', 1970]
+          - [11, 70, 'The Who', 1962]
         ...
 
 
-3.  Connect to any storage in the ``storage-b`` replica set:
+2.  Connect to any storage in the ``storage-b`` replica set:
 
     ..  code-block:: console
 
@@ -483,9 +517,9 @@ To check how data is distributed across the cluster's nodes, follow the steps be
 
         sharded_cluster:storage-b-001> box.space.bands:select()
         ---
-        - - [3, 11, 'Ace of Base', 1987]
-          - [4, 42, 'The Beatles', 1960]
-          - [6, 55, 'The Rolling Stones', 1962]
-          - [9, 299, 'Led Zeppelin', 1968]
-          - [10, 167, 'Queen', 1970]
+        - - [1, 614, 'Roxette', 1986]
+          - [2, 986, 'Scorpions', 1965]
+          - [5, 755, 'Pink Floyd', 1965]
+          - [7, 998, 'The Doors', 1965]
+          - [8, 762, 'Nirvana', 1987]
         ...
