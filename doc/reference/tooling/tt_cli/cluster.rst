@@ -24,16 +24,18 @@ Managing local configurations
 ``tt cluster`` can read and modify local cluster configurations stored in the
 ``config.yaml`` files inside application directories.
 
-To write a configuration to a local ``config.yaml``, run ``tt cluster publish``
-with two arguments: the application name and the path to a YAML file from which
-the configuration should be taken:
+To write a configuration to a local ``config.yaml``, run :ref:`tt cluster publish <tt-cluster-publish>`
+with two arguments:
+
+*   the application name.
+*   the path to a YAML file from which the configuration should be taken.
 
 .. code-block:: console
 
     $ tt cluster publish myapp source.yaml
 
 To print a local configuration from ``config.yaml`` in an application directory,
-run ``tt cluster show`` with the application name:
+run :ref:`tt cluster show <tt-cluster-show>` with the application name:
 
 .. code-block:: console
 
@@ -45,12 +47,12 @@ Managing configurations in centralized storages
 -----------------------------------------------
 
 ``tt cluster`` can manage centralized cluster configurations in storages of both
-supported types: :ref:`etcd <configuration-etcd>` or a Tarantool-based storage.
+supported types: :ref:`etcd <configuration_etcd>` or a Tarantool-based configuration storage.
 
-To send a cluster configuration from a file to a centralized configuration storage,
-run ``tt cluster publish`` with a URI of the storage instance as the target.
-For example, to send a configuration from ``source.yaml``to a local etcd instance
-on the default port ``2379``:
+To send a configuration from a file to a centralized configuration storage,
+run :ref:`tt cluster publish <tt-cluster-publish>` with a URI of this storage's
+instance as the target. For example, to send a configuration from ``source.yaml``
+to a local etcd instance on the default port ``2379``:
 
 .. code-block:: console
 
@@ -60,7 +62,7 @@ A URI must include a prefix that is unique for the application. It can also incl
 credentials and other connection parameters. Find the detailed description of the
 URI format in :ref:`tt-cluster-centralized-uri`.
 
-To print a cluster configuration from a centralized storage, run ``tt cluster show``
+To print a cluster configuration from a centralized storage, run :ref:`tt cluster publish <tt-cluster-show>`
 with a storage URI including the prefix identifying the application. For example, to print
 ``myapp``'s configuration from a local etcd storage:
 
@@ -143,12 +145,12 @@ For example, the following YAML file can be a source when publishing an instance
       - uri: 127.0.0.1:3389
       threads: 10
 
-To send an instance configuration to a local ``config.yaml``, run ``tt cluster publish``
+To send an instance configuration to a local ``config.yaml``, run :ref:`tt cluster publish <tt-cluster-publish>`
 with the ``application:instance`` pair as the target argument:
 
 .. code-block:: console
 
-    $ tt cluster publish myapp:instance-001 instance.yaml
+    $ tt cluster publish myapp:instance-002 instance.yaml
 
 To send an instance configuration to a centralized configuration storage, specify
 the instance name in the ``name`` argument of the storage URI:
@@ -157,7 +159,7 @@ the instance name in the ``name`` argument of the storage URI:
 
     $ tt cluster publish "http://localhost:2379/myapp?name=instance-002" instance.yaml
 
-``tt cluster show`` can print configurations of specific cluster instances as well.
+:ref:`tt cluster show <tt-cluster-show>` can print configurations of specific cluster instances as well.
 To print an instance configuration from a local ``config.yaml``, use the ``application:instance``
 argument:
 
@@ -172,21 +174,22 @@ the instance name in the ``name`` argument of the URI:
 
     $ tt cluster show "http://localhost:2379/myapp?name=instance-002"
 
-.. _tt-cluster-publish-validation:
+.. _tt-cluster-validation:
 
 Configuration validation
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
-``tt cluster publish`` validates the provided configuration against the Tarantool
-configuration schema and aborts in case of an error. To skip the validation,
-add the ``--force`` option:
+``tt cluster`` can validate configurations against the Tarantool configuration schema.
+
+``tt cluster publish`` automatically performs the validation and aborts in case of an error.
+To skip the validation, add the ``--force`` option:
 
 .. code-block:: console
 
     $ tt cluster publish myapp source.yaml --force
 
-To validate a cluster configuration against the Tarantool configuration schema
-when printing it with ``tt cluster show``, add the ``--validate`` option:
+To validate configuration when printing them with ``tt cluster show``, enable the
+validation by adding the ``--validate`` option:
 
 .. code-block:: console
 
