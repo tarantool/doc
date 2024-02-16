@@ -60,6 +60,11 @@ Logging
 
 ..  include:: cfg_logging.rst
 
+Audit log
+---------
+
+..  include:: cfg_audit.rst
+
 Authentication
 --------------
 
