@@ -1,6 +1,7 @@
 name: Generate DOCX
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - 'latest'
