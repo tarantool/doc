@@ -28,7 +28,7 @@ The ``audit_*`` parameters define configuration related to :ref:`audit logging <
     |
     | Type: boolean
     | Default: false
-    | Environment variable: TT_AUDIT_LOG_EXTRACT_KEY ???
+    | Environment variable: TT_AUDIT_EXTRACT_KEY
 
 ..  _cfg_audit_filter:
 
@@ -50,7 +50,7 @@ The ``audit_*`` parameters define configuration related to :ref:`audit logging <
 
     ..  code-block:: lua
 
-    box.cfg{
+        box.cfg{
             audit_log = 'audit.log',
             audit_filter = 'audit,auth,priv,password_change,access_denied'
            }
@@ -63,7 +63,7 @@ The ``audit_*`` parameters define configuration related to :ref:`audit logging <
       'access_denied', 'eval', 'call', 'space_select', 'space_create', 'space_alter', 'space_drop', 'space_insert',
       'space_replace', 'space_delete', 'custom'
     | Default: 'compatibility'
-    | Environment variable: TT_AUDIT_LOG_FILTER ???
+    | Environment variable: TT_AUDIT_FILTER
 
 ..  _cfg_audit_format:
 
@@ -127,7 +127,7 @@ The ``audit_*`` parameters define configuration related to :ref:`audit logging <
     | Type: string
     | Possible values: 'json', 'csv', 'plain'
     | Default: 'json'
-    | Environment variable: TT_AUDIT_LOG_FORMAT ???
+    | Environment variable: TT_AUDIT_FORMAT
 
 ..  _cfg_audit_log:
 
@@ -173,7 +173,7 @@ The ``audit_*`` parameters define configuration related to :ref:`audit logging <
     | Type: string
     | Possible values: 'devnull', 'file', 'pipe', 'syslog'
     | Default: 'devnull'
-    | Environment variable: TT_AUDIT_LOG_TO ???
+    | Environment variable: TT_AUDIT_LOG
 
 ..  _cfg_audit_nonblock:
 
@@ -194,7 +194,7 @@ The ``audit_*`` parameters define configuration related to :ref:`audit logging <
     |
     | Type: boolean
     | Default: false
-    | Environment variable: TT_AUDIT_LOG_NONBLOCK ???
+    | Environment variable: TT_AUDIT_NONBLOCK
 
 ..  _configuration_reference_audit_spaces:
 
@@ -218,4 +218,4 @@ The ``audit_*`` parameters define configuration related to :ref:`audit logging <
     |
     | Type: array
     | Default: box.NULL
-    | Environment variable: TT_AUDIT_LOG_SPACES ???
+    | Environment variable: TT_AUDIT_SPACES
