@@ -3,32 +3,20 @@
 ..  admonition:: Enterprise Edition
     :class: fact
 
-    The audit log is available in the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only.
+    Audit log features are available in the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only.
 
+The ``audit_*`` parameters define configuration related to :ref:`audit logging <enterprise_audit_module>`.
 
-The ``audit_log`` section defines configuration parameters related to :ref:`audit logging <enterprise_audit_module>`.
+*   :ref:`audit_extract_key <cfg_audit_extract_key>`
+*   :ref:`audit_filter <cfg_audit_filter>`
+*   :ref:`audit_format <cfg_audit_format>`
+*   :ref:`audit_log <cfg_audit_log>`
+*   :ref:`audit_nonblock <cfg_audit_nonblock>`
+*   :ref:`audit_spaces <cfg_audit_spaces>`
 
-..  NOTE::
+..  _cfg_audit_extract_key:
 
-    ``audit_log`` can be defined in any :ref:`scope <configuration_scopes>`.
-
-*   :ref:`audit_log.extract_key <configuration_reference_audit_extract_key>`
-*   :ref:`audit_log.file <configuration_reference_audit_file>`
-*   :ref:`audit_log.filter <configuration_reference_audit_filter>`
-*   :ref:`audit_log.format <configuration_reference_audit_format>`
-*   :ref:`audit_log.nonblock <configuration_reference_audit_nonblock>`
-*   :ref:`audit_log.pipe <configuration_reference_audit_pipe>`
-*   :ref:`audit_log.spaces <configuration_reference_audit_spaces>`
-*   :ref:`audit_log.to <configuration_reference_audit_to>`
-*   :ref:`audit_log.syslog.* <configuration_reference_audit_syslog>`
-
-    -   :ref:`audit_log.syslog.facility <configuration_reference_audit_syslog-facility>`
-    -   :ref:`audit_log.syslog.identity <configuration_reference_audit_syslog-identity>`
-    -   :ref:`audit_log.syslog.server <configuration_reference_audit_syslog-server>`
-
-..  _configuration_reference_audit_extract_key:
-
-..  confval:: audit_log.extract_key
+..  confval:: audit_extract_key
 
     **Since:** :doc:`3.0.0 </release/3.0.0>`.
 
@@ -40,24 +28,11 @@ The ``audit_log`` section defines configuration parameters related to :ref:`audi
     |
     | Type: boolean
     | Default: false
-    | Environment variable: TT_AUDIT_LOG_EXTRACT_KEY
+    | Environment variable: TT_AUDIT_LOG_EXTRACT_KEY ???
 
-..  _configuration_reference_audit_file:
+..  _cfg_audit_filter:
 
-..  confval:: audit_log.file
-
-    Specify a file for the audit log destination.
-    You can set the ``file`` type using the :ref:`audit_log.to <configuration_reference_audit_to>` option.
-    If you write logs to a file, Tarantool reopens the audit log at `SIGHUP <https://en.wikipedia.org/wiki/SIGHUP>`_.
-
-    |
-    | Type: string
-    | Default: 'var/log/{{ instance_name }}/audit.log'
-    | Environment variable: TT_AUDIT_LOG_FILE
-
-..  _configuration_reference_audit_filter:
-
-..  confval:: audit_log.filter
+..  confval:: audit_filter
 
     Enable logging for a specified subset of audit events.
     This option accepts the following values:
@@ -69,13 +44,16 @@ The ``audit_log`` section defines configuration parameters related to :ref:`audi
 
     To enable :ref:`custom audit log events <audit-log-custom>`, specify the ``custom`` value in this option.
 
+    The default value is ``compatibility``, which enables logging of all events available before 2.10.0.
+
     **Example**
 
-    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/audit_log/myapp.lua
-        :language: lua
-        :start-at: filter:
-        :end-at: custom ]
-        :dedent:
+    ..  code-block:: lua
+
+    box.cfg{
+            audit_log = 'audit.log',
+            audit_filter = 'audit,auth,priv,password_change,access_denied'
+           }
 
     |
     | Type: array
@@ -84,48 +62,122 @@ The ``audit_log`` section defines configuration parameters related to :ref:`audi
       'user_disable', 'user_enable', 'user_grant_rights', 'role_grant_rights', 'role_revoke_rights', 'password_change',
       'access_denied', 'eval', 'call', 'space_select', 'space_create', 'space_alter', 'space_drop', 'space_insert',
       'space_replace', 'space_delete', 'custom'
-    | Default: 'nil'
-    | Environment variable: TT_AUDIT_LOG_FILTER
+    | Default: 'compatibility'
+    | Environment variable: TT_AUDIT_LOG_FILTER ???
 
-..  _configuration_reference_audit_format:
+..  _cfg_audit_format:
 
-..  confval:: audit_log.format
+..  confval:: audit_format
 
-    Specify a format that is used for the audit log.
+    Specify the format that is used for the audit log events -- plain text, CSV or JSON format.
+
+    Plain text is used by default. This human-readable format can be efficiently compressed.
+
+    ..  code-block:: lua
+
+        box.cfg{audit_log = 'audit.log', audit_format = 'plain'}
 
     **Example**
 
-    If you set the option to ``plain``,
+    ..  code-block:: text
 
-    ..  code-block:: yaml
+        remote:
+        session_type:background
+        module:common.admin.auth
+        user: type:custom_tdg_audit
+        tag:tdg_severity_INFO
+        description:[5e35b406-4274-4903-857b-c80115275940]
+        subj: "anonymous",
+        msg: "Access granted to anonymous user"
 
-        audit_log:
-            to: file
-            format: plain
+    The JSON format is more convenient to receive log events, analyze them and integrate them with other systems if needed.
 
-    the output in the file might look as follows:
+    ..  code-block:: lua
+
+        box.cfg{audit_log = 'audit.log', audit_format = 'json'}
+
+    **Example**
+
+    ..  code-block:: json
+
+        {
+            "time": "2022-11-17T21:55:49.880+0300",
+            "remote": "",
+            "session_type": "background",
+            "module": "common.admin.auth",
+            "user": "",
+            "type": "custom_tdg_audit",
+            "tag": "tdg_severity_INFO",
+            "description": "[c26cd11a-3342-4ce6-8f0b-a4b222268b9d] subj: \"anonymous\", msg: \"Access granted to anonymous user\""
+        }
+
+    Using the CSV format allows you to view audit log events in tabular form.
+
+    ..  code-block:: lua
+
+        box.cfg{audit_log = 'audit.log', audit_format = 'csv'}
+
+    **Example**
 
     ..  code-block:: text
 
-        2024-01-17T00:12:27.155+0300
-        4b5a2624-28e5-4b08-83c7-035a0c5a1db9
-        INFO remote:unix/:(socket)
-        session_type:console
-        module:tarantool
-        user:admin
-        type:space_create
-        tag:
-        description:Create space Bands
+        2022-11-17T21:58:03.131+0300,,background,common.admin.auth,,,custom_tdg_audit,tdg_severity_INFO,"[b3dfe2a3-ec29-4e61-b747-eb2332c83b2e] subj: ""anonymous"", msg: ""Access granted to anonymous user"""
 
     |
     | Type: string
     | Possible values: 'json', 'csv', 'plain'
     | Default: 'json'
-    | Environment variable: TT_AUDIT_LOG_FORMAT
+    | Environment variable: TT_AUDIT_LOG_FORMAT ???
 
-..  _configuration_reference_audit_nonblock:
+..  _cfg_audit_log:
 
-..  confval:: audit_log.nonblock
+..  confval:: audit_log
+
+    Enable audit logging and define the log location.
+    This option accepts the following values:
+
+    -   ``devnull``: disable audit logging.
+    -   ``file``: write audit logs to a file (see :ref:`audit_log.file <configuration_reference_audit_file>`).
+    -   ``pipe``: start a program and write audit logs to it (see :ref:`audit_log.pipe <configuration_reference_audit_pipe>`).
+    -   ``syslog``: write audit logs to a system logger (see :ref:`audit_log.syslog.* <configuration_reference_audit_syslog>`).
+
+    By default, audit logging is disabled.
+
+    **Examples**
+
+    Writing to a file:
+
+    ..  code-block:: lua
+
+        box.cfg{audit_log = 'audit_tarantool.log'}
+        -- or
+        box.cfg{audit_log = 'file:audit_tarantool.log'}
+
+    This opens the ``audit_tarantool.log`` file for output in the server’s default directory.
+    If the ``audit_log`` string has no prefix or the prefix ``file:``, the string is interpreted as a file path.
+
+    Sending to a pipe
+
+    ..  code-block:: lua
+
+        box.cfg{audit_log = '| cronolog audit_tarantool.log'}
+        -- or
+        box.cfg{audit_log = 'pipe: cronolog audit_tarantool.log'}'
+
+    This starts the `cronolog <https://linux.die.net/man/1/cronolog>`_ program when the server starts
+    and sends all ``audit_log`` messages to cronolog's standard input (``stdin``).
+    If the ``audit_log`` string starts with '|' or contains the prefix ``pipe:``,
+    the string is interpreted as a Unix `pipeline <https://en.wikipedia.org/wiki/Pipeline_%28Unix%29>`_.
+
+    |
+    | Type: string
+    | Possible values: 'devnull', 'file', 'pipe', 'syslog'
+    | Default: 'devnull'
+    | Environment variable: TT_AUDIT_LOG_TO ???
+
+..  _cfg_audit_nonblock:
+
+..  confval:: audit_nonblock
 
     Specify the logging behavior if the system is not ready to write.
     If set to ``true``, Tarantool does not block during logging if the system is non-writable and writes a message instead.
@@ -133,40 +185,16 @@ The ``audit_log`` section defines configuration parameters related to :ref:`audi
 
     ..  note::
 
-        The option only has an effect if the :ref:`audit_log.to <configuration_reference_audit_to>` is set to ``syslog``
+        The option only has an effect if the :ref:`audit_log <cfg_audit_log>` is set to ``syslog``
         or ``pipe``.
+
+        Setting ``audit_nonblock`` to ``true`` is not allowed if the output is to a file.
+        In this case, set ``audit_nonblock`` to ``false``.
 
     |
     | Type: boolean
     | Default: false
-    | Environment variable: TT_AUDIT_LOG_NONBLOCK
-
-..  _configuration_reference_audit_pipe:
-
-..  confval:: audit_log.pipe
-
-    Specify a pipe for the audit log destination.
-    You can set the ``pipe`` type using the :ref:`audit_log.to <configuration_reference_audit_to>` option.
-    If log is a program, its pid is stored in the ``audit.pid`` field.
-    You need to send it a signal to rotate logs.
-
-    **Example**
-
-    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/audit_log_pipe/config.yaml
-        :language: yaml
-        :start-at: audit_log:
-        :end-at: '| cronolog audit_tarantool.log'
-        :dedent:
-
-    This starts the `cronolog <https://linux.die.net/man/1/cronolog>`_ program when the server starts
-    and sends all ``audit_log`` messages to cronolog standard input (``stdin``).
-    If the ``audit_log`` string starts with '|',
-    the string is interpreted as a Unix `pipeline <https://en.wikipedia.org/wiki/Pipeline_%28Unix%29>`_.
-
-    |
-    | Type: string
-    | Default: box.NULL
-    | Environment variable: TT_AUDIT_LOG_PIPE
+    | Environment variable: TT_AUDIT_LOG_NONBLOCK ???
 
 ..  _configuration_reference_audit_spaces:
 
@@ -190,115 +218,4 @@ The ``audit_log`` section defines configuration parameters related to :ref:`audi
     |
     | Type: array
     | Default: box.NULL
-    | Environment variable: TT_AUDIT_LOG_SPACES
-
-..  _configuration_reference_audit_to:
-
-..  confval:: audit_log.to
-
-    Enable audit logging and define the log location.
-    This option accepts the following values:
-
-    -   ``devnull``: disable audit logging.
-    -   ``file``: write audit logs to a file (see :ref:`audit_log.file <configuration_reference_audit_file>`).
-    -   ``pipe``: start a program and write audit logs to it (see :ref:`audit_log.pipe <configuration_reference_audit_pipe>`).
-    -   ``syslog``: write audit logs to a system logger (see :ref:`audit_log.syslog.* <configuration_reference_audit_syslog>`).
-
-    By default, audit logging is disabled.
-
-    **Example**
-
-    The basic audit log configuration might look as follows:
-
-    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/audit_log/config.yaml
-        :language: yaml
-        :start-at: audit_log
-        :end-at: extract_key: true
-        :dedent:
-
-    |
-    | Type: string
-    | Possible values: 'devnull', 'file', 'pipe', 'syslog'
-    | Default: 'devnull'
-    | Environment variable: TT_AUDIT_LOG_TO
-
-..  _configuration_reference_audit_syslog:
-
-audit_log.syslog.*
-~~~~~~~~~~~~~~~~~~
-
-..  _configuration_reference_audit_syslog-facility:
-
-..  confval:: audit_log.syslog.facility
-
-    Specify a system logger keyword that tells `syslogd <https://datatracker.ietf.org/doc/html/rfc5424>`__ where to send the message.
-    You can enable logging to a system logger using the :ref:`audit_log.to <configuration_reference_audit_to>` option.
-
-    See also: :ref:`syslog configuration example <configuration_reference_audit_syslog-example>`.
-
-    |
-    | Type: string
-    | Possible values: 'auth', 'authpriv', 'cron', 'daemon', 'ftp', 'kern', 'lpr', 'mail', 'news', 'security', 'syslog', 'user', 'uucp', 'local0', 'local1', 'local2', 'local3', 'local4', 'local5', 'local6', 'local7'
-    | Default: 'local7'
-    | Environment variable: TT_AUDIT_LOG_SYSLOG_FACILITY
-
-..  _configuration_reference_audit_syslog-identity:
-
-..  confval:: audit_log.syslog.identity
-
-    Specify an application name to show in logs.
-    You can enable logging to a system logger using the :ref:`audit_log.to <configuration_reference_audit_to>` option.
-
-    See also: :ref:`syslog configuration example <configuration_reference_audit_syslog-example>`.
-
-    |
-    | Type: string
-    | Default: 'tarantool'
-    | Environment variable: TT_AUDIT_LOG_SYSLOG_IDENTITY
-
-..  _configuration_reference_audit_syslog-server:
-
-..  confval:: audit_log.syslog.server
-
-    Set a location for the syslog server.
-    It can be a Unix socket path starting with 'unix:' or an ipv4 port number.
-    You can enable logging to a system logger using the :ref:`audit_log.to <configuration_reference_audit_to>` option.
-
-..  _configuration_reference_audit_syslog-example:
-
-    **Example**
-
-    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/audit_log_syslog/config.yaml
-        :language: yaml
-        :start-at: audit_log:
-        :end-at: 'tarantool_audit'
-        :dedent:
-
-    -   :ref:`audit_log.syslog.server <configuration_reference_audit_syslog-server>` -- a syslog server location.
-
-    -   :ref:`audit_log.syslog.facility <configuration_reference_audit_syslog-facility>` -- a system logger keyword that tells syslogd where to send the message.
-        The default value is ``local7``.
-
-    -   :ref:`audit_log.syslog.identity <configuration_reference_audit_syslog-identity>` -- an application name to show in logs.
-        The default value is ``tarantool``.
-
-    These options are interpreted as a message for the `syslogd <https://datatracker.ietf.org/doc/html/rfc5424>`_ program,
-    which runs in the background of any Unix-like platform.
-
-    An example of a Tarantool audit log entry in the syslog:
-
-    ..  code-block:: text
-
-        09:32:52 tarantool_audit: {"time": "2024-02-08T09:32:52.190+0300", "uuid": "94454e46-9a0e-493a-bb9f-d59e44a43581", "severity": "INFO", "remote": "unix/:(socket)", "session_type": "console", "module": "tarantool", "user": "admin", "type": "space_create", "tag": "", "description": "Create space bands"}
-
-    ..  warning::
-
-        Above is an example of writing audit logs to a directory shared with the system logs.
-        Tarantool allows this option, but it is not recommended to do this to avoid difficulties
-        when working with audit logs. System and audit logs should be written separately.
-        To do this, create separate paths and specify them.
-
-    |
-    | Type: string
-    | Default: box.NULL
-    | Environment variable: TT_AUDIT_LOG_SYSLOG_SERVER
+    | Environment variable: TT_AUDIT_LOG_SPACES ???
