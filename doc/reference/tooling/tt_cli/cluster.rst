@@ -122,6 +122,7 @@ A URI of the cluster configuration storage has the following format:
 *   ``arguments`` defines connection parameters. The following arguments are available:
 
     *   ``name`` -- a name of an instance in the cluster configuration.
+    *   ``key`` -- a target configuration key in the specified ``prefix``.
     *   ``timeout`` -- a request timeout in seconds. Default: ``3.0``.
     *   ``ssl_key_file`` -- a path to a private SSL key file.
     *   ``ssl_cert_file`` -- a path to an SSL certificate file.
@@ -230,6 +231,11 @@ Options
     Validate the printed configuration. Default: `false` (validation is disabled).
 
 ..  option:: --with-integrity-check STRING
+
+    ..  admonition:: Enterprise Edition
+        :class: fact
+
+        This option is supported by the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only.
 
     **Applicable to:** ``publish``
 
