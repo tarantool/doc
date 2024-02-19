@@ -130,15 +130,14 @@
 
     Since version :doc:`2.6.3 </release/2.6.3>`.
 
-    The delay (in seconds) used to prevent the :ref:`Tarantool garbage collector <cfg_checkpoint_daemon-garbage-collector>`
+    The delay in seconds used to prevent the :ref:`Tarantool garbage collector <cfg_checkpoint_daemon-garbage-collector>`
     from immediately removing :ref:`write-ahead log <internals-wal>` files after a node restart.
     This delay eliminates possible erroneous situations when the master deletes WALs
     needed by :ref:`replicas <replication-roles>` after restart.
     As a consequence, replicas sync with the master faster after its restart and
     don't need to download all the data again.
-
-    Once all the nodes in the replica set are up and running,
-    automatic cleanup is started again even if ``wal_cleanup_delay`` has not expired.
+    Once all the nodes in the replica set are up and running, a scheduled garbage collection is started again
+    even if ``wal_cleanup_delay`` has not expired.
 
     .. NOTE::
 

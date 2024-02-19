@@ -5,22 +5,26 @@ File formats
 
 .. _internals-wal:
 
-Data persistence and the WAL file format
-----------------------------------------
+The WAL file format
+-------------------
 
-To maintain data persistence, Tarantool writes each data change request (insert,
-update, delete, replace, upsert) into a write-ahead log (WAL) file in the
+To maintain :ref:`data persistence <concepts-data_model-persistence>`, Tarantool writes each data change request (insert,
+update, delete, replace, upsert) to a write-ahead log (WAL) file in the
 :ref:`wal.dir <configuration_reference_wal_dir>` directory.
-Each data change request gets assigned a continuously growing 64-bit log sequence
+Each data change request is assigned a continuously growing 64-bit log sequence
 number. The name of the WAL file is based on the log sequence number of the first
 record in the file, plus an extension ``.xlog``.
 A new WAL file is created
 when the current one reaches the :ref:`wal_max_size <cfg_binary_logging_snapshots-wal_max_size>` size.
 
-Apart from a log sequence number and the data change request (formatted as in
-:ref:`Tarantool's binary protocol <internals-box_protocol>`),
-each WAL record contains a header, some metadata, and then the data formatted
-according to `msgpack <https://en.wikipedia.org/wiki/MessagePack>`_ rules.
+Each WAL record contains:
+
+*   a log sequence number
+*   a data change request (formatted as in :ref:`Tarantool's binary protocol <internals-box_protocol>`)
+
+*   a header
+*   some metadata
+*   the data formatted according to `msgpack <https://en.wikipedia.org/wiki/MessagePack>`_ rules.
 
 To see the hexadecimal bytes of the given WAL file, use the ``hexdump`` command:
 
@@ -102,7 +106,7 @@ It is possible to turn the write-ahead log completely off, by setting the ``wal_
 Even without the write-ahead log it's still possible to take a persistent copy of the
 entire data set with the :ref:`box.snapshot() <box-snapshot>` request.
 
-An .xlog file always contains changes based on the primary key.
+An ``.xlog`` file always contains changes based on the primary key.
 Even if the client requested an update or delete using
 a secondary key, the record in the .xlog file contains the primary key.
 
@@ -111,12 +115,14 @@ a secondary key, the record in the .xlog file contains the primary key.
 The snapshot file format
 ------------------------
 
-The format of a snapshot .snap file is similar to the format of a WAL .xlog file, except for the header and content.
-The snapshot header contains the instance's global unique identifier
-and the snapshot file's position in history, relative to earlier snapshot files.
-Also, the content differs: an .xlog file may contain records for any data-change
-requests (inserts, updates, upserts, and deletes), a .snap file may only contain records
-of inserts to memtx spaces.
+The format of a snapshot (``.snap``) file is the following:
+
+*   The snapshot header contains the instance's global unique identifier
+    and the snapshot file's position in history, relative to earlier snapshot files.
+
+*   The snapshot content contains the records of inserts to memtx spaces.
+    That differs from the content of an ``.xlog`` file that may contain records for any data-change requests
+    (inserts, updates, upserts, and deletes).
 
 Primarily, the records in the snapshot file have the following order:
 

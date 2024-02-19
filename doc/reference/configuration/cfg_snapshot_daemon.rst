@@ -52,21 +52,18 @@ The checkpoint daemon and the Tarantool garbage collector will not delete a file
 
     Since version 1.7.4.
 
-    The interval between actions by the checkpoint daemon, in seconds. If
+    The interval in seconds between actions by the checkpoint daemon. If
     ``checkpoint_interval`` is set to a value greater than zero, and there is
-    activity which causes change to a database, then the checkpoint daemon will
-    call :doc:`box.snapshot() </reference/reference_lua/box_snapshot>` every ``checkpoint_interval``
+    activity which causes change to a database, then the checkpoint daemon
+    calls :doc:`box.snapshot() </reference/reference_lua/box_snapshot>` every ``checkpoint_interval``
     seconds, creating a new snapshot file each time. If ``checkpoint_interval``
-    is set to zero, then the checkpoint daemon is disabled.
-
-    For example:
+    is set to zero, the checkpoint daemon is disabled.
 
     .. code-block:: lua
 
-        box.cfg{checkpoint_interval=60}
+        box.cfg{ checkpoint_interval = 7200 }
 
-    will cause the checkpoint daemon to create a new database snapshot once
-    per minute, if there is activity.
+    In the example, the checkpoint daemon creates a new database snapshot every two hours, if there is activity.
 
     | Type: integer
     | Default: 3600 (one hour)
@@ -79,26 +76,28 @@ The checkpoint daemon and the Tarantool garbage collector will not delete a file
 
     Since version 1.7.4.
 
-    The maximum number of snapshots that may exist on the
+    The maximum number of snapshots that are stored in the
     :ref:`memtx_dir <cfg_basic-memtx_dir>` directory
-    before the checkpoint daemon will delete old snapshots.
-    If ``checkpoint_count`` equals zero, then the checkpoint daemon
-    does not delete old snapshots. For example:
+    before the checkpoint daemon deletes old snapshots.
+    If ``checkpoint_count`` is set to zero, the checkpoint daemon
+    does not delete old snapshots.
 
     .. code-block:: lua
 
         box.cfg{
-            checkpoint_interval = 3600,
-            checkpoint_count  = 10
+            checkpoint_interval = 7200,
+            checkpoint_count  = 3
         }
 
-    will cause the checkpoint daemon to create a new snapshot each hour until
-    it has created ten snapshots. After that, it will delete the oldest snapshot
+    In the example, the checkpoint daemon creates a new snapshot every two hours until
+    it has created three snapshots. After that, it deletes the oldest snapshot
     (and any associated write-ahead-log files) after creating a new one.
 
-    Remember that, as noted earlier, snapshots will not be deleted if
-    replication is ongoing and the file has not been relayed to a replica.
-    Therefore ``checkpoint_count`` has no effect unless all replicas are alive.
+    ..  NOTE::
+
+        Snapshots will not be deleted if replication is ongoing and the file has not been relayed to a replica.
+        Therefore, ``snapshot.count`` has no effect unless all replicas are alive.
+
 
     | Type: integer
     | Default: 2

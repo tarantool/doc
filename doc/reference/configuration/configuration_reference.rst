@@ -2414,9 +2414,12 @@ To learn more about the snapshots' configuration, check the :ref:`Persistence <c
 
 ..  confval:: snapshot.dir
 
-    A directory where memtx stores snapshot (.snap) files. Can be relative to
-    ``process.work_dir``. If not specified, defaults to
-    ``process.work_dir``. See also: :ref:`wal.dir <configuration_reference_wal_dir>`.
+    A directory where memtx stores snapshot (.snap) files.
+    A relative path in this option is interpreted as relative to ``process.work_dir``.
+
+    By default, snapshots and WAL files are stored in the same directory.
+    However, you can set different values for the ``snapshot.dir`` and :ref:`wal.dir <configuration_reference_wal_dir>` options
+    to store them on different physical disks for performance matters.
 
     |
     | Type: string
@@ -2446,10 +2449,10 @@ To learn more about the snapshots' configuration, check the :ref:`Persistence <c
 
 ..  confval:: snapshot.count
 
-    The maximum number of snapshots that may exist on the
+    The maximum number of snapshots that are stored in the
     :ref:`snapshot.dir <configuration_reference_snapshot_dir>` directory
-    before the :ref:`checkpoint daemon <configuration_persistence_checkpoint_daemon>` deletes old snapshots.
-    If ``snapshot.count`` equals zero, then the checkpoint daemon
+    before the :ref:`Tarantool garbage collector <configuration_persistence_garbage_collector>` deletes old snapshots.
+    If ``snapshot.count`` is set to zero zero, the garbage collector
     does not delete old snapshots.
 
     Example:
@@ -2458,12 +2461,12 @@ To learn more about the snapshots' configuration, check the :ref:`Persistence <c
 
         snapshot:
           by:
-            interval: 60
-          count: 10
+            interval: 7200
+          count: 3
 
-    In the example, the checkpoint daemon creates a new snapshot each hour until
-    it has created ten snapshots. After that, it deletes the oldest snapshot
-    (and any associated write-ahead-log files) after creating a new one.
+    In the example, the checkpoint daemon creates a snapshot every two hours until
+    it has created three snapshots. After creating a new snapshot (the fourth one), the oldest snapshot
+    (and any associated write-ahead-log files) is deleted.
 
     ..  NOTE::
 
@@ -2496,10 +2499,10 @@ snapshot.by.*
     ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/persistence_snapshot/config.yaml
         :language: yaml
         :start-at: by:
-        :end-at: interval: 60
+        :end-at: interval: 7200
         :dedent:
 
-    In the example, the checkpoint daemon creates a new database snapshot once per minute, if there is activity.
+    In the example, the checkpoint daemon creates a new database snapshot every two hours, if there is activity.
 
     |
     | Type: number
@@ -2547,15 +2550,15 @@ To learn more about the WAL configuration, check the :ref:`Persistence <configur
 
 ..  confval:: wal.cleanup_delay
 
-    The delay in seconds used to prevent the :ref:`checkpoint daemon <configuration_persistence_checkpoint_daemon>`
+    The delay in seconds used to prevent the :ref:`Tarantool garbage collector <configuration_persistence_checkpoint_daemon>`
     from immediately removing :ref:`write-ahead log <internals-wal>` files after a node restart.
     This delay eliminates possible erroneous situations when the master deletes WALs
     needed by :ref:`replicas <replication-roles>` after restart.
     As a consequence, replicas sync with the master faster after its restart and
     don't need to download all the data again.
+    Once all the nodes in the replica set are up and running, a scheduled garbage collection is started again
+    even if ``wal_cleanup_delay`` has not expired.
 
-    Once all the nodes in the replica set are up and running,
-    automatic cleanup is started again even if ``wal.cleanup_delay`` has not expired.
 
     ..  NOTE::
 
@@ -2571,11 +2574,12 @@ To learn more about the WAL configuration, check the :ref:`Persistence <configur
 
 ..  confval:: wal.dir
 
-    A directory where write-ahead log (.xlog) files are stored. Can be relative
-    to ``process.work_dir``. Sometimes ``wal.dir`` and
-    :ref:`snapshot.dir <configuration_reference_snapshot_dir>` are specified with different values, so
-    that write-ahead log files and snapshot files can be stored on different
-    disks. If not specified, defaults to ``process.work_dir``.
+    A directory where write-ahead log (.xlog) files are stored.
+    A relative path in this option is interpreted as relative to ``process.work_dir``.
+
+    By default, WAL files and snapshots are stored in the same directory.
+    However, you can set different values for the ``wal.dir`` and :ref:`snapshot.dir <configuration_reference_snapshot_dir>` options
+    to store them on different physical disks for performance matters.
 
     |
     | Type: string
@@ -2635,6 +2639,7 @@ To learn more about the WAL configuration, check the :ref:`Persistence <configur
     The size of the queue in bytes used by a :ref:`replica <replication-roles>` to submit
     new transactions to a :ref:`write-ahead log <internals-wal>` (WAL).
     This option helps limit the rate at which a replica submits transactions to the WAL.
+
     Limiting the queue size might be useful when a replica is trying to sync with a master and
     reads new transactions faster than writing them to the WAL.
 
