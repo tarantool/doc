@@ -43,17 +43,17 @@ In this tutorial, the application layout is prepared manually:
 
 1.  Create a tt environment in the current directory by executing the :ref:`tt init <tt-init>` command.
 
-2.  Inside the ``instances.enabled`` directory of the created tt environment, create the ``sharded_cluster`` directory.
+2.  Inside the empty ``instances.enabled`` directory of the created tt environment, create the ``sharded_cluster`` directory.
 
 3.  Inside ``instances.enabled/sharded_cluster``, create the following files:
 
     -   ``instances.yml`` specifies instances to run in the current environment.
-    -   The ``config.yaml`` file is intended to store the cluster's :ref:`configuration <configuration_overview>`.
-    -   ``storage.lua`` is intended to store code specific for :ref:`storages <vshard-architecture-storage>`.
-    -   ``router.lua`` is intended to store code specific for a :ref:`router <vshard-architecture-router>`.
-    -   ``sharded_cluster-scm-1.rockspec`` includes external dependencies required by the application.
+    -   ``config.yaml`` specifies the cluster's :ref:`configuration <configuration_overview>`.
+    -   ``storage.lua`` contains code specific for :ref:`storages <vshard-architecture-storage>`.
+    -   ``router.lua`` contains code specific for a :ref:`router <vshard-architecture-router>`.
+    -   ``sharded_cluster-scm-1.rockspec`` specifies external dependencies required by the application.
 
-    The next :ref:`vshard-quick-start-developing-app` section shows how to configure the cluster and write code specific for a router and storages.
+    The next :ref:`vshard-quick-start-developing-app` section shows how to configure the cluster and write code for routing read and write requests to different storages.
 
 
 ..  _vshard-quick-start-developing-app:
@@ -100,10 +100,12 @@ In this section, two users with the specified passwords are created:
 *   The ``replicator`` user with the ``replication`` role.
 *   The ``storage`` user with the ``sharding`` role.
 
-..  WARNING::
+These users are intended to maintain replication and sharding in the cluster.
 
-    It is recommended to load passwords from safe storage such as external files or environment variables.
-    You can learn how to do this from :ref:`configuration_credentials_loading_secrets`.
+..  IMPORTANT::
+
+    It is not recommended to store passwords as plain text in a YAML configuration.
+    Learn how to load passwords from safe storage such as external files or environment variables from :ref:`configuration_credentials_loading_secrets`.
 
 
 
@@ -132,7 +134,7 @@ In this section, the following options are configured:
 Step 3: Configuring bucket count
 ********************************
 
-Specify the total number of buckets in a sharded cluster using the ``sharding.bucket_count`` option:
+Specify the total number of :ref:`buckets <vshard-vbuckets>` in a sharded cluster using the ``sharding.bucket_count`` option:
 
 ..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster/config.yaml
     :language: yaml
@@ -203,7 +205,7 @@ Here is a schematic view of the cluster's topology:
 Resulting configuration
 ***********************
 
-The resulting cluster configuration should look as follows:
+The resulting ``config.yaml`` file should look as follows:
 
 ..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster/config.yaml
     :language: yaml
@@ -269,7 +271,7 @@ Adding router code
         :end-at: local vshard
         :dedent:
 
-2.  Define the ``put`` function used to write data to a storage:
+2.  Define the ``put`` function that specifies how the router selects the storage to write data:
 
     ..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster/router.lua
         :language: lua
@@ -327,7 +329,7 @@ To install dependencies, you need to :ref:`build the application <vshard-quick-s
 Building the application
 ------------------------
 
-In the terminal, open a directory where the :ref:`tt environment is created <vshard-quick-start-creating-app>`.
+In the terminal, open the :ref:`tt environment directory <vshard-quick-start-creating-app>`.
 Then, execute the ``tt build`` command:
 
 .. code-block:: console
@@ -368,7 +370,7 @@ To start all instances in the cluster, execute the ``tt start`` command:
 Bootstrapping a cluster
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-To bootstrap the cluster, follow the steps below:
+After starting instances, you need to bootstrap the cluster as follows:
 
 1.  Connect to the router instance using ``tt connect``:
 
@@ -437,11 +439,19 @@ To check the cluster's status, execute :ref:`vshard.router.info() <router_api-in
       alerts: []
     ...
 
+The output includes the following sections:
 
-.. _vshard-quick-start-working-adding-selecting-data:
+*   ``replicasets``: contains information about storages and their availability.
+*   ``bucket``: displays the total number of read-write and read-only buckets that are currently available for this router.
+*   ``status``: the number from 0 to 3 that indicates whether there are any issues with the cluster.
+    0 means that there are no issues.
+*   ``alerts``: might describe the exact issues related to bootstrapping a cluster, for example, connection issues, failover events, or unidentified buckets.
 
-Adding and selecting data
-~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. _vshard-quick-start-working-writing-selecting-data:
+
+Writing and selecting data
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 1.  To insert sample data, call the :ref:`insert_data() <vshard-quick-start-router-code>` function on the router:
 
