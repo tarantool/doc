@@ -2,12 +2,12 @@ local vshard = require('vshard')
 
 function put(id, band_name, year)
     local bucket_id = vshard.router.bucket_id_mpcrc32({ id })
-    vshard.router.callrw(bucket_id, 'put', { id, bucket_id, band_name, year })
+    vshard.router.callrw(bucket_id, 'insert_band', { id, bucket_id, band_name, year })
 end
 
 function get(id)
     local bucket_id = vshard.router.bucket_id_mpcrc32({ id })
-    return vshard.router.callro(bucket_id, 'get', { id })
+    return vshard.router.callro(bucket_id, 'get_band', { id })
 end
 
 function insert_data()

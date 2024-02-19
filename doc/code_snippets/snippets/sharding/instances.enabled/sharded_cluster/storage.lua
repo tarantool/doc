@@ -10,11 +10,11 @@ box.schema.create_space('bands', {
 box.space.bands:create_index('id', { parts = { 'id' }, if_not_exists = true })
 box.space.bands:create_index('bucket_id', { parts = { 'id' }, unique = false, if_not_exists = true })
 
-function put(id, bucket_id, band_name, year)
+function insert_band(id, bucket_id, band_name, year)
     box.space.bands:insert({ id, bucket_id, band_name, year })
 end
 
-function get(id)
+function get_band(id)
     local tuple = box.space.bands:get(id)
     if tuple == nil then
         return nil
