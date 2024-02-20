@@ -137,9 +137,9 @@ The ``audit_*`` parameters define configuration related to :ref:`audit logging <
     This option accepts the following values:
 
     -   ``devnull``: disable audit logging.
-    -   ``file``: write audit logs to a file (see :ref:`audit_log.file <configuration_reference_audit_file>`).
-    -   ``pipe``: start a program and write audit logs to it (see :ref:`audit_log.pipe <configuration_reference_audit_pipe>`).
-    -   ``syslog``: write audit logs to a system logger (see :ref:`audit_log.syslog.* <configuration_reference_audit_syslog>`).
+    -   ``file``: write audit logs to a file.
+    -   ``pipe``: start a program and write audit logs to it.
+    -   ``syslog``: write audit logs to a system logger.
 
     By default, audit logging is disabled.
 
@@ -198,7 +198,7 @@ The ``audit_*`` parameters define configuration related to :ref:`audit logging <
 
 ..  _cfg_audit_spaces:
 
-..  confval:: audit_log.spaces
+..  confval:: audit_spaces
 
     **Since:** :doc:`3.0.0 </release/3.0.0>`.
 
@@ -210,10 +210,11 @@ The ``audit_*`` parameters define configuration related to :ref:`audit logging <
 
     In the example, only the events of ``bands`` and ``singers`` spaces are logged:
 
-    ..  code-block:: yaml
+    ..  code-block:: lua
 
-        audit_log:
-          spaces: [bands, singers]
+        box.cfg{
+            audit_spaces = 'bands,singers'
+           }
 
     |
     | Type: array
