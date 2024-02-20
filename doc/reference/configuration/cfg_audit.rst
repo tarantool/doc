@@ -81,14 +81,7 @@ The ``audit_*`` parameters define configuration related to :ref:`audit logging <
 
     ..  code-block:: text
 
-        remote:
-        session_type:background
-        module:common.admin.auth
-        user: type:custom_tdg_audit
-        tag:tdg_severity_INFO
-        description:[5e35b406-4274-4903-857b-c80115275940]
-        subj: "anonymous",
-        msg: "Access granted to anonymous user"
+        remote: session_type:background module:common.admin.auth user: type:custom_tdg_audit tag:tdg_severity_INFO description:[5e35b406-4274-4903-857b-c80115275940] subj: "anonymous", msg: "Access granted to anonymous user"
 
     The JSON format is more convenient to receive log events, analyze them and integrate them with other systems if needed.
 
@@ -100,16 +93,7 @@ The ``audit_*`` parameters define configuration related to :ref:`audit logging <
 
     ..  code-block:: json
 
-        {
-            "time": "2022-11-17T21:55:49.880+0300",
-            "remote": "",
-            "session_type": "background",
-            "module": "common.admin.auth",
-            "user": "",
-            "type": "custom_tdg_audit",
-            "tag": "tdg_severity_INFO",
-            "description": "[c26cd11a-3342-4ce6-8f0b-a4b222268b9d] subj: \"anonymous\", msg: \"Access granted to anonymous user\""
-        }
+        {"time": "2022-11-17T21:55:49.880+0300", "remote": "", "session_type": "background", "module": "common.admin.auth", "user": "", "type": "custom_tdg_audit", "tag": "tdg_severity_INFO", "description": "[c26cd11a-3342-4ce6-8f0b-a4b222268b9d] subj: \"anonymous\", msg: \"Access granted to anonymous user\""}
 
     Using the CSV format allows you to view audit log events in tabular form.
 
@@ -171,6 +155,8 @@ The ``audit_*`` parameters define configuration related to :ref:`audit logging <
     and sends all ``audit_log`` messages to cronolog's standard input (``stdin``).
     If the ``audit_log`` string starts with '|' or contains the prefix ``pipe:``,
     the string is interpreted as a Unix `pipeline <https://en.wikipedia.org/wiki/Pipeline_%28Unix%29>`_.
+
+    If log is a program, check out its pid and send it a signal to rotate logs.
 
     **Example: Writing to a system log**
 
@@ -274,7 +260,7 @@ The ``audit_*`` parameters define configuration related to :ref:`audit logging <
 
     |
     | Type: boolean
-    | Default: false
+    | Default: true
     | Environment variable: TT_AUDIT_NONBLOCK
 
 ..  _cfg_audit_spaces:
