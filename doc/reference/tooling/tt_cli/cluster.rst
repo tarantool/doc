@@ -21,7 +21,7 @@ and with centralized configuration storages (:ref:`etcd <configuration_etcd>` or
 Managing local configurations
 -----------------------------
 
-``tt cluster`` can read and modify local cluster configurations stored in the
+``tt cluster`` can read and modify local cluster configurations stored in
 ``config.yaml`` files inside application directories.
 
 To write a configuration to a local ``config.yaml``, run ``tt cluster publish``
@@ -49,10 +49,10 @@ Managing configurations in centralized storages
 ``tt cluster`` can manage centralized cluster configurations in storages of both
 supported types: :ref:`etcd <configuration_etcd>` or a Tarantool-based configuration storage.
 
-To send a configuration from a file to a centralized configuration storage,
+To publish a configuration from a file to a centralized configuration storage,
 run ``tt cluster publish`` with a URI of this storage's
-instance as the target. For example, to send a configuration from ``source.yaml``
-to a local etcd instance on the default port ``2379``:
+instance as the target. For example, the command below publishes a configuration from ``source.yaml``
+to a local etcd instance running on the default port ``2379``:
 
 .. code-block:: console
 
