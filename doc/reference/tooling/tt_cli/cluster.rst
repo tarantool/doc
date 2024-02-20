@@ -13,8 +13,9 @@ and with centralized configuration storages (:ref:`etcd <configuration_etcd>` or
 
 ``COMMAND`` is one of the following:
 
-*   ``publish``: publish a cluster configuration from a file.
+*   ``publish``: publish a cluster configuration using an arbitrary YAML file as a source.
 *   ``show``: print a cluster configuration.
+
 
 .. _tt-cluster-local:
 
@@ -34,8 +35,8 @@ with two arguments:
 
     $ tt cluster publish myapp source.yaml
 
-To print a local configuration from ``config.yaml`` in an application directory,
-run ``tt cluster show`` with the application name:
+To print a local configuration from an application's ``config.yaml``,  run
+``tt cluster show`` with the application name:
 
 .. code-block:: console
 
@@ -75,7 +76,22 @@ with a storage URI including the prefix identifying the application. For example
 Authentication
 ~~~~~~~~~~~~~~
 
-There are three ways to pass the credentials for connecting to the centralized configuration storage:
+There are three ways to pass the credentials for connecting to the centralized configuration storage.
+They all apply to both etcd and Tarantool-based storages. The following list
+shows these ways ordered by precedence, from highest to lowest:
+
+*   Credentials specified in the storage URI: ``https://username:password@host:port/prefix``:
+
+    .. code-block:: console
+
+        $ tt cluster show "http://myuser:p4$$w0rD@localhost:2379/myapp"
+
+
+*   ``tt cluster`` options ``-u``/``--username`` and ``-p``/``--password``:
+
+    .. code-block:: console
+
+        $ tt cluster show "http://localhost:2379/myapp" -u myuser -p p4$$w0rD
 
 *   Environment variables ``TT_CLI_ETCD_USERNAME`` and ``TT_CLI_ETCD_PASSWORD``:
 
@@ -84,24 +100,6 @@ There are three ways to pass the credentials for connecting to the centralized c
             $ export TT_CLI_ETCD_USERNAME=myuser
             $ export TT_CLI_ETCD_PASSWORD=p4$$w0rD
             $ tt cluster show "http://localhost:2379/myapp"
-
-*   ``tt cluster`` options ``-u``/``--username`` and ``-p``/``--password``:
-
-    .. code-block:: console
-
-        $ tt cluster show "http://localhost:2379/myapp" -u myuser -p p4$$w0rD
-
-*   Credentials specified in the storage URI: ``https://username:password@host:port/prefix``:
-
-    .. code-block:: console
-
-        $ tt cluster show "http://myuser:p4$$w0rD@localhost:2379/myapp"
-
-They are applied with the following precedence, from highest to lowest:
-
-*   URI credentials.
-*   ``tt cluster`` options.
-*   Environment variables.
 
 If connection encryption is enabled on the configuration storage, pass the required
 SSL parameters in the :ref:`URI arguments <tt-cluster-centralized-uri>`.
@@ -143,18 +141,17 @@ For example, the following YAML file can be a source when publishing an instance
 
 .. code-block:: yaml
 
-    # instance.yaml
+    # instance_source.yaml
     iproto:
       listen:
-      - uri: 127.0.0.1:3389
-      threads: 10
+      - uri: 127.0.0.1:3311
 
 To send an instance configuration to a local ``config.yaml``, run ``tt cluster publish``
 with the ``application:instance`` pair as the target argument:
 
 .. code-block:: console
 
-    $ tt cluster publish myapp:instance-002 instance.yaml
+    $ tt cluster publish myapp:instance-002 instance_source.yaml
 
 To send an instance configuration to a centralized configuration storage, specify
 the instance name in the ``name`` argument of the storage URI:
@@ -209,14 +206,13 @@ Options
 
     A username for connecting to the configuration storage.
 
+    See also: :ref:`tt-cluster-centralized-authentication`.
+
 ..  option:: -p, --password STRING
 
     A password for connecting to the configuration storage.
 
-.. note::
-
-    The etcd user's credentials can also be passed in the URI or in environment
-    variables. See :ref:`tt-cluster-centralized-authentication` for details.
+    See also: :ref:`tt-cluster-centralized-authentication`.
 
 ..  option:: --force
 
