@@ -1,21 +1,22 @@
+wal:
+  mode: 'write'
+  dir: 'var/lib/{{ instance_name }}/wals'
+  dir_rescan_delay: 3
+  cleanup_delay: 18000
+  max_size: 268435456
+  ext:
+    new: true
+    old: true
+    spaces:
+      bands:
+        new: false
+
 groups:
   group001:
     replicasets:
       replicaset001:
         instances:
           instance001:
-            wal:
-              mode: 'write'
-              dir: 'var/lib/{{ instance_name }}/wals'
-              dir_rescan_delay: 3
-              cleanup_delay: 18000
-              max_size: 268435456
-              ext:
-                new: true
-                old: true
-                spaces:
-                  bands:
-                    new: false
             iproto:
               listen:
               - uri: '127.0.0.1:3301'
