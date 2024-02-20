@@ -228,7 +228,7 @@ Checkpoint daemon
 The checkpoint daemon (snapshot daemon) is a constantly running :ref:`fiber <app-fibers>`.
 The checkpoint daemon creates a schedule for the periodic snapshot creation based on
 the :ref:`configuration options <configuration_reference_snapshot_by>` and the speed of file size growth.
-If enabled, the daemon makes new :ref:`snapshot (``.snap``) files <concepts-data_model-persistence>` according to this schedule.
+If enabled, the daemon makes new :ref:`snapshot <concepts-data_model-persistence>` (``.snap``) files according to this schedule.
 
 The work of the checkpoint daemon is based on the following configuration options:
 
