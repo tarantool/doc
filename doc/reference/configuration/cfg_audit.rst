@@ -196,7 +196,7 @@ The ``audit_*`` parameters define configuration related to :ref:`audit logging <
     | Default: false
     | Environment variable: TT_AUDIT_NONBLOCK
 
-..  _configuration_reference_audit_spaces:
+..  _cfg_audit_spaces:
 
 ..  confval:: audit_log.spaces
 
