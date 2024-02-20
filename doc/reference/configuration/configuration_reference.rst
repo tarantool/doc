@@ -2450,8 +2450,9 @@ To learn more about the snapshots' configuration, check the :ref:`Persistence <c
 ..  confval:: snapshot.count
 
     The maximum number of snapshots that are stored in the
-    :ref:`snapshot.dir <configuration_reference_snapshot_dir>` directory
-    before the :ref:`Tarantool garbage collector <configuration_persistence_garbage_collector>` deletes old snapshots.
+    :ref:`snapshot.dir <configuration_reference_snapshot_dir>` directory.
+    If the number of snapshots after creating a new one exceeds this value,
+    the :ref:`Tarantool garbage collector <configuration_persistence_garbage_collector>` deletes old snapshots.
     If ``snapshot.count`` is set to zero, the garbage collector
     does not delete old snapshots.
 
@@ -2489,7 +2490,7 @@ snapshot.by.*
 
     The interval in seconds between actions by the :ref:`checkpoint daemon <configuration_persistence_checkpoint_daemon>`.
     If the option is set to a value greater than zero, and there is
-    activity which causes change to a database, then the checkpoint daemon calls
+    activity that causes change to a database, then the checkpoint daemon calls
     :doc:`box.snapshot() </reference/reference_lua/box_snapshot>` every ``snapshot.by.interval``
     seconds, creating a new snapshot file each time.
     If the option is set to zero, the checkpoint daemon is disabled.
@@ -2513,7 +2514,7 @@ snapshot.by.*
 
 ..  confval:: snapshot.by.wal_size
 
-    The threshold for the total size in bytes of all WAL files created since the last snapshot taken.
+    The threshold for the total size in bytes for all WAL files created since the last snapshot taken.
     Once the configured threshold is exceeded, the WAL thread notifies the
     :ref:`checkpoint daemon <configuration_persistence_checkpoint_daemon>` that it must make a new snapshot and delete old WAL files.
 
@@ -2557,7 +2558,7 @@ To learn more about the WAL configuration, check the :ref:`Persistence <configur
     As a consequence, replicas sync with the master faster after its restart and
     don't need to download all the data again.
     Once all the nodes in the replica set are up and running, a scheduled garbage collection is started again
-    even if ``wal_cleanup_delay`` has not expired.
+    even if ``wal.cleanup_delay`` has not expired.
 
 
     ..  NOTE::
@@ -2574,7 +2575,7 @@ To learn more about the WAL configuration, check the :ref:`Persistence <configur
 
 ..  confval:: wal.dir
 
-    A directory where write-ahead log (``.xlog`) files are stored.
+    A directory where write-ahead log (``.xlog``) files are stored.
     A relative path in this option is interpreted as relative to ``process.work_dir``.
 
     By default, WAL files and snapshots are stored in the same directory.
@@ -2590,9 +2591,9 @@ To learn more about the WAL configuration, check the :ref:`Persistence <configur
 
 ..  confval:: wal.dir_rescan_delay
 
-    Number of seconds between periodic scans of the write-ahead-log
+    The time interval in seconds between periodic scans of the write-ahead-log
     file directory, when checking for changes to write-ahead-log
-    files for the sake of :ref:`replication <replication>` or :ref:`hot standby <index-hot_standby>`.
+    files for the sake of :ref:`replication <replication>` or :ref:`hot standby <configuration_reference_database_hot_standby>`.
 
     |
     | Type: number
@@ -2619,7 +2620,7 @@ To learn more about the WAL configuration, check the :ref:`Persistence <configur
     Specify fiber-WAL-disk synchronization mode as:
 
     *   ``none``: write-ahead log is not maintained.
-        A node with ``wal.mode = none`` can't be replication master.
+        A node with ``wal.mode`` set to ``none`` can't be a replication master.
 
     *   ``write``: :ref:`fibers <fiber-fibers>` wait for their data to be written to
         the write-ahead log (no ``fsync(2)``).
@@ -2664,12 +2665,6 @@ wal.ext.*
     Configuring ``wal.ext.*`` parameters is available in the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only.
 
 This section describes options related to :ref:`WAL extensions <wal_extensions>`.
-The options allow you to add auxiliary information to each :ref:`write-ahead log <internals-wal>` record.
-
-Note that records with additional fields are :ref:`replicated <replication-architecture>` as follows:
-
-*   If a replica doesn't support the extended format configured on a master, auxiliary fields are skipped.
-*   If a replica and master have different configurations for WAL records, a master's configuration is ignored.
 
 ..  _configuration_reference_wal_ext_new:
 
@@ -2677,7 +2672,7 @@ Note that records with additional fields are :ref:`replicated <replication-archi
 
     Enable storing a new tuple for each :ref:`CRUD <box_space_examples>` operation performed.
     The option is in effect for all spaces.
-    To adjust the option for specific spaces, use the :ref:`wal.ext.spaces <_configuration_reference_wal_ext_spaces>`
+    To adjust the option for specific spaces, use the :ref:`wal.ext.spaces <configuration_reference_wal_ext_spaces>`
     option.
 
     |
@@ -2691,7 +2686,7 @@ Note that records with additional fields are :ref:`replicated <replication-archi
 
     Enable storing an old tuple for each :ref:`CRUD <box_space_examples>` operation performed.
     The option is in effect for all spaces.
-    To adjust the option for specific spaces, use the :ref:`wal.ext.spaces <_configuration_reference_wal_ext_spaces>`
+    To adjust the option for specific spaces, use the :ref:`wal.ext.spaces <configuration_reference_wal_ext_spaces>`
     option.
 
     |

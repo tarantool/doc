@@ -100,7 +100,7 @@
 
     Since version 1.7.4.
 
-    A directory where memtx stores snapshot (.snap) files.
+    A directory where memtx stores snapshot (``.snap``) files.
     A relative path in this option is interpreted as relative to :ref:`work_dir <cfg_basic-work_dir>`.
 
     By default, snapshots and WAL files are stored in the same directory.
@@ -233,7 +233,7 @@
 
     Since version 1.6.2.
 
-    A directory where write-ahead log (.xlog) files are stored.
+    A directory where write-ahead log (``.xlog``) files are stored.
     A relative path in this option is interpreted as relative to :ref:`work_dir <cfg_basic-work_dir>`.
 
     By default, WAL files and snapshots are stored in the same directory.

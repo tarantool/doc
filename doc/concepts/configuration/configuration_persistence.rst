@@ -6,11 +6,15 @@ Persistence
 To ensure data persistence, Tarantool provides the abilities to:
 
 *   Record each data change request into a :ref:`write-ahead log <internals-wal>` (WAL) file (``.xlog`` files).
-*   Take :ref:`snapshots <internals-snapshot>` that contain on-disk copy of the entire data set for a given moment
+*   Take :ref:`snapshots <internals-snapshot>` that contain an on-disk copy of the entire data set for a given moment
     (``.snap`` files). It is possible to set automatic snapshot creation using the :ref:`checkpoint daemon <configuration_persistence_checkpoint_daemon>`.
 
 During the recovery process, Tarantool can load the latest snapshot file and then read the requests from the WAL files,
 produced after this snapshot was made.
+This topic describes how to configure:
+
+*   the snapshot creation in the :ref:`snapshot <configuration_reference_snapshot>` section of a :ref:`YAML configuration <configuration>`.
+*   the recording to the write-ahead log in the :ref:`wal <configuration_reference_wal>` section of a YAML configuration.
 
 To learn more about the persistence mechanism in Tarantool, see the :ref:`Persistence <concepts-data_model-persistence>` section.
 The formats of WAL and snapshot files are described in detail in the :ref:`File formats <internals-data_persistence>` section.
@@ -40,7 +44,7 @@ The ``snapshot.by.interval`` option sets up the :ref:`checkpoint daemon <configu
 that takes a new snapshot every ``snapshot.by.interval`` seconds.
 If the ``snapshot.by.interval`` option is set to zero, the checkpoint daemon is disabled.
 
-The ``snapshot.by.wal_size`` option defines the maximum size in bytes for of all WAL files created since the last snapshot taken.
+The ``snapshot.by.wal_size`` option defines the maximum size in bytes for all WAL files created since the last snapshot taken.
 Once this size is exceeded, the checkpoint daemon takes a snapshot. Then, :ref:`Tarantool garbage collector <configuration_persistence_garbage_collector>`
 deletes the old WAL files.
 
@@ -51,6 +55,11 @@ The example shows how to specify the ``snapshot.by.interval`` and the ``snapshot
     :start-at: by:
     :end-at: 1000000000000000000
     :dedent:
+
+In the example, a new snapshot is created in two cases:
+
+*   every 2 hours (every 7200 seconds)
+*   when the size for all WAL files created since the last snapshot reaches the size of 1e18 (1000000000000000000) bytes.
 
 ..  _configuration_persistence_snapshot_dir:
 
@@ -121,14 +130,14 @@ The recording to the WAL can be configured using the :ref:`wal.mode <configurati
 
 There are two modes that enable writing to the WAL:
 
-*   ``write`` (default) -- enable WAL and write the data without waiting the data to be flushed to the storage device.
+*   ``write`` (default) -- enable WAL and write the data without waiting for the data to be flushed to the storage device.
 *   ``fsync`` -- enable WAL and ensure that the record is written to the storage device.
 
-The example below shows how to specify the ``write`` WAL mode for ``instance001``:
+The example below shows how to specify the ``write`` WAL mode:
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/persistence_wal/config.yaml
     :language: yaml
-    :start-at: instance001
+    :start-at: mode:
     :end-at: 'write'
     :dedent:
 
@@ -144,7 +153,7 @@ The example below shows how to specify a directory for ``instance001`` explicitl
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/persistence_wal/config.yaml
     :language: yaml
-    :start-at: wal:
+    :start-at: instance001:
     :end-at: 'var/lib/{{ instance_name }}/wals'
     :dedent:
 
@@ -154,7 +163,7 @@ The example below shows how to specify a directory for ``instance001`` explicitl
 Set an interval between scans
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-If case of :ref:`replication <replication>` or :ref:`hot standby <index-hot_standby>` mode,
+In case of :ref:`replication <replication>` or :ref:`hot standby <configuration_reference_database_hot_standby>` mode,
 Tarantool scans for changes in the WAL files every :ref:`wal.dir_rescan_delay <configuration_reference_wal_dir_rescan_delay>`
 seconds. The example below shows how to specify the interval between scans:
 
@@ -207,7 +216,7 @@ Specify the WAL extensions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In Tarantool Enterprise, you can store an old and new tuple for each CRUD operation performed.
-The detailed description and examples of the WAL extensions are provided in the :ref:`WAL extensions <wal_extensions>` section.
+A detailed description and examples of the WAL extensions are provided in the :ref:`WAL extensions <wal_extensions>` section.
 
 See also: :ref:`wal.ext.* <configuration_reference_wal_ext>` configuration options.
 
@@ -219,15 +228,16 @@ Checkpoint daemon
 The checkpoint daemon (snapshot daemon) is a constantly running :ref:`fiber <app-fibers>`.
 The checkpoint daemon creates a schedule for the periodic snapshot creation based on
 the :ref:`configuration options <configuration_reference_snapshot_by>` and the speed of file size growth.
-If enabled, the daemon makes new snapshots (``.snap``) files according to this schedule.
+If enabled, the daemon makes new :ref:`snapshot (``.snap``) files <concepts-data_model-persistence>` according to this schedule.
 
-The work of checkpoint daemon is based on the following configuration options:
+The work of the checkpoint daemon is based on the following configuration options:
 
 *   :ref:`snapshot.by.interval <configuration_reference_snapshot_by_interval>` -- a new snapshot is taken once in a given period.
 *   :ref:`snapshot.by.wal_size <configuration_reference_snapshot_by_wal_size>` -- a new snapshot is taken once the size
     of all WAL files created since the last snapshot exceeds a given limit.
 
-If necessary, the checkpoint daemon also activates the :ref:`Tarantool garbage collector <configuration_persistence_garbage_collector>` that deletes old snapshot and WAL files.
+If necessary, the checkpoint daemon also activates the :ref:`Tarantool garbage collector <configuration_persistence_garbage_collector>`
+that deletes old snapshots and WAL files.
 
 ..  _configuration_persistence_garbage_collector:
 
@@ -251,7 +261,7 @@ This garbage collector is called as follows:
 *   When the size of all WAL files created since the last snapshot reaches the limit of :ref:`snapshot.by.wal_size <configuration_reference_snapshot_by_wal_size>`.
     Once this size is exceeded, the checkpoint daemon takes a snapshot, then the garbage collector deletes the old WAL files.
 
-If an old snapshot filen is deleted, the Tarantool garbage collector also deletes
+If an old snapshot file is deleted, the Tarantool garbage collector also deletes
 any :ref:`write-ahead log (.xlog) <internals-wal>` files that meet the following conditions:
 
 *   The WAL files are older than the snapshot file.
@@ -261,11 +271,11 @@ Tarantool garbage collector also deletes obsolete vinyl ``.run`` files.
 
 Tarantool garbage collector doesn't delete a file in the following cases:
 
-*   A **backup** is running, and the file has not been backed up
-    (see :ref:`"Hot backup" <admin-backups-hot_backup_vinyl_memtx>`).
+*   A backup is running, and the file has not been backed up
+    (see :ref:`Hot backup <admin-backups-hot_backup_vinyl_memtx>`).
 
-*   **Replication** is running, and the file has not been relayed to a replica
-    (see :ref:`"Replication architecture" <replication-architecture>`),
+*   Replication is running, and the file has not been relayed to a replica
+    (see :ref:`Replication architecture <replication-architecture>`),
 
 *   A replica is connecting.
 

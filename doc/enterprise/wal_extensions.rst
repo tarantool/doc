@@ -50,7 +50,7 @@ Inside the ``wal.ext`` block, you can enable storing old and new tuples as follo
 Note that records with additional fields are :ref:`replicated <replication-architecture>` as follows:
 
 *   If a replica doesn't support the extended format configured on a master, auxiliary fields are skipped.
-*   If a replica and master have different configurations for WAL records, a master's configuration is ignored.
+*   If a replica and master have different configurations for WAL records, the master's configuration is ignored.
 
 ..  _wal_extensions_example:
 

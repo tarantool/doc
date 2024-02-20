@@ -74,7 +74,7 @@
     Specify fiber-WAL-disk synchronization mode as:
 
     *   ``none``: write-ahead log is not maintained.
-        A node with ``wal_mode = none`` can't be replication master.
+        A node with ``wal_mode`` set to ``none`` can't be a replication master.
 
     *   ``write``: :ref:`fibers <fiber-fibers>` wait for their data to be written to
         the write-ahead log (no :manpage:`fsync(2)`).
@@ -93,7 +93,7 @@
 
     Since version 1.6.2.
 
-    Number of seconds between periodic scans of the write-ahead-log
+    The time interval in seconds between periodic scans of the write-ahead-log
     file directory, when checking for changes to write-ahead-log
     files for the sake of :ref:`replication <replication>` or :ref:`hot standby <index-hot_standby>`.
 
@@ -191,7 +191,7 @@
     Note that records with additional fields are :ref:`replicated <replication-architecture>` as follows:
 
     *   If a replica doesn't support the extended format configured on a master, auxiliary fields are skipped.
-    *   If a replica and master have different configurations for WAL records, a master's configuration is ignored.
+    *   If a replica and master have different configurations for WAL records, the master's configuration is ignored.
 
     | Type: map
     | Default: nil
