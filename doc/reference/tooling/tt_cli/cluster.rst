@@ -80,20 +80,20 @@ There are three ways to pass the credentials for connecting to the centralized c
 They all apply to both etcd and Tarantool-based storages. The following list
 shows these ways ordered by precedence, from highest to lowest:
 
-*   Credentials specified in the storage URI: ``https://username:password@host:port/prefix``:
+#.  Credentials specified in the storage URI: ``https://username:password@host:port/prefix``:
 
     .. code-block:: console
 
         $ tt cluster show "http://myuser:p4$$w0rD@localhost:2379/myapp"
 
 
-*   ``tt cluster`` options ``-u``/``--username`` and ``-p``/``--password``:
+#.  ``tt cluster`` options ``-u``/``--username`` and ``-p``/``--password``:
 
     .. code-block:: console
 
         $ tt cluster show "http://localhost:2379/myapp" -u myuser -p p4$$w0rD
 
-*   Environment variables ``TT_CLI_ETCD_USERNAME`` and ``TT_CLI_ETCD_PASSWORD``:
+#.  Environment variables ``TT_CLI_ETCD_USERNAME`` and ``TT_CLI_ETCD_PASSWORD``:
 
     .. code-block:: console
 
@@ -158,7 +158,7 @@ the instance name in the ``name`` argument of the storage URI:
 
 .. code-block:: console
 
-    $ tt cluster publish "http://localhost:2379/myapp?name=instance-002" instance.yaml
+    $ tt cluster publish "http://localhost:2379/myapp?name=instance-002" instance_source.yaml
 
 ``tt cluster show`` can print configurations of specific cluster instances as well.
 To print an instance configuration from a local ``config.yaml``, use the ``application:instance``
