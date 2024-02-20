@@ -218,7 +218,7 @@ Checkpoint daemon
 
 The checkpoint daemon (snapshot daemon) is a constantly running :ref:`fiber <app-fibers>`.
 The checkpoint daemon creates a schedule for the periodic snapshot creation based on
-the :ref:`configuration options <configuration_reference_snapshot_by>`and the speed of file size growth.
+the :ref:`configuration options <configuration_reference_snapshot_by>` and the speed of file size growth.
 If enabled, the daemon makes new snapshots (``.snap``) files according to this schedule.
 
 The work of checkpoint daemon is based on the following configuration options:
@@ -240,7 +240,7 @@ by other consumers. When the files are no longer needed, Tarantool garbage colle
 
 ..  NOTE::
 
-    The garbage collector called by the checkpoint daemon, is distinct from the `Lua garbage collector <https://www.lua.org/manual/5.1/manual.html#2.10>`_
+    The garbage collector called by the checkpoint daemon is distinct from the `Lua garbage collector <https://www.lua.org/manual/5.1/manual.html#2.10>`_
     which is for Lua objects, and distinct from the Tarantool garbage collector that specializes in :ref:`handling shard buckets <vshard-gc>`.
 
 This garbage collector is called as follows:

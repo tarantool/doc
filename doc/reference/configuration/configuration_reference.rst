@@ -2452,7 +2452,7 @@ To learn more about the snapshots' configuration, check the :ref:`Persistence <c
     The maximum number of snapshots that are stored in the
     :ref:`snapshot.dir <configuration_reference_snapshot_dir>` directory
     before the :ref:`Tarantool garbage collector <configuration_persistence_garbage_collector>` deletes old snapshots.
-    If ``snapshot.count`` is set to zero zero, the garbage collector
+    If ``snapshot.count`` is set to zero, the garbage collector
     does not delete old snapshots.
 
     Example:
@@ -2466,7 +2466,7 @@ To learn more about the snapshots' configuration, check the :ref:`Persistence <c
 
     In the example, the checkpoint daemon creates a snapshot every two hours until
     it has created three snapshots. After creating a new snapshot (the fourth one), the oldest snapshot
-    (and any associated write-ahead-log files) is deleted.
+    and any associated write-ahead-log files are deleted.
 
     ..  NOTE::
 
@@ -2574,7 +2574,7 @@ To learn more about the WAL configuration, check the :ref:`Persistence <configur
 
 ..  confval:: wal.dir
 
-    A directory where write-ahead log (.xlog) files are stored.
+    A directory where write-ahead log (``.xlog`) files are stored.
     A relative path in this option is interpreted as relative to ``process.work_dir``.
 
     By default, WAL files and snapshots are stored in the same directory.

@@ -20,7 +20,7 @@ To configure them, use the :ref:`wal.ext.* <configuration_reference_wal_ext>` co
 Inside the ``wal.ext`` block, you can enable storing old and new tuples as follows:
 
 *   To store old and new tuples in a write-ahead log for all spaces, set the
-    :ref:`wal.ext.old <configuration_reference_wal_ext_old>` and `wal.ext.new <configuration_reference_wal_ext_new>`
+    :ref:`wal.ext.old <configuration_reference_wal_ext_old>` and :ref:`wal.ext.new <configuration_reference_wal_ext_new>`
     options to ``true``:
 
     ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/persistence/config.yaml
