@@ -134,18 +134,19 @@ The ``audit_*`` parameters define configuration related to :ref:`audit logging <
 ..  confval:: audit_log
 
     Enable audit logging and define the log location.
-    This option accepts the following values:
 
-    -   ``devnull``: disable audit logging.
-    -   ``file``: write audit logs to a file.
-    -   ``pipe``: start a program and write audit logs to it.
-    -   ``syslog``: write audit logs to a system logger.
+    This option accepts a string value that allows you to define the log location.
+    The following locations are supported:
+
+    - File: to write audit logs to a file, specify a path to a file (with an optional `file` prefix)
+    - Pipeline: to start a program and write audit logs to it, specify a program name (with `|` or `pipe` prefix)
+    - System log: to write audit logs to a system log, specify a message for `syslogd` (with `syslog` prefix)
+
+    See the examples below.
 
     By default, audit logging is disabled.
 
-    **Examples**
-
-    Writing to a file:
+    **Example: Writing to a file**
 
     ..  code-block:: lua
 
@@ -156,7 +157,9 @@ The ``audit_*`` parameters define configuration related to :ref:`audit logging <
     This opens the ``audit_tarantool.log`` file for output in the server’s default directory.
     If the ``audit_log`` string has no prefix or the prefix ``file:``, the string is interpreted as a file path.
 
-    Sending to a pipe
+    If you log to a file, Tarantool will reopen the audit log at `SIGHUP <https://en.wikipedia.org/wiki/SIGHUP>`_.
+
+    **Example: Sending to a pipeline**
 
     ..  code-block:: lua
 
@@ -169,10 +172,88 @@ The ``audit_*`` parameters define configuration related to :ref:`audit logging <
     If the ``audit_log`` string starts with '|' or contains the prefix ``pipe:``,
     the string is interpreted as a Unix `pipeline <https://en.wikipedia.org/wiki/Pipeline_%28Unix%29>`_.
 
+    **Example: Writing to a system log**
+
+    ..  warning::
+
+        Below is an example of writing audit logs to a directory shared with the system logs.
+        Tarantool allows this option, but it is **not recommended** to do this to avoid difficulties
+        when working with audit logs. System and audit logs should be written separately.
+        To do this, create separate paths and specify them.
+
+    This sample configuration sends the audit log to syslog:
+
+    ..  code-block:: lua
+
+        box.cfg{audit_log = 'syslog:identity=tarantool'}
+        -- or
+        box.cfg{audit_log = 'syslog:facility=user'}
+        -- or
+        box.cfg{audit_log = 'syslog:identity=tarantool,facility=user'}
+        -- or
+        box.cfg{audit_log = 'syslog:server=unix:/dev/log'}
+
+    If the ``audit_log`` string starts with "syslog:",
+    it is interpreted as a message for the `syslogd <https://datatracker.ietf.org/doc/html/rfc5424>`_ program,
+    which normally runs in the background of any Unix-like platform.
+    The setting can be 'syslog:', 'syslog:facility=...', 'syslog:identity=...', 'syslog:server=...' or a combination.
+
+    The ``syslog:identity`` setting is an arbitrary string that is placed at the beginning of all messages.
+    The default value is ``tarantool``.
+
+    The ``syslog:facility`` setting is currently ignored, but will be used in the future.
+    The value must be one of the `syslog <https://en.wikipedia.org/wiki/Syslog>`_ keywords
+    that tell ``syslogd`` where to send the message.
+    The possible values are ``auth``, ``authpriv``, ``cron``, ``daemon``, ``ftp``,
+    ``kern``, ``lpr``, ``mail``, ``news``, ``security``, ``syslog``, ``user``, ``uucp``,
+    ``local0``, ``local1``, ``local2``, ``local3``, ``local4``, ``local5``, ``local6``, ``local7``.
+    The default value is ``local7``.
+
+    The ``syslog:server`` setting is the locator for the syslog server.
+    It can be a Unix socket path starting with "unix:" or an ipv4 port number.
+    The default socket value is ``/dev/log`` (on Linux) or ``/var/run/syslog`` (on Mac OS).
+    The default port value is 514, which is the UDP port.
+
+    An example of a Tarantool audit log entry in the syslog:
+
+    ..  code-block:: json
+
+        {
+          "__CURSOR" : "s=81564632436a4de590e80b89b0151148;i=11519;b=def80c1464fe49d1aac8a64895d6614d;m=8c825ebfc;t=5edb27a75f282;x=7eba320f7cc9ae4d",
+          "__REALTIME_TIMESTAMP" : "1668725698065026",
+          "__MONOTONIC_TIMESTAMP" : "37717666812",
+          "_BOOT_ID" : "def80c1464fe49d1aac8a64895d6614d",
+          "_UID" : "1003",
+          "_GID" : "1004",
+          "_COMM" : "tarantool",
+          "_EXE" : "/app/tarantool/dist/tdg-2.6.4.0.x86_64/tarantool",
+          "_CMDLINE" : "tarantool init.lua <running>: core-03",
+          "_CAP_EFFECTIVE" : "0",
+          "_AUDIT_SESSION" : "1",
+          "_AUDIT_LOGINUID" : "1003",
+          "_SYSTEMD_CGROUP" : "/user.slice/user-1003.slice/user@1003.service/app.slice/app@core-03.service",
+          "_SYSTEMD_OWNER_UID" : "1003",
+          "_SYSTEMD_UNIT" : "user@1003.service",
+          "_SYSTEMD_USER_UNIT" : "app@core-03.service",
+          "_SYSTEMD_SLICE" : "user-1003.slice",
+          "_SYSTEMD_USER_SLICE" : "app.slice",
+          "_SYSTEMD_INVOCATION_ID" : "be368b4243d842ea8c06b010e0df62c2",
+          "_MACHINE_ID" : "2e2339725deb4bc198c54ff4a2e8d626",
+          "_HOSTNAME" : "vm-0.test.env",
+          "_TRANSPORT" : "syslog",
+          "PRIORITY" : "6",
+          "SYSLOG_FACILITY" : "23",
+          "SYSLOG_IDENTIFIER" : "tarantool",
+          "SYSLOG_PID" : "101562",
+          "_PID" : "101562",
+          "MESSAGE" : "remote: session_type:background module:common.admin.auth user: type:custom_tdg_audit tag:tdg_severity_INFO description:[119eae0e-a691-42cc-9b4c-f14c499e6726] subj: \"anonymous\", msg: \"Access granted to anonymous user\"",
+          "_SOURCE_REALTIME_TIMESTAMP" : "1668725698064202"
+        }
+
     |
     | Type: string
-    | Possible values: 'devnull', 'file', 'pipe', 'syslog'
-    | Default: 'devnull'
+    | Possible values: see the string format above
+    | Default: 'nill'
     | Environment variable: TT_AUDIT_LOG
 
 ..  _cfg_audit_nonblock:
