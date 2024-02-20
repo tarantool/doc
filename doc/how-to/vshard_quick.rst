@@ -134,7 +134,7 @@ In this section, the following options are configured:
 Step 3: Configuring bucket count
 ********************************
 
-Specify the total number of :ref:`buckets <vshard-vbuckets>` in a sharded cluster using the ``sharding.bucket_count`` option:
+Specify the total number of :ref:`buckets <vshard-vbuckets>` in a sharded cluster using the :ref:`sharding.bucket_count <configuration_reference_sharding_bucket_count>` option:
 
 ..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster/config.yaml
     :language: yaml
@@ -181,7 +181,7 @@ Here is a schematic view of the cluster's topology:
     The main group-level options here are:
 
     *   ``app``: The ``app.module`` option specifies that code specific to storages should be loaded from the ``storage`` module. This is explained below in the :ref:`vshard-quick-start-storage-code` section.
-    *   ``sharding``: The ``sharding.roles`` option specifies that all instances inside this group act as storages.
+    *   ``sharding``: The :ref:`sharding.roles <configuration_reference_sharding_roles>` option specifies that all instances inside this group act as storages.
         A rebalancer is selected automatically from two master instances.
     *   ``replication``: The :ref:`replication.failover <configuration_reference_replication_failover>` option specifies that a leader in each replica set should be specified manually.
     *   ``replicasets``: This section configures two replica sets that constitute cluster storages.
@@ -198,7 +198,7 @@ Here is a schematic view of the cluster's topology:
     The main group-level options here are:
 
     *   ``app``: The ``app.module`` option specifies that code specific to a router should be loaded from the ``router`` module. This is explained below in the :ref:`vshard-quick-start-router-code` section.
-    *   ``sharding``: The ``sharding.roles`` option specifies that an instance inside this group acts as a router.
+    *   ``sharding``: The :ref:`sharding.roles <configuration_reference_sharding_roles>` option specifies that an instance inside this group acts as a router.
     *   ``replicasets``: This section configures one replica set with one router instance.
 
 
