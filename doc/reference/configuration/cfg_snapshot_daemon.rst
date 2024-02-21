@@ -14,7 +14,7 @@ If enabled, the daemon makes new :ref:`snapshot <concepts-data_model-persistence
 The work of the checkpoint daemon is based on the following configuration options:
 
 *   :ref:`checkpoint_interval <cfg_checkpoint_daemon-checkpoint_interval>` -- a new snapshot is taken once in a given period.
-*   :ref:`cfg_checkpoint_daemon-checkpoint_wal_threshold>` -- a new snapshot is taken once the size
+*   :ref:`checkpoint_wal_threshold <cfg_checkpoint_daemon-checkpoint_wal_threshold>` -- a new snapshot is taken once the size
     of all WAL files created since the last snapshot exceeds a given limit.
 
 If necessary, the checkpoint daemon also activates the :ref:`Tarantool garbage collector <cfg_checkpoint_daemon-garbage-collector>`
