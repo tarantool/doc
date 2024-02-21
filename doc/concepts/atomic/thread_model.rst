@@ -69,7 +69,7 @@ There are also several supplementary threads that serve additional capabilities:
   Separate threads are required because each replica can point to a different position in the log and can run at different speeds.
 
 * There is a thread pool for ad hoc asynchronous tasks,
-  such as a DNS resolver or :ref:`fsync <cfg_binary_logging_snapshots-wal_mode>`.
+  such as a DNS resolver or :ref:`fsync <configuration_reference_wal_mode>`.
 
 * There are OpenMP threads used to parallelize sorting
   (hence, to parallelize building :ref:`indexes <concepts-data_model_indexes>`).

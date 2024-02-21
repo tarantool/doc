@@ -36,8 +36,8 @@
     Since version 1.7.4.
 
     The maximum number of bytes in a single write-ahead log file.
-    When a request would cause an .xlog file to become larger than
-    ``wal_max_size``, Tarantool creates another WAL file.
+    When a request would cause an ``.xlog`` file to become larger than
+    ``wal_max_size``, Tarantool creates a new WAL file.
 
     | Type: integer
     | Default: 268435456 (256 * 1024 * 1024) bytes
@@ -58,7 +58,7 @@
     locations and moving snapshots to a separate disk.
     The limit also affects what
     :ref:`box.stat.vinyl().regulator <box_introspection-box_stat_vinyl_regulator>`
-    may show for the write rate of dumps to .run and .index files.
+    may show for the write rate of dumps to ``.run`` and ``.index`` files.
 
     | Type: float
     | Default: null
@@ -73,12 +73,14 @@
 
     Specify fiber-WAL-disk synchronization mode as:
 
-    * ``none``: write-ahead log is not maintained.
-      A node with ``wal_mode = none`` can't be replication master;
-    * ``write``: :ref:`fibers <fiber-fibers>` wait for their data to be written to
-      the write-ahead log (no :manpage:`fsync(2)`);
-    * ``fsync``: fibers wait for their data, :manpage:`fsync(2)`
-      follows each :manpage:`write(2)`;
+    *   ``none``: write-ahead log is not maintained.
+        A node with ``wal_mode`` set to ``none`` can't be a replication master.
+
+    *   ``write``: :ref:`fibers <fiber-fibers>` wait for their data to be written to
+        the write-ahead log (no :manpage:`fsync(2)`).
+
+    *   ``fsync``: fibers wait for their data, :manpage:`fsync(2)`
+        follows each :manpage:`write(2)`.
 
     | Type: string
     | Default: "write"
@@ -91,7 +93,7 @@
 
     Since version 1.6.2.
 
-    Number of seconds between periodic scans of the write-ahead-log
+    The time interval in seconds between periodic scans of the write-ahead-log
     file directory, when checking for changes to write-ahead-log
     files for the sake of :ref:`replication <replication>` or :ref:`hot standby <index-hot_standby>`.
 
@@ -128,20 +130,19 @@
 
     Since version :doc:`2.6.3 </release/2.6.3>`.
 
-    The delay (in seconds) used to prevent the :ref:`Tarantool garbage collector <cfg_checkpoint_daemon-garbage-collector>`
-    from immediately removing :ref:`write-ahead log<internals-wal>` files after a node restart.
+    The delay in seconds used to prevent the :ref:`Tarantool garbage collector <cfg_checkpoint_daemon-garbage-collector>`
+    from immediately removing :ref:`write-ahead log <internals-wal>` files after a node restart.
     This delay eliminates possible erroneous situations when the master deletes WALs
     needed by :ref:`replicas <replication-roles>` after restart.
     As a consequence, replicas sync with the master faster after its restart and
     don't need to download all the data again.
-
-    Once all the nodes in the replica set are up and running,
-    automatic cleanup is started again even if ``wal_cleanup_delay`` has not expired.
+    Once all the nodes in the replica set are up and running, a scheduled garbage collection is started again
+    even if ``wal_cleanup_delay`` has not expired.
 
     .. NOTE::
 
         The ``wal_cleanup_delay`` option has no effect on nodes running as
-        :ref:`anonymous replicas<cfg_replication-replication_anon>`.
+        :ref:`anonymous replicas <cfg_replication-replication_anon>`.
 
     | Type: number
     | Default: 14400 seconds
@@ -190,7 +191,7 @@
     Note that records with additional fields are :ref:`replicated <replication-architecture>` as follows:
 
     *   If a replica doesn't support the extended format configured on a master, auxiliary fields are skipped.
-    *   If a replica and master have different configurations for WAL records, a master's configuration is ignored.
+    *   If a replica and master have different configurations for WAL records, the master's configuration is ignored.
 
     | Type: map
     | Default: nil

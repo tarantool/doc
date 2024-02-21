@@ -1,0 +1,15 @@
+groups:
+  group001:
+    replicasets:
+      replicaset001:
+        instances:
+          instance001:
+            snapshot:
+              dir: 'var/lib/{{ instance_name }}/snapshots'
+              count: 3
+              by:
+                interval: 7200
+                wal_size: 1000000000000000000
+            iproto:
+              listen:
+              - uri: '127.0.0.1:3301'

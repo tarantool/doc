@@ -37,15 +37,15 @@ that are made after the last snapshot are incremental backups. Therefore taking
 a backup is a matter of copying the snapshot and WAL files.
 
 1. Use ``tar`` to make a (possibly compressed) copy of the latest .snap and .xlog
-   files on the :ref:`memtx_dir <cfg_basic-memtx_dir>` and
-   :ref:`wal_dir <cfg_basic-wal_dir>` directories.
+   files on the :ref:`snapshot.dir <configuration_reference_snapshot_dir>` and
+   :ref:`wal.dir <configuration_reference_wal_dir>` directories.
 
 2. If there is a security policy, encrypt the .tar file.
 
 3. Copy the .tar file to a safe place.
 
 Later, restoring the database is a matter of taking the .tar file and putting
-its contents back in the ``memtx_dir`` and ``wal_dir`` directories.
+its contents back in the ``snapshot.dir`` and ``wal.dir`` directories.
 
 .. _admin-backups-hot_backup_vinyl_memtx:
 

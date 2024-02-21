@@ -2389,3 +2389,339 @@ The ``security`` section defines configuration parameters related to various sec
     | Type: boolean
     | Default: false
     | Environment variable: TT_SECURITY_SECURE_ERASING
+
+..  _configuration_reference_snapshot:
+
+snapshot
+--------
+
+The ``snapshot`` section defines configuration parameters related to the :ref:`snapshot files <internals-snapshot>`.
+To learn more about the snapshots' configuration, check the :ref:`Persistence <configuration_persistence_snapshot>` page.
+
+..  NOTE::
+
+    ``snapshot`` can be defined in any :ref:`scope <configuration_scopes>`.
+
+-   :ref:`snapshot.dir <configuration_reference_snapshot_dir>`
+-   :ref:`snapshot.snap_io_rate_limit <configuration_reference_snapshot_snap_io_rate_limit>`
+-   :ref:`snapshot.count <configuration_reference_snapshot_count>`
+-   :ref:`snapshot.by.* <configuration_reference_snapshot_by>`
+
+    -   :ref:`snapshot.by.interval <configuration_reference_snapshot_by_interval>`
+    -   :ref:`snapshot.by.wal_size <configuration_reference_snapshot_by_wal_size>`
+
+..  _configuration_reference_snapshot_dir:
+
+..  confval:: snapshot.dir
+
+    A directory where memtx stores snapshot (.snap) files.
+    A relative path in this option is interpreted as relative to ``process.work_dir``.
+
+    By default, snapshots and WAL files are stored in the same directory.
+    However, you can set different values for the ``snapshot.dir`` and :ref:`wal.dir <configuration_reference_wal_dir>` options
+    to store them on different physical disks for performance matters.
+
+    |
+    | Type: string
+    | Default: 'var/lib/{{ instance_name }}'
+    | Environment variable: TT_SNAPSHOT_DIR
+
+..  _configuration_reference_snapshot_snap_io_rate_limit:
+
+..  confval:: snapshot.snap_io_rate_limit
+
+    Reduce the throttling effect of :doc:`box.snapshot() </reference/reference_lua/box_snapshot>` on
+    INSERT/UPDATE/DELETE performance by setting a limit on how many
+    megabytes per second it can write to disk. The same can be
+    achieved by splitting :ref:`wal.dir <configuration_reference_wal_dir>` and
+    :ref:`snapshot.dir <configuration_reference_snapshot_dir>`
+    locations and moving snapshots to a separate disk.
+    The limit also affects what
+    :ref:`box.stat.vinyl().regulator <box_introspection-box_stat_vinyl_regulator>`
+    may show for the write rate of dumps to ``.run`` and ``.index`` files.
+
+    |
+    | Type: number
+    | Default: box.NULL
+    | Environment variable: TT_SNAPSHOT_SNAP_IO_RATE_LIMIT
+
+..  _configuration_reference_snapshot_count:
+
+..  confval:: snapshot.count
+
+    The maximum number of snapshots that are stored in the
+    :ref:`snapshot.dir <configuration_reference_snapshot_dir>` directory.
+    If the number of snapshots after creating a new one exceeds this value,
+    the :ref:`Tarantool garbage collector <configuration_persistence_garbage_collector>` deletes old snapshots.
+    If ``snapshot.count`` is set to zero, the garbage collector
+    does not delete old snapshots.
+
+    **Example**
+
+    In the example, the checkpoint daemon creates a snapshot every two hours until
+    it has created three snapshots. After creating a new snapshot (the fourth one), the oldest snapshot
+    and any associated write-ahead-log files are deleted.
+
+    ..  code-block:: yaml
+
+        snapshot:
+          by:
+            interval: 7200
+          count: 3
+
+    ..  NOTE::
+
+        Snapshots will not be deleted if replication is ongoing and the file has not been relayed to a replica.
+        Therefore, ``snapshot.count`` has no effect unless all replicas are alive.
+
+    |
+    | Type: integer
+    | Default: 2
+    | Environment variable: TT_SNAPSHOT_COUNT
+
+..  _configuration_reference_snapshot_by:
+
+snapshot.by.*
+~~~~~~~~~~~~~
+
+..  _configuration_reference_snapshot_by_interval:
+
+..  confval:: snapshot.by.interval
+
+    The interval in seconds between actions by the :ref:`checkpoint daemon <configuration_persistence_checkpoint_daemon>`.
+    If the option is set to a value greater than zero, and there is
+    activity that causes change to a database, then the checkpoint daemon calls
+    :doc:`box.snapshot() </reference/reference_lua/box_snapshot>` every ``snapshot.by.interval``
+    seconds, creating a new snapshot file each time.
+    If the option is set to zero, the checkpoint daemon is disabled.
+
+    **Example**
+
+    In the example, the checkpoint daemon creates a new database snapshot every two hours, if there is activity.
+
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/persistence_snapshot/config.yaml
+        :language: yaml
+        :start-at: by:
+        :end-at: interval: 7200
+        :dedent:
+
+    |
+    | Type: number
+    | Default: 3600
+    | Environment variable: TT_SNAPSHOT_BY_INTERVAL
+
+..  _configuration_reference_snapshot_by_wal_size:
+
+..  confval:: snapshot.by.wal_size
+
+    The threshold for the total size in bytes for all WAL files created since the last snapshot taken.
+    Once the configured threshold is exceeded, the WAL thread notifies the
+    :ref:`checkpoint daemon <configuration_persistence_checkpoint_daemon>` that it must make a new snapshot and delete old WAL files.
+
+    |
+    | Type: integer
+    | Default: 10^18
+    | Environment variable: TT_SNAPSHOT_BY_WAL_SIZE
+
+..  _configuration_reference_wal:
+
+wal
+---
+
+The ``wal`` section defines configuration parameters related to :ref:`write-ahead log <internals-wal>`.
+To learn more about the WAL configuration, check the :ref:`Persistence <configuration_persistence_wal>` page.
+
+..  NOTE::
+
+    ``wal`` can be defined in any :ref:`scope <configuration_scopes>`.
+
+-   :ref:`wal.cleanup_delay <configuration_reference_wal_cleanup_delay>`
+-   :ref:`wal.dir <configuration_reference_wal_dir>`
+-   :ref:`wal.dir_rescan_delay <configuration_reference_wal_dir_rescan_delay>`
+-   :ref:`wal.max_size <configuration_reference_wal_max_size>`
+-   :ref:`wal.mode <configuration_reference_wal_mode>`
+-   :ref:`wal.queue_max_size <configuration_reference_wal_queue_max_size>`
+-   :ref:`wal.ext.* <configuration_reference_wal_ext>`
+
+    -   :ref:`wal.ext.new <configuration_reference_wal_ext_new>`
+    -   :ref:`wal.ext.old <configuration_reference_wal_ext_old>`
+    -   :ref:`wal.ext.spaces <configuration_reference_wal_ext_spaces>`
+
+..  _configuration_reference_wal_cleanup_delay:
+
+..  confval:: wal.cleanup_delay
+
+    The delay in seconds used to prevent the :ref:`Tarantool garbage collector <configuration_persistence_checkpoint_daemon>`
+    from immediately removing :ref:`write-ahead log <internals-wal>` files after a node restart.
+    This delay eliminates possible erroneous situations when the master deletes WALs
+    needed by :ref:`replicas <replication-roles>` after restart.
+    As a consequence, replicas sync with the master faster after its restart and
+    don't need to download all the data again.
+    Once all the nodes in the replica set are up and running, a scheduled garbage collection is started again
+    even if ``wal.cleanup_delay`` has not expired.
+
+
+    ..  NOTE::
+
+        The option has no effect on nodes running as
+        :ref:`anonymous replicas <configuration_reference_replication_anon>`.
+
+    |
+    | Type: number
+    | Default: 14400
+    | Environment variable: TT_WAL_CLEANUP_DELAY
+
+..  _configuration_reference_wal_dir:
+
+..  confval:: wal.dir
+
+    A directory where write-ahead log (``.xlog``) files are stored.
+    A relative path in this option is interpreted as relative to ``process.work_dir``.
+
+    By default, WAL files and snapshots are stored in the same directory.
+    However, you can set different values for the ``wal.dir`` and :ref:`snapshot.dir <configuration_reference_snapshot_dir>` options
+    to store them on different physical disks for performance matters.
+
+    |
+    | Type: string
+    | Default: 'var/lib/{{ instance_name }}'
+    | Environment variable: TT_WAL_DIR
+
+..  _configuration_reference_wal_dir_rescan_delay:
+
+..  confval:: wal.dir_rescan_delay
+
+    The time interval in seconds between periodic scans of the write-ahead-log
+    file directory, when checking for changes to write-ahead-log
+    files for the sake of :ref:`replication <replication>` or :ref:`hot standby <configuration_reference_database_hot_standby>`.
+
+    |
+    | Type: number
+    | Default: 2
+    | Environment variable: TT_WAL_DIR_RESCAN_DELAY
+
+..  _configuration_reference_wal_max_size:
+
+..  confval:: wal.max_size
+
+    The maximum number of bytes in a single write-ahead log file.
+    When a request would cause an ``.xlog`` file to become larger than
+    ``wal.max_size``, Tarantool creates a new WAL file.
+
+    |
+    | Type: integer
+    | Default: 268435456
+    | Environment variable: TT_WAL_MAX_SIZE
+
+..  _configuration_reference_wal_mode:
+
+..  confval:: wal.mode
+
+    Specify fiber-WAL-disk synchronization mode as:
+
+    *   ``none``: write-ahead log is not maintained.
+        A node with ``wal.mode`` set to ``none`` can't be a replication master.
+
+    *   ``write``: :ref:`fibers <fiber-fibers>` wait for their data to be written to
+        the write-ahead log (no ``fsync(2)``).
+
+    *   ``fsync``: fibers wait for their data, :manpage:`fsync(2)`
+        follows each :manpage:`write(2)`.
+
+    |
+    | Type: string
+    | Default: 'write'
+    | Environment variable: TT_WAL_MODE
+
+..  _configuration_reference_wal_queue_max_size:
+
+..  confval:: wal.queue_max_size
+
+    The size of the queue in bytes used by a :ref:`replica <replication-roles>` to submit
+    new transactions to a :ref:`write-ahead log <internals-wal>` (WAL).
+    This option helps limit the rate at which a replica submits transactions to the WAL.
+
+    Limiting the queue size might be useful when a replica is trying to sync with a master and
+    reads new transactions faster than writing them to the WAL.
+
+    ..  NOTE::
+
+        You might consider increasing the ``wal.queue_max_size`` value in case of
+        large tuples (approximately one megabyte or larger).
+
+    |
+    | Type: integer
+    | Default: 16777216
+    | Environment variable: TT_WAL_QUEUE_MAX_SIZE
+
+..  _configuration_reference_wal_ext:
+
+wal.ext.*
+~~~~~~~~~
+
+..  admonition:: Enterprise Edition
+    :class: fact
+
+    Configuring ``wal.ext.*`` parameters is available in the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only.
+
+This section describes options related to :ref:`WAL extensions <wal_extensions>`.
+
+..  _configuration_reference_wal_ext_new:
+
+..  confval:: wal.ext.new
+
+    Enable storing a new tuple for each :ref:`CRUD <box_space_examples>` operation performed.
+    The option is in effect for all spaces.
+    To adjust the option for specific spaces, use the :ref:`wal.ext.spaces <configuration_reference_wal_ext_spaces>`
+    option.
+
+    |
+    | Type: boolean
+    | Default: false
+    | Environment variable: TT_WAL_EXT_NEW
+
+..  _configuration_reference_wal_ext_old:
+
+..  confval:: wal.ext.old
+
+    Enable storing an old tuple for each :ref:`CRUD <box_space_examples>` operation performed.
+    The option is in effect for all spaces.
+    To adjust the option for specific spaces, use the :ref:`wal.ext.spaces <configuration_reference_wal_ext_spaces>`
+    option.
+
+    |
+    | Type: boolean
+    | Default: false
+    | Environment variable: TT_WAL_EXT_OLD
+
+..  _configuration_reference_wal_ext_spaces:
+
+..  confval:: wal.ext.spaces
+
+    Enable or disable storing an old and new tuple in the :ref:`WAL <internals-wal>` record
+    for a given space explicitly.
+    The configuration for specific spaces has priority over the configuration in the
+    :ref:`wal.ext.new <configuration_reference_wal_ext_new>` and :ref:`wal.ext.old <configuration_reference_wal_ext_old>`
+    options.
+
+    The option is a key-value pair:
+
+    *   The key is a space name (string).
+
+    *   The value is a table that includes two optional boolean options: ``old`` and ``new``.
+        The format and the default value of these options are described in ``wal.ext.old`` and ``wal.ext.new``.
+
+    **Example**
+
+    In the example, only new tuples are added to the log for the ``bands`` space.
+
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/persistence_wal/config.yaml
+        :language: yaml
+        :start-at: ext:
+        :end-at: old: false
+        :dedent:
+
+    |
+    | Type: map
+    | Default: nil
+    | Environment variable: TT_WAL_EXT_SPACES
