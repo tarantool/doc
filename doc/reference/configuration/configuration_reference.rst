@@ -2390,6 +2390,357 @@ The ``security`` section defines configuration parameters related to various sec
     | Default: false
     | Environment variable: TT_SECURITY_SECURE_ERASING
 
+
+
+
+..  _configuration_reference_sharding:
+
+sharding
+--------
+
+The ``sharding`` section defines configuration parameters related to :ref:`sharding <vshard-admin>`.
+
+..  NOTE::
+
+    Sharding support requires installing the :ref:`vshard <vshard>` module.
+    The minimum required version of ``vshard`` is 0.1.25.
+
+-   :ref:`sharding.bucket_count <configuration_reference_sharding_bucket_count>`
+-   :ref:`sharding.discovery_mode <configuration_reference_sharding_discovery_mode>`
+-   :ref:`sharding.failover_ping_timeout <configuration_reference_sharding_failover_ping_timeout>`
+-   :ref:`sharding.lock <configuration_reference_sharding_lock>`
+-   :ref:`sharding.rebalancer_disbalance_threshold <configuration_reference_sharding_rebalancer_disbalance_threshold>`
+-   :ref:`sharding.rebalancer_max_receiving <configuration_reference_sharding_rebalancer_max_receiving>`
+-   :ref:`sharding.rebalancer_max_sending <configuration_reference_sharding_rebalancer_max_sending>`
+-   :ref:`sharding.roles <configuration_reference_sharding_roles>`
+-   :ref:`sharding.sched_move_quota <configuration_reference_sharding_sched_move_quota>`
+-   :ref:`sharding.sched_ref_quota <configuration_reference_sharding_sched_ref_quota>`
+-   :ref:`sharding.shard_index <configuration_reference_sharding_shard_index>`
+-   :ref:`sharding.sync_timeout <configuration_reference_sharding_sync_timeout>`
+-   :ref:`sharding.zone <configuration_reference_sharding_zone>`
+
+
+
+..  _configuration_reference_sharding_bucket_count:
+
+..  confval:: sharding.bucket_count
+
+    The total number of buckets in a cluster.
+
+    ``sharding.bucket_count`` should be several orders of magnitude larger than the potential number of cluster nodes, considering potential scaling out in the future.
+
+    If the estimated number of nodes in a cluster is M, then the data set should be divided into 100M or even 1000M buckets, depending on the planned scaling out.
+    This number is greater than the potential number of cluster nodes in the system being designed.
+
+    Keep in mind that too many buckets can cause a need to allocate more memory to store routing information.
+    On the other hand, an insufficient number of buckets can lead to decreased granularity when :ref:`rebalancing <vshard-rebalancing>`.
+
+    ..  NOTE::
+
+        This option should be defined at the :ref:`global level <configuration_scopes>`.
+
+    **Example:**
+
+    ..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster/config.yaml
+        :language: yaml
+        :start-after: login: storage
+        :end-at: bucket_count
+        :dedent:
+
+    |
+    | Type: integer
+    | Default: 3000
+    | Environment variable: TT_SHARDING_BUCKET_COUNT
+
+.. TODO: Remove - for internal use
+    ..  _configuration_reference_sharding_connection_outdate_delay:
+
+    ..  confval:: sharding.connection_outdate_delay
+
+        The delay (in seconds) to outdate old replica set and replica objects after reconfiguration.
+
+        ..  NOTE::
+
+            This option should be defined at the :ref:`global level <configuration_scopes>`.
+
+        |
+        | Type: number
+        | Default: nil
+        | Environment variable: TT_SHARDING_CONNECTION_OUTDATE_DELAY
+
+
+..  _configuration_reference_sharding_discovery_mode:
+
+..  confval:: sharding.discovery_mode
+
+    A mode of the background discovery fiber used by the router to find buckets.
+    Learn more in :ref:`vshard.router.discovery_set() <router_api-discovery_set>`.
+
+    ..  NOTE::
+
+        This option should be defined at the :ref:`global level <configuration_scopes>`.
+
+    |
+    | Type: string
+    | Default: 'on'
+    | Possible values: 'on', 'off', 'once'
+    | Environment variable: TT_SHARDING_DISCOVERY_MODE
+
+
+..  _configuration_reference_sharding_failover_ping_timeout:
+
+..  confval:: sharding.failover_ping_timeout
+
+    The timeout (in seconds) after which a node is considered unavailable if there are no responses during this period.
+    The :ref:`failover fiber <vshard-failover>` is used to detect if a node is down.
+
+    ..  NOTE::
+
+        This option should be defined at the :ref:`global level <configuration_scopes>`.
+
+    |
+    | Type: number
+    | Default: 5
+    | Environment variable: TT_SHARDING_FAILOVER_PING_TIMEOUT
+
+
+..  _configuration_reference_sharding_lock:
+
+..  confval:: sharding.lock
+
+    Whether a replica set is :ref:`locked <vshard-lock-pin>`.
+    A locked replica set cannot receive new buckets nor migrate its own buckets.
+
+    ..  NOTE::
+
+        ``sharding.lock`` can be specified at the :ref:`replica set level <configuration_scopes>` or higher.
+
+    |
+    | Type: boolean
+    | Default: nil
+    | Environment variable: TT_SHARDING_LOCK
+
+
+..  _configuration_reference_sharding_rebalancer_disbalance_threshold:
+
+..  confval:: sharding.rebalancer_disbalance_threshold
+
+    The maximum bucket :ref:`disbalance <vshard-rebalancing>` threshold (in percent).
+    The disbalance is calculated for each replica set using the following formula:
+
+    .. code-block:: none
+
+        |etalon_bucket_count - real_bucket_count| / etalon_bucket_count * 100
+
+    ..  NOTE::
+
+        This option should be defined at the :ref:`global level <configuration_scopes>`.
+
+    |
+    | Type: number
+    | Default: 1
+    | Environment variable: TT_SHARDING_REBALANCER_DISBALANCE_THRESHOLD
+
+
+..  _configuration_reference_sharding_rebalancer_max_receiving:
+
+..  confval:: sharding.rebalancer_max_receiving
+
+    The maximum number of buckets that can be :ref:`received in parallel <vshard-parallel-rebalancing>` by a single replica set.
+    This number must be limited because the rebalancer sends a large number of buckets from the existing replica sets to the newly added one.
+    This produces a heavy load on the new replica set.
+
+    ..  NOTE::
+
+        This option should be defined at the :ref:`global level <configuration_scopes>`.
+
+    **Example:**
+
+    Suppose, ``rebalancer_max_receiving`` is equal to 100 and ``bucket_count`` is equal to 1000.
+    There are 3 replica sets with 333, 333, and 334 buckets on each respectively.
+    When a new replica set is added, each replica set’s ``etalon_bucket_count`` becomes
+    equal to 250. Rather than receiving all 250 buckets at once, the new replica set
+    receives 100, 100, and 50 buckets sequentially.
+
+    |
+    | Type: integer
+    | Default: 100
+    | Environment variable: TT_SHARDING_REBALANCER_MAX_RECEIVING
+
+
+..  _configuration_reference_sharding_rebalancer_max_sending:
+
+..  confval:: sharding.rebalancer_max_sending
+
+    The degree of parallelism for :ref:`parallel rebalancing <vshard-parallel-rebalancing>`.
+
+    ..  NOTE::
+
+        This option should be defined at the :ref:`global level <configuration_scopes>`.
+
+    |
+    | Type: integer
+    | Default: 1
+    | Maximum: 15
+    | Environment variable: TT_SHARDING_REBALANCER_MAX_SENDING
+
+.. TODO: https://github.com/tarantool/doc/issues/3865
+    ..  _configuration_reference_sharding_rebalancer_mode:
+
+    ..  confval:: sharding.rebalancer_mode
+
+        [TODO] A rebalancer mode:
+
+        *   ``manual``
+        *   ``auto``
+        *   ``off``
+
+        ..  NOTE::
+
+            This option should be defined at the :ref:`global level <configuration_scopes>`.
+
+        |
+        | Type: string
+        | Default: 'auto'
+        | Environment variable: TT_SHARDING_REBALANCER_MODE
+
+
+..  _configuration_reference_sharding_roles:
+
+..  confval:: sharding.roles
+
+    Roles of a replica set in regard to sharding.
+    A replica set can have the following roles:
+
+    *   ``router``: a replica set acts as a :ref:`router <vshard-architecture-router>`.
+    *   ``storage``: a replica set acts as a :ref:`storage <vshard-architecture-storage>`.
+    *   ``rebalancer``: a replica set acts as a :ref:`rebalancer <vshard-rebalancer>`.
+
+    The ``rebalancer`` role is optional.
+    If it is not specified, a rebalancer is selected automatically from master instances of replica sets.
+
+    There can be at most one replica set with the ``rebalancer`` role.
+    Additionally, this replica set should have a ``storage`` role.
+
+    **Example:**
+
+    .. code-block:: yaml
+
+        replicasets:
+          storage-a:
+            sharding:
+              roles: [storage, rebalancer]
+
+    ..  NOTE::
+
+        ``sharding.roles`` can be specified at the :ref:`replica set level <configuration_scopes>` or higher.
+
+    |
+    | Type: array
+    | Default: nil
+    | Environment variable: TT_SHARDING_ROLES
+
+
+..  _configuration_reference_sharding_sched_move_quota:
+
+..  confval:: sharding.sched_move_quota
+
+    A scheduler's bucket move quota used by the :ref:`rebalancer <vshard-rebalancing>`.
+
+    ``sched_move_quota`` defines how many bucket moves can be done in a row if there are pending storage refs.
+    Then, bucket moves are blocked and a router continues making map-reduce requests.
+
+    See also: :ref:`sharding.sched_ref_quota <configuration_reference_sharding_sched_ref_quota>`.
+
+    ..  NOTE::
+
+        This option should be defined at the :ref:`global level <configuration_scopes>`.
+
+    |
+    | Type: number
+    | Default: 1
+    | Environment variable: TT_SHARDING_SCHED_MOVE_QUOTA
+
+
+..  _configuration_reference_sharding_sched_ref_quota:
+
+..  confval:: sharding.sched_ref_quota
+
+    A scheduler's storage ref quota used by a :ref:`router <vshard-architecture-router>`'s map-reduce API.
+    For example, the :ref:`vshard.router.map_callrw() <router_api-map_callrw>` function implements consistent map-reduce over the entire cluster.
+
+    ``sched_ref_quota`` defines how many storage refs, therefore map-reduce requests, can be executed on the storage in a row if there are pending bucket moves.
+    Then, storage refs are blocked and the rebalancer continues bucket moves.
+
+    See also: :ref:`sharding.sched_move_quota <configuration_reference_sharding_sched_move_quota>`.
+
+    ..  NOTE::
+
+        This option should be defined at the :ref:`global level <configuration_scopes>`.
+
+    |
+    | Type: number
+    | Default: 300
+    | Environment variable: TT_SHARDING_SCHED_REF_QUOTA
+
+
+..  _configuration_reference_sharding_shard_index:
+
+..  confval:: sharding.shard_index
+
+    The name or ID of a TREE index over the :ref:`bucket id <vshard-vbuckets>`.
+    Spaces without this index do not participate in a sharded Tarantool
+    cluster and can be used as regular spaces if needed. It is necessary to
+    specify the first part of the index, other parts are optional.
+
+    ..  NOTE::
+
+        This option should be defined at the :ref:`global level <configuration_scopes>`.
+
+    |
+    | Type: string
+    | Default: 'bucket_id'
+    | Environment variable: TT_SHARDING_SHARD_INDEX
+
+
+..  _configuration_reference_sharding_sync_timeout:
+
+..  confval:: sharding.sync_timeout
+
+    The timeout to wait for synchronization of the old master with replicas before demotion.
+    Used when switching a master or when manually calling the :ref:`sync() <storage_api-sync>` function.
+
+    ..  NOTE::
+
+        This option should be defined at the :ref:`global level <configuration_scopes>`.
+
+    |
+    | Type: number
+    | Default: 1
+    | Environment variable: TT_SHARDING_SYNC_TIMEOUT
+
+
+..  _configuration_reference_sharding_zone:
+
+..  confval:: sharding.zone
+
+    A :ref:`zone <vshard-replica-weights>` that can be set for routers and replicas.
+    This allows sending read-only requests not only to a master instance but to any available replica that is the nearest to the router.
+
+    ..  NOTE::
+
+        ``sharding.zone`` can be specified at any :ref:`level <configuration_scopes>`.
+
+    |
+    | Type: integer
+    | Default: nil
+    | Environment variable: TT_SHARDING_ZONE
+
+
+
+
+
+
 ..  _configuration_reference_snapshot:
 
 snapshot

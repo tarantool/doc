@@ -4,6 +4,10 @@
 Configuration reference
 ===============================================================================
 
+..  include:: /concepts/configuration/configuration_code.rst
+    :start-after: box_cfg_legacy_note_start
+    :end-before: box_cfg_legacy_note_end
+
 .. _vshard-config-basic-params:
 
 -------------------------------------------------------------------------------
@@ -21,6 +25,8 @@ Basic parameters
 * :ref:`rebalancer_max_receiving <cfg_basic-rebalancer_max_receiving>`
 * :ref:`rebalancer_max_sending <cfg_basic-rebalancer_max_sending>`
 * :ref:`discovery_mode <cfg_basic-discovery_mode>`
+* :ref:`sched_move_quota <cfg_basic-sched_move_quota>`
+* :ref:`sched_ref_quota <cfg_basic-sched_ref_quota>`
 
 .. _cfg_basic-sharding:
 
@@ -84,6 +90,8 @@ Basic parameters
 
 .. confval:: collect_bucket_garbage_interval
 
+    **Deprecated since:** 0.1.17.
+
     The interval between garbage collector actions, in seconds.
 
     | Type: number
@@ -93,6 +101,8 @@ Basic parameters
 .. _cfg_basic-collect_lua_garbage:
 
 .. confval:: collect_lua_garbage
+
+    **Deprecated since:** 0.1.20.
 
     If set to true, the Lua ``collectgarbage()`` function is called periodically.
 
@@ -172,6 +182,37 @@ Basic parameters
 
     | Type: string
     | Default: 'on'
+    | Dynamic: yes
+
+.. _cfg_basic-sched_move_quota:
+
+.. confval:: sched_move_quota
+
+    A scheduler's bucket move quota used by the rebalancer.
+
+    ``sched_move_quota`` defines how many bucket moves can be done in a row if there are pending storage refs.
+    Then, bucket moves are blocked and a router continues making map-reduce requests.
+
+    See also: :ref:`sched_ref_quota <cfg_basic-sched_ref_quota>`.
+
+    | Type: number
+    | Default: 1
+    | Dynamic: yes
+
+.. _cfg_basic-sched_ref_quota:
+
+.. confval:: sched_ref_quota
+
+    A scheduler's storage ref quota used by a router's map-reduce API.
+    For example, the :ref:`vshard.router.map_callrw() <router_api-map_callrw>` function implements consistent map-reduce over the entire cluster.
+
+    ``sched_ref_quota`` defines how many storage refs, therefore map-reduce requests, can be executed on the storage in a row if there are pending bucket moves.
+    Then, storage refs are blocked and the rebalancer continues bucket moves.
+
+    See also: :ref:`sched_move_quota <cfg_basic-sched_move_quota>`.
+
+    | Type: number
+    | Default: 300
     | Dynamic: yes
 
 .. _vshard-config-replica-set-funcs:
