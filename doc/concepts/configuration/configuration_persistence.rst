@@ -98,17 +98,15 @@ directory using the :ref:`snapshot.count <configuration_reference_snapshot_count
 Once the number of snapshots reaches the given limit, :ref:`Tarantool garbage collector <configuration_persistence_garbage_collector>`
 deletes the oldest snapshot file and any associated WAL files after the new snapshot is taken.
 
+In the example below, the snapshot is created every two hours (every 7200 seconds) until there are three snapshots in the
+``snapshot.dir`` directory.
+After creating a new snapshot (the fourth one), the oldest snapshot and the corresponding WALs are deleted.
+
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/persistence_snapshot/config.yaml
     :language: yaml
     :start-at: count:
     :end-at: 7200
     :dedent:
-
-In the example, the snapshot is created every two hours (every 7200 seconds) until there are three snapshots in the
-``snapshot.dir`` directory.
-After creating a new snapshot (the fourth one), the oldest snapshot and the corresponding WALs are deleted.
-
-If the ``snapshot.count`` option is set to zero, the garbage collector does not delete old snapshots.
 
 ..  _configuration_persistence_wal:
 

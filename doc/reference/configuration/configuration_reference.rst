@@ -2456,7 +2456,11 @@ To learn more about the snapshots' configuration, check the :ref:`Persistence <c
     If ``snapshot.count`` is set to zero, the garbage collector
     does not delete old snapshots.
 
-    Example:
+    **Example**
+
+    In the example, the checkpoint daemon creates a snapshot every two hours until
+    it has created three snapshots. After creating a new snapshot (the fourth one), the oldest snapshot
+    and any associated write-ahead-log files are deleted.
 
     ..  code-block:: yaml
 
@@ -2464,10 +2468,6 @@ To learn more about the snapshots' configuration, check the :ref:`Persistence <c
           by:
             interval: 7200
           count: 3
-
-    In the example, the checkpoint daemon creates a snapshot every two hours until
-    it has created three snapshots. After creating a new snapshot (the fourth one), the oldest snapshot
-    and any associated write-ahead-log files are deleted.
 
     ..  NOTE::
 
@@ -2495,15 +2495,15 @@ snapshot.by.*
     seconds, creating a new snapshot file each time.
     If the option is set to zero, the checkpoint daemon is disabled.
 
-    Example:
+    **Example**
+
+    In the example, the checkpoint daemon creates a new database snapshot every two hours, if there is activity.
 
     ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/persistence_snapshot/config.yaml
         :language: yaml
         :start-at: by:
         :end-at: interval: 7200
         :dedent:
-
-    In the example, the checkpoint daemon creates a new database snapshot every two hours, if there is activity.
 
     |
     | Type: number
@@ -2711,16 +2711,15 @@ This section describes options related to :ref:`WAL extensions <wal_extensions>`
     *   The value is a table that includes two optional boolean options: ``old`` and ``new``.
         The format and the default value of these options are described in ``wal.ext.old`` and ``wal.ext.new``.
 
+    **Example**
 
-    Example:
+    In the example, only new tuples are added to the log for the ``bands`` space.
 
     ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/persistence_wal/config.yaml
         :language: yaml
         :start-at: ext:
         :end-at: old: false
         :dedent:
-
-    In the example, only new tuples are added to the log for the ``bands`` space.
 
     |
     | Type: map

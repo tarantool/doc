@@ -78,6 +78,8 @@ Tarantool garbage collector doesn't delete a file in the following cases:
     seconds, creating a new snapshot file each time. If the option
     is set to zero, the checkpoint daemon is disabled.
 
+    **Example**
+
     ..  code-block:: lua
 
         box.cfg{ checkpoint_interval = 7200 }
@@ -101,6 +103,8 @@ Tarantool garbage collector doesn't delete a file in the following cases:
     the :ref:`Tarantool garbage collector <cfg_checkpoint_daemon-garbage-collector>` deletes old snapshots.
     If the option is set to zero, the garbage collector
     does not delete old snapshots.
+
+    **Example**
 
     ..  code-block:: lua
 
