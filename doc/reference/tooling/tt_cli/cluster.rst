@@ -1,4 +1,4 @@
-.. _tt-cluster2:
+.. _tt-cluster:
 
 Managing cluster configurations
 ===============================

@@ -1,0 +1,49 @@
+credentials:
+  users:
+    sampleuser:
+      password: '123456'
+      privileges:
+      - permissions: [ read, write ]
+        spaces: [ config_storage, config_storage_meta ]
+      - permissions: [ execute ]
+        universe: true
+    replicator:
+      password: 'topsecret'
+      roles: [ replication ]
+
+iproto:
+  advertise:
+    peer:
+      login: replicator
+
+replication:
+  failover: election
+
+database:
+  use_mvcc_engine: true
+
+groups:
+  group001:
+    replicasets:
+      replicaset001:
+        roles: [ config.storage ]
+        roles_cfg:
+          config.storage:
+            status_check_interval: 3
+        instances:
+          instance001:
+            iproto:
+              listen:
+              - uri: '127.0.0.1:4401'
+          instance002:
+            iproto:
+              listen:
+              - uri: '127.0.0.1:4402'
+          instance003:
+            iproto:
+              listen:
+              - uri: '127.0.0.1:4403'
+
+# Interact with config storage
+app:
+  file: 'myapp.lua'

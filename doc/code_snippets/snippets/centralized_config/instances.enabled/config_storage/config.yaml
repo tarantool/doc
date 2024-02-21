@@ -1,0 +1,19 @@
+config:
+  storage:
+    endpoints:
+      - uri: '127.0.0.1:4401'
+        login: sampleuser
+        password: '123456'
+      - uri: '127.0.0.1:4402'
+        login: sampleuser
+        password: '123456'
+      - uri: '127.0.0.1:4403'
+        login: sampleuser
+        password: '123456'
+    prefix: /myapp
+    timeout: 3
+    reconnect_after: 5
+
+# Watch key changes
+app:
+  file: 'myapp.lua'

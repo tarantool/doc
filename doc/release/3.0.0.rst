@@ -65,15 +65,16 @@ Centralized configuration (EE)
 
 Tarantool Enterprise Edition enables you to store configuration data in one reliable place, for example, an :ref:`etcd <configuration_etcd>` cluster. To achieve this, you need to configure connection options in the ``config.etcd`` section of the configuration file, for example:
 
-..  literalinclude:: /code_snippets/snippets/config/instances.enabled/etcd/config.yaml
+..  literalinclude:: /code_snippets/snippets/centralized_config/instances.enabled/config_etcd/config.yaml
     :language: yaml
+    :end-at: password: '123456'
     :dedent:
 
 Using the configuration above, a Tarantool instance searches for a cluster configuration by the following path:
 
 .. code-block:: none
 
-    http://localhost:2379/example/config/*
+    http://localhost:2379/myapp/config/*
 
 
 
