@@ -19,6 +19,13 @@ To learn more, read the :doc:`Compatibility guarantees <compatibility>` article.
 Supported versions
 ------------------
 
+.. ifconfig:: builder not in ('latex', )
+
+    .. image:: _images/releases_calendar.svg
+        :target: ../../_images/releases_calendar.svg
+        :align: center
+        :alt: releases_calendar.svg
+
 Every Tarantool release series has :ref:`the same lifecycle <release-series-lifecycle>`
 defined by the release policy.
 Below you can find the lifecycle of currently supported Tarantool versions. For
