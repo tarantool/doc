@@ -4,7 +4,7 @@ Transaction mode: default
 ===========================
 
 By default, Tarantool does not allow :ref:`"yielding" <app-yields>` inside a :ref:`memtx <engines-chapter>` 
-transaction and the :ref:`transaction manager <txn_mode_mvcc-tnx-manager>` is disabled. This allows fast 
+transaction and the :ref:`transaction manager <txn_mode_mvcc-txn-manager>` is disabled. This allows fast
 atomic transactions without conflicts, but brings some limitations:
 
 *   You cannot use :ref:`interactive transactions <txn_mode_interactive_transaction>`.
