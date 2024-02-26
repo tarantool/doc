@@ -35,27 +35,30 @@ after the specified date.
     ..  list-table::
 
         *   -   Series
-            -   Versions
             -   First release date
             -   End of life
             -   End of support
+            -   Versions
 
         *   -   :doc:`3.0 </release/3.0.0>`
-            -   | :tarantool-release:`3.0.1`
-                | :tarantool-release:`3.0.0`
             -   **December 26, 2023**
             -   **December 26, 2025**
             -   **Not planned yet**
+            -   | :tarantool-release:`3.0.1`
+                | :tarantool-release:`3.0.0`
 
         *   -   :doc:`2.11 LTS </release/2.11.0>`
-            -   | :tarantool-release:`2.11.2`
-                | :tarantool-release:`2.11.1`
-                | :tarantool-release:`2.11.0`
             -   **May 24, 2023**
             -   **May 24, 2025**
             -   **Not planned yet**
+            -   | :tarantool-release:`2.11.2`
+                | :tarantool-release:`2.11.1`
+                | :tarantool-release:`2.11.0`
 
         *   -   2.10
+            -   May 22, 2022
+            -   September 14, 2023
+            -   Not planned yet
             -   | :doc:`2.10.8 </release/2.10.8>`
                 | :doc:`2.10.7 </release/2.10.7>`
                 | :doc:`2.10.6 </release/2.10.6>`
@@ -65,17 +68,14 @@ after the specified date.
                 | :doc:`2.10.2 </release/2.10.2>`
                 | :doc:`2.10.1 </release/2.10.1>`
                 | :doc:`2.10.0 </release/2.10.0>`
-            -   May 22, 2022
-            -   September 14, 2023
-            -   Not planned yet
 
         *   -   2.8
-            -   | :doc:`2.8.4 </release/2.8.4>`
-                | :doc:`2.8.3 </release/2.8.3>`
-                | :doc:`2.8.2 </release/2.8.2>`
             -   August 19, 2021
             -   April 25, 2022
             -   December 31, 2024
+            -   | :doc:`2.8.4 </release/2.8.4>`
+                | :doc:`2.8.3 </release/2.8.3>`
+                | :doc:`2.8.2 </release/2.8.2>`
 
 ..  toctree::
     :maxdepth: 1
