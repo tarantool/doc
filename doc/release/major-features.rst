@@ -1,5 +1,13 @@
+.. _release_eol_major_features:
+
 Major features
 ==============
+
+.. important::
+
+    This table lists major changes in Tarantool versions up to 2.11.0.
+    For overviews of new features introduces in newer versions, see
+    their *What's new* pages inside :doc:`releases`.
 
 Every released version of Tarantool brings some notable features and fixes, which are all listed in
 the :doc:`release notes </release/index>`.

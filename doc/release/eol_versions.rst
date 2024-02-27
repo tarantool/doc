@@ -1,12 +1,18 @@
+.. _release_eol:
 
 EOL versions
 ============
 
 This section contains information about Tarantool versions that have reached
 their end of life in accordance with the :doc:`release policy <policy>`. This
-means that these version don't receive updates and fixes anymore, although we still
-provide technical support for some of them. Supported versions are shown in **bold**.
+means that these versions don't receive updates and fixes anymore. However, we still
+provide technical support for most recent of them. Supported versions are shown in **bold**.
 
+For information about major changes between EOL versions, see :ref:`releases_eol_major_features`.
+
+.. note::
+
+    Before 2.10.0, version numbers were subject to the :doc:`legacy versioning policy <legacy-policy>`.
 
 ..  container:: table
 
@@ -211,6 +217,7 @@ provide technical support for some of them. Supported versions are shown in **bo
     :maxdepth: 1
 
     major-features
+    legacy-policy
     2.10.8
     2.10.7
     2.10.6
@@ -259,4 +266,3 @@ provide technical support for some of them. Supported versions are shown in **bo
     1.8
     1.7
     1.6
-    legacy-policy

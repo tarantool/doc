@@ -19,6 +19,10 @@ To learn more, read the :doc:`Compatibility guarantees <compatibility>` article.
 Supported versions
 ------------------
 
+Every Tarantool release series has :ref:`the same lifecycle <release-series-lifecycle>`
+defined by the release policy. The following diagram visualises the lifecycle of currently
+supported Tarantool versions:
+
 .. ifconfig:: builder not in ('latex', )
 
     .. image:: _images/releases_calendar.svg
@@ -26,16 +30,17 @@ Supported versions
         :align: center
         :alt: releases_calendar.svg
 
-Every Tarantool release series has :ref:`the same lifecycle <release-series-lifecycle>`
-defined by the release policy.
-Below you can find the lifecycle of currently supported Tarantool versions. For
-information about earlier versions, see :doc:`eol_versions`.
+The table below provides information about supported versions with links to their
+*What's new* pages in the documentation and detailed changelogs on GitHub.
+For information about earlier versions, see :doc:`eol_versions`.
 
-*End of life* means the release series will no longer receive any patches, updates,
-or feature improvements after the specified date. Versions that haven't reached
-their end of life yet are shown in **bold**.
-*End of support* means that we won't provide technical support to product versions
-after the specified date.
+.. note::
+    *End of life* (*EOL*) means the release series will no longer receive any patches,
+    updates, or feature improvements after the specified date. Versions that haven't
+    reached their end of life yet are shown in **bold**.
+
+    *End of support* (*EOS*) means that we won't provide technical support to product
+    versions after the specified date.
 
 ..  container:: table
 
