@@ -20,7 +20,7 @@ SDK version numbering and changes.
 The detailed information about Tarantool version numbering and release lifecycle
 is available in :ref:`release-policy`.
 
-Backwards compatibility is guaranteed between all versions in the same :term:`release series`.
+Backward compatibility is guaranteed between all versions in the same :term:`release series`.
 It is also appreciated but not guaranteed between different release series (major number changes).
 To learn more, read the :doc:`Compatibility guarantees <compatibility>` article.
 
@@ -30,7 +30,7 @@ Supported versions
 ------------------
 
 Every Tarantool release series has :ref:`the same lifecycle <release-series-lifecycle>`
-defined by the release policy. The following diagram visualises the lifecycle of currently
+defined by the release policy. The following diagram visualizes the lifecycle of currently
 supported Tarantool versions:
 
 .. ifconfig:: builder not in ('latex', )
