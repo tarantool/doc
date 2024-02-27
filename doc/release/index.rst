@@ -33,18 +33,16 @@ Every Tarantool release series has :ref:`the same lifecycle <release-series-life
 defined by the release policy. The following diagram visualizes the lifecycle of currently
 supported Tarantool versions:
 
-.. ifconfig:: builder not in ('latex', )
-
-    .. image:: _images/releases_calendar.svg
-        :target: ../../_images/releases_calendar.svg
-        :align: center
-        :alt: releases_calendar.svg
+.. image:: _images/releases_calendar.svg
+    :align: center
+    :alt: Release calendar
 
 The table below provides information about supported versions with links to their
 *What's new* pages in the documentation and detailed changelogs on GitHub.
 For information about earlier versions, see :doc:`eol_versions`.
 
 .. note::
+
     *End of life* (*EOL*) means the release series will no longer receive any patches,
     updates, or feature improvements after the specified date. Versions that haven't
     reached their end of life yet are shown in **bold**.
@@ -55,6 +53,7 @@ For information about earlier versions, see :doc:`eol_versions`.
 ..  container:: table
 
     ..  list-table::
+        :header-rows: 1
 
         *   -   Series
             -   First release date

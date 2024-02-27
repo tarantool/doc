@@ -6,7 +6,8 @@ EOL versions
 This section contains information about Tarantool versions that have reached
 their *end of life* in accordance with the :ref:`release-policy`. This
 means that these versions don't receive updates and fixes anymore. However, we still
-provide technical support for the most recent of them. Supported versions are shown in **bold**.
+provide technical support for certain time after a version's EOL. The current support
+status is reflected by the **End of support** column of the table below.
 
 For information about major changes between EOL versions, see :ref:`release-eol-major-features`.
 
@@ -17,6 +18,7 @@ For information about major changes between EOL versions, see :ref:`release-eol-
 ..  container:: table
 
     ..  list-table::
+        :header-rows: 1
 
         *   -   Version
             -   Release date
@@ -214,7 +216,7 @@ For information about major changes between EOL versions, see :ref:`release-eol-
             -   February 20, 2023
 
 ..  toctree::
-    :maxdepth: 1
+    :hidden:
 
     major-features
     legacy-policy
