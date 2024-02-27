@@ -10,7 +10,7 @@ This section contains information about Tarantool releases: release notes, lifec
 information, release policy, and other documents.
 To download Tarantool releases, check the `Download <https://www.tarantool.io/en/download/>`_ page.
 
-All currently supported versions are listed on this page :ref:`below <release_supported_versions>.
+All currently supported versions are listed on this page :ref:`below <release-supported-versions>`.
 The information about earlier versions is provided in :ref:`release-eol-versions`.
 
 The Enterprise Edition of Tarantool is distributed in the form of an SDK that has
@@ -24,7 +24,7 @@ Backwards compatibility is guaranteed between all versions in the same :term:`re
 It is also appreciated but not guaranteed between different release series (major number changes).
 To learn more, read the :doc:`Compatibility guarantees <compatibility>` article.
 
-..  _release_supported_versions:
+..  _release-supported-versions:
 
 Supported versions
 ------------------
@@ -105,5 +105,6 @@ For information about earlier versions, see :doc:`eol_versions`.
     3.0.0
     2.11.0
     eol_versions
+    enterprise-changelog
     policy
     compatibility

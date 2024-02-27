@@ -523,4 +523,4 @@ r455
 ----
 
 -   Added :ref:`binary protocol encryption <enterprise-iproto-encryption>`.
--   Added :doc:`tuple field compression <tuple_compression>`.
+-   Added :ref:`tuple field compression <tuple_compression>`.
