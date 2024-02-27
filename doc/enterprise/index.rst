@@ -64,7 +64,6 @@ Tarantool Enterprise Edition
 ..  toctree::
     :hidden:
 
-    changelog
     setup
     security
     audit

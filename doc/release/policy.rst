@@ -1,7 +1,7 @@
+..  _release-policy:
+
 Tarantool release policy
 ========================
-
-..  _release-policy:
 
 Summary
 -------

@@ -1,18 +1,19 @@
-.. _release_eol_major_features:
+.. _release-eol-major-features:
 
 Major features
 ==============
 
 .. important::
 
-    This table lists major changes in Tarantool versions up to 2.11.0.
-    For overviews of new features introduces in newer versions, see
-    their *What's new* pages inside :doc:`releases`.
+    This page is no longer maintained.
+
+    The table below lists major changes in Tarantool versions **up to 2.11.0**.
+    For overviews of changes in newer versions, see their *What's new* pages inside :ref:`release`.
 
 Every released version of Tarantool brings some notable features and fixes, which are all listed in
 the :doc:`release notes </release/index>`.
 
-To keep track of the major features in each version of the Tarantool easier, you can use the table below.
+To keep track of the major features in Tarantool versions, you can use the table below.
 
 Later versions inherit features from earlier ones in the same release series.
 Note that versions before 2.10.* are numbered according to the :doc:`legacy release policy </release/legacy-policy>`,

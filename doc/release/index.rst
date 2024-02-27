@@ -6,15 +6,25 @@
 Releases
 ========
 
-This section contains information about Tarantool releases: release notes, lifetime
-information, release policy.
+This section contains information about Tarantool releases: release notes, lifecycle
+information, release policy, and other documents.
 To download Tarantool releases, check the `Download <https://www.tarantool.io/en/download/>`_ page.
 
-Tarantool versioning is defined by the :doc:`release policy<policy>`.
+All currently supported versions are listed on this page :ref:`below <release_supported_versions>.
+The information about earlier versions is provided in :ref:`release-eol-versions`.
+
+The Enterprise Edition of Tarantool is distributed in the form of an SDK that has
+its own versioning. See the :ref:`release-enterprise-changelog` to learn about
+SDK version numbering and changes.
+
+The detailed information about Tarantool version numbering and release lifecycle
+is available in :ref:`release-policy`.
 
 Backwards compatibility is guaranteed between all versions in the same :term:`release series`.
 It is also appreciated but not guaranteed between different release series (major number changes).
 To learn more, read the :doc:`Compatibility guarantees <compatibility>` article.
+
+..  _release_supported_versions:
 
 Supported versions
 ------------------

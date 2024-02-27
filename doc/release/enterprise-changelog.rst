@@ -1,12 +1,12 @@
-..  _enterprise_changelog:
+..  _release-enterprise-changelog:
 
-Changelog
-=========
+Enterprise SDK changelog
+========================
 
 Versioning policy
 -----------------
 
-A Tarantool Enterprise SDK version consists of two parts:
+A :ref:`Tarantool Enterprise SDK <tarantool_enterprise>` version consists of two parts:
 
 ..  code-block:: text
 
