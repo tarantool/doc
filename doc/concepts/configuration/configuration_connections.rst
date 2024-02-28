@@ -74,7 +74,7 @@ In this case, this port is used for all IP addresses the server listens on.
 SSL parameters
 ~~~~~~~~~~~~~~
 
-In the Enterprise Edition, you can enable for a connection using the ``params`` section of the specified URI:
+In the Enterprise Edition, you can enable SSL for a connection using the ``params`` section of the specified URI:
 
 ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/ssl_without_ca/config.yaml
     :language: yaml
