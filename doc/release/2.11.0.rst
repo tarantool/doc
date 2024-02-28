@@ -8,10 +8,10 @@ Releases on GitHub: :tarantool-release:`2.11.2`, :tarantool-release:`2.11.1`, :t
 The 2.11 release of Tarantool includes many new features and fixes.
 This document provides an overview of the most important features for the Enterprise and Community editions.
 
-2.11 is the long-term support (LTS) release with four years of maintenance.
-This means that you will continue to receive all the necessary security fixes and bug fixes throughout this period.
+2.11 is the long-term support (LTS) release with two years of maintenance.
+This means that you will receive all the necessary security fixes and bug fixes throughout this period, and
+be able to get technical support afterward.
 You can learn more about the Tarantool release policy from the :doc:`corresponding document </release/policy>`.
-
 
 ..  container:: table
 

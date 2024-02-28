@@ -1,6 +1,11 @@
 Tarantool legacy release policy
 ===============================
 
+.. important::
+
+    This page describes the release policy that was used for Tarantool versions **before 2.10.0**.
+
+    For information about the current release policy, see :ref:`release-policy`.
 
 A Tarantool release is identified by three digits, for example, 2.6.2 or 1.10.9:
 

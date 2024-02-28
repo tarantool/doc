@@ -1,7 +1,7 @@
+..  _release-policy:
+
 Tarantool release policy
 ========================
-
-..  _release-policy:
 
 Summary
 -------
@@ -351,5 +351,4 @@ No new versions are released since then.
 
     ..  note::
 
-        See all currently supported Tarantool versions visualised as :doc:`a calendar <calendar>`
-        or as :ref:`a release lifetime table <release-table>`.
+        See all currently supported Tarantool versions in :doc:`Releases <index>`.
