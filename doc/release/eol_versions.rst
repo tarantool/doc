@@ -26,64 +26,64 @@ For information about major changes between EOL versions, see :ref:`release-eol-
             -   End of support
 
         *   -   :doc:`2.10.8 </release/2.10.8>`
-            -   **September 14, 2023**
-            -   **September 14, 2023**
-            -   **Not planned yet**
+            -   September 14, 2023
+            -   September 14, 2023
+            -   Not planned yet
 
         *   -   :doc:`2.10.7 </release/2.10.7>`
-            -   **May 24, 2023**
-            -   **September 14, 2023**
-            -   **Not planned yet**
+            -   May 24, 2023
+            -   September 14, 2023
+            -   Not planned yet
 
         *   -   :doc:`2.10.6 </release/2.10.6>`
-            -   **March 22, 2023**
-            -   **September 14, 2023**
-            -   **Not planned yet**
+            -   March 22, 2023
+            -   September 14, 2023
+            -   Not planned yet
 
         *   -   :doc:`2.10.5 </release/2.10.5>`
-            -   **February 20, 2023**
-            -   **September 14, 2023**
-            -   **Not planned yet**
+            -   February 20, 2023
+            -   September 14, 2023
+            -   Not planned yet
 
         *   -   :doc:`2.10.4 </release/2.10.4>`
-            -   **November 11, 2022**
-            -   **September 14, 2023**
-            -   **Not planned yet**
+            -   November 11, 2022
+            -   September 14, 2023
+            -   Not planned yet
 
         *   -   :doc:`2.10.3 </release/2.10.3>`
-            -   **September 30, 2022**
-            -   **September 14, 2023**
-            -   **Not planned yet**
+            -   September 30, 2022
+            -   September 14, 2023
+            -   Not planned yet
 
         *   -   :doc:`2.10.2 </release/2.10.2>`
-            -   **September 1, 2022**
-            -   **September 14, 2023**
-            -   **Not planned yet**
+            -   September 1, 2022
+            -   September 14, 2023
+            -   Not planned yet
 
         *   -   :doc:`2.10.1 </release/2.10.1>`
-            -   **August 8, 2022**
-            -   **September 14, 2023**
-            -   **Not planned yet**
+            -   August 8, 2022
+            -   September 14, 2023
+            -   Not planned yet
 
         *   -   :doc:`2.10.0 </release/2.10.0>`
-            -   **May 22, 2022**
-            -   **September 14, 2023**
-            -   **Not planned yet**
+            -   May 22, 2022
+            -   September 14, 2023
+            -   Not planned yet
 
         *   -   :doc:`2.8.4 </release/2.8.4>`
-            -   **April 25, 2022**
-            -   **April 25, 2022**
-            -   **December 31, 2024**
+            -   April 25, 2022
+            -   April 25, 2022
+            -   December 31, 2024
 
         *   -   :doc:`2.8.3 </release/2.8.3>`
-            -   **December 22, 2021**
-            -   **April 25, 2022**
-            -   **December 31, 2024**
+            -   December 22, 2021
+            -   April 25, 2022
+            -   December 31, 2024
 
         *   -   :doc:`2.8.2 </release/2.8.2>`
-            -   **August 19, 2021**
-            -   **April 25, 2022**
-            -   **December 31, 2024**
+            -   August 19, 2021
+            -   April 25, 2022
+            -   December 31, 2024
 
         *   -   :doc:`2.7.3 </release/2.7.3>`
             -   August 19, 2021
