@@ -1778,7 +1778,7 @@ The ``groups`` section provides the ability to define the :ref:`full topology of
 ..  _configuration_reference_memtx:
 
 memtx
-~~~~~
+-----
 
 The ``memtx`` section is used to configure parameters related to :ref:`memtx engine <configuration_memtx>`.
 

@@ -2,7 +2,7 @@
 * :ref:`memtx_max_tuple_size <cfg_storage-memtx_max_tuple_size>`
 * :ref:`memtx_min_tuple_size <cfg_storage-memtx_min_tuple_size>`
 * :ref:`memtx_allocator <cfg_storage-memtx_allocator>`
-* :ref:`memtx.sort_threads <cfg_storage-memtx_sort_threads>`
+* :ref:`memtx_sort_threads <cfg_storage-memtx_sort_threads>`
 * :ref:`slab_alloc_factor <cfg_storage-slab_alloc_factor>`
 * :ref:`slab_alloc_granularity <cfg_storage-slab_alloc_granularity>`
 * :ref:`vinyl_bloom_fpr <cfg_storage-vinyl_bloom_fpr>`

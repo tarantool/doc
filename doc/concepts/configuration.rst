@@ -454,8 +454,8 @@ Read more about snapshot and WAL configuration: :ref:`Persistence <configuration
 
     configuration/configuration_etcd
     configuration/configuration_code
-    configuration/configuration_persistence
     configuration/configuration_memtx
+    configuration/configuration_persistence
     configuration/configuration_connections
     configuration/configuration_credentials
     configuration/configuration_authentication

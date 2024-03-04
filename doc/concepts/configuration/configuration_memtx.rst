@@ -3,7 +3,7 @@
 In-memory storage
 =================
 
-**Example on GitHub**: `snapshot <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/memtx>`_
+**Example on GitHub**: `memtx <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/memtx>`_
 
 In Tarantool, all data is stored in random-access memory (RAM) by default.
 For this purpose, the :ref:`memtx <engines-memtx>` storage engine is used.
@@ -96,6 +96,7 @@ Specify the granularity for slab allocation
 
 If you use the :ref:`small <configuration_reference_memtx_allocator>` type of allocator, you can set the granularity of
 memory allocation in it.
+To do it, use the :ref:`memtx.slab_alloc_granularity <configuration_reference_memtx_slab_alloc_granularity>` configuration option.
 The granularity value should meet the following conditions:
 
 *   The value is a power of two.
@@ -156,9 +157,9 @@ Check the database statistics
 Tarantool provides the statistics about memory consumption for the given space or specific tuples.
 Available statistics:
 
-*   The amount of memory used for the data of the specified space.
-*   The amount of additional memory used for the supplementary information.
-*   The total memory usage.
+*   The amount of memory used for the :ref:`data of the specified space <configuration_memtx-statistics-space>`.
+*   The amount of :ref:`additional memory <configuration_memtx-statistics-additional>` used for the supplementary information.
+*   The :ref:`total memory usage <configuration_memtx-statistics-total>`.
 
 ..  _configuration_memtx-statistics-space:
 
@@ -180,7 +181,7 @@ The function returns the total number of bytes in all tuples.
 Additional memory
 ~~~~~~~~~~~~~~~~~
 
-To check the usage of the additional memory (5 Mb), use the ``space_object:stat()`` method.
+To check the usage of the additional memory, use the ``space_object:stat()`` method.
 The following information is provided:
 
 -   ``header_size`` and ``field_map_size``: the size of service information.
