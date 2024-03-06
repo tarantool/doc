@@ -35,65 +35,27 @@ You can find the full example on GitHub: `sample_db <https://github.com/tarantoo
 
 
 
-.. _getting_started_net_box_creating-app:
-
-Creating an application connecting to the database
---------------------------------------------------
-
-The :ref:`tt create <tt-create>` command can be used to :ref:`create an application <admin-instance_config-develop-app>` from a predefined or custom template.
-In this tutorial, the application layout is prepared manually:
-
-#.  Create a tt environment in the current directory using the :ref:`tt init <tt-init>` command.
-
-#.  Inside the ``instances.enabled`` directory of the created tt environment, create the ``net_box`` directory.
-
-#.  Inside ``instances.enabled/net_box``, create the  ``instances.yml`` and ``config.yaml`` files:
-
-    *   ``instances.yml`` specifies instances to run in the current environment. In this example, there is one instance:
-
-        ..  literalinclude:: /code_snippets/snippets/connectors/instances.enabled/net_box/instances.yml
-            :language: yaml
-            :dedent:
-
-    *   ``config.yaml`` contains basic instance :ref:`configuration <configuration_file>`:
-
-        ..  literalinclude:: /code_snippets/snippets/connectors/instances.enabled/net_box/config.yaml
-            :language: yaml
-            :end-at: iproto
-            :dedent:
-
-
-
 .. _getting_started_net_box_interactive:
 
 Making net.box requests interactively
 -------------------------------------
 
-To try out ``net.box`` requests in the interactive console, you need to start sample applications:
+To try out ``net.box`` requests in the interactive console, you need to start the :ref:`sample_db <getting_started_net_box_sample_db>` application using ``tt start``:
 
-1.  Start the :ref:`sample_db <getting_started_net_box_sample_db>` application using ``tt start``:
+.. code-block:: console
 
-    .. code-block:: console
+    $ tt start sample_db
 
-        $ tt start sample_db
+Then, use the :ref:`tt run -i <tt-run>` command to start an interactive console:
 
-2.  Start the :ref:`net_box <getting_started_net_box_creating-app>` application:
+..  code-block:: console
 
-    .. code-block:: console
+    $ tt run -i
+    Tarantool 3.0.0-entrypoint-1144-geaff238d9
+    type 'help' for interactive help
+    tarantool>
 
-        $ tt start net_box
-
-3.  Connect to ``net_box:instance001`` using ``tt connect``:
-
-    ..  code-block:: console
-
-        $ tt connect net_box:instance001
-           • Connecting to the instance...
-           • Connected to net_box:instance001
-
-        net_box:instance001>
-
-    In the instance's console, you can create a ``net.box`` connection and try out data operations.
+In the console, you can create a ``net.box`` connection and try out data operations.
 
 
 
