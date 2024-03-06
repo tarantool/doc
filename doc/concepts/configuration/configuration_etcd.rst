@@ -14,20 +14,32 @@ Centralized configuration storages
 
 **Examples on GitHub**: `centralized_config <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/centralized_config/>`_
 
-Tarantool enables you to store configuration data in one place using a Tarantool or etcd-based storage.
+Tarantool enables you to store a cluster's configuration in one reliable place using a Tarantool or etcd-based storage:
+
+-   A Tarantool-based configuration storage is a replica set that stores a cluster's configuration in :ref:`synchronous <repl_sync>` spaces.
+-   `etcd <https://etcd.io/>`__ is a distributed key-value storage for any type of critical data used by distributed systems.
+
 With a :ref:`local YAML configuration <configuration_file>`, you need to make sure that all cluster instances use identical configuration files:
+
+|
 
 .. image:: tarantool_config_local.png
     :align: left
     :width: 500
     :alt: Local configuration file
 
+|
+
 Using a centralized configuration storage, all instances get the actual configuration from one place:
+
+|
 
 .. image:: tarantool_config_centralized.png
     :align: left
     :width: 500
     :alt: Centralized configuration storage
+
+|
 
 This topic describes how to set up a configuration storage, publish a cluster configuration to this storage, and use this configuration for all cluster instances.
 
@@ -43,7 +55,6 @@ Setting up a configuration storage
 Tarantool-based storage
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-A Tarantool-based storage is a replica set that stores configuration data in :ref:`synchronous <repl_sync>` spaces.
 To make a replica set act as a configuration storage, use the built-in ``config.storage`` :ref:`role <configuration_reference_roles_options>`.
 
 
@@ -117,46 +128,6 @@ Learn more from the :ref:`Starting and stopping instances <admin-start_stop_inst
 
 
 
-.. _centralized_configuration_storage_tarantool_interact:
-
-Interacting with the storage
-****************************
-
-The :ref:`config module <config-module>` provides the API for interacting with the configuration storage.
-For example, you can get the configuration stored by the specified path using the ``config.storage.get()`` function:
-
-..  literalinclude:: /code_snippets/snippets/centralized_config/instances.enabled/tarantool_config_storage/myapp.lua
-    :language: lua
-    :start-after: get_config_by_path
-    :end-at: get('/myapp/config/all')
-    :dedent:
-
-To get all configurations stored by the specified prefix (ending with ``/``), pass it to ``config.storage.get()``:
-
-..  literalinclude:: /code_snippets/snippets/centralized_config/instances.enabled/tarantool_config_storage/myapp.lua
-    :language: lua
-    :start-after: get_config_by_prefix
-    :end-at: get('/myapp/')
-    :dedent:
-
-Learn more from the :ref:`config_storage_api_reference` section.
-
-
-.. _centralized_configuration_storage_tarantool_watch_changes:
-
-Watching configuration updates
-******************************
-
-The ``net.box module`` provides the ability to monitor configuration updates by watching path or prefix changes.
-In the example below, :ref:`conn:watch() <conn-watch>` is used to monitor updates of a configuration stored by the ``/myapp/config/all`` path:
-
-..  literalinclude:: /code_snippets/snippets/centralized_config/instances.enabled/config_storage/myapp.lua
-    :language: lua
-    :dedent:
-
-You can find the full example here: `config_storage <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/centralized_config/instances.enabled/config_storage>`_.
-
-
 
 .. _centralized_configuration_storage_set_up_etcd:
 
@@ -213,7 +184,7 @@ To publish a cluster's configuration (``source.yaml``) to a centralized storage,
 
 .. code-block:: console
 
-    $ tt cluster publish "http://localhost:2379/myapp" source.yaml
+    $ tt cluster publish "http://sampleuser:123456@localhost:2379/myapp" source.yaml
 
 Executing this command publishes a cluster configuration by the ``/myapp/config/all`` path.
 
@@ -222,12 +193,34 @@ Executing this command publishes a cluster configuration by the ``/myapp/config/
     You can see a cluster's configuration using the ``tt cluster show`` command.
 
 
+
+.. _centralized_configuration_storage_publish_config_tarantool:
+
+Publishing configuration using the 'config' module
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The :ref:`config module <config-module>` provides the API for interacting with a Tarantool-based configuration storage.
+The example below shows how to read a configuration stored in the ``source.yaml`` file using the :ref:`fio module <fio-module>` API and put this configuration by the ``/myapp/config/all`` path:
+
+..  literalinclude:: /code_snippets/snippets/centralized_config/instances.enabled/tarantool_config_storage/myapp.lua
+    :language: lua
+    :start-after: function put_config
+    :end-at: cluster_config_handle:close()
+    :dedent:
+
+Learn more from the :ref:`config_storage_api_reference` section.
+
+..  NOTE::
+
+    The ``net.box module`` provides the ability to monitor configuration updates by watching path or prefix changes. Learn more in :ref:`conn:watch() <conn-watch>`.
+
+
 .. _centralized_configuration_storage_publish_config_etcdctl:
 
 Publishing configuration using etcdctl
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To publish a cluster's configuration using the ``etcdctl`` utility, use the ``put`` command:
+To publish a cluster's configuration to etcd using the ``etcdctl`` utility, use the ``put`` command:
 
 .. code-block:: console
 
@@ -246,7 +239,7 @@ To publish a cluster's configuration using the ``etcdctl`` utility, use the ``pu
 Configuring connection to a storage
 -----------------------------------
 
-To use a centralized cluster's configuration, you need to provide connection settings in a local configuration file.
+To use a configuration from a centralized storage for your cluster, you need to provide connection settings in a local configuration file.
 
 
 .. _centralized_configuration_storage_connect_tarantool:

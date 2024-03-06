@@ -11,7 +11,7 @@ There are two approaches to configuring Tarantool:
 *   *Since version 3.0*: In the YAML format.
 
     YAML configuration allows you to provide the full cluster topology and specify all configuration options.
-    You can use local configuration in a YAML file for each instance or store configuration data in one reliable place using :ref:`etcd <configuration_etcd_overview>`.
+    You can use local configuration in a YAML file for each instance or store configuration data in a reliable :ref:`centralized storage <configuration_etcd_overview>`.
 
 *   *In version 2.11 and earlier*: :ref:`In code <configuration_code>` using the ``box.cfg`` API.
 
@@ -335,7 +335,7 @@ Centralized configuration
     :end-before: ee_note_centralized_config_end
 
 
-Tarantool enables you to store configuration data in one reliable place, for example, a Tarantool or etcd-based configuration storage.
+Tarantool enables you to store configuration data in one place using a Tarantool or etcd-based storage.
 To achieve this, you need to:
 
 1.  Set up a centralized configuration storage.

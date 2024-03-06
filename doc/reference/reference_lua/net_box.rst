@@ -574,7 +574,7 @@ Below is a list of all ``net.box`` functions.
             In this case, the watcher remains registered.
             It is okay to discard the result of ``watch`` function if the watcher will never be unregistered.
 
-        **Example:**
+        **Example 1:**
 
         Server:
 
@@ -600,6 +600,18 @@ Below is a list of all ``net.box`` functions.
         ..  code-block:: lua
 
             w:unregister()
+
+        **Example 2:**
+
+        The ``net.box module`` provides the ability to monitor :ref:`updates of a configuration <centralized_configuration_storage_publish_config_tt>` stored in a Tarantool-based configuration storage by watching path or prefix changes.
+        In the example below, :ref:`conn:watch() <conn-watch>` is used to monitor updates of a configuration stored by the ``/myapp/config/all`` path:
+
+        ..  literalinclude:: /code_snippets/snippets/centralized_config/instances.enabled/config_storage/myapp.lua
+            :language: lua
+            :dedent:
+
+        You can find the full example here: `config_storage <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/centralized_config/instances.enabled/config_storage>`_.
+
 
     ..  _net_box-is_async:
 
