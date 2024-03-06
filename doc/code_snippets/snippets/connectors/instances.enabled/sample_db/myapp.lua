@@ -11,14 +11,13 @@ box.space.bands:format({
 -- Create indexes --
 box.space.bands:create_index('primary', { parts = { 'id' } })
 box.space.bands:create_index('band', { parts = { 'band_name' } })
-box.space.bands:create_index('year', { parts = { { 'year' } }, unique = false })
 box.space.bands:create_index('year_band', { parts = { { 'year' }, { 'band_name' } } })
 
 -- Create a stored function --
 box.schema.func.create('get_bands_older_than', {
     body = [[
     function(year)
-        return box.space.bands.index.year:select({ year }, { iterator = 'LT', limit = 10 })
+        return box.space.bands.index.year_band:select({ year }, { iterator = 'LT', limit = 10 })
     end
     ]]
 })

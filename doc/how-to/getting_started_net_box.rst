@@ -47,7 +47,7 @@ In this tutorial, the application layout is prepared manually:
 
 #.  Inside the ``instances.enabled`` directory of the created tt environment, create the ``net_box`` directory.
 
-#.  Inside ``instances.enabled/net_box``, create the  ``instances.yml``, ``config.yaml``, and ``myapp.lua`` files:
+#.  Inside ``instances.enabled/net_box``, create the  ``instances.yml`` and ``config.yaml`` files:
 
     *   ``instances.yml`` specifies instances to run in the current environment. In this example, there is one instance:
 
@@ -59,16 +59,45 @@ In this tutorial, the application layout is prepared manually:
 
         ..  literalinclude:: /code_snippets/snippets/connectors/instances.enabled/net_box/config.yaml
             :language: yaml
+            :end-at: iproto
             :dedent:
 
-    *   ``myapp.lua`` contains ``net.box`` requests used to interact with a :ref:`sample database <getting_started_net_box_sample_db>`. These requests are explained below in the :ref:`getting_started_net_box_developing_app` section.
+
+
+.. _getting_started_net_box_interactive:
+
+Making net.box requests interactively
+-------------------------------------
+
+To try out ``net.box`` requests in the interactive console, you need to start sample applications:
+
+1.  Start the :ref:`sample_db <getting_started_net_box_sample_db>` application using ``tt start``:
+
+    .. code-block:: console
+
+        $ tt start sample_db
+
+2.  Start the :ref:`net_box <getting_started_net_box_creating-app>` application:
+
+    .. code-block:: console
+
+        $ tt start net_box
+
+3.  Connect to ``net_box:instance001`` using ``tt connect``:
+
+    ..  code-block:: console
+
+        $ tt connect net_box:instance001
+           • Connecting to the instance...
+           • Connected to net_box:instance001
+
+        net_box:instance001>
+
+    In the instance's console, you can create a ``net.box`` connection and try out data operations.
 
 
 
-.. _getting_started_net_box_developing_app:
-
-Developing the application
---------------------------
+.. _getting_started_net_box_creating_connection:
 
 Creating a net.box connection
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -78,7 +107,7 @@ To load the ``net.box`` module, use the ``require()`` directive:
 ..  literalinclude:: /code_snippets/snippets/connectors/instances.enabled/net_box/myapp.lua
     :language: lua
     :start-at: net_box = require
-    :end-at: net_box = require
+    :end-before: net_box.connect
     :dedent:
 
 To create a connection, pass a database URI to the ``connect()`` method:
@@ -86,7 +115,7 @@ To create a connection, pass a database URI to the ``connect()`` method:
 ..  literalinclude:: /code_snippets/snippets/connectors/instances.enabled/net_box/myapp.lua
     :language: lua
     :start-at: net_box.connect
-    :end-at: net_box.connect
+    :end-before: conn:ping
     :dedent:
 
 ``ping()`` can be used to check the connection status:
@@ -94,7 +123,7 @@ To create a connection, pass a database URI to the ``connect()`` method:
 ..  literalinclude:: /code_snippets/snippets/connectors/instances.enabled/net_box/myapp.lua
     :language: lua
     :start-at: conn:ping
-    :end-at: conn:ping
+    :end-before: Roxette
     :dedent:
 
 
@@ -225,45 +254,6 @@ The ``connection:close()`` method can be used to close the connection when it is
     :end-before: end
     :dedent:
 
+..  NOTE::
 
-
-.. _getting_started_net_box_interactive:
-
-Making net.box requests interactively
--------------------------------------
-
-To try out ``net.box`` requests in the interactive console, you need to start sample applications:
-
-1.  Start the :ref:`sample_db <getting_started_net_box_sample_db>` application using ``tt start``:
-
-    .. code-block:: console
-
-        $ tt start sample_db
-
-2.  Start the :ref:`net_box <getting_started_net_box_creating-app>` application:
-
-    .. code-block:: console
-
-        $ tt start net_box
-
-3.  Connect to ``net_box:instance001`` using ``tt connect``:
-
-    ..  code-block:: console
-
-        $ tt connect net_box:instance001
-           • Connecting to the instance...
-           • Connected to net_box:instance001
-
-        net_box:instance001>
-
-    In the instance's console, you can create a ``net.box`` connection and try out data operations described in :ref:`getting_started_net_box_developing_app`:
-
-    ..  code-block:: console
-
-        net_box:instance001> net_box = require('net.box')
-        ---
-        ...
-
-        net_box:instance001> conn = net_box.connect('sampleuser:123456@127.0.0.1:3301')
-        ---
-        ...
+    You can find the example with all the requests above on GitHub: `net_box <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/connectors/instances.enabled/net_box>`_.
