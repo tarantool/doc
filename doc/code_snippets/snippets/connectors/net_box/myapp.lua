@@ -1,29 +1,46 @@
-function net_box_session()
-    net_box = require('net.box')
-    --[[
-    ---
-    ...
-    ]]
+net_box = require('net.box')
+--[[
+---
+...
+]]
 
-    conn = net_box.connect('sampleuser:123456@127.0.0.1:3301')
-    --[[
-    ---
-    ...
-    ]]
+conn = net_box.connect('sampleuser:123456@127.0.0.1:3301')
+--[[
+---
+...
+]]
 
-    conn:ping()
-    --[[
-    ---
-    - true
-    ...
-    ]]
+conn:ping()
+--[[
+---
+- true
+...
+]]
 
+function net_box_data_operations()
+    -- Start net.box session
     conn.space.bands:insert({ 1, 'Roxette', 1986 })
+    --[[
+    ---
+    - - [1, 'Roxette', 1986]
+    ...
+    ]]
     conn.space.bands:insert({ 2, 'Scorpions', 1965 })
+    --[[
+    ---
+    - [2, 'Scorpions', 1965]
+    ...
+    ]]
     conn.space.bands:insert({ 3, 'Ace of Base', 1987 })
+    --[[
+    ---
+    - [3, 'Ace of Base', 1987]
+    ...
+    ]]
     conn.space.bands:insert({ 4, 'The Beatles', 1960 })
     --[[
     ---
+    - [4, 'The Beatles', 1960]
     ...
     ]]
 
@@ -72,10 +89,14 @@ function net_box_session()
     -- ---
     -- - [[2, 'Pink Floyd', 1965], [4, 'The Beatles', 1960]]
     -- ...
+    -- End net.box session
+end
 
+function net_box_close_connection()
     conn:close()
     --[[
     ---
     ...
     ]]
+    -- Close net.box connection
 end

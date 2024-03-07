@@ -3,7 +3,7 @@
 Connecting to a database using net.box
 ======================================
 
-**Examples on GitHub**: `sample_db <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/connectors/instances.enabled/sample_db>`_, `net_box <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/connectors/instances.enabled/net_box>`_
+**Examples on GitHub**: `sample_db <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/connectors/instances.enabled/sample_db>`_, `net_box <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/connectors/net_box>`_
 
 The tutorial shows how to use ``net.box`` to connect to a remote Tarantool instance, perform CRUD operations, and execute stored procedures.
 For more information about the ``net.box`` module API, check :ref:`net_box-module`.
@@ -66,7 +66,7 @@ Creating a net.box connection
 
 To load the ``net.box`` module, use the ``require()`` directive:
 
-..  literalinclude:: /code_snippets/snippets/connectors/instances.enabled/net_box/myapp.lua
+..  literalinclude:: /code_snippets/snippets/connectors/net_box/myapp.lua
     :language: lua
     :start-at: net_box = require
     :end-before: net_box.connect
@@ -74,7 +74,7 @@ To load the ``net.box`` module, use the ``require()`` directive:
 
 To create a connection, pass a database URI to the ``connect()`` method:
 
-..  literalinclude:: /code_snippets/snippets/connectors/instances.enabled/net_box/myapp.lua
+..  literalinclude:: /code_snippets/snippets/connectors/net_box/myapp.lua
     :language: lua
     :start-at: net_box.connect
     :end-before: conn:ping
@@ -82,10 +82,10 @@ To create a connection, pass a database URI to the ``connect()`` method:
 
 ``ping()`` can be used to check the connection status:
 
-..  literalinclude:: /code_snippets/snippets/connectors/instances.enabled/net_box/myapp.lua
+..  literalinclude:: /code_snippets/snippets/connectors/net_box/myapp.lua
     :language: lua
     :start-at: conn:ping
-    :end-before: Roxette
+    :end-before: net_box_data_operations
     :dedent:
 
 
@@ -108,9 +108,9 @@ Inserting data
 
 In the example below, four tuples are inserted into the ``bands`` space:
 
-..  literalinclude:: /code_snippets/snippets/connectors/instances.enabled/net_box/myapp.lua
+..  literalinclude:: /code_snippets/snippets/connectors/net_box/myapp.lua
     :language: lua
-    :start-at: Roxette
+    :start-after: Start net.box session
     :end-before: conn.space.bands:select
     :dedent:
 
@@ -123,7 +123,7 @@ Querying data
 
 The example below shows how to get a tuple by the specified primary key value:
 
-..  literalinclude:: /code_snippets/snippets/connectors/instances.enabled/net_box/myapp.lua
+..  literalinclude:: /code_snippets/snippets/connectors/net_box/myapp.lua
     :language: lua
     :start-at: conn.space.bands:select
     :end-before: conn.space.bands.index.band:select
@@ -131,7 +131,7 @@ The example below shows how to get a tuple by the specified primary key value:
 
 You can also get a tuple by the value of the specified index as follows:
 
-..  literalinclude:: /code_snippets/snippets/connectors/instances.enabled/net_box/myapp.lua
+..  literalinclude:: /code_snippets/snippets/connectors/net_box/myapp.lua
     :language: lua
     :start-at: conn.space.bands.index.band:select
     :end-before: conn.space.bands:update
@@ -147,7 +147,7 @@ Updating data
 ``space_object.update`` updates a tuple identified by the primary key.
 This method accepts a full key and an operation to execute:
 
-..  literalinclude:: /code_snippets/snippets/connectors/instances.enabled/net_box/myapp.lua
+..  literalinclude:: /code_snippets/snippets/connectors/net_box/myapp.lua
     :language: lua
     :start-at: conn.space.bands:update
     :end-before: conn.space.bands:upsert
@@ -156,7 +156,7 @@ This method accepts a full key and an operation to execute:
 ``space_object.upsert`` updates an existing tuple or inserts a new one.
 In the example below, a new tuple is inserted:
 
-..  literalinclude:: /code_snippets/snippets/connectors/instances.enabled/net_box/myapp.lua
+..  literalinclude:: /code_snippets/snippets/connectors/net_box/myapp.lua
     :language: lua
     :start-at: conn.space.bands:upsert
     :end-before: conn.space.bands:replace
@@ -165,7 +165,7 @@ In the example below, a new tuple is inserted:
 
 In this example, ``space_object.replace`` is used to delete the existing tuple and insert a new one:
 
-..  literalinclude:: /code_snippets/snippets/connectors/instances.enabled/net_box/myapp.lua
+..  literalinclude:: /code_snippets/snippets/connectors/net_box/myapp.lua
     :language: lua
     :start-at: conn.space.bands:replace
     :end-before: conn.space.bands:delete
@@ -181,7 +181,7 @@ Deleting data
 
 The ``space_object.delete`` call in the example below deletes a tuple whose primary key value is ``5``:
 
-..  literalinclude:: /code_snippets/snippets/connectors/instances.enabled/net_box/myapp.lua
+..  literalinclude:: /code_snippets/snippets/connectors/net_box/myapp.lua
     :language: lua
     :start-at: conn.space.bands:delete
     :end-before: conn:call
@@ -196,10 +196,10 @@ Executing stored procedures
 
 To execute a stored procedure, use the ``connection:call()`` method:
 
-..  literalinclude:: /code_snippets/snippets/connectors/instances.enabled/net_box/myapp.lua
+..  literalinclude:: /code_snippets/snippets/connectors/net_box/myapp.lua
     :language: lua
     :start-at: conn:call
-    :end-before: conn:close()
+    :end-before: End net.box session
     :dedent:
 
 
@@ -210,12 +210,12 @@ Closing the connection
 
 The ``connection:close()`` method can be used to close the connection when it is no longer needed:
 
-..  literalinclude:: /code_snippets/snippets/connectors/instances.enabled/net_box/myapp.lua
+..  literalinclude:: /code_snippets/snippets/connectors/net_box/myapp.lua
     :language: lua
     :start-at: conn:close()
-    :end-before: end
+    :end-before: Close net.box connection
     :dedent:
 
 ..  NOTE::
 
-    You can find the example with all the requests above on GitHub: `net_box <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/connectors/instances.enabled/net_box>`_.
+    You can find the example with all the requests above on GitHub: `net_box <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/connectors/net_box>`_.
