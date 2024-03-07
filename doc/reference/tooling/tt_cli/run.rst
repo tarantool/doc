@@ -61,4 +61,4 @@ Examples
 
     ..  code-block:: console
 
-        $ tt run app.lua -i
+        $ tt run -i app.lua
