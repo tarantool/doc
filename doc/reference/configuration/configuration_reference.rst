@@ -334,6 +334,7 @@ The ``config`` section defines various parameters related to centralized configu
 * :ref:`config.reload <configuration_reference_config_reload>`
 * :ref:`config.context.* <configuration_reference_config_context_options>`
 * :ref:`config.etcd.* <configuration_reference_config_etcd>`
+* :ref:`config.storage.* <configuration_reference_config_storage>`
 
 .. _configuration_reference_config_reload:
 
@@ -462,10 +463,10 @@ config.etcd.*
 ~~~~~~~~~~~~~
 
 ..  include:: /concepts/configuration/configuration_etcd.rst
-    :start-after: ee_note_etcd_start
-    :end-before: ee_note_etcd_end
+    :start-after: ee_note_centralized_config_start
+    :end-before: ee_note_centralized_config_end
 
-This section describes options related to :ref:`storing configuration in etcd <configuration_etcd>`.
+This section describes options related to providing connection settings to a :ref:`centralized etcd-based storage <configuration_etcd>`.
 
 * :ref:`config.etcd.endpoints <config_etcd_endpoints>`
 * :ref:`config.etcd.prefix <config_etcd_prefix>`
@@ -489,7 +490,7 @@ This section describes options related to :ref:`storing configuration in etcd <c
 
     The list of endpoints used to access an etcd server.
 
-    See also: :ref:`Local etcd configuration <etcd_local_configuration>`.
+    See also: :ref:`etcd_local_configuration`.
 
     |
     | Type: array
@@ -507,7 +508,7 @@ This section describes options related to :ref:`storing configuration in etcd <c
     Tarantool searches keys by the following path: ``<prefix>/config/*``.
     Note that ``<prefix>`` should start with a slash (``/``).
 
-    See also: :ref:`Local etcd configuration <etcd_local_configuration>`.
+    See also: :ref:`etcd_local_configuration`.
 
     |
     | Type: string
@@ -522,6 +523,8 @@ This section describes options related to :ref:`storing configuration in etcd <c
 
     A username used for authentication.
 
+    See also: :ref:`etcd_local_configuration`.
+
     |
     | Type: string
     | Default: nil
@@ -534,6 +537,8 @@ This section describes options related to :ref:`storing configuration in etcd <c
     **Since:** :doc:`3.0.0 </release/3.0.0>`.
 
     A password used for authentication.
+
+    See also: :ref:`etcd_local_configuration`.
 
     |
     | Type: string
@@ -619,6 +624,8 @@ This section describes options related to :ref:`storing configuration in etcd <c
 
     A time period required to process an HTTP request to an etcd server: from sending a request to receiving a response.
 
+    See also: :ref:`etcd_local_configuration`.
+
     |
     | Type: number
     | Default: nil
@@ -636,6 +643,94 @@ This section describes options related to :ref:`storing configuration in etcd <c
     | Type: string
     | Default: nil
     | Environment variable: TT_CONFIG_ETCD_HTTP_REQUEST_UNIX_SOCKET
+
+
+
+.. _configuration_reference_config_storage:
+
+config.storage.*
+~~~~~~~~~~~~~~~~
+
+..  include:: /concepts/configuration/configuration_etcd.rst
+    :start-after: ee_note_centralized_config_start
+    :end-before: ee_note_centralized_config_end
+
+This section describes options related to providing connection settings to a :ref:`centralized Tarantool-based storage <configuration_etcd>`.
+
+* :ref:`config.storage.endpoints <config_storage_endpoints>`
+* :ref:`config.storage.prefix <config_storage_prefix>`
+* :ref:`config.storage.reconnect_after <config_storage_reconnect_after>`
+* :ref:`config.storage.timeout <config_storage_timeout>`
+
+
+.. _config_storage_endpoints:
+
+.. confval:: config.storage.endpoints
+
+    **Since:** :doc:`3.0.0 </release/3.0.0>`.
+
+    An array of endpoints used to access a configuration storage.
+    Each endpoint can include the following fields:
+
+    *    ``uri``: a URI of the configuration storage's instance.
+    *    ``login``: a username used to connect to the instance.
+    *    ``password``: a password used for authentication.
+    *    ``params``: SSL parameters required for :ref:`encrypted connections <configuration_connections_ssl>` (:ref:`<uri>.params.* <configuration_reference_iproto_uri_params>`).
+
+    See also: :ref:`centralized_configuration_storage_connect_tarantool`.
+
+    |
+    | Type: array
+    | Default: nil
+    | Environment variable: TT_CONFIG_STORAGE_ENDPOINTS
+
+
+.. _config_storage_prefix:
+
+.. confval:: config.storage.prefix
+
+    **Since:** :doc:`3.0.0 </release/3.0.0>`.
+
+    A key prefix used to search a configuration in a centralized configuration storage.
+    Tarantool searches keys by the following path: ``<prefix>/config/*``.
+    Note that ``<prefix>`` should start with a slash (``/``).
+
+    See also: :ref:`centralized_configuration_storage_connect_tarantool`.
+
+    |
+    | Type: string
+    | Default: nil
+    | Environment variable: TT_CONFIG_STORAGE_PREFIX
+
+
+.. _config_storage_reconnect_after:
+
+.. confval:: config.storage.reconnect_after
+
+    **Since:** :doc:`3.0.0 </release/3.0.0>`.
+
+    A number of seconds to wait before reconnecting to a configuration storage.
+
+    |
+    | Type: number
+    | Default: 3
+    | Environment variable: TT_CONFIG_STORAGE_RECONNECT_AFTER
+
+
+.. _config_storage_timeout:
+
+.. confval:: config.storage.timeout
+
+    **Since:** :doc:`3.0.0 </release/3.0.0>`.
+
+    The interval (in seconds) to perform the status check of a configuration storage.
+
+    See also: :ref:`centralized_configuration_storage_connect_tarantool`.
+
+    |
+    | Type: number
+    | Default: 3
+    | Environment variable: TT_CONFIG_STORAGE_TIMEOUT
 
 
 
@@ -2165,6 +2260,45 @@ The ``replication`` section defines configuration parameters related to :ref:`re
     | Type: number
     | Default: 1
     | Environment variable: TT_REPLICATION_TIMEOUT
+
+
+..  _configuration_reference_roles_options:
+
+roles
+-----
+
+This section describes configuration parameters related to roles.
+
+.. NOTE::
+
+    Configuration parameters related to roles can be defined in any :ref:`scope <configuration_scopes>`.
+
+-   :ref:`roles <configuration_reference_roles>`
+-   :ref:`roles_cfg <configuration_reference_roles_cfg>`
+
+
+.. _configuration_reference_roles:
+
+.. confval:: roles
+
+    **Since:** :doc:`3.0.0 </release/3.0.0>`.
+
+    |
+    | Type: array
+    | Default: nil
+    | Environment variable: TT_ROLES
+
+
+.. _configuration_reference_roles_cfg:
+
+.. confval:: roles_cfg
+
+    **Since:** :doc:`3.0.0 </release/3.0.0>`.
+
+    |
+    | Type: map
+    | Default: nil
+    | Environment variable: TT_ROLES_CFG
 
 
 

@@ -11,7 +11,7 @@ There are two approaches to configuring Tarantool:
 *   *Since version 3.0*: In the YAML format.
 
     YAML configuration allows you to provide the full cluster topology and specify all configuration options.
-    You can use local configuration in a YAML file for each instance or store configuration data in one reliable place using :ref:`etcd <configuration_etcd_overview>`.
+    You can use local configuration in a YAML file for each instance or store configuration data in a reliable :ref:`centralized storage <configuration_etcd_overview>`.
 
 *   *In version 2.11 and earlier*: :ref:`In code <configuration_code>` using the ``box.cfg`` API.
 
@@ -327,25 +327,29 @@ Below are a few examples that show how to set environment variables of different
 
 .. _configuration_etcd_overview:
 
-Configuration in etcd
-~~~~~~~~~~~~~~~~~~~~~
+Centralized configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ..  include:: /concepts/configuration/configuration_etcd.rst
-    :start-after: ee_note_etcd_start
-    :end-before: ee_note_etcd_end
+    :start-after: ee_note_centralized_config_start
+    :end-before: ee_note_centralized_config_end
 
-Tarantool enables you to store configuration data in one reliable place using `etcd <https://etcd.io/>`_.
+
+Tarantool enables you to store configuration data in one place using a Tarantool or etcd-based storage.
 To achieve this, you need to:
 
-1.   Provide a local YAML configuration with an etcd endpoint address and key prefix in the ``config`` section:
+1.  Set up a centralized configuration storage.
 
-    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/etcd/config.yaml
+2.  Publish a cluster's configuration to the storage.
+
+3.  Configure a connection to the storage by providing a local YAML configuration with an endpoint address and key prefix in the ``config`` section:
+
+    ..  literalinclude:: /code_snippets/snippets/centralized_config/instances.enabled/config_etcd/config.yaml
         :language: yaml
+        :end-at: prefix: /myapp
         :dedent:
 
-2.   Publish a cluster's configuration to an etcd server.
-
-Learn more from the following guide: :ref:`Storing configuration in etcd <configuration_etcd>`.
+Learn more from the following guide: :ref:`configuration_etcd`.
 
 
 ..  _configuration_precedence:
@@ -357,7 +361,7 @@ Tarantool configuration options are applied from multiple sources with the follo
 
 -   `TT_*` :ref:`environment variables <configuration_environment_variable>`.
 -   Configuration from a :ref:`local YAML file <configuration_file>`.
--   :ref:`Centralized configuration <configuration_etcd_overview>` stored in etcd.
+-   :ref:`Centralized configuration <configuration_etcd_overview>`.
 -   `TT_*_DEFAULT` :ref:`environment variables <configuration_environment_variable>`.
 
 If the same option is defined in two or more locations, the option with the highest precedence is applied.
