@@ -16,15 +16,28 @@ Then, start all instances in the cluster using `tt start`:
 $ tt start sharded_cluster_crud
 ```
 
-## Writing data
+## Bootstrapping a cluster
 
+After starting instances, you need to bootstrap the cluster.
 Connect to the router instance using `tt connect`:
 
 ```shell
 $ tt connect sharded_cluster_crud:router-a-001
    • Connecting to the instance...
-   • Connected to sharded_cluster:router-a-001
+   • Connected to sharded_cluster_crud:router-a-001
 ```
+
+Call `vshard.router.bootstrap()` to perform the initial cluster bootstrap:
+
+```shell
+sharded_cluster_crud:router-a-001> vshard.router.bootstrap()
+---
+- true
+...
+```
+
+
+## Inserting data
 
 To insert sample data, call `crud.insert_many()` on the router:
 
