@@ -1,11 +1,7 @@
 memtx:
-  memory: 100000000
-  allocator: 'small'
+  memory: 1073741824
   min_tuple_size: 8
-  max_tuple_size: 1048576
-  slab_alloc_factor: 1.05
-  slab_alloc_granularity: 8
-  sort_threads: 256
+  max_tuple_size: 5242880
 
 groups:
   group001:
