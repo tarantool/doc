@@ -5,7 +5,7 @@ Creating your first Tarantool database
 
 **Example on GitHub**: `create_db <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/create_db>`_
 
-In this tutorial, you create a Tarantool database, write data to and select data from this database.
+In this tutorial, you create a Tarantool database, write data to it, and select data from this database.
 
 
 ..  _getting_started_db_prerequisites:
@@ -15,8 +15,8 @@ Prerequisites
 
 Before starting this tutorial:
 
-*   :ref:`Install the tt <tt-installation>` utility.
-*   `Install tarantool <https://www.tarantool.io/en/download/os-installation/>`_.
+*   Install the :ref:`tt <tt-installation>` utility.
+*   Install `Tarantool <https://www.tarantool.io/en/download/os-installation/>`_.
 
     .. NOTE::
 

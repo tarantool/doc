@@ -40,7 +40,7 @@ You can find the full example on GitHub: `sample_db <https://github.com/tarantoo
 Making net.box requests interactively
 -------------------------------------
 
-To try out ``net.box`` requests in the interactive console, you need to start the :ref:`sample_db <getting_started_net_box_sample_db>` application using ``tt start``:
+To try out ``net.box`` requests in the interactive console, start the :ref:`sample_db <getting_started_net_box_sample_db>` application using ``tt start``:
 
 .. code-block:: console
 
@@ -72,7 +72,7 @@ To load the ``net.box`` module, use the ``require()`` directive:
     :end-before: net_box.connect
     :dedent:
 
-To create a connection, pass a database URI to the ``connect()`` method:
+To create a connection, pass a database URI to the :ref:`net_box.connect() <net_box-connect>` method:
 
 ..  literalinclude:: /code_snippets/snippets/connectors/net_box/myapp.lua
     :language: lua
@@ -80,7 +80,7 @@ To create a connection, pass a database URI to the ``connect()`` method:
     :end-before: conn:ping
     :dedent:
 
-``ping()`` can be used to check the connection status:
+:ref:`connection:ping() <conn-ping>` can be used to check the connection status:
 
 ..  literalinclude:: /code_snippets/snippets/connectors/net_box/myapp.lua
     :language: lua
@@ -144,7 +144,7 @@ You can also get a tuple by the value of the specified index as follows:
 Updating data
 *************
 
-``space_object.update`` updates a tuple identified by the primary key.
+:ref:`space_object.update()  <box_space-update>` updates a tuple identified by the primary key.
 This method accepts a full key and an operation to execute:
 
 ..  literalinclude:: /code_snippets/snippets/connectors/net_box/myapp.lua
@@ -153,7 +153,7 @@ This method accepts a full key and an operation to execute:
     :end-before: conn.space.bands:upsert
     :dedent:
 
-``space_object.upsert`` updates an existing tuple or inserts a new one.
+:ref:`space_object.upsert() <box_space-upsert>` updates an existing tuple or inserts a new one.
 In the example below, a new tuple is inserted:
 
 ..  literalinclude:: /code_snippets/snippets/connectors/net_box/myapp.lua
@@ -163,7 +163,7 @@ In the example below, a new tuple is inserted:
     :dedent:
 
 
-In this example, ``space_object.replace`` is used to delete the existing tuple and insert a new one:
+In this example, :ref:`space_object.replace() <box_space-replace>` is used to delete the existing tuple and insert a new one:
 
 ..  literalinclude:: /code_snippets/snippets/connectors/net_box/myapp.lua
     :language: lua
@@ -179,7 +179,7 @@ In this example, ``space_object.replace`` is used to delete the existing tuple a
 Deleting data
 *************
 
-The ``space_object.delete`` call in the example below deletes a tuple whose primary key value is ``5``:
+The :ref:`space_object.delete() <box_space-delete>` call in the example below deletes a tuple whose primary key value is ``5``:
 
 ..  literalinclude:: /code_snippets/snippets/connectors/net_box/myapp.lua
     :language: lua
@@ -194,7 +194,7 @@ The ``space_object.delete`` call in the example below deletes a tuple whose prim
 Executing stored procedures
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To execute a stored procedure, use the ``connection:call()`` method:
+To execute a stored procedure, use the :ref:`connection:call() <net_box-call>` method:
 
 ..  literalinclude:: /code_snippets/snippets/connectors/net_box/myapp.lua
     :language: lua
@@ -208,7 +208,7 @@ To execute a stored procedure, use the ``connection:call()`` method:
 Closing the connection
 ~~~~~~~~~~~~~~~~~~~~~~
 
-The ``connection:close()`` method can be used to close the connection when it is no longer needed:
+The :ref:`connection:close() <conn-close>` method can be used to close the connection when it is no longer needed:
 
 ..  literalinclude:: /code_snippets/snippets/connectors/net_box/myapp.lua
     :language: lua
