@@ -1,153 +1,221 @@
 .. _getting_started_net_box:
 
-Getting started with net.box
-============================
+Connecting to a database using net.box
+======================================
 
-The tutorial shows how to work with some common ``net.box`` methods.
+**Examples on GitHub**: `sample_db <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/connectors/instances.enabled/sample_db>`_, `net_box <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/connectors/net_box>`_
 
-For more information about the ``net.box`` module,
-check the :ref:`corresponding module reference <net_box-module>`.
+The tutorial shows how to use ``net.box`` to connect to a remote Tarantool instance, perform CRUD operations, and execute stored procedures.
+For more information about the ``net.box`` module API, check :ref:`net_box-module`.
 
-Sandbox configuration
----------------------
 
-The sandbox configuration for the tutorial assumes that:
+.. _getting_started_net_box_sample_db:
 
-*   The Tarantool instance is running on ``localhost 127.0.0.1:3301``.
-*   There is a space named ``tester`` with a numeric primary key.
-*   The space contains a tuple with the key value = ``800``.
-*   The current user has read, write, and execute privileges.
-
-Use the commands below for a quick sandbox setup:
-
-..  code-block:: lua
-
-    box.cfg{listen = 3301}
-    s = box.schema.space.create('tester')
-    s:create_index('primary', {type = 'hash', parts = {1, 'unsigned'}})
-    t = s:insert({800, 'TEST'})
-    box.schema.user.grant('guest', 'read,write,execute', 'universe')
-
-Creating a net.box connection
+Sample database configuration
 -----------------------------
 
-First, load the ``net.box`` module with the ``require('net.box')`` method:
+This section describes the :ref:`configuration <configuration_file>` of a sample database that allows remote connections:
 
-..  code-block:: tarantoolsession
+..  literalinclude:: /code_snippets/snippets/connectors/instances.enabled/sample_db/config.yaml
+    :language: yaml
+    :dedent:
 
-    tarantool> net_box = require('net.box')
+-   The configuration contains one instance that listens incoming requests on the ``127.0.0.1:3301`` address.
+-   ``sampleuser`` has :ref:`privileges <authentication-owners_privileges>` to select and modify data in the ``bands`` space and execute the ``get_bands_older_than`` stored function. This user can be used to connect to the instance remotely.
+-   ``myapp.lua`` defines how data is stored in a database and includes a stored function.
 
-The next step is to create a new connection.
-In ``net.box``, self-connection is pre-established.
-That is, ``conn = net_box.connect('localhost:3301')`` command can be replaced with the ``conn = net_box.self`` object call:
+The ``myapp.lua`` file looks as follows:
 
-..  code-block:: tarantoolsession
+..  literalinclude:: /code_snippets/snippets/connectors/instances.enabled/sample_db/myapp.lua
+    :language: lua
+    :dedent:
 
-    tarantool> conn = net_box.self
+You can find the full example on GitHub: `sample_db <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/connectors/instances.enabled/sample_db>`_.
 
-Then, make a ping:
 
-..  code-block:: tarantoolsession
 
-    tarantool> conn:ping()
-    ---
-    - true
-    ...
+
+.. _getting_started_net_box_interactive:
+
+Making net.box requests interactively
+-------------------------------------
+
+To try out ``net.box`` requests in the interactive console, start the :ref:`sample_db <getting_started_net_box_sample_db>` application using ``tt start``:
+
+.. code-block:: console
+
+    $ tt start sample_db
+
+Then, use the :ref:`tt run -i <tt-run>` command to start an interactive console:
+
+..  code-block:: console
+
+    $ tt run -i
+    Tarantool 3.0.0-entrypoint-1144-geaff238d9
+    type 'help' for interactive help
+    tarantool>
+
+In the console, you can create a ``net.box`` connection and try out data operations.
+
+
+
+.. _getting_started_net_box_creating_connection:
+
+Creating a net.box connection
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To load the ``net.box`` module, use the ``require()`` directive:
+
+..  literalinclude:: /code_snippets/snippets/connectors/net_box/myapp.lua
+    :language: lua
+    :start-at: net_box = require
+    :end-before: net_box.connect
+    :dedent:
+
+To create a connection, pass a database URI to the :ref:`net_box.connect() <net_box-connect>` method:
+
+..  literalinclude:: /code_snippets/snippets/connectors/net_box/myapp.lua
+    :language: lua
+    :start-at: net_box.connect
+    :end-before: conn:ping
+    :dedent:
+
+:ref:`connection:ping() <conn-ping>` can be used to check the connection status:
+
+..  literalinclude:: /code_snippets/snippets/connectors/net_box/myapp.lua
+    :language: lua
+    :start-at: conn:ping
+    :end-before: net_box_data_operations
+    :dedent:
+
+
+.. _getting_started_net_box_using_data_operations:
 
 Using data operations
----------------------
+~~~~~~~~~~~~~~~~~~~~~
 
-Select all tuples in the ``tester`` space where the key value is ``800``:
+To get a space object and perform CRUD operations on it, use ``conn.space.<space_name>``.
 
-..  code-block:: tarantoolsession
+..  NOTE::
 
-    tarantool> conn.space.tester:select{800}
-    ---
-    - - [800, 'TEST']
-    ...
+    Learn more about performing data operations from the :ref:`box_space_examples` section.
 
-Insert two tuples into the space:
 
-..  code-block:: tarantoolsession
+.. _getting_started_net_box_inserting_data:
 
-    tarantool> conn.space.tester:insert({700, 'TEST700'})
-    ---
-    - [700, 'TEST700']
-    ...
-    tarantool> conn.space.tester:insert({600, 'TEST600'})
-    ---
-    - [600, 'TEST600']
-    ...
+Inserting data
+**************
 
-After the insert, there is one tuple where the key value is ``600``.
-To select this tuple, you can use the ``get()`` method.
-Unlike the ``select()`` command, ``get()`` returns only one tuple that satisfies the stated condition.
+In the example below, four tuples are inserted into the ``bands`` space:
 
-..  code-block:: tarantoolsession
+..  literalinclude:: /code_snippets/snippets/connectors/net_box/myapp.lua
+    :language: lua
+    :start-after: Start net.box session
+    :end-before: conn.space.bands:select
+    :dedent:
 
-    tarantool> conn.space.tester:get({600})
-    ---
-    - [600, 'TEST600']
-    ...
 
-To update the existing tuple, you can use either ``update()`` or ``upsert()``.
-The ``update()`` method can be used for assignment, arithmetic (if the field is numeric),
-cutting and pasting fragments of a field, and deleting or inserting a field.
 
-In this tutorial, the ``update()`` command is used to update the tuple identified by primary key value = ``800``.
-The operation assigns a new value to the second field in the tuple:
+.. _getting_started_net_box_querying_data:
 
-..  code-block:: tarantoolsession
+Querying data
+*************
 
-    tarantool> conn.space.tester:update(800, {{'=', 2, 'TEST800'}})
-    ---
-    - [800, 'TEST800']
-    ...
+The example below shows how to get a tuple by the specified primary key value:
 
-As for the ``upsert`` function, if there is an existing tuple that matches the key field of tuple, then the command
-has the same effect as ``update()``.
-Otherwise, the effect is equal to the ``insert()`` method.
+..  literalinclude:: /code_snippets/snippets/connectors/net_box/myapp.lua
+    :language: lua
+    :start-at: conn.space.bands:select
+    :end-before: conn.space.bands.index.band:select
+    :dedent:
 
-..  code-block:: tarantoolsession
+You can also get a tuple by the value of the specified index as follows:
 
-    tarantool> conn.space.tester:upsert({500, 'TEST500'}, {{'=', 2, 'TEST'}})
+..  literalinclude:: /code_snippets/snippets/connectors/net_box/myapp.lua
+    :language: lua
+    :start-at: conn.space.bands.index.band:select
+    :end-before: conn.space.bands:update
+    :dedent:
 
-To delete a tuple where the key value is ``600``, run the ``delete()`` method below:
 
-..  code-block:: tarantoolsession
 
-    tarantool> conn.space.tester:delete{600}
-    ---
-    - [600, 'TEST600']
-    ...
+.. _getting_started_net_box_updating_data:
 
-Then, replace the existing tuple with a new one:
+Updating data
+*************
 
-..  code-block:: tarantoolsession
+:ref:`space_object.update()  <box_space-update>` updates a tuple identified by the primary key.
+This method accepts a full key and an operation to execute:
 
-    tarantool> conn.space.tester:replace{500, 'New data', 'Extra data'}
-    ---
-    - [500, 'New data', 'Extra data']
-    ...
+..  literalinclude:: /code_snippets/snippets/connectors/net_box/myapp.lua
+    :language: lua
+    :start-at: conn.space.bands:update
+    :end-before: conn.space.bands:upsert
+    :dedent:
 
-Finally, select all tuples from the space:
+:ref:`space_object.upsert() <box_space-upsert>` updates an existing tuple or inserts a new one.
+In the example below, a new tuple is inserted:
 
-..  code-block:: tarantoolsession
+..  literalinclude:: /code_snippets/snippets/connectors/net_box/myapp.lua
+    :language: lua
+    :start-at: conn.space.bands:upsert
+    :end-before: conn.space.bands:replace
+    :dedent:
 
-    tarantool> conn.space.tester:select{}
-    ---
-    - - [800, 'TEST800']
-      - [500, 'New data', 'Extra data']
-      - [700, 'TEST700']
-    ...
+
+In this example, :ref:`space_object.replace() <box_space-replace>` is used to delete the existing tuple and insert a new one:
+
+..  literalinclude:: /code_snippets/snippets/connectors/net_box/myapp.lua
+    :language: lua
+    :start-at: conn.space.bands:replace
+    :end-before: conn.space.bands:delete
+    :dedent:
+
+
+
+
+.. _getting_started_net_box_deleting_data:
+
+Deleting data
+*************
+
+The :ref:`space_object.delete() <box_space-delete>` call in the example below deletes a tuple whose primary key value is ``5``:
+
+..  literalinclude:: /code_snippets/snippets/connectors/net_box/myapp.lua
+    :language: lua
+    :start-at: conn.space.bands:delete
+    :end-before: conn:call
+    :dedent:
+
+
+
+.. _getting_started_net_box_stored_procedures:
+
+Executing stored procedures
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To execute a stored procedure, use the :ref:`connection:call() <net_box-call>` method:
+
+..  literalinclude:: /code_snippets/snippets/connectors/net_box/myapp.lua
+    :language: lua
+    :start-at: conn:call
+    :end-before: End net.box session
+    :dedent:
+
+
+.. _getting_started_net_box_closing_connection:
 
 Closing the connection
-----------------------
+~~~~~~~~~~~~~~~~~~~~~~
 
-In the end, close the connection when it is no longer needed:
+The :ref:`connection:close() <conn-close>` method can be used to close the connection when it is no longer needed:
 
-..  code-block:: tarantoolsession
+..  literalinclude:: /code_snippets/snippets/connectors/net_box/myapp.lua
+    :language: lua
+    :start-at: conn:close()
+    :end-before: Close net.box connection
+    :dedent:
 
-    tarantool> conn:close()
-    ---
-    ...
+..  NOTE::
+
+    You can find the example with all the requests above on GitHub: `net_box <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/connectors/net_box>`_.
