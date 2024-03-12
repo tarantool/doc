@@ -1,26 +1,25 @@
 credentials:
   users:
-    {{.replicator_user_name}}:
-      password: '{{.replicator_user_password}}'
+    replicator:
+      password: 'topsecret'
       roles: [replication]
-    {{.sharding_user_name}}:
-      password: '{{.sharding_user_password}}'
+    storage:
+      password: 'secret'
       roles: [sharding]
 
 iproto:
   advertise:
     peer:
-      login: {{.replicator_user_name}}
+      login: replicator
     sharding:
-      login: {{.sharding_user_name}}
+      login: storage
 
 sharding:
-  bucket_count: {{.sharding_bucket_count}}
+  bucket_count: 1000
 
 groups:
   storages:
-    app:
-      module: storage
+    roles: [storage]
     sharding:
       roles: [storage]
     replication:
@@ -32,25 +31,24 @@ groups:
           storage-a-001:
             iproto:
               listen:
-              - uri: '{{.listen_uri}}:3302'
+              - uri: '127.0.0.1:3302'
           storage-a-002:
             iproto:
               listen:
-              - uri: '{{.listen_uri}}:3303'
+              - uri: '127.0.0.1:3303'
       storage-b:
         leader: storage-b-001
         instances:
           storage-b-001:
             iproto:
               listen:
-              - uri: '{{.listen_uri}}:3304'
+              - uri: '127.0.0.1:3304'
           storage-b-002:
             iproto:
               listen:
-              - uri: '{{.listen_uri}}:3305'
+              - uri: '127.0.0.1:3305'
   routers:
-    app:
-      module: router
+    roles: [router]
     sharding:
       roles: [router]
     replicasets:
@@ -59,4 +57,4 @@ groups:
           router-a-001:
             iproto:
               listen:
-              - uri: '{{.listen_uri}}:3301'
+              - uri: '127.0.0.1:3301'

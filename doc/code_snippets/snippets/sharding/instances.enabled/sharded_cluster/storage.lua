@@ -8,7 +8,7 @@ box.schema.create_space('bands', {
     if_not_exists = true
 })
 box.space.bands:create_index('id', { parts = { 'id' }, if_not_exists = true })
-box.space.bands:create_index('bucket_id', { parts = { 'id' }, unique = false, if_not_exists = true })
+box.space.bands:create_index('bucket_id', { parts = { 'bucket_id' }, unique = false, if_not_exists = true })
 
 function insert_band(id, bucket_id, band_name, year)
     box.space.bands:insert({ id, bucket_id, band_name, year })

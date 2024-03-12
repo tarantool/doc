@@ -192,7 +192,7 @@ Here is a schematic view of the cluster's topology:
     ..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster/config.yaml
         :language: yaml
         :start-at: routers:
-        :end-at: 127.0.0.1:3300
+        :end-at: 127.0.0.1:3301
         :dedent:
 
     The main group-level options here are:
@@ -406,28 +406,28 @@ To check the cluster's status, execute :ref:`vshard.router.info() <router_api-in
           replica:
             network_timeout: 0.5
             status: available
-            uri: storage@127.0.0.1:3304
+            uri: storage@127.0.0.1:3305
             name: storage-b-002
           bucket:
             available_rw: 500
           master:
             network_timeout: 0.5
             status: available
-            uri: storage@127.0.0.1:3303
+            uri: storage@127.0.0.1:3304
             name: storage-b-001
           name: storage-b
         storage-a:
           replica:
             network_timeout: 0.5
             status: available
-            uri: storage@127.0.0.1:3302
+            uri: storage@127.0.0.1:3303
             name: storage-a-002
           bucket:
             available_rw: 500
           master:
             network_timeout: 0.5
             status: available
-            uri: storage@127.0.0.1:3301
+            uri: storage@127.0.0.1:3302
             name: storage-a-001
           name: storage-a
       bucket:
