@@ -1,0 +1,72 @@
+credentials:
+  users:
+    replicator:
+      password: 'topsecret'
+      roles: [replication]
+    storage:
+      password: 'secret'
+      roles: [sharding]
+    guest:
+      roles: [super]
+
+iproto:
+  advertise:
+    peer:
+      login: replicator
+    sharding:
+      login: storage
+
+sharding:
+  bucket_count: 1000
+
+groups:
+  storages:
+    roles: [storage]
+    sharding:
+      roles: [storage]
+    replication:
+      failover: manual
+    replicasets:
+      storage-a:
+        leader: storage-a-001
+        instances:
+          storage-a-001:
+            iproto:
+              listen:
+              - uri: 'tarantool:3302'
+              advertise:
+                client: 'tarantool:3302'
+          storage-a-002:
+            iproto:
+              listen:
+              - uri: 'tarantool:3303'
+              advertise:
+                client: 'tarantool:3303'
+      storage-b:
+        leader: storage-b-001
+        instances:
+          storage-b-001:
+            iproto:
+              listen:
+              - uri: 'tarantool:3304'
+              advertise:
+                client: 'tarantool:3304'
+          storage-b-002:
+            iproto:
+              listen:
+              - uri: 'tarantool:3305'
+              advertise:
+                client: 'tarantool:3305'
+  routers:
+    roles: [router]
+    sharding:
+      roles: [router]
+    replicasets:
+      router-a:
+        instances:
+          router-a-001:
+            iproto:
+              listen:
+              - uri: 'tarantool:3301'
+              advertise:
+                client: 'tarantool:3301'

@@ -1,0 +1,5 @@
+config:
+  etcd:
+    endpoints:
+    - http://tcm:2379
+    prefix: /default
