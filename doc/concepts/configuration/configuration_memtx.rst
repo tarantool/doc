@@ -10,7 +10,7 @@ For this purpose, the :ref:`memtx <engines-memtx>` storage engine is used.
 
 This topic describes how to define basic settings related to in-memory storage in the
 :ref:`memtx <configuration_reference_memtx>` section of a :ref:`YAML configuration <configuration>`
--- for example, :ref:`memory size <configuration_reference_memtx_memory>` and :ref:`maximum tuple size <>configuration_reference_memtx_max_size`.
+-- for example, :ref:`memory size <configuration_reference_memtx_memory>` and :ref:`maximum tuple size <configuration_reference_memtx_max_size>`.
 For the specific settings related to allocator or sorting threads,
 check the corresponding ``memtx`` options in the :ref:`Configuration reference <configuration_reference_memtx>`.
 
