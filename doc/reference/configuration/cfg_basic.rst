@@ -24,6 +24,7 @@
     and :ref:`pid_file <cfg_basic-pid_file>` parameters must be non-null for
     this to work.
 
+    |
     | Type: boolean
     | Default: false
     | Environment variable: TT_BACKGROUND
@@ -55,6 +56,7 @@
         $ ps -ef | grep tarantool
         1000     14939 14188  1 10:53 pts/2    00:00:16 tarantool <running>: sessions
 
+    |
     | Type: string
     | Default: null
     | Environment variable: TT_CUSTOM_PROC_TITLE
@@ -89,6 +91,7 @@
     Starting from version 2.10.0, you can specify :ref:`several URIs <index-uri-several>`,
     and the port number is always stored as an integer value.
 
+    |
     | Type: integer or string
     | Default: null
     | Environment variable: TT_LISTEN
@@ -107,6 +110,7 @@
     However, you can set different values for the ``memtx_dir`` and :ref:`wal_dir <cfg_basic-wal_dir>` options
     to store them on different physical disks for performance matters.
 
+    |
     | Type: string
     | Default: "."
     | Environment variable: TT_MEMTX_DIR
@@ -121,6 +125,7 @@
     Store the process id in this file. Can be relative to :ref:`work_dir
     <cfg_basic-work_dir>`. A typical value is “:file:`tarantool.pid`”.
 
+    |
     | Type: string
     | Default: null
     | Environment variable: TT_PID_FILE
@@ -141,6 +146,7 @@
     Although read-only mode prevents the server from writing to the :ref:`WAL <internals-wal>`,
     it does not prevent writing diagnostics with the :ref:`log module <log-module>`.
 
+    |
     | Type: boolean
     | Default: false
     | Environment variable: TT_READ_ONLY
@@ -174,6 +180,7 @@
     (The number of bytes that are actually used can be seen with
     :ref:`box.info.sql().cache.size <box_introspection-box_info>`.)
 
+    |
     | Type: number
     | Default: 5242880
     | Environment variable: TT_SQL_CACHE_SIZE
@@ -189,6 +196,7 @@
     relative to :ref:`work_dir <cfg_basic-work_dir>`. If not specified, defaults
     to ``work_dir``.
 
+    |
     | Type: string
     | Default: "."
     | Environment variable: TT_VINYL_DIR
@@ -209,6 +217,7 @@
     Compaction can also be ordered manually with
     :doc:`/reference/reference_lua/box_index/compact`.
 
+    |
     | Type: float
     | Default: 60
     | Environment variable: TT_VINYL_TIMEOUT
@@ -222,6 +231,7 @@
 
     UNIX user name to switch to after start.
 
+    |
     | Type: string
     | Default: null
     | Environment variable: TT_USERNAME
@@ -240,6 +250,7 @@
     However, you can set different values for the ``wal_dir`` and :ref:`memtx_dir <cfg_basic-memtx_dir>` options
     to store them on different physical disks for performance matters.
 
+    |
     | Type: string
     | Default: "."
     | Environment variable: TT_WAL_DIR
@@ -268,6 +279,7 @@
     will put xlog files in ``/home/user/A/B``, snapshot files in ``/home/user/A/C``,
     and all other files or subdirectories in ``/home/user/A``.
 
+    |
     | Type: string
     | Default: null
     | Environment variable: TT_WORK_DIR
@@ -285,6 +297,7 @@
     :ref:`socket.getaddrinfo() <socket-getaddrinfo>` and
     :ref:`coio_call() <c_api-coio-coio_call>`).
 
+    |
     | Type: integer
     | Default: 4
     | Environment variable: TT_WORKER_POOL_THREADS
@@ -301,6 +314,7 @@
     Setting to ``true`` means "do not include".
     In an older version of Tarantool the default value of this parameter was ``false``.
 
+    |
     | Type: boolean
     | Default: true
     | Environment variable: TT_STRIP_CORE
@@ -312,8 +326,9 @@
 
     Since version :doc:`2.6.1 </release/2.6.1>`.
 
-    Enables :ref:`transactional manager <txn_mode_transaction-manager>` if set to ``true``.
+    Enable :ref:`transactional manager <txn_mode_transaction-manager>` if set to ``true``.
 
+    |
     | Type: boolean
     | Default: false
     | Environment variable: TT_MEMTX_USE_MVCC_ENGINE

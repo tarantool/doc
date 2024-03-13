@@ -23,6 +23,7 @@ These parameters are deprecated since Tarantool version 1.7.4:
 
     **Deprecated**, do not use.
 
+    |
     | Type: boolean
     | Default: false
     | Dynamic: no
@@ -53,6 +54,7 @@ These parameters are deprecated since Tarantool version 1.7.4:
     If there is an error while reading a snapshot file
     (at server instance start), abort.
 
+    |
     | Type: boolean
     | Default: true
     | Dynamic: no
@@ -64,6 +66,7 @@ These parameters are deprecated since Tarantool version 1.7.4:
     **Deprecated** in favor of
     :ref:`force_recovery <cfg_binary_logging_snapshots-force_recovery>`.
 
+    |
     | Type: boolean
     | Default: true
     | Dynamic: yes
@@ -91,6 +94,7 @@ These parameters are deprecated since Tarantool version 1.7.4:
     indexes and connection information. Depending on actual configuration and
     workload, Tarantool can consume up to 20% more than the limit set here.
 
+    |
     | Type: float
     | Default: 1.0
     | Dynamic: no
@@ -160,6 +164,7 @@ These parameters are deprecated since Tarantool version 1.7.4:
     Setting to ``false`` is equivalent to setting the ``off``
     :ref:`election_fencing_mode <cfg_replication-election_fencing_mode>`.
 
+    |
     | Type: boolean
     | Default: true
     | Environment variable: TT_ELECTION_FENCING_ENABLED

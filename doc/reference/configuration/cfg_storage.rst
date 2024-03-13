@@ -29,6 +29,7 @@
     ``memtx_memory`` limit to allocate tuples, but there is additional memory
     used to store indexes and connection information.
 
+    |
     | Type: float
     | Default: 256 * 1024 * 1024 = 268435456 bytes
     | Minimum: 33554432 bytes (32 MB)
@@ -44,6 +45,7 @@
     Size of the largest allocation unit, for the memtx storage engine. It can be
     increased if it is necessary to store large tuples.
 
+    |
     | Type: integer
     | Default: 1024 * 1024 = 1048576 bytes
     | Environment variable: TT_MEMTX_MAX_TUPLE_SIZE
@@ -58,6 +60,7 @@
     Size of the smallest allocation unit. It can be decreased if most
     of the tuples are very small.
 
+    |
     | Type: integer
     | Default: 16 bytes
     | Possible values: between 8 and 1048280 inclusive
@@ -81,6 +84,7 @@
         Note that this allocator is prone to unresolvable fragmentation on specific workloads,
         so you can switch to ``system`` in such cases.
 
+    |
     | Type: string
     | Default: 'small'
     | Environment variable: TT_MEMTX_ALLOCATOR
@@ -117,6 +121,7 @@
 
     See also: :ref:`slab_alloc_granularity <cfg_storage-slab_alloc_granularity>`
 
+    |
     | Type: float
     | Default: 1.05
     | Possible values: between 1 and 2 inclusive
@@ -142,6 +147,7 @@
 
     See also: :ref:`slab_alloc_factor <cfg_storage-slab_alloc_factor>`
 
+    |
     | Type: number
     | Default: 8 bytes
     | Environment variable: TT_SLAB_ALLOC_GRANULARITY
@@ -159,6 +165,7 @@
     The ``vinyl_bloom_fpr`` setting is a default value for one of the
     options in the :ref:`Options for space_object:create_index() <box_space-create_index>` chart.
 
+    |
     | Type: float
     | Default: 0.05
     | Environment variable: TT_VINYL_BLOOM_FPR
@@ -172,6 +179,7 @@
     The cache size for the vinyl storage engine. The cache can
     be resized dynamically.
 
+    |
     | Type: integer
     | Default: 128 * 1024 * 1024 = 134217728 bytes
     | Environment variable: TT_VINYL_CACHE
@@ -188,6 +196,7 @@
     is necessary to store large tuples.
     See also: :ref:`memtx_max_tuple_size <cfg_storage-memtx_max_tuple_size>`.
 
+    |
     | Type: integer
     | Default: 1024 * 1024 = 1048576 bytes
     | Environment variable: TT_VINYL_MAX_TUPLE_SIZE
@@ -201,6 +210,7 @@
 
     The maximum number of in-memory bytes that vinyl uses.
 
+    |
     | Type: integer
     | Default: 128 * 1024 * 1024 = 134217728 bytes
     | Environment variable: TT_VINYL_MEMORY
@@ -216,6 +226,7 @@
     The ``vinyl_page_size`` setting is a default value for one of the
     options in the :ref:`Options for space_object:create_index() <box_space-create_index>` chart.
 
+    |
     | Type: integer
     | Default: 8 * 1024 = 8192 bytes
     | Environment variable: TT_VINYL_PAGE_SIZE
@@ -243,6 +254,7 @@
 
     In Tarantool versions prior to 1.10.2, ``vinyl_range_size`` default value was 1073741824.
 
+    |
     | Type: integer
     | Default: nil
     | Environment variable: TT_VINYL_RANGE_SIZE
@@ -259,6 +271,7 @@
     The ``vinyl_run_count_per_level`` setting is a default value for one of the
     options in the :ref:`Options for space_object:create_index() <box_space-create_index>` chart.
 
+    |
     | Type: integer
     | Default: 2
     | Environment variable: TT_VINYL_RUN_COUNT_PER_LEVEL
@@ -274,6 +287,7 @@
     The ``vinyl_run_size_ratio`` setting is a default value for one of the
     options in the :ref:`Options for space_object:create_index() <box_space-create_index>` chart.
 
+    |
     | Type: float
     | Default: 3.5
     | Environment variable: TT_VINYL_RUN_SIZE_RATIO
@@ -288,6 +302,7 @@
     The maximum number of read threads that vinyl can use for some
     concurrent operations, such as I/O and compression.
 
+    |
     | Type: integer
     | Default: 1
     | Environment variable: TT_VINYL_READ_THREADS
@@ -302,6 +317,7 @@
     The maximum number of write threads that vinyl can use for some
     concurrent operations, such as I/O and compression.
 
+    |
     | Type: integer
     | Default: 4
     | Environment variable: TT_VINYL_WRITE_THREADS

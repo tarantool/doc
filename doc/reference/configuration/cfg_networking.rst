@@ -14,6 +14,8 @@
     the number of client connections is large, but requests are not so frequent
     (for example, each connection issues just a handful of requests per second).
 
+
+    |
     | Type: float
     | Default: null
     | Environment variable: TT_IO_COLLECT_INTERVAL
@@ -53,6 +55,7 @@
 
     On typical systems, the default value (768) is correct.
 
+    |
     | Type: integer
     | Default: 768
     | Environment variable: TT_NET_MSG_MAX
@@ -73,6 +76,8 @@
     should be increased. If batched request processing is not used, it’s prudent
     to leave this setting at its default.
 
+
+    |
     | Type: integer
     | Default: 16320
     | Environment variable: TT_READAHEAD
@@ -92,7 +97,8 @@
     which thread.
 
     On typical systems, the default value (1) is correct.
-     
+
+    |
     | Type: integer
     | Default: 1
     | Environment variable: TT_IPROTO_THREADS

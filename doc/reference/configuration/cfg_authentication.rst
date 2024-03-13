@@ -35,6 +35,7 @@
         box.cfg{ auth_delay = 5 }
 
 
+    |
     | Type: number
     | Default: 0
     | Environment variable: TT_AUTH_DELAY
@@ -53,6 +54,7 @@
     For example, if a client tries to authenticate fewer than ``auth_retries`` times within ``auth_delay`` seconds, no authentication delay is enforced.
     The retry counter is also reset after any successful authentication attempt.
 
+    |
     | Type: number
     | Default: 0
     | Environment variable: TT_AUTH_RETRIES
@@ -76,6 +78,7 @@
     :doc:`box.schema.user.passwd </reference/reference_lua/box_schema/user_passwd>`
     to use the new authentication protocol.
 
+    |
     | Type: string
     | Default value: 'chap-sha1'
     | Environment variable: TT_AUTH_TYPE
@@ -94,6 +97,7 @@
     :doc:`net.box </reference/reference_lua/net_box>` and
     :ref:`replication <replication-master_replica_bootstrap>` connections.
 
+    |
     | Type: boolean
     | Default: false
     | Environment variable: TT_DISABLE_GUEST
@@ -113,6 +117,7 @@
 
         box.cfg{ password_min_length = 10 }
 
+    |
     | Type: integer
     | Default: 0
     | Environment variable: TT_PASSWORD_MIN_LENGTH
@@ -127,6 +132,7 @@
 
     If **true**, a password should contain uppercase letters (A-Z).
 
+    |
     | Type: boolean
     | Default: false
     | Environment variable: TT_PASSWORD_ENFORCE_UPPERCASE
@@ -141,6 +147,7 @@
 
     If **true**, a password should contain lowercase letters (a-z).
 
+    |
     | Type: boolean
     | Default: false
     | Environment variable: TT_PASSWORD_ENFORCE_LOWERCASE
@@ -155,6 +162,7 @@
 
     If **true**, a password should contain digits (0-9).
 
+    |
     | Type: boolean
     | Default: false
     | Environment variable: TT_PASSWORD_ENFORCE_DIGITS
@@ -169,6 +177,7 @@
 
     If **true**, a password should contain at least one special character (such as ``&|?!@$``).
 
+    |
     | Type: boolean
     | Default: false
     | Environment variable: TT_PASSWORD_ENFORCE_SPECIALCHARS
@@ -195,6 +204,7 @@
 
         box.cfg{ password_lifetime_days = 365 }
 
+    |
     | Type: integer
     | Default: 0
     | Environment variable: TT_PASSWORD_LIFETIME_DAYS
@@ -215,6 +225,7 @@
 
         box.cfg{ password_history_length = 3 }
 
+    |
     | Type: integer
     | Default: 0
     | Environment variable: TT_PASSWORD_HISTORY_LENGTH

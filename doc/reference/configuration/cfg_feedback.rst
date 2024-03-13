@@ -22,6 +22,7 @@ adjust or turn off this feature.
     If this is set to ``true``, feedback will be sent as described above.
     If this is set to ``false``, no feedback will be sent.
 
+    |
     | Type: boolean
     | Default: true
     | Environment variable: TT_FEEDBACK_ENABLED
@@ -36,6 +37,7 @@ adjust or turn off this feature.
     The address to which the packet is sent.
     Usually the recipient is Tarantool, but it can be any URL.
 
+    |
     | Type: string
     | Default: ``https://feedback.tarantool.io``
     | Environment variable: TT_FEEDBACK_HOST
@@ -49,6 +51,7 @@ adjust or turn off this feature.
 
     The number of seconds between sendings, usually 3600 (1 hour).
 
+    |
     | Type: float
     | Default: 3600
     | Environment variable: TT_FEEDBACK_INTERVAL

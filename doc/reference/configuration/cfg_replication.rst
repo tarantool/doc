@@ -56,6 +56,7 @@
 
     :extsamp:`box.cfg{ replication = {*{new-value}*} }`
 
+    |
     | Type: string
     | Default: null
     | Environment variable: TT_REPLICATION
@@ -203,6 +204,7 @@
       instance must replicate from some read-write instance,
       otherwise it cannot be added to the ``_cluster`` table.
 
+    |
     | Type: boolean
     | Default: false
     | Environment variable: TT_REPLICATION_ANON
@@ -228,6 +230,7 @@
             replication = {'127.0.0.1:3301'},
         }
 
+    |
     | Type: string
     | Default: null
     | Environment variable: TT_BOOTSTRAP_LEADER
@@ -257,6 +260,7 @@
     *   ``legacy`` (deprecated since :doc:`2.11.0 </release/2.11.0>`): a node requires the :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>` number of other nodes to be connected.
         This option is added to keep the compatibility with the current versions of Cartridge and might be removed in the future.
 
+    |
     | Type: string
     | Default: auto
     | Environment variable: TT_BOOTSTRAP_STRATEGY
@@ -278,6 +282,7 @@
     which a master uses to disconnect a replica when the master
     receives no acknowledgments of heartbeat messages.
 
+    |
     | Type: float
     | Default: 30
     | Environment variable: TT_REPLICATION_CONNECT_TIMEOUT
@@ -304,6 +309,7 @@
 
         box.cfg { replication_connect_quorum = 2 }
 
+    |
     | Type: integer
     | Default: null
     | Environment variable: TT_REPLICATION_CONNECT_QUORUM
@@ -329,6 +335,7 @@
 
         box.cfg{replication_skip_conflict=true}
 
+    |
     | Type: boolean
     | Default: false
     | Environment variable: TT_REPLICATION_SKIP_CONFLICT
@@ -361,6 +368,7 @@
     This parameter is ignored during bootstrap.
     See :ref:`orphan status <replication-orphan_status>` for details.
 
+    |
     | Type: float
     | Default: 10
     | Environment variable: TT_REPLICATION_SYNC_LAG
@@ -380,6 +388,7 @@
     updates. If ``replication_sync_timeout`` expires, the replica
     enters :ref:`orphan status <replication-orphan_status>`.
 
+    |
     | Type: float
     | Default: 300
     | Environment variable: TT_REPLICATION_SYNC_TIMEOUT
@@ -405,6 +414,7 @@
 
     See more in :ref:`Monitoring a replica set <replication-monitoring>`.
 
+    |
     | Type: integer
     | Default: 1
     | Environment variable: TT_REPLICATION_TIMEOUT
@@ -457,6 +467,7 @@
 
         box.cfg{replicaset_uuid='7b853d13-508b-4b8e-82e6-806f088ea6e9'}
 
+    |
     | Type: string
     | Default: null
     | Environment variable: TT_REPLICASET_UUID
@@ -482,6 +493,7 @@
 
         box.cfg{instance_uuid='037fec43-18a9-4e12-a684-a42b716fcd02'}
 
+    |
     | Type: string
     | Default: null
     | Environment variable: TT_INSTANCE_UUID
@@ -528,6 +540,7 @@
     If the value for this option is set to ``1``, the synchronous transactions work like asynchronous when not configured.
     `1` means that successful WAL write to the master is enough to commit.
 
+    |
     | Type: number
     | Default: N / 2 + 1 (before version :doc:`2.10.0 </release/2.10.0>`, the default value was 1)
     | Environment variable: TT_REPLICATION_SYNCHRO_QUORUM
@@ -547,6 +560,7 @@
     transactions will be kept waiting on the replicas until a new master is
     elected.
 
+    |
     | Type: number
     | Default: 5
     | Environment variable: TT_REPLICATION_SYNCHRO_TIMEOUT
@@ -568,6 +582,7 @@
     Possible values range from 1 to 1000.
     If there are multiple replication threads, connections to serve are distributed evenly between the threads.
 
+    |
     | Type: number
     | Default: 1
     | Possible values: from 1 to 1000
@@ -619,6 +634,7 @@
     *   Once :ref:`box.ctl.promote() <box_ctl-promote>` is called, the instance becomes a candidate and starts a new election round.
         If the instance wins the elections, it becomes a leader, but won't participate in any new elections.
 
+    |
     | Type: string
     | Default: 'off'
     | Environment variable: TT_ELECTION_MODE
@@ -651,6 +667,7 @@
     or to 305, 302, and 324, and so on. In that way, the votes will never be split
     because the election on different nodes won't be restarted simultaneously.
 
+    |
     | Type: number
     | Default: 5
     | Environment variable: TT_ELECTION_TIMEOUT
@@ -686,6 +703,7 @@
     :ref:`election_mode <cfg_replication-election_mode>` set to ``candidate`` or ``manual``.
     To turn off :ref:`leader fencing <repl_leader_elect_fencing>`, set ``election_fencing_mode`` to ``off``.
 
+    |
     | Type: string
     | Default: 'soft'
     | Environment variable: TT_ELECTION_FENCING_MODE
