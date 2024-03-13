@@ -356,7 +356,7 @@ In the :ref:`next section <configuration_code_iproto-encryption-config-sc>`, you
 
     Example:
 
-    ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/ssl/myapp.lua
+    ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/ssl_with_ca/myapp.lua
         :language: lua
         :start-at: net.box
         :end-before: return connection

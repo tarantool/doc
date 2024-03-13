@@ -393,7 +393,7 @@ The example below shows how to set a listening IP address for ``instance001`` to
 You can learn more from the :ref:`configuration_connections` topic.
 
 
-.. _configuration_options_access_control:
+..  _configuration_options_access_control:
 
 Access control
 ~~~~~~~~~~~~~~
@@ -410,22 +410,25 @@ In the example below, a ``dbadmin`` user with the specified password is created:
 To learn more, see the :ref:`configuration_credentials` section.
 
 
-.. _configuration_options_memory:
+..  _configuration_options_memory:
 
 Memory
 ~~~~~~
 
-The ``memtx.memory`` option specifies how much :ref:`memory <engines-memtx>` Tarantool allocates to actually store data.
+The :ref:`memtx.memory <configuration_reference_memtx_memory>` option specifies how much :ref:`memory <engines-memtx>`
+Tarantool allocates to actually store data.
 
-.. code-block:: yaml
-
-    memtx:
-      memory: 100000000
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/memtx/config.yaml
+    :language: yaml
+    :start-at: memtx:
+    :end-at: 1073741824
+    :dedent:
 
 When the limit is reached, ``INSERT`` or ``UPDATE`` requests fail with :ref:`ER_MEMORY_ISSUE <admin-troubleshoot-memory-issues>`.
 
+Learn more: :ref:`In-memory storage configuration <configuration_memtx>`.
 
-.. _configuration_options_directories:
+..  _configuration_options_directories:
 
 Snapshots and write-ahead logs
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -446,13 +449,12 @@ To learn more about the persistence mechanism in Tarantool, see the :ref:`Persis
 Read more about snapshot and WAL configuration: :ref:`Persistence <configuration_persistence>`.
 
 
-
-
 ..  toctree::
     :hidden:
 
     configuration/configuration_etcd
     configuration/configuration_code
+    configuration/configuration_memtx
     configuration/configuration_persistence
     configuration/configuration_connections
     configuration/configuration_credentials

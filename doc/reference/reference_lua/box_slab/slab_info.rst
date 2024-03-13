@@ -8,7 +8,7 @@ box.slab.info()
 
 .. function:: box.slab.info()
 
-    Show an aggregated memory usage report (in bytes) for the slab allocator.
+    Show an aggregated memory usage report in bytes for the slab allocator.
     This report is useful for assessing out-of-memory risks.
 
     ``box.slab.info`` gives a few ratios:

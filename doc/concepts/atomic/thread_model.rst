@@ -64,19 +64,22 @@ Supplementary threads
 
 There are also several supplementary threads that serve additional capabilities:
 
-* For :ref:`replication <replication-architecture>`, Tarantool creates a separate thread for each connected replica.
-  This thread reads a write-ahead log and sends it to the replica, following its position in the log.
-  Separate threads are required because each replica can point to a different position in the log and can run at different speeds.
+*   For :ref:`replication <replication-architecture>`, Tarantool creates a separate thread for each connected replica.
+    This thread reads a write-ahead log and sends it to the replica, following its position in the log.
+    Separate threads are required because each replica can point to a different position in the log and can run at different speeds.
 
-* There is a thread pool for ad hoc asynchronous tasks,
-  such as a DNS resolver or :ref:`fsync <configuration_reference_wal_mode>`.
+*   There is a thread pool for ad hoc asynchronous tasks, such as a DNS resolver or :ref:`fsync <configuration_reference_wal_mode>`.
 
-* There are OpenMP threads used to parallelize sorting
-  (hence, to parallelize building :ref:`indexes <concepts-data_model_indexes>`).
-  For example, this is applicable when Tarantool is restoring from a
-  :ref:`snapshot <internals-snapshot>` with a large amount of data
-  and needs to sort a secondary index if it is ordered by something other than the primary order.
+*   There is a thread pool that can be used for parallel sorting (hence, to parallelize building :ref:`indexes <concepts-data_model_indexes>`).
+    To configure it, use the :ref:`memtx.sort_threads <configuration_reference_memtx_sort_threads>` configuration option.
+    The option sets the number of threads used to sort keys of secondary indexes on loading a ``memtx`` database.
 
-  ..  note::
+    .. note_drop_openmp_start
 
-    The maximum number of OpenMP threads can be controlled by the ``OMP_NUM_THREADS`` environment variable.
+    ..  NOTE::
+
+        Since :doc:`3.0.0 </release/3.0.0>`, this option replaces the approach when OpenMP threads are used to parallelize sorting.
+        For backward compatibility, the ``OMP_NUM_THREADS`` environment variable is taken into account to
+        set the number of sorting threads.
+
+    .. note_drop_openmp_end

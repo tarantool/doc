@@ -1,0 +1,14 @@
+memtx:
+  memory: 1073741824
+  min_tuple_size: 8
+  max_tuple_size: 5242880
+
+groups:
+  group001:
+    replicasets:
+      replicaset001:
+        instances:
+          instance001:
+            iproto:
+              listen:
+              - uri: '127.0.0.1:3301'

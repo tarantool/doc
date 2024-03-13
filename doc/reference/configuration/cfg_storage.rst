@@ -2,6 +2,7 @@
 * :ref:`memtx_max_tuple_size <cfg_storage-memtx_max_tuple_size>`
 * :ref:`memtx_min_tuple_size <cfg_storage-memtx_min_tuple_size>`
 * :ref:`memtx_allocator <cfg_storage-memtx_allocator>`
+* :ref:`memtx_sort_threads <cfg_storage-memtx_sort_threads>`
 * :ref:`slab_alloc_factor <cfg_storage-slab_alloc_factor>`
 * :ref:`slab_alloc_granularity <cfg_storage-slab_alloc_granularity>`
 * :ref:`vinyl_bloom_fpr <cfg_storage-vinyl_bloom_fpr>`
@@ -21,14 +22,12 @@
 
     Since version 1.7.4.
 
-    How much memory Tarantool allocates to actually store tuples.
+    How much memory Tarantool allocates to store tuples.
     When the limit is reached, :ref:`INSERT <box_space-insert>` or
     :ref:`UPDATE <box_space-insert>` requests begin failing with
     error :errcode:`ER_MEMORY_ISSUE`. The server does not go beyond the
     ``memtx_memory`` limit to allocate tuples, but there is additional memory
-    used to store indexes and connection information. Depending on actual
-    configuration and workload, Tarantool can consume up to 20% more than the
-    ``memtx_memory`` limit.
+    used to store indexes and connection information.
 
     | Type: float
     | Default: 256 * 1024 * 1024 = 268435456 bytes
@@ -44,7 +43,6 @@
 
     Size of the largest allocation unit, for the memtx storage engine. It can be
     increased if it is necessary to store large tuples.
-    See also: :ref:`vinyl_max_tuple_size <cfg_storage-vinyl_max_tuple_size>`.
 
     | Type: integer
     | Default: 1024 * 1024 = 1048576 bytes
@@ -58,11 +56,11 @@
     Since version 1.7.4.
 
     Size of the smallest allocation unit. It can be decreased if most
-    of the tuples are very small. The value must be between 8 and 1048280
-    inclusive.
+    of the tuples are very small.
 
     | Type: integer
     | Default: 16 bytes
+    | Possible values: between 8 and 1048280 inclusive
     | Environment variable: TT_MEMTX_MIN_TUPLE_SIZE
     | Dynamic: no
 
@@ -72,20 +70,41 @@
 
     Since version :doc:`2.10.0 </release/2.10.0>`.
 
-    Specify the allocator used for memtx tuples.
-    The possible values are ``system``  and ``small``:
+    Specify the allocator that manages memory for ``memtx`` tuples.
+    Possible values:
 
-    * ``system`` is based on the ``malloc`` function.
-      This allocator allocates memory as needed, checking that the quota is not exceeded.
+    *   ``system`` --  the memory is allocated as needed, checking that the quota is not exceeded.
+        THe allocator is based on the ``malloc`` function.
 
-    * ``small`` is a special `slab allocator <https://github.com/tarantool/small>`_.
-      Note that this allocator is prone to unresolvable fragmentation on specific workloads,
-      so you can switch to ``system`` in such cases.
+    *   ``small`` -- a `slab allocator <https://github.com/tarantool/small>`_.
+        The allocator repeatedly uses a memory block to allocate objects of the same type.
+        Note that this allocator is prone to unresolvable fragmentation on specific workloads,
+        so you can switch to ``system`` in such cases.
 
     | Type: string
     | Default: 'small'
     | Environment variable: TT_MEMTX_ALLOCATOR
-    | Dynamic: No
+    | Dynamic: no
+
+..  _cfg_storage-memtx_sort_threads:
+
+..  confval:: memtx_sort_threads
+
+    Since: :doc:`3.0.0 </release/3.0.0>`.
+
+    The number of threads from the :ref:`thread pool <supplementary_threads>` used to sort keys of secondary indexes on loading a ``memtx`` database.
+    The minimum value is 1, the maximum value is 256.
+    The default is to use all available cores.
+
+    ..  include:: /concepts/atomic/thread_model.rst
+        :start-after: note_drop_openmp_start
+        :end-before: note_drop_openmp_end
+
+    |
+    | Type: integer
+    | Default: box.NULL
+    | Environment variable: TT_MEMTX_SORT_THREADS
+    | Dynamic: no
 
 .. _cfg_storage-slab_alloc_factor:
 
@@ -94,12 +113,13 @@
     The multiplier for computing the sizes of memory
     chunks that tuples are stored in. A lower value may result in less wasted
     memory depending on the total amount of memory available and the
-    distribution of item sizes. Allowed values range from 1 to 2.
+    distribution of item sizes.
 
     See also: :ref:`slab_alloc_granularity <cfg_storage-slab_alloc_granularity>`
 
     | Type: float
     | Default: 1.05
+    | Possible values: between 1 and 2 inclusive
     | Environment variable: TT_SLAB_ALLOC_FACTOR
     | Dynamic: no
 
@@ -110,13 +130,15 @@
     Since version :doc:`2.8.1 </release/2.8.1>`.
 
     Specify the granularity (in bytes) of memory allocation in the :ref:`small allocator <cfg_storage-memtx_allocator>`.
-    The value of ``slab_alloc_granularity`` should be a power of two and should be greater than or equal to 4.
-    Below are few recommendations on how to adjust the ``slab_alloc_granularity`` value:
+    The ``memtx.slab_alloc_granularity`` value should meet the following conditions:
 
-    * To store small tuples of approximately the same size, set ``slab_alloc_granularity`` to 4 bytes to save memory.
+    *   The value is a power of two.
+    *   The value is greater than or equal to 4.
 
-    * To store tuples of different sizes, you can increase the ``slab_alloc_granularity`` value.
-      This results in allocating tuples from the same ``mempool``.
+    Below are few recommendations on how to adjust the ``memtx.slab_alloc_granularity`` option:
+
+    *   If the tuples in space are small and have about the same size, set the option to 4 bytes to save memory.
+    *   If the tuples are different-sized, increase the option value to allocate tuples from the same ``mempool`` (memory pool).
 
     See also: :ref:`slab_alloc_factor <cfg_storage-slab_alloc_factor>`
 

@@ -77,7 +77,7 @@ Limitations
 **Space size**
 
     The total maximum size for all spaces is in effect set by
-    :ref:`memtx_memory <cfg_storage-memtx_memory>`, which in turn
+    :ref:`memtx.memory <configuration_reference_memtx_memory>`, which in turn
     is limited by the total available memory.
 
 .. _limitations_update_ops:
