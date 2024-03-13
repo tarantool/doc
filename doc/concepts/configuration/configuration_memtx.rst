@@ -48,31 +48,18 @@ When the ``memtx.memory`` limit is reached, ``INSERT`` or ``UPDATE`` requests fa
 Tuple size
 ----------
 
-You can configure the sizes of the smallest and the largest units to allocate.
+You can configure the minimum and the maximum tuple sizes in bytes.
 
-..  _configuration_memtx-tuple-size-min:
+*   If the tuples are small, you can decrease the minimum size.
+*   If the tuples are large, you can increase the maximum size.
 
-Minimum size
-~~~~~~~~~~~~~
+To define the tuple size, use the :ref:`memtx.min_tuple_size <configuration_reference_memtx_min_size>` and
+:ref:`memtx.max_tuple_size <configuration_reference_memtx_max_size>` configuration options.
 
-To set the minimum size in bytes, use the :ref:`memtx.min_tuple_size <configuration_reference_memtx_min_size>` configuration option:
-
-..  literalinclude:: /code_snippets/snippets/config/instances.enabled/memtx/config.yaml
-    :language: yaml
-    :start-at: min_tuple_size: 8
-    :end-at: min_tuple_size: 8
-    :dedent:
-
-..  _configuration_memtx-tuple-size-max:
-
-Maximum size
-~~~~~~~~~~~~
-
-To set the maximum size in bytes, use the :ref:`memtx.max_tuple_size <configuration_reference_memtx_max_size>` configuration option.
-In the example, the maximum size is set to 5 MB:
+In the example, the minimum size is set to 8 bytes and the maximum size is set to 5 MB:
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/memtx/config.yaml
     :language: yaml
-    :start-at: max_tuple_size:
+    :start-at: memtx:
     :end-at: 5242880
     :dedent:

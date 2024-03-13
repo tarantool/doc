@@ -72,10 +72,14 @@ There are also several supplementary threads that serve additional capabilities:
 
 *   There is a thread pool that can be used for parallel sorting (hence, to parallelize building :ref:`indexes <concepts-data_model_indexes>`).
     To configure it, use the :ref:`memtx.sort_threads <configuration_reference_memtx_sort_threads>` configuration option.
-    The option sets the number of threads used to sort keys of secondary indexes on loading ``memtx`` database.
+    The option sets the number of threads used to sort keys of secondary indexes on loading a ``memtx`` database.
+
+.. note_drop_openmp_start
 
     ..  NOTE::
 
-        Since: :doc:`3.0.0 </release/3.0.0>`, this option replaces the approach when OpenMP threads are used to parallelize sorting.
-        For backward compatibility, the ``OMP_NUM_THREADS`` environment variable is still supported in Tarantool 3.0.
-        The variable defines the maximum number of OpenMP threads.
+        Since :doc:`3.0.0 </release/3.0.0>`, this option replaces the approach when OpenMP threads are used to parallelize sorting.
+        For backward compatibility, the ``OMP_NUM_THREADS`` environment variable is taken into account to
+        set the number of sorting threads.
+
+.. note_drop_openmp_end

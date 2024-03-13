@@ -92,9 +92,13 @@
 
     Since: :doc:`3.0.0 </release/3.0.0>`.
 
-    The number of threads used to sort keys of secondary indexes on loading ``memtx`` database.
-    The maximum value is 256, the minimum value is 1.
+    The number of threads from the :ref:`thread pool <supplementary_thread>` used to sort keys of secondary indexes on loading a ``memtx`` database.
+    The minimum value is 1, the maximum value is 256.
     The default is to use all available cores.
+
+    ..  include:: /concepts/atomic/thread_model.rst
+        :start-after: note_drop_openmp_start
+        :end-before: note_drop_openmp_end
 
     |
     | Type: integer
