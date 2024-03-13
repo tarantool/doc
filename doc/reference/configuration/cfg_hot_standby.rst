@@ -47,6 +47,7 @@
     * for spaces created with :doc:`engine = 'vinyl' </reference/reference_lua/box_schema/space_create>`;
       it is designed to work for spaces created with ``engine = 'memtx'``.
 
+    |
     | Type: boolean
     | Default: false
     | Environment variable: TT_HOT_STANDBY

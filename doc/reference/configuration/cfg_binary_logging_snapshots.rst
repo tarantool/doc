@@ -24,6 +24,7 @@
 
     Otherwise, Tarantool aborts recovery if there is an error while reading.
 
+    |
     | Type: boolean
     | Default: false
     | Environment variable: TT_FORCE_RECOVERY
@@ -39,6 +40,7 @@
     When a request would cause an ``.xlog`` file to become larger than
     ``wal_max_size``, Tarantool creates a new WAL file.
 
+    |
     | Type: integer
     | Default: 268435456 (256 * 1024 * 1024) bytes
     | Environment variable: TT_WAL_MAX_SIZE
@@ -60,6 +62,7 @@
     :ref:`box.stat.vinyl().regulator <box_introspection-box_stat_vinyl_regulator>`
     may show for the write rate of dumps to ``.run`` and ``.index`` files.
 
+    |
     | Type: float
     | Default: null
     | Environment variable: TT_SNAP_IO_RATE_LIMIT
@@ -82,6 +85,7 @@
     *   ``fsync``: fibers wait for their data, :manpage:`fsync(2)`
         follows each :manpage:`write(2)`.
 
+    |
     | Type: string
     | Default: "write"
     | Environment variable: TT_WAL_MODE
@@ -97,6 +101,7 @@
     file directory, when checking for changes to write-ahead-log
     files for the sake of :ref:`replication <replication>` or :ref:`hot standby <index-hot_standby>`.
 
+    |
     | Type: float
     | Default: 2
     | Environment variable: TT_WAL_DIR_RESCAN_DELAY
@@ -119,6 +124,7 @@
         You might consider increasing the ``wal_queue_max_size`` value in case of
         large tuples (approximately one megabyte or larger).
 
+    |
     | Type: number
     | Default: 16777216 bytes
     | Environment variable: TT_WAL_QUEUE_MAX_SIZE
@@ -144,6 +150,7 @@
         The ``wal_cleanup_delay`` option has no effect on nodes running as
         :ref:`anonymous replicas <cfg_replication-replication_anon>`.
 
+    |
     | Type: number
     | Default: 14400 seconds
     | Environment variable: TT_WAL_CLEANUP_DELAY
@@ -193,6 +200,7 @@
     *   If a replica doesn't support the extended format configured on a master, auxiliary fields are skipped.
     *   If a replica and master have different configurations for WAL records, the master's configuration is ignored.
 
+    |
     | Type: map
     | Default: nil
     | Environment variable: TT_WAL_EXT
@@ -208,6 +216,7 @@
     (**Enterprise Edition only**) If **true**, forces Tarantool to overwrite a data file a few times before deletion to render recovery of a deleted file impossible.
     The option applies to both ``.xlog`` and ``.snap`` files as well as Vinyl data files.
 
+    |
     | Type: boolean
     | Default: false
     | Environment variable: TT_SECURE_ERASING

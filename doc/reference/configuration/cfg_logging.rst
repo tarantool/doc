@@ -32,6 +32,7 @@ application.
     error stream by default. This can be changed with the
     :ref:`log <cfg_logging-log>` configuration parameter.
 
+    |
     | Type: integer
     | Default: 5
     | Environment variable: TT_LOG_LEVEL
@@ -122,6 +123,7 @@ application.
     When log is a program, its PID is saved in the :ref:`log.pid <log-pid>`
     variable. You need to send it a signal to rotate logs.
 
+    |
     | Type: string
     | Default: null
     | Environment variable: TT_LOG
@@ -151,6 +153,7 @@ application.
     This is a behavior change: in earlier versions of the Tarantool
     server, the default value was **true**.
 
+    |
     | Type: boolean
     | Default: nil
     | Environment variable: TT_LOG_NONBLOCK
@@ -166,6 +169,7 @@ application.
     warn about it in the log. Has effect only if :ref:`log_level
     <cfg_logging-log_level>` is greater than or equal to 4 (WARNING).
 
+    |
     | Type: float
     | Default: 0.5
     | Environment variable: TT_TOO_LONG_THRESHOLD
@@ -210,6 +214,7 @@ application.
     The ``log_format='json'`` entry has the same fields along with their labels,
     and in addition has the file name and line number of the Tarantool source.
 
+    |
     | Type: string
     | Default: 'plain'
     | Environment variable: TT_LOG_FORMAT
@@ -235,11 +240,11 @@ application.
     *   The ``tarantool`` module that enables you to configure the logging level for Tarantool core messages. Specifically, it configures the logging level for messages logged from non-Lua code, including C modules.
         Example: :ref:`Set a log level for C modules <cfg_logging-logging_example_tarantool_module>`.
 
+    |
     | Type: table
     | Default: blank
     | Environment variable: TT_LOG_MODULES
     | Dynamic: yes
-    |
 
 
     .. _cfg_logging-logging_example_existing_modules:

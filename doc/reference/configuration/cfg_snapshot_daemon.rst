@@ -86,6 +86,7 @@ Tarantool garbage collector doesn't delete a file in the following cases:
 
     In the example, the checkpoint daemon creates a new database snapshot every two hours, if there is activity.
 
+    |
     | Type: integer
     | Default: 3600 (one hour)
     | Environment variable: TT_CHECKPOINT_INTERVAL
@@ -123,6 +124,7 @@ Tarantool garbage collector doesn't delete a file in the following cases:
         Therefore, ``checkpoint_count`` has no effect unless all replicas are alive.
 
 
+    |
     | Type: integer
     | Default: 2
     | Environment variable: TT_CHECKPOINT_COUNT
@@ -142,6 +144,7 @@ Tarantool garbage collector doesn't delete a file in the following cases:
     with calculating how much disk space to allocate for a partition containing
     WAL files.
 
+    |
     | Type: integer
     | Default: 10^18 (a large number so in effect there is no limit by default)
     | Environment variable: TT_CHECKPOINT_WAL_THRESHOLD
