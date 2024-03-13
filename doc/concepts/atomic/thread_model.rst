@@ -74,7 +74,7 @@ There are also several supplementary threads that serve additional capabilities:
     To configure it, use the :ref:`memtx.sort_threads <configuration_reference_memtx_sort_threads>` configuration option.
     The option sets the number of threads used to sort keys of secondary indexes on loading a ``memtx`` database.
 
-.. note_drop_openmp_start
+    .. note_drop_openmp_start
 
     ..  NOTE::
 
@@ -82,4 +82,4 @@ There are also several supplementary threads that serve additional capabilities:
         For backward compatibility, the ``OMP_NUM_THREADS`` environment variable is taken into account to
         set the number of sorting threads.
 
-.. note_drop_openmp_end
+    .. note_drop_openmp_end

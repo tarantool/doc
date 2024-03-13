@@ -23,9 +23,9 @@ Inside the ``wal.ext`` block, you can enable storing old and new tuples as follo
     :ref:`wal.ext.old <configuration_reference_wal_ext_old>` and :ref:`wal.ext.new <configuration_reference_wal_ext_new>`
     options to ``true``:
 
-    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/persistence/config.yaml
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/persistence_wal/config.yaml
         :language: yaml
-        :start-at: wal:
+        :start-at: ext:
         :end-at: old: true
         :dedent:
 

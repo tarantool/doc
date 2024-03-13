@@ -421,7 +421,7 @@ Tarantool allocates to actually store data.
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/memtx/config.yaml
     :language: yaml
     :start-at: memtx:
-    :end-at: 100000000
+    :end-at: 1073741824
     :dedent:
 
 When the limit is reached, ``INSERT`` or ``UPDATE`` requests fail with :ref:`ER_MEMORY_ISSUE <admin-troubleshoot-memory-issues>`.

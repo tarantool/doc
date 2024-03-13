@@ -88,7 +88,7 @@ The ``audit_log`` section defines configuration parameters related to :ref:`audi
 
     **Example**
 
-    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/audit_log/myapp.lua
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/audit_log/config.yaml
         :language: lua
         :start-at: filter:
         :end-at: custom ]
@@ -2010,7 +2010,7 @@ The ``memtx`` section is used to configure parameters related to the :ref:`memtx
 
     Since: :doc:`3.0.0 </release/3.0.0>`.
 
-    The number of threads from the :ref:`thread pool <supplementary_thread>` used to sort keys of secondary indexes on loading a ``memtx`` database.
+    The number of threads from the :ref:`thread pool <supplementary_threads>` used to sort keys of secondary indexes on loading a ``memtx`` database.
     The minimum value is 1, the maximum value is 256.
     The default is to use all available cores.
 
