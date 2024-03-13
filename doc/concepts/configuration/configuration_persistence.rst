@@ -185,7 +185,7 @@ size. The configuration for this option might look as follows:
     :end-at: 268435456
     :dedent:
 
-..  _configuration_persistence_wal_rescan:
+..  _configuration_persistence_cleanup_delay:
 
 Set a delay for the garbage collector
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

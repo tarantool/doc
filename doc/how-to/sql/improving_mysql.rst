@@ -288,7 +288,7 @@ MySQL and Tarantool are now set up. You can proceed to configure the replicator.
           - [8, 'Slim', 'Benny', 'snake']
           - [9, 'Puffball', 'Diane', 'hamster']
 
-..  _improving_mysql-replicator:
+..  _improving_mysql-test-replication:
 
 Testing the replication
 -----------------------
