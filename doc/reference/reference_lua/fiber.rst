@@ -1320,7 +1320,7 @@ API reference
 
     ..  _fiber_object-join:
 
-    ..  method:: join()
+    ..  method:: join([timeout])
 
         Join a fiber.
         Joining a fiber enables you to get the result returned by the fiber's function.
@@ -1334,6 +1334,7 @@ API reference
         :ref:`fiber.new() <fiber-new>` and is made joinable using
         :ref:`fiber_object:set_joinable() <fiber_object-set_joinable>`.
 
+        :param number timeout: maximum number of seconds to wait for the completion of the fiber. Default: infinity.
         :return:
 
             The ``join`` method returns two values:
@@ -1349,6 +1350,8 @@ API reference
             :ref:`a pcall result <error_handling>`.
 
         :rtype: boolean + result type, or boolean + struct error
+
+        Possible errors: the fiber is already joined by concurrent ``fiber:join()``.
 
         **Example:**
 
