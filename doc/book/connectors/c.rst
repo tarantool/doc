@@ -246,7 +246,7 @@ To display the results, the program uses functions in the
         }
         struct tnt_stream *tuple = tnt_object(NULL);
         tnt_object_format(tuple, "[%d]", 99999); /* tuple = search key */
-        tnt_select(tnt, 999, 0, (2^32) - 1, 0, 0, tuple);
+        tnt_select(tnt, 999, 0, UINT32_MAX, 0, 0, tuple);
         tnt_flush(tnt);
         struct tnt_reply reply; tnt_reply_init(&reply);
         tnt->read_reply(tnt, &reply);
