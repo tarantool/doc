@@ -1,0 +1,230 @@
+Tarantool 3.1
+=============
+
+Planned release date: April 2024
+
+Releases on GitHub: not released yet
+
+The 3.1 release of Tarantool continues development a new cluster configuration approach introduced in the :ref:`3.0 version <3-0-new_declarative_configuration>` and includes other features and fixes.
+
+..  container:: table
+
+    ..  list-table::
+        :widths: 50 50
+        :header-rows: 1
+
+        *   -   :ref:`Enterprise Edition <3-1-enterprise>`
+            -   :ref:`Community Edition <3-1-community>`
+
+        *   -   * :ref:`Failover coordinator <3-1-failover_coordinator>`
+                * :ref:`Centralized configuration stability <3-1-centralized_config_stability>`
+            -   * :ref:`Handling errors <3-1-handling_errors>`
+                * :ref:`Fixed-size numeric types <3-1-fixed_size_numeric_types>`
+                * :ref:`Accessing configuration of other cluster members <3-1-accessing_configuration>`
+                * :ref:`Compatibility with the tt utility <3-1-compatibility_tt>`
+
+
+.. _3-1-enterprise:
+
+Enterprise Edition
+------------------
+
+
+.. _3-1-failover_coordinator:
+
+Failover coordinator
+~~~~~~~~~~~~~~~~~~~~
+
+The 3.1 release introduces an external failover coordinator that monitors a Tarantool cluster and performs automatic leadership change if a current replica set leader is inaccessible.
+
+A failover coordinator requires the :ref:`replication.failover <configuration_reference_replication_failover>` configuration option to be set to ``supervised``:
+
+..  code-block:: yaml
+
+    replication:
+      failover: supervised
+
+    # ...
+
+To start a failover coordinator, :ref:`run <configuration_run_instance_tarantool>` cluster instances using the ``tarantool`` command with the ``failover`` option:
+
+.. code-block:: console
+
+    $ tarantool --failover --config /path/to/config
+
+A failover coordinator connects to all the instances, polls them for their status, and controls that each replica set with ``replication.failover`` set to ``supervised`` has only one writable instance.
+
+Optionally, you can configure failover timeouts and other parameters in the ``failover`` section at the :ref:`global level <configuration_scopes>`:
+
+..  code-block:: yaml
+
+    failover:
+      call_timeout: 1
+      lease_interval: 15
+      renew_interval: 5
+      stateboard:
+        renew_interval: 1
+        keepalive_interval: 5
+
+
+
+.. _3-1-centralized_config_stability:
+
+Centralized configuration stability
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This release improves the stability of work with a centralized configuration :ref:`stored in etcd <configuration_etcd>` and fixes the following issues:
+
+*   Changes from etcd are lost if these changes are received during a reload.
+*   Connection is lost if etcd is unavailable for 10 or more seconds.
+*   A ``nil`` error is thrown if an empty string is returned for a configuration key.
+
+
+
+.. _3-1-community:
+
+Community Edition
+-----------------
+
+.. _3-1-handling_errors:
+
+Handling errors
+~~~~~~~~~~~~~~~
+
+This release extends error handling capabilities in regard to error traces.
+You can now pass an optional ``level`` argument to the :ref:`box.error() <box_error-error>` and :ref:`box.error.new() <box_error-new>` functions to specify where an error should be reported.
+
+In the example below, the ``raise_connection_error()`` function calls ``box.error()``.
+The ``connect()`` function in turn calls ``raise_connection_error()``:
+
+..  code-block:: lua
+
+    local function raise_connection_error(msg)
+        box.error({type = 'CustomConnectionError', message = msg}) -- line 2
+    end
+
+    local function connect()
+        -- Might raise a connection error --
+        raise_connection_error('Cannot establish a connection')    -- line 7
+    end
+
+    local ok, err = pcall(connect)
+    print(require('json').encode(err.trace))
+
+Executing this code reports that the error is thrown in the ``raise_connection_error()`` function (line 2):
+
+..  code-block:: console
+
+    $ tt run -i app.lua
+    [{"file":"app.lua","line":2}]
+
+To specify that the error should be reported on the second level in the calling hierarchy, pass the ``level`` argument as follows:
+
+..  code-block:: lua
+
+    local function raise_connection_error(msg)
+        box.error({type = 'CustomConnectionError', message = msg}, 2)
+    end
+
+    -- ... --
+
+In this case, a stack trace reports that the error is thrown in the ``connect()`` function (line 7):
+
+..  code-block:: console
+
+    $ tt run -i app.lua
+    [{"file":"app.lua","line":7}]
+
+
+
+.. _3-1-fixed_size_numeric_types:
+
+Fixed-size numeric types
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+The 3.1 release introduces fixed-size numeric :ref:`types <index-box_data-types>` that might be useful to store data unencoded in an array for effective scanning.
+The following numeric types are added:
+
+*   ``uint8``: an integer in a range ``[0 .. 255]``.
+*   ``int8``: an integer in a range ``[-128 .. 127]``.
+*   ``uint16``: an integer in a range ``[0 .. 65,535]``.
+*   ``int16``: an integer in a range ``[-32,768 .. 32,767]``.
+*   ``uint32``: an integer in a range ``[0 .. 4,294,967,295]``.
+*   ``int32``: an integer in a range ``[-2,147,483,648 .. 2,147,483,647]``.
+*   ``uint64``: an integer in a range ``[0 .. 18,446,744,073,709,551,615]``.
+*   ``int64``: an integer in a range ``[-9,223,372,036,854,775,808 .. 9,223,372,036,854,775,807]``.
+*   ``float32``: a 32-bit floating point number.
+*   ``float64``: a 64-bit floating point number.
+
+
+.. _3-1-accessing_configuration:
+
+Accessing configuration of other cluster members
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In Tarantool 3.0, the :ref:`config <config-module>` module provides the ability to work with a current instance's configuration only.
+Starting with the 3.1 version, you can get all the instances that constitute a cluster and obtain the configuration of any instance of this cluster.
+
+The ``config:instances()`` function lists all instances of the cluster:
+
+..  code-block:: console
+
+    sharded_cluster:router-a-001> require('config'):instances()
+    ---
+    - storage-a-001:
+        group_name: storages
+        instance_name: storage-a-001
+        replicaset_name: storage-a
+      storage-b-002:
+        group_name: storages
+        instance_name: storage-b-002
+        replicaset_name: storage-b
+      router-a-001:
+        group_name: routers
+        instance_name: router-a-001
+        replicaset_name: router-a
+      storage-a-002:
+        group_name: storages
+        instance_name: storage-a-002
+        replicaset_name: storage-a
+      storage-b-001:
+        group_name: storages
+        instance_name: storage-b-001
+        replicaset_name: storage-b
+    ...
+
+To get the specified configuration value for a certain instance, pass an instance name as an argument to ``config:get()``:
+
+..  code-block:: console
+
+    sharded_cluster:router-a-001> require('config'):get('iproto', {instance = 'storage-b-001'})
+    ---
+    - readahead: 16320
+      net_msg_max: 768
+      listen:
+      - uri: 127.0.0.1:3304
+      threads: 1
+      advertise:
+        peer:
+          login: replicator
+        client: null
+        sharding:
+          login: storage
+    ...
+
+
+
+.. _3-1-compatibility_tt:
+
+Compatibility with the tt utility
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+With this release, the ``tarantoolctl`` utility used to administer Tarantool instances is completely removed from Tarantool packages.
+The latest version of the :ref:`tt utility <tt-cli>` is fully compatible with Tarantool 3.1 and covers all the required functionality:
+
+*   Setting up a development environment: initializing the environment and installing different Tarantool versions.
+*   Various capabilities for developing cluster applications: creating applications from templates, managing modules, building and packaging applications.
+*   Managing cluster instances: starting and stopping instances, connecting to remote instances for administration, and so on.
+*   Importing and exporting data (Enterprise Edition only).
+
+Learn how to migrate from ``tarantoolctl`` to ``tt`` in the :ref:`tarantoolctl-migration-to-tt` section.
