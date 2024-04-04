@@ -43,3 +43,4 @@ to read data. LDAP authorization is supported as well.
     tcm_audit_log
     tcm_configuration
     tcm_configuration_reference
+    tcm_data_storage

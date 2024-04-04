@@ -1040,8 +1040,7 @@ The ``log`` section defines the |tcm|  logging parameters.
 storage
 -------
 
-The ``storage`` section defines the parameters of the configuration storage that
-|tcm| uses for connected clusters.
+The ``storage`` section defines the parameters of the |tcm| data storage.
 
 -   :ref:`storage.provider <tcm_configuration_reference_storage_provider>`
 
