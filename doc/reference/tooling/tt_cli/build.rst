@@ -60,7 +60,7 @@ Example:
 
     tt rocks make --chdir ./third_party/proj
 
-``tt.post.build`` is a script that runs after ``tt rocks make``. The main purpose
+``tt.post-build`` is a script that runs after ``tt rocks make``. The main purpose
 of this script is to remove build artifacts from the final package. Example:
 
 ..  code-block:: bash
