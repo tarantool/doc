@@ -5,37 +5,24 @@ Planned release date: April 2024
 
 Releases on GitHub: not released yet
 
-The 3.1 release of Tarantool continues development a new cluster configuration approach introduced in the :ref:`3.0 version <3-0-new_declarative_configuration>` and includes other features and fixes.
+The 3.1 release of Tarantool continues the development of a new cluster configuration approach introduced in the :ref:`3.0 version <3-0-new_declarative_configuration>`, adds an external failover coordinator, and includes other features useful for developing applications, such as fixed-size numeric types and improved developer experience for error handling.
 
-..  container:: table
-
-    ..  list-table::
-        :widths: 50 50
-        :header-rows: 1
-
-        *   -   :ref:`Enterprise Edition <3-1-enterprise>`
-            -   :ref:`Community Edition <3-1-community>`
-
-        *   -   * :ref:`Failover coordinator <3-1-failover_coordinator>`
-                * :ref:`Centralized configuration stability <3-1-centralized_config_stability>`
-            -   * :ref:`Handling errors <3-1-handling_errors>`
-                * :ref:`Fixed-size numeric types <3-1-fixed_size_numeric_types>`
-                * :ref:`Accessing configuration of other cluster members <3-1-accessing_configuration>`
-                * :ref:`Compatibility with the tt utility <3-1-compatibility_tt>`
+-   :ref:`Administration and maintenance <3-1-administration-and-maintenance>`
+-   :ref:`Developing applications <3-1-features-for-developers>`
+-   :ref:`Compatibility with the tt utility <3-1-compatibility_tt>`
 
 
-.. _3-1-enterprise:
+.. _3-1-administration-and-maintenance:
 
-Enterprise Edition
-------------------
-
+Administration and maintenance
+------------------------------
 
 .. _3-1-failover_coordinator:
 
-Failover coordinator
-~~~~~~~~~~~~~~~~~~~~
+Failover coordinator (EE)
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The 3.1 release introduces an external failover coordinator that monitors a Tarantool cluster and performs automatic leadership change if a current replica set leader is inaccessible.
+Tarantool Enterprise Edition 3.1 introduces an external failover coordinator that monitors a Tarantool cluster and performs automatic leadership change if a current replica set leader is inaccessible.
 
 A failover coordinator requires the :ref:`replication.failover <configuration_reference_replication_failover>` configuration option to be set to ``supervised``:
 
@@ -46,7 +33,7 @@ A failover coordinator requires the :ref:`replication.failover <configuration_re
 
     # ...
 
-To start a failover coordinator, :ref:`run <configuration_run_instance_tarantool>` cluster instances using the ``tarantool`` command with the ``failover`` option:
+To start a failover coordinator, execute the ``tarantool`` command with the ``failover`` option and pass a path to a :ref:`YAML configuration file <configuration_overview>`:
 
 .. code-block:: console
 
@@ -67,75 +54,43 @@ Optionally, you can configure failover timeouts and other parameters in the ``fa
         keepalive_interval: 5
 
 
+.. _3-1-sharding:
 
-.. _3-1-centralized_config_stability:
+Sharding
+~~~~~~~~
 
-Centralized configuration stability
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The 3.1 release includes new :ref:`sharding <configuration_reference_sharding>` options that provide additional flexibility for configuring a sharded cluster.
+A new ``sharding.weight`` specifies the relative amount of data that a replica set can store.
+In the example below, the ``storage-a`` replica set can store twice as much data as ``storage-b``:
 
-This release improves the stability of work with a centralized configuration :ref:`stored in etcd <configuration_etcd>` and fixes the following issues:
+..  code-block:: yaml
 
-*   Changes from etcd are lost if these changes are received during a reload.
-*   Connection is lost if etcd is unavailable for 10 or more seconds.
-*   A ``nil`` error is thrown if an empty string is returned for a configuration key.
-
-
-
-.. _3-1-community:
-
-Community Edition
------------------
-
-.. _3-1-handling_errors:
-
-Handling errors
-~~~~~~~~~~~~~~~
-
-This release extends error handling capabilities in regard to error traces.
-You can now pass an optional ``level`` argument to the :ref:`box.error() <box_error-error>` and :ref:`box.error.new() <box_error-new>` functions to specify where an error should be reported.
-
-In the example below, the ``raise_connection_error()`` function calls ``box.error()``.
-The ``connect()`` function in turn calls ``raise_connection_error()``:
-
-..  code-block:: lua
-
-    local function raise_connection_error(msg)
-        box.error({type = 'CustomConnectionError', message = msg}) -- line 2
-    end
-
-    local function connect()
-        -- Might raise a connection error --
-        raise_connection_error('Cannot establish a connection')    -- line 7
-    end
-
-    local ok, err = pcall(connect)
-    print(require('json').encode(err.trace))
-
-Executing this code reports that the error is thrown in the ``raise_connection_error()`` function (line 2):
-
-..  code-block:: console
-
-    $ tt run -i app.lua
-    [{"file":"app.lua","line":2}]
-
-To specify that the error should be reported on the second level in the calling hierarchy, pass the ``level`` argument as follows:
-
-..  code-block:: lua
-
-    local function raise_connection_error(msg)
-        box.error({type = 'CustomConnectionError', message = msg}, 2)
-    end
-
-    -- ... --
-
-In this case, a stack trace reports that the error is thrown in the ``connect()`` function (line 7):
-
-..  code-block:: console
-
-    $ tt run -i app.lua
-    [{"file":"app.lua","line":7}]
+    # ...
+    replicasets:
+      storage-a:
+        sharding:
+          weight: 2
+        # ...
+      storage-b:
+        sharding:
+          weight: 1
+        # ...
 
 
+
+The ``sharding.rebalancer_mode`` option configures whether a rebalancer is selected manually or automatically.
+This option can have one of three values:
+
+*   ``auto`` (default): if there are no replica sets with the ``rebalancer`` sharding role (:ref:`sharding.roles <configuration_reference_sharding_roles>`), a replica set with the rebalancer will be selected automatically among all replica sets.
+*   ``manual``: one of the replica sets should have the ``rebalancer`` sharding role. The rebalancer will be in this replica set.
+*   ``off``: rebalancing is turned off regardless of whether a replica set with the ``rebalancer`` sharding role  exists or not.
+
+
+
+.. _3-1-features-for-developers:
+
+Developing applications
+-----------------------
 
 .. _3-1-fixed_size_numeric_types:
 
@@ -157,6 +112,122 @@ The following numeric types are added:
 *   ``float64``: a 64-bit floating point number.
 
 
+
+.. _3-1-error-handling:
+
+Error handling
+~~~~~~~~~~~~~~
+
+This release improves the developer experience for handling errors using the :ref:`box.error <box-error-submodule>` module.
+Below are listed the most notable features and changes.
+
+
+.. _3-1-error_payload_fields:
+
+Error payload fields
+********************
+
+With the 3.1 release, you can add a custom payload to an error.
+The payload is passed as key-value pairs where a key is a string and a value is any Lua object.
+In the example below, the ``description`` key is used to keep the custom payload.
+
+..  code-block:: lua
+
+        custom_error = box.error.new({ type = 'CustomInternalError',
+                                       message = 'Internal server error',
+                                       description = 'Some error details'  -- payload
+        })
+
+A payload field value can be accessed using the dot syntax:
+
+..  code-block:: tarantoolsession
+
+    tarantool> custom_error.description
+    ---
+    - Some error details
+    ...
+
+
+
+
+
+.. _3-1-error_stack:
+
+Error stacks
+************
+
+The 3.1 release simplifies creating error chains.
+In the earlier versions, you need to set an error cause using the :ref:`set_prev(error_object) <box_error-set_prev>` method, for example:
+
+..  code-block:: lua
+
+    local ok, err = pcall(my_func)
+    if not ok then
+        local err2 = box.error.new{type = "MyAppError", message = "my_func failed"}
+        err2:set_prev(err)
+        err2:raise()
+    end
+
+Using this approach, you need to construct a new error without raising it, then set its cause using ``set_prev()``, and only then raise it.
+Starting with the 3.1 version, you can use a new ``prev`` argument when constructing an error:
+
+..  code-block:: lua
+
+    local ok, err = pcall(my_func)
+    if not ok then
+        box.error{type = "MyAppError", message = "my_func failed", prev = err}
+    end
+
+
+.. _3-1-error_serialization:
+
+Error serialization improvements
+********************************
+
+The 3.1 release allows you to increase the verbosity of error serialization.
+Before the 3.1 release, a serialized error representation included only an error message:
+
+..  code-block:: tarantoolsession
+
+    tarantool> box.error.new({ type = 'CustomInternalError', message = 'Internal server error'})
+    ---
+    - Internal server error
+    ...
+
+
+Starting with the 3.1 version, a serialized error also includes other fields that might be useful for analyzing errors:
+
+..  code-block:: lua
+
+    tarantool> box.error.new({ type = 'CustomInternalError', message = 'Internal server error'})
+    ---
+    - code: 0
+      base_type: CustomError
+      type: CustomInternalError
+      custom_type: CustomInternalError
+      message: Internal server error
+      trace:
+      - file: '[C]'
+        line: 4294967295
+    ...
+
+Logging an error using a built-in :ref:`logging module <log-module>` prints an error message followed by a tab space (``\t``) and all the payload fields serialized as a JSON map, for example:
+
+..  code-block:: none
+
+    main/104/app.lua/tarantool I> Internal server error {"code":0,"base_type":"CustomError","type":"CustomInternalError", ... }
+
+Given that this change may change the behavior of existing code, a new ``box_error_serialize_verbose`` :ref:`compat <compat-module>` option is introduced.
+To try out an increased verbosity of error serialization, set this option to ``new``:
+
+..  code-block:: tarantoolsession
+
+    tarantool> require('compat').box_error_serialize_verbose = 'new'
+    ---
+    ...
+
+
+
 .. _3-1-accessing_configuration:
 
 Accessing configuration of other cluster members
@@ -167,7 +238,7 @@ Starting with the 3.1 version, you can get all the instances that constitute a c
 
 The ``config:instances()`` function lists all instances of the cluster:
 
-..  code-block:: console
+..  code-block:: tarantoolsession
 
     sharded_cluster:router-a-001> require('config'):instances()
     ---
@@ -195,7 +266,7 @@ The ``config:instances()`` function lists all instances of the cluster:
 
 To get the specified configuration value for a certain instance, pass an instance name as an argument to ``config:get()``:
 
-..  code-block:: console
+..  code-block:: tarantoolsession
 
     sharded_cluster:router-a-001> require('config'):get('iproto', {instance = 'storage-b-001'})
     ---
@@ -217,13 +288,13 @@ To get the specified configuration value for a certain instance, pass an instanc
 .. _3-1-compatibility_tt:
 
 Compatibility with the tt utility
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------------
 
 With this release, the ``tarantoolctl`` utility used to administer Tarantool instances is completely removed from Tarantool packages.
 The latest version of the :ref:`tt utility <tt-cli>` is fully compatible with Tarantool 3.1 and covers all the required functionality:
 
 *   Setting up a development environment: initializing the environment and installing different Tarantool versions.
-*   Various capabilities for developing cluster applications: creating applications from templates, managing modules, building and packaging applications.
+*   Various capabilities for developing cluster applications: creating applications from templates, managing modules, and building and packaging applications.
 *   Managing cluster instances: starting and stopping instances, connecting to remote instances for administration, and so on.
 *   Importing and exporting data (Enterprise Edition only).
 
