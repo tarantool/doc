@@ -135,7 +135,7 @@ msgid ""
 "function will be called and the data change will be skipped. The return "
 "value will be absent."
 msgstr ""
-"если значение совпадает со старым, то вызывается функция ``on_replace``, и "
+"если значение совпадает со старым, то функция ``on_replace`` не вызывается, и "
 "изменение данных не происходит. Возвращаемого значения в таком случае не "
 "будет."
 
