@@ -1,0 +1,16 @@
+log:
+  modules:
+    module1: 'verbose'
+    module2: 'error'
+app:
+  file: 'app.lua'
+
+groups:
+  group001:
+    replicasets:
+      replicaset001:
+        instances:
+          instance001:
+            iproto:
+              listen:
+              - uri: '127.0.0.1:3301'

@@ -1,0 +1,15 @@
+log:
+  to: syslog
+  syslog:
+    server: '127.0.0.1:514'
+#    server: 'unix:/dev/log'
+
+groups:
+  group001:
+    replicasets:
+      replicaset001:
+        instances:
+          instance001:
+            iproto:
+              listen:
+              - uri: '127.0.0.1:3301'
