@@ -1874,6 +1874,361 @@ instances
     For example, :ref:`iproto <configuration_reference_iproto>` and :ref:`database <configuration_reference_database>` configuration parameters defined at the instance level are applied to this instance only.
 
 
+
+
+..  _configuration_reference_log:
+
+log
+---
+
+The ``log`` section defines configuration parameters related to logging.
+To handle logging in your application, use the :ref:`log module <log-module>`.
+
+..  NOTE::
+
+    ``log`` can be defined in any :ref:`scope <configuration_scopes>`.
+
+*   :ref:`log.to <configuration_reference_log_to>`
+*   :ref:`log.file <configuration_reference_log_file>`
+*   :ref:`log.format <configuration_reference_log_format>`
+*   :ref:`log.level <configuration_reference_log_level>`
+*   :ref:`log.modules <configuration_reference_log_modules>`
+*   :ref:`log.nonblock <configuration_reference_log_nonblock>`
+*   :ref:`log.pipe <configuration_reference_log_pipe>`
+*   :ref:`log.syslog.* <configuration_reference_log_syslog>`
+
+    -   :ref:`log.syslog.facility <configuration_reference_log_syslog-facility>`
+    -   :ref:`log.syslog.identity <configuration_reference_log_syslog-identity>`
+    -   :ref:`log.syslog.server <configuration_reference_log_syslog-server>`
+
+
+..  _configuration_reference_log_to:
+
+..  confval:: log.to
+
+    Define a location Tarantool sends logs to.
+    This option accepts the following values:
+
+    *   ``stderr``: write logs to the standard error stream.
+    *   ``file``: write logs to a file (see :ref:`log.file <configuration_reference_log_file>`).
+    *   ``pipe``: start a program and write logs to it (see :ref:`log.pipe <configuration_reference_log_pipe>`).
+    *   ``syslog``: write audit logs to a system logger (see :ref:`log.syslog.* <configuration_reference_log_syslog>`).
+
+    |
+    | Type: string
+    | Default: 'stderr'
+    | Environment variable: TT_LOG_TO
+
+
+..  _configuration_reference_log_file:
+
+..  confval:: log.file
+
+    Specify a file for logs destination.
+    To write logs to a file, you need to set :ref:`log.to <configuration_reference_log_to>` to ``file``.
+
+    **Example**
+
+    The example below shows how to write logs to a file placed in the specified directory:
+
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/log_file/config.yaml
+        :language: yaml
+        :start-at: log:
+        :end-at: instance.log
+        :dedent:
+
+    Example on GitHub: `log_file <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/log_file>`_.
+
+    |
+    | Type: string
+    | Default: 'var/log/{{ instance_name }}/tarantool.log'
+    | Environment variable: TT_LOG_FILE
+
+
+..  _configuration_reference_log_format:
+
+..  confval:: log.format
+
+    Specify a format is used for a log entry.
+    The following formats are supported:
+
+    *   ``plain``: a log entry is formatted as plain text. Example:
+
+        ..  code-block:: text
+
+            2024-04-09 11:00:10.369 [12089] main/104/interactive I> log level 5 (INFO)
+
+    *   ``json``: a log entry is formatted as JSON and includes additional fields. Example:
+
+        ..  code-block:: text
+
+            {
+              "time": "2024-04-09T11:00:57.174+0300",
+              "level": "INFO",
+              "message": "log level 5 (INFO)",
+              "pid": 12160,
+              "cord_name": "main",
+              "fiber_id": 104,
+              "fiber_name": "interactive",
+              "file": "src/main.cc",
+              "line": 498
+            }
+
+    |
+    | Type: string
+    | Default: 'plain'
+    | Environment variable: TT_LOG_FORMAT
+
+
+..  _configuration_reference_log_level:
+
+..  confval:: log.level
+
+    Specify the level of detail logs have.
+    There are the following levels:
+
+    * 0 -- ``fatal``
+    * 1 -- ``syserror``
+    * 2 -- ``error``
+    * 3 -- ``crit``
+    * 4 -- ``warn``
+    * 5 -- ``info``
+    * 6 -- ``verbose``
+    * 7 -- ``debug``
+
+    By setting ``log.level``, you can enable logging of all events with severities above or equal to the given level.
+
+    **Example**
+
+    The example below shows how to log all events with severities above or equal to the ``VERBOSE`` level.
+
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/log_level/config.yaml
+        :language: yaml
+        :start-at: log:
+        :end-at: verbose
+        :dedent:
+
+    Example on GitHub: `log_level <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/log_level>`_.
+
+    |
+    | Type: number, string
+    | Default: 5
+    | Environment variable: TT_LOG_LEVEL
+
+
+..  _configuration_reference_log_modules:
+
+..  confval:: log.modules
+
+    Configure the specified log levels (:ref:`log.level <configuration_reference_log_level>`) for different modules.
+
+    You can specify a logging level for the following module types:
+
+    *   Modules (files) that use the default logger.
+        Example: :ref:`Set log levels for files that use the default logger <configuration_reference_log_modules_example_existing_modules>`.
+
+    *   Modules that use custom loggers created using the :ref:`log.new() <log-new>` function.
+        Example: :ref:`Set log levels for modules that use custom loggers <configuration_reference_log_modules_example_new_modules>`.
+
+    *   The ``tarantool`` module that enables you to configure the logging level for Tarantool core messages.
+        Specifically, it configures the logging level for messages logged from non-Lua code, including C modules.
+        Example: :ref:`Set a log level for C modules <configuration_reference_log_modules_example_tarantool_module>`.
+
+    .. _configuration_reference_log_modules_example_existing_modules:
+
+    **Example 1: Set log levels for files that use the default logger**
+
+    Suppose you have two identical modules placed by the following paths: ``test/module1.lua`` and ``test/module2.lua``.
+    These modules use the default logger and look as follows:
+
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/log_existing_modules/test/module1.lua
+        :language: lua
+        :dedent:
+
+    To configure logging levels, you need to provide module names corresponding to paths to these modules:
+
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/log_existing_modules/config.yaml
+        :language: yaml
+        :start-at: log:
+        :end-at: app.lua
+        :dedent:
+
+    To load these modules in your application (``app.lua``), you need to add the corresponding ``require`` directives:
+
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/log_existing_modules/app.lua
+        :language: lua
+        :start-at: module1 = require
+        :end-at: module2 = require
+        :dedent:
+
+    Given that ``module1`` has the ``verbose`` logging level and ``module2`` has the ``error`` level, calling ``module1.say_hello()`` shows a message but ``module2.say_hello()`` is swallowed:
+
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/log_existing_modules/app.lua
+        :language: lua
+        :start-after: module2 = require
+        :dedent:
+
+    Example on GitHub: `log_existing_modules <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/log_existing_modules>`_.
+
+    .. _configuration_reference_log_modules_example_new_modules:
+
+    **Example 2: Set log levels for modules that use custom loggers**
+
+    This example shows how to set the ``verbose`` level for ``module1`` and the ``error`` level for ``module2``:
+
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/log_new_modules/config.yaml
+        :language: yaml
+        :start-at: log:
+        :end-at: app.lua
+        :dedent:
+
+    To create custom loggers in your application (``app.lua``), call the :ref:`log.new() <log-new>` function:
+
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/log_new_modules/app.lua
+        :language: lua
+        :start-at: Creates new loggers
+        :end-at: module2_log = require
+        :dedent:
+
+    Given that ``module1`` has the ``verbose`` logging level and ``module2`` has the ``error`` level, calling ``module1_log.info()`` shows a message but ``module2_log.info()`` is swallowed:
+
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/log_new_modules/app.lua
+        :language: lua
+        :start-after: module2_log = require
+        :dedent:
+
+    Example on GitHub: `log_new_modules <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/log_new_modules>`_.
+
+    .. _configuration_reference_log_modules_example_tarantool_module:
+
+    **Example 3: Set a log level for C modules**
+
+    This example shows how to set the ``info`` level for the ``tarantool`` module:
+
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/log_existing_c_modules/config.yaml
+        :language: yaml
+        :start-at: log:
+        :end-at: app.lua
+        :dedent:
+
+    The specified level affects messages logged from C modules:
+
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/log_existing_c_modules/app.lua
+        :language: lua
+        :dedent:
+
+    The example above uses the `LuaJIT ffi library <http://luajit.org/ext_ffi.html>`_ to call C functions provided by the ``say`` module.
+
+    Example on GitHub: `log_existing_c_modules <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/log_existing_c_modules>`_.
+
+    |
+    | Type: map
+    | Default: :ref:`box.NULL <box-null>`
+    | Environment variable: TT_LOG_MODULES
+
+
+..  _configuration_reference_log_nonblock:
+
+..  confval:: log.nonblock
+
+    Specify the logging behavior if the system is not ready to write.
+    If set to ``true``, Tarantool does not block during logging if the system is non-writable and writes a message instead.
+    Using this value may improve logging performance at the cost of losing some log messages.
+
+    ..  note::
+
+        The option only has an effect if the :ref:`log.to <configuration_reference_log_to>` is set to ``syslog``
+        or ``pipe``.
+
+    |
+    | Type: boolean
+    | Default: false
+    | Environment variable: TT_LOG_NONBLOCK
+
+..  _configuration_reference_log_pipe:
+
+..  confval:: log.pipe
+
+    Specify a pipe for logs destination.
+    To write logs to a pipe, you need to set :ref:`log.to <configuration_reference_log_to>` to ``pipe``.
+
+    **Example**
+
+    In the example below, Tarantool writes logs to the standard input of ``cronolog``:
+
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/log_pipe/config.yaml
+        :language: yaml
+        :start-at: log:
+        :end-at: tarantool.log
+        :dedent:
+
+    Example on GitHub: `log_pipe <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/log_pipe>`_.
+
+    |
+    | Type: string
+    | Default: :ref:`box.NULL <box-null>`
+    | Environment variable: TT_LOG_PIPE
+
+
+..  _configuration_reference_log_syslog:
+
+log.syslog.*
+~~~~~~~~~~~~
+
+..  _configuration_reference_log_syslog-facility:
+
+..  confval:: log.syslog.facility
+
+    Specify the syslog facility to be used when syslog is enabled.
+    To write logs to syslog, you need to set :ref:`log.to <configuration_reference_log_to>` to ``syslog``.
+
+    |
+    | Type: string
+    | Possible values: 'auth', 'authpriv', 'cron', 'daemon', 'ftp', 'kern', 'lpr', 'mail', 'news', 'security', 'syslog', 'user', 'uucp', 'local0', 'local1', 'local2', 'local3', 'local4', 'local5', 'local6', 'local7'
+    | Default: 'local7'
+    | Environment variable: TT_LOG_SYSLOG_FACILITY
+
+..  _configuration_reference_log_syslog-identity:
+
+..  confval:: log.syslog.identity
+
+    Specify an application name used to identify Tarantool messages in syslog logs.
+    To write logs to syslog, you need to set :ref:`log.to <configuration_reference_log_to>` to ``syslog``.
+
+    |
+    | Type: string
+    | Default: 'tarantool'
+    | Environment variable: TT_LOG_SYSLOG_IDENTITY
+
+..  _configuration_reference_log_syslog-server:
+
+..  confval:: log.syslog.server
+
+    Set a location of a syslog server.
+    This option accepts an IPv4 address or Unix socket path starting with ``unix:``.
+
+    To write logs to syslog, you need to set :ref:`log.to <configuration_reference_log_to>` to ``syslog``.
+
+    **Example**
+
+    In the example below, Tarantool writes logs to a syslog server that listens for logging messages on the ``127.0.0.1:514`` address:
+
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/log_syslog/config.yaml
+        :language: yaml
+        :start-at: log:
+        :end-at: 127.0.0.1:514
+        :dedent:
+
+    Example on GitHub: `log_syslog <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/log_syslog>`_.
+
+    |
+    | Type: string
+    | Default: box.NULL
+    | Environment variable: TT_LOG_SYSLOG_SERVER
+
+
+
+
 ..  _configuration_reference_memtx:
 
 memtx
