@@ -5,113 +5,25 @@ Planned release date: April 2024
 
 Releases on GitHub: not released yet
 
-The 3.1 release of Tarantool continues the development of a new cluster configuration approach introduced in the :ref:`3.0 version <3-0-new_declarative_configuration>`, adds an external failover coordinator, and includes other features useful for developing applications, such as fixed-size numeric types and improved developer experience for error handling.
+The 3.1 release of Tarantool continues the development of a new cluster configuration approach introduced in the :ref:`3.0 version <3-0-new_declarative_configuration>` and adds the following main product features and improvements for the Community and Enterprise editions:
 
--   :ref:`Administration and maintenance <3-1-administration-and-maintenance>`
--   :ref:`Developing applications <3-1-features-for-developers>`
--   :ref:`Compatibility with the tt utility <3-1-compatibility_tt>`
+*   **Community Edition (CE)**
 
+    *   Improved developer experience for handling errors using the ``box.error`` module.
+    *   Introduced fixed-size numeric field types: ``uint8``, ``int8``, ``uint16``, and more.
+    *   Added RPC functionality for accessing custom roles from the configuration.
+    *   Made the ``tt`` utility used to manage instances fully compatible with the latest Tarantool version.
 
-.. _3-1-administration-and-maintenance:
+*   **Enterprise Edition (EE)**
 
-Administration and maintenance
-------------------------------
-
-.. _3-1-failover_coordinator:
-
-Failover coordinator (EE)
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Tarantool Enterprise Edition 3.1 introduces an external failover coordinator that monitors a Tarantool cluster and performs automatic leadership change if a current replica set leader is inaccessible.
-
-A failover coordinator requires the :ref:`replication.failover <configuration_reference_replication_failover>` configuration option to be set to ``supervised``:
-
-..  code-block:: yaml
-
-    replication:
-      failover: supervised
-
-    # ...
-
-To start a failover coordinator, execute the ``tarantool`` command with the ``failover`` option and pass a path to a :ref:`YAML configuration file <configuration_overview>`:
-
-.. code-block:: console
-
-    $ tarantool --failover --config /path/to/config
-
-A failover coordinator connects to all the instances, polls them for their status, and controls that each replica set with ``replication.failover`` set to ``supervised`` has only one writable instance.
-
-Optionally, you can configure failover timeouts and other parameters in the ``failover`` section at the :ref:`global level <configuration_scopes>`:
-
-..  code-block:: yaml
-
-    failover:
-      call_timeout: 1
-      lease_interval: 15
-      renew_interval: 5
-      stateboard:
-        renew_interval: 1
-        keepalive_interval: 5
-
-
-.. _3-1-sharding:
-
-Sharding
-~~~~~~~~
-
-The 3.1 release includes new :ref:`sharding <configuration_reference_sharding>` options that provide additional flexibility for configuring a sharded cluster.
-A new ``sharding.weight`` specifies the relative amount of data that a replica set can store.
-In the example below, the ``storage-a`` replica set can store twice as much data as ``storage-b``:
-
-..  code-block:: yaml
-
-    # ...
-    replicasets:
-      storage-a:
-        sharding:
-          weight: 2
-        # ...
-      storage-b:
-        sharding:
-          weight: 1
-        # ...
-
-
-
-The ``sharding.rebalancer_mode`` option configures whether a rebalancer is selected manually or automatically.
-This option can have one of three values:
-
-*   ``auto`` (default): if there are no replica sets with the ``rebalancer`` sharding role (:ref:`sharding.roles <configuration_reference_sharding_roles>`), a replica set with the rebalancer will be selected automatically among all replica sets.
-*   ``manual``: one of the replica sets should have the ``rebalancer`` sharding role. The rebalancer will be in this replica set.
-*   ``off``: rebalancing is turned off regardless of whether a replica set with the ``rebalancer`` sharding role  exists or not.
-
+    *   Introduced an external coordinator for automatic and manual failover.
+    *   Improved the stability of work with the centralized configuration stored in etcd.
 
 
 .. _3-1-features-for-developers:
 
 Developing applications
 -----------------------
-
-.. _3-1-fixed_size_numeric_types:
-
-Fixed-size numeric types
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-The 3.1 release introduces fixed-size numeric :ref:`types <index-box_data-types>` that might be useful to store data unencoded in an array for effective scanning.
-The following numeric types are added:
-
-*   ``uint8``: an integer in a range ``[0 .. 255]``.
-*   ``int8``: an integer in a range ``[-128 .. 127]``.
-*   ``uint16``: an integer in a range ``[0 .. 65,535]``.
-*   ``int16``: an integer in a range ``[-32,768 .. 32,767]``.
-*   ``uint32``: an integer in a range ``[0 .. 4,294,967,295]``.
-*   ``int32``: an integer in a range ``[-2,147,483,648 .. 2,147,483,647]``.
-*   ``uint64``: an integer in a range ``[0 .. 18,446,744,073,709,551,615]``.
-*   ``int64``: an integer in a range ``[-9,223,372,036,854,775,808 .. 9,223,372,036,854,775,807]``.
-*   ``float32``: a 32-bit floating point number.
-*   ``float64``: a 64-bit floating point number.
-
-
 
 .. _3-1-error-handling:
 
@@ -227,6 +139,26 @@ To try out an increased verbosity of error serialization, set this option to ``n
     ...
 
 
+.. _3-1-fixed_size_numeric_types:
+
+Fixed-size numeric types
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+The 3.1 release introduces fixed-size numeric :ref:`types <index-box_data-types>` that might be useful to store data unencoded in an array for effective scanning.
+The following numeric types are added:
+
+*   ``uint8``: an integer in a range ``[0 .. 255]``.
+*   ``int8``: an integer in a range ``[-128 .. 127]``.
+*   ``uint16``: an integer in a range ``[0 .. 65,535]``.
+*   ``int16``: an integer in a range ``[-32,768 .. 32,767]``.
+*   ``uint32``: an integer in a range ``[0 .. 4,294,967,295]``.
+*   ``int32``: an integer in a range ``[-2,147,483,648 .. 2,147,483,647]``.
+*   ``uint64``: an integer in a range ``[0 .. 18,446,744,073,709,551,615]``.
+*   ``int64``: an integer in a range ``[-9,223,372,036,854,775,808 .. 9,223,372,036,854,775,807]``.
+*   ``float32``: a 32-bit floating point number.
+*   ``float64``: a 64-bit floating point number.
+
+
 
 .. _3-1-accessing_configuration:
 
@@ -283,6 +215,80 @@ To get the specified configuration value for a certain instance, pass an instanc
           login: storage
     ...
 
+
+
+.. _3-1-administration-and-maintenance:
+
+Administration and maintenance
+------------------------------
+
+.. _3-1-failover_coordinator:
+
+Failover coordinator (EE)
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Tarantool Enterprise Edition 3.1 introduces an external failover coordinator that monitors a Tarantool cluster and performs automatic leadership change if a current replica set leader is inaccessible.
+
+A failover coordinator requires the :ref:`replication.failover <configuration_reference_replication_failover>` configuration option to be set to ``supervised``:
+
+..  code-block:: yaml
+
+    replication:
+      failover: supervised
+
+    # ...
+
+To start a failover coordinator, execute the ``tarantool`` command with the ``failover`` option and pass a path to a :ref:`YAML configuration file <configuration_overview>`:
+
+.. code-block:: console
+
+    $ tarantool --failover --config /path/to/config
+
+A failover coordinator connects to all the instances, polls them for their status, and controls that each replica set with ``replication.failover`` set to ``supervised`` has only one writable instance.
+
+Optionally, you can configure failover timeouts and other parameters in the ``failover`` section at the :ref:`global level <configuration_scopes>`:
+
+..  code-block:: yaml
+
+    failover:
+      call_timeout: 1
+      lease_interval: 15
+      renew_interval: 5
+      stateboard:
+        renew_interval: 1
+        keepalive_interval: 5
+
+
+.. _3-1-sharding:
+
+Sharding
+~~~~~~~~
+
+The 3.1 release includes new :ref:`sharding <configuration_reference_sharding>` options that provide additional flexibility for configuring a sharded cluster.
+A new ``sharding.weight`` specifies the relative amount of data that a replica set can store.
+In the example below, the ``storage-a`` replica set can store twice as much data as ``storage-b``:
+
+..  code-block:: yaml
+
+    # ...
+    replicasets:
+      storage-a:
+        sharding:
+          weight: 2
+        # ...
+      storage-b:
+        sharding:
+          weight: 1
+        # ...
+
+
+
+The ``sharding.rebalancer_mode`` option configures whether a rebalancer is selected manually or automatically.
+This option can have one of three values:
+
+*   ``auto`` (default): if there are no replica sets with the ``rebalancer`` sharding role (:ref:`sharding.roles <configuration_reference_sharding_roles>`), a replica set with the rebalancer will be selected automatically among all replica sets.
+*   ``manual``: one of the replica sets should have the ``rebalancer`` sharding role. The rebalancer will be in this replica set.
+*   ``off``: rebalancing is turned off regardless of whether a replica set with the ``rebalancer`` sharding role  exists or not.
 
 
 .. _3-1-compatibility_tt:
