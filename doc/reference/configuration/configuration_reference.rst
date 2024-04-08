@@ -172,7 +172,7 @@ The ``audit_log`` section defines configuration parameters related to :ref:`audi
     ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/audit_log_pipe/config.yaml
         :language: yaml
         :start-at: audit_log:
-        :end-at: '| cronolog audit_tarantool.log'
+        :end-at: 'cronolog audit_tarantool.log'
         :dedent:
 
     This starts the `cronolog <https://linux.die.net/man/1/cronolog>`_ program when the server starts

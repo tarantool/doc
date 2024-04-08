@@ -4,14 +4,11 @@ audit_log:
     server: 'unix:/dev/log'
     facility: 'user'
     identity: 'tarantool_audit'
-  filter: 'audit,auth,priv,password_change,access_denied'
+  filter: [ audit, auth, priv, password_change, access_denied ]
   extract_key: false
 
 groups:
   group001:
-    iproto:
-      listen:
-      - uri: '127.0.0.1:3301'
     replicasets:
       replicaset001:
         instances:
