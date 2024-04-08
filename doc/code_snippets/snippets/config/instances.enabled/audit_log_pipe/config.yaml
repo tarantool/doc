@@ -1,6 +1,6 @@
 audit_log:
   to: pipe
-  pipe: '| cronolog audit_tarantool.log'
+  pipe: 'cronolog audit_tarantool.log'
 
 groups:
   group001:

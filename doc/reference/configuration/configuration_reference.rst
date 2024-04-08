@@ -89,7 +89,7 @@ The ``audit_log`` section defines configuration parameters related to :ref:`audi
     **Example**
 
     ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/audit_log/config.yaml
-        :language: lua
+        :language: yaml
         :start-at: filter:
         :end-at: custom ]
         :dedent:
@@ -117,8 +117,8 @@ The ``audit_log`` section defines configuration parameters related to :ref:`audi
     ..  code-block:: yaml
 
         audit_log:
-            to: file
-            format: plain
+          to: file
+          format: plain
 
     the output in the file might look as follows:
 
@@ -169,16 +169,14 @@ The ``audit_log`` section defines configuration parameters related to :ref:`audi
 
     **Example**
 
+    This starts the `cronolog <https://linux.die.net/man/1/cronolog>`_ program when the server starts
+    and sends all ``audit_log`` messages to cronolog standard input (``stdin``).
+
     ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/audit_log_pipe/config.yaml
         :language: yaml
         :start-at: audit_log:
-        :end-at: '| cronolog audit_tarantool.log'
+        :end-at: 'cronolog audit_tarantool.log'
         :dedent:
-
-    This starts the `cronolog <https://linux.die.net/man/1/cronolog>`_ program when the server starts
-    and sends all ``audit_log`` messages to cronolog standard input (``stdin``).
-    If the ``audit_log`` string starts with '|',
-    the string is interpreted as a Unix `pipeline <https://en.wikipedia.org/wiki/Pipeline_%28Unix%29>`_.
 
     |
     | Type: string
