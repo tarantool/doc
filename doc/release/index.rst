@@ -101,6 +101,7 @@ For information about earlier versions, see :doc:`eol_versions`.
 ..  toctree::
     :maxdepth: 1
 
+    3.1.0
     3.0.0
     2.11.0
     eol_versions
