@@ -62,41 +62,53 @@ Below is a list of all ``log`` functions.
     Configure logging options.
     The following options are available:
 
-    * ``level``: Specifies the level of detail the log has.
+    *   ``level``: Specify the level of detail the log has.
 
-      Learn more: :ref:`log_level <cfg_logging-log_level>`.
+        The example below shows how to set the log level to ``verbose``:
 
-    * ``log``: Specifies where to send the log's output, for example,
-      to a file, pipe, or system logger.
+        ..  literalinclude:: /code_snippets/test/logging/log_test.lua
+            :language: lua
+            :start-at: local log = require
+            :end-at: log.cfg
+            :dedent:
 
-      Learn more: :ref:`log <cfg_logging-log>`.
+        See also: :ref:`log.level <configuration_reference_log_level>`.
 
-    * ``nonblock``: If **true**, Tarantool does not block during logging when the system
-      is not ready for writing, and drops the message instead.
+    *   ``log``: Specify where to send the log's output, for example, to a file, pipe, or system logger.
 
-      Learn more: :ref:`log_nonblock <cfg_logging-log_nonblock>`.
+        **Example 1: sending the log to the tarantool.log file**
 
-    * ``format``: Specifies the log format: 'plain' or 'json'.
+        .. code-block:: lua
 
-      Learn more: :ref:`log_format <cfg_logging-log_format>`.
+            log.cfg { log = 'tarantool.log' }
 
-    * ``modules``: Configures the specified log levels for different modules.
+        **Example 2: sending the log to a pipe**
 
-      Learn more: :ref:`log_modules <cfg_logging-log_modules>`.
+        .. code-block:: lua
 
-    The example below shows how to set the log level to 'debug' and how to send the resulting log
-    to the 'tarantool.log' file:
+            log.cfg { log = '| cronolog tarantool.log' }
 
-    .. code-block:: lua
+        **Example 3: sending the log to syslog**
 
-        log = require('log')
-        log.cfg{ level='debug', log='tarantool.log'}
+        .. code-block:: lua
 
-    .. NOTE::
+            log.cfg { log = 'syslog:server=unix:/dev/log' }
 
-        Note that calling ``log.cfg()`` before ``box.cfg()`` takes into account
-        logging options specified using :ref:`environment variables <box-cfg-params-env>`,
-        such as ``TT_LOG`` and ``TT_LOG_LEVEL``.
+        See also: :ref:`log.to <configuration_reference_log_to>`.
+
+    *   ``nonblock``: If **true**, Tarantool does not block during logging when the system
+        is not ready for writing, and drops the message instead.
+
+        See also: :ref:`log.nonblock <configuration_reference_log_nonblock>`.
+
+    *   ``format``: Specify the log format: 'plain' or 'json'.
+
+        See also: :ref:`log.format <configuration_reference_log_format>`.
+
+    *   ``modules``: Configure the specified log levels for different modules.
+
+        See also: :ref:`log.modules <configuration_reference_log_modules>`.
+
 
 .. _log-ug_message:
 
@@ -108,13 +120,16 @@ Below is a list of all ``log`` functions.
 
     Log a message with the specified logging level.
     You can learn more about the available levels from the
-    :ref:`log_level <cfg_logging-log_level>` property description.
+    :ref:`log.level <configuration_reference_log_level>` option description.
 
-    The example below shows how to log a message with the ``info`` level:
+    **Example**
+
+    The example below shows how to log a message with the ``warn`` level:
 
     ..  literalinclude:: /code_snippets/test/logging/log_test.lua
         :language: lua
-        :lines: 13-21
+        :start-at: log.warn
+        :end-at: log.warn
         :dedent:
 
     :param any message:    A log message.
@@ -123,18 +138,19 @@ Below is a list of all ``log`` functions.
 
                            * A message may contain C-style format specifiers ``%d`` or ``%s``. Example:
 
-                             .. code-block:: lua
-
-                                 box.cfg{}
-                                 log = require('log')
-                                 log.info('Info %s', box.info.version)
+                             ..  literalinclude:: /code_snippets/test/logging/log_test.lua
+                                 :language: lua
+                                 :start-at: log.info
+                                 :end-at: log.info
+                                 :dedent:
 
                            * A message may be a scalar data type or a table. Example:
 
-                             .. code-block:: lua
-
-                                 log = require('log')
-                                 log.error({500,'Internal error'})
+                             ..  literalinclude:: /code_snippets/test/logging/log_test.lua
+                                 :language: lua
+                                 :start-at: log.error
+                                 :end-at: log.error
+                                 :dedent:
 
     :return: nil
 
@@ -146,7 +162,7 @@ Below is a list of all ``log`` functions.
     * ``message``
 
     Note that the message will not be logged if the severity level corresponding to
-    the called function is less than :ref:`log_level <cfg_logging-log_level>`.
+    the called function is less than :ref:`log.level <configuration_reference_log_level>`.
 
 .. _log-pid:
 
@@ -171,33 +187,37 @@ Below is a list of all ``log`` functions.
     **Since:** :doc:`2.11.0 </release/2.11.0>`
 
     Create a new logger with the specified name.
-    You can configure a specific log level for a new logger using the :ref:`log_modules <cfg_logging-log_modules>` configuration property.
+    You can configure a specific log level for a new logger using the :ref:`log.modules <configuration_reference_log_modules>` configuration property.
 
     :param string name: a logger name
     :return: a logger instance
 
-    **Example:**
+    **Example**
 
-    The code snippet below shows how to set the ``verbose`` level for ``module1`` and the ``error`` level for ``module2``:
+    This example shows how to set the ``verbose`` level for ``module1`` and the ``error`` level for ``module2`` in a configuration file:
 
-    ..  literalinclude:: /code_snippets/test/logging/log_new_modules_test.lua
-        :language: lua
-        :lines: 9-13
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/log_new_modules/config.yaml
+        :language: yaml
+        :start-at: log:
+        :end-at: app.lua
         :dedent:
 
-    To create the ``module1`` and ``module2`` loggers, call the ``new()`` function:
+    To create the ``module1`` and ``module2`` loggers in your application (``app.lua``), call the ``new()`` function:
 
-    ..  literalinclude:: /code_snippets/test/logging/log_new_modules_test.lua
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/log_new_modules/app.lua
         :language: lua
-        :lines: 17-19
+        :start-at: Creates new loggers
+        :end-at: module2_log = require
         :dedent:
 
     Then, you can call functions corresponding to different logging levels to make sure
     that events with severities above or equal to the given levels are shown:
 
-    ..  literalinclude:: /code_snippets/test/logging/log_new_modules_test.lua
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/log_new_modules/app.lua
         :language: lua
-        :lines: 21-41
+        :start-after: module2_log = require
         :dedent:
 
     At the same time, the events with severities below the specified levels are swallowed.
+
+    Example on GitHub: `log_new_modules <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/log_new_modules>`_.
