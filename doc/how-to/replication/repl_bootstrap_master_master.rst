@@ -320,7 +320,7 @@ To insert conflicting records to ``instance001`` and ``instance002``, follow the
 
 4.  Start ``instance001`` back:
 
-    .. code-block:: lua
+    .. code-block:: console
 
         $ tt start master_master:instance001
 
@@ -530,7 +530,7 @@ After :ref:`reseeding a replica <replication-master-master-reseed-replica>`, you
             ...
 
 6.  Check ``box.info.replication``.
-    ``upstream.status`` be ``follow`` now.
+    ``upstream.status`` should be ``follow`` now.
 
     .. code-block:: console
 
