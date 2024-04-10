@@ -3,7 +3,7 @@
 Logs
 ====
 
-Each Tarantool instance logs important events to its own log file ``<instance-name>.log``.
+Each Tarantool instance logs important events to its own log file.
 For instances started with :ref:`tt <tt-cli>`, the log location is defined by
 the ``log_dir`` parameter in the :ref:`tt configuration <tt-config>`.
 By default, it's ``/var/log/tarantool`` in the ``tt`` :ref:`system mode <tt-config_modes>`,
@@ -43,7 +43,7 @@ Then check the logs:
 Log rotation
 ------------
 
-When :ref:`logging to a file <cfg_logging-log>`, the system administrator must ensure
+When :ref:`logging to a file <configuration_reference_log_file>`, the system administrator must ensure
 logs are rotated timely and do not take up all the available disk space.
 The recommended way to prevent log files from growing infinitely is using an external
 log rotation program, for example, ``logrotate``, which is pre-installed on most
@@ -78,22 +78,16 @@ To learn about log rotation in the deprecated ``tarantoolctl`` utility,
 check its :ref:`documentation <tarantoolctl-log-rotation>`.
 
 
-.. _admin-logs-formats:
+.. _admin-logs-destination:
 
-Log formats
------------
+Log destination
+---------------
 
-Tarantool can write its logs to a log file, to ``syslog``, or to a specified program
-through a pipe.
-
-File is the default log format for ``tt``. To send logs to a pipe or ``syslog``,
-specify the :ref:`log.to <configuration_reference_log_to>` parameter, for example:
+Tarantool can write its logs to a log file, to ``syslog``, or to a specified program through a pipe.
+For example, to send logs to ``syslog``, specify the :ref:`log.to <configuration_reference_log_to>` parameter as follows:
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/log_syslog/config.yaml
     :language: yaml
     :start-at: log:
     :end-at: 127.0.0.1:514
     :dedent:
-
-In such configurations, log rotation is usually handled by the external program
-used for logging.

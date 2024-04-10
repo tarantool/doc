@@ -1909,8 +1909,8 @@ To handle logging in your application, use the :ref:`log module <log-module>`.
 
     *   ``stderr``: write logs to the standard error stream.
     *   ``file``: write logs to a file (see :ref:`log.file <configuration_reference_log_file>`).
-    *   ``pipe``: start a program and write logs to it (see :ref:`log.pipe <configuration_reference_log_pipe>`).
-    *   ``syslog``: write audit logs to a system logger (see :ref:`log.syslog.* <configuration_reference_log_syslog>`).
+    *   ``pipe``: start a program and write logs to its standard input (see :ref:`log.pipe <configuration_reference_log_pipe>`).
+    *   ``syslog``: write logs to a system logger (see :ref:`log.syslog.* <configuration_reference_log_syslog>`).
 
     |
     | Type: string
@@ -1924,6 +1924,7 @@ To handle logging in your application, use the :ref:`log module <log-module>`.
 
     Specify a file for logs destination.
     To write logs to a file, you need to set :ref:`log.to <configuration_reference_log_to>` to ``file``.
+    Otherwise, ``log.file`` is ignored.
 
     **Example**
 
@@ -2147,8 +2148,8 @@ To handle logging in your application, use the :ref:`log module <log-module>`.
 
 ..  confval:: log.pipe
 
-    Specify a pipe for logs destination.
-    To write logs to a pipe, you need to set :ref:`log.to <configuration_reference_log_to>` to ``pipe``.
+    Start a program and write logs to its standard input (``stdin``).
+    To send logs to a program's standard input, you need to set :ref:`log.to <configuration_reference_log_to>` to ``pipe``.
 
     **Example**
 
@@ -2203,7 +2204,10 @@ log.syslog.*
 ..  confval:: log.syslog.server
 
     Set a location of a syslog server.
-    This option accepts an IPv4 address or Unix socket path starting with ``unix:``.
+    This option accepts one of the following values:
+
+    *   An IPv4 address. Example: ``127.0.0.1:514``.
+    *   A Unix socket path starting with ``unix:``. Examples: ``unix:/dev/log`` on Linux or ``unix:/var/run/syslog`` on macOS.
 
     To write logs to syslog, you need to set :ref:`log.to <configuration_reference_log_to>` to ``syslog``.
 
