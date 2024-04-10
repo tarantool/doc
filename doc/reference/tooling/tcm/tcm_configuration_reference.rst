@@ -43,7 +43,7 @@ Tarantool clusters.
     | Type: int64
     | Default: 4096
     | Environment variable: TCM_CLUSTER_ON_AIR_LIMIT
-    | Command-line option: ``--cluster-on-air-limit``
+    | Command-line option: ``--cluster.on-air-limit``
 
 .. _tcm_configuration_reference_cluster_connection-rate-limit:
 
@@ -55,7 +55,7 @@ Tarantool clusters.
     | Type: uint
     | Default: 512
     | Environment variable: TCM_CLUSTER_CONNECTION_RATE_LIMIT
-    | Command-line option: ``--cluster-connection-rate-limit``
+    | Command-line option: ``--cluster.connection-rate-limit``
 
 .. _tcm_configuration_reference_cluster_tarantool-timeout:
 
@@ -67,7 +67,7 @@ Tarantool clusters.
     | Type: time.Duration
     | Default: 10s
     | Environment variable: TCM_CLUSTER_TARANTOOL_TIMEOUT
-    | Command-line option: ``--cluster-tarantool-timeout``
+    | Command-line option: ``--cluster.tarantool-timeout``
 
 .. _tcm_configuration_reference_cluster_tarantool-ping-timeout:
 
@@ -79,7 +79,7 @@ Tarantool clusters.
     | Type: time.Duration
     | Default: 5s
     | Environment variable: TCM_CLUSTER_TARANTOOL_PING_TIMEOUT
-    | Command-line option: ``--cluster-tarantool-ping-timeout``
+    | Command-line option: ``--cluster.tarantool-ping-timeout``
 
 .. _tcm_configuration_reference_http:
 
@@ -147,7 +147,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Type: bool
     | Default: false
     | Environment variable: TCM_HTTP_BASIC_AUTH_ENABLED
-    | Command-line option: ``--http-basic-auth-enabled``
+    | Command-line option: ``--http.basic-auth-enabled``
 
 .. _tcm_configuration_reference_http_network:
 
@@ -165,7 +165,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Type: string
     | Default: tcp
     | Environment variable: TCM_HTTP_NETWORK
-    | Command-line option: ``--http-network``
+    | Command-line option: ``--http.network``
 
 .. _tcm_configuration_reference_http_host:
 
@@ -177,7 +177,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Type: string
     | Default: 127.0.0.1
     | Environment variable: TCM_HTTP_HOST
-    | Command-line option: ``--http-host``
+    | Command-line option: ``--http.host``
 
 
 .. _tcm_configuration_reference_http_port:
@@ -190,7 +190,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Type: int
     | Default: 8080
     | Environment variable: TCM_HTTP_PORT
-    | Command-line option: ``--http-port``
+    | Command-line option: ``--http.port``
 
 
 .. _tcm_configuration_reference_http_request-size:
@@ -203,7 +203,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Type: int64
     | Default: 1572864
     | Environment variable: TCM_HTTP_REQUEST_SIZE
-    | Command-line option: ``--http-request-size``
+    | Command-line option: ``--http.request-size``
 
 .. _tcm_configuration_reference_http_websocket_read-buffer-size:
 
@@ -216,7 +216,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Type: int
     | Default: 16384
     | Environment variable: TCM_HTTP_WEBSOCKET_READ_BUFFER_SIZE
-    | Command-line option: ``--http-websocket-read-buffer-size``
+    | Command-line option: ``--http.websocket.read-buffer-size``
 
 .. _tcm_configuration_reference_http_websocket_write-buffer-size:
 
@@ -229,7 +229,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Type: int
     | Default: 16384
     | Environment variable: TCM_HTTP_WEBSOCKET_WRITE_BUFFER_SIZE
-    | Command-line option: ``--http-websocket-write-buffer-size``
+    | Command-line option: ``--http.websocket.write-buffer-size``
 
 .. _tcm_configuration_reference_http_websocket_keepalive-ping-interval:
 
@@ -242,7 +242,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Type: time.Duration
     | Default: 20s
     | Environment variable: TCM_HTTP_WEBSOCKET_KEEPALIVE_PING_INTERVAL
-    | Command-line option: ``--http-websocket-keepalive-ping-interval``
+    | Command-line option: ``--http.websocket.keepalive-ping-interval``
 
 .. _tcm_configuration_reference_http_websocket_handshake-timeout:
 
@@ -255,7 +255,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Type: time.Duration
     | Default: 10s
     | Environment variable: TCM_HTTP_WEBSOCKET_HANDSHAKE_TIMEOUT
-    | Command-line option: ``--http-websocket-handshake-timeout``
+    | Command-line option: ``--http.websocket.handshake-timeout``
 
 .. _tcm_configuration_reference_http_websocket_init-timeout:
 
@@ -268,7 +268,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Type: time.Duration
     | Default: 15s
     | Environment variable: TCM_HTTP_WEBSOCKET_INIT_TIMEOUT
-    | Command-line option: ``--http-websocket-init-timeout``
+    | Command-line option: ``--http.websocket.init-timeout``
 
 .. _tcm_configuration_reference_http_websession-cookie_name:
 
@@ -283,7 +283,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Type: string
     | Default: tcm
     | Environment variable: TCM_HTTP_WEBSESSION_COOKIE_NAME
-    | Command-line option: ``--http-websession-cookie-name``
+    | Command-line option: ``---http.websession-cookie.name``
 
 .. _tcm_configuration_reference_http_websession-cookie_path:
 
@@ -298,7 +298,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Type: string
     | Default: ""
     | Environment variable: TCM_HTTP_WEBSESSION_COOKIE_PATH
-    | Command-line option: ``--http-websession-cookie-path``
+    | Command-line option: ``---http.websession-cookie.path``
 
 .. _tcm_configuration_reference_http_websession-cookie_domain:
 
@@ -313,7 +313,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Type: string
     | Default: ""
     | Environment variable: TCM_HTTP_WEBSESSION_COOKIE_DOMAIN
-    | Command-line option: ``--http-websession-cookie-domain``
+    | Command-line option: ``---http.websession-cookie.domain``
 
 .. _tcm_configuration_reference_http_websession-cookie_ttl:
 
@@ -328,7 +328,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Type: time.Duration
     | Default: 2h0m0s
     | Environment variable: TCM_HTTP_WEBSESSION_COOKIE_TTL
-    | Command-line option: ``--http-websession-cookie-ttl``
+    | Command-line option: ``---http.websession-cookie.ttl``
 
 .. _tcm_configuration_reference_http_websession-cookie_secure:
 
@@ -345,7 +345,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Type: bool
     | Default: false
     | Environment variable: TCM_HTTP_WEBSESSION_COOKIE_SECURE
-    | Command-line option: ``--http-websession-cookie-secure``
+    | Command-line option: ``---http.websession-cookie.secure``
 
 .. _tcm_configuration_reference_http_websession-cookie_http-only:
 
@@ -362,7 +362,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Type: bool
     | Default: true
     | Environment variable: TCM_HTTP_WEBSESSION_COOKIE_HTTP_ONLY
-    | Command-line option: ``--http-websession-cookie-http-only``
+    | Command-line option: ``---http.websession-cookie.http-only``
 
 .. _tcm_configuration_reference_http_websession-cookie_same-site:
 
@@ -386,7 +386,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Type: http.SameSite
     | Default: SameSiteDefaultMode
     | Environment variable: TCM_HTTP_WEBSESSION_COOKIE_SAME_SITE
-    | Command-line option: ``--http-websession-cookie-same-site``
+    | Command-line option: ``---http.websession-cookie.same-site``
 
 .. _tcm_configuration_reference_http_cors_enabled:
 
@@ -399,7 +399,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Type: bool
     | Default: false
     | Environment variable: TCM_HTTP_CORS_ENABLED
-    | Command-line option: ``--http-cors-enabled``
+    | Command-line option: ``--http.cors.enabled``
 
 .. _tcm_configuration_reference_http_cors_allowed-origins:
 
@@ -415,7 +415,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Type: []string
     | Default: []
     | Environment variable: TCM_HTTP_CORS_ALLOWED_ORIGINS
-    | Command-line option: ``--http-cors-allowed-origins``
+    | Command-line option: ``--http.cors.allowed-origins``
 
 .. _tcm_configuration_reference_http_cors_allowed-methods:
 
@@ -431,7 +431,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Type: []string
     | Default: []
     | Environment variable: TCM_HTTP_CORS_ALLOWED_METHODS
-    | Command-line option: ``--http-cors-allowed-methods``
+    | Command-line option: ``--http.cors.allowed-methods``
 
 .. _tcm_configuration_reference_http_cors_allowed-headers:
 
@@ -446,7 +446,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Type: []string
     | Default: []
     | Environment variable: TCM_HTTP_CORS_ALLOWED_HEADERS
-    | Command-line option: ``--http-cors-allowed-headers``
+    | Command-line option: ``--http.cors.allowed-headers``
 
 .. _tcm_configuration_reference_http_cors_exposed-headers:
 
@@ -462,7 +462,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Type: []string
     | Default: []
     | Environment variable: TCM_HTTP_CORS_EXPOSED_HEADERS
-    | Command-line option: ``--http-cors-exposed-headers``
+    | Command-line option: ``--http.cors.exposed-headers``
 
 .. _tcm_configuration_reference_http_cors_allow-credentials:
 
@@ -479,7 +479,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Type: bool
     | Default: false
     | Environment variable: TCM_HTTP_CORS_ALLOW_CREDENTIALS
-    | Command-line option: ``--http-cors-allow-credentials``
+    | Command-line option: ``--http.cors.allow-credentials``
 
 .. _tcm_configuration_reference_http_cors_debug:
 
@@ -501,7 +501,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Type: string
     | Default: /metrics
     | Environment variable: TCM_HTTP_METRICS_ENDPOINT
-    | Command-line option: ``--http-metrics-endpoint``
+    | Command-line option: ``--http.metrics-endpoint``
 
 .. _tcm_configuration_reference_http_tls_enabled:
 
@@ -513,7 +513,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Type: bool
     | Default: false
     | Environment variable: TCM_HTTP_TLS_ENABLED
-    | Command-line option: ``--http-tls-enabled``
+    | Command-line option: ``--http.tls.enabled``
 
 .. _tcm_configuration_reference_http_tls_cert-file:
 
@@ -525,7 +525,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Type: string
     | Default: ""
     | Environment variable: TCM_HTTP_TLS_CERT_FILE
-    | Command-line option: ``--http-tls-cert-file``
+    | Command-line option: ``--http.tls.cert-file``
 
 .. _tcm_configuration_reference_http_tls_key-file:
 
@@ -537,7 +537,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Type: string
     | Default: ""
     | Environment variable: TCM_HTTP_TLS_KEY_FILE
-    | Command-line option: ``--http-tls-key-file``
+    | Command-line option: ``--http.tls.key-file``
 
 .. _tcm_configuration_reference_http_tls_server:
 
@@ -549,7 +549,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Type: string
     | Default: ""
     | Environment variable: TCM_HTTP_TLS_SERVER
-    | Command-line option: ``--http-tls-server``
+    | Command-line option: ``--http.tls.server``
 
 .. _tcm_configuration_reference_http_tls_min-version:
 
@@ -561,7 +561,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Type: uint16
     | Default: 0
     | Environment variable: TCM_HTTP_TLS_MIN_VERSION
-    | Command-line option: ``--http-tls-min-version``
+    | Command-line option: ``--http.tls.min-version``
 
 .. _tcm_configuration_reference_http_tls_max-version:
 
@@ -573,7 +573,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Type: uint16
     | Default: 0
     | Environment variable: TCM_HTTP_TLS_MAX_VERSION
-    | Command-line option: ``--http-tls-max-version``
+    | Command-line option: ``--http.tls.max-version``
 
 .. _tcm_configuration_reference_http_tls_curve-preferences:
 
@@ -591,7 +591,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Type: []tls.CurveID
     | Default: []
     | Environment variable: TCM_HTTP_TLS_CURVE_PREFERENCES
-    | Command-line option: ``--http-tls-curve-preferences``
+    | Command-line option: ``--http.tls.curve-preferences``
 
 .. _tcm_configuration_reference_http_tls_cipher-suites:
 
@@ -603,7 +603,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Type: []uint16
     | Default: []
     | Environment variable: TCM_HTTP_TLS_CIPHER_SUITES
-    | Command-line option: ``--http-tls-cipher-suites``
+    | Command-line option: ``--http.tls.cipher-suites``
 
 .. _tcm_configuration_reference_http_read-timeout:
 
@@ -615,7 +615,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Type: time.Duration
     | Default: 30s
     | Environment variable: TCM_HTTP_READ_TIMEOUT
-    | Command-line option: ``--http-read-timeout``
+    | Command-line option: ``--http.read-timeout``
 
 .. _tcm_configuration_reference_http_read-header-timeout:
 
@@ -627,7 +627,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Type: time.Duration
     | Default: 30s
     | Environment variable: TCM_HTTP_READ_HEADER_TIMEOUT
-    | Command-line option: ``--http-read-header-timeout``
+    | Command-line option: ``--http.read-header-timeout``
 
 .. _tcm_configuration_reference_http_write-timeout:
 
@@ -639,7 +639,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Type: time.Duration
     | Default: 30s
     | Environment variable: TCM_HTTP_WRITE_TIMEOUT
-    | Command-line option: ``--http-write-timeout``
+    | Command-line option: ``--http.write-timeout``
 
 .. _tcm_configuration_reference_http_idle-timeout:
 
@@ -651,7 +651,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Type: time.Duration
     | Default: 30s
     | Environment variable: TCM_HTTP_IDLE_TIMEOUT
-    | Command-line option: ``--http-idle-timeout``
+    | Command-line option: ``--http.idle-timeout``
 
 .. _tcm_configuration_reference_http_disable-general-options-handler:
 
@@ -663,7 +663,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Type: bool
     | Default: false
     | Environment variable: TCM_HTTP_DISABLE_GENERAL_OPTIONS_HANDLER
-    | Command-line option: ``--http-disable-general-options-handler``
+    | Command-line option: ``--http.disable-general-options-handler``
 
 .. _tcm_configuration_reference_http_max-header-bytes:
 
@@ -675,7 +675,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Type: int
     | Default: 0
     | Environment variable: TCM_HTTP_MAX_HEADER_BYTES
-    | Command-line option: ``--http-max-header-bytes``
+    | Command-line option: ``--http.max-header-bytes``
 
 .. _tcm_configuration_reference_http_api-timeout:
 
@@ -687,7 +687,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Type: time.Duration
     | Default: 8s
     | Environment variable: TCM_HTTP_API_TIMEOUT
-    | Command-line option: ``--http-api-timeout``
+    | Command-line option: ``--http.api-timeout``
 
 .. _tcm_configuration_reference_http_api-update-interval:
 
@@ -699,7 +699,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Type: time.Duration
     | Default: 5s
     | Environment variable: TCM_HTTP_API_UPDATE_INTERVAL
-    | Command-line option: ``--http-api-update-interval``
+    | Command-line option: ``--http.api-update-interval``
 
 .. _tcm_configuration_reference_http_frontend-dir:
 
@@ -711,7 +711,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Type: string
     | Default: ""
     | Environment variable: TCM_HTTP_FRONTEND_DIR
-    | Command-line option: ``--http-frontend-dir``
+    | Command-line option: ``--http.frontend-dir``
 
 .. _tcm_configuration_reference_http_show-stack-trace:
 
@@ -723,7 +723,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Type: bool
     | Default: true
     | Environment variable: TCM_HTTP_SHOW_STACK_TRACE
-    | Command-line option: ``--http-show-stack-trace``
+    | Command-line option: ``--http.show-stack-trace``
 
 .. _tcm_configuration_reference_http_trace:
 
@@ -735,7 +735,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Type: bool
     | Default: false
     | Environment variable: TCM_HTTP_TRACE
-    | Command-line option: ``--http-trace``
+    | Command-line option: ``--http.trace``
 
 .. _tcm_configuration_reference_http_max-static-size:
 
@@ -747,7 +747,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Type: int
     | Default: 104857600
     | Environment variable: TCM_HTTP_MAX_STATIC_SIZE
-    | Command-line option: ``--http-max-static-size``
+    | Command-line option: ``--http.max-static-size``
 
 .. _tcm_configuration_reference_http_graphql_complexity:
 
@@ -761,7 +761,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Type: int
     | Default: 40
     | Environment variable: TCM_HTTP_GRAPHQL_COMPLEXITY
-    | Command-line option: ``--http-graphql-complexity``
+    | Command-line option: ``--http.graphql.complexity``
 
 
 .. log configuration
@@ -802,7 +802,7 @@ The ``log`` section defines the |tcm|  logging parameters.
     | Type: bool
     | Default: false
     | Environment variable: TCM_LOG_DEFAULT_ADD_SOURCE
-    | Command-line option: ``--log-default-add-source``
+    | Command-line option: ``--log.default.add-source``
 
 .. _tcm_configuration_reference_log_default_show-stack-trace:
 
@@ -814,7 +814,7 @@ The ``log`` section defines the |tcm|  logging parameters.
     | Type: bool
     | Default: false
     | Environment variable: TCM_LOG_DEFAULT_SHOW_STACK_TRACE
-    | Command-line option: ``--log-default-show-stack-trace``
+    | Command-line option: ``--log.default.show-stack-trace``
 
 .. _tcm_configuration_reference_log_default_level:
 
@@ -833,7 +833,7 @@ The ``log`` section defines the |tcm|  logging parameters.
     | Type: string
     | Default: INFO
     | Environment variable: TCM_LOG_DEFAULT_LEVEL
-    | Command-line option: ``--log-default-level``
+    | Command-line option: ``--log.default.level``
 
 .. _tcm_configuration_reference_log_default_format:
 
@@ -850,7 +850,7 @@ The ``log`` section defines the |tcm|  logging parameters.
     | Type: string
     | Default: struct
     | Environment variable: TCM_LOG_DEFAULT_FORMAT
-    | Command-line option: ``--log-default-format``
+    | Command-line option: ``--log.default.format``
 
 .. _tcm_configuration_reference_log_default_output:
 
@@ -869,7 +869,7 @@ The ``log`` section defines the |tcm|  logging parameters.
     | Type: string
     | Default: stdout
     | Environment variable: TCM_LOG_DEFAULT_OUTPUT
-    | Command-line option: ``--log-default-output``
+    | Command-line option: ``--log.default.output``
 
 .. _tcm_configuration_reference_log_default_no-colorized:
 
@@ -881,7 +881,7 @@ The ``log`` section defines the |tcm|  logging parameters.
     | Type: bool
     | Default: false
     | Environment variable: TCM_LOG_DEFAULT_NO_COLORIZED
-    | Command-line option: ``--log-default-no-colorized``
+    | Command-line option: ``--log.default.no-colorized``
 
 .. _tcm_configuration_reference_log_default_file_name:
 
@@ -893,7 +893,7 @@ The ``log`` section defines the |tcm|  logging parameters.
     | Type: string
     | Default: ""
     | Environment variable: TCM_LOG_DEFAULT_FILE_NAME
-    | Command-line option: ``--log-default-file-name``
+    | Command-line option: ``--log.default.file.name``
 
 .. _tcm_configuration_reference_log_default_file_maxsize:
 
@@ -905,7 +905,7 @@ The ``log`` section defines the |tcm|  logging parameters.
     | Type: int
     | Default: 0
     | Environment variable: TCM_LOG_DEFAULT_FILE_MAXSIZE
-    | Command-line option: ``--log-default-file-maxsize``
+    | Command-line option: ``--log.default.file.maxsize``
 
 .. _tcm_configuration_reference_log_default_file_maxage:
 
@@ -917,7 +917,7 @@ The ``log`` section defines the |tcm|  logging parameters.
     | Type: int
     | Default: 0
     | Environment variable: TCM_LOG_DEFAULT_FILE_MAXAGE
-    | Command-line option: ``--log-default-file-maxage``
+    | Command-line option: ``--log.default.file.maxage``
 
 .. _tcm_configuration_reference_log_default_file_maxbackups:
 
@@ -929,7 +929,7 @@ The ``log`` section defines the |tcm|  logging parameters.
     | Type: int
     | Default: 0
     | Environment variable: TCM_LOG_DEFAULT_FILE_MAXBACKUPS
-    | Command-line option: ``--log-default-file-maxbackups``
+    | Command-line option: ``--log.default.file.maxbackups``
 
 .. _tcm_configuration_reference_log_default_file_compress:
 
@@ -941,7 +941,7 @@ The ``log`` section defines the |tcm|  logging parameters.
     | Type: bool
     | Default: false
     | Environment variable: TCM_LOG_DEFAULT_FILE_COMPRESS
-    | Command-line option: ``--log-default-file-compress``
+    | Command-line option: ``--log.default.file.compress``
 
 .. _tcm_configuration_reference_log_default_syslog_protocol:
 
@@ -955,7 +955,7 @@ The ``log`` section defines the |tcm|  logging parameters.
     | Type: string
     | Default: tcp
     | Environment variable: TCM_LOG_DEFAULT_SYSLOG_PROTOCOL
-    | Command-line option: ``--log-default-syslog-protocol``
+    | Command-line option: ``--log.default.syslog.protocol``
 
 .. _tcm_configuration_reference_log_default_syslog_output:
 
@@ -967,7 +967,7 @@ The ``log`` section defines the |tcm|  logging parameters.
     | Type: string
     | Default: 127.0.0.1:5514
     | Environment variable: TCM_LOG_DEFAULT_SYSLOG_OUTPUT
-    | Command-line option: ``--log-default-syslog-output``
+    | Command-line option: ``--log.default.syslog.output``
 
 .. _tcm_configuration_reference_log_default_syslog_priority:
 
@@ -979,7 +979,7 @@ The ``log`` section defines the |tcm|  logging parameters.
     | Type: string
     | Default: ""
     | Environment variable: TCM_LOG_DEFAULT_SYSLOG_PRIORITY
-    | Command-line option: ``--log-default-syslog-priority``
+    | Command-line option: ``--log.default.syslog.priority``
 
 .. _tcm_configuration_reference_log_default_syslog_facility:
 
@@ -991,7 +991,7 @@ The ``log`` section defines the |tcm|  logging parameters.
     | Type: string
     | Default: ""
     | Environment variable: TCM_LOG_DEFAULT_SYSLOG_FACILITY
-    | Command-line option: ``--log-default-syslog-facility``
+    | Command-line option: ``--log.default.syslog.facility``
 
 .. _tcm_configuration_reference_log_default_syslog_tag:
 
@@ -1003,7 +1003,7 @@ The ``log`` section defines the |tcm|  logging parameters.
     | Type: string
     | Default: ""
     | Environment variable: TCM_LOG_DEFAULT_SYSLOG_TAG
-    | Command-line option: ``--log-default-syslog-tag``
+    | Command-line option: ``--log.default.syslog.tag``
 
 .. _tcm_configuration_reference_log_default_syslog_timeout:
 
@@ -1015,7 +1015,7 @@ The ``log`` section defines the |tcm|  logging parameters.
     | Type: time.Duration
     | Default: 10s
     | Environment variable: TCM_LOG_DEFAULT_SYSLOG_TIMEOUT
-    | Command-line option: ``--log-default-syslog-timeout``
+    | Command-line option: ``--log.default.syslog.timeout``
 
 .. _tcm_configuration_reference_log_outputs:
 
@@ -1166,7 +1166,7 @@ Tarantool storage parameters:
     | Type: string
     | Default: etcd
     | Environment variable: TCM_STORAGE_PROVIDER
-    | Command-line option: ``--storage-provider``
+    | Command-line option: ``--storage.provider``
 
 .. _tcm_configuration_reference_storage_etcd_prefix:
 
@@ -1178,7 +1178,7 @@ Tarantool storage parameters:
     | Type: string
     | Default: "/tcm"
     | Environment variable: TCM_STORAGE_ETCD_PREFIX
-    | Command-line option: ``--storage-etcd-prefix``
+    | Command-line option: ``--storage.etcd.prefix``
 
 
 .. _tcm_configuration_reference_storage_etcd_endpoints:
@@ -1192,7 +1192,7 @@ Tarantool storage parameters:
     | Type: []string
     | Default: ["http://127.0.0.1:2379"]
     | Environment variable: TCM_STORAGE_ETCD_ENDPOINTS
-    | Command-line option: ``--storage-etcd-endpoints``
+    | Command-line option: ``--storage.etcd.endpoints``
 
 
 .. _tcm_configuration_reference_storage_etcd_dial-timeout:
@@ -1205,7 +1205,7 @@ Tarantool storage parameters:
     | Type: time.Duration
     | Default: 10s
     | Environment variable: TCM_STORAGE_ETCD_DIAL_TIMEOUT
-    | Command-line option: ``--storage-etcd-dial-timeout``
+    | Command-line option: ``--storage.etcd.dial-timeout``
 
 .. _tcm_configuration_reference_storage_etcd_auto-sync-interval:
 
@@ -1217,7 +1217,7 @@ Tarantool storage parameters:
     | Type: time.Duration
     | Default: 0s
     | Environment variable: TCM_STORAGE_ETCD_AUTO_SYNC_INTERVAL
-    | Command-line option: ``--storage-etcd-auto-sync-interval``
+    | Command-line option: ``--storage.etcd.auto-sync-interval``
 
 .. _tcm_configuration_reference_storage_etcd_dial-keep-alive-time:
 
@@ -1229,7 +1229,7 @@ Tarantool storage parameters:
     | Type: time.Duration
     | Default: 30s
     | Environment variable: TCM_STORAGE_ETCD_DIAL_KEEP_ALIVE_TIME
-    | Command-line option: ``--storage-etcd-dial-keep-alive-time``
+    | Command-line option: ``--storage.etcd.dial-keep-alive-time``
 
 .. _tcm_configuration_reference_storage_etcd_dial-keep-alive-timeout:
 
@@ -1241,7 +1241,7 @@ Tarantool storage parameters:
     | Type: time.Duration
     | Default: 30s
     | Environment variable: TCM_STORAGE_ETCD_DIAL_KEEP_ALIVE_TIMEOUT
-    | Command-line option: ``--storage-etcd-dial-keep-alive-timeout``
+    | Command-line option: ``--storage.etcd.dial-keep-alive-timeout``
 
 .. _tcm_configuration_reference_storage_etcd_bootstrap-timeout:
 
@@ -1253,7 +1253,7 @@ Tarantool storage parameters:
     | Type: time.Duration
     | Default: 30s
     | Environment variable: TCM_STORAGE_ETCD_BOOTSTRAP_TIMEOUT
-    | Command-line option: ``--storage-etcd-bootstrap-timeout``
+    | Command-line option: ``--storage.etcd.bootstrap-timeout``
 
 .. _tcm_configuration_reference_storage_etcd_max-call-send-msg-size:
 
@@ -1265,7 +1265,7 @@ Tarantool storage parameters:
     | Type: int
     | Default: 2097152
     | Environment variable: TCM_STORAGE_ETCD_MAX_CALL_SEND_MSG_SIZE
-    | Command-line option: ``--storage-etcd-max-call-send-msg-size``
+    | Command-line option: ``--storage.etcd.max-call-send-msg-size``
 
 .. _tcm_configuration_reference_storage_etcd_username:
 
@@ -1277,7 +1277,7 @@ Tarantool storage parameters:
     | Type: string
     | Default: ""
     | Environment variable: TCM_STORAGE_ETCD_USERNAME
-    | Command-line option: ``--storage-etcd-username``
+    | Command-line option: ``--storage.etcd.username``
 
 .. _tcm_configuration_reference_storage_etcd_password:
 
@@ -1289,7 +1289,7 @@ Tarantool storage parameters:
     | Type: string
     | Default: ""
     | Environment variable: TCM_STORAGE_ETCD_PASSWORD
-    | Command-line option: ``--storage-etcd-password``
+    | Command-line option: ``--storage.etcd.password``
 
 .. _tcm_configuration_reference_storage_etcd_tls_enabled:
 
@@ -1301,7 +1301,7 @@ Tarantool storage parameters:
     | Type: bool
     | Default: false
     | Environment variable: TCM_STORAGE_ETCD_TLS_ENABLED
-    | Command-line option: ``--storage-etcd-tls-enabled``
+    | Command-line option: ``--storage.etcd.tls.enabled``
 
 .. _tcm_configuration_reference_storage_etcd_tls_auto:
 
@@ -1313,7 +1313,7 @@ Tarantool storage parameters:
     | Type: bool
     | Default: false
     | Environment variable: TCM_STORAGE_ETCD_TLS_AUTO
-    | Command-line option: ``--storage-etcd-tls-auto``
+    | Command-line option: ``--storage.etcd.tls.auto``
 
 .. _tcm_configuration_reference_storage_etcd_tls_cert-file:
 
@@ -1325,7 +1325,7 @@ Tarantool storage parameters:
     | Type: string
     | Default: ""
     | Environment variable: TCM_STORAGE_ETCD_TLS_CERT_FILE
-    | Command-line option: ``--storage-etcd-tls-cert-file``
+    | Command-line option: ``--storage.etcd.tls.cert-file``
 
 .. _tcm_configuration_reference_storage_etcd_tls_key-file:
 
@@ -1337,7 +1337,7 @@ Tarantool storage parameters:
     | Type: string
     | Default: ""
     | Environment variable: TCM_STORAGE_ETCD_TLS_KEY_FILE
-    | Command-line option: ``--storage-etcd-tls-key-file``
+    | Command-line option: ``--storage.etcd.tls.key-file``
 
 .. _tcm_configuration_reference_storage_etcd_tls_trusted-ca-file:
 
@@ -1349,7 +1349,7 @@ Tarantool storage parameters:
     | Type: string
     | Default: ""
     | Environment variable: TCM_STORAGE_ETCD_TLS_TRUSTED_CA_FILE
-    | Command-line option: ``--storage-etcd-tls-trusted-ca-file``
+    | Command-line option: ``--storage.etcd.tls.trusted-ca-file``
 
 .. _tcm_configuration_reference_storage_etcd_tls_client-cert-auth:
 
@@ -1361,7 +1361,7 @@ Tarantool storage parameters:
     | Type: bool
     | Default: false
     | Environment variable: TCM_STORAGE_ETCD_TLS_CLIENT_CERT_AUTH
-    | Command-line option: ``--storage-etcd-tls-client-cert-auth``
+    | Command-line option: ``--storage.etcd.tls.client-cert-auth``
 
 .. _tcm_configuration_reference_storage_etcd_tls_crl-file:
 
@@ -1373,7 +1373,7 @@ Tarantool storage parameters:
     | Type: string
     | Default: ""
     | Environment variable: TCM_STORAGE_ETCD_TLS_CRL_FILE
-    | Command-line option: ``--storage-etcd-tls-crl-file``
+    | Command-line option: ``--storage.etcd.tls.crl-file``
 
 .. _tcm_configuration_reference_storage_etcd_tls_insecure-skip-verify:
 
@@ -1385,7 +1385,7 @@ Tarantool storage parameters:
     | Type: bool
     | Default: false
     | Environment variable: TCM_STORAGE_ETCD_TLS_INSECURE_SKIP_VERIFY
-    | Command-line option: ``--storage-etcd-tls-insecure-skip-verify``
+    | Command-line option: ``--storage.etcd.tls.insecure-skip-verify``
 
 .. _tcm_configuration_reference_storage_etcd_tls_skip-client-san-verify:
 
@@ -1397,7 +1397,7 @@ Tarantool storage parameters:
     | Type: bool
     | Default: false
     | Environment variable: TCM_STORAGE_ETCD_TLS_SKIP_CLIENT_SAN_VERIFY
-    | Command-line option: ``--storage-etcd-tls-skip-client-san-verify``
+    | Command-line option: ``--storage.etcd.tls.skip-client-san-verify``
 
 .. _tcm_configuration_reference_storage_etcd_tls_server-name:
 
@@ -1409,7 +1409,7 @@ Tarantool storage parameters:
     | Type: string
     | Default: ""
     | Environment variable: TCM_STORAGE_ETCD_TLS_SERVER_NAME
-    | Command-line option: ``--storage-etcd-tls-server-name``
+    | Command-line option: ``--storage.etcd.tls.server-name``
 
 .. _tcm_configuration_reference_storage_etcd_tls_cipher-suites:
 
@@ -1421,7 +1421,7 @@ Tarantool storage parameters:
     | Type: []uint16
     | Default: []
     | Environment variable: TCM_STORAGE_ETCD_TLS_CIPHER_SUITES
-    | Command-line option: ``--storage-etcd-tls-cipher-suites``
+    | Command-line option: ``--storage.etcd.tls.cipher-suites``
 
 .. _tcm_configuration_reference_storage_etcd_tls_allowed-cn:
 
@@ -1433,7 +1433,7 @@ Tarantool storage parameters:
     | Type: string
     | Default: ""
     | Environment variable: TCM_STORAGE_ETCD_TLS_ALLOWED_CN
-    | Command-line option: ``--storage-etcd-tls-allowed-cn``
+    | Command-line option: ``--storage.etcd.tls.allowed-cn``
 
 .. _tcm_configuration_reference_storage_etcd_tls_allowed-hostname:
 
@@ -1445,7 +1445,7 @@ Tarantool storage parameters:
     | Type: string
     | Default: ""
     | Environment variable: TCM_STORAGE_ETCD_TLS_ALLOWED_HOSTNAME
-    | Command-line option: ``--storage-etcd-tls-allowed-hostname``
+    | Command-line option: ``--storage.etcd.tls.allowed-hostname``
 
 .. _tcm_configuration_reference_storage_etcd_tls_empty-cn:
 
@@ -1457,7 +1457,7 @@ Tarantool storage parameters:
     | Type: bool
     | Default: false
     | Environment variable: TCM_STORAGE_ETCD_TLS_EMPTY_CN
-    | Command-line option: ``--storage-etcd-tls-empty-cn``
+    | Command-line option: ``--storage.etcd.tls.empty-cn``
 
 .. _tcm_configuration_reference_storage_etcd_permit-without-stream:
 
@@ -1469,7 +1469,7 @@ Tarantool storage parameters:
     | Type: bool
     | Default: false
     | Environment variable: TCM_STORAGE_ETCD_PERMIT_WITHOUT_STREAM
-    | Command-line option: ``--storage-etcd-permit-without-stream``
+    | Command-line option: ``--storage.etcd.permit-without-stream``
 
 .. _tcm_configuration_reference_storage_etcd_embed:
 
@@ -1490,9 +1490,9 @@ etcd cluster is not available or not needed.
 
     |
     | Type: string
-    | Default: "_tcm:
+    | Default: "/tcm"
     | Environment variable: TCM_STORAGE_TARANTOOL_PREFIX
-    | Command-line option: ``--storage-tarantool-prefix``
+    | Command-line option: ``--storage.tarantool.prefix``
 
 
 .. _tcm_configuration_reference_storage_tarantool_addr:
@@ -1505,7 +1505,7 @@ etcd cluster is not available or not needed.
     | Type: string
     | Default: "unix/:/tmp/tnt_config_instance.sock"
     | Environment variable: TCM_STORAGE_TARANTOOL_ADDR
-    | Command-line option: ``--storage-tarantool-ADDR``
+    | Command-line option: ``--storage.tarantool.addr``
 
 
 .. _tcm_configuration_reference_storage_tarantool_auth:
@@ -1524,7 +1524,7 @@ etcd cluster is not available or not needed.
     | Type: int
     | Default: 0
     | Environment variable: TCM_STORAGE_TARANTOOL_AUTH
-    | Command-line option: ``--storage-tarantool-auth``
+    | Command-line option: ``--storage.tarantool.auth``
 
 
 .. _tcm_configuration_reference_storage_tarantool_timeout:
@@ -1539,7 +1539,7 @@ etcd cluster is not available or not needed.
     | Type: time.Duration
     | Default: 0s
     | Environment variable: TCM_STORAGE_TARANTOOL_TIMEOUT
-    | Command-line option: ``--storage-tarantool-timeout``
+    | Command-line option: ``--storage.tarantool.timeout``
 
 .. _tcm_configuration_reference_storage_tarantool_reconnect:
 
@@ -1553,7 +1553,7 @@ etcd cluster is not available or not needed.
     | Type: time.Duration
     | Default: 0s
     | Environment variable: TCM_STORAGE_TARANTOOL_RECONNECT
-    | Command-line option: ``--storage-tarantool-reconnect``
+    | Command-line option: ``--storage.tarantool.reconnect``
 
 .. _tcm_configuration_reference_storage_tarantool_max-reconnects:
 
@@ -1567,7 +1567,7 @@ etcd cluster is not available or not needed.
     | Type: int
     | Default: 0
     | Environment variable: TCM_STORAGE_TARANTOOL_MAX_RECONNECTS
-    | Command-line option: ``--storage-tarantool-max-reconnects``
+    | Command-line option: ``--storage.tarantool.max-reconnects``
 
 .. _tcm_configuration_reference_storage_tarantool_user:
 
@@ -1581,7 +1581,7 @@ etcd cluster is not available or not needed.
     | Type: string
     | Default: ""
     | Environment variable: TCM_STORAGE_TARANTOOL_USER
-    | Command-line option: ``--storage-tarantool-user``
+    | Command-line option: ``--storage.tarantool.user``
 
 .. _tcm_configuration_reference_storage_tarantool_pass:
 
@@ -1595,7 +1595,7 @@ etcd cluster is not available or not needed.
     | Type: string
     | Default: ""
     | Environment variable: TCM_STORAGE_TARANTOOL_PASS
-    | Command-line option: ``--storage-tarantool-pass``
+    | Command-line option: ``--storage.tarantool.pass``
 
 .. _tcm_configuration_reference_storage_tarantool_rate-limit:
 
@@ -1609,7 +1609,7 @@ etcd cluster is not available or not needed.
     | Type: int
     | Default: 0
     | Environment variable: TCM_STORAGE_TARANTOOL_RATE_LIMIT
-    | Command-line option: ``--storage-tarantool-rate-limit``
+    | Command-line option: ``--storage.tarantool.rate-limit``
 
 .. _tcm_configuration_reference_storage_tarantool_rate-limit-action:
 
@@ -1623,7 +1623,7 @@ etcd cluster is not available or not needed.
     | Type: int
     | Default: 0
     | Environment variable: TCM_STORAGE_TARANTOOL_RATE_LIMIT_ACTION
-    | Command-line option: ``--storage-tarantool-rate-limit-action``
+    | Command-line option: ``--storage.tarantool.rate-limit-action``
 
 
 .. _tcm_configuration_reference_storage_tarantool_concurrency:
@@ -1639,7 +1639,7 @@ etcd cluster is not available or not needed.
     | Type: int
     | Default: 0
     | Environment variable: TCM_STORAGE_TARANTOOL_CONCURRENCY
-    | Command-line option: ``--storage-tarantool-concurrency``
+    | Command-line option: ``--storage.tarantool.concurrency``
 
 .. _tcm_configuration_reference_storage_tarantool_skip-schema:
 
@@ -1653,7 +1653,7 @@ etcd cluster is not available or not needed.
     | Type: bool
     | Default: true
     | Environment variable: TCM_STORAGE_TARANTOOL_SKIP_SCHEMA
-    | Command-line option: ``--storage-tarantool-skip-schema``
+    | Command-line option: ``--storage.tarantool.skip-schema``
 
 .. _tcm_configuration_reference_storage_tarantool_transport:
 
@@ -1667,7 +1667,7 @@ etcd cluster is not available or not needed.
     | Type: string
     | Default: ""
     | Environment variable: TCM_STORAGE_TARANTOOL_TRANSPORT
-    | Command-line option: ``--storage-tarantool-transport``
+    | Command-line option: ``--storage.tarantool.transport``
 
 .. _tcm_configuration_reference_storage_tarantool_ssl_key-file:
 
@@ -1682,7 +1682,7 @@ etcd cluster is not available or not needed.
     | Type: string
     | Default: ""
     | Environment variable: TCM_STORAGE_TARANTOOL_SSL_KEY_FILE
-    | Command-line option: ``--storage-tarantool-ssl-key-file``
+    | Command-line option: ``--storage.tarantool.ssl.key-file``
 
 .. _tcm_configuration_reference_storage_tarantool_ssl_cert-file:
 
@@ -1697,7 +1697,7 @@ etcd cluster is not available or not needed.
     | Type: string
     | Default: ""
     | Environment variable: TCM_STORAGE_TARANTOOL_SSL_CERT_FILE
-    | Command-line option: ``--storage-tarantool-ssl-cert-file``
+    | Command-line option: ``--storage.tarantool.ssl.cert-file``
 
 .. _tcm_configuration_reference_storage_tarantool_ssl_ca-file:
 
@@ -1712,7 +1712,7 @@ etcd cluster is not available or not needed.
     | Type: string
     | Default: ""
     | Environment variable: TCM_STORAGE_TARANTOOL_SSL_CA_FILE
-    | Command-line option: ``--storage-tarantool-ssl-ca-file``
+    | Command-line option: ``--storage.tarantool.ssl.ca-file``
 
 .. _tcm_configuration_reference_storage_tarantool_ssl_ciphers:
 
@@ -1727,7 +1727,7 @@ etcd cluster is not available or not needed.
     | Type: string
     | Default: ""
     | Environment variable: TCM_STORAGE_TARANTOOL_SSL_CIPHERS
-    | Command-line option: ``--storage-tarantool-ssl-ciphers``
+    | Command-line option: ``--storage.tarantool.ssl.ciphers``
 
 .. _tcm_configuration_reference_storage_tarantool_ssl_password:
 
@@ -1742,7 +1742,7 @@ etcd cluster is not available or not needed.
     | Type: string
     | Default: ""
     | Environment variable: TCM_STORAGE_TARANTOOL_SSL_PASSWORD
-    | Command-line option: ``--storage-tarantool-ssl-password``
+    | Command-line option: ``--storage.tarantool.ssl.password``
 
 .. _tcm_configuration_reference_storage_tarantool_ssl_password-file:
 
@@ -1751,11 +1751,13 @@ etcd cluster is not available or not needed.
     A text file with passwords for encrypted private SSL keys to use
     for connecting to the Tarantool |tcm| configuration storage.
 
+    See also: :ref:`configuration_connections_ssl`.
+
     |
     | Type: string
     | Default: ""
     | Environment variable: TCM_STORAGE_TARANTOOL_SSL_PASSWORD_FILE
-    | Command-line option: ``--storage-tarantool-ssl-password-file``
+    | Command-line option: ``--storage.tarantool.ssl.password-file``
 
 .. _tcm_configuration_reference_storage_tarantool_required-protocol-info_auth:
 
@@ -1775,7 +1777,7 @@ etcd cluster is not available or not needed.
     | Type: int
     | Default: 0
     | Environment variable: TCM_STORAGE_TARANTOOL_SSL_REQUIRED_PROTOCOL_INFO_AUTH
-    | Command-line option: ``--storage-tarantool-required-protocol-info-auth``
+    | Command-line option: ``--storage.tarantool.required-protocol-info.auth``
 
 .. _tcm_configuration_reference_storage_tarantool_required-protocol-info_version:
 
@@ -1789,7 +1791,7 @@ etcd cluster is not available or not needed.
     | Type: uint64
     | Default: 0
     | Environment variable: TCM_STORAGE_TARANTOOL_SSL_REQUIRED_PROTOCOL_INFO_VERSION
-    | Command-line option: ``--storage-tarantool-required-protocol-info-version``
+    | Command-line option: ``--storage.tarantool.required-protocol-info.version``
 
 .. _tcm_configuration_reference_storage_tarantool_required-protocol-info_features:
 
@@ -1803,7 +1805,7 @@ etcd cluster is not available or not needed.
     | Type: []int
     | Default: []
     | Environment variable: TCM_STORAGE_TARANTOOL_SSL_REQUIRED_PROTOCOL_INFO_FEATURES
-    | Command-line option: ``--storage-tarantool-required-protocol-info-features``
+    | Command-line option: ``--storage.tarantool.required-protocol-info.features``
 
 .. _tcm_configuration_reference_storage_tarantool_embed:
 
@@ -1838,7 +1840,7 @@ The ``addon`` section defines settings related to |tcm| add-ons.
     | Type: bool
     | Default: false
     | Environment variable: TCM_ADDON_ENABLED
-    | Command-line option: ``--addon-enabled``
+    | Command-line option: ``--addon.enabled``
 
 .. _tcm_configuration_reference_addon_addons-dir:
 
@@ -1850,7 +1852,7 @@ The ``addon`` section defines settings related to |tcm| add-ons.
     | Type: string
     | Default: addons
     | Environment variable: TCM_ADDON_ADDONS_DIR
-    | Command-line option: ``--addon-addons-dir``
+    | Command-line option: ``--addon.addons-dir``
 
 .. _tcm_configuration_reference_addon_max-upload-size:
 
@@ -1862,7 +1864,7 @@ The ``addon`` section defines settings related to |tcm| add-ons.
     | Type: int64
     | Default: 104857600
     | Environment variable: TCM_ADDON_MAX_UPLOAD_SIZE
-    | Command-line option: ``--addon-max-upload-size``
+    | Command-line option: ``--addon.max-upload-size``
 
 .. _tcm_configuration_reference_addon_dev-addons-dir:
 
@@ -1874,7 +1876,7 @@ The ``addon`` section defines settings related to |tcm| add-ons.
     | Type: []string
     | Default: []
     | Environment variable: TCM_ADDON_DEV_ADDONS_DIR
-    | Command-line option: ``--addon-dev-addons-dir``
+    | Command-line option: ``--addon.dev-addons-dir``
 
 .. limits configuration
 
@@ -1903,7 +1905,7 @@ between them.
     | Type: int
     | Default: 1000
     | Environment variable: TCM_LIMITS_USERS_COUNT
-    | Command-line option: ``--limits-users-count``
+    | Command-line option: ``--limits.users-count``
 
 .. _tcm_configuration_reference_limits_clusters-count:
 
@@ -1915,7 +1917,7 @@ between them.
     | Type: int
     | Default: 10
     | Environment variable: TCM_LIMITS_CLUSTERS_COUNT
-    | Command-line option: ``--limits-clusters-count``
+    | Command-line option: ``--limits.clusters-count``
 
 .. _tcm_configuration_reference_limits_roles-count:
 
@@ -1927,7 +1929,7 @@ between them.
     | Type: int
     | Default: 100
     | Environment variable: TCM_LIMITS_ROLES_COUNT
-    | Command-line option: ``--limits-roles-count``
+    | Command-line option: ``--limits.roles-count``
 
 .. _tcm_configuration_reference_limits_user-secrets-count:
 
@@ -1939,7 +1941,7 @@ between them.
     | Type: int
     | Default: 10
     | Environment variable: TCM_LIMITS_USER_SECRETS_COUNT
-    | Command-line option: ``--limits-user-secrets-count``
+    | Command-line option: ``--limits.user-secrets-count``
 
 .. _tcm_configuration_reference_limits_user-websessions-count:
 
@@ -1951,7 +1953,7 @@ between them.
     | Type: int
     | Default: 10
     | Environment variable: TCM_LIMITS_USER_WEBSESSIONS_COUNT
-    | Command-line option: ``--limits-user-websessions-count``
+    | Command-line option: ``--limits.user-websessions-count``
 
 .. _tcm_configuration_reference_limits_linked-cluster-users:
 
@@ -1963,7 +1965,7 @@ between them.
     | Type: int
     | Default: 10
     | Environment variable: TCM_LIMITS_LINKED_CLUSTER_USERS
-    | Command-line option: ``--limits-linked-cluster-users``
+    | Command-line option: ``--limits.linked-cluster-users``
 
 
 .. security parameters
@@ -1998,7 +2000,7 @@ The ``security`` section defines the security parameters of |tcm|.
     | Type: []string
     | Default: [local]
     | Environment variable: TCM_SECURITY_AUTH
-    | Command-line option: ``--security-auth``
+    | Command-line option: ``--security.auth``
 
 .. _tcm_configuration_reference_security_hash-cost:
 
@@ -2010,7 +2012,7 @@ The ``security`` section defines the security parameters of |tcm|.
     | Type: int
     | Default: 12
     | Environment variable: TCM_SECURITY_HASH_COST
-    | Command-line option: ``--security-hash-cost``
+    | Command-line option: ``--security.hash-cost``
 
 .. _tcm_configuration_reference_security_encryption-key:
 
@@ -2023,7 +2025,7 @@ The ``security`` section defines the security parameters of |tcm|.
     | Type: string
     | Default: ""
     | Environment variable: TCM_SECURITY_ENCRYPTION_KEY
-    | Command-line option: ``--security-encryption-key``
+    | Command-line option: ``--security.encryption-key``
 
 .. _tcm_configuration_reference_security_encryption-key-file:
 
@@ -2036,7 +2038,7 @@ The ``security`` section defines the security parameters of |tcm|.
     | Type: string
     | Default: ""
     | Environment variable: TCM_SECURITY_ENCRYPTION_KEY_FILE
-    | Command-line option: ``--security-encryption-key-file``
+    | Command-line option: ``--security.encryption-key-file``
 
 .. _tcm_configuration_reference_security_bootstrap-password:
 
@@ -2049,7 +2051,7 @@ The ``security`` section defines the security parameters of |tcm|.
     | Type: string
     | Default: ""
     | Environment variable: TCM_SECURITY_BOOTSTRAP_PASSWORD
-    | Command-line option: ``--security-bootstrap-password``
+    | Command-line option: ``--security.bootstrap-password``
 
 .. _tcm_configuration_security_signature-private-key-file:
 
@@ -2061,7 +2063,7 @@ The ``security`` section defines the security parameters of |tcm|.
     | Type: string
     | Default: ""
     | Environment variable: TCM_SECURITY_SIGNATURE_PRIVATE_KEY_FILE
-    | Command-line option: ``--security-signature-private-key-file``
+    | Command-line option: ``--security.signature-private-key-file``
 
 .. _tcm_configuration_security_integrity-check:
 
@@ -2074,7 +2076,7 @@ The ``security`` section defines the security parameters of |tcm|.
     | Type: bool
     | Default: false
     | Environment variable: TCM_SECURITY_INTEGRITY_CHECK
-    | Command-line option: ``--security-integrity-check``
+    | Command-line option: ``--security.integrity-check``
 
 .. mode
 

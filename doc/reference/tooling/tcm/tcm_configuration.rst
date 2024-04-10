@@ -117,11 +117,11 @@ Command-line arguments
 ~~~~~~~~~~~~~~~~~~~~~~
 
 The |tcm| executable has ``--`` command-line options for each configuration parameter.
-Their names reflect the full path to the parameter, with all delimiters replaced by
-hyphens (``-``). Examples:
+Their names reflect the full path to the parameter, with configuration levels separated by
+periods (``.``). Examples:
 
--   ``--http-host`` is an option for ``http.host``.
--  ``--http-websession-cookie-name`` is an option for ``http.websession-cookie.name``.
+-   ``--http.host`` is an option for ``http.host``.
+-  ``--http.websession-cookie.name`` is an option for ``http.websession-cookie.name``.
 
 The example below shows how to start |tcm| with configuration parameters passed in
 command-line options:
