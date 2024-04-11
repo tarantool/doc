@@ -649,7 +649,7 @@ msgid "Reload configurations on both instances one more time:"
 msgstr ""
 
 #: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:532
-msgid "Check ``box.info.replication``. ``upstream.status`` be ``follow`` now."
+msgid "Check ``box.info.replication``. ``upstream.status`` should be ``follow`` now."
 msgstr ""
 
 #: ../../doc/how-to/replication/repl_bootstrap_master_master.rst:535
