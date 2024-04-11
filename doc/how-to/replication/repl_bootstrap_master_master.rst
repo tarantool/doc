@@ -160,11 +160,13 @@ Checking a replica set status
            • Connecting to the instance...
            • Connected to master_master:instance001
 
+        master_master:instance001>
+
 2.  Check that both instances are writable using ``box.info.ro``:
 
     -   ``instance001``:
 
-        .. code-block:: console
+        .. code-block:: tarantoolsession
 
             master_master:instance001> box.info.ro
             ---
@@ -173,7 +175,7 @@ Checking a replica set status
 
     -   ``instance002``:
 
-        .. code-block:: console
+        .. code-block:: tarantoolsession
 
             master_master:instance002> box.info.ro
             ---
@@ -183,30 +185,30 @@ Checking a replica set status
 3.  Execute ``box.info.replication`` to check a replica set status.
     For ``instance002``, ``upstream.status`` and ``downstream.status`` should be ``follow``.
 
-    .. code-block:: console
+    .. code-block:: tarantoolsession
 
         master_master:instance001> box.info.replication
         ---
         - 1:
             id: 1
-            uuid: 4cfa6e3c-625e-b027-00a7-29b2f2182f23
+            uuid: c3bfd89f-5a1c-4556-aa9f-461377713a2a
             lsn: 7
+            name: instance001
+          2:
+            id: 2
+            uuid: dccf7485-8bff-47f6-bfc4-b311701e36ef
+            lsn: 0
             upstream:
               status: follow
-              idle: 0.21281599999929
+              idle: 0.93246499999987
               peer: replicator@127.0.0.1:3302
-              lag: 0.00031614303588867
+              lag: 0.00016188621520996
             name: instance002
             downstream:
               status: follow
-              idle: 0.21800899999653
+              idle: 0.8988360000003
               vclock: {1: 7}
               lag: 0
-          2:
-            id: 2
-            uuid: 9bb111c2-3ff5-36a7-00f4-2b9a573ea660
-            lsn: 0
-            name: instance001
         ...
 
     To see the diagrams that illustrate how the ``upstream`` and ``downstream`` connections look,
@@ -244,7 +246,7 @@ To check that both instances get updates from each other, follow the steps below
 
 2.  On ``instance002``, use the ``select`` operation to make sure data is replicated:
 
-    .. code-block:: console
+    .. code-block:: tarantoolsession
 
         master_master:instance002> box.space.bands:select()
         ---
@@ -260,26 +262,36 @@ To check that both instances get updates from each other, follow the steps below
         :language: lua
         :dedent:
 
-4.  Get back to ``instance001`` and use ``select`` to make sure new records are replicated.
+4.  Get back to ``instance001`` and use ``select`` to make sure new records are replicated:
+
+    .. code-block:: tarantoolsession
+
+        master_master:instance001> box.space.bands:select()
+        ---
+        - - [1, 'Roxette', 1986]
+          - [2, 'Scorpions', 1965]
+          - [3, 'Ace of Base', 1987]
+          - [4, 'The Beatles', 1960]
+        ...
 
 5.  Check that :ref:`box.info.vclock <box_introspection-box_info>` values are the same on both instances:
 
     -   ``instance001``:
 
-        .. code-block:: console
+        .. code-block:: tarantoolsession
 
             master_master:instance001> box.info.vclock
             ---
-            - {2: 5, 1: 9}
+            - {2: 2, 1: 12}
             ...
 
     -   ``instance002``:
 
-        .. code-block:: console
+        .. code-block:: tarantoolsession
 
             master_master:instance002> box.info.vclock
             ---
-            - {2: 5, 1: 9}
+            - {2: 2, 1: 12}
             ...
 
 
