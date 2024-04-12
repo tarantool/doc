@@ -1948,7 +1948,7 @@ To handle logging in your application, use the :ref:`log module <log-module>`.
 
 ..  confval:: log.format
 
-    Specify a format is used for a log entry.
+    Specify a format that is used for a log entry.
     The following formats are supported:
 
     *   ``plain``: a log entry is formatted as plain text. Example:

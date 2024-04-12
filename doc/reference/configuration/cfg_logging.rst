@@ -17,15 +17,16 @@ application.
 
     Since version 1.6.2.
 
-    Specify the level of detail the :ref:`log <admin-logs>` has. There are seven levels:
+    Specify the level of detail the :ref:`log <admin-logs>` has. There are the following levels:
 
-    * 1 -- ``SYSERROR``
-    * 2 -- ``ERROR``
-    * 3 -- ``CRITICAL``
-    * 4 -- ``WARNING``
-    * 5 -- ``INFO``
-    * 6 -- ``VERBOSE``
-    * 7 -- ``DEBUG``
+    * 0 -- ``fatal``
+    * 1 -- ``syserror``
+    * 2 -- ``error``
+    * 3 -- ``crit``
+    * 4 -- ``warn``
+    * 5 -- ``info``
+    * 6 -- ``verbose``
+    * 7 -- ``debug``
 
     By setting ``log_level``, you can enable logging of all events with severities above
     or equal to the given level. Tarantool prints logs to the standard
@@ -33,7 +34,7 @@ application.
     :ref:`log <cfg_logging-log>` configuration parameter.
 
     |
-    | Type: integer
+    | Type: integer, string
     | Default: 5
     | Environment variable: TT_LOG_LEVEL
     | Dynamic: yes
