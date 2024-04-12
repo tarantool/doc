@@ -1,6 +1,5 @@
-audit_log:
-  to: pipe
-  pipe: 'cronolog audit_tarantool.log'
+log:
+  level: 'verbose'
 
 groups:
   group001:

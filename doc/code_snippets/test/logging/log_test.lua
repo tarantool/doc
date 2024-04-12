@@ -6,26 +6,16 @@ local g = t.group()
 g.before_each(function(cg)
     cg.server = server:new {
         workdir = fio.cwd() .. '/tmp',
-        box_cfg = { log_level = 'warn' }
+        box_cfg = {}
     }
     cg.server:start()
     cg.server:exec(function()
-        log = require('log')
-
-        -- Prints 'warn' messages --
+        local log = require('log')
+        log.cfg { level = 'verbose' }
         log.warn('Warning message')
-        --[[
-        2023-07-20 11:03:57.029 [16300] main/103/interactive/tarantool [C]:-1 W> Warning message
-        ---
-        ...
-        --]]
-
-        -- Swallows 'debug' messages --
+        log.info('Tarantool version: %s', box.info.version)
+        log.error({ 500, 'Internal error' })
         log.debug('Debug message')
-        --[[
-        ---
-        ...
-        --]]
     end)
 end)
 
@@ -43,5 +33,7 @@ end
 
 g.test_log_contains_messages = function(cg)
     find_in_log(cg, 'Warning message', true)
+    find_in_log(cg, 'Tarantool version:', true)
+    find_in_log(cg, 'Internal error', true)
     find_in_log(cg, 'Debug message', false)
 end

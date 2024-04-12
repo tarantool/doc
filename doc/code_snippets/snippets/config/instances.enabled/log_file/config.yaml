@@ -1,6 +1,6 @@
-audit_log:
-  to: pipe
-  pipe: 'cronolog audit_tarantool.log'
+log:
+  to: file
+  file: var/log/{{ instance_name }}/instance.log
 
 groups:
   group001:

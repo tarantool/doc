@@ -3,7 +3,7 @@
 Logs
 ====
 
-Each Tarantool instance logs important events to its own log file ``<instance-name>.log``.
+Each Tarantool instance logs important events to its own log file.
 For instances started with :ref:`tt <tt-cli>`, the log location is defined by
 the ``log_dir`` parameter in the :ref:`tt configuration <tt-config>`.
 By default, it's ``/var/log/tarantool`` in the ``tt`` :ref:`system mode <tt-config_modes>`,
@@ -14,34 +14,36 @@ To check how logging works, write something to the log using the :ref:`log <log-
 
 .. code-block:: console
 
-    $ tt connect my_app
+    $ tt connect application
        • Connecting to the instance...
-       • Connected to /var/run/tarantool/my_app.control
+       • Connected to application
 
-    /var/run/tarantool/my_app.control> require('log').info("Hello for the manual readers")
+    application> require('log').info("Hello for the manual readers")
+    ---
+    ...
 
 Then check the logs:
 
 .. code-block:: console
 
-    $ tail /var/log/tarantool/my_app.log
-    2023-09-12 18:13:00.396 [67173] main/111/guard of feedback_daemon/box.feedback_daemon V> metrics_collector restarted
-    2023-09-12 18:13:00.396 [67173] main/103/-/box.feedback_daemon V> feedback_daemon started
-    2023-09-12 18:13:00.396 [67173] main/103/- D> memtx_tuple_new_raw_impl(14) = 0x1090077b4
-    2023-09-12 18:13:00.396 [67173] main/103/- D> memtx_tuple_new_raw_impl(26) = 0x1090077ec
-    2023-09-12 18:13:00.396 [67173] main/103/- D> memtx_tuple_new_raw_impl(39) = 0x109007824
-    2023-09-12 18:13:00.396 [67173] main/103/- D> memtx_tuple_new_raw_impl(24) = 0x10900785c
-    2023-09-12 18:13:00.396 [67173] main/103/- D> memtx_tuple_new_raw_impl(39) = 0x109007894
-    2023-09-12 18:13:00.396 [67173] main/106/checkpoint_daemon I> scheduled next checkpoint for Tue Sep 12 19:44:34 2023
-    2023-09-12 18:13:00.396 [67173] main I> entering the event loop
-    2023-09-12 18:13:11.656 [67173] main/114/console/unix/:/tarantool I> Hello for the manual readers
+    $ tail instances.enabled/application/var/log/instance001/tt.log
+    2024-04-09 17:34:29.489 [49502] main/106/gc I> wal/engine cleanup is resumed
+    2024-04-09 17:34:29.489 [49502] main/104/interactive/box.load_cfg I> set 'instance_name' configuration option to "instance001"
+    2024-04-09 17:34:29.489 [49502] main/104/interactive/box.load_cfg I> set 'custom_proc_title' configuration option to "tarantool - instance001"
+    2024-04-09 17:34:29.489 [49502] main/104/interactive/box.load_cfg I> set 'log_nonblock' configuration option to false
+    2024-04-09 17:34:29.489 [49502] main/104/interactive/box.load_cfg I> set 'replicaset_name' configuration option to "replicaset001"
+    2024-04-09 17:34:29.489 [49502] main/104/interactive/box.load_cfg I> set 'listen' configuration option to [{"uri":"127.0.0.1:3301"}]
+    2024-04-09 17:34:29.489 [49502] main/107/checkpoint_daemon I> scheduled next checkpoint for Tue Apr  9 19:08:04 2024
+    2024-04-09 17:34:29.489 [49502] main/104/interactive/box.load_cfg I> set 'metrics' configuration option to {"labels":{"alias":"instance001"},"include":["all"],"exclude":[]}
+    2024-04-09 17:34:29.489 [49502] main I> entering the event loop
+    2024-04-09 17:34:38.905 [49502] main/116/console/unix/:/tarantool I> Hello for the manual readers
 
 .. _admin-logs-rotation:
 
 Log rotation
 ------------
 
-When :ref:`logging to a file <cfg_logging-log>`, the system administrator must ensure
+When :ref:`logging to a file <configuration_reference_log_file>`, the system administrator must ensure
 logs are rotated timely and do not take up all the available disk space.
 The recommended way to prevent log files from growing infinitely is using an external
 log rotation program, for example, ``logrotate``, which is pre-installed on most
@@ -76,22 +78,16 @@ To learn about log rotation in the deprecated ``tarantoolctl`` utility,
 check its :ref:`documentation <tarantoolctl-log-rotation>`.
 
 
-.. _admin-logs-formats:
+.. _admin-logs-destination:
 
-Log formats
------------
+Log destination
+---------------
 
-Tarantool can write its logs to a log file, to ``syslog``, or to a specified program
-through a pipe.
+Tarantool can write its logs to a log file, to ``syslog``, or to a specified program through a pipe.
+For example, to send logs to ``syslog``, specify the :ref:`log.to <configuration_reference_log_to>` parameter as follows:
 
-File is the default log format for ``tt``. To send logs to a pipe or ``syslog``,
-specify the :ref:`box.cfg.log <cfg_logging-log>` parameter, for example:
-
-.. code-block:: lua
-
-    box.cfg{log = '| cronolog tarantool.log'}
-    -- or
-    box.cfg{log = 'syslog:identity=tarantool,facility=user'}
-
-In such configurations, log rotation is usually handled by the external program
-used for logging.
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/log_syslog/config.yaml
+    :language: yaml
+    :start-at: log:
+    :end-at: 127.0.0.1:514
+    :dedent:

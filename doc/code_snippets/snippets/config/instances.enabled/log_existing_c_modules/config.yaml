@@ -1,6 +1,8 @@
-audit_log:
-  to: pipe
-  pipe: 'cronolog audit_tarantool.log'
+log:
+  modules:
+    tarantool: 'info'
+app:
+  file: 'app.lua'
 
 groups:
   group001:
