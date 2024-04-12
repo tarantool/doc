@@ -160,11 +160,13 @@ Checking a replica set status
            • Connecting to the instance...
            • Connected to master_master:instance001
 
+        master_master:instance001>
+
 2.  Check that both instances are writable using ``box.info.ro``:
 
     -   ``instance001``:
 
-        .. code-block:: console
+        .. code-block:: tarantoolsession
 
             master_master:instance001> box.info.ro
             ---
@@ -173,7 +175,7 @@ Checking a replica set status
 
     -   ``instance002``:
 
-        .. code-block:: console
+        .. code-block:: tarantoolsession
 
             master_master:instance002> box.info.ro
             ---
@@ -183,30 +185,30 @@ Checking a replica set status
 3.  Execute ``box.info.replication`` to check a replica set status.
     For ``instance002``, ``upstream.status`` and ``downstream.status`` should be ``follow``.
 
-    .. code-block:: console
+    .. code-block:: tarantoolsession
 
         master_master:instance001> box.info.replication
         ---
         - 1:
             id: 1
-            uuid: 4cfa6e3c-625e-b027-00a7-29b2f2182f23
+            uuid: c3bfd89f-5a1c-4556-aa9f-461377713a2a
             lsn: 7
+            name: instance001
+          2:
+            id: 2
+            uuid: dccf7485-8bff-47f6-bfc4-b311701e36ef
+            lsn: 0
             upstream:
               status: follow
-              idle: 0.21281599999929
+              idle: 0.93246499999987
               peer: replicator@127.0.0.1:3302
-              lag: 0.00031614303588867
+              lag: 0.00016188621520996
             name: instance002
             downstream:
               status: follow
-              idle: 0.21800899999653
+              idle: 0.8988360000003
               vclock: {1: 7}
               lag: 0
-          2:
-            id: 2
-            uuid: 9bb111c2-3ff5-36a7-00f4-2b9a573ea660
-            lsn: 0
-            name: instance001
         ...
 
     To see the diagrams that illustrate how the ``upstream`` and ``downstream`` connections look,
@@ -244,7 +246,7 @@ To check that both instances get updates from each other, follow the steps below
 
 2.  On ``instance002``, use the ``select`` operation to make sure data is replicated:
 
-    .. code-block:: console
+    .. code-block:: tarantoolsession
 
         master_master:instance002> box.space.bands:select()
         ---
@@ -260,26 +262,36 @@ To check that both instances get updates from each other, follow the steps below
         :language: lua
         :dedent:
 
-4.  Get back to ``instance001`` and use ``select`` to make sure new records are replicated.
+4.  Get back to ``instance001`` and use ``select`` to make sure new records are replicated:
+
+    .. code-block:: tarantoolsession
+
+        master_master:instance001> box.space.bands:select()
+        ---
+        - - [1, 'Roxette', 1986]
+          - [2, 'Scorpions', 1965]
+          - [3, 'Ace of Base', 1987]
+          - [4, 'The Beatles', 1960]
+        ...
 
 5.  Check that :ref:`box.info.vclock <box_introspection-box_info>` values are the same on both instances:
 
     -   ``instance001``:
 
-        .. code-block:: console
+        .. code-block:: tarantoolsession
 
             master_master:instance001> box.info.vclock
             ---
-            - {2: 5, 1: 9}
+            - {2: 2, 1: 12}
             ...
 
     -   ``instance002``:
 
-        .. code-block:: console
+        .. code-block:: tarantoolsession
 
             master_master:instance002> box.info.vclock
             ---
-            - {2: 5, 1: 9}
+            - {2: 2, 1: 12}
             ...
 
 
@@ -341,32 +353,33 @@ To insert conflicting records to ``instance001`` and ``instance002``, follow the
     Then, check ``box.info.replication`` on ``instance001``.
     ``upstream.status`` should be ``stopped`` because of the ``Duplicate key exists`` error:
 
-    .. code-block:: console
+    .. code-block:: tarantoolsession
 
         master_master:instance001> box.info.replication
         ---
         - 1:
             id: 1
-            uuid: 4cfa6e3c-625e-b027-00a7-29b2f2182f23
-            lsn: 9
+            uuid: c3bfd89f-5a1c-4556-aa9f-461377713a2a
+            lsn: 13
+            name: instance001
+          2:
+            id: 2
+            uuid: dccf7485-8bff-47f6-bfc4-b311701e36ef
+            lsn: 2
             upstream:
               peer: replicator@127.0.0.1:3302
-              lag: 143.52251672745
+              lag: 115.99977827072
               status: stopped
-              idle: 3.9462469999999
+              idle: 2.0342070000006
               message: Duplicate key exists in unique index "primary" in space "bands" with
-                old tuple - [5, "Pink Floyd", 1965] and new tuple - [5, "incorrect data", 0]
+                old tuple - [5, "Pink Floyd", 1965] and new tuple - [5, "incorrect data",
+                0]
             name: instance002
             downstream:
               status: stopped
-              message: 'unexpected EOF when reading from socket, called on fd 12, aka 127.0.0.1:3301,
-                peer of 127.0.0.1:59258: Broken pipe'
+              message: 'unexpected EOF when reading from socket, called on fd 24, aka 127.0.0.1:3301,
+                peer of 127.0.0.1:58478: Broken pipe'
               system_message: Broken pipe
-          2:
-            id: 2
-            uuid: 9bb111c2-3ff5-36a7-00f4-2b9a573ea660
-            lsn: 6
-            name: instance001
         ...
 
     The diagram below illustrates how the ``upstream`` and ``downstream`` connections look like:
@@ -385,19 +398,33 @@ Reseeding a replica
 To resolve a replication conflict, ``instance002`` should get the correct data from ``instance001`` first.
 To achieve this, ``instance002`` should be rebootstrapped:
 
-1.  In the ``config.yaml`` file, change ``database.mode`` of ``instance002`` to ``ro``:
+1.  Select all the tuples in the :ref:`box.space._cluster <box_space-cluster>` system space to get a UUID of ``instance002``:
+
+    .. code-block:: tarantoolsession
+
+        master_master:instance001> box.space._cluster:select()
+        ---
+        - - [1, 'c3bfd89f-5a1c-4556-aa9f-461377713a2a', 'instance001']
+          - [2, 'dccf7485-8bff-47f6-bfc4-b311701e36ef', 'instance002']
+        ...
+
+2.  In the ``config.yaml`` file, change the following ``instance002`` settings:
+
+    *   Set ``database.mode`` to ``ro``.
+    *   Set ``database.instance_uuid`` to a UUID value obtained in the previous step.
 
     .. code-block:: yaml
 
         instance002:
           database:
             mode: ro
+            instance_uuid: 'dccf7485-8bff-47f6-bfc4-b311701e36ef'
 
-2.  Reload configurations on both instances using the ``reload()`` function provided by the :ref:`config <config-module>` module:
+3.  Reload configurations on both instances using the :ref:`config:reload() <config_api_reference_reload>` function:
 
     -   ``instance001``:
 
-        .. code-block:: console
+        .. code-block:: tarantoolsession
 
             master_master:instance001> require('config'):reload()
             ---
@@ -405,28 +432,28 @@ To achieve this, ``instance002`` should be rebootstrapped:
 
     -   ``instance002``:
 
-        .. code-block:: console
+        .. code-block:: tarantoolsession
 
             master_master:instance002> require('config'):reload()
             ---
             ...
 
-3.  Delete write-ahead logs and snapshots stored in the ``var/lib/instance002`` directory.
+4.  Delete write-ahead logs and snapshots stored in the ``var/lib/instance002`` directory.
 
     .. NOTE::
 
         ``var/lib`` is the default directory used by tt to store write-ahead logs and snapshots.
         Learn more from :ref:`Configuration <tt-config>`.
 
-4.  Restart ``instance002`` using the :ref:`tt restart <tt-restart>` command:
+5.  Restart ``instance002`` using the :ref:`tt restart <tt-restart>` command:
 
     .. code-block:: console
 
         $ tt restart master_master:instance002
 
-5.  Connect to ``instance002`` and make sure it received the correct data from ``instance001``:
+6.  Connect to ``instance002`` and make sure it received the correct data from ``instance001``:
 
-    .. code-block:: console
+    .. code-block:: tarantoolsession
 
         master_master:instance002> box.space.bands:select()
         ---
@@ -448,33 +475,33 @@ After :ref:`reseeding a replica <replication-master-master-reseed-replica>`, you
 1.  Execute ``box.info.replication`` on ``instance001``.
     ``upstream.status`` is still stopped:
 
-    .. code-block:: console
+    .. code-block:: tarantoolsession
 
         master_master:instance001> box.info.replication
         ---
         - 1:
             id: 1
-            uuid: 4cfa6e3c-625e-b027-00a7-29b2f2182f23
-            lsn: 9
+            uuid: c3bfd89f-5a1c-4556-aa9f-461377713a2a
+            lsn: 13
+            name: instance001
+          2:
+            id: 2
+            uuid: dccf7485-8bff-47f6-bfc4-b311701e36ef
+            lsn: 2
             upstream:
               peer: replicator@127.0.0.1:3302
-              lag: 143.52251672745
+              lag: 115.99977827072
               status: stopped
-              idle: 1309.943383
+              idle: 1013.688243
               message: Duplicate key exists in unique index "primary" in space "bands" with
                 old tuple - [5, "Pink Floyd", 1965] and new tuple - [5, "incorrect data",
                 0]
             name: instance002
             downstream:
               status: follow
-              idle: 0.47881799999959
-              vclock: {2: 6, 1: 9}
+              idle: 0.69694700000036
+              vclock: {2: 2, 1: 13}
               lag: 0
-          2:
-            id: 2
-            uuid: 9bb111c2-3ff5-36a7-00f4-2b9a573ea660
-            lsn: 6
-            name: instance001
         ...
 
     The diagram below illustrates how the ``upstream`` and ``downstream`` connections look like:
@@ -497,13 +524,14 @@ After :ref:`reseeding a replica <replication-master-master-reseed-replica>`, you
 
 3.  Reload configuration on ``instance001`` only:
 
-    .. code-block:: console
+    .. code-block:: tarantoolsession
 
         master_master:instance001> require('config'):reload()
         ---
         ...
 
-4.  Change ``database.mode`` values back to ``rw`` for both instances and restore ``iproto.listen`` for ``instance001``:
+4.  Change ``database.mode`` values back to ``rw`` for both instances and restore ``iproto.listen`` for ``instance001``.
+    The ``database.instance_uuid`` option can be removed for ``instance002``:
 
     ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/master_master/config.yaml
         :language: yaml
@@ -515,7 +543,7 @@ After :ref:`reseeding a replica <replication-master-master-reseed-replica>`, you
 
     -   ``instance001``:
 
-        .. code-block:: console
+        .. code-block:: tarantoolsession
 
             master_master:instance001> require('config'):reload()
             ---
@@ -523,7 +551,7 @@ After :ref:`reseeding a replica <replication-master-master-reseed-replica>`, you
 
     -   ``instance002``:
 
-        .. code-block:: console
+        .. code-block:: tarantoolsession
 
             master_master:instance002> require('config'):reload()
             ---
@@ -532,30 +560,30 @@ After :ref:`reseeding a replica <replication-master-master-reseed-replica>`, you
 6.  Check ``box.info.replication``.
     ``upstream.status`` should be ``follow`` now.
 
-    .. code-block:: console
+    .. code-block:: tarantoolsession
 
         master_master:instance001> box.info.replication
         ---
         - 1:
             id: 1
-            uuid: 4cfa6e3c-625e-b027-00a7-29b2f2182f23
-            lsn: 9
+            uuid: c3bfd89f-5a1c-4556-aa9f-461377713a2a
+            lsn: 13
+            name: instance001
+          2:
+            id: 2
+            uuid: dccf7485-8bff-47f6-bfc4-b311701e36ef
+            lsn: 2
             upstream:
               status: follow
-              idle: 0.21281300000192
+              idle: 0.86873800000012
               peer: replicator@127.0.0.1:3302
-              lag: 0.00031113624572754
+              lag: 0.0001060962677002
             name: instance002
             downstream:
               status: follow
-              idle: 0.035179000002245
-              vclock: {2: 6, 1: 9}
+              idle: 0.058662999999797
+              vclock: {2: 2, 1: 13}
               lag: 0
-          2:
-            id: 2
-            uuid: 9bb111c2-3ff5-36a7-00f4-2b9a573ea660
-            lsn: 6
-            name: instance001
         ...
 
 
