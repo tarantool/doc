@@ -159,6 +159,69 @@ The following numeric types are added:
 *   ``float64``: a 64-bit floating point number.
 
 
+.. _3-1-experimental_connpool:
+
+Experimental 'connpool' module
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A new ``experimental.connpool`` :ref:`module <built_in_modules>` provides a set of features for remote connections to any cluster instance or executing remote procedure calls on an instance that meets the specified criteria.
+To load the ``experimental.connpool`` module, use the ``require()`` directive:
+
+.. code-block:: tarantoolsession
+
+    sharded_cluster:router-a-001> connpool = require('experimental.connpool')
+    ---
+    ...
+
+In the 3.1 version, this module provides the following API:
+
+*   The ``connect()`` function accepts an instance name and returns the active connection to this instance:
+
+    .. code-block:: tarantoolsession
+
+        sharded_cluster:router-a-001> conn = connpool.connect("storage-b-002")
+        ---
+        ...
+
+    Once you have a connection, you can execute requests on a remote instance, for example, select data from a space:
+
+    .. code-block:: tarantoolsession
+
+        sharded_cluster:router-a-001> conn.space.bands:select({}, { limit = 5 })
+        ---
+        - - [3, 804, 'Ace of Base', 1987]
+          - [7, 693, 'The Doors', 1965]
+          - [9, 644, 'Led Zeppelin', 1968]
+          - [10, 569, 'Queen', 1970]
+        ...
+
+
+*   The ``filter()`` function returns the names of instances that match the specified conditions.
+    In the example below, this function returns a list of instances with the ``storage`` role and specified label value:
+
+    .. code-block:: tarantoolsession
+
+        sharded_cluster:router-a-001> connpool.filter({ roles = { 'storage' }, labels = { dc = 'east' }})
+        ---
+        - - storage-b-002
+          - storage-a-002
+        ...
+
+*   The ``call()`` function can be used to execute a function on a remote instance.
+    In the example below, the following conditions are specified to choose an instance to execute the ``vshard.storage.buckets_count`` function on:
+
+    *   An instance has the ``storage`` role.
+    *   An instance has the ``dc`` label set to ``west``.
+    *   An instance is writable.
+
+    .. code-block:: tarantoolsession
+
+        sharded_cluster:router-a-001> connpool.call('vshard.storage.buckets_count', nil, { roles = { 'storage' }, labels = { dc = 'west' }, mode = 'rw' })
+        ---
+        - 500
+        ...
+
+
 
 .. _3-1-accessing_configuration:
 
