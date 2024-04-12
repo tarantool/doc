@@ -96,7 +96,7 @@ msgid "Dynamic: yes"
 msgstr ""
 
 #: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:39
-msgid "A field defining the configuration of relative weights for each zone pair in a replica set. See the :ref:`Replica weights <vshard-replica-weights>` section."
+msgid "A field defining the configuration of relative weights for each zone pair in a replica set."
 msgstr ""
 
 #: ../../doc/reference/reference_rock/vshard/vshard_ref.rst:50

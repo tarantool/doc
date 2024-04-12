@@ -11,8 +11,7 @@
     been executed before, nothing happens. If it has not been executed before,
     the function is invoked.
 
-    See an example of using ``box.once()`` while
-    :ref:`bootstrapping a replica set <replication-bootstrap>`.
+    See an example of using ``box.once()`` in :ref:`vshard-quick-start-storage-code`.
 
     **Warning:** If an error occurs inside ``box.once()`` when initializing a
     database, you can re-execute the failed ``box.once()`` block without

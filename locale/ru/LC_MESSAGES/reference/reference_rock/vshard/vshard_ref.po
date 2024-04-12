@@ -63,11 +63,10 @@ msgstr "Динамический: да"
 
 msgid ""
 "A field defining the configuration of relative weights for each zone pair in"
-" a replica set. See the :ref:`Replica weights <vshard-replica-weights>` "
-"section."
+" a replica set."
 msgstr ""
 "Поле, которое определяет конфигурацию относительного веса для каждой пары "
-"зон в наборе реплик. См. раздел :ref:`Вес реплики <vshard-replica-weights>`."
+"зон в наборе реплик."
 
 msgid ""
 "Name or id of a TREE index over the :ref:`bucket id <vshard-vbuckets>`. "
