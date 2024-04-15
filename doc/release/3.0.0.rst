@@ -3,7 +3,7 @@ Tarantool 3.0
 
 Release date: December 26, 2023
 
-Releases on GitHub: :tarantool-release:`3.0.1`, :tarantool-release:`3.0.0`
+Releases on GitHub: :tarantool-release:`3.0.2`, :tarantool-release:`3.0.1`, :tarantool-release:`3.0.0`
 
 The 3.0 release of Tarantool introduces a new declarative approach for configuring a cluster,
 a new visual tool -- Tarantool Cluster Manager,
