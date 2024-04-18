@@ -9,16 +9,15 @@ Backend store
 
 |tcm_full_name| uses an underlying data store (*backend store*) for its entities:
 users, roles, cluster connections, settings, and other objects that you manipulate in |tcm|.
-The backend store be either an etcd or a Tarantool cluster. This is similar to
-
+The backend store be either an etcd or a Tarantool cluster.
 
 Typically, the backend store works independently from |tcm|. For example, it can
 be the same ectd or Tarantool cluster that is used as a :ref:`centralized configuration storage <configuration_etcd>`.
 This makes |tcm| stateless: all objects that are created or modified in the
-web UI are sent to the backend store, an no data is stored inside the |tcm| instances.
+web UI are sent to the backend store, an no objects are stored inside the |tcm| instances.
 Any number of instances can duplicate each other when connected to the same backend store.
-If you stop all instances, the store still contains their data. You can continue
-working with it right after starting a new instance.
+If you stop all instances, the store still contains their objects. You can continue
+working with them right after starting a new instance.
 
 In addition to using an external backend store, you can run |tcm| with an embedded
 etcd or Tarantool instance to use as the backend store.
@@ -47,7 +46,7 @@ Configuring backend store connection
 ------------------------------------
 
 The |tcm|'s connection to its backend store is configured using the :ref:`storage.* <tcm_configuration_reference_storage>`
-configuration options. The :ref:`tcm_configuration_reference_storage_provider`
+configuration options. The :ref:`storage.provider <tcm_configuration_reference_storage_provider>`
 option selects the store type. It can be either ``etcd`` or ``tarantool``.
 
 .. _tcm_backend_store_connect_etcd:
@@ -139,7 +138,7 @@ and ``storage.tarantool.password``:
         username: tarantooluser
         password: secret
 
-The |tcm| data is stored in the Tarantool-based backend storeunder the prefix
+The |tcm| data is stored in the Tarantool-based backend store under the prefix
 specified in ``storage.tarantool.prefix``.
 By default, the prefix is ``/tcm``. If you want to change it or store data of
 different |tcm| instances separately in one Tarantool cluster, set the prefix explicitly:
@@ -218,14 +217,14 @@ You can tune the embedded backend store, for example, enable and configure TLS o
 or change its working directories or startup arguments. To set specific parameters,
 specify the corresponding ``storage.etcd.embed.*`` or ``storage.tarantool.embed.*``
 options. For the full list of configuration options of embedded backend stores, see the
-:ref:`TCM configuration reference <tcm_configuration_reference_storage>
+:ref:`TCM configuration reference <tcm_configuration_reference_storage>`.
 
 .. _tcm_backend_store_embed_cluster:
 
 Making a cluster of embedded backend stores
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To imitate the production environment, you can form a distributed multi-instance cluster
+To simulate the production environment, you can form a distributed multi-instance cluster
 from embedded stores of multiple |tcm| instances. To do this, configure each |tcm|
 instance's embedded store to join each other.
 
@@ -241,7 +240,7 @@ and form a etcd cluster from them:
 
     .. code-block:: yaml
 
-        http.port=8080
+        http.port: 8080
         storage:
           provider: etcd
           etcd:
@@ -259,13 +258,13 @@ and form a etcd cluster from them:
               initial-cluster-token: etcd-cluster-1
               peer-endpoints: http://127.0.0.1:12380
               peer-advertises: http://127.0.0.1:12380
-              workdir=node1.etcd
+              workdir: node1.etcd
 
 *   Second instance:
 
     .. code-block:: yaml
 
-        http.port=8081
+        http.port: 8081
         storage:
           provider: etcd
           etcd:
@@ -283,13 +282,13 @@ and form a etcd cluster from them:
               initial-cluster-token: etcd-cluster-1
               peer-endpoints: http://127.0.0.1:22380
               peer-advertises: http://127.0.0.1:22380
-              workdir=node2.etcd
+              workdir: node2.etcd
 
 *   Third instance:
 
     .. code-block:: yaml
 
-        http.port=8082
+        http.port: 8082
         storage:
           provider: etcd
           etcd:
@@ -307,7 +306,7 @@ and form a etcd cluster from them:
               initial-cluster-token: etcd-cluster-1
               peer-endpoints: http://127.0.0.1:32380
               peer-advertises: http://127.0.0.1:32380
-              workdir=node3.etcd
+              workdir: node3.etcd
 
 
 To make a cluster from embedded Tarantool-based backend stores:
@@ -324,7 +323,7 @@ store instances and form a cluster from them:
 
     .. code-block:: yaml
 
-        http.port=8080
+        http.port: 8080
         storage:
           provider: tarantool
           tarantool:
@@ -335,7 +334,7 @@ store instances and form a cluster from them:
             embed:
               enabled: true
               config-filename: config.yml
-              workdir: workdir=node1.tarantool
+              workdir: node1.tarantool
               args:
                 - --name
                 - instance-001
@@ -346,7 +345,7 @@ store instances and form a cluster from them:
 
     .. code-block:: yaml
 
-        http.port=8081
+        http.port: 8081
         storage:
           provider: tarantool
           tarantool:
@@ -357,7 +356,7 @@ store instances and form a cluster from them:
             embed:
               enabled: true
               config-filename: config.yml
-              workdir: workdir=node2.tarantool
+              workdir: node2.tarantool
               args:
                 - --name
                 - instance-002
@@ -368,7 +367,7 @@ store instances and form a cluster from them:
 
     .. code-block:: yaml
 
-        http.port=8082
+        http.port: 8082
         storage:
           provider: tarantool
           tarantool:
@@ -379,7 +378,7 @@ store instances and form a cluster from them:
             embed:
               enabled: true
               config-filename: config.yml
-              workdir: workdir=node3.tarantool
+              workdir: node3.tarantool
               args:
                 - --name
                 - instance-003

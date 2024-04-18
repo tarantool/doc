@@ -1152,7 +1152,6 @@ Tarantool storage parameters:
 
 .. _tcm_configuration_reference_storage_provider:
 
-
 .. confval:: storage.provider
 
     The type of the storage used for storing |tcm| configuration.
