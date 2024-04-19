@@ -126,6 +126,7 @@ A URI of the cluster configuration storage has the following format:
     *   ``ssl_cert_file`` -- a path to an SSL certificate file.
     *   ``ssl_ca_file`` -- a path to a trusted certificate authorities (CA) file.
     *   ``ssl_ca_path`` -- a path to a trusted certificate authorities (CA) directory.
+    *   ``ssl_ciphers`` -- a colon-separated (``:``) list of SSL cipher suites the connection can use (for Tarantool-based storage only).
     *   ``verify_host`` -- verify the certificate’s name against the host. Default ``true``.
     *   ``verify_peer`` -- verify the peer’s SSL certificate. Default ``true``.
 
