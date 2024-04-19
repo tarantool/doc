@@ -67,8 +67,8 @@ env section
 
     .. note::
 
-        The header files directory path can also be passed using the ``TT_CLI_TARANTOOL_PREFIX``.
-        If this variable is set, ``tt rocks`` and ``tt build`` commands use the
+        The header files directory path can also be passed using the ``TT_CLI_TARANTOOL_PREFIX``
+        environment variable. If it is set, ``tt rocks`` and ``tt build`` commands use the
         ``include/tarantool`` directory inside ``TT_CLI_TARANTOOL_PREFIX`` as the
         header files directory.
 
@@ -119,9 +119,9 @@ repo section
 
     .. note::
 
-        The rocks directory path can be passed in the ``TT_CLI_REPO_ROCKS`` instead.
-        environment variable. The variable is also used if the directory specified
-        in ``repo.rocks`` does not include a repository manifest.
+        The rocks directory path can be passed in the ``TT_CLI_REPO_ROCKS``
+        environment variable instead. The variable is also used if the directory
+        specified in ``repo.rocks`` does not include a repository manifest.
 
 *   ``distfiles`` -- the directory where installation files are stored.
 
