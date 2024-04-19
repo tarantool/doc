@@ -2,8 +2,8 @@ Release calendar
 ================
 
 Every Tarantool release series has :ref:`the same lifecycle <release-series-lifecycle>`.
-Below you can find the lifecycle of all Tarantool versions starting from 1.10.x,
-as well as currently supported versions visualised as a calendar:
+Below you can find the lifecycle of Tarantool 2.x versions supported in 2024
+visualised as a calendar:
 
 .. ifconfig:: builder not in ('latex', )
 
@@ -11,6 +11,7 @@ as well as currently supported versions visualised as a calendar:
         :target: ../../_images/releases_calendar.svg
         :align: left
         :alt: releases_calendar.svg
+
 
 ..  _release-table:
 
@@ -33,6 +34,16 @@ after the specified date.
             -   Release date
             -   End of life
             -   End of support
+
+        *   -   `2.11.3 LTS <https://github.com/tarantool/tarantool/releases/tag/2.11.3>`_
+            -   April 18, 2024
+            -   May 24, 2025
+            -   Not planned yet
+
+        *   -   `2.11.2 LTS <https://github.com/tarantool/tarantool/releases/tag/2.11.2>`_
+            -   December 7, 2023
+            -   May 24, 2025
+            -   Not planned yet
 
         *   -   `2.11.1 LTS <https://github.com/tarantool/tarantool/releases/tag/2.11.1>`_
             -   August 17, 2023
