@@ -77,23 +77,23 @@ username and the password:
 
 *   The ``-u`` (``--username``) and ``-p`` (``--password``) options:
 
-..  code-block:: console
+    ..  code-block:: console
 
-    $ tt connect 192.168.10.10:3301 -u myuser -p p4$$w0rD
+        $ tt connect 192.168.10.10:3301 -u myuser -p p4$$w0rD
 
 *   The connection string:
 
-..  code-block:: console
+    ..  code-block:: console
 
-    $ tt connect myuser:p4$$w0rD@192.168.10.10:3301 -u myuser -p p4$$w0rD
+        $ tt connect myuser:p4$$w0rD@192.168.10.10:3301
 
-*   Environment variables ``TT_CLI_USERNAME`` and ``TT_CLI_PASSWORD`` :
+*   Environment variables ``TT_CLI_USERNAME`` and ``TT_CLI_PASSWORD``:
 
-..  code-block:: console
+    ..  code-block:: console
 
-    $ export TT_CLI_USERNAME=myuser
-    $ export TT_CLI_PASSWORD=p4$$w0rD
-    $ tt connect 192.168.10.10:3301
+        $ export TT_CLI_USERNAME=myuser
+        $ export TT_CLI_PASSWORD=p4$$w0rD
+        $ tt connect 192.168.10.10:3301
 
 If no credentials are provided for a remote connection, the user is automatically ``guest``.
 

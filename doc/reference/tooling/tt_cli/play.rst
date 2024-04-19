@@ -14,6 +14,14 @@ A single call of ``tt play`` can play multiple files.
 Options
 -------
 
+..  option:: -u USERNAME, --username USERNAME
+
+    A Tarantool user for connecting to the instance.
+
+..  option:: -p PASSWORD, --password PASSWORD
+
+    The user's password.
+
 ..  option:: --from LSN
 
     Play operations starting from the given LSN.
@@ -56,6 +64,32 @@ on this instance. This means that:
 *   The operations' LSNs will change unless you play all operations that took place since the instance startup.
 
 *   Replica IDs will change in accordance with the destination instance configuration.
+
+Authentication
+~~~~~~~~~~~~~~
+
+If authentication is required on the instance, use one of the following ways to pass the
+username and the password:
+
+*   The ``-u`` (``--username``) and ``-p`` (``--password``) options:
+
+    ..  code-block:: console
+
+        $ tt play 192.168.10.10:3301 00000000000000000000.xlog -u myuser -p p4$$w0rD
+
+*   The connection string:
+
+    ..  code-block:: console
+
+        $ tt play myuser:p4$$w0rD@192.168.10.10:3301 00000000000000000000.xlog
+
+*   Environment variables ``TT_CLI_USERNAME`` and ``TT_CLI_PASSWORD``:
+
+    ..  code-block:: console
+
+        $ export TT_CLI_USERNAME=myuser
+        $ export TT_CLI_PASSWORD=p4$$w0rD
+        $ tt play 192.168.10.10:3301 00000000000000000000.xlog
 
 Examples
 --------
