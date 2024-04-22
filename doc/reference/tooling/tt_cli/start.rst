@@ -38,6 +38,19 @@ For more information about Tarantool application layout, see :ref:`admin-instanc
     which is considered a legacy approach since Tarantool 3.0. For information
     about using ``tt`` with such applications, refer to the Tarantool 2.11 documentation.
 
+Running in the background
+-------------------------
+
+``tt start`` runs Tarantool applications in the background and uses its own watchdog
+process for status checks (:ref:`tt-status`) and application stopping (:ref:`tt-stop`).
+
+.. important::
+
+    Do not switch the application to the background mode using the cluster configuration
+    (``process.background: true`` in the YAML configuration) or application code (``box.cfg.background = true``).
+    If you start such an application with ``tt start``, ``tt`` won't be able to check
+    the application status or stop it using the corresponding commands.
+
 Examples
 --------
 

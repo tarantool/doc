@@ -2380,6 +2380,107 @@ The ``memtx`` section is used to configure parameters related to the :ref:`memtx
     | Default: box.NULL
     | Environment variable: TT_MEMTX_SORT_THREADS
 
+..  _configuration_reference_process:
+
+process
+-------
+
+The ``process`` defines configuration parameters of the Tarantool process in the system.
+
+
+-   :ref:`process.background <configuration_reference_process_background>`
+-   :ref:`process.coredump <configuration_reference_process_coredump>`
+-   :ref:`process.custom_proc_title <configuration_reference_process_custom_proc_title>`
+-   :ref:`process.pid_file <configuration_reference_process_pid_file>`
+-   :ref:`process.strip_core <configuration_reference_process_strip_core>`
+-   :ref:`process.username <configuration_reference_process_username>`
+-   :ref:`process.work_dir <configuration_reference_process_work_dir>`
+
+.. _configuration_reference_process_background:
+
+.. confval:: process.background
+
+    Run the server as a background task.
+
+    .. important::
+
+        Do not enable the background mode for applications intended to run by the
+        ``tt`` utility. For more information, see the :ref:`tt-start` reference.
+
+    |
+    | Type: boolean
+    | Default: false
+    | Environment variable: TT_PROCESS_BACKGROUND
+
+
+.. _configuration_reference_process_coredump:
+
+.. confval:: process.coredump
+
+
+    |
+    | Type: boolean
+    | Default: false
+    | Environment variable: TT_PROCESS_COREDUMP
+
+.. _configuration_reference_process_custom_proc_title:
+
+.. confval:: process.custom_proc_title
+
+    Sets the name of the server's process title (what’s shown in the COMMAND column for
+    ``ps -ef`` and ``top -c`` commands).
+
+    |
+    | Type: string
+    | Default: 'tarantool - {{ instance_name }}'
+    | Environment variable: TT_PROCESS_CUSTOM_PROC_TITLE
+
+.. _configuration_reference_process_pid_file:
+
+.. confval:: process.pid_file
+
+    Store the process id in this file.
+
+    |
+    | Type: string
+    | Default: 'var/run/{{ instance_name }}/tarantool.pid'
+    | Environment variable: TT_PROCESS_PID_FILE
+
+.. _configuration_reference_process_strip_core:
+
+.. confval:: process.strip_core
+
+    Whether coredump files should include memory allocated for tuples.
+    (This can be large if Tarantool runs under heavy load.)
+    Setting to ``true`` means "do not include".
+
+    |
+    | Type: boolean
+    | Default: true
+    | Environment variable: TT_PROCESS_STRIP_CORE
+
+.. _configuration_reference_process_username:
+
+.. confval:: process.username
+
+    The name of the system user to switch to after start.
+
+    |
+    | Type: string
+    | Default: box.NULL
+    | Environment variable: TT_PROCESS_USERNAME
+
+.. _configuration_reference_process_work_dir:
+
+.. confval:: process.work_dir
+
+    A directory where Tarantool working files are stored.
+
+    |
+    | Type: string
+    | Default: box.NULL
+    | Environment variable: TT_PROCESS_WORK_DIR
+
 ..  _configuration_reference_replication:
 
 replication
