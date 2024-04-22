@@ -2405,7 +2405,7 @@ The ``process`` defines configuration parameters of the Tarantool process in the
     .. important::
 
         Do not enable the background mode for applications intended to run by the
-        ``tt`` utility. For more information, see the :ref:`tt-start` reference.
+        ``tt`` utility. For more information, see the :ref:`tt start <tt-start>` reference.
 
     |
     | Type: boolean

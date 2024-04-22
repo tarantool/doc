@@ -42,12 +42,13 @@ Running in the background
 -------------------------
 
 ``tt start`` runs Tarantool applications in the background and uses its own watchdog
-process for status checks (:ref:`tt-status`) and application stopping (:ref:`tt-stop`).
+process for status checks (:ref:`tt status <tt-status>`) and application stopping (:ref:`tt stop <tt-stop>`).
 
 .. important::
 
-    Do not switch the application to the background mode using the cluster configuration
-    (``process.background: true`` in the YAML configuration) or application code (``box.cfg.background = true``).
+    Do not switch on the background mode using the cluster configuration
+    (``process.background: true`` in the YAML configuration) or code (``box.cfg.background = true``)
+    in applications that you run with ``tt``.
     If you start such an application with ``tt start``, ``tt`` won't be able to check
     the application status or stop it using the corresponding commands.
 
