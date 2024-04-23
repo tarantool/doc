@@ -9,12 +9,12 @@ Backend store
 
 |tcm_full_name| uses an underlying data store (*backend store*) for its entities:
 users, roles, cluster connections, settings, and other objects that you manipulate in |tcm|.
-The backend store be either an etcd or a Tarantool cluster.
+The backend store can be either an etcd or a Tarantool cluster.
 
 Typically, the backend store works independently from |tcm|. For example, it can
-be the same ectd or Tarantool cluster that is used as a :ref:`centralized configuration storage <configuration_etcd>`.
-This makes |tcm| stateless: all objects that are created or modified in the
-web UI are sent to the backend store, an no objects are stored inside the |tcm| instances.
+be the same ectd or Tarantool cluster that you use as a :ref:`centralized configuration storage <configuration_etcd>`.
+This makes |tcm| stateless: all objects created or modified in its web UI are sent
+to the backend store, and nothing is stored inside the |tcm| instances themselves.
 Any number of instances can duplicate each other when connected to the same backend store.
 If you stop all instances, the store still contains their objects. You can continue
 working with them right after starting a new instance.
@@ -33,7 +33,7 @@ Setting up a backend store
 The |tcm| backend store requires the same configuration as
 :ref:`Tarantool centralized configuration storage <configuration_etcd>`.
 Follow the instructions in :ref:`centralized_configuration_storage_set_up` to
-set up a |tcm| backend store.
+set up a backend store.
 
 .. note::
 
@@ -92,7 +92,7 @@ different |tcm| instances separately in one etcd cluster, set the prefix explici
         prefix: /tcm2
 
 
-Other ``storage.etcd.*`` option configure various aspects of the etcd store connection,
+Other ``storage.etcd.*`` options configure various aspects of the etcd store connection,
 such as network timeouts and limits or TLS parameters.
 For the full list of the etcd |tcm| backend store options, see the
 :ref:`TCM configuration reference <tcm_configuration_reference_storage>`.
@@ -154,7 +154,7 @@ different |tcm| instances separately in one Tarantool cluster, set the prefix ex
         prefix: /tcm2
 
 
-Other ``storage.tarantool.*`` option configure various aspects of |tcm| connection
+Other ``storage.tarantool.*`` options configure various aspects of |tcm| connection
 to the Tarantool-based backend store, such as network timeouts and limits or TLS parameters.
 For the full list of the Tarantool-based |tcm| backend store options, see the
 :ref:`TCM configuration reference <tcm_configuration_reference_storage>`.
@@ -164,14 +164,14 @@ For the full list of the Tarantool-based |tcm| backend store options, see the
 Using an embedded backend store
 -------------------------------
 
-For development purposes, you can run |tcm| with an embedded backend store.
+For development purposes, you can start |tcm| with an embedded backend store.
 This is useful for local runs when you don't have or don't need an external backend store.
 
 An embedded |tcm| backend store is a single instance of etcd or Tarantool that
-is started automatically on the same host during the |tcm| startup. It is running
+is started automatically on the same host during the |tcm| startup. It runs
 in the background until |tcm| is stopped. The embedded backend store is persistent:
-if you start |tcm| again with the same backend store configuration, it has
-all the objects from the previous runs.
+if you start |tcm| again with the same backend store configuration, it restores
+the |tcm| data from the previous runs.
 
 .. note::
 
@@ -221,8 +221,8 @@ options. For the full list of configuration options of embedded backend stores, 
 
 .. _tcm_backend_store_embed_cluster:
 
-Making a cluster of embedded backend stores
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Setting up a cluster of embedded backend stores
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To simulate the production environment, you can form a distributed multi-instance cluster
 from embedded stores of multiple |tcm| instances. To do this, configure each |tcm|
@@ -309,7 +309,7 @@ and form a etcd cluster from them:
               workdir: node3.etcd
 
 
-To make a cluster from embedded Tarantool-based backend stores:
+To set up a cluster from embedded Tarantool-based backend stores:
 
 1.  Specify the Tarantool cluster configuration in ``storage.tarantool.embed.config``
     (as a plain text) or ``storage.tarantool.embed.config-file`` (as a YAML file).
