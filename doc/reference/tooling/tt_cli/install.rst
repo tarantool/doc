@@ -71,6 +71,8 @@ dependencies, such as a C compiler. Make sure they are available in the system.
 
 Tarantool Enterprise Edition is installed from prebuilt packages.
 
+.. _tt-install-authentication:
+
 Authentication
 ~~~~~~~~~~~~~~
 

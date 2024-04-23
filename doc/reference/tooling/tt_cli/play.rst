@@ -61,15 +61,15 @@ on this instance. This means that:
     by adding the ``--show-system`` flag. With this flag, ``tt`` plays the operations that
     create and configure user-defined spaces.
 
-*   The operations' LSNs will change unless you play all operations that took place since the instance startup.
+*   The operations' LSNs change unless you play all operations that took place since the instance startup.
 
-*   Replica IDs will change in accordance with the destination instance configuration.
+*   Replica IDs change in accordance with the destination instance configuration.
 
 Authentication
 ~~~~~~~~~~~~~~
 
-If authentication is required on the instance, use one of the following ways to pass the
-username and the password:
+Use one of the following ways to pass the username and the password when connecting
+to the instance:
 
 *   The ``-u`` (``--username``) and ``-p`` (``--password``) options:
 

@@ -133,6 +133,8 @@ ee section
 *   ``credential_path`` -- a path to the file with credentials used for
     downloading Tarantool Enterprise Edition (Tarantool customer zone credentials).
     The file should contain a username and a password, each on a separate line.
+    Find an example in the :ref:`tt install <tt-install-authentication>` command
+    reference.
 
     .. note::
 
