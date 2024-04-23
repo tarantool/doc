@@ -93,14 +93,14 @@ for Tarantool customer zone. Use one of the following ways to pass the username 
 
     .. code-block:: text
 
-        myuser
+        myuser@tarantool.io
         p4$$w0rD
 
 *   Environment variables ``TT_CLI_EE_USERNAME`` and ``TT_CLI_EE_PASSWORD``:
 
     ..  code-block:: console
 
-        $ export TT_CLI_EE_USERNAME=myuser
+        $ export TT_CLI_EE_USERNAME=myuser@tarantool.io
         $ export TT_CLI_EE_PASSWORD=p4$$w0rD
         $ tt install tarantool-ee
 
