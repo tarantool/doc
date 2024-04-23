@@ -2390,7 +2390,7 @@ The ``process`` defines configuration parameters of the Tarantool process in the
 
 -   :ref:`process.background <configuration_reference_process_background>`
 -   :ref:`process.coredump <configuration_reference_process_coredump>`
--   :ref:`process.custom_proc_title <configuration_reference_process_custom_proc_title>`
+-   :ref:`process.title <configuration_reference_process_title>`
 -   :ref:`process.pid_file <configuration_reference_process_pid_file>`
 -   :ref:`process.strip_core <configuration_reference_process_strip_core>`
 -   :ref:`process.username <configuration_reference_process_username>`
@@ -2423,9 +2423,9 @@ The ``process`` defines configuration parameters of the Tarantool process in the
     | Default: false
     | Environment variable: TT_PROCESS_COREDUMP
 
-.. _configuration_reference_process_custom_proc_title:
+.. _configuration_reference_process_title:
 
-.. confval:: process.custom_proc_title
+.. confval:: process.title
 
     Sets the name of the server's process title (what’s shown in the COMMAND column for
     ``ps -ef`` and ``top -c`` commands).
@@ -2433,7 +2433,7 @@ The ``process`` defines configuration parameters of the Tarantool process in the
     |
     | Type: string
     | Default: 'tarantool - {{ instance_name }}'
-    | Environment variable: TT_PROCESS_CUSTOM_PROC_TITLE
+    | Environment variable: TT_PROCESS_TITLE
 
 .. _configuration_reference_process_pid_file:
 
