@@ -24,6 +24,11 @@
     and :ref:`pid_file <cfg_basic-pid_file>` parameters must be non-null for
     this to work.
 
+    .. important::
+
+        Do not enable the background mode for applications intended to run by the
+        ``tt`` utility. For more information, see the :ref:`tt start <tt-start>` reference.
+
     |
     | Type: boolean
     | Default: false
