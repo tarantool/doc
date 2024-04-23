@@ -64,6 +64,14 @@ env section
 *   ``inc_dir`` -- the base directory for storing header files. They will
     be placed in the ``include`` subdirectory inside the specified directory.
     Default: ``include``.
+
+    .. note::
+
+        The header files directory path can also be passed using the ``TT_CLI_TARANTOOL_PREFIX``
+        environment variable. If it is set, ``tt rocks`` and ``tt build`` commands use the
+        ``include/tarantool`` directory inside ``TT_CLI_TARANTOOL_PREFIX`` as the
+        header files directory.
+
 *   ``restart_on_failure`` -- restart the instance on failure: ``true`` or ``false``.
     Default: ``false``.
 *   ``tarantoolctl_layout`` -- use a layout compatible with the deprecated ``tarantoolctl``
@@ -108,6 +116,13 @@ repo section
 ~~~~~~~~~~~~
 
 *   ``rocks`` -- the directory where rocks files are stored.
+
+    .. note::
+
+        The rocks directory path can be passed in the ``TT_CLI_REPO_ROCKS``
+        environment variable instead. The variable is also used if the directory
+        specified in ``repo.rocks`` does not include a repository manifest.
+
 *   ``distfiles`` -- the directory where installation files are stored.
 
 .. _tt-config_file_ee:
@@ -116,7 +131,15 @@ ee section
 ~~~~~~~~~~
 
 *   ``credential_path`` -- a path to the file with credentials used for
-    downloading Tarantool Enterprise Edition.
+    downloading Tarantool Enterprise Edition (Tarantool customer zone credentials).
+    The file should contain a username and a password, each on a separate line.
+    Find an example in the :ref:`tt install <tt-install-authentication>` command
+    reference.
+
+    .. note::
+
+        The customer zone credentials can also be passed in the
+        ``TT_CLI_EE_USERNAME`` and ``TT_CLI_EE_PASSWORD`` environment variables.
 
 templates section
 ~~~~~~~~~~~~~~~~~

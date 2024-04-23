@@ -71,6 +71,39 @@ dependencies, such as a C compiler. Make sure they are available in the system.
 
 Tarantool Enterprise Edition is installed from prebuilt packages.
 
+.. _tt-install-authentication:
+
+Authentication
+~~~~~~~~~~~~~~
+
+To install Tarantool EE using ``tt install``, you need to provide access credentials
+for Tarantool customer zone. Use one of the following ways to pass the username and the password:
+
+*   A text file specified in the ``ee.credentials_path`` parameter of the
+    :ref:`tt enviromnment configuration <tt-config_file>`:
+
+    ..  code-block:: yaml
+
+        # tt.yaml
+        # ...
+        ee:
+          credential_path: cred.txt
+
+    `cred.txt` should contain a username and a password on separate lines:
+
+    .. code-block:: text
+
+        myuser@tarantool.io
+        p4$$w0rD
+
+*   Environment variables ``TT_CLI_EE_USERNAME`` and ``TT_CLI_EE_PASSWORD``:
+
+    ..  code-block:: console
+
+        $ export TT_CLI_EE_USERNAME=myuser@tarantool.io
+        $ export TT_CLI_EE_PASSWORD=p4$$w0rD
+        $ tt install tarantool-ee
+
 Development versions
 ~~~~~~~~~~~~~~~~~~~~
 
