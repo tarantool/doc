@@ -11,12 +11,17 @@ Exporting data
 
 ..  code-block:: console
 
-    $ tt [crud] export URI SPACE:FILE ... [EXPORT_OPTION ...]
+    $ tt [crud|tdg2] export URI SPACE:FILE ... [EXPORT_OPTION ...]
 
-``tt [crud] export`` exports a space's data to a file.
-The ``crud`` command is optional and can be used to export a cluster's data by using the `CRUD <https://github.com/tarantool/crud>`_ module. Without ``crud``, data is exported using the :ref:`box.space <box_space>` API.
+``tt export`` exports a space's data to a file.
+The ``crud`` and ``tdg2`` commands are optional and cover specific export cases:
 
-``tt [crud] export`` takes the following arguments:
+*   ``tt crud export`` uses the `CRUD <https://github.com/tarantool/crud>`_ module to export a cluster's data.
+*   ``tt tdg2 export`` exports data from a `Tarantool Data Grid 2 <https://www.tarantool.io/ru/tdg/latest/>`_ cluster.
+
+Without ``crud`` and ``tdg2``, the data is exported using the :ref:`box.space <box_space>` API.
+
+``tt [crud|tdg2] export`` takes the following arguments:
 
 *   ``URI``: The URI of a router instance if ``crud`` is used. Otherwise, it should specify the URI of a storage.
 *   ``FILE``: The name of a file for storing exported data.
@@ -25,6 +30,16 @@ The ``crud`` command is optional and can be used to export a cluster's data by u
 ..  NOTE::
 
     :ref:`Read access <authentication-owners_privileges>` to the space is required to export its data.
+
+.. _tt-export-output-format:
+
+Output format
+-------------
+
+``tt export`` exports the data in the following formats:
+
+*   ``tt export`` and ``tt crud export``: CSV
+*   ``tt tdg2 export``: JSON lines
 
 .. _tt-export-limitations:
 
@@ -98,6 +113,54 @@ For example, the command below exports compound values serialized in JSON:
     $ tt crud export localhost:3301 customers:customers.csv  \
                      --compound-value-format json
 
+.. _tt-export-tdg2:
+
+Exporting from Tarantool Data Grid 2
+------------------------------------
+
+The command below exports data of the ``customers`` space from a TDG2 cluster to
+the ``customers.jsonl`` file:
+
+.. code-block:: console
+
+    $ tt tdg2 export localhost:3301 customers:customers.jsonl
+
+If the ``customers`` space has four fields (``id``, ``firstname``, ``lastname``, and ``age``), the file with exported data might look like this:
+
+.. code-block:: json
+
+    {"age":30,"first_name":"Samantha","id":1,"second_name":"Carter"}
+    {"age":41,"first_name":"Fay","id":2,"second_name":"Rivers"}
+    {"age":74,"first_name":"Milo","id":4,"second_name":"Walters"}
+    # ...
+
+If a tuple contains a ``null`` value in a field, this field is not exported:
+
+.. code-block:: json
+
+    {"age":13,"first_name":"Zachariah","id":3}
+
+Tuple fields that contain maps with non-string keys are converted maps with string keys:
+
+
+TDG2 sets a limit on the number of tuples returned in result of a query execution
+in the `hard-limits.returned <https://www.tarantool.io/en/tdg/latest/reference/config/config_logic/#hard-limits>`_
+TDG2 configuration parameter.
+When exporting TDG2 data, make sure that the result tuples count does not exceed
+this limit and set the export batch size (``--batch-size`` parameter) accordingly.
+For example, if your TDG2 cluster has a 1000 tuples return limit:
+
+.. code-block:: yaml
+
+    #tdg2 config.yaml
+    # ...
+    hard-limits.returned: 1000
+
+Set the ``tt tdg2 export`` batch size less or equal to 1000:
+
+.. code-block:: console
+
+    $ tt tdg2 export localhost:3301 customers:customers.jsonl --batch-size=1000
 
 .. _tt-export-options:
 
@@ -120,7 +183,14 @@ Options
 
     The number of tuples to transfer per request (the default is ``10000``).
 
+    .. important::
+
+        When using ``tt tdg2 export``, make sure that te batch size does not exceed
+        the ``hard-limits.returned`` TDG2 parameter value set on the cluster.
+
 ..  option:: --compound-value-format STRING
+
+    **Applicable to:** ``tt export``, ``tt crud export``
 
     A format used to export compound values like arrays or maps.
     By default, ``tt`` exports empty values for fields containing such values.
@@ -131,6 +201,8 @@ Options
 
 ..  option:: --header
 
+    **Applicable to:** ``tt export``, ``tt crud export``
+
     Add field names in the first row.
 
     See also: :ref:`Exporting headers <tt-export-header>`.
@@ -140,6 +212,8 @@ Options
     A password used to connect to the instance.
 
 ..  option:: --readview
+
+    **Applicable to:** ``tt export``, ``tt crud export``
 
     Export data using a :ref:`read view <read_views>`.
 

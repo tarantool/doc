@@ -11,14 +11,20 @@ Importing data
 
 .. code-block:: console
 
-    $ tt [crud] import URI FILE:SPACE [IMPORT_OPTION ...]
+    $ tt [crud|tdg2] import URI FILE:SPACE [IMPORT_OPTION ...]
     # or
-    $ tt [crud] import URI :SPACE < FILE [IMPORT_OPTION ...]
+    $ tt [crud|tdg2] import URI :SPACE < FILE [IMPORT_OPTION ...]
 
-``tt [crud] import`` imports data from a file to a space.
-The ``crud`` command is optional and can be used to import data to a cluster by using the `CRUD <https://github.com/tarantool/crud>`_ module. Without ``crud``, data is imported using the :ref:`box.space <box_space>` API.
+``tt import`` imports data from a file to a space.
+The ``crud`` and ``tdg2`` commands are optional and cover specific export cases:
 
-This command takes the following arguments:
+*   ``tt crud import`` uses the `CRUD <https://github.com/tarantool/crud>`_ module to import data into a cluster.
+*   ``tt tdg2 export`` imports data into a `Tarantool Data Grid 2 <https://www.tarantool.io/ru/tdg/latest/>`_ cluster
+    using the ``repository.put`` function of the TDG2 `repository API <https://www.tarantool.io/en/tdg/latest/reference/sandbox/repository-api/#repository-api>`_.
+
+Without ``crud`` and ``tdg2``, the data is imported using the :ref:`box.space <box_space>` API.
+
+``tt [crud|tdg2] import`` takes the following arguments:
 
 *   ``URI``: The URI of a router instance if ``crud`` is used. Otherwise, it should specify the URI of a storage.
 *   ``FILE``: The name of a file containing data to be imported.
@@ -28,6 +34,15 @@ This command takes the following arguments:
 
     :ref:`Write access <authentication-owners_privileges>` to the space and `execute` access to `universe` are required to import data.
 
+.. _tt-import-format:
+
+Import file format
+------------------
+
+``tt import`` imports the data from the following formats:
+
+*   ``tt export`` and ``tt crud export``: CSV
+*   ``tt tdg2 export``: JSON lines
 
 .. _tt-import-limitations:
 
@@ -134,13 +149,64 @@ To skip rows whose data cannot be parsed correctly, use the ``--on-error`` optio
     $ tt crud import localhost:3301 customers.csv:customers \
                      --on-error skip
 
+.. _tt-import-tdg2:
+
+Importing into Tarantool Data Grid 2
+------------------------------------
+
+To import data into TDG2, prepare a JSON lines file with an input data and call
+``tt tdg2 import`` using this file as an input:
+
+.. code-block:: console
+
+    $ tt tdg2 import localhost:3301 customers.jsonl:customers
+
+The input file can look like this:
+
+.. code-block:: json
+
+    {"age":30,"first_name":"Samantha","id":1,"second_name":"Carter"}
+    {"age":41,"first_name":"Fay","id":2,"second_name":"Rivers"}
+    {"age":74,"first_name":"Milo","id":4,"second_name":"Walters"}
+
+.. note::
+
+    Since JSON describes objects in maps with string keys, there is no way to
+    import a field value that is a map with a non-string key.
+
+If an error happens during TDG2 import, the all the changes made within the current batch
+are rolled back. The rollback process is the same as in ``tt crud import`` with the ``--rollback-on-error`` option.
+
+
+TDG2 and the ``tt tdg2 import`` implementation do not match errors to specific tuples
+wh
+batching: e--batch-siz is 1
+            -- force to skip warning and continue
+
+.. code-block:: console
+
+    $ tt tdg2 import localhost:3301 customers.jsonl:customers \
+                     --batch-size=100
+                     --force
+
 
 .. _tt-import-options:
 
 Options
 -------
 
+..  option:: --batch-size STRING
+
+    **Applicable to:** ``tt crud import``, ``tt tdg2 import``
+
+    The number of tuples to transfer per request. The default is:
+
+        *   ``100`` for ``tt crud import``.
+        *   ``1`` for ``tt tdg2 import``. See :ref:`tt-import-tdg2` for details.
+
 ..  option:: --dec-sep STRING
+
+    **Applicable to:** ``tt import``, ``tt crud import``
 
     The string of symbols that defines decimal separators for numeric data (the default is ``.,``).
 
@@ -149,6 +215,8 @@ Options
         Symbols specified in this option cannot intersect with ``--th-sep``.
 
 ..  option:: --delimiter STRING
+
+    **Applicable to:** ``tt import``, ``tt crud import``
 
     A symbol that defines a field value delimiter.
     For CSV, the default delimiter is a comma (``,``).
@@ -169,6 +237,12 @@ Options
 
     See also: :ref:`Handling parsing errors <tt-import-parsing-error>`.
 
+..  option:: --force
+
+    **Applicable to:** ``tt tdg2 import``
+
+    Automatically confirm importing into TDG2 with ``--batch-size`` greater than one.
+
 ..  option:: --format STRING
 
     A format of input data.
@@ -176,6 +250,8 @@ Options
     Supported formats: ``csv``.
 
 ..  option:: --header
+
+    **Applicable to:** ``tt import``, ``tt crud import``
 
     Process the first line as a header containing field names.
     In this case, field values start from the second line.
@@ -189,11 +265,15 @@ Options
 
 ..  option:: --match STRING
 
+    **Applicable to:** ``tt import``, ``tt crud import``
+
     Configure matching between field names in the input file and the target space.
 
     See also: :ref:`Matching of input and space fields <tt-import-match-fields>`.
 
 ..  option:: --null STRING
+
+    **Applicable to:** ``tt import``, ``tt crud import``
 
     A value to be interpreted as ``null`` when importing data.
     By default, an empty value is interpreted as ``null``.
@@ -253,6 +333,8 @@ Options
 
 ..  option:: --quote STRING
 
+    **Applicable to:** ``tt import``, ``tt crud import``
+
     A symbol that defines a quote.
     For CSV, double quotes are used by default (``"``).
     The double symbol of this option acts as the escaping symbol within input data.
@@ -263,6 +345,8 @@ Options
     Overwrites the file if it already exists.
 
 ..  option:: --th-sep STRING
+
+    **Applicable to:** ``tt import``, ``tt crud import``
 
     The string of symbols that define thousand separators for numeric data.
     The default value includes a space and a backtick `````.
@@ -278,6 +362,10 @@ Options
 
 ..  option:: --rollback-on-error
 
-    Applicable only when ``crud`` is used.
+    **Applicable to:** ``tt crud import``
 
     Specify whether any operation failed on a router leads to rollback on a storage where the operation is failed.
+
+    .. note::
+
+        ``tt tdg2 import`` always works as if ``--rollback-on-error`` is ``true``.
