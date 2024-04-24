@@ -36,10 +36,10 @@ Without ``crud`` and ``tdg2``, the data is imported using the :ref:`box.space <b
 
 .. _tt-import-format:
 
-Import file format
-------------------
+Input file format
+-----------------
 
-``tt import`` imports the data from the following formats:
+``tt import`` imports data from the following formats:
 
 *   ``tt export`` and ``tt crud export``: CSV
 *   ``tt tdg2 export``: JSON lines
@@ -177,11 +177,12 @@ The input file can look like this:
 If an error happens during TDG2 import, the all the changes made within the current batch
 are rolled back. The rollback process is the same as in ``tt crud import`` with the ``--rollback-on-error`` option.
 
-
-TDG2 and the ``tt tdg2 import`` implementation do not match errors to specific tuples
-wh
-batching: e--batch-siz is 1
-            -- force to skip warning and continue
+Batch rollback prevents the import of correct tuples that fall in a batch with errors in data,
+and complicates debugging due to the abscence of error matching. To minimize this
+effect, the default batch size (``--batch-size)``for ``tt tdg2 import`` is 1.
+If you increase the batch size, ``tt`` informs you about the possible issues and
+asks for an explicit confirmation to proceed.
+To automatically confirm a batch import operation, add the ``--force`` option:
 
 .. code-block:: console
 

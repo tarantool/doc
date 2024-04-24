@@ -36,7 +36,7 @@ Without ``crud`` and ``tdg2``, the data is exported using the :ref:`box.space <b
 Output format
 -------------
 
-``tt export`` exports the data in the following formats:
+``tt export`` exports data in the following formats:
 
 *   ``tt export`` and ``tt crud export``: CSV
 *   ``tt tdg2 export``: JSON lines
