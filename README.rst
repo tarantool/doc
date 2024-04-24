@@ -159,7 +159,7 @@ Its configuration is placed in the ``vale.ini`` file located in the root project
 To enable RST support in Vale, you need to install Sphinx.
 Then, you can enable Vale integration in your IDE, for example:
 
-*   `VS Code <https://marketplace.visualstudio.com/items?itemName=errata-ai.vale-server>`_
+*   `VS Code <https://marketplace.visualstudio.com/items?itemName=ChrisChinchilla.vale-vscode>`_
 *   `IntelliJ-based IDEs <https://plugins.jetbrains.com/plugin/16136-grazie-professional/docs/project-style-guides.html#vanilla-vale>`_
 
 
