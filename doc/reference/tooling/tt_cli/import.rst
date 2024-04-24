@@ -16,7 +16,7 @@ Importing data
     $ tt [crud|tdg2] import URI :SPACE < FILE [IMPORT_OPTION ...]
 
 ``tt import`` imports data from a file to a space.
-The ``crud`` and ``tdg2`` commands are optional and cover specific export cases:
+The ``crud`` and ``tdg2`` commands are optional and cover specific import cases:
 
 *   ``tt crud import`` uses the `CRUD <https://github.com/tarantool/crud>`_ module to import data into a cluster.
 *   ``tt tdg2 export`` imports data into a `Tarantool Data Grid 2 <https://www.tarantool.io/ru/tdg/latest/>`_ cluster
@@ -179,7 +179,7 @@ are rolled back. The rollback process is the same as in ``tt crud import`` with 
 
 Batch rollback prevents the import of correct tuples that fall in a batch with errors in data,
 and complicates debugging due to the abscence of error matching. To minimize this
-effect, the default batch size (``--batch-size)``for ``tt tdg2 import`` is 1.
+effect, the default batch size (``--batch-size``) for ``tt tdg2 import`` is 1.
 If you increase the batch size, ``tt`` informs you about the possible issues and
 asks for an explicit confirmation to proceed.
 To automatically confirm a batch import operation, add the ``--force`` option:

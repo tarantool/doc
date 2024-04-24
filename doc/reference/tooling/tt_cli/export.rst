@@ -81,7 +81,7 @@ If a tuple contains a ``null`` value, for example, ``[1, 477, 'Andrew', null, 38
 Exporting headers
 -----------------
 
-To export data with a space's field names in the first row, use the ``--header`` option:
+To export data with a space's field names in the first row of the CSV file, use the ``--header`` option:
 
 .. code-block:: console
 
@@ -104,9 +104,9 @@ In this case, field values start from the second row, for example:
 Exporting compound data
 -----------------------
 
-By default, ``tt`` exports empty values for fields containing compound data such as arrays or maps.
+In the CSV format, ``tt`` exports empty values by default for fields containing compound data such as arrays or maps.
 To export compound values in a specific format, use the ``--compound-value-format`` option.
-For example, the command below exports compound values serialized in JSON:
+For example, the command below exports compound values to CSV serialized in JSON:
 
 .. code-block:: console
 
@@ -132,7 +132,6 @@ If the ``customers`` space has four fields (``id``, ``firstname``, ``lastname``,
     {"age":30,"first_name":"Samantha","id":1,"second_name":"Carter"}
     {"age":41,"first_name":"Fay","id":2,"second_name":"Rivers"}
     {"age":74,"first_name":"Milo","id":4,"second_name":"Walters"}
-    # ...
 
 If a tuple contains a ``null`` value in a field, this field is not exported:
 
@@ -140,13 +139,13 @@ If a tuple contains a ``null`` value in a field, this field is not exported:
 
     {"age":13,"first_name":"Zachariah","id":3}
 
-Tuple fields that contain maps with non-string keys are converted maps with string keys:
+Tuple fields that contain maps with non-string keys are converted maps with string keys.
 
 
 TDG2 sets a limit on the number of tuples returned in result of a query execution
 in the `hard-limits.returned <https://www.tarantool.io/en/tdg/latest/reference/config/config_logic/#hard-limits>`_
 TDG2 configuration parameter.
-When exporting TDG2 data, make sure that the result tuples count does not exceed
+When exporting data from TDG2, make sure that the result tuples count does not exceed
 this limit and set the export batch size (``--batch-size`` parameter) accordingly.
 For example, if your TDG2 cluster has a 1000 tuples return limit:
 
