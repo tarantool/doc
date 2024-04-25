@@ -19,7 +19,7 @@ Importing data
 cover the following cases:
 
 *   ``tt import`` imports data into a single-replicaset storage through its master instance using the :ref:`box.space <box_space>` API.
-*   ``tt crud import`` imports data into a sharded cluster through its router using the `CRUD <https://github.com/tarantool/crud>`_ module.
+*   ``tt crud import`` imports data into a sharded cluster through CRUD router using the `CRUD <https://github.com/tarantool/crud>`_ module.
 *   ``tt tdg2 import`` imports data into a `Tarantool Data Grid 2 <https://www.tarantool.io/ru/tdg/latest/>`_ cluster
     through its router using the ``repository.put`` function of the `TDG2 Repository API <https://www.tarantool.io/en/tdg/latest/reference/sandbox/repository-api/#repository-api>`_.
 
