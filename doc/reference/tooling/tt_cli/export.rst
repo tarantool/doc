@@ -13,13 +13,13 @@ Exporting data
 
     $ tt [crud|tdg2] export URI SPACE:FILE ... [EXPORT_OPTION ...]
 
-``tt export`` exports a space's data to a file.
-The ``crud`` and ``tdg2`` commands are optional and cover specific export cases:
+``tt [crud|tdg2] export`` exports a space's data to a file. Three export commands
+cover the following cases:
 
-*   ``tt crud export`` uses the `CRUD <https://github.com/tarantool/crud>`_ module to export a cluster's data.
-*   ``tt tdg2 export`` exports data from a `Tarantool Data Grid 2 <https://www.tarantool.io/ru/tdg/latest/>`_ cluster.
-
-Without ``crud`` and ``tdg2``, the data is exported using the :ref:`box.space <box_space>` API.
+*   ``tt export`` exports data of a single-replicaset storage using the :ref:`box.space <box_space>` API.
+*   ``tt crud export`` exports data from a sharded cluster through its router using the `CRUD <https://github.com/tarantool/crud>`_ module.
+*   ``tt tdg2 export`` exports data from a `Tarantool Data Grid 2 <https://www.tarantool.io/ru/tdg/latest/>`_ cluster
+    through its router.
 
 ``tt [crud|tdg2] export`` takes the following arguments:
 
@@ -118,14 +118,19 @@ For example, the command below exports compound values to CSV serialized in JSON
 Exporting from Tarantool Data Grid 2
 ------------------------------------
 
-The command below exports data of the ``customers`` space from a TDG2 cluster to
+.. note::
+
+    In the TDG2 data model, a **type** represents a Tarantool space, and an **object**
+    of a type represents a tuple in the type's underlying space.
+
+The command below exports data of the ``customers`` type from a TDG2 cluster to
 the ``customers.jsonl`` file:
 
 .. code-block:: console
 
     $ tt tdg2 export localhost:3301 customers:customers.jsonl
 
-If the ``customers`` space has four fields (``id``, ``firstname``, ``lastname``, and ``age``), the file with exported data might look like this:
+If the ``customers`` type has four fields (``id``, ``firstname``, ``lastname``, and ``age``), the file with exported data might look like this:
 
 .. code-block:: json
 
@@ -133,25 +138,27 @@ If the ``customers`` space has four fields (``id``, ``firstname``, ``lastname``,
     {"age":41,"first_name":"Fay","id":2,"second_name":"Rivers"}
     {"age":74,"first_name":"Milo","id":4,"second_name":"Walters"}
 
-If a tuple contains a ``null`` value in a field, this field is not exported:
+If an object contains a ``null`` value in a field, this field skipped:
 
 .. code-block:: json
 
     {"age":13,"first_name":"Zachariah","id":3}
 
-Tuple fields that contain maps with non-string keys are converted maps with string keys.
+Object fields that contain maps with non-string keys are converted to maps with string keys.
 
+TDG2 sets a limit on the number of objects transferred from each storage during a query execution
+(the `hard-limits.returned <https://www.tarantool.io/en/tdg/latest/reference/config/config_logic/#hard-limits>`_
+TDG2 configuration parameter). If an export batch size (``--batch-size`` parameter)
+is greater than this limit, it is possible that more than  ``hard-limits.returned`` objects
+will be requested from one storage and export will fail.
+To make sure that ``hard-limits.returned`` is never exceeded during an export operation,
+set the export batch size less or equal to this limit.
 
-TDG2 sets a limit on the number of tuples returned in result of a query execution
-in the `hard-limits.returned <https://www.tarantool.io/en/tdg/latest/reference/config/config_logic/#hard-limits>`_
-TDG2 configuration parameter.
-When exporting data from TDG2, make sure that the result tuples count does not exceed
-this limit and set the export batch size (``--batch-size`` parameter) accordingly.
-For example, if your TDG2 cluster has a 1000 tuples return limit:
+For example, if your TDG2 cluster has a 1000 objects ``hard-limits.returned`` limit:
 
 .. code-block:: yaml
 
-    #tdg2 config.yaml
+    # tdg2 config.yaml
     # ...
     hard-limits.returned: 1000
 
@@ -180,7 +187,10 @@ Options
 
 ..  option:: --batch-size INT
 
-    The number of tuples to transfer per request (the default is ``10000``).
+    The number of tuples to transfer per request. The default is:
+
+        *   ``10000`` for ``tt export`` and ``tt crud export``.
+        *   ``100`` for ``tt tdg2 export``.
 
     .. important::
 

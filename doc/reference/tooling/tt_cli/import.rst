@@ -15,14 +15,13 @@ Importing data
     # or
     $ tt [crud|tdg2] import URI :SPACE < FILE [IMPORT_OPTION ...]
 
-``tt import`` imports data from a file to a space.
-The ``crud`` and ``tdg2`` commands are optional and cover specific import cases:
+``tt [crud|tdg] import`` imports data from a file to a space. Three import commands
+cover the following cases:
 
-*   ``tt crud import`` uses the `CRUD <https://github.com/tarantool/crud>`_ module to import data into a cluster.
+*   ``tt import`` imports data into a single-replicaset storage through its master instance using the :ref:`box.space <box_space>` API.
+*   ``tt crud import`` imports data into a sharded cluster through its router using the `CRUD <https://github.com/tarantool/crud>`_ module.
 *   ``tt tdg2 import`` imports data into a `Tarantool Data Grid 2 <https://www.tarantool.io/ru/tdg/latest/>`_ cluster
-    using the ``repository.put`` function of the TDG2 `repository API <https://www.tarantool.io/en/tdg/latest/reference/sandbox/repository-api/#repository-api>`_.
-
-Without ``crud`` and ``tdg2``, the data is imported using the :ref:`box.space <box_space>` API.
+    through its router using the ``repository.put`` function of the `TDG2 Repository API <https://www.tarantool.io/en/tdg/latest/reference/sandbox/repository-api/#repository-api>`_.
 
 ``tt [crud|tdg2] import`` takes the following arguments:
 
@@ -154,8 +153,13 @@ To skip rows whose data cannot be parsed correctly, use the ``--on-error`` optio
 Importing into Tarantool Data Grid 2
 ------------------------------------
 
-To import data into TDG2, prepare a JSON lines file with an input data and call
-``tt tdg2 import`` using this file as an input:
+.. note::
+
+    In the TDG2 data model, a **type** represents a Tarantool space, and an **object**
+    of a type represents a tuple in the type's underlying space.
+
+The command below imports objects of the ``customers`` type into a TDG2 cluster.
+The objects are described in the ``customers.jsonl`` file.
 
 .. code-block:: console
 
@@ -174,12 +178,18 @@ The input file can look like this:
     Since JSON describes objects in maps with string keys, there is no way to
     import a field value that is a map with a non-string key.
 
-If an error happens during TDG2 import, the all the changes made within the current batch
-are rolled back. The rollback process is the same as in ``tt crud import`` with the ``--rollback-on-error`` option.
+In case of an error during TDG2 import, ``tt tdg2 import`` rolls back the changes made
+*within the current batch* on the *storage where the error has happened* (per-storage rollback)
+and reports an error. On other storages, objects from the same batch can be succesfully
+imported. So, the rollback process of ``tt tdg2 import``
+is the same as the one of ``tt crud import`` with the ``--rollback-on-error`` option.
 
-Batch rollback prevents the import of correct tuples that fall in a batch with errors in data,
-and complicates debugging due to the abscence of error matching. To minimize this
+Since object batches can be imported partially (per-storage rollback), the absence
+of error matching complicates the debugging in case of errors. To minimize this
 effect, the default batch size (``--batch-size``) for ``tt tdg2 import`` is 1.
+This makes the debugging straightforward: you always know which object caused the error.
+On the other hand, this decreases the performance in comparison to import in larger batches.
+
 If you increase the batch size, ``tt`` informs you about the possible issues and
 asks for an explicit confirmation to proceed.
 To automatically confirm a batch import operation, add the ``--force`` option:
@@ -196,7 +206,7 @@ To automatically confirm a batch import operation, add the ``--force`` option:
 Options
 -------
 
-..  option:: --batch-size STRING
+..  option:: --batch-size INT
 
     **Applicable to:** ``tt crud import``, ``tt tdg2 import``
 
