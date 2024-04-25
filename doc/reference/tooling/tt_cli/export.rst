@@ -149,7 +149,7 @@ Object fields that contain maps with non-string keys are converted to maps with 
 TDG2 sets a limit on the number of objects transferred from each storage during a query execution
 (the `hard-limits.returned <https://www.tarantool.io/en/tdg/latest/reference/config/config_logic/#hard-limits>`_
 TDG2 configuration parameter). If an export batch size (``--batch-size`` parameter)
-is greater than this limit, it is possible that more than  ``hard-limits.returned`` objects
+is greater than this limit, it is possible that more than ``hard-limits.returned`` objects
 will be requested from one storage and export will fail.
 To make sure that ``hard-limits.returned`` is never exceeded during an export operation,
 set the export batch size less or equal to this limit.
