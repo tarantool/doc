@@ -375,7 +375,8 @@ Options
 
     **Applicable to:** ``tt crud import``
 
-    Specify whether any operation failed on a router leads to rollback on a storage where the operation is failed.
+    Specify whether any operation failed on a storage leads to rollback of a batch
+    import on this storage.
 
     .. note::
 
