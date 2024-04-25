@@ -184,7 +184,7 @@ Options
 
     .. important::
 
-        When using ``tt tdg2 export``, make sure that te batch size does not exceed
+        When using ``tt tdg2 export``, make sure that the batch size does not exceed
         the ``hard-limits.returned`` TDG2 parameter value set on the cluster.
 
 ..  option:: --compound-value-format STRING

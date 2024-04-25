@@ -19,7 +19,7 @@ Importing data
 The ``crud`` and ``tdg2`` commands are optional and cover specific import cases:
 
 *   ``tt crud import`` uses the `CRUD <https://github.com/tarantool/crud>`_ module to import data into a cluster.
-*   ``tt tdg2 export`` imports data into a `Tarantool Data Grid 2 <https://www.tarantool.io/ru/tdg/latest/>`_ cluster
+*   ``tt tdg2 import`` imports data into a `Tarantool Data Grid 2 <https://www.tarantool.io/ru/tdg/latest/>`_ cluster
     using the ``repository.put`` function of the TDG2 `repository API <https://www.tarantool.io/en/tdg/latest/reference/sandbox/repository-api/#repository-api>`_.
 
 Without ``crud`` and ``tdg2``, the data is imported using the :ref:`box.space <box_space>` API.
@@ -41,8 +41,8 @@ Input file format
 
 ``tt import`` imports data from the following formats:
 
-*   ``tt export`` and ``tt crud export``: CSV
-*   ``tt tdg2 export``: JSON lines
+*   ``tt import`` and ``tt crud import``: CSV
+*   ``tt tdg2 import``: JSON lines
 
 .. _tt-import-limitations:
 
