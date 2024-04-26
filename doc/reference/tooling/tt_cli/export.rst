@@ -19,7 +19,7 @@ cover the following cases:
 *   ``tt export`` exports data of a single-replicaset storage using the :ref:`box.space <box_space>` API.
 *   ``tt crud export`` exports data from a sharded cluster through СRUD router using the `CRUD <https://github.com/tarantool/crud>`_ module.
 *   ``tt tdg2 export`` exports data from a `Tarantool Data Grid 2 <https://www.tarantool.io/ru/tdg/latest/>`_ cluster
-    through its `connector <https://www.tarantool.io/ru/tdg/latest/architecture/#connector>`_ using `TDG2 Repository API <https://www.tarantool.io/en/tdg/latest/reference/sandbox/repository-api/#repository-api>`_..
+    through its `connector <https://www.tarantool.io/ru/tdg/latest/architecture/#connector>`_ using `TDG2 Repository API <https://www.tarantool.io/en/tdg/latest/reference/sandbox/repository-api/#repository-api>`_.
 
 ``tt [crud|tdg2] export`` takes the following arguments:
 

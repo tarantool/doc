@@ -180,7 +180,7 @@ The input file can look like this:
 
 In case of an error during TDG2 import, ``tt tdg2 import`` rolls back the changes made
 *within the current batch* on the *storage where the error has happened* (per-storage rollback)
-and reports an error. On other storages, objects from the same batch can be succesfully
+and reports an error. On other storages, objects from the same batch can be successfully
 imported. So, the rollback process of ``tt tdg2 import``
 is the same as the one of ``tt crud import`` with the ``--rollback-on-error`` option.
 
@@ -197,7 +197,7 @@ To automatically confirm a batch import operation, add the ``--force`` option:
 .. code-block:: console
 
     $ tt tdg2 import localhost:3301 customers.jsonl:customers \
-                     --batch-size=100
+                     --batch-size=100 \
                      --force
 
 
