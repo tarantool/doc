@@ -5,9 +5,9 @@ Working with replicasets
 
 ..  code-block:: console
 
-    $ tt replicaset COMMAND {[OPTION ...]|SUBCOMMAND}
+    $ tt replicaset COMMAND {APPLICATION[:APP_INSTANCE] | URI} [OPTIONS ...]
     # or
-    $ tt rs COMMAND {[OPTION ...]|SUBCOMMAND}
+    $ tt rs COMMAND {APPLICATION[:APP_INSTANCE] | URI} [OPTIONS ...]
 
 ``tt replicaset`` (or ``tt rs``) manages a Tarantool replica set.
 
@@ -58,7 +58,7 @@ with a name or a URI of an instance from this replica set:
 
 ..  code-block:: console
 
-    $ tt replicaset status myapp:storage-001-a
+    $ tt replicaset status 192.168.10.10:3301
 
 .. _tt-replicaset-status-authentication:
 
@@ -99,13 +99,13 @@ You can specify the orchestrator to use for the application using the following 
 *   ``--cartridge`` for Cartridge applications (Tarantool 2.x).
 *   ``--custom`` for any other orchestrators used on Tarantool 2.x clusters.
 
-If an actual orchestrator that the application uses does not match the specified
-option, an error is raised.
-
 ..  code-block:: console
 
     $ tt replicaset status myapp --config
     $ tt replicaset status my-cartridge-app --cartridge
+
+If an actual orchestrator that the application uses does not match the specified
+option, an error is raised.
 
 
 .. _tt-replicaset-status-options:
@@ -115,15 +115,15 @@ Options
 
 ..  option:: --cartridge
 
-    Force the Cartridge orchestrator.
+    Force the Cartridge orchestrator for Tarantool 2.x clusters.
 
 ..  option:: --config
 
-    Force the centralized config orchestrator.
+    Force the YAML configuration orchestrator for Tarantool 3.0 or later clusters.
 
 ..  option:: --custom
 
-    Force a custom orchestrator.
+    Force a custom orchestrator for Tarantool 2.x clusters.
 
 ..  option:: -u USERNAME, --username USERNAME
 
@@ -148,15 +148,6 @@ Options
 ..  option:: --sslciphers STRING
 
     The list of SSL cipher suites used for encrypted connections, separated by colons (``:``).
-
---sslcafile string path to a trusted certificate authorities (CA)
-file for the URI case
---sslcertfile string path to an SSL certificate file for the URI
-case
---sslciphers string colon-separated (:) list of SSL cipher suites
-the replicasetion for the URI case
---sslkeyfile string path to a private SSL key file the URI case
-
 
 .. _tt-replicaset-promote:
 
