@@ -70,6 +70,8 @@ help for the given command.
             -   Get the current status of a Tarantool instance
         *   -   :doc:`stop <stop>`
             -   Stop a Tarantool instance
+        *   -   :doc:`tdg2 <tdg2>`
+            -   Interact with `Tarantool Data Grid 2 <https://www.tarantool.io/ru/tdg/latest/>`_ clusters
         *   -   :doc:`uninstall <uninstall>`
             -   Uninstall Tarantool or ``tt``
         *   -   :doc:`version <version>`
@@ -107,5 +109,6 @@ help for the given command.
     start <start>
     status <status>
     stop <stop>
+    tdg2 <tdg2>
     uninstall <uninstall>
     version <version>
