@@ -49,7 +49,7 @@ environment, run ``tt replicaset status`` with the application name:
 Displaying status of a single replica set
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To view the status of a single replica set of an application , run ``tt replicaset status``
+To view the status of a single replica set of an application, run ``tt replicaset status``
 with a name or a URI of an instance from this replica set:
 
 ..  code-block:: console
@@ -161,7 +161,7 @@ promote
 demote
 ------
 
-``tt replicaset deomote`` (``tt rs demote``) demotes an instance.
+``tt replicaset demote`` (``tt rs demote``) demotes an instance.
 
 
 
