@@ -56,6 +56,8 @@ help for the given command.
             -   Package an application
         *   -   :doc:`play <play>`
             -   Play the contents of ``.snap`` or ``.xlog`` files to another Tarantool instance
+        *   -   :doc:`replicaset <replicaset>`
+            -   Manage a replica set
         *   -   :doc:`restart <restart>`
             -   Restart a Tarantool instance
         *   -   :doc:`rocks <rocks>`
@@ -102,6 +104,7 @@ help for the given command.
     logrotate <logrotate>
     pack <pack>
     play <play>
+    replicaset <replicaset>
     restart <restart>
     rocks <rocks>
     run <run>
