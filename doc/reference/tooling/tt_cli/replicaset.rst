@@ -69,8 +69,8 @@ Learn about other ways to provide user credentials in :ref:`tt-replicaset-status
 Authentication
 ~~~~~~~~~~~~~~
 
-Use one of the following ways to pass the username and the password when connecting
-to the instance:
+Use one of the following ways to pass the credentials of a Tarantool user when
+connecting to the instance:
 
 *   The ``-u`` (``--username``) and ``-p`` (``--password``) options:
 
