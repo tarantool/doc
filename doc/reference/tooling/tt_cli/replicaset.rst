@@ -56,9 +56,13 @@ with a name or a URI of an instance from this replica set:
 
     $ tt replicaset status myapp:storage-001-a
 
+For a replica outside the current ``tt`` environment, specify its URI and access credentials:
+
 ..  code-block:: console
 
-    $ tt replicaset status 192.168.10.10:3301
+    $ tt replicaset status 192.168.10.10:3301 -u myuser -p p4$$w0rD
+
+Learn about other ways to provide user credentials in :ref:`tt-replicaset-status-authentication`.
 
 .. _tt-replicaset-status-authentication:
 
