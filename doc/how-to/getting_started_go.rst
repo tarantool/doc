@@ -1,258 +1,264 @@
 .. _getting_started-go:
 
---------------------------------------------------------------------------------
 Connecting from Go
---------------------------------------------------------------------------------
+==================
 
-.. _getting_started-go-pre-requisites:
+**Examples on GitHub**: `sample_db <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/connectors/instances.enabled/sample_db>`_, `go <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/connectors/go>`_
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Pre-requisites
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The tutorial shows how to use the 2.x version of the `go-tarantool <https://github.com/tarantool/go-tarantool>`__ library to create a Go application that connects to a remote Tarantool instance, performs CRUD operations, and executes a stored procedure.
+You can find the full package documentation here: `Client in Go for Tarantool <https://pkg.go.dev/github.com/tarantool/go-tarantool/v2>`__.
 
-Before we proceed:
 
-#. `Install <https://github.com/tarantool/go-tarantool#installation>`__
-   the ``go-tarantool`` library.
 
-#. :ref:`Start <getting_started_db>` Tarantool (locally or in Docker)
-   and make sure that you have created and populated a database as we suggested
-   :ref:`earlier <creating-db-locally>`:
+.. _getting_started_go_sample_db:
 
-   .. code-block:: lua
+Sample database configuration
+-----------------------------
 
-       box.cfg{listen = 3301}
-       s = box.schema.space.create('tester')
-       s:format({
-                {name = 'id', type = 'unsigned'},
-                {name = 'band_name', type = 'string'},
-                {name = 'year', type = 'unsigned'}
-                })
-       s:create_index('primary', {
-                type = 'hash',
-                parts = {'id'}
-                })
-       s:create_index('secondary', {
-                type = 'hash',
-                parts = {'band_name'}
-                })
-       s:insert{1, 'Roxette', 1986}
-       s:insert{2, 'Scorpions', 2015}
-       s:insert{3, 'Ace of Base', 1993}
+..  include:: getting_started_net_box.rst
+    :start-after: connectors_sample_db_config_start
+    :end-before: connectors_sample_db_config_end
 
-   .. IMPORTANT::
+.. _getting_started_go_sample_db_start:
 
-       Please do not close the terminal window
-       where Tarantool is running -- you'll need it soon.
+Starting a sample database application
+--------------------------------------
 
-#. In order to connect to Tarantool as an administrator, reset the password
-   for the ``admin`` user:
+Before creating and starting a client Go application, you need to run the :ref:`sample_db <getting_started_net_box_sample_db>` application using ``tt start``:
 
-   .. code-block:: lua
+.. code-block:: console
 
-       box.schema.user.passwd('pass')
+    $ tt start sample_db
 
-.. _getting_started-go-connecting:
+Now you can create a client Go application that makes requests to this database.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Connecting to Tarantool
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To get connected to the Tarantool server, write a simple Go program:
+.. _getting_started_go_develop_client_app:
 
-.. code-block:: go
+Developing a client application
+-------------------------------
 
-    package main
+.. _getting_started_go_create_client_app:
 
-    import (
-    	"fmt"
+Creating an application
+~~~~~~~~~~~~~~~~~~~~~~~
 
-    	"github.com/tarantool/go-tarantool"
-    )
+1.  Create the ``hello`` directory for your application and go to this directory:
 
-    func main() {
+    ..  code-block:: console
 
-    	conn, err := tarantool.Connect("127.0.0.1:3301", tarantool.Opts{
-    		User: "admin",
-    		Pass: "pass",
-    	})
+        $ mkdir hello
+        $ cd hello
 
-    	if err != nil {
-    		log.Fatalf("Connection refused")
-    	}
+2.  Initialize a new Go module:
 
-    	defer conn.Close()
+    ..  code-block:: console
 
-    	// Your logic for interacting with the database
-    }
+        $ go mod init example/hello
 
-The default user is ``guest``.
+3.  Inside the ``hello`` directory, create the ``hello.go`` file for application code.
 
-.. _getting_started-go-manipulate:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Manipulating the data
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. _getting_started_go_import_:
 
-.. _getting_started-go-insert:
+Importing 'go-tarantool'
+~~~~~~~~~~~~~~~~~~~~~~~~
 
-********************************************************************************
+In the ``hello.go`` file, declare a ``main`` package and import the following packages:
+
+..  literalinclude:: /code_snippets/snippets/connectors/go/hello.go
+    :language: go
+    :start-at: package main
+    :end-before: func main()
+    :dedent:
+
+
+.. _getting_started_go_creating_connection:
+
+Creating a connection
+~~~~~~~~~~~~~~~~~~~~~
+
+1.  Declare the ``main()`` function:
+
+    ..  code-block:: go
+
+        func main() {
+
+        }
+
+2.  Inside the ``main()`` function, add the following code:
+
+    ..  literalinclude:: /code_snippets/snippets/connectors/go/hello.go
+        :language: go
+        :start-after: func main()
+        :end-at: // Interacting with the database
+        :dedent:
+
+    This code establishes a connection to a running Tarantool instance on behalf of ``sampleuser``.
+    The ``conn`` object can be used to make CRUD requests and execute stored procedures.
+
+
+
+.. _getting_started_go_using_data_operations:
+
+Using data operations
+~~~~~~~~~~~~~~~~~~~~~
+
+.. _getting_started_go_inserting_data:
+
 Inserting data
-********************************************************************************
+**************
 
-To insert a :term:`tuple` into a :term:`space`, use ``Insert``:
+Add the following code to insert four tuples into the ``bands`` space:
 
-.. code-block:: go
+..  literalinclude:: /code_snippets/snippets/connectors/go/hello.go
+    :language: go
+    :start-at: // Insert data
+    :end-at: Inserted tuples:
+    :dedent:
 
-    resp, err = conn.Insert("tester", []interface{}{4, "ABBA", 1972})
+The ``NewInsertRequest()`` method creates an insert request object that is executed by the connection.
 
-This inserts the tuple ``(4, "ABBA", 1972)`` into a space named ``tester``.
 
-The response code and data are available in the
-`tarantool.Response <https://github.com/tarantool/go-tarantool#usage>`_
-structure:
 
-.. code-block:: go
+.. _getting_started_go_querying_data:
 
-    code := resp.Code
-    data := resp.Data
-
-.. _getting_started-go-query:
-
-********************************************************************************
 Querying data
-********************************************************************************
+*************
 
-To select a tuple from a space, use
-`Select <https://github.com/tarantool/go-tarantool#api-reference>`_:
+To get a tuple by the specified primary key value, use ``NewSelectRequest()`` to create an insert request object:
 
-.. code-block:: go
+..  literalinclude:: /code_snippets/snippets/connectors/go/hello.go
+    :language: go
+    :start-at: // Select by primary key
+    :end-at: Tuple selected the primary key value
+    :dedent:
 
-    resp, err = conn.Select("tester", "primary", 0, 1, tarantool.IterEq, []interface{}{4})
+You can also get a tuple by the value of the specified index by using ``Index()``:
 
-This selects a tuple by the primary key with ``offset = 0`` and ``limit = 1``
-from a space named ``tester`` (in our example, this is the index named ``primary``,
-based on the ``id`` field of each tuple).
+..  literalinclude:: /code_snippets/snippets/connectors/go/hello.go
+    :language: go
+    :start-at: // Select by secondary key
+    :end-at: Tuple selected the secondary key value
+    :dedent:
 
-Next, select tuples by a secondary key.
 
-.. code-block:: go
 
-    resp, err = conn.Select("tester", "secondary", 0, 1, tarantool.IterEq, []interface{}{"ABBA"})
+.. _getting_started_go_updating_data:
 
-Finally, it would be nice to select all the tuples in a space. But there is no
-one-liner for this in Go; you would need a script like
-:ref:`this one <cookbook-select-all-go>`.
-
-For more examples, see https://github.com/tarantool/go-tarantool#usage
-
-.. _getting_started-go-update:
-
-********************************************************************************
 Updating data
-********************************************************************************
+*************
 
-Update a :term:`field` value using ``Update``:
+``NewUpdateRequest()`` can be used to update a tuple identified by the primary key as follows:
 
-.. code-block:: go
+..  literalinclude:: /code_snippets/snippets/connectors/go/hello.go
+    :language: go
+    :start-at: // Update
+    :end-at: Updated tuple
+    :dedent:
 
-    resp, err = conn.Update("tester", "primary", []interface{}{4}, []interface{}{[]interface{}{"+", 2, 3}})
+``NewUpsertRequest()`` can be used to update an existing tuple or inserts a new one.
+In the example below, a new tuple is inserted:
 
-This increases by 3 the value of field ``2`` in the tuple with ``id = 4``.
-If a tuple with this ``id`` doesn't exist, Tarantool will return an error.
+..  literalinclude:: /code_snippets/snippets/connectors/go/hello.go
+    :language: go
+    :start-at: // Upsert
+    :end-before: // Replace
+    :dedent:
 
-Now use ``Replace`` to totally replace the tuple that matches the
-primary key. If a tuple with this primary key doesn't exist, Tarantool will
-do nothing.
 
-.. code-block:: go
+In this example, ``NewReplaceRequest()`` is used to delete the existing tuple and insert a new one:
 
-    resp, err = conn.Replace("tester", []interface{}{4, "New band", 2011})
+..  literalinclude:: /code_snippets/snippets/connectors/go/hello.go
+    :language: go
+    :start-at: // Replace
+    :end-at: Replaced tuple
+    :dedent:
 
-You can also update the data using ``Upsert`` that works similarly
-to ``Update``, but creates a new tuple if the old one was not found.
 
-.. code-block:: go
 
-    resp, err = conn.Upsert("tester", []interface{}{4, "Another band", 2000}, []interface{}{[]interface{}{"+", 2, 5}})
 
-This increases by 5 the value of the third field in the tuple with ``id = 4``, or
-inserts the tuple ``(4, "Another band", 2000)`` if a tuple with this ``id``
-doesn't exist.
+.. _getting_started_go_deleting_data:
 
-.. _getting_started-go-delete:
-
-********************************************************************************
 Deleting data
-********************************************************************************
+*************
 
-To delete a tuple, use ``connection.Delete``:
+``NewDeleteRequest()`` in the example below is used to delete a tuple whose primary key value is ``5``:
 
-.. code-block:: go
+..  literalinclude:: /code_snippets/snippets/connectors/go/hello.go
+    :language: go
+    :start-at: // Delete
+    :end-at: Deleted tuple
+    :dedent:
 
-    resp, err = conn.Delete("tester", "primary", []interface{}{4})
 
-To delete all tuples in a space (or to delete an entire space), use ``Call``.
-We'll focus on this function in more detail in the
-:ref:`next <getting_started-go-stored-procs>` section.
 
-To delete all tuples in a space, call ``space:truncate``:
+.. _getting_started_go_stored_procedures:
 
-.. code-block:: go
-
-    resp, err = conn.Call("box.space.tester:truncate", []interface{}{})
-
-To delete an entire space, call ``space:drop``.
-This requires connecting to Tarantool as the ``admin`` user:
-
-.. code-block:: go
-
-    resp, err = conn.Call("box.space.tester:drop", []interface{}{})
-
-.. _getting_started-go-stored-procs:
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Executing stored procedures
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Switch to the terminal window where Tarantool is running.
+To execute a stored procedure, use ``NewCallRequest()``:
 
-.. NOTE::
+..  literalinclude:: /code_snippets/snippets/connectors/go/hello.go
+    :language: go
+    :start-at: // Call
+    :end-at: Stored procedure result
+    :dedent:
 
-    If you don't have a terminal window with remote connection to Tarantool,
-    check out these guides:
 
-    * :ref:`connecting to a local Tarantool instance <connecting-remotely>`
-    * :ref:`attaching to a Tarantool instance that runs in a Docker container <getting_started-docker-attaching>`
+.. _getting_started_go_closing_connection:
 
-Define a simple Lua function:
+Closing the connection
+~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: lua
+The ``CloseGraceful()`` method can be used to close the connection when it is no longer needed:
 
-    function sum(a, b)
-        return a + b
-    end
+..  literalinclude:: /code_snippets/snippets/connectors/go/hello.go
+    :language: go
+    :start-at: // Close connection
+    :end-at: Connection is closed
+    :dedent:
 
-Now we have a Lua function defined in Tarantool. To invoke this function from
-``go``, use ``Call``:
+..  NOTE::
 
-.. code-block:: go
+    You can find the example with all the requests above on GitHub: `go <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/connectors/go>`_.
 
-    resp, err = conn.Call("sum", []interface{}{2, 3})
 
-To send bare Lua code for execution, use ``Eval``:
 
-.. code-block:: go
+.. _getting_started_go_run_client_app:
 
-    resp, err = connection.Eval("return 4 + 5", []interface{}{})
+Starting a client application
+-----------------------------
+
+1.  Execute the ``go get`` command to update dependencies in the ``go.mod`` file:
+
+    .. code-block:: console
+
+        $ go get github.com/tarantool/go-tarantool/v2
+
+2.  To run the resulting application, execute the ``go run`` command in the application directory:
+
+    .. code-block:: console
+
+        $ go run .
+        Inserted tuples:  [[1 Roxette 1986]] [[2 Scorpions 1965]] [[3 Ace of Base 1987]] [[4 The Beatles 1960]]
+        Tuple selected the primary key value: [[1 Roxette 1986]]
+        Tuple selected the secondary key value: [[4 The Beatles 1960]]
+        Updated tuple: [[2 Pink Floyd 1965]]
+        Replaced tuple: [[1 Queen 1970]]
+        Deleted tuple: [[5 The Rolling Stones 1962]]
+        Stored procedure result: [[[2 Pink Floyd 1965] [4 The Beatles 1960]]]
+        Connection is closed
+
+
 
 .. _getting_started-go-comparison:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Feature comparison
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------------
 
-There are two more connectors from the open-source community:
+There are two more connectors from the open source community:
 
 *   `viciious/go-tarantool <https://github.com/viciious/go-tarantool>`_
 

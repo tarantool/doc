@@ -14,6 +14,8 @@ For more information about the ``net.box`` module API, check :ref:`net_box-modul
 Sample database configuration
 -----------------------------
 
+.. connectors_sample_db_config_start
+
 This section describes the :ref:`configuration <configuration_file>` of a sample database that allows remote connections:
 
 ..  literalinclude:: /code_snippets/snippets/connectors/instances.enabled/sample_db/config.yaml
@@ -31,6 +33,8 @@ The ``myapp.lua`` file looks as follows:
     :dedent:
 
 You can find the full example on GitHub: `sample_db <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/connectors/instances.enabled/sample_db>`_.
+
+.. connectors_sample_db_config_end
 
 
 
