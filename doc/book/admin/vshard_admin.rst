@@ -94,12 +94,12 @@ The example below shows how to grant the ``sharding`` role to the ``storage`` us
     :dedent:
 
 The ``sharding`` role has different privileges depending on a replica set's :ref:`sharding role <vshard_config_sharding_roles>`.
-For replica sets with the ``storage`` role, the ``sharding`` role has the following privileges:
+For replica sets with the ``storage`` sharding role, the ``sharding`` credential role has the following privileges:
 
 -   All privileges provided by the ``replication`` role.
 -   Executing :ref:`vshard.storage.* <vshard-vshard_storage>` functions.
 
-If a replica set does not have the ``storage`` role, the ``sharding`` role does not have any privileges.
+If a replica set does not have the ``storage`` sharding role, the ``sharding`` credential role does not have any privileges.
 
 
 .. _vshard_config_sharding_roles:
@@ -171,8 +171,10 @@ On the other hand, an insufficient number of buckets can lead to decreased granu
 Replica set weights
 ~~~~~~~~~~~~~~~~~~~
 
-A replica set weight (:ref:`sharding.weight <configuration_reference_sharding_weight>`) defines the storage capacity of the replica set: the larger the weight, the more buckets the replica set can store.
-This can be used to store the prevailing amount of data on a replica set with more memory space.
+A replica set weight defines the storage capacity of the replica set: the larger the weight, the more buckets the replica set can store.
+You can configure a replica set weight using the :ref:`sharding.weight <configuration_reference_sharding_weight>` option.
+This option can be used to store the prevailing amount of data on a replica set with more memory space.
+You can also assign a zero weight to a replica set to initiate :ref:`migration of its buckets <vshard_config_rebalancing>` to the remaining cluster nodes.
 
 In the example below, the ``storage-a`` replica set can store twice as much data as ``storage-b``:
 
@@ -188,8 +190,6 @@ In the example below, the ``storage-a`` replica set can store twice as much data
         sharding:
           weight: 1
         # ...
-
-Using the ``sharding.weight`` option, you can also assign a zero weight to a replica set to initiate :ref:`migration of its buckets <vshard_config_rebalancing>` to the remaining cluster nodes.
 
 
 .. _vshard_config_rebalancing:
@@ -585,11 +585,10 @@ Master scheduled downtime
 
 To perform a scheduled downtime of a replica set master, it is recommended to:
 
-#.  Update the configuration of the master and wait for the replicas to get into sync.
+#.  Update the configuration to use another instance as a master.
+#.  Reload the configuration on all the instances.
     All the requests then are forwarded to a new master.
-#.  Switch another instance into the master mode.
-#.  Update the configuration of all the nodes.
-#.  Shut down the old master.
+#   Shut down the old master.
 
 .. _vshard-maintenance-replicaset_scheduled_downtime:
 
@@ -599,6 +598,7 @@ Replica set scheduled downtime
 To perform a scheduled downtime of a replica set, it is recommended to:
 
 #.  Migrate all the buckets to the other cluster storages.
+    You can do this by assigning a zero :ref:`weight <vshard-replica-set-weights>` to a replica set to initiate migration of its buckets to the remaining cluster nodes.
 #.  Update the configuration of all the nodes.
 #.  Shut down the replica set.
 
