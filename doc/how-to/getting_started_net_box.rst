@@ -22,7 +22,7 @@ This section describes the :ref:`configuration <configuration_file>` of a sample
     :language: yaml
     :dedent:
 
--   The configuration contains one instance that listens incoming requests on the ``127.0.0.1:3301`` address.
+-   The configuration contains one instance that listens for incoming requests on the ``127.0.0.1:3301`` address.
 -   ``sampleuser`` has :ref:`privileges <authentication-owners_privileges>` to select and modify data in the ``bands`` space and execute the ``get_bands_older_than`` stored function. This user can be used to connect to the instance remotely.
 -   ``myapp.lua`` defines how data is stored in a database and includes a stored function.
 

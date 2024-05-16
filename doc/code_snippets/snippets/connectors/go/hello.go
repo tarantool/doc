@@ -4,6 +4,9 @@ import (
 	"context"
 	"fmt"
 	"github.com/tarantool/go-tarantool/v2"
+	_ "github.com/tarantool/go-tarantool/v2/datetime"
+	_ "github.com/tarantool/go-tarantool/v2/decimal"
+	_ "github.com/tarantool/go-tarantool/v2/uuid"
 	"time"
 )
 
@@ -27,23 +30,26 @@ func main() {
 
 	// Interacting with the database
 	// Insert data
-	tuple1, err := conn.Do(
-		tarantool.NewInsertRequest("bands").
-			Tuple([]interface{}{1, "Roxette", 1986}),
-	).Get()
-	tuple2, err := conn.Do(
-		tarantool.NewInsertRequest("bands").
-			Tuple([]interface{}{2, "Scorpions", 1965}),
-	).Get()
-	tuple3, err := conn.Do(
-		tarantool.NewInsertRequest("bands").
-			Tuple([]interface{}{3, "Ace of Base", 1987}),
-	).Get()
-	tuple4, err := conn.Do(
-		tarantool.NewInsertRequest("bands").
-			Tuple([]interface{}{4, "The Beatles", 1960}),
-	).Get()
-	fmt.Println("Inserted tuples: ", tuple1, tuple2, tuple3, tuple4)
+	tuples := [][]interface{}{
+		{1, "Roxette", 1986},
+		{2, "Scorpions", 1965},
+		{3, "Ace of Base", 1987},
+		{4, "The Beatles", 1960},
+	}
+	var futures []*tarantool.Future
+	for _, tuple := range tuples {
+		request := tarantool.NewInsertRequest("bands").Tuple(tuple)
+		futures = append(futures, conn.Do(request))
+	}
+	fmt.Println("Inserted tuples:")
+	for _, future := range futures {
+		result, err := future.Get()
+		if err != nil {
+			fmt.Println("Got an error:", err)
+		} else {
+			fmt.Println(result)
+		}
+	}
 
 	// Select by primary key
 	data, err := conn.Do(
@@ -52,6 +58,9 @@ func main() {
 			Iterator(tarantool.IterEq).
 			Key([]interface{}{uint(1)}),
 	).Get()
+	if err != nil {
+		fmt.Println("Got an error:", err)
+	}
 	fmt.Println("Tuple selected the primary key value:", data)
 
 	// Select by secondary key
@@ -62,6 +71,9 @@ func main() {
 			Iterator(tarantool.IterEq).
 			Key([]interface{}{"The Beatles"}),
 	).Get()
+	if err != nil {
+		fmt.Println("Got an error:", err)
+	}
 	fmt.Println("Tuple selected the secondary key value:", data)
 
 	// Update
@@ -70,6 +82,9 @@ func main() {
 			Key(tarantool.IntKey{2}).
 			Operations(tarantool.NewOperations().Assign(1, "Pink Floyd")),
 	).Get()
+	if err != nil {
+		fmt.Println("Got an error:", err)
+	}
 	fmt.Println("Updated tuple:", data)
 
 	// Upsert
@@ -78,12 +93,18 @@ func main() {
 			Tuple([]interface{}{uint(5), "The Rolling Stones", 1962}).
 			Operations(tarantool.NewOperations().Assign(1, "The Doors")),
 	).Get()
+	if err != nil {
+		fmt.Println("Got an error:", err)
+	}
 
 	// Replace
 	data, err = conn.Do(
 		tarantool.NewReplaceRequest("bands").
 			Tuple([]interface{}{1, "Queen", 1970}),
 	).Get()
+	if err != nil {
+		fmt.Println("Got an error:", err)
+	}
 	fmt.Println("Replaced tuple:", data)
 
 	// Delete
@@ -91,12 +112,18 @@ func main() {
 		tarantool.NewDeleteRequest("bands").
 			Key([]interface{}{uint(5)}),
 	).Get()
+	if err != nil {
+		fmt.Println("Got an error:", err)
+	}
 	fmt.Println("Deleted tuple:", data)
 
 	// Call
 	data, err = conn.Do(
 		tarantool.NewCallRequest("get_bands_older_than").Args([]interface{}{1966}),
 	).Get()
+	if err != nil {
+		fmt.Println("Got an error:", err)
+	}
 	fmt.Println("Stored procedure result:", data)
 
 	// Close connection

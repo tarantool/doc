@@ -38,6 +38,8 @@ Now you can create a client Go application that makes requests to this database.
 Developing a client application
 -------------------------------
 
+Before you start, make sure you have `Go installed <https://go.dev/doc/install>`__ on your computer.
+
 .. _getting_started_go_create_client_app:
 
 Creating an application
@@ -61,8 +63,8 @@ Creating an application
 
 .. _getting_started_go_import_:
 
-Importing 'go-tarantool'
-~~~~~~~~~~~~~~~~~~~~~~~~
+Importing 'go-tarantool' packages
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In the ``hello.go`` file, declare a ``main`` package and import the following packages:
 
@@ -72,11 +74,13 @@ In the ``hello.go`` file, declare a ``main`` package and import the following pa
     :end-before: func main()
     :dedent:
 
+The packages for external MsgPack types, such as ``datetime``, ``decimal``, or ``uuid``, are required to parse these types in a response.
+
 
 .. _getting_started_go_creating_connection:
 
-Creating a connection
-~~~~~~~~~~~~~~~~~~~~~
+Connecting to the database
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 1.  Declare the ``main()`` function:
 
@@ -114,11 +118,18 @@ Add the following code to insert four tuples into the ``bands`` space:
 ..  literalinclude:: /code_snippets/snippets/connectors/go/hello.go
     :language: go
     :start-at: // Insert data
-    :end-at: Inserted tuples:
+    :end-before: // Select by primary key
     :dedent:
 
-The ``NewInsertRequest()`` method creates an insert request object that is executed by the connection.
+This code makes insert requests asynchronously:
 
+-   The ``Future`` structure is used as a handle for asynchronous requests.
+-   The ``NewInsertRequest()`` method creates an insert request object that is executed by the connection.
+
+..  NOTE::
+
+    Making requests asynchronously is the recommended way to perform data operations.
+    Further requests in this tutorial are made synchronously.
 
 
 .. _getting_started_go_querying_data:
@@ -157,7 +168,7 @@ Updating data
     :end-at: Updated tuple
     :dedent:
 
-``NewUpsertRequest()`` can be used to update an existing tuple or inserts a new one.
+``NewUpsertRequest()`` can be used to update an existing tuple or insert a new one.
 In the example below, a new tuple is inserted:
 
 ..  literalinclude:: /code_snippets/snippets/connectors/go/hello.go
@@ -231,18 +242,24 @@ The ``CloseGraceful()`` method can be used to close the connection when it is no
 Starting a client application
 -----------------------------
 
-1.  Execute the ``go get`` command to update dependencies in the ``go.mod`` file:
+1.  Execute the following ``go get`` commands to update dependencies in the ``go.mod`` file:
 
     .. code-block:: console
 
         $ go get github.com/tarantool/go-tarantool/v2
+        $ go get github.com/tarantool/go-tarantool/v2/decimal
+        $ go get github.com/tarantool/go-tarantool/v2/uuid
 
 2.  To run the resulting application, execute the ``go run`` command in the application directory:
 
     .. code-block:: console
 
         $ go run .
-        Inserted tuples:  [[1 Roxette 1986]] [[2 Scorpions 1965]] [[3 Ace of Base 1987]] [[4 The Beatles 1960]]
+        Inserted tuples:
+        [[1 Roxette 1986]]
+        [[2 Scorpions 1965]]
+        [[3 Ace of Base 1987]]
+        [[4 The Beatles 1960]]
         Tuple selected the primary key value: [[1 Roxette 1986]]
         Tuple selected the secondary key value: [[4 The Beatles 1960]]
         Updated tuple: [[2 Pink Floyd 1965]]
@@ -258,7 +275,7 @@ Starting a client application
 Feature comparison
 ------------------
 
-There are two more connectors from the open source community:
+There are two more connectors from the open-source community:
 
 *   `viciious/go-tarantool <https://github.com/viciious/go-tarantool>`_
 
