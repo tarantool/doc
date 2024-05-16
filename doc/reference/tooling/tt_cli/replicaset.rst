@@ -101,7 +101,7 @@ promote
 
     $ tt replicaset promote {APPLICATION:APP_INSTANCE | URI} [OPTIONS ...]
     # or
-    $ tt rs status  {APPLICATION:APP_INSTANCE | URI} [OPTIONS ...]
+    $ tt rs promote {APPLICATION:APP_INSTANCE | URI} [OPTIONS ...]
 
 ``tt replicaset promote`` (``tt rs promote``) promotes an instance in a Tarantool
 cluster with a local YAML configuration or a Cartridge cluster.
@@ -157,7 +157,7 @@ election by calling :ref:`box_ctl-promote` on the specified instances. The
     $ tt replicaset promote my-app:storage-001-a --timeout=10
 
 
-.. _tt-replicaset-promote-config:
+.. _tt-replicaset-promote-cartridge:
 
 Promoting in Cartridge clusters
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -189,10 +189,63 @@ Learn more about `Cartridge failover modes <https://www.tarantool.io/en/doc/2.11
 demote
 ------
 
-``tt replicaset demote`` (``tt rs demote``) demotes an instance.
+..  code-block:: console
 
+    $ tt replicaset demote APPLICATION:APP_INSTANCE [OPTIONS ...]
+    # or
+    $ tt rs demote APPLICATION:APP_INSTANCE [OPTIONS ...]
 
-To demote an instance in a cluster with a centralized configuration, use ``tt cluster replicaset demote``
+``tt replicaset demote`` (``tt rs demote``) demotes an instance in a Tarantool
+cluster with a local YAML configuration.
+
+.. note::
+
+    To demote an instance in a Tarantool cluster with a centralized configuration,
+    use ``tt cluster replicaset demote``.
+
+.. _tt-replicaset-demote-config:
+
+Demoting in clusters with local YAML configurations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``tt replicaset demote`` can demote instances in Tarantool clusters with local
+YAML configurations with :ref:`failover modes <configuration_reference_replication_failover>`
+``off`` and ``election``.
+
+.. note::
+
+    In clusters with ``manual`` failover mode, you can demote a read-write instance
+    by promoting a read-only instance from the same replica set with ``tt replicaset promote``.
+
+In the ``off`` failover mode, ``tt replicaset demote`` sets the configuration parameter
+:ref:`configuration_reference_database_mode` to ``ro`` for the specified instance and reloads
+the configuration.
+
+.. important::
+
+    If failover is ``off``, the command considers the modes of cluster instances
+    independently, so there can be any number of read-write instances in a replica set.
+
+With ``-f``/``--force`` option, ``tt replicaset demote`` skips instances not running
+in the same ``tt`` environment:
+
+..  code-block:: console
+
+    $ tt replicaset demote my-app:storage-001-a --force
+
+In the ``election`` failover mode, ``tt replicaset demote`` does the following:
+
+#.  Checks if the specified instance is a replica set leader.
+#.  Sets the specified instance's:ref:`configuration_reference_replication_election_mode`
+    to ``voter`` and reloads the configuration.
+#.  After a new leader is elected and the instance is read-only, sets the instance's
+    ``replication.election_mode`` back to ``candidate``.
+
+The ``--timeout`` option can be used to specify the election completion timeout:
+
+..  code-block:: console
+
+    $ tt replicaset demote my-app:storage-001-a --timeout=10
 
 .. _tt-replicaset-orchestrator:
 
