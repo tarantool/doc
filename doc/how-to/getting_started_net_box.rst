@@ -14,15 +14,17 @@ For more information about the ``net.box`` module API, check :ref:`net_box-modul
 Sample database configuration
 -----------------------------
 
+.. connectors_sample_db_config_start
+
 This section describes the :ref:`configuration <configuration_file>` of a sample database that allows remote connections:
 
 ..  literalinclude:: /code_snippets/snippets/connectors/instances.enabled/sample_db/config.yaml
     :language: yaml
     :dedent:
 
--   The configuration contains one instance that listens incoming requests on the ``127.0.0.1:3301`` address.
+-   The configuration contains one instance that listens for incoming requests on the ``127.0.0.1:3301`` address.
 -   ``sampleuser`` has :ref:`privileges <authentication-owners_privileges>` to select and modify data in the ``bands`` space and execute the ``get_bands_older_than`` stored function. This user can be used to connect to the instance remotely.
--   ``myapp.lua`` defines how data is stored in a database and includes a stored function.
+-   ``myapp.lua`` defines the data model and a stored function.
 
 The ``myapp.lua`` file looks as follows:
 
@@ -31,6 +33,8 @@ The ``myapp.lua`` file looks as follows:
     :dedent:
 
 You can find the full example on GitHub: `sample_db <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/connectors/instances.enabled/sample_db>`_.
+
+.. connectors_sample_db_config_end
 
 
 
