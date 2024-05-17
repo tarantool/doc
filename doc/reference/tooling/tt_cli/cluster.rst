@@ -223,7 +223,7 @@ promote
 making it a leader of its replica set.
 This command works on Tarantool clusters with centralized configuration and
 with :ref:`failover modes <configuration_reference_replication_failover>`
-``off`` and ``manual``. It updates the cluster configuration file according to
+``off`` and ``manual``. It updates the centralized configuration according to
 the specified arguments and reloads it:
 
 -   ``off`` failover mode: the command sets :ref:`database.mode <configuration_reference_database_mode>`
@@ -260,7 +260,7 @@ with :ref:`failover mode <configuration_reference_replication_failover>`
 .. note::
 
     In clusters with ``manual`` failover mode, you can demote a read-write instance
-    by promoting a read-only instance from the same replica set with ``tt replicaset promote``.
+    by promoting a read-only instance from the same replica set with ``tt cluster replicaset promote``.
 
 The command sets the instance's :ref:`database.mode <configuration_reference_database_mode>`
 to ``ro`` and reloads the configuration.
@@ -292,7 +292,7 @@ a key for patching. You can skip the selection by adding the ``-f``/``--force`` 
 
 In this case, the command selects the key for patching automatically. A key's priority
 is determined by the detail level of the instance or replicaset configuration stored
-under this key. For example, when failover is "off", a key with
+under this key. For example, when failover is ``off``, a key with
 ``instance.database`` options takes precedence over a key with the only ``instance`` field.
 In case of equal priority, the first key in the lexicographical order is patched.
 
@@ -327,7 +327,7 @@ shows these ways ordered by precedence, from highest to lowest:
             $ tt cluster show "http://localhost:2379/myapp"
 
 If connection encryption is enabled on the configuration storage, pass the required
-SSL parameters in the :ref:`URI arguments <tt-cluster-centralized-uri>`.
+SSL parameters in the :ref:`URI arguments <tt-cluster-uri>`.
 
 .. _tt-cluster-uri:
 
@@ -354,6 +354,7 @@ A URI of the cluster configuration storage has the following format:
     *   ``ssl_ciphers`` -- a colon-separated (``:``) list of SSL cipher suites the connection can use (for Tarantool-based storage only).
     *   ``verify_host`` -- verify the certificate’s name against the host. Default ``true``.
     *   ``verify_peer`` -- verify the peer’s SSL certificate. Default ``true``.
+
 .. _tt-cluster-options:
 
 Options
@@ -363,13 +364,13 @@ Options
 
     A username for connecting to the configuration storage.
 
-    See also: :ref:`tt-cluster-centralized-authentication`.
+    See also: :ref:`tt-cluster-authentication`.
 
 ..  option:: -p, --password STRING
 
     A password for connecting to the configuration storage.
 
-    See also: :ref:`tt-cluster-centralized-authentication`.
+    See also: :ref:`tt-cluster-authentication`.
 
 ..  option:: --force
 
