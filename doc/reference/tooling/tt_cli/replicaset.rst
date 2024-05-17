@@ -64,33 +64,6 @@ For a replica outside the current ``tt`` environment, specify its URI and access
 
 Learn about other ways to provide user credentials in :ref:`tt-replicaset-status-authentication`.
 
-.. _tt-replicaset-status-authentication:
-
-Authentication
-~~~~~~~~~~~~~~
-
-Use one of the following ways to pass the credentials of a Tarantool user when
-connecting to the instance:
-
-*   The ``-u`` (``--username``) and ``-p`` (``--password``) options:
-
-    ..  code-block:: console
-
-        $ tt replicaset status 192.168.10.10:3301 -u myuser -p p4$$w0rD
-
-*   The connection string:
-
-    ..  code-block:: console
-
-        $ tt replicaset status myuser:p4$$w0rD@192.168.10.10:3301
-
-*   Environment variables ``TT_CLI_USERNAME`` and ``TT_CLI_PASSWORD``:
-
-    ..  code-block:: console
-
-        $ export TT_CLI_USERNAME=myuser
-        $ export TT_CLI_PASSWORD=p4$$w0rD
-        $ tt replicaset status 192.168.10.10:3301
 
 .. _tt-replicaset-promote:
 
@@ -103,35 +76,36 @@ promote
     # or
     $ tt rs promote {APPLICATION:APP_INSTANCE | URI} [OPTIONS ...]
 
-``tt replicaset promote`` (``tt rs promote``) promotes an instance in a Tarantool
-cluster with a local YAML configuration or a Cartridge cluster.
+``tt replicaset promote`` (``tt rs promote``) make the specified instance a leader
+in its replicaset. This command works on Tarantool clusters with a local YAML
+configuration and Cartridge clusters.
 
 .. note::
 
-    To promote an instance in a Tarantool cluster with a centralized configuration,
-    use ``tt cluster replicaset promote``.
+    To promote an instance in a Tarantool cluster with a :ref:`centralized configuration <configuration_etcd>`,
+    use :ref:`tt cluster replicaset promote <tt-cluster-replicaset-promote>`.
 
 .. _tt-replicaset-promote-config:
 
 Promoting in clusters with local YAML configurations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-``tt replicaset promote`` can promote instances in Tarantool clusters with local
-YAML configurations with :ref:`failover modes <configuration_reference_replication_failover>`
+``tt replicaset promote`` works on Tarantool clusters with local YAML configurations
+with :ref:`failover modes <configuration_reference_replication_failover>`
 ``off``, ``manual``, and ``election``.
 
-In failover modes ``off`` or ``manual``, ``tt replicaset promote`` updates the cluster
-configuration file according to the command arguments and reloads it:
+In failover modes ``off`` or ``manual``, this command updates the cluster
+configuration file according to the specified arguments and reloads it:
 
--   ``off`` failover mode: the command sets :ref:`configuration_reference_database_mode` to ``rw``
-    on the specified instance.
+-   ``off`` failover mode: the command sets :ref:`database.mode <configuration_reference_database_mode>`
+    to ``rw`` on the specified instance.
 
     .. important::
 
-        If failover is ``off``, the command considers the modes of cluster instances
-        independently, so there can be any number of read-write instances in a replica set.
+        If failover is ``off``, the command doesn't consider the modes of other
+        replica set members, so there can be any number of read-write instances in one replica set.
 
--   ``manual`` failover mode: the command updates the leader (:ref:`configuration_reference_replicasets_name_leader`)
+-   ``manual`` failover mode: the command updates the :ref:`leader <configuration_reference_replicasets_name_leader>`)
     of the replica set to which the specified instance belongs. Other instances
     of this replica set become read-only.
 
@@ -141,8 +115,9 @@ Example:
 
     $ tt replicaset promote my-app:storage-001-a
 
-With ``-f``/``--force`` option, ``tt replicaset promote`` skips instances not running
-in the same ``tt`` environment:
+If some members of the affected replica set are running outside the current ``tt``
+environment, ``tt replicaset promote`` can't ensure the configuration reload on
+them and reports an error. You can skip this check by adding the ``-f``/``--force`` option:
 
 ..  code-block:: console
 
@@ -164,7 +139,7 @@ Promoting in Cartridge clusters
 
 ..  include:: _includes/cartridge_deprecation_note.rst
 
-``tt replicaset promote`` can promote instances in Cartridge clusters:
+``tt replicaset promote`` promotes instances in Cartridge clusters the following way:
 
 -   ``disabled`` or ``eventual`` failover mode: the command changes the instance failover priority.
 
@@ -200,8 +175,8 @@ cluster with a local YAML configuration.
 
 .. note::
 
-    To demote an instance in a Tarantool cluster with a centralized configuration,
-    use ``tt cluster replicaset demote``.
+    To demote an instance in a Tarantool cluster with a :ref:`centralized configuration <configuration_etcd>`,
+    use :ref:`tt cluster replicaset demote <tt-cluster-replicaset-demote>`.
 
 .. _tt-replicaset-demote-config:
 
@@ -217,29 +192,26 @@ YAML configurations with :ref:`failover modes <configuration_reference_replicati
     In clusters with ``manual`` failover mode, you can demote a read-write instance
     by promoting a read-only instance from the same replica set with ``tt replicaset promote``.
 
-In the ``off`` failover mode, ``tt replicaset demote`` sets the configuration parameter
-:ref:`configuration_reference_database_mode` to ``ro`` for the specified instance and reloads
-the configuration.
+In the ``off`` failover mode, ``tt replicaset demote`` sets the instance's :ref:`database.mode <configuration_reference_database_mode>`
+to ``ro`` and reloads the configuration.
 
 .. important::
 
-    If failover is ``off``, the command considers the modes of cluster instances
-    independently, so there can be any number of read-write instances in a replica set.
+    If failover is ``off``, the command doesn't consider the modes of other
+    replica set members, so there can be any number of read-write instances in one replica set.
 
-With ``-f``/``--force`` option, ``tt replicaset demote`` skips instances not running
-in the same ``tt`` environment:
+If some members of the affected replica set are running outside the current ``tt``
+environment, ``tt replicaset demote`` can't ensure the configuration reload on
+them and reports an error. You can skip this check by adding the ``-f``/``--force`` option:
 
 ..  code-block:: console
 
     $ tt replicaset demote my-app:storage-001-a --force
 
-In the ``election`` failover mode, ``tt replicaset demote`` does the following:
-
-#.  Checks if the specified instance is a replica set leader.
-#.  Sets the specified instance's:ref:`configuration_reference_replication_election_mode`
-    to ``voter`` and reloads the configuration.
-#.  After a new leader is elected and the instance is read-only, sets the instance's
-    ``replication.election_mode`` back to ``candidate``.
+In the ``election`` failover mode, ``tt replicaset demote`` initiates a leader
+election in the replica set. The specified instance's ref:`replication.election_mode <configuration_reference_replication_election_mode>`
+is changed to ``voter`` for this election, which guarantees that another member of
+the replica set is elected as a new leader.
 
 The ``--timeout`` option can be used to specify the election completion timeout:
 
@@ -266,6 +238,33 @@ You can specify the orchestrator to use for the application using the following 
 If an actual orchestrator that the application uses does not match the specified
 option, an error is raised.
 
+.. _tt-replicaset-authentication:
+
+Authentication
+--------------
+
+Use one of the following ways to pass the credentials of a Tarantool user when
+connecting to the instance by its URI:
+
+*   The ``-u`` (``--username``) and ``-p`` (``--password``) options:
+
+    ..  code-block:: console
+
+        $ tt replicaset status 192.168.10.10:3301 -u myuser -p p4$$w0rD
+
+*   The connection string:
+
+    ..  code-block:: console
+
+        $ tt replicaset status myuser:p4$$w0rD@192.168.10.10:3301
+
+*   Environment variables ``TT_CLI_USERNAME`` and ``TT_CLI_PASSWORD``:
+
+    ..  code-block:: console
+
+        $ export TT_CLI_USERNAME=myuser
+        $ export TT_CLI_PASSWORD=p4$$w0rD
+        $ tt replicaset status 192.168.10.10:3301
 
 .. _tt-replicaset-options:
 
