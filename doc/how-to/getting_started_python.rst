@@ -1,255 +1,258 @@
 .. _getting_started-python:
 
---------------------------------------------------------------------------------
 Connecting from Python
---------------------------------------------------------------------------------
+======================
 
-.. _getting_started-python-pre-requisites:
+**Examples on GitHub**: `sample_db <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/connectors/instances.enabled/sample_db>`_, `python <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/connectors/python>`_
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Pre-requisites
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The tutorial shows how to use the `tarantool-python <https://github.com/tarantool/tarantool-python>`__ library to create a Python script that connects to a remote Tarantool instance, performs CRUD operations, and executes a stored procedure.
+You can find the full package documentation here: `Python client library for Tarantool <https://tarantool-python.readthedocs.io/>`__.
 
-Before we proceed:
 
-#. `Install <https://github.com/tarantool/tarantool-python#download-and-install>`__
-   the ``tarantool`` module. We recommend using ``python3`` and ``pip3``.
 
-#. :ref:`Start <getting_started_db>` Tarantool (locally or in Docker)
-   and make sure that you have created and populated a database as we suggested
-   :ref:`earlier <creating-db-locally>`:
+.. _getting_started_python_sample_db:
 
-   .. code-block:: lua
+Sample database configuration
+-----------------------------
 
-       box.cfg{listen = 3301}
-       s = box.schema.space.create('tester')
-       s:format({
-                {name = 'id', type = 'unsigned'},
-                {name = 'band_name', type = 'string'},
-                {name = 'year', type = 'unsigned'}
-                })
-       s:create_index('primary', {
-                type = 'hash',
-                parts = {'id'}
-                })
-       s:create_index('secondary', {
-                type = 'hash',
-                parts = {'band_name'}
-                })
-       s:insert{1, 'Roxette', 1986}
-       s:insert{2, 'Scorpions', 2015}
-       s:insert{3, 'Ace of Base', 1993}
+..  include:: getting_started_net_box.rst
+    :start-after: connectors_sample_db_config_start
+    :end-before: connectors_sample_db_config_end
 
-   .. IMPORTANT::
+.. _getting_started_python_sample_db_start:
 
-     Please do not close the terminal window
-     where Tarantool is running -- you'll need it soon.
+Starting a sample database application
+--------------------------------------
 
-#. In order to connect to Tarantool as an administrator, reset the password
-   for the ``admin`` user:
+Before creating and starting a client Python application, you need to run the :ref:`sample_db <getting_started_net_box_sample_db>` application using :ref:`tt start <tt-start>`:
 
-   .. code-block:: lua
+.. code-block:: console
 
-       box.schema.user.passwd('pass')
+    $ tt start sample_db
 
-.. _getting_started-python-connecting:
+Now you can a client Python application that makes requests to this database.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Connecting to Tarantool
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To get connected to the Tarantool server, say this:
+.. _getting_started_python_develop_client_app:
 
-.. code-block:: python
+Developing a client application
+-------------------------------
 
-    >>> import tarantool
-    >>> connection = tarantool.connect("localhost", 3301)
+Before you start, make sure you have `Python installed <https://www.python.org/downloads/>`__ on your computer.
 
-You can also specify the user name and password, if needed:
+.. _getting_started_python_create_client_app:
 
-.. code-block:: python
+Creating an application
+~~~~~~~~~~~~~~~~~~~~~~~
 
-    >>> tarantool.connect("localhost", 3301, user=username, password=password)
+1.  Create the ``hello`` directory for your application and go to this directory:
 
-The default user is ``guest``.
+    ..  code-block:: console
 
-.. _getting_started-python-manipulate:
+        $ mkdir hello
+        $ cd hello
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Manipulating the data
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2.  Create and activate a Python virtual environment:
 
-A :term:`space` is a container for :term:`tuples <tuple>`.
-To access a space as a named object, use ``connection.space``:
+    ..  code-block:: console
 
-.. code-block:: python
+        $ python -m venv .venv
+        $ source .venv/bin/activate
 
-    >>> tester = connection.space('tester')
+3.  Install the ``tarantool`` module:
 
-.. _getting_started-python-insert:
+    ..  code-block:: console
 
-********************************************************************************
+        $ pip install tarantool
+
+4.  Inside the ``hello`` directory, create the ``hello.py`` file for application code.
+
+
+.. _getting_started_python_import_:
+
+Importing 'tarantool'
+~~~~~~~~~~~~~~~~~~~~~
+
+In the ``hello.py`` file, import the ``tarantool`` package:
+
+..  literalinclude:: /code_snippets/snippets/connectors/python/hello.py
+    :language: python
+    :start-at: import
+    :end-at: import
+    :dedent:
+
+
+.. _getting_started_python_creating_connection:
+
+Connecting to the database
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Add the following code:
+
+..  literalinclude:: /code_snippets/snippets/connectors/python/hello.py
+    :language: python
+    :start-at: # Connect to the database
+    :end-before: # Insert data
+    :dedent:
+
+This code establishes a connection to a running Tarantool instance on behalf of ``sampleuser``.
+The ``conn`` object can be used to make CRUD requests and execute stored procedures.
+
+
+
+.. _getting_started_python_manipulating_data:
+
+Manipulating data
+~~~~~~~~~~~~~~~~~
+
+.. _getting_started_python_inserting_data:
+
 Inserting data
-********************************************************************************
+**************
 
-To insert a tuple into a space, use ``insert``:
+Add the following code to insert four tuples into the ``bands`` space:
 
-.. code-block:: python
+..  literalinclude:: /code_snippets/snippets/connectors/python/hello.py
+    :language: python
+    :start-at: # Insert data
+    :end-before: # Select by primary key
+    :dedent:
 
-    >>> tester.insert((4, 'ABBA', 1972))
-    [4, 'ABBA', 1972]
+``connection.insert()`` is used to insert a tuple to the space.
 
-.. _getting_started-python-query:
 
-********************************************************************************
+.. _getting_started_python_querying_data:
+
 Querying data
-********************************************************************************
+*************
 
-Let's start with selecting a tuple by the primary key
-(in our example, this is the index named ``primary``, based on the ``id`` field
-of each tuple). Use ``select``:
+To get a tuple by the specified primary key value, use ``connection.select()``:
 
-.. code-block:: python
+..  literalinclude:: /code_snippets/snippets/connectors/python/hello.py
+    :language: python
+    :start-at: # Select by primary key
+    :end-at: Tuple selected by the primary key value
+    :dedent:
 
-    >>> tester.select(4)
-    [4, 'ABBA', 1972]
+You can also get a tuple by the value of the specified index using the ``index`` argument:
 
-Next, select tuples by a secondary key.
-For this purpose, you need to specify the number *or* name of the index.
+..  literalinclude:: /code_snippets/snippets/connectors/python/hello.py
+    :language: python
+    :start-at: # Select by secondary key
+    :end-at: Tuple selected by the secondary key value
+    :dedent:
 
-First off, select tuples using the index number:
 
-.. code-block:: python
 
-    >>> tester.select('Scorpions', index=1)
-    [2, 'Scorpions', 2015]
+.. _getting_started_python_updating_data:
 
-(We say ``index=1`` because index numbers in Tarantool start with 0,
-and we're using our second index here.)
-
-Now make a similar query by the index name and make sure that the result
-is the same:
-
-.. code-block:: python
-
-    >>> tester.select('Scorpions', index='secondary')
-    [2, 'Scorpions', 2015]
-
-Finally, select all the tuples in a space via a ``select`` with no
-arguments:
-
-.. code-block:: python
-
-    >>> tester.select()
-
-.. _getting_started-python-update:
-
-********************************************************************************
 Updating data
-********************************************************************************
+*************
 
-Update a :term:`field` value using ``update``:
+``connection.update()`` can be used to update a tuple identified by the primary key as follows:
 
-.. code-block:: python
+..  literalinclude:: /code_snippets/snippets/connectors/python/hello.py
+    :language: python
+    :start-at: # Update
+    :end-at: Updated tuple
+    :dedent:
 
-    >>> tester.update(4, [('=', 1, 'New group'), ('+', 2, 2)])
+``connection.upsert()`` updates an existing tuple or inserts a new one.
+In the example below, a new tuple is inserted:
 
-This updates the value of field ``1`` and increases the value of field ``2``
-in the tuple with ``id = 4``. If a tuple with this ``id`` doesn't exist,
-Tarantool will return an error.
+..  literalinclude:: /code_snippets/snippets/connectors/python/hello.py
+    :language: python
+    :start-at: # Upsert
+    :end-before: # Replace
+    :dedent:
 
-Now use ``replace`` to totally replace the tuple that matches the
-primary key. If a tuple with this primary key doesn't exist, Tarantool will
-do nothing.
 
-.. code-block:: python
+In this example, ``connection.replace()`` deletes the existing tuple and inserts a new one:
 
-    >>> tester.replace((4, 'New band', 2015))
+..  literalinclude:: /code_snippets/snippets/connectors/python/hello.py
+    :language: python
+    :start-at: # Replace
+    :end-at: Replaced tuple
+    :dedent:
 
-You can also update the data using ``upsert`` that works similarly
-to ``update``, but creates a new tuple if the old one was not found.
 
-.. code-block:: python
 
-    >>> tester.upsert((4, 'Another band', 2000), [('+', 2, 5)])
 
-This increases by 5 the value of field ``2`` in the tuple with ``id = 4``, or
-inserts the tuple ``(4, "Another band", 2000)`` if a tuple with this ``id``
-doesn't exist.
+.. _getting_started_python_deleting_data:
 
-.. _getting_started-python-delete:
-
-********************************************************************************
 Deleting data
-********************************************************************************
+*************
 
-To delete a tuple, use ``delete(primary_key)``:
+``connection.delete()`` in the example below deletes a tuple whose primary key value is ``5``:
 
-.. code-block:: python
+..  literalinclude:: /code_snippets/snippets/connectors/python/hello.py
+    :language: python
+    :start-at: # Delete
+    :end-at: Deleted tuple
+    :dedent:
 
-    >>> tester.delete(4)
-    [4, 'New group', 2012]
 
-To delete all tuples in a space (or to delete an entire space), use ``call``.
-We'll focus on this function in more detail in the
-:ref:`next <getting_started-python-stored-procs>` section.
 
-To delete all tuples in a space, call ``space:truncate``:
+.. _getting_started_python_stored_procedures:
 
-.. code-block:: python
-
-    >>> connection.call('box.space.tester:truncate', ())
-
-To delete an entire space, call ``space:drop``.
-This requires connecting to Tarantool as the ``admin`` user:
-
-.. code-block:: python
-
-    >>> connection.call('box.space.tester:drop', ())
-
-.. _getting_started-python-stored-procs:
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Executing stored procedures
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Switch to the terminal window where Tarantool is running.
+To execute a stored procedure, use ``connection.call()``:
 
-.. NOTE::
+..  literalinclude:: /code_snippets/snippets/connectors/python/hello.py
+    :language: python
+    :start-at: # Call
+    :end-at: Stored procedure result
+    :dedent:
 
-    If you don't have a terminal window with remote connection to Tarantool,
-    check out these guides:
 
-    * :ref:`connecting to a local Tarantool instance <connecting-remotely>`
-    * :ref:`attaching to a Tarantool instance that runs in a Docker container <getting_started-docker-attaching>`
+.. _getting_started_python_closing_connection:
 
-Define a simple Lua function:
+Closing the connection
+~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: lua
+The ``connection.close()`` method can be used to close the connection when it is no longer needed:
 
-    function sum(a, b)
-        return a + b
-    end
+..  literalinclude:: /code_snippets/snippets/connectors/python/hello.py
+    :language: python
+    :start-at: # Close connection
+    :end-at: Connection is closed
+    :dedent:
 
-Now we have a Lua function defined in Tarantool. To invoke this function from
-``python``, use ``call``:
+..  NOTE::
 
-.. code-block:: python
+    You can find the example with all the requests above on GitHub: `python <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/connectors/python>`_.
 
-    >>> connection.call('sum', (3, 2))
-    5
 
-To send bare Lua code for execution, use ``eval``:
 
-.. code-block:: python
+.. _getting_started_python_run_client_app:
 
-    >>> connection.eval('return 4 + 5')
-    9
+Starting a client application
+-----------------------------
+
+To run the resulting application, pass the script name to the ``python`` command:
+
+.. code-block:: console
+
+    $ python hello.py
+    Inserted tuples:
+    [1, 'Roxette', 1986]
+    [2, 'Scorpions', 1965]
+    [3, 'Ace of Base', 1987]
+    [4, 'The Beatles', 1960]
+    Tuple selected by the primary key value: [1, 'Roxette', 1986]
+    Tuple selected by the secondary key value: [4, 'The Beatles', 1960]
+    Updated tuple: [2, 'Pink Floyd', 1965]
+    Replaced tuple: [1, 'Queen', 1970]
+    Deleted tuple: [5, 'The Rolling Stones', 1962]
+    Stored procedure result: [[2, 'Pink Floyd', 1965], [4, 'The Beatles', 1960]]
+    Connection is closed
+
 
 .. _getting_started-python-comparison:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Feature comparison
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Python connectors feature comparison
+------------------------------------
 
 See the :ref:`feature comparison table <index_connector_py>` of all Python connectors available.
