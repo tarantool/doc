@@ -76,8 +76,9 @@ promote
     # or
     $ tt rs promote {APPLICATION:APP_INSTANCE | URI} [OPTIONS ...]
 
-``tt replicaset promote`` (``tt rs promote``) make the specified instance a leader
-in its replicaset. This command works on Tarantool clusters with a local YAML
+``tt replicaset promote`` (``tt rs promote``) promotes the specified instance,
+making it a leader of its replica set.
+This command works on Tarantool clusters with a local YAML
 configuration and Cartridge clusters.
 
 .. note::
@@ -105,9 +106,8 @@ configuration file according to the specified arguments and reloads it:
         If failover is ``off``, the command doesn't consider the modes of other
         replica set members, so there can be any number of read-write instances in one replica set.
 
--   ``manual`` failover mode: the command updates the :ref:`leader <configuration_reference_replicasets_name_leader>`)
-    of the replica set to which the specified instance belongs. Other instances
-    of this replica set become read-only.
+-   ``manual`` failover mode: the command updates the :ref:`leader <configuration_reference_replicasets_name_leader>`
+    option of the replica set configuration. Other instances of this replica set become read-only.
 
 Example:
 
@@ -124,7 +124,7 @@ them and reports an error. You can skip this check by adding the ``-f``/``--forc
     $ tt replicaset promote my-app:storage-001-a --force
 
 In the ``election`` failover mode, ``tt replicaset promote`` initiates the new leader
-election by calling :ref:`box_ctl-promote` on the specified instances. The
+election by calling :ref:`box_ctl-promote` on the specified instance. The
 ``--timeout`` option can be used to specify the election completion timeout:
 
 ..  code-block:: console
@@ -209,9 +209,9 @@ them and reports an error. You can skip this check by adding the ``-f``/``--forc
     $ tt replicaset demote my-app:storage-001-a --force
 
 In the ``election`` failover mode, ``tt replicaset demote`` initiates a leader
-election in the replica set. The specified instance's ref:`replication.election_mode <configuration_reference_replication_election_mode>`
-is changed to ``voter`` for this election, which guarantees that another member of
-the replica set is elected as a new leader.
+election in the replica set. The specified instance's :ref:`replication.election_mode <configuration_reference_replication_election_mode>`
+is changed to ``voter`` for this election, which guarantees that another instance
+is elected as a new replica set leader.
 
 The ``--timeout`` option can be used to specify the election completion timeout:
 
@@ -224,7 +224,8 @@ The ``--timeout`` option can be used to specify the election completion timeout:
 Selecting the application orchestrator manually
 -----------------------------------------------
 
-You can specify the orchestrator to use for the application using the following options:
+You can specify the orchestrator to use for the application  when calling ``tt replicaset``
+commands. The following options are available:
 
 *   ``--config`` for applications that use YAML cluster configuration (Tarantool 3.x or later).
 *   ``--cartridge`` for Cartridge applications (Tarantool 2.x).
@@ -233,7 +234,7 @@ You can specify the orchestrator to use for the application using the following 
 ..  code-block:: console
 
     $ tt replicaset status myapp --config
-    $ tt replicaset status my-cartridge-app --cartridge
+    $ tt replicaset promote my-cartridge-app:storage-001-a --cartridge
 
 If an actual orchestrator that the application uses does not match the specified
 option, an error is raised.

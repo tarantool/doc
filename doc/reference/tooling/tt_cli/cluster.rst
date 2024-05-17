@@ -8,15 +8,14 @@ Managing cluster configurations
     $ tt cluster COMMAND {APPLICATION[:APP_INSTANCE] | URI} [FILE] [OPTION ...]
 
 ``tt cluster`` manages :ref:`YAML configurations <configuration>` of Tarantool applications.
-This command works both with local configuration files in application directories
-and with centralized configuration storages (:ref:`etcd <configuration_etcd>` or Tarantool-based).
+This command works both with local YAML files in application directories
+and with :ref:`centralized configuration storages <configuration_etcd>` (etcd or Tarantool-based).
 
 ``COMMAND`` is one of the following:
 
-*   ``publish``
-*   ``show``: print a cluster configuration.
-*   ``replicaset``
-
+*   :ref:`publish <tt-cluster-publish>`
+*   :ref:`show <tt-cluster-show>`
+*   :ref:`replicaset <tt-cluster-replicaset>`
 
 .. _tt-cluster-publish:
 
@@ -104,8 +103,6 @@ the instance name in the ``name`` argument of the storage URI:
 
 Configuration validation
 ~~~~~~~~~~~~~~~~~~~~~~~~
-
-``tt cluster`` can validate configurations against the Tarantool configuration schema.
 
 ``tt cluster publish`` validates configurations against the Tarantool configuration schema
 and aborts in case of an error. To skip the validation, add the ``--force`` option:
@@ -204,8 +201,8 @@ replicaset
 ``tt cluster replicaset`` manages instances in a replica set. It supports the following
 subcommands:
 
--   ``promote``
--   ``demote``
+-   :ref:`promote <tt-cluster-replicaset-promote>`
+-   :ref:`demote <tt-cluster-replicaset-demote>`
 
 .. important::
 
@@ -218,17 +215,86 @@ subcommands:
 promote
 ~~~~~~~
 
-``tt cluster replicaset promote`` promotes an instances in a replica set.
+.. code-block:: console
+
+    $ tt cluster replicaset promote URI INSTANCE_NAME [OPTION ...]
+
+``tt cluster replicaset promote`` promotes the specified instance,
+making it a leader of its replica set.
+This command works on Tarantool clusters with centralized configuration and
+with :ref:`failover modes <configuration_reference_replication_failover>`
+``off`` and ``manual``. It updates the cluster configuration file according to
+the specified arguments and reloads it:
+
+-   ``off`` failover mode: the command sets :ref:`database.mode <configuration_reference_database_mode>`
+    to ``rw`` on the specified instance.
+
+    .. important::
+
+        If failover is ``off``, the command doesn't consider the modes of other
+        replica set members, so there can be any number of read-write instances in one replica set.
+
+-   ``manual`` failover mode: the command updates the :ref:`leader <configuration_reference_replicasets_name_leader>`
+    option of the replica set configuration. Other instances of this replica set become read-only.
+
+Example:
+
+..  code-block:: console
+
+    $ tt cluster replicaset promote "http://localhost:2379/myapp" storage-001-a
 
 .. _tt-cluster-replicaset-demote:
 
 demote
 ~~~~~~
 
+.. code-block:: console
+
+    $ tt cluster replicaset demote URI INSTANCE_NAME [OPTION ...]
+
 ``tt cluster replicaset demote`` demotes an instances in a replica set.
+This command works on Tarantool clusters with centralized configuration and
+with :ref:`failover mode <configuration_reference_replication_failover>`
+``off``.
+
+.. note::
+
+    In clusters with ``manual`` failover mode, you can demote a read-write instance
+    by promoting a read-only instance from the same replica set with ``tt replicaset promote``.
+
+The command sets the instance's :ref:`database.mode <configuration_reference_database_mode>`
+to ``ro`` and reloads the configuration.
+
+.. important::
+
+    If failover is ``off``, the command doesn't consider the modes of other
+    replica set members, so there can be any number of read-write instances in one replica set.
 
 
+.. _tt-cluster-replicaset-details:
 
+Implementation details
+----------------------
+
+The changes that ``tt cluster replicaset`` makes to the configuration storage
+occur transactionally. Each call creates a new revision. In case of a revision mismatch,
+an error is raised.
+
+If the cluster configuration is distributed over multiple keys in the configuration
+storage (for example, in two paths ``/myapp/config/k1`` and ``/myapp/config/k2``),
+the affected instance configuration can be present in more that one of them.
+If it is found under several different keys, the command prompts the user to choose
+a key for patching. You can skip the selection by adding the ``-f``/``--force`` option:
+
+..  code-block:: console
+
+    $ tt cluster replicaset promote "http://localhost:2379/myapp" storage-001-a --force
+
+In this case, the command selects the key for patching automatically. A key's priority
+is determined by the detail level of the instance or replicaset configuration stored
+under this key. For example, when failover is "off", a key with
+``instance.database`` options takes precedence over a key with the only ``instance`` field.
+In case of equal priority, the first key in the lexicographical order is patched.
 
 .. _tt-cluster-authentication:
 
