@@ -11,6 +11,7 @@ import (
 )
 
 func main() {
+	// Connect to the database
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 	dialer := tarantool.NetDialer{
@@ -28,7 +29,8 @@ func main() {
 		return
 	}
 
-	// Interacting with the database
+	// Interact with the database
+	// ...
 	// Insert data
 	tuples := [][]interface{}{
 		{1, "Roxette", 1986},
@@ -61,7 +63,7 @@ func main() {
 	if err != nil {
 		fmt.Println("Got an error:", err)
 	}
-	fmt.Println("Tuple selected the primary key value:", data)
+	fmt.Println("Tuple selected by the primary key value:", data)
 
 	// Select by secondary key
 	data, err = conn.Do(
@@ -74,7 +76,7 @@ func main() {
 	if err != nil {
 		fmt.Println("Got an error:", err)
 	}
-	fmt.Println("Tuple selected the secondary key value:", data)
+	fmt.Println("Tuple selected by the secondary key value:", data)
 
 	// Update
 	data, err = conn.Do(

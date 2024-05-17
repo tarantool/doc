@@ -5,7 +5,7 @@ Connecting from Go
 
 **Examples on GitHub**: `sample_db <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/connectors/instances.enabled/sample_db>`_, `go <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/connectors/go>`_
 
-The tutorial shows how to use the 2.x version of the `go-tarantool <https://github.com/tarantool/go-tarantool>`__ library to create a Go application that connects to a remote Tarantool instance, performs CRUD operations, and executes a stored procedure.
+The tutorial shows how to use the `go-tarantool <https://github.com/tarantool/go-tarantool>`__ 2.x library to create a Go application that connects to a remote Tarantool instance, performs CRUD operations, and executes a stored procedure.
 You can find the full package documentation here: `Client in Go for Tarantool <https://pkg.go.dev/github.com/tarantool/go-tarantool/v2>`__.
 
 
@@ -24,7 +24,7 @@ Sample database configuration
 Starting a sample database application
 --------------------------------------
 
-Before creating and starting a client Go application, you need to run the :ref:`sample_db <getting_started_net_box_sample_db>` application using ``tt start``:
+Before creating and starting a client Go application, you need to run the :ref:`sample_db <getting_started_net_box_sample_db>` application using :ref:`tt start <tt-start>`:
 
 .. code-block:: console
 
@@ -94,8 +94,8 @@ Connecting to the database
 
     ..  literalinclude:: /code_snippets/snippets/connectors/go/hello.go
         :language: go
-        :start-after: func main()
-        :end-at: // Interacting with the database
+        :start-at: // Connect to the database
+        :end-before: // Insert data
         :dedent:
 
     This code establishes a connection to a running Tarantool instance on behalf of ``sampleuser``.
@@ -103,10 +103,10 @@ Connecting to the database
 
 
 
-.. _getting_started_go_using_data_operations:
+.. _getting_started_go_manipulating_data:
 
-Using data operations
-~~~~~~~~~~~~~~~~~~~~~
+Manipulating data
+~~~~~~~~~~~~~~~~~
 
 .. _getting_started_go_inserting_data:
 
@@ -142,7 +142,7 @@ To get a tuple by the specified primary key value, use ``NewSelectRequest()`` to
 ..  literalinclude:: /code_snippets/snippets/connectors/go/hello.go
     :language: go
     :start-at: // Select by primary key
-    :end-at: Tuple selected the primary key value
+    :end-at: Tuple selected by the primary key value
     :dedent:
 
 You can also get a tuple by the value of the specified index by using ``Index()``:
@@ -150,7 +150,7 @@ You can also get a tuple by the value of the specified index by using ``Index()`
 ..  literalinclude:: /code_snippets/snippets/connectors/go/hello.go
     :language: go
     :start-at: // Select by secondary key
-    :end-at: Tuple selected the secondary key value
+    :end-at: Tuple selected by the secondary key value
     :dedent:
 
 
@@ -260,8 +260,8 @@ Starting a client application
         [[2 Scorpions 1965]]
         [[3 Ace of Base 1987]]
         [[4 The Beatles 1960]]
-        Tuple selected the primary key value: [[1 Roxette 1986]]
-        Tuple selected the secondary key value: [[4 The Beatles 1960]]
+        Tuple selected by the primary key value: [[1 Roxette 1986]]
+        Tuple selected by the secondary key value: [[4 The Beatles 1960]]
         Updated tuple: [[2 Pink Floyd 1965]]
         Replaced tuple: [[1 Queen 1970]]
         Deleted tuple: [[5 The Rolling Stones 1962]]
@@ -272,8 +272,8 @@ Starting a client application
 
 .. _getting_started-go-comparison:
 
-Feature comparison
-------------------
+Go connectors feature comparison
+--------------------------------
 
 There are two more connectors from the open-source community:
 
