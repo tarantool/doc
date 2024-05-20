@@ -3140,11 +3140,13 @@ The ``sharding`` section defines configuration parameters related to :ref:`shard
 -   :ref:`sharding.rebalancer_disbalance_threshold <configuration_reference_sharding_rebalancer_disbalance_threshold>`
 -   :ref:`sharding.rebalancer_max_receiving <configuration_reference_sharding_rebalancer_max_receiving>`
 -   :ref:`sharding.rebalancer_max_sending <configuration_reference_sharding_rebalancer_max_sending>`
+-   :ref:`sharding.rebalancer_mode <configuration_reference_sharding_rebalancer_mode>`
 -   :ref:`sharding.roles <configuration_reference_sharding_roles>`
 -   :ref:`sharding.sched_move_quota <configuration_reference_sharding_sched_move_quota>`
 -   :ref:`sharding.sched_ref_quota <configuration_reference_sharding_sched_ref_quota>`
 -   :ref:`sharding.shard_index <configuration_reference_sharding_shard_index>`
 -   :ref:`sharding.sync_timeout <configuration_reference_sharding_sync_timeout>`
+-   :ref:`sharding.weight <configuration_reference_sharding_weight>`
 -   :ref:`sharding.zone <configuration_reference_sharding_zone>`
 
 
@@ -3154,14 +3156,7 @@ The ``sharding`` section defines configuration parameters related to :ref:`shard
 ..  confval:: sharding.bucket_count
 
     The total number of buckets in a cluster.
-
-    ``sharding.bucket_count`` should be several orders of magnitude larger than the potential number of cluster nodes, considering potential scaling out in the future.
-
-    If the estimated number of nodes in a cluster is M, then the data set should be divided into 100M or even 1000M buckets, depending on the planned scaling out.
-    This number is greater than the potential number of cluster nodes in the system being designed.
-
-    Keep in mind that too many buckets can cause a need to allocate more memory to store routing information.
-    On the other hand, an insufficient number of buckets can lead to decreased granularity when :ref:`rebalancing <vshard-rebalancing>`.
+    Learn more in :ref:`vshard_config_bucket_count`.
 
     ..  NOTE::
 
@@ -3179,22 +3174,6 @@ The ``sharding`` section defines configuration parameters related to :ref:`shard
     | Type: integer
     | Default: 3000
     | Environment variable: TT_SHARDING_BUCKET_COUNT
-
-.. TODO: Remove - for internal use
-    ..  _configuration_reference_sharding_connection_outdate_delay:
-
-    ..  confval:: sharding.connection_outdate_delay
-
-        The delay (in seconds) to outdate old replica set and replica objects after reconfiguration.
-
-        ..  NOTE::
-
-            This option should be defined at the :ref:`global level <configuration_scopes>`.
-
-        |
-        | Type: number
-        | Default: nil
-        | Environment variable: TT_SHARDING_CONNECTION_OUTDATE_DELAY
 
 
 ..  _configuration_reference_sharding_discovery_mode:
@@ -3312,25 +3291,27 @@ The ``sharding`` section defines configuration parameters related to :ref:`shard
     | Maximum: 15
     | Environment variable: TT_SHARDING_REBALANCER_MAX_SENDING
 
-.. TODO: https://github.com/tarantool/doc/issues/3865
-    ..  _configuration_reference_sharding_rebalancer_mode:
 
-    ..  confval:: sharding.rebalancer_mode
+..  _configuration_reference_sharding_rebalancer_mode:
 
-        [TODO] A rebalancer mode:
+..  confval:: sharding.rebalancer_mode
 
-        *   ``manual``
-        *   ``auto``
-        *   ``off``
+    **Since:** :doc:`3.1.0 </release/3.1.0>`.
 
-        ..  NOTE::
+    Configure how a rebalancer is selected:
 
-            This option should be defined at the :ref:`global level <configuration_scopes>`.
+    *   ``auto`` (default): if there are no replica sets with the ``rebalancer`` sharding role (:ref:`sharding.roles <configuration_reference_sharding_roles>`), a replica set with the rebalancer is selected automatically among all replica sets.
+    *   ``manual``: one of the replica sets should have the ``rebalancer`` sharding role. The rebalancer is in this replica set.
+    *   ``off``: rebalancing is turned off regardless of whether a replica set with the ``rebalancer`` sharding role  exists or not.
 
-        |
-        | Type: string
-        | Default: 'auto'
-        | Environment variable: TT_SHARDING_REBALANCER_MODE
+    ..  NOTE::
+
+        This option should be defined at the :ref:`global level <configuration_scopes>`.
+
+    |
+    | Type: string
+    | Default: 'auto'
+    | Environment variable: TT_SHARDING_REBALANCER_MODE
 
 
 ..  _configuration_reference_sharding_roles:
@@ -3345,7 +3326,7 @@ The ``sharding`` section defines configuration parameters related to :ref:`shard
     *   ``rebalancer``: a replica set acts as a :ref:`rebalancer <vshard-rebalancer>`.
 
     The ``rebalancer`` role is optional.
-    If it is not specified, a rebalancer is selected automatically from master instances of replica sets.
+    If it is not specified, a rebalancer is selected automatically from the master instances of replica sets.
 
     There can be at most one replica set with the ``rebalancer`` role.
     Additionally, this replica set should have a ``storage`` role.
@@ -3358,6 +3339,8 @@ The ``sharding`` section defines configuration parameters related to :ref:`shard
           storage-a:
             sharding:
               roles: [storage, rebalancer]
+
+    See also: :ref:`vshard_config_sharding_roles`
 
     ..  NOTE::
 
@@ -3425,6 +3408,8 @@ The ``sharding`` section defines configuration parameters related to :ref:`shard
 
         This option should be defined at the :ref:`global level <configuration_scopes>`.
 
+    See also: :ref:`vshard-define-spaces`
+
     |
     | Type: string
     | Default: 'bucket_id'
@@ -3448,11 +3433,30 @@ The ``sharding`` section defines configuration parameters related to :ref:`shard
     | Environment variable: TT_SHARDING_SYNC_TIMEOUT
 
 
+..  _configuration_reference_sharding_weight:
+
+..  confval:: sharding.weight
+
+    **Since:** :doc:`3.1.0 </release/3.1.0>`.
+
+    The relative amount of data that a replica set can store.
+    Learn more at :ref:`vshard-replica-set-weights`.
+
+    ..  NOTE::
+
+        ``sharding.weight`` can be specified at the :ref:`replica set level <configuration_scopes>`.
+
+    |
+    | Type: number
+    | Default: 1
+    | Environment variable: TT_SHARDING_WEIGHT
+
+
 ..  _configuration_reference_sharding_zone:
 
 ..  confval:: sharding.zone
 
-    A :ref:`zone <vshard-replica-weights>` that can be set for routers and replicas.
+    A zone that can be set for routers and replicas.
     This allows sending read-only requests not only to a master instance but to any available replica that is the nearest to the router.
 
     ..  NOTE::

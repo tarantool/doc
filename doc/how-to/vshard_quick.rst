@@ -217,26 +217,20 @@ The resulting ``config.yaml`` file should look as follows:
 Adding storage code
 ~~~~~~~~~~~~~~~~~~~
 
-1.  Open the ``storage.lua`` file and create a space using the :ref:`box.schema.space.create() <box_schema-space_create>` function:
+1.  Open the ``storage.lua`` file and define a space and indexes inside :ref:`box.once() <box-once>`:
 
     ..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster/storage.lua
         :language: lua
-        :start-at: box.schema.create_space
-        :end-before: box.space.bands:create_index('id'
+        :start-at: box.once
+        :end-before: function insert_band
         :dedent:
 
-    Note that the created ``bands`` spaces includes the ``bucket_id`` field.
-    This field represents a sharding key used to partition a dataset across different storage instances.
+    *   The :ref:`box.schema.create_space() <box_schema-space_create>` function is used to create a space.
+        Note that the created ``bands`` spaces includes the ``bucket_id`` field.
+        This field represents a sharding key used to partition a dataset across different storage instances.
+    *   :ref:`space_object:create_index() <box_space-create_index>` is used to create two indexes based on the ``id`` and ``bucket_id`` fields.
 
-2.  Create two indexes based on the ``id`` and ``bucket_id`` fields:
-
-    ..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster/storage.lua
-        :language: lua
-        :start-at: box.space.bands:create_index('id'
-        :end-at: box.space.bands:create_index('bucket_id'
-        :dedent:
-
-3.  Define the ``insert_band`` function that inserts a tuple into the created space:
+2.  Define the ``insert_band`` function that inserts a tuple into the created space:
 
     ..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster/storage.lua
         :language: lua
@@ -244,7 +238,7 @@ Adding storage code
         :end-before: function get_band
         :dedent:
 
-4.  Define the ``get_band`` function that returns data without the ``bucket_id`` value:
+3.  Define the ``get_band`` function that returns data without the ``bucket_id`` value:
 
     ..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster/storage.lua
         :language: lua

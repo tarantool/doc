@@ -43,7 +43,7 @@ Basic parameters
 .. confval:: weights
 
     A field defining the configuration of relative weights for each zone pair in a
-    replica set. See the :ref:`Replica weights <vshard-replica-weights>` section.
+    replica set.
 
     | Type: table
     | Default: false

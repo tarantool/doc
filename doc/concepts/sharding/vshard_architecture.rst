@@ -70,18 +70,10 @@ buckets.
 Each replica set stores a unique subset of buckets. One bucket cannot belong to
 multiple replica sets at a time.
 
-The total number of buckets is determined by the administrator who sets up the
-initial cluster configuration.
+The total :ref:`number of buckets <vshard_config_bucket_count>` is determined by the administrator who sets up the initial cluster configuration.
 
 Every space you plan to shard must have a numeric field containing bucket id-s.
-This field must comply with the following requirements:
-
-*   The field's data type can be: unsigned, number or integer.
-*   The field must be not nullable.
-*   The field must be indexed by the :ref:`shard_index <cfg_basic-shard_index>`.
-    The default name for this index is ``bucket_id``.
-
-See the :ref:`configuration example <vshard-define-spaces>`.
+You can learn more from :ref:`vshard-define-spaces`.
 
 ..  _vshard-structure:
 
@@ -90,9 +82,16 @@ Structure
 
 A sharded cluster in Tarantool consists of:
 
-*   storages,
-*   routers,
-*   and a rebalancer.
+*   One or more replica sets.
+
+    Each replica set should contain at least two storage instances.
+    For redundancy, it is recommended to have 3 or more storage instances in a replica set.
+
+*   One or more router instances.
+
+    The number of router instances is not limited and should be increased if the existing router instances become CPU or I/O bound.
+
+*   Rebalancer.
 
 ..  image:: schema.svg
     :align: center
@@ -231,8 +230,7 @@ While a bucket is being migrated, it can have different states:
 *   RECEIVING – the bucket is currently being filled; all requests to it are rejected.
 *   SENT – the bucket was migrated to the destination replica set. The `router`
     uses the SENT state to calculate the new location of the bucket. A bucket in
-    the SENT state goes to the GARBAGE state automatically after BUCKET_SENT_GARBAGE_DELAY
-    seconds, which by default is :ref:`0.5 seconds <cfg_basic-collect_bucket_garbage_interval>`.
+    the SENT state goes to the GARBAGE state automatically after 0.5 seconds.
 *   GARBAGE – the bucket was already migrated to the destination replica set during
     rebalancing; or the bucket was initially in the RECEIVING state, but some error
     occurred during the migration.

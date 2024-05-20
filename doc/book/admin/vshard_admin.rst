@@ -4,7 +4,14 @@ Sharding with vshard
 ====================
 
 Sharding in Tarantool is implemented in the ``vshard`` module.
-For a quick start with ``vshard``, refer to the :ref:`guide <vshard-quick-start>`.
+For a quick start with ``vshard``, refer to :ref:`vshard-quick-start`.
+
+.. NOTE::
+
+    Starting with the 3.0 version, the recommended way of configuring Tarantool is using a :ref:`configuration file <configuration_file>`.
+    The :ref:`sharding <configuration_reference_sharding>` section defines configuration parameters related to sharding.
+    To learn how to configure ``vshard`` in code, see :ref:`vshard-config-reference`.
+
 
 ..  _vshard-install:
 
@@ -18,137 +25,178 @@ To install the module, execute the following command:
 
     $ tt rocks install vshard
 
+If you are developing a sharded cluster application, add the ``vshard`` module dependency to a ``*.rockspec`` file:
+
+..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster/sharded_cluster-scm-1.rockspec
+    :language: none
+    :start-at: dependencies
+    :end-before: build
+    :dedent:
+
 ..  note::
 
-    The ``vshard`` module requires Tarantool of the version 1.10.1 or higher,
-    :ref:`Tarantool development package <f_c_tutorial-c_stored_procedures>`,
-    ``git``, ``cmake`` and ``gcc`` packages installed.
+    The minimum required version of ``vshard`` is 0.1.25.
+
 
 ..  _vshard-config-cluster:
 
-Configuration
--------------
+Configuration overview
+----------------------
 
-Any viable sharded cluster consists of:
+Configuring settings related to sharding might include the following steps:
 
-*   one or more replica sets, each containing two or more
-    :ref:`storage <vshard-architecture-storage>` instances,
-*   one or more :ref:`router <vshard-architecture-router>` instances.
+1.  Configure :ref:`connection settings <vshard_config_connectivity>` to allow instances within a sharded cluster to communicate with each other.
 
-The number of ``storage`` instances in a replica set defines the redundancy factor
-of the data. The recommended value is 3 or more. The number of ``router`` instances
-is not limited, because routers are completely stateless. We recommend increasing
-the number of routers when an existing ``router`` instance becomes CPU or I/O bound.
+2.  Specify which :ref:`role <vshard_config_sharding_roles>` each replica set plays in a sharded cluster.
 
-``vshard`` supports multiple ``router`` instances on a single Tarantool
-instance. Each ``router`` can be connected to any ``vshard`` cluster. Multiple
-``router`` instances can be connected to the same cluster.
+3.  Configure how data is :ref:`partitioned <vshard_config_data_partitioning>` across shards.
 
-As the ``router`` and ``storage`` applications perform completely different sets of functions,
-they should be deployed to different Tarantool instances. Although it is technically
-possible to place the router application on every ``storage`` node, this approach is
-highly discouraged and should be avoided on production deployments.
+4.  Specify settings related to :ref:`data rebalancing <vshard_config_rebalancing>`.
 
-All ``storage`` instances can be deployed using identical instance (configuration)
-files.
 
-All ``router`` instances can also be deployed using identical instance (configuration)
-files.
+.. _vshard_config_connectivity:
 
-All cluster nodes must share a common topology. An administrator must
-ensure that the configurations are identical. We suggest using a configuration
-management tool like Ansible or Puppet to deploy the cluster.
+Connectivity
+------------
 
-Sharding is not integrated into any system for centralized configuration management.
-It is expected that the application itself is responsible for interacting with such
-a system and passing the sharding parameters.
+This section describes connection options that enable communication between instances within a sharded cluster.
+For general information about connections, see the :ref:`configuration_connections` topic.
 
-The configuration example of a simple sharded cluster is available
-:ref:`here <vshard-config-cluster-example>`.
+.. _vshard_config_advertise_uri:
 
-..  _vshard-replica-weights:
+Advertise URI
+~~~~~~~~~~~~~
 
-Replica weights
-~~~~~~~~~~~~~~~
+In a sharded cluster configuration, you need to specify how a router and rebalancer connect to storages using the :ref:`iproto.advertise.sharding <configuration_reference_iproto_advertise_sharding>` option.
+In the example below, the ``storage`` user is used for this purpose:
 
-The ``router`` sends all read-write requests to the master instance only. Setting replica
-weights allows sending read-only requests not only to the master instance, but to any
-available replica that is the 'nearest' to the ``router``. Weights are used to define
-distances between replicas within a replica set.
+..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster/config.yaml
+    :language: yaml
+    :start-at: iproto
+    :end-at: login: storage
+    :dedent:
 
-Weights can be used, for example, to define the physical distance between the
-``router`` and each replica in each replica set. In this case read requests
-are sent to the nearest replica (with the lowest weight).
+The ``storage`` user should have the ``sharding`` role described in the next section.
 
-Setting weights can also help to define the most powerful replicas: the ones that
-can process the largest number of requests per second.
 
-The idea is to specify the zone for every ``router`` and every replica, therefore
-filling a matrix of relative zone weights. This approach allows setting different
-weights in different zones for the same replica set.
+.. _vshard_config_credentials:
 
-To set weights, use the zone attribute for each replica during configuration:
+Credentials
+~~~~~~~~~~~
 
-..  code-block:: kconfig
+To allow a router and rebalancer to connect to storages, a user with the ``sharding`` :ref:`role <access_control_concepts_roles>` should be used.
+The example below shows how to grant the ``sharding`` role to the ``storage`` user:
 
-    local cfg = {
-       sharding = {
-          ['...replicaset_uuid...'] = {
-             replicas = {
-                ['...replica_uuid...'] = {
-                     ...,
-                     zone = <number or string>
-                }
-             }
-          }
-       }
-    }
+..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster/config.yaml
+    :language: yaml
+    :start-at: credentials:
+    :end-at: roles: [sharding]
+    :dedent:
 
-Then, specify relative weights for each zone pair in the ``weights`` parameter of
-``vshard.router.cfg``. For example:
+The ``sharding`` role has different privileges depending on a replica set's :ref:`sharding role <vshard_config_sharding_roles>`.
+For replica sets with the ``storage`` sharding role, the ``sharding`` credential role has the following privileges:
 
-..  code-block:: kconfig
+-   All privileges provided by the ``replication`` role.
+-   Executing :ref:`vshard.storage.* <vshard-vshard_storage>` functions.
 
-    weights = {
-        [1] = {
-            [2] = 1, -- Routers of the 1st zone see the weight of the 2nd zone as 1.
-            [3] = 2, -- Routers of the 1st zone see the weight of the 3rd zone as 2.
-            [4] = 3, -- ...
-        },
-        [2] = {
-            [1] = 10,
-            [2] = 0,
-            [3] = 10,
-            [4] = 20,
-        },
-        [3] = {
-            [1] = 100,
-            [2] = 200, -- Routers of the 3rd zone see the weight of the 2nd zone as 200.
-                       -- Mind that it is not equal to the weight of the 2nd zone visible
-                       -- from the 1st zone (= 1).
-            [4] = 1000,
-        }
-    }
+If a replica set does not have the ``storage`` sharding role, the ``sharding`` credential role does not have any privileges.
 
-    local cfg = vshard.router.cfg({weights = weights, sharding = ...})
+
+.. _vshard_config_sharding_roles:
+
+Sharding roles
+--------------
+
+Each replica set in a sharded cluster can have one of three roles:
+
+*   ``router``: a replica set acts as a :ref:`router <vshard-architecture-router>`.
+*   ``storage``: a replica set acts as a :ref:`storage <vshard-architecture-storage>`.
+*   ``rebalancer``: a replica set acts as a :ref:`rebalancer <vshard-rebalancer>`.
+
+You can use the :ref:`sharding.roles <configuration_reference_sharding_roles>` option to assign a specific role to a replica set or group of replica sets.
+In the example below, all replica sets in the ``storages`` group have the ``storage`` role while replica sets in the ``routers`` group have the ``router`` role.
+
+..  code-block:: yaml
+
+    groups:
+      storages:
+        sharding:
+          roles: [storage]
+        # ...
+      routers:
+        sharding:
+          roles: [router]
+        # ...
+
+Note that the ``rebalancer`` role is optional.
+If it is not specified, a rebalancer is selected automatically from the master instances of replica sets.
+To specify the rebalancer manually or turn it off, use the :ref:`sharding.rebalancer_mode <configuration_reference_sharding_rebalancer_mode>` option.
+
+
+.. _vshard_config_data_partitioning:
+
+Data partitioning
+-----------------
+
+This section describes configuration settings related to data partitioning.
+Learn how to define spaces to be sharded in :ref:`vshard-define-spaces`.
+
+
+.. _vshard_config_bucket_count:
+
+Bucket count
+~~~~~~~~~~~~
+
+To define the total number of buckets in a cluster, configure the :ref:`sharding.bucket_count <configuration_reference_sharding_bucket_count>` option at the :ref:`global level <configuration_scopes>`.
+In the example below, ``sharding.bucket_count`` is set to 1000:
+
+..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster/config.yaml
+    :language: yaml
+    :start-after: login: storage
+    :end-at: bucket_count
+    :dedent:
+
+``sharding.bucket_count`` should be several orders of magnitude larger than the potential number of cluster nodes considering potential scaling out in the future.
+
+If the estimated number of nodes in a cluster is N, then the data set should be divided into 100N or even 1000N buckets depending on the planned scaling out.
+This number is greater than the potential number of cluster nodes in the system being designed.
+
+Keep in mind that too many buckets can cause a need to allocate more memory to store routing information.
+On the other hand, an insufficient number of buckets can lead to decreased granularity when :ref:`rebalancing <vshard-rebalancing>`.
+
+
 
 ..  _vshard-replica-set-weights:
 
 Replica set weights
 ~~~~~~~~~~~~~~~~~~~
 
-A replica set weight is not the same as the replica weight. The weight of a replica
-set defines the capacity of the replica set: the larger the weight, the more
-buckets the replica set can store. The total size of all sharded spaces in the
-replica set is also its capacity metric.
+A replica set weight defines the storage capacity of the replica set: the larger the weight, the more buckets the replica set can store.
+You can configure a replica set weight using the :ref:`sharding.weight <configuration_reference_sharding_weight>` option.
+This option can be used to store the prevailing amount of data on a replica set with more memory space.
+You can also assign a zero weight to a replica set to initiate :ref:`migration of its buckets <vshard_config_rebalancing>` to the remaining cluster nodes.
 
-You can consider replica set weights as the relative amount of data within a
-replica set. For example, if ``replicaset_1 = 100``, and ``replicaset_2 = 200``,
-the second replica set stores twice as many buckets as the first one. By default,
-all weights of all replica sets are equal.
+In the example below, the ``storage-a`` replica set can store twice as much data as ``storage-b``:
 
-You can use weights, for example, to store the prevailing amount of data on a
-replica set with more memory space.
+..  code-block:: yaml
+
+    # ...
+    replicasets:
+      storage-a:
+        sharding:
+          weight: 2
+        # ...
+      storage-b:
+        sharding:
+          weight: 1
+        # ...
+
+
+.. _vshard_config_rebalancing:
+
+Data rebalancing
+----------------
+
 
 ..  _vshard-rebalancing:
 
@@ -161,11 +209,11 @@ If there is no deviation
 from this number in the whole replica set, then the buckets are distributed evenly.
 
 The etalon number is calculated automatically considering the number of buckets
-in the cluster and weights of the replica sets.
+in the cluster and the weights of the replica sets.
 
 Rebalancing starts if the **disbalance threshold of a replica set**
-exceeds the disbalance threshold
-:ref:`specified in the configuration <cfg_basic-rebalancer_disbalance_threshold>`.
+exceeds the disbalance threshold specified in the configuration
+(the :ref:`sharding.rebalancer_disbalance_threshold <configuration_reference_sharding_rebalancer_disbalance_threshold>` option).
 
 The disbalance threshold of a replica set is calculated as follows:
 
@@ -173,31 +221,25 @@ The disbalance threshold of a replica set is calculated as follows:
 
     |etalon_bucket_number - real_bucket_number| / etalon_bucket_number * 100
 
-For example: The user specified the number of buckets is 3000, and weights
-of 3 replica sets are 1, 0.5, and 1.5. The resulting etalon numbers of buckets
-for the replica sets are: 1st replica set – 1000, 2nd replica set – 500, 3rd
-replica set – 1500.
+For example, a cluster is configured as follows:
 
-This approach allows assigning a zero weight to a replica set, which initiates
-migration of its buckets to the remaining cluster nodes. It also allows adding
-a new zero-load replica set, which initiates migration of the buckets from the
-loaded replica sets to the zero-load replica set.
+*   The number of buckets (:ref:`sharding.bucket_count <configuration_reference_sharding_bucket_count>`) is set to 3000.
+*   :ref:`Weights <vshard-replica-set-weights>` of 3 replica sets are 1, 0.5, and 1.5.
 
-..  note::
+In this case, the etalon numbers of buckets for the replica sets are:
 
-    A new zero-load replica set should be assigned a weight for rebalancing to start.
+*   1st replica set -- 1000.
+*   2nd replica set -- 500.
+*   3rd replica set -- 1500.
 
-When a new shard is added, the configuration can be updated dynamically:
+You can set a :ref:`replica set weight <vshard-replica-set-weights>` to zero to initiate migration of its buckets to the remaining cluster nodes.
+You can also add a new replica set with a non-zero weight to initiate migration of the buckets from the existing replica sets.
 
-1.  The configuration should be updated on all the ``routers`` first, and then on all
-    the ``storages``.
-2.  The new shard becomes available for rebalancing in the ``storage`` layer.
-3.  As a result of rebalancing, buckets are migrated to the new shard.
-4.  If a migrated bucket is requested, ``router`` receives an error code containing
-    information about the new location of the bucket.
+When a new shard is added, a configuration should be reloaded on each instance to migrate buckets to a new shard:
 
-At this time, the new shard is already present in the ``router``'s pool of
-connections, so redirection is transparent for the application.
+*   If a :ref:`centralized configuration storage <configuration_etcd>` is used, Tarantool reloads a changed configuration automatically.
+*   If a local configuration file is used, you need to reload a configuration on all the routers first and then on all the storages.
+
 
 ..  _vshard-parallel-rebalancing:
 
@@ -205,7 +247,7 @@ Parallel rebalancing
 ~~~~~~~~~~~~~~~~~~~~
 
 Originally, ``vshard`` had quite a simple ``rebalancer`` –
-one process on one node that calculated *routes* which should send buckets, how
+one process on one node that calculated *routes* that should send buckets, how
 many, and to whom. The nodes applied these routes one by
 one sequentially.
 
@@ -217,54 +259,56 @@ applier was sleeping most of the time.
 Now each node can send multiple buckets in parallel in a
 round-robin manner to multiple destinations, or to just one.
 
-To set the degree of parallelism, a new option was added --
-:ref:`rebalancer_max_sending <cfg_basic-rebalancer_max_sending>`.
-You can specify it in a storage configuration in the root table:
+To set the degree of parallelism, use the :ref:`sharding.rebalancer_max_sending <configuration_reference_sharding_rebalancer_max_sending>` option:
 
-..  code-block:: lua
+..  code-block:: yaml
 
-    cfg.rebalancer_max_sending = 5
-    vshard.storage.cfg(cfg, box.info.uuid)
-
-In routers, this option is ignored.
+    sharding:
+      rebalancer_max_sending: 5
 
 ..  note::
 
-    Specifying ``cfg.rebalancer_max_sending = N`` probably won't give N times
+    Specifying ``sharding.rebalancer_max_sending = N`` probably won't give N times
     speed up. It depends on network, disk, number of other fibers in the system.
 
-**Example #1:**
+..  _vshard-parallel-rebalancing-example1:
 
-  You have 10 replica sets and a new one is added.
-  Now all the 10 replica sets will try to send buckets to the new one.
+Example 1
+*********
 
-  Assume that each replica set can send up to 5 buckets at once. In that case,
-  the new replica set will experience a rather big load of 50 buckets
-  being downloaded at once. If the node needs to do some other
-  work, perhaps such a big load is undesirable. Also too many
-  parallel buckets can cause timeouts in the rebalancing process
-  itself.
+You have 10 replica sets and a new one is added.
+Now all the 10 replica sets will try to send buckets to the new one.
 
-  To fix the problem, you can set a lower value for ``rebalancer_max_sending``
-  for old replica sets, or decrease ``rebalancer_max_receiving`` for the new one.
-  In the latter case some workers on old nodes will be throttled,
-  and you will see that in the logs.
+Assume that each replica set can send up to 5 buckets at once. In that case,
+the new replica set will experience a rather big load of 50 buckets
+being downloaded at once. If the node needs to do some other
+work, perhaps such a big load is undesirable. Also too, many
+parallel buckets can cause timeouts in the rebalancing process
+itself.
+
+To fix the problem, you can set a lower value for ``rebalancer_max_sending``
+for old replica sets, or decrease ``rebalancer_max_receiving`` for the new one.
+In the latter case, some workers on old nodes will be throttled,
+and you will see that in the logs.
 
 ``rebalancer_max_sending`` is important, if you have restrictions for
-the maximal number of buckets that can be read-only at once in the cluster. As you
+the maximum number of buckets that can be read only at once in the cluster. As you
 remember, when a bucket is being sent, it does not accept new
 write requests.
 
-**Example #2:**
+..  _vshard-parallel-rebalancing-example2:
 
-  You have 100000 buckets and each
-  bucket stores ~0.001% of your data. The cluster has 10
-  replica sets. And you never can afford > 0.1% of data locked on
-  write. Then you should not set ``rebalancer_max_sending`` > 10 on
-  these nodes. It guarantees that the rebalancer won't send more
-  than 100 buckets at once in the whole cluster.
+Example 2
+*********
 
-If ``max_sending`` is too high and ``max_receiving`` is too low,
+You have 100000 buckets and each
+bucket stores ~0.001% of your data. The cluster has 10
+replica sets. And you never can afford > 0.1% of data locked on
+write. Then you should not set ``rebalancer_max_sending`` > 10 on
+these nodes. It guarantees that the rebalancer won't send more
+than 100 buckets at once in the whole cluster.
+
+If ``rebalancer_max_sending`` is too high and ``rebalancer_max_receiving`` is too low,
 then some buckets will try to get relocated – and will fail with that.
 This problem will consume network resources and time. It is important to
 configure these parameters to not conflict with each other.
@@ -274,21 +318,21 @@ configure these parameters to not conflict with each other.
 Replica set lock and bucket pin
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-A replica set lock makes a replica set invisible to the ``rebalancer``: a locked
+A replica set lock (:ref:`sharding.lock <configuration_reference_sharding_lock>`) makes a replica set invisible to the ``rebalancer``: a locked
 replica set can neither receive new buckets nor migrate its own buckets.
 
-A bucket pin blocks a specific bucket from migrating: a pinned bucket stays on
-the replica set to which it is pinned, until it is unpinned.
+A bucket pin (:ref:`vshard.storage.bucket_pin(bucket_id) <storage_api-bucket_pin>`) blocks a specific bucket from migrating: a pinned bucket stays on
+the replica set to which it is pinned until it is unpinned.
 
 Pinning all replica set buckets is not equivalent to locking a replica set. Even if
 you pin all buckets, a non-locked replica set can still receive new buckets.
 
-Replica set lock is helpful, for example, to separate a replica set from production
+A replica set lock is helpful, for example, to separate a replica set from production
 replica sets for testing, or to preserve some application metadata that must not
 be sharded for a while. A bucket pin is used for similar cases but in a smaller
 scope.
 
-By both locking a replica set and pinning all buckets, one can
+By both locking a replica set and pinning all buckets, you can
 isolate an entire replica set.
 
 Locked replica sets and pinned buckets affect the rebalancing algorithm as the
@@ -325,7 +369,7 @@ following:
     rs3: bucket_count = 90
 
 The ``rebalancer`` moved as many buckets as possible from ``rs2`` to decrease the
-disbalance. At the same time it respected equal weights of ``rs1`` and ``rs3``.
+disbalance. At the same time, it respected equal weights of ``rs1`` and ``rs3``.
 
 The algorithms for implementing locks and pins are completely different, although
 they look similar in terms of functionality.
@@ -333,9 +377,9 @@ they look similar in terms of functionality.
 ..  _vshard-lock-and-rebalancing:
 
 Replica set lock and rebalancing
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+********************************
 
-Locked replica sets simply do not participate in rebalancing. This means that
+Locked replica sets do not participate in rebalancing. This means that
 even if the actual total number of buckets is not equal to the etalon number,
 the disbalance cannot be fixed due to the lock. When the rebalancer detects that
 one of the replica sets is locked, it recalculates the etalon number of buckets
@@ -345,7 +389,7 @@ not exist at all.
 ..  _vshard-pin-and-rebalancing:
 
 Bucket pin and rebalancing
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+**************************
 
 Rebalancing replica sets with pinned buckets requires a more complex algorithm.
 Here ``pinned_count[o]`` is the number of pinned buckets, and ``etalon_count`` is
@@ -428,10 +472,10 @@ Bucket ref is an in-memory counter that is similar to the
 The :ref:`vshard.storage.bucket_ref/unref()<storage_api-bucket_ref>` methods
 are called automatically when :ref:`vshard.router.call() <router_api-call>`
 or :ref:`vshard.storage.call() <storage_api-call>` is used.
-For raw API like ``r = vshard.router.route() r:callro/callrw`` you should
+For raw API like ``r = vshard.router.route() r:callro/callrw``, you should
 explicitly call the ``bucket_ref()`` method inside the function. Also, make sure
 that you call ``bucket_unref()`` after ``bucket_ref()``, otherwise the bucket
-cannot be moved from the storage until the instance restart.
+cannot be moved from the storage until the instance is restarted.
 
 To see how many refs there are for a bucket, use
 :ref:`vshard.storage.buckets_info([bucket_id]) <storage_api-buckets_info>`
@@ -451,79 +495,71 @@ For example:
         rw_lock: true
         id: 1
 
+
+
+.. _vshard_defining_manipulating_data:
+
+Defining and manipulating data
+------------------------------
+
 ..  _vshard-define-spaces:
 
-Defining spaces
+Data definition
 ~~~~~~~~~~~~~~~
 
-Database Schema is stored on ``storages``, while ``routers`` know nothing about
-spaces and tuples.
+Sharded spaces should be defined in a storage application inside :ref:`box.once() <box-once>` and should have a field with :ref:`bucket id <vshard-vbuckets>` values.
+This field should meet the following requirements:
 
-Spaces should be defined within a storage application using ``box.once()``.
-For example:
+-   The field's :ref:`data type <index-box_data-types>` can be ``unsigned``, ``number``, or ``integer``.
+-   The field must be non-nullable.
+-   The field must be indexed by the :ref:`shard_index <configuration_reference_sharding_shard_index>`. The default name for this index is ``bucket_id``.
 
-..  code-block:: lua
+In the example below, the ``bands`` space has the ``bucket_id`` field, which is used to partition a dataset across different storage instances:
 
-    box.once("testapp:schema:1", function()
-        local customer = box.schema.space.create('customer')
-        customer:format({
-            {'customer_id', 'unsigned'},
-            {'bucket_id', 'unsigned'},
-            {'name', 'string'},
-        })
-        customer:create_index('customer_id', {parts = {'customer_id'}})
-        customer:create_index('bucket_id', {parts = {'bucket_id'}, unique = false})
+..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster/storage.lua
+    :language: lua
+    :start-at: box.once
+    :end-before: function insert_band
+    :dedent:
 
-        local account = box.schema.space.create('account')
-        account:format({
-            {'account_id', 'unsigned'},
-            {'customer_id', 'unsigned'},
-            {'bucket_id', 'unsigned'},
-            {'balance', 'unsigned'},
-            {'name', 'string'},
-        })
-        account:create_index('account_id', {parts = {'account_id'}})
-        account:create_index('customer_id', {parts = {'customer_id'}, unique = false})
-        account:create_index('bucket_id', {parts = {'bucket_id'}, unique = false})
-        box.snapshot()
+Example on GitHub: `sharded_cluster <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster>`_
 
-        box.schema.func.create('customer_lookup')
-        box.schema.role.grant('public', 'execute', 'function', 'customer_lookup')
-        box.schema.func.create('customer_add')
-    end)
 
-..  note::
 
-    Every space you plan to shard must have a field with
-    :ref:`bucket id <vshard-vbuckets>` numbers, indexed by the
-    :ref:`shard index <cfg_basic-shard_index>`.
 
 ..  _vshard-adding-data:
 
-Adding data
-~~~~~~~~~~~
+Data manipulation
+~~~~~~~~~~~~~~~~~
 
-All DML operations with data should be performed via ``router``. The
-only operation supported by ``router`` is `CALL` via ``bucket_id``:
+All DML operations with data should be performed via a router using the ``vshard.router.call`` functions, such as :ref:`vshard.router.callrw() <router_api-callrw>` or :ref:`vshard.router.callro() <router_api-callro>`.
+For example, a storage application has the ``insert_band`` function used to insert new tuples:
 
-..  code-block:: lua
+..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster/storage.lua
+    :language: lua
+    :start-at: function insert_band
+    :end-before: function get_band
+    :dedent:
 
-    result = vshard.router.call(bucket_id, mode, func, args)
+In a router application, you can define the ``put`` function that specifies how a router selects the storage to write data:
 
-``vshard.router.call()`` routes ``result = func(unpack(args))`` call to a shard
-which serves ``bucket_id``.
+..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster/router.lua
+    :language: lua
+    :start-at: function put
+    :end-before: function get
+    :dedent:
 
-``bucket_id`` is just a regular number in the range
-``1..``:ref:`bucket_count<cfg_basic-bucket_count>`. This number can be assigned in
-an arbitrary way by the client application. A sharded Tarantool cluster uses this
-number as an opaque unique identifier to distribute data across replica sets. It
-is guaranteed that all records with the same ``bucket_id`` will be stored on the
-same replica set.
+Learn more at :ref:`vshard-process-requests`.
 
-.. _vshard-bootstrap:
+.. _vshard-maintenance:
 
-Bootstrapping and restarting a storage
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Sharded cluster maintenance
+---------------------------
+
+.. _vshard-maintenance-master_crash:
+
+Master crash
+~~~~~~~~~~~~
 
 If a replica set master fails, it is recommended to:
 
@@ -532,32 +568,45 @@ If a replica set master fails, it is recommended to:
 #.  Update the configuration of all the cluster members. This forwards all the
     requests to the new master.
 
-Monitoring the master and switching the instance modes can be handled by any
-external utility.
+.. _vshard-maintenance-replicaset_crash:
+
+Replica set crash
+~~~~~~~~~~~~~~~~~
+
+In case a whole replica set fails, some part of the dataset becomes inaccessible.
+Meanwhile, the router tries to reconnect to the master of the failed replica set.
+This way, once the replica set is up and running again, the cluster is automatically restored.
+
+
+.. _vshard-maintenance-master_scheduled_downtime:
+
+Master scheduled downtime
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To perform a scheduled downtime of a replica set master, it is recommended to:
 
-#.  Update the configuration of the master and wait for the replicas to get into
-    sync. All the requests then are forwarded to a new master.
-#.  Switch another instance into the master mode.
-#.  Update the configuration of all the nodes.
-#.  Shut down the old master.
+#.  Update the configuration to use another instance as a master.
+#.  Reload the configuration on all the instances.
+    All the requests then are forwarded to a new master.
+#   Shut down the old master.
+
+.. _vshard-maintenance-replicaset_scheduled_downtime:
+
+Replica set scheduled downtime
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To perform a scheduled downtime of a replica set, it is recommended to:
 
 #.  Migrate all the buckets to the other cluster storages.
+    You can do this by assigning a zero :ref:`weight <vshard-replica-set-weights>` to a replica set to initiate migration of its buckets to the remaining cluster nodes.
 #.  Update the configuration of all the nodes.
 #.  Shut down the replica set.
 
-In case a whole replica set fails, some part of the dataset becomes inaccessible.
-Meanwhile, the ``router`` tries to reconnect to the master of the failed replica
-set. This way, once the replica set is up and running again, the cluster is
-automatically restored.
 
 ..  _vshard-fibers:
 
 Fibers
-~~~~~~
+------
 
 Searches for buckets, buckets recovery, and buckets rebalancing are performed
 automatically and do not require manual intervention.
@@ -565,14 +614,13 @@ automatically and do not require manual intervention.
 Technically, there are multiple fibers responsible for different types of
 operations:
 
-*   a **discovery** fiber on the ``router`` searches for buckets in the background
-*   a **failover** fiber on the ``router`` maintains replica connections
-*   a **garbage collector** fiber on each master ``storage`` removes the contents
+*   a **discovery** fiber on the router searches for buckets in the background
+*   a **failover** fiber on the router maintains replica connections
+*   a **garbage collector** fiber on each master storage removes the contents
     of buckets that were moved
-*   a **bucket recovery** fiber on each master ``storage`` recovers buckets in the
+*   a **bucket recovery** fiber on each master storage recovers buckets in the
     SENDING and RECEIVING states in case of reboot
-*   a **rebalancer** on a single master ``storage`` among all replica sets executes
-    the rebalancing process.
+*   a **rebalancer** on a single master storage among all replica sets executes the rebalancing process.
 
 See the :ref:`Rebalancing process <vshard-rebalancing>` and
 :ref:`Migration of buckets <vshard-migrate-buckets>` sections for details.
@@ -580,7 +628,8 @@ See the :ref:`Rebalancing process <vshard-rebalancing>` and
 ..  _vshard-gc:
 
 Garbage collector
-^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~
+
 
 A **garbage collector** fiber runs in the background on the master storages
 of each replica set. It starts deleting the contents of the bucket in the GARBAGE
@@ -590,7 +639,7 @@ state part by part. Once the bucket is empty, its record is deleted from the
 ..  _vshard-bucket-recovery:
 
 Bucket recovery
-^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~
 
 A **bucket recovery** fiber runs on the master storages. It helps to recover
 buckets in the SENDING and RECEIVING states in case of reboot.
@@ -608,8 +657,8 @@ Buckets in the RECEIVING state are deleted without extra checks.
 ..  _vshard-failover:
 
 Failover
-^^^^^^^^
+~~~~~~~~
 
-A **failover** fiber runs on every ``router``. If a master of a replica set
+A **failover** fiber runs on every router. If a master of a replica set
 becomes unavailable, the failover fiber redirects read requests to the replicas.
 Write requests are rejected with an error until the master becomes available.
