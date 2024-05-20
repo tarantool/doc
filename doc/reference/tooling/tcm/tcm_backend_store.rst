@@ -11,9 +11,9 @@ Backend store
 users, roles, cluster connections, settings, and other objects that you manipulate in |tcm|.
 The backend store can be either an etcd or a Tarantool cluster.
 
-Typically, the backend store works independently from |tcm|. For example, it can
-be the same ectd or Tarantool cluster that you use as a :ref:`centralized configuration storage <configuration_etcd>`.
-This makes |tcm| stateless: all objects created or modified in its web UI are sent
+For better reliability and scalability, the backend store works independently from |tcm|.
+For example, it can be the same ectd or Tarantool cluster that you use as a :ref:`centralized configuration storage <configuration_etcd>`.
+This makes |tcm| stateless: all objects created or modified in its web UI are saved
 to the backend store, and nothing is stored inside the |tcm| instances themselves.
 Any number of instances can duplicate each other when connected to the same backend store.
 If you stop all instances, the store still contains their objects. You can continue
@@ -64,7 +64,7 @@ A minimal etcd configuration includes the storage endpoints:
       provider: etcd
       etcd:
         endpoints:
-          - https://127.0.0.1:2379
+          - http://127.0.0.1:2379
 
 If authentication is enabled in etcd, specify ``storage.etcd.username`` and ``storage.etcd.password``:
 
@@ -74,7 +74,7 @@ If authentication is enabled in etcd, specify ``storage.etcd.username`` and ``st
       provider: etcd
       etcd:
         endpoints:
-          - https://127.0.0.1:2379
+          - http://127.0.0.1:2379
         username: etcduser
         password: secret
 
@@ -88,7 +88,7 @@ different |tcm| instances separately in one etcd cluster, set the prefix explici
       provider: etcd
       etcd:
         endpoints:
-          - https://127.0.0.1:2379
+          - http://127.0.0.1:2379
         prefix: /tcm2
 
 
@@ -112,7 +112,7 @@ the backend store instances:
     storage:
       provider: tarantool
       tarantool:
-        addr: https://127.0.0.1:3301
+        addr: http://127.0.0.1:3301
 
 Or:
 
@@ -122,9 +122,9 @@ Or:
       provider: tarantool
       tarantool:
         addrs:
-          - https://127.0.0.1:3301
-          - https://127.0.0.1:3302
-          - https://127.0.0.1:3303
+          - http://127.0.0.1:3301
+          - http://127.0.0.1:3302
+          - http://127.0.0.1:3303
 
 If authentication is enabled in the backend store, specify ``storage.tarantool.username``
 and ``storage.tarantool.password``:
@@ -134,7 +134,7 @@ and ``storage.tarantool.password``:
     storage:
       provider: tarantool
       tarantool:
-        addr: https://127.0.0.1:3301
+        addr: http://127.0.0.1:3301
         username: tarantooluser
         password: secret
 
@@ -148,7 +148,7 @@ different |tcm| instances separately in one Tarantool cluster, set the prefix ex
     storage:
       provider: tarantool
       tarantool:
-        addr: https://127.0.0.1:3301
+        addr: http://127.0.0.1:3301
         username: tarantooluser
         password: secret
         prefix: /tcm2
@@ -316,8 +316,8 @@ To set up a cluster from embedded Tarantool-based backend stores:
 2.  Assign an instance name from this configuration to each instance using ``storage.tarantool.embed.args``
     to each embedded store.
 
-Example configurations of three |tcm| instances that start with embedded Tarantool-based
-store instances and form a cluster from them:
+Below are example configurations of three |tcm| instances that start with embedded
+Tarantool-based backend stores and form a cluster from them:
 
 *   First instance:
 
