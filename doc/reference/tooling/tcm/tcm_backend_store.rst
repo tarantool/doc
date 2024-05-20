@@ -51,8 +51,8 @@ option selects the store type. It can be either ``etcd`` or ``tarantool``.
 
 .. _tcm_backend_store_connect_etcd:
 
-etcd store
-~~~~~~~~~~
+External etcd store
+~~~~~~~~~~~~~~~~~~~
 
 To use an etcd cluster as a |tcm| backend store, set the ``storage.provider`` option
 to ``etcd`` and specify connection parameters in ``storage.etcd.*`` options.
@@ -99,8 +99,8 @@ For the full list of the etcd |tcm| backend store options, see the
 
 .. _tcm_backend_store_connect_tarantool:
 
-Tarantool-based store
-~~~~~~~~~~~~~~~~~~~~~
+External Tarantool-based store
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To use a Tarantool cluster as a |tcm| backend store, set the ``storage.provider`` option
 to ``tarantool`` and specify connection parameters in ``storage.tarantool.*`` options.
@@ -161,8 +161,8 @@ For the full list of the Tarantool-based |tcm| backend store options, see the
 
 .. _tcm_backend_store_embed:
 
-Using an embedded backend store
--------------------------------
+Embedded backend store
+----------------------
 
 For development purposes, you can start |tcm| with an embedded backend store.
 This is useful for local runs when you don't have or don't need an external backend store.
@@ -189,8 +189,8 @@ and leave other ``storage.*`` options default:
 
     storage.etcd.embed.enabled: true
 
-To start |tcm| with default settings and an embedded etcd without a YAML configuration,
-use the ``--storage.etcd.embed.enabled`` command-line option:
+You can use the following call to get |tcm| running with embedded etcd without
+a configuration file:
 
 .. code-block:: console
 
