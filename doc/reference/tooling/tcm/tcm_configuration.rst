@@ -87,7 +87,7 @@ file in the ``-c`` command-line option:
 
 .. code-block:: console
 
-    tcm -c=config.yml
+    $ tcm -c=config.yml
 
 .. _tcm_configuration_ways_env:
 
@@ -107,9 +107,9 @@ environment variables:
 
 .. code-block:: console
 
-    export TCM_HTTP_HOST=0.0.0.0
-    export TCM_HTTP_PORT=8888
-    tcm
+    $ export TCM_HTTP_HOST=0.0.0.0
+    $ export TCM_HTTP_PORT=8888
+    $ tcm
 
 .. _tcm_configuration_ways_cli:
 
@@ -117,18 +117,18 @@ Command-line arguments
 ~~~~~~~~~~~~~~~~~~~~~~
 
 The |tcm| executable has ``--`` command-line options for each configuration parameter.
-Their names reflect the full path to the parameter, with all delimiters replaced by
-hyphens (``-``). Examples:
+Their names reflect the full path to the parameter, with configuration levels separated by
+periods (``.``). Examples:
 
--   ``--http-host`` is an option for ``http.host``.
--  ``--http-websession-cookie-name`` is an option for ``http.websession-cookie.name``.
+-   ``--http.host`` is an option for ``http.host``.
+-  ``--http.websession-cookie.name`` is an option for ``http.websession-cookie.name``.
 
 The example below shows how to start |tcm| with configuration parameters passed in
 command-line options:
 
 .. code-block:: console
 
-    ./tcm --storage.etcd.embed.enabled --addon.enabled --http.host=0.0.0.0 --http.port=8888
+    $ tcm --storage.etcd.embed.enabled --addon.enabled --http.host=0.0.0.0 --http.port=8888
 
 
 ..  _tcm_configuration_precedence:
@@ -225,4 +225,4 @@ To write a default |tcm| configuration to the ``tcm.example.yml`` file, run:
 
 .. code-block:: console
 
-    tcm generate-config > tcm.example.yml.
+    $ tcm generate-config > tcm.example.yml.
