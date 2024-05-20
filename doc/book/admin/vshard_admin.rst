@@ -129,7 +129,7 @@ In the example below, all replica sets in the ``storages`` group have the ``stor
         # ...
 
 Note that the ``rebalancer`` role is optional.
-If it is not specified, a rebalancer is selected automatically from master instances of replica sets.
+If it is not specified, a rebalancer is selected automatically from the master instances of replica sets.
 To specify the rebalancer manually or turn it off, use the :ref:`sharding.rebalancer_mode <configuration_reference_sharding_rebalancer_mode>` option.
 
 
@@ -237,7 +237,7 @@ You can also add a new replica set with a non-zero weight to initiate migration 
 
 When a new shard is added, a configuration should be reloaded on each instance to migrate buckets to a new shard:
 
-*   If a :ref:`centralized configuration storages <configuration_etcd>` is used, Tarantool reloads a changed configuration automatically.
+*   If a :ref:`centralized configuration storage <configuration_etcd>` is used, Tarantool reloads a changed configuration automatically.
 *   If a local configuration file is used, you need to reload a configuration on all the routers first and then on all the storages.
 
 

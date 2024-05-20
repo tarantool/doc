@@ -3326,7 +3326,7 @@ The ``sharding`` section defines configuration parameters related to :ref:`shard
     *   ``rebalancer``: a replica set acts as a :ref:`rebalancer <vshard-rebalancer>`.
 
     The ``rebalancer`` role is optional.
-    If it is not specified, a rebalancer is selected automatically from master instances of replica sets.
+    If it is not specified, a rebalancer is selected automatically from the master instances of replica sets.
 
     There can be at most one replica set with the ``rebalancer`` role.
     Additionally, this replica set should have a ``storage`` role.
