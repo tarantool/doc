@@ -231,10 +231,10 @@ instance's embedded store to join each other.
 For etcd, provide the embedded store clustering parameters ``storage.etcd.embed.*``
 and specify the endpoints in ``storage.etcd.endpoints``. The options that configure
 embedded etcd mostly match the etcd configuration options. For more information
-about these options, see the `etcd documentation <https://etcd.io/docs/v3.5/op-guide/configuration/>`__.
+about these options, see the `etcd documentation <https://etcd.io/docs/latest/op-guide/configuration/>`__.
 
-Example configurations of three |tcm| instances that start with embedded etcd instances
-and form a etcd cluster from them:
+Below are example configurations of three |tcm| instances that start with embedded etcd instances
+and form an etcd cluster from them:
 
 *   First instance:
 
