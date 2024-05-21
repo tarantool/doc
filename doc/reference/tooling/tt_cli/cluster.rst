@@ -252,7 +252,7 @@ demote
 
     $ tt cluster replicaset demote URI INSTANCE_NAME [OPTION ...]
 
-``tt cluster replicaset demote`` demotes an instances in a replica set.
+``tt cluster replicaset demote`` demotes an instance in a replica set.
 This command works on Tarantool clusters with centralized configuration and
 with :ref:`failover mode <configuration_reference_replication_failover>`
 ``off``.
@@ -291,7 +291,7 @@ a key for patching. You can skip the selection by adding the ``-f``/``--force`` 
     $ tt cluster replicaset promote "http://localhost:2379/myapp" storage-001-a --force
 
 In this case, the command selects the key for patching automatically. A key's priority
-is determined by the detail level of the instance or replicaset configuration stored
+is determined by the detail level of the instance or replica set configuration stored
 under this key. For example, when failover is ``off``, a key with
 ``instance.database`` options takes precedence over a key with the only ``instance`` field.
 In case of equal priority, the first key in the lexicographical order is patched.
