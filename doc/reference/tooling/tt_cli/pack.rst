@@ -29,7 +29,7 @@ This command generates a ``.deb`` file whose name depends on the environment dir
 The package contains the following files:
 
 -   The content of the application directories: source files, resources, dependencies.
--   ``tt`` environment files: ``tarantool`` and ``tt`` executables, ``tt.yaml`` configuration files,
+-   ``tt`` environment files: ``tarantool`` and ``tt`` executables, ``tt.yaml`` configuration file,
     external modules, headers.
 -   ``.service`` unit files that allow running applications as ``systemd`` services
     (a separate file for each application).
