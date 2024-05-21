@@ -48,8 +48,8 @@ with two arguments:
 
 .. _tt-cluster-publish-centralized:
 
-Managing configurations in centralized storages
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Publishing configurations in centralized storages
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ``tt cluster publish`` can modify :ref:`centralized cluster configurations <configuration_etcd>`
 in storages of both supported types: etcd or a Tarantool-based configuration storage.

@@ -1,7 +1,7 @@
 .. _tt-replicaset:
 
-Working with replicasets
-=========================
+Managing replica sets
+=====================
 
 ..  code-block:: console
 
@@ -139,7 +139,7 @@ Promoting in Cartridge clusters
 
 ..  include:: _includes/cartridge_deprecation_note.rst
 
-``tt replicaset promote`` promotes instances in Cartridge clusters the following way:
+``tt replicaset promote`` promotes instances in Cartridge clusters as follows:
 
 -   ``disabled`` or ``eventual`` failover mode: the command changes the instance failover priority.
 
