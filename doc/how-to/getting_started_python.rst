@@ -8,6 +8,11 @@ Connecting from Python
 The tutorial shows how to use the `tarantool-python <https://github.com/tarantool/tarantool-python>`__ library to create a Python script that connects to a remote Tarantool instance, performs CRUD operations, and executes a stored procedure.
 You can find the full package documentation here: `Python client library for Tarantool <https://tarantool-python.readthedocs.io/>`__.
 
+..  NOTE::
+
+    This tutorial shows how to make CRUD requests to a single-instance Tarantool database.
+    To make requests to a sharded Tarantool cluster with the `CRUD <https://github.com/tarantool/crud>`__ module, use the `tarantool.crud <https://tarantool-python.readthedocs.io/en/latest/api/submodule-crud.html>`__ module's API.
+
 
 
 .. _getting_started_python_sample_db:

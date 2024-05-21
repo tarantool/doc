@@ -8,6 +8,11 @@ Connecting from Go
 The tutorial shows how to use the `go-tarantool <https://github.com/tarantool/go-tarantool>`__ 2.x library to create a Go application that connects to a remote Tarantool instance, performs CRUD operations, and executes a stored procedure.
 You can find the full package documentation here: `Client in Go for Tarantool <https://pkg.go.dev/github.com/tarantool/go-tarantool/v2>`__.
 
+..  NOTE::
+
+    This tutorial shows how to make CRUD requests to a single-instance Tarantool database.
+    To make requests to a sharded Tarantool cluster with the `CRUD <https://github.com/tarantool/crud>`__ module, use the `crud <https://pkg.go.dev/github.com/tarantool/go-tarantool/v2/crud>`__ package's API.
+
 
 
 .. _getting_started_go_sample_db:

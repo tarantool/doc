@@ -8,6 +8,11 @@ Connecting to a database using net.box
 The tutorial shows how to use ``net.box`` to connect to a remote Tarantool instance, perform CRUD operations, and execute stored procedures.
 For more information about the ``net.box`` module API, check :ref:`net_box-module`.
 
+..  NOTE::
+
+    This tutorial shows how to make CRUD requests to a single-instance Tarantool database.
+    To make requests to a sharded Tarantool cluster with the `CRUD <https://github.com/tarantool/crud>`__ module, use its API for CRUD operations.
+
 
 .. _getting_started_net_box_sample_db:
 
