@@ -9,6 +9,10 @@ The SQL Beginners' Guide is about databases in general, and about the relationsh
 Tarantool's NoSQL and SQL products.
 Most of the matters in the Beginners' Guide will already be familiar to people who have used relational databases before.
 
+..  include:: sql_tutorial.rst
+    :start-after: sql_prereq_start
+    :end-before: sql_prereq_end
+
 .. _sql_beginners_sample_table:
 
 Sample table

@@ -6,6 +6,8 @@ SQL tutorial
 This tutorial is a demonstration of the support for SQL in Tarantool.
 It includes the functionality that you'd encounter in an "SQL-101" course.
 
+.. sql_prereq_start
+
 ..  _sql_tutorial-prerequisites:
 
 Prerequisites
@@ -15,62 +17,31 @@ Before starting this tutorial:
 
 #.  Install the :ref:`tt CLI <tt-installation>` utility.
 
-#.  Create a tt environment in the current directory using the :ref:`tt init <tt-init>` command.
+#.  Start a Tarantool instance in the interactive mode by running :ref:`tt run -i <tt-run>`:
 
-#.  Inside the ``instances.enabled`` directory of the created tt environment, create the ``sql_tutorial`` directory.
+    .. code-block:: console
 
-#.  Inside ``instances.enabled/sql_tutorial``, create the ``instances.yml`` and ``config.yaml`` files:
+        $ tt run -i
+        Tarantool 3.0.0-0-g6ba34da7f8
+        type 'help' for interactive help
+        tarantool>
 
-    *   ``instances.yml`` specifies instances to run in the current environment:
+#.  Initialize the instance and switch the input language to SQL:
 
-        ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/instance_scope/instances.yml
-            :language: yaml
-            :dedent:
+    .. code-block:: tarantoolsession
 
-    *   ``config.yaml`` contains basic :ref:`configuration <configuration_file>`:
+        tarantool> box.cfg{}
+        tarantool> \set language sql
+        tarantool>  \set delimiter ;
 
-        ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/instance_scope/config.yaml
-            :language: yaml
-            :dedent:
+Now you have a running Tarantool instance that accepts SQL input.
 
-Read more: :ref:`Starting instances using the tt utility <configuration_run_instance_tt>`.
+.. sql_prereq_end
 
 ..  _sql_tutorial-starting_up_with_a_first_table_and_selects:
 
 Create a table and execute SQL statements
 -----------------------------------------
-
-Start Tarantool
-~~~~~~~~~~~~~~~
-
-After configuration, start a Tarantool instance from the tt environment directory using the following command:
-
-..  code-block:: console
-
-    $ tt start sql_tutorial
-
-After that, connect to the instance:
-
-..  code-block:: console
-
-    $ tt connect sql_tutorial:instance001
-
-This command opens an interactive Tarantool console.
-Now you can start working with the database.
-
-Switch to the SQL language
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-A feature of the client console program is that you can switch languages and
-specify the end-of-statement delimiter.
-
-Run the following commands to set the :ref:`console input <interactive_console_input_output>` language to SQL and use
-semicolon as a delimiter:
-
-..  code-block:: tarantoolsession
-
-    sql_tutorial:instance001> \set language sql
-    sql_tutorial:instance001> \set delimiter ;
 
 
 CREATE, INSERT, UPDATE, SELECT
