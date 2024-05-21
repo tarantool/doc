@@ -57,7 +57,7 @@ help for the given command.
         *   -   :doc:`play <play>`
             -   Play the contents of ``.snap`` or ``.xlog`` files to another Tarantool instance
         *   -   :doc:`replicaset <replicaset>`
-            -   Manage a replica set
+            -   Manage replica sets
         *   -   :doc:`restart <restart>`
             -   Restart a Tarantool instance
         *   -   :doc:`rocks <rocks>`

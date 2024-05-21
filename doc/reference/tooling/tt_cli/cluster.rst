@@ -8,21 +8,32 @@ Managing cluster configurations
     $ tt cluster COMMAND {APPLICATION[:APP_INSTANCE] | URI} [FILE] [OPTION ...]
 
 ``tt cluster`` manages :ref:`YAML configurations <configuration>` of Tarantool applications.
-This command works both with local configuration files in application directories
-and with centralized configuration storages (:ref:`etcd <configuration_etcd>` or Tarantool-based).
+This command works both with local YAML files in application directories
+and with :ref:`centralized configuration storages <configuration_etcd>` (etcd or Tarantool-based).
 
 ``COMMAND`` is one of the following:
 
-*   ``publish``: publish a cluster configuration using an arbitrary YAML file as a source.
-*   ``show``: print a cluster configuration.
+*   :ref:`publish <tt-cluster-publish>`
+*   :ref:`show <tt-cluster-show>`
+*   :ref:`replicaset <tt-cluster-replicaset>`
 
+.. _tt-cluster-publish:
 
-.. _tt-cluster-local:
+publish
+-------
 
-Managing local configurations
------------------------------
+.. code-block:: console
 
-``tt cluster`` can read and modify local cluster configurations stored in
+    $ tt cluster publish {APPLICATION[:APP_INSTANCE] | URI} [FILE] [OPTION ...]
+
+``tt cluster publish`` publishes a cluster configuration using an arbitrary YAML file as a source.
+
+.. _tt-cluster-publish-local:
+
+Publishing local configurations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``tt cluster publish`` can modify local cluster configurations stored in
 ``config.yaml`` files inside application directories.
 
 To write a configuration to a local ``config.yaml``, run ``tt cluster publish``
@@ -35,20 +46,13 @@ with two arguments:
 
     $ tt cluster publish myapp source.yaml
 
-To print a local configuration from an application's ``config.yaml``,  run
-``tt cluster show`` with the application name:
+.. _tt-cluster-publish-centralized:
 
-.. code-block:: console
+Publishing configurations in centralized storages
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    $ tt cluster show myapp
-
-.. _tt-cluster-centralized:
-
-Managing configurations in centralized storages
------------------------------------------------
-
-``tt cluster`` can manage centralized cluster configurations in storages of both
-supported types: :ref:`etcd <configuration_etcd>` or a Tarantool-based configuration storage.
+``tt cluster publish`` can modify :ref:`centralized cluster configurations <configuration_etcd>`
+in storages of both supported types: etcd or a Tarantool-based configuration storage.
 
 To publish a configuration from a file to a centralized configuration storage,
 run ``tt cluster publish`` with a URI of this storage's
@@ -61,7 +65,85 @@ to a local etcd instance running on the default port ``2379``:
 
 A URI must include a prefix that is unique for the application. It can also include
 credentials and other connection parameters. Find the detailed description of the
-URI format in :ref:`tt-cluster-centralized-uri`.
+URI format in :ref:`tt-cluster-uri`.
+
+.. _tt-cluster-publish-instance:
+
+Publishing configurations of specific instances
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In addition to whole cluster configurations, ``tt cluster publish`` can manage
+configurations of specific instances within applications. In this case, it operates
+with YAML fragments that describe a single :ref:`instance configuration section <configuration_overview>`.
+For example, the following YAML file can be a source when publishing an instance configuration:
+
+.. code-block:: yaml
+
+    # instance_source.yaml
+    iproto:
+      listen:
+      - uri: 127.0.0.1:3311
+
+To send an instance configuration to a local ``config.yaml``, run ``tt cluster publish``
+with the ``application:instance`` pair as the target argument:
+
+.. code-block:: console
+
+    $ tt cluster publish myapp:instance-002 instance_source.yaml
+
+To send an instance configuration to a centralized configuration storage, specify
+the instance name in the ``name`` argument of the storage URI:
+
+.. code-block:: console
+
+    $ tt cluster publish "http://localhost:2379/myapp?name=instance-002" instance_source.yaml
+
+
+.. _tt-cluster-publish-validation:
+
+Configuration validation
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+``tt cluster publish`` validates configurations against the Tarantool configuration schema
+and aborts in case of an error. To skip the validation, add the ``--force`` option:
+
+.. code-block:: console
+
+    $ tt cluster publish myapp source.yaml --force
+
+.. _tt-cluster-show:
+
+show
+----
+
+.. code-block:: console
+
+    $ tt cluster show {APPLICATION[:APP_INSTANCE] | URI} [OPTION ...]
+
+``tt cluster show`` displays a cluster configuration.
+
+.. _tt-cluster-show-local:
+
+Displaying local configurations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``tt cluster show`` can read local cluster configurations stored in ``config.yaml``
+files inside application directories.
+
+To print a local configuration from an application's ``config.yaml``, specify the
+application name as an argument:
+
+.. code-block:: console
+
+    $ tt cluster show myapp
+
+.. _tt-cluster-show-centralized:
+
+Displaying configurations from centralized storages
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``tt cluster show`` can display :ref:`centralized cluster configurations <configuration_etcd>`
+from configuration storages of both supported types: etcd  or a Tarantool-based configuration storage.
 
 To print a cluster configuration from a centralized storage, run ``tt cluster show``
 with a storage URI including the prefix identifying the application. For example, to print
@@ -71,10 +153,153 @@ with a storage URI including the prefix identifying the application. For example
 
     $ tt cluster show "http://localhost:2379/myapp"
 
-.. _tt-cluster-centralized-authentication:
+
+.. _tt-cluster-show-instance:
+
+Displaying configurations of specific instances
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In addition to whole cluster configurations, ``tt cluster show`` can display
+configurations of specific instances within applications. In this case, it prints
+YAML fragments that describe a single :ref:`instance configuration section <configuration_overview>`.
+
+To print an instance configuration from a local ``config.yaml``, use the ``application:instance``
+argument:
+
+.. code-block:: console
+
+    $ tt cluster show myapp:instance-002
+
+To print an instance configuration from a centralized configuration storage, specify
+the instance name in the ``name`` argument of the URI:
+
+.. code-block:: console
+
+    $ tt cluster show "http://localhost:2379/myapp?name=instance-002"
+
+.. _tt-cluster-show-validation:
+
+Configuration validation
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+To validate configurations when printing them with ``tt cluster show``, enable the
+validation by adding the ``--validate`` option:
+
+.. code-block:: console
+
+    $ tt cluster show "http://localhost:2379/myapp" --validate
+
+.. _tt-cluster-replicaset:
+
+replicaset
+----------
+
+.. code-block:: console
+
+    $ tt cluster replicaset SUBCOMMAND {APPLICATION[:APP_INSTANCE] | URI} [OPTION ...]
+
+``tt cluster replicaset`` manages instances in a replica set. It supports the following
+subcommands:
+
+-   :ref:`promote <tt-cluster-replicaset-promote>`
+-   :ref:`demote <tt-cluster-replicaset-demote>`
+
+.. important::
+
+    ``tt cluster replicaset`` works only with centralized cluster configurations.
+    To manage replica set leaders in clusters with local YAML configurations,
+    use :ref:`tt replicaset promote <tt-replicaset-demote>` and :ref:`tt replicaset demote <tt-replicaset-demote>`.
+
+.. _tt-cluster-replicaset-promote:
+
+promote
+~~~~~~~
+
+.. code-block:: console
+
+    $ tt cluster replicaset promote URI INSTANCE_NAME [OPTION ...]
+
+``tt cluster replicaset promote`` promotes the specified instance,
+making it a leader of its replica set.
+This command works on Tarantool clusters with centralized configuration and
+with :ref:`failover modes <configuration_reference_replication_failover>`
+``off`` and ``manual``. It updates the centralized configuration according to
+the specified arguments and reloads it:
+
+-   ``off`` failover mode: the command sets :ref:`database.mode <configuration_reference_database_mode>`
+    to ``rw`` on the specified instance.
+
+    .. important::
+
+        If failover is ``off``, the command doesn't consider the modes of other
+        replica set members, so there can be any number of read-write instances in one replica set.
+
+-   ``manual`` failover mode: the command updates the :ref:`leader <configuration_reference_replicasets_name_leader>`
+    option of the replica set configuration. Other instances of this replica set become read-only.
+
+Example:
+
+..  code-block:: console
+
+    $ tt cluster replicaset promote "http://localhost:2379/myapp" storage-001-a
+
+.. _tt-cluster-replicaset-demote:
+
+demote
+~~~~~~
+
+.. code-block:: console
+
+    $ tt cluster replicaset demote URI INSTANCE_NAME [OPTION ...]
+
+``tt cluster replicaset demote`` demotes an instance in a replica set.
+This command works on Tarantool clusters with centralized configuration and
+with :ref:`failover mode <configuration_reference_replication_failover>`
+``off``.
+
+.. note::
+
+    In clusters with ``manual`` failover mode, you can demote a read-write instance
+    by promoting a read-only instance from the same replica set with ``tt cluster replicaset promote``.
+
+The command sets the instance's :ref:`database.mode <configuration_reference_database_mode>`
+to ``ro`` and reloads the configuration.
+
+.. important::
+
+    If failover is ``off``, the command doesn't consider the modes of other
+    replica set members, so there can be any number of read-write instances in one replica set.
+
+
+.. _tt-cluster-replicaset-details:
+
+Implementation details
+----------------------
+
+The changes that ``tt cluster replicaset`` makes to the configuration storage
+occur transactionally. Each call creates a new revision. In case of a revision mismatch,
+an error is raised.
+
+If the cluster configuration is distributed over multiple keys in the configuration
+storage (for example, in two paths ``/myapp/config/k1`` and ``/myapp/config/k2``),
+the affected instance configuration can be present in more that one of them.
+If it is found under several different keys, the command prompts the user to choose
+a key for patching. You can skip the selection by adding the ``-f``/``--force`` option:
+
+..  code-block:: console
+
+    $ tt cluster replicaset promote "http://localhost:2379/myapp" storage-001-a --force
+
+In this case, the command selects the key for patching automatically. A key's priority
+is determined by the detail level of the instance or replica set configuration stored
+under this key. For example, when failover is ``off``, a key with
+``instance.database`` options takes precedence over a key with the only ``instance`` field.
+In case of equal priority, the first key in the lexicographical order is patched.
+
+.. _tt-cluster-authentication:
 
 Authentication
-~~~~~~~~~~~~~~
+--------------
 
 There are three ways to pass the credentials for connecting to the centralized configuration storage.
 They all apply to both etcd and Tarantool-based storages. The following list
@@ -102,12 +327,12 @@ shows these ways ordered by precedence, from highest to lowest:
             $ tt cluster show "http://localhost:2379/myapp"
 
 If connection encryption is enabled on the configuration storage, pass the required
-SSL parameters in the :ref:`URI arguments <tt-cluster-centralized-uri>`.
+SSL parameters in the :ref:`URI arguments <tt-cluster-uri>`.
 
-.. _tt-cluster-centralized-uri:
+.. _tt-cluster-uri:
 
 URI format
-~~~~~~~~~~
+----------
 
 A URI of the cluster configuration storage has the following format:
 
@@ -130,74 +355,6 @@ A URI of the cluster configuration storage has the following format:
     *   ``verify_host`` -- verify the certificate’s name against the host. Default ``true``.
     *   ``verify_peer`` -- verify the peer’s SSL certificate. Default ``true``.
 
-.. _tt-cluster-instance:
-
-Managing configurations of specific instances
----------------------------------------------
-
-In addition to whole cluster configurations, ``tt cluster`` can manage
-configurations of specific instances within applications. In this case, it operates
-with YAML fragments that describe a single :ref:`instance configuration section <configuration_overview>`.
-For example, the following YAML file can be a source when publishing an instance configuration:
-
-.. code-block:: yaml
-
-    # instance_source.yaml
-    iproto:
-      listen:
-      - uri: 127.0.0.1:3311
-
-To send an instance configuration to a local ``config.yaml``, run ``tt cluster publish``
-with the ``application:instance`` pair as the target argument:
-
-.. code-block:: console
-
-    $ tt cluster publish myapp:instance-002 instance_source.yaml
-
-To send an instance configuration to a centralized configuration storage, specify
-the instance name in the ``name`` argument of the storage URI:
-
-.. code-block:: console
-
-    $ tt cluster publish "http://localhost:2379/myapp?name=instance-002" instance_source.yaml
-
-``tt cluster show`` can print configurations of specific cluster instances as well.
-To print an instance configuration from a local ``config.yaml``, use the ``application:instance``
-argument:
-
-.. code-block:: console
-
-    $ tt cluster show myapp:instance-002
-
-To print an instance configuration from a centralized configuration storage, specify
-the instance name in the ``name`` argument of the URI:
-
-.. code-block:: console
-
-    $ tt cluster show "http://localhost:2379/myapp?name=instance-002"
-
-.. _tt-cluster-validation:
-
-Configuration validation
-------------------------
-
-``tt cluster`` can validate configurations against the Tarantool configuration schema.
-
-``tt cluster publish`` automatically performs the validation and aborts in case of an error.
-To skip the validation, add the ``--force`` option:
-
-.. code-block:: console
-
-    $ tt cluster publish myapp source.yaml --force
-
-To validate configurations when printing them with ``tt cluster show``, enable the
-validation by adding the ``--validate`` option:
-
-.. code-block:: console
-
-    $ tt cluster show "http://localhost:2379/myapp" --validate
-
-
 .. _tt-cluster-options:
 
 Options
@@ -207,13 +364,13 @@ Options
 
     A username for connecting to the configuration storage.
 
-    See also: :ref:`tt-cluster-centralized-authentication`.
+    See also: :ref:`tt-cluster-authentication`.
 
 ..  option:: -p, --password STRING
 
     A password for connecting to the configuration storage.
 
-    See also: :ref:`tt-cluster-centralized-authentication`.
+    See also: :ref:`tt-cluster-authentication`.
 
 ..  option:: --force
 
