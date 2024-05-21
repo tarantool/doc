@@ -22,6 +22,9 @@ Before starting this tutorial:
     .. code-block:: console
 
         $ tt run -i
+        Tarantool 3.0.0-0-g6ba34da7f8
+        type 'help' for interactive help
+        tarantool>
 
 #.  Initialize the instance and switch the input language to SQL:
 
