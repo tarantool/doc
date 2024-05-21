@@ -21,9 +21,9 @@ Example: a DEB package
 The command below creates a DEB package with all applications from the current ``tt``
 environment:
 
-    .. code-block:: console
+.. code-block:: console
 
-        $ tt pack deb
+    $ tt pack deb
 
 This command generates a ``.deb`` file whose name depends on the environment directory name and the operating system architecture, for example, ``test-env_0.1.0.0-1_x86_64.deb``.
 The package contains the following files:
