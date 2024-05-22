@@ -35,7 +35,7 @@ Before creating and starting a client Python application, you need to run the :r
 
     $ tt start sample_db
 
-Now you can a client Python application that makes requests to this database.
+Now you can create a client Python application that makes requests to this database.
 
 
 .. _getting_started_python_develop_client_app:
@@ -123,7 +123,7 @@ Add the following code to insert four tuples into the ``bands`` space:
     :end-before: # Select by primary key
     :dedent:
 
-``connection.insert()`` is used to insert a tuple to the space.
+``Connection.insert()`` is used to insert a tuple to the space.
 
 
 .. _getting_started_python_querying_data:
@@ -131,7 +131,7 @@ Add the following code to insert four tuples into the ``bands`` space:
 Querying data
 *************
 
-To get a tuple by the specified primary key value, use ``connection.select()``:
+To get a tuple by the specified primary key value, use ``Connection.select()``:
 
 ..  literalinclude:: /code_snippets/snippets/connectors/python/hello.py
     :language: python
@@ -154,7 +154,7 @@ You can also get a tuple by the value of the specified index using the ``index``
 Updating data
 *************
 
-``connection.update()`` can be used to update a tuple identified by the primary key as follows:
+``Connection.update()`` can be used to update a tuple identified by the primary key as follows:
 
 ..  literalinclude:: /code_snippets/snippets/connectors/python/hello.py
     :language: python
@@ -162,7 +162,7 @@ Updating data
     :end-at: Updated tuple
     :dedent:
 
-``connection.upsert()`` updates an existing tuple or inserts a new one.
+``Connection.upsert()`` updates an existing tuple or inserts a new one.
 In the example below, a new tuple is inserted:
 
 ..  literalinclude:: /code_snippets/snippets/connectors/python/hello.py
@@ -172,7 +172,7 @@ In the example below, a new tuple is inserted:
     :dedent:
 
 
-In this example, ``connection.replace()`` deletes the existing tuple and inserts a new one:
+In this example, ``Connection.replace()`` deletes the existing tuple and inserts a new one:
 
 ..  literalinclude:: /code_snippets/snippets/connectors/python/hello.py
     :language: python
@@ -188,7 +188,7 @@ In this example, ``connection.replace()`` deletes the existing tuple and inserts
 Deleting data
 *************
 
-``connection.delete()`` in the example below deletes a tuple whose primary key value is ``5``:
+``Connection.delete()`` in the example below deletes a tuple whose primary key value is ``5``:
 
 ..  literalinclude:: /code_snippets/snippets/connectors/python/hello.py
     :language: python
@@ -203,7 +203,7 @@ Deleting data
 Executing stored procedures
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To execute a stored procedure, use ``connection.call()``:
+To execute a stored procedure, use ``Connection.call()``:
 
 ..  literalinclude:: /code_snippets/snippets/connectors/python/hello.py
     :language: python
@@ -217,7 +217,7 @@ To execute a stored procedure, use ``connection.call()``:
 Closing the connection
 ~~~~~~~~~~~~~~~~~~~~~~
 
-The ``connection.close()`` method can be used to close the connection when it is no longer needed:
+The ``Connection.close()`` method can be used to close the connection when it is no longer needed:
 
 ..  literalinclude:: /code_snippets/snippets/connectors/python/hello.py
     :language: python
