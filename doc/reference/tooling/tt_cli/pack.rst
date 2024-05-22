@@ -13,13 +13,27 @@ Packaging the application
 -   ``deb``: create a DEB package.
 -   ``rpm``: create an RPM package.
 
-The command below creates a DEB package for an application:
+.. _tt-pack-example:
 
-    .. code-block:: console
+Example: a DEB package
+----------------------
 
-        $ tt pack deb
+The command below creates a DEB package with all applications from the current ``tt``
+environment:
+
+.. code-block:: console
+
+    $ tt pack deb
 
 This command generates a ``.deb`` file whose name depends on the environment directory name and the operating system architecture, for example, ``test-env_0.1.0.0-1_x86_64.deb``.
+The package contains the following files:
+
+-   The content of the application directories: source files, resources, dependencies.
+-   ``tt`` environment files: ``tarantool`` and ``tt`` executables, ``tt.yaml`` configuration file,
+    external modules, headers.
+-   ``.service`` unit files that allow running applications as ``systemd`` services
+    (a separate file for each application).
+
 You can also pass various :ref:`options <tt-pack-options>` to the ``tt pack`` command to adjust generation properties, for example, customize a bundle name, choose which artifacts should be included, specify the required application dependencies.
 
 
