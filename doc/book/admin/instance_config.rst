@@ -217,7 +217,7 @@ DEB and RPM packages
 ~~~~~~~~~~~~~~~~~~~~
 
 Tarantool applications installed from DEB and RPM packages built with :ref:`tt pack <tt-pack>`
-can run as `systemd` services. They run on behalf of the ``tarantool`` system user.
+can run as ``systemd`` services. They run on behalf of the ``tarantool`` system user.
 It is created automatically during the package installation.
 
 By default, the application artifacts are placed in the following directories:
@@ -227,4 +227,4 @@ By default, the application artifacts are placed in the following directories:
 -   ``/var/run/tarantool/sys_env`` -- runtime artifacts
 
 If you want to change these directories, make sure that the ``tarantool`` user
-has enough permissions to the directories you use.
+has enough permissions on the directories you use.
