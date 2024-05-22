@@ -3,6 +3,9 @@
 C
 =
 
+`tarantool-c <https://github.com/tarantool/tarantool-c>`__ is the official C connector for Tarantool.
+You can find the full library documentation here: `Documentation for tarantool-c <https://tarantool.github.io/tarantool-c/>`__.
+
 Here follow two examples of using Tarantool's high-level C API.
 
 Example 1
@@ -72,7 +75,7 @@ If Tarantool is not running on localhost with listen address = 3301, the program
 will print “Connection refused”.
 If the insert fails, the program will print "Insert failed" and an error number
 (see all error codes in the source file
-`/src/box/errcode.h <https://github.com/tarantool/tarantool/blob/2.1/src/box/errcode.h>`__).
+`/src/box/errcode.h <https://github.com/tarantool/tarantool/blob/master/src/box/errcode.h>`__).
 
 Here are notes corresponding to comments in the example program.
 

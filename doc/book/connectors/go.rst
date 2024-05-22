@@ -3,13 +3,17 @@
 Go
 ==
 
-The following connectors are available:
+`go-tarantool <https://github.com/tarantool/go-tarantool>`__ is the official Go connector for Tarantool.
+It is not supplied as part of the Tarantool repository and should be installed separately.
+For a quick start with ``go-tarantool``, refer to this guide: :ref:`getting_started-go`.
 
-*   Tarantool-supported `go-tarantool <https://github.com/tarantool/go-tarantool>`__
+There are also the following community-driven Go connectors:
 
-*   Community-supported `viciious/go-tarantool <https://github.com/viciious/go-tarantool>`_
+*   `viciious/go-tarantool <https://github.com/viciious/go-tarantool>`_
 
-*   Community-supported `FZambia/tarantool <https://github.com/FZambia/tarantool>`_.
+*   `FZambia/tarantool <https://github.com/FZambia/tarantool>`_
+
+The table below contains a feature comparison for the connectors mentioned above.
 
 ..  _go-feature-comparison:
 
