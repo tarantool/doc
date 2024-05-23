@@ -5,8 +5,8 @@ source  = {
 }
 
 dependencies = {
-    'vshard == 0.1.26',
-    'crud == 1.4.3'
+    'vshard == 0.1.27',
+    'crud == 1.5.2'
 }
 build = {
     type = 'none';
