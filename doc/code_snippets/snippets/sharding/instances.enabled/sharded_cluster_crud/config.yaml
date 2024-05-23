@@ -19,7 +19,9 @@ sharding:
 
 groups:
   storages:
-    roles: [storage]
+    roles: [roles.crud-storage]
+    app:
+      module: storage
     sharding:
       roles: [storage]
     replication:
@@ -48,7 +50,17 @@ groups:
               listen:
               - uri: '127.0.0.1:3305'
   routers:
-    roles: [router]
+    roles: [roles.crud-router]
+    roles_cfg:
+      roles.crud-router:
+        stats: true
+        stats_driver: metrics
+        stats_quantiles: false
+        stats_quantile_tolerated_error: 0.001
+        stats_quantile_age_buckets_count: 5
+        stats_quantile_max_age_time: 180
+    app:
+      module: router
     sharding:
       roles: [router]
     replicasets:
