@@ -756,7 +756,6 @@ Tarantool output can be written to a file or Unix socket.
     | Type: boolean
     | Default: true
     | Environment variable: TT_CONSOLE_ENABLED
-    | Dynamic: yes
 
 .. _config_console_socket:
 
@@ -771,7 +770,6 @@ Tarantool output can be written to a file or Unix socket.
     | Type: string
     | Default: 'var/run/{{ instance_name }}/tarantool.control'
     | Environment variable: TT_CONSOLE_SOCKET
-    | Dynamic: yes
 
 ..  _configuration_reference_credentials:
 
@@ -2446,10 +2444,9 @@ The ``process`` section defines configuration parameters of the Tarantool proces
     **Since:** :doc:`3.0.0 </release/3.0.0>`.
 
     Run the server as a background task.
-    The :ref:`pid_file <configuration_reference_process_pid_file>` parameter
-    must be non-null for this to work.
-
-    ??? another non-null param for this to work was `log` (TT_LOG). Now irrelevant?
+    The :ref:`process.pid_file <configuration_reference_process_pid_file>`
+    and :ref:`log <configuration_reference_log>`
+    parameters must be non-null for this to work.
 
     .. important::
 
@@ -2460,7 +2457,6 @@ The ``process`` section defines configuration parameters of the Tarantool proces
     | Type: boolean
     | Default: false
     | Environment variable: TT_PROCESS_BACKGROUND
-    | Dynamic: no
 
 .. _configuration_reference_process_coredump:
 
@@ -2474,7 +2470,6 @@ The ``process`` section defines configuration parameters of the Tarantool proces
     | Type: boolean
     | Default: false
     | Environment variable: TT_PROCESS_COREDUMP
-    | Dynamic: no
 
 .. _configuration_reference_process_title:
 
@@ -2483,9 +2478,10 @@ The ``process`` section defines configuration parameters of the Tarantool proces
     **Since:** :doc:`3.0.0 </release/3.0.0>`.
 
     Add the given string to the server's process title
-    (what’s shown in the COMMAND column for ``ps -ef`` and ``top -c`` commands).
+    (e.g. it's shown in the COMMAND column for the Linux commands
+    ``ps -ef`` and ``top -c``).
 
-    For example, if you set ``title=''``, :samp:`ps -ef` shows
+    For example, if you set ``title: ''``, :samp:`ps -ef` shows
     the Tarantool server process thus:
 
     .. code-block:: console
@@ -2493,7 +2489,7 @@ The ``process`` section defines configuration parameters of the Tarantool proces
         $ ps -ef | grep tarantool
         1000     14939 14188  1 10:53 pts/2    00:00:13 tarantool <running>
 
-    But if you set ``title='sessions'``, then the output looks like:
+    But if you set ``title: 'sessions'``, then the output looks like:
 
     .. code-block:: console
 
@@ -2504,7 +2500,6 @@ The ``process`` section defines configuration parameters of the Tarantool proces
     | Type: string
     | Default: 'tarantool - {{ instance_name }}'
     | Environment variable: TT_PROCESS_TITLE
-    | Dynamic: yes
 
 .. _configuration_reference_process_pid_file:
 
@@ -2520,7 +2515,6 @@ The ``process`` section defines configuration parameters of the Tarantool proces
     | Type: string
     | Default: 'var/run/{{ instance_name }}/tarantool.pid'
     | Environment variable: TT_PROCESS_PID_FILE
-    | Dynamic: no
 
 .. _configuration_reference_process_strip_core:
 
@@ -2536,7 +2530,6 @@ The ``process`` section defines configuration parameters of the Tarantool proces
     | Type: boolean
     | Default: true
     | Environment variable: TT_PROCESS_STRIP_CORE
-    | Dynamic: no
 
 .. _configuration_reference_process_username:
 
@@ -2550,7 +2543,6 @@ The ``process`` section defines configuration parameters of the Tarantool proces
     | Type: string
     | Default: box.NULL
     | Environment variable: TT_PROCESS_USERNAME
-    | Dynamic: no
 
 .. _configuration_reference_process_work_dir:
 
@@ -2562,13 +2554,12 @@ The ``process`` section defines configuration parameters of the Tarantool proces
     switches to ``process.work_dir`` with :manpage:`chdir(2)` after start. Can be
     relative to the current directory. If not specified, defaults to
     the current directory. Other directory parameters may be relative to ``process.work_dir``,
-    for example :ref:`directories for storing snapshots and write-ahead logs <configuration_options_directories>`
+    for example, :ref:`directories for storing snapshots and write-ahead logs <configuration_options_directories>`
 
     |
     | Type: string
     | Default: box.NULL
     | Environment variable: TT_PROCESS_WORK_DIR
-    | Dynamic: no
 
 ..  _configuration_reference_replication:
 
