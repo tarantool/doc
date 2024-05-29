@@ -2,7 +2,6 @@
 
 These parameters are deprecated since Tarantool version 1.7.4:
 
-* :ref:`coredump <cfg_basic-coredump_deprecated>`
 * :ref:`logger <cfg_logging-logger_deprecated>`
 * :ref:`logger_nonblock <cfg_logging-logger_nonblock_deprecated>`
 * :ref:`panic_on_snap_error <cfg_binary_logging_snapshots-panic_on_snap_error_deprecated>`,
@@ -16,17 +15,6 @@ These parameters are deprecated since Tarantool version 1.7.4:
 * :ref:`snapshot_period <cfg_checkpoint_daemon-snapshot_period_deprecated>`
 * :ref:`rows_per_wal <cfg_binary_logging_snapshots-rows_per_wal>`
 * :ref:`election_fencing_enabled <cfg_election-election_fencing_enabled_deprecated>`
-
-.. _cfg_basic-coredump_deprecated:
-
-.. confval:: coredump
-
-    **Deprecated**, do not use.
-
-    |
-    | Type: boolean
-    | Default: false
-    | Dynamic: no
 
 .. _cfg_logging-logger_deprecated:
 

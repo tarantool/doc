@@ -735,7 +735,7 @@ This section describes options related to providing connection settings to a :re
 console
 -------
 
-Tarantool output can be written to a file or Unix socket.
+Configure the administration console. A client to the console is ``tt connect``.
 
 ..  NOTE::
 
@@ -750,7 +750,10 @@ Tarantool output can be written to a file or Unix socket.
 
     **Since:** :doc:`3.0.0 </release/3.0.0>`.
 
-    Whether to enable Tarantool output to a file or Unix socket.
+    Whether to listen on the Unix socket provided in the
+    :ref:`console.socket <config_console_socket>` option.
+
+    If the option is set to false, the admininstration console is disabled.
 
     |
     | Type: boolean
@@ -763,8 +766,14 @@ Tarantool output can be written to a file or Unix socket.
 
     **Since:** :doc:`3.0.0 </release/3.0.0>`.
 
-    The file or Unix socket for Tarantool output.
-    The value is a file path, with or without ``unix:``.
+    The Unix socket for administration console.
+
+    Mind the following nuances:
+
+    * Only a Unix domain socket is allowed. A TCP socket can't be configured this way.
+    * ``console.socket`` is a file path, without any ``unix:`` or ``unix/:`` prefixes.
+    * If the file path is a relative path, it is interpreted relative to
+      :ref:`process.work_dir <config_process_work_dir>`.
 
     |
     | Type: string
@@ -2443,10 +2452,13 @@ The ``process`` section defines configuration parameters of the Tarantool proces
 
     **Since:** :doc:`3.0.0 </release/3.0.0>`.
 
-    Run the server as a background task.
-    The :ref:`process.pid_file <configuration_reference_process_pid_file>`
-    and :ref:`log <configuration_reference_log>`
-    parameters must be non-null for this to work.
+    Run the server as a daemon process.
+
+    If this option is set to true, Tarantool log location defined by the
+    :ref:`log_to <configuration_reference_log_to>` option should be set to
+    ``file``, ``pipe`` or ``syslog`` -- anything other than ``stderr``,
+    the default, because a daemon process is detached from a terminal
+    and it can't write to the terminal's stderr.
 
     .. important::
 
@@ -2464,7 +2476,19 @@ The ``process`` section defines configuration parameters of the Tarantool proces
 
     **Since:** :doc:`3.0.0 </release/3.0.0>`.
 
-    Whether to create coredump files.
+    Create coredump files.
+
+    Usually an administrator needs to call ``ulimit -c unlimited``
+    (or set corresponding options in systemd's unit file)
+    before running a Tarantool process to get core dumps.
+    If ``process.coredump`` is enabled, Tarantool sets the corresponding
+    resource limit by itself and the administrator doesn't need to call
+    ``ulimit -c unlimited``.
+
+    This option also :href:`sets <https://man7.org/linux/man-pages/man3/setrlimit.3p.html>`
+    the state of the ``dumpable`` attribute, which is enabled by default,
+    but may be dropped in some circumstances (according to
+    :href:`man 2 prctl <https://man7.org/linux/man-pages/man2/prctl.2.html>`, see PR_SET_DUMPABLE).
 
     |
     | Type: boolean
@@ -2478,24 +2502,16 @@ The ``process`` section defines configuration parameters of the Tarantool proces
     **Since:** :doc:`3.0.0 </release/3.0.0>`.
 
     Add the given string to the server's process title
-    (e.g. it's shown in the COMMAND column for the Linux commands
+    (it is shown in the COMMAND column for the Linux commands
     ``ps -ef`` and ``top -c``).
 
-    For example, if you set ``title: ''``, :samp:`ps -ef` shows
-    the Tarantool server process thus:
+    For example, if you set ``title: 'myservice - instance1'``,
+    :samp:`ps -ef` shows the Tarantool server process like this:
 
     .. code-block:: console
 
         $ ps -ef | grep tarantool
-        1000     14939 14188  1 10:53 pts/2    00:00:13 tarantool <running>
-
-    But if you set ``title: 'sessions'``, then the output looks like:
-
-    .. code-block:: console
-
-        $ ps -ef | grep tarantool
-        1000     14939 14188  1 10:53 pts/2    00:00:16 tarantool <running>: sessions
-
+        503      68100 68098  0 10:33 pts/2    00:00.10 tarantool <running>: myservice instance1
     |
     | Type: string
     | Default: 'tarantool - {{ instance_name }}'
@@ -2508,8 +2524,10 @@ The ``process`` section defines configuration parameters of the Tarantool proces
     **Since:** :doc:`3.0.0 </release/3.0.0>`.
 
     Store the process id in this file.
-    Can be relative to :ref:`process.work_dir <configuration_reference_process_work_dir>`.
-    A typical value is “:file:`tarantool.pid`”.
+
+    This option may contain a relative file path.
+    In this case it is interpreted as relative to
+    :ref:`process.work_dir <configuration_reference_process_work_dir>`.
 
     |
     | Type: string
@@ -2550,11 +2568,19 @@ The ``process`` section defines configuration parameters of the Tarantool proces
 
     **Since:** :doc:`3.0.0 </release/3.0.0>`.
 
-    A directory where database working files will be stored. The server instance
-    switches to ``process.work_dir`` with :manpage:`chdir(2)` after start. Can be
-    relative to the current directory. If not specified, defaults to
-    the current directory. Other directory parameters may be relative to ``process.work_dir``,
-    for example, :ref:`directories for storing snapshots and write-ahead logs <configuration_options_directories>`
+    A directory where Tarantool working files will be stored
+    (database files, logs, a PID file, a console Unix socket, and other files
+    if an application generates them in the current directory).
+    The server instance switches to ``process.work_dir`` with
+    :manpage:`chdir(2)` after start.
+
+    If set as a relative file path, it is relative to the current
+    working directory, from where Tarantool is started.
+    If not specified, defaults to the current working directory.
+
+    Other directory and file parameters, if set as relative paths,
+    are interpreted as relative to ``process.work_dir``. For example,
+    :ref:`directories for storing snapshots and write-ahead logs <configuration_options_directories>`
 
     |
     | Type: string
