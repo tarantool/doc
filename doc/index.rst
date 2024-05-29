@@ -56,6 +56,7 @@
                 concepts/index
                 CRUD operations <reference/reference_lua/box_space>
                 book/admin/index
+                book/cluster_app
                 book/connectors
                 enterprise/index
                 reference/index

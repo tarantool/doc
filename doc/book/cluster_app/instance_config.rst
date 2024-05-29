@@ -20,7 +20,7 @@ The main steps of creating and preparing the application for deployment are:
 In this section, a `sharded_cluster <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster>`_ application is used as an example.
 This cluster includes 5 instances: one router and 4 storages, which constitute two replica sets.
 
-.. image:: admin_instances_dev.png
+.. image:: /book/admin/admin_instances_dev.png
     :align: left
     :width: 700
     :alt: Cluster topology
@@ -171,7 +171,7 @@ define instances to run on each machine by changing the content of the ``instanc
 
 -   On the developer's machine, this file might include all the instances defined in the cluster configuration.
 
-    .. image:: admin_instances_dev.png
+    .. image:: /book/admin/admin_instances_dev.png
         :align: left
         :width: 700
         :alt: Cluster topology
@@ -184,7 +184,7 @@ define instances to run on each machine by changing the content of the ``instanc
 
 -   In the production environment, this file includes instances to run on the specific machine.
 
-    .. image:: admin_instances_prod.png
+    .. image:: /book/admin/admin_instances_prod.png
         :align: left
         :width: 700
         :alt: Cluster topology
