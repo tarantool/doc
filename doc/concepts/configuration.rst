@@ -129,6 +129,9 @@ Most of the configuration options can be applied to a specific instance, replica
         :emphasize-lines: 1-3
         :dedent:
 
+Configuration scopes above are listed in the order of their precedence -- from highest to lowest.
+For example, if the same option is defined at the instance and global level, the instance's value takes precedence over the global one.
+
 
 .. NOTE::
 
