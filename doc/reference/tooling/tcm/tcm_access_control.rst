@@ -244,6 +244,61 @@ There are the following password policy settings:
     -   **Digits (0-9)**
     -   **Symbols (such as !@#$%^&\*()_+№"':,.;=][{}`?>/.)**
 
+.. _tcm_access_control_acl:
+
+Access to stored data and functions
+-----------------------------------
+
+|tcm|'s *access control list* (*ACL*) determines user access to data and stored
+functions of connected clusters. You can use it to allow or deny access to specific
+stored objects one by one.
+
+required permissions: cluster.space.data.* and cluster.func.*
+
+Each ACL entry specifies a |tcm| user's privileges for a space or a function stored
+in a connected cluster. There are three access privileges that can be granted in ACL:
+read, write, and execute (for stored functions only). The privileges work as follows:
+
+-   Spaces:
+
+    - ``Read``: the user sees the space on the **Tuples** page and view its tuples
+    - ``Write``: the user can add new and edit existing tuples of the space on the **Tuples** page
+
+-   Functions:
+
+    - ``Read``: the user sees the function on the cluster instance details page (**Functions** tab)
+    - ``Write``: the user can edit or delete the function on the cluster instance details page (**Functions** tab)
+    - ``Execute``: the user can call the function on the cluster instance details page (**Functions** tab)
+
+To manage a user's access to objects with ACL, enable the use of ACL in this user's
+account settings:
+
+#.  Go to users and click **Edit** in the **Actions** menu of the corresponding table row.
+
+#.  In the user's **Clusters** list, add a cluster on which you want to use ACL
+    or click the pencil icon if the cluster is already on the list.
+
+#.  Select the **Use Access Control List (ACL)** checkbox and save changes.
+
+#.  Repeat two previous steps for each cluster on which you want to use ACL for this user.
+
+#.  Click **Update** to save the user account.
+
+If the user doesn't exist yet, you can do the same when creating it.
+
+The tools for managing ACL are located on the **ACL** page.
+
+To add an ACL entry:
+
+#.  Click **Add**.
+#.  Select a user to which you want to grant access.
+#.  Select a cluster that stores the target object.
+#.  Select the target object type (space or function) and enter its name.
+#.  Select the priveleges.
+
+To delete an ACL entry, click **Delete** in the **Actions** menu of the corresponding table row.
+
+
 .. _tcm_access_control_sessions:
 
 Sessions
@@ -326,9 +381,6 @@ The following administrative permissions are available in |tcm|:
     *   -   ``admin.passwordpolicy.write``
         -   Manage password policy
 
-    *   -   ``admin.devmode.toggle``
-        -   Toggle development mode
-
     *   -   ``admin.secrets.read``
         -   View information about users' secrets
 
@@ -338,11 +390,20 @@ The following administrative permissions are available in |tcm|:
     *   -   ``user.password.change``
         -   User's permission to change their own password
 
-    *   -   ``admin.lowlevel.state.read``
-        -   Read low-level information from |tcm| storage (for debug purposes)
+    *   -   ``user.api-token.read``
+        -   User's permission to read their own API tokens information
 
-    *   -   ``admin.lowlevel.state.write``
-        -   Write low-level information to |tcm| storage (for debug purposes)
+    *   -   ``user.api-token.write``
+        -   User's permission to modify their own API tokens
+
+    *   -   ``admin.metrics``
+        -   Read |tcm| metrics
+
+    *   -   ``admin.acl.read``
+        -   View the access control list (ACL)
+
+    *   -   ``admin.acl.write``
+        -   Add and delete ACL entries
 
 .. _tcm_access_control_permissions_cluster:
 
@@ -367,17 +428,14 @@ The following cluster permissions are available in |tcm|:
     *   -   ``cluster.stateboard.read``
         -   View cluster stateboard
 
-    *   -   ``cluster.explorer.read``
-        -   Read data from cluster instances
+    *   -   ``cluster.func.read``
+        -   View cluster's stored functions
 
-    *   -   ``cluster.explorer.write``
-        -   Write data to cluster instances
+    *   -   ``cluster.func.write``
+        -   Edit cluster's stored functions
 
-    *   -   ``cluster.explorer.call``
+    *   -   ``cluster.func.call``
         -   Execute stored functions on cluster instances
-
-    *   -   ``cluster.explorer.eval``
-        -   Execute code on cluster instances
 
     *   -   ``cluster.space.read``
         -   Read cluster data schema
@@ -385,8 +443,23 @@ The following cluster permissions are available in |tcm|:
     *   -   ``cluster.space.write``
         -   Modify cluster data schema
 
-    *   -   ``cluster.lowlevel.state.read``
-        -   Read low-level information about cluster configuration (for debug purposes)
+    *   -   ``cluster.space.data.read``
+        -   Read stored data from cluster
 
-    *   -   ``cluster.lowlevel.state.write``
-        -   Write low-level information about cluster configuration (for debug purposes)
+    *   -   ``cluster.space.data.write``
+        -   Edit stored data on cluster
+
+    *   -   ``cluster.failover.read``
+        -   Read cluster failover information
+
+    *   -   ``cluster.failover.write``
+        -   Write cluster failover commands
+
+    *   -   ``cluster.terminal``
+        -   Connect to cluster instances with ``tt`` terminal from |TCM|
+
+    *   -   ``cluster.sql``
+        -   Execute SQL queries
+
+    *   -   ``cluster.metrics``
+        -   View cluster metrics
