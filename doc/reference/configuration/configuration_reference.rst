@@ -2482,11 +2482,12 @@ The ``process`` section defines configuration parameters of the Tarantool proces
     (or set corresponding options in systemd's unit file)
     before running a Tarantool process to get core dumps.
     If ``process.coredump`` is enabled, Tarantool sets the corresponding
-    resource limit by itself and the administrator doesn't need to call
-    ``ulimit -c unlimited``.
+    resource limit by itself
+    and the administrator doesn't need to call ``ulimit -c unlimited``
+    (see :href:`man 3 setrlimit <https://man7.org/linux/man-pages/man3/setrlimit.3p.html>`).
 
-    This option also :href:`sets <https://man7.org/linux/man-pages/man3/setrlimit.3p.html>`
-    the state of the ``dumpable`` attribute, which is enabled by default,
+    This option also sets the state of the ``dumpable`` attribute,
+    which is enabled by default,
     but may be dropped in some circumstances (according to
     :href:`man 2 prctl <https://man7.org/linux/man-pages/man2/prctl.2.html>`, see PR_SET_DUMPABLE).
 
