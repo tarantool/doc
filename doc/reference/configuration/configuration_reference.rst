@@ -2506,8 +2506,14 @@ The ``process`` section defines configuration parameters of the Tarantool proces
     (it is shown in the COMMAND column for the Linux commands
     ``ps -ef`` and ``top -c``).
 
-    For example, if you set ``title: 'myservice - instance1'``,
-    :samp:`ps -ef` shows the Tarantool server process like this:
+    For example, if you set the option to ``myservice - {{ instance_name }}``:
+
+    .. code-block:: yaml
+
+		process:
+		  title: myservice - {{ instance_name }}
+
+    :samp:`ps -ef` might show the Tarantool server process like this:
 
     .. code-block:: console
 
