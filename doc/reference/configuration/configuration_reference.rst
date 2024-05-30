@@ -730,8 +730,55 @@ This section describes options related to providing connection settings to a :re
     | Default: 3
     | Environment variable: TT_CONFIG_STORAGE_TIMEOUT
 
+..  _configuration_reference_console:
 
+console
+-------
 
+Configure the administrative console. A client to the console is ``tt connect``.
+
+..  NOTE::
+
+    ``console`` can be defined in any :ref:`scope <configuration_scopes>`.
+
+* :ref:`console.enabled <configuration_reference_console_enabled>`
+* :ref:`console.socket <configuration_reference_console_socket>`
+
+.. _configuration_reference_console_enabled:
+
+.. confval:: console.enabled
+
+    **Since:** :doc:`3.0.0 </release/3.0.0>`.
+
+    Whether to listen on the Unix socket provided in the
+    :ref:`console.socket <configuration_reference_console_socket>` option.
+
+    If the option is set to ``false``, the administrative console is disabled.
+
+    |
+    | Type: boolean
+    | Default: true
+    | Environment variable: TT_CONSOLE_ENABLED
+
+.. _configuration_reference_console_socket:
+
+.. confval:: console.socket
+
+    **Since:** :doc:`3.0.0 </release/3.0.0>`.
+
+    The Unix socket for the administrative console.
+
+    Mind the following nuances:
+
+    * Only a Unix domain socket is allowed. A TCP socket can't be configured this way.
+    * ``console.socket`` is a file path, without any ``unix:`` or ``unix/:`` prefixes.
+    * If the file path is a relative path, it is interpreted relative to
+      :ref:`process.work_dir <configuration_reference_process_work_dir>`.
+
+    |
+    | Type: string
+    | Default: 'var/run/{{ instance_name }}/tarantool.control'
+    | Environment variable: TT_CONSOLE_SOCKET
 
 ..  _configuration_reference_credentials:
 
@@ -2385,8 +2432,11 @@ The ``memtx`` section is used to configure parameters related to the :ref:`memtx
 process
 -------
 
-The ``process`` defines configuration parameters of the Tarantool process in the system.
+The ``process`` section defines configuration parameters of the Tarantool process in the system.
 
+..  NOTE::
+
+    ``process`` can be defined in any :ref:`scope <configuration_scopes>`.
 
 -   :ref:`process.background <configuration_reference_process_background>`
 -   :ref:`process.coredump <configuration_reference_process_coredump>`
@@ -2400,7 +2450,15 @@ The ``process`` defines configuration parameters of the Tarantool process in the
 
 .. confval:: process.background
 
-    Run the server as a background task.
+    **Since:** :doc:`3.0.0 </release/3.0.0>`.
+
+    Run the server as a daemon process.
+
+    If this option is set to ``true``, Tarantool log location defined by the
+    :ref:`log.to <configuration_reference_log_to>` option should be set to
+    ``file``, ``pipe``, or ``syslog`` -- anything other than ``stderr``,
+    the default, because a daemon process is detached from a terminal
+    and it can't write to the terminal's stderr.
 
     .. important::
 
@@ -2412,11 +2470,26 @@ The ``process`` defines configuration parameters of the Tarantool process in the
     | Default: false
     | Environment variable: TT_PROCESS_BACKGROUND
 
-
 .. _configuration_reference_process_coredump:
 
 .. confval:: process.coredump
 
+    **Since:** :doc:`3.0.0 </release/3.0.0>`.
+
+    Create coredump files.
+
+    Usually, an administrator needs to call ``ulimit -c unlimited``
+    (or set corresponding options in systemd's unit file)
+    before running a Tarantool process to get core dumps.
+    If ``process.coredump`` is enabled, Tarantool sets the corresponding
+    resource limit by itself
+    and the administrator doesn't need to call ``ulimit -c unlimited``
+    (see `man 3 setrlimit <https://man7.org/linux/man-pages/man3/setrlimit.3p.html>`_).
+
+    This option also sets the state of the ``dumpable`` attribute,
+    which is enabled by default,
+    but may be dropped in some circumstances (according to
+    `man 2 prctl <https://man7.org/linux/man-pages/man2/prctl.2.html>`_, see PR_SET_DUMPABLE).
 
     |
     | Type: boolean
@@ -2427,9 +2500,25 @@ The ``process`` defines configuration parameters of the Tarantool process in the
 
 .. confval:: process.title
 
-    Sets the name of the server's process title (what’s shown in the COMMAND column for
-    ``ps -ef`` and ``top -c`` commands).
+    **Since:** :doc:`3.0.0 </release/3.0.0>`.
 
+    Add the given string to the server's process title
+    (it is shown in the COMMAND column for the Linux commands
+    ``ps -ef`` and ``top -c``).
+
+    For example, if you set the option to ``myservice - {{ instance_name }}``:
+
+    .. code-block:: yaml
+
+		process:
+		  title: myservice - {{ instance_name }}
+
+    :samp:`ps -ef` might show the Tarantool server process like this:
+
+    .. code-block:: console
+
+        $ ps -ef | grep tarantool
+        503      68100 68098  0 10:33 pts/2    00:00.10 tarantool <running>: myservice instance1
     |
     | Type: string
     | Default: 'tarantool - {{ instance_name }}'
@@ -2439,7 +2528,13 @@ The ``process`` defines configuration parameters of the Tarantool process in the
 
 .. confval:: process.pid_file
 
+    **Since:** :doc:`3.0.0 </release/3.0.0>`.
+
     Store the process id in this file.
+
+    This option may contain a relative file path.
+    In this case, it is interpreted as relative to
+    :ref:`process.work_dir <configuration_reference_process_work_dir>`.
 
     |
     | Type: string
@@ -2450,8 +2545,10 @@ The ``process`` defines configuration parameters of the Tarantool process in the
 
 .. confval:: process.strip_core
 
-    Whether coredump files should include memory allocated for tuples.
-    (This can be large if Tarantool runs under heavy load.)
+    **Since:** :doc:`3.0.0 </release/3.0.0>`.
+
+    Whether coredump files should not include memory allocated for tuples --
+    this memory can be large if Tarantool runs under heavy load.
     Setting to ``true`` means "do not include".
 
     |
@@ -2462,6 +2559,8 @@ The ``process`` defines configuration parameters of the Tarantool process in the
 .. _configuration_reference_process_username:
 
 .. confval:: process.username
+
+    **Since:** :doc:`3.0.0 </release/3.0.0>`.
 
     The name of the system user to switch to after start.
 
@@ -2474,7 +2573,21 @@ The ``process`` defines configuration parameters of the Tarantool process in the
 
 .. confval:: process.work_dir
 
-    A directory where Tarantool working files are stored.
+    **Since:** :doc:`3.0.0 </release/3.0.0>`.
+
+    A directory where Tarantool working files will be stored
+    (database files, logs, a PID file, a console Unix socket, and other files
+    if an application generates them in the current directory).
+    The server instance switches to ``process.work_dir`` with
+    :manpage:`chdir(2)` after start.
+
+    If set as a relative file path, it is relative to the current
+    working directory, from where Tarantool is started.
+    If not specified, defaults to the current working directory.
+
+    Other directory and file parameters, if set as relative paths,
+    are interpreted as relative to ``process.work_dir``. For example,
+    :ref:`directories for storing snapshots and write-ahead logs <configuration_options_directories>`
 
     |
     | Type: string

@@ -1,4 +1,5 @@
 * :ref:`background <cfg_basic-background>`
+* :ref:`coredump <cfg_basic-coredump>`
 * :ref:`custom_proc_title <cfg_basic-custom_proc_title>`
 * :ref:`listen <cfg_basic-listen>`
 * :ref:`memtx_dir <cfg_basic-memtx_dir>`
@@ -33,6 +34,31 @@
     | Type: boolean
     | Default: false
     | Environment variable: TT_BACKGROUND
+    | Dynamic: no
+
+.. _cfg_basic-coredump:
+
+.. confval:: coredump
+
+    Create coredump files.
+
+    Usually, an administrator needs to call ``ulimit -c unlimited``
+    (or set corresponding options in systemd's unit file)
+    before running a Tarantool process to get core dumps.
+    If ``coredump`` is enabled, Tarantool sets the corresponding
+    resource limit by itself
+    and the administrator doesn't need to call ``ulimit -c unlimited``
+    (see `man 3 setrlimit <https://man7.org/linux/man-pages/man3/setrlimit.3p.html>`_).
+
+    This option also sets the state of the ``dumpable`` attribute,
+    which is enabled by default,
+    but may be dropped in some circumstances (according to
+    `man 2 prctl <https://man7.org/linux/man-pages/man2/prctl.2.html>`_, see PR_SET_DUMPABLE).
+
+    |
+    | Type: boolean
+    | Environment variable: TT_COREDUMP
+    | Default: false
     | Dynamic: no
 
 .. _cfg_basic-custom_proc_title:
