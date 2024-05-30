@@ -54,6 +54,7 @@
     which is enabled by default,
     but may be dropped in some circumstances (according to
     `man 2 prctl <https://man7.org/linux/man-pages/man2/prctl.2.html>`_, see PR_SET_DUMPABLE).
+
     |
     | Type: boolean
     | Environment variable: TT_COREDUMP

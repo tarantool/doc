@@ -741,8 +741,8 @@ Configure the administrative console. A client to the console is ``tt connect``.
 
     ``console`` can be defined in any :ref:`scope <configuration_scopes>`.
 
-* :ref:`console.enabled <config_console_enabled>`
-* :ref:`console.socket <config_console_socket>`
+* :ref:`console.enabled <configuration_reference_console_enabled>`
+* :ref:`console.socket <configuration_reference_console_socket>`
 
 .. _configuration_reference_console_enabled:
 
