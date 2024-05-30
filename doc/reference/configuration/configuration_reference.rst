@@ -735,7 +735,7 @@ This section describes options related to providing connection settings to a :re
 console
 -------
 
-Configure the administration console. A client to the console is ``tt connect``.
+Configure the administrative console. A client to the console is ``tt connect``.
 
 ..  NOTE::
 
@@ -744,36 +744,36 @@ Configure the administration console. A client to the console is ``tt connect``.
 * :ref:`console.enabled <config_console_enabled>`
 * :ref:`console.socket <config_console_socket>`
 
-.. _config_console_enabled:
+.. _configuration_reference_console_enabled:
 
 .. confval:: console.enabled
 
     **Since:** :doc:`3.0.0 </release/3.0.0>`.
 
     Whether to listen on the Unix socket provided in the
-    :ref:`console.socket <config_console_socket>` option.
+    :ref:`console.socket <configuration_reference_console_socket>` option.
 
-    If the option is set to false, the admininstration console is disabled.
+    If the option is set to ``false``, the administrative console is disabled.
 
     |
     | Type: boolean
     | Default: true
     | Environment variable: TT_CONSOLE_ENABLED
 
-.. _config_console_socket:
+.. _configuration_reference_console_socket:
 
 .. confval:: console.socket
 
     **Since:** :doc:`3.0.0 </release/3.0.0>`.
 
-    The Unix socket for administration console.
+    The Unix socket for the administrative console.
 
     Mind the following nuances:
 
     * Only a Unix domain socket is allowed. A TCP socket can't be configured this way.
     * ``console.socket`` is a file path, without any ``unix:`` or ``unix/:`` prefixes.
     * If the file path is a relative path, it is interpreted relative to
-      :ref:`process.work_dir <config_process_work_dir>`.
+      :ref:`process.work_dir <configuration_reference_process_work_dir>`.
 
     |
     | Type: string
@@ -2454,9 +2454,9 @@ The ``process`` section defines configuration parameters of the Tarantool proces
 
     Run the server as a daemon process.
 
-    If this option is set to true, Tarantool log location defined by the
-    :ref:`log_to <configuration_reference_log_to>` option should be set to
-    ``file``, ``pipe`` or ``syslog`` -- anything other than ``stderr``,
+    If this option is set to ``true``, Tarantool log location defined by the
+    :ref:`log.to <configuration_reference_log_to>` option should be set to
+    ``file``, ``pipe``, or ``syslog`` -- anything other than ``stderr``,
     the default, because a daemon process is detached from a terminal
     and it can't write to the terminal's stderr.
 
@@ -2478,18 +2478,18 @@ The ``process`` section defines configuration parameters of the Tarantool proces
 
     Create coredump files.
 
-    Usually an administrator needs to call ``ulimit -c unlimited``
+    Usually, an administrator needs to call ``ulimit -c unlimited``
     (or set corresponding options in systemd's unit file)
     before running a Tarantool process to get core dumps.
     If ``process.coredump`` is enabled, Tarantool sets the corresponding
     resource limit by itself
     and the administrator doesn't need to call ``ulimit -c unlimited``
-    (see :href:`man 3 setrlimit <https://man7.org/linux/man-pages/man3/setrlimit.3p.html>`).
+    (see `man 3 setrlimit <https://man7.org/linux/man-pages/man3/setrlimit.3p.html>`_).
 
     This option also sets the state of the ``dumpable`` attribute,
     which is enabled by default,
     but may be dropped in some circumstances (according to
-    :href:`man 2 prctl <https://man7.org/linux/man-pages/man2/prctl.2.html>`, see PR_SET_DUMPABLE).
+    `man 2 prctl <https://man7.org/linux/man-pages/man2/prctl.2.html>`_, see PR_SET_DUMPABLE).
 
     |
     | Type: boolean
@@ -2533,7 +2533,7 @@ The ``process`` section defines configuration parameters of the Tarantool proces
     Store the process id in this file.
 
     This option may contain a relative file path.
-    In this case it is interpreted as relative to
+    In this case, it is interpreted as relative to
     :ref:`process.work_dir <configuration_reference_process_work_dir>`.
 
     |
@@ -2547,8 +2547,8 @@ The ``process`` section defines configuration parameters of the Tarantool proces
 
     **Since:** :doc:`3.0.0 </release/3.0.0>`.
 
-    Whether coredump files should include memory allocated for tuples.
-    (This can be large if Tarantool runs under heavy load.)
+    Whether coredump files should not include memory allocated for tuples --
+    this memory can be large if Tarantool runs under heavy load.
     Setting to ``true`` means "do not include".
 
     |
