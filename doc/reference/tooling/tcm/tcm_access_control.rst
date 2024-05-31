@@ -17,7 +17,7 @@ and users (or user accounts). They work as follows:
 -   Roles are predefined sets of *administrative* permissions to
     assign to users.
 -   Users have roles that define their access rights to |tcm| functions and objects, and
-    *cluster* permissions that are assigned for each cluster separately.
+    *cluster* permissions that are assigned for each cluster individually.
 
 ..  note::
 
