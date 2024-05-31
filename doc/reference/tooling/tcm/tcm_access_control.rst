@@ -22,7 +22,7 @@ and users (or user accounts). They work as follows:
 ..  note::
 
     |tcm| users, roles, and permissions are not to be confused with similar subjects
-    of the :ref:`Tarantool access control system <authentication>`. To access Tarantool
+    of the :ref:`Tarantool access control system <access_control>`. To access Tarantool
     instances directly, Tarantool users with corresponding roles are required.
 
 .. _tcm_access_control_permissions:
@@ -55,6 +55,9 @@ There are two types of permissions in |tcm|: *administrative* and *cluster* perm
     see the **Configuration** page when this cluster is selected.
 
     Cluster permissions are assigned to users individually when creating or editing them.
+
+    For a fine-grained control over user access to particular spaces and functions stored
+    in clusters, there is the :ref:`access control list <tcm_access_control_acl>`.
 
 Permissions are predefined in |tcm|, there is no way to change, add, or delete them.
 The complete lists of administrative and cluster permissions in |tcm| are provided
