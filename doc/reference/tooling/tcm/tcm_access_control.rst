@@ -253,7 +253,7 @@ Access control list
 and functions stored in clusters. You can use it to allow or deny access to specific
 stored objects one by one.
 
-Each ACL entry specifies privileges that a |tcm| user's privileges has on a particular
+Each ACL entry specifies privileges that a |tcm| user has on a particular
 space or a function. There are three access privileges that can be granted in the ACL:
 read, write, and execute (for stored functions only). The privileges work as follows:
 
@@ -268,18 +268,17 @@ read, write, and execute (for stored functions only). The privileges work as fol
     - ``Write``: the user can edit or delete the function
     - ``Execute``: the user can call the function
 
-
 .. important::
 
-    Users' access to space data and stored functions is primarily defined by the
+    User access to space data and stored functions is primarily defined by the
     :ref:`cluster permissions <tcm_access_control_permissions_cluster>` ``cluster.space.data.*`` and ``cluster.func.*``.
     ACL only increases the access control granularity to particular objects.
     Make sure that users have these permissions before enabling ACL for them.
 
 To granularly manage a user's access to particular objects in a cluster, enable
-the use of ACL in this user's account settings:
+the use of ACL in the user profile:
 
-#.  Go to users and click **Edit** in the **Actions** menu of the corresponding table row.
+#.  Go to **Users** and click **Edit** in the **Actions** menu of the corresponding table row.
 
 #.  In the user's **Clusters** list, add a cluster on which you want to use ACL
     or click the pencil icon if the cluster is already on the list.
@@ -308,7 +307,6 @@ To add an ACL entry:
 #.  Select the privileges you want to grant.
 
 To delete an ACL entry, click **Delete** in the **Actions** menu of the corresponding table row.
-
 
 .. _tcm_access_control_sessions:
 
