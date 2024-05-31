@@ -246,31 +246,35 @@ There are the following password policy settings:
 
 .. _tcm_access_control_acl:
 
-Access to stored data and functions
------------------------------------
+Access control list
+-------------------
 
-|tcm|'s *access control list* (*ACL*) determines user access to data and stored
-functions of connected clusters. You can use it to allow or deny access to specific
+|tcm|'s *access control list* (*ACL*) determines user access to particular data
+and functions stored in clusters. You can use it to allow or deny access to specific
 stored objects one by one.
 
-required permissions: cluster.space.data.* and cluster.func.*
+.. note::
 
-Each ACL entry specifies a |tcm| user's privileges for a space or a function stored
-in a connected cluster. There are three access privileges that can be granted in ACL:
+    Users' access to space data and stored functions is primarily defined by the
+    :ref:`cluster permissions <tcm_access_control_permissions_cluster>` ``cluster.space.data.*`` and ``cluster.func.*``.
+    ACL only increases the access control granularity to particular objects.
+
+Each ACL entry specifies privileges that a |tcm| user's privileges has on a particular
+space or a function. There are three access privileges that can be granted in the ACL:
 read, write, and execute (for stored functions only). The privileges work as follows:
 
 -   Spaces:
 
-    - ``Read``: the user sees the space on the **Tuples** page and view its tuples
-    - ``Write``: the user can add new and edit existing tuples of the space on the **Tuples** page
+    - ``Read``: the user sees the space and its tuples on the **Tuples** and **Explorer** pages
+    - ``Write``: the user can add new and edit existing tuples of the space
 
 -   Functions:
 
-    - ``Read``: the user sees the function on the cluster instance details page (**Functions** tab)
-    - ``Write``: the user can edit or delete the function on the cluster instance details page (**Functions** tab)
-    - ``Execute``: the user can call the function on the cluster instance details page (**Functions** tab)
+    - ``Read``: the user sees the function on the **Functions** tab of the instance details page.
+    - ``Write``: the user can edit or delete the function
+    - ``Execute``: the user can call the function
 
-To manage a user's access to objects with ACL, enable the use of ACL in this user's
+To manage a user's access to a cluster with ACL, enable the use of ACL in this user's
 account settings:
 
 #.  Go to users and click **Edit** in the **Actions** menu of the corresponding table row.
@@ -286,15 +290,20 @@ account settings:
 
 If the user doesn't exist yet, you can do the same when creating it.
 
+.. important::
+
+    When ACL use is enabled for a user, this user loses access to all spaces and
+    functions of the selected cluster except the ones explicitly specified in the ACL.
+
 The tools for managing ACL are located on the **ACL** page.
 
 To add an ACL entry:
 
 #.  Click **Add**.
 #.  Select a user to which you want to grant access.
-#.  Select a cluster that stores the target object.
-#.  Select the target object type (space or function) and enter its name.
-#.  Select the priveleges.
+#.  Select a cluster that stores the target object: a space or a function.
+#.  Select the target object type and enter its name.
+#.  Select the privileges you want to grant.
 
 To delete an ACL entry, click **Delete** in the **Actions** menu of the corresponding table row.
 
