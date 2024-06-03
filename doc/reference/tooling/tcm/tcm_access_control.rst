@@ -346,7 +346,8 @@ Each |tcm| API token belongs to the user that created it and has the same :ref:`
 Thus, if a user has a permission to view a cluster's metrics in |tcm|, this user's
 API tokens can be used to read this cluster's metrics with Prometheus.
 
-API tokens have expiration dates that is set during their creation.
+API tokens have expiration dates that are set during the token creation and cannot
+be changed.
 
 .. _tcm_access_control_api_tokens_manage:
 
