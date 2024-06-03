@@ -278,6 +278,11 @@ read, write, and execute (for stored functions only). The privileges work as fol
     ACL only increases the access control granularity to particular objects.
     Make sure that users have these permissions before enabling ACL for them.
 
+.. _tcm_access_control_acl_enable:
+
+Enabling ACL for a user
+~~~~~~~~~~~~~~~~~~~~~~~
+
 To granularly manage a user's access to particular objects in a cluster, enable
 the use of ACL in the user profile:
 
@@ -298,6 +303,11 @@ If the user doesn't exist yet, you can do the same when creating it.
 
     When ACL use is enabled for a user, this user loses access to all spaces and
     functions of the selected cluster except the ones explicitly specified in the ACL.
+
+.. _tcm_access_control_acl_manage:
+
+Managing ACL
+~~~~~~~~~~~~
 
 The tools for managing ACL are located on the **ACL** page.
 
@@ -322,6 +332,51 @@ are listed on the **Sessions** page. To revoke a session, click **Revoke** in th
 
 To revoke all sessions of a user, go to **Users** and click **Revoke all sessions**
 in the **Actions** menu of the corresponding table row.
+
+.. _tcm_access_control_api_tokens:
+
+API tokens
+----------
+
+|tcm| uses the Bearer HTTP authentication scheme with *API tokens* to authenticate
+external applications' requests to |tcm|. For example, these can be Prometheus
+jobs that retrieve metrics of connected Tarantool clusters.
+
+Each |tcm| API token belongs to the user that created it and has the same :ref:`access permissions <tcm_access_control_permissions>`.
+Thus, if a user has a permission to view a cluster's metrics in |tcm|, this user's
+API tokens can be used to read this cluster's metrics with Prometheus.
+
+API tokens have expiration dates that is set during their creation.
+
+.. _tcm_access_control_api_tokens_manage:
+
+Managing API tokens
+~~~~~~~~~~~~~~~~~~~
+
+.. note::
+
+    Each user, including **Default Admin** and other administrators, can create only
+    their own tokens. There is no way to create a token for another user.
+
+To create a |tcm| API token:
+
+#. Open the user settings by clicking the user's name in the top-right corner.
+#. Go to the **API tokens** tab and click **Add**.
+#. Specify the token expiration date and an optional description and click **Add**.
+
+The created token is shown in a dialog.
+
+.. important::
+
+    An API token is shown only once after its creation. There is no way to view
+    it again after you close the dialog. Make sure to copy the token in a safe place.
+
+To delete an API token, click **Delete** in the actions menu of the corresponding
+**API tokens** table row.
+
+Administrators can also view information about users' API tokens and and delete them
+on the **Secrets** page. To open a user's secrets, click **Secrets** in the **Actions**
+menu of the corresponding **Users** table row.
 
 .. _tcm_access_control_permissions_ref:
 
