@@ -374,7 +374,7 @@ The created token is shown in a dialog.
 To delete an API token, click **Delete** in the actions menu of the corresponding
 **API tokens** table row.
 
-Administrators can also view information about users' API tokens and and delete them
+Administrators can also view information about users' API tokens and delete them
 on the **Secrets** page. To open a user's secrets, click **Secrets** in the **Actions**
 menu of the corresponding **Users** table row.
 
