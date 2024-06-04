@@ -15,3 +15,11 @@ You'll get an understanding of the technology and learn about the basic terms an
 
 To continue exploring Tarantool and its ecosystem, you might want to check out
 Tarantool :doc:`tutorials and guides <../how-to/index>`.
+
+..  toctree::
+    :maxdepth: 1
+
+    installation
+    getting_started_db
+    vshard_quick
+    getting_started_tcm

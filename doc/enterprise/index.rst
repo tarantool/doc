@@ -63,15 +63,4 @@ Tarantool Enterprise Edition
 ..  toctree::
     :hidden:
 
-    setup
-    security
-    audit
-    tuple_compression
-    wal_extensions
-    read_views
-    flight_recorder
-    audit_log
     space_upgrade
-    system_metrics
-    deprecated
-    rocksref

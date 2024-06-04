@@ -22,16 +22,12 @@ utilities:
 This chapter includes the following sections:
 
 .. toctree::
-   :maxdepth: 2
-   :numbered: 0
+   :maxdepth: 1
 
-   instance_config
-   start_stop_instance
    modules
    logs
    security
    access_control
-   vshard_admin
    replication/index
    server_introspection
    daemon_supervision
@@ -41,4 +37,5 @@ This chapter includes the following sections:
    os_notes
    bug_reports
    troubleshoot
+   flight_recorder
    ../monitoring/index
