@@ -3,6 +3,10 @@
 Upgrades
 ========
 
+..  important::
+
+    This section contains instructions for upgrading Tarantool clusters to versions up to 2.11.x.
+
 This section describes the general upgrade process for Tarantool. There are two
 main upgrade scenarios for different use cases:
 
