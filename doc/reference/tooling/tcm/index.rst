@@ -44,3 +44,4 @@ to read data. LDAP authorization is supported as well.
     tcm_configuration
     tcm_backend_store
     tcm_configuration_reference
+    Releases <tcm_releases/index>
