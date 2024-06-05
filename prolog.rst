@@ -40,5 +40,5 @@
 
 .. |tcm| replace:: TCM
 
-.. |tcm_version| replace:: 1.0.0
+.. |tcm_version| replace:: 1.1.0
 

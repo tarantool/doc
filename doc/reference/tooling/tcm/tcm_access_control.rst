@@ -162,9 +162,9 @@ Passwords
 ---------
 
 |tcm| uses the general term *secret* for user authentication keys. A secret is any
-pair of a public and a private key that can be used for authentication. In |tcm| |tcm_version|,
-*password* is the only supported secret type. In this case, the public key is a username,
-and the private key is a password.
+pair of a public and a private key that can be used for authentication. A *password*
+combined with a *username* is a secret type used for |tcm| user authentication.
+In this case, the public key is a username, and the private key is a password.
 
 Users receive their first passwords during their :ref:`account creation <tcm_access_control_users_manage>`.
 
