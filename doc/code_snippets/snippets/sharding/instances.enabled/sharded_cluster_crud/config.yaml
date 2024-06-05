@@ -2,10 +2,10 @@ credentials:
   users:
     replicator:
       password: 'topsecret'
-      roles: [replication]
+      roles: [ replication ]
     storage:
       password: 'secret'
-      roles: [sharding]
+      roles: [ sharding ]
 
 iproto:
   advertise:
@@ -19,11 +19,11 @@ sharding:
 
 groups:
   storages:
-    roles: [roles.crud-storage]
+    roles: [ roles.crud-storage ]
     app:
       module: storage
     sharding:
-      roles: [storage]
+      roles: [ storage ]
     replication:
       failover: manual
     replicasets:
@@ -50,7 +50,7 @@ groups:
               listen:
               - uri: '127.0.0.1:3305'
   routers:
-    roles: [roles.crud-router]
+    roles: [ roles.crud-router ]
     roles_cfg:
       roles.crud-router:
         stats: true
@@ -62,7 +62,7 @@ groups:
     app:
       module: router
     sharding:
-      roles: [router]
+      roles: [ router ]
     replicasets:
       router-a:
         instances:

@@ -240,7 +240,7 @@ Roles and configuration scopes
 ******************************
 
 As the most of configuration options, roles and their configurations can be defined at :ref:`different levels <configuration_scopes>`.
-Given that the ``roles`` option has the ``array`` type and ``roles_cfg`` has the ``map`` type, different rules are used when applying the configuration:
+Given that the ``roles`` option has the ``array`` type and ``roles_cfg`` has the ``map`` type, there are some specifics when applying the configuration:
 
 -   For ``roles``, an instance's role takes precedence over roles defined at another levels.
     In the example below, ``instance001`` has only ``role3``:
@@ -258,7 +258,7 @@ Given that the ``roles`` option has the ``array`` type and ``roles_cfg`` has the
 
 -   For ``roles_cfg``, the following rules are applied:
 
-    -   If the same role's option exists at different levels, an instance's option takes precedence over options defined at another levels.
+    -   If a configuration for the same role is provided at different levels, an instance configuration takes precedence over configuration defined at another levels.
         In the example below, ``role1.greeting`` is ``'Hi'``:
 
         ..  code-block:: yaml
@@ -275,8 +275,8 @@ Given that the ``roles`` option has the ``array`` type and ``roles_cfg`` has the
                     role1:
                       greeting: 'Hi'
 
-    -   If some role's option exists at one level but doesn't exist at another level, these options are merged.
-        In the example below, ``role1.greeting`` is ``'Hi'`` and ``role1.farewell`` is ``'Goodbye'``:
+    -   If configurations for different roles are provided at different levels, both configurations are applied at the instance level.
+        In the example below, ``instance001`` has ``role1.greeting`` set to ``'Hi'`` and ``role2.farewell`` set to ``'Bye'``:
 
         ..  code-block:: yaml
 
@@ -284,14 +284,13 @@ Given that the ``roles`` option has the ``array`` type and ``roles_cfg`` has the
             replicaset001:
               roles_cfg:
                 role1:
-                  greeting: 'Hello'
-                  farewell: 'Goodbye'
+                  greeting: 'Hi'
               instances:
                 instance001:
-                  roles: [ role1 ]
+                  roles: [ role1, role2 ]
                   roles_cfg:
-                    role1:
-                      greeting: 'Hi'
+                    role2:
+                      farewell: 'Bye'
 
 
 

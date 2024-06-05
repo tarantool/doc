@@ -2,17 +2,17 @@
 local httpd
 local json = require('json')
 
-local function validate_config(cfg)
+local function validate(cfg)
     if cfg.host then
         assert(type(cfg.host) == "string", "'host' should be a string containing a valid IP address")
     end
     if cfg.port then
         assert(type(cfg.port) == "number", "'port' should be a number")
-        assert(cfg.port >= 1 and cfg.port <= 65536, "'port' should be between 1 and 65536")
+        assert(cfg.port >= 1 and cfg.port <= 65535, "'port' should be between 1 and 65535")
     end
 end
 
-local function apply_config(cfg)
+local function apply(cfg)
     if httpd then
         httpd:stop()
     end
@@ -48,7 +48,7 @@ local function apply_config(cfg)
     httpd:start()
 end
 
-local function stop_role()
+local function stop()
     httpd:stop()
 end
 
@@ -59,7 +59,7 @@ end
 init()
 
 return {
-    validate = validate_config,
-    apply = apply_config,
-    stop = stop_role,
+    validate = validate,
+    apply = apply,
+    stop = stop,
 }

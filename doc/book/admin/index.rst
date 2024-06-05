@@ -25,6 +25,7 @@ This chapter includes the following sections:
    :maxdepth: 2
    :numbered: 0
 
+   instance_config
    start_stop_instance
    modules
    logs

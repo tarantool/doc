@@ -12,6 +12,7 @@ in C or C++.
 ..  toctree::
     :maxdepth: 1
 
+    app_roles
     launching_app
     creating_app
     using_ide
