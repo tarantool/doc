@@ -16,6 +16,7 @@ and with :ref:`centralized configuration storages <configuration_etcd>` (etcd or
 *   :ref:`publish <tt-cluster-publish>`
 *   :ref:`show <tt-cluster-show>`
 *   :ref:`replicaset <tt-cluster-replicaset>`
+*   :ref:`failover <tt-cluster-failover>`
 
 .. _tt-cluster-publish:
 
@@ -271,6 +272,74 @@ to ``ro`` and reloads the configuration.
     replica set members, so there can be any number of read-write instances in one replica set.
 
 
+.. _tt-cluster-failover:
+
+failover
+--------
+
+.. code-block:: console
+
+    $ tt cluster failover SUBCOMMAND [OPTION ...]
+
+``tt cluster failover`` manages a :ref:`supervised failover <repl_supervised_failover>` in Tarantool clusters.
+
+-   :ref:`switch <tt-cluster-failover-switch>`
+-   :ref:`switch-status <tt-cluster-failover-switch-status>`
+
+.. important::
+
+    ``tt cluster failover`` works only with centralized cluster configurations stored in etcd.
+
+
+.. _tt-cluster-failover-switch:
+
+switch
+~~~~~~
+
+.. code-block:: console
+
+    $ tt cluster failover switch URI INSTANCE_NAME [OPTION ...]
+
+``tt cluster failover switch`` appoints the specified instance to be a master.
+This command accepts the following arguments and options:
+
+-   ``URI``: A :ref:`URI <tt-cluster-uri>` of the cluster configuration storage.
+-   ``INSTANCE_NAME``: An instance name.
+-   ``[OPTION ...]``: :ref:`Options <tt-cluster-options>` to pass to the command.
+
+Example:
+
+.. code-block:: console
+
+    $ tt cluster failover switch http://localhost:2379/myapp storage-a-002
+    To check the switching status, run:
+    tt cluster failover switch-status http://localhost:2379/myapp b1e938dd-2867-46ab-acc4-3232c2ef7ffe
+
+
+.. _tt-cluster-failover-switch-status:
+
+switch-status
+~~~~~~~~~~~~~
+
+.. code-block:: console
+
+    $ tt cluster failover switch-status URI TASK_ID
+
+``tt cluster failover switch-status`` shows the status of switching a master instance.
+This command accepts the following arguments:
+
+-   ``URI``: A :ref:`URI <tt-cluster-uri>` of the cluster configuration storage.
+-   ``TASK_ID``: An identifier of the task used to switch a master instance.
+
+Example:
+
+.. code-block:: console
+
+    $ tt cluster failover switch-status http://localhost:2379/myapp b1e938dd-2867-46ab-acc4-3232c2ef7ffe
+
+
+
+
 .. _tt-cluster-replicaset-details:
 
 Implementation details
@@ -378,11 +447,23 @@ Options
 
     Skip validation when publishing. Default: `false` (validation is enabled).
 
+..  option:: --t, --timeout UINT
+
+    **Applicable to:** ``failover``
+
+    A timeout (in seconds) for executing a command. Default: `30`.
+
 ..  option:: --validate
 
     **Applicable to:** ``show``
 
     Validate the printed configuration. Default: `false` (validation is disabled).
+
+..  option:: -w, --wait
+
+    **Applicable to:** ``failover``
+
+    Wait while the command completes the execution.
 
 ..  option:: --with-integrity-check STRING
 

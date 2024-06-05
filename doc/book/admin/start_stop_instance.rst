@@ -21,14 +21,10 @@ To get more context on how the application's environment might look, refer to :r
 
 
 .. _configuration_run_instance:
+.. _configuration_run_instance_tt:
 
 Starting Tarantool instances
 ----------------------------
-
-.. _configuration_run_instance_tt:
-
-Starting instances using the tt utility
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The :ref:`tt <tt-cli>` utility is the recommended way to start Tarantool instances.
 
@@ -55,24 +51,6 @@ In the system launch mode, artifacts are created in these locations:
 *   ``/var/lib/tarantool/<instance_name>/``
 *   ``/var/run/tarantool/<instance_name>/``
 
-
-.. _configuration_run_instance_tarantool:
-
-Starting an instance using the tarantool command
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The ``tarantool`` command provides additional :ref:`options <configuration_command_options>` that might be helpful for development purposes.
-Below is the syntax for starting a Tarantool instance configured in a file:
-
-..  code-block:: console
-
-    $ tarantool [OPTION ...] --name INSTANCE_NAME --config CONFIG_FILE_PATH
-
-The command below starts ``router-a-001`` configured in the ``config.yaml`` file:
-
-.. code-block:: console
-
-    $ tarantool --name router-a-001 --config config.yaml
 
 
 
@@ -252,138 +230,3 @@ by semicolons:
 
 If an error happens during the execution of the preload script or module, Tarantool
 reports the problem and exits.
-
-
-
-
-.. _configuration_command_options:
-
-tarantool command-line options
-------------------------------
-
-Options that can be passed when :ref:`starting a Tarantool instance <configuration_run_instance_tarantool>`:
-
-..  option:: -h, --help
-
-    Print an annotated list of all available options and exit.
-
-..  option:: --help-env-list
-
-    **Since:** :doc:`3.0.0 </release/3.0.0>`.
-
-    Show a list of :ref:`environment variables <configuration_environment_variable>` that can be used to configure Tarantool.
-
-.. _index-tarantool_version:
-
-..  option:: -v, -V, --version
-
-    Print the product name and version.
-
-    **Example**
-
-    ..  code-block:: console
-
-        $ tarantool --version
-        Tarantool Enterprise 3.0.0-beta1-2-gcbb569b4c-r607-gc64
-        Target: Linux-x86_64-RelWithDebInfo
-        ...
-
-    In this example:
-
-    *   ``3.0.0`` is a Tarantool version.
-        Tarantool follows semantic versioning, which is described in the :ref:`Tarantool release policy <release-policy>` section.
-
-    *   ``Target`` is the platform Tarantool is built on.
-        Platform-specific details may follow this line.
-
-
-..  option:: -c, --config PATH
-
-    **Since:** :doc:`3.0.0 </release/3.0.0>`.
-
-    Set a path to a :ref:`YAML configuration file <configuration_file>`.
-    You can also configure this value using the ``TT_CONFIG`` environment variable.
-
-    See also: :ref:`Starting an instance using the tarantool command <configuration_run_instance_tarantool>`
-
-..  option:: -n, --name INSTANCE
-
-    **Since:** :doc:`3.0.0 </release/3.0.0>`.
-
-    Set the name of an instance to run.
-    You can also configure this value using the ``TT_INSTANCE_NAME`` environment variable.
-
-    See also: :ref:`Starting an instance using the tarantool command <configuration_run_instance_tarantool>`
-
-
-..  option:: -i
-
-    Enter an :ref:`interactive mode <interactive_console>`.
-
-    **Example**
-
-    ..  code-block:: console
-
-        $ tarantool -i
-
-
-..  option:: -e EXPR
-
-    Execute the 'EXPR' string. See also: `lua man page <https://www.lua.org/manual/5.3/lua.html>`_.
-
-    **Example**
-
-    ..  code-block:: console
-
-        $ tarantool -e 'print("Hello, world!")'
-        Hello, world!
-
-..  option:: -l NAME
-
-    Require the 'NAME' library. See also: `lua man page <https://www.lua.org/manual/5.3/lua.html>`_.
-
-    **Example**
-
-    ..  code-block:: console
-
-        $ tarantool -l luatest.coverage script.lua
-
-..  option:: -j cmd
-
-    Perform a LuaJIT control command. See also: `Command Line Options <https://luajit.org/running.html>`_.
-
-    **Example**
-
-    ..  code-block:: console
-
-        $ tarantool -j off app.lua
-
-..  option:: -b ...
-
-    Save or list bytecode. See also: `Command Line Options <https://luajit.org/running.html>`_.
-
-    **Example**
-
-    ..  code-block:: console
-
-        $ tarantool -b test.lua test.out
-
-..  option:: -d SCRIPT
-
-    Activate a debugging session for 'SCRIPT'. See also: `luadebug.lua <https://github.com/tarantool/tarantool/blob/master/third_party/lua/README-luadebug.md>`_.
-
-    **Example**
-
-    ..  code-block:: console
-
-        $ tarantool -d app.lua
-
-
-..  option:: --
-
-    Stop handling options. See also: `lua man page <https://www.lua.org/manual/5.3/lua.html>`_.
-
-
-..  option:: -
-
-    Stop handling options and execute the standard input as a file. See also: `lua man page <https://www.lua.org/manual/5.3/lua.html>`_.
