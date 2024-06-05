@@ -3,7 +3,7 @@
 Tarantool Cluster Manager releases
 ==================================
 
-..  include:: index.rst
+..  include:: ../index.rst
     :start-after: ee_note_tcm_start
     :end-before: ee_note_tcm_end
 
@@ -24,20 +24,14 @@ Supported versions
 
         *   -   Series
             -   First release date
-            -   End of life
-            -   End of support
             -   Versions
 
         *   -   :ref:`1.1 <tcm_releases_1_1>`
-            -   **May 16, 2024**
-            -   **April 16, 2026**
-            -   **Not planned yet**
+            -   May 16, 2024
             -   1.1.0
 
         *   -   :ref:`1.0 <tcm_releases_1_0>`
-            -   **December 23, 2023**
-            -   **April 16, 2026**
-            -   **Not planned yet**
+            -   December 23, 2023
             -   | 1.0.4
                 | 1.0.3
                 | 1.0.2

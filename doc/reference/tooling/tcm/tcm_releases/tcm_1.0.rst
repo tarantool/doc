@@ -21,13 +21,15 @@ Multiple connected clusters
 
 To connect a cluster to |tcm|, you need to provide the endpoint URLs and connection
 parameters of its centralized configuration storage (for example, etcd).
+To learn more, see :ref:`tcm_connect_clusters`.
 
 .. _tcm_releases_1_0_stateboard:
 
 Cluster stateboard
 ------------------
 
-The cluster stateboard visualizes the information about a connected cluster:
+The cluster *stateboard* is a main |tcm| page that visualizes the information about
+the selected cluster:
 
 -   Cluster topology visualized as a table or a graph
 -   Tarantool versions running on instances
@@ -49,7 +51,7 @@ configurations as a YAML file in the browser. Once you're done editing the confi
 you can send the changes to the configuration storage in one click or save them locally
 to continue editing them later.
 
-To learn more, see :ref:`tcm_cluster_config`.
+To learn more, see :ref:`tcm_configuring_clusters`.
 
 .. _tcm_releases_1_0_access:
 
@@ -57,22 +59,22 @@ Role-based access control
 -------------------------
 
 |tcm| features its own role-based access control system. It defines users that can
-log into |tcm| and actions that the can perform in its web interface.
+log into |tcm| and their permissions to perform various actions or access clusters
+in its web interface.
 
 You can use built-in roles or create new ones with permissions you need. Users'
 access can be limited to specific clusters and operations on them, for example,
-editing the configuration or viewing stored data.
+editing the configuration or calling stored functions.
+To learn more, see :ref:`tcm_access_control`.
 
 |tcm| also supports LDAP authentication.
-
-To learn more, see :ref:`tcm_access_control`.
 
 .. _tcm_releases_1_0_audit:
 
 Audit logging
 -------------
 
-|tcm| has a built-in audit logging mechanism. When enabled, it saves information
+|tcm| has a built-in audit logging mechanism. When enabled, it records information
 about events that occur in |tcm| and users' actions to dedicated audit log files.
 You can define events to write to the audit log and adjust logging parameters, such
 as filename, log rotation, or compression.

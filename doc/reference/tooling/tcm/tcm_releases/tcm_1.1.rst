@@ -7,39 +7,39 @@ Release date: May 16, 2024
 
 Releases in series: 1.1.0
 
-|tcm_full_name| 1.1.0 introduces a number of new features that extend and improve its
-functionality. Below is an overview of its key updates.
+|tcm_full_name| 1.1 introduces a number of new features that extend and improve its
+cluster management capabilities. Below is an overview of its key updates.
 
 .. _tcm_releases_1_1_data_access:
 
 Data access
 -----------
 
-An important update of |tcm| 1.1.0 is a set of features that enable access to data
-stored on your clusters.
+An important update of |tcm| 1.1.0 is a set of features that enable access to clusters'
+stored data.
 
 The instance *space explorer* shows all spaces that exist on an instance, including
 system spaces. On its pages, you can view and edit the stored data. To open the instance explorer,
 find the instance on the cluster stateboard and click its name to open its details page.
 Then click **Explorer** in the **Actions** menu in the top right corner.
 
-In the development mode, the instance explorer also includes the *schema editor**.
+In the development mode, the instance explorer also includes the *schema editor*.
 It allows you to add new and edit existing spaces.
 
-For clusters that use the crud module, there is also the *CRUD explorer* that
-enables access to data in user spaces across the entire cluster on one page.
-The CRUD explorer is located on the **Tuples** page.
+For clusters that use the `CRUD <https://github.com/tarantool/crud>`__ module,
+there is also the *CRUD explorer* that enables access to data in user spaces across
+the entire cluster on one page. The CRUD explorer is located on the **Tuples** page.
 
 .. _tcm_releases_1_1_acl:
 
 Access control list
 -------------------
 
-The *access control list* (*ACL*) enables control over users' access to particular spaces
-and stored functions through |tcm|.
+|tcm|'s *access control list* (*ACL*) enables control over user access to particular spaces
+and stored functions in the web interface.
 
 For each user that has access to a cluster, you can enable the use of ACL on this cluster.
-This restricts the user's access to the cluster's spaces and functions unless they
+This restricts this user's access to the cluster's spaces and functions unless they
 are explicitly specified in the ACL. The ACL must contain an entry for each such
 space and function.
 
@@ -76,7 +76,7 @@ Instance interaction
 
 The instance management dialog has been extended with new functions:
 
--   A new web terminal that uses the ``tt`` console instead of the Tarantool interactive
+-   A new terminal that uses the ``tt`` console instead of the Tarantool interactive
     console.
 -   SQL query execution terminal.
 -   Stored functions editor.
@@ -104,9 +104,9 @@ Previously, |tcm| was able to highlight the syntax errors in configurations, for
 incorrect spelling of option names or hierarchy. In |tcm| 1.1.0, the editor
 checks and highlights possible semantic issues, such as:
 
--   users without passwords
--   users with ``super`` role
--   the absence of leader instances in replicasets
+-   Users without passwords.
+-   Users with the ``super`` role.
+-   Absence of leader instances in replica sets.
 
 .. _tcm_releases_1_1_tutorial:
 
@@ -115,4 +115,3 @@ Onboarding tutorial
 
 |tcm| 1.1.0 includes an interactive tutorial that takes new users though its
 main features and pages. It opens automatically after the first start.
-
