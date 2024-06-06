@@ -184,7 +184,7 @@ Enabling and configuring roles
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 An application role is a Lua module that implements specific functions or logic.
-You can enable or turn off a specific role for certain instances in a configuration without restarting these instances.
+You can enable or turn off a particular role for certain instances in a configuration without restarting these instances.
 
 This section describes how to enable and configure roles.
 To learn how to develop custom roles, see :ref:`application_roles`.
@@ -240,9 +240,9 @@ Roles and configuration scopes
 ******************************
 
 As the most of configuration options, roles and their configurations can be defined at :ref:`different levels <configuration_scopes>`.
-Given that the ``roles`` option has the ``array`` type and ``roles_cfg`` has the ``map`` type, there are some specifics when applying the configuration:
+Given that the ``roles`` option has the ``array`` type and ``roles_cfg`` has the ``map`` type, there are some specifics of applying the configuration:
 
--   For ``roles``, an instance's role takes precedence over roles defined at another levels.
+-   For ``roles``, an instance's role takes precedence over roles defined at another level.
     In the example below, ``instance001`` has only ``role3``:
 
     ..  code-block:: yaml
@@ -258,7 +258,7 @@ Given that the ``roles`` option has the ``array`` type and ``roles_cfg`` has the
 
 -   For ``roles_cfg``, the following rules are applied:
 
-    -   If a configuration for the same role is provided at different levels, an instance configuration takes precedence over configuration defined at another levels.
+    -   If a configuration for the same role is provided at different levels, an instance configuration takes precedence over the configuration defined at another level.
         In the example below, ``role1.greeting`` is ``'Hi'``:
 
         ..  code-block:: yaml
@@ -275,7 +275,7 @@ Given that the ``roles`` option has the ``array`` type and ``roles_cfg`` has the
                     role1:
                       greeting: 'Hi'
 
-    -   If configurations for different roles are provided at different levels, both configurations are applied at the instance level.
+    -   If the configurations for different roles are provided at different levels, both configurations are applied at the instance level.
         In the example below, ``instance001`` has ``role1.greeting`` set to ``'Hi'`` and ``role2.farewell`` set to ``'Bye'``:
 
         ..  code-block:: yaml

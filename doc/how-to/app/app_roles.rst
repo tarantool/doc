@@ -4,7 +4,7 @@ Application roles
 =================
 
 An application role is a Lua module that implements specific functions or logic.
-You can enable or turn off a specific role for certain instances in a :ref:`configuration <configuration>` without restarting these instances.
+You can enable or turn off a particular role for certain instances in a :ref:`configuration <configuration>` without restarting these instances.
 A role is run when a configuration is loaded or reloaded.
 
 Roles can be divided into the following groups:
@@ -14,7 +14,7 @@ Roles can be divided into the following groups:
 -   Roles provided by third-party Lua modules.
     For example, the `CRUD <https://github.com/tarantool/crud>`__ module provides the ``roles.crud-storage`` and ``roles.crud-router`` roles that enable CRUD operations in a sharded cluster.
 -   Custom roles that are developed as a part of a cluster application.
-    For example, you create a custom role to define a stored procedure or implement a supplementary service, such as an email notifier or a replicator.
+    For example, you can create a custom role to define a stored procedure or implement a supplementary service, such as an email notifier or a replicator.
 
 This section describes how to develop custom roles.
 To learn how to enable and configure roles, see :ref:`configuration_application_roles`.
@@ -61,12 +61,12 @@ Creating a custom role
 Overview
 ~~~~~~~~
 
-The main steps of creating a custom role might include the following steps:
+Creating a custom role includes the following steps:
 
 1.  Define a function that validates a role's configuration.
 2.  Define a function that applies a validated configuration.
 3.  Define a function that stops a role.
-4.  (Optional) Define roles from which a custom role depends on.
+4.  (Optional) Define roles from which this custom role depends on.
 
 As a result, a role's module should return an object that has corresponding functions and fields specified:
 
@@ -104,7 +104,7 @@ In the example below, the ``validate()`` function is used to validate the ``gree
     :end-before: local function apply
     :dedent:
 
-If the configuration is not valid, ``validate`` reports an unrecoverable error by throwing an error object.
+If the configuration is not valid, ``validate()`` reports an unrecoverable error by throwing an error object.
 
 
 
@@ -114,8 +114,8 @@ If the configuration is not valid, ``validate`` reports an unrecoverable error b
 Applying a role configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To apply a validated configuration, define the :ref:`apply([cfg]) <roles_api_reference_apply>` function.
-As the ``validate()`` function, ``apply()`` also provides access to a role's configuration using the ``cfg`` argument.
+To apply the validated configuration, define the :ref:`apply([cfg]) <roles_api_reference_apply>` function.
+As the ``validate()`` function, ``apply()`` provides access to a role's configuration using the ``cfg`` argument.
 
 In the example below, the ``apply()`` function uses the :ref:`log <log-module>` module to write a role's configuration value to the log:
 
@@ -225,22 +225,22 @@ You can check an instance state by subscribing to the ``box.status`` event using
 Roles life cycle
 ----------------
 
-Roles' life cycle includes the stages described below.
+A role’s life cycle includes the stages described below.
 
 ..  _roles_life_cycle_loading_roles:
 
 1)  *Loading roles*
 
-    On each run, all roles are loaded in the order they are specified in a :ref:`configuration <roles_create_custom_role_config>`.
-    This stage is in effect when a role is enabled or an instance with this role is restarted.
+    On each run, all roles are loaded in the order they are specified in the :ref:`configuration <roles_create_custom_role_config>`.
+    This stage takes effect when a role is enabled or an instance with this role is restarted.
     At this stage, a role executes the :ref:`initialization code <roles_create_custom_role_init>`.
 
     A role cannot be started if it has :ref:`dependencies <roles_create_custom_role_dependencies>` that are not specified in a configuration.
 
     ..  NOTE::
 
-        Dependencies do not affect the order of how roles are loaded.
-        At the same time, the ``validate()``, ``apply()``, and ``stop()`` functions are executed taking into account the dependencies.
+        Dependencies do not affect the order in which roles are loaded.
+        However, the ``validate()``, ``apply()``, and ``stop()`` functions are executed taking dependencies into account.
         Learn more in :ref:`roles_life_cycle_dependencies_specifics`.
 
 
@@ -248,27 +248,27 @@ Roles' life cycle includes the stages described below.
 
 2)  *Stopping roles*
 
-    This stage is in effect on configuration reload when a role is removed from configuration for the given instance.
+    This stage takes effect during a configuration reload when a role is removed from the configuration for a given instance.
     Note that all ``stop()`` calls are performed before any ``validate()`` or ``apply()`` calls.
-    This means that old roles are stopped first and only then new roles are started.
+    This means that old roles are stopped first, and only then new roles are started.
 
 .. _roles_life_cycle_validating_role_config:
 
-3)  *Validating roles' configurations*
+3)  *Validating a role's configurations*
 
-    At this stage, a configuration for each role is validated using the corresponding :ref:`validate() <roles_api_reference_validate>` function in the same order as they specified in a configuration.
+    At this stage, a configuration for each role is validated using the corresponding :ref:`validate() <roles_api_reference_validate>` function in the same order in which they are specified in the configuration.
 
 .. _roles_life_cycle_applying_role_config:
 
-4)  *Applying roles' configurations*
+4)  *Applying a role's configurations*
 
-    At this stage, a configuration for each role is applied using the corresponding :ref:`apply() <roles_api_reference_apply>` function in the same order as they specified in a configuration.
+    At this stage, a configuration for each role is applied using the corresponding :ref:`apply() <roles_api_reference_apply>` function in the same order in which they are specified in the configuration.
 
 
 All role's functions report an unrecoverable error by throwing an error object.
 If an error is thrown in any phase, applying a configuration is stopped.
 If starting or stopping a role throws an error, no roles are stopped or started afterward.
-An error is catched and shown in :ref:`config:info() <config_api_reference_info>` in the ``alerts`` section.
+An error is caught and shown in :ref:`config:info() <config_api_reference_info>` in the ``alerts`` section.
 
 
 .. _roles_life_cycle_dependencies_specifics:
@@ -285,7 +285,7 @@ Suppose, there are two independent roles (``role1``, ``role2``) and three roles 
         └─── role4
                  └─── role5
 
-The roles are enable in a configuration as follows:
+The roles are enabled in a configuration as follows:
 
 ..  code-block:: yaml
 
@@ -298,13 +298,13 @@ In this case, ``validate()`` and ``apply()`` for these roles are executed in the
     role1 -> role2 -> role5 -> role4 -> role3
 
 Roles removed from a configuration are stopped in the order reversed to the order they are specified in a configuration, taking into account the dependencies.
-If all roles except ``role1`` are removed from the configuration above, ...
+Suppose, all roles except ``role1`` are removed from the configuration above:
 
 ..  code-block:: yaml
 
     roles: [ role1 ]
 
-... ``stop()`` functions for removed roles are executed in the following order:
+After reloading a configuration, ``stop()`` functions for the removed roles are executed in the following order:
 
 ..  code-block:: none
 
@@ -326,7 +326,7 @@ The example below shows how to enable the custom ``greeter`` role for ``instance
     :end-at: greeter
     :dedent:
 
-You can define the ``validate()``, ``apply()``, and ``stop()`` functions in the role's code as follows:
+The implementation of this role looks as follows:
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/application_role/greeter.lua
     :language: lua
@@ -349,7 +349,7 @@ The example below shows how to enable the custom ``greeter`` role for ``instance
     :end-at: greeting
     :dedent:
 
-You can define the ``validate()``, ``apply()``, and ``stop()`` functions in the role's code as follows:
+The implementation of this role looks as follows:
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/application_role_cfg/greeter.lua
     :language: lua
