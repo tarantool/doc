@@ -5,7 +5,7 @@ Tarantool Cluster Manager 1.1
 
 Release date: May 16, 2024
 
-Releases in series: 1.1.0
+Latest release in series: 1.1.0
 
 |tcm_full_name| 1.1 introduces a number of new features that extend and improve its
 cluster management capabilities. Below is an overview of its key updates.
@@ -28,7 +28,7 @@ It allows you to add new and edit existing spaces.
 
 For clusters that use the `CRUD <https://github.com/tarantool/crud>`__ module,
 there is also the *CRUD explorer* that enables access to data in user spaces across
-the entire cluster on one page. The CRUD explorer is located on the **Tuples** page.
+the entire cluster. The CRUD explorer is located on the **Tuples** page.
 
 .. _tcm_releases_1_1_acl:
 
@@ -53,7 +53,7 @@ The tools for managing ACL are located on the new **ACL** page.
 API tokens
 ----------
 
-|tcm| 1.1.0 supports token authentication of external requests. Users can generate
+|tcm| 1.1 supports token authentication of external requests. Users can generate
 API tokens in their user settings dialog. An API token has the same permissions
 as its creator.
 
@@ -62,7 +62,7 @@ as its creator.
 Stateboard improvements
 -----------------------
 
-|tcm| 1.1.0 extends the functionality of the cluster stateboard to improve the
+|tcm| 1.1 extends the functionality of the cluster stateboard to improve the
 cluster management experience. Here are the key updates of the stateboard:
 
 -   More flexible instance grouping.
@@ -76,8 +76,7 @@ Instance interaction
 
 The instance management dialog has been extended with new functions:
 
--   A new terminal that uses the ``tt`` console instead of the Tarantool interactive
-    console.
+-   A new terminal that uses the :ref:`tt interactive console <tt-interactive-console>`.
 -   SQL query execution terminal.
 -   Stored functions editor.
 -   Slab visualization.
@@ -113,5 +112,5 @@ checks and highlights possible semantic issues, such as:
 Onboarding tutorial
 -------------------
 
-|tcm| 1.1.0 includes an interactive tutorial that takes new users though its
+|tcm| 1.1.0 includes an interactive tutorial that takes new users through its
 main features and pages. It opens automatically after the first start.

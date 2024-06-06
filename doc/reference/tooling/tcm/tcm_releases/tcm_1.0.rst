@@ -5,7 +5,7 @@ Tarantool Cluster Manager 1.0
 
 Release date: December 26, 2023
 
-Releases in series: 1.0.4, 1.0.3, 1.0.2, 1.0.1, 1.0.0
+Latest release in series: 1.0.4
 
 1.0 is the first public release series of |tcm_full_name|. It was introduced as a
 part of the :ref:`Tarantool EE 3.0 release <3-0-tarantool_cluster_manager>`.
