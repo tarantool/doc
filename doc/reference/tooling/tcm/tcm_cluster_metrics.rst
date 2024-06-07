@@ -14,10 +14,10 @@ is provided in the :ref:`metrics-reference`.
 Metrics are displayed one by one. To view a metric, select it in the drop-down list
 at the top of the page. Then, choose a way to visualize it:
 
-- **Chart**: a time series chart with the metric values are displayed as lines.
+- **Chart**: a time series chart with the metric values displayed as lines.
 - **Table**: a table where the metric values are displayed as numbers in table cells.
 
-Once you select a metric, |tcm| starts visualizing its current values, updating it
+Once you select a metric, |tcm| starts visualizing its current values, updating them
 once per second. To pause the visualization, click the button on the left from
 the metrics selector. To stop the visualization, clear the metric selection.
 
@@ -28,7 +28,7 @@ Monitoring metrics with Prometheus
 ----------------------------------
 
 To allow collecting cluster metrics with external systems, such as Prometheus,
-|tcm| provides HTTP endpoints ``/api/metrics/<clusterId>``.
+|tcm| provides HTTP endpoints at ``/api/metrics/<clusterId>``.
 
 .. note::
 
@@ -38,7 +38,7 @@ To allow collecting cluster metrics with external systems, such as Prometheus,
 To access such an endpoint, a request must be authorized with an :ref:`API token <tcm_api_tokens>`
 that has a ``cluster.metrics`` permission on the target cluster.
 
-Below is an example of Prometheus scrape configuration that collects metrics of
+Below is an example of a Prometheus scrape configuration that collects metrics of
 a Tarantool cluster from |tcm|:
 
 .. code-block:: yaml
