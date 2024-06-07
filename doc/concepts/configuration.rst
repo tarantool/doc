@@ -258,7 +258,7 @@ Given that the ``roles`` option has the ``array`` type and ``roles_cfg`` has the
 
 -   For ``roles_cfg``, the following rules are applied:
 
-    -   If a configuration for the same role is provided at different levels, an instance configuration takes precedence over the configuration defined at another level.
+    -   If a configuration *for the same role* is provided at different levels, an instance configuration takes precedence over the configuration defined at another level.
         In the example below, ``role1.greeting`` is ``'Hi'``:
 
         ..  code-block:: yaml
@@ -275,7 +275,7 @@ Given that the ``roles`` option has the ``array`` type and ``roles_cfg`` has the
                     role1:
                       greeting: 'Hi'
 
-    -   If the configurations for different roles are provided at different levels, both configurations are applied at the instance level.
+    -   If the configurations *for different roles* are provided at different levels, both configurations are applied at the instance level.
         In the example below, ``instance001`` has ``role1.greeting`` set to ``'Hi'`` and ``role2.farewell`` set to ``'Bye'``:
 
         ..  code-block:: yaml
