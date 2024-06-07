@@ -17,12 +17,12 @@ and users (or user accounts). They work as follows:
 -   Roles are predefined sets of *administrative* permissions to
     assign to users.
 -   Users have roles that define their access rights to |tcm| functions and objects, and
-    *cluster* permissions that are assigned for each cluster separately.
+    *cluster* permissions that are assigned for each cluster individually.
 
 ..  note::
 
     |tcm| users, roles, and permissions are not to be confused with similar subjects
-    of the :ref:`Tarantool access control system <authentication>`. To access Tarantool
+    of the :ref:`Tarantool access control system <access_control>`. To access Tarantool
     instances directly, Tarantool users with corresponding roles are required.
 
 .. _tcm_access_control_permissions:
@@ -55,6 +55,9 @@ There are two types of permissions in |tcm|: *administrative* and *cluster* perm
     see the **Configuration** page when this cluster is selected.
 
     Cluster permissions are assigned to users individually when creating or editing them.
+
+    For a fine-grained control over user access to particular spaces and functions stored
+    in clusters, there is the :ref:`access control list <tcm_access_control_acl>`.
 
 Permissions are predefined in |tcm|, there is no way to change, add, or delete them.
 The complete lists of administrative and cluster permissions in |tcm| are provided
@@ -159,9 +162,9 @@ Passwords
 ---------
 
 |tcm| uses the general term *secret* for user authentication keys. A secret is any
-pair of a public and a private key that can be used for authentication. In |tcm| |tcm_version|,
-*password* is the only supported secret type. In this case, the public key is a username,
-and the private key is a password.
+pair of a public and a private key that can be used for authentication. A *password*
+combined with a *username* is a secret type used for |tcm| user authentication.
+In this case, the public key is a username, and the private key is a password.
 
 Users receive their first passwords during their :ref:`account creation <tcm_access_control_users_manage>`.
 
@@ -244,6 +247,80 @@ There are the following password policy settings:
     -   **Digits (0-9)**
     -   **Symbols (such as !@#$%^&\*()_+№"':,.;=][{}`?>/.)**
 
+.. _tcm_access_control_acl:
+
+Access control list
+-------------------
+
+|tcm|'s *access control list* (*ACL*) determines user access to particular data
+and functions stored in clusters. You can use it to allow or deny access to specific
+stored objects one by one.
+
+Each ACL entry specifies privileges that a |tcm| user has on a particular
+space or a function. There are three access privileges that can be granted in the ACL:
+read, write, and execute (for stored functions only). The privileges work as follows:
+
+-   Spaces:
+
+    - ``Read``: the user sees the space and its tuples on the **Tuples** and **Explorer** pages
+    - ``Write``: the user can add new and edit existing tuples of the space
+
+-   Functions:
+
+    - ``Read``: the user sees the function on the **Functions** tab of the instance details page.
+    - ``Write``: the user can edit or delete the function
+    - ``Execute``: the user can call the function
+
+.. important::
+
+    User access to space data and stored functions is primarily defined by the
+    :ref:`cluster permissions <tcm_access_control_permissions_cluster>` ``cluster.space.data.*`` and ``cluster.func.*``.
+    ACL only increases the access control granularity to particular objects.
+    Make sure that users have these permissions before enabling ACL for them.
+
+.. _tcm_access_control_acl_enable:
+
+Enabling ACL for a user
+~~~~~~~~~~~~~~~~~~~~~~~
+
+To granularly manage a user's access to particular objects in a cluster, enable
+the use of ACL in the user profile:
+
+#.  Go to **Users** and click **Edit** in the **Actions** menu of the corresponding table row.
+
+#.  In the user's **Clusters** list, add a cluster on which you want to use ACL
+    or click the pencil icon if the cluster is already on the list.
+
+#.  Select the **Use Access Control List (ACL)** checkbox and save changes.
+
+#.  Repeat two previous steps for each cluster on which you want to use ACL for this user.
+
+#.  Click **Update** to save the user account.
+
+If the user doesn't exist yet, you can do the same when creating it.
+
+.. important::
+
+    When ACL use is enabled for a user, this user loses access to all spaces and
+    functions of the selected cluster except the ones explicitly specified in the ACL.
+
+.. _tcm_access_control_acl_manage:
+
+Managing ACL
+~~~~~~~~~~~~
+
+The tools for managing ACL are located on the **ACL** page.
+
+To add an ACL entry:
+
+#.  Click **Add**.
+#.  Select a user to which you want to grant access.
+#.  Select a cluster that stores the target object: a space or a function.
+#.  Select the target object type and enter its name.
+#.  Select the privileges you want to grant.
+
+To delete an ACL entry, click **Delete** in the **Actions** menu of the corresponding table row.
+
 .. _tcm_access_control_sessions:
 
 Sessions
@@ -255,6 +332,52 @@ are listed on the **Sessions** page. To revoke a session, click **Revoke** in th
 
 To revoke all sessions of a user, go to **Users** and click **Revoke all sessions**
 in the **Actions** menu of the corresponding table row.
+
+.. _tcm_access_control_api_tokens:
+
+API tokens
+----------
+
+|tcm| uses the Bearer HTTP authentication scheme with *API tokens* to authenticate
+external applications' requests to |tcm|. For example, these can be Prometheus
+jobs that retrieve metrics of connected Tarantool clusters.
+
+Each |tcm| API token belongs to the user that created it and has the same :ref:`access permissions <tcm_access_control_permissions>`.
+Thus, if a user has a permission to view a cluster's metrics in |tcm|, this user's
+API tokens can be used to read this cluster's metrics with Prometheus.
+
+API tokens have expiration dates that are set during the token creation and cannot
+be changed.
+
+.. _tcm_access_control_api_tokens_manage:
+
+Managing API tokens
+~~~~~~~~~~~~~~~~~~~
+
+.. note::
+
+    Each user, including **Default Admin** and other administrators, can create only
+    their own tokens. There is no way to create a token for another user.
+
+To create a |tcm| API token:
+
+#. Open the user settings by clicking the user's name in the top-right corner.
+#. Go to the **API tokens** tab and click **Add**.
+#. Specify the token expiration date and an optional description and click **Add**.
+
+The created token is shown in a dialog.
+
+.. important::
+
+    An API token is shown only once after its creation. There is no way to view
+    it again after you close the dialog. Make sure to copy the token in a safe place.
+
+To delete an API token, click **Delete** in the actions menu of the corresponding
+**API tokens** table row.
+
+Administrators can also view information about users' API tokens and delete them
+on the **Secrets** page. To open a user's secrets, click **Secrets** in the **Actions**
+menu of the corresponding **Users** table row.
 
 .. _tcm_access_control_permissions_ref:
 
@@ -326,9 +449,6 @@ The following administrative permissions are available in |tcm|:
     *   -   ``admin.passwordpolicy.write``
         -   Manage password policy
 
-    *   -   ``admin.devmode.toggle``
-        -   Toggle development mode
-
     *   -   ``admin.secrets.read``
         -   View information about users' secrets
 
@@ -338,11 +458,20 @@ The following administrative permissions are available in |tcm|:
     *   -   ``user.password.change``
         -   User's permission to change their own password
 
-    *   -   ``admin.lowlevel.state.read``
-        -   Read low-level information from |tcm| storage (for debug purposes)
+    *   -   ``user.api-token.read``
+        -   User's permission to read their own API tokens information
 
-    *   -   ``admin.lowlevel.state.write``
-        -   Write low-level information to |tcm| storage (for debug purposes)
+    *   -   ``user.api-token.write``
+        -   User's permission to modify their own API tokens
+
+    *   -   ``admin.metrics``
+        -   Read |tcm| metrics
+
+    *   -   ``admin.acl.read``
+        -   View the access control list (ACL)
+
+    *   -   ``admin.acl.write``
+        -   Add and delete ACL entries
 
 .. _tcm_access_control_permissions_cluster:
 
@@ -367,17 +496,14 @@ The following cluster permissions are available in |tcm|:
     *   -   ``cluster.stateboard.read``
         -   View cluster stateboard
 
-    *   -   ``cluster.explorer.read``
-        -   Read data from cluster instances
+    *   -   ``cluster.func.read``
+        -   View cluster's stored functions
 
-    *   -   ``cluster.explorer.write``
-        -   Write data to cluster instances
+    *   -   ``cluster.func.write``
+        -   Edit cluster's stored functions
 
-    *   -   ``cluster.explorer.call``
+    *   -   ``cluster.func.call``
         -   Execute stored functions on cluster instances
-
-    *   -   ``cluster.explorer.eval``
-        -   Execute code on cluster instances
 
     *   -   ``cluster.space.read``
         -   Read cluster data schema
@@ -385,8 +511,23 @@ The following cluster permissions are available in |tcm|:
     *   -   ``cluster.space.write``
         -   Modify cluster data schema
 
-    *   -   ``cluster.lowlevel.state.read``
-        -   Read low-level information about cluster configuration (for debug purposes)
+    *   -   ``cluster.space.data.read``
+        -   Read stored data from cluster
 
-    *   -   ``cluster.lowlevel.state.write``
-        -   Write low-level information about cluster configuration (for debug purposes)
+    *   -   ``cluster.space.data.write``
+        -   Edit stored data on cluster
+
+    *   -   ``cluster.failover.read``
+        -   Read cluster failover information
+
+    *   -   ``cluster.failover.write``
+        -   Write cluster failover commands
+
+    *   -   ``cluster.terminal``
+        -   Connect to cluster instances with ``tt`` terminal from |TCM|
+
+    *   -   ``cluster.sql``
+        -   Execute SQL queries
+
+    *   -   ``cluster.metrics``
+        -   View cluster metrics
