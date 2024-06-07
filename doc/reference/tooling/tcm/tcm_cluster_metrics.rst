@@ -27,6 +27,24 @@ the metrics selector. To stop the visualization, clear the metric selection.
 Monitoring metrics with Prometheus
 ----------------------------------
 
-- Prometherus?
-- Generate API token
-- Configure prometheus job
+To allow collecting cluster metrics with external systems, such as Prometheus,
+|tcm| provides HTTP endpoints ``/api/metrics/<clusterId>``.
+
+.. note::
+
+    Cluster IDs are shown in the cluster selection dialog that opens when you click
+    **Cluster** at the top of the left navigation pane.
+
+To access such an endpoint, a request must be authorized with an :ref:`API token <tcm_api_tokens>`
+that has a ``cluster.metrics`` permission on the target cluster.
+
+Below is an example of Prometheus scrape configuration that collects metrics of
+a Tarantool cluster from |tcm|:
+
+.. code-block:: yaml
+
+    - job_name: "tarantool"
+      static_configs:
+        - targets: ["127.0.0.1:8080"]
+      metrics_path: "/api/metrics/00000000-0000-0000-0000-000000000000"
+      bearer_token: QgMPZ22JZ3uw7n0QTbqYGAQDmNDs1JnTkhaC1OlQzWM3utmpV78b23GG97zp8YE3
