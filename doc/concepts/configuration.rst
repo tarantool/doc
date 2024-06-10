@@ -184,17 +184,20 @@ Enabling and configuring roles
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 An application role is a Lua module that implements specific functions or logic.
-You can enable or turn off a particular role for certain instances in a configuration without restarting these instances.
+You can turn on or off a particular role for certain instances in a configuration without restarting these instances.
 
+There can be built-in Tarantool roles, roles provided by third-party Lua modules, or custom roles that are developed as a part of a cluster application.
 This section describes how to enable and configure roles.
 To learn how to develop custom roles, see :ref:`application_roles`.
+
+
 
 .. _configuration_application_roles_enable:
 
 Enabling a role
 ***************
 
-To enable or turn off a role for a specific instance or a set of instances, use the :ref:`roles <configuration_reference_roles>` configuration option.
+To turn on or off a role for a specific instance or a set of instances, use the :ref:`roles <configuration_reference_roles>` configuration option.
 The example below shows how to enable the ``roles.crud-router`` role provided by the `CRUD <https://github.com/tarantool/crud>`__ module using the :ref:`roles <configuration_reference_roles>` option:
 
 ..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster_crud/config.yaml

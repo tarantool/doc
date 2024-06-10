@@ -4,12 +4,12 @@ Application roles
 =================
 
 An application role is a Lua module that implements specific functions or logic.
-You can enable or turn off a particular role for certain instances in a :ref:`configuration <configuration>` without restarting these instances.
+You can turn on or off a particular role for certain instances in a :ref:`configuration <configuration>` without restarting these instances.
 A role is run when a configuration is loaded or reloaded.
 
 Roles can be divided into the following groups:
 
--   Roles provided by Tarantool.
+-   Tarantool's built-in roles.
     For example, the ``config.storage`` role can be used to make a Tarantool replica set act as a :ref:`configuration storage <centralized_configuration_storage_set_up_tarantool>`.
 -   Roles provided by third-party Lua modules.
     For example, the `CRUD <https://github.com/tarantool/crud>`__ module provides the ``roles.crud-storage`` and ``roles.crud-router`` roles that enable CRUD operations in a sharded cluster.
@@ -94,7 +94,7 @@ Validating a role configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To validate a role's configuration, you need to define the :ref:`validate([cfg]) <roles_api_reference_validate>` function.
-The ``cfg`` argument allows you to get access to the provided :ref:`role's configuration <roles_create_custom_role_config>` and check its validity.
+The ``cfg`` argument provides access to the :ref:`role's configuration <roles_create_custom_role_config>` and check its validity.
 
 In the example below, the ``validate()`` function is used to validate the ``greeting`` configuration value:
 
@@ -277,13 +277,18 @@ Executing functions for dependent roles
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 For roles that :ref:`depend <roles_create_custom_role_dependencies>` on each other, their ``validate()``,  ``apply()``, and ``stop()`` functions are executed taking into account the dependencies.
-Suppose, there are two independent roles (``role1``, ``role2``) and three roles that depend on each other as follows:
+Suppose, there are three independent and two dependent roles:
 
 ..  code-block:: none
 
+    role1
+    role2
     role3
         └─── role4
                  └─── role5
+
+-   ``role1``, ``role2``, and ``role5`` are independent roles.
+-   ``role3`` depends on ``role4``, ``role4`` depends on ``role5``.
 
 The roles are enabled in a configuration as follows:
 
