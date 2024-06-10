@@ -58,18 +58,22 @@ A cluster's topology includes the following elements, starting from the lower le
 
 You can flexibly configure a cluster's settings on different levels: from global settings applied to all groups to parameters specific for concrete instances.
 
+..  NOTE::
+
+    All the available options are documented in the :ref:`Configuration reference <configuration_reference>`.
+
 
 ..  _configuration_file:
 
 Configuration in a file
-~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------
 
 This section provides an overview on how to configure Tarantool in a YAML file.
 
 .. _configuration_instance_basic:
 
 Basic instance configuration
-****************************
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The example below shows a sample configuration of a single Tarantool instance:
 
@@ -86,7 +90,7 @@ The example below shows a sample configuration of a single Tarantool instance:
 .. _configuration_scopes:
 
 Configuration scopes
-********************
+~~~~~~~~~~~~~~~~~~~~
 
 This section shows how to control a scope the specified configuration option is applied to.
 Most of the configuration options can be applied to a specific instance, replica set, group, or to all instances globally.
@@ -129,6 +133,9 @@ Most of the configuration options can be applied to a specific instance, replica
         :emphasize-lines: 1-3
         :dedent:
 
+Configuration scopes above are listed in the order of their precedence -- from highest to lowest.
+For example, if the same option is defined at the instance and global level, the instance's value takes precedence over the global one.
+
 
 .. NOTE::
 
@@ -138,7 +145,7 @@ Most of the configuration options can be applied to a specific instance, replica
 .. _configuration_replica_set_scopes:
 
 Configuration scopes: Replica set example
-*****************************************
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The example below shows how specific configuration options work in different configuration scopes for a replica set with a manual failover.
 You can learn more about configuring replication from :ref:`Replication tutorials <how-to-replication>`.
@@ -171,55 +178,131 @@ You can learn more about configuring replication from :ref:`Replication tutorial
 
 
 .. _configuration_application:
+.. _configuration_application_roles:
 
-Loading an application
-**********************
+Enabling and configuring roles
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Using Tarantool as an application server, you can run your own Lua applications.
-In the ``app`` section, you can load the application and provide a custom application configuration in the ``cfg`` section.
+An application role is a Lua module that implements specific functions or logic.
+You can turn on or off a particular role for certain instances in a configuration without restarting these instances.
 
-In the example below, the application is loaded from the ``myapp.lua`` file placed next to the YAML configuration file:
+There can be built-in Tarantool roles, roles provided by third-party Lua modules, or custom roles that are developed as a part of a cluster application.
+This section describes how to enable and configure roles.
+To learn how to develop custom roles, see :ref:`application_roles`.
 
-..  literalinclude:: /code_snippets/snippets/config/instances.enabled/application/config.yaml
+
+
+.. _configuration_application_roles_enable:
+
+Enabling a role
+***************
+
+To turn on or off a role for a specific instance or a set of instances, use the :ref:`roles <configuration_reference_roles>` configuration option.
+The example below shows how to enable the ``roles.crud-router`` role provided by the `CRUD <https://github.com/tarantool/crud>`__ module using the :ref:`roles <configuration_reference_roles>` option:
+
+..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster_crud/config.yaml
     :language: yaml
+    :start-at: roles.crud-router
+    :end-at: roles.crud-router
     :dedent:
 
-To get a value of the custom ``greeting`` property in the application code,
-use the ``config:get()`` function provided by the :ref:`config <config-module>` module.
+Similarly, you can enable the ``roles.crud-storage`` role to make instances act as CRUD storages:
 
-..  literalinclude:: /code_snippets/snippets/config/instances.enabled/application/myapp.lua
-    :language: lua
+..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster_crud/config.yaml
+    :language: yaml
+    :start-at: roles.crud-storage
+    :end-at: roles.crud-storage
     :dedent:
 
-As a result of :ref:`starting <configuration_run_instance>` the *instance001*, a log should contain the following line:
+Example on GitHub: `sharded_cluster_crud <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster_crud>`_
 
-.. code-block:: console
 
-    main/103/interactive/myapp I> Hello from app, instance001!
+.. _configuration_application_roles_configure:
 
-The ``app`` section can be placed in any :ref:`configuration scope <configuration_scopes>`.
-As an example use case, you can provide different applications for storages and routers in a sharded cluster:
+Configuring a role
+******************
 
-.. code-block:: yaml
+The :ref:`roles_cfg <configuration_reference_roles_cfg>` option allows you to specify the configuration for each role.
+In this option, the role name is the key and the role configuration is the value.
 
-    groups:
-      storages:
-        app:
-          module: storage
-          # ...
-      routers:
-        app:
-          module: router
-          # ...
+The example below shows how to enable statistics on called operations by providing the ``roles.crud-router`` role's configuration:
 
-Learn more about using Tarantool as the application server from :ref:`Developing applications with Tarantool <how-to-app-server>`.
+..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster_crud/config.yaml
+    :language: yaml
+    :start-at: roles.crud-router
+    :end-at: stats_quantile_max_age_time
+    :dedent:
+
+Example on GitHub: `sharded_cluster_crud <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster_crud>`_
+
+
+
+.. _configuration_application_roles_scopes:
+
+Roles and configuration scopes
+******************************
+
+As the most of configuration options, roles and their configurations can be defined at :ref:`different levels <configuration_scopes>`.
+Given that the ``roles`` option has the ``array`` type and ``roles_cfg`` has the ``map`` type, there are some specifics of applying the configuration:
+
+-   For ``roles``, an instance's role takes precedence over roles defined at another level.
+    In the example below, ``instance001`` has only ``role3``:
+
+    ..  code-block:: yaml
+
+        # ...
+        replicaset001:
+          roles: [ role1, role2 ]
+          instances:
+            instance001:
+              roles: [ role3 ]
+
+    Learn more about the order of precedence for different configuration scopes in :ref:`configuration_scopes`.
+
+-   For ``roles_cfg``, the following rules are applied:
+
+    -   If a configuration *for the same role* is provided at different levels, an instance configuration takes precedence over the configuration defined at another level.
+        In the example below, ``role1.greeting`` is ``'Hi'``:
+
+        ..  code-block:: yaml
+
+            # ...
+            replicaset001:
+              roles_cfg:
+                role1:
+                  greeting: 'Hello'
+              instances:
+                instance001:
+                  roles: [ role1 ]
+                  roles_cfg:
+                    role1:
+                      greeting: 'Hi'
+
+    -   If the configurations *for different roles* are provided at different levels, both configurations are applied at the instance level.
+        In the example below, ``instance001`` has ``role1.greeting`` set to ``'Hi'`` and ``role2.farewell`` set to ``'Bye'``:
+
+        ..  code-block:: yaml
+
+            # ...
+            replicaset001:
+              roles_cfg:
+                role1:
+                  greeting: 'Hi'
+              instances:
+                instance001:
+                  roles: [ role1, role2 ]
+                  roles_cfg:
+                    role2:
+                      farewell: 'Bye'
+
+
 
 
 
 .. _configuration_predefined_variables:
 
 Predefined variables
-********************
+~~~~~~~~~~~~~~~~~~~~
 
 In a configuration file, you can use the following predefined variables that are replaced with actual values at runtime:
 
@@ -234,14 +317,14 @@ In the example below, ``{{ instance_name }}`` is replaced with *instance001*.
     :language: yaml
     :dedent:
 
-As a result, the :ref:`paths to snapshots and write-ahead logs <configuration_options_directories>` differ for different instances.
+As a result, the paths to :ref:`snapshots and write-ahead logs <configuration_persistence>` differ for different instances.
 
 
 
 ..  _configuration_environment_variable:
 
 Environment variables
-~~~~~~~~~~~~~~~~~~~~~
+---------------------
 
 For each configuration parameter, Tarantool provides two sets of predefined environment variables:
 
@@ -259,66 +342,93 @@ To see all the supported environment variables, execute the ``tarantool`` comman
 
     $ tarantool --help-env-list
 
-Below are a few examples that show how to set environment variables of different types, like *string*, *number*, *array*, or *map*:
-
-*   String. In this example, ``TT_LOG_LEVEL`` is used to set a logging level to ``CRITICAL``:
-
-    ..  code-block:: console
-
-        $ export TT_LOG_LEVEL='crit'
-
-*   Number. In this example, a logging level is set to ``CRITICAL`` using a corresponding numeric value:
-
-    ..  code-block:: console
-
-        $ export TT_LOG_LEVEL=3
-
-*   Array. The examples below show how to set the ``TT_SHARDING_ROLES`` variable that accepts an array value.
-    Arrays can be passed in two ways: using a *simple* ...
-
-    ..  code-block:: console
-
-        $ export TT_SHARDING_ROLES=router,storage
-
-    ... or *JSON* format:
-
-    ..  code-block:: console
-
-        $ export TT_SHARDING_ROLES='["router", "storage"]'
-
-    The *simple* format is applicable only to arrays containing scalar values.
-
-*   Map. To assign map values to environment variables, you can also use *simple* or *JSON* formats.
-    In the example below, ``TT_LOG_MODULES`` sets different logging levels for different modules using a *simple* format:
-
-    ..  code-block:: console
-
-        $ export TT_LOG_MODULES=module1=info,module2=error
-
-    In the next example, ``TT_APP_CFG`` is used to specify the value of a custom configuration property for a :ref:`loaded application <configuration_application>` using a *JSON* format:
-
-    .. code-block:: console
-
-        $ export TT_APP_CFG='{"greeting":"Hi"}'
-
-    The *simple* format is applicable only to maps containing scalar values.
-
-*   Array of maps. In the example below, ``TT_IPROTO_LISTEN`` is used to specify a :ref:`listening host and port <configuration_connections_listen_uri>` values:
-
-    ..  code-block:: console
-
-        $ export TT_IPROTO_LISTEN=['{"uri":"127.0.0.1:3311"}']
-
-    You can also pass several listening addresses:
-
-    ..  code-block:: console
-
-        $ export TT_IPROTO_LISTEN=['{"uri":"127.0.0.1:3311"}','{"uri":"127.0.0.1:3312"}']
-
-
-.. NOTE::
+..  NOTE::
 
     There are also special ``TT_INSTANCE_NAME`` and ``TT_CONFIG`` environment variables that can be used to :ref:`start <configuration_run_instance_tarantool>` the specified Tarantool instance with configuration from the given file.
+
+Below are a few examples that show how to set environment variables of different types, like *string*, *number*, *array*, or *map*.
+
+..  _configuration_environment_variable_string:
+
+String
+~~~~~~
+
+In this example, ``TT_LOG_LEVEL`` is used to set a logging level to ``CRITICAL``:
+
+..  code-block:: console
+
+    $ export TT_LOG_LEVEL='crit'
+
+
+..  _configuration_environment_variable_number:
+
+Number
+~~~~~~
+
+In this example, a logging level is set to ``CRITICAL`` using a corresponding numeric value:
+
+..  code-block:: console
+
+    $ export TT_LOG_LEVEL=3
+
+..  _configuration_environment_variable_array:
+
+Array
+~~~~~
+
+The examples below show how to set the ``TT_SHARDING_ROLES`` variable that accepts an array value.
+Arrays can be passed in two ways: using a *simple* ...
+
+..  code-block:: console
+
+    $ export TT_SHARDING_ROLES=router,storage
+
+... or *JSON* format:
+
+..  code-block:: console
+
+    $ export TT_SHARDING_ROLES='["router", "storage"]'
+
+The *simple* format is applicable only to arrays containing scalar values.
+
+
+..  _configuration_environment_variable_map:
+
+Map
+~~~
+
+To assign map values to environment variables, you can also use *simple* or *JSON* formats.
+In the example below, ``TT_LOG_MODULES`` sets different logging levels for different modules using a *simple* format:
+
+..  code-block:: console
+
+    $ export TT_LOG_MODULES=module1=info,module2=error
+
+In the next example, ``TT_ROLES_CFG`` is used to specify the value of a custom configuration for a :ref:`role <configuration_application>` using a *JSON* format:
+
+.. code-block:: console
+
+    $ export TT_ROLES_CFG='{"greeter":{"greeting":"Hello"}}'
+
+The *simple* format is applicable only to maps containing scalar values.
+
+
+..  _configuration_environment_variable_array_of_maps:
+
+Array of maps
+~~~~~~~~~~~~~
+
+In the example below, ``TT_IPROTO_LISTEN`` is used to specify a :ref:`listening host and port <configuration_connections_listen_uri>` values:
+
+..  code-block:: console
+
+    $ export TT_IPROTO_LISTEN=['{"uri":"127.0.0.1:3311"}']
+
+You can also pass several listening addresses:
+
+..  code-block:: console
+
+    $ export TT_IPROTO_LISTEN=['{"uri":"127.0.0.1:3311"}','{"uri":"127.0.0.1:3312"}']
 
 
 
@@ -328,7 +438,7 @@ Below are a few examples that show how to set environment variables of different
 .. _configuration_etcd_overview:
 
 Centralized configuration
-~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------
 
 ..  include:: /concepts/configuration/configuration_etcd.rst
     :start-after: ee_note_centralized_config_start
@@ -355,7 +465,7 @@ Learn more from the following guide: :ref:`configuration_etcd`.
 ..  _configuration_precedence:
 
 Configuration precedence
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 Tarantool configuration options are applied from multiple sources with the following precedence, from highest to lowest:
 
@@ -368,85 +478,6 @@ If the same option is defined in two or more locations, the option with the high
 
 
 
-..  _configuration_options_overview:
-
-Configuration options overview
-------------------------------
-
-This section gives an overview of some useful configuration options.
-All the available options are documented in the :ref:`Configuration reference <configuration_reference>`.
-
-.. _configuration_options_connection:
-
-Connection settings
-~~~~~~~~~~~~~~~~~~~
-
-To configure an address used to listen for incoming requests, use the ``iproto.listen`` option.
-The example below shows how to set a listening IP address for ``instance001`` to ``127.0.0.1:3301``:
-
-..  literalinclude:: /code_snippets/snippets/config/instances.enabled/iproto_listen_address/config.yaml
-    :start-at: instance001
-    :end-at: '127.0.0.1:3301'
-    :language: yaml
-    :dedent:
-
-You can learn more from the :ref:`configuration_connections` topic.
-
-
-..  _configuration_options_access_control:
-
-Access control
-~~~~~~~~~~~~~~
-
-The ``credentials`` section allows you to create users and grant them the specified privileges.
-In the example below, a ``dbadmin`` user with the specified password is created:
-
-..  literalinclude:: /code_snippets/snippets/config/instances.enabled/credentials/config.yaml
-    :language: yaml
-    :start-at: credentials:
-    :end-at: T0p_Secret
-    :dedent:
-
-To learn more, see the :ref:`configuration_credentials` section.
-
-
-..  _configuration_options_memory:
-
-Memory
-~~~~~~
-
-The :ref:`memtx.memory <configuration_reference_memtx_memory>` option specifies how much :ref:`memory <engines-memtx>`
-Tarantool allocates to actually store data.
-
-..  literalinclude:: /code_snippets/snippets/config/instances.enabled/memtx/config.yaml
-    :language: yaml
-    :start-at: memtx:
-    :end-at: 1073741824
-    :dedent:
-
-When the limit is reached, ``INSERT`` or ``UPDATE`` requests fail with :ref:`ER_MEMORY_ISSUE <admin-troubleshoot-memory-issues>`.
-
-Learn more: :ref:`In-memory storage configuration <configuration_memtx>`.
-
-..  _configuration_options_directories:
-
-Snapshots and write-ahead logs
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The :ref:`snapshot.dir <configuration_reference_snapshot_dir>` and :ref:`wal.dir <configuration_reference_wal_dir>`
-options can be used to configure directories for storing snapshots and write-ahead logs.
-For example, you can place snapshots and write-ahead logs on different hard drives for better reliability.
-
-.. code-block:: yaml
-
-    instance001:
-      snapshot:
-        dir: '/media/drive1/snapshots'
-      wal:
-        dir: '/media/drive2/wals'
-
-To learn more about the persistence mechanism in Tarantool, see the :ref:`Persistence <concepts-data_model-persistence>` section.
-Read more about snapshot and WAL configuration: :ref:`Persistence <configuration_persistence>`.
 
 
 ..  toctree::

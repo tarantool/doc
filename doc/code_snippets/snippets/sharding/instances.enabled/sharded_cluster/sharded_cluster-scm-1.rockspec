@@ -5,7 +5,7 @@ source  = {
 }
 
 dependencies = {
-    'vshard == 0.1.26'
+    'vshard == 0.1.27'
 }
 build = {
     type = 'none';

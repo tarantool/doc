@@ -1,0 +1,10 @@
+groups:
+  group001:
+    replicasets:
+      replicaset001:
+        instances:
+          instance001:
+            roles: [ greeter ]
+            roles_cfg:
+              greeter:
+                greeting: 'Hi'

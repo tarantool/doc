@@ -17,6 +17,7 @@ User's Guide
     box/index
     admin/index
     monitoring/index
+    cluster_app
     connectors
     ../reference/reference_sql/index
     faq

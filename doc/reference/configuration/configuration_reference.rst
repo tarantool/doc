@@ -11,6 +11,100 @@ This topic describes all :ref:`configuration parameters <configuration>` provide
 Most of the configuration options described in this reference can be applied to a specific instance, replica set, group, or to all instances globally.
 To do so, you need to define the required option at the :ref:`specified level <configuration_scopes>`.
 
+
+
+..  _configuration_reference_app:
+
+app
+---
+
+Using Tarantool as an application server, you can run your own Lua applications.
+In the ``app`` section, you can load the application and provide an application configuration in the ``app.cfg`` section.
+
+.. NOTE::
+
+    ``app`` can be defined in any :ref:`scope <configuration_scopes>`.
+
+-   :ref:`app.cfg <configuration_reference_app_cfg>`
+-   :ref:`app.file <configuration_reference_app_file>`
+-   :ref:`app.module <configuration_reference_app_module>`
+
+
+.. _configuration_reference_app_cfg:
+
+.. confval:: app.cfg
+
+    **Since:** :doc:`3.0.0 </release/3.0.0>`.
+
+    A configuration of the application loaded using ``app.file`` or ``app.module``.
+
+    **Example**
+
+    In the example below, the application is loaded from the ``myapp.lua`` file placed next to the YAML configuration file:
+
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/application/config.yaml
+        :language: yaml
+        :end-at: greeting
+        :dedent:
+
+    Example on GitHub: `application <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/application>`_
+
+    |
+    | Type: map
+    | Default: nil
+    | Environment variable: TT_APP_CFG
+
+
+.. _configuration_reference_app_file:
+
+.. confval:: app.file
+
+    **Since:** :doc:`3.0.0 </release/3.0.0>`.
+
+    A path to a Lua file to load an application from.
+
+    |
+    | Type: string
+    | Default: nil
+    | Environment variable: TT_APP_FILE
+
+
+.. _configuration_reference_app_module:
+
+.. confval:: app.module
+
+    **Since:** :doc:`3.0.0 </release/3.0.0>`.
+
+    A Lua module to load an application from.
+
+    **Example**
+
+    The ``app`` section can be placed in any :ref:`configuration scope <configuration_scopes>`.
+    As an example use case, you can provide different applications for storages and routers in a sharded cluster:
+
+    ..  code-block:: yaml
+
+        groups:
+          storages:
+            app:
+              module: storage
+              # ...
+          routers:
+            app:
+              module: router
+              # ...
+
+    |
+    | Type: string
+    | Default: nil
+    | Environment variable: TT_APP_MODULE
+
+
+
+
+
+
+
 ..  _configuration_reference_audit:
 
 audit_log
@@ -2586,8 +2680,8 @@ The ``process`` section defines configuration parameters of the Tarantool proces
     If not specified, defaults to the current working directory.
 
     Other directory and file parameters, if set as relative paths,
-    are interpreted as relative to ``process.work_dir``. For example,
-    :ref:`directories for storing snapshots and write-ahead logs <configuration_options_directories>`
+    are interpreted as relative to ``process.work_dir``, for example, directories for storing
+    :ref:`snapshots and write-ahead logs <configuration_persistence>`.
 
     |
     | Type: string
@@ -2974,7 +3068,7 @@ The ``replication`` section defines configuration parameters related to :ref:`re
 roles
 -----
 
-This section describes configuration parameters related to roles.
+This section describes configuration parameters related to :ref:`application roles <application_roles>`.
 
 .. NOTE::
 
@@ -2990,6 +3084,11 @@ This section describes configuration parameters related to roles.
 
     **Since:** :doc:`3.0.0 </release/3.0.0>`.
 
+    Specify the roles of an instance.
+    To specify a role's configuration, use the :ref:`roles_cfg <configuration_reference_roles_cfg>` option.
+
+    See also: :ref:`configuration_application_roles`
+
     |
     | Type: array
     | Default: nil
@@ -3001,6 +3100,12 @@ This section describes configuration parameters related to roles.
 .. confval:: roles_cfg
 
     **Since:** :doc:`3.0.0 </release/3.0.0>`.
+
+    Specify a role's configuration.
+    This option accepts a role name as the key and a role's configuration as the value.
+    To specify the roles of an instance, use the :ref:`roles <configuration_reference_roles>` option.
+
+    See also: :ref:`configuration_application_roles`
 
     |
     | Type: map
