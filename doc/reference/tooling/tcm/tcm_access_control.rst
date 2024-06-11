@@ -79,6 +79,8 @@ on these pages.
     Roles don't include cluster permissions. Access to connected clusters
     is configured for each user individually.
 
+.. _tcm_access_control_roles_default:
+
 Default roles
 ~~~~~~~~~~~~~
 
@@ -94,6 +96,8 @@ Default roles
 -   **Default User Role** is a default role for working with clusters. It includes
     basic administrative *read* permissions that are required to log in to |tcm|
     and navigate to a cluster.
+
+.. _tcm_access_control_roles_manage:
 
 Managing roles
 ~~~~~~~~~~~~~~
@@ -114,6 +118,8 @@ table row.
 ..  note::
 
     You can delete a role only if there are no users with this role.
+
+.. _tcm_access_control_users:
 
 Users
 -----
