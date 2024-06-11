@@ -10,12 +10,8 @@ Web interface overview
 
 The |tcm_full_name| web interface is available on the hostname and port defined by the
 ``http.host`` and ``http.port`` :ref:`configuration options <tcm_configuration>`.
-If TLS is enabled, it user the ``https`` protocol, otherwise the protocol is ``http``.
+If TLS is enabled, it uses the ``https`` protocol, otherwise the protocol is ``http``.
 When started locally with default configuration, |tcm| is available at ``http://127.0.0.1:8080``.
-
-The exact set of |tcm| pages that a particular user sees and controls available
-on these pages are defined by the user's :ref:`permissions <tcm_access_control_permissions>`.
-
 
 ..  _tcm_ui_login:
 
@@ -62,6 +58,26 @@ The |tcm| web interface consists of three parts:
     :width: 700
     :alt: TCM UI parts: navigation pane, header, working area
 
+..  _tcm_ui_onboarding:
+
+Onboarding
+----------
+
+The **Onboarding** item of the navigation pane starts the interactive onboarding
+tutorial. Use it to get familiar with main |tcm| features directly in the web interface.
+
+..  _tcm_ui_visibility:
+
+Page visibility
+---------------
+
+This page describes all |tcm| pages. The exact set of |tcm| pages that a particular
+user sees and controls available on these pages are defined by the user's
+:ref:`permissions <tcm_access_control_permissions>`.
+
+Some features, such as write access to stored data, are available only in the
+**development** mode. You can switch |tcm| to it in the :ref:`user settings <tcm_ui_user_settings>`
+of the **Default Admin** user.
 
 ..  _tcm_ui_groups:
 
@@ -76,14 +92,6 @@ There are the following page groups:
 -   **Users**: access management.
 -   **Tools**: |tcm| administration.
 -   **Settings**: runtime management of |tcm| settings.
-
-..  _tcm_ui_onboarding:
-
-Onboarding
-----------
-
-The **Onboarding** item of the navigation pane starts the interactive onboarding
-tutorial. It takes the user through main |tcm| features in the web interface.
 
 ..  _tcm_ui_cluster:
 
@@ -134,12 +142,12 @@ It provides a set of tabs for performing actions on the selected Tarantool insta
 On these tabs, you can:
 
 -   **Details** and **State** tabs: view instance details as a human-readable table
-    or as a console output of ``box.cfg``, ``box.info``, and other built-in functions).
+    or as a console output of ``box.cfg``, ``box.info``, and other built-in functions.
 -   **SQL** and **Terminal** tabs: run SQL and Lua commands on the instance.
 -   **Logs** tab: view instance logs.
 -   **Slab stats** tab: view :ref:`slab allocator <memtx-memory>` statistics.
 -   **Funcs**: manage and call stored functions.
--   **Metrics**: view instance metrics
+-   **Metrics**: view instance metrics.
 
 The instance page has an **Actions** menu at the top that allows you to:
 
@@ -154,7 +162,10 @@ The instance page has an **Actions** menu at the top that allows you to:
 Configuration
 ~~~~~~~~~~~~~
 
-The cluster **Configuration** page provides an
+The cluster **Configuration** page provides an interactive editor for the cluster
+:ref:`configuration <configuration>`. It is connected to the centralized configuration
+storage that the cluster uses. All changes you make and apply on this page are
+sent to this centralized storage.
 
 .. image:: _images/tcm_ui_config.png
     :align: left
@@ -171,7 +182,7 @@ Tuples
 .. important::
 
     The access to stored data on the **Tuples** page is supported only for sharded
-    clusters with the `CRUD <https://github.com/tarantool/crud>`__ module.
+    clusters that use the `CRUD <https://github.com/tarantool/crud>`__ module.
 
 The **Tuples** page provides access to data stored in user spaces of the selected
 cluster.
@@ -282,7 +293,8 @@ The **Users** page lists |tcm| users.
 On this page, you can:
 
 -   add, edit, and delete users
--   manage users' secrets (passwords and API tokens)
+-   manage users' secrets (:ref:`passwords <tcm_access_control_passwords>` and
+    :ref:`API tokens <tcm_access_control_api_tokens>`)
 -   revoke users' sessions
 
 Learn more in :ref:`tcm_access_control_users`.
@@ -414,6 +426,6 @@ In this dialog, you can:
 
 -   **General** tab: switch the color theme
 -   **Change password** tab: change your password
--   **API tokens tab**: generate and delete :ref:`API tokens <tcm_access_control_api_tokens>`
+-   **API tokens** tab: generate and delete :ref:`API tokens <tcm_access_control_api_tokens>`
 -   **Sessions** tab: view and revoke your user's sessions
--   **About** tab: view |tcm| information about switch between development and production mode
+-   **About** tab: view |tcm| information about switch between development and production modes
