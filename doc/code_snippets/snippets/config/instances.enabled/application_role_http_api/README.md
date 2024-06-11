@@ -4,9 +4,15 @@ A sample application showing how to implement a custom `http-api` role.
 
 ## Running
 
-To start an application, execute the following command in the [config](../../../config) directory:
+Before starting the application, install the `http` module by executing the `tt rocks install` command in the [config](../../../config) directory:
 
-```console
+```shell
+$ tt rocks install http
+```
+
+Then, start the application:
+
+```shell
 $ tt start application_role_http_api
 ```
 
