@@ -171,11 +171,15 @@ Users receive their first passwords during their :ref:`account creation <tcm_acc
 All passwords are governed by the :ref:`password policy <tcm_access_control_password_policy>`.
 It can be flexibly configured to follow the security requirements of your organization.
 
+.. _tcm_access_control_password_change:
+
 Changing your password
 ~~~~~~~~~~~~~~~~~~~~~~
 
 To change your own password, click your name in the top-right corner and go to
 **Settings** > **Change password**.
+
+.. _tcm_access_control_password_users_change:
 
 Changing users' passwords
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -203,6 +207,8 @@ menu of the corresponding **Secrets** table row.
 .. important::
 
     Password expiration can't be reverted.
+
+.. _tcm_access_control_password_block:
 
 Blocking passwords
 ~~~~~~~~~~~~~~~~~~

@@ -36,6 +36,7 @@ to read data. LDAP authorization is supported as well.
 .. toctree::
     :maxdepth: 1
 
+    tcm_ui_overview
     tcm_connect_clusters
     tcm_cluster_config
     tcm_cluster_monitoring
