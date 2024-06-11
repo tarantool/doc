@@ -52,9 +52,9 @@ Page structure
 
 The |tcm| web interface consists of three parts:
 
-#.  **Navigation page** on the left shows the lost of pages available to the user.
+#.  **Navigation page** on the left shows the list of pages available to the user.
     The navigation pane can be collapsed by clicking the cross icon at its top.
-#.  **Header** at the top provides access to notifications and :ref:`user settings <tcm_ui_user_settings>.
+#.  **Header** at the top provides access to notifications and :ref:`user settings <tcm_ui_user_settings>`.
 #.  **Working area** displays the contents of the selected page.
 
 .. image:: _images/tcm_ui_sections.png
@@ -125,7 +125,7 @@ Instance page
 
 The instance page opens when you click an instance name on the **Stateboard**.
 
-.. image:: /_images/tcm_ui_instance.png
+.. image:: _images/tcm_ui_instance.png
     :align: left
     :width: 700
     :alt: TCM instance page
@@ -156,7 +156,7 @@ Configuration
 
 The cluster **Configuration** page provides an
 
-.. image:: /_images/tcm_ui_config.png
+.. image:: _images/tcm_ui_config.png
     :align: left
     :width: 700
     :alt: TCM cluster configuration page
@@ -176,7 +176,7 @@ Tuples
 The **Tuples** page provides access to data stored in user spaces of the selected
 cluster.
 
-.. image:: /_images/tcm_ui_tuples.png
+.. image:: _images/tcm_ui_tuples.png
     :align: left
     :width: 700
     :alt: TCM tuples page
@@ -193,7 +193,7 @@ Cluster metrics
 
 The **Cluster metrics** page provides access to the selected cluster's :ref:`metrics <metrics-reference>`.
 
-.. image:: /_images/tcm_ui_cluster_metrics.png
+.. image:: _images/tcm_ui_cluster_metrics.png
     :align: left
     :width: 700
     :alt: TCM cluster metrics page
@@ -209,7 +209,7 @@ Instance explorer
 The instance **Explorer** provides access to all spaces of a specific instance,
 including system spaces.
 
-.. image:: /_images/tcm_ui_instance_explorer.png
+.. image:: _images/tcm_ui_instance_explorer.png
     :align: left
     :width: 700
     :alt: TCM instance explorer
@@ -233,7 +233,7 @@ Clusters
 
 The **Clusters** page lists Tarantool clusters that are connected to |tcm|.
 
-.. image:: /_images/tcm_ui_clusters.png
+.. image:: _images/tcm_ui_clusters.png
     :align: left
     :width: 700
     :alt: TCM clusters page
@@ -253,7 +253,7 @@ ACL
 
 The **ACL** page displays the |tcm| access control list.
 
-.. image:: /_images/tcm_ui_acl.png
+.. image:: _images/tcm_ui_acl.png
     :align: left
     :width: 700
     :alt: TCM ACL page
@@ -274,7 +274,10 @@ Users
 
 The **Users** page lists |tcm| users.
 
-image
+.. image:: _images/tcm_ui_users.png
+    :align: left
+    :width: 700
+    :alt: TCM users page
 
 On this page, you can:
 
@@ -291,7 +294,10 @@ Roles
 
 The **Roles** page lists |tcm| user roles.
 
-image
+.. image:: _images/tcm_ui_roles.png
+    :align: left
+    :width: 700
+    :alt: TCM roles page
 
 On this page, you can add, edit, and delete roles. Learn more in :ref:`tcm_access_control_roles`.
 
@@ -300,9 +306,12 @@ On this page, you can add, edit, and delete roles. Learn more in :ref:`tcm_acces
 Sessions
 ~~~~~~~~
 
-The **Roles** page lists active sessions of |tcm| users.
+The **Sessions** page lists active sessions of |tcm| users.
 
-image
+.. image:: _images/tcm_ui_sessions.png
+    :align: left
+    :width: 700
+    :alt: TCM sessions page
 
 On this page, you can view and revoke sessions. Learn more in :ref:`tcm_access_control_sessions`.
 
@@ -320,7 +329,10 @@ Audit log
 
 The **Audit log page** displays the |tcm| :ref:`audit log <tcm_audit_log>`.
 
-image
+.. image:: _images/tcm_ui_audit_log.png
+    :align: left
+    :width: 700
+    :alt: TCM audit log
 
 ..  _tcm_ui_tools_metrics:
 
@@ -328,6 +340,11 @@ TCM metrics
 ~~~~~~~~~~~
 
 The **TCM metrics** page provides access to the |tcm| metrics.
+
+.. image:: _images/tcm_ui_tcm_metrics.png
+    :align: left
+    :width: 700
+    :alt: TCM metrics page
 
 ..  _tcm_ui_settings:
 
@@ -345,7 +362,11 @@ On the **Password policy** page, you can configure the requirements to users' pa
 such as minimal length, required symbols, expiration, and other settings.
 Learn more in :ref:`tcm_access_control_password_policy`.
 
-image
+
+.. image:: _images/tcm_ui_policy.png
+    :align: left
+    :width: 700
+    :alt: TCM password policy
 
 ..  _tcm_ui_settings_audit:
 
@@ -356,7 +377,12 @@ On the **Audit settings** page, you can configure how |tcm| records events to it
 audit log: whether audit log is enabled, which events are recorded, and so on.
 Learn more in :ref:`tcm_audit_log`.
 
-image
+
+.. image:: _images/tcm_ui_audit_settings.png
+    :align: left
+    :width: 700
+    :alt: TCM audit settings
+
 ..  _tcm_ui_settings_ldap:
 
 LDAP
@@ -364,7 +390,11 @@ LDAP
 
 On the **Audit settings** page, you can manage |tcm| LDAP configurations.
 
-image
+
+.. image:: _images/tcm_ui_ldap.png
+    :align: left
+    :width: 700
+    :alt: TCM LDAP configurations
 
 ..  _tcm_ui_user_settings:
 
@@ -372,7 +402,15 @@ User settings
 -------------
 
 The user settings dialog opens when you click **Settings** under the user's name
-in the header. In this dialog, you can:
+in the header.
+
+
+.. image:: _images/tcm_ui_user_settings.png
+    :align: left
+    :width: 700
+    :alt: TCM user settings
+
+In this dialog, you can:
 
 -   **General** tab: switch the color theme
 -   **Change password** tab: change your password
