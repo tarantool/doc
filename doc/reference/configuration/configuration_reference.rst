@@ -1276,7 +1276,7 @@ The ``fiber`` section describes options related to configuring :ref:`fibers, yie
     | Default: 4
     | Environment variable: TT_FIBER_WORKER_POOL_THREADS
 
-.. _configuration_reference_config_context_options:
+.. _configuration_reference_fiber_slice_options:
 
 fiber.slice.*
 ~~~~~~~~~~~~~
@@ -1286,14 +1286,15 @@ This section describes options related to configuring
 
 *   :ref:`fiber.slice <configuration_reference_fiber_slice>`
 
-    * :ref:`fiber.slice.warn> <configuration_reference_fiber_slice_warn>`
-    * :ref:`fiber.slice.warn> <configuration_reference_fiber_slice_err>`
+    * :ref:`fiber.slice.warn <configuration_reference_fiber_slice_warn>`
+    * :ref:`fiber.slice.err <configuration_reference_fiber_slice_err>`
 
 ..  _configuration_reference_fiber_slice:
 
 ..  confval:: fiber.slice
 
     Set timings for all types of fiber slices.
+    See :ref:`fiber.set_max_slice <fiber-set_max_slice>` for details and examples.
 
     |
     | Type: map
@@ -1332,7 +1333,7 @@ This section describes options related to configuring the
 
 *   :ref:`fiber.top <configuration_reference_fiber_top>`
 
-    * :ref:`fiber.top.enabled> <configuration_reference_fiber_top_enabled>`
+    * :ref:`fiber.top.enabled <configuration_reference_fiber_top_enabled>`
 
 ..  _configuration_reference_fiber_top:
 
