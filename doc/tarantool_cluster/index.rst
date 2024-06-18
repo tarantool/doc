@@ -1,7 +1,7 @@
 .. _tarantool_cluster:
 
-Tarantool cluster
-=================
+Tarantool database & application server
+=======================================
 
 ..  toctree::
     :maxdepth: 1
