@@ -162,7 +162,7 @@ To edit a  user, click **Edit** in the **Actions** menu of the corresponding tab
 
 To delete a user, click **Delete**  in the **Actions** menu of the corresponding table row.
 
-.. _tcm_access_control_password:
+.. _tcm_access_control_passwords:
 
 Passwords
 ---------
