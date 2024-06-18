@@ -50,6 +50,8 @@ help for the given command.
             -   Install Tarantool or ``tt``
         *   -   :doc:`instances <instances>`
             -   List enabled applications
+        *   -   :doc:`kill <kill>`
+            -   Terminate Tarantool applications or instances
         *   -   :doc:`logrotate <logrotate>`
             -   Rotate instance logs
         *   -   :doc:`pack <pack>`
@@ -59,7 +61,7 @@ help for the given command.
         *   -   :doc:`replicaset <replicaset>`
             -   Manage replica sets
         *   -   :doc:`restart <restart>`
-            -   Restart a Tarantool instance
+            -   Restart Tarantool applications or instances
         *   -   :doc:`rocks <rocks>`
             -   Use the LuaRocks package manager
         *   -   :doc:`run <run>`
@@ -67,11 +69,11 @@ help for the given command.
         *   -   :doc:`search <search>`
             -   Search available Tarantool and ``tt`` versions
         *   -   :doc:`start <start>`
-            -   Start a Tarantool instance
+            -   Start Tarantool applications or instances
         *   -   :doc:`status <status>`
-            -   Get the current status of a Tarantool instance
+            -   Get the current status of applications or instances
         *   -   :doc:`stop <stop>`
-            -   Stop a Tarantool instance
+            -   Stop Tarantool applications or instances
         *   -   :doc:`tdg2 <tdg2>`
             -   Interact with `Tarantool Data Grid 2 <https://www.tarantool.io/ru/tdg/latest/>`_ clusters
         *   -   :doc:`uninstall <uninstall>`
@@ -101,6 +103,7 @@ help for the given command.
     init <init>
     install <install>
     instances <instances>
+    kill <kill>
     logrotate <logrotate>
     pack <pack>
     play <play>
