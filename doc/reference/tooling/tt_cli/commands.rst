@@ -38,6 +38,8 @@ help for the given command.
             -   Create an application from a template
         *   -   :doc:`crud <crud>`
             -   Interact with the CRUD module (`Enterprise only <https://www.tarantool.io/compare/>`_)
+        *   -   :doc:`download <download>`
+            -   Download the Tarantool Enterprise SDK
         *   -   :doc:`export <export>`
             -   Export data to a file (`Enterprise only <https://www.tarantool.io/compare/>`_)
         *   -   :doc:`help <help>`
@@ -97,6 +99,7 @@ help for the given command.
     coredump <coredump>
     create <create>
     crud <crud>
+    download <download>
     export <export>
     help <help>
     import <import>
