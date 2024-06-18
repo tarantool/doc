@@ -11,8 +11,6 @@ This topic describes all :ref:`configuration parameters <configuration>` provide
 Most of the configuration options described in this reference can be applied to a specific instance, replica set, group, or to all instances globally.
 To do so, you need to define the required option at the :ref:`specified level <configuration_scopes>`.
 
-
-
 ..  _configuration_reference_app:
 
 app
@@ -99,12 +97,6 @@ In the ``app`` section, you can load the application and provide an application 
     | Default: nil
     | Environment variable: TT_APP_MODULE
 
-
-
-
-
-
-
 ..  _configuration_reference_audit:
 
 audit_log
@@ -115,13 +107,11 @@ audit_log
 
     Configuring ``audit_log`` parameters is available in the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only.
 
-
 The ``audit_log`` section defines configuration parameters related to :ref:`audit logging <enterprise_audit_module>`.
 
 ..  NOTE::
 
     ``audit_log`` can be defined in any :ref:`scope <configuration_scopes>`.
-
 
 *   :ref:`audit_log.extract_key <configuration_reference_audit_extract_key>`
 *   :ref:`audit_log.file <configuration_reference_audit_file>`
@@ -546,9 +536,6 @@ This section describes options related to loading configuration settings from ex
 
     (Optional) Whether to strip whitespace characters and newlines from the end of data.
 
-
-
-
 .. _configuration_reference_config_etcd:
 
 config.etcd.*
@@ -572,8 +559,6 @@ This section describes options related to providing connection settings to a :re
 * :ref:`config.etcd.http.request.timeout <config_etcd_http_request_timeout>`
 * :ref:`config.etcd.http.request.unix_socket <config_etcd_http_request_unix_socket>`
 
-
-
 .. _config_etcd_endpoints:
 
 .. confval:: config.etcd.endpoints
@@ -588,7 +573,6 @@ This section describes options related to providing connection settings to a :re
     | Type: array
     | Default: nil
     | Environment variable: TT_CONFIG_ETCD_ENDPOINTS
-
 
 .. _config_etcd_prefix:
 
@@ -637,7 +621,6 @@ This section describes options related to providing connection settings to a :re
     | Default: nil
     | Environment variable: TT_CONFIG_ETCD_PASSWORD
 
-
 .. _config_etcd_ssl_ca_file:
 
 .. confval:: config.etcd.ssl.ca_file
@@ -650,7 +633,6 @@ This section describes options related to providing connection settings to a :re
     | Type: string
     | Default: nil
     | Environment variable: TT_CONFIG_ETCD_SSL_CA_FILE
-
 
 .. _config_etcd_ssl_ca_path:
 
@@ -665,7 +647,6 @@ This section describes options related to providing connection settings to a :re
     | Default: nil
     | Environment variable: TT_CONFIG_ETCD_SSL_CA_PATH
 
-
 .. _config_etcd_ssl_ssl_key:
 
 .. confval:: config.etcd.ssl.ssl_key
@@ -678,7 +659,6 @@ This section describes options related to providing connection settings to a :re
     | Type: string
     | Default: nil
     | Environment variable: TT_CONFIG_ETCD_SSL_SSL_KEY
-
 
 .. _config_etcd_ssl_verify_host:
 
@@ -736,8 +716,6 @@ This section describes options related to providing connection settings to a :re
     | Default: nil
     | Environment variable: TT_CONFIG_ETCD_HTTP_REQUEST_UNIX_SOCKET
 
-
-
 .. _configuration_reference_config_storage:
 
 config.storage.*
@@ -753,7 +731,6 @@ This section describes options related to providing connection settings to a :re
 * :ref:`config.storage.prefix <config_storage_prefix>`
 * :ref:`config.storage.reconnect_after <config_storage_reconnect_after>`
 * :ref:`config.storage.timeout <config_storage_timeout>`
-
 
 .. _config_storage_endpoints:
 
@@ -886,11 +863,9 @@ Learn more in :ref:`configuration_credentials`.
 
     ``credentials`` can be defined in any :ref:`scope <configuration_scopes>`.
 
-
 *   :ref:`credentials.roles.* <configuration_reference_credentials_roles_options>`
 *   :ref:`credentials.users.* <configuration_reference_credentials_users_options>`
 *   :ref:`<user_or_role_name>.privileges.* <configuration_reference_credentials_privileges_options>`
-
 
 ..  _configuration_reference_credentials_roles_options:
 
@@ -920,6 +895,7 @@ credentials.roles.*
 
     See also: :ref:`configuration_credentials_managing_users_roles`.
 
+    |
     | Type: map
     | Default: nil
     | Environment variable: TT_CREDENTIALS_ROLES
@@ -937,7 +913,6 @@ credentials.roles.*
     An array of :ref:`privileges <authentication-owners_privileges>` granted to this role.
 
     See :ref:`\<user_or_role_name\>.privileges.* <configuration_reference_credentials_privileges_options>`.
-
 
 ..  _configuration_reference_credentials_users_options:
 
@@ -971,6 +946,7 @@ credentials.users.*
 
     See also: :ref:`configuration_credentials_managing_users_roles`.
 
+    |
     | Type: map
     | Default: nil
     | Environment variable: TT_CREDENTIALS_USERS
@@ -1007,7 +983,6 @@ credentials.users.*
     An array of :ref:`privileges <authentication-owners_privileges>` granted to this user.
 
     See :ref:`\<user_or_role_name\>.privileges.* <configuration_reference_credentials_privileges_options>`.
-
 
 ..  _configuration_reference_credentials_privileges_options:
 
@@ -1069,13 +1044,11 @@ credentials.users.*
 
     See also: :ref:`configuration_credentials_managing_users_roles`.
 
-
 ..  _configuration_reference_credentials_privileges_functions:
 
 .. confval:: <user_or_role_name>.privileges.functions
 
     Functions to which this user or a user with this role gets the specified permissions.
-
 
 ..  _configuration_reference_credentials_privileges_sequences:
 
@@ -1083,13 +1056,11 @@ credentials.users.*
 
     Sequences to which this user or a user with this role gets the specified permissions.
 
-
 ..  _configuration_reference_credentials_privileges_lua_eval:
 
 .. confval:: <user_or_role_name>.privileges.lua_eval
 
     Whether this user or a user with this role can execute arbitrary Lua code.
-
 
 ..  _configuration_reference_credentials_privileges_lua_call:
 
@@ -1097,15 +1068,11 @@ credentials.users.*
 
     Whether this user or a user with this role can call any global user-defined Lua function.
 
-
 ..  _configuration_reference_credentials_privileges_sql:
 
 .. confval:: <user_or_role_name>.privileges.sql
 
     Whether this user or a user with this role can execute an arbitrary SQL expression.
-
-
-
 
 ..  _configuration_reference_database:
 
@@ -1130,10 +1097,10 @@ The ``database`` section defines database-specific configuration parameters, suc
 
 .. confval:: database.hot_standby
 
+    |
     | Type: boolean
     | Default: false
     | Environment variable: TT_DATABASE_HOT_STANDBY
-
 
 .. _configuration_reference_database_instance_uuid:
 
@@ -1189,6 +1156,7 @@ The ``database`` section defines database-specific configuration parameters, suc
         :language: yaml
         :dedent:
 
+    |
     | Type: string
     | Default: :ref:`box.NULL <box-null>` (the actual default value depends on the number of instances in a replica set)
     | Environment variable: TT_DATABASE_MODE
@@ -1249,6 +1217,128 @@ The ``database`` section defines database-specific configuration parameters, suc
     | Default: false
     | Environment variable: TT_DATABASE_USE_MVCC_ENGINE
 
+..  _configuration_reference_fiber:
+
+fiber
+-----
+
+The ``fiber`` section describes options related to configuring :ref:`fibers, yields, and cooperative multitasking <concepts-coop_multitasking>`.
+
+..  NOTE::
+
+    ``fiber`` can be defined in any :ref:`scope <configuration_scopes>`.
+
+* :ref:`fiber.io_collect_interval <configuration_reference_fiber_io_collect_interval>`
+* :ref:`fiber.too_long_threshold <configuration_reference_fiber_too_long_threshold>`
+* :ref:`fiber.worker_pool_threads <configuration_reference_fiber_worker_pool_threads>`
+* :ref:`fiber.slice.* <configuration_reference_fiber_slice_options>`
+* :ref:`fiber.top.* <configuration_reference_fiber_top_options>`
+
+..  _configuration_reference_fiber_io_collect_interval:
+
+..  confval:: fiber.io_collect_interval
+
+    The time period (in seconds) a :ref:`fiber <app-fibers>` sleeps between
+    iterations of the event loop.
+
+    ``fiber.io_collect_interval`` can be used to reduce CPU load in deployments
+    where the number of client connections is large, but requests are not so frequent
+    (for example, each connection issues just a handful of requests per second).
+
+    |
+    | Type: number
+    | Default: box.NULL
+    | Environment variable: TT_FIBER_IO_COLLECT_INTERVAL
+
+..  _configuration_reference_fiber_too_long_threshold:
+
+..  confval:: fiber.too_long_threshold
+
+    If processing a request takes longer than the given period (in seconds),
+    the fiber warns about it in the log.
+
+    ``fiber.too_long_threshold`` has effect only if
+    :ref:`log.level <configuration_reference_log_level>` is greater than
+    or equal to 4 (``warn``).
+
+    |
+    | Type: number
+    | Default: 0.5
+    | Environment variable: TT_FIBER_TOO_LONG_THRESHOLD
+
+..  _configuration_reference_fiber_worker_pool_threads:
+
+..  confval:: fiber.worker_pool_threads
+
+    The maximum number of threads to use during execution
+    of certain internal processes (for example,
+    :ref:`socket.getaddrinfo() <socket-getaddrinfo>` and
+    :ref:`coio_call() <c_api-coio-coio_call>`).
+
+    |
+    | Type: number
+    | Default: 4
+    | Environment variable: TT_FIBER_WORKER_POOL_THREADS
+
+.. _configuration_reference_fiber_slice_options:
+
+fiber.slice.*
+~~~~~~~~~~~~~
+
+This section describes options related to configuring time periods for
+:ref:`fiber slices <fibers_limit_execution_time>`.
+See :ref:`fiber.set_max_slice <fiber-set_max_slice>` for details and examples.
+
+* :ref:`fiber.slice.warn <configuration_reference_fiber_slice_warn>`
+* :ref:`fiber.slice.err <configuration_reference_fiber_slice_err>`
+
+..  _configuration_reference_fiber_slice_warn:
+
+..  confval:: fiber.slice.warn
+
+    Set a time period (in seconds) that specifies the warning slice.
+
+    |
+    | Type: number
+    | Default: 0.5
+    | Environment variable: TT_FIBER_SLICE_WARN
+
+..  _configuration_reference_fiber_slice_err:
+
+..  confval:: fiber.slice.err
+
+    Set a time period (in seconds) that specifies the error slice.
+
+    |
+    | Type: number
+    | Default: 1
+    | Environment variable: TT_FIBER_SLICE_ERR
+
+..  _configuration_reference_fiber_top_options:
+
+fiber.top.*
+~~~~~~~~~~~
+
+This section describes options related to configuring the
+:ref:`fiber.top() <fiber-top>` function, normally used for debug purposes.
+``fiber.top()`` shows all alive fibers and their CPU consumption.
+
+* :ref:`fiber.top.enabled <configuration_reference_fiber_top_enabled>`
+
+..  _configuration_reference_fiber_top_enabled:
+
+..  confval:: fiber.top.enabled
+
+    Enable or disable the ``fiber.top()`` function.
+
+    Enabling ``fiber.top()`` slows down fiber switching by about 15%,
+    so it is disabled by default.
+
+    |
+    | Type: boolean
+    | Default: false
+    | Environment variable: TT_FIBER_TOP_ENABLED
+
 ..  _configuration_reference_flightrec:
 
 flightrec
@@ -1281,10 +1371,10 @@ The ``flightrec`` section describes options related to the :ref:`flight recorder
 
     Enable the :ref:`flight recorder <enterprise-flight-recorder>`.
 
+    |
     | Type: boolean
     | Default: false
     | Environment variable: TT_FLIGHTREC_ENABLED
-
 
 ..  TODO not implemented yet
     .. _config-directory:
@@ -1299,7 +1389,6 @@ The ``flightrec`` section describes options related to the :ref:`flight recorder
         | Default: snapshot.dir
         | Environment variable: TT_FLIGHTREC_DIR
 
-
 ..  _configuration_reference_flightrec_logs_size:
 
 ..  confval:: flightrec.logs_size
@@ -1307,6 +1396,7 @@ The ``flightrec`` section describes options related to the :ref:`flight recorder
     Specify the size (in bytes) of the log storage.
     You can set this option to ``0`` to disable the log storage.
 
+    |
     | Type: integer
     | Default: 10485760
     | Environment variable: TT_FLIGHTREC_LOGS_SIZE
@@ -1318,11 +1408,11 @@ The ``flightrec`` section describes options related to the :ref:`flight recorder
     Specify the maximum size (in bytes) of the log message.
     The log message is truncated if its size exceeds this limit.
 
+    |
     | Type: integer
     | Default: 4096
     | Maximum: 16384
     | Environment variable: TT_FLIGHTREC_LOGS_MAX_MSG_SIZE
-
 
 ..  _configuration_reference_flightrec_logs_log_level:
 
@@ -1334,6 +1424,7 @@ The ``flightrec`` section describes options related to the :ref:`flight recorder
     option description.
     Note that the ``flightrec.logs_log_level`` value might differ from ``log_level``.
 
+    |
     | Type: integer
     | Default: 6
     | Environment variable: TT_FLIGHTREC_LOGS_LOG_LEVEL
@@ -1346,6 +1437,7 @@ The ``flightrec`` section describes options related to the :ref:`flight recorder
     So, this value defines how much historical metrics data is collected up to the moment of crash.
     The frequency of metric dumps is defined by :ref:`flightrec.metrics_interval <configuration_reference_flightrec_metrics_interval>`.
 
+    |
     | Type: integer
     | Default: 180
     | Environment variable: TT_FLIGHTREC_METRICS_PERIOD
@@ -1358,6 +1450,7 @@ The ``flightrec`` section describes options related to the :ref:`flight recorder
     Specify the time interval (in seconds) that defines the frequency of dumping metrics.
     This value shouldn't exceed :ref:`flightrec.metrics_period <configuration_reference_flightrec_metrics_period>`.
 
+    |
     | Type: number
     | Default: 1.0
     | Minimum: 0.001
@@ -1380,10 +1473,10 @@ The ``flightrec`` section describes options related to the :ref:`flight recorder
     Specify the size (in bytes) of storage for the request and response data.
     You can set this parameter to ``0`` to disable a storage of requests and responses.
 
+    |
     | Type: integer
     | Default: 10485760
     | Environment variable: TT_FLIGHTREC_REQUESTS_SIZE
-
 
 ..  _configuration_reference_flightrec_requests_max_req_size:
 
@@ -1392,10 +1485,10 @@ The ``flightrec`` section describes options related to the :ref:`flight recorder
     Specify the maximum size (in bytes) of a request entry.
     A request entry is truncated if this size is exceeded.
 
+    |
     | Type: integer
     | Default: 16384
     | Environment variable: TT_FLIGHTREC_REQUESTS_MAX_REQ_SIZE
-
 
 ..  _configuration_reference_flightrec_requests_max_res_size:
 
@@ -1404,10 +1497,10 @@ The ``flightrec`` section describes options related to the :ref:`flight recorder
     Specify the maximum size (in bytes) of a response entry.
     A response entry is truncated if this size is exceeded.
 
+    |
     | Type: integer
     | Default: 16384
     | Environment variable: TT_FLIGHTREC_REQUESTS_MAX_RES_SIZE
-
 
 ..  _configuration_reference_iproto:
 
@@ -1437,13 +1530,10 @@ The ``iproto`` section is used to configure parameters related to :ref:`communic
 
 -   :ref:`<uri>.params.* <configuration_reference_iproto_uri_params>`
 
-
-
 .. _configuration_reference_iproto_advertise:
 
 iproto.advertise.*
 ~~~~~~~~~~~~~~~~~~
-
 
 .. _configuration_reference_iproto_advertise_client:
 
@@ -1493,6 +1583,7 @@ iproto.advertise.*
         :end-at: 127.0.0.1:3303
         :dedent:
 
+    |
     | Type: map
     | Environment variable: see :ref:`iproto.advertise.\<peer_or_sharding\>.* <configuration_reference_iproto_advertise.peer_sharding>`
 
@@ -1521,9 +1612,9 @@ iproto.advertise.*
         :end-at: login: storage
         :dedent:
 
+    |
     | Type: map
     | Environment variable: see :ref:`iproto.advertise.\<peer_or_sharding\>.* <configuration_reference_iproto_advertise.peer_sharding>`
-
 
 .. _configuration_reference_iproto_advertise.peer_sharding:
 
@@ -1576,7 +1667,6 @@ iproto.advertise.<peer_or_sharding>.*
 
     (Optional) URI parameters (:ref:`<uri>.params.* <configuration_reference_iproto_uri_params>`) required for connecting to the current instance.
 
-
 .. _configuration_reference_iproto_misc:
 
 iproto.*
@@ -1607,7 +1697,6 @@ iproto.*
     | Type: array
     | Default: nil
     | Environment variable: TT_IPROTO_LISTEN
-
 
 .. _configuration_reference_iproto_net_msg_max:
 
@@ -1642,10 +1731,10 @@ iproto.*
         messages can be released as soon as they are delivered, while
         incoming requests might not be processed until some time after delivery.
 
+    |
     | Type: integer
     | Default: 768
     | Environment variable: TT_IPROTO_NET_MSG_MAX
-
 
 .. _configuration_reference_iproto_readahead:
 
@@ -1665,7 +1754,6 @@ iproto.*
     | Default: 16320
     | Environment variable: TT_IPROTO_READAHEAD
 
-
 .. _configuration_reference_iproto_threads:
 
 .. confval:: iproto.threads
@@ -1682,7 +1770,6 @@ iproto.*
     | Type: integer
     | Default: 1
     | Environment variable: TT_IPROTO_THREADS
-
 
 .. _configuration_reference_iproto_uri_params:
 
@@ -1873,10 +1960,6 @@ URI parameters that can be used in the following options:
     | Default: nil
     | Environment variable: TT_IPROTO_ADVERTISE_PEER_PARAMS_SSL_PASSWORD_FILE, TT_IPROTO_ADVERTISE_SHARDING_PARAMS_SSL_PASSWORD_FILE
 
-
-
-
-
 ..  _configuration_reference_groups:
 
 groups
@@ -1898,13 +1981,11 @@ The ``groups`` section provides the ability to define the :ref:`full topology of
 
     A group name.
 
-
 .. _configuration_reference_groups_name_replicasets:
 
 .. confval:: groups.<group_name>.replicasets
 
     Replica sets that belong to this group. See :ref:`replicasets <configuration_reference_replicasets>`.
-
 
 .. _configuration_reference_groups_name_config_parameter:
 
@@ -1912,7 +1993,6 @@ The ``groups`` section provides the ability to define the :ref:`full topology of
 
     Any configuration parameter that can be defined in the group :ref:`scope <configuration_scopes>`.
     For example, :ref:`iproto <configuration_reference_iproto>` and :ref:`database <configuration_reference_database>` configuration parameters defined at the group level are applied to all instances in this group.
-
 
 ..  _configuration_reference_replicasets:
 
@@ -1935,7 +2015,6 @@ replicasets
 
     A replica set name.
 
-
 .. _configuration_reference_replicasets_name_leader:
 
 .. confval:: replicasets.<replicaset_name>.leader
@@ -1953,7 +2032,6 @@ replicasets
         :end-at: 127.0.0.1:3303
         :dedent:
 
-
 .. _configuration_reference_replicasets_name_bootstrap_leader:
 
 .. confval:: replicasets.<replicaset_name>.bootstrap_leader
@@ -1969,13 +2047,11 @@ replicasets
         :end-at: 127.0.0.1:3303
         :dedent:
 
-
 .. _configuration_reference_replicasets_name_instances:
 
 .. confval:: replicasets.<replicaset_name>.instances
 
     Instances that belong to this replica set. See :ref:`instances <configuration_reference_instances>`.
-
 
 .. _configuration_reference_replicasets_name_config_parameter:
 
@@ -1983,8 +2059,6 @@ replicasets
 
     Any configuration parameter that can be defined in the replica set :ref:`scope <configuration_scopes>`.
     For example, :ref:`iproto <configuration_reference_iproto>` and :ref:`database <configuration_reference_database>` configuration parameters defined at the replica set level are applied to all instances in this replica set.
-
-
 
 ..  _configuration_reference_instances:
 
@@ -2004,16 +2078,12 @@ instances
 
     An instance name.
 
-
 .. _configuration_reference_instances_name_config_parameter:
 
 .. confval:: instances.<instance_name>.<config_parameter>
 
     Any configuration parameter that can be defined in the instance :ref:`scope <configuration_scopes>`.
     For example, :ref:`iproto <configuration_reference_iproto>` and :ref:`database <configuration_reference_database>` configuration parameters defined at the instance level are applied to this instance only.
-
-
-
 
 ..  _configuration_reference_log:
 
@@ -2040,7 +2110,6 @@ To handle logging in your application, use the :ref:`log module <log-module>`.
     -   :ref:`log.syslog.identity <configuration_reference_log_syslog-identity>`
     -   :ref:`log.syslog.server <configuration_reference_log_syslog-server>`
 
-
 ..  _configuration_reference_log_to:
 
 ..  confval:: log.to
@@ -2057,7 +2126,6 @@ To handle logging in your application, use the :ref:`log module <log-module>`.
     | Type: string
     | Default: 'stderr'
     | Environment variable: TT_LOG_TO
-
 
 ..  _configuration_reference_log_file:
 
@@ -2083,7 +2151,6 @@ To handle logging in your application, use the :ref:`log module <log-module>`.
     | Type: string
     | Default: 'var/log/{{ instance_name }}/tarantool.log'
     | Environment variable: TT_LOG_FILE
-
 
 ..  _configuration_reference_log_format:
 
@@ -2154,7 +2221,6 @@ To handle logging in your application, use the :ref:`log module <log-module>`.
     | Type: number, string
     | Default: 5
     | Environment variable: TT_LOG_LEVEL
-
 
 ..  _configuration_reference_log_modules:
 
@@ -2266,7 +2332,6 @@ To handle logging in your application, use the :ref:`log module <log-module>`.
     | Default: :ref:`box.NULL <box-null>`
     | Environment variable: TT_LOG_MODULES
 
-
 ..  _configuration_reference_log_nonblock:
 
 ..  confval:: log.nonblock
@@ -2369,9 +2434,6 @@ log.syslog.*
     | Default: box.NULL
     | Environment variable: TT_LOG_SYSLOG_SERVER
 
-
-
-
 ..  _configuration_reference_memtx:
 
 memtx
@@ -2382,7 +2444,6 @@ The ``memtx`` section is used to configure parameters related to the :ref:`memtx
 .. NOTE::
 
     ``memtx`` can be defined in any :ref:`scope <configuration_scopes>`.
-
 
 -   :ref:`memtx.allocator <configuration_reference_memtx_allocator>`
 -   :ref:`memtx.max_tuple_size <configuration_reference_memtx_max_size>`
@@ -2711,15 +2772,14 @@ The ``replication`` section defines configuration parameters related to :ref:`re
 -   :ref:`replication.threads <configuration_reference_replication_threads>`
 -   :ref:`replication.timeout <configuration_reference_replication_timeout>`
 
-
 .. _configuration_reference_replication_anon:
 
 .. confval:: replication.anon
 
+    |
     | Type: boolean
     | Default: ``false``
     | Environment variable: TT_REPLICATION_ANON
-
 
 .. _configuration_reference_replication_bootstrap_strategy:
 
@@ -2741,10 +2801,10 @@ The ``replication`` section defines configuration parameters related to :ref:`re
     *   ``legacy`` (deprecated since :doc:`2.11.0 </release/2.11.0>`): a node requires the :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>` number of other nodes to be connected.
         This option is added to keep the compatibility with the current versions of Cartridge and might be removed in the future.
 
+    |
     | Type: string
     | Default: ``auto``
     | Environment variable: TT_REPLICATION_BOOTSTRAP_STRATEGY
-
 
 .. _configuration_reference_replication_connect_timeout:
 
@@ -2762,7 +2822,6 @@ The ``replication`` section defines configuration parameters related to :ref:`re
     | Type: number
     | Default: 30
     | Environment variable: TT_REPLICATION_CONNECT_TIMEOUT
-
 
 .. _configuration_reference_replication_election_mode:
 
@@ -2788,7 +2847,6 @@ The ``replication`` section defines configuration parameters related to :ref:`re
     | Default: :ref:`box.NULL <box-null>` (the actual default value depends on :ref:`replication.failover <configuration_reference_replication_failover>`)
     | Environment variable: TT_REPLICATION_ELECTION_MODE
 
-
 .. _configuration_reference_replication_election_timeout:
 
 .. confval:: replication.election_timeout
@@ -2812,7 +2870,6 @@ The ``replication`` section defines configuration parameters related to :ref:`re
     | Type: number
     | Default: 5
     | Environment variable: TT_REPLICATION_ELECTION_TIMEOUT
-
 
 .. _configuration_reference_replication_election_fencing_mode:
 
@@ -2844,7 +2901,6 @@ The ``replication`` section defines configuration parameters related to :ref:`re
     | Default: ``soft``
     | Possible values: ``off``, ``soft``, ``strict``
     | Environment variable: TT_REPLICATION_ELECTION_FENCING_MODE
-
 
 .. _configuration_reference_replication_failover:
 
@@ -2882,7 +2938,6 @@ The ``replication`` section defines configuration parameters related to :ref:`re
 
         ..  TODO: https://github.com/tarantool/enterprise_doc/issues/253
 
-
     See also: :ref:`Replication tutorials <how-to-replication>`.
 
     .. NOTE::
@@ -2903,10 +2958,10 @@ The ``replication`` section defines configuration parameters related to :ref:`re
         :end-before: Load sample data
         :dedent:
 
+    |
     | Type: string
     | Default: ``off``
     | Environment variable: TT_REPLICATION_FAILOVER
-
 
 .. _configuration_reference_replication_peers:
 
@@ -2930,10 +2985,10 @@ The ``replication`` section defines configuration parameters related to :ref:`re
         :end-at: - replicator:topsecret@127.0.0.1:3303
         :dedent:
 
+    |
     | Type: array
     | Default: :ref:`box.NULL <box-null>`
     | Environment variable: TT_REPLICATION_PEERS
-
 
 .. _configuration_reference_replication_skip_conflict:
 
@@ -2948,10 +3003,10 @@ The ``replication`` section defines configuration parameters related to :ref:`re
 
         Instead of saving the broken transaction to the write-ahead log, it is written as ``NOP`` (No operation).
 
+    |
     | Type: boolean
     | Default: false
     | Environment variable: TT_REPLICATION_SKIP_CONFLICT
-
 
 .. _configuration_reference_replication_sync_lag:
 
@@ -2966,10 +3021,10 @@ The ``replication`` section defines configuration parameters related to :ref:`re
         This parameter is ignored during bootstrap.
         See :ref:`orphan status <replication-orphan_status>` for details.
 
+    |
     | Type: number
     | Default: 10
     | Environment variable: TT_REPLICATION_SYNC_LAG
-
 
 .. _configuration_reference_replication_sync_timeout:
 
@@ -2984,7 +3039,6 @@ The ``replication`` section defines configuration parameters related to :ref:`re
     | Type: number
     | Default: 0
     | Environment variable: TT_REPLICATION_SYNC_TIMEOUT
-
 
 .. _configuration_reference_replication_synchro_quorum:
 
@@ -3007,10 +3061,10 @@ The ``replication`` section defines configuration parameters related to :ref:`re
 
         ``replication.synchro_quorum`` does not account for anonymous replicas.
 
+    |
     | Type: string, number
     | Default: ``N / 2 + 1``
     | Environment variable: TT_REPLICATION_SYNCHRO_QUORUM
-
 
 .. _configuration_reference_replication_synchro_timeout:
 
@@ -3029,7 +3083,6 @@ The ``replication`` section defines configuration parameters related to :ref:`re
     | Default: 5
     | Environment variable: TT_REPLICATION_SYNCHRO_TIMEOUT
 
-
 .. _configuration_reference_replication_threads:
 
 .. confval:: replication.threads
@@ -3044,7 +3097,6 @@ The ``replication`` section defines configuration parameters related to :ref:`re
     | Type: integer
     | Default: 1
     | Environment variable: TT_REPLICATION_THREADS
-
 
 .. _configuration_reference_replication_timeout:
 
@@ -3062,7 +3114,6 @@ The ``replication`` section defines configuration parameters related to :ref:`re
     | Default: 1
     | Environment variable: TT_REPLICATION_TIMEOUT
 
-
 ..  _configuration_reference_roles_options:
 
 roles
@@ -3076,7 +3127,6 @@ This section describes configuration parameters related to :ref:`application rol
 
 -   :ref:`roles <configuration_reference_roles>`
 -   :ref:`roles_cfg <configuration_reference_roles_cfg>`
-
 
 .. _configuration_reference_roles:
 
@@ -3094,7 +3144,6 @@ This section describes configuration parameters related to :ref:`application rol
     | Default: nil
     | Environment variable: TT_ROLES
 
-
 .. _configuration_reference_roles_cfg:
 
 .. confval:: roles_cfg
@@ -3111,8 +3160,6 @@ This section describes configuration parameters related to :ref:`application rol
     | Type: map
     | Default: nil
     | Environment variable: TT_ROLES_CFG
-
-
 
 ..  _configuration_reference_security:
 
@@ -3143,7 +3190,6 @@ The ``security`` section defines configuration parameters related to various sec
 -   :ref:`security.password_min_length <configuration_reference_security_password_min_length>`
 -   :ref:`security.secure_erasing <configuration_reference_security_secure_erasing>`
 
-
 ..  _configuration_reference_security_auth_delay:
 
 ..  confval:: security.auth_delay
@@ -3162,12 +3208,10 @@ The ``security`` section defines configuration parameters related to various sec
         :end-at: auth_retries: 2
         :dedent:
 
-
     |
     | Type: number
     | Default: 0
     | Environment variable: TT_SECURITY_AUTH_DELAY
-
 
 ..  _configuration_reference_security_auth_retries:
 
@@ -3184,7 +3228,6 @@ The ``security`` section defines configuration parameters related to various sec
     | Type: integer
     | Default: 0
     | Environment variable: TT_SECURITY_AUTH_RETRIES
-
 
 ..  _configuration_reference_security_auth_type:
 
@@ -3214,7 +3257,6 @@ The ``security`` section defines configuration parameters related to various sec
     | Default: 'chap-sha1'
     | Environment variable: TT_SECURITY_AUTH_TYPE
 
-
 ..  _configuration_reference_security_disable_guest:
 
 ..  confval:: security.disable_guest
@@ -3227,7 +3269,6 @@ The ``security`` section defines configuration parameters related to various sec
     | Default: false
     | Environment variable: TT_SECURITY_DISABLE_GUEST
 
-
 ..  _configuration_reference_security_password_enforce_digits:
 
 ..  confval:: security.password_enforce_digits
@@ -3238,7 +3279,6 @@ The ``security`` section defines configuration parameters related to various sec
     | Type: boolean
     | Default: false
     | Environment variable: TT_SECURITY_PASSWORD_ENFORCE_DIGITS
-
 
 ..  _configuration_reference_security_password_enforce_lowercase:
 
@@ -3251,7 +3291,6 @@ The ``security`` section defines configuration parameters related to various sec
     | Default: false
     | Environment variable: TT_SECURITY_PASSWORD_ENFORCE_LOWERCASE
 
-
 ..  _configuration_reference_security_password_enforce_specialchars:
 
 ..  confval:: security.password_enforce_specialchars
@@ -3263,7 +3302,6 @@ The ``security`` section defines configuration parameters related to various sec
     | Default: false
     | Environment variable: TT_SECURITY_PASSWORD_ENFORCE_SPECIALCHARS
 
-
 ..  _configuration_reference_security_password_enforce_uppercase:
 
 ..  confval:: security.password_enforce_uppercase
@@ -3274,7 +3312,6 @@ The ``security`` section defines configuration parameters related to various sec
     | Type: boolean
     | Default: false
     | Environment variable: TT_SECURITY_PASSWORD_ENFORCE_UPPERCASE
-
 
 ..  _configuration_reference_security_password_history_length:
 
@@ -3293,7 +3330,6 @@ The ``security`` section defines configuration parameters related to various sec
     | Default: 0
     | Environment variable: TT_SECURITY_PASSWORD_HISTORY_LENGTH
 
-
 ..  _configuration_reference_security_password_lifetime_days:
 
 ..  confval:: security.password_lifetime_days
@@ -3311,7 +3347,6 @@ The ``security`` section defines configuration parameters related to various sec
     | Default: 0
     | Environment variable: TT_SECURITY_PASSWORD_LIFETIME_DAYS
 
-
 ..  _configuration_reference_security_password_min_length:
 
 ..  confval:: security.password_min_length
@@ -3322,7 +3357,6 @@ The ``security`` section defines configuration parameters related to various sec
     | Type: integer
     | Default: 0
     | Environment variable: TT_SECURITY_PASSWORD_MIN_LENGTH
-
 
 ..  _configuration_reference_security_secure_erasing:
 
@@ -3335,9 +3369,6 @@ The ``security`` section defines configuration parameters related to various sec
     | Type: boolean
     | Default: false
     | Environment variable: TT_SECURITY_SECURE_ERASING
-
-
-
 
 ..  _configuration_reference_sharding:
 
@@ -3367,8 +3398,6 @@ The ``sharding`` section defines configuration parameters related to :ref:`shard
 -   :ref:`sharding.weight <configuration_reference_sharding_weight>`
 -   :ref:`sharding.zone <configuration_reference_sharding_zone>`
 
-
-
 ..  _configuration_reference_sharding_bucket_count:
 
 ..  confval:: sharding.bucket_count
@@ -3393,7 +3422,6 @@ The ``sharding`` section defines configuration parameters related to :ref:`shard
     | Default: 3000
     | Environment variable: TT_SHARDING_BUCKET_COUNT
 
-
 ..  _configuration_reference_sharding_discovery_mode:
 
 ..  confval:: sharding.discovery_mode
@@ -3411,7 +3439,6 @@ The ``sharding`` section defines configuration parameters related to :ref:`shard
     | Possible values: 'on', 'off', 'once'
     | Environment variable: TT_SHARDING_DISCOVERY_MODE
 
-
 ..  _configuration_reference_sharding_failover_ping_timeout:
 
 ..  confval:: sharding.failover_ping_timeout
@@ -3428,7 +3455,6 @@ The ``sharding`` section defines configuration parameters related to :ref:`shard
     | Default: 5
     | Environment variable: TT_SHARDING_FAILOVER_PING_TIMEOUT
 
-
 ..  _configuration_reference_sharding_lock:
 
 ..  confval:: sharding.lock
@@ -3444,7 +3470,6 @@ The ``sharding`` section defines configuration parameters related to :ref:`shard
     | Type: boolean
     | Default: nil
     | Environment variable: TT_SHARDING_LOCK
-
 
 ..  _configuration_reference_sharding_rebalancer_disbalance_threshold:
 
@@ -3465,7 +3490,6 @@ The ``sharding`` section defines configuration parameters related to :ref:`shard
     | Type: number
     | Default: 1
     | Environment variable: TT_SHARDING_REBALANCER_DISBALANCE_THRESHOLD
-
 
 ..  _configuration_reference_sharding_rebalancer_max_receiving:
 
@@ -3492,7 +3516,6 @@ The ``sharding`` section defines configuration parameters related to :ref:`shard
     | Default: 100
     | Environment variable: TT_SHARDING_REBALANCER_MAX_RECEIVING
 
-
 ..  _configuration_reference_sharding_rebalancer_max_sending:
 
 ..  confval:: sharding.rebalancer_max_sending
@@ -3508,7 +3531,6 @@ The ``sharding`` section defines configuration parameters related to :ref:`shard
     | Default: 1
     | Maximum: 15
     | Environment variable: TT_SHARDING_REBALANCER_MAX_SENDING
-
 
 ..  _configuration_reference_sharding_rebalancer_mode:
 
@@ -3530,7 +3552,6 @@ The ``sharding`` section defines configuration parameters related to :ref:`shard
     | Type: string
     | Default: 'auto'
     | Environment variable: TT_SHARDING_REBALANCER_MODE
-
 
 ..  _configuration_reference_sharding_roles:
 
@@ -3569,7 +3590,6 @@ The ``sharding`` section defines configuration parameters related to :ref:`shard
     | Default: nil
     | Environment variable: TT_SHARDING_ROLES
 
-
 ..  _configuration_reference_sharding_sched_move_quota:
 
 ..  confval:: sharding.sched_move_quota
@@ -3589,7 +3609,6 @@ The ``sharding`` section defines configuration parameters related to :ref:`shard
     | Type: number
     | Default: 1
     | Environment variable: TT_SHARDING_SCHED_MOVE_QUOTA
-
 
 ..  _configuration_reference_sharding_sched_ref_quota:
 
@@ -3612,7 +3631,6 @@ The ``sharding`` section defines configuration parameters related to :ref:`shard
     | Default: 300
     | Environment variable: TT_SHARDING_SCHED_REF_QUOTA
 
-
 ..  _configuration_reference_sharding_shard_index:
 
 ..  confval:: sharding.shard_index
@@ -3633,7 +3651,6 @@ The ``sharding`` section defines configuration parameters related to :ref:`shard
     | Default: 'bucket_id'
     | Environment variable: TT_SHARDING_SHARD_INDEX
 
-
 ..  _configuration_reference_sharding_sync_timeout:
 
 ..  confval:: sharding.sync_timeout
@@ -3649,7 +3666,6 @@ The ``sharding`` section defines configuration parameters related to :ref:`shard
     | Type: number
     | Default: 1
     | Environment variable: TT_SHARDING_SYNC_TIMEOUT
-
 
 ..  _configuration_reference_sharding_weight:
 
@@ -3669,7 +3685,6 @@ The ``sharding`` section defines configuration parameters related to :ref:`shard
     | Default: 1
     | Environment variable: TT_SHARDING_WEIGHT
 
-
 ..  _configuration_reference_sharding_zone:
 
 ..  confval:: sharding.zone
@@ -3685,11 +3700,6 @@ The ``sharding`` section defines configuration parameters related to :ref:`shard
     | Type: integer
     | Default: nil
     | Environment variable: TT_SHARDING_ZONE
-
-
-
-
-
 
 ..  _configuration_reference_snapshot:
 
@@ -3860,7 +3870,6 @@ To learn more about the WAL configuration, check the :ref:`Persistence <configur
     don't need to download all the data again.
     Once all the nodes in the replica set are up and running, a scheduled garbage collection is started again
     even if ``wal.cleanup_delay`` has not expired.
-
 
     ..  NOTE::
 
