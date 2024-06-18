@@ -1238,8 +1238,8 @@ The ``fiber`` section describes options related to configuring :ref:`fibers, yie
 
 ..  confval:: fiber.io_collect_interval
 
-    The time period (in seconds) a :ref:`fiber <app-fibers>` will sleep
-    between iterations of the event loop.
+    The time period (in seconds) a :ref:`fiber <app-fibers>` sleeps between
+    iterations of the event loop.
 
     ``fiber.io_collect_interval`` can be used to reduce CPU load in deployments
     where the number of client connections is large, but requests are not so frequent
@@ -1285,14 +1285,12 @@ The ``fiber`` section describes options related to configuring :ref:`fibers, yie
 fiber.slice.*
 ~~~~~~~~~~~~~
 
-This section describes options related to configuring
+This section describes options related to configuring time periods for
 :ref:`fiber slices <fibers_limit_execution_time>`.
 See :ref:`fiber.set_max_slice <fiber-set_max_slice>` for details and examples.
 
-*   ``fiber.slice``
-
-    * :ref:`fiber.slice.warn <configuration_reference_fiber_slice_warn>`
-    * :ref:`fiber.slice.err <configuration_reference_fiber_slice_err>`
+* :ref:`fiber.slice.warn <configuration_reference_fiber_slice_warn>`
+* :ref:`fiber.slice.err <configuration_reference_fiber_slice_err>`
 
 ..  _configuration_reference_fiber_slice_warn:
 
@@ -1325,9 +1323,7 @@ This section describes options related to configuring the
 :ref:`fiber.top() <fiber-top>` function, normally used for debug purposes.
 ``fiber.top()`` shows all alive fibers and their CPU consumption.
 
-*   ``fiber.top``
-
-    * :ref:`fiber.top.enabled <configuration_reference_fiber_top_enabled>`
+* :ref:`fiber.top.enabled <configuration_reference_fiber_top_enabled>`
 
 ..  _configuration_reference_fiber_top_enabled:
 
