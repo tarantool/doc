@@ -3824,8 +3824,6 @@ snapshot.by.*
     | Default: 10^18
     | Environment variable: TT_SNAPSHOT_BY_WAL_SIZE
 
-???
-
 ..  _configuration_reference_vinyl:
 
 vinyl
@@ -3845,7 +3843,7 @@ The ``vinyl`` section defines configuration parameters related to the
 -   :ref:`vinyl.max_tuple_size <configuration_reference_vinyl_max_tuple_size>`
 -   :ref:`vinyl.memory <configuration_reference_vinyl_memory>`
 -   :ref:`vinyl.page_size <configuration_reference_vinyl_page_size>`
--   :ref:`vinyl.range_size <configuration_reference_vinyl_>`
+-   :ref:`vinyl.range_size <configuration_reference_vinyl_range_size>`
 -   :ref:`vinyl.read_threads <configuration_reference_vinyl_read_threads>`
 -   :ref:`vinyl.run_count_per_level <configuration_reference_vinyl_run_count_per_level>`
 -   :ref:`vinyl.run_size_ratio <configuration_reference_vinyl_run_size_ratio>`
@@ -3863,7 +3861,7 @@ The ``vinyl`` section defines configuration parameters related to the
     options in the :ref:`Options for space_object:create_index() <box_space-create_index>` chart.
 
     |
-    | Type: float
+    | Type: number
     | Default: 0.05
     | Environment variable: TT_VINYL_BLOOM_FPR
 
@@ -3904,7 +3902,7 @@ The ``vinyl`` section defines configuration parameters related to the
 
     |
     | Type: string
-    | Default: var/lib/{{ instance_name }}'
+    | Default: 'var/lib/{{ instance_name }}'
     | Environment variable: TT_VINYL_DIR
 
 ..  _configuration_reference_vinyl_max_tuple_size:
@@ -3914,7 +3912,8 @@ The ``vinyl`` section defines configuration parameters related to the
     Size of the largest allocation unit,
     for the vinyl storage engine. It can be increased if it
     is necessary to store large tuples.
-    See also: :ref:`memtx.max_tuple_size <configuration_reference_memtx_max_tuple_size>`.
+
+    See also: :ref:`memtx.max_tuple_size <configuration_reference_memtx_max_size>`.
 
     |
     | Type: integer
@@ -3929,7 +3928,7 @@ The ``vinyl`` section defines configuration parameters related to the
 
     |
     | Type: integer
-    | Default: 28 * 1024 * 1024
+    | Default: 128 * 1024 * 1024
     | Environment variable: TT_VINYL_MEMORY
 
 ..  _configuration_reference_vinyl_page_size:
@@ -3953,19 +3952,19 @@ The ``vinyl`` section defines configuration parameters related to the
     The maximum range size affects the decision whether to
     :ref:`split <engines-vinyl_split>` a range.
 
-    If ``vinyl.range_size`` is not nil and not 0, then
-    it is used as the
-    default value for the ``range_size`` option in the
+    If ``vinyl.range_size`` is specified (but the value is not ``null`` or 0), then
+    it is used as the default value for the ``range_size`` option in the
     :ref:`Options for space_object:create_index() <box_space-create_index>` chart.
 
-    If ``vinyl.range_size`` is nil or 0, and ``range_size`` is not specified
-    when the index is created, then Tarantool sets a value later depending on
-    performance considerations. To see the actual value, use
+    If ``vinyl.range_size`` is not specified (or is explicitly set to ``null`` or 0),
+    and ``range_size`` is not specified when the index is created,
+    then Tarantool sets a value later depending on performance considerations.
+    To see the actual value, use
     :doc:`index_object:stat().range_size </reference/reference_lua/box_index/stat>`.
 
     |
     | Type: integer
-    | Default: box.NULL
+    | Default: box.NULL (means that an effective default is determined in runtime)
     | Environment variable: TT_VINYL_RANGE_SIZE
 
 ..  _configuration_reference_vinyl_read_threads:
@@ -4003,7 +4002,7 @@ The ``vinyl`` section defines configuration parameters related to the
     options in the :ref:`Options for space_object:create_index() <box_space-create_index>` chart.
 
     |
-    | Type: float
+    | Type: number
     | Default: 3.5
     | Environment variable: TT_VINYL_RUN_SIZE_RATIO
 
@@ -4014,7 +4013,7 @@ The ``vinyl`` section defines configuration parameters related to the
     The vinyl storage engine has a scheduler which does compaction.
     When vinyl is low on available memory, the compaction scheduler
     may be unable to keep up with incoming update requests.
-    In that situation, queries may time out after ``vinyl_timeout`` seconds.
+    In that situation, queries may time out after ``vinyl.timeout`` seconds.
     This should rarely occur, since normally vinyl
     would throttle inserts when it is running low on compaction bandwidth.
     Compaction can also be ordered manually with
