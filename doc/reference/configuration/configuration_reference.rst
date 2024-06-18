@@ -1238,8 +1238,10 @@ The ``fiber`` section describes options related to configuring :ref:`fibers, yie
 
 ..  confval:: fiber.io_collect_interval
 
-    The :ref:`fiber <app-fibers>` will sleep for the defined number of seconds
-    between iterations of the event loop. Can be used to reduce CPU load in deployments
+    The time period (in seconds) a :ref:`fiber <app-fibers>` will sleep
+    between iterations of the event loop.
+
+    ``fiber.io_collect_interval`` can be used to reduce CPU load in deployments
     where the number of client connections is large, but requests are not so frequent
     (for example, each connection issues just a handful of requests per second).
 
@@ -1252,10 +1254,12 @@ The ``fiber`` section describes options related to configuring :ref:`fibers, yie
 
 ..  confval:: fiber.too_long_threshold
 
-    If processing a request takes longer than the given value (in seconds),
+    If processing a request takes longer than the given period (in seconds),
     the fiber warns about it in the log.
-    Has effect only if :ref:`log.level <configuration_reference_log_level>`
-    is greater than or equal to 4 (``warn``).
+
+    ``fiber.too_long_threshold`` has effect only if
+    :ref:`log.level <configuration_reference_log_level>` is greater than
+    or equal to 4 (``warn``).
 
     |
     | Type: number
@@ -1267,7 +1271,7 @@ The ``fiber`` section describes options related to configuring :ref:`fibers, yie
 ..  confval:: fiber.worker_pool_threads
 
     The maximum number of threads to use during execution
-    of certain internal processes (currently
+    of certain internal processes (for example,
     :ref:`socket.getaddrinfo() <socket-getaddrinfo>` and
     :ref:`coio_call() <c_api-coio-coio_call>`).
 
@@ -1283,23 +1287,12 @@ fiber.slice.*
 
 This section describes options related to configuring
 :ref:`fiber slices <fibers_limit_execution_time>`.
+See :ref:`fiber.set_max_slice <fiber-set_max_slice>` for details and examples.
 
-*   :ref:`fiber.slice <configuration_reference_fiber_slice>`
+*   ``fiber.slice``
 
     * :ref:`fiber.slice.warn <configuration_reference_fiber_slice_warn>`
     * :ref:`fiber.slice.err <configuration_reference_fiber_slice_err>`
-
-..  _configuration_reference_fiber_slice:
-
-..  confval:: fiber.slice
-
-    Set timings for all types of fiber slices.
-    See :ref:`fiber.set_max_slice <fiber-set_max_slice>` for details and examples.
-
-    |
-    | Type: map
-    | Default: nil
-    | Environment variable: TT_FIBER_SLICE
 
 ..  _configuration_reference_fiber_slice_warn:
 
@@ -1330,21 +1323,11 @@ fiber.top.*
 
 This section describes options related to configuring the
 :ref:`fiber.top() <fiber-top>` function, normally used for debug purposes.
+``fiber.top()`` shows all alive fibers and their CPU consumption.
 
-*   :ref:`fiber.top <configuration_reference_fiber_top>`
+*   ``fiber.top``
 
     * :ref:`fiber.top.enabled <configuration_reference_fiber_top_enabled>`
-
-..  _configuration_reference_fiber_top:
-
-..  confval:: fiber.top
-
-    ``fiber.top()`` shows all alive fibers and their CPU consumption.
-
-    |
-    | Type: map
-    | Default: nil
-    | Environment variable: TT_FIBER_TOP
 
 ..  _configuration_reference_fiber_top_enabled:
 
