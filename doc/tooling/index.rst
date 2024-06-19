@@ -10,6 +10,4 @@ to work with Tarantool.
     tt_cli/index
     tcm/index
     interactive_console
-    tarantoolctl
-    luajit_memprof
-    luajit_getmetrics
+    luajit

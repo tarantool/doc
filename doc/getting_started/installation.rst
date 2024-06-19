@@ -1,7 +1,7 @@
 .. _tarantool_installation:
 
-Installation
-============
+Installing Tarantool
+====================
 
 This section explains how to download and set up Tarantool Enterprise Edition and run
 a sample application provided with it.

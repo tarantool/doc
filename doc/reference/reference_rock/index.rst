@@ -1,8 +1,8 @@
 :noindex:
 :fullwidth:
 
-Rocks reference
-===============
+Third-party modules Lua API reference
+=====================================
 
 This reference covers third-party Lua modules for Tarantool.
 

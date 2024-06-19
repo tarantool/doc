@@ -1,7 +1,7 @@
 .. _admin-security:
 
 ================================================================================
-Security
+Administrative console
 ================================================================================
 
 Tarantool allows for two types of connections:

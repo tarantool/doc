@@ -21,8 +21,8 @@ This chapter documents APIs for various programming languages:
     go
     java
     python
-    community
     getting_started_connectors
+    community
 
 Protocol
 --------
