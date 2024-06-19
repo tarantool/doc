@@ -3830,7 +3830,7 @@ vinyl
 -----
 
 The ``vinyl`` section defines configuration parameters related to the
-:ref:`vinyl storage engine <internals-vinyl>`.
+:ref:`vinyl storage engine <engines-vinyl>`.
 
 ..  NOTE::
 
