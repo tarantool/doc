@@ -3854,11 +3854,12 @@ The ``vinyl`` section defines configuration parameters related to the
 
 ..  confval:: vinyl.bloom_fpr
 
-    Bloom filter false positive rate -- the suitable probability of the
+    A bloom filter's false positive rate -- the suitable probability of the
     `bloom filter <https://en.wikipedia.org/wiki/Bloom_filter>`_
     to give a wrong result.
-    The ``vinyl.bloom_fpr`` setting is a default value for one of the
-    options in the :ref:`Options for space_object:create_index() <box_space-create_index>` chart.
+    The ``vinyl.bloom_fpr`` setting is a default value for the
+    :ref:`bloom_fpr <index_opts_bloom_fpr>`
+    option passed to ``space_object:create_index()``.
 
     |
     | Type: number
@@ -3909,9 +3910,8 @@ The ``vinyl`` section defines configuration parameters related to the
 
 ..  confval:: vinyl.max_tuple_size
 
-    Size of the largest allocation unit,
-    for the vinyl storage engine. It can be increased if it
-    is necessary to store large tuples.
+    The size of the largest allocation unit, for the vinyl storage engine.
+    It can be increased if it is necessary to store large tuples.
 
     See also: :ref:`memtx.max_tuple_size <configuration_reference_memtx_max_size>`.
 
@@ -3935,9 +3935,10 @@ The ``vinyl`` section defines configuration parameters related to the
 
 ..  confval:: vinyl.page_size
 
-    Page size. Page is a read/write unit for vinyl disk operations.
-    The ``vinyl.page_size`` setting is a default value for one of the
-    options in the :ref:`Options for space_object:create_index() <box_space-create_index>` chart.
+    The page size. A page is a read/write unit for vinyl disk operations.
+    The ``vinyl.page_size`` setting is a default value
+    for the :ref:`page_size <index_opts_page_size>`
+    option passed to ``space_object:create_index()``.
 
     |
     | Type: integer
@@ -3949,12 +3950,13 @@ The ``vinyl`` section defines configuration parameters related to the
 ..  confval:: vinyl.range_size
 
     The default maximum range size for a vinyl index, in bytes.
-    The maximum range size affects the decision whether to
+    The maximum range size affects the decision of whether to
     :ref:`split <engines-vinyl_split>` a range.
 
     If ``vinyl.range_size`` is specified (but the value is not ``null`` or 0), then
-    it is used as the default value for the ``range_size`` option in the
-    :ref:`Options for space_object:create_index() <box_space-create_index>` chart.
+    it is used as the default value for the
+    :ref:`range_size <index_opts_range_size>`
+    option passed to ``space_object:create_index()``.
 
     If ``vinyl.range_size`` is not specified (or is explicitly set to ``null`` or 0),
     and ``range_size`` is not specified when the index is created,
@@ -3971,7 +3973,7 @@ The ``vinyl`` section defines configuration parameters related to the
 
 ..  confval:: vinyl.read_threads
 
-    The maximum number of read threads that vinyl can use for some
+    The maximum number of read threads that vinyl can use for
     concurrent operations, such as I/O and compression.
 
     |
@@ -3983,10 +3985,11 @@ The ``vinyl`` section defines configuration parameters related to the
 
 ..  confval:: vinyl.run_count_per_level
 
-    The maximal number of runs per level in vinyl LSM tree.
+    The maximum number of runs per level in the vinyl LSM tree.
     If this number is exceeded, a new level is created.
-    The ``vinyl.run_count_per_level`` setting is a default value for one of the
-    options in the :ref:`Options for space_object:create_index() <box_space-create_index>` chart.
+    The ``vinyl.run_count_per_level`` setting is a default value for the
+    :ref:`run_count_per_level <index_opts_run_count_per_level>`
+    option passed to ``space_object:create_index()``.
 
     |
     | Type: integer
@@ -3997,9 +4000,10 @@ The ``vinyl`` section defines configuration parameters related to the
 
 ..  confval:: vinyl.run_size_ratio
 
-    Ratio between the sizes of different levels in the LSM tree.
-    The ``vinyl.run_size_ratio`` setting is a default value for one of the
-    options in the :ref:`Options for space_object:create_index() <box_space-create_index>` chart.
+    The ratio between the sizes of different levels in the LSM tree.
+    The ``vinyl.run_size_ratio`` setting is a default value for the
+    :ref:`run_size_ratio <index_opts_run_size_ratio>`
+    option passed to ``space_object:create_index()``.
 
     |
     | Type: number
@@ -4010,13 +4014,13 @@ The ``vinyl`` section defines configuration parameters related to the
 
 ..  confval:: vinyl.timeout
 
-    The vinyl storage engine has a scheduler which does compaction.
+    The vinyl storage engine has a scheduler that performs compaction.
     When vinyl is low on available memory, the compaction scheduler
     may be unable to keep up with incoming update requests.
     In that situation, queries may time out after ``vinyl.timeout`` seconds.
     This should rarely occur, since normally vinyl
-    would throttle inserts when it is running low on compaction bandwidth.
-    Compaction can also be ordered manually with
+    throttles inserts when it is running low on compaction bandwidth.
+    Compaction can also be initiated manually with
     :doc:`/reference/reference_lua/box_index/compact`.
 
     |
