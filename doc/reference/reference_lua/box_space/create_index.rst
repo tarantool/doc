@@ -3,7 +3,6 @@
 space_object:create_index()
 ===========================
 
-
 ..  class:: space_object
 
     ..  method:: create_index(index-name [, index_opts ])
@@ -43,13 +42,10 @@ space_object:create_index()
             :lines: 20-40
             :dedent:
 
-
-
 .. _index_opts_object:
 
 index_opts
 ----------
-
 
 ..  class:: index_opts
 
@@ -66,10 +62,10 @@ index_opts
 
         The :ref:`index type <index-types>`.
 
+        |
         | Type: string
         | Default: ``TREE``
         | Possible values: ``TREE``, ``HASH``, ``RTREE``, ``BITSET``
-
 
     ..  _index_opts_id:
 
@@ -77,9 +73,9 @@ index_opts
 
         A unique numeric identifier of the index, which is generated automatically.
 
+        |
         | Type: number
         | Default: last index's ID + 1
-
 
     ..  _index_opts_unique:
 
@@ -88,6 +84,7 @@ index_opts
         Specify whether an index may be unique.
         When ``true``, the index cannot contain the same key value twice.
 
+        |
         | Type: boolean
         | Default: ``true``
 
@@ -98,16 +95,15 @@ index_opts
             :lines: 36-37
             :dedent:
 
-
     ..  _index_opts_if_not_exists:
 
     .. data:: if_not_exists
 
         Specify whether to swallow an error on an attempt to create an index with a duplicated name.
 
+        |
         | Type: boolean
         | Default: ``false``
-
 
     ..  _index_opts_parts:
 
@@ -115,6 +111,7 @@ index_opts
 
         Specify the index's key parts.
 
+        |
         | Type: a table of :ref:`key_part <key_part_object>` values
         | Default: ``{1, ‘unsigned’}``
 
@@ -152,16 +149,15 @@ index_opts
                 -- without extra braces
                 my_space:create_index('one_part_idx', {parts = {1, 'unsigned', is_nullable=true}})
 
-
     ..  _index_opts_dimension:
 
     .. data:: dimension
 
         The RTREE index dimension.
 
+        |
         | Type: number
         | Default: 2
-
 
     ..  _index_opts_distance:
 
@@ -169,10 +165,10 @@ index_opts
 
         The RTREE index distance type.
 
+        |
         | Type: string
         | Default: ``euclid``
         | Possible values: ``euclid``, ``manhattan``
-
 
     ..  _index_opts_sequence:
 
@@ -181,8 +177,8 @@ index_opts
         Create a generator for indexes using a sequence object.
         Learn more from :ref:`specifying a sequence in create_index() <box_schema-sequence_create_index>`.
 
+        |
         | Type: string or number
-
 
     ..  _index_opts_func:
 
@@ -190,8 +186,8 @@ index_opts
 
         Specify the identifier of the :ref:`functional index <box_space-index_func>` function.
 
+        |
         | Type: string
-
 
     ..  _index_opts_hint:
 
@@ -204,9 +200,9 @@ index_opts
         *   If ``true``, the index works faster.
         *   If ``false``, the index size is reduced by half.
 
+        |
         | Type: boolean
         | Default: ``true``
-
 
     ..  _index_opts_bloom_fpr:
 
@@ -216,9 +212,9 @@ index_opts
 
         Specify the bloom filter's false positive rate.
 
+        |
         | Type: number
-        | Default: :ref:`vinyl_bloom_fpr <cfg_storage-vinyl_bloom_fpr>`
-
+        | Default: :ref:`vinyl.bloom_fpr <configuration_reference_vinyl_bloom_fpr>`
 
     ..  _index_opts_page_size:
 
@@ -228,9 +224,9 @@ index_opts
 
         Specify the size of a page used for read and write disk operations.
 
+        |
         | Type: number
-        | Default: :ref:`vinyl_page_size <cfg_storage-vinyl_page_size>`
-
+        | Default: :ref:`vinyl.page_size <configuration_reference_vinyl_page_size>`
 
     ..  _index_opts_range_size:
 
@@ -240,9 +236,9 @@ index_opts
 
         Specify the default maximum range size (in bytes) for a vinyl index.
 
+        |
         | Type: number
-        | Default: :ref:`vinyl_range_size <cfg_storage-vinyl_range_size>`
-
+        | Default: :ref:`vinyl.range_size <configuration_reference_vinyl_range_size>`
 
     ..  _index_opts_run_count_per_level:
 
@@ -252,9 +248,9 @@ index_opts
 
         Specify the maximum number of runs per level in the LSM tree.
 
+        |
         | Type: number
-        | Default: :ref:`vinyl_run_count_per_level <cfg_storage-vinyl_run_count_per_level>`
-
+        | Default: :ref:`vinyl.run_count_per_level <configuration_reference_vinyl_run_count_per_level>`
 
     ..  _index_opts_run_size_ratio:
 
@@ -264,12 +260,9 @@ index_opts
 
         Specify the ratio between the sizes of different levels in the LSM tree.
 
+        |
         | Type: number
-        | Default: :ref:`vinyl_run_size_ratio <cfg_storage-vinyl_run_size_ratio>`
-
-
-
-
+        | Default: :ref:`vinyl.run_size_ratio <configuration_reference_vinyl_run_size_ratio>`
 
 .. _key_part_object:
 
@@ -291,10 +284,10 @@ key_part
 
             To create a key part by a field name, you need to specify :ref:`space_object:format() <box_space-format>` first.
 
+        |
         | Type: string or number
 
         **Examples:** :ref:`Creating an index using field names and numbers <box_space-field_names>`
-
 
     ..  _key_part_field_type:
 
@@ -304,10 +297,10 @@ key_part
         If the field type is specified in :ref:`space_object:format() <box_space-format>`,
         ``key_part.type`` inherits this value.
 
+        |
         | Type: string
         | Default: ``scalar``
         | Possible values: listed in :ref:`Indexed field types <index-box_indexed-field-types>`
-
 
     ..  _key_part_collation:
 
@@ -317,6 +310,7 @@ key_part
         If the field collation is specified in :ref:`space_object:format() <box_space-format>`,
         ``key_part.collation`` inherits this value.
 
+        |
         | Type: string
         | Possible values: listed in the :ref:`box.space._collation <box_space-collation>` system space
 
@@ -345,9 +339,9 @@ key_part
         values and are always treated as less than non-null values.
         Nulls may appear multiple times even in a unique index.
 
+        |
         | Type: boolean
         | Default: false
-
 
         **Example:**
 
@@ -362,7 +356,6 @@ key_part
             with a different ``is_nullable`` value from what is used for an index.
             When there is a contradiction, the rule is: null is illegal unless
             ``is_nullable=true`` for every index and for the space format.
-
 
     ..  _key_part_exclude_null:
 
@@ -382,10 +375,9 @@ key_part
 
         Such indexes do not store filtered tuples at all, so indexing can be done faster.
 
+        |
         | Type: boolean
         | Default: false
-
-
 
     ..  _key_part_path:
 
@@ -393,33 +385,13 @@ key_part
 
         Specify the path string for a map field.
 
+        |
         | Type: string
 
         See the examples below:
 
         *   :ref:`Creating an index using the path option for map fields <box_space-path>`
         *   :ref:`Creating a multikey index using the path option with [*] <box_space-path_multikey>`
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .. _create_index_examples:
 
@@ -431,9 +403,7 @@ Examples
 Creating an index using field names and numbers
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
 ``create_index()`` can use field names or field numbers to define key parts.
-
 
 **Example 1 (field names):**
 
@@ -450,8 +420,6 @@ To create a key part by a field name, you need to specify :ref:`space_object:for
     :language: lua
     :lines: 30-40
     :dedent:
-
-
 
 ..  _box_space-path:
 
@@ -482,8 +450,6 @@ must always be maps with the same path.
     :language: lua
     :lines: 27-32
     :dedent:
-
-
 
 ..  _box_space-path_multikey:
 
@@ -595,7 +561,6 @@ A function could make a key using only the first letter of a string field.
         :lines: 20-21
         :dedent:
 
-
 #.  Create a function. The function expects a tuple. In this example, it will
     work on tuple[2] because the key source is field number 2 in what we will
     insert. Use ``string.sub()`` from the ``string`` module to get the first character:
@@ -629,7 +594,6 @@ A function could make a key using only the first letter of a string field.
         :lines: 27-30
         :dedent:
 
-
     The results of the two ``select`` requests will look like this:
 
     ..  code-block:: tarantoolsession
@@ -649,7 +613,6 @@ Here is the full code of the example:
         :language: lua
         :lines: 20-30
         :dedent:
-
 
 ..  _box_space-index_func_multikey:
 

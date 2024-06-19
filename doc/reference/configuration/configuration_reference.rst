@@ -3834,6 +3834,220 @@ snapshot.by.*
     | Default: 10^18
     | Environment variable: TT_SNAPSHOT_BY_WAL_SIZE
 
+..  _configuration_reference_vinyl:
+
+vinyl
+-----
+
+The ``vinyl`` section defines configuration parameters related to the
+:ref:`vinyl storage engine <engines-vinyl>`.
+
+..  NOTE::
+
+    ``vinyl`` can be defined in any :ref:`scope <configuration_scopes>`.
+
+-   :ref:`vinyl.bloom_fpr <configuration_reference_vinyl_bloom_fpr>`
+-   :ref:`vinyl.cache <configuration_reference_vinyl_cache>`
+-   :ref:`vinyl.defer_deletes <configuration_reference_vinyl_defer_deletes>`
+-   :ref:`vinyl.dir <configuration_reference_vinyl_dir>`
+-   :ref:`vinyl.max_tuple_size <configuration_reference_vinyl_max_tuple_size>`
+-   :ref:`vinyl.memory <configuration_reference_vinyl_memory>`
+-   :ref:`vinyl.page_size <configuration_reference_vinyl_page_size>`
+-   :ref:`vinyl.range_size <configuration_reference_vinyl_range_size>`
+-   :ref:`vinyl.read_threads <configuration_reference_vinyl_read_threads>`
+-   :ref:`vinyl.run_count_per_level <configuration_reference_vinyl_run_count_per_level>`
+-   :ref:`vinyl.run_size_ratio <configuration_reference_vinyl_run_size_ratio>`
+-   :ref:`vinyl.timeout <configuration_reference_vinyl_timeout>`
+-   :ref:`vinyl.write_threads <configuration_reference_vinyl_write_threads>`
+
+..  _configuration_reference_vinyl_bloom_fpr:
+
+..  confval:: vinyl.bloom_fpr
+
+    A bloom filter's false positive rate -- the suitable probability of the
+    `bloom filter <https://en.wikipedia.org/wiki/Bloom_filter>`_
+    to give a wrong result.
+    The ``vinyl.bloom_fpr`` setting is a default value for the
+    :ref:`bloom_fpr <index_opts_bloom_fpr>`
+    option passed to ``space_object:create_index()``.
+
+    |
+    | Type: number
+    | Default: 0.05
+    | Environment variable: TT_VINYL_BLOOM_FPR
+
+..  _configuration_reference_vinyl_cache:
+
+..  confval:: vinyl.cache
+
+    The cache size for the vinyl storage engine. The cache can
+    be resized dynamically.
+
+    |
+    | Type: integer
+    | Default: 128 * 1024 * 1024
+    | Environment variable: TT_VINYL_CACHE
+
+..  _configuration_reference_vinyl_defer_deletes:
+
+..  confval:: vinyl.defer_deletes
+
+    Enable the deferred DELETE optimization in vinyl. It was disabled by default
+    since Tarantool version 2.10 to avoid possible performance degradation
+    of secondary index reads.
+
+    |
+    | Type: boolean
+    | Default: false
+    | Environment variable: TT_VINYL_DEFER_DELETES
+
+..  _configuration_reference_vinyl_dir:
+
+..  confval:: vinyl.dir
+
+    A directory where vinyl files or subdirectories will be stored.
+
+    This option may contain a relative file path.
+    In this case, it is interpreted as relative to
+    :ref:`process.work_dir <configuration_reference_process_work_dir>`.
+
+    |
+    | Type: string
+    | Default: 'var/lib/{{ instance_name }}'
+    | Environment variable: TT_VINYL_DIR
+
+..  _configuration_reference_vinyl_max_tuple_size:
+
+..  confval:: vinyl.max_tuple_size
+
+    The size of the largest allocation unit, for the vinyl storage engine.
+    It can be increased if it is necessary to store large tuples.
+
+    |
+    | Type: integer
+    | Default: 1024 * 1024
+    | Environment variable: TT_VINYL_MAX_TUPLE_SIZE
+
+..  _configuration_reference_vinyl_memory:
+
+..  confval:: vinyl.memory
+
+    The maximum number of in-memory bytes that vinyl uses.
+
+    |
+    | Type: integer
+    | Default: 128 * 1024 * 1024
+    | Environment variable: TT_VINYL_MEMORY
+
+..  _configuration_reference_vinyl_page_size:
+
+..  confval:: vinyl.page_size
+
+    The page size. A page is a read/write unit for vinyl disk operations.
+    The ``vinyl.page_size`` setting is a default value
+    for the :ref:`page_size <index_opts_page_size>`
+    option passed to ``space_object:create_index()``.
+
+    |
+    | Type: integer
+    | Default: 8 * 1024
+    | Environment variable: TT_VINYL_PAGE_SIZE
+
+..  _configuration_reference_vinyl_range_size:
+
+..  confval:: vinyl.range_size
+
+    The default maximum range size for a vinyl index, in bytes.
+    The maximum range size affects the decision of whether to
+    :ref:`split <engines-vinyl_split>` a range.
+
+    If ``vinyl.range_size`` is specified (but the value is not ``null`` or 0), then
+    it is used as the default value for the
+    :ref:`range_size <index_opts_range_size>`
+    option passed to ``space_object:create_index()``.
+
+    If ``vinyl.range_size`` is not specified (or is explicitly set to ``null`` or 0),
+    and ``range_size`` is not specified when the index is created,
+    then Tarantool sets a value later depending on performance considerations.
+    To see the actual value, use
+    :doc:`index_object:stat().range_size </reference/reference_lua/box_index/stat>`.
+
+    |
+    | Type: integer
+    | Default: box.NULL (means that an effective default is determined in runtime)
+    | Environment variable: TT_VINYL_RANGE_SIZE
+
+..  _configuration_reference_vinyl_read_threads:
+
+..  confval:: vinyl.read_threads
+
+    The maximum number of read threads that vinyl can use for
+    concurrent operations, such as I/O and compression.
+
+    |
+    | Type: integer
+    | Default: 1
+    | Environment variable: TT_VINYL_READ_THREADS
+
+..  _configuration_reference_vinyl_run_count_per_level:
+
+..  confval:: vinyl.run_count_per_level
+
+    The maximum number of runs per level in the vinyl LSM tree.
+    If this number is exceeded, a new level is created.
+    The ``vinyl.run_count_per_level`` setting is a default value for the
+    :ref:`run_count_per_level <index_opts_run_count_per_level>`
+    option passed to ``space_object:create_index()``.
+
+    |
+    | Type: integer
+    | Default: 2
+    | Environment variable: TT_VINYL_RUN_COUNT_PER_LEVEL
+
+..  _configuration_reference_vinyl_run_size_ratio:
+
+..  confval:: vinyl.run_size_ratio
+
+    The ratio between the sizes of different levels in the LSM tree.
+    The ``vinyl.run_size_ratio`` setting is a default value for the
+    :ref:`run_size_ratio <index_opts_run_size_ratio>`
+    option passed to ``space_object:create_index()``.
+
+    |
+    | Type: number
+    | Default: 3.5
+    | Environment variable: TT_VINYL_RUN_SIZE_RATIO
+
+..  _configuration_reference_vinyl_timeout:
+
+..  confval:: vinyl.timeout
+
+    The vinyl storage engine has a scheduler that performs compaction.
+    When vinyl is low on available memory, the compaction scheduler
+    may be unable to keep up with incoming update requests.
+    In that situation, queries may time out after ``vinyl.timeout`` seconds.
+    This should rarely occur, since normally vinyl
+    throttles inserts when it is running low on compaction bandwidth.
+    Compaction can also be initiated manually with
+    :doc:`/reference/reference_lua/box_index/compact`.
+
+    |
+    | Type: integer
+    | Default: 60
+    | Environment variable: TT_VINYL_TIMEOUT
+
+..  _configuration_reference_vinyl_write_threads:
+
+..  confval:: vinyl.write_threads
+
+    The maximum number of write threads that vinyl can use for some
+    concurrent operations, such as I/O and compression.
+
+    |
+    | Type: integer
+    | Default: 4
+    | Environment variable: TT_VINYL_WRITE_THREADS
+
 ..  _configuration_reference_wal:
 
 wal
