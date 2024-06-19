@@ -11,7 +11,7 @@ Supervised failover
 **Example on GitHub**: `supervised_failover <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/replication/instances.enabled/supervised_failover>`_
 
 Tarantool provides the ability to control leadership in a replica set using an external failover coordinator.
-A failover coordinator reads a cluster configuration from a file or an :ref:`etcd-based configuration storage <configuration_etcd>`, polls instances for their statuses, and appoints a leader for each replica set depending on availability and health or instances.
+A failover coordinator reads a cluster configuration from a file or an :ref:`etcd-based configuration storage <configuration_etcd>`, polls instances for their statuses, and appoints a leader for each replica set depending on availability and health of instances.
 To increase fault tolerance, you can run two or more failover coordinators and store their state in etcd.
 
 
