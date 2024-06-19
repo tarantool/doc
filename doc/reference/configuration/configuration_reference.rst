@@ -3913,8 +3913,6 @@ The ``vinyl`` section defines configuration parameters related to the
     The size of the largest allocation unit, for the vinyl storage engine.
     It can be increased if it is necessary to store large tuples.
 
-    See also: :ref:`memtx.max_tuple_size <configuration_reference_memtx_max_size>`.
-
     |
     | Type: integer
     | Default: 1024 * 1024
