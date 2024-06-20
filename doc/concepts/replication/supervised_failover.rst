@@ -43,48 +43,37 @@ The main steps of using an external failover coordinator for a newly configured 
     -   If a replica set is not bootstrapped, one instance is started in read-write mode.
 
 3.  :ref:`Start a failover coordinator <supervised_failover_start_coordinator>`.
-    You can start two or more failover coordinators to increase :ref:`fault tolerance <supervised_failover_overview_fault_tolerance>`.
+    You can start two or more failover coordinators to increase fault tolerance.
     In this case, one coordinator is active and others are passive.
 
-Once a cluster and failover coordinators are up and running, a failover coordinator :ref:`appoints one instance to be a master <supervised_failover_overview_appoint_master>` if there is no master instance in a replica set.
+Once a cluster and failover coordinators are up and running, a failover coordinator appoints one instance to be a master if there is no master instance in a replica set.
 Then, the following events may occur:
 
 -   If a master instance fails, a failover coordinator performs an automated failover.
 -   If an active failover coordinator fails, another coordinator becomes active and performs an automated failover.
 
+..  NOTE::
+
+    Note that a failover coordinator doesn't work with replica sets with two or more read-write instances.
+    In this case, a coordinator logs a warning to stdout and doesn't perform any appointments.
+
+
 
 .. _supervised_failover_overview_appoint_master:
 
-Appointing a master instance
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Appointing a new a master instance
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-A failover coordinator monitors the statuses of instances by sending requests to instances each :ref:`probe_interval <configuration_reference_failover_probe_interval>` seconds.
-To switch an instance to read-write mode, a coordinator uses so-called appointments.
-For each appointment, there is a read-write mode deadline, which is renewed periodically each :ref:`renew_interval <configuration_reference_failover_renew_interval>` seconds.
-If all attempts to renew the deadline fail during the specified time interval (:ref:`lease_interval <configuration_reference_failover_lease_interval>`), a leader switches to read-only mode.
-A failover coordinator uses read-write mode deadlines to prevent the existence of two read-write instances in a replica set during an automated failover.
-
-A failover coordinator appoints a master instance as follows:
-
--   If all instances in a replica set are alive and there is no read-write instance, a failover coordinator appoints one to be a master instance.
-
--   If a replica set has one alive read-write instance, the following situations are possible:
-
-    -   If there is no appointment, a coordinator creates a new one.
-    -   If there is an appointment, a coordinator renews it in the background.
-
--   If an appointed instance is unavailable, a coordinator waits for its deadline, then chooses a new master and creates an appointment.
-
-Note that a failover coordinator doesn't work with replica sets with two or more read-write instances.
-In this case, a coordinator logs a warning to stdout and doesn't perform any appointments.
-
-..  NOTE::
-
-    If a remote etcd-based storage is used to maintain the state of failover coordinators, you can also perform a :ref:`manual failover <supervised_failover_manual>`.
+After a master instance has been appointed, a failover coordinator monitors the statuses of all instances in a replica set by sending requests each :ref:`probe_interval <configuration_reference_failover_probe_interval>` seconds.
+For the master instance, the coordinator maintains a read-write mode deadline, which is renewed periodically each :ref:`renew_interval <configuration_reference_failover_renew_interval>` seconds.
+If all attempts to renew the deadline fail during the specified time interval (:ref:`lease_interval <configuration_reference_failover_lease_interval>`), the master switches to read-only mode.
+Then, the coordinator appoints a new instance as the master.
 
 ..  NOTE::
 
     :ref:`Anonymous replicas <configuration_reference_replication_anon>` are not considered as candidates to be a master.
+
+If a remote etcd-based storage is used to maintain the state of failover coordinators, you can also perform a :ref:`manual failover <supervised_failover_manual>`.
 
 
 
@@ -96,8 +85,7 @@ Active and passive coordinators
 
 To increase fault tolerance, you can :ref:`run <supervised_failover_start_coordinator>` two or more failover coordinators.
 In this case, only one coordinator is active and used to control leadership in a replica set.
-Other coordinators are passive.
-Passive coordinators don't perform any read-write appointments.
+Other coordinators are passive and don't perform any read-write appointments.
 
 To maintain the state of coordinators, Tarantool uses a stateboard -- a remote etcd-based storage.
 This storage uses the same connection settings as a :ref:`centralized etcd-based configuration storage <configuration_etcd>`.
