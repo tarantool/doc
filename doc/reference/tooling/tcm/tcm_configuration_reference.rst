@@ -1582,7 +1582,7 @@ etcd cluster is not available or not needed.
 
     |
     | Type: []string
-    | Default: []
+    | Default: ["unix/:/tmp/tnt_config_instance.sock"]
     | Environment variable: TCM_STORAGE_TARANTOOL_ADDRS
     | Command-line option: ``--storage.tarantool.addrs``
 
@@ -2086,7 +2086,7 @@ The ``security`` section defines the security parameters of |tcm|.
 -   :ref:`security.auth <tcm_configuration_reference_security_auth>`
 -   :ref:`security.hash-cost <tcm_configuration_reference_security_hash-cost>`
 -   :ref:`security.encryption-key <tcm_configuration_reference_security_encryption-key>`
--   :ref:`security.encryption-key-file <tcm_configuration_reference_security_encryption-key-file_>`
+-   :ref:`security.encryption-key-file <tcm_configuration_reference_security_encryption-key-file>`
 -   :ref:`security.bootstrap-password <tcm_configuration_reference_security_bootstrap-password>`
 -   :ref:`security.bootstrap-api-token <tcm_configuration_reference_security_bootstrap-api-token>`
 -   :ref:`security.integrity-check <tcm_configuration_reference_security_integrity-check>`
@@ -2151,8 +2151,7 @@ The ``security`` section defines the security parameters of |tcm|.
 
 .. confval:: security.bootstrap-password
 
-    A password for the first login of the ``admin`` user. Must be changed after the
-    successful login. Only for testing purposes.
+    A password for the first login of the ``admin`` user. Only for testing purposes.
 
     |
     | Type: string
@@ -2164,8 +2163,7 @@ The ``security`` section defines the security parameters of |tcm|.
 
 .. confval:: security.bootstrap-api-token
 
-    A default API token for the ``admin`` user. Must be changed after the
-    successful login. Only for testing purposes.
+    A default API token for the ``admin`` user. Only for testing purposes.
 
     |
     | Type: string
@@ -2173,7 +2171,7 @@ The ``security`` section defines the security parameters of |tcm|.
     | Environment variable: TCM_SECURITY_BOOTSTRAP_API_TOKEN
     | Command-line option: ``--security.bbootstrap-api-token``
 
-.. _tcm_configuration_security_signature-private-key-file:
+.. _tcm_configuration_reference_security_signature-private-key-file:
 
 .. confval:: security.signature-private-key-file
 
@@ -2185,7 +2183,7 @@ The ``security`` section defines the security parameters of |tcm|.
     | Environment variable: TCM_SECURITY_SIGNATURE_PRIVATE_KEY_FILE
     | Command-line option: ``--security.signature-private-key-file``
 
-.. _tcm_configuration_security_integrity-check:
+.. _tcm_configuration_reference_security_integrity-check:
 
 .. confval:: security.integrity-check
 
@@ -2234,7 +2232,7 @@ The ``feature`` section defines the security parameters of |tcm|.
 
 .. confval:: feature.ttgraph
 
-    Whether Tarantool Graph DB interaction is enabled.
+    Whether Tarantool Graph DB integration is enabled.
 
     |
     | Type: bool
@@ -2246,7 +2244,7 @@ The ``feature`` section defines the security parameters of |tcm|.
 
 .. confval:: feature.column-store
 
-    Whether Tarantool Column Store interaction is enabled.
+    Whether Tarantool Column Store integration is enabled.
 
     |
     | Type: bool
