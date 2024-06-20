@@ -1305,7 +1305,7 @@ See also: :ref:`supervised_failover_overview_fault_tolerance`
 
 ..  confval:: failover.stateboard.keepalive_interval
 
-    A time interval (in seconds) that specifies how long a transient state information is stored and how fast a lock is expired.
+    A time interval (in seconds) that specifies how long a transient state information is stored and how quickly a lock expires.
 
     ..  NOTE::
 
@@ -1321,7 +1321,7 @@ See also: :ref:`supervised_failover_overview_fault_tolerance`
 ..  confval:: failover.stateboard.renew_interval
 
     A time interval (in seconds) that specifies how often a failover coordinator writes its state information to etcd.
-    This option also specifies how often an active coordinator reads new commands from etcd.
+    This option also determines the frequency at which an active coordinator reads new commands from etcd.
 
     | Type: number
     | Default: 2

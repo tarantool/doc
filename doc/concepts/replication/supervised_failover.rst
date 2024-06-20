@@ -11,8 +11,19 @@ Supervised failover
 **Example on GitHub**: `supervised_failover <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/replication/instances.enabled/supervised_failover>`_
 
 Tarantool provides the ability to control leadership in a replica set using an external failover coordinator.
-A failover coordinator reads a cluster configuration from a file or an :ref:`etcd-based configuration storage <configuration_etcd>`, polls instances for their statuses, and appoints a leader for each replica set depending on availability and health of instances.
-To increase fault tolerance, you can run two or more failover coordinators and store their state in etcd.
+A failover coordinator reads a cluster configuration from a file or an :ref:`etcd-based configuration storage <configuration_etcd>`, polls instances for their statuses, and appoints a leader for each replica set depending on the availability and health of instances.
+
+To increase fault tolerance, you can run two or more failover coordinators.
+In this case, an etcd cluster provides synchronization between coordinators.
+
+|
+
+.. image:: images/tarantool_supervised_failover.png
+    :align: left
+    :width: 500
+    :alt: Supervised failover
+
+|
 
 
 .. _supervised_failover_overview:
@@ -35,11 +46,11 @@ The main steps of using an external failover coordinator for a newly configured 
     You can start two or more failover coordinators to increase :ref:`fault tolerance <supervised_failover_overview_fault_tolerance>`.
     In this case, one coordinator is active and others are passive.
 
-When a cluster and failover coordinators are up and running, a failover coordinator :ref:`appoints one instance to be a master <supervised_failover_overview_appoint_master>` if there is no master instance in a replica set.
+Once a cluster and failover coordinators are up and running, a failover coordinator :ref:`appoints one instance to be a master <supervised_failover_overview_appoint_master>` if there is no master instance in a replica set.
 Then, the following events may occur:
 
--   If a master instance fails, a failover coordinator performs an :ref:`automated failover <supervised_failover_overview_perform_failover>`.
--   If an active failover coordinator fails, another coordinator becomes active and performs read-write appointments.
+-   If a master instance fails, a failover coordinator performs an automated failover.
+-   If an active failover coordinator fails, another coordinator becomes active and performs an automated failover.
 
 
 .. _supervised_failover_overview_appoint_master:
@@ -47,35 +58,33 @@ Then, the following events may occur:
 Appointing a master instance
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-A failover coordinator uses so-called appointments to switch an instance to read-write mode.
-For each appointment, there is a read-write deadline, which is renewed periodically to prevent split-brain.
+A failover coordinator monitors the statuses of instances by sending requests to instances each :ref:`probe_interval <configuration_reference_failover_probe_interval>` seconds.
+To switch an instance to read-write mode, a coordinator uses so-called appointments.
+For each appointment, there is a read-write mode deadline, which is renewed periodically each :ref:`renew_interval <configuration_reference_failover_renew_interval>` seconds.
+If all attempts to renew the deadline fail during the specified time interval (:ref:`lease_interval <configuration_reference_failover_lease_interval>`), a leader switches to read-only mode.
+A failover coordinator uses read-write mode deadlines to prevent the existence of two read-write instances in a replica set during an automated failover.
 
 A failover coordinator appoints a master instance as follows:
 
--   If a replica set has no read-write instance, a failover coordinator appoints one to be a master instance.
--   If a replica set has one read-write instance and there is no previous appointment, a failover coordinator creates an appointment for this instance and sets a read-write deadline.
--   If a replica set has one read-write instance and there is a previous appointment, a failover coordinator waits for its deadline.
+-   If all instances in a replica set are alive and there is no read-write instance, a failover coordinator appoints one to be a master instance.
+
+-   If a replica set has one alive read-write instance, the following situations are possible:
+
+    -   If there is no appointment, a coordinator creates a new one.
+    -   If there is an appointment, a coordinator renews it in the background.
+
+-   If an appointed instance is unavailable, a coordinator waits for its deadline, then chooses a new master and creates an appointment.
 
 Note that a failover coordinator doesn't work with replica sets with two or more read-write instances.
 In this case, a coordinator logs a warning to stdout and doesn't perform any appointments.
 
 ..  NOTE::
 
-    :ref:`anonymous replicas <configuration_reference_replication_anon>` are not considered candidates to be master.
-
-
-.. _supervised_failover_overview_perform_failover:
-
-Performing a failover
-~~~~~~~~~~~~~~~~~~~~~
-
-A failover coordinator monitors the statuses of instances by sending requests to instances each ``probe_interval`` seconds.
-While an appointment for a master instance exists and a read-write deadline has not expired, a failover coordinator does nothing.
-If all attempts to renew the deadline are failed during some time interval, a leader switches to read-only mode.
+    If a remote etcd-based storage is used to maintain the state of failover coordinators, you can also perform a :ref:`manual failover <supervised_failover_manual>`.
 
 ..  NOTE::
 
-    If a remote etcd-based storage is used to maintain the state of failover coordinators, you can also perform a :ref:`manual failover <supervised_failover_manual>`.
+    :ref:`Anonymous replicas <configuration_reference_replication_anon>` are not considered as candidates to be a master.
 
 
 
@@ -88,11 +97,11 @@ Active and passive coordinators
 To increase fault tolerance, you can :ref:`run <supervised_failover_start_coordinator>` two or more failover coordinators.
 In this case, only one coordinator is active and used to control leadership in a replica set.
 Other coordinators are passive.
-Passive coordinators don't perform any read-write appointments and decline all the existing appointments.
+Passive coordinators don't perform any read-write appointments.
 
 To maintain the state of coordinators, Tarantool uses a stateboard -- a remote etcd-based storage.
 This storage uses the same connection settings as a :ref:`centralized etcd-based configuration storage <configuration_etcd>`.
-If a cluster configuration is stored in the ``<prefix>/config/*`` keys in etcd, a failover coordinator looks into ``<prefix>/failover/*`` for its state.
+If a cluster configuration is stored in the ``<prefix>/config/*`` keys in etcd, the failover coordinator looks into ``<prefix>/failover/*`` for its state.
 Here are a few examples of keys used for different purposes:
 
 -   ``<prefix>/failover/info/by-uuid/<uuid>``: contains a state of a failover coordinator identified by the specified ``uuid``.
@@ -109,7 +118,7 @@ Configuring a cluster
 
 To configure a cluster to work with an external failover coordinator, follow the steps below:
 
-1.  (Optional) If you need to run :ref:`several failover coordinators <supervised_failover_overview_choose_coordinator>` to increase fault tolerance, set up an etcd-based configuration storage as described in :ref:`configuration_etcd`.
+1.  (Optional) If you need to run :ref:`several failover coordinators <supervised_failover_overview_choose_coordinator>` to increase fault tolerance, set up an etcd-based configuration storage, as described in :ref:`configuration_etcd`.
 
 2.  Set the :ref:`replication.failover <configuration_reference_replication_failover>` option to ``supervised``:
 
@@ -142,7 +151,7 @@ To configure a cluster to work with an external failover coordinator, follow the
         :end-before: groups:
         :dedent:
 
-5.  (Optional) Configure options that control how a failover coordinator works in the ``failover`` section:
+5.  (Optional) Configure options that control how a failover coordinator operates in the :ref:`failover <configuration_reference_failover>` section:
 
     ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/supervised_failover/source.yaml
         :language: yaml
@@ -150,7 +159,7 @@ To configure a cluster to work with an external failover coordinator, follow the
         :end-before: supervised_instance
         :dedent:
 
-You can find the full example in GitHub: `supervised_failover <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/replication/instances.enabled/supervised_failover>`_.
+You can find the full example on GitHub: `supervised_failover <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/replication/instances.enabled/supervised_failover>`_.
 
 
 .. _supervised_failover_start_coordinator:
@@ -158,14 +167,14 @@ You can find the full example in GitHub: `supervised_failover <https://github.co
 Starting a failover coordinator
 -------------------------------
 
-To start a failover coordinator, you need to execute the ``tarantool`` command with the :ref:`--failover <tarantool_cli_failover>` option.
+To start a failover coordinator, you need to execute the ``tarantool`` command with the :ref:`failover <tarantool_cli_failover>` option.
 This command accepts the path to a cluster configuration file:
 
 ..  code-block:: console
 
     tarantool --failover --config instances.enabled/supervised_failover/config.yaml
 
-If a cluster's configuration is stored in etcd, ``config.yaml`` contains :ref:`connection options to an etcd storage <etcd_local_configuration>`.
+If a cluster's configuration is stored in etcd, the ``config.yaml`` file contains :ref:`connection options for the etcd storage <etcd_local_configuration>`.
 
 You can run two or more failover coordinators to increase fault tolerance.
 In this case, only one coordinator is active and used to control leadership in a replica set.

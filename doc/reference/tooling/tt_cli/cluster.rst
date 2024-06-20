@@ -463,7 +463,7 @@ Options
 
     **Applicable to:** ``failover``
 
-    Wait while the command completes the execution.
+    Wait while the command completes the execution. Default: `false` (don't wait).
 
 ..  option:: --with-integrity-check STRING
 

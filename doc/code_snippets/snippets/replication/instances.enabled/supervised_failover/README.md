@@ -1,6 +1,6 @@
-# Master-replica: supervised failover (etcd)
+# Master-replica: supervised failover
 
-A sample application demonstrating how to bootstrap a replica set that uses an external failover coordinator.
+A sample application demonstrating how to bootstrap a replica set that uses an [external failover coordinator](https://www.tarantool.io/doc/latest/concepts/replication/supervised_failover/).
 The failover coordinator's state is stored in etcd along with a replica set configuration.
 
 
