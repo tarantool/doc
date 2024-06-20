@@ -77,9 +77,9 @@ Authentication
 ~~~~~~~~~~~~~~
 
 To install Tarantool EE using ``tt install``, you need to provide access credentials
-for Tarantool customer zone. Use one of the following ways to pass the username and the password:
+for the Tarantool customer zone. Use one of the following ways to pass the username and the password:
 
-*   A text file specified in the ``ee.credentials_path`` parameter of the
+*   A text file specified in the ``ee.credential_path`` parameter of the
     :ref:`tt enviromnment configuration <tt-config_file>`:
 
     ..  code-block:: yaml

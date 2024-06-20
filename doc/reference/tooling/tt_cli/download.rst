@@ -28,7 +28,7 @@ To download the Tarantool Enterprise SDK using ``tt download``, you need to prov
 access credentials for the Tarantool customer zone. Use one of the following ways to pass
 the username and the password:
 
-*   A text file specified in the ``ee.credentials_path`` parameter of the
+*   A text file specified in the ``ee.credential_path`` parameter of the
     :ref:`tt environment configuration <tt-config_file>`:
 
     ..  code-block:: yaml

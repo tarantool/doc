@@ -5,7 +5,7 @@ Managing binaries in the current environment
 
 ..  code-block:: console
 
-    $ tt binaries COMMAND [PROGRAM_NAME] [VERSION]
+    $ tt binaries COMMAND [COMMAND_OPTION ...]
 
 ``tt binaries`` manages Tarantool and ``tt`` binaries installed in the current environment.
 
