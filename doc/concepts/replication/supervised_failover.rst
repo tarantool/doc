@@ -61,8 +61,8 @@ Then, the following events may occur:
 
 .. _supervised_failover_overview_appoint_master:
 
-Appointing a new a master instance
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Appointing a new master instance
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 After a master instance has been appointed, a failover coordinator monitors the statuses of all instances in a replica set by sending requests each :ref:`probe_interval <configuration_reference_failover_probe_interval>` seconds.
 For the master instance, the coordinator maintains a read-write mode deadline, which is renewed periodically each :ref:`renew_interval <configuration_reference_failover_renew_interval>` seconds.
