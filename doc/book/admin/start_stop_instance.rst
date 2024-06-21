@@ -26,7 +26,7 @@ To get more context on how the application's environment might look, refer to :r
 Starting Tarantool instances
 ----------------------------
 
-The :ref:`tt <tt-cli>` utility is the recommended way to start Tarantool instances.
+To start Tarantool instances use the :ref:`tt start <tt-start>` command:
 
 .. code-block:: console
 

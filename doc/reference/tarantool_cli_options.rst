@@ -4,15 +4,21 @@
 tarantool command-line options
 ==============================
 
-This topic describes options that can be passed to the ``tarantool`` command.
-These options might be helpful for development purposes.
+``tarantool`` is the Tarantool database and application server.
+This command can be used for different purposes, for example, running a single Tarantool instance or starting an external coordinator used for a :ref:`supervised failover <repl_supervised_failover>`.
+The ``tarantool`` command also provides additional :ref:`options <tarantool_cli_options>` that might be helpful for development purposes.
+
+..  NOTE::
+
+    The :ref:`tt <tt-cli>` utility is the recommended way to start Tarantool instances.
+    Learn more from :ref:`admin-start_stop_instance`.
+
+
 
 .. _configuration_run_instance_tarantool:
 
 Starting instances using the tarantool command
 ----------------------------------------------
-
-The ``tarantool`` command provides additional :ref:`options <_tarantool_cli_options>` that might be helpful for development purposes.
 
 Below is the syntax for starting a Tarantool instance configured in a file:
 
@@ -91,7 +97,7 @@ Options
     Set a path to a :ref:`YAML configuration file <configuration_file>`.
     You can also configure this value using the ``TT_CONFIG`` environment variable.
 
-    See also: :ref:`Starting an instance using the tarantool command <configuration_run_instance_tarantool>`
+    See also: :ref:`configuration_run_instance_tarantool`
 
 
 .. _tarantool_cli_name:
@@ -103,7 +109,7 @@ Options
     Set the name of an instance to run.
     You can also configure this value using the ``TT_INSTANCE_NAME`` environment variable.
 
-    See also: :ref:`Starting an instance using the tarantool command <configuration_run_instance_tarantool>`
+    See also: :ref:`configuration_run_instance_tarantool`
 
 .. _tarantool_cli_i:
 
