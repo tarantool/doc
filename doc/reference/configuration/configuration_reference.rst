@@ -1243,6 +1243,8 @@ The ``failover`` section defines parameters related to a :ref:`supervised failov
 
 ..  confval:: failover.call_timeout
 
+    **Since:** :doc:`3.1.0 </release/3.1.0>`.
+
     A call timeout (in seconds) for monitoring and failover requests to an instance.
 
     | Type: number
@@ -1253,6 +1255,8 @@ The ``failover`` section defines parameters related to a :ref:`supervised failov
 
 ..  confval:: failover.connect_timeout
 
+    **Since:** :doc:`3.1.0 </release/3.1.0>`.
+
     A connection timeout (in seconds) for monitoring and failover requests to an instance.
 
     | Type: number
@@ -1262,6 +1266,8 @@ The ``failover`` section defines parameters related to a :ref:`supervised failov
 ..  _configuration_reference_failover_lease_interval:
 
 ..  confval:: failover.lease_interval
+
+    **Since:** :doc:`3.1.0 </release/3.1.0>`.
 
     A time interval (in seconds) that specifies how long an instance should be a leader without renew requests from a coordinator.
     When this interval expires, the leader switches to read-only mode.
@@ -1275,6 +1281,8 @@ The ``failover`` section defines parameters related to a :ref:`supervised failov
 
 ..  confval:: failover.probe_interval
 
+    **Since:** :doc:`3.1.0 </release/3.1.0>`.
+
     A time interval (in seconds) that specifies how often a monitoring service of the failover coordinator polls an instance for its status.
 
     | Type: number
@@ -1284,6 +1292,8 @@ The ``failover`` section defines parameters related to a :ref:`supervised failov
 ..  _configuration_reference_failover_renew_interval:
 
 ..  confval:: failover.renew_interval
+
+    **Since:** :doc:`3.1.0 </release/3.1.0>`.
 
     A time interval (in seconds) that specifies how often a failover coordinator sends read-write deadline renewals.
 
@@ -1305,6 +1315,8 @@ See also: :ref:`supervised_failover_overview_fault_tolerance`
 
 ..  confval:: failover.stateboard.keepalive_interval
 
+    **Since:** :doc:`3.1.0 </release/3.1.0>`.
+
     A time interval (in seconds) that specifies how long a transient state information is stored and how quickly a lock expires.
 
     ..  NOTE::
@@ -1319,6 +1331,8 @@ See also: :ref:`supervised_failover_overview_fault_tolerance`
 ..  _configuration_reference_failover_stateboard_renew_interval:
 
 ..  confval:: failover.stateboard.renew_interval
+
+    **Since:** :doc:`3.1.0 </release/3.1.0>`.
 
     A time interval (in seconds) that specifies how often a failover coordinator writes its state information to etcd.
     This option also determines the frequency at which an active coordinator reads new commands from etcd.
