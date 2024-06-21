@@ -2171,18 +2171,6 @@ The ``security`` section defines the security parameters of |tcm|.
     | Environment variable: TCM_SECURITY_BOOTSTRAP_API_TOKEN
     | Command-line option: ``--security.bbootstrap-api-token``
 
-.. _tcm_configuration_reference_security_signature-private-key-file:
-
-.. confval:: security.signature-private-key-file
-
-    A path to a file with the private key to sign |tcm| data.
-
-    |
-    | Type: string
-    | Default: ""
-    | Environment variable: TCM_SECURITY_SIGNATURE_PRIVATE_KEY_FILE
-    | Command-line option: ``--security.signature-private-key-file``
-
 .. _tcm_configuration_reference_security_integrity-check:
 
 .. confval:: security.integrity-check
@@ -2195,6 +2183,18 @@ The ``security`` section defines the security parameters of |tcm|.
     | Default: false
     | Environment variable: TCM_SECURITY_INTEGRITY_CHECK
     | Command-line option: ``--security.integrity-check``
+
+.. _tcm_configuration_reference_security_signature-private-key-file:
+
+.. confval:: security.signature-private-key-file
+
+    A path to a file with the private key to sign |tcm| data.
+
+    |
+    | Type: string
+    | Default: ""
+    | Environment variable: TCM_SECURITY_SIGNATURE_PRIVATE_KEY_FILE
+    | Command-line option: ``--security.signature-private-key-file``
 
 .. mode
 
