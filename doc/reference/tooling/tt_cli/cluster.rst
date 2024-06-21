@@ -5,7 +5,7 @@ Managing cluster configurations
 
 .. code-block:: console
 
-    $ tt cluster [OPTION ...] COMMAND [COMMAND_OPTION ...]
+    $ tt cluster COMMAND [COMMAND_OPTION ...]
 
 ``tt cluster`` manages :ref:`configurations <configuration>` of Tarantool applications.
 This command works both with local YAML files in application directories
