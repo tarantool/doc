@@ -79,7 +79,7 @@ Tarantool clusters.
 
 .. confval:: cluster.tt-command
 
-    TBD
+    The command that runs the :ref:`tt <tt-cli>` utility on hosts with cluster instances.
 
     |
     | Type: string
@@ -91,7 +91,7 @@ Tarantool clusters.
 
 .. confval:: cluster.refresh-state-period
 
-    TBD
+    The time interval for refreshing the cluster instances state on the Stateboard.
 
     |
     | Type: time.Duration
@@ -103,7 +103,8 @@ Tarantool clusters.
 
 .. confval:: cluster.refresh-state-timeout
 
-    TBD
+    The time limit for refreshing an instance state.
+    If this limit is reached, an error is shown.
 
     |
     | Type: time.Duration
@@ -115,7 +116,7 @@ Tarantool clusters.
 
 .. confval:: cluster.discovery-period
 
-    TBD
+    The time interval for checking the leadership in replica sets.
 
     |
     | Type: time.Duration
@@ -127,7 +128,7 @@ Tarantool clusters.
 
 .. confval:: cluster.sharding-index
 
-    TBD
+    The name of the space field that is used as a sharding key.
 
     |
     | Type: String
@@ -139,7 +140,8 @@ Tarantool clusters.
 
 .. confval:: cluster.skew-time
 
-    TBD
+    The maximum time skew between any two cluster instances.
+    If this limit is reached, a warning is shown.
 
     |
     | Type: time.Duration
@@ -151,11 +153,14 @@ Tarantool clusters.
 
 .. confval:: cluster.fragmentation-threshold
 
-    TBD
+    The count of allocated slabs that reflects high memory fragmentation.
+    When this number is reached, a warning is shown.
+
+    See also: :ref:`engines-memtx`
 
     |
     | Type: int
-    | Default: TBD
+    | Default: 40
     | Environment variable: TCM_CLUSTER_FRAGMENTATION_THRESHOLD
     | Command-line option: ``--cluster.fragmentation-threshold``
 
