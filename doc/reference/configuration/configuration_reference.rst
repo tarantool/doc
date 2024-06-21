@@ -546,6 +546,7 @@ config.etcd.*
     :end-before: ee_note_centralized_config_end
 
 This section describes options related to providing connection settings to a :ref:`centralized etcd-based storage <configuration_etcd>`.
+If :ref:`replication.failover <configuration_reference_replication_failover>` is set to ``supervised``, Tarantool also uses etcd to maintain the state of failover coordinators.
 
 * :ref:`config.etcd.endpoints <config_etcd_endpoints>`
 * :ref:`config.etcd.prefix <config_etcd_prefix>`
@@ -1216,6 +1217,115 @@ The ``database`` section defines database-specific configuration parameters, suc
     | Type: boolean
     | Default: false
     | Environment variable: TT_DATABASE_USE_MVCC_ENGINE
+
+..  _configuration_reference_failover:
+
+failover
+--------
+
+The ``failover`` section defines parameters related to a :ref:`supervised failover <repl_supervised_failover>`.
+
+.. NOTE::
+
+    ``failover`` can be defined in the global :ref:`scope <configuration_scopes>` only.
+
+-   :ref:`failover.call_timeout <configuration_reference_failover_call_timeout>`
+-   :ref:`failover.connect_timeout <configuration_reference_failover_connect_timeout>`
+-   :ref:`failover.lease_interval <configuration_reference_failover_lease_interval>`
+-   :ref:`failover.probe_interval <configuration_reference_failover_probe_interval>`
+-   :ref:`failover.renew_interval <configuration_reference_failover_renew_interval>`
+-   :ref:`failover.stateboard <configuration_reference_failover_stateboard>`
+
+    -   :ref:`failover.stateboard.keepalive_interval <configuration_reference_failover_stateboard_keepalive_interval>`
+    -   :ref:`failover.stateboard.renew_interval <configuration_reference_failover_stateboard_renew_interval>`
+
+..  _configuration_reference_failover_call_timeout:
+
+..  confval:: failover.call_timeout
+
+    A call timeout (in seconds) for monitoring and failover requests to an instance.
+
+    | Type: number
+    | Default: 1
+    | Environment variable: TT_FAILOVER_CALL_TIMEOUT
+
+..  _configuration_reference_failover_connect_timeout:
+
+..  confval:: failover.connect_timeout
+
+    A connection timeout (in seconds) for monitoring and failover requests to an instance.
+
+    | Type: number
+    | Default: 1
+    | Environment variable: TT_FAILOVER_CONNECT_TIMEOUT
+
+..  _configuration_reference_failover_lease_interval:
+
+..  confval:: failover.lease_interval
+
+    A time interval (in seconds) that specifies how long an instance should be a leader without renew requests from a coordinator.
+    When this interval expires, the leader switches to read-only mode.
+    This action is performed by the instance itself and works even if there is no connectivity between the instance and the coordinator.
+
+    | Type: number
+    | Default: 30
+    | Environment variable: TT_FAILOVER_LEASE_INTERVAL
+
+..  _configuration_reference_failover_probe_interval:
+
+..  confval:: failover.probe_interval
+
+    A time interval (in seconds) that specifies how often a monitoring service of the failover coordinator polls an instance for its status.
+
+    | Type: number
+    | Default: 10
+    | Environment variable: TT_FAILOVER_PROBE_INTERVAL
+
+..  _configuration_reference_failover_renew_interval:
+
+..  confval:: failover.renew_interval
+
+    A time interval (in seconds) that specifies how often a failover coordinator sends read-write deadline renewals.
+
+    | Type: number
+    | Default: 10
+    | Environment variable: TT_FAILOVER_RENEW_INTERVAL
+
+
+..  _configuration_reference_failover_stateboard:
+
+failover.stateboard.*
+~~~~~~~~~~~~~~~~~~~~~
+
+``failover.stateboard.*`` options define configuration parameters related to maintaining the state of failover coordinators in a remote etcd-based storage.
+
+See also: :ref:`supervised_failover_overview_fault_tolerance`
+
+..  _configuration_reference_failover_stateboard_keepalive_interval:
+
+..  confval:: failover.stateboard.keepalive_interval
+
+    A time interval (in seconds) that specifies how long a transient state information is stored and how quickly a lock expires.
+
+    ..  NOTE::
+
+        ``failover.stateboard.keepalive_interval`` should be smaller than :ref:`failover.lease_interval <configuration_reference_failover_lease_interval>`.
+        Otherwise, switching of a coordinator causes a replica set leader to go to read-only mode for some time.
+
+    | Type: number
+    | Default: 10
+    | Environment variable: TT_FAILOVER_STATEBOARD_KEEPALIVE_INTERVAL
+
+..  _configuration_reference_failover_stateboard_renew_interval:
+
+..  confval:: failover.stateboard.renew_interval
+
+    A time interval (in seconds) that specifies how often a failover coordinator writes its state information to etcd.
+    This option also determines the frequency at which an active coordinator reads new commands from etcd.
+
+    | Type: number
+    | Default: 2
+    | Environment variable: TT_FAILOVER_STATEBOARD_RENEW_INTERVAL
 
 ..  _configuration_reference_fiber:
 
@@ -2932,11 +3042,9 @@ The ``replication`` section defines configuration parameters related to :ref:`re
 
     -   ``supervised`` (`Enterprise Edition <https://www.tarantool.io/compare/>`_ only)
 
-        Leadership in a replica set is controlled using an external failover agent.
+        Leadership in a replica set is controlled using an :ref:`external failover coordinator <repl_supervised_failover>`.
 
         In the ``supervised`` mode, :ref:`database.mode <configuration_reference_database_mode>` and :ref:`<replicaset_name>.leader <configuration_reference_replicasets_name_leader>` shouldn't be set explicitly.
-
-        ..  TODO: https://github.com/tarantool/enterprise_doc/issues/253
 
     See also: :ref:`Replication tutorials <how-to-replication>`.
 

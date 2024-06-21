@@ -1,0 +1,44 @@
+credentials:
+  users:
+    replicator:
+      password: 'topsecret'
+      roles: [ replication ]
+      privileges:
+      - permissions: [ execute ]
+        functions: [ 'failover.execute' ]
+
+iproto:
+  advertise:
+    peer:
+      login: replicator
+
+replication:
+  failover: supervised
+
+failover:
+  probe_interval: 5
+  lease_interval: 15
+  renew_interval: 5
+  stateboard:
+    keepalive_interval: 5
+    renew_interval: 1
+
+roles: [ 'supervised_instance' ]
+
+groups:
+  group001:
+    replicasets:
+      replicaset001:
+        instances:
+          instance001:
+            iproto:
+              listen:
+              - uri: '127.0.0.1:3301'
+          instance002:
+            iproto:
+              listen:
+              - uri: '127.0.0.1:3302'
+          instance003:
+            iproto:
+              listen:
+              - uri: '127.0.0.1:3303'

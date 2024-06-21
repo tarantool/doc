@@ -5,9 +5,9 @@ Managing cluster configurations
 
 .. code-block:: console
 
-    $ tt cluster COMMAND {APPLICATION[:APP_INSTANCE] | URI} [FILE] [OPTION ...]
+    $ tt cluster COMMAND [COMMAND_OPTION ...]
 
-``tt cluster`` manages :ref:`YAML configurations <configuration>` of Tarantool applications.
+``tt cluster`` manages :ref:`configurations <configuration>` of Tarantool applications.
 This command works both with local YAML files in application directories
 and with :ref:`centralized configuration storages <configuration_etcd>` (etcd or Tarantool-based).
 
@@ -16,6 +16,7 @@ and with :ref:`centralized configuration storages <configuration_etcd>` (etcd or
 *   :ref:`publish <tt-cluster-publish>`
 *   :ref:`show <tt-cluster-show>`
 *   :ref:`replicaset <tt-cluster-replicaset>`
+*   :ref:`failover <tt-cluster-failover>`
 
 .. _tt-cluster-publish:
 
@@ -24,7 +25,7 @@ publish
 
 .. code-block:: console
 
-    $ tt cluster publish {APPLICATION[:APP_INSTANCE] | URI} [FILE] [OPTION ...]
+    $ tt cluster publish {APPLICATION[:APP_INSTANCE] | CONFIG_URI} [FILE] [OPTION ...]
 
 ``tt cluster publish`` publishes a cluster configuration using an arbitrary YAML file as a source.
 
@@ -118,7 +119,7 @@ show
 
 .. code-block:: console
 
-    $ tt cluster show {APPLICATION[:APP_INSTANCE] | URI} [OPTION ...]
+    $ tt cluster show {APPLICATION[:APP_INSTANCE] | CONFIG_URI} [OPTION ...]
 
 ``tt cluster show`` displays a cluster configuration.
 
@@ -196,7 +197,7 @@ replicaset
 
 .. code-block:: console
 
-    $ tt cluster replicaset SUBCOMMAND {APPLICATION[:APP_INSTANCE] | URI} [OPTION ...]
+    $ tt cluster replicaset SUBCOMMAND {APPLICATION[:APP_INSTANCE] | CONFIG_URI} [OPTION ...]
 
 ``tt cluster replicaset`` manages instances in a replica set. It supports the following
 subcommands:
@@ -217,7 +218,7 @@ promote
 
 .. code-block:: console
 
-    $ tt cluster replicaset promote URI INSTANCE_NAME [OPTION ...]
+    $ tt cluster replicaset promote CONFIG_URI INSTANCE_NAME [OPTION ...]
 
 ``tt cluster replicaset promote`` promotes the specified instance,
 making it a leader of its replica set.
@@ -250,7 +251,7 @@ demote
 
 .. code-block:: console
 
-    $ tt cluster replicaset demote URI INSTANCE_NAME [OPTION ...]
+    $ tt cluster replicaset demote CONFIG_URI INSTANCE_NAME [OPTION ...]
 
 ``tt cluster replicaset demote`` demotes an instance in a replica set.
 This command works on Tarantool clusters with centralized configuration and
@@ -269,6 +270,77 @@ to ``ro`` and reloads the configuration.
 
     If failover is ``off``, the command doesn't consider the modes of other
     replica set members, so there can be any number of read-write instances in one replica set.
+
+
+.. _tt-cluster-failover:
+
+failover
+--------
+
+.. code-block:: console
+
+    $ tt cluster failover SUBCOMMAND [OPTION ...]
+
+``tt cluster failover`` manages a :ref:`supervised failover <repl_supervised_failover>` in Tarantool clusters.
+
+-   :ref:`switch <tt-cluster-failover-switch>`
+-   :ref:`switch-status <tt-cluster-failover-switch-status>`
+
+.. important::
+
+    ``tt cluster failover`` works only with centralized cluster configurations stored in etcd.
+
+
+.. _tt-cluster-failover-switch:
+
+switch
+~~~~~~
+
+.. code-block:: console
+
+    $ tt cluster failover switch CONFIG_URI INSTANCE_NAME [OPTION ...]
+
+``tt cluster failover switch`` appoints the specified instance to be a master.
+This command accepts the following arguments and options:
+
+-   ``CONFIG_URI``: A :ref:`URI <tt-cluster-uri>` of the cluster configuration storage.
+-   ``INSTANCE_NAME``: An instance name.
+-   ``[OPTION ...]``: :ref:`Options <tt-cluster-options>` to pass to the command.
+
+In the example below, ``tt cluster failover switch`` appoints ``storage-a-002`` to be a master:
+
+.. code-block:: console
+
+    $ tt cluster failover switch http://localhost:2379/myapp storage-a-002
+    To check the switching status, run:
+    tt cluster failover switch-status http://localhost:2379/myapp b1e938dd-2867-46ab-acc4-3232c2ef7ffe
+
+Note that the command output includes an identifier of the task responsible for switching a master.
+You can use this identifier to see the status of switching a master instance using ``tt cluster failover switch-status``.
+
+
+.. _tt-cluster-failover-switch-status:
+
+switch-status
+~~~~~~~~~~~~~
+
+.. code-block:: console
+
+    $ tt cluster failover switch-status CONFIG_URI TASK_ID
+
+``tt cluster failover switch-status`` shows the status of switching a master instance.
+This command accepts the following arguments:
+
+-   ``CONFIG_URI``: A :ref:`URI <tt-cluster-uri>` of the cluster configuration storage.
+-   ``TASK_ID``: An identifier of the task used to switch a master instance. You can find the task identifier in the ``tt cluster failover switch`` command output.
+
+Example:
+
+.. code-block:: console
+
+    $ tt cluster failover switch-status http://localhost:2379/myapp b1e938dd-2867-46ab-acc4-3232c2ef7ffe
+
+
 
 
 .. _tt-cluster-replicaset-details:
@@ -378,11 +450,23 @@ Options
 
     Skip validation when publishing. Default: `false` (validation is enabled).
 
+..  option:: -t, --timeout UINT
+
+    **Applicable to:** ``failover``
+
+    A timeout (in seconds) for executing a command. Default: `30`.
+
 ..  option:: --validate
 
     **Applicable to:** ``show``
 
     Validate the printed configuration. Default: `false` (validation is disabled).
+
+..  option:: -w, --wait
+
+    **Applicable to:** ``failover``
+
+    Wait while the command completes the execution. Default: `false` (don't wait).
 
 ..  option:: --with-integrity-check STRING
 
