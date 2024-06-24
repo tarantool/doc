@@ -363,7 +363,7 @@ The **TCM metrics** page provides access to the |tcm| metrics.
 Settings
 --------
 
-The **Settiings** group includes service pages where you can configure various |tcm| features.
+The **Settings** group includes service pages where you can configure various |tcm| features.
 
 ..  _tcm_ui_settings_policy:
 
