@@ -1658,7 +1658,7 @@ etcd cluster is not available or not needed.
 
 .. confval:: storage.tarantool.username
 
-    A username for connecting to the Tarantool |tcm| configuration storage.
+    A username for connecting to the |tcm| configuration storage.
 
     See also `go-tarantool.Opts <https://pkg.go.dev/github.com/tarantool/go-tarantool#Opts>`__.
 
@@ -2174,7 +2174,7 @@ The ``security`` section defines the security parameters of |tcm|.
     | Type: string
     | Default: ""
     | Environment variable: TCM_SECURITY_BOOTSTRAP_API_TOKEN
-    | Command-line option: ``--security.bbootstrap-api-token``
+    | Command-line option: ``--security.bootstrap-api-token``
 
 .. _tcm_configuration_reference_security_integrity-check:
 
