@@ -28,22 +28,16 @@ cluster
 The ``cluster`` group defines parameters of |tcm| interaction with connected
 Tarantool clusters.
 
--   :ref:`on-air-limit <tcm_configuration_reference_cluster_on-air-limit>`
 -   :ref:`connection-rate-limit <tcm_configuration_reference_cluster_connection-rate-limit>`
 -   :ref:`tarantool-timeout <tcm_configuration_reference_cluster_tarantool-timeout>`
 -   :ref:`tarantool-ping-timeout <tcm_configuration_reference_cluster_tarantool-ping-timeout>`
-
-.. _tcm_configuration_reference_cluster_on-air-limit:
-
-.. confval:: cluster.on-air-limit
-
-    The maximum number of on-air requests from |tcm| to all connected clusters.
-
-    |
-    | Type: int64
-    | Default: 4096
-    | Environment variable: TCM_CLUSTER_ON_AIR_LIMIT
-    | Command-line option: ``--cluster.on-air-limit``
+-   :ref:`tt-command <tcm_configuration_reference_cluster_tt-command>`
+-   :ref:`refresh-state-period <tcm_configuration_reference_cluster_refresh-state-period>`
+-   :ref:`refresh-state-timeout <tcm_configuration_reference_cluster_refresh-state-timeout>`
+-   :ref:`discovery-period <tcm_configuration_reference_cluster_discovery-period>`
+-   :ref:`sharding-index <tcm_configuration_reference_cluster_sharding-index>`
+-   :ref:`skew-time <tcm_configuration_reference_cluster_skew-time>`
+-   :ref:`fragmentation-threshold <tcm_configuration_reference_cluster_fragmentation-threshold>`
 
 .. _tcm_configuration_reference_cluster_connection-rate-limit:
 
@@ -81,6 +75,95 @@ Tarantool clusters.
     | Environment variable: TCM_CLUSTER_TARANTOOL_PING_TIMEOUT
     | Command-line option: ``--cluster.tarantool-ping-timeout``
 
+.. _tcm_configuration_reference_cluster_tt-command:
+
+.. confval:: cluster.tt-command
+
+    The command that runs the :ref:`tt <tt-cli>` utility on hosts with cluster instances.
+
+    |
+    | Type: string
+    | Default: `tt`
+    | Environment variable: TCM_CLUSTER_TT_COMMAND
+    | Command-line option: ``--cluster.tt-command``
+
+.. _tcm_configuration_reference_cluster_refresh-state-period:
+
+.. confval:: cluster.refresh-state-period
+
+    The time interval for refreshing the cluster instances state on the Stateboard.
+
+    |
+    | Type: time.Duration
+    | Default: 5s
+    | Environment variable: TCM_CLUSTER_REFRESH_STATE_PERIOD
+    | Command-line option: ``--cluster.refresh-state-period``
+
+.. _tcm_configuration_reference_cluster_refresh-state-timeout:
+
+.. confval:: cluster.refresh-state-timeout
+
+    The time limit for refreshing an instance state.
+    If this limit is reached, an error is shown.
+
+    |
+    | Type: time.Duration
+    | Default: 4s
+    | Environment variable: TCM_CLUSTER_REFRESH_STATE_TIMEOUT
+    | Command-line option: ``--cluster.refresh-state-timeout``
+
+.. _tcm_configuration_reference_cluster_discovery-period:
+
+.. confval:: cluster.discovery-period
+
+    The time interval for checking the leadership in replica sets.
+
+    |
+    | Type: time.Duration
+    | Default: 4s
+    | Environment variable: TCM_CLUSTER_DISCOVERY_PERIOD
+    | Command-line option: ``--cluster.discovery-period``
+
+.. _tcm_configuration_reference_cluster_sharding-index:
+
+.. confval:: cluster.sharding-index
+
+    The name of the space field that is used as a sharding key.
+
+    |
+    | Type: String
+    | Default: `bucket_id`
+    | Environment variable: TCM_CLUSTER_SHARDING_INDEX
+    | Command-line option: ``--cluster.sharding-index``
+
+.. _tcm_configuration_reference_cluster_skew-time:
+
+.. confval:: cluster.skew-time
+
+    The maximum time skew between any two cluster instances.
+    If this limit is reached, a warning is shown.
+
+    |
+    | Type: time.Duration
+    | Default: 30s
+    | Environment variable: TCM_CLUSTER_SKEW_TIME
+    | Command-line option: ``--cluster.skew-time``
+
+.. _tcm_configuration_reference_cluster_fragmentation-threshold:
+
+.. confval:: cluster.fragmentation-threshold
+
+    The count of allocated slabs that reflects high memory fragmentation.
+    When this number is reached, a warning is shown.
+
+    See also: :ref:`engines-memtx`
+
+    |
+    | Type: int
+    | Default: 40
+    | Environment variable: TCM_CLUSTER_FRAGMENTATION_THRESHOLD
+    | Command-line option: ``--cluster.fragmentation-threshold``
+
 .. _tcm_configuration_reference_http:
 
 http
@@ -88,7 +171,6 @@ http
 
 The ``http`` group defines parameters of HTTP connections between |tcm| and clients.
 
--   :ref:`http.basic_auth.enabled <tcm_configuration_reference_http_basic-auth_enabled>`
 -   :ref:`http.network <tcm_configuration_reference_http_network>`
 -   :ref:`http.host <tcm_configuration_reference_http_host>`
 -   :ref:`http.port <tcm_configuration_reference_http_port>`
@@ -112,7 +194,6 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
 -   :ref:`http.cors.exposed-headers <tcm_configuration_reference_http_cors_exposed-headers>`
 -   :ref:`http.cors.allow-credentials <tcm_configuration_reference_http_cors_allow-credentials>`
 -   :ref:`http.cors.debug <tcm_configuration_reference_http_cors_debug>`
--   :ref:`http.metrics-endpoint <tcm_configuration_reference_http_metrics-endpoint>`
 -   :ref:`http.tls.enabled <tcm_configuration_reference_http_tls_enabled>`
 -   :ref:`http.tls.cert-file <tcm_configuration_reference_http_tls_cert-file>`
 -   :ref:`http.tls.key-file <tcm_configuration_reference_http_tls_key-file>`
@@ -125,7 +206,6 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
 -   :ref:`http.read-header-timeout <tcm_configuration_reference_http_read-header-timeout>`
 -   :ref:`http.write-timeout <tcm_configuration_reference_http_write-timeout>`
 -   :ref:`http.idle-timeout <tcm_configuration_reference_http_idle-timeout>`
--   :ref:`http.idle-timeout <tcm_configuration_reference_http_idle-timeout>`
 -   :ref:`http.disable-general-options-handler <tcm_configuration_reference_http_disable-general-options-handler>`
 -   :ref:`http.max-header-bytes <tcm_configuration_reference_http_max-header-bytes>`
 -   :ref:`http.api-timeout <tcm_configuration_reference_http_api-timeout>`
@@ -136,18 +216,6 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
 -   :ref:`http.max-static-size <tcm_configuration_reference_http_max-static-size>`
 -   :ref:`http.graphql.complexity <tcm_configuration_reference_http_graphql_complexity>`
 
-
-.. _tcm_configuration_reference_http_basic-auth_enabled:
-
-.. confval:: http.basic_auth.enabled
-
-    Whether to use the `HTTP basic authentication <https://www.ietf.org/rfc/rfc2617.txt>`__.
-
-    |
-    | Type: bool
-    | Default: false
-    | Environment variable: TCM_HTTP_BASIC_AUTH_ENABLED
-    | Command-line option: ``--http.basic-auth-enabled``
 
 .. _tcm_configuration_reference_http_network:
 
@@ -491,18 +559,6 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Type: bool
     | Default: false
 
-.. _tcm_configuration_reference_http_metrics-endpoint:
-
-.. confval:: http.metrics-endpoint
-
-    The HTTP endpoint for |tcm| metrics in the `Prometheus <https://prometheus.io/>`__ format.
-
-    |
-    | Type: string
-    | Default: /metrics
-    | Environment variable: TCM_HTTP_METRICS_ENDPOINT
-    | Command-line option: ``--http.metrics-endpoint``
-
 .. _tcm_configuration_reference_http_tls_enabled:
 
 .. confval:: http.tls.enabled
@@ -543,7 +599,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
 
 .. confval:: http.tls.server
 
-    The TSL server.
+    The TLS server.
 
     |
     | Type: string
@@ -1056,6 +1112,7 @@ etcd storage parameters:
 -   :ref:`storage.etcd.max-call-send-msg-size <tcm_configuration_reference_storage_etcd_max-call-send-msg-size>`
 -   :ref:`storage.etcd.username <tcm_configuration_reference_storage_etcd_username>`
 -   :ref:`storage.etcd.password <tcm_configuration_reference_storage_etcd_password>`
+-   :ref:`storage.etcd.password-file <tcm_configuration_reference_storage_etcd_password-file>`
 -   :ref:`storage.etcd.tls.enabled <tcm_configuration_reference_storage_etcd_tls_enabled>`
 -   :ref:`storage.etcd.tls.auto <tcm_configuration_reference_storage_etcd_tls_auto>`
 -   :ref:`storage.etcd.tls.cert-file <tcm_configuration_reference_storage_etcd_tls_cert-file>`
@@ -1123,11 +1180,14 @@ Tarantool storage parameters:
 
 -   :ref:`storage.tarantool.prefix <tcm_configuration_reference_storage_tarantool_prefix>`
 -   :ref:`storage.tarantool.addr <tcm_configuration_reference_storage_tarantool_addr>`
--   :ref:`storage.tarantool.auth <tcm_configuration_reference_storage_tarantool_timeout>`
+-   :ref:`storage.tarantool.addrs <tcm_configuration_reference_storage_tarantool_addrs>`
+-   :ref:`storage.tarantool.auth <tcm_configuration_reference_storage_tarantool_auth>`
+-   :ref:`storage.tarantool.timeout <tcm_configuration_reference_storage_tarantool_timeout>`
 -   :ref:`storage.tarantool.reconnect <tcm_configuration_reference_storage_tarantool_reconnect>`
 -   :ref:`storage.tarantool.max-reconnects <tcm_configuration_reference_storage_tarantool_max-reconnects>`
--   :ref:`storage.tarantool.user <tcm_configuration_reference_storage_tarantool_user>`
--   :ref:`storage.tarantool.pass <tcm_configuration_reference_storage_tarantool_pass>`
+-   :ref:`storage.tarantool.username <tcm_configuration_reference_storage_tarantool_username>`
+-   :ref:`storage.tarantool.password <tcm_configuration_reference_storage_tarantool_password>`
+-   :ref:`storage.tarantool.password-file <tcm_configuration_reference_storage_tarantool_password-file>`
 -   :ref:`storage.tarantool.rate-limit <tcm_configuration_reference_storage_tarantool_rate-limit>`
 -   :ref:`storage.tarantool.rate-limit-action <tcm_configuration_reference_storage_tarantool_rate-limit-action>`
 -   :ref:`storage.tarantool.concurrency <tcm_configuration_reference_storage_tarantool_concurrency>`
@@ -1138,6 +1198,7 @@ Tarantool storage parameters:
 -   :ref:`storage.tarantool.ssl.ca-file <tcm_configuration_reference_storage_tarantool_ssl_ca-file>`
 -   :ref:`storage.tarantool.ssl.ciphers <tcm_configuration_reference_storage_tarantool_ssl_ciphers>`
 -   :ref:`storage.tarantool.ssl.password <tcm_configuration_reference_storage_tarantool_ssl_password>`
+-   :ref:`storage.tarantool.ssl.password-file <tcm_configuration_reference_storage_tarantool_ssl_password-file>`
 -   :ref:`storage.tarantool.required-protocol-info.auth <tcm_configuration_reference_storage_tarantool_required-protocol-info_auth>`
 -   :ref:`storage.tarantool.required-protocol-info.version <tcm_configuration_reference_storage_tarantool_required-protocol-info_version>`
 -   :ref:`storage.tarantool.required-protocol-info.features <tcm_configuration_reference_storage_tarantool_required-protocol-info_features>`
@@ -1289,6 +1350,18 @@ Tarantool storage parameters:
     | Default: ""
     | Environment variable: TCM_STORAGE_ETCD_PASSWORD
     | Command-line option: ``--storage.etcd.password``
+
+.. _tcm_configuration_reference_storage_etcd_password-file:
+
+.. confval:: storage.etcd.password-file
+
+    A path to the file with a password for accessing the etcd storage.
+
+    |
+    | Type: string
+    | Default: ""
+    | Environment variable: TCM_STORAGE_ETCD_PASSWORD-FILE
+    | Command-line option: ``--storage.etcd.password-file``
 
 .. _tcm_configuration_reference_storage_etcd_tls_enabled:
 
@@ -1485,7 +1558,7 @@ etcd cluster is not available or not needed.
 
 .. confval:: storage.tarantool.prefix
 
-    A prefix for the TCM configuration parameters in the Tarantool |tcm| configuration storage.
+    A prefix for the |tcm| configuration parameters in the Tarantool-based configuration storage.
 
     |
     | Type: string
@@ -1498,7 +1571,7 @@ etcd cluster is not available or not needed.
 
 .. confval:: storage.tarantool.addr
 
-    The URI for connecting to the Tarantool |tcm| configuration storage.
+    The URI for connecting to the Tarantool-based configuration storage.
 
     |
     | Type: string
@@ -1506,12 +1579,24 @@ etcd cluster is not available or not needed.
     | Environment variable: TCM_STORAGE_TARANTOOL_ADDR
     | Command-line option: ``--storage.tarantool.addr``
 
+.. _tcm_configuration_reference_storage_tarantool_addrs:
+
+.. confval:: storage.tarantool.addrs
+
+    An array of the Tarantool-based configuration storage URIs.
+
+    |
+    | Type: []string
+    | Default: ["unix/:/tmp/tnt_config_instance.sock"]
+    | Environment variable: TCM_STORAGE_TARANTOOL_ADDRS
+    | Command-line option: ``--storage.tarantool.addrs``
+
 
 .. _tcm_configuration_reference_storage_tarantool_auth:
 
 .. confval:: storage.tarantool.auth
 
-    An authentication method for the Tarantool |tcm| configuration storage.
+    An authentication method for the Tarantool-based configuration storage.
 
     Possible values are the Go's `go-tarantool/Auth <https://pkg.go.dev/github.com/tarantool/go-tarantool#Auth>`__ constants:
 
@@ -1530,7 +1615,7 @@ etcd cluster is not available or not needed.
 
 .. confval:: storage.tarantool.timeout
 
-    A request timeout for the Tarantool |tcm| configuration storage.
+    A request timeout for the Tarantool-based configuration storage.
 
     See also `go-tarantool.Opts <https://pkg.go.dev/github.com/tarantool/go-tarantool#Opts>`__.
 
@@ -1544,7 +1629,7 @@ etcd cluster is not available or not needed.
 
 .. confval:: storage.tarantool.reconnect
 
-    A timeout between reconnect attempts for the Tarantool |tcm| configuration storage.
+    A timeout between reconnect attempts for the Tarantool-based configuration storage.
 
     See also `go-tarantool.Opts <https://pkg.go.dev/github.com/tarantool/go-tarantool#Opts>`__.
 
@@ -1558,7 +1643,7 @@ etcd cluster is not available or not needed.
 
 .. confval:: storage.tarantool.max-reconnects
 
-    The maximum number of reconnect attempts for the Tarantool |tcm| configuration storage.
+    The maximum number of reconnect attempts for the Tarantool-based configuration storage.
 
     See also `go-tarantool.Opts <https://pkg.go.dev/github.com/tarantool/go-tarantool#Opts>`__.
 
@@ -1569,10 +1654,11 @@ etcd cluster is not available or not needed.
     | Command-line option: ``--storage.tarantool.max-reconnects``
 
 .. _tcm_configuration_reference_storage_tarantool_user:
+.. _tcm_configuration_reference_storage_tarantool_username:
 
-.. confval:: storage.tarantool.user
+.. confval:: storage.tarantool.username
 
-    A username for connecting to the Tarantool |tcm| configuration storage.
+    A username for connecting to the Tarantool-based configuration storage.
 
     See also `go-tarantool.Opts <https://pkg.go.dev/github.com/tarantool/go-tarantool#Opts>`__.
 
@@ -1580,13 +1666,14 @@ etcd cluster is not available or not needed.
     | Type: string
     | Default: ""
     | Environment variable: TCM_STORAGE_TARANTOOL_USER
-    | Command-line option: ``--storage.tarantool.user``
+    | Command-line option: ``--storage.tarantool.username``
 
 .. _tcm_configuration_reference_storage_tarantool_pass:
+.. _tcm_configuration_reference_storage_tarantool_password:
 
-.. confval:: storage.tarantool.pass
+.. confval:: storage.tarantool.password
 
-    A password for connecting to the Tarantool |tcm| configuration storage.
+    A password for connecting to the Tarantool-based configuration storage.
 
     See also `go-tarantool.Opts <https://pkg.go.dev/github.com/tarantool/go-tarantool#Opts>`__.
 
@@ -1594,13 +1681,25 @@ etcd cluster is not available or not needed.
     | Type: string
     | Default: ""
     | Environment variable: TCM_STORAGE_TARANTOOL_PASS
-    | Command-line option: ``--storage.tarantool.pass``
+    | Command-line option: ``--storage.tarantool.password``
+
+.. _tcm_configuration_reference_storage_tarantool_password-file:
+
+.. confval:: storage.tarantool.password-file
+
+    A path to the file with a password for connecting to the Tarantool-based configuration storage.
+
+    |
+    | Type: string
+    | Default: ""
+    | Environment variable: TCM_STORAGE_TARANTOOL_PASSWORD-FILE
+    | Command-line option: ``--storage.tarantool.password-file``
 
 .. _tcm_configuration_reference_storage_tarantool_rate-limit:
 
 .. confval:: storage.tarantool.rate-limit
 
-    A rate limit for connecting to the Tarantool |tcm| configuration storage.
+    A rate limit for connecting to the Tarantool-based configuration storage.
 
     See also `go-tarantool.Opts <https://pkg.go.dev/github.com/tarantool/go-tarantool#Opts>`__.
 
@@ -1890,6 +1989,7 @@ between them.
 -   :ref:`limits.users-count <tcm_configuration_reference_limits_users-count>`
 -   :ref:`limits.clusters-count <tcm_configuration_reference_limits_clusters-count>`
 -   :ref:`limits.roles-count <tcm_configuration_reference_limits_roles-count>`
+-   :ref:`limits.webhooks-count <tcm_configuration_reference_limits_webhooks-count>`
 -   :ref:`limits.user-secrets-count <tcm_configuration_reference_limits_user-secrets-count>`
 -   :ref:`limits.user-websessions-count <tcm_configuration_reference_limits_user-websessions-count>`
 -   :ref:`limits.linked-cluster-users <tcm_configuration_reference_limits_linked-cluster-users>`
@@ -1929,6 +2029,18 @@ between them.
     | Default: 100
     | Environment variable: TCM_LIMITS_ROLES_COUNT
     | Command-line option: ``--limits.roles-count``
+
+.. _tcm_configuration_reference_limits_webhooks-count:
+
+.. confval:: limits.webhooks-count
+
+    The maximum number of webhooks in |tcm|.
+
+    |
+    | Type: int
+    | Default: 200
+    | Environment variable: TCM_LIMITS_WEBHOOKS_COUNT
+    | Command-line option: ``--limits.webhooks-count``
 
 .. _tcm_configuration_reference_limits_user-secrets-count:
 
@@ -1979,8 +2091,9 @@ The ``security`` section defines the security parameters of |tcm|.
 -   :ref:`security.auth <tcm_configuration_reference_security_auth>`
 -   :ref:`security.hash-cost <tcm_configuration_reference_security_hash-cost>`
 -   :ref:`security.encryption-key <tcm_configuration_reference_security_encryption-key>`
--   :ref:`security.encryption-key-file <tcm_configuration_reference_security_encryption-key-file_>`
+-   :ref:`security.encryption-key-file <tcm_configuration_reference_security_encryption-key-file>`
 -   :ref:`security.bootstrap-password <tcm_configuration_reference_security_bootstrap-password>`
+-   :ref:`security.bootstrap-api-token <tcm_configuration_reference_security_bootstrap-api-token>`
 -   :ref:`security.integrity-check <tcm_configuration_reference_security_integrity-check>`
 -   :ref:`security.signature-private-key-file <tcm_configuration_reference_security_signature-private-key-file>`
 
@@ -2043,8 +2156,7 @@ The ``security`` section defines the security parameters of |tcm|.
 
 .. confval:: security.bootstrap-password
 
-    A password for the first login of the ``admin`` user. Must be changed after the
-    successful login. Only for testing purposes.
+    A password for the first login of the ``admin`` user. Only for testing purposes.
 
     |
     | Type: string
@@ -2052,19 +2164,19 @@ The ``security`` section defines the security parameters of |tcm|.
     | Environment variable: TCM_SECURITY_BOOTSTRAP_PASSWORD
     | Command-line option: ``--security.bootstrap-password``
 
-.. _tcm_configuration_security_signature-private-key-file:
+.. _tcm_configuration_reference_security_bootstrap-api-token:
 
-.. confval:: security.signature-private-key-file
+.. confval:: security.bootstrap-api-token
 
-    A path to a file with the private key to sign |tcm| data.
+    A default API token for the ``admin`` user. Only for testing purposes.
 
     |
     | Type: string
     | Default: ""
-    | Environment variable: TCM_SECURITY_SIGNATURE_PRIVATE_KEY_FILE
-    | Command-line option: ``--security.signature-private-key-file``
+    | Environment variable: TCM_SECURITY_BOOTSTRAP_API_TOKEN
+    | Command-line option: ``--security.bootstrap-api-token``
 
-.. _tcm_configuration_security_integrity-check:
+.. _tcm_configuration_reference_security_integrity-check:
 
 .. confval:: security.integrity-check
 
@@ -2076,6 +2188,18 @@ The ``security`` section defines the security parameters of |tcm|.
     | Default: false
     | Environment variable: TCM_SECURITY_INTEGRITY_CHECK
     | Command-line option: ``--security.integrity-check``
+
+.. _tcm_configuration_reference_security_signature-private-key-file:
+
+.. confval:: security.signature-private-key-file
+
+    A path to a file with the private key to sign |tcm| data.
+
+    |
+    | Type: string
+    | Default: ""
+    | Environment variable: TCM_SECURITY_SIGNATURE_PRIVATE_KEY_FILE
+    | Command-line option: ``--security.signature-private-key-file``
 
 .. mode
 
@@ -2094,3 +2218,41 @@ mode
     | Environment variable: TCM_MODE
     | Command-line option: ``--mode``
 
+
+.. feature
+
+.. _tcm_configuration_reference_feature:
+
+feature
+-------
+
+
+The ``feature`` section defines the security parameters of |tcm|.
+
+-   :ref:`feature.ttgraph <tcm_configuration_reference_feature_ttgraph>`
+-   :ref:`feature.column-store <tcm_configuration_reference_feature_column-store>`
+
+
+.. _tcm_configuration_reference_feature_ttgraph:
+
+.. confval:: feature.ttgraph
+
+    Whether Tarantool Graph DB integration is enabled.
+
+    |
+    | Type: bool
+    | Default: false
+    | Environment variable: TCM_FEATURE_TTGRAPH
+    | Command-line option: ``--feature.ttgraph``
+
+.. _tcm_configuration_reference_feature_column-store:
+
+.. confval:: feature.column-store
+
+    Whether Tarantool Column Store integration is enabled.
+
+    |
+    | Type: bool
+    | Default: false
+    | Environment variable: TCM_FEATURE_COLUMN_STORE
+    | Command-line option: ``--feature.column-store``
