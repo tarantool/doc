@@ -1558,7 +1558,7 @@ etcd cluster is not available or not needed.
 
 .. confval:: storage.tarantool.prefix
 
-    A prefix for the TCM configuration parameters in the Tarantool |tcm| configuration storage.
+    A prefix for the |tcm| configuration parameters in the Tarantool-based configuration storage.
 
     |
     | Type: string
@@ -1571,7 +1571,7 @@ etcd cluster is not available or not needed.
 
 .. confval:: storage.tarantool.addr
 
-    The URI for connecting to the Tarantool |tcm| configuration storage.
+    The URI for connecting to the Tarantool-based configuration storage.
 
     |
     | Type: string
@@ -1583,7 +1583,7 @@ etcd cluster is not available or not needed.
 
 .. confval:: storage.tarantool.addrs
 
-    An array of the Tarantool |tcm| configuration storage URIs.
+    An array of the Tarantool-based configuration storage URIs.
 
     |
     | Type: []string
@@ -1596,7 +1596,7 @@ etcd cluster is not available or not needed.
 
 .. confval:: storage.tarantool.auth
 
-    An authentication method for the Tarantool |tcm| configuration storage.
+    An authentication method for the Tarantool-based configuration storage.
 
     Possible values are the Go's `go-tarantool/Auth <https://pkg.go.dev/github.com/tarantool/go-tarantool#Auth>`__ constants:
 
@@ -1615,7 +1615,7 @@ etcd cluster is not available or not needed.
 
 .. confval:: storage.tarantool.timeout
 
-    A request timeout for the Tarantool |tcm| configuration storage.
+    A request timeout for the Tarantool-based configuration storage.
 
     See also `go-tarantool.Opts <https://pkg.go.dev/github.com/tarantool/go-tarantool#Opts>`__.
 
@@ -1629,7 +1629,7 @@ etcd cluster is not available or not needed.
 
 .. confval:: storage.tarantool.reconnect
 
-    A timeout between reconnect attempts for the Tarantool |tcm| configuration storage.
+    A timeout between reconnect attempts for the Tarantool-based configuration storage.
 
     See also `go-tarantool.Opts <https://pkg.go.dev/github.com/tarantool/go-tarantool#Opts>`__.
 
@@ -1643,7 +1643,7 @@ etcd cluster is not available or not needed.
 
 .. confval:: storage.tarantool.max-reconnects
 
-    The maximum number of reconnect attempts for the Tarantool |tcm| configuration storage.
+    The maximum number of reconnect attempts for the Tarantool-based configuration storage.
 
     See also `go-tarantool.Opts <https://pkg.go.dev/github.com/tarantool/go-tarantool#Opts>`__.
 
@@ -1658,7 +1658,7 @@ etcd cluster is not available or not needed.
 
 .. confval:: storage.tarantool.username
 
-    A username for connecting to the |tcm| configuration storage.
+    A username for connecting to the Tarantool-based configuration storage.
 
     See also `go-tarantool.Opts <https://pkg.go.dev/github.com/tarantool/go-tarantool#Opts>`__.
 
@@ -1673,7 +1673,7 @@ etcd cluster is not available or not needed.
 
 .. confval:: storage.tarantool.password
 
-    A password for connecting to the Tarantool |tcm| configuration storage.
+    A password for connecting to the Tarantool-based configuration storage.
 
     See also `go-tarantool.Opts <https://pkg.go.dev/github.com/tarantool/go-tarantool#Opts>`__.
 
@@ -1687,7 +1687,7 @@ etcd cluster is not available or not needed.
 
 .. confval:: storage.tarantool.password-file
 
-    A path to the file with a password for connecting to the Tarantool |tcm| configuration storage.
+    A path to the file with a password for connecting to the Tarantool-based configuration storage.
 
     |
     | Type: string
@@ -1699,7 +1699,7 @@ etcd cluster is not available or not needed.
 
 .. confval:: storage.tarantool.rate-limit
 
-    A rate limit for connecting to the Tarantool |tcm| configuration storage.
+    A rate limit for connecting to the Tarantool-based configuration storage.
 
     See also `go-tarantool.Opts <https://pkg.go.dev/github.com/tarantool/go-tarantool#Opts>`__.
 
