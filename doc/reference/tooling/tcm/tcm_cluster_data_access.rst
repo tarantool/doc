@@ -16,15 +16,16 @@ web interface. You can view, add, edit, and delete tuples from spaces.
     :ref:`cluster permissions <tcm_access_control_permissions>` and :ref:`access control list <tcm_access_control_acl>`.
 
 Data access is implemented in |tcm| on a per-instance basis: you can access
-data stored on one cluster instance at a time. For clusters that use the CRUD module,
-it's also possible to access sharded data throughout the whole cluster.
+data stored on one cluster instance at a time. For sharded clusters that use the
+`CRUD <https://github.com/tarantool/crud>`__ module,
+it's also possible to access data throughout the whole cluster.
 
 ..  _tcm_cluster_data_access_instance:
 
 Instance data
 -------------
 
-There are the following ways to access data stored on a cluster instance:
+There are the following ways to access data stored on a cluster instance from |tcm|:
 
 -   **Instance explorer** displays the instance's spaces as tables in the web interface
 -   **SQL terminal** allows executing SQL statements on the instance
@@ -52,7 +53,7 @@ To open the instance explorer:
 To view tuples of a space, click its row in the spaces list.
 
 To add a new tuple, click **+** on the space page and provide tuple field values
-in the Lua format, for example ``[ 1, 1000, true, "test"]``.
+in the Lua format, for example, ``[ 1, 1000, true, "test"]``.
 
 To edit a tuple, click it in the table and then click **Edit**.
 
@@ -94,12 +95,14 @@ Sharded cluster data
 
 For sharded clusters that use the `CRUD <https://github.com/tarantool/crud>`__ module,
 it's possible to access stored data throughout the cluster on the **Cluster** > **Tuples** page.
-This page list only user spaces.
+This page displays only user spaces.
 
 To view all tuples of a space in a sharded cluster, click the space row in the list.
 
 To add a new tuple, click **+** on the space page and provide tuple field values
-in the Lua format, for example ``[ 1, 1000, true, "test"]``.
+in the Lua format, for example ``[ 1, 1000, true, "test"]``. When you add a tuple
+in a sharded cluster, it is distributed to a replica set based on the sharding key
+(the ``bucket_id`` field) value.
 
 To edit a tuple, click it in the table and then click **Edit**.
 
@@ -117,7 +120,7 @@ on their :ref:`Instance explorer <tcm_cluster_data_access_instance_explorer>` pa
 .. important::
 
     Sharded spaces must include the ``bucket_id`` field of the ``unsigned`` type
-    and a non-unique index by this field.
+    and a non-unique index by this field with the same name.
 
 To edit, truncate, or delete spaces in a sharded cluster, perform the corresponding
 action on all read-write cluster instances.
