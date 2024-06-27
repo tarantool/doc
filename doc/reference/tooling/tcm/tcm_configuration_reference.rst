@@ -1360,7 +1360,7 @@ Tarantool storage parameters:
     |
     | Type: string
     | Default: ""
-    | Environment variable: TCM_STORAGE_ETCD_PASSWORD-FILE
+    | Environment variable: TCM_STORAGE_ETCD_PASSWORD_FILE
     | Command-line option: ``--storage.etcd.password-file``
 
 .. _tcm_configuration_reference_storage_etcd_tls_enabled:
@@ -1665,7 +1665,7 @@ etcd cluster is not available or not needed.
     |
     | Type: string
     | Default: ""
-    | Environment variable: TCM_STORAGE_TARANTOOL_USER
+    | Environment variable: TCM_STORAGE_TARANTOOL_USERNAME
     | Command-line option: ``--storage.tarantool.username``
 
 .. _tcm_configuration_reference_storage_tarantool_pass:
@@ -1680,7 +1680,7 @@ etcd cluster is not available or not needed.
     |
     | Type: string
     | Default: ""
-    | Environment variable: TCM_STORAGE_TARANTOOL_PASS
+    | Environment variable: TCM_STORAGE_TARANTOOL_PASSWORD
     | Command-line option: ``--storage.tarantool.password``
 
 .. _tcm_configuration_reference_storage_tarantool_password-file:
@@ -1692,7 +1692,7 @@ etcd cluster is not available or not needed.
     |
     | Type: string
     | Default: ""
-    | Environment variable: TCM_STORAGE_TARANTOOL_PASSWORD-FILE
+    | Environment variable: TCM_STORAGE_TARANTOOL_PASSWORD_FILE
     | Command-line option: ``--storage.tarantool.password-file``
 
 .. _tcm_configuration_reference_storage_tarantool_rate-limit:
