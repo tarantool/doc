@@ -253,10 +253,10 @@ To deploy a local cluster based on the configuration from etcd:
     .. code-block:: console
 
         $ tt status cluster
-        INSTANCE               STATUS      PID
-        cluster:instance-001     RUNNING     2058
-        cluster:instance-002     RUNNING     2059
-        cluster:instance-003     RUNNING     2060
+        INSTANCE                 STATUS      PID   MODE
+        cluster:instance-001     RUNNING     2058  RW
+        cluster:instance-002     RUNNING     2059  RO
+        cluster:instance-003     RUNNING     2060  RO
 
 ..  _getting_started_tcm_manage:
 

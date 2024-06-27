@@ -12,15 +12,20 @@ Manipulating Tarantool core dumps
 To be able to investigate Tarantool crashes, make sure that core dumps are enabled
 on the host. Here is the :ref:`instruction on enabling core dumps on Unix systems <admin-core_dumps>`.
 
+``COMMAND`` is one of the following:
+
+*   :ref:`pack <tt-coredump-pack>`
+*   :ref:`promote <tt-replicaset-promote>`
+*   :ref:`demote <tt-replicaset-demote>`
+
 ..  important::
 
         ``tt coredump`` does not support macOS.
 
-Commands
---------
+.. _tt-coredump-pack:
 
 pack
-~~~~
+----
 
 ..  code-block:: console
 
@@ -32,57 +37,56 @@ It includes:
 *   the Tarantool executable
 *   Tarantool version information
 *   OS information
-*   Shared libraries
+*   shared libraries
+*   the `GNU debugger <https://www.sourceware.org/gdb/>`__ with extensions.
 
-Option: a path to a core dump file.
+Pack a ``tar.gz`` file with a Tarantool core dump and supporting data:
+
+..  code-block:: console
+
+    $ tt coredump pack name.core
+
+.. _tt-coredump-unpack:
 
 unpack
-~~~~~~
+------
 
 ..  code-block:: console
 
     $ tt coredump unpack ARCHIVE
 
-Unpack a Tarantool core dump created with ``tt coredump pack`` into a new directory.
-
-Option: a path to a ``tar.gz`` archive packed by ``tt coredump pack``.
-
-inspect
-~~~~~~~
+Unpack a Tarantool core dump archive created with ``tt coredump pack`` into a new directory:
 
 ..  code-block:: console
 
-    $ tt coredump inspect DIRECTORY
-
-Inspect a Tarantool core dump directory with the `GNU debugger <https://www.sourceware.org/gdb/>`__ (``gdb``)
-The directory being inspected must have the same structure as the core dump archive
-created by ``tt coredump pack``.
-
-.. note::
-
-    ``tt coredump inspect`` requires ``gdb`` installed on the host.
-
-Option: a path to a directory with an unpacked core dump archive.
-
-Examples
---------
-
-*   Pack a ``tar.gz`` file with a Tarantool core dump and supporting data:
-
-    ..  code-block:: console
-
-        $ tt coredump pack name.core
+    $ tt coredump unpack tarantool-core-dump.tar.gz
 
 
-*   Unpack a ``tar.gz`` archive packed by ``tt coredump pack``:
+.. _tt-coredump-inspect:
 
-    ..  code-block:: console
+inspect
+-------
 
-        $ tt coredump unpack tarantool-core-dump.tar.gz
+..  code-block:: console
 
+    $ tt coredump inspect [ARCHIVE|DIRECTORY] [OPTION ...]
 
-*   Inspect the unpacked core dump with ``gdb``:
+Inspect a Tarantool core dump with the `GNU debugger <https://www.sourceware.org/gdb/>`__ (``gdb``).
+The command argument can be either an archive file produced with ``tt coredump pack``
+or directory where such an archive is extracted.
+
+Inspect the unpacked core dump with ``gdb``:
 
     ..  code-block:: console
 
         $ tt coredump inspect tarantool-core-dump
+
+
+Options
+-------
+
+..  option:: -s
+
+    **Applicable to**: ``inspect``
+
+    Specify the location of Tarantool sources.

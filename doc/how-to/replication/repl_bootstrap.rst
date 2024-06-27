@@ -137,9 +137,9 @@ Starting instances
     .. code-block:: console
 
         $ tt status manual_leader
-        INSTANCE                      STATUS      PID
-        manual_leader:instance001     RUNNING     15272
-        manual_leader:instance002     RUNNING     15273
+        INSTANCE                      STATUS      PID   MODE
+        manual_leader:instance001     RUNNING     15272 RW
+        manual_leader:instance002     RUNNING     15273  RO
 
 
 .. _replication-master_replica_status:
@@ -292,10 +292,10 @@ Starting an instance
     .. code-block:: console
 
         $ tt status manual_leader
-        INSTANCE                      STATUS      PID
-        manual_leader:instance001     RUNNING     15272
-        manual_leader:instance002     RUNNING     15273
-        manual_leader:instance003     RUNNING     15551
+        INSTANCE                      STATUS      PID   MODE
+        manual_leader:instance001     RUNNING     15272 RW
+        manual_leader:instance002     RUNNING     15273 RO
+        manual_leader:instance003     RUNNING     15551 RO
 
 
 ..  _replication-add_instances-reload-config:

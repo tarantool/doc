@@ -79,8 +79,8 @@ To check the instance status, run:
 .. code-block:: console
 
     $ tt status my_app
-    INSTANCE     STATUS      PID
-    my_app       RUNNING     67172
+    INSTANCE     STATUS      PID   MODE
+    my_app       RUNNING     67172 RW
 
     $ # - OR -
 

@@ -135,10 +135,10 @@ Starting instances
     .. code-block:: console
 
         $ tt status auto_leader
-        INSTANCE                    STATUS      PID
-        auto_leader:instance001     RUNNING     24768
-        auto_leader:instance002     RUNNING     24769
-        auto_leader:instance003     RUNNING     24767
+        INSTANCE                    STATUS      PID   MODE
+        auto_leader:instance001     RUNNING     24768 RO
+        auto_leader:instance002     RUNNING     24769 RW
+        auto_leader:instance003     RUNNING     24767 RO
 
 
 

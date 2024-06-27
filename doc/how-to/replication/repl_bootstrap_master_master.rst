@@ -141,9 +141,9 @@ Starting instances
     .. code-block:: console
 
         $ tt status master_master
-        INSTANCE                      STATUS      PID
-        master_master:instance001     RUNNING     30818
-        master_master:instance002     RUNNING     30819
+        INSTANCE                      STATUS      PID   MODE
+        master_master:instance001     RUNNING     30818 RW
+        master_master:instance002     RUNNING     30819 RW
 
 
 .. _replication-master-master-check-status:

@@ -14,9 +14,11 @@ Global options
 
 ``tt`` has the following global options:
 
-.. option:: -c=FILE, --cfg=FILE,
+.. option:: -c=file, --cfg=file,
 
     Path to the :ref:`configuration file <tt-config_file>`.
+
+    Alternatively, this path can be passed in the ``TT_CLI_CFG`` environment variable.
 
 .. option:: -h, --help
 
