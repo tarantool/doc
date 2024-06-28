@@ -123,6 +123,24 @@ Below are the rules if some fields are missing in input data or space:
 *   If a space has fields that are not specified in input data, ``tt [crud] import`` tries to insert ``null`` values.
 *   If input data contains fields missing in a target space, these fields are ignored.
 
+.. _tt-import-bucket-id:
+
+Importing bucket_id into sharded clusters
+-----------------------------------------
+
+When importing data into a CRUD-enabled sharded cluster, ``tt crud import`` ignores
+the ``bucket_id`` field values. This allows CRUD to automatically manage data
+distribution in the cluster by assigning a new ``bucket_id`` to each tuple.
+
+If you need to preserve the original ``bucket_id`` values, use the ``--keep-bucket-id`` option:
+
+.. code-block:: console
+
+    $ tt crud import localhost:3301 customers.csv:customers \
+                     --keep-bucket-id \
+                     --header \
+                     --match=header
+
 .. _tt-import-duplicate-error:
 
 Handling duplicate primary key errors
@@ -268,6 +286,14 @@ Options
     In this case, field values start from the second line.
 
     See also: :ref:`Matching of input and space fields <tt-import-match-fields>`.
+
+..  option:: --keep-bucket-id
+
+    **Applicable to:** ``tt crud import``
+
+    Preserve original values of the ``bucket_id`` field.
+
+    See also: :ref:`tt-import-bucket-id`.
 
 ..  option:: --log STRING
 

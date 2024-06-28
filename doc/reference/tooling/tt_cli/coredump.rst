@@ -15,12 +15,12 @@ on the host. Here is the :ref:`instruction on enabling core dumps on Unix system
 ``COMMAND`` is one of the following:
 
 *   :ref:`pack <tt-coredump-pack>`
-*   :ref:`promote <tt-replicaset-promote>`
-*   :ref:`demote <tt-replicaset-demote>`
+*   :ref:`unpack <tt-coredump-unpack>`
+*   :ref:`inspect <tt-coredump-inspect>`
 
 ..  important::
 
-        ``tt coredump`` does not support macOS.
+    ``tt coredump`` does not support macOS.
 
 .. _tt-coredump-pack:
 
@@ -69,17 +69,23 @@ inspect
 
 ..  code-block:: console
 
-    $ tt coredump inspect [ARCHIVE|DIRECTORY] [OPTION ...]
+    $ tt coredump inspect [ARCHIVE|DIRECTORY] [-s]
 
 Inspect a Tarantool core dump with the `GNU debugger <https://www.sourceware.org/gdb/>`__ (``gdb``).
 The command argument can be either an archive file produced with ``tt coredump pack``
 or directory where such an archive is extracted.
 
-Inspect the unpacked core dump with ``gdb``:
+Inspect the core dump archive with ``gdb``:
 
-    ..  code-block:: console
+..  code-block:: console
 
-        $ tt coredump inspect tarantool-core-dump
+    $ tt coredump inspect tarantool-core-dump.tar.gz
+
+Inspect the unpacked core dump directory with ``gdb``:
+
+..  code-block:: console
+
+    $ tt coredump inspect tarantool-core-dump
 
 
 Options
