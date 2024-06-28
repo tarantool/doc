@@ -14,7 +14,7 @@ Creating an application from a template
 defining their initial structure and content. A template can include application
 code, configuration, build scripts, and other resources.
 
-``tt`` comes with built-in templates for popular use-cases. You can also create
+``tt`` comes with built-in templates for popular use cases. You can also create
 custom templates for specific purposes.
 
 .. _tt-create-built-in:
@@ -25,7 +25,7 @@ Built-in templates
 There are the following built-in templates:
 
 -   ``vshard_cluster``: a sharded cluster application for Tarantool 3.0 or later.
--   ``single_instance``: a single-instance-application for Tarantool 3.0 or later
+-   ``single_instance``: a single-instance application for Tarantool 3.0 or later
 -   ``cartridge``: a Cartridge cluster application for Tarantool 2.x.
 
     .. important::
@@ -33,14 +33,15 @@ There are the following built-in templates:
         The Tarantool Cartridge framework is deprecated and is not compatible with
         Tarantool 3.0 and later.
 
-To create the ``app1`` application in the current ``tt` environment from the built-in
+To create the ``app1`` application in the current ``tt`` environment from the built-in
 ``vshard_cluster`` template:
 
 ..  code-block:: console
 
     $ tt create vshard_cluster --name app1 -dst /opt/tt/apps/
 
-The command requests the cluster topology parameters interactively during the execution.
+The command requests the cluster topology parameters, such as the number of shards
+or routers, interactively during the execution.
 
 To create the application in the ``/opt/tt/apps`` directory with default cluster
 topology and force rewrite the application directory if it already exists:
@@ -58,7 +59,7 @@ Creating custom application templates
 ``tt`` searches for custom templates in the directories specified in the ``templates``
 section of its :ref:`configuration file <tt-config_file>`.
 
-To create the application ``app1`` from the ``simple_app`` user-defined template in the current directory:
+To create the application ``app1`` from the ``simple_app`` custom template in the current directory:
 
 ..  code-block:: console
 
@@ -202,13 +203,12 @@ You can combine different ways of passing variables in a single call of ``tt cre
 .. _tt-create-custom-directory:
 
 Application directory
-~~~~~~~~~~~~~~~~~~~~~
+---------------------
 
 By default, the application appears in the directory named after the provided
 application name (``--name`` value).
 
 To change the application location, use the ``-dst`` option.
-
 
 .. _tt-create-options:
 

@@ -139,7 +139,7 @@ Starting instances
         $ tt status manual_leader
         INSTANCE                      STATUS      PID   MODE
         manual_leader:instance001     RUNNING     15272 RW
-        manual_leader:instance002     RUNNING     15273  RO
+        manual_leader:instance002     RUNNING     15273 RO
 
 
 .. _replication-master_replica_status:

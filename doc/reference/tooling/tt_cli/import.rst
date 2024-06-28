@@ -129,8 +129,9 @@ Importing bucket_id into sharded clusters
 -----------------------------------------
 
 When importing data into a CRUD-enabled sharded cluster, ``tt crud import`` ignores
-the ``bucket_id`` field values. This allows CRUD to automatically manage data
-distribution in the cluster by assigning a new ``bucket_id`` to each tuple.
+the ``bucket_id`` field values from the input file. This allows CRUD to automatically
+manage data distribution in the cluster by generating new ``bucket_id`` for tuples
+during import.
 
 If you need to preserve the original ``bucket_id`` values, use the ``--keep-bucket-id`` option:
 

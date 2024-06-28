@@ -21,10 +21,10 @@ Name and location
 By default, the configuration file is called ``tt.yaml`` and located in the ``tt``
 environment root directory. It depends on the :ref:`launch mode <tt-config_modes>`.
 
-It is also possible to pass the configuration file and location explicitly using
+It is also possible to pass the configuration file name and location explicitly using
 the following ways:
 
-#.  ``--cfg`` :ref:`global option <tt-global-options>`
+#.  ``-c``/``--cfg`` :ref:`global option <tt-global-options>`
 #.  ``TT_CLI_CFG`` environment variable.
 
 The ``TT_CLI_CFG`` variable has a lower priority than the ``--cfg`` option.
