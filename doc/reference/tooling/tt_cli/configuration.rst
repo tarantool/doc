@@ -9,7 +9,7 @@ Configuration file
 ------------------
 
 The key artifact that defines the ``tt`` environment and various aspects of its
-execution is its configuration file. You can generate it with a :ref:`tt-init` call.
+execution is its configuration file. You can generate it with a :ref:`tt init <tt-init>` call.
 In the :ref:`default launch mode <tt-config_modes-default>`, the file is generated
 in the current directory, making it the environment root.
 

@@ -20,7 +20,7 @@ on the host. Here is the :ref:`instruction on enabling core dumps on Unix system
 
 ..  important::
 
-    ``tt coredump`` does not support macOS.
+    ``tt coredump`` is not supported on macOS.
 
 .. _tt-coredump-pack:
 
