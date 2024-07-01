@@ -68,7 +68,7 @@ To learn more about field types, check the
             -   Index type
         *   -   ``'boolean'``
             -   :ref:`boolean <index-box_boolean>`
-            -   :ref:`boolean <index-box_boolean>`
+            -   TREE or HASH
         *   -   ``'integer'`` (may also be called ``'int'``)
             -   :ref:`integer <index-box_integer>`, which may include unsigned values
             -   TREE or HASH
@@ -95,12 +95,15 @@ To learn more about field types, check the
         *   -   ``'uuid'``
             -   :ref:`uuid <index-box_uuid>`
             -   TREE or HASH
-        *   -   ``datetime``
+        *   -   ``'datetime'``
             -   :ref:`datetime <index-box_datetime>`
             -   TREE
         *   -   ``'array'``
             -   :ref:`array <index-box_array>`
             -   :ref:`RTREE <box_index-rtree>`
+        *   -   ``'map'``
+            -   :ref:`table <index-box_table>`
+            -   Cannot be indexed
         *   -   ``'scalar'``
             -   may include :ref:`nil <index-box_nil>`,
                 :ref:`boolean <index-box_boolean>`,
