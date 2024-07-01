@@ -117,10 +117,6 @@ The ``audit_log`` section defines configuration parameters related to :ref:`audi
 *   :ref:`audit_log.to <configuration_reference_audit_to>`
 *   :ref:`audit_log.syslog.* <configuration_reference_audit_syslog>`
 
-    -   :ref:`audit_log.syslog.facility <configuration_reference_audit_syslog-facility>`
-    -   :ref:`audit_log.syslog.identity <configuration_reference_audit_syslog-identity>`
-    -   :ref:`audit_log.syslog.server <configuration_reference_audit_syslog-server>`
-
 ..  _configuration_reference_audit_extract_key:
 
 ..  confval:: audit_log.extract_key
@@ -315,6 +311,10 @@ The ``audit_log`` section defines configuration parameters related to :ref:`audi
 
 audit_log.syslog.*
 ~~~~~~~~~~~~~~~~~~
+
+*   :ref:`audit_log.syslog.facility <configuration_reference_audit_syslog-facility>`
+*   :ref:`audit_log.syslog.identity <configuration_reference_audit_syslog-identity>`
+*   :ref:`audit_log.syslog.server <configuration_reference_audit_syslog-server>`
 
 ..  _configuration_reference_audit_syslog-facility:
 
@@ -1186,10 +1186,7 @@ The ``failover`` section defines parameters related to a :ref:`supervised failov
 -   :ref:`failover.lease_interval <configuration_reference_failover_lease_interval>`
 -   :ref:`failover.probe_interval <configuration_reference_failover_probe_interval>`
 -   :ref:`failover.renew_interval <configuration_reference_failover_renew_interval>`
--   :ref:`failover.stateboard <configuration_reference_failover_stateboard>`
-
-    -   :ref:`failover.stateboard.keepalive_interval <configuration_reference_failover_stateboard_keepalive_interval>`
-    -   :ref:`failover.stateboard.renew_interval <configuration_reference_failover_stateboard_renew_interval>`
+-   :ref:`failover.stateboard.* <configuration_reference_failover_stateboard>`
 
 ..  _configuration_reference_failover_call_timeout:
 
@@ -1260,6 +1257,9 @@ failover.stateboard.*
 ~~~~~~~~~~~~~~~~~~~~~
 
 ``failover.stateboard.*`` options define configuration parameters related to maintaining the state of failover coordinators in a remote etcd-based storage.
+
+*   :ref:`failover.stateboard.keepalive_interval <configuration_reference_failover_stateboard_keepalive_interval>`
+*   :ref:`failover.stateboard.renew_interval <configuration_reference_failover_stateboard_renew_interval>`
 
 See also: :ref:`supervised_failover_overview_fault_tolerance`
 
@@ -1589,164 +1589,13 @@ The ``iproto`` section is used to configure parameters related to :ref:`communic
 
     ``iproto`` can be defined in any :ref:`scope <configuration_scopes>`.
 
+*   :ref:`iproto.listen <configuration_reference_iproto_listen>`
+*   :ref:`iproto.net_msg_max <configuration_reference_iproto_net_msg_max>`
+*   :ref:`iproto.readahead <configuration_reference_iproto_readahead>`
+*   :ref:`iproto.threads <configuration_reference_iproto_threads>`
+*   :ref:`iproto.advertise.* <configuration_reference_iproto_advertise>`
+*   :ref:`<uri>.params.* <configuration_reference_iproto_uri_params>`
 
--   :ref:`iproto.advertise.* <configuration_reference_iproto_advertise>`
-
-    -   :ref:`iproto.advertise.client <configuration_reference_iproto_advertise_client>`
-    -   :ref:`iproto.advertise.peer <configuration_reference_iproto_advertise_peer>`
-    -   :ref:`iproto.advertise.sharding <configuration_reference_iproto_advertise_sharding>`
-    -   :ref:`iproto.advertise.\<peer_or_sharding\>.* <configuration_reference_iproto_advertise.peer_sharding>`
-
--   :ref:`iproto.* <configuration_reference_iproto_misc>`
-
-    -   :ref:`iproto.listen <configuration_reference_iproto_listen>`
-    -   :ref:`iproto.net_msg_max <configuration_reference_iproto_net_msg_max>`
-    -   :ref:`iproto.readahead <configuration_reference_iproto_readahead>`
-    -   :ref:`iproto.threads <configuration_reference_iproto_threads>`
-
--   :ref:`<uri>.params.* <configuration_reference_iproto_uri_params>`
-
-.. _configuration_reference_iproto_advertise:
-
-iproto.advertise.*
-~~~~~~~~~~~~~~~~~~
-
-.. _configuration_reference_iproto_advertise_client:
-
-.. confval:: iproto.advertise.client
-
-    A URI used to advertise the current instance to clients.
-
-    The ``iproto.advertise.client`` option accepts a URI in the following formats:
-
-    -   An address: ``host:port``.
-
-    -   A Unix domain socket: ``unix/:``.
-
-    Note that this option doesn't allow to set a username and password.
-    If a remote client needs this information, it should be delivered outside of the cluster configuration.
-
-    .. host_port_limitations_start
-
-    .. NOTE::
-
-        The host value cannot be ``0.0.0.0``/``[::]`` and the port value cannot be ``0``.
-
-    .. host_port_limitations_end
-
-    |
-    | Type: string
-    | Default: :ref:`box.NULL <box-null>`
-    | Environment variable: TT_IPROTO_ADVERTISE_CLIENT
-
-.. _configuration_reference_iproto_advertise_peer:
-
-.. confval:: iproto.advertise.peer
-
-    Settings used to advertise the current instance to other cluster members.
-    The format of these settings is described in :ref:`iproto.advertise.\<peer_or_sharding\>.* <configuration_reference_iproto_advertise.peer_sharding>`.
-
-    **Example**
-
-    In the example below, the following configuration options are specified:
-
-    -   In the :ref:`credentials <configuration_reference_credentials>` section, the ``replicator`` user with the ``replication`` role is created.
-    -   ``iproto.advertise.peer`` specifies that other instances should connect to an address defined in :ref:`iproto.listen <configuration_reference_iproto_listen>` using the ``replicator`` user.
-
-    ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/auto_leader/config.yaml
-        :language: yaml
-        :start-at: credentials:
-        :end-at: 127.0.0.1:3303
-        :dedent:
-
-    |
-    | Type: map
-    | Environment variable: see :ref:`iproto.advertise.\<peer_or_sharding\>.* <configuration_reference_iproto_advertise.peer_sharding>`
-
-.. _configuration_reference_iproto_advertise_sharding:
-
-.. confval:: iproto.advertise.sharding
-
-    Settings used to advertise the current instance to a router and rebalancer.
-    The format of these settings is described in :ref:`iproto.advertise.\<peer_or_sharding\>.* <configuration_reference_iproto_advertise.peer_sharding>`.
-
-    .. NOTE::
-
-        If ``iproto.advertise.sharding`` is not specified, advertise settings from :ref:`iproto.advertise.peer <configuration_reference_iproto_advertise_peer>` are used.
-
-    **Example**
-
-    In the example below, the following configuration options are specified:
-
-    -   In the :ref:`credentials <configuration_reference_credentials>` section, the ``replicator`` and ``storage`` users are created.
-    -   ``iproto.advertise.peer`` specifies that other instances should connect to an address defined in :ref:`iproto.listen <configuration_reference_iproto_listen>` with the ``replicator`` user.
-    -   ``iproto.advertise.sharding`` specifies that a router should connect to storages using an address defined in :ref:`iproto.listen <configuration_reference_iproto_listen>` with the ``storage`` user.
-
-    ..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster/config.yaml
-        :language: yaml
-        :start-at: credentials:
-        :end-at: login: storage
-        :dedent:
-
-    |
-    | Type: map
-    | Environment variable: see :ref:`iproto.advertise.\<peer_or_sharding\>.* <configuration_reference_iproto_advertise.peer_sharding>`
-
-.. _configuration_reference_iproto_advertise.peer_sharding:
-
-iproto.advertise.<peer_or_sharding>.*
-*************************************
-
-.. _configuration_reference_iproto_advertise.peer_sharding.uri:
-
-.. confval:: iproto.advertise.<peer_or_sharding>.uri
-
-    (Optional) A URI used to advertise the current instance.
-    By default, the URI defined in :ref:`iproto.listen <configuration_reference_iproto_listen>` is used to advertise the current instance.
-
-    ..  include:: /reference/configuration/configuration_reference.rst
-        :start-after: host_port_limitations_start
-        :end-before: host_port_limitations_end
-
-    |
-    | Type: string
-    | Default: nil
-    | Environment variable: TT_IPROTO_ADVERTISE_PEER_URI, TT_IPROTO_ADVERTISE_SHARDING_URI
-
-.. _configuration_reference_iproto_advertise.peer_sharding.login:
-
-.. confval:: iproto.advertise.<peer_or_sharding>.login
-
-    (Optional) A username used to connect to the current instance.
-    If a username is not set, the ``guest`` user is used.
-
-    |
-    | Type: string
-    | Default: nil
-    | Environment variable: TT_IPROTO_ADVERTISE_PEER_LOGIN, TT_IPROTO_ADVERTISE_SHARDING_LOGIN
-
-.. _configuration_reference_iproto_advertise.peer_sharding.password:
-
-.. confval:: iproto.advertise.<peer_or_sharding>.password
-
-    (Optional) A password for the specified user.
-    If a ``login`` is specified but a password is missing, it is taken from the user's :ref:`credentials <configuration_reference_credentials>`.
-
-    |
-    | Type: string
-    | Default: nil
-    | Environment variable: TT_IPROTO_ADVERTISE_PEER_PASSWORD, TT_IPROTO_ADVERTISE_SHARDING_PASSWORD
-
-.. _configuration_reference_iproto_advertise.peer_sharding.params:
-
-.. confval:: iproto.advertise.<peer_or_sharding>.params
-
-    (Optional) URI parameters (:ref:`<uri>.params.* <configuration_reference_iproto_uri_params>`) required for connecting to the current instance.
-
-.. _configuration_reference_iproto_misc:
-
-iproto.*
-~~~~~~~~
 
 .. _configuration_reference_iproto_listen:
 
@@ -1846,6 +1695,157 @@ iproto.*
     | Type: integer
     | Default: 1
     | Environment variable: TT_IPROTO_THREADS
+
+
+.. _configuration_reference_iproto_advertise:
+
+iproto.advertise.*
+~~~~~~~~~~~~~~~~~~
+
+*   :ref:`iproto.advertise.client <configuration_reference_iproto_advertise_client>`
+*   :ref:`iproto.advertise.peer <configuration_reference_iproto_advertise_peer>`
+*   :ref:`iproto.advertise.sharding <configuration_reference_iproto_advertise_sharding>`
+*   :ref:`iproto.advertise.\<peer_or_sharding\>.* <configuration_reference_iproto_advertise.peer_sharding>`
+
+.. _configuration_reference_iproto_advertise_client:
+
+.. confval:: iproto.advertise.client
+
+    A URI used to advertise the current instance to clients.
+
+    The ``iproto.advertise.client`` option accepts a URI in the following formats:
+
+    -   An address: ``host:port``.
+
+    -   A Unix domain socket: ``unix/:``.
+
+    Note that this option doesn't allow to set a username and password.
+    If a remote client needs this information, it should be delivered outside of the cluster configuration.
+
+    .. host_port_limitations_start
+
+    .. NOTE::
+
+        The host value cannot be ``0.0.0.0``/``[::]`` and the port value cannot be ``0``.
+
+    .. host_port_limitations_end
+
+    |
+    | Type: string
+    | Default: :ref:`box.NULL <box-null>`
+    | Environment variable: TT_IPROTO_ADVERTISE_CLIENT
+
+.. _configuration_reference_iproto_advertise_peer:
+
+.. confval:: iproto.advertise.peer
+
+    Settings used to advertise the current instance to other cluster members.
+    The format of these settings is described in :ref:`iproto.advertise.\<peer_or_sharding\>.* <configuration_reference_iproto_advertise.peer_sharding>`.
+
+    **Example**
+
+    In the example below, the following configuration options are specified:
+
+    -   In the :ref:`credentials <configuration_reference_credentials>` section, the ``replicator`` user with the ``replication`` role is created.
+    -   ``iproto.advertise.peer`` specifies that other instances should connect to an address defined in :ref:`iproto.listen <configuration_reference_iproto_listen>` using the ``replicator`` user.
+
+    ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/auto_leader/config.yaml
+        :language: yaml
+        :start-at: credentials:
+        :end-at: 127.0.0.1:3303
+        :dedent:
+
+    |
+    | Type: map
+    | Environment variable: see :ref:`iproto.advertise.\<peer_or_sharding\>.* <configuration_reference_iproto_advertise.peer_sharding>`
+
+.. _configuration_reference_iproto_advertise_sharding:
+
+.. confval:: iproto.advertise.sharding
+
+    Settings used to advertise the current instance to a router and rebalancer.
+    The format of these settings is described in :ref:`iproto.advertise.\<peer_or_sharding\>.* <configuration_reference_iproto_advertise.peer_sharding>`.
+
+    .. NOTE::
+
+        If ``iproto.advertise.sharding`` is not specified, advertise settings from :ref:`iproto.advertise.peer <configuration_reference_iproto_advertise_peer>` are used.
+
+    **Example**
+
+    In the example below, the following configuration options are specified:
+
+    -   In the :ref:`credentials <configuration_reference_credentials>` section, the ``replicator`` and ``storage`` users are created.
+    -   ``iproto.advertise.peer`` specifies that other instances should connect to an address defined in :ref:`iproto.listen <configuration_reference_iproto_listen>` with the ``replicator`` user.
+    -   ``iproto.advertise.sharding`` specifies that a router should connect to storages using an address defined in :ref:`iproto.listen <configuration_reference_iproto_listen>` with the ``storage`` user.
+
+    ..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster/config.yaml
+        :language: yaml
+        :start-at: credentials:
+        :end-at: login: storage
+        :dedent:
+
+    |
+    | Type: map
+    | Environment variable: see :ref:`iproto.advertise.\<peer_or_sharding\>.* <configuration_reference_iproto_advertise.peer_sharding>`
+
+.. _configuration_reference_iproto_advertise.peer_sharding:
+
+iproto.advertise.<peer_or_sharding>.*
+*************************************
+
+*   :ref:`iproto.advertise.\<peer_or_sharding\>.uri <configuration_reference_iproto_advertise.peer_sharding.uri>`
+*   :ref:`iproto.advertise.\<peer_or_sharding\>.login <configuration_reference_iproto_advertise.peer_sharding.login>`
+*   :ref:`iproto.advertise.\<peer_or_sharding\>.password <configuration_reference_iproto_advertise.peer_sharding.password>`
+*   :ref:`iproto.advertise.\<peer_or_sharding\>.params <configuration_reference_iproto_advertise.peer_sharding.params>`
+
+.. _configuration_reference_iproto_advertise.peer_sharding.uri:
+
+.. confval:: iproto.advertise.<peer_or_sharding>.uri
+
+    (Optional) A URI used to advertise the current instance.
+    By default, the URI defined in :ref:`iproto.listen <configuration_reference_iproto_listen>` is used to advertise the current instance.
+
+    ..  include:: /reference/configuration/configuration_reference.rst
+        :start-after: host_port_limitations_start
+        :end-before: host_port_limitations_end
+
+    |
+    | Type: string
+    | Default: nil
+    | Environment variable: TT_IPROTO_ADVERTISE_PEER_URI, TT_IPROTO_ADVERTISE_SHARDING_URI
+
+.. _configuration_reference_iproto_advertise.peer_sharding.login:
+
+.. confval:: iproto.advertise.<peer_or_sharding>.login
+
+    (Optional) A username used to connect to the current instance.
+    If a username is not set, the ``guest`` user is used.
+
+    |
+    | Type: string
+    | Default: nil
+    | Environment variable: TT_IPROTO_ADVERTISE_PEER_LOGIN, TT_IPROTO_ADVERTISE_SHARDING_LOGIN
+
+.. _configuration_reference_iproto_advertise.peer_sharding.password:
+
+.. confval:: iproto.advertise.<peer_or_sharding>.password
+
+    (Optional) A password for the specified user.
+    If a ``login`` is specified but a password is missing, it is taken from the user's :ref:`credentials <configuration_reference_credentials>`.
+
+    |
+    | Type: string
+    | Default: nil
+    | Environment variable: TT_IPROTO_ADVERTISE_PEER_PASSWORD, TT_IPROTO_ADVERTISE_SHARDING_PASSWORD
+
+.. _configuration_reference_iproto_advertise.peer_sharding.params:
+
+.. confval:: iproto.advertise.<peer_or_sharding>.params
+
+    (Optional) URI parameters (:ref:`<uri>.params.* <configuration_reference_iproto_uri_params>`) required for connecting to the current instance.
+
+
+
 
 .. _configuration_reference_iproto_uri_params:
 
@@ -2182,10 +2182,6 @@ To handle logging in your application, use the :ref:`log module <log-module>`.
 *   :ref:`log.pipe <configuration_reference_log_pipe>`
 *   :ref:`log.syslog.* <configuration_reference_log_syslog>`
 
-    -   :ref:`log.syslog.facility <configuration_reference_log_syslog-facility>`
-    -   :ref:`log.syslog.identity <configuration_reference_log_syslog-identity>`
-    -   :ref:`log.syslog.server <configuration_reference_log_syslog-server>`
-
 ..  _configuration_reference_log_to:
 
 ..  confval:: log.to
@@ -2455,6 +2451,10 @@ To handle logging in your application, use the :ref:`log module <log-module>`.
 
 log.syslog.*
 ~~~~~~~~~~~~
+
+*   :ref:`log.syslog.facility <configuration_reference_log_syslog-facility>`
+*   :ref:`log.syslog.identity <configuration_reference_log_syslog-identity>`
+*   :ref:`log.syslog.server <configuration_reference_log_syslog-server>`
 
 ..  _configuration_reference_log_syslog-facility:
 
@@ -3774,9 +3774,6 @@ To learn more about the snapshots' configuration, check the :ref:`Persistence <c
 -   :ref:`snapshot.count <configuration_reference_snapshot_count>`
 -   :ref:`snapshot.by.* <configuration_reference_snapshot_by>`
 
-    -   :ref:`snapshot.by.interval <configuration_reference_snapshot_by_interval>`
-    -   :ref:`snapshot.by.wal_size <configuration_reference_snapshot_by_wal_size>`
-
 ..  _configuration_reference_snapshot_dir:
 
 ..  confval:: snapshot.dir
@@ -3850,6 +3847,9 @@ To learn more about the snapshots' configuration, check the :ref:`Persistence <c
 
 snapshot.by.*
 ~~~~~~~~~~~~~
+
+*   :ref:`snapshot.by.interval <configuration_reference_snapshot_by_interval>`
+*   :ref:`snapshot.by.wal_size <configuration_reference_snapshot_by_wal_size>`
 
 ..  _configuration_reference_snapshot_by_interval:
 
@@ -4124,10 +4124,6 @@ To learn more about the WAL configuration, check the :ref:`Persistence <configur
 -   :ref:`wal.queue_max_size <configuration_reference_wal_queue_max_size>`
 -   :ref:`wal.ext.* <configuration_reference_wal_ext>`
 
-    -   :ref:`wal.ext.new <configuration_reference_wal_ext_new>`
-    -   :ref:`wal.ext.old <configuration_reference_wal_ext_old>`
-    -   :ref:`wal.ext.spaces <configuration_reference_wal_ext_spaces>`
-
 ..  _configuration_reference_wal_cleanup_delay:
 
 ..  confval:: wal.cleanup_delay
@@ -4245,6 +4241,10 @@ wal.ext.*
     Configuring ``wal.ext.*`` parameters is available in the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only.
 
 This section describes options related to :ref:`WAL extensions <wal_extensions>`.
+
+*   :ref:`wal.ext.new <configuration_reference_wal_ext_new>`
+*   :ref:`wal.ext.old <configuration_reference_wal_ext_old>`
+*   :ref:`wal.ext.spaces <configuration_reference_wal_ext_spaces>`
 
 ..  _configuration_reference_wal_ext_new:
 
