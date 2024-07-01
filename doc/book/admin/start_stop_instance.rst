@@ -73,20 +73,20 @@ To check the status of instances, execute :ref:`tt status <tt-status>`:
 .. code-block:: console
 
     $ tt status sharded_cluster
-    INSTANCE                          STATUS      PID
-    sharded_cluster:storage-a-001     RUNNING     2023
-    sharded_cluster:storage-a-002     RUNNING     2026
-    sharded_cluster:storage-b-001     RUNNING     2020
-    sharded_cluster:storage-b-002     RUNNING     2021
-    sharded_cluster:router-a-001      RUNNING     2022
+    INSTANCE                          STATUS      PID   MODE
+    sharded_cluster:storage-a-001     RUNNING     2023  RW
+    sharded_cluster:storage-a-002     RUNNING     2026  RO
+    sharded_cluster:storage-b-001     RUNNING     2020  RW
+    sharded_cluster:storage-b-002     RUNNING     2021  RO
+    sharded_cluster:router-a-001      RUNNING     2022  RW
 
 To check the status of a specific instance, you need to specify its name:
 
 .. code-block:: console
 
     $ tt status sharded_cluster:storage-a-001
-    INSTANCE                          STATUS      PID
-    sharded_cluster:storage-a-001     RUNNING     2023
+    INSTANCE                          STATUS      PID   MODE
+    sharded_cluster:storage-a-001     RUNNING     2023  RW
 
 
 .. _admin-start_stop_instance_connect:

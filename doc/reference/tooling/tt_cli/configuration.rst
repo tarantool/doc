@@ -9,12 +9,30 @@ Configuration file
 ------------------
 
 The key artifact that defines the ``tt`` environment and various aspects of its
-execution is its configuration file.
+execution is its configuration file. You can generate it with a :ref:`tt init <tt-init>` call.
+In the :ref:`default launch mode <tt-config_modes-default>`, the file is generated
+in the current directory, making it the environment root.
 
-By default, the configuration file is called ``tt.yaml``. The location
-where ``tt`` searches for it depends on the :ref:`launch mode <tt-config_modes>`.
-You can also pass the configuration file explicitly in the ``--cfg``
-:ref:`global option <tt-global-options>`.
+.. _tt-config_file_name:
+
+Name and location
+~~~~~~~~~~~~~~~~~
+
+By default, the configuration file is called ``tt.yaml`` and located in the ``tt``
+environment root directory. It depends on the :ref:`launch mode <tt-config_modes>`.
+
+It is also possible to pass the configuration file name and location explicitly using
+the following ways:
+
+#.  ``-c``/``--cfg`` :ref:`global option <tt-global-options>`
+#.  ``TT_CLI_CFG`` environment variable.
+
+The ``TT_CLI_CFG`` variable has a lower priority than the ``--cfg`` option.
+
+.. _tt-config_file_structure:
+
+Structure
+~~~~~~~~~
 
 The ``tt`` configuration file is a YAML file with the following structure:
 
@@ -158,6 +176,8 @@ configuration file. There are three launch modes:
 *   default
 *   system
 *   local
+
+.. _tt-config_modes-default:
 
 Default launch
 ~~~~~~~~~~~~~~
