@@ -1857,10 +1857,15 @@ iproto.advertise.<peer_or_sharding>.*
 
     TLS traffic encryption is supported by the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only.
 
-URI parameters that can be used in the following options:
+URI parameters that can be used in the :ref:`iproto.listen.\<uri\>.params <configuration_reference_iproto_listen>` and :ref:`iproto.advertise.\<peer_or_sharding\>.params <configuration_reference_iproto_advertise.peer_sharding.params>` options.
 
--   :ref:`iproto.advertise.\<peer_or_sharding\>.params <configuration_reference_iproto_advertise.peer_sharding.params>`
--   :ref:`iproto.listen.\<uri\>.params <configuration_reference_iproto_listen>`
+*   :ref:`\<uri\>.params.transport <configuration_reference_iproto_uri_params_transport>`
+*   :ref:`\<uri\>.params.ssl_ca_file <configuration_reference_iproto_uri_params_ssl_ca_file>`
+*   :ref:`\<uri\>.params.ssl_cert_file <configuration_reference_iproto_uri_params_ssl_cert_file>`
+*   :ref:`\<uri\>.params.ssl_ciphers <configuration_reference_iproto_uri_params_ssl_ciphers>`
+*   :ref:`\<uri\>.params.ssl_key_file <configuration_reference_iproto_uri_params_ssl_key_file>`
+*   :ref:`\<uri\>.params.ssl_password <configuration_reference_iproto_uri_params_ssl_password>`
+*   :ref:`\<uri\>.params.ssl_password_file <configuration_reference_iproto_uri_params_ssl_password_file>`
 
 ..  NOTE::
 
@@ -1891,7 +1896,7 @@ URI parameters that can be used in the following options:
         :start-at: replicaset001:
         :dedent:
 
-    You can find the full example here: `ssl_without_ca <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/replication/instances.enabled/ssl_without_ca>`_.
+    Example on Github: `ssl_without_ca <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/replication/instances.enabled/ssl_without_ca>`_
 
     |
     | Type: string
