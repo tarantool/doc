@@ -470,7 +470,7 @@ This section describes options related to loading configuration settings from ex
     The name of an environment variable to load a configuration value from.
     To load a configuration value from an environment variable, set :ref:`config.context.\<name\>.from <configuration_reference_config_context_name_from>` to ``env``.
 
-    **Example:**
+    **Example**
 
     In this example, passwords are loaded from the ``DBADMIN_PASSWORD`` and ``SAMPLEUSER_PASSWORD`` environment variables:
 
@@ -503,7 +503,7 @@ This section describes options related to loading configuration settings from ex
     The path to a file to load a configuration value from.
     To load a configuration value from a file, set :ref:`config.context.\<name\>.from <configuration_reference_config_context_name_from>` to ``file``.
 
-    **Example:**
+    **Example**
 
     In this example, passwords are loaded from the ``dbadmin_password.txt`` and ``sampleuser_password.txt`` files:
 
@@ -836,7 +836,7 @@ credentials.roles.*
 
     An array of :ref:`roles <access_control_concepts_roles>` that can be granted to users or other roles.
 
-    **Example:**
+    **Example**
 
     In the example below, the ``writers_space_reader`` role gets privileges to select data in the ``writers`` space:
 
@@ -884,7 +884,7 @@ credentials.users.*
 
     An array of :ref:`users <access_control_concepts_users>`.
 
-    **Example:**
+    **Example**
 
     In this example, ``sampleuser`` gets the following privileges:
 
@@ -911,7 +911,7 @@ credentials.users.*
 
     A user's password.
 
-    **Example:**
+    **Example**
 
     In the example below, a password for the ``dbadmin`` user is set:
 
@@ -967,7 +967,7 @@ credentials.users.*
 
     :ref:`Permissions <access_control_list_privileges>` assigned to this user or a user with this role.
 
-    **Example:**
+    **Example**
 
     In this example, ``sampleuser`` gets privileges to select and modify data in the ``books`` space:
 
@@ -985,7 +985,7 @@ credentials.users.*
 
     Spaces to which this user or a user with this role gets the specified permissions.
 
-    **Example:**
+    **Example**
 
     In this example, ``sampleuser`` gets privileges to select and modify data in the ``books`` space:
 
@@ -3465,7 +3465,7 @@ The ``sharding`` section defines configuration parameters related to :ref:`shard
 
         This option should be defined at the :ref:`global level <configuration_scopes>`.
 
-    **Example:**
+    **Example**
 
     ..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster/config.yaml
         :language: yaml
@@ -3559,7 +3559,7 @@ The ``sharding`` section defines configuration parameters related to :ref:`shard
 
         This option should be defined at the :ref:`global level <configuration_scopes>`.
 
-    **Example:**
+    **Example**
 
     Suppose, ``rebalancer_max_receiving`` is equal to 100 and ``bucket_count`` is equal to 1000.
     There are 3 replica sets with 333, 333, and 334 buckets on each respectively.
@@ -3626,7 +3626,7 @@ The ``sharding`` section defines configuration parameters related to :ref:`shard
     There can be at most one replica set with the ``rebalancer`` role.
     Additionally, this replica set should have a ``storage`` role.
 
-    **Example:**
+    **Example**
 
     .. code-block:: yaml
 
