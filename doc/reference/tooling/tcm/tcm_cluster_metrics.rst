@@ -22,6 +22,15 @@ once per second. To pause the visualization, click the button on the left from
 the metrics selector. To stop the visualization, clear the metric selection.
 
 
+..  _tcm_cluster_metrics_instance:
+
+Viewing instance metrics
+------------------------
+
+To view metrics of a specific instance, find this instance on the **Stateboard**,
+click its name, and go to the **Metrics** tab of the instance page.
+
+
 ..  _tcm_cluster_metrics_prometheus:
 
 Monitoring metrics with Prometheus

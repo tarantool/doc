@@ -79,6 +79,8 @@ on these pages.
     Roles don't include cluster permissions. Access to connected clusters
     is configured for each user individually.
 
+.. _tcm_access_control_roles_default:
+
 Default roles
 ~~~~~~~~~~~~~
 
@@ -94,6 +96,8 @@ Default roles
 -   **Default User Role** is a default role for working with clusters. It includes
     basic administrative *read* permissions that are required to log in to |tcm|
     and navigate to a cluster.
+
+.. _tcm_access_control_roles_manage:
 
 Managing roles
 ~~~~~~~~~~~~~~
@@ -114,6 +118,8 @@ table row.
 ..  note::
 
     You can delete a role only if there are no users with this role.
+
+.. _tcm_access_control_users:
 
 Users
 -----
@@ -156,7 +162,7 @@ To edit a  user, click **Edit** in the **Actions** menu of the corresponding tab
 
 To delete a user, click **Delete**  in the **Actions** menu of the corresponding table row.
 
-.. _tcm_access_control_password:
+.. _tcm_access_control_passwords:
 
 Passwords
 ---------
@@ -171,11 +177,15 @@ Users receive their first passwords during their :ref:`account creation <tcm_acc
 All passwords are governed by the :ref:`password policy <tcm_access_control_password_policy>`.
 It can be flexibly configured to follow the security requirements of your organization.
 
+.. _tcm_access_control_password_change:
+
 Changing your password
 ~~~~~~~~~~~~~~~~~~~~~~
 
 To change your own password, click your name in the top-right corner and go to
 **Settings** > **Change password**.
+
+.. _tcm_access_control_password_users_change:
 
 Changing users' passwords
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -203,6 +213,8 @@ menu of the corresponding **Secrets** table row.
 .. important::
 
     Password expiration can't be reverted.
+
+.. _tcm_access_control_password_block:
 
 Blocking passwords
 ~~~~~~~~~~~~~~~~~~
