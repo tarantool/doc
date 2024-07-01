@@ -25,7 +25,7 @@ Built-in templates
 There are the following built-in templates:
 
 -   ``vshard_cluster``: a sharded cluster application for Tarantool 3.0 or later.
--   ``single_instance``: a single-instance application for Tarantool 3.0 or later
+-   ``single_instance``: a single-instance application for Tarantool 3.0 or later.
 -   ``cartridge``: a Cartridge cluster application for Tarantool 2.x.
 
     .. important::
@@ -40,7 +40,7 @@ To create the ``app1`` application in the current ``tt`` environment from the bu
 
     $ tt create vshard_cluster --name app1 -dst /opt/tt/apps/
 
-The command requests the cluster topology parameters, such as the number of shards
+The command requests cluster topology parameters, such as the number of shards
 or routers, interactively during the execution.
 
 To create the application in the ``/opt/tt/apps`` directory with default cluster
