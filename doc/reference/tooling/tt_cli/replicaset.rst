@@ -287,11 +287,11 @@ in the cluster.
 
     $ tt replicaset vshard bootstrap myapp
 
-With credentials:
+With a URI and credentials:
 
 ..  code-block:: console
 
-    $ tt replicaset vshard bootstrap myapp -u myuser -p p4$$w0rD
+    $ tt replicaset vshard bootstrap 192.168.10.10:3301 -u myuser -p p4$$w0rD
 
 You can specify the application name or the name of any cluster instance. The command
 automatically finds a `vshard` router in the cluster and calls :ref:`vshard.router.bootstrap() <router_api-bootstrap>` on it.
