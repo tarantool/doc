@@ -293,6 +293,9 @@ With credentials:
 
     $ tt replicaset vshard bootstrap myapp -u myuser -p p4$$w0rD
 
+You can specify the application name or the name of any cluster instance. The command
+automatically finds a `vshard` router in the cluster and calls :ref:`vshard.router.bootstrap() <router_api-bootstrap>` on it.
+
 The command supports the ``--config``, ``--cartridge``, and ``--custom`` :ref:`options <tt-replicaset-options>`
 that force the use of a specific orchestrator.
 
