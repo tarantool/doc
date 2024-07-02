@@ -221,26 +221,6 @@ The ``--timeout`` option can be used to specify the election completion timeout:
 
     $ tt replicaset demote my-app:storage-001-a --timeout=10
 
-.. _tt-replicaset-orchestrator:
-
-Selecting the application orchestrator manually
------------------------------------------------
-
-You can specify the orchestrator to use for the application  when calling ``tt replicaset``
-commands. The following options are available:
-
-*   ``--config`` for applications that use YAML cluster configuration (Tarantool 3.x or later).
-*   ``--cartridge`` for Cartridge applications (Tarantool 2.x).
-*   ``--custom`` for any other orchestrators used on Tarantool 2.x clusters.
-
-..  code-block:: console
-
-    $ tt replicaset status myapp --config
-    $ tt replicaset promote my-cartridge-app:storage-001-a --cartridge
-
-If an actual orchestrator that the application uses does not match the specified
-option, an error is raised.
-
 .. _tt-replicaset-expel:
 
 expel
@@ -263,6 +243,8 @@ that force the use of a specific orchestrator.
 
 To expel an instance from a Cartridge cluster:
 
+..  code-block:: console
+
     $ tt replicaset expel my-cartridge-app:storage-001-b --cartridge
 
 
@@ -276,6 +258,8 @@ vshard
     $ tt replicaset vshard COMMAND {APPLICATION[:APP_INSTANCE] | URI} [OPTIONS ...]
     # or
     $ tt rs vshard COMMAND {APPLICATION[:APP_INSTANCE] | URI} [OPTIONS ...]
+    # or
+    $ tt rs vs COMMAND {APPLICATION[:APP_INSTANCE] | URI} [OPTIONS ...]
 
 ``tt replicaset vshard`` (``tt rs vs``) manages :ref:`vshard <vshard>` in the cluster.
 
@@ -303,12 +287,40 @@ in the cluster.
 
     $ tt replicaset vshard bootstrap myapp
 
+With credentials:
+
+..  code-block:: console
+
+    $ tt replicaset vshard bootstrap myapp -u myuser -p p4$$w0rD
+
 The command supports the ``--config``, ``--cartridge``, and ``--custom`` :ref:`options <tt-replicaset-options>`
 that force the use of a specific orchestrator.
 
 To bootstrap ``vshard`` in a Cartridge cluster:
 
+..  code-block:: console
+
     $ tt replicaset vshard bootstrap my-cartridge-app --cartridge
+
+.. _tt-replicaset-orchestrator:
+
+Selecting the application orchestrator manually
+-----------------------------------------------
+
+You can specify the orchestrator to use for the application  when calling ``tt replicaset``
+commands. The following options are available:
+
+*   ``--config`` for applications that use YAML cluster configuration (Tarantool 3.x or later).
+*   ``--cartridge`` for Cartridge applications (Tarantool 2.x).
+*   ``--custom`` for any other orchestrators used on Tarantool 2.x clusters.
+
+..  code-block:: console
+
+    $ tt replicaset status myapp --config
+    $ tt replicaset promote my-cartridge-app:storage-001-a --cartridge
+
+If an actual orchestrator that the application uses does not match the specified
+option, an error is raised.
 
 .. _tt-replicaset-authentication:
 
