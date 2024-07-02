@@ -32,8 +32,6 @@ In the ``app`` section, you can load the application and provide an application 
 
 .. confval:: app.cfg
 
-    **Since:** :doc:`3.0.0 </release/3.0.0>`.
-
     A configuration of the application loaded using ``app.file`` or ``app.module``.
 
     **Example**
@@ -57,8 +55,6 @@ In the ``app`` section, you can load the application and provide an application 
 
 .. confval:: app.file
 
-    **Since:** :doc:`3.0.0 </release/3.0.0>`.
-
     A path to a Lua file to load an application from.
 
     |
@@ -70,8 +66,6 @@ In the ``app`` section, you can load the application and provide an application 
 .. _configuration_reference_app_module:
 
 .. confval:: app.module
-
-    **Since:** :doc:`3.0.0 </release/3.0.0>`.
 
     A Lua module to load an application from.
 
@@ -123,15 +117,9 @@ The ``audit_log`` section defines configuration parameters related to :ref:`audi
 *   :ref:`audit_log.to <configuration_reference_audit_to>`
 *   :ref:`audit_log.syslog.* <configuration_reference_audit_syslog>`
 
-    -   :ref:`audit_log.syslog.facility <configuration_reference_audit_syslog-facility>`
-    -   :ref:`audit_log.syslog.identity <configuration_reference_audit_syslog-identity>`
-    -   :ref:`audit_log.syslog.server <configuration_reference_audit_syslog-server>`
-
 ..  _configuration_reference_audit_extract_key:
 
 ..  confval:: audit_log.extract_key
-
-    **Since:** :doc:`3.0.0 </release/3.0.0>`.
 
     If set to ``true``, the audit subsystem extracts and prints only the primary key instead of full
     tuples in DML events (``space_insert``, ``space_replace``, ``space_delete``).
@@ -271,8 +259,6 @@ The ``audit_log`` section defines configuration parameters related to :ref:`audi
 
 ..  confval:: audit_log.spaces
 
-    **Since:** :doc:`3.0.0 </release/3.0.0>`.
-
     The array of space names for which data operation events (``space_select``, ``space_insert``, ``space_replace``,
     ``space_delete``) should be logged. The array accepts string values.
     If set to :ref:`box.NULL <box-null>`, the data operation events are logged for all spaces.
@@ -326,6 +312,10 @@ The ``audit_log`` section defines configuration parameters related to :ref:`audi
 audit_log.syslog.*
 ~~~~~~~~~~~~~~~~~~
 
+*   :ref:`audit_log.syslog.facility <configuration_reference_audit_syslog-facility>`
+*   :ref:`audit_log.syslog.identity <configuration_reference_audit_syslog-identity>`
+*   :ref:`audit_log.syslog.server <configuration_reference_audit_syslog-server>`
+
 ..  _configuration_reference_audit_syslog-facility:
 
 ..  confval:: audit_log.syslog.facility
@@ -333,7 +323,7 @@ audit_log.syslog.*
     Specify a system logger keyword that tells `syslogd <https://datatracker.ietf.org/doc/html/rfc5424>`__ where to send the message.
     You can enable logging to a system logger using the :ref:`audit_log.to <configuration_reference_audit_to>` option.
 
-    See also: :ref:`syslog configuration example <configuration_reference_audit_syslog-example>`.
+    See also: :ref:`syslog configuration example <configuration_reference_audit_syslog-example>`
 
     |
     | Type: string
@@ -348,7 +338,7 @@ audit_log.syslog.*
     Specify an application name to show in logs.
     You can enable logging to a system logger using the :ref:`audit_log.to <configuration_reference_audit_to>` option.
 
-    See also: :ref:`syslog configuration example <configuration_reference_audit_syslog-example>`.
+    See also: :ref:`syslog configuration example <configuration_reference_audit_syslog-example>`
 
     |
     | Type: string
@@ -422,15 +412,13 @@ The ``config`` section defines various parameters related to centralized configu
 
 .. confval:: config.reload
 
-    **Since:** :doc:`3.0.0 </release/3.0.0>`.
-
     Specify how the configuration is reloaded.
     This option accepts the following values:
 
     - ``auto``: configuration is reloaded automatically when it is changed.
     - ``manual``: configuration should be reloaded manually. In this case, you can reload the configuration in the application code using :ref:`config:reload() <config-module>`.
 
-    See also: :ref:`Reloading configuration <etcd_reloading_configuration>`.
+    See also: :ref:`Reloading configuration <etcd_reloading_configuration>`
 
     |
     | Type: string
@@ -459,8 +447,6 @@ This section describes options related to loading configuration settings from ex
 
 ..  confval:: config.context
 
-    **Since:** :doc:`3.0.0 </release/3.0.0>`.
-
     Specify how to load settings from external storage.
     For example, this option can be used to load passwords from safe storage.
     You can find examples in the :ref:`configuration_credentials_loading_secrets` section.
@@ -484,7 +470,7 @@ This section describes options related to loading configuration settings from ex
     The name of an environment variable to load a configuration value from.
     To load a configuration value from an environment variable, set :ref:`config.context.\<name\>.from <configuration_reference_config_context_name_from>` to ``env``.
 
-    **Example:**
+    **Example**
 
     In this example, passwords are loaded from the ``DBADMIN_PASSWORD`` and ``SAMPLEUSER_PASSWORD`` environment variables:
 
@@ -494,7 +480,7 @@ This section describes options related to loading configuration settings from ex
         :end-before: credentials:
         :dedent:
 
-    See also: :ref:`configuration_credentials_loading_secrets`.
+    See also: :ref:`configuration_credentials_loading_secrets`
 
 
 ..  _configuration_reference_config_context_name_from:
@@ -517,7 +503,7 @@ This section describes options related to loading configuration settings from ex
     The path to a file to load a configuration value from.
     To load a configuration value from a file, set :ref:`config.context.\<name\>.from <configuration_reference_config_context_name_from>` to ``file``.
 
-    **Example:**
+    **Example**
 
     In this example, passwords are loaded from the ``dbadmin_password.txt`` and ``sampleuser_password.txt`` files:
 
@@ -527,7 +513,7 @@ This section describes options related to loading configuration settings from ex
         :end-before: credentials:
         :dedent:
 
-    See also: :ref:`configuration_credentials_loading_secrets`.
+    See also: :ref:`configuration_credentials_loading_secrets`
 
 
 ..  _configuration_reference_config_context_name_rstrip:
@@ -564,11 +550,9 @@ If :ref:`replication.failover <configuration_reference_replication_failover>` is
 
 .. confval:: config.etcd.endpoints
 
-    **Since:** :doc:`3.0.0 </release/3.0.0>`.
-
     The list of endpoints used to access an etcd server.
 
-    See also: :ref:`etcd_local_configuration`.
+    See also: :ref:`etcd_local_configuration`
 
     |
     | Type: array
@@ -579,13 +563,11 @@ If :ref:`replication.failover <configuration_reference_replication_failover>` is
 
 .. confval:: config.etcd.prefix
 
-    **Since:** :doc:`3.0.0 </release/3.0.0>`.
-
     A key prefix used to search a configuration on an etcd server.
     Tarantool searches keys by the following path: ``<prefix>/config/*``.
     Note that ``<prefix>`` should start with a slash (``/``).
 
-    See also: :ref:`etcd_local_configuration`.
+    See also: :ref:`etcd_local_configuration`
 
     |
     | Type: string
@@ -596,11 +578,9 @@ If :ref:`replication.failover <configuration_reference_replication_failover>` is
 
 .. confval:: config.etcd.username
 
-    **Since:** :doc:`3.0.0 </release/3.0.0>`.
-
     A username used for authentication.
 
-    See also: :ref:`etcd_local_configuration`.
+    See also: :ref:`etcd_local_configuration`
 
     |
     | Type: string
@@ -611,11 +591,9 @@ If :ref:`replication.failover <configuration_reference_replication_failover>` is
 
 .. confval:: config.etcd.password
 
-    **Since:** :doc:`3.0.0 </release/3.0.0>`.
-
     A password used for authentication.
 
-    See also: :ref:`etcd_local_configuration`.
+    See also: :ref:`etcd_local_configuration`
 
     |
     | Type: string
@@ -625,8 +603,6 @@ If :ref:`replication.failover <configuration_reference_replication_failover>` is
 .. _config_etcd_ssl_ca_file:
 
 .. confval:: config.etcd.ssl.ca_file
-
-    **Since:** :doc:`3.0.0 </release/3.0.0>`.
 
     A path to a trusted certificate authorities (CA) file.
 
@@ -639,8 +615,6 @@ If :ref:`replication.failover <configuration_reference_replication_failover>` is
 
 .. confval:: config.etcd.ssl.ca_path
 
-    **Since:** :doc:`3.0.0 </release/3.0.0>`.
-
     A path to a directory holding certificates to verify the peer with.
 
     |
@@ -652,8 +626,6 @@ If :ref:`replication.failover <configuration_reference_replication_failover>` is
 
 .. confval:: config.etcd.ssl.ssl_key
 
-    **Since:** :doc:`3.0.0 </release/3.0.0>`.
-
     A path to a private SSL key file.
 
     |
@@ -664,8 +636,6 @@ If :ref:`replication.failover <configuration_reference_replication_failover>` is
 .. _config_etcd_ssl_verify_host:
 
 .. confval:: config.etcd.ssl.verify_host
-
-    **Since:** :doc:`3.0.0 </release/3.0.0>`.
 
     Enable verification of the certificate's name (CN) against the specified host.
 
@@ -679,8 +649,6 @@ If :ref:`replication.failover <configuration_reference_replication_failover>` is
 
 .. confval:: config.etcd.ssl.verify_peer
 
-    **Since:** :doc:`3.0.0 </release/3.0.0>`.
-
     Enable verification of the peer's SSL certificate.
 
     |
@@ -693,11 +661,9 @@ If :ref:`replication.failover <configuration_reference_replication_failover>` is
 
 .. confval:: config.etcd.http.request.timeout
 
-    **Since:** :doc:`3.0.0 </release/3.0.0>`.
-
     A time period required to process an HTTP request to an etcd server: from sending a request to receiving a response.
 
-    See also: :ref:`etcd_local_configuration`.
+    See also: :ref:`etcd_local_configuration`
 
     |
     | Type: number
@@ -707,8 +673,6 @@ If :ref:`replication.failover <configuration_reference_replication_failover>` is
 .. _config_etcd_http_request_unix_socket:
 
 .. confval:: config.etcd.http.request.unix_socket
-
-    **Since:** :doc:`3.0.0 </release/3.0.0>`.
 
     A Unix domain socket used to connect to an etcd server.
 
@@ -737,8 +701,6 @@ This section describes options related to providing connection settings to a :re
 
 .. confval:: config.storage.endpoints
 
-    **Since:** :doc:`3.0.0 </release/3.0.0>`.
-
     An array of endpoints used to access a configuration storage.
     Each endpoint can include the following fields:
 
@@ -747,7 +709,7 @@ This section describes options related to providing connection settings to a :re
     *    ``password``: a password used for authentication.
     *    ``params``: SSL parameters required for :ref:`encrypted connections <configuration_connections_ssl>` (:ref:`<uri>.params.* <configuration_reference_iproto_uri_params>`).
 
-    See also: :ref:`centralized_configuration_storage_connect_tarantool`.
+    See also: :ref:`centralized_configuration_storage_connect_tarantool`
 
     |
     | Type: array
@@ -759,13 +721,11 @@ This section describes options related to providing connection settings to a :re
 
 .. confval:: config.storage.prefix
 
-    **Since:** :doc:`3.0.0 </release/3.0.0>`.
-
     A key prefix used to search a configuration in a centralized configuration storage.
     Tarantool searches keys by the following path: ``<prefix>/config/*``.
     Note that ``<prefix>`` should start with a slash (``/``).
 
-    See also: :ref:`centralized_configuration_storage_connect_tarantool`.
+    See also: :ref:`centralized_configuration_storage_connect_tarantool`
 
     |
     | Type: string
@@ -776,8 +736,6 @@ This section describes options related to providing connection settings to a :re
 .. _config_storage_reconnect_after:
 
 .. confval:: config.storage.reconnect_after
-
-    **Since:** :doc:`3.0.0 </release/3.0.0>`.
 
     A number of seconds to wait before reconnecting to a configuration storage.
 
@@ -791,11 +749,9 @@ This section describes options related to providing connection settings to a :re
 
 .. confval:: config.storage.timeout
 
-    **Since:** :doc:`3.0.0 </release/3.0.0>`.
-
     The interval (in seconds) to perform the status check of a configuration storage.
 
-    See also: :ref:`centralized_configuration_storage_connect_tarantool`.
+    See also: :ref:`centralized_configuration_storage_connect_tarantool`
 
     |
     | Type: number
@@ -820,8 +776,6 @@ Configure the administrative console. A client to the console is ``tt connect``.
 
 .. confval:: console.enabled
 
-    **Since:** :doc:`3.0.0 </release/3.0.0>`.
-
     Whether to listen on the Unix socket provided in the
     :ref:`console.socket <configuration_reference_console_socket>` option.
 
@@ -835,8 +789,6 @@ Configure the administrative console. A client to the console is ``tt connect``.
 .. _configuration_reference_console_socket:
 
 .. confval:: console.socket
-
-    **Since:** :doc:`3.0.0 </release/3.0.0>`.
 
     The Unix socket for the administrative console.
 
@@ -884,7 +836,7 @@ credentials.roles.*
 
     An array of :ref:`roles <access_control_concepts_roles>` that can be granted to users or other roles.
 
-    **Example:**
+    **Example**
 
     In the example below, the ``writers_space_reader`` role gets privileges to select data in the ``writers`` space:
 
@@ -894,7 +846,7 @@ credentials.roles.*
         :end-at: spaces: [ writers ]
         :dedent:
 
-    See also: :ref:`configuration_credentials_managing_users_roles`.
+    See also: :ref:`configuration_credentials_managing_users_roles`
 
     |
     | Type: map
@@ -932,7 +884,7 @@ credentials.users.*
 
     An array of :ref:`users <access_control_concepts_users>`.
 
-    **Example:**
+    **Example**
 
     In this example, ``sampleuser`` gets the following privileges:
 
@@ -945,7 +897,7 @@ credentials.users.*
         :end-at: [ books ]
         :dedent:
 
-    See also: :ref:`configuration_credentials_managing_users_roles`.
+    See also: :ref:`configuration_credentials_managing_users_roles`
 
     |
     | Type: map
@@ -959,7 +911,7 @@ credentials.users.*
 
     A user's password.
 
-    **Example:**
+    **Example**
 
     In the example below, a password for the ``dbadmin`` user is set:
 
@@ -969,7 +921,7 @@ credentials.users.*
         :end-at: T0p_Secret
         :dedent:
 
-    See also: :ref:`configuration_credentials_loading_secrets`.
+    See also: :ref:`configuration_credentials_loading_secrets`
 
 .. _configuration_reference_credentials_users_name_roles:
 
@@ -1015,7 +967,7 @@ credentials.users.*
 
     :ref:`Permissions <access_control_list_privileges>` assigned to this user or a user with this role.
 
-    **Example:**
+    **Example**
 
     In this example, ``sampleuser`` gets privileges to select and modify data in the ``books`` space:
 
@@ -1025,7 +977,7 @@ credentials.users.*
         :end-at: [ books ]
         :dedent:
 
-    See also: :ref:`configuration_credentials_managing_users_roles`.
+    See also: :ref:`configuration_credentials_managing_users_roles`
 
 ..  _configuration_reference_credentials_privileges_spaces:
 
@@ -1033,7 +985,7 @@ credentials.users.*
 
     Spaces to which this user or a user with this role gets the specified permissions.
 
-    **Example:**
+    **Example**
 
     In this example, ``sampleuser`` gets privileges to select and modify data in the ``books`` space:
 
@@ -1043,7 +995,7 @@ credentials.users.*
         :end-at: [ books ]
         :dedent:
 
-    See also: :ref:`configuration_credentials_managing_users_roles`.
+    See also: :ref:`configuration_credentials_managing_users_roles`
 
 ..  _configuration_reference_credentials_privileges_functions:
 
@@ -1234,16 +1186,13 @@ The ``failover`` section defines parameters related to a :ref:`supervised failov
 -   :ref:`failover.lease_interval <configuration_reference_failover_lease_interval>`
 -   :ref:`failover.probe_interval <configuration_reference_failover_probe_interval>`
 -   :ref:`failover.renew_interval <configuration_reference_failover_renew_interval>`
--   :ref:`failover.stateboard <configuration_reference_failover_stateboard>`
-
-    -   :ref:`failover.stateboard.keepalive_interval <configuration_reference_failover_stateboard_keepalive_interval>`
-    -   :ref:`failover.stateboard.renew_interval <configuration_reference_failover_stateboard_renew_interval>`
+-   :ref:`failover.stateboard.* <configuration_reference_failover_stateboard>`
 
 ..  _configuration_reference_failover_call_timeout:
 
 ..  confval:: failover.call_timeout
 
-    **Since:** :doc:`3.1.0 </release/3.1.0>`.
+    **Since:** :doc:`3.1.0 </release/3.1.0>`
 
     A call timeout (in seconds) for monitoring and failover requests to an instance.
 
@@ -1255,7 +1204,7 @@ The ``failover`` section defines parameters related to a :ref:`supervised failov
 
 ..  confval:: failover.connect_timeout
 
-    **Since:** :doc:`3.1.0 </release/3.1.0>`.
+    **Since:** :doc:`3.1.0 </release/3.1.0>`
 
     A connection timeout (in seconds) for monitoring and failover requests to an instance.
 
@@ -1267,7 +1216,7 @@ The ``failover`` section defines parameters related to a :ref:`supervised failov
 
 ..  confval:: failover.lease_interval
 
-    **Since:** :doc:`3.1.0 </release/3.1.0>`.
+    **Since:** :doc:`3.1.0 </release/3.1.0>`
 
     A time interval (in seconds) that specifies how long an instance should be a leader without renew requests from a coordinator.
     When this interval expires, the leader switches to read-only mode.
@@ -1281,7 +1230,7 @@ The ``failover`` section defines parameters related to a :ref:`supervised failov
 
 ..  confval:: failover.probe_interval
 
-    **Since:** :doc:`3.1.0 </release/3.1.0>`.
+    **Since:** :doc:`3.1.0 </release/3.1.0>`
 
     A time interval (in seconds) that specifies how often a monitoring service of the failover coordinator polls an instance for its status.
 
@@ -1293,7 +1242,7 @@ The ``failover`` section defines parameters related to a :ref:`supervised failov
 
 ..  confval:: failover.renew_interval
 
-    **Since:** :doc:`3.1.0 </release/3.1.0>`.
+    **Since:** :doc:`3.1.0 </release/3.1.0>`
 
     A time interval (in seconds) that specifies how often a failover coordinator sends read-write deadline renewals.
 
@@ -1309,13 +1258,16 @@ failover.stateboard.*
 
 ``failover.stateboard.*`` options define configuration parameters related to maintaining the state of failover coordinators in a remote etcd-based storage.
 
+*   :ref:`failover.stateboard.keepalive_interval <configuration_reference_failover_stateboard_keepalive_interval>`
+*   :ref:`failover.stateboard.renew_interval <configuration_reference_failover_stateboard_renew_interval>`
+
 See also: :ref:`supervised_failover_overview_fault_tolerance`
 
 ..  _configuration_reference_failover_stateboard_keepalive_interval:
 
 ..  confval:: failover.stateboard.keepalive_interval
 
-    **Since:** :doc:`3.1.0 </release/3.1.0>`.
+    **Since:** :doc:`3.1.0 </release/3.1.0>`
 
     A time interval (in seconds) that specifies how long a transient state information is stored and how quickly a lock expires.
 
@@ -1332,7 +1284,7 @@ See also: :ref:`supervised_failover_overview_fault_tolerance`
 
 ..  confval:: failover.stateboard.renew_interval
 
-    **Since:** :doc:`3.1.0 </release/3.1.0>`.
+    **Since:** :doc:`3.1.0 </release/3.1.0>`
 
     A time interval (in seconds) that specifies how often a failover coordinator writes its state information to etcd.
     This option also determines the frequency at which an active coordinator reads new commands from etcd.
@@ -1637,27 +1589,123 @@ The ``iproto`` section is used to configure parameters related to :ref:`communic
 
     ``iproto`` can be defined in any :ref:`scope <configuration_scopes>`.
 
+*   :ref:`iproto.listen <configuration_reference_iproto_listen>`
+*   :ref:`iproto.net_msg_max <configuration_reference_iproto_net_msg_max>`
+*   :ref:`iproto.readahead <configuration_reference_iproto_readahead>`
+*   :ref:`iproto.threads <configuration_reference_iproto_threads>`
+*   :ref:`iproto.advertise.* <configuration_reference_iproto_advertise>`
+*   :ref:`<uri>.params.* <configuration_reference_iproto_uri_params>`
 
--   :ref:`iproto.advertise.* <configuration_reference_iproto_advertise>`
 
-    -   :ref:`iproto.advertise.client <configuration_reference_iproto_advertise_client>`
-    -   :ref:`iproto.advertise.peer <configuration_reference_iproto_advertise_peer>`
-    -   :ref:`iproto.advertise.sharding <configuration_reference_iproto_advertise_sharding>`
-    -   :ref:`iproto.advertise.\<peer_or_sharding\>.* <configuration_reference_iproto_advertise.peer_sharding>`
+.. _configuration_reference_iproto_listen:
 
--   :ref:`iproto.* <configuration_reference_iproto_misc>`
+.. confval:: iproto.listen
 
-    -   :ref:`iproto.listen <configuration_reference_iproto_listen>`
-    -   :ref:`iproto.net_msg_max <configuration_reference_iproto_net_msg_max>`
-    -   :ref:`iproto.readahead <configuration_reference_iproto_readahead>`
-    -   :ref:`iproto.threads <configuration_reference_iproto_threads>`
+    An array of URIs used to listen for incoming requests.
+    If required, you can enable SSL for specific URIs by providing additional parameters (:ref:`<uri>.params.* <configuration_reference_iproto_uri_params>`).
 
--   :ref:`<uri>.params.* <configuration_reference_iproto_uri_params>`
+    Note that a URI value can't contain parameters, a login, or a password.
+
+    **Example**
+
+    In the example below, ``iproto.listen`` is set explicitly for each instance in a cluster:
+
+    ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/auto_leader/config.yaml
+        :language: yaml
+        :start-at: groups:
+        :end-before: Load sample data
+        :dedent:
+
+    See also: :ref:`Connections <configuration_connections>`
+
+    |
+    | Type: array
+    | Default: nil
+    | Environment variable: TT_IPROTO_LISTEN
+
+.. _configuration_reference_iproto_net_msg_max:
+
+.. confval:: iproto.net_msg_max
+
+    To handle messages, Tarantool allocates :ref:`fibers <app-fibers>`.
+    To prevent fiber overhead from affecting the whole system,
+    Tarantool restricts how many messages the fibers handle,
+    so that some pending requests are blocked.
+
+    -   On powerful systems, increase ``net_msg_max``, and the scheduler
+        starts processing pending requests immediately.
+
+    -   On weaker systems, decrease ``net_msg_max``, and the overhead
+        may decrease. However, this may take some time because the
+        scheduler must wait until already-running requests finish.
+
+    When ``net_msg_max`` is reached,
+    Tarantool suspends processing of incoming packages until it
+    has processed earlier messages. This is not a direct restriction of
+    the number of fibers that handle network messages, rather it
+    is a system-wide restriction of channel bandwidth.
+    This in turn restricts the number of incoming
+    network messages that the
+    :ref:`transaction processor thread <thread_model>`
+    handles, and therefore indirectly affects the fibers that handle
+    network messages.
+
+    .. NOTE::
+
+        The number of fibers is smaller than the number of messages because
+        messages can be released as soon as they are delivered, while
+        incoming requests might not be processed until some time after delivery.
+
+    |
+    | Type: integer
+    | Default: 768
+    | Environment variable: TT_IPROTO_NET_MSG_MAX
+
+.. _configuration_reference_iproto_readahead:
+
+.. confval:: iproto.readahead
+
+    The size of the read-ahead buffer associated with a client connection.
+    The larger the buffer, the more memory an active connection consumes, and the
+    more requests can be read from the operating system buffer in a single
+    system call.
+
+    The recommendation is to make sure that the buffer can contain at least a few dozen requests.
+    Therefore, if a typical tuple in a request is large, e.g. a few kilobytes or even megabytes, the read-ahead buffer size should be increased.
+    If batched request processing is not used, it’s prudent to leave this setting at its default.
+
+    |
+    | Type: integer
+    | Default: 16320
+    | Environment variable: TT_IPROTO_READAHEAD
+
+.. _configuration_reference_iproto_threads:
+
+.. confval:: iproto.threads
+
+    The number of :ref:`network threads <thread_model>`.
+    There can be unusual workloads where the network thread
+    is 100% loaded and the transaction processor thread is not, so the network
+    thread is a bottleneck.
+    In that case, set ``iproto_threads`` to 2 or more.
+    The operating system kernel determines which connection goes to
+    which thread.
+
+    |
+    | Type: integer
+    | Default: 1
+    | Environment variable: TT_IPROTO_THREADS
+
 
 .. _configuration_reference_iproto_advertise:
 
 iproto.advertise.*
 ~~~~~~~~~~~~~~~~~~
+
+*   :ref:`iproto.advertise.client <configuration_reference_iproto_advertise_client>`
+*   :ref:`iproto.advertise.peer <configuration_reference_iproto_advertise_peer>`
+*   :ref:`iproto.advertise.sharding <configuration_reference_iproto_advertise_sharding>`
+*   :ref:`iproto.advertise.\<peer_or_sharding\>.* <configuration_reference_iproto_advertise.peer_sharding>`
 
 .. _configuration_reference_iproto_advertise_client:
 
@@ -1745,6 +1793,11 @@ iproto.advertise.*
 iproto.advertise.<peer_or_sharding>.*
 *************************************
 
+*   :ref:`iproto.advertise.\<peer_or_sharding\>.uri <configuration_reference_iproto_advertise.peer_sharding.uri>`
+*   :ref:`iproto.advertise.\<peer_or_sharding\>.login <configuration_reference_iproto_advertise.peer_sharding.login>`
+*   :ref:`iproto.advertise.\<peer_or_sharding\>.password <configuration_reference_iproto_advertise.peer_sharding.password>`
+*   :ref:`iproto.advertise.\<peer_or_sharding\>.params <configuration_reference_iproto_advertise.peer_sharding.params>`
+
 .. _configuration_reference_iproto_advertise.peer_sharding.uri:
 
 .. confval:: iproto.advertise.<peer_or_sharding>.uri
@@ -1791,109 +1844,8 @@ iproto.advertise.<peer_or_sharding>.*
 
     (Optional) URI parameters (:ref:`<uri>.params.* <configuration_reference_iproto_uri_params>`) required for connecting to the current instance.
 
-.. _configuration_reference_iproto_misc:
 
-iproto.*
-~~~~~~~~
 
-.. _configuration_reference_iproto_listen:
-
-.. confval:: iproto.listen
-
-    An array of URIs used to listen for incoming requests.
-    If required, you can enable SSL for specific URIs by providing additional parameters (:ref:`<uri>.params.* <configuration_reference_iproto_uri_params>`).
-
-    Note that a URI value can't contain parameters, a login, or a password.
-
-    **Example**
-
-    In the example below, ``iproto.listen`` is set explicitly for each instance in a cluster:
-
-    ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/auto_leader/config.yaml
-        :language: yaml
-        :start-at: groups:
-        :end-before: Load sample data
-        :dedent:
-
-    See also: :ref:`Connections <configuration_connections>`.
-
-    |
-    | Type: array
-    | Default: nil
-    | Environment variable: TT_IPROTO_LISTEN
-
-.. _configuration_reference_iproto_net_msg_max:
-
-.. confval:: iproto.net_msg_max
-
-    To handle messages, Tarantool allocates :ref:`fibers <app-fibers>`.
-    To prevent fiber overhead from affecting the whole system,
-    Tarantool restricts how many messages the fibers handle,
-    so that some pending requests are blocked.
-
-    -   On powerful systems, increase ``net_msg_max``, and the scheduler
-        starts processing pending requests immediately.
-
-    -   On weaker systems, decrease ``net_msg_max``, and the overhead
-        may decrease. However, this may take some time because the
-        scheduler must wait until already-running requests finish.
-
-    When ``net_msg_max`` is reached,
-    Tarantool suspends processing of incoming packages until it
-    has processed earlier messages. This is not a direct restriction of
-    the number of fibers that handle network messages, rather it
-    is a system-wide restriction of channel bandwidth.
-    This in turn restricts the number of incoming
-    network messages that the
-    :ref:`transaction processor thread <thread_model>`
-    handles, and therefore indirectly affects the fibers that handle
-    network messages.
-
-    .. NOTE::
-
-        The number of fibers is smaller than the number of messages because
-        messages can be released as soon as they are delivered, while
-        incoming requests might not be processed until some time after delivery.
-
-    |
-    | Type: integer
-    | Default: 768
-    | Environment variable: TT_IPROTO_NET_MSG_MAX
-
-.. _configuration_reference_iproto_readahead:
-
-.. confval:: iproto.readahead
-
-    The size of the read-ahead buffer associated with a client connection.
-    The larger the buffer, the more memory an active connection consumes, and the
-    more requests can be read from the operating system buffer in a single
-    system call.
-
-    The recommendation is to make sure that the buffer can contain at least a few dozen requests.
-    Therefore, if a typical tuple in a request is large, e.g. a few kilobytes or even megabytes, the read-ahead buffer size should be increased.
-    If batched request processing is not used, it’s prudent to leave this setting at its default.
-
-    |
-    | Type: integer
-    | Default: 16320
-    | Environment variable: TT_IPROTO_READAHEAD
-
-.. _configuration_reference_iproto_threads:
-
-.. confval:: iproto.threads
-
-    The number of :ref:`network threads <thread_model>`.
-    There can be unusual workloads where the network thread
-    is 100% loaded and the transaction processor thread is not, so the network
-    thread is a bottleneck.
-    In that case, set ``iproto_threads`` to 2 or more.
-    The operating system kernel determines which connection goes to
-    which thread.
-
-    |
-    | Type: integer
-    | Default: 1
-    | Environment variable: TT_IPROTO_THREADS
 
 .. _configuration_reference_iproto_uri_params:
 
@@ -1905,10 +1857,15 @@ iproto.*
 
     TLS traffic encryption is supported by the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only.
 
-URI parameters that can be used in the following options:
+URI parameters that can be used in the :ref:`iproto.listen.\<uri\>.params <configuration_reference_iproto_listen>` and :ref:`iproto.advertise.\<peer_or_sharding\>.params <configuration_reference_iproto_advertise.peer_sharding.params>` options.
 
--   :ref:`iproto.advertise.\<peer_or_sharding\>.params <configuration_reference_iproto_advertise.peer_sharding.params>`
--   :ref:`iproto.listen.\<uri\>.params <configuration_reference_iproto_listen>`
+*   :ref:`\<uri\>.params.transport <configuration_reference_iproto_uri_params_transport>`
+*   :ref:`\<uri\>.params.ssl_ca_file <configuration_reference_iproto_uri_params_ssl_ca_file>`
+*   :ref:`\<uri\>.params.ssl_cert_file <configuration_reference_iproto_uri_params_ssl_cert_file>`
+*   :ref:`\<uri\>.params.ssl_ciphers <configuration_reference_iproto_uri_params_ssl_ciphers>`
+*   :ref:`\<uri\>.params.ssl_key_file <configuration_reference_iproto_uri_params_ssl_key_file>`
+*   :ref:`\<uri\>.params.ssl_password <configuration_reference_iproto_uri_params_ssl_password>`
+*   :ref:`\<uri\>.params.ssl_password_file <configuration_reference_iproto_uri_params_ssl_password_file>`
 
 ..  NOTE::
 
@@ -1939,7 +1896,7 @@ URI parameters that can be used in the following options:
         :start-at: replicaset001:
         :dedent:
 
-    You can find the full example here: `ssl_without_ca <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/replication/instances.enabled/ssl_without_ca>`_.
+    Example on Github: `ssl_without_ca <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/replication/instances.enabled/ssl_without_ca>`_
 
     |
     | Type: string
@@ -1959,7 +1916,7 @@ URI parameters that can be used in the following options:
     -   If it's on the client side, the client verifies the server.
     -   If both sides have the CA files, the server and the client verify each other.
 
-    **See also:** :ref:`<uri>.params.transport <configuration_reference_iproto_uri_params_transport>`.
+    See also: :ref:`<uri>.params.transport <configuration_reference_iproto_uri_params_transport>`
 
     |
     | Type: string
@@ -1975,7 +1932,7 @@ URI parameters that can be used in the following options:
     -   For a server, it's mandatory.
     -   For a client, it's mandatory if the :ref:`ssl_ca_file <configuration_reference_iproto_uri_params_ssl_ca_file>` parameter is set for a server; otherwise, optional.
 
-    **See also:** :ref:`<uri>.params.transport <configuration_reference_iproto_uri_params_transport>`.
+    See also: :ref:`<uri>.params.transport <configuration_reference_iproto_uri_params_transport>`
 
     |
     | Type: string
@@ -2023,7 +1980,7 @@ URI parameters that can be used in the following options:
 
     For detailed information on SSL ciphers and their syntax, refer to `OpenSSL documentation <https://www.openssl.org/docs/man1.1.1/man1/ciphers.html>`__.
 
-    **See also:** :ref:`<uri>.params.transport <configuration_reference_iproto_uri_params_transport>`.
+    See also: :ref:`<uri>.params.transport <configuration_reference_iproto_uri_params_transport>`
 
     |
     | Type: string
@@ -2041,7 +1998,7 @@ URI parameters that can be used in the following options:
 
     If the private key is encrypted, provide a password for it in the ``ssl_password`` or ``ssl_password_file`` parameter.
 
-    **See also:** :ref:`<uri>.params.transport <configuration_reference_iproto_uri_params_transport>`.
+    See also: :ref:`<uri>.params.transport <configuration_reference_iproto_uri_params_transport>`
 
     |
     | Type: string
@@ -2063,7 +2020,7 @@ URI parameters that can be used in the following options:
     3.  If ``ssl_password`` and all passwords from ``ssl_password_file`` are incorrect,
         or none of them is provided, Tarantool treats the private key as unencrypted.
 
-    **See also:** :ref:`<uri>.params.transport <configuration_reference_iproto_uri_params_transport>`.
+    See also: :ref:`<uri>.params.transport <configuration_reference_iproto_uri_params_transport>`
 
     |
     | Type: string
@@ -2077,7 +2034,7 @@ URI parameters that can be used in the following options:
     (Optional) A text file with one or more passwords for encrypted private SSL keys provided using ``ssl_key_file`` (each on a separate line).
     Alternatively, the password can be provided in ``ssl_password``.
 
-    **See also:** :ref:`<uri>.params.transport <configuration_reference_iproto_uri_params_transport>`.
+    See also: :ref:`<uri>.params.transport <configuration_reference_iproto_uri_params_transport>`
 
     |
     | Type: string
@@ -2230,10 +2187,6 @@ To handle logging in your application, use the :ref:`log module <log-module>`.
 *   :ref:`log.pipe <configuration_reference_log_pipe>`
 *   :ref:`log.syslog.* <configuration_reference_log_syslog>`
 
-    -   :ref:`log.syslog.facility <configuration_reference_log_syslog-facility>`
-    -   :ref:`log.syslog.identity <configuration_reference_log_syslog-identity>`
-    -   :ref:`log.syslog.server <configuration_reference_log_syslog-server>`
-
 ..  _configuration_reference_log_to:
 
 ..  confval:: log.to
@@ -2269,7 +2222,7 @@ To handle logging in your application, use the :ref:`log module <log-module>`.
         :end-at: instance.log
         :dedent:
 
-    Example on GitHub: `log_file <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/log_file>`_.
+    Example on GitHub: `log_file <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/log_file>`_
 
     |
     | Type: string
@@ -2339,7 +2292,7 @@ To handle logging in your application, use the :ref:`log module <log-module>`.
         :end-at: verbose
         :dedent:
 
-    Example on GitHub: `log_level <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/log_level>`_.
+    Example on GitHub: `log_level <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/log_level>`_
 
     |
     | Type: number, string
@@ -2398,7 +2351,7 @@ To handle logging in your application, use the :ref:`log module <log-module>`.
         :start-after: module2 = require
         :dedent:
 
-    Example on GitHub: `log_existing_modules <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/log_existing_modules>`_.
+    Example on GitHub: `log_existing_modules <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/log_existing_modules>`_
 
     .. _configuration_reference_log_modules_example_new_modules:
 
@@ -2427,7 +2380,7 @@ To handle logging in your application, use the :ref:`log module <log-module>`.
         :start-after: module2_log = require
         :dedent:
 
-    Example on GitHub: `log_new_modules <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/log_new_modules>`_.
+    Example on GitHub: `log_new_modules <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/log_new_modules>`_
 
     .. _configuration_reference_log_modules_example_tarantool_module:
 
@@ -2449,7 +2402,7 @@ To handle logging in your application, use the :ref:`log module <log-module>`.
 
     The example above uses the `LuaJIT ffi library <http://luajit.org/ext_ffi.html>`_ to call C functions provided by the ``say`` module.
 
-    Example on GitHub: `log_existing_c_modules <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/log_existing_c_modules>`_.
+    Example on GitHub: `log_existing_c_modules <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/log_existing_c_modules>`_
 
     |
     | Type: map
@@ -2491,7 +2444,7 @@ To handle logging in your application, use the :ref:`log module <log-module>`.
         :end-at: tarantool.log
         :dedent:
 
-    Example on GitHub: `log_pipe <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/log_pipe>`_.
+    Example on GitHub: `log_pipe <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/log_pipe>`_
 
     |
     | Type: string
@@ -2503,6 +2456,10 @@ To handle logging in your application, use the :ref:`log module <log-module>`.
 
 log.syslog.*
 ~~~~~~~~~~~~
+
+*   :ref:`log.syslog.facility <configuration_reference_log_syslog-facility>`
+*   :ref:`log.syslog.identity <configuration_reference_log_syslog-identity>`
+*   :ref:`log.syslog.server <configuration_reference_log_syslog-server>`
 
 ..  _configuration_reference_log_syslog-facility:
 
@@ -2551,7 +2508,7 @@ log.syslog.*
         :end-at: 127.0.0.1:514
         :dedent:
 
-    Example on GitHub: `log_syslog <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/log_syslog>`_.
+    Example on GitHub: `log_syslog <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/log_syslog>`_
 
     |
     | Type: string
@@ -2691,8 +2648,6 @@ The ``memtx`` section is used to configure parameters related to the :ref:`memtx
 
 ..  confval:: memtx.sort_threads
 
-    Since: :doc:`3.0.0 </release/3.0.0>`.
-
     The number of threads from the :ref:`thread pool <supplementary_threads>` used to sort keys of secondary indexes on loading a ``memtx`` database.
     The minimum value is 1, the maximum value is 256.
     The default is to use all available cores.
@@ -2729,8 +2684,6 @@ The ``process`` section defines configuration parameters of the Tarantool proces
 
 .. confval:: process.background
 
-    **Since:** :doc:`3.0.0 </release/3.0.0>`.
-
     Run the server as a daemon process.
 
     If this option is set to ``true``, Tarantool log location defined by the
@@ -2752,8 +2705,6 @@ The ``process`` section defines configuration parameters of the Tarantool proces
 .. _configuration_reference_process_coredump:
 
 .. confval:: process.coredump
-
-    **Since:** :doc:`3.0.0 </release/3.0.0>`.
 
     Create coredump files.
 
@@ -2778,8 +2729,6 @@ The ``process`` section defines configuration parameters of the Tarantool proces
 .. _configuration_reference_process_title:
 
 .. confval:: process.title
-
-    **Since:** :doc:`3.0.0 </release/3.0.0>`.
 
     Add the given string to the server's process title
     (it is shown in the COMMAND column for the Linux commands
@@ -2807,8 +2756,6 @@ The ``process`` section defines configuration parameters of the Tarantool proces
 
 .. confval:: process.pid_file
 
-    **Since:** :doc:`3.0.0 </release/3.0.0>`.
-
     Store the process id in this file.
 
     This option may contain a relative file path.
@@ -2824,8 +2771,6 @@ The ``process`` section defines configuration parameters of the Tarantool proces
 
 .. confval:: process.strip_core
 
-    **Since:** :doc:`3.0.0 </release/3.0.0>`.
-
     Whether coredump files should not include memory allocated for tuples --
     this memory can be large if Tarantool runs under heavy load.
     Setting to ``true`` means "do not include".
@@ -2839,8 +2784,6 @@ The ``process`` section defines configuration parameters of the Tarantool proces
 
 .. confval:: process.username
 
-    **Since:** :doc:`3.0.0 </release/3.0.0>`.
-
     The name of the system user to switch to after start.
 
     |
@@ -2851,8 +2794,6 @@ The ``process`` section defines configuration parameters of the Tarantool proces
 .. _configuration_reference_process_work_dir:
 
 .. confval:: process.work_dir
-
-    **Since:** :doc:`3.0.0 </release/3.0.0>`.
 
     A directory where Tarantool working files will be stored
     (database files, logs, a PID file, a console Unix socket, and other files
@@ -3060,7 +3001,7 @@ The ``replication`` section defines configuration parameters related to :ref:`re
 
         In the ``supervised`` mode, :ref:`database.mode <configuration_reference_database_mode>` and :ref:`<replicaset_name>.leader <configuration_reference_replicasets_name_leader>` shouldn't be set explicitly.
 
-    See also: :ref:`Replication tutorials <how-to-replication>`.
+    See also: :ref:`Replication tutorials <how-to-replication>`
 
     .. NOTE::
 
@@ -3229,7 +3170,7 @@ The ``replication`` section defines configuration parameters related to :ref:`re
 
     If a master or replica gets no heartbeat message for ``4 * replication.timeout`` seconds, a connection is dropped and a replica tries to reconnect to the master.
 
-    See also: :ref:`Monitoring a replica set <replication-monitoring>`.
+    See also: :ref:`Monitoring a replica set <replication-monitoring>`
 
     |
     | Type: number
@@ -3254,8 +3195,6 @@ This section describes configuration parameters related to :ref:`application rol
 
 .. confval:: roles
 
-    **Since:** :doc:`3.0.0 </release/3.0.0>`.
-
     Specify the roles of an instance.
     To specify a role's configuration, use the :ref:`roles_cfg <configuration_reference_roles_cfg>` option.
 
@@ -3269,8 +3208,6 @@ This section describes configuration parameters related to :ref:`application rol
 .. _configuration_reference_roles_cfg:
 
 .. confval:: roles_cfg
-
-    **Since:** :doc:`3.0.0 </release/3.0.0>`.
 
     Specify a role's configuration.
     This option accepts a role name as the key and a role's configuration as the value.
@@ -3531,7 +3468,7 @@ The ``sharding`` section defines configuration parameters related to :ref:`shard
 
         This option should be defined at the :ref:`global level <configuration_scopes>`.
 
-    **Example:**
+    **Example**
 
     ..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster/config.yaml
         :language: yaml
@@ -3625,7 +3562,7 @@ The ``sharding`` section defines configuration parameters related to :ref:`shard
 
         This option should be defined at the :ref:`global level <configuration_scopes>`.
 
-    **Example:**
+    **Example**
 
     Suppose, ``rebalancer_max_receiving`` is equal to 100 and ``bucket_count`` is equal to 1000.
     There are 3 replica sets with 333, 333, and 334 buckets on each respectively.
@@ -3658,7 +3595,7 @@ The ``sharding`` section defines configuration parameters related to :ref:`shard
 
 ..  confval:: sharding.rebalancer_mode
 
-    **Since:** :doc:`3.1.0 </release/3.1.0>`.
+    **Since:** :doc:`3.1.0 </release/3.1.0>`
 
     Configure how a rebalancer is selected:
 
@@ -3692,7 +3629,7 @@ The ``sharding`` section defines configuration parameters related to :ref:`shard
     There can be at most one replica set with the ``rebalancer`` role.
     Additionally, this replica set should have a ``storage`` role.
 
-    **Example:**
+    **Example**
 
     .. code-block:: yaml
 
@@ -3721,7 +3658,7 @@ The ``sharding`` section defines configuration parameters related to :ref:`shard
     ``sched_move_quota`` defines how many bucket moves can be done in a row if there are pending storage refs.
     Then, bucket moves are blocked and a router continues making map-reduce requests.
 
-    See also: :ref:`sharding.sched_ref_quota <configuration_reference_sharding_sched_ref_quota>`.
+    See also: :ref:`sharding.sched_ref_quota <configuration_reference_sharding_sched_ref_quota>`
 
     ..  NOTE::
 
@@ -3742,7 +3679,7 @@ The ``sharding`` section defines configuration parameters related to :ref:`shard
     ``sched_ref_quota`` defines how many storage refs, therefore map-reduce requests, can be executed on the storage in a row if there are pending bucket moves.
     Then, storage refs are blocked and the rebalancer continues bucket moves.
 
-    See also: :ref:`sharding.sched_move_quota <configuration_reference_sharding_sched_move_quota>`.
+    See also: :ref:`sharding.sched_move_quota <configuration_reference_sharding_sched_move_quota>`
 
     ..  NOTE::
 
@@ -3793,7 +3730,7 @@ The ``sharding`` section defines configuration parameters related to :ref:`shard
 
 ..  confval:: sharding.weight
 
-    **Since:** :doc:`3.1.0 </release/3.1.0>`.
+    **Since:** :doc:`3.1.0 </release/3.1.0>`
 
     The relative amount of data that a replica set can store.
     Learn more at :ref:`vshard-replica-set-weights`.
@@ -3839,9 +3776,6 @@ To learn more about the snapshots' configuration, check the :ref:`Persistence <c
 -   :ref:`snapshot.snap_io_rate_limit <configuration_reference_snapshot_snap_io_rate_limit>`
 -   :ref:`snapshot.count <configuration_reference_snapshot_count>`
 -   :ref:`snapshot.by.* <configuration_reference_snapshot_by>`
-
-    -   :ref:`snapshot.by.interval <configuration_reference_snapshot_by_interval>`
-    -   :ref:`snapshot.by.wal_size <configuration_reference_snapshot_by_wal_size>`
 
 ..  _configuration_reference_snapshot_dir:
 
@@ -3916,6 +3850,9 @@ To learn more about the snapshots' configuration, check the :ref:`Persistence <c
 
 snapshot.by.*
 ~~~~~~~~~~~~~
+
+*   :ref:`snapshot.by.interval <configuration_reference_snapshot_by_interval>`
+*   :ref:`snapshot.by.wal_size <configuration_reference_snapshot_by_wal_size>`
 
 ..  _configuration_reference_snapshot_by_interval:
 
@@ -4190,10 +4127,6 @@ To learn more about the WAL configuration, check the :ref:`Persistence <configur
 -   :ref:`wal.queue_max_size <configuration_reference_wal_queue_max_size>`
 -   :ref:`wal.ext.* <configuration_reference_wal_ext>`
 
-    -   :ref:`wal.ext.new <configuration_reference_wal_ext_new>`
-    -   :ref:`wal.ext.old <configuration_reference_wal_ext_old>`
-    -   :ref:`wal.ext.spaces <configuration_reference_wal_ext_spaces>`
-
 ..  _configuration_reference_wal_cleanup_delay:
 
 ..  confval:: wal.cleanup_delay
@@ -4311,6 +4244,10 @@ wal.ext.*
     Configuring ``wal.ext.*`` parameters is available in the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only.
 
 This section describes options related to :ref:`WAL extensions <wal_extensions>`.
+
+*   :ref:`wal.ext.new <configuration_reference_wal_ext_new>`
+*   :ref:`wal.ext.old <configuration_reference_wal_ext_old>`
+*   :ref:`wal.ext.spaces <configuration_reference_wal_ext_spaces>`
 
 ..  _configuration_reference_wal_ext_new:
 
