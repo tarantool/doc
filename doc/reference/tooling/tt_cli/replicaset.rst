@@ -16,6 +16,8 @@ Managing replica sets
 *   :ref:`status <tt-replicaset-status>`
 *   :ref:`promote <tt-replicaset-promote>`
 *   :ref:`demote <tt-replicaset-demote>`
+*   :ref:`expel <tt-replicaset-expel>`
+*   :ref:`vshard <tt-replicaset-vshard>`
 
 
 .. _tt-replicaset-status:
@@ -238,6 +240,75 @@ commands. The following options are available:
 
 If an actual orchestrator that the application uses does not match the specified
 option, an error is raised.
+
+.. _tt-replicaset-expel:
+
+expel
+-----
+
+..  code-block:: console
+
+    $ tt replicaset expel APPLICATION:APP_INSTANCE [OPTIONS ...]
+    # or
+    $ tt rs expel  APPLICATION[:APP_INSTANCE] [OPTIONS ...]
+
+``tt replicaset expel`` (``tt rs expel``) expels an instance from the cluster.
+
+..  code-block:: console
+
+    $ tt replicaset expel myapp:storage-001-b
+
+The command supports the ``--config``, ``--cartridge``, and ``--custom`` :ref:`options <tt-replicaset-options>`
+that force the use of a specific orchestrator.
+
+To expel an instance from a Cartridge cluster:
+
+    $ tt replicaset expel my-cartridge-app:storage-001-b --cartridge
+
+
+.. _tt-replicaset-vshard:
+
+vshard
+-----
+
+..  code-block:: console
+
+    $ tt replicaset vshard COMMAND {APPLICATION[:APP_INSTANCE] | URI} [OPTIONS ...]
+    # or
+    $ tt rs vshard COMMAND {APPLICATION[:APP_INSTANCE] | URI} [OPTIONS ...]
+
+``tt replicaset vshard`` (``tt rs vs``) manages :ref:`vshard <vshard>` in the cluster.
+
+It has the following subcommands:
+
+-   :ref:`bootstrap <tt-replicaset-vshard-bootstrap>`
+
+.. _tt-replicaset-vshard-bootstrap:
+
+vshard bootstrap
+~~~~~~~~~~~~~~~~
+
+..  code-block:: console
+
+    $ tt replicaset vshard bootstrap {APPLICATION[:APP_INSTANCE] | URI} [OPTIONS ...]
+    # or
+    $ tt rs vshard bootstrap {APPLICATION[:APP_INSTANCE] | URI} [OPTIONS ...]
+    # or
+    $ tt rs vs bootstrap {APPLICATION[:APP_INSTANCE] | URI} [OPTIONS ...]
+
+``tt replicaset vshard bootstrap`` (``tt rs vs bootstrap``) bootstraps ``vshard``
+in the cluster.
+
+..  code-block:: console
+
+    $ tt replicaset vshard bootstrap myapp
+
+The command supports the ``--config``, ``--cartridge``, and ``--custom`` :ref:`options <tt-replicaset-options>`
+that force the use of a specific orchestrator.
+
+To bootstrap ``vshard`` in a Cartridge cluster:
+
+    $ tt replicaset vshard bootstrap my-cartridge-app --cartridge
 
 .. _tt-replicaset-authentication:
 
