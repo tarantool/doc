@@ -74,8 +74,10 @@ Publishing configurations of specific instances
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In addition to whole cluster configurations, ``tt cluster publish`` can manage
-configurations of specific instances within applications. In this case, it operates
-with YAML fragments that describe a single :ref:`instance configuration section <configuration_overview>`.
+configurations of specific instances within applications: rewrite configurations
+of existing instances and add new instance configurations.
+
+In this case, it operates with YAML fragments that describe a single :ref:`instance configuration section <configuration_overview>`.
 For example, the following YAML file can be a source when publishing an instance configuration:
 
 .. code-block:: yaml
@@ -98,6 +100,23 @@ the instance name in the ``name`` argument of the storage URI:
 .. code-block:: console
 
     $ tt cluster publish "http://localhost:2379/myapp?name=instance-002" instance_source.yaml
+
+If the instance already exists, this call overwrites its configuration with the one
+from the file.
+
+To add a new instance configuration from a YAML fragment, specify the name to assign to
+the new instance and its location in the cluster topology -- replica set and group --
+in the ``--replicaset`` and ``--group`` options.
+
+.. note::
+
+    The ``--group`` option can be omitted if the configuration contains only one group.
+
+To add a new instance ``instance-003`` to the ``replicaset-001`` replica set:
+
+.. code-block:: console
+
+    tt cluster publish "http://localhost:2379/myapp?name=instance-003" instance_source.yaml --replicaset replicaset-001
 
 
 .. _tt-cluster-publish-validation:
@@ -449,6 +468,18 @@ Options
     **Applicable to:** ``publish``
 
     Skip validation when publishing. Default: `false` (validation is enabled).
+
+..  option:: --group
+
+    **Applicable to:** ``publish``
+
+    A name of the configuration group to which the instance belongs.
+
+..  option:: --replicaset
+
+    **Applicable to:** ``publish``
+
+    A name of the replica set to which the instance belongs.
 
 ..  option:: -t, --timeout UINT
 
