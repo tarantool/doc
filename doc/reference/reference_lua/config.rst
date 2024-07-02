@@ -8,7 +8,7 @@ Module config
 The ``config`` module provides the ability to work with an instance's configuration.
 For example, you can determine whether the current instance is up and running without errors after applying the :ref:`cluster's configuration <configuration_overview>`.
 
-By using the ``config.storage`` :ref:`role <configuration_reference_roles_options>`, you can set up a Tarantool-based :ref:`centralized configuration storage <configuration_etcd>` and interact with this storage using the ``config`` module API.
+By using the ``config.storage`` :ref:`role <configuration_application_roles>`, you can set up a Tarantool-based :ref:`centralized configuration storage <configuration_etcd>` and interact with this storage using the ``config`` module API.
 
 
 ..  _config_module_loading:
@@ -46,10 +46,16 @@ API Reference
             -
 
         *   -   :ref:`config:get() <config_api_reference_get>`
-            -   Get a configuration applied to the current instance
+            -   Get a configuration applied to the current or remote instance
 
         *   -   :ref:`config:info() <config_api_reference_info>`
             -   Get the current instance's state in regard to configuration
+
+        *   -   :ref:`config:instance_uri() <config_api_reference_instance_uri>`
+            -   Get a URI of the current or remote instance
+
+        *   -   :ref:`config:instances() <config_api_reference_instances>`
+            -   List all instances of the cluster
 
         *   -   :ref:`config:reload() <config_api_reference_reload>`
             -   Reload the current instance's configuration
@@ -83,12 +89,19 @@ config API
 
     .. _config_api_reference_get:
 
-    ..  method:: get([param])
+    ..  method:: get([param, opts])
 
-        Get a configuration applied to the current instance.
-        Optionally, you can pass a configuration option name to get its value.
+        Get a configuration applied to the current or remote instance.
+        Note that there is the following difference between getting a configuration for the current and remote instance:
+
+        -   For the current instance, ``get()`` returns an instance configuration considering :ref:`environment variables <configuration_environment_variable>`.
+        -   For a remote instance, ``get()`` only considers a cluster configuration and ignores environment variables.
 
         :param string param: a configuration option name
+        :param table opts: options to pass. The following options are available:
+
+                           -   ``instance`` (since :doc:`3.1.0 </release/3.1.0>`) -- the name of a remote instance whose configuration should be obtained
+
         :return: an instance configuration
 
         **Examples:**
@@ -104,7 +117,7 @@ config API
                 too_long_threshold: 0.5
                 top:
                   enabled: false
-              # other configuration values
+              # Other configuration values
               # ...
 
         This example shows how to get an ``iproto.listen`` option value:
@@ -121,9 +134,18 @@ config API
 
     .. _config_api_reference_info:
 
-    ..  method:: info()
+    ..  method:: info([version])
 
         Get the current instance's state in regard to configuration.
+
+        :param string version: (since :doc:`3.1.0 </release/3.1.0>`) the version of the information that should be returned. The ``version`` argument can be one of the following values:
+
+                               * ``v1`` (default): the ``meta`` field returned by ``info()`` includes information about the last loaded configuration
+                               * ``v2``: the ``meta`` field returned by ``info()`` includes two fields:
+
+                                   * the ``last`` field includes information about the last loaded configuration
+                                   * the ``active`` field includes information for the last successfully applied configuration
+
 
         :return: a table containing an instance's state
 
@@ -155,7 +177,7 @@ config API
                 ...
 
         *   In the example below, the instance's state is ``check_warnings``.
-            The ``alerts`` section informs that privileges to the ``books`` space for ``sampleuser`` cannot be granted because the ``books`` space has not created yet:
+            The ``alerts`` section informs that privileges to the ``books`` space for ``sampleuser`` cannot be granted because the ``books`` space has not been created yet:
 
             ..  code-block:: console
 
@@ -204,6 +226,65 @@ config API
                         /myapp/config/all: 8
                   alerts: []
                 ...
+
+    .. _config_api_reference_instance_uri:
+
+    ..  method:: instance_uri([uri_type, opts])
+
+        **Since:** :doc:`3.1.0 </release/3.1.0>`
+
+        Get a URI of the current or remote instance.
+
+        :param string uri_type: a URI type. There are the following URI types are supported:
+
+                                * ``peer`` -- a URI used to advertise the instance to other cluster members. See also: :ref:`iproto.advertise.peer <configuration_reference_iproto_advertise_peer>`.
+                                * ``sharding`` -- a URI used to advertise the current instance to a router and rebalancer. See also: :ref:`iproto.advertise.sharding <configuration_reference_iproto_advertise_sharding>`.
+
+        :param table opts: options to pass. The following options are available:
+
+                           -   ``instance`` -- the name of a remote instance whose URI should be obtained
+
+        :return: an instance URI
+
+        **Example**
+
+        The example below shows how to get a URI used to advertise ``storage-b-003`` to other cluster members:
+
+        ..  code-block:: lua
+
+            local config = require('config')
+            config:instance_uri('peer', { instance = 'storage-b-003' })
+
+
+    .. _config_api_reference_instances:
+
+    ..  method:: instances()
+
+        **Since:** :doc:`3.1.0 </release/3.1.0>`
+
+        List all instances of the cluster.
+
+        :return: a table containing information about instances
+
+        The returned table uses instance names as the keys and contains the following information for each instance:
+
+        -   ``instance_name`` -- an instance name
+        -   ``replicaset_name`` -- the name of a replica set the instance belongs to
+        -   ``group_name`` -- the name of a group the instance belongs to
+
+        **Example**
+
+        The example below shows how to use ``instances()`` to get the names of all instances in the cluster, create a connection to each instance using the :ref:`connpool <connpool_module>` module, and log connection URIs using the :ref:`log <log-module>` module:
+
+        ..  code-block:: lua
+
+            local config = require('config')
+            for instance_name in pairs(config:instances()) do
+                local connpool = require('experimental.connpool')
+                local conn = connpool.connect(instance_name)
+                local log = require('log')
+                log.info(string.format("Connection URI for '%s': %s:%s", instance_name, conn.host, conn.port))
+            end
 
 
     .. _config_api_reference_reload:
@@ -268,7 +349,7 @@ The ``config.storage`` API allows you to interact with a Tarantool-based :ref:`c
                 *   ``data``: a table containing the information about the value:
 
                     * ``path``: a path
-                    * ``mod_revision``: a last revision at which this value was modified
+                    * ``mod_revision``: the last revision at which this value was modified
                     * ``value:``: a value
 
                 *   ``revision``: a revision after performing the operation
@@ -308,7 +389,7 @@ The ``config.storage`` API allows you to interact with a Tarantool-based :ref:`c
                 *   ``data``: a table containing the information about the value:
 
                     * ``path``: a path
-                    * ``mod_revision``: a last revision at which this value was modified
+                    * ``mod_revision``: the last revision at which this value was modified
                     * ``value:``: a value
 
                 *   ``revision``: a revision after performing the operation
