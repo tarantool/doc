@@ -378,7 +378,7 @@ Options
 
 ..  option:: -u USERNAME, --username USERNAME
 
-    A Tarantool user for connecting to the instance.
+    A Tarantool user for connecting to the instance using a URI.
 
 ..  option:: -p PASSWORD, --password PASSWORD
 
@@ -386,22 +386,25 @@ Options
 
 ..  option:: --sslcertfile FILEPATH
 
-    The path to an SSL certificate file for encrypted connections.
+    The path to an SSL certificate file for encrypted connections for the URI case.
 
 ..  option:: --sslkeyfile FILEPATH
 
-    The path to a private SSL key file for encrypted connections.
+    The path to a private SSL key file for encrypted connections for the URI case.
 
 ..  option:: --sslcafile FILEPATH
 
-    The path to a trusted certificate authorities (CA) file for encrypted connections.
+    The path to a trusted certificate authorities (CA) file for encrypted connections for the URI case.
 
 ..  option:: --sslciphers STRING
 
-    The list of SSL cipher suites used for encrypted connections, separated by colons (``:``).
+    The list of SSL cipher suites used for encrypted connections for the URI case, separated by colons (``:``).
 
 ..  option:: --timeout
 
-    **Applicable to:** ``promote``, ``demote``
+    **Applicable to:** ``promote``, ``demote``, ``expel``, ``vshard``
 
-    The timeout for completing the promotion or demotion, in seconds. Default: ``3``.
+    The timeout for completing the operation, in seconds. Default:
+
+    -   ``3`` for ``promote``, ``demote``, ``expel``
+    -   ``10`` for ``vshard``
