@@ -11,6 +11,11 @@ Module experimental.connpool
 
 An ``experimental.connpool`` module provides a set of features for connecting to remote cluster instances and for executing remote procedure calls on an instance that satisfies the specified criteria.
 
+..  NOTE::
+
+    Note that the execution time for ``experimental.connpool`` functions depends on the number of instances and the time required to connect to each instance.
+
+
 
 ..  _connpool_module_load:
 
@@ -162,7 +167,7 @@ Functions
                            * ``roles`` -- the :ref:`roles <configuration_application_roles>` of an instance.
                            * ``mode`` -- a mode that allows filtering candidates based on their read-only status. This option accepts the following values:
 
-                               * ``nil`` -- don't check the read-only status of instances.
+                               * ``nil`` (default) -- don't check the read-only status of instances.
                                * ``ro`` -- consider only read-only instances.
                                * ``rw`` -- consider only read-write instances.
 
