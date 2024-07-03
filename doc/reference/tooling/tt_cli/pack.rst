@@ -185,6 +185,10 @@ Options
     Specify a Tarantool version for packaging in a Docker container.
     For use with ``--use-docker`` only.
 
+..  option:: --unit-params-file
+
+    Path to a file with custom :ref:`systemd unit parameters <tt-pack-systemd>`.
+
 ..  option:: --use-docker
 
     Build a package in an Ubuntu 18.04 Docker container. To specify a Tarantool
@@ -205,6 +209,10 @@ Options
 ..  option:: --with-binaries
 
     Include Tarantool and ``tt`` binaries in a bundle.
+
+..  option:: --with-tarantool-deps
+
+    Add Tarantool and ``tt`` as package dependencies.
 
 ..  option:: --without-binaries
 
