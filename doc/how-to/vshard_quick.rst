@@ -3,10 +3,13 @@
 Creating a sharded cluster
 ==========================
 
-**Example on GitHub**: `sharded_cluster <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster>`_
+**Example on GitHub**: `sharded_cluster_crud <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster_crud>`_
 
 In this tutorial, you get a sharded cluster up and running on your local machine and learn how to manage the cluster using the tt utility.
-To enable sharding in the cluster, the :ref:`vshard <vshard>` module is used.
+In this tutorial, the following external modules are used:
+
+-   :ref:`vshard <vshard>` enables sharding in the cluster.
+-   `crud <https://github.com/tarantool/crud>`__ allows you to perform CRUD operations in the sharded cluster.
 
 The cluster created in this tutorial includes 5 instances: one router and 4 storages, which constitute two replica sets.
 
@@ -43,15 +46,15 @@ In this tutorial, the application layout is prepared manually:
 
 1.  Create a tt environment in the current directory by executing the :ref:`tt init <tt-init>` command.
 
-2.  Inside the empty ``instances.enabled`` directory of the created tt environment, create the ``sharded_cluster`` directory.
+2.  Inside the empty ``instances.enabled`` directory of the created tt environment, create the ``sharded_cluster_crud`` directory.
 
-3.  Inside ``instances.enabled/sharded_cluster``, create the following files:
+3.  Inside ``instances.enabled/sharded_cluster_crud``, create the following files:
 
     -   ``instances.yml`` specifies instances to run in the current environment.
     -   ``config.yaml`` specifies the cluster's :ref:`configuration <configuration_overview>`.
     -   ``storage.lua`` contains code specific for :ref:`storages <vshard-architecture-storage>`.
     -   ``router.lua`` contains code specific for a :ref:`router <vshard-architecture-router>`.
-    -   ``sharded_cluster-scm-1.rockspec`` specifies external dependencies required by the application.
+    -   ``sharded_cluster_crud-scm-1.rockspec`` specifies external dependencies required by the application.
 
     The next :ref:`vshard-quick-start-developing-app` section shows how to configure the cluster and write code for routing read and write requests to different storages.
 
@@ -68,7 +71,7 @@ Configuring instances to run
 
 Open the ``instances.yml`` file and add the following content:
 
-..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster/instances.yaml
+..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster_crud/instances.yaml
     :language: yaml
     :dedent:
 
@@ -89,10 +92,10 @@ Step 1: Configuring credentials
 
 Add the :ref:`credentials <configuration_reference_credentials>` configuration section:
 
-..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster/config.yaml
+..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster_crud/config.yaml
     :language: yaml
     :start-at: credentials:
-    :end-at: roles: [sharding]
+    :end-at: roles: [ sharding ]
     :dedent:
 
 In this section, two users with the specified passwords are created:
@@ -116,9 +119,9 @@ Step 2: Specifying advertise URIs
 
 Add the :ref:`iproto.advertise <configuration_reference_iproto_advertise>` section:
 
-..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster/config.yaml
+..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster_crud/config.yaml
     :language: yaml
-    :start-after: roles: [sharding]
+    :start-after: roles: [ sharding ]
     :end-at: login: storage
     :dedent:
 
@@ -128,6 +131,9 @@ In this section, the following options are configured:
     In particular, this option informs other replica set members that the ``replicator`` user should be used to connect to the current instance.
 *   ``iproto.advertise.sharding`` specifies how to advertise the current instance to a router and rebalancer.
 
+The cluster topology defined in the :ref:`following section <vshard-quick-start-configuring-cluster-topology>` also specifies the ``iproto.advertise.client`` option for each instance.
+This option accepts a URI used to advertise the instance to clients.
+
 
 ..  _vshard-quick-start-configuring-cluster-bucket-count:
 
@@ -136,7 +142,7 @@ Step 3: Configuring bucket count
 
 Specify the total number of :ref:`buckets <vshard-vbuckets>` in a sharded cluster using the :ref:`sharding.bucket_count <configuration_reference_sharding_bucket_count>` option:
 
-..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster/config.yaml
+..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster_crud/config.yaml
     :language: yaml
     :start-after: login: storage
     :end-at: bucket_count
@@ -172,14 +178,15 @@ Here is a schematic view of the cluster's topology:
 
 1.  To configure storages, add the following code inside the ``groups`` section:
 
-    ..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster/config.yaml
+    ..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster_crud/config.yaml
         :language: yaml
         :start-at: storages:
-        :end-before: routers:
+        :end-at: client: '127.0.0.1:3305'
         :dedent:
 
     The main group-level options here are:
 
+    *   ``roles``: This option enables the ``roles.crud-storage`` :ref:`role <configuration_application_roles_enable>` provided by the CRUD module for all storage instances.
     *   ``app``: The ``app.module`` option specifies that code specific to storages should be loaded from the ``storage`` module. This is explained below in the :ref:`vshard-quick-start-storage-code` section.
     *   ``sharding``: The :ref:`sharding.roles <configuration_reference_sharding_roles>` option specifies that all instances inside this group act as storages.
         A rebalancer is selected automatically from two master instances.
@@ -189,17 +196,19 @@ Here is a schematic view of the cluster's topology:
 
 2.  To configure a router, add the following code inside the ``groups`` section:
 
-    ..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster/config.yaml
+    ..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster_crud/config.yaml
         :language: yaml
         :start-at: routers:
-        :end-at: 127.0.0.1:3301
+        :end-at: client: '127.0.0.1:3301'
         :dedent:
 
     The main group-level options here are:
 
+    *   ``roles``: This option enables the ``roles.crud-router`` :ref:`role <configuration_application_roles_enable>` provided by the CRUD module for a router instance.
+    *   ``roles_cfg``: This section enables and configures statistics on called operations for a router with the enabled ``roles.crud-router`` role.
     *   ``app``: The ``app.module`` option specifies that code specific to a router should be loaded from the ``router`` module. This is explained below in the :ref:`vshard-quick-start-router-code` section.
     *   ``sharding``: The :ref:`sharding.roles <configuration_reference_sharding_roles>` option specifies that an instance inside this group acts as a router.
-    *   ``replicasets``: This section configures one replica set with one router instance.
+    *   ``replicasets``: This section configures a replica set with one router instance.
 
 
 Resulting configuration
@@ -207,7 +216,7 @@ Resulting configuration
 
 The resulting ``config.yaml`` file should look as follows:
 
-..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster/config.yaml
+..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster_crud/config.yaml
     :language: yaml
     :dedent:
 
@@ -217,39 +226,17 @@ The resulting ``config.yaml`` file should look as follows:
 Adding storage code
 ~~~~~~~~~~~~~~~~~~~
 
-1.  Open the ``storage.lua`` file and define a space and indexes inside :ref:`box.once() <box-once>`:
+Open the ``storage.lua`` file and define a space and indexes inside :ref:`box.watch() <box-watch>` as follows:
 
-    ..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster/storage.lua
-        :language: lua
-        :start-at: box.once
-        :end-before: function insert_band
-        :dedent:
-
-    *   The :ref:`box.schema.create_space() <box_schema-space_create>` function is used to create a space.
-        Note that the created ``bands`` spaces includes the ``bucket_id`` field.
-        This field represents a sharding key used to partition a dataset across different storage instances.
-    *   :ref:`space_object:create_index() <box_space-create_index>` is used to create two indexes based on the ``id`` and ``bucket_id`` fields.
-
-2.  Define the ``insert_band`` function that inserts a tuple into the created space:
-
-    ..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster/storage.lua
-        :language: lua
-        :start-at: function insert_band
-        :end-before: function get_band
-        :dedent:
-
-3.  Define the ``get_band`` function that returns data without the ``bucket_id`` value:
-
-    ..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster/storage.lua
-        :language: lua
-        :start-at: function get_band
-        :dedent:
-
-The resulting ``storage.lua`` file should look as follows:
-
-..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster/storage.lua
+..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster_crud/storage.lua
     :language: lua
     :dedent:
+
+*   The :ref:`box.schema.create_space() <box_schema-space_create>` function creates a space.
+    Note that the created ``bands`` space includes the ``bucket_id`` field.
+    This field represents a sharding key used to partition a dataset across different storage instances.
+*   :ref:`space_object:create_index() <box_space-create_index>` creates two indexes based on the ``id`` and ``bucket_id`` fields.
+
 
 
 ..  _vshard-quick-start-router-code:
@@ -257,48 +244,12 @@ The resulting ``storage.lua`` file should look as follows:
 Adding router code
 ~~~~~~~~~~~~~~~~~~
 
-1.  Open the ``router.lua`` file and load the ``vshard`` module as follows:
+Open the ``router.lua`` file and load the ``vshard`` module as follows:
 
-    ..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster/router.lua
-        :language: lua
-        :start-at: local vshard
-        :end-at: local vshard
-        :dedent:
-
-2.  Define the ``put`` function that specifies how the router selects the storage to write data:
-
-    ..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster/router.lua
-        :language: lua
-        :start-at: function put
-        :end-before: function get
-        :dedent:
-
-    The following ``vshard`` router functions are used:
-
-    *   :ref:`vshard.router.bucket_id_mpcrc32() <router_api-bucket_id_mpcrc32>`: Calculates a bucket ID value using a hash function.
-    *   :ref:`vshard.router.callrw() <router_api-callrw>`: Inserts a tuple to a storage identified the generated bucket ID.
-
-3.  Create the ``get`` function for getting data:
-
-    ..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster/router.lua
-        :language: lua
-        :start-at: function get
-        :end-before: function insert_data
-        :dedent:
-
-    Inside this function, :ref:`vshard.router.callro() <router_api-callro>` is called to get data from a storage identified the generated bucket ID.
-
-4.  Finally, create the ``insert_data()`` function that inserts sample data into the created space:
-
-    ..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster/router.lua
-        :language: lua
-        :start-at: function insert_data
-        :dedent:
-
-The resulting ``router.lua`` file should look as follows:
-
-..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster/router.lua
+..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster_crud/router.lua
     :language: lua
+    :start-at: local vshard
+    :end-at: local vshard
     :dedent:
 
 
@@ -308,13 +259,13 @@ The resulting ``router.lua`` file should look as follows:
 Configuring build settings
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Open the ``sharded_cluster-scm-1.rockspec`` file and add the following content:
+Open the ``sharded_cluster_crud-scm-1.rockspec`` file and add the following content:
 
-..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster/sharded_cluster-scm-1.rockspec
+..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster_crud/sharded_cluster_crud-scm-1.rockspec
     :language: none
     :dedent:
 
-The ``dependencies`` section includes the specified version of the ``vshard`` module.
+The ``dependencies`` section includes the specified versions of the ``vshard`` and ``crud`` modules.
 To install dependencies, you need to :ref:`build the application <vshard-quick-start-building-app>`.
 
 
@@ -328,12 +279,12 @@ Then, execute the ``tt build`` command:
 
 .. code-block:: console
 
-    $ tt build sharded_cluster
+    $ tt build sharded_cluster_crud
        • Running rocks make
     No existing manifest. Attempting to rebuild...
        • Application was successfully built
 
-This installs the ``vshard`` dependency defined in the :ref:`*.rockspec <vshard-quick-start-build-settings>` file to the ``.rocks`` directory.
+This installs the ``vshard`` and ``crud`` modules defined in the :ref:`*.rockspec <vshard-quick-start-build-settings>` file to the ``.rocks`` directory.
 
 
 
@@ -351,12 +302,12 @@ To start all instances in the cluster, execute the ``tt start`` command:
 
 .. code-block:: console
 
-    $ tt start sharded_cluster
-       • Starting an instance [sharded_cluster:storage-a-001]...
-       • Starting an instance [sharded_cluster:storage-a-002]...
-       • Starting an instance [sharded_cluster:storage-b-001]...
-       • Starting an instance [sharded_cluster:storage-b-002]...
-       • Starting an instance [sharded_cluster:router-a-001]...
+    $ tt start sharded_cluster_crud
+       • Starting an instance [sharded_cluster_crud:storage-a-001]...
+       • Starting an instance [sharded_cluster_crud:storage-a-002]...
+       • Starting an instance [sharded_cluster_crud:storage-b-001]...
+       • Starting an instance [sharded_cluster_crud:storage-b-002]...
+       • Starting an instance [sharded_cluster_crud:router-a-001]...
 
 
 .. _vshard-quick-start-working-bootstrap:
@@ -370,15 +321,15 @@ After starting instances, you need to bootstrap the cluster as follows:
 
     ..  code-block:: console
 
-        $ tt connect sharded_cluster:router-a-001
+        $ tt connect sharded_cluster_crud:router-a-001
            • Connecting to the instance...
-           • Connected to sharded_cluster:router-a-001
+           • Connected to sharded_cluster_crud:router-a-001
 
 2.  Call :ref:`vshard.router.bootstrap() <router_api-bootstrap>` to perform the initial cluster bootstrap:
 
-    ..  code-block:: console
+    ..  code-block:: tarantoolsession
 
-        sharded_cluster:router-a-001> vshard.router.bootstrap()
+        sharded_cluster_crud:router-a-001> vshard.router.bootstrap()
         ---
         - true
         ...
@@ -386,14 +337,14 @@ After starting instances, you need to bootstrap the cluster as follows:
 
 .. _vshard-quick-start-working-status:
 
-Checking status
-~~~~~~~~~~~~~~~
+Checking the cluster's status
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To check the cluster's status, execute :ref:`vshard.router.info() <router_api-info>` on the router:
 
-.. code-block:: console
+.. code-block:: tarantoolsession
 
-    sharded_cluster:router-a-001> vshard.router.info()
+    sharded_cluster_crud::router-a-001> vshard.router.info()
     ---
     - replicasets:
         storage-b:
@@ -447,33 +398,63 @@ The output includes the following sections:
 Writing and selecting data
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-1.  To insert sample data, call the :ref:`insert_data() <vshard-quick-start-router-code>` function on the router:
+1.  To insert sample data, call ``crud.insert_many()`` on the router:
 
-    .. code-block:: console
+    .. code-block:: lua
 
-        sharded_cluster:router-a-001> insert_data()
-        ---
-        ...
+        crud.insert_many('bands', {
+            { 1, box.NULL, 'Roxette', 1986 },
+            { 2, box.NULL, 'Scorpions', 1965 },
+            { 3, box.NULL, 'Ace of Base', 1987 },
+            { 4, box.NULL, 'The Beatles', 1960 },
+            { 5, box.NULL, 'Pink Floyd', 1965 },
+            { 6, box.NULL, 'The Rolling Stones', 1962 },
+            { 7, box.NULL, 'The Doors', 1965 },
+            { 8, box.NULL, 'Nirvana', 1987 },
+            { 9, box.NULL, 'Led Zeppelin', 1968 },
+            { 10, box.NULL, 'Queen', 1970 }
+        })
 
     Calling this function :ref:`distributes data <vshard-quick-start-working-adding-data>` evenly across the cluster's nodes.
 
-2.  To get a tuple by the specified ID, call the ``get()`` function:
+2.  To get a tuple by the specified ID, call the ``crud.get()`` function:
 
-    .. code-block:: console
+    .. code-block:: tarantoolsession
 
-        sharded_cluster:router-a-001> get(4)
+        sharded_cluster_crud:router-a-001> crud.get('bands', 4)
         ---
-        - [4, 'The Beatles', 1960]
+        - rows:
+          - [4, 161, 'The Beatles', 1960]
+          metadata: [{'name': 'id', 'type': 'unsigned'}, {'name': 'bucket_id', 'type': 'unsigned'},
+            {'name': 'band_name', 'type': 'string'}, {'name': 'year', 'type': 'unsigned'}]
+        - null
         ...
 
-3.  To insert a new tuple, call the ``put()`` function:
+3.  To insert a new tuple, call ``crud.insert()``:
 
-    .. code-block:: console
+    .. code-block:: tarantoolsession
 
-        sharded_cluster:router-a-001> put(11, 'The Who', 1962)
+        sharded_cluster_crud:router-a-001> crud.insert('bands', {11, box.NULL, 'The Who', 1962})
         ---
+        - rows:
+          - [11, 652, 'The Who', 1962]
+          metadata: [{'name': 'id', 'type': 'unsigned'}, {'name': 'bucket_id', 'type': 'unsigned'},
+            {'name': 'band_name', 'type': 'string'}, {'name': 'year', 'type': 'unsigned'}]
+        - null
         ...
 
+4.  To get statistics on called operations, pass the space name to ``crud.stats()``:
+
+    .. code-block:: tarantoolsession
+
+        sharded_cluster_crud:router-a-001> crud.stats('bands')
+        ---
+        - get:
+            ok:
+              latency: 0.00069199999961711
+              count: 1
+              time: 0.00069199999961711
+              latency_average: 0.00069199999961711
 
 
 
@@ -488,22 +469,22 @@ To check how data is distributed across the cluster's nodes, follow the steps be
 
     ..  code-block:: console
 
-        $ tt connect sharded_cluster:storage-a-001
+        $ tt connect sharded_cluster_crud:storage-a-001
            • Connecting to the instance...
-           • Connected to sharded_cluster:storage-a-001
+           • Connected to sharded_cluster_crud:storage-a-001
 
     Then, select all tuples in the ``bands`` space:
 
-    .. code-block:: console
+    .. code-block:: tarantoolsession
 
-        sharded_cluster:storage-a-001> box.space.bands:select()
+        sharded_cluster_crud:storage-a-001> box.space.bands:select()
         ---
-        - - [3, 11, 'Ace of Base', 1987]
-          - [4, 42, 'The Beatles', 1960]
-          - [6, 55, 'The Rolling Stones', 1962]
-          - [9, 299, 'Led Zeppelin', 1968]
-          - [10, 167, 'Queen', 1970]
-          - [11, 70, 'The Who', 1962]
+        - - [1, 477, 'Roxette', 1986]
+          - [2, 401, 'Scorpions', 1965]
+          - [4, 161, 'The Beatles', 1960]
+          - [5, 172, 'Pink Floyd', 1965]
+          - [6, 64, 'The Rolling Stones', 1962]
+          - [8, 185, 'Nirvana', 1987]
         ...
 
 
@@ -511,19 +492,19 @@ To check how data is distributed across the cluster's nodes, follow the steps be
 
     ..  code-block:: console
 
-        $ tt connect sharded_cluster:storage-b-001
+        $ tt connect sharded_cluster_crud:storage-b-001
            • Connecting to the instance...
-           • Connected to sharded_cluster:storage-b-001
+           • Connected to sharded_cluster_crud:storage-b-001
 
     Select all tuples in the ``bands`` space to make sure it contains another subset of data:
 
-    .. code-block:: console
+    .. code-block:: tarantoolsession
 
-        sharded_cluster:storage-b-001> box.space.bands:select()
+        sharded_cluster_crud:storage-b-001> box.space.bands:select()
         ---
-        - - [1, 614, 'Roxette', 1986]
-          - [2, 986, 'Scorpions', 1965]
-          - [5, 755, 'Pink Floyd', 1965]
-          - [7, 998, 'The Doors', 1965]
-          - [8, 762, 'Nirvana', 1987]
+        - - [3, 804, 'Ace of Base', 1987]
+          - [7, 693, 'The Doors', 1965]
+          - [9, 644, 'Led Zeppelin', 1968]
+          - [10, 569, 'Queen', 1970]
+          - [11, 652, 'The Who', 1962]
         ...
