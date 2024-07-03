@@ -76,10 +76,14 @@ Functions
 
                            * ``labels`` -- the :ref:`labels <configuration_reference_labels>` an instance has.
                            * ``roles`` -- the :ref:`roles <configuration_application_roles>` of an instance.
-                           * ``prefer_local`` -- if ``true``, ``call()`` tries to execute the specified function on a local instance. If ``false``, ``call()`` tries to connect to a random candidate until a connection is established.
+                           * ``prefer_local`` -- whether to prefer a local or remote instance to execute ``call()`` on:
+
+                               * if ``true`` (default), ``call()`` tries to execute the specified function on a local instance.
+                               * if ``false``, ``call()`` tries to connect to a random candidate until a connection is established.
+
                            * ``mode`` -- a mode that allows filtering candidates based on their read-only status. This option accepts the following values:
 
-                               * ``nil`` -- don't check the read-only status of instances.
+                               * ``nil`` (default) -- don't check the read-only status of instances.
                                * ``ro`` -- consider only read-only instances.
                                * ``rw`` -- consider only read-write instances.
                                * ``prefer_ro`` -- consider read-only instances, then read-write instances.
@@ -125,7 +129,11 @@ Functions
     :param table/nil opts: none, any, or all of the following parameters:
 
                            * ``connect_timeout`` -- a connection timeout (in seconds).
-                           * ``wait_connected`` -- if ``true``, the connection is blocked until it is established. If ``false``, the connection is returned immediately.
+                           * ``wait_connected`` -- whether to block the connection until it is established:
+
+                               * if ``true`` (default), the connection is blocked until it is established.
+                               * if ``false``, the connection is returned immediately.
+
                            * ``fetch_schema`` -- whether to fetch schema changes from a remote instance.
 
     :return: a :ref:`net.box <net_box-module>` connection.
