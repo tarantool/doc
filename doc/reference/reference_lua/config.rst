@@ -108,7 +108,7 @@ config API
 
         The example below shows how to get the full instance configuration:
 
-        .. code-block:: console
+        .. code-block:: tarantoolsession
 
             app:instance001> require('config'):get()
             ---
@@ -122,7 +122,7 @@ config API
 
         This example shows how to get an ``iproto.listen`` option value:
 
-        .. code-block:: console
+        .. code-block:: tarantoolsession
 
             app:instance001> require('config'):get('iproto.listen')
             ---
@@ -161,71 +161,97 @@ config API
 
         -   ``alerts`` -- warnings or errors raised on an attempt to apply the configuration
 
-        **Examples:**
+        Below are a few examples demonstrating how the ``info()`` output might look.
 
-        Below are a few examples demonstrating how the ``info()`` output might look:
+        **Example: no configuration warnings or errors**
 
-        *   In the example below, an instance's state is ``ready`` and no warnings are shown:
+        In the example below, an instance's state is ``ready`` and no warnings are shown:
 
-            ..  code-block:: console
+        ..  code-block:: tarantoolsession
 
-                app:instance001> require('config'):info()
-                ---
-                - status: ready
-                  meta: []
-                  alerts: []
-                ...
+            app:instance001> require('config'):info('v2')
+            ---
+            - status: ready
+              meta:
+                last: &0 []
+                active: *0
+              alerts: []
+            ...
 
-        *   In the example below, the instance's state is ``check_warnings``.
-            The ``alerts`` section informs that privileges to the ``books`` space for ``sampleuser`` cannot be granted because the ``books`` space has not been created yet:
+        **Example: configuration warnings**
 
-            ..  code-block:: console
+        In the example below, the instance's state is ``check_warnings``.
+        The ``alerts`` section informs that privileges to the ``bands`` space for ``sampleuser`` cannot be granted because the ``bands`` space has not created yet:
 
-                app:instance001> require('config'):info()
-                ---
-                - status: check_warnings
-                  meta: []
-                  alerts:
-                  - type: warn
-                    message: box.schema.user.grant("sampleuser", "read,write", "space", "books") has
-                      failed because either the object has not been created yet, or the privilege
-                      write has failed (separate alert reported)
-                    timestamp: 2024-02-27T15:07:41.815785+0300
-                ...
+        ..  code-block:: tarantoolsession
 
-            This warning is cleared when the ``books`` space is created.
+            app:instance001> require('config'):info('v2')
+            ---
+            - status: check_warnings
+              meta:
+                last: &0 []
+                active: *0
+              alerts:
+              - type: warn
+                message: box.schema.user.grant("sampleuser", "read,write", "space", "bands") has
+                  failed because either the object has not been created yet, a database schema
+                  upgrade has not been performed, or the privilege write has failed (separate
+                  alert reported)
+                timestamp: 2024-07-03T18:09:18.826138+0300
+            ...
 
-        *   In the example below, the instance's state is ``check_errors``.
-            The ``alerts`` section informs that the ``log.level`` configuration option has an incorrect value:
+        This warning is cleared when the ``bands`` space is created.
 
-            ..  code-block:: console
+        **Example: configuration errors**
 
-                app:instance001> require('config'):info()
-                ---
-                - status: check_errors
-                  meta: []
-                  alerts:
-                  - type: error
-                    message: '[cluster_config] log.level: Got 8, but only the following values are
-                      allowed: 0, fatal, 1, syserror, 2, error, 3, crit, 4, warn, 5, info, 6, verbose,
-                      7, debug'
-                    timestamp: 2024-02-29T12:55:54.366810+0300
-                ...
+        In the example below, the instance's state is ``check_errors``.
+        The ``alerts`` section informs that the ``log.level`` configuration option has an incorrect value:
 
-        *   In this example, an instance's state includes information about a :ref:`centralized storage <configuration_etcd>` the instance takes a configuration from:
+        ..  code-block:: tarantoolsession
 
-            ..  code-block:: console
+            app:instance001> require('config'):info('v2')
+            ---
+            - status: check_errors
+              meta:
+                last: []
+                active: []
+              alerts:
+              - type: error
+                message: '[cluster_config] log.level: Got 8, but only the following values are
+                  allowed: 0, fatal, 1, syserror, 2, error, 3, crit, 4, warn, 5, info, 6, verbose,
+                  7, debug'
+                timestamp: 2024-07-03T18:13:19.755454+0300
+            ...
 
-                app:instance001> require('config'):info()
-                ---
-                - status: ready
-                  meta:
-                    storage:
-                      revision: 8
-                      mod_revision:
-                        /myapp/config/all: 8
-                  alerts: []
-                ...
+        **Example: configuration errors (centralized configuration storage)**
+
+        In this example, the ``meta`` field includes information about a :ref:`centralized storage <configuration_etcd>` the instance takes a configuration from:
+
+        ..  code-block:: tarantoolsession
+
+            app:instance001> require('config'):info('v2')
+            ---
+            - status: check_errors
+              meta:
+                last:
+                  etcd:
+                    mod_revision:
+                      /myapp/config/all: 5
+                    revision: 5
+                active:
+                  etcd:
+                    mod_revision:
+                      /myapp/config/all: 2
+                    revision: 4
+              alerts:
+              - type: error
+                message: 'etcd source: invalid config at key "/myapp/config/all": [cluster_config]
+                  groups.group001.replicasets.replicaset001.instances.instance001.log.level: Got
+                  8, but only the following values are allowed: 0, fatal, 1, syserror, 2, error,
+                  3, crit, 4, warn, 5, info, 6, verbose, 7, debug'
+                timestamp: 2024-07-03T15:22:06.438275Z
+            ...
+
 
     .. _config_api_reference_instance_uri:
 
