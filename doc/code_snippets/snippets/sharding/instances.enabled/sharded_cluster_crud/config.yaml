@@ -34,10 +34,14 @@ groups:
             iproto:
               listen:
               - uri: '127.0.0.1:3302'
+              advertise:
+                client: '127.0.0.1:3302'
           storage-a-002:
             iproto:
               listen:
               - uri: '127.0.0.1:3303'
+              advertise:
+                client: '127.0.0.1:3303'
       storage-b:
         leader: storage-b-001
         instances:
@@ -45,10 +49,14 @@ groups:
             iproto:
               listen:
               - uri: '127.0.0.1:3304'
+              advertise:
+                client: '127.0.0.1:3304'
           storage-b-002:
             iproto:
               listen:
               - uri: '127.0.0.1:3305'
+              advertise:
+                client: '127.0.0.1:3305'
   routers:
     roles: [ roles.crud-router ]
     roles_cfg:
@@ -70,3 +78,5 @@ groups:
             iproto:
               listen:
               - uri: '127.0.0.1:3301'
+              advertise:
+                client: '127.0.0.1:3301'
