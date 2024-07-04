@@ -308,11 +308,27 @@ config API
         ..  code-block:: lua
 
             local config = require('config')
+            local connpool = require('experimental.connpool')
+            local log = require('log')
+
             for instance_name in pairs(config:instances()) do
-                local connpool = require('experimental.connpool')
                 local conn = connpool.connect(instance_name)
-                local log = require('log')
-                log.info(string.format("Connection URI for '%s': %s:%s", instance_name, conn.host, conn.port))
+                log.info("Connection URI for %q: %s:%s", instance_name, conn.host, conn.port)
+            end
+
+        In this example, the same actions are performed for instances from the specific replica set:
+
+        ..  code-block:: lua
+
+            local config = require('config')
+            local connpool = require('experimental.connpool')
+            local log = require('log')
+
+            for instance_name, def in pairs(config:instances()) do
+                if def.replicaset_name == 'storage-b' then
+                    local conn = connpool.connect(instance_name)
+                    log.info("Connection URI for %q: %s:%s", instance_name, conn.host, conn.port)
+                end
             end
 
 
