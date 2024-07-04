@@ -147,19 +147,17 @@ config API
                                    * the ``active`` field includes information for the last successfully applied configuration
 
 
-        :return: a table containing an instance's state
+        :return: a table containing an instance's state. The returned state includes the following sections:
 
-        The returned state includes the following sections:
+                 -   ``status`` -- one of the following statuses:
 
-        -   ``status`` -- one of the following statuses:
+                     *   ``ready`` -- the configuration is applied successfully
+                     *   ``check_warnings`` -- the configuration is applied with warnings
+                     *   ``check_errors`` -- the configuration cannot be applied due to configuration errors
 
-            *   ``ready`` -- the configuration is applied successfully
-            *   ``check_warnings`` -- the configuration is applied with warnings
-            *   ``check_errors`` -- the configuration cannot be applied due to configuration errors
+                 -   ``meta`` -- additional configuration information
 
-        -   ``meta`` -- additional configuration information
-
-        -   ``alerts`` -- warnings or errors raised on an attempt to apply the configuration
+                 -   ``alerts`` -- warnings or errors raised on an attempt to apply the configuration
 
         Below are a few examples demonstrating how the ``info()`` output might look.
 
@@ -270,7 +268,12 @@ config API
 
                            -   ``instance`` -- the name of a remote instance whose URI should be obtained
 
-        :return: an instance URI
+        :return: a table representing an instance URI. This table might include the following fields:
+
+                 *   ``uri`` -- an instance URI
+                 *   ``login`` -- a username used to connect to this instance
+                 *   ``password`` -- a user's password
+                 *   ``params`` -- URI parameters used to connect to this instance
 
         **Example**
 
