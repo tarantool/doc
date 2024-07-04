@@ -275,6 +275,10 @@ config API
                  *   ``password`` -- a user's password
                  *   ``params`` -- URI parameters used to connect to this instance
 
+                 ..  NOTE::
+
+                     Note that the resulting URI object can be passed to the :ref:`connect() <net_box-connect>` function of the ``net.box`` module.
+
         **Example**
 
         The example below shows how to get a URI used to advertise ``storage-b-003`` to other cluster members:
