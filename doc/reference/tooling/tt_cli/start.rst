@@ -78,6 +78,11 @@ process for status checks (:ref:`tt status <tt-status>`) and application stoppin
 Integrity check
 ---------------
 
+..  admonition:: Enterprise Edition
+    :class: fact
+
+    The integrity check functionality is supported by the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only.
+
 ``tt start`` can perform initial and periodical integrity checks of applications
 that it starts. To make the integrity checks possible, you need to pack the application
 using ``tt pack`` with the ``--with-integrity-check`` option. This option generates

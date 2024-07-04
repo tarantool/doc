@@ -81,6 +81,11 @@ An example of the ``systemd-unit-params.yml`` file:
 Generating files for integrity checks
 -------------------------------------
 
+..  admonition:: Enterprise Edition
+    :class: fact
+
+    The integrity check functionality is supported by the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only.
+
 ``tt pack`` can generate hashes and signatures to use for integrity checks
 when running the application. These files are:
 
