@@ -76,6 +76,43 @@ An example of the ``systemd-unit-params.yml`` file:
       INSTANCE: "inst:%i"
       TARANTOOL_WORKDIR: "/tmp"
 
+.. _tt-pack-integrity-check:
+
+Generating files for integrity checks
+-------------------------------------
+
+``tt pack`` can generate hashes and signatures to use for integrity checks
+when running the application. These files are:
+
+-   ``hashes.json`` and ``hashes.json.sig`` in each application directory.
+    ``hashes.json`` containsSHA256 checksums of executable files that the application uses
+    and its configuration file. ``hashes.json.sig`` contains a digital signature
+    for ``hashes.json``.
+
+-   ``env-hashes.json`` and ``env-hashes.json.sig`` in the environment root are
+    a similar files for the ``tt`` environment. They contain checksums for
+    Tarantool and ``tt`` executables, and for the ``tt.yaml`` configuration file.
+
+To generate hashes and signatures for integrity check, use the ``--with-integrity-check``
+option. Its argument must be an RSA private key.
+
+.. note::
+
+    You can generate a key pair using `OpenSSL <https://www.openssl.org/>`__  as follows:
+
+    .. code-block:: console
+
+        $ openssl genrsa -traditional -out private.pem 2048
+        $ openssl rsa -in private.pem -pubout > public.pem
+
+To create a ``tar.gz`` archive with integrity check artifacts:
+
+.. code-block:: console
+
+    $ tt pack tgz --with-integrity-check private.pem
+
+Learn how to perform integrity checks upon application startup and in runtime in the :ref:``tt start <tt-start>`` reference.
+
 
 .. _tt-pack-options:
 
@@ -209,6 +246,10 @@ Options
 ..  option:: --with-binaries
 
     Include Tarantool and ``tt`` binaries in a bundle.
+
+..  option:: --with-integrity-check PRIVATE_KEY
+
+    Generate hashes and signatures for integrity checks at the application startup.
 
 ..  option:: --with-tarantool-deps
 

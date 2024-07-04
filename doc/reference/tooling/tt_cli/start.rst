@@ -12,9 +12,28 @@ inside the ``instances_enabled`` directory specified in the :ref:`tt configurati
 For detailed instructions on preparing and running Tarantool applications, see
 :ref:`admin-instance-environment-overview` and :ref:`admin-start_stop_instance`.
 
-When called without arguments, starts all enabled applications in the current environment.
-
 See also: :ref:`tt-stop`, :ref:`tt-restart`, :ref:`tt-status`.
+
+To start all instances of the application stored in the ``app`` directory inside
+``instances_enabled`` in accordance with its ``instances.yml``:
+
+..  code-block:: console
+
+    $ tt start app
+
+To start the ``router`` instance of the ``app`` application:
+
+..  code-block:: console
+
+    $ tt start app:router
+
+When called without arguments, starts all enabled applications in the current environment:
+
+..  code-block:: console
+
+        $ tt start
+
+.. _tt-start-app-layout:
 
 Application layout
 ------------------
@@ -38,6 +57,8 @@ For more information about Tarantool application layout, see :ref:`admin-instanc
     which is considered a legacy approach since Tarantool 3.0. For information
     about using ``tt`` with such applications, refer to the Tarantool 2.11 documentation.
 
+.. _tt-start-background:
+
 Running in the background
 -------------------------
 
@@ -52,19 +73,43 @@ process for status checks (:ref:`tt status <tt-status>`) and application stoppin
     If you start such an application with ``tt start``, ``tt`` won't be able to check
     the application status or stop it using the corresponding commands.
 
-Examples
---------
+.. _tt-start-integrity-check:
 
-*   Start instances of the application stored in the ``app`` directory inside
-    ``instances_enabled`` in accordance with its ``instances.yml``:
+Integrity check
+---------------
 
-    ..  code-block:: console
+``tt start`` can perform initial and periodical integrity checks of applications
+that it starts. To make the integrity checks possible, you need to pack the application
+using ``tt pack`` with the ``--with-integrity-check`` option. This option generates
+and signs checksums of executables and configuration files in the current ``tt``
+environment. Learn more in :ref:`tt-pack-integrity-check`.
 
-        $ tt start app
+To check the environment and application integrity when running the application,
+start it with the :ref:`global option <tt-global-options>` ``--integrity-check``.
+Its argument must be a public key matching the private key that was used for
+generating checksums.
 
-*   Start the ``router`` instance of the ``app`` application:
+..  code-block:: console
 
-    ..  code-block:: console
+    $ tt --integrity-check public.pem start myapp
 
-        $ tt start app:router
+After such a call, ``tt`` checks the environment and application integrity using
+the checksums and starts the application in case of the success. Then, integrity
+checks are performed periodically when the application is running. By default,
+they are performed once every 24 hours. You can adjust the integrity check period
+by adding the ``--integrity-check-period`` option:
 
+..  code-block:: console
+
+    $ tt --integrity-check public.pem start myapp --integrity-check-period 60
+
+
+.. _tt-start-options:
+
+Options
+-------
+
+..  option:: --integrity-check-interval NUMBER
+
+    Integrity check interval in seconds. Default: 86400 (24 hours).
+    Set this option to ``0`` to disable periodic checks.
