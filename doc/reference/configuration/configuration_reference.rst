@@ -2841,6 +2841,37 @@ The ``replication`` section defines configuration parameters related to :ref:`re
 
 .. confval:: replication.anon
 
+    Whether to make the current instance act as an anonymous replica.
+    Anonymous replicas are read-only and can be used, for example, for backups.
+
+    To make the specified instance act as an anonymous replica, set ``replication.anon`` to ``true``:
+
+    ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/anonymous_replica/config.yaml
+        :language: yaml
+        :start-at: instance003
+        :end-at: anon: true
+        :dedent:
+
+    You can find the full example on GitHub: `anonymous_replica <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/replication/instances.enabled/anonymous_replica>`_.
+
+    Anonymous replicas are not displayed in the :ref:`box.info.replication <box_info_replication>` section.
+    You can check their status using :ref:`box.info.replication_anon() <box_info_replication-anon>`.
+
+    While anonymous replicas are read-only, you can write data to replication-local and temporary spaces (:ref:`created <box_schema-space_create>` with ``is_local = true`` and ``temporary = true``, respectively).
+    Given that changes to replication-local spaces are allowed, an anonymous replica might increase the ``0`` component of the :ref:`vclock <box_introspection-box_info>` value.
+
+    Here are the limitations of having anonymous replicas in a replica set:
+
+    *   A replica set must contain at least one non-anonymous instance.
+    *   An anonymous replica can't be configured as a writable instance by setting :ref:`database.mode <configuration_reference_database_mode>` to ``rw`` or making it a leader using :ref:`<replicaset_name>.leader <configuration_reference_replicasets_name_leader>`.
+    *   If :ref:`replication.failover <configuration_reference_replication_failover>` is set to ``election``, an anonymous replica can have :ref:`replication.election_mode <configuration_reference_replication_election_mode>` set to ``off`` only.
+    *   If :ref:`replication.failover <configuration_reference_replication_failover>` is set to ``supervised``, an external failover coordinator doesn't consider anonymous replicas when selecting a bootstrap or replica set leader.
+
+    ..  NOTE::
+
+        Anonymous replicas are not registered in the :ref:`_cluster <box_space-cluster>` table.
+        This means that there is no :ref:`limitation <limitations_fields_in_index>` on the number of anonymous replicas in a replica set.
+
     |
     | Type: boolean
     | Default: ``false``
