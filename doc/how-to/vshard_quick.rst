@@ -133,6 +133,7 @@ In this section, the following options are configured:
 
 The cluster topology defined in the :ref:`following section <vshard-quick-start-configuring-cluster-topology>` also specifies the ``iproto.advertise.client`` option for each instance.
 This option accepts a URI used to advertise the instance to clients.
+For example, |tcm_full_name| uses these URIs to :ref:`connect <tcm_connect_clusters>` to cluster instances.
 
 
 ..  _vshard-quick-start-configuring-cluster-bucket-count:
