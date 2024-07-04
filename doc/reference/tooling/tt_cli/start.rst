@@ -108,6 +108,7 @@ by adding the ``--integrity-check-period`` option:
 
     $ tt --integrity-check public.pem start myapp --integrity-check-period 60
 
+If an integrity check fails, ``tt`` stops the application.
 
 .. _tt-start-options:
 
@@ -118,3 +119,5 @@ Options
 
     Integrity check interval in seconds. Default: 86400 (24 hours).
     Set this option to ``0`` to disable periodic checks.
+
+    See also: :ref:`tt-start-integrity-check`

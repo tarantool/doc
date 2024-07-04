@@ -90,12 +90,12 @@ Generating files for integrity checks
 when running the application. These files are:
 
 -   ``hashes.json`` and ``hashes.json.sig`` in each application directory.
-    ``hashes.json`` containsSHA256 checksums of executable files that the application uses
+    ``hashes.json`` contains SHA256 checksums of executable files that the application uses
     and its configuration file. ``hashes.json.sig`` contains a digital signature
     for ``hashes.json``.
 
 -   ``env-hashes.json`` and ``env-hashes.json.sig`` in the environment root are
-    a similar files for the ``tt`` environment. They contain checksums for
+    similar files for the ``tt`` environment. They contain checksums for
     Tarantool and ``tt`` executables, and for the ``tt.yaml`` configuration file.
 
 To generate hashes and signatures for integrity check, use the ``--with-integrity-check``
@@ -116,7 +116,7 @@ To create a ``tar.gz`` archive with integrity check artifacts:
 
     $ tt pack tgz --with-integrity-check private.pem
 
-Learn how to perform integrity checks upon application startup and in runtime in the :ref:``tt start <tt-start>`` reference.
+Learn how to perform integrity checks upon application startup and in runtime in the :ref:`tt start <tt-start-integrity-check>` reference.
 
 
 .. _tt-pack-options:
