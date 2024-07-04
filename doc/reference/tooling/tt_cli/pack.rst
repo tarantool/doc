@@ -94,7 +94,7 @@ when running the application. These files are:
     and its configuration file. ``hashes.json.sig`` contains a digital signature
     for ``hashes.json``.
 
--   ``env-hashes.json`` and ``env-hashes.json.sig`` in the environment root are
+-   ``env_hashes.json`` and ``env_hashes.json.sig`` in the environment root are
     similar files for the ``tt`` environment. They contain checksums for
     Tarantool and ``tt`` executables, and for the ``tt.yaml`` configuration file.
 
