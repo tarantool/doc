@@ -293,13 +293,11 @@ config API
 
         List all instances of the cluster.
 
-        :return: a table containing information about instances
+        :return: a table containing information about instances. The returned table uses instance names as the keys and contains the following information for each instance:
 
-        The returned table uses instance names as the keys and contains the following information for each instance:
-
-        -   ``instance_name`` -- an instance name
-        -   ``replicaset_name`` -- the name of a replica set the instance belongs to
-        -   ``group_name`` -- the name of a group the instance belongs to
+                 -   ``instance_name`` -- an instance name
+                 -   ``replicaset_name`` -- the name of a replica set the instance belongs to
+                 -   ``group_name`` -- the name of a group the instance belongs to
 
         **Example**
 
@@ -378,7 +376,7 @@ The ``config.storage`` API allows you to interact with a Tarantool-based :ref:`c
         :end-at: cluster_config_handle:close()
         :dedent:
 
-    Example on GitHub: `tarantool_config_storage <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/centralized_config/instances.enabled/tarantool_config_storage>`_.
+    Example on GitHub: `tarantool_config_storage <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/centralized_config/instances.enabled/tarantool_config_storage>`_
 
 
 .. _config_storage_api_reference_get:
@@ -419,7 +417,7 @@ The ``config.storage`` API allows you to interact with a Tarantool-based :ref:`c
         :end-at: get('/myapp/')
         :dedent:
 
-    Example on GitHub: `tarantool_config_storage <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/centralized_config/instances.enabled/tarantool_config_storage>`_.
+    Example on GitHub: `tarantool_config_storage <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/centralized_config/instances.enabled/tarantool_config_storage>`_
 
 .. _config_storage_api_reference_delete:
 
@@ -459,7 +457,7 @@ The ``config.storage`` API allows you to interact with a Tarantool-based :ref:`c
         :end-at: delete('/')
         :dedent:
 
-    Example on GitHub: `tarantool_config_storage <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/centralized_config/instances.enabled/tarantool_config_storage>`_.
+    Example on GitHub: `tarantool_config_storage <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/centralized_config/instances.enabled/tarantool_config_storage>`_
 
 
 .. _config_storage_api_reference_info:
@@ -520,4 +518,4 @@ The ``config.storage`` API allows you to interact with a Tarantool-based :ref:`c
         :end-at: })
         :dedent:
 
-    Example on GitHub: `tarantool_config_storage <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/centralized_config/instances.enabled/tarantool_config_storage>`_.
+    Example on GitHub: `tarantool_config_storage <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/centralized_config/instances.enabled/tarantool_config_storage>`_
