@@ -16,6 +16,8 @@ Managing replica sets
 *   :ref:`status <tt-replicaset-status>`
 *   :ref:`promote <tt-replicaset-promote>`
 *   :ref:`demote <tt-replicaset-demote>`
+*   :ref:`expel <tt-replicaset-expel>`
+*   :ref:`vshard <tt-replicaset-vshard>`
 
 
 .. _tt-replicaset-status:
@@ -219,6 +221,90 @@ The ``--timeout`` option can be used to specify the election completion timeout:
 
     $ tt replicaset demote my-app:storage-001-a --timeout=10
 
+.. _tt-replicaset-expel:
+
+expel
+-----
+
+..  code-block:: console
+
+    $ tt replicaset expel APPLICATION:APP_INSTANCE [OPTIONS ...]
+    # or
+    $ tt rs expel  APPLICATION[:APP_INSTANCE] [OPTIONS ...]
+
+``tt replicaset expel`` (``tt rs expel``) expels an instance from the cluster.
+
+..  code-block:: console
+
+    $ tt replicaset expel myapp:storage-001-b
+
+The command supports the ``--config``, ``--cartridge``, and ``--custom`` :ref:`options <tt-replicaset-options>`
+that force the use of a specific orchestrator.
+
+To expel an instance from a Cartridge cluster:
+
+..  code-block:: console
+
+    $ tt replicaset expel my-cartridge-app:storage-001-b --cartridge
+
+
+.. _tt-replicaset-vshard:
+
+vshard
+-----
+
+..  code-block:: console
+
+    $ tt replicaset vshard COMMAND {APPLICATION[:APP_INSTANCE] | URI} [OPTIONS ...]
+    # or
+    $ tt rs vshard COMMAND {APPLICATION[:APP_INSTANCE] | URI} [OPTIONS ...]
+    # or
+    $ tt rs vs COMMAND {APPLICATION[:APP_INSTANCE] | URI} [OPTIONS ...]
+
+``tt replicaset vshard`` (``tt rs vs``) manages :ref:`vshard <vshard>` in the cluster.
+
+It has the following subcommands:
+
+-   :ref:`bootstrap <tt-replicaset-vshard-bootstrap>`
+
+.. _tt-replicaset-vshard-bootstrap:
+
+vshard bootstrap
+~~~~~~~~~~~~~~~~
+
+..  code-block:: console
+
+    $ tt replicaset vshard bootstrap {APPLICATION[:APP_INSTANCE] | URI} [OPTIONS ...]
+    # or
+    $ tt rs vshard bootstrap {APPLICATION[:APP_INSTANCE] | URI} [OPTIONS ...]
+    # or
+    $ tt rs vs bootstrap {APPLICATION[:APP_INSTANCE] | URI} [OPTIONS ...]
+
+``tt replicaset vshard bootstrap`` (``tt rs vs bootstrap``) bootstraps ``vshard``
+in the cluster.
+
+..  code-block:: console
+
+    $ tt replicaset vshard bootstrap myapp
+
+With a URI and credentials:
+
+..  code-block:: console
+
+    $ tt replicaset vshard bootstrap 192.168.10.10:3301 -u myuser -p p4$$w0rD
+
+You can specify the application name or the name of any cluster instance. The command
+automatically finds a ``vshard`` router in the cluster and calls :ref:`vshard.router.bootstrap() <router_api-bootstrap>` on it.
+
+The command supports the ``--config``, ``--cartridge``, and ``--custom`` :ref:`options <tt-replicaset-options>`
+that force the use of a specific orchestrator.
+
+To bootstrap ``vshard`` in a Cartridge cluster:
+
+..  code-block:: console
+
+    $ tt replicaset vshard bootstrap my-cartridge-app --cartridge
+
 .. _tt-replicaset-orchestrator:
 
 Selecting the application orchestrator manually
@@ -292,7 +378,7 @@ Options
 
 ..  option:: -u USERNAME, --username USERNAME
 
-    A Tarantool user for connecting to the instance.
+    A Tarantool user for connecting to the instance using a URI.
 
 ..  option:: -p PASSWORD, --password PASSWORD
 
@@ -300,22 +386,25 @@ Options
 
 ..  option:: --sslcertfile FILEPATH
 
-    The path to an SSL certificate file for encrypted connections.
+    The path to an SSL certificate file for encrypted connections for the URI case.
 
 ..  option:: --sslkeyfile FILEPATH
 
-    The path to a private SSL key file for encrypted connections.
+    The path to a private SSL key file for encrypted connections for the URI case.
 
 ..  option:: --sslcafile FILEPATH
 
-    The path to a trusted certificate authorities (CA) file for encrypted connections.
+    The path to a trusted certificate authorities (CA) file for encrypted connections for the URI case.
 
 ..  option:: --sslciphers STRING
 
-    The list of SSL cipher suites used for encrypted connections, separated by colons (``:``).
+    The list of SSL cipher suites used for encrypted connections for the URI case, separated by colons (``:``).
 
 ..  option:: --timeout
 
-    **Applicable to:** ``promote``, ``demote``
+    **Applicable to:** ``promote``, ``demote``, ``expel``, ``vshard``
 
-    The timeout for completing the promotion or demotion, in seconds. Default: ``3``.
+    The timeout for completing the operation, in seconds. Default:
+
+    -   ``3`` for ``promote``, ``demote``, ``expel``
+    -   ``10`` for ``vshard``
