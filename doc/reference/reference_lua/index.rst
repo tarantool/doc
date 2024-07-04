@@ -33,6 +33,7 @@ This reference covers Tarantool's built-in Lua modules.
     decimal
     digest
     errno
+    connpool
     fiber
     fio
     fun
