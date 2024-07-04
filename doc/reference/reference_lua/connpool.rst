@@ -9,7 +9,7 @@ Module experimental.connpool
 
     ``experimental.connpool`` is an experimental module and is subject to changes.
 
-An ``experimental.connpool`` module provides a set of features for connecting to remote cluster instances and for executing remote procedure calls on an instance that satisfies the specified criteria.
+The ``experimental.connpool`` module provides a set of features for connecting to remote cluster instances and for executing remote procedure calls on an instance that satisfies the specified criteria.
 
 ..  NOTE::
 
@@ -73,7 +73,8 @@ Functions
 
     ..  NOTE::
 
-        You need to grant the ``execute`` :ref:`permission <configuration_credentials_managing_users_roles_granting_privileges>` for the specified function to a user used for replication to execute this function on a remote instance.
+        The function is executed on behalf of the user that maintains replication in the cluster.
+        Ensure that this user has the ``execute`` :ref:`permission <configuration_credentials_managing_users_roles_granting_privileges>` for the function to execute.
 
     :param string func_name: a name of the function to execute.
     :param table/nil args: function arguments.
@@ -152,7 +153,7 @@ Functions
         local connpool = require('experimental.connpool')
         local conn = connpool.connect("storage-b-002", { fetch_schema = true })
 
-    Once you have a connection, you can execute requests on a remote instance, for example, select data from a space using :ref:`conn.space.\<space-name\>:select() <conn-select>`.
+    Once you have a connection, you can execute requests on the remote instance, for example, select data from a space using :ref:`conn.space.\<space-name\>:select() <conn-select>`.
 
 
 ..  _connpool_module_filter:
