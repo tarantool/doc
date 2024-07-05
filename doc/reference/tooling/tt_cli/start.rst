@@ -83,14 +83,21 @@ Integrity check
 
     The integrity check functionality is supported by the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only.
 
-``tt start`` can perform initial and periodical integrity checks of applications
-that it starts. To make the integrity checks possible, you need to pack the application
-using ``tt pack`` with the ``--with-integrity-check`` option. This option generates
-and signs checksums of executables and configuration files in the current ``tt``
+``tt start`` can perform initial and periodical integrity checks of the environment,
+application, and centralized configuration.
+
+To enable the integrity checks of environment and application files, you need to pack
+the application using ``tt pack`` with the ``--with-integrity-check`` option.
+This option generates and signs checksums of executables and configuration files in the current ``tt``
 environment. Learn more in :ref:`tt-pack-integrity-check`.
 
-To check the environment and application integrity when running the application,
-start it with the :ref:`global option <tt-global-options>` ``--integrity-check``.
+To enable the configuration integrity check, publish the configuration to a centralized
+storage using ``tt cluster publish`` with the ``--with-integrity-check`` option.
+This option generates and signs configuration checksums and saves them to the storage.
+Learn more in :ref:`tt-cluster-publish-integrity`.
+
+To perform the integrity checks when running the application, start it with the
+``--integrity-check`` :ref:`global option <tt-global-options>`.
 Its argument must be a public key matching the private key that was used for
 generating checksums.
 
@@ -98,9 +105,9 @@ generating checksums.
 
     $ tt --integrity-check public.pem start myapp
 
-After such a call, ``tt`` checks the environment and application integrity using
-the checksums and starts the application in case of the success. Then, integrity
-checks are performed periodically when the application is running. By default,
+After such a call, ``tt`` checks the environment, application, and configuration integrity
+using the checksums and starts the application in case of the success. Then, integrity
+checks are performed periodically while the application is running. By default,
 they are performed once every 24 hours. You can adjust the integrity check period
 by adding the ``--integrity-check-period`` option:
 

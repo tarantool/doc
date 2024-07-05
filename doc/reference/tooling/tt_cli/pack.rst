@@ -58,7 +58,7 @@ option to the ``tt pack`` call:
 
 .. important::
 
-   The ``systemd-unit-params.yml`` file has a higher priority than the ``--unit-params-file`` option.
+    The ``systemd-unit-params.yml`` file has a higher priority than the ``--unit-params-file`` option.
     If this file exists, it overrides parameters from the file passed in the option.
 
 ``tt pack`` supports the following systemd unit parameters:
