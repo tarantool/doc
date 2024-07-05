@@ -1,0 +1,20 @@
+metrics:
+  include: [ all ]
+  exclude: [ vinyl ]
+  labels:
+    alias: '{{ instance_name }}'
+roles:
+- examples.collect_custom_replace_count
+- examples.collect_custom_waste_size
+app:
+  file: 'load_data.lua'
+
+groups:
+  group001:
+    replicasets:
+      replicaset001:
+        instances:
+          instance001:
+            iproto:
+              listen:
+              - uri: '127.0.0.1:3301'

@@ -1,0 +1,17 @@
+metrics:
+  include: [ all ]
+  exclude: [ vinyl ]
+  labels:
+    alias: '{{ instance_name }}'
+roles:
+- collect_http_metrics
+
+groups:
+  group001:
+    replicasets:
+      replicaset001:
+        instances:
+          instance001:
+            iproto:
+              listen:
+              - uri: '127.0.0.1:3301'
