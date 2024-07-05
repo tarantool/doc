@@ -114,8 +114,8 @@ and aborts in case of an error. To skip the validation, add the ``--force`` opti
 
 .. _tt-cluster-publish-integrity:
 
-Publishing configuration with integrity check
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Publishing configurations with integrity check
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ..  admonition:: Enterprise Edition
     :class: fact
@@ -123,7 +123,7 @@ Publishing configuration with integrity check
     The integrity check functionality is supported by the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only.
 
 When called with the ``-with-integrity-check`` option, ``tt cluster publish``
-generates a checksum of the configuration it publishes. It signs the checksum using
+generates a hash of configurations it publishes. It signs the hash using
 the private key passed as the option argument, and writes it into the configuration store.
 
 .. code-block:: console
@@ -139,12 +139,12 @@ using the ``--integrity-check`` :ref:`global option <tt-global-options>`.
 
 Learn more about integrity checks upon application startup and in runtime in the :ref:`tt start <tt-start-integrity-check>` reference.
 
-To update the configuration with integrity check, call ``tt cluster publish``
+To ensure the configuration integrity when updating it, call ``tt cluster publish``
 with two options:
 
 -   ``--integrity-check PUBLIC_KEY`` global option checks that the configuration wasn't changed
     since it was published
--   ``--with-integrity-check PRIVATE_KEY`` generates new checksums and signatures
+-   ``--with-integrity-check PRIVATE_KEY`` generates new hash and signature
     for future integrity checks of the updated configuration.
 
 .. code-block:: console
@@ -519,3 +519,5 @@ Options
     **Applicable to:** ``publish``
 
     Generate hashes and signatures for integrity checks.
+
+    See also: :ref:`tt-cluster-publish-integrity`

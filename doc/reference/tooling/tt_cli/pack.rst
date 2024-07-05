@@ -256,6 +256,8 @@ Options
 
     Generate hashes and signatures for integrity checks at the application startup.
 
+    See also: :ref:`tt-pack-integrity-check`
+
 ..  option:: --with-tarantool-deps
 
     Add Tarantool and ``tt`` as package dependencies.
