@@ -86,7 +86,7 @@ Generating files for integrity checks
 
     The integrity check functionality is supported by the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only.
 
-``tt pack`` can generate hashes and signatures to use for integrity checks
+``tt pack`` can generate checksums and signatures to use for integrity checks
 when running the application. These files are:
 
 -   ``hashes.json`` and ``hashes.json.sig`` in each application directory.
@@ -98,7 +98,7 @@ when running the application. These files are:
     similar files for the ``tt`` environment. They contain checksums for
     Tarantool and ``tt`` executables, and for the ``tt.yaml`` configuration file.
 
-To generate hashes and signatures for integrity check, use the ``--with-integrity-check``
+To generate checksums and signatures for integrity check, use the ``--with-integrity-check``
 option. Its argument must be an RSA private key.
 
 .. note::
@@ -116,7 +116,8 @@ To create a ``tar.gz`` archive with integrity check artifacts:
 
     $ tt pack tgz --with-integrity-check private.pem
 
-Learn how to perform integrity checks upon application startup and in runtime in the :ref:`tt start <tt-start-integrity-check>` reference.
+Learn how to perform integrity checks at the application startup and in runtime
+in the :ref:`tt start <tt-start-integrity-check>` reference.
 
 
 .. _tt-pack-options:
@@ -254,7 +255,7 @@ Options
 
 ..  option:: --with-integrity-check PRIVATE_KEY
 
-    Generate hashes and signatures for integrity checks at the application startup.
+    Generate checksums and signatures for integrity checks at the application startup.
 
     See also: :ref:`tt-pack-integrity-check`
 
