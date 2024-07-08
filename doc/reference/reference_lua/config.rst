@@ -92,9 +92,9 @@ config API
     ..  method:: get([param, opts])
 
         Get a configuration applied to the current or remote instance.
-        Note that there is the following difference between getting a configuration for the current and remote instance:
+        Note the following differences between getting a configuration for the current and remote instance:
 
-        -   For the current instance, ``get()`` returns an instance configuration considering :ref:`environment variables <configuration_environment_variable>`.
+        -   For the current instance, ``get()`` returns its configuration considering :ref:`environment variables <configuration_environment_variable>`.
         -   For a remote instance, ``get()`` only considers a cluster configuration and ignores environment variables.
 
         :param string param: a configuration option name
@@ -179,7 +179,7 @@ config API
         **Example: configuration warnings**
 
         In the example below, the instance's state is ``check_warnings``.
-        The ``alerts`` section informs that privileges to the ``bands`` space for ``sampleuser`` cannot be granted because the ``bands`` space has not created yet:
+        The ``alerts`` section informs that privileges to the ``bands`` space for ``sampleuser`` cannot be granted because the ``bands`` space has not been created yet:
 
         ..  code-block:: tarantoolsession
 
@@ -259,7 +259,7 @@ config API
 
         Get a URI of the current or remote instance.
 
-        :param string uri_type: a URI type. There are the following URI types are supported:
+        :param string uri_type: a URI type. The following URI types are supported:
 
                                 * ``peer`` -- a URI used to advertise the instance to other cluster members. See also: :ref:`iproto.advertise.peer <configuration_reference_iproto_advertise_peer>`.
                                 * ``sharding`` -- a URI used to advertise the current instance to a router and rebalancer. See also: :ref:`iproto.advertise.sharding <configuration_reference_iproto_advertise_sharding>`.
@@ -318,7 +318,7 @@ config API
                 log.info("Connection URI for %q: %s:%s", instance_name, conn.host, conn.port)
             end
 
-        In this example, the same actions are performed for instances from the specific replica set:
+        In this example, the same actions are performed for instances from the specified replica set:
 
         ..  code-block:: lua
 
