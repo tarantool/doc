@@ -17,7 +17,7 @@ To get more context on how the application's environment might look, refer to :r
 
 ..  NOTE::
 
-    In this section, a `sharded_cluster <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster>`_ application is used to demonstrate how to start, stop, and manage instances in a cluster.
+    In this section, a `sharded_cluster_crud <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster_crud>`_ application is used to demonstrate how to start, stop, and manage instances in a cluster.
 
 
 .. _configuration_run_instance:
@@ -30,20 +30,20 @@ To start Tarantool instances use the :ref:`tt start <tt-start>` command:
 
 .. code-block:: console
 
-    $ tt start sharded_cluster
-       • Starting an instance [sharded_cluster:storage-a-001]...
-       • Starting an instance [sharded_cluster:storage-a-002]...
-       • Starting an instance [sharded_cluster:storage-b-001]...
-       • Starting an instance [sharded_cluster:storage-b-002]...
-       • Starting an instance [sharded_cluster:router-a-001]...
+    $ tt start sharded_cluster_crud
+       • Starting an instance [sharded_cluster_crud:storage-a-001]...
+       • Starting an instance [sharded_cluster_crud:storage-a-002]...
+       • Starting an instance [sharded_cluster_crud:storage-b-001]...
+       • Starting an instance [sharded_cluster_crud:storage-b-002]...
+       • Starting an instance [sharded_cluster_crud:router-a-001]...
 
 After the cluster has started and worked for some time, you can find its artifacts
 in the directories specified in the ``tt`` configuration. These are the default
 locations in the local :ref:`launch mode <tt-config_modes>`:
 
-*   ``sharded_cluster/var/log/<instance_name>/`` -- instance :ref:`logs <admin-logs>`.
-*   ``sharded_cluster/var/lib/<instance_name>/`` -- :ref:`snapshots and write-ahead logs <concepts-data_model-persistence>`.
-*   ``sharded_cluster/var/run/<instance_name>/`` -- control sockets and PID files.
+*   ``sharded_cluster_crud/var/log/<instance_name>/`` -- instance :ref:`logs <admin-logs>`.
+*   ``sharded_cluster_crud/var/lib/<instance_name>/`` -- :ref:`snapshots and write-ahead logs <concepts-data_model-persistence>`.
+*   ``sharded_cluster_crud/var/run/<instance_name>/`` -- control sockets and PID files.
 
 In the system launch mode, artifacts are created in these locations:
 
@@ -72,21 +72,21 @@ To check the status of instances, execute :ref:`tt status <tt-status>`:
 
 .. code-block:: console
 
-    $ tt status sharded_cluster
+    $ tt status sharded_cluster_crud
     INSTANCE                          STATUS      PID   MODE
-    sharded_cluster:storage-a-001     RUNNING     2023  RW
-    sharded_cluster:storage-a-002     RUNNING     2026  RO
-    sharded_cluster:storage-b-001     RUNNING     2020  RW
-    sharded_cluster:storage-b-002     RUNNING     2021  RO
-    sharded_cluster:router-a-001      RUNNING     2022  RW
+    sharded_cluster_crud:storage-a-001     RUNNING     2023  RW
+    sharded_cluster_crud:storage-a-002     RUNNING     2026  RO
+    sharded_cluster_crud:storage-b-001     RUNNING     2020  RW
+    sharded_cluster_crud:storage-b-002     RUNNING     2021  RO
+    sharded_cluster_crud:router-a-001      RUNNING     2022  RW
 
 To check the status of a specific instance, you need to specify its name:
 
 .. code-block:: console
 
-    $ tt status sharded_cluster:storage-a-001
+    $ tt status sharded_cluster_crud:storage-a-001
     INSTANCE                          STATUS      PID   MODE
-    sharded_cluster:storage-a-001     RUNNING     2023  RW
+    sharded_cluster_crud:storage-a-001     RUNNING     2023  RW
 
 
 .. _admin-start_stop_instance_connect:
@@ -98,18 +98,18 @@ To connect to the instance, use the :ref:`tt connect <tt-connect>` command:
 
 ..  code-block:: console
 
-    $ tt connect sharded_cluster:storage-a-001
+    $ tt connect sharded_cluster_crud:storage-a-001
        • Connecting to the instance...
-       • Connected to sharded_cluster:storage-a-001
+       • Connected to sharded_cluster_crud:storage-a-001
 
-    sharded_cluster:storage-a-001>
+    sharded_cluster_crud:storage-a-001>
 
 In the instance's console, you can execute commands provided by the :ref:`box <box-module>` module.
 For example, :ref:`box.info <box_introspection-box_info>` can be used to get various information about a running instance:
 
-..  code-block:: console
+..  code-block:: tarantoolsession
 
-    sharded_cluster:storage-a-001> box.info.ro
+    sharded_cluster_crud:storage-a-001> box.info.ro
     ---
     - false
     ...
@@ -125,15 +125,15 @@ To restart an instance, use :ref:`tt restart <tt-restart>`:
 
 .. code-block:: console
 
-    $ tt restart sharded_cluster:storage-a-002
+    $ tt restart sharded_cluster_crud:storage-a-002
 
 After executing ``tt restart``, you need to confirm this operation:
 
 .. code-block:: console
 
-    Confirm restart of 'sharded_cluster:storage-a-002' [y/n]: y
-       • The Instance sharded_cluster:storage-a-002 (PID = 2026) has been terminated.
-       • Starting an instance [sharded_cluster:storage-a-002]...
+    Confirm restart of 'sharded_cluster_crud:storage-a-002' [y/n]: y
+       • The Instance sharded_cluster_crud:storage-a-002 (PID = 2026) has been terminated.
+       • Starting an instance [sharded_cluster_crud:storage-a-002]...
 
 
 .. _admin-start_stop_instance_stop:
@@ -145,18 +145,18 @@ To stop the specific instance, use :ref:`tt stop <tt-stop>` as follows:
 
 .. code-block:: console
 
-    $ tt stop sharded_cluster:storage-a-002
+    $ tt stop sharded_cluster_crud:storage-a-002
 
 You can also stop all the instances at once as follows:
 
 .. code-block:: console
 
-    $ tt stop sharded_cluster
-       • The Instance sharded_cluster:storage-b-001 (PID = 2020) has been terminated.
-       • The Instance sharded_cluster:storage-b-002 (PID = 2021) has been terminated.
-       • The Instance sharded_cluster:router-a-001 (PID = 2022) has been terminated.
-       • The Instance sharded_cluster:storage-a-001 (PID = 2023) has been terminated.
-       • can't "stat" the PID file. Error: "stat /home/testuser/myapp/instances.enabled/sharded_cluster/var/run/storage-a-002/tt.pid: no such file or directory"
+    $ tt stop sharded_cluster_crud
+       • The Instance sharded_cluster_crud:storage-b-001 (PID = 2020) has been terminated.
+       • The Instance sharded_cluster_crud:storage-b-002 (PID = 2021) has been terminated.
+       • The Instance sharded_cluster_crud:router-a-001 (PID = 2022) has been terminated.
+       • The Instance sharded_cluster_crud:storage-a-001 (PID = 2023) has been terminated.
+       • can't "stat" the PID file. Error: "stat /home/testuser/myapp/instances.enabled/sharded_cluster_crud/var/run/storage-a-002/tt.pid: no such file or directory"
 
 ..  note::
 
@@ -172,12 +172,12 @@ The :ref:`tt clean <tt-clean>` command removes instance artifacts (such as logs 
 
 .. code-block:: console
 
-    $ tt clean sharded_cluster
+    $ tt clean sharded_cluster_crud
        • List of files to delete:
 
-       • /home/testuser/myapp/instances.enabled/sharded_cluster/var/log/storage-a-001/tt.log
-       • /home/testuser/myapp/instances.enabled/sharded_cluster/var/lib/storage-a-001/00000000000000001062.snap
-       • /home/testuser/myapp/instances.enabled/sharded_cluster/var/lib/storage-a-001/00000000000000001062.xlog
+       • /home/testuser/myapp/instances.enabled/sharded_cluster_crud/var/log/storage-a-001/tt.log
+       • /home/testuser/myapp/instances.enabled/sharded_cluster_crud/var/lib/storage-a-001/00000000000000001062.snap
+       • /home/testuser/myapp/instances.enabled/sharded_cluster_crud/var/lib/storage-a-001/00000000000000001062.xlog
        • ...
 
     Confirm [y/n]:
@@ -201,20 +201,20 @@ Tarantool supports loading and running chunks of Lua code before starting instan
 To load or run Lua code immediately upon Tarantool startup, specify the ``TT_PRELOAD``
 environment variable. Its value can be either a path to a Lua script or a Lua module name:
 
-*   To run the Lua script ``preload_script.lua`` from the ``sharded_cluster`` directory, set ``TT_PRELOAD`` as follows:
+*   To run the Lua script ``preload_script.lua`` from the ``sharded_cluster_crud`` directory, set ``TT_PRELOAD`` as follows:
 
     .. code-block:: console
 
-        $ TT_PRELOAD=preload_script.lua tt start sharded_cluster
+        $ TT_PRELOAD=preload_script.lua tt start sharded_cluster_crud
 
     Tarantool runs the ``preload_script.lua`` code, waits for it to complete, and
     then starts instances.
 
-*   To load the ``preload_module`` from the ``sharded_cluster`` directory, set ``TT_PRELOAD`` as follows:
+*   To load the ``preload_module`` from the ``sharded_cluster_crud`` directory, set ``TT_PRELOAD`` as follows:
 
     .. code-block:: console
 
-        $ TT_PRELOAD=preload_module tt start sharded_cluster
+        $ TT_PRELOAD=preload_module tt start sharded_cluster_crud
 
     .. note::
 
@@ -226,7 +226,7 @@ by semicolons:
 
 .. code-block:: console
 
-    $ TT_PRELOAD="preload_script.lua;preload_module" tt start sharded_cluster
+    $ TT_PRELOAD="preload_script.lua;preload_module" tt start sharded_cluster_crud
 
 If an error happens during the execution of the preload script or module, Tarantool
 reports the problem and exits.

@@ -17,7 +17,7 @@ The main steps of creating and preparing the application for deployment are:
 
 3.  :ref:`admin-instance_config-package-app`.
 
-In this section, a `sharded_cluster <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster>`_ application is used as an example.
+In this section, a `sharded_cluster_crud <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster_crud>`_ application is used as an example.
 This cluster includes 5 instances: one router and 4 storages, which constitute two replica sets.
 
 .. image:: /book/admin/admin_instances_dev.png
@@ -82,27 +82,27 @@ In this example, the application's layout is prepared manually and looks as foll
     ├── distfiles
     ├── include
     ├── instances.enabled
-    │   └── sharded_cluster
+    │   └── sharded_cluster_crud
     │       ├── config.yaml
     │       ├── instances.yaml
     │       ├── router.lua
-    │       ├── sharded_cluster-scm-1.rockspec
+    │       ├── sharded_cluster_crud-scm-1.rockspec
     │       └── storage.lua
     ├── modules
     ├── templates
     └── tt.yaml
 
 
-The ``sharded_cluster`` directory contains the following files:
+The ``sharded_cluster_crud`` directory contains the following files:
 
 -   ``config.yaml``: contains the :ref:`configuration <configuration>` of the cluster. This file might include the entire cluster topology or provide connection settings to a centralized configuration storage.
 -   ``instances.yml``: specifies instances to run in the current environment. For example, on the developer’s machine, this file might include all the instances defined in the cluster configuration. In the production environment, this file includes :ref:`instances to run on the specific machine <admin-instances_to_run>`.
 -   ``router.lua``: includes code specific for a :ref:`router <vshard-architecture-router>`.
--   ``sharded_cluster-scm-1.rockspec``: specifies the required external dependencies (for example, ``vshard``).
+-   ``sharded_cluster_crud-scm-1.rockspec``: specifies the required external dependencies (for example, ``vshard`` and ``crud``).
 -   ``storage.lua``: includes code specific for :ref:`storages <vshard-architecture-storage>`.
 
 You can find the full example here:
-`sharded_cluster <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster>`_.
+`sharded_cluster_crud <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster_crud>`_.
 
 
 
@@ -116,7 +116,7 @@ Packaging the application
 To package the ready application, use the :ref:`tt pack <tt-pack>` command.
 This command can create an installable DEB/RPM package or generate ``.tgz`` archive.
 
-The structure below reflects the content of the packed ``.tgz`` archive for the `sharded_cluster <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster>`_ application:
+The structure below reflects the content of the packed ``.tgz`` archive for the `sharded_cluster_crud <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster_crud>`_ application:
 
 .. code-block:: console
 
@@ -125,18 +125,15 @@ The structure below reflects the content of the packed ``.tgz`` archive for the 
     ├── bin
     │   ├── tarantool
     │   └── tt
-    ├── include
     ├── instances.enabled
-    │   └── sharded_cluster -> ../sharded_cluster
-    ├── modules
-    ├── sharded_cluster
+    │   └── sharded_cluster_crud -> ../sharded_cluster_crud
+    ├── sharded_cluster_crud
     │   ├── .rocks
     │   │   └── share
     │   │       └── ...
     │   ├── config.yaml
     │   ├── instances.yaml
     │   ├── router.lua
-    │   ├── sharded_cluster-scm-1.rockspec
     │   └── storage.lua
     └── tt.yaml
 
@@ -147,7 +144,7 @@ The application's layout looks similar to the one defined when :ref:`developing 
 
 -   ``instances.enabled``: contains a symlink to the packed ``sharded_cluster`` application.
 
--   ``sharded_cluster``: a packed application. In addition to files created during the application development, includes the ``.rocks`` directory containing application dependencies (for example, ``vshard``).
+-   ``sharded_cluster_crud``: a packed application. In addition to files created during the application development, includes the ``.rocks`` directory containing application dependencies (for example, ``vshard`` and ``crud``).
 
 -   ``tt.yaml``: a ``tt`` configuration file.
 
@@ -178,7 +175,7 @@ define instances to run on each machine by changing the content of the ``instanc
 
     ``instances.yaml``:
 
-    ..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster/instances.yaml
+    ..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster_crud/instances.yaml
         :language: yaml
         :dedent:
 
