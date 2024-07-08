@@ -11,18 +11,6 @@ po_dest="${project_root}/locale/ru/LC_MESSAGES"
 # Copy Building Tarantool Docs guide
 cp README.rst doc/contributing/docs/_includes/README.rst
 
-
-# Monitoring
-monitoring_root="${project_root}/modules/metrics/doc/monitoring"
-monitoring_dest="${project_root}/doc/book"
-monitoring_grafana_root="${project_root}/modules/grafana-dashboard/doc/monitoring"
-
-# Copy monitoring docs to the right destination
-mkdir -p "${monitoring_dest}"
-cp -rfv "${monitoring_root}" "${monitoring_dest}/"
-cp -rfv "${monitoring_grafana_root}" "${monitoring_dest}/"
-
-
 # Luatest
 luatest_root="${project_root}/modules/luatest"
 luatest_dest="${project_root}/doc/reference/reference_rock/luatest"

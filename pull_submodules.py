@@ -6,9 +6,7 @@ import subprocess
 
 modules_dir = 'modules'
 modules = {
-    'grafana-dashboard': 'INPUT_GRAFANA',
     'luatest': 'INPUT_LUATEST',
-    'metrics': 'INPUT_METRICS',
     'tntcxx': 'INPUT_CPP_DRIVER',
 }
 workdir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'modules')
