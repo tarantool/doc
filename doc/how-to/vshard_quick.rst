@@ -6,10 +6,10 @@ Creating a sharded cluster
 **Example on GitHub**: `sharded_cluster_crud <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster_crud>`_
 
 In this tutorial, you get a sharded cluster up and running on your local machine and learn how to manage the cluster using the tt utility.
-In this tutorial, the following external modules are used:
+This cluster uses the following external modules:
 
 -   :ref:`vshard <vshard>` enables sharding in the cluster.
--   `crud <https://github.com/tarantool/crud>`__ allows you to perform CRUD operations in the sharded cluster.
+-   `crud <https://github.com/tarantool/crud>`__ allows you to manipulate data in the sharded cluster.
 
 The cluster created in this tutorial includes 5 instances: one router and 4 storages, which constitute two replica sets.
 
@@ -51,7 +51,7 @@ In this tutorial, the application layout is prepared manually:
 3.  Inside ``instances.enabled/sharded_cluster_crud``, create the following files:
 
     -   ``instances.yml`` specifies instances to run in the current environment.
-    -   ``config.yaml`` specifies the cluster's :ref:`configuration <configuration_overview>`.
+    -   ``config.yaml`` specifies the cluster :ref:`configuration <configuration_overview>`.
     -   ``storage.lua`` contains code specific for :ref:`storages <vshard-architecture-storage>`.
     -   ``router.lua`` contains code specific for a :ref:`router <vshard-architecture-router>`.
     -   ``sharded_cluster_crud-scm-1.rockspec`` specifies external dependencies required by the application.
@@ -133,7 +133,7 @@ In this section, the following options are configured:
 
 The cluster topology defined in the :ref:`following section <vshard-quick-start-configuring-cluster-topology>` also specifies the ``iproto.advertise.client`` option for each instance.
 This option accepts a URI used to advertise the instance to clients.
-For example, |tcm_full_name| uses these URIs to :ref:`connect <tcm_connect_clusters>` to cluster instances.
+For example, :ref:`Tarantool Cluster Manager <tcm>` uses these URIs to :ref:`connect <tcm_connect_clusters>` to cluster instances.
 
 
 ..  _vshard-quick-start-configuring-cluster-bucket-count:
@@ -155,13 +155,13 @@ Specify the total number of :ref:`buckets <vshard-vbuckets>` in a sharded cluste
 Step 4: Defining the cluster topology
 *************************************
 
-Define the cluster's topology inside the :ref:`groups <configuration_reference_groups>` section.
+Define the cluster topology inside the :ref:`groups <configuration_reference_groups>` section.
 The cluster includes two groups:
 
 *   ``storages`` includes two replica sets. Each replica set contains two instances.
 *   ``routers`` includes one router instance.
 
-Here is a schematic view of the cluster's topology:
+Here is a schematic view of the cluster topology:
 
 .. code-block:: yaml
 
@@ -326,7 +326,7 @@ After starting instances, you need to bootstrap the cluster as follows:
            • Connecting to the instance...
            • Connected to sharded_cluster_crud:router-a-001
 
-2.  Call :ref:`vshard.router.bootstrap() <router_api-bootstrap>` to perform the initial cluster bootstrap:
+2.  Call :ref:`vshard.router.bootstrap() <router_api-bootstrap>` to perform the initial cluster bootstrap and distribute all buckets across the replica sets:
 
     ..  code-block:: tarantoolsession
 
@@ -338,10 +338,10 @@ After starting instances, you need to bootstrap the cluster as follows:
 
 .. _vshard-quick-start-working-status:
 
-Checking the cluster's status
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Checking the cluster status
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To check the cluster's status, execute :ref:`vshard.router.info() <router_api-info>` on the router:
+To check the cluster status, execute :ref:`vshard.router.info() <router_api-info>` on the router:
 
 .. code-block:: tarantoolsession
 
@@ -416,7 +416,7 @@ Writing and selecting data
             { 10, box.NULL, 'Queen', 1970 }
         })
 
-    Calling this function :ref:`distributes data <vshard-quick-start-working-adding-data>` evenly across the cluster's nodes.
+    Calling this function :ref:`distributes data <vshard-quick-start-working-adding-data>` evenly across the cluster nodes.
 
 2.  To get a tuple by the specified ID, call the ``crud.get()`` function:
 
@@ -464,7 +464,7 @@ Writing and selecting data
 Checking data distribution
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To check how data is distributed across the cluster's nodes, follow the steps below:
+To check how data is distributed across the replica sets, follow the steps below:
 
 1.  Connect to any storage in the ``storage-a`` replica set:
 
