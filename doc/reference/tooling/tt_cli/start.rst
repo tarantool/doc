@@ -91,8 +91,8 @@ the application using ``tt pack`` with the ``--with-integrity-check`` option.
 This option generates and signs checksums of executables and configuration files in the current ``tt``
 environment. Learn more in :ref:`tt-pack-integrity-check`.
 
-To add the configuration at the centralized storage integrity check, publish the configuration to a centralized
-storage using ``tt cluster publish`` with the ``--with-integrity-check`` option.
+To enable the integrity check of the configuration at the centralized storage,
+publish the configuration to a this storage using ``tt cluster publish`` with the ``--with-integrity-check`` option.
 This option generates and signs configuration checksums and saves them to the storage.
 Learn more in :ref:`tt-cluster-publish-integrity`.
 
@@ -114,6 +114,9 @@ by adding the ``--integrity-check-period`` option:
 ..  code-block:: console
 
     $ tt --integrity-check public.pem start myapp --integrity-check-period 60
+
+Additionally, Tarantool checks the integrity of the modules that the application uses
+at the load time, that is, when ``require(\`module\`)`` is called.
 
 If an integrity check fails, ``tt`` stops the application.
 

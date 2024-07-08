@@ -135,6 +135,7 @@ using the ``--integrity-check`` :ref:`global option <tt-global-options>`.
 
 .. code-block:: console
 
+    $ tt --integrity-check public.pem cluster show myapp
     $ tt --integrity-check public.pem start myapp
 
 Learn more about integrity checks upon application startup and in runtime in the :ref:`tt start <tt-start-integrity-check>` reference.
