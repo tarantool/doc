@@ -8,7 +8,7 @@ Module config
 The ``config`` module provides the ability to work with an instance's configuration.
 For example, you can determine whether the current instance is up and running without errors after applying the :ref:`cluster's configuration <configuration_overview>`.
 
-By using the ``config.storage`` :ref:`role <configuration_reference_roles_options>`, you can set up a Tarantool-based :ref:`centralized configuration storage <configuration_etcd>` and interact with this storage using the ``config`` module API.
+By using the ``config.storage`` :ref:`role <configuration_application_roles>`, you can set up a Tarantool-based :ref:`centralized configuration storage <configuration_etcd>` and interact with this storage using the ``config`` module API.
 
 
 ..  _config_module_loading:
@@ -46,10 +46,16 @@ API Reference
             -
 
         *   -   :ref:`config:get() <config_api_reference_get>`
-            -   Get a configuration applied to the current instance
+            -   Get a configuration applied to the current or remote instance
 
         *   -   :ref:`config:info() <config_api_reference_info>`
             -   Get the current instance's state in regard to configuration
+
+        *   -   :ref:`config:instance_uri() <config_api_reference_instance_uri>`
+            -   Get a URI of the current or remote instance
+
+        *   -   :ref:`config:instances() <config_api_reference_instances>`
+            -   List all instances of the cluster
 
         *   -   :ref:`config:reload() <config_api_reference_reload>`
             -   Reload the current instance's configuration
@@ -83,19 +89,26 @@ config API
 
     .. _config_api_reference_get:
 
-    ..  method:: get([param])
+    ..  method:: get([param, opts])
 
-        Get a configuration applied to the current instance.
-        Optionally, you can pass a configuration option name to get its value.
+        Get a configuration applied to the current or remote instance.
+        Note the following differences between getting a configuration for the current and remote instance:
+
+        -   For the current instance, ``get()`` returns its configuration considering :ref:`environment variables <configuration_environment_variable>`.
+        -   For a remote instance, ``get()`` only considers a cluster configuration and ignores environment variables.
 
         :param string param: a configuration option name
+        :param table opts: options to pass. The following options are available:
+
+                           -   ``instance`` (since :doc:`3.1.0 </release/3.1.0>`) -- the name of a remote instance whose configuration should be obtained
+
         :return: an instance configuration
 
         **Examples:**
 
         The example below shows how to get the full instance configuration:
 
-        .. code-block:: console
+        .. code-block:: tarantoolsession
 
             app:instance001> require('config'):get()
             ---
@@ -104,12 +117,12 @@ config API
                 too_long_threshold: 0.5
                 top:
                   enabled: false
-              # other configuration values
+              # Other configuration values
               # ...
 
         This example shows how to get an ``iproto.listen`` option value:
 
-        .. code-block:: console
+        .. code-block:: tarantoolsession
 
             app:instance001> require('config'):get('iproto.listen')
             ---
@@ -121,89 +134,204 @@ config API
 
     .. _config_api_reference_info:
 
-    ..  method:: info()
+    ..  method:: info([version])
 
         Get the current instance's state in regard to configuration.
 
-        :return: a table containing an instance's state
+        :param string version: (since :doc:`3.1.0 </release/3.1.0>`) the version of the information that should be returned. The ``version`` argument can be one of the following values:
 
-        The returned state includes the following sections:
+                               * ``v1`` (default): the ``meta`` field returned by ``info()`` includes information about the last loaded configuration
+                               * ``v2``: the ``meta`` field returned by ``info()`` includes two fields:
 
-        -   ``status`` -- one of the following statuses:
+                                   * the ``last`` field includes information about the last loaded configuration
+                                   * the ``active`` field includes information for the last successfully applied configuration
 
-            *   ``ready`` -- the configuration is applied successfully
-            *   ``check_warnings`` -- the configuration is applied with warnings
-            *   ``check_errors`` -- the configuration cannot be applied due to configuration errors
 
-        -   ``meta`` -- additional configuration information
+        :return: a table containing an instance's state. The returned state includes the following sections:
 
-        -   ``alerts`` -- warnings or errors raised on an attempt to apply the configuration
+                 -   ``status`` -- one of the following statuses:
 
-        **Examples:**
+                     *   ``ready`` -- the configuration is applied successfully
+                     *   ``check_warnings`` -- the configuration is applied with warnings
+                     *   ``check_errors`` -- the configuration cannot be applied due to configuration errors
 
-        Below are a few examples demonstrating how the ``info()`` output might look:
+                 -   ``meta`` -- additional configuration information
 
-        *   In the example below, an instance's state is ``ready`` and no warnings are shown:
+                 -   ``alerts`` -- warnings or errors raised on an attempt to apply the configuration
 
-            ..  code-block:: console
+        Below are a few examples demonstrating how the ``info()`` output might look.
 
-                app:instance001> require('config'):info()
-                ---
-                - status: ready
-                  meta: []
-                  alerts: []
-                ...
+        **Example: no configuration warnings or errors**
 
-        *   In the example below, the instance's state is ``check_warnings``.
-            The ``alerts`` section informs that privileges to the ``books`` space for ``sampleuser`` cannot be granted because the ``books`` space has not created yet:
+        In the example below, an instance's state is ``ready`` and no warnings are shown:
 
-            ..  code-block:: console
+        ..  code-block:: tarantoolsession
 
-                app:instance001> require('config'):info()
-                ---
-                - status: check_warnings
-                  meta: []
-                  alerts:
-                  - type: warn
-                    message: box.schema.user.grant("sampleuser", "read,write", "space", "books") has
-                      failed because either the object has not been created yet, or the privilege
-                      write has failed (separate alert reported)
-                    timestamp: 2024-02-27T15:07:41.815785+0300
-                ...
+            app:instance001> require('config'):info('v2')
+            ---
+            - status: ready
+              meta:
+                last: &0 []
+                active: *0
+              alerts: []
+            ...
 
-            This warning is cleared when the ``books`` space is created.
+        **Example: configuration warnings**
 
-        *   In the example below, the instance's state is ``check_errors``.
-            The ``alerts`` section informs that the ``log.level`` configuration option has an incorrect value:
+        In the example below, the instance's state is ``check_warnings``.
+        The ``alerts`` section informs that privileges to the ``bands`` space for ``sampleuser`` cannot be granted because the ``bands`` space has not been created yet:
 
-            ..  code-block:: console
+        ..  code-block:: tarantoolsession
 
-                app:instance001> require('config'):info()
-                ---
-                - status: check_errors
-                  meta: []
-                  alerts:
-                  - type: error
-                    message: '[cluster_config] log.level: Got 8, but only the following values are
-                      allowed: 0, fatal, 1, syserror, 2, error, 3, crit, 4, warn, 5, info, 6, verbose,
-                      7, debug'
-                    timestamp: 2024-02-29T12:55:54.366810+0300
-                ...
+            app:instance001> require('config'):info('v2')
+            ---
+            - status: check_warnings
+              meta:
+                last: &0 []
+                active: *0
+              alerts:
+              - type: warn
+                message: box.schema.user.grant("sampleuser", "read,write", "space", "bands") has
+                  failed because either the object has not been created yet, a database schema
+                  upgrade has not been performed, or the privilege write has failed (separate
+                  alert reported)
+                timestamp: 2024-07-03T18:09:18.826138+0300
+            ...
 
-        *   In this example, an instance's state includes information about a :ref:`centralized storage <configuration_etcd>` the instance takes a configuration from:
+        This warning is cleared when the ``bands`` space is created.
 
-            ..  code-block:: console
+        **Example: configuration errors**
 
-                app:instance001> require('config'):info()
-                ---
-                - status: ready
-                  meta:
-                    storage:
-                      revision: 8
-                      mod_revision:
-                        /myapp/config/all: 8
-                  alerts: []
-                ...
+        In the example below, the instance's state is ``check_errors``.
+        The ``alerts`` section informs that the ``log.level`` configuration option has an incorrect value:
+
+        ..  code-block:: tarantoolsession
+
+            app:instance001> require('config'):info('v2')
+            ---
+            - status: check_errors
+              meta:
+                last: []
+                active: []
+              alerts:
+              - type: error
+                message: '[cluster_config] log.level: Got 8, but only the following values are
+                  allowed: 0, fatal, 1, syserror, 2, error, 3, crit, 4, warn, 5, info, 6, verbose,
+                  7, debug'
+                timestamp: 2024-07-03T18:13:19.755454+0300
+            ...
+
+        **Example: configuration errors (centralized configuration storage)**
+
+        In this example, the ``meta`` field includes information about a :ref:`centralized storage <configuration_etcd>` the instance takes a configuration from:
+
+        ..  code-block:: tarantoolsession
+
+            app:instance001> require('config'):info('v2')
+            ---
+            - status: check_errors
+              meta:
+                last:
+                  etcd:
+                    mod_revision:
+                      /myapp/config/all: 5
+                    revision: 5
+                active:
+                  etcd:
+                    mod_revision:
+                      /myapp/config/all: 2
+                    revision: 4
+              alerts:
+              - type: error
+                message: 'etcd source: invalid config at key "/myapp/config/all": [cluster_config]
+                  groups.group001.replicasets.replicaset001.instances.instance001.log.level: Got
+                  8, but only the following values are allowed: 0, fatal, 1, syserror, 2, error,
+                  3, crit, 4, warn, 5, info, 6, verbose, 7, debug'
+                timestamp: 2024-07-03T15:22:06.438275Z
+            ...
+
+
+    .. _config_api_reference_instance_uri:
+
+    ..  method:: instance_uri([uri_type, opts])
+
+        **Since:** :doc:`3.1.0 </release/3.1.0>`
+
+        Get a URI of the current or remote instance.
+
+        :param string uri_type: a URI type. The following URI types are supported:
+
+                                * ``peer`` -- a URI used to advertise the instance to other cluster members. See also: :ref:`iproto.advertise.peer <configuration_reference_iproto_advertise_peer>`.
+                                * ``sharding`` -- a URI used to advertise the current instance to a router and rebalancer. See also: :ref:`iproto.advertise.sharding <configuration_reference_iproto_advertise_sharding>`.
+
+        :param table opts: options to pass. The following options are available:
+
+                           -   ``instance`` -- the name of a remote instance whose URI should be obtained
+
+        :return: a table representing an instance URI. This table might include the following fields:
+
+                 *   ``uri`` -- an instance URI
+                 *   ``login`` -- a username used to connect to this instance
+                 *   ``password`` -- a user's password
+                 *   ``params`` -- URI parameters used to connect to this instance
+
+                 ..  NOTE::
+
+                     Note that the resulting URI object can be passed to the :ref:`connect() <net_box-connect>` function of the ``net.box`` module.
+
+        **Example**
+
+        The example below shows how to get a URI used to advertise ``storage-b-003`` to other cluster members:
+
+        ..  code-block:: lua
+
+            local config = require('config')
+            config:instance_uri('peer', { instance = 'storage-b-003' })
+
+
+    .. _config_api_reference_instances:
+
+    ..  method:: instances()
+
+        **Since:** :doc:`3.1.0 </release/3.1.0>`
+
+        List all instances of the cluster.
+
+        :return: a table containing information about instances. The returned table uses instance names as the keys and contains the following information for each instance:
+
+                 -   ``instance_name`` -- an instance name
+                 -   ``replicaset_name`` -- the name of a replica set the instance belongs to
+                 -   ``group_name`` -- the name of a group the instance belongs to
+
+        **Example**
+
+        The example below shows how to use ``instances()`` to get the names of all instances in the cluster, create a connection to each instance using the :ref:`connpool <connpool_module>` module, and log connection URIs using the :ref:`log <log-module>` module:
+
+        ..  code-block:: lua
+
+            local config = require('config')
+            local connpool = require('experimental.connpool')
+            local log = require('log')
+
+            for instance_name in pairs(config:instances()) do
+                local conn = connpool.connect(instance_name)
+                log.info("Connection URI for %q: %s:%s", instance_name, conn.host, conn.port)
+            end
+
+        In this example, the same actions are performed for instances from the specified replica set:
+
+        ..  code-block:: lua
+
+            local config = require('config')
+            local connpool = require('experimental.connpool')
+            local log = require('log')
+
+            for instance_name, def in pairs(config:instances()) do
+                if def.replicaset_name == 'storage-b' then
+                    local conn = connpool.connect(instance_name)
+                    log.info("Connection URI for %q: %s:%s", instance_name, conn.host, conn.port)
+                end
+            end
 
 
     .. _config_api_reference_reload:
@@ -252,7 +380,7 @@ The ``config.storage`` API allows you to interact with a Tarantool-based :ref:`c
         :end-at: cluster_config_handle:close()
         :dedent:
 
-    Example on GitHub: `tarantool_config_storage <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/centralized_config/instances.enabled/tarantool_config_storage>`_.
+    Example on GitHub: `tarantool_config_storage <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/centralized_config/instances.enabled/tarantool_config_storage>`_
 
 
 .. _config_storage_api_reference_get:
@@ -268,7 +396,7 @@ The ``config.storage`` API allows you to interact with a Tarantool-based :ref:`c
                 *   ``data``: a table containing the information about the value:
 
                     * ``path``: a path
-                    * ``mod_revision``: a last revision at which this value was modified
+                    * ``mod_revision``: the last revision at which this value was modified
                     * ``value:``: a value
 
                 *   ``revision``: a revision after performing the operation
@@ -293,7 +421,7 @@ The ``config.storage`` API allows you to interact with a Tarantool-based :ref:`c
         :end-at: get('/myapp/')
         :dedent:
 
-    Example on GitHub: `tarantool_config_storage <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/centralized_config/instances.enabled/tarantool_config_storage>`_.
+    Example on GitHub: `tarantool_config_storage <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/centralized_config/instances.enabled/tarantool_config_storage>`_
 
 .. _config_storage_api_reference_delete:
 
@@ -308,7 +436,7 @@ The ``config.storage`` API allows you to interact with a Tarantool-based :ref:`c
                 *   ``data``: a table containing the information about the value:
 
                     * ``path``: a path
-                    * ``mod_revision``: a last revision at which this value was modified
+                    * ``mod_revision``: the last revision at which this value was modified
                     * ``value:``: a value
 
                 *   ``revision``: a revision after performing the operation
@@ -333,7 +461,7 @@ The ``config.storage`` API allows you to interact with a Tarantool-based :ref:`c
         :end-at: delete('/')
         :dedent:
 
-    Example on GitHub: `tarantool_config_storage <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/centralized_config/instances.enabled/tarantool_config_storage>`_.
+    Example on GitHub: `tarantool_config_storage <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/centralized_config/instances.enabled/tarantool_config_storage>`_
 
 
 .. _config_storage_api_reference_info:
@@ -394,4 +522,4 @@ The ``config.storage`` API allows you to interact with a Tarantool-based :ref:`c
         :end-at: })
         :dedent:
 
-    Example on GitHub: `tarantool_config_storage <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/centralized_config/instances.enabled/tarantool_config_storage>`_.
+    Example on GitHub: `tarantool_config_storage <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/centralized_config/instances.enabled/tarantool_config_storage>`_
