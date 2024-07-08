@@ -2870,7 +2870,7 @@ The ``replication`` section defines configuration parameters related to :ref:`re
     ..  NOTE::
 
         Anonymous replicas are not registered in the :ref:`_cluster <box_space-cluster>` table.
-        This means that there is no :ref:`limitation <limitations_fields_in_index>` on the number of anonymous replicas in a replica set.
+        This means that there is no :ref:`limitation <limitations_replicas>` on the number of anonymous replicas in a replica set.
 
     |
     | Type: boolean
