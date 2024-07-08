@@ -31,7 +31,7 @@ When called without arguments, starts all enabled applications in the current en
 
 ..  code-block:: console
 
-        $ tt start
+    $ tt start
 
 .. _tt-start-app-layout:
 
@@ -91,7 +91,7 @@ the application using ``tt pack`` with the ``--with-integrity-check`` option.
 This option generates and signs checksums of executables and configuration files in the current ``tt``
 environment. Learn more in :ref:`tt-pack-integrity-check`.
 
-To enable the configuration integrity check, publish the configuration to a centralized
+To add the configuration at the centralized storage integrity check, publish the configuration to a centralized
 storage using ``tt cluster publish`` with the ``--with-integrity-check`` option.
 This option generates and signs configuration checksums and saves them to the storage.
 Learn more in :ref:`tt-cluster-publish-integrity`.

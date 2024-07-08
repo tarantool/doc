@@ -122,7 +122,7 @@ Publishing configurations with integrity check
 
     The integrity check functionality is supported by the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only.
 
-When called with the ``-with-integrity-check`` option, ``tt cluster publish``
+When called with the ``--with-integrity-check`` option, ``tt cluster publish``
 generates a hash of configurations it publishes. It signs the hash using
 the private key passed as the option argument, and writes it into the configuration store.
 

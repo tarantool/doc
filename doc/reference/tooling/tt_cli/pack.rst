@@ -103,7 +103,7 @@ option. Its argument must be an RSA private key.
 
 .. note::
 
-    You can generate a key pair using `OpenSSL <https://www.openssl.org/>`__  as follows:
+    You can generate a key pair using `OpenSSL 3 <https://www.openssl.org/>`__  as follows:
 
     .. code-block:: console
 
