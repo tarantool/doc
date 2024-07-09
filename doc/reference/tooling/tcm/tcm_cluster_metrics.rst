@@ -44,7 +44,7 @@ To allow collecting cluster metrics with external systems, such as Prometheus,
     Cluster IDs are shown in the cluster selection dialog that opens when you click
     **Cluster** at the top of the left navigation pane.
 
-To access such an endpoint, a request must be authorized with an :ref:`API token <tcm_api_tokens>`
+To access such an endpoint, a request must be authorized with an :ref:`API token <tcm_access_control_api_tokens>`
 that has a ``cluster.metrics`` permission on the target cluster.
 
 Below is an example of a Prometheus scrape configuration that collects metrics of
