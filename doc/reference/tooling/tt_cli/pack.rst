@@ -58,7 +58,7 @@ option to the ``tt pack`` call:
 
 .. important::
 
-   The ``systemd-unit-params.yml`` file has a higher priority than the ``--unit-params-file`` option.
+    The ``systemd-unit-params.yml`` file has a higher priority than the ``--unit-params-file`` option.
     If this file exists, it overrides parameters from the file passed in the option.
 
 ``tt pack`` supports the following systemd unit parameters:
@@ -75,6 +75,49 @@ An example of the ``systemd-unit-params.yml`` file:
     instance-env:
       INSTANCE: "inst:%i"
       TARANTOOL_WORKDIR: "/tmp"
+
+.. _tt-pack-integrity-check:
+
+Generating files for integrity checks
+-------------------------------------
+
+..  admonition:: Enterprise Edition
+    :class: fact
+
+    The integrity check functionality is supported by the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only.
+
+``tt pack`` can generate checksums and signatures to use for integrity checks
+when running the application. These files are:
+
+-   ``hashes.json`` and ``hashes.json.sig`` in each application directory.
+    ``hashes.json`` contains SHA256 checksums of executable files that the application uses
+    and its configuration file. ``hashes.json.sig`` contains a digital signature
+    for ``hashes.json``.
+
+-   ``env_hashes.json`` and ``env_hashes.json.sig`` in the environment root are
+    similar files for the ``tt`` environment. They contain checksums for
+    Tarantool and ``tt`` executables, and for the ``tt.yaml`` configuration file.
+
+To generate checksums and signatures for integrity check, use the ``--with-integrity-check``
+option. Its argument must be an RSA private key.
+
+.. note::
+
+    You can generate a key pair using `OpenSSL 3 <https://www.openssl.org/>`__  as follows:
+
+    .. code-block:: console
+
+        $ openssl genrsa -traditional -out private.pem 2048
+        $ openssl rsa -in private.pem -pubout > public.pem
+
+To create a ``tar.gz`` archive with integrity check artifacts:
+
+.. code-block:: console
+
+    $ tt pack tgz --with-integrity-check private.pem
+
+Learn how to perform integrity checks at the application startup and in runtime
+in the :ref:`tt start <tt-start-integrity-check>` reference.
 
 
 .. _tt-pack-options:
@@ -209,6 +252,12 @@ Options
 ..  option:: --with-binaries
 
     Include Tarantool and ``tt`` binaries in a bundle.
+
+..  option:: --with-integrity-check PRIVATE_KEY
+
+    Generate checksums and signatures for integrity checks at the application startup.
+
+    See also: :ref:`tt-pack-integrity-check`
 
 ..  option:: --with-tarantool-deps
 

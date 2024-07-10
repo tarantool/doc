@@ -24,6 +24,16 @@ Global options
 
     Display help.
 
+.. option:: --integrity-check PUBLIC_KEY
+
+    ..  admonition:: Enterprise Edition
+        :class: fact
+
+        This option is supported by the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only.
+
+    Perform an integrity check using the specified public key before executing the operation.
+    Learn more in :ref:`tt-start-integrity-check`.
+
 .. option:: -I, --internal
 
     Force the use of an internal module even if there is an

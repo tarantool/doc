@@ -131,6 +131,48 @@ and aborts in case of an error. To skip the validation, add the ``--force`` opti
 
     $ tt cluster publish myapp source.yaml --force
 
+.. _tt-cluster-publish-integrity:
+
+Publishing configurations with integrity check
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+..  admonition:: Enterprise Edition
+    :class: fact
+
+    The integrity check functionality is supported by the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only.
+
+When called with the ``--with-integrity-check`` option, ``tt cluster publish``
+generates a checksum of the configurations it publishes. It signs the checksum using
+the private key passed as the option argument, and writes it into the configuration store.
+
+.. code-block:: console
+
+    $ tt cluster publish "http://localhost:2379/myapp" source.yaml --with-integrity-check private.pem
+
+If an application configuration is published this way, it can be checked for integrity
+using the ``--integrity-check`` :ref:`global option <tt-global-options>`.
+
+.. code-block:: console
+
+    $ tt --integrity-check public.pem cluster show myapp
+    $ tt --integrity-check public.pem start myapp
+
+Learn more about integrity checks upon application startup and in runtime in the :ref:`tt start <tt-start-integrity-check>` reference.
+
+To ensure the configuration integrity when updating it, call ``tt cluster publish``
+with two options:
+
+-   ``--integrity-check PUBLIC_KEY`` global option checks that the configuration wasn't changed
+    since it was published
+-   ``--with-integrity-check PRIVATE_KEY`` generates new hash and signature
+    for future integrity checks of the updated configuration.
+
+.. code-block:: console
+
+    $ tt --integrity-check public.pem cluster publish \
+         --with-integrity-check private.pem \
+         "http://localhost:2379/myapp" source.yaml
+
 .. _tt-cluster-show:
 
 show
@@ -509,3 +551,5 @@ Options
     **Applicable to:** ``publish``
 
     Generate hashes and signatures for integrity checks.
+
+    See also: :ref:`tt-cluster-publish-integrity`
