@@ -8,7 +8,7 @@ box.info.replication_anon()
 
 .. function:: replication_anon()
 
-    List all the :ref:`anonymous replicas <cfg_replication-replication_anon>`
+    List all the :ref:`anonymous replicas <configuration_reference_replication_anon>`
     following the instance.
 
     The output is similar to the one produced by ``box.info.replication`` with
@@ -24,32 +24,26 @@ box.info.replication_anon()
 
     **Example:**
 
-    .. code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
-      tarantool> box.info.replication_anon
-      ---
-      - count: 2
-      ...
+        anonymous_replica:instance001> box.info.replication_anon
+        ---
+        - count: 1
+        ...
 
-      tarantool> box.info.replication_anon()
-      ---
-      - 3a6a2cfb-7e47-42f6-8309-7a25c37feea1:
-          id: 0
-          uuid: 3a6a2cfb-7e47-42f6-8309-7a25c37feea1
-          lsn: 0
-          downstream:
-            status: follow
-            idle: 0.76203499999974
-            vclock: {1: 1}
-        f58e4cb0-e0a8-42a1-b439-591dd36c8e5e:
-          id: 0
-          uuid: f58e4cb0-e0a8-42a1-b439-591dd36c8e5e
-          lsn: 0
-          downstream:
-            status: follow
-            idle: 0.0041349999992235
-            vclock: {1: 1}
-      ...
+        anonymous_replica:instance001> box.info.replication_anon()
+        ---
+        - 44237cb4-de83-4347-b6db-46274b940acf:
+            id: 0
+            uuid: 44237cb4-de83-4347-b6db-46274b940acf
+            lsn: 0
+            downstream:
+              status: follow
+              idle: 0.81613899999866
+              vclock: {1: 7}
+              lag: 0
+            name: null
+        ...
 
     Notice that anonymous replicas hide their ``lsn`` from the others, so an
     anonymous replica ``lsn`` will always be reported as zero, even if an anonymous

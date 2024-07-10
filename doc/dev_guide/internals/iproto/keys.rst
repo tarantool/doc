@@ -229,7 +229,7 @@ General replication
         *   -   :ref:`IPROTO_BALLOT_IS_ANON <internals-iproto-keys-ballot>`
             -   0x05 |br| MP_BOOL
             -   True if the replica is anonymous.
-                Corresponds to :ref:`box.cfg.replication_anon <cfg_replication-replication_anon>`.
+                Corresponds to :ref:`replication.anon <configuration_reference_replication_anon>`.
                 Since :doc:`2.7.1 </release/2.7.1>`
 
         *   -   :ref:`IPROTO_BALLOT_IS_BOOTED <internals-iproto-keys-ballot>`

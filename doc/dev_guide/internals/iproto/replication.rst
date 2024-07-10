@@ -45,7 +45,7 @@ General
         *   -   IPROTO_FETCH_SNAPSHOT
             -   0x45
             -   Fetch the master's snapshot and start anonymous replication.
-                See :ref:`replication_anon <cfg_replication-replication_anon>`
+                See :ref:`replication.anon <configuration_reference_replication_anon>`
 
         *   -   IPROTO_REGISTER
             -   0x46
