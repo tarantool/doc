@@ -3,6 +3,8 @@
 Default value for max fiber slice
 =================================
 
+Option: ``fiber_slice_default``
+
 The max fiber slice specifies the max fiber execution time without yield before a warning is logged or an error is raised.
 It is set with the :ref:`fiber.set_max_slice() <fiber-set_max_slice>` function.
 The new ``compat`` option – ``fiber_slice_default`` – controls the default value of the max fiber slice.

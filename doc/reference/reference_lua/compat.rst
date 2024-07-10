@@ -3,9 +3,6 @@
 Module compat
 =============
 
-Module ``compat`` is introduced since version 2.11.0-rc.
-
-
 The usual way to handle compatibility problems is to introduce an option for a new behavior and leave the old one by default.
 It is not always the perfect way.
 
@@ -43,6 +40,26 @@ Basic usage
 If you want to explicitly secure every behavior in ``compat``, you can do it manually, and then call ``compat.dump()`` to get a Lua command that sets up the ``compat`` with all the options selected.
 You should place this commands at the beginning of code in your ``init.lua`` file. In this way, you are guaranteed to get the same behavior on any other Tarantool version.
 See a :doc:`tutorial on using compat <./compat/compat_tutorial>` for more examples.
+
+Configuration options
+---------------------
+
+Another way to handle compatibility issues is setting the ``compat.*`` :ref:`configuration options <configuration_reference_compat>`.
+Similarly to the ``compat`` Lua module options, the configuration options can have
+values ``new`` and ``old``. The set of configuration options matches the set of
+options available in the ``compat`` module.
+
+Below is an example fragment of a YAML configuration file:
+
+.. code-block:: yaml
+
+    compat:
+      box_space_max: 'new'
+      sql_seq_scan_default: 'old'
+      fiber_slice_default: 'old'
+      binary_data_decoding: 'new'
+
+Learn more in the :ref:`configuration_reference`.
 
 Options
 -------

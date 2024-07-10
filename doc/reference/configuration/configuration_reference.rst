@@ -422,15 +422,12 @@ The ``compat`` section defines values of the :ref:`compat <compat-module>` modul
 * :ref:`compat.yaml_pretty_multiline <configuration_reference_compat_yaml_pretty>`
 
 
-* :ref:` ??? compat.console_session_scope_vars <configuration_reference_compat_session_scope>`
-
-
 .. _configuration_reference_compat_binary_decoding:
 
 .. confval:: compat.binary_data_decoding
 
-    Whether a binary data field should be stored in a varbinary object ('new') or a plain
-    string ('old') when decoded in Lua.
+    Whether a binary data field should be stored in a varbinary object (`new`) or a plain
+    string (`old`) when decoded in Lua.
 
     |
     | Type: string
@@ -442,7 +439,7 @@ The ``compat`` section defines values of the :ref:`compat <compat-module>` modul
 
 .. confval:: compat.box_cfg_replication_sync_timeout
 
-    Sets a default replication sync timeout: 0 ('new') or 300 seconds ('old')
+    Sets a default replication sync timeout: 0 (`new`) or 300 seconds (`old`)
 
     .. important::
 
@@ -460,9 +457,10 @@ The ``compat`` section defines values of the :ref:`compat <compat-module>` modul
 
 .. confval:: compat.box_error_serialize_verbose
 
-    Controls the verbosity of ``box.error`` serialization. Before, only the error
-    message was serialized, omitting all other potentially useful fields. Now, a
-    more verbose representation is used.
+    Controls the verbosity of :ref:`error objects <box_error-error_object>` serialization:
+
+    -   ``old``: serialize only the error message
+    -   ``new``: serialize the error message together with other potentially useful fields.
 
     |
     | Type: string
@@ -474,9 +472,11 @@ The ``compat`` section defines values of the :ref:`compat <compat-module>` modul
 
 .. confval:: compat.box_error_unpack_type_and_code
 
-    Whether to show redundant fields in ``box.error.unpack()``. The new behaviour
-    is not to show ``base_type`` and ``custom_type`` fields. The ``code`` field is also not
-    shown if it is 0. Note that ``base_type`` is still accessible for error object.
+    Whether to show error fields in ``box.error.unpack()``:
+
+    -   ``new``: do not show ``base_type`` and ``custom_type`` fields; do not show
+        the ``code`` field if it is 0. Note that ``base_type`` is still accessible for error object.
+    -   ``old``: show all fields
 
     |
     | Type: string
@@ -488,8 +488,8 @@ The ``compat`` section defines values of the :ref:`compat <compat-module>` modul
 
 .. confval:: compat.box_info_cluster_meaning
 
-    Whether ``box.info.cluster`` should show the current replica set ('old') or
-    the whole cluster with all its replica sets ('new')).
+    Whether ``box.info.cluster`` should show the current replica set (`old`) or
+    the whole cluster with all its replica sets (`new`).
 
     |
     | Type: string
@@ -504,8 +504,8 @@ The ``compat`` section defines values of the :ref:`compat <compat-module>` modul
 
     Whether to raise errors on attempts to call the deprecated function ``box.session.push``:
 
-    -   'old': do not raise an error
-    -   'new': raise an error
+    -   ``old``: do not raise an error
+    -   ``new``: raise an error
 
     |
     | Type: string
@@ -519,8 +519,8 @@ The ``compat`` section defines values of the :ref:`compat <compat-module>` modul
 
     Whether the ``execute`` privilege can be granted on spaces:
 
-    -   'old': the privilege can be granted with no actual effect
-    -   'new': an error is raised
+    -   ``old``: the privilege can be granted with no actual effect
+    -   ``new``: an error is raised
 
     |
     | Type: string
@@ -532,9 +532,12 @@ The ``compat`` section defines values of the :ref:`compat <compat-module>` modul
 
 .. confval:: compat.box_space_max
 
-    Controls the max space id (``box.schema.SPACE_MAX``). The old limit is 2147483647.
-    The new limit is 2147483646. The limit was decremented because the old value is
-    used as an error indicator in the ``box`` C API.
+    Controls the max space id (``box.schema.SPACE_MAX``):
+
+    -   ``old``: 2147483647
+    -   ``new``: 2147483646
+
+    The limit was decremented because the old max value is used as an error indicator in the ``box`` C API.
 
     |
     | Type: string
@@ -547,7 +550,11 @@ The ``compat`` section defines values of the :ref:`compat <compat-module>` modul
 .. confval:: compat.box_tuple_extension
 
     Controls ``IPROTO_FEATURE_CALL_RET_TUPLE_EXTENSION`` and
-    ``IPROTO_FEATURE_CALL_ARG_TUPLE_EXTENSION`` feature bits.
+    ``IPROTO_FEATURE_CALL_ARG_TUPLE_EXTENSION`` feature bits that
+    define tuple encoding in iproto ``call`` and ``eval`` requests.
+
+    -   ``new``: tuples with formats are encoded as ``MP_TUPLE``
+    -   ``old``: tuples with formats are encoded as ``MP_ARRAY``
 
     |
     | Type: string
@@ -559,8 +566,10 @@ The ``compat`` section defines values of the :ref:`compat <compat-module>` modul
 
 .. confval:: compat.box_tuple_new_vararg
 
-    Whether ``box.tuple.new`` should interpret an argument list as an array of
-    tuple fields ('old'), or as a value with a tuple format ('new').
+    Controls how ``box.tuple.new`` interprets an argument list:
+
+    -   ``old``: as an array of tuple fields
+    -   ``new``: as a value with a tuple format
 
     |
     | Type: string
@@ -573,9 +582,10 @@ The ``compat`` section defines values of the :ref:`compat <compat-module>` modul
 
 .. confval:: compat.c_func_iproto_multireturn
 
-    Whether the multiple results of a stored C function should be wrapped into
-    a msgpack array when returning them via iproto ('old') or returned consistently
-    with a local call via ``box.func` ('new').
+    Controls wrapping of multiple results of a stored C function when returning them via iproto:
+
+    -   ``old``: wrap results into a MessagePack array
+    -   ``new``: return without wrapping (consistently with a local call via ``box.func``)
 
     |
     | Type: string
@@ -583,22 +593,14 @@ The ``compat`` section defines values of the :ref:`compat <compat-module>` modul
     | Default: 'new'
     | Environment variable: TT_COMPAT_C_FUNC_IPROTO_MULTIRETURN
 
-.. _configuration_reference_compat_session_scope:
-
-.. confval:: compat.console_session_scope_vars
-
-
-    |
-    | Type: string
-    | Possible values: 'new', 'old'
-    | Default: 'old'
-    | Environment variable: TT_COMPAT_CONSOLE_SESSION_SCOPE_VARS
-
 .. _configuration_reference_compat_fiber_channel:
 
 .. confval:: compat.fiber_channel_close_mode
 
-    Whether fiber channel should be marked read-only on close ('new') instead of being destroyed ('old').
+    Defines the behavior of filber channels after closing:
+
+    -   ``new``: mark the channel read-only
+    -   `old``: destroy the channel object
 
     See also: :ref:`compat-option-fiber-channel`
 
@@ -612,7 +614,10 @@ The ``compat`` section defines values of the :ref:`compat <compat-module>` modul
 
 .. confval:: compat.json_escape_forward_slash
 
-    Whether to escape the forward slash symbol '/' using a backslash in a ``json.encode()`` result.
+    Whether to escape the forward slash symbol '/' using a backslash in a ``json.encode()`` result:
+
+    -   ``new``: escape the forward slash
+    -   ``old``: do not escape the forward slash
 
     See also: :ref:`compat-option-json-slash`
 
@@ -626,8 +631,10 @@ The ``compat`` section defines values of the :ref:`compat <compat-module>` modul
 
 .. confval:: compat.sql_priv
 
-    Whether to enable access checks for SQL requests ('new') or allow any user
-    to execute SQL over iproto ('old').
+    Whether to enable access checks for SQL requests over iproto:
+
+    -   ``new``: check the user's access permissions
+    -   ``old``: allow any user to execute SQL over iproto
 
     |
     | Type: string
@@ -639,8 +646,10 @@ The ``compat`` section defines values of the :ref:`compat <compat-module>` modul
 
 .. confval:: compat.sql_seq_scan_default
 
-    Whether seq_seq_scan session setting should be set to true ('old') or false ('new')
-    during initialization or new session creation.
+    Controls the default value of the ``sql_seq_scan`` session setting:
+
+    -   ``new``: false
+    -   ``old``: true
 
     See also: :ref:`compat-option-sql-scan`
 
@@ -654,7 +663,10 @@ The ``compat`` section defines values of the :ref:`compat <compat-module>` modul
 
 .. confval:: compat.yaml_pretty_multiline
 
-    Whether to encode in block scalar style all multiline strings or ones containing "\n\n" substring.
+    Whether to encode in block scalar style all multiline strings or ones containing the ``\n\n`` substring:
+
+    -   ``new``: encode all multiline strings in the block scalar style
+    -   ``old``: encode only strings containing the ``\n\n`` substring: in the block scalar style
 
     See also: :ref:`compat-option-lyaml`
 
