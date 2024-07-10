@@ -92,7 +92,7 @@ This option generates and signs checksums of executables and configuration files
 environment. Learn more in :ref:`tt-pack-integrity-check`.
 
 To enable the integrity check of the configuration at the centralized storage,
-publish the configuration to a this storage using ``tt cluster publish`` with the ``--with-integrity-check`` option.
+publish the configuration to this storage using ``tt cluster publish`` with the ``--with-integrity-check`` option.
 This option generates and signs configuration checksums and saves them to the storage.
 Learn more in :ref:`tt-cluster-publish-integrity`.
 
