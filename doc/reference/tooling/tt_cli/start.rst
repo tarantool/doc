@@ -86,12 +86,12 @@ Integrity check
 ``tt start`` can perform initial and periodical integrity checks of the environment,
 application, and centralized configuration.
 
-To enable the integrity checks of environment and application files, you need to pack
+To enable integrity checks of environment and application files, you need to pack
 the application using ``tt pack`` with the ``--with-integrity-check`` option.
 This option generates and signs checksums of executables and configuration files in the current ``tt``
 environment. Learn more in :ref:`tt-pack-integrity-check`.
 
-To enable the integrity check of the configuration at the centralized storage,
+To enable integrity check of the configuration at the centralized storage,
 publish the configuration to this storage using ``tt cluster publish`` with the ``--with-integrity-check`` option.
 This option generates and signs configuration checksums and saves them to the storage.
 Learn more in :ref:`tt-cluster-publish-integrity`.
@@ -116,7 +116,7 @@ by adding the ``--integrity-check-period`` option:
     $ tt --integrity-check public.pem start myapp --integrity-check-period 60
 
 Additionally, Tarantool checks the integrity of the modules that the application uses
-at the load time, that is, when ``require(\`module\`)`` is called.
+at the load time, that is, when ``require('module')`` is called.
 
 If an integrity check fails, ``tt`` stops the application.
 
