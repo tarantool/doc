@@ -459,8 +459,8 @@ The ``compat`` section defines values of the :ref:`compat <compat-module>` modul
 
     Controls the verbosity of :ref:`error objects <box_error-error_object>` serialization:
 
+    -   ``new``: serialize the error message together with other potentially useful fields
     -   ``old``: serialize only the error message
-    -   ``new``: serialize the error message together with other potentially useful fields.
 
     |
     | Type: string
@@ -504,8 +504,9 @@ The ``compat`` section defines values of the :ref:`compat <compat-module>` modul
 
     Whether to raise errors on attempts to call the deprecated function ``box.session.push``:
 
-    -   ``old``: do not raise an error
     -   ``new``: raise an error
+    -   ``old``: do not raise an error
+
 
     |
     | Type: string
@@ -519,8 +520,8 @@ The ``compat`` section defines values of the :ref:`compat <compat-module>` modul
 
     Whether the ``execute`` privilege can be granted on spaces:
 
-    -   ``old``: the privilege can be granted with no actual effect
     -   ``new``: an error is raised
+    -   ``old``: the privilege can be granted with no actual effect
 
     |
     | Type: string
@@ -534,8 +535,8 @@ The ``compat`` section defines values of the :ref:`compat <compat-module>` modul
 
     Controls the max space id (``box.schema.SPACE_MAX``):
 
-    -   ``old``: 2147483647
     -   ``new``: 2147483646
+    -   ``old``: 2147483647
 
     The limit was decremented because the old max value is used as an error indicator in the ``box`` C API.
 
@@ -568,8 +569,8 @@ The ``compat`` section defines values of the :ref:`compat <compat-module>` modul
 
     Controls how ``box.tuple.new`` interprets an argument list:
 
-    -   ``old``: as an array of tuple fields
     -   ``new``: as a value with a tuple format
+    -   ``old``: as an array of tuple fields
 
     |
     | Type: string
@@ -584,8 +585,8 @@ The ``compat`` section defines values of the :ref:`compat <compat-module>` modul
 
     Controls wrapping of multiple results of a stored C function when returning them via iproto:
 
-    -   ``old``: wrap results into a MessagePack array
     -   ``new``: return without wrapping (consistently with a local call via ``box.func``)
+    -   ``old``: wrap results into a MessagePack array
 
     |
     | Type: string
@@ -600,7 +601,7 @@ The ``compat`` section defines values of the :ref:`compat <compat-module>` modul
     Defines the behavior of filber channels after closing:
 
     -   ``new``: mark the channel read-only
-    -   `old``: destroy the channel object
+    -   ``old``: destroy the channel object
 
     See also: :ref:`compat-option-fiber-channel`
 
@@ -616,8 +617,8 @@ The ``compat`` section defines values of the :ref:`compat <compat-module>` modul
 
     Whether to escape the forward slash symbol '/' using a backslash in a ``json.encode()`` result:
 
-    -   ``new``: escape the forward slash
-    -   ``old``: do not escape the forward slash
+    -   ``new``: do not escape the forward slash
+    -   ``old``: escape the forward slash
 
     See also: :ref:`compat-option-json-slash`
 
@@ -665,8 +666,8 @@ The ``compat`` section defines values of the :ref:`compat <compat-module>` modul
 
     Whether to encode in block scalar style all multiline strings or ones containing the ``\n\n`` substring:
 
-    -   ``new``: encode all multiline strings in the block scalar style
-    -   ``old``: encode only strings containing the ``\n\n`` substring: in the block scalar style
+    -   ``new``: all multiline strings
+    -   ``old``: only strings containing the ``\n\n`` substring
 
     See also: :ref:`compat-option-lyaml`
 
