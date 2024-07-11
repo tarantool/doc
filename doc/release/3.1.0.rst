@@ -218,6 +218,7 @@ In the 3.1 version, this module provides the following API:
     .. code-block:: tarantoolsession
 
         sharded_cluster:router-a-001> connpool.call('vshard.storage.buckets_count', nil, { roles = { 'storage' }, labels = { dc = 'west' }, mode = 'rw' })
+        sharded_cluster:router-a-001> connpool.call('vshard.storage.buckets_count', nil, { roles = { 'storage' }, labels = { dc = 'west' }, mode = 'rw' })
         ---
         - 500
         ...

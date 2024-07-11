@@ -2195,6 +2195,8 @@ Attributes must be ``key: value`` pairs with string keys and values.
         :language: yaml
         :dedent:
 
+    See also: :ref:`configuration_labels`
+
 ..  _configuration_reference_log:
 
 log

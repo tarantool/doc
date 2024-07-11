@@ -301,8 +301,8 @@ Given that the ``roles`` option has the ``array`` type and ``roles_cfg`` has the
 Adding custom labels
 ~~~~~~~~~~~~~~~~~~~~
 
-Labels allow adding custom attributes to your cluster configuration. A label is
-a ``key: value`` pair with a string key and value.
+*Labels* allow adding custom attributes to your cluster configuration. A label is
+an arbitrary ``key: value`` pair with a string key and value.
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/labels/config.yaml
     :language: yaml
@@ -313,7 +313,7 @@ a ``key: value`` pair with a string key and value.
 Labels can be defined in any configuration scope. An instance receives labels from
 all scopes in belongs to. A ``labels`` section in a group or a replica set scope
 applies to all instances of the group or a replica set. To override these labels on
-the instance level or add instance-specific labels define another ``labels`` section in the instance scope.
+the instance level or add instance-specific labels, define another ``labels`` section in the instance scope.
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/labels/config.yaml
     :language: yaml
@@ -321,15 +321,29 @@ the instance level or add instance-specific labels define another ``labels`` sec
 
 Example on GitHub: `labels <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/labels>`_
 
-To access the labels from the application code, call the :ref:`config:get() <config_api_reference_get>` function:
+To access instance labels from the application code, call the :ref:`config:get() <config_api_reference_get>` function:
 
-.. code-block:: lua
+.. code-block:: tarantoolsession
 
-    require('config'):get('labels')
+    myapp:instance001> require('config'):get('labels')
+    ---
+    - production: 'true'
+      rack: '10'
+      dc: east
+    ...
 
-// how to use in connpool
+Labels can be used to direct function calls to instances that match certain criteria
+using the :ref:`connpool module <3-1-experimental_connpool>`. For example, call a
+function on any instance that has the ``dc`` label with the ``west`` value.
 
-ref:`connpool module <3-1-experimental_connpool>`
+.. code-block:: tarantoolsession
+
+    myapp:instance001> connpool = require('experimental.connpool')
+    ---
+    ...
+
+    myapp:instance001> connpool.call('box.stat', nil, { labels = { dc = 'east' })
+    ---
 
 .. _configuration_predefined_variables:
 
