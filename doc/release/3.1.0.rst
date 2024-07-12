@@ -223,6 +223,7 @@ In the 3.1 version, this module provides the following API:
         - 500
         ...
 
+Learn more in the ``experimental.connpool`` :ref:`module reference <connpool_module>`.
 
 
 .. _3-1-accessing_configuration:
