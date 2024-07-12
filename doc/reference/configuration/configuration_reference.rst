@@ -426,7 +426,7 @@ The ``compat`` section defines values of the :ref:`compat <compat-module>` modul
 
 .. confval:: compat.binary_data_decoding
 
-    Defines how to store binary data fields in Lua after decoding:
+    Define how to store binary data fields in Lua after decoding:
 
     -   ``new``: as varbinary objects
     -   ``old``: as plain strings
@@ -441,7 +441,7 @@ The ``compat`` section defines values of the :ref:`compat <compat-module>` modul
 
 .. confval:: compat.box_cfg_replication_sync_timeout
 
-    Sets a default replication sync timeout: 0 (`new`) or 300 seconds (`old`)
+    Set a default replication sync timeout: 0 (`new`) or 300 seconds (`old`).
 
     .. important::
 
@@ -459,7 +459,7 @@ The ``compat`` section defines values of the :ref:`compat <compat-module>` modul
 
 .. confval:: compat.box_error_serialize_verbose
 
-    Controls the verbosity of :ref:`error objects <box_error-error_object>` serialization:
+    Set the verbosity of :ref:`error objects <box_error-error_object>` serialization:
 
     -   ``new``: serialize the error message together with other potentially useful fields
     -   ``old``: serialize only the error message
@@ -477,7 +477,7 @@ The ``compat`` section defines values of the :ref:`compat <compat-module>` modul
     Whether to show error fields in ``box.error.unpack()``:
 
     -   ``new``: do not show ``base_type`` and ``custom_type`` fields; do not show
-        the ``code`` field if it is 0. Note that ``base_type`` is still accessible for error object.
+        the ``code`` field if it is 0. Note that ``base_type`` is still accessible for an error object.
     -   ``old``: show all fields
 
     |
@@ -535,7 +535,7 @@ The ``compat`` section defines values of the :ref:`compat <compat-module>` modul
 
 .. confval:: compat.box_space_max
 
-    Controls the max space id (``box.schema.SPACE_MAX``):
+    Set the maximum space identifier (``box.schema.SPACE_MAX``):
 
     -   ``new``: 2147483646
     -   ``old``: 2147483647
@@ -600,7 +600,7 @@ The ``compat`` section defines values of the :ref:`compat <compat-module>` modul
 
 .. confval:: compat.fiber_channel_close_mode
 
-    Defines the behavior of filber channels after closing:
+    Define the behavior of fiber channels after closing:
 
     -   ``new``: mark the channel read-only
     -   ``old``: destroy the channel object
