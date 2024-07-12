@@ -426,8 +426,10 @@ The ``compat`` section defines values of the :ref:`compat <compat-module>` modul
 
 .. confval:: compat.binary_data_decoding
 
-    Whether a binary data field should be stored in a varbinary object (`new`) or a plain
-    string (`old`) when decoded in Lua.
+    Defines how to store binary data fields in Lua after decoding:
+
+    -   ``new``: as varbinary objects
+    -   ``old``: as plain strings
 
     |
     | Type: string
