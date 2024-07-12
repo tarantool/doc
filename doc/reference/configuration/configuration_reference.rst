@@ -392,6 +392,302 @@ audit_log.syslog.*
     | Default: box.NULL
     | Environment variable: TT_AUDIT_LOG_SYSLOG_SERVER
 
+..  _configuration_reference_compat:
+
+compat
+------
+
+The ``compat`` section defines values of the :ref:`compat <compat-module>` module options.
+
+..  NOTE::
+
+    ``compat`` can be defined in any :ref:`scope <configuration_scopes>`.
+
+* :ref:`compat.binary_data_decoding <configuration_reference_compat_binary_decoding>`
+* :ref:`compat.box_cfg_replication_sync_timeout <configuration_reference_compat_replication_timeout>`
+* :ref:`compat.box_error_serialize_verbose <configuration_reference_compat_error_serialize>`
+* :ref:`compat.box_error_unpack_type_and_code <configuration_reference_compat_error_unpack>`
+* :ref:`compat.box_info_cluster_meaning <configuration_reference_compat_yaml_pretty>`
+* :ref:`compat.box_session_push_deprecation <configuration_reference_compat_session_push>`
+* :ref:`compat.box_space_execute_priv <configuration_reference_compat_space_execute>`
+* :ref:`compat.box_space_max <configuration_reference_compat_space_max>`
+* :ref:`compat.box_tuple_extension <configuration_reference_compat_tuple_extension>`
+* :ref:`compat.box_tuple_new_vararg <configuration_reference_compat_tuple_new>`
+* :ref:`compat.c_func_iproto_multireturn <configuration_reference_compat_iproto_multireturn>`
+* :ref:`compat.fiber_channel_close_mode <configuration_reference_compat_fiber_channel>`
+* :ref:`compat.fiber_slice_default <configuration_reference_compat_cluster_meaning>`
+* :ref:`compat.json_escape_forward_slash <configuration_reference_compat_json_escape>`
+* :ref:`compat.sql_priv <configuration_reference_compat_sql_priv>`
+* :ref:`compat.sql_seq_scan_default <configuration_reference_compat_sql_scan>`
+* :ref:`compat.yaml_pretty_multiline <configuration_reference_compat_yaml_pretty>`
+
+
+.. _configuration_reference_compat_binary_decoding:
+
+.. confval:: compat.binary_data_decoding
+
+    Define how to store binary data fields in Lua after decoding:
+
+    -   ``new``: as varbinary objects
+    -   ``old``: as plain strings
+
+    |
+    | Type: string
+    | Possible values: 'new', 'old'
+    | Default: 'new'
+    | Environment variable: TT_COMPAT_BINARY_DATA_DECODING
+
+.. _configuration_reference_compat_replication_timeout:
+
+.. confval:: compat.box_cfg_replication_sync_timeout
+
+    Set a default replication sync timeout:
+
+    -   ``new``: 0
+    -   ``old``: 300 seconds
+
+    .. important::
+
+        This value is set during the initial ``box.cfg{}`` call and cannot be changed later.
+
+    See also: :ref:`compat-option-replication-timeout`
+
+    |
+    | Type: string
+    | Possible values: 'new', 'old'
+    | Default: 'new'
+    | Environment variable: TT_COMPAT_BOX_CFG_REPLICATION_SYNC_TIMEOUT
+
+.. _configuration_reference_compat_error_serialize:
+
+.. confval:: compat.box_error_serialize_verbose
+
+    **Since:** :doc:`3.1.0 </release/3.1.0>`
+
+    Set the verbosity of :ref:`error objects <box_error-error_object>` serialization:
+
+    -   ``new``: serialize the error message together with other potentially useful fields
+    -   ``old``: serialize only the error message
+
+    |
+    | Type: string
+    | Possible values: 'new', 'old'
+    | Default: 'old'
+    | Environment variable: TT_COMPAT_BOX_ERROR_SERIALIZE_VERBOSE
+
+.. _configuration_reference_compat_error_unpack:
+
+.. confval:: compat.box_error_unpack_type_and_code
+
+    **Since:** :doc:`3.1.0 </release/3.1.0>`
+
+    Whether to show error fields in ``box.error.unpack()``:
+
+    -   ``new``: do not show ``base_type`` and ``custom_type`` fields; do not show
+        the ``code`` field if it is 0. Note that ``base_type`` is still accessible for an error object.
+    -   ``old``: show all fields
+
+    |
+    | Type: string
+    | Possible values: 'new', 'old'
+    | Default: 'old'
+    | Environment variable: TT_COMPAT_BOX_ERROR_UNPACK_TYPE_AND_CODE
+
+.. _configuration_reference_compat_cluster_meaning:
+
+.. confval:: compat.box_info_cluster_meaning
+
+    Define the behavior of ``box.info.cluster``:
+
+    -   ``new``: show the entire cluster
+    -   ``old:``: show the current replica set
+
+    |
+    | Type: string
+    | Possible values: 'new', 'old'
+    | Default: 'new'
+    | Environment variable: TT_COMPAT_BOX_INFO_CLUSTER_MEANING
+
+
+.. _configuration_reference_compat_session_push:
+
+.. confval:: compat.box_session_push_deprecation
+
+    Whether to raise errors on attempts to call the deprecated function ``box.session.push``:
+
+    -   ``new``: raise an error
+    -   ``old``: do not raise an error
+
+
+    |
+    | Type: string
+    | Possible values: 'new', 'old'
+    | Default: 'old'
+    | Environment variable: TT_COMPAT_BOX_SESSION_PUSH_DEPRECATION
+
+.. _configuration_reference_compat_space_execute:
+
+.. confval:: compat.box_space_execute_priv
+
+    Whether the ``execute`` privilege can be granted on spaces:
+
+    -   ``new``: an error is raised
+    -   ``old``: the privilege can be granted with no actual effect
+
+    |
+    | Type: string
+    | Possible values: 'new', 'old'
+    | Default: 'new'
+    | Environment variable: TT_COMPAT_BOX_SPACE_EXECUTE_PRIV
+
+.. _configuration_reference_compat_space_max:
+
+.. confval:: compat.box_space_max
+
+    Set the maximum space identifier (``box.schema.SPACE_MAX``):
+
+    -   ``new``: 2147483646
+    -   ``old``: 2147483647
+
+    The limit was decremented because the old max value is used as an error indicator in the ``box`` C API.
+
+    |
+    | Type: string
+    | Possible values: 'new', 'old'
+    | Default: 'new'
+    | Environment variable: TT_COMPAT_BOX_SPACE_MAX
+
+.. _configuration_reference_compat_tuple_extension:
+
+.. confval:: compat.box_tuple_extension
+
+    Controls ``IPROTO_FEATURE_CALL_RET_TUPLE_EXTENSION`` and
+    ``IPROTO_FEATURE_CALL_ARG_TUPLE_EXTENSION`` feature bits that
+    define tuple encoding in iproto ``call`` and ``eval`` requests.
+
+    -   ``new``: tuples with formats are encoded as ``MP_TUPLE``
+    -   ``old``: tuples with formats are encoded as ``MP_ARRAY``
+
+    |
+    | Type: string
+    | Possible values: 'new', 'old'
+    | Default: 'new'
+    | Environment variable: TT_COMPAT_BOX_TUPLE_EXTENSION
+
+.. _configuration_reference_compat_tuple_new:
+
+.. confval:: compat.box_tuple_new_vararg
+
+    Controls how ``box.tuple.new`` interprets an argument list:
+
+    -   ``new``: as a value with a tuple format
+    -   ``old``: as an array of tuple fields
+
+    |
+    | Type: string
+    | Possible values: 'new', 'old'
+    | Default: 'new'
+    | Environment variable: TT_COMPAT_BOX_TUPLE_NEW_VARARG
+
+
+.. _configuration_reference_compat_iproto_multireturn:
+
+.. confval:: compat.c_func_iproto_multireturn
+
+    Controls wrapping of multiple results of a stored C function when returning them via iproto:
+
+    -   ``new``: return without wrapping (consistently with a local call via ``box.func``)
+    -   ``old``: wrap results into a MessagePack array
+
+    |
+    | Type: string
+    | Possible values: 'new', 'old'
+    | Default: 'new'
+    | Environment variable: TT_COMPAT_C_FUNC_IPROTO_MULTIRETURN
+
+.. _configuration_reference_compat_fiber_channel:
+
+.. confval:: compat.fiber_channel_close_mode
+
+    Define the behavior of fiber channels after closing:
+
+    -   ``new``: mark the channel read-only
+    -   ``old``: destroy the channel object
+
+    See also: :ref:`compat-option-fiber-channel`
+
+    |
+    | Type: string
+    | Possible values: 'new', 'old'
+    | Default: 'new'
+    | Environment variable: TT_COMPAT_FIBER_CHANNEL_CLOSE_MODE
+
+.. _configuration_reference_compat_json_escape:
+
+.. confval:: compat.json_escape_forward_slash
+
+    Whether to escape the forward slash symbol '/' using a backslash in a ``json.encode()`` result:
+
+    -   ``new``: do not escape the forward slash
+    -   ``old``: escape the forward slash
+
+    See also: :ref:`compat-option-json-slash`
+
+    |
+    | Type: string
+    | Possible values: 'new', 'old'
+    | Default: 'new'
+    | Environment variable: TT_COMPAT_JSON_ESCAPE_FORWARD_SLASH
+
+.. _configuration_reference_compat_sql_priv:
+
+.. confval:: compat.sql_priv
+
+    Whether to enable access checks for SQL requests over iproto:
+
+    -   ``new``: check the user's access permissions
+    -   ``old``: allow any user to execute SQL over iproto
+
+    |
+    | Type: string
+    | Possible values: 'new', 'old'
+    | Default: 'new'
+    | Environment variable: TT_COMPAT_SQL_PRIV
+
+.. _configuration_reference_compat_sql_scan:
+
+.. confval:: compat.sql_seq_scan_default
+
+    Controls the default value of the ``sql_seq_scan`` session setting:
+
+    -   ``new``: false
+    -   ``old``: true
+
+    See also: :ref:`compat-option-sql-scan`
+
+    |
+    | Type: string
+    | Possible values: 'new', 'old'
+    | Default: 'new'
+    | Environment variable: TT_COMPAT_SQL_SEQ_SCAN_DEFAULT
+
+.. _configuration_reference_compat_yaml_pretty:
+
+.. confval:: compat.yaml_pretty_multiline
+
+    Whether to encode in block scalar style all multiline strings or ones containing the ``\n\n`` substring:
+
+    -   ``new``: all multiline strings
+    -   ``old``: only strings containing the ``\n\n`` substring
+
+    See also: :ref:`compat-option-lyaml`
+
+    |
+    | Type: string
+    | Possible values: 'new', 'old'
+    | Default: 'new'
+    | Environment variable: TT_COMPAT_YAML_PRETTY_MULTILINE
+
 ..  _configuration_reference_config:
 
 config

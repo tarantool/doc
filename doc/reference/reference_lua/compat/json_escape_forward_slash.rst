@@ -3,6 +3,8 @@
 JSON encode escape forward slash
 ================================
 
+Option: ``json_escape_forward_slash``
+
 For some reason, in the upstream ``lua_cjson``, the '/' sign is escaped.
 But according to the ``rfc4627`` standard, it is unnecessary and questionably compatible with other implementations.
 

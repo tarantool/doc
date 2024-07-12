@@ -3,6 +3,8 @@
 Lua-YAML prettier multiline output
 ==================================
 
+Option: ``yaml_pretty_multiline``
+
 The ``lua-yaml`` encoder selects the string style automatically, but in Tarantool context, it can be beneficial to enforce them, for example, for better readability.
 The ``yaml_pretty_multiline`` compat option allows to encode multiline strings in a block style.
 

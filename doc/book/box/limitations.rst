@@ -62,7 +62,7 @@ Limitations
 
 **Number of spaces**
 
-    The theoretical maximum is 2147483647 (``box.schema.SPACE_MAX``)
+    The theoretical maximum is 2147483646 (``box.schema.SPACE_MAX``)
     but the practical maximum is around 65,000.
 
 .. _limitations_number_of_connections:

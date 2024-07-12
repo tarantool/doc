@@ -3,6 +3,8 @@
 Default value for sql_seq_scan session setting
 ==============================================
 
+Option: ``sql_seq_scan_default``
+
 The default value for the ``sql_seq_scan`` session setting will be set to false starting with Tarantool 3.0.
 To be able to return the behavior to the old default, a new ``compat`` option is introduced.
 

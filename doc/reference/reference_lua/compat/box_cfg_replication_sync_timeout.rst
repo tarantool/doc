@@ -3,6 +3,8 @@
 Default value for replication_sync_timeout
 ==========================================
 
+Option: ``box_cfg_replication_sync_timeout``
+
 Having a non-zero :ref:`replication_sync_timeout <cfg_replication-replication_sync_timeout>` gives a user the false assumption that the ``box.cfg{replication = ...}`` call returns only when the configured node is synced with all the other nodes.
 This is mostly true for the big ``replication_sync_timeout`` values, but it is not 100% guaranteed.
 In other words, a user still has to check if the node is synced, or the sync just timed out.

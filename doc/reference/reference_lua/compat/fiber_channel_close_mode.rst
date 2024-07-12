@@ -3,6 +3,8 @@
 Fiber channel close mode
 ========================
 
+Option: ``fiber_channel_close_mode``
+
 Before the change, there was an unexpected behavior when using ``channel:close()`` because it closed the channel entirely and discarded all unread events.
 
 Old and new behavior
