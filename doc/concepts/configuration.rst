@@ -296,8 +296,44 @@ Given that the ``roles`` option has the ``array`` type and ``roles_cfg`` has the
                       farewell: 'Bye'
 
 
+.. _configuration_labels:
 
+Adding labels
+~~~~~~~~~~~~~
 
+*Labels* allow adding custom attributes to your cluster configuration. A label is
+an arbitrary ``key: value`` pair with a string key and value.
+
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/labels/config.yaml
+    :language: yaml
+    :start-at: labels:
+    :end-at: 'false'
+    :dedent:
+
+Labels can be defined in any configuration scope. An instance receives labels from
+all scopes it belongs to. The ``labels`` section in a group or a replica set scope
+applies to all instances of the group or a replica set. To override these labels on
+the instance level or add instance-specific labels, define another ``labels`` section in the instance scope.
+
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/labels/config.yaml
+    :language: yaml
+    :dedent:
+
+Example on GitHub: `labels <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/labels>`_
+
+To access instance labels from the application code, call the :ref:`config:get() <config_api_reference_get>` function:
+
+.. code-block:: tarantoolsession
+
+    myapp:instance001> require('config'):get('labels')
+    ---
+    - production: 'true'
+      rack: '10'
+      dc: east
+    ...
+
+Labels can be used to direct function calls to instances that match certain criteria
+using the :ref:`connpool module <connpool_module>`.
 
 .. _configuration_predefined_variables:
 

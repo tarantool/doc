@@ -2462,6 +2462,37 @@ instances
     Any configuration parameter that can be defined in the instance :ref:`scope <configuration_scopes>`.
     For example, :ref:`iproto <configuration_reference_iproto>` and :ref:`database <configuration_reference_database>` configuration parameters defined at the instance level are applied to this instance only.
 
+..  _configuration_reference_labels:
+
+labels
+------
+
+The ``labels`` section allows adding custom attributes to the configuration.
+Attributes must be ``key: value`` pairs with string keys and values.
+
+
+..  NOTE::
+
+    ``labels`` can be defined in any :ref:`scope <configuration_scopes>`.
+
+-   :ref:`labels.\<label_name\> <configuration_reference_labels_name>`
+
+..  _configuration_reference_labels_name:
+
+.. confval:: labels.<label_name>
+
+    A value of the label with the specified name.
+
+    **Example**
+
+    The example below shows how to define labels on the replica set and instance levels:
+
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/labels/config.yaml
+        :language: yaml
+        :dedent:
+
+    See also: :ref:`configuration_labels`
+
 ..  _configuration_reference_log:
 
 log

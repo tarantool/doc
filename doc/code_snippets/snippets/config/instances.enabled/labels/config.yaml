@@ -1,0 +1,12 @@
+groups:
+  group001:
+    replicasets:
+      replicaset001:
+        labels:
+          dc: 'east'
+          production: 'false'
+        instances:
+          instance001:
+            labels:
+              rack: '10'
+              production: 'true'

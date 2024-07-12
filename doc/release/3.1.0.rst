@@ -197,7 +197,8 @@ In the 3.1 version, this module provides the following API:
 
 
 *   The ``filter()`` function returns the names of instances that match the specified conditions.
-    In the example below, this function returns a list of instances with the ``storage`` role and specified label value:
+    In the example below, this function returns a list of instances with the ``storage`` role and specified
+    :ref:`label <configuration_labels>` value:
 
     .. code-block:: tarantoolsession
 
@@ -217,10 +218,12 @@ In the 3.1 version, this module provides the following API:
     .. code-block:: tarantoolsession
 
         sharded_cluster:router-a-001> connpool.call('vshard.storage.buckets_count', nil, { roles = { 'storage' }, labels = { dc = 'west' }, mode = 'rw' })
+        sharded_cluster:router-a-001> connpool.call('vshard.storage.buckets_count', nil, { roles = { 'storage' }, labels = { dc = 'west' }, mode = 'rw' })
         ---
         - 500
         ...
 
+Learn more in the ``experimental.connpool`` :ref:`module reference <connpool_module>`.
 
 
 .. _3-1-accessing_configuration:
