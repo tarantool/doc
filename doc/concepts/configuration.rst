@@ -311,7 +311,7 @@ an arbitrary ``key: value`` pair with a string key and value.
     :dedent:
 
 Labels can be defined in any configuration scope. An instance receives labels from
-all scopes in belongs to. A ``labels`` section in a group or a replica set scope
+all scopes in belongs to. The ``labels`` section in a group or a replica set scope
 applies to all instances of the group or a replica set. To override these labels on
 the instance level or add instance-specific labels, define another ``labels`` section in the instance scope.
 
@@ -333,8 +333,8 @@ To access instance labels from the application code, call the :ref:`config:get()
     ...
 
 Labels can be used to direct function calls to instances that match certain criteria
-using the :ref:`connpool module <3-1-experimental_connpool>`. For example, call a
-function on any instance that has the ``dc`` label with the ``west`` value.
+using the :ref:`connpool module <connpool_module>`. For example, call a
+function on any instance that has the ``dc`` label with the ``east`` value.
 
 .. code-block:: tarantoolsession
 
