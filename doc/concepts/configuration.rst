@@ -298,8 +298,8 @@ Given that the ``roles`` option has the ``array`` type and ``roles_cfg`` has the
 
 .. _configuration_labels:
 
-Adding custom labels
-~~~~~~~~~~~~~~~~~~~~
+Adding labels
+~~~~~~~~~~~~~
 
 *Labels* allow adding custom attributes to your cluster configuration. A label is
 an arbitrary ``key: value`` pair with a string key and value.
@@ -311,7 +311,7 @@ an arbitrary ``key: value`` pair with a string key and value.
     :dedent:
 
 Labels can be defined in any configuration scope. An instance receives labels from
-all scopes in belongs to. The ``labels`` section in a group or a replica set scope
+all scopes it belongs to. The ``labels`` section in a group or a replica set scope
 applies to all instances of the group or a replica set. To override these labels on
 the instance level or add instance-specific labels, define another ``labels`` section in the instance scope.
 
@@ -333,17 +333,7 @@ To access instance labels from the application code, call the :ref:`config:get()
     ...
 
 Labels can be used to direct function calls to instances that match certain criteria
-using the :ref:`connpool module <connpool_module>`. For example, call a
-function on any instance that has the ``dc`` label with the ``east`` value.
-
-.. code-block:: tarantoolsession
-
-    myapp:instance001> connpool = require('experimental.connpool')
-    ---
-    ...
-
-    myapp:instance001> connpool.call('box.stat', nil, { labels = { dc = 'east' })
-    ---
+using the :ref:`connpool module <connpool_module>`.
 
 .. _configuration_predefined_variables:
 
