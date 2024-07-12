@@ -441,7 +441,10 @@ The ``compat`` section defines values of the :ref:`compat <compat-module>` modul
 
 .. confval:: compat.box_cfg_replication_sync_timeout
 
-    Set a default replication sync timeout: 0 (`new`) or 300 seconds (`old`).
+    Set a default replication sync timeout:
+
+    -   ``new``: 0
+    -   ``old``: 300 seconds
 
     .. important::
 
@@ -494,8 +497,10 @@ The ``compat`` section defines values of the :ref:`compat <compat-module>` modul
 
 .. confval:: compat.box_info_cluster_meaning
 
-    Whether ``box.info.cluster`` should show the current replica set (`old`) or
-    the whole cluster with all its replica sets (`new`).
+    Define the behavior of ``box.info.cluster``:
+
+    -   ``new``: show the entire cluster
+    -   ``old:``: show the current replica set
 
     |
     | Type: string
