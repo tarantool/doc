@@ -459,6 +459,8 @@ The ``compat`` section defines values of the :ref:`compat <compat-module>` modul
 
 .. confval:: compat.box_error_serialize_verbose
 
+    **Since:** :doc:`3.1.0 </release/3.1.0>`
+
     Set the verbosity of :ref:`error objects <box_error-error_object>` serialization:
 
     -   ``new``: serialize the error message together with other potentially useful fields
@@ -473,6 +475,8 @@ The ``compat`` section defines values of the :ref:`compat <compat-module>` modul
 .. _configuration_reference_compat_error_unpack:
 
 .. confval:: compat.box_error_unpack_type_and_code
+
+    **Since:** :doc:`3.1.0 </release/3.1.0>`
 
     Whether to show error fields in ``box.error.unpack()``:
 
