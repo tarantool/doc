@@ -384,7 +384,8 @@ to Tarantool 3.1.0:
 
 Example on GitHub: `conditional <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/conditional>`_
 
-The ``if`` clauses can use one variable -- ``tarantool_version``. It contains
+
+``if`` sections can use one variable -- ``tarantool_version``. It contains
 a three-number Tarantool version and compares with values of the same format
 using the comparison operators ``>``, ``<``, ``>=``, ``<=``, ``==``, and ``!=``.
 You can write complex conditions using the logical operators ``||`` (OR) and ``&&`` (AND).
@@ -395,6 +396,22 @@ Parentheses ``()`` can be used to define the operators precedence.
     conditional:
       - if: (tarantool_version > 3.2.0 || tarantool_version == 3.1.3) && tarantool_version <= 3.99.0
         -- < ... >
+
+
+If the same option is set in multiple ``if`` sections that are true for an instance,
+this option receives the value from the section declared last in the configuration.
+
+Example:
+
+.. code-block:: yaml
+
+conditional:
+  - if: tarantool_version >= 3.0.0
+    label:
+        version: '3.0' -- applies to versions >= 3.0.0 and < 3.1.0
+  - if: tarantool_version >= 3.1.0
+    label:
+        version: '3.1+ -- applies to versions >= 3.1.0
 
 ..  _configuration_environment_variable:
 
