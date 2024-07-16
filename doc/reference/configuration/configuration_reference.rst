@@ -711,9 +711,9 @@ that meet certain conditions.
     defined inside a ``conditional.if`` section apply only to instances on which
     the specified condition is true.
 
-    Conditions can include one variable:
-
-    -   ``tarantool_version``: a three-component version, for example,  3.1.0
+    Conditions can include one variable -- ``tarantool_version``: a three-number
+    Tarantool version running on the instance, for example,  3.1.0. It compares to
+    *version literal* values that include three numbers separated by periods (``x.y.z``).
 
     The following operators are available in conditions:
 

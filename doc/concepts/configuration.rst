@@ -405,13 +405,13 @@ Example:
 
 .. code-block:: yaml
 
-conditional:
-  - if: tarantool_version >= 3.0.0
-    labels:
-        version: '3.0' # applies to versions >= 3.0.0 and < 3.1.0
-  - if: tarantool_version >= 3.1.0
-    labels:
-        version: '3.1+ # applies to versions >= 3.1.0
+    conditional:
+      - if: tarantool_version >= 3.0.0
+        labels:
+            version: '3.0' # applies to versions >= 3.0.0 and < 3.1.0
+      - if: tarantool_version >= 3.1.0
+        labels:
+            version: '3.1+ # applies to versions >= 3.1.0
 
 ..  _configuration_environment_variable:
 
