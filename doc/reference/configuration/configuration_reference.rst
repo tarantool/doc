@@ -688,6 +688,56 @@ The ``compat`` section defines values of the :ref:`compat <compat-module>` modul
     | Default: 'new'
     | Environment variable: TT_COMPAT_YAML_PRETTY_MULTILINE
 
+
+..  _configuration_reference_conditional:
+
+conditional
+-----------
+
+The ``conditional`` section defines the configuration parts that apply to instances
+that meet certain conditions.
+
+..  NOTE::
+
+    ``conditional`` can be defined in the global :ref:`scope <configuration_scopes>` only.
+
+* :ref:`conditional.if <configuration_reference_conditional_if>`
+
+.. _configuration_reference_conditional_if:
+
+.. confval:: conditional.if
+
+    Specify a conditional section of the configuration. The configuration options
+    defined inside a ``conditional.if`` section apply only if the
+
+    Conditions can include one variable:
+
+    -   ``tarantool_version``: a three-component version, for example,  3.1.0
+
+    The following operations are available:
+
+    -   comparison: ``>``, ``<``, ``>=``, ``<=``, ``==``, ``!=``
+    -   logical operators ``||`` (OR) and ``&&``
+    -   parentheses ``()``
+
+    **Example**:
+
+    In this example, different configuration parts apply to instances running
+    Tarantool versions above and below 3.1.0:
+
+    -   On versions less than 3.1.0, the ``upgraded`` label is set to ``false``.
+    -   On versions 3.1.0 or newer, the ``upgraded`` label is set to ``true``.
+        Additionally, new ``compat`` options are defined. These options were introduced
+        in version 3.1.0, so on older versions they would lead to validation errors.
+
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/conditional/config.yaml
+        :language: yaml
+        :start-at: conditional:
+        :end-before: groups:
+        :dedent:
+
+    See also: :ref:`configuration_conditional`
+
 ..  _configuration_reference_config:
 
 config

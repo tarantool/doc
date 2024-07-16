@@ -1,0 +1,17 @@
+conditional:
+  - if: tarantool_version < 3.1.0
+    labels:
+      upgraded: 'false'
+  - if: tarantool_version >= 3.1.0
+    labels:
+      upgraded: 'true'
+    compat:
+      box_error_serialize_verbose: 'new'
+      box_error_unpack_type_and_code: 'new'
+
+groups:
+  group001:
+    replicasets:
+      replicaset001:
+        instances:
+          instance001: {}
