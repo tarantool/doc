@@ -708,13 +708,14 @@ that meet certain conditions.
 .. confval:: conditional.if
 
     Specify a conditional section of the configuration. The configuration options
-    defined inside a ``conditional.if`` section apply only if the
+    defined inside a ``conditional.if`` section apply only to instances on which
+    the specified condition is true.
 
     Conditions can include one variable:
 
     -   ``tarantool_version``: a three-component version, for example,  3.1.0
 
-    The following operations are available:
+    The following operators are available in conditions:
 
     -   comparison: ``>``, ``<``, ``>=``, ``<=``, ``==``, ``!=``
     -   logical operators ``||`` (OR) and ``&&``
@@ -728,7 +729,7 @@ that meet certain conditions.
     -   On versions less than 3.1.0, the ``upgraded`` label is set to ``false``.
     -   On versions 3.1.0 or newer, the ``upgraded`` label is set to ``true``.
         Additionally, new ``compat`` options are defined. These options were introduced
-        in version 3.1.0, so on older versions they would lead to validation errors.
+        in version 3.1.0, so on older versions they would cause an error.
 
     ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/conditional/config.yaml
         :language: yaml
