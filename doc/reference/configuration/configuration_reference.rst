@@ -718,7 +718,7 @@ that meet certain conditions.
     The following operators are available in conditions:
 
     -   comparison: ``>``, ``<``, ``>=``, ``<=``, ``==``, ``!=``
-    -   logical operators ``||`` (OR) and ``&&``
+    -   logical operators ``||`` (OR) and ``&&`` (AND)
     -   parentheses ``()``
 
     **Example**:
