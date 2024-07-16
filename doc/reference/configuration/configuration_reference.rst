@@ -3062,8 +3062,8 @@ The ``metrics`` section defines configuration parameters for :ref:`metrics <moni
 
 ..  confval:: metrics.exclude
 
-    Metrics to turn off.
-    This option accepts the same values as the ``exclude`` configuration parameter passed to :ref:`metrics.cfg() <metrics_cfg>`.
+    An array containing the metrics to turn off.
+    The array can contain the same values as the ``exclude`` configuration parameter passed to :ref:`metrics.cfg() <metrics_cfg>`.
 
     **Example**
 
@@ -3075,7 +3075,7 @@ The ``metrics`` section defines configuration parameters for :ref:`metrics <moni
 
     |
     | Type: array
-    | Default: nil
+    | Default: ``[]``
     | Environment variable: TT_METRICS_EXCLUDE
 
 
@@ -3083,12 +3083,12 @@ The ``metrics`` section defines configuration parameters for :ref:`metrics <moni
 
 ..  confval:: metrics.include
 
-    Metrics to turn on.
-    This option accepts the same values as the ``include`` configuration parameter passed to :ref:`metrics.cfg() <metrics_cfg>`.
+    An array containing the metrics to turn on.
+    The array can contain the same values as the ``include`` configuration parameter passed to :ref:`metrics.cfg() <metrics_cfg>`.
 
     |
     | Type: array
-    | Default: nil
+    | Default: ``[ all ]``
     | Environment variable: TT_METRICS_INCLUDE
 
 
@@ -3100,7 +3100,7 @@ The ``metrics`` section defines configuration parameters for :ref:`metrics <moni
 
     |
     | Type: map
-    | Default: nil
+    | Default: ``{ alias = names.instance_name }``
     | Environment variable: TT_METRICS_LABELS
 
 

@@ -171,9 +171,9 @@ To create a custom metric, follow the steps below:
         :language: lua
         :dedent:
 
-2.  **Take a measurement**
+2.  **Observe a value**
 
-    You can take a measurement in two ways:
+    You can observe a value in two ways:
 
     -   At the appropriate place, for example, in an API request handler or :ref:`trigger <triggers>`.
         In this example below, the counter value is increased any time a data operation is performed on the ``bands`` space.
@@ -486,6 +486,7 @@ metrics API
     *   ``luajit``
     *   ``clock``
     *   ``event_loop``
+    *   ``config``
 
     See :ref:`metrics reference <metrics-reference>` for details.
     All metric collectors from the collection have ``metainfo.default = true``.
