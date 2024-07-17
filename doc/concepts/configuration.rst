@@ -355,7 +355,63 @@ In the example below, ``{{ instance_name }}`` is replaced with *instance001*.
 
 As a result, the paths to :ref:`snapshots and write-ahead logs <configuration_persistence>` differ for different instances.
 
+.. _configuration_conditional:
 
+Conditional configuration sections
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A YAML configuration can include parts that apply only to instances that meet certain conditions.
+This is useful for cluster upgrade scenarios: during an upgrade, instances can be running
+different Tarantool versions and therefore require different configurations.
+
+Conditional parts are defined in the :ref:`conditional <configuration_reference_conditional>` configuration section in the global scope.
+It includes one or more ``if`` subsections. Each ``if`` subsection defines conditions
+and configuration parts that apply to instances that meet these conditions.
+
+The example below shows a ``conditional`` section for cluster upgrade from Tarantool 3.0.0
+to Tarantool 3.1.0:
+
+-   The user-defined :ref:`label <configuration_labels>` ``upgraded`` is ``true``
+    on instances that are running Tarantool 3.1.0 or later. On older versions, it is ``false``.
+-   Two :ref:`compat <configuration_reference_compat>` options that were introduced in 3.1.0 are defined for Tarantool 3.1.0
+    instances. On older versions, they would cause an error.
+
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/conditional/config.yaml
+    :language: yaml
+    :start-at: conditional:
+    :end-before: groups:
+    :dedent:
+
+Example on GitHub: `conditional <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/conditional>`_
+
+
+``if`` sections can use one variable -- ``tarantool_version``. It contains
+a three-number Tarantool version and compares with values of the same format
+using the comparison operators ``>``, ``<``, ``>=``, ``<=``, ``==``, and ``!=``.
+You can write complex conditions using the logical operators ``||`` (OR) and ``&&`` (AND).
+Parentheses ``()`` can be used to define the operators precedence.
+
+.. code-block:: yaml
+
+    conditional:
+      - if: (tarantool_version > 3.2.0 || tarantool_version == 3.1.3) && tarantool_version <= 3.99.0
+        -- < ... >
+
+
+If the same option is set in multiple ``if`` sections that are true for an instance,
+this option receives the value from the section declared last in the configuration.
+
+Example:
+
+.. code-block:: yaml
+
+    conditional:
+      - if: tarantool_version >= 3.0.0
+        labels:
+            version: '3.0' # applies to versions >= 3.0.0 and < 3.1.0
+      - if: tarantool_version >= 3.1.0
+        labels:
+            version: '3.1+' # applies to versions >= 3.1.0
 
 ..  _configuration_environment_variable:
 
