@@ -364,7 +364,7 @@ A YAML configuration can include parts that apply only to instances that meet ce
 This is useful for cluster upgrade scenarios: during an upgrade, instances can be running
 different Tarantool versions and therefore require different configurations.
 
-Conditional parts are defined in the ``conditional`` configuration section in the global scope
+Conditional parts are defined in the ``conditional`` configuration section in the global scope.
 It includes one or more ``if`` subsections. Each ``if`` subsection defines conditions
 and configuration parts that apply to instances that meet these conditions.
 
@@ -373,7 +373,7 @@ to Tarantool 3.1.0:
 
 -   The user-defined :ref:`label <configuration_labels>` ``upgraded`` is ``true``
     on instances that are running Tarantool 3.1.0 or later. On older versions, it is ``false``.
--   Two ``compat`` options that were introduced in 3.1.0 are defined for Tarantool 3.1.0
+-   Two :ref:`compat <configuration_reference_compat>` options that were introduced in 3.1.0 are defined for Tarantool 3.1.0
     instances. On older versions, they would cause an error.
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/conditional/config.yaml
