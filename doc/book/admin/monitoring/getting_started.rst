@@ -6,7 +6,7 @@ Getting started with monitoring
 Example on GitHub: `sharded_cluster_crud_metrics <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster_crud_metrics>`_
 
 Tarantool allows you to configure and expose its :ref:`metrics <metrics-reference>` using a :ref:`YAML configuration <configuration>`.
-You can also use the :ref:`metrics <metrics-api_reference>` module to create and collect custom metrics.
+You can also use the built-in :ref:`metrics <metrics-api_reference>` module to create and collect custom metrics.
 
 
 
@@ -17,7 +17,7 @@ Configuring metrics
 -------------------
 
 To configure metrics, use the :ref:`metrics <configuration_reference_metrics>` section in a cluster configuration.
-The configuration below enables all metrics, excluding :ref:`Vinyl <metrics-reference-vinyl>`-specific ones:
+The configuration below enables all metrics excluding :ref:`vinyl <metrics-reference-vinyl>`-specific ones:
 
 ..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster_crud_metrics/config.yaml
     :start-at: metrics:
@@ -25,7 +25,8 @@ The configuration below enables all metrics, excluding :ref:`Vinyl <metrics-refe
     :language: yaml
     :dedent:
 
-The ``metrics.labels`` option accepts the predefined :ref:`{{ instance_name }} <configuration_predefined_variables>` variable to use an instance name as a :ref:`label <metrics-api_reference-labels>` to be added to every observation.
+The ``metrics.labels`` option accepts the predefined :ref:`{{ instance_name }} <configuration_predefined_variables>` variable.
+This adds an instance name as a :ref:`label <metrics-api_reference-labels>` to every observation.
 
 Third-party Lua modules, like `crud <https://github.com/tarantool/crud>`_ or `expirationd <https://github.com/tarantool/expirationd>`_, offer their own metrics.
 You can enable these metrics by :ref:`configuring the corresponding role <configuration_application_roles_configure>`.
@@ -103,3 +104,8 @@ Below is the example of a Prometheus scrape configuration that collects metrics 
     :dedent:
 
 For more information on collecting and visualizing metrics, refer to :ref:`monitoring-grafana_dashboard-page`.
+
+..  NOTE::
+
+    |tcm_full_name| allows you to view metrics of connected clusters in real time.
+    Learn more in :ref:`tcm_cluster_metrics`.

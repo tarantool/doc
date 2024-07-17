@@ -1,8 +1,7 @@
 .. _monitoring-grafana_dashboard-page:
 
-===============================================================================
 Grafana dashboard
-===============================================================================
+=================
 
 After :ref:`enabling and configuring metrics <monitoring-getting_started>`, you can visualise them using Tarantool Grafana dashboards.
 These dashboards are available as part of
@@ -38,9 +37,9 @@ package functionality.
 
 .. _monitoring-grafana_dashboard-monitoring_stack:
 
--------------------------------------------------------------------------------
+
 Prepare a monitoring stack
--------------------------------------------------------------------------------
+--------------------------
 
 Since there are Prometheus and InfluxDB data source Grafana dashboards,
 you can use one of the following:
@@ -57,9 +56,13 @@ For issues related to setting up Prometheus, Telegraf, InfluxDB, or Grafana inst
 
 .. _monitoring-grafana_dashboard-collect_metrics:
 
--------------------------------------------------------------------------------
 Collect metrics with server agents
--------------------------------------------------------------------------------
+----------------------------------
+
+.. _monitoring-grafana_dashboard-collect_metrics_prometheus:
+
+Prometheus
+~~~~~~~~~~
 
 To collect metrics for Prometheus, first set up metrics output with ``prometheus`` format.
 You can use the :ref:`roles.metrics-export <monitoring_exposing_metrics>` configuration or set up the :ref:`Prometheus plugin <metrics-prometheus-api_reference>` manually.
@@ -71,6 +74,10 @@ metrics path as it was configured on Tarantool instances:
     :language: yaml
     :dedent:
 
+.. _monitoring-grafana_dashboard-collect_metrics_influxdb:
+
+InfluxDB
+~~~~~~~~
 
 To collect metrics for InfluxDB, use the Telegraf agent.
 First off, configure Tarantool metrics output in ``json`` format
@@ -113,17 +120,17 @@ to Telegraf configuration including each Tarantool instance metrics URL:
         name_prefix = "tarantool_"
         fieldpass = ["value"]
 
-Be sure to include each label key as ``label_pairs_<key>`` so it will be
-extracted with the plugin.
+Be sure to include each label key as ``label_pairs_<key>`` to extract it
+with the plugin.
 For example, if you use :code:`{ state = 'ready' }` labels somewhere in metric collectors, add ``label_pairs_state`` tag key.
 
 
 
 .. _monitoring-grafana_dashboard-import:
 
--------------------------------------------------------------------------------
 Import the dashboard
--------------------------------------------------------------------------------
+--------------------
+
 Open Grafana import menu.
 
 ..  image:: images/grafana_import.png
@@ -141,16 +148,15 @@ Set dashboard name, folder and uid (if needed).
 ..  image:: images/grafana_import_setup.png
     :align: left
 
-You can choose datasource and datasource variables after import.
+You can choose the data source and data source variables after import.
 
 ..  image:: images/grafana_variables_setup.png
     :align: left
 
 .. _monitoring-grafana_dashboard-troubleshooting:
 
--------------------------------------------------------------------------------
 Troubleshooting
--------------------------------------------------------------------------------
+---------------
 
 -   If there are no data on the graphs, make sure that you picked datasource and job/measurement correctly.
 
