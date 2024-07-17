@@ -49,7 +49,6 @@ The following metrics provide a picture of memory usage by the Tarantool process
                 the vinyl page index, and the vinyl bloom filters.
         *   -   ``tnt_info_memory_lua``
             -   Number of bytes used for the Lua runtime.
-                The Lua memory is limited to 2 GB per instance.
                 Monitoring this metric can prevent memory overflow.
         *   -   ``tnt_info_memory_net``
             -   Number of bytes used for network input/output buffers.

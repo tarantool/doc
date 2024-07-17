@@ -28,9 +28,11 @@ Prometheus configuration.
 Lua memory
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-The Lua memory is limited to 2 GB per instance. Monitoring ``tnt_info_memory_lua``
-metric may prevent memory overflow and detect the presence of bad Lua code
-practices.
+Monitoring ``tnt_info_memory_lua`` metric may prevent memory overflow and detect the presence of bad Lua code practices.
+
+..  NOTE::
+
+    The Lua memory is limited to 2 GB per instance if Tarantool doesn't have the GC64 mode enabled for LuaJIT.
 
 ..  code-block:: yaml
 
