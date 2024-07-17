@@ -364,7 +364,7 @@ A YAML configuration can include parts that apply only to instances that meet ce
 This is useful for cluster upgrade scenarios: during an upgrade, instances can be running
 different Tarantool versions and therefore require different configurations.
 
-Conditional parts are defined in the ``conditional`` configuration section in the global scope.
+Conditional parts are defined in the :ref:`conditional <configuration_reference_conditional>` configuration section in the global scope.
 It includes one or more ``if`` subsections. Each ``if`` subsection defines conditions
 and configuration parts that apply to instances that meet these conditions.
 
