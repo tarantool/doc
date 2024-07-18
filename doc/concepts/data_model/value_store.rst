@@ -562,6 +562,84 @@ Charts explaining the precise differences from DUCET order are
 in the
 `Common Language Data Repository <https://unicode.org/cldr/charts/30/collation>`_.
 
+
+..  _index-defaults:
+
+Default values
+--------------
+
+*Default values* are assigned to tuple fields automatically if these fields are
+skipped during the tuple creation.
+
+You can specify a default value for a field in the space_object.format call that
+defines the space format. Default values apply regardless of the field nullability:
+even if the value can be `nil`, any tuple in which the field is skipped receives the
+the default value.
+
+Default values can be set in two ways: explicitly or using a function.
+
+..  _index-defaults-explicit:
+
+Explicit default values
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Explicit default values are defined in the ``default`` parameter of the field declaration
+in a :ref:`space_object.format () <box_space-format>` call.
+
+..  literalinclude:: /code_snippets/test/default_values/explicit_defaultlua
+    :language: lua
+    :start-after: configure_space_start
+    :end-before: configure_space_start
+    :dedent:
+
+An explicit default value can be any Lua object that can be evaluated during the
+``space_object.format()`` call, for example:
+
+-   a constant: ``default = 100``
+-   an initialized variable: ``default = default_size``
+-   an expression: ``default = 10 + default_size``
+-   a function call: ``default = count_default()``
+
+.. important::
+
+    Explicit default values are evaluated once when setting the space format.
+    Further changes, such as assignments of variables used in default values,
+    do not affect the values. To change the default values, call ``space_object.format()``
+    again.
+
+
+Learn more in :ref:`space_object.format() <box_space-format>` reference.
+
+..  _index-defaults-functions:
+
+Default functions
+~~~~~~~~~~~~~~~~~
+
+A default value can be defined as a return value of a stored Lua function. To be
+the default, a function must be created with :ref:`box.schema.func.create() <box_schema-func_create>`
+with function body and return one value of the field's type. It also must not yield.
+
+Default functions are set in the ``default_func`` parameter of the field declaration
+in a space_object.format call. To make a function with no arguments the default
+for a field, specify its name:
+
+..  literalinclude:: /code_snippets/test/constraints/constraint_test.lua
+    :language: lua
+    :lines: 21-26
+    :dedent:
+
+A default function can also have one argument.
+
+// example
+
+To pass the function argument when setting the default, specify it in the ``default`` parameter
+of the space_object.format() call:
+
+// example
+
+Learn more in :ref:`space_object.format() <box_space-format>` reference.
+
+
 ..  _index-constraints:
 
 Constraints

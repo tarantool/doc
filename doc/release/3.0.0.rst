@@ -447,7 +447,8 @@ It's possible to revert to the old behavior by toggling the new ``binary_data_de
 Default field values
 ~~~~~~~~~~~~~~~~~~~~
 
-You can now assign the default values for specific fields when defining a :ref:`space format <box_space-format>`.
+You can now assign the :ref:`default values <index-defaults>` for specific fields
+when defining a :ref:`space format <box_space-format>`.
 In this example, the ``isbn`` and ``title`` fields have the specified default values:
 
 ..  code-block:: lua
@@ -490,7 +491,7 @@ Then, assign the function name to ``default_func`` when defining a space format:
         { name = 'year_of_publication', type = 'unsigned', default_func = 'current_year' }
     })
 
-
+Learn more in :ref:`index-defaults`.
 
 .. _3-0-triggers:
 
