@@ -227,13 +227,13 @@ In this option, the role name is the key and the role configuration is the value
 
 The example below shows how to enable statistics on called operations by providing the ``roles.crud-router`` role's configuration:
 
-..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster_crud/config.yaml
+..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster_crud_metrics/config.yaml
     :language: yaml
-    :start-at: roles.crud-router
-    :end-at: stats_quantile_max_age_time
+    :start-after: routers:
+    :end-at: stats_quantiles
     :dedent:
 
-Example on GitHub: `sharded_cluster_crud <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster_crud>`_
+Example on GitHub: `sharded_cluster_crud_metrics <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster_crud_metrics>`_
 
 
 

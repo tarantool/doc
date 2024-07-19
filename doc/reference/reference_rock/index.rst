@@ -10,7 +10,6 @@ This reference covers third-party Lua modules for Tarantool.
     :maxdepth: 1
 
     membership
-    Module metrics <../../book/monitoring/index>
     Module luatest <luatest/luatest_overview>
     vshard/index
     dbms

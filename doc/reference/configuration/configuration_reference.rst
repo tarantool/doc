@@ -3039,6 +3039,73 @@ The ``memtx`` section is used to configure parameters related to the :ref:`memtx
     | Default: box.NULL
     | Environment variable: TT_MEMTX_SORT_THREADS
 
+
+
+
+..  _configuration_reference_metrics:
+
+metrics
+-------
+
+The ``metrics`` section defines configuration parameters for :ref:`metrics <monitoring>`.
+
+..  NOTE::
+
+    ``metrics`` can be defined in any :ref:`scope <configuration_scopes>`.
+
+-   :ref:`metrics.exclude <configuration_reference_metrics_exclude>`
+-   :ref:`metrics.include <configuration_reference_metrics_include>`
+-   :ref:`metrics.labels <configuration_reference_metrics_labels>`
+
+
+.. _configuration_reference_metrics_exclude:
+
+..  confval:: metrics.exclude
+
+    An array containing the metrics to turn off.
+    The array can contain the same values as the ``exclude`` configuration parameter passed to :ref:`metrics.cfg() <metrics_cfg>`.
+
+    **Example**
+
+    ..  literalinclude:: /code_snippets/snippets/sharding/instances.enabled/sharded_cluster_crud_metrics/config.yaml
+        :start-at: metrics:
+        :end-at: instance_name
+        :language: yaml
+        :dedent:
+
+    |
+    | Type: array
+    | Default: ``[]``
+    | Environment variable: TT_METRICS_EXCLUDE
+
+
+.. _configuration_reference_metrics_include:
+
+..  confval:: metrics.include
+
+    An array containing the metrics to turn on.
+    The array can contain the same values as the ``include`` configuration parameter passed to :ref:`metrics.cfg() <metrics_cfg>`.
+
+    |
+    | Type: array
+    | Default: ``[ all ]``
+    | Environment variable: TT_METRICS_INCLUDE
+
+
+.. _configuration_reference_metrics_labels:
+
+..  confval:: metrics.labels
+
+    Global :ref:`labels <metrics-api_reference-labels>` to be added to every observation.
+
+    |
+    | Type: map
+    | Default: ``{ alias = names.instance_name }``
+    | Environment variable: TT_METRICS_LABELS
+
+
+
+
 ..  _configuration_reference_process:
 
 process

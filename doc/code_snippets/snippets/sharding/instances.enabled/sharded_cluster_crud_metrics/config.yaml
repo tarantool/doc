@@ -1,0 +1,134 @@
+credentials:
+  users:
+    replicator:
+      password: 'topsecret'
+      roles: [ replication ]
+    storage:
+      password: 'secret'
+      roles: [ sharding ]
+
+iproto:
+  advertise:
+    peer:
+      login: replicator
+    sharding:
+      login: storage
+
+sharding:
+  bucket_count: 1000
+
+metrics:
+  include: [ all ]
+  exclude: [ vinyl ]
+  labels:
+    alias: '{{ instance_name }}'
+
+groups:
+  storages:
+    roles:
+    - roles.crud-storage
+    - roles.metrics-export
+    app:
+      module: storage
+    sharding:
+      roles: [ storage ]
+    replication:
+      failover: manual
+    replicasets:
+      storage-a:
+        leader: storage-a-001
+        instances:
+          storage-a-001:
+            roles_cfg:
+              roles.metrics-export:
+                http:
+                - listen: '127.0.0.1:8082'
+                  endpoints:
+                  - path: /metrics/prometheus/
+                    format: prometheus
+                  - path: /metrics/json
+                    format: json
+            iproto:
+              listen:
+              - uri: '127.0.0.1:3302'
+              advertise:
+                client: '127.0.0.1:3302'
+          storage-a-002:
+            roles_cfg:
+              roles.metrics-export:
+                http:
+                - listen: '127.0.0.1:8083'
+                  endpoints:
+                  - path: /metrics/prometheus/
+                    format: prometheus
+                  - path: /metrics/json
+                    format: json
+            iproto:
+              listen:
+              - uri: '127.0.0.1:3303'
+              advertise:
+                client: '127.0.0.1:3303'
+      storage-b:
+        leader: storage-b-001
+        instances:
+          storage-b-001:
+            roles_cfg:
+              roles.metrics-export:
+                http:
+                - listen: '127.0.0.1:8084'
+                  endpoints:
+                  - path: /metrics/prometheus/
+                    format: prometheus
+                  - path: /metrics/json
+                    format: json
+            iproto:
+              listen:
+              - uri: '127.0.0.1:3304'
+              advertise:
+                client: '127.0.0.1:3304'
+          storage-b-002:
+            roles_cfg:
+              roles.metrics-export:
+                http:
+                - listen: '127.0.0.1:8085'
+                  endpoints:
+                  - path: /metrics/prometheus/
+                    format: prometheus
+                  - path: /metrics/json
+                    format: json
+            iproto:
+              listen:
+              - uri: '127.0.0.1:3305'
+              advertise:
+                client: '127.0.0.1:3305'
+  routers:
+    roles:
+    - roles.crud-router
+    - roles.metrics-export
+    roles_cfg:
+      roles.crud-router:
+        stats: true
+        stats_driver: metrics
+        stats_quantiles: true
+    app:
+      module: router
+    sharding:
+      roles: [ router ]
+    replicasets:
+      router-a:
+        instances:
+          router-a-001:
+            roles_cfg:
+              roles.metrics-export:
+                http:
+                - listen: '127.0.0.1:8081'
+                  endpoints:
+                  - path: /metrics/prometheus/
+                    format: prometheus
+                  - path: /metrics/json
+                    format: json
+            iproto:
+              listen:
+              - uri: '127.0.0.1:3301'
+              advertise:
+                client: '127.0.0.1:3301'

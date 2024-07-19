@@ -206,7 +206,6 @@ Here is a schematic view of the cluster topology:
     The main group-level options here are:
 
     *   ``roles``: This option enables the ``roles.crud-router`` :ref:`role <configuration_application_roles_enable>` provided by the CRUD module for a router instance.
-    *   ``roles_cfg``: This section enables and configures statistics on called operations for a router with the enabled ``roles.crud-router`` role.
     *   ``app``: The ``app.module`` option specifies that code specific to a router should be loaded from the ``router`` module. This is explained below in the :ref:`vshard-quick-start-router-code` section.
     *   ``sharding``: The :ref:`sharding.roles <configuration_reference_sharding_roles>` option specifies that an instance inside this group acts as a router.
     *   ``replicasets``: This section configures a replica set with one router instance.
@@ -444,18 +443,6 @@ Writing and selecting data
         - null
         ...
 
-4.  To get statistics on called operations, pass the space name to ``crud.stats()``:
-
-    .. code-block:: tarantoolsession
-
-        sharded_cluster_crud:router-a-001> crud.stats('bands')
-        ---
-        - get:
-            ok:
-              latency: 0.00069199999961711
-              count: 1
-              time: 0.00069199999961711
-              latency_average: 0.00069199999961711
 
 
 

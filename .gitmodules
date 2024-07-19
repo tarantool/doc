@@ -1,12 +1,6 @@
-[submodule "modules/metrics"]
-	path = modules/metrics
-	url = https://github.com/tarantool/metrics.git
 [submodule "modules/luatest"]
 	path = modules/luatest
 	url = https://github.com/tarantool/luatest
-[submodule "modules/grafana-dashboard"]
-	path = modules/grafana-dashboard
-	url = https://github.com/tarantool/grafana-dashboard
 [submodule "modules/tntcxx"]
 	path = modules/tntcxx
 	url = https://github.com/tarantool/tntcxx.git
