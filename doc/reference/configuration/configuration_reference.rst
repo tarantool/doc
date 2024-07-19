@@ -4302,6 +4302,35 @@ snapshot.by.*
     | Default: 10^18
     | Environment variable: TT_SNAPSHOT_BY_WAL_SIZE
 
+
+
+..  _configuration_reference_sql:
+
+sql
+---
+
+The ``sql`` section defines configuration parameters related to :ref:`SQL <reference_sql>`.
+
+..  NOTE::
+
+    ``sql`` can be defined in any :ref:`scope <configuration_scopes>`.
+
+-   :ref:`sql.cache_size <configuration_reference_sql_cache_size>`
+
+..  _configuration_reference_sql_cache_size:
+
+..  confval:: sql.cache_size
+
+    The maximum cache size (in bytes) for all :ref:`SQL prepared statements <box-sql_box_prepare>`.
+    To see the actual cache size, use :ref:`box.info.sql().cache.size <box_introspection-box_info>`.
+
+    |
+    | Type: integer
+    | Default: 5242880
+    | Environment variable: TT_SQL_CACHE_SIZE
+
+
+
 ..  _configuration_reference_vinyl:
 
 vinyl
