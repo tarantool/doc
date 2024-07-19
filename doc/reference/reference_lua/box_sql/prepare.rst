@@ -38,7 +38,7 @@ box.prepare()
     is "shared", that is, there is one cache for
     all sessions. However, session X cannot execute a statement prepared by session Y. |br|
     For monitoring the cache, see :ref:`box.info().sql <box_introspection-box_info>`. |br|
-    For changing the cache, see :ref:`(Configuration reference) sql_cache_size <cfg_basic-sql_cache_size>`.
+    For changing the cache size, use :ref:`sql.cache_size <configuration_reference_sql_cache_size>`.
 
     Prepared statements will "expire" (become invalid) if
     any database object is dropped or created or altered --

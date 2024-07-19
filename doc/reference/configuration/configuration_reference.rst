@@ -4321,7 +4321,7 @@ The ``sql`` section defines configuration parameters related to :ref:`SQL <refer
 
 ..  confval:: sql.cache_size
 
-    The maximum cache size (in bytes) for :ref:`SQL prepared statements <box-sql_box_prepare>`.
+    The maximum cache size (in bytes) for all :ref:`SQL prepared statements <box-sql_box_prepare>`.
     To see the actual cache size, use :ref:`box.info.sql().cache.size <box_introspection-box_info>`.
 
     |
