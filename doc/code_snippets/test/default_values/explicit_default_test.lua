@@ -28,11 +28,12 @@ g.test_default_values = function(cg)
         -- configure_space_end
 
         -- insert_ok_start
-        books:insert { 1, "Thinking in Java" }
+        books:insert { 1, 'Thinking in Java' }
+        books:insert { 2, 'How to code in Go', nil }
         -- insert_ok_end
 
         -- Tests --
-        t.assert_equals(books:count(), 1)
-        t.assert_equals(books:get(1), { 1, "Thinking in Java", 2024 })
+        t.assert_equals(books:count(), 2)
+        t.assert_equals(books:get(1), { 1, 'Thinking in Java', 2024 })
     end)
 end

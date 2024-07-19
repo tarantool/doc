@@ -586,10 +586,10 @@ Explicit default values
 Explicit default values are defined in the ``default`` parameter of the field declaration
 in a :ref:`space_object.format () <box_space-format>` call.
 
-..  literalinclude:: /code_snippets/test/default_values/explicit_defaultlua
+..  literalinclude:: /code_snippets/test/default_values/explicit_default_test.lua
     :language: lua
     :start-after: configure_space_start
-    :end-before: configure_space_start
+    :end-before: configure_space_end
     :dedent:
 
 An explicit default value can be any Lua object that can be evaluated during the
@@ -602,13 +602,21 @@ An explicit default value can be any Lua object that can be evaluated during the
 
 .. important::
 
-    Explicit default values are evaluated once when setting the space format.
-    Further changes, such as assignments of variables used in default values,
-    do not affect the values. To change the default values, call ``space_object.format()``
-    again.
+    Explicit default values are evaluated **only** when setting the space format.
+    If you use a variable as a default value when setting the space format,
+    its further assignments do not affect the default value.
 
+    To change the default values, call ``space_object.format()`` again.
 
-Learn more in :ref:`space_object.format() <box_space-format>` reference.
+To use a default value for a field, skip or assign `nil`:
+
+..  literalinclude:: /code_snippets/test/default_values/explicit_default_test.lua
+    :language: lua
+    :start-after: insert_ok_start
+    :end-before: insert_ok_end
+    :dedent:
+
+See also the :ref:`space_object.format() <box_space-format>` reference.
 
 ..  _index-defaults-functions:
 
@@ -619,25 +627,40 @@ A default value can be defined as a return value of a stored Lua function. To be
 the default, a function must be created with :ref:`box.schema.func.create() <box_schema-func_create>`
 with function body and return one value of the field's type. It also must not yield.
 
+..  literalinclude:: /code_snippets/test/default_values/default_functions_test.lua
+    :language: lua
+    :start-after: create_no_arg_function_start
+    :end-before: crate_no_arg_function_end
+    :dedent:
+
 Default functions are set in the ``default_func`` parameter of the field declaration
 in a space_object.format call. To make a function with no arguments the default
 for a field, specify its name:
 
-..  literalinclude:: /code_snippets/test/constraints/constraint_test.lua
+..  literalinclude:: /code_snippets/test/default_values/default_functions_test.lua
     :language: lua
-    :lines: 21-26
+    :start-after: format_space_default_func_start
+    :end-before: format_space_default_func_end
     :dedent:
 
 A default function can also have one argument.
 
-// example
+..  literalinclude:: /code_snippets/test/default_values/default_functions_test.lua
+    :language: lua
+    :start-after: create_arg_function_start
+    :end-before: create_arg_function_end
+    :dedent:
 
 To pass the function argument when setting the default, specify it in the ``default`` parameter
-of the space_object.format() call:
+of the ``space_object.format()`` call:
 
-// example
+..  literalinclude:: /code_snippets/test/default_values/default_functions_test.lua
+    :language: lua
+    :start-after: reformat_space_start
+    :end-before: reformat_space_start
+    :dedent:
 
-Learn more in :ref:`space_object.format() <box_space-format>` reference.
+See also the :ref:`space_object.format() <box_space-format>` reference.
 
 
 ..  _index-constraints:
