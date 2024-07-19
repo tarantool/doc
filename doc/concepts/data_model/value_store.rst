@@ -659,6 +659,19 @@ of the ``space_object.format()`` call:
     :end-before: reformat_space_end
     :dedent:
 
+
+.. note::
+
+    A key difference between a default function (``default_func = 'count_default'``)
+    and a function return value used as a field default value (``default = count_default()``)
+    is the following:
+
+    -   A *default function* is called **every time a default value must be produced**,
+        that is, a tuple is inserted or updated without specifying the field.
+    -   A return value used a field *default value*: the function is called **once**
+        when setting the space format. Then, all tuples receive the result of
+        this exact call if the field is not specified.
+
 See also the :ref:`space_object.format() <box_space-format>` reference.
 
 
