@@ -731,13 +731,13 @@ Shows the current state of a replica set node in regards to leader election.
         :header-rows: 0
 
         *   -   ``tnt_election_state``
-            -   election state (mode) of the node.
+            -   Election state (mode) of the node.
                 When election is enabled, the node is writable only in the leader state.
                 Possible values:
 
-                *   0 (``follower``) -- all the non-leader nodes are called followers
-                *   1 (``candidate``) -- the nodes that start a new election round are called candidates.
-                *   2 (``leader``) -- the node that collected a quorum of votes becomes the leader
+                *   0 (``follower``): all the non-leader nodes are called followers
+                *   1 (``candidate``): the nodes that start a new election round are called candidates.
+                *   2 (``leader``): the node that collected a quorum of votes becomes the leader
 
         *   -   ``tnt_election_vote``
             -   ID of a node the current node votes for.
@@ -758,6 +758,7 @@ Memtx
 
 Memtx mvcc memory statistics.
 Transaction manager consists of two parts:
+
 - the transactions themselves (TXN section)
 - MVCC
 
@@ -778,13 +779,10 @@ TXN
                 This metric always has the label ``{kind="..."}``,
                 which has the following possible values:
 
-                *   ``total``
-                    The number of bytes that are allocated for the statements of all current transactions.
-                *   ``average``
-                    Average bytes used by transactions for statements
+                *   ``total``: the number of bytes that are allocated for the statements of all current transactions.
+                *   ``average``: average bytes used by transactions for statements
                     (`txn.statements.total` bytes / number of open transactions).
-                *   ``max``
-                    The maximum number of bytes used by one the current transaction for statements.
+                *   ``max``: the maximum number of bytes used by one the current transaction for statements.
 
         *   - ``tnt_memtx_tnx_user``
             -   In Tarantool C API there is a function `box_txn_alloc()`.
@@ -792,24 +790,18 @@ TXN
                 This metric always has the label ``{kind="..."}``,
                 which has the following possible values:
 
-                *   ``total``
-                    Memory allocated by the `box_txn_alloc()` function on all current transactions.
-                *   ``average``
-                    Transaction average (total allocated bytes / number of all current transactions).
-                *   ``max``
-                    The maximum number of bytes allocated by `box_txn_alloc()` function per transaction.
+                *   ``total``: memory allocated by the `box_txn_alloc()` function on all current transactions.
+                *   ``average``: transaction average (total allocated bytes / number of all current transactions).
+                *   ``max``: the maximum number of bytes allocated by `box_txn_alloc()` function per transaction.
 
         *   - ``tnt_memtx_tnx_system``
             -   There are internals: logs, savepoints.
                 This metric always has the label ``{kind="..."}``,
                 which has the following possible values:
 
-                *   ``total``
-                    Memory allocated by internals on all current transactions.
-                *   ``average``
-                    Average allocated memory by internals (total memory / number of all current transactions).
-                *   ``max``
-                    The maximum number of bytes allocated by internals per transaction.
+                *   ``total``: memory allocated by internals on all current transactions.
+                *   ``average``: average allocated memory by internals (total memory / number of all current transactions).
+                *   ``max``: the maximum number of bytes allocated by internals per transaction.
 
 .. _metrics-reference-memtx_mvcc:
 
@@ -831,24 +823,18 @@ It detects conflicts and makes sure that tuples that are no longer in the space,
                 This metric always has the label ``{kind="..."}``,
                 which has the following possible values:
 
-                *   ``total``
-                    Trackers of all current transactions are allocated in total (in bytes).
-                *   ``average``
-                    Average for all current transactions (total memory bytes / number of transactions).
-                *   ``max``
-                    Maximum trackers allocated per transaction (in bytes).
+                *   ``total``: trackers of all current transactions are allocated in total (in bytes).
+                *   ``average``: average for all current transactions (total memory bytes / number of transactions).
+                *   ``max``: maximum trackers allocated per transaction (in bytes).
 
         *   - ``tnt_memtx_mvcc_conflicts``
             -   Allocated in case of transaction conflicts.
                 This metric always has the label ``{kind="..."}``,
                 which has the following possible values:
 
-                *   ``total``
-                    Bytes allocated for conflicts in total.
-                *   ``average``
-                    Average for all current transactions (total memory bytes / number of transactions).
-                *   ``max``
-                    Maximum bytes allocated for conflicts per transaction.
+                *   ``total``: bytes allocated for conflicts in total.
+                *   ``average``: average for all current transactions (total memory bytes / number of transactions).
+                *   ``max``: maximum bytes allocated for conflicts per transaction.
 
 
 ..  _metrics-reference-tuples:
@@ -860,6 +846,7 @@ Tuples
 Saved tuples are divided into 3 categories: ``used``, ``read_view``, ``tracking``.
 
 Each category has two metrics:
+
 - ``retained`` tuples - they are no longer in the index, but MVCC does not allow them to be removed.
 - ``stories`` - MVCC is based on the story mechanism, almost every tuple has a story.
 This is a separate metric because even the tuples that are in the index can have a story.
@@ -876,10 +863,8 @@ So ``stories`` and ``retained`` need to be measured separately.
                 This metric always has the label ``{kind="..."}``,
                 which has the following possible values:
 
-                *   ``count``
-                    Number of ``used`` tuples / number of stories.
-                *   ``total``
-                    Amount of bytes used by stories ``used`` tuples.
+                *   ``count``: number of ``used`` tuples / number of stories.
+                *   ``total``: amount of bytes used by stories ``used`` tuples.
 
         *   -   ``tnt_memtx_mvcc_tuples_used_retained``
             -   Tuples that are used by active read-write transactions.
@@ -887,10 +872,8 @@ So ``stories`` and ``retained`` need to be measured separately.
                 This metric always has the label ``{kind="..."}``,
                 which has the following possible values:
 
-                *   ``count``
-                    Number of retained ``used`` tuples / number of stories.
-                *   ``total``
-                    Amount of bytes used by retained ``used`` tuples.
+                *   ``count``: number of retained ``used`` tuples / number of stories.
+                *   ``total``: amount of bytes used by retained ``used`` tuples.
 
         *   -   ``tnt_memtx_mvcc_tuples_read_view_stories``
             -   Tuples that are not used by active read-write transactions,
@@ -898,10 +881,8 @@ So ``stories`` and ``retained`` need to be measured separately.
                 This metric always has the label ``{kind="..."}``,
                 which has the following possible values:
 
-                *   ``count``
-                    Number of ``read_view`` tuples / number of stories.
-                *   ``total``
-                    Amount of bytes used by stories ``read_view`` tuples.
+                *   ``count``: number of ``read_view`` tuples / number of stories.
+                *   ``total``: amount of bytes used by stories ``read_view`` tuples.
 
         *   -   ``tnt_memtx_mvcc_tuples_read_view_retained``
             -   Tuples that are not used by active read-write transactions,
@@ -910,20 +891,16 @@ So ``stories`` and ``retained`` need to be measured separately.
                 This metric always has the label ``{kind="..."}``,
                 which has the following possible values:
 
-                *   ``count``
-                    Number of retained ``read_view`` tuples / number of stories.
-                *   ``total``
-                    Amount of bytes used by retained ``read_view`` tuples.
+                *   ``count``: number of retained ``read_view`` tuples / number of stories.
+                *   ``total``: amount of bytes used by retained ``read_view`` tuples.
 
         *   -   ``tnt_memtx_mvcc_tuples_tracking_stories``
             -   Tuples that are not directly used by any transactions, but are used by MVCC to track reads.
                 This metric always has the label ``{kind="..."}``,
                 which has the following possible values:
 
-                *   ``count``
-                    Number of ``tracking`` tuples / number of tracking stories.
-                *   ``total``
-                    Amount of bytes used by stories ``tracking`` tuples.
+                *   ``count``: number of ``tracking`` tuples / number of tracking stories.
+                *   ``total``: amount of bytes used by stories ``tracking`` tuples.
 
         *   -   ``tnt_memtx_mvcc_tuples_tracking_retained``
             -   Tuples that are not directly used by any transactions, but are used by MVCC to track reads.
@@ -931,10 +908,8 @@ So ``stories`` and ``retained`` need to be measured separately.
                 This metric always has the label ``{kind="..."}``,
                 which has the following possible values:
 
-                *   ``count``
-                    Number of retained ``tracking`` tuples / number of stories.
-                *   ``total``
-                    Amount of bytes used by retained ``tracking`` tuples.
+                *   ``count``: number of retained ``tracking`` tuples / number of stories.
+                *   ``total``: amount of bytes used by retained ``tracking`` tuples.
 
 
 ..  _metrics-reference-read-view:
