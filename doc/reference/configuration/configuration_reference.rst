@@ -892,6 +892,8 @@ If :ref:`replication.failover <configuration_reference_replication_failover>` is
 * :ref:`config.etcd.ssl.verify_peer <config_etcd_ssl_verify_peer>`
 * :ref:`config.etcd.http.request.timeout <config_etcd_http_request_timeout>`
 * :ref:`config.etcd.http.request.unix_socket <config_etcd_http_request_unix_socket>`
+* :ref:`config.etcd.watchers.reconnect_max_attempts <config_etcd_watchers_reconnect_max_attempts>`
+* :ref:`config.etcd.watchers.reconnect_timeout <config_etcd_watchers_reconnect_timeout>`
 
 .. _config_etcd_endpoints:
 
@@ -1027,6 +1029,33 @@ If :ref:`replication.failover <configuration_reference_replication_failover>` is
     | Type: string
     | Default: nil
     | Environment variable: TT_CONFIG_ETCD_HTTP_REQUEST_UNIX_SOCKET
+
+.. _config_etcd_watchers_reconnect_max_attempts:
+
+.. confval:: config.etcd.watchers.reconnect_max_attempts
+
+    **Since:** :doc:`3.1.0 </release/3.1.0>`
+
+    The maximum number of attempts to try to reconnect to an etcd server in case of connection failure.
+
+    |
+    | Type: integer
+    | Default: nil
+    | Environment variable: TT_CONFIG_ETCD_WATCHERS_RECONNECT_MAX_ATTEMPTS
+
+.. _config_etcd_watchers_reconnect_timeout:
+
+.. confval:: config.etcd.watchers.reconnect_timeout
+
+    **Since:** :doc:`3.1.0 </release/3.1.0>`
+
+    The timeout (in seconds) between attempts to reconnect to an etcd server in case of connection failure.
+
+    |
+    | Type: number
+    | Default: nil
+    | Environment variable: TT_CONFIG_ETCD_WATCHERS_RECONNECT_TIMEOUT
+
 
 .. _configuration_reference_config_storage:
 
