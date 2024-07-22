@@ -21,10 +21,6 @@ Tarantool duplicates only blocks modified after a read view is created.
     Tarantool Enterprise Edition supports read views starting from v2.11.0 and enables the ability
     to work with them using both :ref:`Lua <read_views_lua_api>` and :ref:`C API <read_views_c_api>`.
 
-
-
-
-
 .. _read_views_limitations:
 
 Limitations
@@ -34,8 +30,7 @@ Read views have the following limitations:
 
 - Only the :ref:`memtx <engines-memtx>` engine is supported.
 - Only TREE and HASH :ref:`indexes <index-types>` are supported.
-- Pagination is not supported (the :ref:`after <box_index-select>` option).
-
+- Pagination (the :ref:`after <box_index-select>` option) is supported only for TREE indexes.
 
 
 .. _working_with_read_views:
@@ -72,8 +67,6 @@ After creating a read view, you can see the information about it by calling
     ...
 
 To list all the created read views, call the :ref:`box.read_view.list() <reference_lua-box_read_view_list>` function.
-
-
 
 .. _querying_data:
 
@@ -112,6 +105,7 @@ Similarly, you can retrieve data by the specific index.
     ...
 
 
+ADD example with fech_pos and after
 
 .. _closing_read_view:
 
@@ -133,7 +127,6 @@ Otherwise, a read view is closed implicitly when the read view object is collect
 After the read view is closed,
 its :ref:`status <read_view_object-status>` is set to ``closed``.
 On an attempt to use it, an error is raised.
-
 
 .. _read_views_example:
 
@@ -202,7 +195,7 @@ as described in :ref:`Using data operations <box_space-operations-detailed-examp
         ...
 
 
-
+??? ADD example with fetch_pos and after
 ..  toctree::
     :maxdepth: 2
     :hidden:

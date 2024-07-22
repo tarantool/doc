@@ -30,7 +30,7 @@ g.test_default_func = function(cg)
         books:format({
             { name = 'id', type = 'unsigned' },
             { name = 'isbn', type = 'string' },
-            { name = 'title', type = 'string', default = 'No title specified' },
+            { name = 'title', type = 'string' },
             { name = 'year', type = 'unsigned', default_func = 'current_year' }
         })
         books:create_index('primary', { parts = { 1 } })
@@ -51,7 +51,7 @@ g.test_default_func = function(cg)
         books:format({
             { name = 'id', type = 'unsigned', default_func= 'randomize', default = {min = 0, max = 1000} },
             { name = 'isbn', type = 'string' },
-            { name = 'title', type = 'string', default = 'No title specified' },
+            { name = 'title', type = 'string' },
             { name = 'year', type = 'unsigned', default_func = 'current_year' }
         })
         -- reformat_space_end
