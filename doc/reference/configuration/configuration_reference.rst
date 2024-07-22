@@ -1036,7 +1036,7 @@ If :ref:`replication.failover <configuration_reference_replication_failover>` is
 
     **Since:** :doc:`3.1.0 </release/3.1.0>`
 
-    The maximum number of attempts to try to reconnect to an etcd server in case of connection failure.
+    The maximum number of attempts to reconnect to an etcd server in case of connection failure.
 
     |
     | Type: integer
