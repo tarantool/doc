@@ -19,6 +19,12 @@ tuple_object.info()
             Field map is used to speed up access to indexed fields of the tuple.
         -   ``waste_size`` -- amount of excess memory used to store the tuple
             in mempool.
+
+            .. note::
+
+            ``waste_size` is provided for reference only and can be inaccurate.
+            Avoid using it for memory usage calculations.
+
         -   ``arena`` - type of the arena where the tuple is allocated.
             Possible values are: ``memtx``, ``malloc``, ``runtime``.
 
