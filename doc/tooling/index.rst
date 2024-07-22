@@ -1,7 +1,7 @@
 Tooling
 =======
 
-This chapter describes the tools that enable developers and administrators
+This section describes the tools that enable developers and administrators
 to work with Tarantool.
 
 ..  toctree::
@@ -10,6 +10,5 @@ to work with Tarantool.
     tt_cli/index
     tcm/index
     interactive_console
-    tarantoolctl
     luajit_memprof
     luajit_getmetrics

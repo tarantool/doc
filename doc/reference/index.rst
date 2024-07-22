@@ -13,7 +13,6 @@ Reference
     configuration/configuration_reference
     configuration/index
     tarantool_cli_options
-    tooling/index
     reference_sql/index
     reference_lua/index
     reference_rock/index

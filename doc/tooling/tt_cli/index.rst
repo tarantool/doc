@@ -60,9 +60,9 @@ Replacement for tarantooctl and Cartridge CLI
 ---------------------------------------------
 
 A multi-purpose tool for working with Tarantool from the command line, ``tt`` has
-come to replace the deprecated utilities :ref:`tarantoolctl <tarantoolctl>`
+come to replace the deprecated utilities ``tarantoolctl``
 and `Cartridge CLI <https://github.com/tarantool/cartridge-cli>`_ command-line utilities.
-The instructions on migration to ``tt`` are provided in the `tt GitHub reposirory <https://github.com/tarantool/tt/blob/v1.3.0/doc/examples.md>`_.
+The instructions on migration to ``tt`` are provided in the `tt GitHub repository <https://github.com/tarantool/tt/blob/v1.3.0/doc/examples.md>`_.
 
 .. TODO: change the link to the migration guide when it's ready.
 

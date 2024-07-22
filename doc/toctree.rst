@@ -11,6 +11,7 @@
     concepts/index
     CRUD operations <reference/reference_lua/box_space>
     book/admin/index
+    tooling/index
     book/connectors
     enterprise/index
     reference/index
