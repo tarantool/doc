@@ -571,9 +571,9 @@ Default values
 *Default values* are assigned to tuple fields automatically if these fields are
 skipped during the tuple insert or update.
 
-You can specify a default value for a field in the :ref:`space_object.format () <box_space-format>`
+You can specify a default value for a field in the :ref:`space_object:format() <box_space-format>`
 call that defines the space format. Default values apply regardless of the field nullability:
-any tuple in which the field is skipped or set to `nil` receives the
+any tuple in which the field is skipped or set to `nil` receives
 the default value.
 
 Default values can be set in two ways: explicitly or using a function.
@@ -584,7 +584,7 @@ Explicit default values
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 Explicit default values are defined in the ``default`` parameter of the field declaration
-in a :ref:`space_object.format () <box_space-format>` call.
+in a :ref:`space_object:format() <box_space-format>` call.
 
 ..  literalinclude:: /code_snippets/test/default_values/explicit_default_test.lua
     :language: lua
@@ -605,7 +605,7 @@ may be used as a default value, for example:
     Explicit default values are evaluated **only** when setting the space format.
     If you use a variable as a default value, its further assignments do not affect the default value.
 
-    To change the default values, call ``space_object.format()`` again.
+    To change the default values, call ``space_object:format()`` again.
 
 To use a default value for a field, skip it or assign `nil`:
 
@@ -615,7 +615,7 @@ To use a default value for a field, skip it or assign `nil`:
     :end-before: insert_ok_end
     :dedent:
 
-See also the :ref:`space_object.format() <box_space-format>` reference.
+See also the :ref:`space_object:format() <box_space-format>` reference.
 
 ..  _index-defaults-functions:
 
@@ -624,7 +624,7 @@ Default functions
 
 A default value can be defined as a return value of a stored Lua function. To be
 the default, a function must be created with :ref:`box.schema.func.create() <box_schema-func_create>`
-with function body and return one value of the field's type. It also must not yield.
+with the function body and return one value of the field's type. It also must not yield.
 
 ..  literalinclude:: /code_snippets/test/default_values/default_functions_test.lua
     :language: lua
@@ -633,7 +633,7 @@ with function body and return one value of the field's type. It also must not yi
     :dedent:
 
 Default functions are set in the ``default_func`` parameter of the field declaration
-in a ``space_object.format()`` call. To make a function with no arguments the default
+in a ``space_object:format()`` call. To make a function with no arguments the default
 for a field, specify its name:
 
 ..  literalinclude:: /code_snippets/test/default_values/default_functions_test.lua
@@ -651,7 +651,7 @@ A default function can also have one argument.
     :dedent:
 
 To pass the function argument when setting the default, specify it in the ``default`` parameter
-of the ``space_object.format()`` call:
+of the ``space_object:format()`` call:
 
 ..  literalinclude:: /code_snippets/test/default_values/default_functions_test.lua
     :language: lua
