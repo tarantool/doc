@@ -21,10 +21,6 @@ Tarantool duplicates only blocks modified after a read view is created.
     Tarantool Enterprise Edition supports read views starting from v2.11.0 and enables the ability
     to work with them using both :ref:`Lua <read_views_lua_api>` and :ref:`C API <read_views_c_api>`.
 
-
-
-
-
 .. _read_views_limitations:
 
 Limitations
@@ -32,11 +28,9 @@ Limitations
 
 Read views have the following limitations:
 
-- Only the :ref:`memtx <engines-memtx>` engine is supported.
-- Only TREE and HASH :ref:`indexes <index-types>` are supported.
-- Pagination is not supported (the :ref:`after <box_index-select>` option).
-
-
+-   Only the :ref:`memtx <engines-memtx>` engine is supported.
+-   Only :ref:`TREE <indexes-tree>`, :ref:`HASH <indexes-hash>` and :ref:`functional <box_space-index_func>`
+    indexes are supported.
 
 .. _working_with_read_views:
 
@@ -72,8 +66,6 @@ After creating a read view, you can see the information about it by calling
     ...
 
 To list all the created read views, call the :ref:`box.read_view.list() <reference_lua-box_read_view_list>` function.
-
-
 
 .. _querying_data:
 
@@ -111,6 +103,40 @@ Similarly, you can retrieve data by the specific index.
       - [3, 'Ace of Base', 1987]
     ...
 
+Pagination is supported in read views in the same ways as in ``select`` requests
+to spaces: using the ``fetch_pos`` and ``after`` arguments. To get the cursor position
+after executing a request on a read view, set ``fetch_pos`` to ``true``:
+
+.. code-block:: tarantoolsession
+
+    -- Select first 3 tuples and fetch a last tuple's position --
+    app:instance001> result, position = read_view1.space.bands:select({}, { limit = 3, fetch_pos = true })
+    ---
+    ...
+
+    app:instance001> result
+    ---
+    - - [1, 'Roxette', 1986]
+      - [2, 'Scorpions', 1965]
+      - [3, 'Ace of Base', 1987]
+    ...
+
+    app:instance001> position
+    ---
+    - kQM
+    ...
+
+Then, pass this position in the ``after`` parameter of a request to get the
+next data chunk:
+
+.. code-block:: tarantoolsession
+
+    app:instance001> read_view1.space.bands:select({}, { limit = 3, after = position })
+    ---
+    - - [4, 'The Beatles', 1960]
+      - [5, 'Pink Floyd', 1965]
+      - [6, 'The Rolling Stones', 1962]
+    ...
 
 
 .. _closing_read_view:
@@ -134,12 +160,10 @@ After the read view is closed,
 its :ref:`status <read_view_object-status>` is set to ``closed``.
 On an attempt to use it, an error is raised.
 
-
 .. _read_views_example:
 
 Example
 -------
-
 
 A Tarantool session below demonstrates how to open a read view,
 get data from this view, and close it.
@@ -200,8 +224,6 @@ as described in :ref:`Using data operations <box_space-operations-detailed-examp
         tarantool> read_view1:close()
         ---
         ...
-
-
 
 ..  toctree::
     :maxdepth: 2
