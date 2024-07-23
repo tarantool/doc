@@ -37,5 +37,4 @@ Tarantool uses mechanisms like the write-ahead log (WAL) and snapshots.
     indexes
     operations
     schema_desc
-    persistence
     migrations

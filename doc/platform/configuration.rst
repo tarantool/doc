@@ -570,16 +570,9 @@ If the same option is defined in two or more locations, the option with the high
 
 
 
-
-
 ..  toctree::
     :hidden:
 
     configuration/configuration_etcd
     configuration/configuration_code
-    configuration/configuration_memtx
-    configuration/configuration_persistence
-    configuration/configuration_connections
-    configuration/configuration_credentials
-    configuration/configuration_authentication
     .. configuration/configuration_migrating

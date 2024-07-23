@@ -66,7 +66,6 @@ Tarantool Enterprise Edition
     security
     audit
     tuple_compression
-    wal_extensions
     read_views
     flight_recorder
     audit_log

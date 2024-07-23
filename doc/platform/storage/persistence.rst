@@ -1,16 +1,24 @@
 ..  _configuration_persistence:
+..  _concepts-data_model-persistence:
+..  _index-box_persistence:
 
 Persistence
 ===========
 
 To ensure data persistence, Tarantool provides the abilities to:
 
-*   Record each data change request into a :ref:`write-ahead log <internals-wal>` (WAL) file (``.xlog`` files).
-*   Take :ref:`snapshots <internals-snapshot>` that contain an on-disk copy of the entire data set for a given moment
-    (``.snap`` files). It is possible to set automatic snapshot creation using the :ref:`checkpoint daemon <configuration_persistence_checkpoint_daemon>`.
+*   Record each data change request into a write-ahead log (WAL) file (``.xlog`` files).
 
-During the recovery process, Tarantool can load the latest snapshot file and then read the requests from the WAL files,
-produced after this snapshot was made.
+    When a power outage occurs or the Tarantool instance is killed incidentally, the in-memory database is lost.
+    In such case, Tarantool restores the data from WAL files by reading them and redoing the requests.
+    This is called the "recovery process".
+
+*   Take internals-snapshot that contain an on-disk copy of the entire data set for a given moment
+    (``.snap`` files).
+
+    During the recovery process, Tarantool can load the latest snapshot file and then read the requests from the WAL files, produced after this snapshot was made.
+    After creating a new snapshot, the earlier WAL files can be removed to free up space.
+
 This topic describes how to configure:
 
 *   the snapshot creation in the :ref:`snapshot <configuration_reference_snapshot>` section of a :ref:`YAML configuration <configuration>`.
@@ -28,12 +36,17 @@ Configure the snapshots
 
 This section describes how to define snapshot settings in the :ref:`snapshot <configuration_reference_snapshot>` section of a YAML configuration.
 
+..  NOTE::
+
+    To force immediate creation of a snapshot file, use the
+    :doc:`box.snapshot() </reference/reference_lua/box_snapshot>` function.
+
 ..  _configuration_persistence_snapshot_creation:
 
 Set up automatic snapshot creation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In Tarantool, it is possible to automate the :ref:`snapshot creation </reference/reference_lua/box_snapshot>`.
+In Tarantool, it is possible to automate the snapshot creation.
 Automatic creation is enabled by default and can be configured in two ways:
 
 *   A new snapshot is taken once in a given period (see :ref:`snapshot.by.interval <configuration_reference_snapshot_by_interval>`).
@@ -236,6 +249,14 @@ The work of the checkpoint daemon is based on the following configuration option
 
 If necessary, the checkpoint daemon also activates the :ref:`Tarantool garbage collector <configuration_persistence_garbage_collector>`
 that deletes old snapshots and WAL files.
+
+..  NOTE::
+
+     The memtx engine takes only regular snapshots with the interval set in
+     the checkpoint daemon configuration.
+
+     The vinyl engine runs checkpointing in the background at all times.
+
 
 ..  _configuration_persistence_garbage_collector:
 
