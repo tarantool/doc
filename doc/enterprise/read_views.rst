@@ -110,19 +110,18 @@ after executing a request on a read view, set ``fetch_pos`` to ``true``:
 
 .. code-block:: tarantoolsession
 
-    -- Select first 3 tuples and fetch a last tuple's position --
-    app:instance001> result, position = read_view1.space.bands:select({}, { limit = 3, fetch_pos = true })
+    tarantool> result, position = read_view1.space.bands:select({}, { limit = 3, fetch_pos = true })
     ---
     ...
 
-    app:instance001> result
+    tarantool> result
     ---
     - - [1, 'Roxette', 1986]
       - [2, 'Scorpions', 1965]
       - [3, 'Ace of Base', 1987]
     ...
 
-    app:instance001> position
+    tarantool> position
     ---
     - kQM
     ...
@@ -132,7 +131,7 @@ next data chunk:
 
 .. code-block:: tarantoolsession
 
-    app:instance001> read_view1.space.bands:select({}, { limit = 3, after = position })
+    tarantool> read_view1.space.bands:select({}, { limit = 3, after = position })
     ---
     - - [4, 'The Beatles', 1960]
       - [5, 'Pink Floyd', 1965]
