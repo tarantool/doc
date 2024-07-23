@@ -88,6 +88,9 @@ Below is a list of all ``box.space`` functions and members.
         *  - :doc:`./box_space/select`
            - Select one or more tuples
 
+        *  - :doc:`./box_space/stat`
+           - Get statistics on memory usage
+
         *  - :doc:`./box_space/truncate`
            - Delete all tuples
 
@@ -202,6 +205,7 @@ To see examples, visit the :ref:`how-to guide on CRUD operations <box_space_exam
     box_space/replace
     box_space/run_triggers
     box_space/select
+    box_space/stat
     box_space/truncate
     box_space/update
     box_space/upsert

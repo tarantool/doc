@@ -148,7 +148,7 @@ You can see the total memory usage using :ref:`box.slab.info() <box_slab_info>`:
     - 75302024
     ...
 
-A new ``space_object:stat()`` method allows you to determine how the additional 5 Mb of memory is used:
+A new `space_object:stat() <box_space-stat>` method allows you to determine how the additional 5 Mb of memory is used:
 
 .. code-block:: console
 
@@ -173,7 +173,7 @@ The above report gives the following information:
 -   ``data_size``: the actual size of data, which equals to ``space_object:bsize()``.
 -   ``waste_size``: the size of memory wasted due to internal fragmentation in the `slab allocator <https://github.com/tarantool/small>`_.
 
-To get such information about a specific tuple, use ``tuple_object:info()``:
+To get such information about a specific tuple, use :ref:`tuple_object:info() <box_tuple-info>`:
 
 .. code-block:: console
 
