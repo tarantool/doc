@@ -29,6 +29,7 @@ This section documents APIs for various programming languages:
     java
     c
     python
+    tntcxx
 
 Protocol
 --------
