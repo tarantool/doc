@@ -138,8 +138,6 @@ next data chunk:
       - [6, 'The Rolling Stones', 1962]
     ...
 
-ADD example with fech_pos and after
-
 .. _closing_read_view:
 
 Closing a read view
