@@ -3,6 +3,11 @@
 Submodule compress.zstd
 =======================
 
+..  admonition:: Enterprise Edition
+    :class: fact
+
+    This submodule is a part of the `Enterprise Edition <https://www.tarantool.io/compare/>`_.
+
 .. _overview-zstd-compress:
 
 Overview

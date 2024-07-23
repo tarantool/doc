@@ -3,6 +3,11 @@
 Module compress
 ===============
 
+..  admonition:: Enterprise Edition
+    :class: fact
+
+    This module is a part of the `Enterprise Edition <https://www.tarantool.io/compare/>`_.
+
 ..  module:: compress
 
 **Since:** :doc:`2.11.0 </release/2.11.0>`
@@ -13,6 +18,6 @@ The ``compress`` module provides a set of submodules for compressing and decompr
     :maxdepth: 1
     :includehidden:
 
-    zlib
-    zstd
-    lz4
+    compress/zlib
+    compress/zstd
+    compress/lz4

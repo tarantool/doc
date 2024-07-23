@@ -3,6 +3,11 @@
 Submodule compress.zlib
 =======================
 
+..  admonition:: Enterprise Edition
+    :class: fact
+
+    This submodule is a part of the `Enterprise Edition <https://www.tarantool.io/compare/>`_.
+
 .. _overview-zlib-compress:
 
 Overview

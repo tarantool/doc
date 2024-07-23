@@ -3,6 +3,11 @@
 Submodule compress.lz4
 =======================
 
+..  admonition:: Enterprise Edition
+    :class: fact
+
+    This submodule is a part of the `Enterprise Edition <https://www.tarantool.io/compare/>`_.
+
 .. _overview-lz4-compress:
 
 Overview
