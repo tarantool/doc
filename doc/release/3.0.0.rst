@@ -148,7 +148,7 @@ You can see the total memory usage using :ref:`box.slab.info() <box_slab_info>`:
     - 75302024
     ...
 
-A new ``space_object:stat()`` method allows you to determine how the additional 5 Mb of memory is used:
+A new `space_object:stat() <box_space-stat>` method allows you to determine how the additional 5 Mb of memory is used:
 
 .. code-block:: console
 
@@ -173,7 +173,7 @@ The above report gives the following information:
 -   ``data_size``: the actual size of data, which equals to ``space_object:bsize()``.
 -   ``waste_size``: the size of memory wasted due to internal fragmentation in the `slab allocator <https://github.com/tarantool/small>`_.
 
-To get such information about a specific tuple, use ``tuple_object:info()``:
+To get such information about a specific tuple, use :ref:`tuple_object:info() <box_tuple-info>`:
 
 .. code-block:: console
 
@@ -447,7 +447,8 @@ It's possible to revert to the old behavior by toggling the new ``binary_data_de
 Default field values
 ~~~~~~~~~~~~~~~~~~~~
 
-You can now assign the default values for specific fields when defining a :ref:`space format <box_space-format>`.
+You can now assign the :ref:`default values <index-defaults>` for specific fields
+when defining a :ref:`space format <box_space-format>`.
 In this example, the ``isbn`` and ``title`` fields have the specified default values:
 
 ..  code-block:: lua
@@ -490,7 +491,7 @@ Then, assign the function name to ``default_func`` when defining a space format:
         { name = 'year_of_publication', type = 'unsigned', default_func = 'current_year' }
     })
 
-
+Learn more in :ref:`index-defaults`.
 
 .. _3-0-triggers:
 

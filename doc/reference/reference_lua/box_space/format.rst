@@ -47,6 +47,10 @@ space_object:format()
           See also: :ref:`key_part.collation <key_part_collation>`.
         * (Optional) The ``constraint`` table specifies the :ref:`constraints <index-constraints>` that the field value must satisfy.
         * (Optional) The ``foreign_key`` table specifies the :ref:`foreign keys <index-box_foreign_keys>` for the field.
+        * (Optional) The ``default`` value specifies the :ref:`explicit default value <index-defaults-explicit>` for the field
+          or the argument of the default function if ``default_func`` is specified.
+        * (Optional) The ``default_func`` string value specifies the name of the field's :ref:`default function <index-defaults-functions>`.
+          To pass the default function's argument, add the ``default`` parameter.
 
         It is not legal for tuples to contain values that have the wrong type.
         The example below will cause an error:

@@ -28,6 +28,7 @@ Limitations
 
 Read views have the following limitations:
 
+
 -   Only the :ref:`memtx <engines-memtx>` engine is supported.
 -   Only :ref:`TREE <indexes-tree>`, :ref:`HASH <indexes-hash>` and :ref:`functional <box_space-index_func>`
     indexes are supported.
@@ -138,6 +139,7 @@ next data chunk:
       - [6, 'The Rolling Stones', 1962]
     ...
 
+ADD example with fech_pos and after
 
 .. _closing_read_view:
 
