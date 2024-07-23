@@ -1,4 +1,6 @@
-.. _index-box_connectors:
+..  _index-box_connectors:
+..  _getting_started_connectors:
+..  _connectors-community-supported:
 
 Connectors
 ==========
@@ -7,21 +9,26 @@ Connectors are APIs that allow using Tarantool with various programming language
 
 Connectors can be divided into two groups -- those maintained by the Tarantool team
 and those supported by the community.
-The Tarantool team maintains the :ref:`high-level C API <index_connector_c>`, the :ref:`Go <index_connector_go>`
-and :ref:`Java <index_connector_java>` connectors, and a synchronous :ref:`Python <index_connector_py>` connector.
-All other connectors are :ref:`community-supported <connectors-community-supported>`, which means that support for new Tarantool features may be delayed.
-Besides, the Tarantool support team cannot prioritize issues that arise while working through these connectors.
+The Tarantool team maintains the following connectors:
 
-This chapter documents APIs for various programming languages:
+-   :ref:`Go <index_connector_go>`
+-   :ref:`Java <index_connector_java>`
+-   :ref:`high-level C API <index_connector_c>`
+-   :ref:`synchronous Python connector <index_connector_py>`
+
+All other connectors are community-supported, which means that support for new Tarantool features may be delayed.
+Find all the available connectors on the `Connectors <https://www.tarantool.io/en/download/connectors>`_ page.
+
+This section documents APIs for various programming languages:
 
 ..  toctree::
     :maxdepth: 1
+    :hidden:
 
-    connectors/c
-    connectors/go
-    connectors/java
-    connectors/python
-    connectors/community
+    go
+    java
+    c
+    python
 
 Protocol
 --------

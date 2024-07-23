@@ -16,13 +16,8 @@ If you are new to Tarantool, please see our
 ..  toctree::
     :maxdepth: 2
 
-    Creating Tarantool database <getting_started_db>
     db/index
     replication/index
-    vshard_quick
-    getting_started_tcm
-    getting_started_net_box
-    getting_started_connectors
     app/index
     sql/index
     other/index

@@ -12,7 +12,7 @@
     CRUD operations <reference/reference_lua/box_space>
     book/admin/index
     tooling/index
-    book/connectors
+    connector/index
     enterprise/index
     reference/index
     release/index
