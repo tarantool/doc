@@ -1,7 +1,5 @@
 :fullwidth:
 
-.. _concepts:
-
 Concepts
 ========
 
@@ -119,4 +117,3 @@ For details, check the :ref:`Storage engines <engines-chapter>` section.
     sharding/index
     replication/index  
     triggers
-    engines/index
