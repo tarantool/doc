@@ -1,38 +1,40 @@
-.. _enterprise-setup:
+.. _tarantool_installation:
 
-===============================================================================
-Setup
-===============================================================================
+Installing Tarantool
+====================
 
-This chapter explains how to download and set up Tarantool Enterprise Edition and run
+This section explains how to download and set up Tarantool Enterprise Edition and run
 a sample application provided with it.
+To learn how to download and install Tarantool Community Edition, see the `Download <https://www.tarantool.io/en/download/>`_ page.
+
+..  NOTE::
+
+    The :ref:`tt <tt-cli>` utility provides the ability to install and work with multiple Tarantool versions.
+
 
 .. _enterprise-prereqs:
 
--------------------------------------------------------------------------------
 System requirements
--------------------------------------------------------------------------------
+-------------------
 
 The recommended system requirements for running Tarantool Enterprise are as
 follows.
 
 .. _enterprise-prereqs-hardware:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Hardware requirements
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
 
 To fully ensure the fault tolerance of a distributed data storage system, at
 least **three** physical computers or virtual servers are required.
 
-For testing/development purposes, the system can be deployed using a smaller number
-of servers; however, it is not recommended to use such configurations for production.
+For testing/development purposes, the system can be deployed using a smaller number of servers.
+However, it is not recommended to use such configurations for production.
 
 .. _enterprise-prereqs-software:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Software requirements
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
 
 #. As host operating systems, Tarantool Enterprise Edition supports
    **Red Hat Enterprise Linux** and **CentOS** versions 7.5 and higher.
@@ -53,9 +55,8 @@ Software requirements
 
 .. _enterprise-prereqs-network:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Network requirements
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
 
 Hereinafter, **"storage servers"** or **"Tarantool servers"** are the computers
 used to store and process data, and **"administration server"** is the computer
@@ -109,9 +110,8 @@ section of the RHEL7 user documentation.
 
 .. _enterprise-package-contents:
 
--------------------------------------------------------------------------------
 Package contents
--------------------------------------------------------------------------------
+----------------
 
 The latest release packages of Tarantool Enterprise are available in the
 `customer zone <https://www.tarantool.io/accounts/customer_zone/packages/enterprise>`_
@@ -133,13 +133,6 @@ Archive contents:
 * ``tarantool`` is the main executable of Tarantool.
 * ``tt`` command-line utility.
 * ``tcm`` is the |tcm_full_name| executable.
-* ``tarantoolctl`` is the utility script for installing supplementary modules
-  and connecting to the administrative console.
-
-  .. important::
-
-    ``tarantoolctl`` is deprecated in favor of the :ref:`tt CLI utility <tt-cli>`.
-
 * ``examples/`` is the directory containing sample applications:
 
   * ``pg_writethrough_cache/`` is an application showcasing how Tarantool can
@@ -154,19 +147,12 @@ Archive contents:
   repository. See the :ref:`rocks reference <enterprise-rocks>` for details.
 * ``templates/`` is the directory containing template files for your application
   development environment.
-* ``deprecated/`` is a set of modules that are no longer supported:
-
-  * ``vshard-zookeeper-orchestrator`` is a Python application
-    for launching ``orchestrator``,
-  * ``zookeeper-scm`` files are the ZooKeeper integration modules (require
-    ``usr/`` libraries).
 
 .. _archive-unpack:
 .. _enterprise-install:
 
--------------------------------------------------------------------------------
 Installation
--------------------------------------------------------------------------------
+------------
 
 The delivered ``tar + gzip`` archive should be uploaded to a server and unpacked:
 
@@ -184,6 +170,3 @@ add them to the executable path by running the script provided by the distributi
 
 Make sure you have enough privileges to run the script and that the file is executable.
 Otherwise, try ``chmod`` and ``chown`` commands to adjust it.
-
-Next, set up your development environment as described in
-:ref:`the developer's guide <enterprise-app-development>`.

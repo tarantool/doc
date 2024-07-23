@@ -63,7 +63,6 @@ Tarantool Enterprise Edition
 ..  toctree::
     :hidden:
 
-    setup
     security
     audit
     tuple_compression

@@ -18,7 +18,7 @@ To complete this tutorial, you need:
 *   A Linux machine with glibc 2.17 or later.
 *   A web browser: Chromium-based (Chromium version 108 or later), Mozilla Firefox 101 or later, or another up-to-date browser.
 *   The Tarantool Enterprise Edition SDK 3.0 or later in the ``tar.gz`` archive.
-    See :ref:`enterprise-setup` for information about getting the archive.
+    See :ref:`tarantool_installation` for information about getting the archive.
 
 For more detailed information about using |tcm|, refer to :ref:`tcm`.
 
