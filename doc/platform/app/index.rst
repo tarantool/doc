@@ -20,5 +20,6 @@ in C or C++.
     lua_tutorials
     c_tutorial
     coop_multitasking
+    rocksref
     modules
     lua_tips

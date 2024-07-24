@@ -1,7 +1,7 @@
 .. _enterprise-rocks:
 
 ===============================================================================
-Modules
+Built-in and external modules
 ===============================================================================
 
 This section covers open and closed source Lua modules for Tarantool Enterprise Edition

@@ -1,7 +1,7 @@
 ..  _concepts-modules:
 
-Modules
-=======
+Custom modules
+==============
 
 Any logic that is used in Tarantool can be packaged as an application or a reusable **module**.
 A module is an optional library that extends Tarantool functionality.

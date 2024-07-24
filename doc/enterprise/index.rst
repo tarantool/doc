@@ -60,9 +60,3 @@ Tarantool Enterprise Edition
         * Расширенная Enterprise-версия утилиты :ref:`tt <tt-cli>`.
         * :ref:`Tarantool Cluster Manager <tcm>` -- визуальный веб-инструмент для управления кластерами Tarantool.
 
-..  toctree::
-    :hidden:
-
-    system_metrics
-    deprecated
-    rocksref
