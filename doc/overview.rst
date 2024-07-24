@@ -44,9 +44,10 @@ You can use Tarantool with a programming language you're familiar with.
 For this purpose, a number of :ref:`connectors <getting_started_connectors>` are provided.
 
 ..  _overview-editions:
+.. _tarantool_enterprise:
 
-Editions
---------
+Enterprise Edition
+------------------
 
 Tarantool comes in two editions: the open-source **Community Edition (CE)**
 and the commercial **Enterprise Edition (EE)**.
@@ -63,19 +64,9 @@ This edition includes all the Community Edition features
 and is more predictable in terms of solution cost and maintenance.
 The Enterprise Edition is shipped as an SDK and includes a number of closed-source modules.
 
-
-.. _tarantool_enterprise:
-
-Enterprise Edition
-~~~~~~~~~~~~~~~~~~
-
 .. ifconfig:: language == 'en'
 
     .. container:: documentation-main-page-description
-
-        This section describes the Enterprise Edition of Tarantool software -- a Lua
-        application server integrated with a DBMS for deploying fault-tolerant
-        distributed data storages.
 
         The Enterprise Edition provides an `extended feature set <https://www.tarantool.io/en/compare/>`__ for developing
         and managing clustered Tarantool applications, for example:
@@ -102,10 +93,6 @@ Enterprise Edition
 .. ifconfig:: language == 'ru'
 
     .. container:: documentation-main-page-description
-
-        Данное руководство посвящено Enterprise-версии продукта Tarantool,
-        который сочетает в себе сервер приложений Lua и отказоустойчивую
-        распределенную СУБД.
 
         Enterprise-версия предлагает `дополнительные возможности <https://www.tarantool.io/ru/compare/>`__ по
         разработке и эксплуатации кластерных приложений, например:
