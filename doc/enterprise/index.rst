@@ -65,11 +65,8 @@ Tarantool Enterprise Edition
 
     security
     audit
-    tuple_compression
-    read_views
     flight_recorder
     audit_log
-    space_upgrade
     system_metrics
     deprecated
     rocksref

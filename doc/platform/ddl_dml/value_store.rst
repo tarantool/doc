@@ -876,3 +876,10 @@ you will get an error.
 
     Renaming parent spaces or referenced fields may break the corresponding foreign
     keys and prevent further insertions or modifications in the child spaces.
+
+..  toctree::
+    :hidden:
+
+    indexes
+    using_indexes
+    tuple_compression

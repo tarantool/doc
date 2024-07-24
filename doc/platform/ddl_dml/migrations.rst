@@ -147,3 +147,8 @@ This method is described in the README file of the
     to deploy a Tarantool cluster, you can use ``eval``.
     You can find more information about it
     `in the Ansible role documentation <https://github.com/tarantool/ansible-cartridge/blob/master/doc/eval.md>`_.
+
+..  toctree::
+    :hidden:
+
+    space_upgrade

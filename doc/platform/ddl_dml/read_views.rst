@@ -3,6 +3,11 @@
 Read views
 ==========
 
+..  admonition:: Enterprise Edition
+    :class: fact
+
+    Read views are available in the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only.
+
 A read view is an in-memory snapshot of the entire database that isn't
 affected by future :ref:`data modifications <index-box_operations>`.
 Read views provide access to database spaces and their indexes and enable you to

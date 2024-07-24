@@ -16,8 +16,6 @@ If you are new to Tarantool, please see our
 ..  toctree::
     :maxdepth: 2
 
-    db/index
     replication/index
     app/index
-    sql/index
     other/index

@@ -3,6 +3,11 @@
 Upgrading space schema
 ======================
 
+..  admonition:: Enterprise Edition
+    :class: fact
+
+    ``space:upgrade()`` is available in the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only.
+
 In Tarantool, :ref:`migration <migrations>` refers to any change in a data schema, for example,
 creating an index, adding a field, or changing a field format.
 If you need to change a data schema, there are several possible cases:

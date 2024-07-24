@@ -3,6 +3,11 @@
 Tuple compression
 =================
 
+..  admonition:: Enterprise Edition
+    :class: fact
+
+    Tuple compression is available in the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only.
+
 Tuple compression, introduced in Tarantool Enterprise Edition 2.10.0, aims to save memory space.
 Typically, it decreases the volume of stored data by 15%.
 However, the exact volume saved depends on the type of data.

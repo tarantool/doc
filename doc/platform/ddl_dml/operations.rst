@@ -156,3 +156,9 @@ resource usage of each function.
                 setting causes every data-change request to wait
                 for writing to finish on a slow device, this factor
                 is more important than all the others.
+
+..  toctree::
+    :hidden:
+
+    crud
+    sequences
