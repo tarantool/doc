@@ -3,7 +3,7 @@
 Installing Tarantool
 ====================
 
-This section explains how to download and set up Tarantool Enterprise Edition and run
+This section explains how to download and set up :ref:`Tarantool Enterprise Edition <tarantool_enterprise>` and run
 a sample application provided with it.
 To learn how to download and install Tarantool Community Edition, see the `Download <https://www.tarantool.io/en/download/>`_ page.
 
