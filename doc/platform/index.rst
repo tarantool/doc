@@ -1,4 +1,6 @@
-.. _platform:
+..  _platform:
+..  _tutorials:
+..  _how-to:
 
 Platform
 ========
@@ -14,3 +16,4 @@ Platform
     connections_and_auth/index
     replication/index
     app/index
+    other/index
