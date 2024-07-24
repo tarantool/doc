@@ -12,14 +12,13 @@ in C or C++.
 ..  toctree::
     :maxdepth: 1
 
+    rocksref
     app_roles
+    coop_multitasking
     launching_app
     creating_app
-    using_ide
     cookbook
     lua_tutorials
-    c_tutorial
-    coop_multitasking
-    rocksref
-    modules
     lua_tips
+    c_tutorial
+    using_ide
