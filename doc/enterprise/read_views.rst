@@ -28,10 +28,10 @@ Limitations
 
 Read views have the following limitations:
 
-- Only the :ref:`memtx <engines-memtx>` engine is supported.
-- Only TREE and HASH :ref:`indexes <index-types>` are supported.
-- Pagination (the :ref:`after <box_index-select>` option) is supported only for TREE indexes.
 
+-   Only the :ref:`memtx <engines-memtx>` engine is supported.
+-   Only :ref:`TREE <indexes-tree>`, :ref:`HASH <indexes-hash>` and :ref:`functional <box_space-index_func>`
+    indexes are supported.
 
 .. _working_with_read_views:
 
@@ -104,8 +104,39 @@ Similarly, you can retrieve data by the specific index.
       - [3, 'Ace of Base', 1987]
     ...
 
+Pagination is supported in read views in the same ways as in ``select`` requests
+to spaces: using the ``fetch_pos`` and ``after`` arguments. To get the cursor position
+after executing a request on a read view, set ``fetch_pos`` to ``true``:
 
-ADD example with fech_pos and after
+.. code-block:: tarantoolsession
+
+    tarantool> result, position = read_view1.space.bands:select({}, { limit = 3, fetch_pos = true })
+    ---
+    ...
+
+    tarantool> result
+    ---
+    - - [1, 'Roxette', 1986]
+      - [2, 'Scorpions', 1965]
+      - [3, 'Ace of Base', 1987]
+    ...
+
+    tarantool> position
+    ---
+    - kQM
+    ...
+
+Then, pass this position in the ``after`` parameter of a request to get the
+next data chunk:
+
+.. code-block:: tarantoolsession
+
+    tarantool> read_view1.space.bands:select({}, { limit = 3, after = position })
+    ---
+    - - [4, 'The Beatles', 1960]
+      - [5, 'Pink Floyd', 1965]
+      - [6, 'The Rolling Stones', 1962]
+    ...
 
 .. _closing_read_view:
 
@@ -132,7 +163,6 @@ On an attempt to use it, an error is raised.
 
 Example
 -------
-
 
 A Tarantool session below demonstrates how to open a read view,
 get data from this view, and close it.
@@ -194,8 +224,6 @@ as described in :ref:`Using data operations <box_space-operations-detailed-examp
         ---
         ...
 
-
-??? ADD example with fetch_pos and after
 ..  toctree::
     :maxdepth: 2
     :hidden:
