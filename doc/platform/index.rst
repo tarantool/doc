@@ -11,9 +11,11 @@ Platform
     concepts
     engines/index
     configuration
+    connections_and_auth/index
     storage/index
     ddl_dml/index
-    connections_and_auth/index
+    atomic
     replication/index
+    sharding/index
     app/index
     other/index

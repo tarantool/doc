@@ -8,11 +8,9 @@
     overview
     getting_started/index
     platform/index
-    how-to/index
-    concepts/index
+    tooling/index
     CRUD operations <reference/reference_lua/box_space>
     book/admin/index
-    tooling/index
     connector/index
     enterprise/index
     reference/index
