@@ -3221,6 +3221,7 @@ The ``process`` section defines configuration parameters of the Tarantool proces
 
         $ ps -ef | grep tarantool
         503      68100 68098  0 10:33 pts/2    00:00.10 tarantool <running>: myservice instance1
+
     |
     | Type: string
     | Default: 'tarantool - {{ instance_name }}'
