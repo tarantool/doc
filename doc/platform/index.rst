@@ -19,4 +19,3 @@ Platform
     connections_and_auth/index
     security/index
     app/index
-    other/index
