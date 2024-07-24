@@ -586,8 +586,7 @@ Master scheduled downtime
 To perform a scheduled downtime of a replica set master, it is recommended to:
 
 #.  Update the configuration to use another instance as a master.
-#.  Reload the configuration on all the instances.
-    All the requests then are forwarded to a new master.
+#.  Reload the configuration on all the instances. All the requests then are forwarded to a new master.
 #   Shut down the old master.
 
 .. _vshard-maintenance-replicaset_scheduled_downtime:

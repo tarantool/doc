@@ -847,10 +847,10 @@ Saved tuples are divided into 3 categories: ``used``, ``read_view``, ``tracking`
 
 Each category has two metrics:
 
-- ``retained`` tuples - they are no longer in the index, but MVCC does not allow them to be removed.
-- ``stories`` - MVCC is based on the story mechanism, almost every tuple has a story.
-This is a separate metric because even the tuples that are in the index can have a story.
-So ``stories`` and ``retained`` need to be measured separately.
+-   ``retained`` tuples - they are no longer in the index, but MVCC does not allow them to be removed.
+-   ``stories`` - MVCC is based on the story mechanism, almost every tuple has a story.
+    This is a separate metric because even the tuples that are in the index can have a story.
+    So ``stories`` and ``retained`` need to be measured separately.
 
 ..  container:: table
 
