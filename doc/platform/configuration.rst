@@ -532,7 +532,7 @@ You can also pass several listening addresses:
 Centralized configuration
 -------------------------
 
-..  include:: /concepts/configuration/configuration_etcd.rst
+..  include:: /platform/configuration/configuration_etcd.rst
     :start-after: ee_note_centralized_config_start
     :end-before: ee_note_centralized_config_end
 

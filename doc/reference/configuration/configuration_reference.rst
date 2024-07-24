@@ -874,7 +874,7 @@ This section describes options related to loading configuration settings from ex
 config.etcd.*
 ~~~~~~~~~~~~~
 
-..  include:: /concepts/configuration/configuration_etcd.rst
+..  include:: /platform/configuration/configuration_etcd.rst
     :start-after: ee_note_centralized_config_start
     :end-before: ee_note_centralized_config_end
 
@@ -1062,7 +1062,7 @@ If :ref:`replication.failover <configuration_reference_replication_failover>` is
 config.storage.*
 ~~~~~~~~~~~~~~~~
 
-..  include:: /concepts/configuration/configuration_etcd.rst
+..  include:: /platform/configuration/configuration_etcd.rst
     :start-after: ee_note_centralized_config_start
     :end-before: ee_note_centralized_config_end
 

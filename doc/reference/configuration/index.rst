@@ -4,7 +4,7 @@
 Configuration reference (box.cfg)
 =================================
 
-..  include:: /concepts/configuration/configuration_code.rst
+..  include:: /platform/configuration/configuration_code.rst
     :start-after: box_cfg_legacy_note_start
     :end-before: box_cfg_legacy_note_end
 
