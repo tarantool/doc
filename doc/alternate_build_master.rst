@@ -15,7 +15,6 @@
     tooling/index
     book/admin/index
     connector/index
-    enterprise/index
     reference/index
     contributing/index
     release/index
