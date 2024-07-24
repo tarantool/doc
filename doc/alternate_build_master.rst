@@ -13,7 +13,6 @@
     getting_started/index
     platform/index
     tooling/index
-    CRUD operations <reference/reference_lua/box_space>
     book/admin/index
     connector/index
     enterprise/index

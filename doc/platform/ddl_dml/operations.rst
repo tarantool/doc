@@ -162,3 +162,4 @@ resource usage of each function.
 
     crud
     sequences
+    CRUD operations <reference/reference_lua/box_space>
