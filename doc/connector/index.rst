@@ -15,6 +15,7 @@ The Tarantool team maintains the following connectors:
 -   :ref:`Java <index_connector_java>`
 -   :ref:`high-level C API <index_connector_c>`
 -   :ref:`synchronous Python connector <index_connector_py>`
+-   :ref:`index_connector_cpp`
 
 All other connectors are community-supported, which means that support for new Tarantool features may be delayed.
 Find all the available connectors on the `Connectors <https://www.tarantool.io/en/download/connectors>`_ page.
@@ -213,5 +214,5 @@ table :ref:`Common Types and MsgPack Encodings <msgpack-common_types_and_msgpack
     java
     c
     python
-    C++ <cxx/tntcxx_api>
+    cpp
     community
