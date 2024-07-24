@@ -12,7 +12,6 @@ in C or C++.
 ..  toctree::
     :maxdepth: 1
 
-    rocksref
     app_roles
     coop_multitasking
     launching_app

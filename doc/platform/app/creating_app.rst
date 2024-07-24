@@ -40,6 +40,7 @@ Follow these topics to implement our application:
     :maxdepth: 3
 
     creating_app/modules_rocks_and_applications
+    creating_app/rocksref
     creating_app/avro_schemas
     creating_app/bootstrapping_a_database
     creating_app/GIS
