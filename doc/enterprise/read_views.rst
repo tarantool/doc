@@ -223,10 +223,3 @@ as described in :ref:`Using data operations <box_space-operations-detailed-examp
         tarantool> read_view1:close()
         ---
         ...
-
-..  toctree::
-    :maxdepth: 2
-    :hidden:
-
-    read_views/lua_api
-    read_views/c_api

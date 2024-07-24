@@ -1,9 +1,13 @@
-.. _read_views_lua_api:
+.. _reference_lua-box_read_view_open:
 
-Read views: Lua API
-===================
+===============================================================================
+box.read_view.open()
+===============================================================================
 
-This topic describes the Lua API for working with :ref:`read views <read_views>`.
+..  admonition:: Enterprise Edition
+    :class: fact
+
+    This API is available in the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only.
 
 ..  _box-read_view-open:
 
@@ -25,6 +29,7 @@ This topic describes the Lua API for working with :ref:`read views <read_views>`
         tarantool> read_view1 = box.read_view.open({name = 'read_view1'})
 
 
+..  _box-read_view_object:
 
 ..  class:: read_view_object
 

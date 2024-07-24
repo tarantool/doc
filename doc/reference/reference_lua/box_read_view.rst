@@ -1,3 +1,5 @@
+.. _read_views_lua_api:
+
 -------------------------------------------------------------------------------
 Submodule box.read_view
 -------------------------------------------------------------------------------
@@ -19,8 +21,12 @@ The box.read_view submodule contains functions related to read views.
         *  - :doc:`./box_read_view/list`
            - Return an array of all active database read views.
 
+        *  - :doc:`./box_read_view/open`
+           - Create a new read view.
+
 
 ..  toctree::
     :hidden:
 
     box_read_view/list
+    box_read_view/open

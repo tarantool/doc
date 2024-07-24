@@ -25,3 +25,4 @@
     trivia
     tuple
     txn
+    read_views_c_api

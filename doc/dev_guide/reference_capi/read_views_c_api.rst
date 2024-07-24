@@ -3,6 +3,11 @@
 Read views: C API
 =================
 
+..  admonition:: Enterprise Edition
+    :class: fact
+
+    This API is available in the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only.
+
 This topic describes the C API for working with :ref:`read views <read_views>`.
 The C API is MT-safe and provides the ability to use a read view from any thread,
 not only from the :ref:`main (TX) thread <thread_model>`.
