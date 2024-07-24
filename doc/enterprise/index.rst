@@ -63,10 +63,6 @@ Tarantool Enterprise Edition
 ..  toctree::
     :hidden:
 
-    security
-    audit
-    flight_recorder
-    audit_log
     system_metrics
     deprecated
     rocksref

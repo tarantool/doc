@@ -40,4 +40,5 @@ This chapter includes the following sections:
    os_notes
    bug_reports
    troubleshoot
+   flight_recorder
    monitoring
