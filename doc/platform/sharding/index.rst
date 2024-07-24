@@ -42,6 +42,7 @@ learn more about :ref:`how sharding works <vshard-architecture>` in Tarantool:
     :maxdepth: 2
 
     vshard_architecture
+    vshard_admin
 
 You can also find out more about :ref:`sharding administration <vshard-admin>`
 or dive into the ``vshard`` configuration and API :ref:`reference <vshard>`.
