@@ -109,10 +109,6 @@ For details, check the :ref:`Storage engines <engines-chapter>` section.
 ..  toctree::
     :hidden:
 
-    configuration
-    coop_multitasking
     atomic
-    modules      
     sharding/index
-    replication/index  
     triggers

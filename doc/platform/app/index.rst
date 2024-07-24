@@ -1,7 +1,7 @@
 ..  _how-to-app-server:
 
-Developing applications with Tarantool
-======================================
+Applications
+============
 
 Using Tarantool as an application server, you can write your own applications.
 Tarantool’s native language for writing applications is
@@ -19,3 +19,6 @@ in C or C++.
     cookbook
     lua_tutorials
     c_tutorial
+    coop_multitasking
+    modules
+    lua_tips

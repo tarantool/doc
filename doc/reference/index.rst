@@ -19,4 +19,3 @@ Reference
     ../dev_guide/reference_capi/index
     ../dev_guide/internals/index
     ../book/box/limitations
-    lua_tips

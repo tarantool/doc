@@ -13,13 +13,13 @@ its changes to all the other instances.
 This section includes the following topics:
 
 ..  toctree::
-    :maxdepth: 2
-    :numbered: 0
+    :maxdepth: 1
 
     repl_architecture
     repl_sync
     repl_leader_elect
     supervised_failover
+    replication_tutorials/index
 
 For practical guides to replication, see :ref:`Replication tutorials <how-to-replication>`.
 You can learn about bootstrapping a replica set, adding instances to the replica set, or removing them.

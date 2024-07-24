@@ -5,7 +5,7 @@ Replication tutorials
 =====================
 
 ..  toctree::
-    :maxdepth: 2
+    :maxdepth: 1
 
     repl_bootstrap
     repl_bootstrap_auto

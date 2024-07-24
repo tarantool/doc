@@ -12,3 +12,5 @@ Platform
     storage/index
     ddl_dml/index
     connections_and_auth/index
+    replication/index
+    app/index
