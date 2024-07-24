@@ -274,7 +274,7 @@ To check that replicas (``instance001`` and ``instance003``) get all updates fro
             - {0: 1, 1: 32}
             ...
 
-..  include:: /how-to/replication/repl_bootstrap.rst
+..  include:: /platform/replication/replication_tutorials/repl_bootstrap.rst
     :start-after: vclock_0th_component_note_start
     :end-before: vclock_0th_component_note_end
 

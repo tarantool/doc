@@ -7,7 +7,7 @@ To learn what instances belong to the replica set and obtain statistics for all
 these instances, execute a :ref:`box.info.replication <box_info_replication>` request.
 The output below shows the replication status for a replica set containing one :ref:`master and two replicas <replication-master_replica_bootstrap>`:
 
-..  include:: /how-to/replication/repl_bootstrap.rst
+..  include:: /platform/replication/replication_tutorials/repl_bootstrap.rst
     :start-after: box_info_replication_manual_leader_start
     :end-before: box_info_replication_manual_leader_end
 

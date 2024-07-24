@@ -100,7 +100,7 @@
     The minimum value is 1, the maximum value is 256.
     The default is to use all available cores.
 
-    ..  include:: /concepts/atomic/thread_model.rst
+    ..  include:: /platform/atomic/thread_model.rst
         :start-after: note_drop_openmp_start
         :end-before: note_drop_openmp_end
 

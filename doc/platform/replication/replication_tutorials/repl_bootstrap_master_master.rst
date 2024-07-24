@@ -214,7 +214,7 @@ Checking a replica set status
     To see the diagrams that illustrate how the ``upstream`` and ``downstream`` connections look,
     refer to :ref:`Monitoring a replica set <replication-monitoring>`.
 
-..  include:: /how-to/replication/repl_bootstrap.rst
+..  include:: /platform/replication/replication_tutorials/repl_bootstrap.rst
     :start-after: vclock_0th_component_note_start
     :end-before: vclock_0th_component_note_end
 
