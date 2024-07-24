@@ -3,9 +3,14 @@
 Audit module
 ============
 
+..  admonition:: Enterprise Edition
+    :class: fact
+
+    The audit module is available in the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only.
+
 **Example on GitHub**: `audit_log <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/audit_log>`_
 
-The audit module available in Tarantool Enterprise Edition allows you to record various events occurred in Tarantool.
+The audit module allows you to record various events occurred in Tarantool.
 Each :ref:`event <audit-log-events-types>` is an action related to authorization and authentication, data manipulation,
 administrator activity, or system events.
 
