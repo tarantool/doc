@@ -3,10 +3,14 @@
 Flight recorder
 ===============
 
+..  admonition:: Enterprise Edition
+    :class: fact
+
+    The flight recorder is available in the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only.
+
 **Example on GitHub**: `flightrec <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/flightrec>`_
 
-The flight recorder available in the Enterprise Edition is an event collection tool that
-gathers various information about a working Tarantool instance, such as:
+The flight recorder is an event collection tool that gathers various information about a working Tarantool instance, such as:
 
 *   logs
 *   metrics
