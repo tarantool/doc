@@ -8,7 +8,6 @@ Overview
 --------
 
 To communicate with each other, Tarantool instances use a binary protocol called iproto.
-To learn more, see the :ref:`Binary protocol <box_protocol>` section.
 
 In this set of examples, the user will be looking at binary code transferred via iproto.
 The code is intercepted with ``tcpdump``, a monitoring utility.
