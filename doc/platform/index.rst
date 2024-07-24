@@ -1,7 +1,7 @@
 .. _platform:
 
-Platform guide
-==============
+Platform
+========
 
 ..  toctree::
     :maxdepth: 1
