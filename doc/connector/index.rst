@@ -1,6 +1,5 @@
 ..  _index-box_connectors:
 ..  _getting_started_connectors:
-..  _connectors-community-supported:
 
 Connectors
 ==========
