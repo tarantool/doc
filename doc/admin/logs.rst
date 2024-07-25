@@ -74,9 +74,6 @@ program.
 There is also the built-in function :ref:`log.rotate() <log-rotate>`, which you
 can call on an instance to reopen its log file after rotation.
 
-To learn about log rotation in the deprecated ``tarantoolctl`` utility,
-check its :ref:`documentation <tarantoolctl-log-rotation>`.
-
 
 .. _admin-logs-destination:
 

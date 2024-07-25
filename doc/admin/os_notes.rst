@@ -38,12 +38,3 @@ Checking that it works:
 
     $ /etc/init.d/your_service_name start
     $ tail -f -n 100 /var/log/tarantool/your_service_name.log
-
-
-.. _admin-os_notes-freebsd:
-
-FreeBSD
--------
-
-To learn about specifics of using the deprecated ``tarantoolctl`` utility on FreeBSD,
-check its :ref:`documentation <tarantoolctl-freebsd>`.
