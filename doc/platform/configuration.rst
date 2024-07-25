@@ -575,4 +575,3 @@ If the same option is defined in two or more locations, the option with the high
 
     configuration/configuration_etcd
     configuration/configuration_code
-    .. configuration/configuration_migrating

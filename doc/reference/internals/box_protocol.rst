@@ -31,6 +31,7 @@ The binary protocol provides complete access to Tarantool functionality, includi
 ..  toctree::
     :maxdepth: 1
 
+    iproto/iproto
     iproto/mp_types
     iproto/format
     iproto/keys
@@ -41,4 +42,3 @@ The binary protocol provides complete access to Tarantool functionality, includi
     iproto/graceful_shutdown
     iproto/sql
     iproto/replication
-    Examples <../../how-to/other/iproto>
