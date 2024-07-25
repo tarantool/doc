@@ -16,6 +16,6 @@ Reference
     reference_sql/index
     reference_lua/index
     reference_rock/index
-    ../dev_guide/reference_capi/index
-    ../dev_guide/internals/index
+    reference_capi/index
+    internals/index
     limitations
