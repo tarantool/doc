@@ -8,6 +8,6 @@ This section contains guides on how to configure connections and authentication 
 ..  toctree::
     :maxdepth: 1
 
-    configuration_connections
-    configuration_credentials
-    configuration_authentication
+    connections
+    credentials
+    authentication
