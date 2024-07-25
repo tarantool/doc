@@ -29,6 +29,7 @@ concept explanation, and the ``tt`` command reference.
     commands
     external_modules
     tt_interactive_console
+    tarantoolctl_tt_migrating
 
 ..  _tt-cli-environments:
 
@@ -63,8 +64,4 @@ Replacement for tarantooctl and Cartridge CLI
 A multi-purpose tool for working with Tarantool from the command line, ``tt`` has
 come to replace the deprecated utilities ``tarantoolctl``
 and `Cartridge CLI <https://github.com/tarantool/cartridge-cli>`_ command-line utilities.
-The instructions on migration to ``tt`` are provided in the `tt GitHub repository <https://github.com/tarantool/tt/blob/v1.3.0/doc/examples.md>`_.
-
-.. TODO: change the link to the migration guide when it's ready.
-
-
+The instructions on migration to ``tt`` are provided in :ref:`tarantoolctl-migration-to-tt`.
