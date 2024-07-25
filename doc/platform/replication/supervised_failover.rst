@@ -106,7 +106,7 @@ Configuring a cluster
 
 To configure a cluster to work with an external failover coordinator, follow the steps below:
 
-1.  (Optional) If you need to run :ref:`several failover coordinators <supervised_failover_overview_choose_coordinator>` to increase fault tolerance, set up an etcd-based configuration storage, as described in :ref:`configuration_etcd`.
+1.  (Optional) If you need to run :ref:`several failover coordinators <supervised_failover_overview_fault_tolerance>` to increase fault tolerance, set up an etcd-based configuration storage, as described in :ref:`configuration_etcd`.
 
 2.  Set the :ref:`replication.failover <configuration_reference_replication_failover>` option to ``supervised``:
 

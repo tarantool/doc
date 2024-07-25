@@ -131,7 +131,7 @@ A user can have any number of roles or none of them. Users without roles
 have access only to clusters that are assigned to them.
 
 |tcm| uses password authentication for users. For information on password management,
-see the :ref:`Passwords <tcm_access_control_password>` section below.
+see the :ref:`Passwords <tcm_access_control_passwords>` section below.
 
 Default admin
 ~~~~~~~~~~~~~

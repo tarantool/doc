@@ -101,14 +101,12 @@ Application server
 ------------------
 
 Using Tarantool as an application server, you can write
-applications in Lua, C, or C++. You can also create reusable :ref:`modules <concepts-modules>`.
+applications in Lua, C, or C++. You can also create reusable :ref:`modules <app_server-modules>`.
 
 To increase the speed of code execution, Tarantool has a Lua Just-In-Time compiler (LuaJIT) on board.
 LuaJIT compiles hot paths in the code -- paths that are used many times --
 thus making the application work faster.
 To enable developers to work with LuaJIT, Tarantool provides tools like the :ref:`memory profiler <luajit_memprof>`
 and the :ref:`getmetrics <luajit_getmetrics>` module.
-
-For details on Tarantool's modular structure, check the :ref:`Modules <concepts-modules>` page.
 
 To learn how to use Tarantool as an application server, refer to the :ref:`guides <how-to-app-server>` in the How-to section.

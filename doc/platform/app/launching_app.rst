@@ -49,7 +49,7 @@ Now let's discuss how we can launch our application with Tarantool.
 Launching in Docker
 --------------------------------------------------------------------------------
 
-If we run Tarantool in a :ref:`Docker container <getting_started-using_docker>`,
+If we run Tarantool in a Docker container,
 the following command will start Tarantool without any application:
 
 .. code-block:: console
@@ -82,8 +82,7 @@ is ``/opt/tarantool``, and the directory for data is ``/var/lib/tarantool``.
 Launching a binary program
 --------------------------------------------------------------------------------
 
-If we run Tarantool from a :ref:`package
-<getting_started-using_package_manager>` or from a :ref:`source build
+If we run Tarantool from a :ref:`package <tarantool_installation>` or from a :ref:`source build
 <building_from_source>`, we can launch our application:
 
 * in the script mode,

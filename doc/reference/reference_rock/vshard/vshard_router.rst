@@ -82,7 +82,7 @@ Router public API
 ..  function:: vshard.router.cfg(cfg)
 
     Configure the database and start sharding for the specified ``router``
-    instance. See the :ref:`sample configuration <vshard-config-cluster-example>`.
+    instance.
 
     :param cfg: a configuration table
 
@@ -109,8 +109,7 @@ Router public API
 
     :param name: a router instance name. This name is used as a prefix in logs of
                  the router and must be unique within the instance
-    :param cfg: a configuration table. See the
-                :ref:`sample configuration <vshard-config-cluster-example>`.
+    :param cfg: a configuration table
 
     :Return: a router instance, if created successfully; otherwise, nil and an
              error object

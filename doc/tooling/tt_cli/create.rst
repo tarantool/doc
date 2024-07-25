@@ -78,7 +78,7 @@ are instantiated from this template.
 A template manifest is a YAML file named ``MANIFEST.yaml``. It can contain the following sections:
 
 *   ``description`` -- the template description.
-*   ``vars`` -- :ref:`template variables <template-variables>`.
+*   ``vars`` -- :ref:`template variables <tt-create-custom-variables>`.
 *   ``pre-hook`` and ``post-hook`` -- paths to executables to run before and after the template
     instantiation.
 *   ``include`` -- a list of files to keep in the application directory after
@@ -117,7 +117,7 @@ according to the ``include`` section of the manifest (or its absence).
     To specify application dependencies, use the ``.rockspec`` files.
 
 There is a special file type ``*.tt.template``. The content of such files is
-adjusted for each application with the help of :ref:`template variables <template-variables>`.
+adjusted for each application with the help of :ref:`template variables <tt-create-custom-variables>`.
 During the instantiation, the variables in these files are replaced with provided
 values and the ``*.tt.template`` extension is removed.
 

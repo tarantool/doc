@@ -9,7 +9,7 @@ Configuring clusters
 
 |tcm_full_name| features a built-in text editor for Tarantool EE cluster configurations.
 
-When you :ref:`connect a cluster <tcm_connect_cluster>` to |tcm|, it gains access
+When you :ref:`connect a cluster <tcm_connect_clusters>` to |tcm|, it gains access
 to the cluster's centralized configuration storage: an etcd or a Tarantool cluster.
 |tcm| has both read and write access to the cluster configuration. This enables
 the configuration editor to work in two ways:
