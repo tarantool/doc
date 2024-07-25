@@ -3,6 +3,8 @@
 Connections and authentication
 ==============================
 
+This section contains guides on how to configure connections and authentication features.
+
 ..  toctree::
     :maxdepth: 1
 

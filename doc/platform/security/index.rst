@@ -3,7 +3,7 @@
 Security
 ========
 
-This section includes the following topics:
+This section contains guides related to security features.
 
 ..  toctree::
     :maxdepth: 1

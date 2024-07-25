@@ -5,6 +5,8 @@
 Platform
 ========
 
+This section contains documentation for the Tarantool platform consisting of a database and an application server.
+
 ..  toctree::
     :maxdepth: 1
 

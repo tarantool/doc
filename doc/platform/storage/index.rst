@@ -3,6 +3,8 @@
 Storage
 =======
 
+This section contains guides on configuring a storage.
+
 ..  toctree::
     :maxdepth: 1
 
