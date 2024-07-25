@@ -1,4 +1,4 @@
-.. _connections_and_authentication:
+.. _config_storage:
 
 Storage
 =======
