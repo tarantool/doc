@@ -13,7 +13,7 @@ This cluster uses the following external modules:
 
 The cluster created in this tutorial includes 5 instances: one router and 4 storages, which constitute two replica sets.
 
-.. image:: /book/admin/admin_instances_dev.png
+.. image:: /admin/admin_instances_dev.png
     :align: left
     :width: 700
     :alt: Cluster topology
