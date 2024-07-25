@@ -1713,7 +1713,7 @@ etcd cluster is not available or not needed.
 
 .. confval:: storage.tarantool.rate-limit-action
 
-    An action to perform when the :ref:`tcm_configuration_reference_storage_tarantool_rate-limit` is reached.
+    An action to perform when the :ref:`storage.tarantool.rate-limit <tcm_configuration_reference_storage_tarantool_rate-limit>` is reached.
 
     See also `go-tarantool.Opts <https://pkg.go.dev/github.com/tarantool/go-tarantool#Opts>`__.
 

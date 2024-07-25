@@ -24,7 +24,7 @@ Each event subscription is defined by a certain key.
         To update a state, use the ``box.broadcast()`` function.
 
     Watcher
-        A watcher is a :doc:`callback </concepts/triggers>` that is invoked when a state change occurs.
+        A watcher is a :ref:`callback <triggers-box_triggers>` that is invoked when a state change occurs.
         To register a local watcher, use the ``box.watch()`` function.
         To create a remote watcher, use the ``watch()`` function from the ``net.box`` module.
         Note that it is possible to register more than one watcher for the same key.

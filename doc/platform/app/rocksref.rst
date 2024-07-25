@@ -52,17 +52,15 @@ Open source modules
 Closed source modules
 -------------------------------------------------------------------------------
 
-* :doc:`ldap <modules/ldap/rst/index>`
-  allows you to authenticate in a LDAP server and perform searches.
-* :doc:`odbc <modules/odbc/rst/index>`
-  is an ODBC connector for Tarantool based on unixODBC.
-* :doc:`oracle <modules/oracle/rst/index>`
+* ``ldap`` allows you to authenticate in a LDAP server and perform searches.
+* ``odbc`` is an ODBC connector for Tarantool based on unixODBC.
+* ``oracle``
   is an Oracle connector for Lua applications through which they can send and
   receive data to and from Oracle databases.
   The advantage of the Tarantool-Oracle integration is that anyone can handle all
   the tasks with Oracle DBMSs (control, manipulation, storage, access) with the
   same high-level language (Lua) and with minimal delay.
-* :doc:`task <modules/task/rst/index>`
+* ``task``
   is a module for managing background tasks in a Tarantool cluster.
 
 .. _enterprise-rocks-install:

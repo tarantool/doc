@@ -30,8 +30,7 @@ The first index defined on a space is called the **primary key index**,
 and it must be unique. All other indexes are called **secondary indexes**,
 and they may be non-unique.
 
-Indexes have certain limitations. See details on page
-:doc:`Limitations </book/box/limitations>`.
+Indexes have certain limitations. See details on page :ref:`tarantool_limitations`.
 
 To create a generator for indexes, you can use a sequence object.
 Learn how to do it in the :ref:`tutorial <index-box_sequence>`.

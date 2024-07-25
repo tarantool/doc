@@ -33,7 +33,7 @@ types of connections:
 * Over a binary port for read and write operations and procedure invocation.
 
 For more information on authentication and connection types, see the
-:doc:`Security </book/admin/security>` section of the Tarantool manual.
+:ref:`admin-security` section of the Tarantool manual.
 
 In addition, Tarantool provides the following functionality:
 
@@ -105,8 +105,8 @@ You can configure the following audit log options:
 
 For more information on logging, see the following:
 
-*   the :doc:`Logs </book/admin/logs>` section
-*   the :ref:`Logging <cfg_logging-log>` section in the configuration reference
+*   the :ref:`admin-logs` section
+*   the :ref:`log <configuration_reference_log>` section in the configuration reference
 *   the :ref:`Tarantool audit module <enterprise_audit_module>` topic
 
 Access permissions to audit log files can be set up as to any other Unix file

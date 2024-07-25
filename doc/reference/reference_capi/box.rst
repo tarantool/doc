@@ -322,7 +322,7 @@
     :param uint32_t request_type: IPROTO request type code (for example, ``IPROTO_SELECT``).
                                   For details, check :ref:`Client-server requests and responses <internals-requests_responses>`.
 
-                                  To override the handler of unknown request types, use the :ref:`IPROTO_UNKNOWN <internals-iproto-keys-unknown>` type code.
+                                  To override the handler of unknown request types, use the :ref:`IPROTO_UNKNOWN <internals-iproto-unknown>` type code.
 
     :param iproto_handler_t handler: IPROTO request handler. To reset the request handler, set the ``handler`` parameter to ``NULL``.
                                      See the full parameter description in the :ref:`Handler function <box_box_iproto_override-handler>` section.

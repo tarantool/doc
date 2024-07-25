@@ -106,4 +106,4 @@ operation because a write-ahead log record contains only a key value.
 
 .. NOTE::
 
-    You can use the :doc:`tt cat </reference/tooling/tt_cli/cat>` command to see the contents of a write-ahead log.
+    You can use the :ref:`tt-cat` command to see the contents of a write-ahead log.

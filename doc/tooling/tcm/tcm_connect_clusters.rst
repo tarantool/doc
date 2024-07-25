@@ -19,7 +19,7 @@ and disconnect them on the fly.
 There are two ways to add a cluster to |tcm|:
 
 -   Connect an existing cluster.
--   Add a new cluster and :ref:`write its configuration <tcm_cluster_config>` from scratch in the |tcm| web UI.
+-   Add a new cluster and :ref:`write its configuration <getting_started_tcm_cluster_config>` from scratch in the |tcm| web UI.
 
 In both cases, you need to deploy Tarantool and start the cluster instances using
 the :ref:`tt-cli` or another suitable way.

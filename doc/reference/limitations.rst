@@ -1,4 +1,5 @@
 .. _limitations_fields_in_index:
+.. _tarantool_limitations:
 
 ================================================================================
 Limitations

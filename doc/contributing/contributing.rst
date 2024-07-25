@@ -184,7 +184,7 @@ Check the
 `currently open tasks <https://github.com/tarantool/http/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22>`_
 for the HTTP Server module.
 
-Please see our :doc:`Lua style guide </dev_guide/lua_style_guide>`.
+Please see our :ref:`lua_style_guide`.
 
 You can find the contact of the current maintainer in the MAINTAINERS file, located
 in the root of the repository. If there is no such file, please
@@ -214,13 +214,13 @@ may take longer to review because we want the code to be reliable.
 
 To start:
 
-* :doc:`Learn how to build Tarantool </dev_guide/building_from_source>`.
+* :ref:`Learn how to build Tarantool <building_from_source>`.
 * Read about Tarantool architecture and main modules on the
-  `developer site <https://docs.tarantool.dev/en/latest/>`__ and on
+  `developer site <https://www.tarantool.io/en/dev/core/>`__ and on
   `GitHub <https://github.com/tarantool/tarantool/wiki/Developer-information>`__.
 
 In Tarantool development, we strive to follow the standards laid out in
-our :doc:`style and contribution guides </dev_guide/developer_guidelines>`.
+our :ref:`style and contribution guides <developer_guidelines>`.
 These documents explain how to format your code and commits as well as
 how to write tests without breaking anything accidentally.
 
@@ -277,7 +277,7 @@ application server in the required format.
 Data access connectors have already been implemented for all major languages.
 If you want to write your own connector,
 you first need to familiarize yourself with the Tarantool binary protocol.
-Read :doc:`the protocol description </dev_guide/internals/box_protocol>` to learn more.
+Read :ref:`the protocol description <box_protocol>` to learn more.
 
 We consider the following connectors as references:
 

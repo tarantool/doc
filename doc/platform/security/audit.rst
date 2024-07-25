@@ -10,7 +10,7 @@ Encryption of external iproto traffic
 -------------------------------------
 
 Tarantool uses the
-:doc:`iproto binary protocol </dev_guide/internals/box_protocol>`
+:ref:`iproto binary protocol <box_protocol>`
 for replicating data between instances and also in the connector libraries.
 
 Since version 2.10.0, the Enterprise Edition has the built-in support for using SSL to encrypt the client-server communications over binary connections.

@@ -23,7 +23,7 @@ Compatibility
 Tarantool 2.x is backward compatible with Tarantool 1.10.x in the binary
 data layout, client-server protocol, and replication protocol.
 
-Please :doc:`upgrade </book/admin/upgrades>`
+Please :doc:`upgrade </admin/upgrades>`
 using the ``box.schema.upgrade()`` procedure to unlock all the new
 features of the 2.x series.
 
