@@ -22,11 +22,9 @@ utilities:
 This chapter includes the following sections:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :numbered: 0
 
-   instance_config
-   start_stop_instance
    modules
    logs
    security

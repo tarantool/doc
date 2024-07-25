@@ -25,6 +25,7 @@ concept explanation, and the ``tt`` command reference.
     installation
     configuration
     global_options
+    developing_apps
     commands
     external_modules
     tt_interactive_console
