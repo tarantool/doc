@@ -38,7 +38,7 @@ and a single Tarantool instance can also receive :ref:`SQL requests <sql_tutoria
 Tarantool has a variety of compatible `modules <https://www.tarantool.io/en/download/rocks>`__ (Lua rocks).
 You can pick the ones that you need and install them manually.
 
-Tarantool runs on Linux (x86_64, aarch64), Mac OS X (x86_64, M1), and FreeBSD (x86_64).
+Tarantool runs on Linux (x86_64, aarch64), macOS (x86_64, aarch64), and FreeBSD (x86_64).
 
 You can use Tarantool with a programming language you're familiar with.
 For this purpose, a number of :ref:`connectors <getting_started_connectors>` are provided.
