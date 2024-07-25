@@ -18,7 +18,7 @@ Here are some of Tarantool's key characteristics:
     and :ref:`data snapshots <concepts-data_model-persistence>` 
 
 *   **Cooperative multitasking**: transactions are performed in
-    :ref:`lightweight coroutines <concepts-coop_multitasking>` with no interthread locking
+    :ref:`lightweight coroutines <concepts-coop_multitasking>` with no inter-thread locking
 
 *   **Advanced indexing**: :ref:`composite indexes <concepts-data_model_indexes>`,
     :ref:`locale support <index-collation>`,
@@ -71,15 +71,15 @@ The Enterprise Edition is shipped as an SDK and includes a number of closed-sour
         The Enterprise Edition provides an `extended feature set <https://www.tarantool.io/en/compare/>`__ for developing
         and managing clustered Tarantool applications, for example:
 
-        * Static package for standalone Linux systems.
+        * :ref:`Static package <enterprise-package-contents>` for standalone Linux systems.
         * Tarantool bindings to OpenLDAP.
-        * Security :ref:`audit log <enterprise-logging>`.
+        * Security :ref:`audit log <enterprise_audit_module>`.
         * Enterprise database connectivity:
           Oracle and any ODBC-supported DBMS
           (for example, MySQL, Microsoft SQL Server).
         * SSL support for :ref:`traffic encryption <enterprise-iproto-encryption>`.
-        * :doc:`Tuple compression <tuple_compression>`.
-        * :doc:`Non-blocking DDL <space_upgrade>`.
+        * :ref:`Tuple compression <tuple_compression>`.
+        * :ref:`Non-blocking DDL <enterprise-space_upgrade>`.
 
         The Enterprise Edition is distributed in the form of an SDK, which includes
         the following key components:
@@ -97,19 +97,19 @@ The Enterprise Edition is shipped as an SDK and includes a number of closed-sour
         Enterprise-версия предлагает `дополнительные возможности <https://www.tarantool.io/ru/compare/>`__ по
         разработке и эксплуатации кластерных приложений, например:
 
-        * Статическая сборка для автономных Linux-систем.
+        * :ref:`Статическая сборка <enterprise-package-contents>` для автономных Linux-систем.
         * Модуль интеграции с OpenLDAP.
-        * :ref:`Журнал аудита безопасности <enterprise-logging>`.
+        * :ref:`Журнал аудита безопасности <enterprise_audit_module>`.
         * Подключения к корпоративным базам данных:
           Oracle и любым СУБД с интерфейсом ODBC (например, MySQL, Microsoft SQL Server).
         * :ref:`Шифрование трафика <enterprise-iproto-encryption>` с помощью SSL.
-        * :doc:`Сжатие кортежей <tuple_compression>`.
-        * :doc:`Смена схемы данных в фоновом режиме <space_upgrade>`.
+        * :ref:`Сжатие кортежей <tuple_compression>`.
+        * :ref:`Смена схемы данных в фоновом режиме <enterprise-space_upgrade>`.
 
         Enterprise-версия распространяется в форме SDK, который включает следующие
         ключевые компоненты:
 
-        * Исполняемый файл Tarantool EE binary, который может работать с :ref:`цетрализованной конфигурацией <configuration_etcd_overview>`.
+        * Исполняемый файл Tarantool EE binary, который может работать с :ref:`централизованной конфигурацией <configuration_etcd_overview>`.
         * Расширенная Enterprise-версия утилиты :ref:`tt <tt-cli>`.
         * :ref:`Tarantool Cluster Manager <tcm>` -- визуальный веб-инструмент для управления кластерами Tarantool.
 
