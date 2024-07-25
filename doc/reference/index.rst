@@ -18,4 +18,4 @@ Reference
     reference_rock/index
     ../dev_guide/reference_capi/index
     ../dev_guide/internals/index
-    ../book/box/limitations
+    limitations

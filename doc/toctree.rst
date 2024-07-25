@@ -9,7 +9,7 @@
     getting_started/index
     platform/index
     tooling/index
-    book/admin/index
+    admin/index
     connector/index
     reference/index
     release/index
