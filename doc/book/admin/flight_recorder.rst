@@ -53,8 +53,8 @@ Tarantool continues writing to the existing ``current.ttfr`` file after restart.
 
 .. _enterprise-flight-recorder_configure:
 
-Configure a flight recorder
----------------------------
+Configure the flight recorder
+-----------------------------
 
 When the flight recorder is enabled, you can set the options related to :ref:`logging <cfg_logging-log>`,
 :ref:`metrics <metrics-reference>`, and storing the :ref:`request and response <internals-requests_responses>` data.
