@@ -144,7 +144,7 @@ space_opts
 
         **Example:**
 
-        ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/auto_leader/data.lua
+        ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/auto_leader/myapp.lua
             :language: lua
             :start-at: is_sync = true
             :end-at: is_sync = true
