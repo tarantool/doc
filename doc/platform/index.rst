@@ -20,4 +20,5 @@ This section contains documentation for the Tarantool platform consisting of a d
     sharding/index
     connections_and_auth/index
     security/index
+    triggers
     app/index
