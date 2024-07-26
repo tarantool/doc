@@ -35,8 +35,8 @@ This chapter includes the following sections:
    disaster_recovery
    backups
    upgrades
-   os_notes
    bug_reports
-   troubleshoot
    flight_recorder
    monitoring
+   os_notes
+   troubleshoot
