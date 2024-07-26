@@ -266,8 +266,8 @@ To run the resulting application, pass the script name to the ``python`` command
 .. _getting_started-python-comparison:
 ..  _python-feature-comparison:
 
-Feature comparison
-------------------
+Community Python connectors
+---------------------------
 
 Last update: September 2023
 

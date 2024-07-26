@@ -284,8 +284,8 @@ Starting a client application
 .. _getting_started-go-comparison:
 ..  _go-feature-comparison:
 
-Feature comparison
-------------------
+Community Go connectors
+-----------------------
 
 Last update: January 2023
 
