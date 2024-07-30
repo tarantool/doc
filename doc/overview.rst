@@ -68,7 +68,7 @@ The Enterprise Edition is shipped as an SDK and includes a number of closed-sour
 
     .. container:: documentation-main-page-description
 
-        The Enterprise Edition provides an `extended feature set <https://www.tarantool.io/en/compare/>`__ for developing
+        The Enterprise Edition provides an extended feature set for developing
         and managing clustered Tarantool applications, for example:
 
         * :ref:`Static package <enterprise-package-contents>` for standalone Linux systems.
@@ -78,13 +78,18 @@ The Enterprise Edition is shipped as an SDK and includes a number of closed-sour
           Oracle and any ODBC-supported DBMS
           (for example, MySQL, Microsoft SQL Server).
         * SSL support for :ref:`traffic encryption <enterprise-iproto-encryption>`.
+        * :ref:`Centralized configuration storage <configuration_etcd_overview>`.
+        * :ref:`Supervised failover <repl_supervised_failover>`.
         * :ref:`Tuple compression <tuple_compression>`.
         * :ref:`Non-blocking DDL <enterprise-space_upgrade>`.
+        * :ref:`Security enforcement features <configuration_authentication>`.
+        * :ref:`Read views <read_views>`.
+        * :ref:`Write-ahead log extensions <wal_extensions>`.
+        * :ref:`Flight recorder <enterprise-flight-recorder>`.
 
         The Enterprise Edition is distributed in the form of an SDK, which includes
         the following key components:
 
-        * The Tarantool EE binary, which can use :ref:`centralized configuration <configuration_etcd_overview>`.
         * The extended Enterprise version of the :ref:`tt <tt-cli>` utility.
         * :ref:`Tarantool Cluster Manager <tcm>` -- a web-based visual tool for managing Tarantool clusters.
 
@@ -103,13 +108,17 @@ The Enterprise Edition is shipped as an SDK and includes a number of closed-sour
         * Подключения к корпоративным базам данных:
           Oracle и любым СУБД с интерфейсом ODBC (например, MySQL, Microsoft SQL Server).
         * :ref:`Шифрование трафика <enterprise-iproto-encryption>` с помощью SSL.
+        * :ref:`Централизованная конфигурация <configuration_etcd_overview>`.
         * :ref:`Сжатие кортежей <tuple_compression>`.
         * :ref:`Смена схемы данных в фоновом режиме <enterprise-space_upgrade>`.
+        * :ref:`Функции обеспечения безопасности <configuration_authentication>`.
+        * :ref:`Представления для чтения (read views) <read_views>`.
+        * :ref:`Расширения для Write-ahead log <wal_extensions>`.
+        * :ref:`Flight recorder <enterprise-flight-recorder>`.
 
         Enterprise-версия распространяется в форме SDK, который включает следующие
         ключевые компоненты:
 
-        * Исполняемый файл Tarantool EE binary, который может работать с :ref:`централизованной конфигурацией <configuration_etcd_overview>`.
         * Расширенная Enterprise-версия утилиты :ref:`tt <tt-cli>`.
         * :ref:`Tarantool Cluster Manager <tcm>` -- визуальный веб-инструмент для управления кластерами Tarantool.
 
