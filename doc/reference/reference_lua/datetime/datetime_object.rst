@@ -196,16 +196,17 @@ datetime_object
 
         :return: a datetime_object
         :rtype: cdata
+        :return: a number of parsed characters
+        :rtype: number
 
         **Example:**
 
         ..  code-block:: tarantoolsession
 
-            tarantool> t = datetime.parse('1970-01-01T00:00:00Z')
-
-            tarantool> t
+            tarantool> datetime.parse('1970-01-01T00:00:00Z')
             ---
             - 1970-01-01T00:00:00Z
+            - 20
             ...
 
             tarantool> t = datetime.parse('1970-01-01T00:00:00', {format = 'iso8601', tzoffset = 180})
