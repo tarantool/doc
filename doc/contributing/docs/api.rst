@@ -93,7 +93,7 @@ Function and method parameters
 
 If the parameter is optional, make sure it is enclosed in square brackets
 in the function declaration (in the "heading").
-Do not mark parameters additionaly as "optional" or "required":
+Do not mark parameters additionally as "optional" or "required":
 
 ..  code-block:: rst
 

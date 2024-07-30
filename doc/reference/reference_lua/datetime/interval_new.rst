@@ -18,7 +18,7 @@ datetime.interval.new()
 
     ..  _interval-new-args:
 
-    **Possible input time units and parameters for ``datetime.interval.new()**
+    **Possible input time units and parameters for `datetime.interval.new()`**
 
     ..  container:: table
 

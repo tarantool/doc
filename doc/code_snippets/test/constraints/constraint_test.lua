@@ -50,7 +50,7 @@ g.test_constraints = function(cg)
         t.assert_equals(customers:count(), 1)
         t.assert_equals(customers:get(1), {1, "Alice", 30})
 
-        -- Failed contstraint --
+        -- Failed constraint --
         t.assert_error_msg_contains("Check constraint 'check_person' failed for a tuple",
                 function() customers:insert{2, "Bob", 230} end)
 

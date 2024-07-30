@@ -239,7 +239,7 @@ the server response will look like this:
             04                              MP_ERROR_ERRNO
             00                              MP_UINT = error number
             05                              MP_ERROR_ERRCODE
-            0a                              MP_UINT = eror code ER_SPACE_EXISTS
+            0a                              MP_UINT = error code ER_SPACE_EXISTS
 
 
 ..  _msgpack_ext-datetime:
