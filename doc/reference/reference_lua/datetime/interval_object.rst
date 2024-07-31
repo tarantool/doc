@@ -73,3 +73,31 @@ interval_object
               year: 0
               min: 0
             ...
+
+    ..  _interval-is_interval:
+
+    ..  method:: is_interval()
+
+        Returns ``true`` if the specified value is an ``interval`` object,
+        and ``false`` otherwise.
+
+        For example if ``a`` is ``123`` then
+        ``require('datetime').interval.is_interval(a)`` returns ``false``.
+        if ``a`` is ``datetime.interval.new({year = 1, day = 127, min = 15})``
+        then ``require('datetime').interval.is_interval(a)`` returns ``true``.
+
+        **Example:**
+
+        ..  code-block:: tarantoolsession
+
+            tarantool> datetime.interval.is_interval(a)
+            ---
+            - false
+            ...
+
+            tarantool> datetime.interval.is_interval(datetime.interval.new())
+            ---
+            - true
+            ...
+
+            tarantool>
