@@ -4660,6 +4660,7 @@ To learn more about the WAL configuration, check the :ref:`Persistence <configur
 -   :ref:`wal.max_size <configuration_reference_wal_max_size>`
 -   :ref:`wal.mode <configuration_reference_wal_mode>`
 -   :ref:`wal.queue_max_size <configuration_reference_wal_queue_max_size>`
+-   :ref:`wal.retention_period <configuration_reference_wal_retention_period>`
 -   :ref:`wal.ext.* <configuration_reference_wal_ext>`
 
 ..  _configuration_reference_wal_cleanup_delay:
@@ -4767,6 +4768,37 @@ To learn more about the WAL configuration, check the :ref:`Persistence <configur
     | Type: integer
     | Default: 16777216
     | Environment variable: TT_WAL_QUEUE_MAX_SIZE
+
+..  _configuration_reference_wal_retention_period:
+
+..  confval:: wal.retention_period
+
+    **Since:** :doc:`3.1.0 </release/3.1.0>` (`Enterprise Edition <https://www.tarantool.io/compare/>`_ only)
+
+    The delay in seconds used to prevent the :ref:`Tarantool garbage collector <configuration_persistence_checkpoint_daemon>` from removing a :ref:`write-ahead log <internals-wal>` file after it has been closed.
+    If a node is restarted, ``wal.retention_period`` counts down from the last modification time of the write-ahead log file.
+
+    Setting up ``wal.retention_period`` may be useful for:
+
+    *   Anonymous replicas (see :ref:`replication.anon <configuration_reference_replication_anon>`).
+    *   CDC (Change Data Capture) that retrieves data using anonymous replication.
+
+    For example, a rebootstrap may be needed in the event of a downtime in a replica or the CDC.
+
+    Note that :ref:`wal.cleanup_delay <configuration_reference_wal_cleanup_delay>` option also sets the delay used to prevent the Tarantool garbage collector from removing write-ahead logs.
+    The difference is that the garbage collector doesn't take into account ``wal.cleanup_delay`` if all the nodes in the replica set are up and running, which may lead to the removal of the required write-ahead logs.
+
+    ..  NOTE::
+
+        The minimum vclock value can be found using :ref:`box.info.gc().wal_retention_vclock <box_info_gc>`.
+
+    |
+    | Type: number
+    | Default: 0
+    | Environment variable: TT_WAL_RETENTION_PERIOD
+
+
+
 
 ..  _configuration_reference_wal_ext:
 
