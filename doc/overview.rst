@@ -44,13 +44,17 @@ You can use Tarantool with a programming language you're familiar with.
 For this purpose, a number of :ref:`connectors <getting_started_connectors>` are provided.
 
 ..  _overview-editions:
-.. _tarantool_enterprise:
 
-Enterprise Edition
-------------------
+Editions
+--------
 
 Tarantool comes in two editions: the open-source **Community Edition (CE)**
 and the commercial **Enterprise Edition (EE)**.
+
+.. _tarantool_community_edition:
+
+Tarantool Community Edition
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **Tarantool Community Edition** lets you develop applications and speed up a system in operation.
 It features :ref:`synchronous replication <repl_sync>`, affords easy :ref:`scalability <sharding>`,
@@ -58,11 +62,22 @@ and includes tools to develop efficient :ref:`applications <app_server>`.
 The `Tarantool community <https://t.me/tarantool>`__ helps with any practical questions
 regarding the Community Edition.
 
+
+.. _tarantool_enterprise:
+.. _tarantool_enterprise_edition:
+
+Tarantool Enterprise Edition
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 **Tarantool Enterprise Edition** `provides advanced tools <https://www.tarantool.io/en/compare/>`__ for
 administration, deployment, and security management, along with premium support services.
 This edition includes all the Community Edition features
 and is more predictable in terms of solution cost and maintenance.
 The Enterprise Edition is shipped as an SDK and includes a number of closed-source modules.
+
+.. NOTE::
+
+    In this documentation, topics related to Enterprise Edition features are marked with an ``Enterprise Edition`` admonition.
 
 .. ifconfig:: language == 'en'
 
@@ -72,11 +87,7 @@ The Enterprise Edition is shipped as an SDK and includes a number of closed-sour
         and managing clustered Tarantool applications, for example:
 
         * :ref:`Static package <enterprise-package-contents>` for standalone Linux systems.
-        * Tarantool bindings to OpenLDAP.
         * Security :ref:`audit log <enterprise_audit_module>`.
-        * Enterprise database connectivity:
-          Oracle and any ODBC-supported DBMS
-          (for example, MySQL, Microsoft SQL Server).
         * SSL support for :ref:`traffic encryption <enterprise-iproto-encryption>`.
         * :ref:`Centralized configuration storage <configuration_etcd_overview>`.
         * :ref:`Supervised failover <repl_supervised_failover>`.
@@ -86,6 +97,10 @@ The Enterprise Edition is shipped as an SDK and includes a number of closed-sour
         * :ref:`Read views <read_views>`.
         * :ref:`Write-ahead log extensions <wal_extensions>`.
         * :ref:`Flight recorder <enterprise-flight-recorder>`.
+        * Tarantool bindings to OpenLDAP.
+        * Enterprise database connectivity:
+          Oracle and any ODBC-supported DBMS
+          (for example, MySQL, Microsoft SQL Server).
 
         The Enterprise Edition is distributed in the form of an SDK, which includes
         the following key components:
