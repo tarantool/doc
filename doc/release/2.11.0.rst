@@ -45,7 +45,7 @@ Tarantool provides the live upgrade mechanism that enables cluster upgrade witho
 downtime. In case of upgrade issues, you can roll back to the original state
 without downtime as well.
 
-To learn how to upgrade to Tarantool 2.11, see :doc:`Upgrades </book/admin/upgrades>`.
+To learn how to upgrade to Tarantool 2.11, see :doc:`Upgrades </admin/upgrades>`.
 
 .. _2-11-enterprise:
 

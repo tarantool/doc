@@ -874,7 +874,7 @@ This section describes options related to loading configuration settings from ex
 config.etcd.*
 ~~~~~~~~~~~~~
 
-..  include:: /concepts/configuration/configuration_etcd.rst
+..  include:: /platform/configuration/configuration_etcd.rst
     :start-after: ee_note_centralized_config_start
     :end-before: ee_note_centralized_config_end
 
@@ -1062,7 +1062,7 @@ If :ref:`replication.failover <configuration_reference_replication_failover>` is
 config.storage.*
 ~~~~~~~~~~~~~~~~
 
-..  include:: /concepts/configuration/configuration_etcd.rst
+..  include:: /platform/configuration/configuration_etcd.rst
     :start-after: ee_note_centralized_config_start
     :end-before: ee_note_centralized_config_end
 
@@ -3059,7 +3059,7 @@ The ``memtx`` section is used to configure parameters related to the :ref:`memtx
     The minimum value is 1, the maximum value is 256.
     The default is to use all available cores.
 
-    ..  include:: /concepts/atomic/thread_model.rst
+    ..  include:: /platform/atomic/thread_model.rst
         :start-after: note_drop_openmp_start
         :end-before: note_drop_openmp_end
 
@@ -3221,6 +3221,7 @@ The ``process`` section defines configuration parameters of the Tarantool proces
 
         $ ps -ef | grep tarantool
         503      68100 68098  0 10:33 pts/2    00:00.10 tarantool <running>: myservice instance1
+
     |
     | Type: string
     | Default: 'tarantool - {{ instance_name }}'

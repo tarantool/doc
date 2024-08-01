@@ -67,7 +67,7 @@ Core
 
 -   Tarantool module developers can now register functions to call when Tarantool stops
     with the new ``on_shutdown`` API, (:tarantool-issue:`5723`).
-    Read more: :doc:`/dev_guide/reference_capi/on_shutdown`.
+    Read more: :ref:`on_shutdown <c_api-on_shutdown>`.
 
 -   Introduced the concept of WAL queue and the new configuration option
     ``wal_queue_max_size``, measured in bytes.

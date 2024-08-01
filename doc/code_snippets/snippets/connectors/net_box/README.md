@@ -1,6 +1,6 @@
 # net.box
 
-A sample application containing `net.box` requests from the [Getting started with net.box](https://www.tarantool.io/en/doc/latest/how-to/getting_started_net_box/) tutorial.
+A sample application containing `net.box` requests from the [Connecting to a database using net.box](https://www.tarantool.io/en/doc/latest/reference/reference_lua/net_box/#connecting-to-a-database-using-net-box) tutorial.
 
 
 ## Running

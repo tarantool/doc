@@ -45,7 +45,7 @@ of ``_vuser`` match the contents of ``_user``. If the user has limited
 access, ``_vuser`` contains only tuples accessible to this user.
 
 To see how ``_vuser`` works,
-:ref:`connect to a Tarantool database remotely <connecting-remotely>`
+connect to a Tarantool database remotely
 via ``net.box`` and select all tuples from the ``_user``
 space, both when the 'guest' user *is* and *is not* allowed to read from the
 database.
