@@ -4794,7 +4794,8 @@ To learn more about the WAL configuration, check the :ref:`Persistence <configur
 
     ..  NOTE::
 
-        The minimum vclock value can be found using :ref:`box.info.gc().wal_retention_vclock <box_info_gc>`.
+        ``wal.retention_period`` protects write-ahead log files from removing by the garbage collector.
+        You can determine a vclock value of the oldest write-ahead log using :ref:`box.info.gc().wal_retention_vclock <box_info_gc>`.
 
     |
     | Type: number
