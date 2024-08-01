@@ -4681,6 +4681,8 @@ To learn more about the WAL configuration, check the :ref:`Persistence <configur
         The option has no effect on nodes running as
         :ref:`anonymous replicas <configuration_reference_replication_anon>`.
 
+    See also: :ref:`wal.retention_period <configuration_reference_wal_retention_period>`
+
     |
     | Type: number
     | Default: 14400
@@ -4778,12 +4780,14 @@ To learn more about the WAL configuration, check the :ref:`Persistence <configur
     The delay in seconds used to prevent the :ref:`Tarantool garbage collector <configuration_persistence_checkpoint_daemon>` from removing a :ref:`write-ahead log <internals-wal>` file after it has been closed.
     If a node is restarted, ``wal.retention_period`` counts down from the last modification time of the write-ahead log file.
 
-    Setting up ``wal.retention_period`` may be useful for:
+    The garbage collector doesn't track write-ahead logs that are to be :ref:`relayed <memtx-replication>` to anonymous replicas, such as:
 
-    *   Anonymous replicas (see :ref:`replication.anon <configuration_reference_replication_anon>`).
+    *   Anonymous replicas added as a part of a cluster configuration (see :ref:`replication.anon <configuration_reference_replication_anon>`).
     *   CDC (Change Data Capture) that retrieves data using anonymous replication.
 
-    For example, a rebootstrap may be needed in the event of a downtime in a replica or the CDC.
+    In case of a replica or CDC downtime, the required write-ahead logs can be removed.
+    As a result, such a replica needs to be rebootstrapped.
+    You can use ``wal.retention_period`` to prevent such issues.
 
     Note that :ref:`wal.cleanup_delay <configuration_reference_wal_cleanup_delay>` option also sets the delay used to prevent the Tarantool garbage collector from removing write-ahead logs.
     The difference is that the garbage collector doesn't take into account ``wal.cleanup_delay`` if all the nodes in the replica set are up and running, which may lead to the removal of the required write-ahead logs.
@@ -4796,9 +4800,6 @@ To learn more about the WAL configuration, check the :ref:`Persistence <configur
     | Type: number
     | Default: 0
     | Environment variable: TT_WAL_RETENTION_PERIOD
-
-
-
 
 ..  _configuration_reference_wal_ext:
 
