@@ -84,9 +84,8 @@ The Enterprise Edition is shipped as an SDK and includes a number of closed-sour
     .. container:: documentation-main-page-description
 
         The Enterprise Edition provides an extended feature set for developing
-        and managing clustered Tarantool applications, for example:
+        and managing clustered Tarantool applications, such as:
 
-        * :ref:`Static package <enterprise-package-contents>` for standalone Linux systems.
         * Security :ref:`audit log <enterprise_audit_module>`.
         * SSL support for :ref:`traffic encryption <enterprise-iproto-encryption>`.
         * :ref:`Centralized configuration storage <configuration_etcd_overview>`.
@@ -101,6 +100,7 @@ The Enterprise Edition is shipped as an SDK and includes a number of closed-sour
         * Enterprise database connectivity:
           Oracle and any ODBC-supported DBMS
           (for example, MySQL, Microsoft SQL Server).
+        * :ref:`Static package <enterprise-package-contents>` for standalone Linux systems.
 
         The Enterprise Edition is distributed in the form of an SDK, which includes
         the following key components:
