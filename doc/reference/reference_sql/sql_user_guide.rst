@@ -641,7 +641,7 @@ A datetime table field can be created by using this type, which is semantically 
 There is no implicit cast available from a string expression to a datetime expression (unlike convention used by majority of SQL vendors).
 In such cases, you need to use explicit cast from a string value to a datetime value (see the example above).
 
-You can subtract datetime and datetime, datetime and interval, or add datetime and interval in any order (see examples of such arithmetics in the description of the :ref:`INTERVAL type <sql_data_type_interval>`).
+You can subtract datetime and datetime, datetime and interval, or add datetime and interval in any order (see examples of such arithmetic in the description of the :ref:`INTERVAL type <sql_data_type_interval>`).
 
 The built-in functions related to the DATETIME type are :ref:`DATE_PART() <sql_function_datepart>` and :ref:`NOW() <sql_function_now>`
 

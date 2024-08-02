@@ -24,7 +24,7 @@ datetime_object
                     -   Description
 
                 *   -   nsec
-                    -   Nanosecods
+                    -   Nanoseconds
 
                 *   -   sec
                     -   Seconds

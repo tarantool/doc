@@ -44,8 +44,8 @@ Graph view
 
 The graph view of the cluster topology is shown in a tree-like structure where
 leafs are the cluster's instances. Each instance's state is shown by its color.
-You can move the graph vertexes to arrange them as you like, and zoom in and out,
-which is helpful for bigger clusters.
+You can move the graph vertices to arrange them as you like, and zoom in and out,
+which is helpful for larger clusters.
 
 To switch to the graph view, click the graph button on the right of the search bar on the **Stateboard** page.
 

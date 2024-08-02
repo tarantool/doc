@@ -226,7 +226,7 @@ Configuration status
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 :ref:`Configuration status <config_api_reference_info>` displays
-Tarantool 3 configuration apply state. Additional metrics desplay the count
+Tarantool 3 configuration apply state. Additional metrics display the count
 of apply warnings and errors.
 
 ..  code-block:: yaml

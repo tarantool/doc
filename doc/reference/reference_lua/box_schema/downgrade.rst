@@ -20,7 +20,7 @@ box.schema.downgrade()
     .. NOTE::
 
         The Tarantool's downgrade procedure is similar to the upgrade process that is described in the :ref:`Upgrades <admin-upgrades>` topic.
-        You need to run ``box.schema.downgrade()`` only on master and execute `box.shapshot()` on every instance in a replica set before restart to an older version.
+        You need to run ``box.schema.downgrade()`` only on master and execute `box.snapshot()` on every instance in a replica set before restart to an older version.
 
     To see Tarantool versions available for downgrade, call :ref:`box.schema.downgrade_versions() <box_schema-downgrade_versions>`. The oldest release available for downgrade is ``2.8.2``.
 
