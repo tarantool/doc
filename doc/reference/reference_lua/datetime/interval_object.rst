@@ -78,26 +78,31 @@ interval_object
 
     ..  method:: is_interval()
 
-        Returns ``true`` if the specified value is an ``interval`` object,
-        and ``false`` otherwise.
+        Returns ``true`` if the specified value is an ``interval`` object;
+        otherwise, ``false``.
 
-        For example if ``a`` is ``123`` then
-        ``require('datetime').interval.is_interval(a)`` returns ``false``.
-        if ``a`` is ``datetime.interval.new({year = 1, day = 127, min = 15})``
-        then ``require('datetime').interval.is_interval(a)`` returns ``true``.
+        See also: :ref:`datetime-interval-new`
 
-        **Example:**
+        **Examples:**
+
+        If a numeric value is passed to ``is_interval()``, it returns ``false``:
 
         ..  code-block:: tarantoolsession
 
-            tarantool> datetime.interval.is_interval(a)
+            tarantool> datetime = require('datetime')
+            ---
+            ...
+
+            tarantool> datetime.interval.is_interval(123)
             ---
             - false
             ...
+
+        If an interval object is passed to ``is_interval()``, it returns ``true``:
+
+        ..  code-block:: tarantoolsession
 
             tarantool> datetime.interval.is_interval(datetime.interval.new())
             ---
             - true
             ...
-
-            tarantool>
