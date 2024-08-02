@@ -23,3 +23,4 @@ box.info.gc()
     * **gc().checkpoint_is_in_progress** -- true if a checkpoint is in progress, otherwise false
     * **gc().vclock** -- the garbage collector's vclock.
     * **gc().signature** -- the sum of the garbage collector's checkpoint's components.
+    * **gc().wal_retention_vclock** -- a vclock value of the oldest write-ahead log file protected from removing by the garbage collector by using the :ref:`wal.retention_period <configuration_reference_wal_retention_period>` option.
