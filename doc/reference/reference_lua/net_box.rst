@@ -421,14 +421,6 @@ Below is a list of all ``net.box`` functions.
             any specified interval (for example, ``reconnect_after=5`` means that reconnect attempts are made every 5 seconds).
             When a connection is explicitly closed or when the Lua garbage collector removes it, then reconnect attempts stop.
 
-
-        *   ``call_16``: [since 1.7.2] a new binary protocol command for CALL in ``net.box`` connections by default.
-            The new CALL is not backward compatible with previous versions. It no longer restricts a function to
-            returning an array of tuples and allows returning an arbitrary MsgPack/JSON result,
-            including scalars, nil and void (nothing). The old CALL is left intact for backward compatibility.
-            It will not be present in the next major release. All programming language drivers will gradually be switched
-            to the new CALL. To connect to a Tarantool instance that uses the old CALL, specify ``call_16=true``.
-
         *   ``connect_timeout``: a number of seconds to wait before returning "error: Connection timed out".
 
         *   ``fetch_schema``: a boolean option that controls fetching schema changes from the server. Default: ``true``.
@@ -493,7 +485,6 @@ Below is a list of all ``net.box`` functions.
 
         conn = net_box.connect('localhost:3301')
         conn = net_box.connect('127.0.0.1:3302', {wait_connected = false})
-        conn = net_box.connect('127.0.0.1:3303', {reconnect_after = 5, call_16 = true})
         conn = net_box.connect('127.0.0.1:3304', {required_protocol_version = 4, required_protocol_features = {'transactions', 'streams'}, })
 
 .. _net_box-new:
