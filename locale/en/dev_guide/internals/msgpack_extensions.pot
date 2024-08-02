@@ -298,7 +298,7 @@ msgid "ce 00 00 00 88                  MP_UINT = HEADER + BODY SIZE\n"
 "        04                              MP_ERROR_ERRNO\n"
 "        00                              MP_UINT = error number\n"
 "        05                              MP_ERROR_ERRCODE\n"
-"        0a                              MP_UINT = eror code ER_SPACE_EXISTS"
+"        0a                              MP_UINT = error code ER_SPACE_EXISTS"
 msgstr ""
 
 #: ../../doc/dev_guide/internals/msgpack_extensions.rst:249
