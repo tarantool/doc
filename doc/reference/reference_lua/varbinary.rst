@@ -89,7 +89,7 @@ Decoding binary data to varbinary objects
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The built-in decoders also decode binary data fields (fields with the
-``binary`` tag in YAML; the ``MP_BIN`` type in MsgPack) to varbinary
+``binary`` tag in YAML and the ``MP_BIN`` type in MsgPack) to varbinary
 objects by default:
 
 .. code-block:: tarantoolsession
@@ -197,53 +197,53 @@ Functions
 
 ..  _varbinary-module-api-reference-metamethods:
 
-.. class:: varbinary_object
-
 Metamethods
 ~~~~~~~~~~~
 
-.. _varbinary_eq:
+.. class:: varbinary_object
 
-.. method:: __eq
+    .. _varbinary_eq:
 
-    Checks the equality of two ``varbinary`` objects or a ``varbinary`` object and a string.
-    A ``varbinary`` object equals to a another ``varbinary`` object of a string if it
-    contains the same data.
+    .. method:: __eq
 
-    Defines the ``==`` and ``~=`` operators for ``varbinary`` objects.
+        Checks the equality of two ``varbinary`` objects or a ``varbinary`` object and a string.
+        A ``varbinary`` object equals to a another ``varbinary`` object of a string if it
+        contains the same data.
 
-    :rtype: boolean
+        Defines the ``==`` and ``~=`` operators for ``varbinary`` objects.
 
-    **Example:**
+        :rtype: boolean
 
-    ..  literalinclude:: /code_snippets/test/varbinary/varbinary_test.lua
-        :language: lua
-        :start-at: print(bin == 'data') -- true
-        :end-at: print(bin ~= 'data1') -- true
-        :dedent:
+        **Example:**
 
-.. _varbinary_len:
+        ..  literalinclude:: /code_snippets/test/varbinary/varbinary_test.lua
+            :language: lua
+            :start-at: print(bin == 'data') -- true
+            :end-at: print(bin ~= 'data1') -- true
+            :dedent:
 
-.. method:: __len
+    .. _varbinary_len:
 
-    Returns the length of a ``varbinary`` object in bytes.
+    .. method:: __len
 
-    Defines the ``#`` operator for ``varbinary`` objects.
+        Returns the length of a ``varbinary`` object in bytes.
 
-    :rtype: number
+        Defines the ``#`` operator for ``varbinary`` objects.
 
-    **Example:**
+        :rtype: number
 
-    ..  literalinclude:: /code_snippets/test/varbinary/varbinary_test.lua
-        :language: lua
-        :start-at: print(#bin) -- 4
-        :end-at: print(#varbinary.new('\xFF\xFE')) -- 2
-        :dedent:
+        **Example:**
 
-.. _varbinary_tostring:
+        ..  literalinclude:: /code_snippets/test/varbinary/varbinary_test.lua
+            :language: lua
+            :start-at: print(#bin) -- 4
+            :end-at: print(#varbinary.new('\xFF\xFE')) -- 2
+            :dedent:
 
-.. method:: __tostring
+    .. _varbinary_tostring:
 
-    Returns a ``varbinary`` object data in a plain string.
+    .. method:: __tostring
 
-    :rtype: string
+        Returns a ``varbinary`` object data in a plain string.
+
+        :rtype: string
