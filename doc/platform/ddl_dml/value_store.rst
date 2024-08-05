@@ -345,9 +345,8 @@ bin
 ***
 
 A bin (binary) value is not directly supported by Lua but there is
-a Tarantool type ``varbinary`` which is encoded as MsgPack binary.
-For an (advanced) example showing how to insert varbinary into a database,
-see the Cookbook Recipe for :ref:`ffi_varbinary_insert <cookbook-ffi_varbinary_insert>`.
+a Tarantool type ``varbinary``. See the :ref:`varbinary module reference <varbinary-module>`
+for details.
 
 **Example:** ``"\65 \66 \67"``.
 

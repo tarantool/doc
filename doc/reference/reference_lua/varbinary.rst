@@ -11,7 +11,7 @@ Overview
 The ``varbinary`` module provides functions for operating variable-length binary
 objects in Lua.
 
-This module provides functions for creating varbinary objects, checking their type,
+This module provides functions for creating ``varbinary`` objects, checking their type,
 and also defines basic operators on such objects.
 
 For example:
@@ -21,6 +21,96 @@ For example:
     :start-at: local
     :end-before: local luatest
     :dedent:
+
+.. _varbinary-module-overview-encode:
+
+Encoding varbinary objects
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``varbinary`` objects preserve their binary type when encoded by the built-in MsgPack
+and YAML encoders.
+
+See the difference:
+
+-   String to MsgPack:
+
+    .. code-block:: tarantoolsession
+
+        tarantool> msgpack.encode('\xFF\xFE')
+        ---
+        - "\xA2\xFF\xFE"
+        ...
+
+-   ``varbinary`` to MsgPack:
+
+    .. code-block:: tarantoolsession
+
+        tarantool> msgpack.encode(varbinary.new('\xFF\xFE'))
+        ---
+        - "\xC4\x02\xFF\xFE"
+        ...
+
+-   String to YAML:
+
+    .. code-block:: tarantoolsession
+
+    tarantool> '\xFF\xFE'
+    ---
+    - "\xFF\xFE"
+    ...
+
+-   ``varbinary`` to YAML:
+
+    .. code-block:: tarantoolsession
+
+        tarantool> varbinary.new('\xFF\xFE')
+        ---
+        - !!binary //4=
+        ...
+
+.. note::
+
+    The JSON format doesn't support the binary type so varbinary objects are encoded
+    as plain strings in JSON:
+
+    .. code-block:: tarantoolsession
+
+        tarantool> json.encode('\xFF\xFE')
+        ---
+        - "\"\xFF\xFE\""
+        ...
+
+        tarantool> json.encode(varbinary.new('\xFF\xFE'))
+        ---
+        - "\"\xFF\xFE\""
+        ...
+
+.. _varbinary-module-overview-decode:
+
+Decoding binary data to varbinary objects
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The built-in decoders also decode binary data fields (fields with the
+``binary`` tag in YAML; the ``MP_BIN`` type in MsgPack) to varbinary
+objects by default:
+
+.. code-block:: tarantoolsession
+
+    tarantool> varbinary.is(msgpack.decode('\xC4\x02\xFF\xFE'))
+    ---
+    - true
+    ...
+
+    tarantool> varbinary.is(yaml.decode('!!binary //4='))
+    ---
+    - true
+    ...
+
+.. important::
+
+    This changes the decoder behavior: before Tarantool 3.0, such fields were decoded
+    to plain strings. To return to this behavior, use the ``compat`` option
+    :ref:`binary_data_decoding <compat-option-binary-decoding>`.
 
 .. _varbinary-module-api-reference:
 
@@ -88,10 +178,11 @@ Functions
 
 .. function:: new(data[, size])
 
-    Create a new varbinary object from a given string or a cdata pointer and size.
+    Create a new varbinary object from a given string or a ``cdata`` pointer and size.
 
-    :param string data: a string or a cdata pointer
-    :param number size: (optional) object size if ``data`` is a cdata pointer
+    :param string data: a string object
+    :param cdata data: a ``cdata`` pointer
+    :param number size: (optional) object size if ``data`` is a ``cdata`` pointer
     :return: a varbinary object containing the data
 
     :rtype: varbinary

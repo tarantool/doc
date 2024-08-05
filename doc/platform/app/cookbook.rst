@@ -249,56 +249,6 @@ a metatable).
     local b = a + point(0.5, 8)
     print(#b)        --> 12.5
 
-.. _cookbook-ffi_varbinary_insert:
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-ffi_varbinary_insert.lua
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Use the `LuaJIT ffi library <http://luajit.org/ext_ffi.html>`_ to
-insert a tuple which has a VARBINARY field.
-
-Note that it is allowed only inside a memtx transaction: when ``box_insert()``
-does not yield.
-
-Lua does not have direct support for VARBINARY, so using C
-is one way to put in data which in MessagePack is stored as bin
-(MP_BIN). If the tuple is retrieved later, field "b" will have type = 'cdata'.
-
-.. code-block:: lua
-
-    #!/usr/bin/env tarantool
-
-    -- box.cfg{} should be here
-
-    s = box.schema.space.create('withdata')
-    s:format({{"b", "varbinary"}})
-    s:create_index('pk', {parts = {1, "varbinary"}})
-
-    buffer = require('buffer')
-    ffi = require('ffi')
-
-    function varbinary_insert(space, bytes)
-        local tmpbuf = buffer.ibuf()
-        local p = tmpbuf:alloc(3 + #bytes)
-        p[0] = 0x91 -- MsgPack code for "array-1"
-        p[1] = 0xC4 -- MsgPack code for "bin-8" so up to 256 bytes
-        p[2] = #bytes
-        for i, c in pairs(bytes) do p[i + 3 - 1] = c end
-        ffi.cdef[[int box_insert(uint32_t space_id,
-                                 const char *tuple,
-                                 const char *tuple_end,
-                                 box_tuple_t **result);]]
-        ffi.C.box_insert(space.id, tmpbuf.rpos, tmpbuf.wpos, nil)
-        tmpbuf:recycle()
-    end
-
-    varbinary_insert(s, {0xDE, 0xAD, 0xBE, 0xAF})
-    varbinary_insert(s, {0xFE, 0xED, 0xFA, 0xCE})
-
-    -- if successful, Tarantool enters the event loop now
-
-
 .. _cookbook-print_arrays:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
