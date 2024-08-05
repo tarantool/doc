@@ -9,101 +9,6 @@ The ``datetime`` module provides support for the :ref:`datetime <index-box_datet
 It allows creating the date and time values either via the object interface
 or via parsing string values conforming to the ISO-8601 standard.
 
-.. _interval_arithm:
-
-Interval arithmetic
--------------------
-
-The ``datetime`` module enables creating of objects of two types: ``datetime`` and ``interval``.
-
-If you need to shift the ``datetime`` object values, you can use either the modifier methods, that is, the :ref:`datetime_object:add() <datetime-add>` or :ref:`datetime_object:sub() <datetime-sub>` methods,
-or apply interval arithmetic using overloaded `+ (__add)` or `- (__sub)` methods.
-
-``datetime_object:add()``/``datetime_object:sub()`` modify the current object, but ``+``/``-`` create copy of the object as the operation result.
-
-In the interval operation, each of the interval subcomponents is sequentially calculated starting from the largest (``year``) to the smallest (``nsec``):
-
-*   ``year`` -- years
-*   ``month`` -- months
-*   ``week`` -- weeks
-*   ``day`` -- days
-*   ``hour`` -- hours
-*   ``min`` -- minutes
-*   ``sec`` -- seconds
-*   ``nsec`` -- nanoseconds
-
-If the results of the operation exceed the allowed range for any of the components, an exception is raised.
-
-The ``datetime`` and ``interval`` objects can participate in arithmetic operations:
-
-*   The sum of two intervals is an interval object, whose fields are the sum of each particular component of operands.
-
-*   The result of subtraction of two intervals is similar: it's an interval object where each subcomponent is the result of subtraction of particular fields in the original operands.
-
-*   If you add datetime and interval objects, the result is a datetime object. The addition is performed in a determined order from the largest component (``year``) to the smallest (``nsec``).
-
-*   Subtraction of two datetime objects produces an interval object. The difference of two time values is performed not as the difference of the epoch seconds,
-    but as difference of all the subcomponents, that is, years, months, days, hours, minutes, and seconds.
-
-*   An untyped table object can be used in each context where the typed datetime or interval objects are used if the left operand is a typed object with an overloaded operation of ``+`` or ``-``.
-
-The matrix of the ``addition`` operands eligibility and their result types:
-
-..  container:: table
-
-    ..  list-table::
-        :widths: 25 25 25 25
-        :header-rows: 1
-
-        *   -
-            -   datetime
-            -   interval
-            -   table
-
-        *   -   **datetime**
-            -
-            -   datetime
-            -   datetime
-
-        *   -   **interval**
-            -   datetime
-            -   interval
-            -   interval
-
-        *   -   **table**
-            -
-            -
-            -
-
-The matrix of the ``subtraction`` operands eligibility and their result types:
-
-..  container:: table
-
-    ..  list-table::
-        :widths: 25 25 25 25
-        :header-rows: 1
-
-        *   -
-            -   datetime
-            -   interval
-            -   table
-
-        *   -   **datetime**
-            -   interval
-            -   datetime
-            -   datetime
-
-        *   -   **interval**
-            -
-            -   interval
-            -   interval
-
-        *   -   **table**
-            -
-            -
-            -
-
-
 
 .. _uri-module-api-reference:
 
@@ -127,16 +32,16 @@ Below is a list of ``datetime`` functions, properties, and related objects.
             -   Create an object of the ``datetime`` type from a table of time units
 
         *   -   :ref:`datetime.now() <datetime-now>`
-            -   Get the current date and time
+            -   Create an object of the ``datetime`` type with the current date and time
 
         *   -   :ref:`datetime.is_datetime() <datetime-is_datetime>`
-            -   Whether the specified value is a ``datetime`` object
+            -   Check whether the specified value is a ``datetime`` object
 
         *   -   :ref:`datetime.parse() <datetime-parse>`
             -   Convert an input string with the date and time information into a ``datetime`` object
 
         *   -   :ref:`datetime.interval.is_interval() <datetime-interval-is_interval>`
-            -   Whether the specified value is an ``interval`` object
+            -   Check whether the specified value is an ``interval`` object
 
         *   -   :ref:`datetime.interval.new() <datetime-interval-new>`
             -   Create an object of the ``interval`` type from a table of time units
@@ -318,7 +223,7 @@ Functions
 
 ..  function:: datetime.now()
 
-    Get the current date and time.
+    Create an object of the ``datetime`` type with the current date and time.
 
     :return: :ref:`datetime object <datetime_obj>`
     :rtype: cdata
@@ -327,7 +232,7 @@ Functions
 
 ..  function:: datetime.is_datetime([value])
 
-    Whether the specified value is a ``datetime`` object.
+    Check whether the specified value is a ``datetime`` object.
 
     :param any value: the value to check
 
@@ -406,7 +311,7 @@ Functions
 
     Since: :doc:`3.2.0 </release/3.2.0>`
 
-    Whether the specified value is an ``interval`` object.
+    Check whether the specified value is an ``interval`` object.
 
     :param any value: the value to check
 
@@ -956,3 +861,95 @@ interval_object
               year: 0
               min: 0
             ...
+
+
+
+
+.. _interval_arithm:
+
+Datetime and interval arithmetic
+--------------------------------
+
+The ``datetime`` module enables creating of objects of two types: ``datetime`` and ``interval``.
+
+If you need to shift the ``datetime`` object values, you can use either the modifier methods, that is, the :ref:`datetime_object:add() <datetime-add>` or :ref:`datetime_object:sub() <datetime-sub>` methods,
+or apply interval arithmetic using overloaded ``+`` ``(__add)`` or ``-`` ``(__sub)`` methods.
+
+``datetime_object:add()``/``datetime_object:sub()`` modify the current object, but ``+``/``-`` create copy of the object as the operation result.
+
+In the interval operation, each of the interval subcomponents is sequentially calculated starting from the largest (``year``) to the smallest (``nsec``):
+
+*   ``year`` -- years
+*   ``month`` -- months
+*   ``week`` -- weeks
+*   ``day`` -- days
+*   ``hour`` -- hours
+*   ``min`` -- minutes
+*   ``sec`` -- seconds
+*   ``nsec`` -- nanoseconds
+
+If the results of the operation exceed the allowed range for any of the components, an exception is raised.
+
+The ``datetime`` and ``interval`` objects can participate in arithmetic operations:
+
+*   The sum of two intervals is an interval object, whose fields are the sum of each particular component of operands.
+
+*   The result of subtraction of two intervals is similar: it's an interval object where each subcomponent is the result of subtraction of particular fields in the original operands.
+
+*   If you add datetime and interval objects, the result is a datetime object. The addition is performed in a determined order from the largest component (``year``) to the smallest (``nsec``).
+
+*   Subtraction of two datetime objects produces an interval object. The difference of two time values is performed not as the difference of the epoch seconds,
+    but as difference of all the subcomponents, that is, years, months, days, hours, minutes, and seconds.
+
+*   An untyped table object can be used in each context where the typed datetime or interval objects are used if the left operand is a typed object with an overloaded operation of ``+`` or ``-``.
+
+The matrix of the ``addition`` operands eligibility and their result types:
+
+..  container:: table
+
+    ..  list-table::
+        :widths: 25 25 25 25
+        :header-rows: 1
+
+        *   -
+            -   datetime
+            -   interval
+            -   table
+
+        *   -   **datetime**
+            -
+            -   datetime
+            -   datetime
+
+        *   -   **interval**
+            -   datetime
+            -   interval
+            -   interval
+
+        *   -   **table**
+            -   datetime
+            -
+            -
+
+The matrix of the ``subtraction`` operands eligibility and their result types:
+
+..  container:: table
+
+    ..  list-table::
+        :widths: 25 25 25 25
+        :header-rows: 1
+
+        *   -
+            -   datetime
+            -   interval
+            -   table
+
+        *   -   **datetime**
+            -   interval
+            -   datetime
+            -   datetime
+
+        *   -   **interval**
+            -
+            -   interval
+            -   interval
