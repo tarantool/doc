@@ -9,9 +9,7 @@ Overview
 --------
 
 The ``varbinary`` module provides functions for operating variable-length binary
-objects in Lua.
-
-This module provides functions for creating ``varbinary`` objects, checking their type,
+objects in Lua. It provides functions for creating ``varbinary`` objects, checking their type,
 and also defines basic operators on such objects.
 
 For example:
@@ -54,10 +52,10 @@ See the difference:
 
     .. code-block:: tarantoolsession
 
-    tarantool> '\xFF\xFE'
-    ---
-    - "\xFF\xFE"
-    ...
+        tarantool> '\xFF\xFE'
+        ---
+        - "\xFF\xFE"
+        ...
 
 -   ``varbinary`` to YAML:
 
@@ -108,8 +106,9 @@ objects by default:
 
 .. important::
 
-    This changes the decoder behavior: before Tarantool 3.0, such fields were decoded
-    to plain strings. To return to this behavior, use the ``compat`` option
+    This behavior is different from what is was before Tarantool 3.0.
+    In earlier versions, such fields were decoded to plain strings.
+    To return to this behavior, use the ``compat`` option
     :ref:`binary_data_decoding <compat-option-binary-decoding>`.
 
 .. _varbinary-module-api-reference:
@@ -130,16 +129,16 @@ Below is a list of ``varbinary`` functions, properties, and related objects.
         *   -   **Functions**
             -
         *   -   :ref:`varbinary.is() <varbinary_is>`
-            -   Check that the argument is a varbinary object
+            -   Check that the argument is a ``varbinary`` object
 
         *   -   :ref:`varbinary.new() <varbinary_new>`
-            -   Create a varbinary object
+            -   Create a ``varbinary`` object
 
         *   -   **Metamethods**
             -
 
         *   -   :ref:`varbinary_object.__eq <varbinary_eq>`
-            -   Checks the equality of two varbinary ojbects
+            -   Checks the equality of two ``varbinary`` objects
 
         *   -   :ref:`varbinary_object.__len <varbinary_len>`
             -   Returns the length of the binary data in bytes
@@ -159,11 +158,11 @@ Functions
 
 .. function:: is(object)
 
-    Check that the given object is a varbinary object.
+    Check that the given object is a ``varbinary`` object.
 
     :param object object: an object to check
 
-    :return: Whether the given object is a varbinary object
+    :return: Whether the given object is of ``varbinary`` type
     :rtype: boolean
 
     **Example:**
@@ -178,12 +177,12 @@ Functions
 
 .. function:: new(data[, size])
 
-    Create a new varbinary object from a given string or a ``cdata`` pointer and size.
+    Create a new ``varbinary`` object from a given string or a ``cdata`` pointer and size.
 
     :param string data: a string object
     :param cdata data: a ``cdata`` pointer
     :param number size: (optional) object size if ``data`` is a ``cdata`` pointer
-    :return: a varbinary object containing the data
+    :return: a ``varbinary`` object containing the data
 
     :rtype: varbinary
 
@@ -198,18 +197,20 @@ Functions
 
 ..  _varbinary-module-api-reference-metamethods:
 
+.. class:: varbinary_object
+
 Metamethods
 ~~~~~~~~~~~
 
 .. _varbinary_eq:
 
-.. function:: __eq
+.. method:: __eq
 
-    Checks the equality of two varbinary objects or a varbinary object and a string.
-    A varbinary object equals to a another varbinary object of a string if it
+    Checks the equality of two ``varbinary`` objects or a ``varbinary`` object and a string.
+    A ``varbinary`` object equals to a another ``varbinary`` object of a string if it
     contains the same data.
 
-    Defines the ``==`` and ``~=`` operators for varbinary objects.
+    Defines the ``==`` and ``~=`` operators for ``varbinary`` objects.
 
     :rtype: boolean
 
@@ -218,16 +219,16 @@ Metamethods
     ..  literalinclude:: /code_snippets/test/varbinary/varbinary_test.lua
         :language: lua
         :start-at: print(bin == 'data') -- true
-        :end-at: print(bin ~= 'data1') -- false
+        :end-at: print(bin ~= 'data1') -- true
         :dedent:
 
 .. _varbinary_len:
 
-.. function:: __len
+.. method:: __len
 
-    Returns the length of a varbinary object in bytes.
+    Returns the length of a ``varbinary`` object in bytes.
 
-    Defines the ``#`` operator for varbinary objects.
+    Defines the ``#`` operator for ``varbinary`` objects.
 
     :rtype: number
 
@@ -241,8 +242,8 @@ Metamethods
 
 .. _varbinary_tostring:
 
-.. function:: __tostring
+.. method:: __tostring
 
-    Returns a varbinary object data in a plain string
+    Returns a ``varbinary`` object data in a plain string.
 
     :rtype: string
