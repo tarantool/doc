@@ -52,18 +52,31 @@ Below is a list of ``datetime`` functions, properties, and related objects.
         *   -   :ref:`datetime.TZ <datetime-tz>`
             -   An array of timezone names and abbreviations
 
-        *   -   **Related objects**
+        *   -   **Methods**
             -
 
-        *   -   :ref:`datetime_object <datetime_obj>`
-            -   A ``datetime`` object
+        *   -   :ref:`datetime_object:add() <datetime-add>`
+            -   Modify an existing ``datetime`` object by adding values of the input argument
 
-        *   -   :ref:`interval_object <interval_obj>`
-            -   An ``interval`` object
+        *   -   :ref:`datetime_object:format() <datetime-format>`
+            -   Convert the standard ``datetime`` object presentation into a formatted string
+
+        *   -   :ref:`datetime_object:set() <datetime-set>`
+            -   Update the field values in the existing ``datetime`` object
+
+        *   -   :ref:`datetime_object:sub() <datetime-sub>`
+            -   Modify an existing ``datetime`` object by subtracting values of the input argument
+
+        *   -   :ref:`datetime_object:totable() <datetime-totable>`
+            -   Convert the information from a ``datetime`` object into the table format
+
+        *   -   :ref:`interval_object:totable() <interval-totable>`
+            -   Convert the information from an ``interval`` object into the table format
 
 
 
-.. module:: datetime
+
+
 
 ..  _datetime-module-api-reference-functions:
 
@@ -474,179 +487,6 @@ datetime_object
 
     A ``datetime`` object.
 
-    ..  _datetime-totable:
-
-    ..  method:: totable()
-
-        Convert the information from a ``datetime`` object into the table format.
-        The resulting table has the following fields:
-
-        ..  container:: table
-
-            ..  list-table::
-                :widths: 30 70
-                :header-rows: 1
-
-                *   -   Field name
-                    -   Description
-
-                *   -   nsec
-                    -   Nanoseconds
-
-                *   -   sec
-                    -   Seconds
-
-                *   -   min
-                    -   Minutes
-
-                *   -   hour
-                    -   Hours
-
-                *   -   day
-                    -   Day number
-
-                *   -   month
-                    -   Month number
-
-                *   -   year
-                    -   Year
-
-                *   -   wday
-                    -   Days since the beginning of the week
-
-                *   -   yday
-                    -   Days since the beginning of the year
-
-                *   -   isdst
-                    -   Is the DST (Daylight saving time) applicable for the date. Boolean.
-
-                *   -   tzoffset
-                    -   Time zone offset from UTC
-
-        :return: table with the date and time parameters
-        :rtype: table
-
-        **Example:**
-
-        ..  code-block:: tarantoolsession
-
-            tarantool> dt = datetime.new {
-                        sec = 20,
-                        min = 25,
-                        hour = 18,
-
-                        day = 20,
-                        month = 8,
-                        year = 2021,
-                        }
-            ---
-            ...
-
-            tarantool> dt:totable()
-            ---
-            - sec: 20
-              min: 25
-              yday: 232
-              day: 20
-              nsec: 0
-              isdst: false
-              wday: 6
-              tzoffset: 0
-              month: 8
-              year: 2021
-              hour: 18
-            ...
-
-    ..  _datetime-format:
-
-    ..  method:: format( ['input_string'] )
-
-        Convert the standard ``datetime`` object presentation into a formatted string.
-        The conversion specifications are the same as in the `strftime <https://www.freebsd.org/cgi/man.cgi?query=strftime&sektion=3>`__ library.
-        Additional specification for nanoseconds is `%f` which also allows a modifier to control the output precision of fractional part: `%5f` (see the example below).
-        If no arguments are set for the method, the default conversions are used: `'%FT%T.%f%z'` (see the example below).
-
-        :param string input_string: string consisting of zero or more conversion specifications and ordinary characters
-
-        :return: string with the formatted date and time information
-        :rtype: string
-
-        **Example:**
-
-        ..  code-block:: tarantoolsession
-
-            tarantool> dt = datetime.new {
-                        nsec = 123456789,
-
-                        sec = 20,
-                        min = 25,
-                        hour = 18,
-
-                        day = 20,
-                        month = 8,
-                        year = 2021,
-
-                        tzoffset  = 180
-                        }
-            ---
-            ...
-
-            tarantool> dt:format('%d.%m.%y %H:%M:%S.%5f')
-            ---
-            - 20.08.21 18:25:20.12345
-            ...
-
-            tarantool> dt:format()
-            ---
-            - 2021-08-20T18:25:20.123456789+0300
-            ...
-
-            tarantool> dt:format('%FT%T.%f%z')
-            ---
-            - 2021-08-20T18:25:20.123456789+0300
-            ...
-
-    ..  _datetime-set:
-
-    ..  method:: set( [{ units }] )
-
-        Update the field values in the existing ``datetime`` object.
-
-        :param table units: Table of time units. The :ref:`time units <datetime-new-args>` are the same as for the ``datetime.new()`` function.
-
-        :return: updated datetime_object
-        :rtype: cdata
-
-        **Example:**
-
-        ..  code-block:: tarantoolsession
-
-            tarantool> dt = datetime.new {
-                        nsec = 123456789,
-
-                        sec = 20,
-                        min = 25,
-                        hour = 18,
-
-                        day = 20,
-                        month = 8,
-                        year = 2021,
-
-                        tzoffset  = 180
-                        }
-
-            tarantool> dt:set {msec = 567}
-            ---
-            - 2021-08-20T18:25:20.567+0300
-            ...
-
-            tarantool> dt:set {tzoffset = 60}
-            ---
-            - 2021-08-20T18:25:20.567+0100
-            ...
-
-
-
     ..  _datetime-add:
 
     ..  method:: add( input[, { adjust } ] )
@@ -738,6 +578,95 @@ datetime_object
             - 2020-03-02T00:00:00Z
             ...
 
+    ..  _datetime-format:
+
+    ..  method:: format( ['input_string'] )
+
+        Convert the standard ``datetime`` object presentation into a formatted string.
+        The conversion specifications are the same as in the `strftime <https://www.freebsd.org/cgi/man.cgi?query=strftime&sektion=3>`__ library.
+        Additional specification for nanoseconds is `%f` which also allows a modifier to control the output precision of fractional part: `%5f` (see the example below).
+        If no arguments are set for the method, the default conversions are used: `'%FT%T.%f%z'` (see the example below).
+
+        :param string input_string: string consisting of zero or more conversion specifications and ordinary characters
+
+        :return: string with the formatted date and time information
+        :rtype: string
+
+        **Example:**
+
+        ..  code-block:: tarantoolsession
+
+            tarantool> dt = datetime.new {
+                        nsec = 123456789,
+
+                        sec = 20,
+                        min = 25,
+                        hour = 18,
+
+                        day = 20,
+                        month = 8,
+                        year = 2021,
+
+                        tzoffset  = 180
+                        }
+            ---
+            ...
+
+            tarantool> dt:format('%d.%m.%y %H:%M:%S.%5f')
+            ---
+            - 20.08.21 18:25:20.12345
+            ...
+
+            tarantool> dt:format()
+            ---
+            - 2021-08-20T18:25:20.123456789+0300
+            ...
+
+            tarantool> dt:format('%FT%T.%f%z')
+            ---
+            - 2021-08-20T18:25:20.123456789+0300
+            ...
+
+    ..  _datetime-set:
+
+    ..  method:: set( [{ units }] )
+
+        Update the field values in the existing ``datetime`` object.
+
+        :param table units: Table of time units. The :ref:`time units <datetime-new-args>` are the same as for the ``datetime.new()`` function.
+
+        :return: updated datetime_object
+        :rtype: cdata
+
+        **Example:**
+
+        ..  code-block:: tarantoolsession
+
+            tarantool> dt = datetime.new {
+                        nsec = 123456789,
+
+                        sec = 20,
+                        min = 25,
+                        hour = 18,
+
+                        day = 20,
+                        month = 8,
+                        year = 2021,
+
+                        tzoffset  = 180
+                        }
+
+            tarantool> dt:set {msec = 567}
+            ---
+            - 2021-08-20T18:25:20.567+0300
+            ...
+
+            tarantool> dt:set {tzoffset = 60}
+            ---
+            - 2021-08-20T18:25:20.567+0100
+            ...
+
+
     ..  _datetime-sub:
 
     ..  method:: sub( { input[, adjust ] } )
@@ -783,6 +712,90 @@ datetime_object
             tarantool> dt:sub{ day = 1 }
             ---
             - 2021-08-20T00:00:00+0300
+            ...
+
+
+    ..  _datetime-totable:
+
+    ..  method:: totable()
+
+        Convert the information from a ``datetime`` object into the table format.
+        The resulting table has the following fields:
+
+        ..  container:: table
+
+            ..  list-table::
+                :widths: 30 70
+                :header-rows: 1
+
+                *   -   Field name
+                    -   Description
+
+                *   -   nsec
+                    -   Nanoseconds
+
+                *   -   sec
+                    -   Seconds
+
+                *   -   min
+                    -   Minutes
+
+                *   -   hour
+                    -   Hours
+
+                *   -   day
+                    -   Day number
+
+                *   -   month
+                    -   Month number
+
+                *   -   year
+                    -   Year
+
+                *   -   wday
+                    -   Days since the beginning of the week
+
+                *   -   yday
+                    -   Days since the beginning of the year
+
+                *   -   isdst
+                    -   Is the DST (Daylight saving time) applicable for the date. Boolean.
+
+                *   -   tzoffset
+                    -   Time zone offset from UTC
+
+        :return: table with the date and time parameters
+        :rtype: table
+
+        **Example:**
+
+        ..  code-block:: tarantoolsession
+
+            tarantool> dt = datetime.new {
+                        sec = 20,
+                        min = 25,
+                        hour = 18,
+
+                        day = 20,
+                        month = 8,
+                        year = 2021,
+                        }
+            ---
+            ...
+
+            tarantool> dt:totable()
+            ---
+            - sec: 20
+              min: 25
+              yday: 232
+              day: 20
+              nsec: 0
+              isdst: false
+              wday: 6
+              tzoffset: 0
+              month: 8
+              year: 2021
+              hour: 18
             ...
 
 
