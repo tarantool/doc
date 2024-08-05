@@ -930,7 +930,7 @@ The matrix of the ``addition`` operands eligibility and their result types:
             -   table
 
         *   -   **datetime**
-            -
+            -   unsupported
             -   datetime
             -   datetime
 
@@ -939,10 +939,6 @@ The matrix of the ``addition`` operands eligibility and their result types:
             -   interval
             -   interval
 
-        *   -   **table**
-            -   datetime
-            -
-            -
 
 The matrix of the ``subtraction`` operands eligibility and their result types:
 
@@ -963,6 +959,6 @@ The matrix of the ``subtraction`` operands eligibility and their result types:
             -   datetime
 
         *   -   **interval**
-            -
+            -   unsupported
             -   interval
             -   interval
