@@ -204,7 +204,7 @@ Metamethods
 
     .. _varbinary_eq:
 
-    .. method:: __eq
+    .. method:: __eq(varbinary)
 
         Checks the equality of two ``varbinary`` objects or a ``varbinary`` object and a string.
         A ``varbinary`` object equals to a another ``varbinary`` object of a string if it
@@ -224,7 +224,7 @@ Metamethods
 
     .. _varbinary_len:
 
-    .. method:: __len
+    .. method:: __len()
 
         Returns the length of a ``varbinary`` object in bytes.
 
@@ -242,7 +242,7 @@ Metamethods
 
     .. _varbinary_tostring:
 
-    .. method:: __tostring
+    .. method:: __tostring()
 
         Returns a ``varbinary`` object data in a plain string.
 
