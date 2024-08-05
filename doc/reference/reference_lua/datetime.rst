@@ -873,7 +873,7 @@ Datetime and interval arithmetic
 The ``datetime`` module enables creating of objects of two types: ``datetime`` and ``interval``.
 
 If you need to shift the ``datetime`` object values, you can use either the modifier methods, that is, the :ref:`datetime_object:add() <datetime-add>` or :ref:`datetime_object:sub() <datetime-sub>` methods,
-or apply interval arithmetic using overloaded ``+`` ``(__add)`` or ``-`` ``(__sub)`` methods.
+or apply interval arithmetic using overloaded ``+`` (``__add``) or ``-`` (``__sub``) methods.
 
 ``datetime_object:add()``/``datetime_object:sub()`` modify the current object, but ``+``/``-`` create copy of the object as the operation result.
 
