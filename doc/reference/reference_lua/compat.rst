@@ -83,5 +83,5 @@ Below are the available ``compat`` options:
     compat/box_cfg_replication_sync_timeout
     compat/sql_seq_scan_default
     compat/fiber_slice_default
-    compat/binary_data_decoding>
+    compat/binary_data_decoding
     compat/compat_tutorial
