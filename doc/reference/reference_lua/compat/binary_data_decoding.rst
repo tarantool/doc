@@ -5,7 +5,7 @@ Decoding binary objects
 
 Option: ``binary_data_decoding``
 
-Starting from version 3.0, Tarantool has the :ref:`varbinary <varbinary_module>` module
+Starting from version 3.0, Tarantool has the :ref:`varbinary <varbinary-module>` module
 for handling binary objects of arbitrary lengths.
 The ``binary_data_decoding`` compat option allows to define the format in which
 varbinary field values are returned for handling in Lua: plain strings or ``varbinary``

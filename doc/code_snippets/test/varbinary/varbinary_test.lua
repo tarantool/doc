@@ -9,6 +9,7 @@ varbinary.is('data') -- false
 print(bin == 'data') -- true
 print(bin == varbinary.new('data')) -- true
 print(bin == 'data1') -- false
+print(bin ~= 'data1') -- false
 
 print(#bin) -- 4
 print(#varbinary.new('\xFF\xFE')) -- 2

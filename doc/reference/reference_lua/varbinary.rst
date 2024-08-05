@@ -8,10 +8,19 @@ Module varbinary
 Overview
 --------
 
-The ``varbinary`` module provides functions for operating binary objects in Lua.
+The ``varbinary`` module provides functions for operating variable-length binary
+objects in Lua.
 
-This module provides functions for creating varbinary objects
+This module provides functions for creating varbinary objects, checking their type,
+and also defines basic operators on such objects.
 
+For example:
+
+..  literalinclude:: /code_snippets/test/varbinary/varbinary_test.lua
+    :language: lua
+    :start-at: local
+    :end-before: local luatest
+    :dedent:
 
 .. _varbinary-module-api-reference:
 
@@ -56,29 +65,6 @@ Below is a list of ``varbinary`` functions, properties, and related objects.
 Functions
 ~~~~~~~~~
 
-.. _varbinary-new:
-
-.. function:: new(data[, size])
-
-    Create a new varbinary object from a given string or a cdata pointer and size.
-
-    **See also:** :ref:`uri.format() <uri-format>`
-
-    :param string data: a string or a cdata pointer
-    :param number size: (optional) object size if ``data`` is a cdata pointer
-    :return: a varbinary object containing the data
-
-    :rtype: varbinary
-
-    **Example:**
-
-    ..  literalinclude:: /code_snippets/test/varbinary/varbinary_test.lua
-        :language: lua
-        :start-at: bin = varbinary.new('data')
-        :end-before: print(bin)
-        :dedent:
-
-
 .. _varbinary_is:
 
 .. function:: is(object)
@@ -98,6 +84,27 @@ Functions
         :end-at: varbinary.is('data') -- false
         :dedent:
 
+.. _varbinary_new:
+
+.. function:: new(data[, size])
+
+    Create a new varbinary object from a given string or a cdata pointer and size.
+
+    :param string data: a string or a cdata pointer
+    :param number size: (optional) object size if ``data`` is a cdata pointer
+    :return: a varbinary object containing the data
+
+    :rtype: varbinary
+
+    **Example:**
+
+    ..  literalinclude:: /code_snippets/test/varbinary/varbinary_test.lua
+        :language: lua
+        :start-at: bin = varbinary.new('data')
+        :end-before: varbinary.is(100) -- false
+        :dedent:
+
+
 ..  _varbinary-module-api-reference-metamethods:
 
 Metamethods
@@ -105,7 +112,7 @@ Metamethods
 
 .. _varbinary_eq:
 
-.. function:: __eq (== and ~= operators)
+.. function:: __eq
 
     Checks the equality of two varbinary objects or a varbinary object and a string.
     A varbinary object equals to a another varbinary object of a string if it
@@ -119,13 +126,13 @@ Metamethods
 
     ..  literalinclude:: /code_snippets/test/varbinary/varbinary_test.lua
         :language: lua
-        :start-at: bin = varbinary.new('data')
-        :end-at: varbinary.is('data') -- false
+        :start-at: print(bin == 'data') -- true
+        :end-at: print(bin ~= 'data1') -- false
         :dedent:
 
 .. _varbinary_len:
 
-.. function:: __len (# operator)
+.. function:: __len
 
     Returns the length of a varbinary object in bytes.
 
