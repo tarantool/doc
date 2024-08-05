@@ -204,10 +204,10 @@ Metamethods
 
     .. _varbinary_eq:
 
-    .. method:: __eq(varbinary)
+    .. method:: __eq(object)
 
         Checks the equality of two ``varbinary`` objects or a ``varbinary`` object and a string.
-        A ``varbinary`` object equals to a another ``varbinary`` object of a string if it
+        A ``varbinary`` object equals to a another ``varbinary`` object or a string if it
         contains the same data.
 
         Defines the ``==`` and ``~=`` operators for ``varbinary`` objects.
