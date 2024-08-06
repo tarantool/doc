@@ -170,7 +170,7 @@ Functions
     ..  literalinclude:: /code_snippets/test/varbinary/varbinary_test.lua
         :language: lua
         :start-at: local bin = varbinary.new('data')
-        :end-at: print(bin_hex ~= '\xFF\xFE') -- false
+        :end-at: varbinary.is('data') -- false
         :dedent:
 
 .. _varbinary_new_string:
@@ -189,7 +189,7 @@ Functions
     ..  literalinclude:: /code_snippets/test/varbinary/varbinary_test.lua
         :language: lua
         :start-at: local bin = varbinary.new('data')
-        :end-at: local bin_hex = varbinary.new('\xFF\xFE')
+        :end-before: -- Check whether a value is a varbinary object
 
         :dedent:
 
