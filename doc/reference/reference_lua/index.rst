@@ -58,9 +58,10 @@ This reference covers Tarantool's built-in Lua modules.
     table
     tap
     tarantool
-    uuid
-    utf8
     uri
+    utf8
+    uuid
+    varbinary
     xlog
     yaml
     other

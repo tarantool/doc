@@ -72,6 +72,7 @@ Below are the available ``compat`` options:
 * :doc:`box_cfg_replication_sync_timeout <./compat/box_cfg_replication_sync_timeout>`
 * :doc:`sql_seq_scan_default <./compat/sql_seq_scan_default>`
 * :doc:`fiber_slice_default <./compat/fiber_slice_default>`
+* :doc:`binary_data_decoding <./compat/binary_data_decoding>`
 
 ..  toctree::
     :hidden:
@@ -82,4 +83,5 @@ Below are the available ``compat`` options:
     compat/box_cfg_replication_sync_timeout
     compat/sql_seq_scan_default
     compat/fiber_slice_default
+    compat/binary_data_decoding
     compat/compat_tutorial

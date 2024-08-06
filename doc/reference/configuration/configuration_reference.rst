@@ -431,6 +431,8 @@ The ``compat`` section defines values of the :ref:`compat <compat-module>` modul
     -   ``new``: as varbinary objects
     -   ``old``: as plain strings
 
+    See also: :ref:`compat-option-binary-decoding`
+
     |
     | Type: string
     | Possible values: 'new', 'old'
