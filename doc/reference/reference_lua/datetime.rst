@@ -492,6 +492,7 @@ datetime_object
     ..  method:: add( input[, { adjust } ] )
 
         Modify an existing datetime object by adding values of the input argument.
+        See also: :ref:`interval_arithm`.
 
         :param table input: an :ref:`interval object <interval_obj>` or an equivalent table (see **Example #1**)
         :param string adjust: defines how to round days in a month after an arithmetic operation.
@@ -672,6 +673,7 @@ datetime_object
     ..  method:: sub( { input[, adjust ] } )
 
         Modify an existing datetime object by subtracting values of the input argument.
+        See also: :ref:`interval_arithm`.
 
         :param table input: an :ref:`interval object <interval_obj>` or an equivalent table (see **Example**)
         :param string adjust: defines how to round days in a month after an arithmetic operation.
