@@ -2,21 +2,23 @@ local varbinary = require('varbinary')
 
 -- Create a varbinary object
 local bin = varbinary.new('data')
+local bin_hex = varbinary.new('\xFF\xFE')
 
 -- Check whether a value is a varbinary object
 varbinary.is(bin) -- true
+varbinary.is(bin_hex) -- true
 varbinary.is(100) -- false
 varbinary.is('data') -- false
 
 -- Check varbinary objects equality
 print(bin == varbinary.new('data')) -- true
 print(bin == 'data') -- true
-print(bin == 'data1') -- false
 print(bin ~= 'data1') -- true
+print(bin_hex ~= '\xFF\xFE') -- false
 
 -- Check varbinary objects length
 print(#bin) -- 4
-print(#varbinary.new('\xFF\xFE')) -- 2
+print(#bin_hex) -- 2
 
 -- Print string representation
 print(tostring(bin)) -- data

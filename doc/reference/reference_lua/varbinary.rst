@@ -169,8 +169,8 @@ Functions
 
     ..  literalinclude:: /code_snippets/test/varbinary/varbinary_test.lua
         :language: lua
-        :start-at: bin = varbinary.new('data')
-        :end-at: varbinary.is('data') -- false
+        :start-at: local bin = varbinary.new('data')
+        :end-at: print(bin_hex ~= '\xFF\xFE') -- false
         :dedent:
 
 .. _varbinary_new_string:
@@ -188,8 +188,9 @@ Functions
 
     ..  literalinclude:: /code_snippets/test/varbinary/varbinary_test.lua
         :language: lua
-        :start-at: bin = varbinary.new('data')
-        :end-before: varbinary.is(100) -- false
+        :start-at: local bin = varbinary.new('data')
+        :end-at: local bin_hex = varbinary.new('\xFF\xFE')
+
         :dedent:
 
 .. _varbinary_new_ptr:
@@ -235,8 +236,8 @@ Metamethods
 
         ..  literalinclude:: /code_snippets/test/varbinary/varbinary_test.lua
             :language: lua
-            :start-at: print(bin == 'data') -- true
-            :end-at: print(bin ~= 'data1') -- true
+            :start-at: print(bin == varbinary.new('data')) -- true
+            :end-at: print(bin_hex ~= '\xFF\xFE') -- false
             :dedent:
 
     .. _varbinary_len:
@@ -254,7 +255,7 @@ Metamethods
         ..  literalinclude:: /code_snippets/test/varbinary/varbinary_test.lua
             :language: lua
             :start-at: print(#bin) -- 4
-            :end-at: print(#varbinary.new('\xFF\xFE')) -- 2
+            :end-at: print(#bin_hex) -- 2
             :dedent:
 
     .. _varbinary_tostring:
