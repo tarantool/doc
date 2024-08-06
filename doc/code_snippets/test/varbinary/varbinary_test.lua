@@ -1,6 +1,6 @@
 local varbinary = require('varbinary')
 
-bin = varbinary.new('data')
+local bin = varbinary.new('data')
 varbinary.is(bin) -- true
 varbinary.is(100) -- false
 varbinary.is('data') -- false

@@ -3,6 +3,8 @@
 Module varbinary
 ================
 
+**Since:** :doc:`3.0.0 </release/3.0.0>`
+
 .. _varbinary-module-overview:
 
 Overview
@@ -106,7 +108,7 @@ objects by default:
 
 .. important::
 
-    This behavior is different from what is was before Tarantool 3.0.
+    This behavior is different from what it was before Tarantool 3.0.
     In earlier versions, such fields were decoded to plain strings.
     To return to this behavior, use the ``compat`` option
     :ref:`binary_data_decoding <compat-option-binary-decoding>`.
@@ -184,7 +186,7 @@ Functions
     :param number size: (optional) object size if ``data`` is a ``cdata`` pointer
     :return: a ``varbinary`` object containing the data
 
-    :rtype: varbinary
+    :rtype: cdata
 
     **Example:**
 
@@ -207,7 +209,7 @@ Metamethods
     .. method:: __eq(object)
 
         Checks the equality of two ``varbinary`` objects or a ``varbinary`` object and a string.
-        A ``varbinary`` object equals to a another ``varbinary`` object or a string if it
+        A ``varbinary`` object equals to another ``varbinary`` object or a string if it
         contains the same data.
 
         Defines the ``==`` and ``~=`` operators for ``varbinary`` objects.
@@ -245,5 +247,7 @@ Metamethods
     .. method:: __tostring()
 
         Returns a ``varbinary`` object data in a plain string.
+        
+        Defines the ``tostring()`` function for ``varbinary`` objects.
 
         :rtype: string
