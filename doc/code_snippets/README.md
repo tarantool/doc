@@ -9,7 +9,7 @@ Code from these examples is [referenced](#referencing-code-snippets) in correspo
 
 ## Prerequisites
 
-- Install the [tt CLI utility](https://www.tarantool.io/en/doc/latest/reference/tooling/tt_cli/).
+- Install the [tt CLI utility](https://www.tarantool.io/en/doc/latest/tooling/tt_cli/).
 - To be able to run tests for samples from [test](test), go to the `doc/code_snippets` folder and install the following libraries:
 
     - [luatest](https://github.com/tarantool/luatest):

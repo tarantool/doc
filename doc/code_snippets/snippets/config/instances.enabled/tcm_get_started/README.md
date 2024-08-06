@@ -1,6 +1,6 @@
 # Getting started with Tarantool Cluster Manager
 
-A sample application created in the [Getting started with Tarantool Cluster Manager](https://www.tarantool.io/en/doc/latest/how-to/getting_started_tcm/) tutorial.
+A sample application created in the [Getting started with Tarantool Cluster Manager](https://www.tarantool.io/en/doc/latest/getting_started/getting_started_tcm/) tutorial.
 
 ## Running
 

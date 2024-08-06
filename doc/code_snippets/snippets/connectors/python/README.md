@@ -1,6 +1,6 @@
 # Python
 
-A sample application containing requests from the [Connecting from Python](https://www.tarantool.io/en/doc/latest/how-to/getting_started_python/) tutorial.
+A sample application containing requests from the [Python](https://www.tarantool.io/en/doc/latest/connector/python/) tutorial.
 
 
 ## Running

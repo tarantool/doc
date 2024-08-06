@@ -1,6 +1,6 @@
 # Configuration
 
-A sample application demonstrating various features related to Tarantool [configuration](https://www.tarantool.io/en/doc/latest/concepts/configuration/).
+A sample application demonstrating various features related to Tarantool [configuration](https://www.tarantool.io/en/doc/latest/platform/configuration/).
 
 ## Running
 

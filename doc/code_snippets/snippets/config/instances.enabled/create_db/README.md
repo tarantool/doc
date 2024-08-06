@@ -1,6 +1,6 @@
 # Creating your first Tarantool database
 
-A sample application created in the [Creating your first Tarantool database](https://www.tarantool.io/en/doc/latest/how-to/getting_started_db/) tutorial.
+A sample application created in the [Creating your first Tarantool database](https://www.tarantool.io/en/doc/latest/getting_started/getting_started_db/) tutorial.
 
 ## Running
 

@@ -1,6 +1,6 @@
 # Go
 
-A sample application containing requests from the [Connecting from Go](https://www.tarantool.io/en/doc/latest/how-to/getting_started_go) tutorial.
+A sample application containing requests from the [Go](https://www.tarantool.io/en/doc/latest/connector/go/) tutorial.
 
 
 ## Running
