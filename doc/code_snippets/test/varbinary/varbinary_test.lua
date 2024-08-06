@@ -1,18 +1,24 @@
 local varbinary = require('varbinary')
 
+-- Create a varbinary object
 local bin = varbinary.new('data')
+
+-- Check whether a value is a varbinary object
 varbinary.is(bin) -- true
 varbinary.is(100) -- false
 varbinary.is('data') -- false
 
-print(bin == 'data') -- true
+-- Check varbinary objects equality
 print(bin == varbinary.new('data')) -- true
+print(bin == 'data') -- true
 print(bin == 'data1') -- false
 print(bin ~= 'data1') -- true
 
+-- Check varbinary objects length
 print(#bin) -- 4
 print(#varbinary.new('\xFF\xFE')) -- 2
 
+-- Print string representation
 print(tostring(bin)) -- data
 
 local bin2 = varbinary.new(ffi.cast('const char *', 'data'), 4)
