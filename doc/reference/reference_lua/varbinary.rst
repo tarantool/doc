@@ -27,8 +27,8 @@ For example:
 Encoding varbinary objects
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-``varbinary`` objects preserve their binary type when encoded by the built-in MsgPack
-and YAML encoders.
+``varbinary`` objects preserve their binary type when encoded by the built-in :ref:`MsgPack <msgpack-module>`
+and :ref:`YAML <yaml-module>` encoders.
 
 See the difference:
 
@@ -175,16 +175,14 @@ Functions
         :end-at: varbinary.is('data') -- false
         :dedent:
 
-.. _varbinary_new:
+.. _varbinary_new_string:
 
-.. function:: new(data[, size])
+.. function:: new(string)
 
-    Create a new ``varbinary`` object from a given string or a ``cdata`` pointer and size.
+    Create a new ``varbinary`` object from a given string.
 
-    :param string data: a string object
-    :param cdata data: a ``cdata`` pointer
-    :param number size: (optional) object size if ``data`` is a ``cdata`` pointer
-    :return: a ``varbinary`` object containing the data
+    :param string string: a string object
+    :return: a ``varbinary`` object containing the string data
 
     :rtype: cdata
 
@@ -196,6 +194,25 @@ Functions
         :end-before: varbinary.is(100) -- false
         :dedent:
 
+.. _varbinary_new_ptr:
+
+.. function:: new(ptr, size)
+
+    Create a new ``varbinary`` object from a ``cdata`` pointer and size.
+
+    :param cdata ptr: a ``cdata`` pointer
+    :param number size: object size in bytes
+    :return: a ``varbinary`` object containing the data
+
+    :rtype: cdata
+
+    **Example:**
+
+    ..  literalinclude:: /code_snippets/test/varbinary/varbinary_test.lua
+        :language: lua
+        :start-at: local bin2
+        :end-at: print(bin2) -- data
+        :dedent:
 
 ..  _varbinary-module-api-reference-metamethods:
 

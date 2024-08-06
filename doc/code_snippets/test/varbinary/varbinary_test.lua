@@ -15,6 +15,10 @@ print(#varbinary.new('\xFF\xFE')) -- 2
 
 print(tostring(bin)) -- data
 
+local bin2 = varbinary.new(ffi.cast('const char *', 'data'), 4)
+varbinary.is(bin2) -- true
+print(bin2) -- data
+
 local luatest = require('luatest')
 local test_group = luatest.group()
 test_group.test_varbinary = function()
