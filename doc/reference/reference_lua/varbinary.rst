@@ -243,7 +243,7 @@ Metamethods
 
     .. method:: __len()
 
-        Returns the length of a ``varbinary`` object in bytes.
+        Returns the length of the binary data in bytes.
 
         Defines the ``#`` operator for ``varbinary`` objects.
 
@@ -261,7 +261,7 @@ Metamethods
 
     .. method:: __tostring()
 
-        Returns a ``varbinary`` object data in a plain string.
+        Returns the binary data in a plain string.
         
         Defines the ``tostring()`` function for ``varbinary`` objects.
 
