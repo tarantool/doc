@@ -188,9 +188,8 @@ Functions
 
     ..  literalinclude:: /code_snippets/test/varbinary/varbinary_test.lua
         :language: lua
-        :start-at: local bin = varbinary.new('data')
-        :end-before: -- Check whether a value is a varbinary object
-
+        :start-at: local bin
+        :end-at: local bin_hex
         :dedent:
 
 .. _varbinary_new_ptr:
