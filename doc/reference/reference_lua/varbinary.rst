@@ -19,7 +19,7 @@ For example:
 ..  literalinclude:: /code_snippets/test/varbinary/varbinary_test.lua
     :language: lua
     :start-at: local
-    :end-before: local luatest
+    :end-before: local bin2
     :dedent:
 
 .. _varbinary-module-overview-encode:
@@ -28,9 +28,7 @@ Encoding varbinary objects
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ``varbinary`` objects preserve their binary type when encoded by the built-in :ref:`MsgPack <msgpack-module>`
-and :ref:`YAML <yaml-module>` encoders.
-
-See the difference:
+and :ref:`YAML <yaml-module>` encoders. See the difference with strings:
 
 -   String to MsgPack:
 
@@ -133,7 +131,7 @@ Below is a list of ``varbinary`` functions, properties, and related objects.
         *   -   :ref:`varbinary.is() <varbinary_is>`
             -   Check that the argument is a ``varbinary`` object
 
-        *   -   :ref:`varbinary.new() <varbinary_new>`
+        *   -   :ref:`varbinary.new() <varbinary_new_string>`
             -   Create a ``varbinary`` object
 
         *   -   **Metamethods**
@@ -182,7 +180,7 @@ Functions
     Create a new ``varbinary`` object from a given string.
 
     :param string string: a string object
-    :return: a ``varbinary`` object containing the string data
+    :return: A ``varbinary`` object containing the string data
 
     :rtype: cdata
 
@@ -202,7 +200,7 @@ Functions
 
     :param cdata ptr: a ``cdata`` pointer
     :param number size: object size in bytes
-    :return: a ``varbinary`` object containing the data
+    :return: A ``varbinary`` object containing the data
 
     :rtype: cdata
 

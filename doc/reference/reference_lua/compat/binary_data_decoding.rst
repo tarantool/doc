@@ -53,4 +53,7 @@ At this point, no incompatible modules are known.
 Detecting issues in your codebase
 ---------------------------------
 
-TBD
+String manipulation methods, such as ``string.sub()`` or ``string.match()`` are not
+defined for ``varbinary`` objects. Thus, if you use such methods on results of
+binary data decoding from MsgPack or YAML, convert them to strings
+explicitly using the ``tostring()`` method.
