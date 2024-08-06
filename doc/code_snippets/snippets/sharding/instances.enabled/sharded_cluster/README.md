@@ -1,6 +1,6 @@
 # Sharded cluster
 
-A sample application demonstrating how to configure a [sharded](https://www.tarantool.io/en/doc/latest/concepts/sharding/) cluster.
+A sample application demonstrating how to configure a [sharded](https://www.tarantool.io/en/doc/latest/platform/sharding/) cluster.
 
 ## Running
 

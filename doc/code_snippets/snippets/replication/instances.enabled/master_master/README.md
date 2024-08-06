@@ -1,6 +1,6 @@
 # Master-master
 
-A sample application demonstrating how to bootstrap a [master-master](https://www.tarantool.io/en/doc/latest/how-to/replication/repl_bootstrap_master_master/) replica set.
+A sample application demonstrating how to bootstrap a [master-master](https://www.tarantool.io/en/doc/latest/platform/replication/replication_tutorials/repl_bootstrap_master_master/) replica set.
 
 ## Running
 

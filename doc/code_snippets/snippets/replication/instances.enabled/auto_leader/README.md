@@ -1,6 +1,6 @@
 # Master-replica: automated failover
 
-A sample application demonstrating how to bootstrap a replica set with [automated failover](https://www.tarantool.io/en/doc/latest/how-to/replication/repl_bootstrap_auto/).
+A sample application demonstrating how to bootstrap a replica set with [automated failover](https://www.tarantool.io/en/doc/latest/platform/replication/replication_tutorials/repl_bootstrap_auto/).
 
 ## Running
 
