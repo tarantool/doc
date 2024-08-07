@@ -118,7 +118,7 @@ Functions
                 -   0
 
             *   -   sec
-                -   Seconds. Value range: 0 - 60.
+                -   Seconds. Value range: 0 - 60. A leap second is supported, see a section :ref:`leap second <leap-second>`.
                 -   number
                 -   0
 
@@ -264,6 +264,8 @@ Functions
     *   extended `strftime <https://www.freebsd.org/cgi/man.cgi?query=strftime&sektion=3>`__ -- see description of the :ref:`format() <datetime-format>` for details.
 
     By default fields that are not specified are equal to appropriate values in a Unix time.
+
+    Leap second is supported, see a section :ref:`leap second <leap-second>`.
 
     :param string input_string: string with the date and time information.
     :param string format: indicator of the ``input_string`` format.
@@ -1033,4 +1035,41 @@ Support for relational operators for ``interval`` objects has been added since :
     tarantool> iv1 < iv2
     ---
     - true
+    ...
+
+.. _leap-second:
+
+Leap second
+-----------
+
+`Leap seconds <https://en.wikipedia.org/wiki/Leap_second>`__ are a periodic
+one-second adjustment of Coordinated Universal Time(UTC) in order to keep
+a system's time of day close to the mean solar time. However,
+the Earth's rotation speed varies in response to climatic and geological events,
+and due to this, UTC leap seconds are irregularly spaced and unpredictable.
+
+Tarantool includes the `Time Zone Database <https://www.iana.org/time-zones>`__
+that beside the time zone description files also contains a leapseconds file.
+
+This section describes how the ``datetime`` module supports leap seconds:
+
+*   The function :ref:`datetime.parse() <datetime-parse>` correctly parses
+    an input string with 60 seconds:
+
+..  code-block:: tarantoolsession
+
+    tarantool> datetime.parse('23:12:60', {format ='%H:%M:%S'})
+    ---
+    - 1970-01-01T23:13:00Z
+    - 8
+    ...
+
+*   The :ref:`datetime.new() <datetime-new>` function and the
+    :ref:`datetime_object:set() <datetime-set>` method accept a table with the ``sec`` key set to 60 seconds:
+
+..  code-block:: tarantoolsession
+
+    tarantool> datetime.new({ sec = 60 })
+    ---
+    - 1970-01-01T00:01:00Z
     ...
