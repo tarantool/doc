@@ -964,3 +964,51 @@ The matrix of the ``subtraction`` operands eligibility and their result types:
             -   unsupported
             -   interval
             -   interval
+
+.. _interval_comp:
+
+Datetime and interval comparison
+--------------------------------
+
+If you need to compare the ``datetime`` and ``interval`` object values, you can use standard Lua relational operators: ``==``, ``~=``, ``>``, ``<``, ``>=``, and ``<=``. These operators use the overloaded ``__eq``, ``__lt``, and ``__le`` metamethods to compare values.
+
+Support for relational operators for ``interval`` objects has been added since :doc:`2.11.0 </release/2.11.0>`.
+
+**Example 1:**
+
+..  code-block:: tarantoolsession
+
+    tarantool> dt1 = datetime.new({ year = 2010 })
+    ---
+    ...
+
+    tarantool> dt2 = datetime.new({ year = 2024 })
+    ---
+    ...
+
+    tarantool> dt1 == dt2
+    ---
+    - false
+    ...
+
+    tarantool> dt1 < dt2
+    ---
+    - true
+    ...
+
+**Example 2:**
+
+..  code-block:: tarantoolsession
+
+    tarantool> iv1 = datetime.interval.new({month = 1})
+    ---
+    ...
+
+    tarantool> iv2 = datetime.interval.new({month = 2})
+    ---
+    ...
+
+    tarantool> iv1 < iv2
+    ---
+    - true
+    ...
