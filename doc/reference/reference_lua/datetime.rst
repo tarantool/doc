@@ -266,8 +266,9 @@ Functions
     By default fields that are not specified are equal to appropriate values in a Unix time.
 
     :param string input_string: string with the date and time information.
-    :param string format: indicator of the input_sting format. Possible values: 'iso8601', 'rfc3339', or ``strptime``-like format string.
-                            If no value is set, the default formatting  is used.
+    :param string format: indicator of the ``input_string`` format.
+                          Possible values: 'iso8601', 'rfc3339', or ``strptime``-like format string.
+                          If no value is set, the default formatting is used (``"%F %T %Z"``).
     :param number tzoffset: time zone offset from UTC, in minutes.
 
     :return: a datetime_object
@@ -318,6 +319,25 @@ Functions
         tarantool> T
         ---
         - 1970-01-01T03:00:00.125+0300
+        ...
+
+        tarantool> dt = datetime.parse('01:01:01', {format ='%H:%M:%S'})
+        ---
+        ...
+
+        tarantool> dt.year
+        ---
+        - 1970
+        ...
+
+        tarantool> dt.month
+        ---
+        - 1
+        ...
+
+        tarantool> dt.wday
+        ---
+        - 5
         ...
 
 ..  _datetime-interval-is_interval:
