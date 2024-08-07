@@ -263,6 +263,8 @@ Functions
     *   RFC 3339
     *   extended `strftime <https://www.freebsd.org/cgi/man.cgi?query=strftime&sektion=3>`__ -- see description of the :ref:`format() <datetime-format>` for details.
 
+    By default fields that are not specified are equal to appropriate values in a Unix time.
+
     :param string input_string: string with the date and time information.
     :param string format: indicator of the input_sting format. Possible values: 'iso8601', 'rfc3339', or ``strptime``-like format string.
                             If no value is set, the default formatting  is used.
