@@ -7,7 +7,7 @@ Release date: July 30, 2024
 
 Latest release in series: 1.2.0
 
-|tcm_full_name| 1.2 introduces a number of new features that extend and improve its
+|tcm_full_name| 1.2 introduces new features that extend its
 cluster management capabilities. Below is an overview of its key updates.
 
 .. _tcm_releases_1_2_tarantool_users:
