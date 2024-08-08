@@ -18,3 +18,4 @@ This section will get you acquainted with Tarantool.
     vshard_quick
     getting_started_tcm
 
+†
