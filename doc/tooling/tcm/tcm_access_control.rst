@@ -357,6 +357,11 @@ jobs that retrieve metrics of connected Tarantool clusters.
 The API tokens functionality is disabled by default. To enable it, set the
 :ref:`feature.api-token <tcm_configuration_reference_feature_api-token>` configuration option to ``true``.
 
+.. code-block:: yaml
+
+    feature:
+      api-token: true
+
 Each |tcm| API token belongs to the user that created it and has the same :ref:`access permissions <tcm_access_control_permissions>`.
 Thus, if a user has a permission to view a cluster's metrics in |tcm|, this user's
 API tokens can be used to read this cluster's metrics with Prometheus.
