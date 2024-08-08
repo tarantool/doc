@@ -45,5 +45,6 @@ Supported versions
 ..  toctree::
     :maxdepth: 1
 
+    tcm_1.2
     tcm_1.1
     tcm_1.0

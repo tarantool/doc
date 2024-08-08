@@ -16,7 +16,7 @@ Managing Tarantool users
 ------------------------
 
 |tcm| 1.2 introduces the ability to manage Tarantool users on connected clusters.
-Previously, you could manage Tarantool users only though the Lua API (:`box.schema <box_schema>` submodule)
+Previously, you could manage Tarantool users only though the Lua API (:ref:`box.schema <box_schema>` submodule)
 or cluster :ref:`configuration <configuration_credentials_managing_users_roles>`.
 Now you can create, edit and delete users and roles on each instance of a Tarantool
 cluster through the |tcm| web interface.
@@ -37,7 +37,3 @@ provides a text editor where you can write migration scripts in Lua and apply th
 to the cluster.
 
 Learn more about migrations in Tarantool :ref:`migrations`.
-
-Console command Add/Delete cluster
-Added initial settings to tcm.yml config (ability to add clusters via tcm config file)
-Add configuration key for api token enabling
