@@ -1073,3 +1073,8 @@ This section describes how the ``datetime`` module supports leap seconds:
         ---
         - 1970-01-01T00:01:00Z
         ...
+
+Limitations
+-----------
+
+The supported date range is from ``-5879610-06-22`` to ``+5879611-07-11``.
