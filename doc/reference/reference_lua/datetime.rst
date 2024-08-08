@@ -1078,3 +1078,14 @@ Limitations
 -----------
 
 The supported date range is from ``-5879610-06-22`` to ``+5879611-07-11``.
+
+References
+----------
+
+*   `RFC 3339: Date and Time on the Internet: Timestamps <https://www.rfc-editor.org/rfc/rfc3339>`_
+
+*   `ISO 8601: Date and time format <https://www.iso.org/iso-8601-date-and-time-format.html>`_
+
+*   `Lua 5.1 Reference Manual: 5.8 – Operating System Facilities <https://www.lua.org/manual/5.1/manual.html#pdf-os.date>`_
+
+*   `Lua Programming in Lua: 22.1 – Date and Time <https://www.lua.org/pil/22.1.html>`_
