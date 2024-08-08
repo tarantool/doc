@@ -2231,6 +2231,8 @@ The ``feature`` section defines the security parameters of |tcm|.
 
 -   :ref:`feature.ttgraph <tcm_configuration_reference_feature_ttgraph>`
 -   :ref:`feature.column-store <tcm_configuration_reference_feature_column-store>`
+-   :ref:`feature.tqe <tcm_configuration_reference_feature_tqe>`
+-   :ref:`feature.api-token <tcm_configuration_reference_feature_api-token>`
 
 
 .. _tcm_configuration_reference_feature_ttgraph:
@@ -2256,3 +2258,27 @@ The ``feature`` section defines the security parameters of |tcm|.
     | Default: false
     | Environment variable: TCM_FEATURE_COLUMN_STORE
     | Command-line option: ``--feature.column-store``
+
+.. _tcm_configuration_reference_feature_tqe:
+
+.. confval:: feature.tqe
+
+    Whether Tarantool Queue Enterprise integration is enabled.
+
+    |
+    | Type: bool
+    | Default: false
+    | Environment variable: TCM_FEATURE_TQE
+    | Command-line option: ``--feature.tqe``
+
+.. _tcm_configuration_reference_feature_api-token:
+
+.. confval:: feature.api-token
+
+    Whether the use of :ref:`API tokens <tcm_access_control_api_tokens>` is enabled.
+
+    |
+    | Type: bool
+    | Default: false
+    | Environment variable: TCM_FEATURE_API_TOKEN
+    | Command-line option: ``--feature.api-token``

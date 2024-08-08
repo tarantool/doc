@@ -17,4 +17,3 @@ This section will get you acquainted with Tarantool.
     getting_started_db
     vshard_quick
     getting_started_tcm
-
