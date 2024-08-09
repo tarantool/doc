@@ -1671,6 +1671,114 @@ See also: :ref:`supervised_failover_overview_fault_tolerance`
     | Default: 2
     | Environment variable: TT_FAILOVER_STATEBOARD_RENEW_INTERVAL
 
+..  _configuration_reference_feedback:
+
+feedback
+--------
+
+The ``feedback`` section describes configuration parameters for sending information about a running Tarantool instance to the specified feedback server.
+
+..  NOTE::
+
+    ``feedback`` can be defined in any :ref:`scope <configuration_scopes>`.
+
+* :ref:`feedback.crashinfo <configuration_reference_feedback_crashinfo>`
+* :ref:`feedback.enabled <configuration_reference_feedback_enabled>`
+* :ref:`feedback.host <configuration_reference_feedback_host>`
+* :ref:`feedback.interval <configuration_reference_feedback_interval>`
+* :ref:`feedback.metrics_collect_interval <configuration_reference_feedback_metrics_collect_interval>`
+* :ref:`feedback.metrics_limit <configuration_reference_feedback_metrics_limit>`
+* :ref:`feedback.send_metrics <configuration_reference_feedback_send_metrics>`
+
+..  _configuration_reference_feedback_crashinfo:
+
+..  confval:: feedback.crashinfo
+
+    Whether to send crash information in the case of an instance failure.
+    This information includes:
+
+    -   General information from the ``uname`` output.
+    -   Build information.
+    -   The crash reason.
+    -   The stack trace.
+
+    To turn off sending crash information, set this option to ``false``.
+
+    |
+    | Type: boolean
+    | Default: true
+    | Environment variable: TT_FEEDBACK_CRASHINFO
+
+..  _configuration_reference_feedback_enabled:
+
+..  confval:: feedback.enabled
+
+    Whether to send information about a running instance to the feedback server.
+    To turn off sending feedback, set this option to ``false``.
+
+    |
+    | Type: boolean
+    | Default: true
+    | Environment variable: TT_FEEDBACK_ENABLED
+
+..  _configuration_reference_feedback_host:
+
+..  confval:: feedback.host
+
+    The address to which information is sent.
+
+    |
+    | Type: string
+    | Default: https://feedback.tarantool.io
+    | Environment variable: TT_FEEDBACK_HOST
+
+..  _configuration_reference_feedback_interval:
+
+..  confval:: feedback.interval
+
+    The interval (in seconds) of sending information.
+
+    |
+    | Type: number
+    | Default: 3600
+    | Environment variable: TT_FEEDBACK_INTERVAL
+
+..  _configuration_reference_feedback_metrics_collect_interval:
+
+..  confval:: feedback.metrics_collect_interval
+
+    The interval (in seconds) for collecting metrics.
+
+    |
+    | Type: number
+    | Default: 60
+    | Environment variable: TT_FEEDBACK_METRICS_COLLECT_INTERVAL
+
+..  _configuration_reference_feedback_metrics_limit:
+
+..  confval:: feedback.metrics_limit
+
+    The maximum size of memory (in bytes) used to store metrics before sending them to the feedback server.
+    If the size of collected metrics exceeds this value, earlier metrics are dropped.
+
+    |
+    | Type: integer
+    | Default: 1024 * 1024 (1048576)
+    | Environment variable: TT_FEEDBACK_METRICS_LIMIT
+
+..  _configuration_reference_feedback_send_metrics:
+
+..  confval:: feedback.send_metrics
+
+    Whether to send :ref:`metrics <monitoring>` to the feedback server.
+    Note that all collected metrics are dropped after sending them to the feedback server.
+
+    |
+    | Type: boolean
+    | Default: true
+    | Environment variable: TT_FEEDBACK_SEND_METRICS
+
+
 ..  _configuration_reference_fiber:
 
 fiber
