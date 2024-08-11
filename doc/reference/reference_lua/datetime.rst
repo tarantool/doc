@@ -608,7 +608,7 @@ datetime_object
     ..  method:: format( ['input_string'] )
 
         Convert the standard ``datetime`` object presentation into a formatted string.
-        The conversion specifications are the same as in the `strftime <https://www.freebsd.org/cgi/man.cgi?query=strftime&sektion=3>`__ library.
+        The conversion specifications are the same as in the `strftime <https://www.freebsd.org/cgi/man.cgi?query=strftime&sektion=3>`__ function.
         Additional specification for nanoseconds is `%f` which also allows a modifier to control the output precision of fractional part: `%5f` (see the example below).
         If no arguments are set for the method, the default conversions are used: `'%FT%T.%f%z'` (see the example below).
 
