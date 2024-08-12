@@ -3,6 +3,10 @@
 Viewing cluster state
 =====================
 
+..  include:: ../index.rst
+    :start-after: ee_note_tcm_start
+    :end-before: ee_note_tcm_end
+
 |tcm_full_name| provides a visual interface for checking various aspects of connected clusters,
 such as:
 

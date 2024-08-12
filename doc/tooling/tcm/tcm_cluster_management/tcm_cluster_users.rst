@@ -1,37 +1,73 @@
 ..  _tcm_cluster_users:
 
-Cluster users and roles
-=======================
-
-
 Managing cluster users and roles
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+================================
 
-TODO: check the location
+..  include:: ../index.rst
+    :start-after: ee_note_tcm_start
+    :end-before: ee_note_tcm_end
+
+|tcm_full_name| provides a visual interface for managing Tarantool users and roles
+on connected clusters. The tools for managing cluster users and roles are located on
+the **Users** tab of the :ref:`instance page <tcm_ui_instance>`.
+
+.. note::
+
+    This page describes management of *Tarantool* :ref:`users and roles <access_control>`
+    on instances of connected clusters. To learn about *|tcm|* users, see :ref:`tcm_access_control`.
+
+The :ref:`Tarantool access model <access_control>` defines user access to entities
+inside a single instance. Thus, to create or alter a user on a cluster, you need to
+do this on all cluster instances.
+
+In replication clusters, changes in access model are possible only on read-write instances
+(replica set leaders). All changes made on a leader instance are propagated to all
+instances of the same replica set automatically.
+
+To make the operations on cluster access model possible, make sure that the user
+that |tcm| uses to connect to the cluster has the privileges to manage users and roles.
 
 .. important::
 
-    This creates Tarantool users and roles (link)on a connected cluster / or replicaset?
-    To learn about TCM users, refer to :ref:`tcm_access_control`.
+    To ensure the access consistency across the cluster, repeat all operations on
+    all read-write instances of the cluster.
 
-You can manage Tarantool users and roles on a connected cluster from the Users tab of
-the instance page.
+You can also manage Tarantool users and roles from |tcm| using the Lua API
+as described in :ref:`access_control`. To do this, connect to instance consoles
+from the **Terminal** tab of the instance page.
 
-only on read-write (leader) instances
+..  _tcm_cluster_users_users:
 
-To create a user:
+Managing cluster users
+----------------------
 
-#.  click Add in the Users section.
-#.  Enter a username and a password in the dialog and click Add.
+To create a user on a cluster:
+
+#.  Go to **Stateboard**.
+#.  Find a replica set leader in the instances list and click it to open the instance page.
+#.  Go to the **Users** tab and click **Add user**.
+#.  Enter a username and a password and click **Add**.
 #.  Click the lock icon against the username in the table to open user privileges dialog.
-#.  Add privileges
+#.  Add required privileges to the user.
+#.  Repeat all previous steps on all read-write instances in the cluster.
+
+To edit or delete a user, or alter their privileges, click the corresponding button in the users table.
 
 
-.. note
+..  _tcm_cluster_users_roles:
 
-    a user on whose behalf tcm connect to the cluster must have the privileges to
-    grant privileges to users
+Managing cluster roles
+----------------------
 
+To create a role on a cluster:
 
-To create a role:
+#.  Go to **Stateboard**.
+#.  Find a replica set leader in the instances list and click it to open the instance page.
+#.  Go to the **Users** tab and click **Add role**.
+#.  Enter a role name and a password and click **Add**.
+#.  Click the lock icon against the role name in the table to open role privileges dialog.
+#.  Add required privileges to the role.
+#.  Repeat all previous steps on all read-write instances in the cluster.
+
+To edit or delete a role, click the corresponding button in the roles table.
 

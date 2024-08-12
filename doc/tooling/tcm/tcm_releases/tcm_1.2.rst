@@ -24,7 +24,7 @@ cluster through the |tcm| web interface.
 The tools for managing Tarantool users on a cluster instance are located on the
 **Users** tab of the instance page.
 
-Learn more about Tarantool access model in :ref:`access_control`.
+Learn more about managing Tarantool users from |tcm| in :ref:`tcm_cluster_users`.
 
 .. _tcm_releases_1_2_migrations:
 
