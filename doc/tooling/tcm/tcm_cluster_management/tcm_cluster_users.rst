@@ -53,6 +53,7 @@ To edit a user's privileges:
 
 #.  Click the lock icon against the username in the **Users** table.
 #.  In the privileges dialog:
+
     -   Click **Add** to grant privileges
     -   Click the trash bin icon to revoke a privilege
 
@@ -81,5 +82,6 @@ To edit a roles's privileges:
 
 #.  Click the lock icon against the role name in the **Roles** table.
 #.  In the privileges dialog:
+
     -   Click **Add** to grant privileges
     -   Click the trash bin icon to revoke a privilege
