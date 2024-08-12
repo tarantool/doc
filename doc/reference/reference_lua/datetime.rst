@@ -1056,20 +1056,20 @@ This section describes how the ``datetime`` module supports leap seconds:
 *   The function :ref:`datetime.parse() <datetime-parse>` correctly parses
     an input string with 60 seconds:
 
-..  code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
-    tarantool> datetime.parse('23:12:60', {format ='%H:%M:%S'})
-    ---
-    - 1970-01-01T23:13:00Z
-    - 8
-    ...
+        tarantool> datetime.parse('23:12:60', {format ='%H:%M:%S'})
+        ---
+        - 1970-01-01T23:13:00Z
+        - 8
+        ...
 
 *   The :ref:`datetime.new() <datetime-new>` function and the
     :ref:`datetime_object:set() <datetime-set>` method accept a table with the ``sec`` key set to 60 seconds:
 
-..  code-block:: tarantoolsession
+    ..  code-block:: tarantoolsession
 
-    tarantool> datetime.new({ sec = 60 })
-    ---
-    - 1970-01-01T00:01:00Z
-    ...
+        tarantool> datetime.new({ sec = 60 })
+        ---
+        - 1970-01-01T00:01:00Z
+        ...
