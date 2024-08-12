@@ -78,7 +78,7 @@ To create a role on a cluster:
 
 To delete a role, click the trash bin icon in the **Roles** table.
 
-To edit a roles's privileges:
+To edit a role's privileges:
 
 #.  Click the lock icon against the role name in the **Roles** table.
 #.  In the privileges dialog:
