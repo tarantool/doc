@@ -124,7 +124,7 @@ On this page, you can:
     by clicking instance names in the cluster topology list
 -   start and stop instances (in the development mode).
 
-Learn more about using the cluster stateboard in :ref:`tcm_cluster_monitoring`.
+Learn more about using the cluster stateboard in :ref:`tcm_cluster_state`.
 
 ..  _tcm_ui_instance:
 

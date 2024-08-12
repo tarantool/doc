@@ -1,9 +1,9 @@
-..  _tcm_cluster_monitoring:
+..  _tcm_cluster_state:
 
-Cluster monitoring
-==================
+Viewing cluster state
+=====================
 
-|tcm_full_name| provides means for monitoring various aspects of connected clusters,
+|tcm_full_name| provides a visual interface for checking various aspects of connected clusters,
 such as:
 
 *   topology
@@ -12,9 +12,9 @@ such as:
 *   data distribution
 *   Tarantool versions
 
-Cluster monitoring tools are available on the **Cluster** > **Stateboard** page.
+Cluster state information is available on the **Cluster** > **Stateboard** page.
 
-..  _tcm_cluster_monitoring_topology:
+..  _tcm_cluster_state_topology:
 
 Cluster topology
 ----------------
@@ -22,7 +22,7 @@ Cluster topology
 The cluster topology is displayed on the **Stateboard** page in one of two forms:
 a list or a graph.
 
-..  _tcm_cluster_monitoring_topology_list:
+..  _tcm_cluster_state_topology_list:
 
 List view
 ~~~~~~~~~
@@ -37,7 +37,7 @@ to filter the instances with the selected versions and states.
 
 To switch to the list view, click the list button on the right of the search bar on the **Stateboard** page.
 
-..  _tcm_cluster_monitoring_topology_graph:
+..  _tcm_cluster_state_topology_graph:
 
 Graph view
 ~~~~~~~~~~
@@ -49,7 +49,7 @@ which is helpful for larger clusters.
 
 To switch to the graph view, click the graph button on the right of the search bar on the **Stateboard** page.
 
-..  _tcm_cluster_monitoring_topology_group:
+..  _tcm_cluster_state_topology_group:
 
 Instance grouping
 ~~~~~~~~~~~~~~~~~
@@ -66,7 +66,7 @@ you see if issues happen in a specific data center or server.
 To change the instance grouping, click **Group by** in the **Actions** menu on the **Stateboard** page.
 Then add or remove grouping criteria.
 
-..  _tcm_cluster_monitoring_topology_filters:
+..  _tcm_cluster_state_topology_filters:
 
 Filtering
 ~~~~~~~~~
@@ -81,7 +81,7 @@ at the top. It has predefined filters that select:
 
 To display all instances, delete the filter applied in the search bar.
 
-..  _tcm_cluster_monitoring_instance_details:
+..  _tcm_cluster_state_instance_details:
 
 Instance details
 ----------------
@@ -104,10 +104,10 @@ find:
 Additionally, on the instance details page there is a terminal in which you can execute
 arbitrary Lua code on the instance.
 
-..  _tcm_cluster_monitoring_urls:
+..  _tcm_cluster_state_urls:
 
-Additional monitoring services
-------------------------------
+Linked external services
+------------------------
 
 When you :ref:`connect a cluster <tcm_connect_clusters>` to |tcm|, you can specify
 URLs of external services linked to this cluster. For example, this can be a Grafana
