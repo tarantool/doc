@@ -8,33 +8,36 @@ box.info.ro_reason
 
 ..  data:: ro_reason
 
-    Since :doc:`2.10.0 </release/2.10.0>`.
-    Show the current mode of an instance (writable or read-only).
-    Contains ``nil`` if the instance is in writable mode.
-    When the field is not ``nil``, reports the reason why the instance is read-only.
+    Since: :doc:`2.10.0 </release/2.10.0>`
 
-    Possible error reasons:
+    The reason why the current instance is read-only.
+    To get whether the current instance is writable or read-only, use :ref:`box_info_ro`.
+    If the instance is in writable mode, ``box.info.ro_reason`` returns ``nil``.
+
+    The possible values returned by ``ro_reason``:
 
     *   ``election`` -- the instance is not the leader.
-        That is, ``box.cfg.election_mode`` is not ``off``.
         See :ref:`box.info.election <box_info_election>` for details.
 
     *   ``synchro`` -- the instance is not the owner of the synchronous transaction queue.
         For details, see :ref:`box.info.synchro <box_info_synchro>`.
 
-    *   ``config`` -- the server instance is in read-only mode.
-        That is, :ref:`box.cfg.read_only <cfg_basic-read_only>` is ``true``.
+    *   ``config`` -- the instance is is :ref:`configured <configuration>` to be read only.
 
     *   ``orphan`` -- the instance is in ``orphan`` state.
         For details, see :ref:`the orphan status page <internals-replication-orphan_status>`.
 
     :rtype: string
 
-    **Example:**
+    **Example**
 
     ..  code-block:: tarantoolsession
 
-        tarantool> box.info.ro_reason
+        sharded_cluster_crud:storage-a-002> box.info.ro
         ---
-        - null
+        - true
+        ...
+        sharded_cluster_crud:storage-a-002> box.info.ro_reason
+        ---
+        - config
         ...

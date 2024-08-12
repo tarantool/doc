@@ -8,7 +8,7 @@ box.info.replication
 
 ..  data:: replication
 
-    The **replication** section of ``box.info()`` is a table with statistics for all instances in the replica set that the current instance belongs to.
+    The ``replication`` section of :ref:`box.info() <box_info_info>` is a table with statistics for all instances in the replica set that the current instance belongs to.
     To see the example, refer to :ref:`Monitoring a replica set <replication-monitoring>`.
 
     In the following, *n* is the index number of one table item, for example,
@@ -27,6 +27,7 @@ box.info.replication
       :ref:`log sequence number <replication-mechanism>`
       (LSN) for the latest entry in instance *n*'s
       :ref:`write-ahead log <index-box_persistence>` (WAL).
+    * :samp:`replication[{n}].name` is the instance name. See also: :ref:`box_info_name`.
     * :samp:`replication[{n}].upstream` appears (is not ``nil``)
       if the current instance is following or intending to follow instance *n*,
       which ordinarily means
@@ -135,4 +136,3 @@ box.info.replication
       ``status = 'stopped'``, ``message = 'unexpected EOF when reading
       from socket'``, and ``system_message = 'Broken pipe'``.
       See also :ref:`degraded state <replication-recover>`.
-
