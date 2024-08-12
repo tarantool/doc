@@ -8,8 +8,7 @@ Managing cluster users and roles
     :end-before: ee_note_tcm_end
 
 |tcm_full_name| provides a visual interface for managing Tarantool users and roles
-on connected clusters. The tools for managing cluster users and roles are located on
-the **Users** tab of the :ref:`instance page <tcm_ui_instance>`.
+on connected clusters.
 
 .. note::
 
@@ -21,11 +20,6 @@ inside a single instance. Thus, to create or alter a user on a cluster, you need
 do this on all cluster instances. In replication clusters, changes in access model
 are possible only on read-write instances (replica set leaders). Changes made on
 a leader instance are propagated to all instances of the same replica set automatically.
-
-.. important::
-
-    To ensure the access model consistency across the cluster, repeat all user
-    management operations on all read-write instances of the cluster.
 
 Operations on cluster access model are possible only if the user that |tcm| uses
 to connect to the cluster has the privileges to manage users and roles.
@@ -39,33 +33,53 @@ from the **Terminal** tab of the instance page.
 Managing cluster users
 ----------------------
 
+The tools for managing cluster users are located on the **Users** tab
+of the :ref:`instance page <tcm_ui_instance>`.
+
+.. important::
+
+    To ensure the access model consistency across the cluster, repeat all user
+    management operations on all read-write instances of the cluster.
+
 To create a user on a cluster:
 
 #.  Go to **Stateboard**.
 #.  Find a replica set leader in the instances list and click it to open the instance page.
 #.  Go to the **Users** tab and click **Add user**.
-#.  Enter a username and a password and click **Add**.
-#.  Click the lock icon against the username in the table to open user privileges dialog.
-#.  Add required privileges to the user.
-#.  Repeat all previous steps on all read-write instances in the cluster.
 
-To edit or delete a user, or alter their privileges, click the corresponding button in the users table.
+To edit or delete a user, click the corresponding button in the **Users** table.
 
+To edit a user's privileges:
+
+#.  Click the lock icon against the username in the **Users** table.
+#.  In the privileges dialog:
+    -   Click **Add** to grant privileges
+    -   Click the trash bin icon to revoke a privilege
 
 ..  _tcm_cluster_users_roles:
 
 Managing cluster roles
 ----------------------
 
+The tools for managing cluster roles are located on the **Users** tab
+of the :ref:`instance page <tcm_ui_instance>`.
+
+.. important::
+
+    To ensure the access model consistency across the cluster, repeat all role
+    management operations on all read-write instances of the cluster.
+
 To create a role on a cluster:
 
 #.  Go to **Stateboard**.
 #.  Find a replica set leader in the instances list and click it to open the instance page.
 #.  Go to the **Users** tab and click **Add role**.
-#.  Enter a role name and a password and click **Add**.
-#.  Click the lock icon against the role name in the table to open role privileges dialog.
-#.  Add required privileges to the role.
-#.  Repeat all previous steps on all read-write instances in the cluster.
 
-To edit or delete a role, click the corresponding button in the roles table.
+To delete a role, click the trash bin icon in the **Roles** table.
 
+To edit a roles's privileges:
+
+#.  Click the lock icon against the role name in the **Roles** table.
+#.  In the privileges dialog:
+    -   Click **Add** to grant privileges
+    -   Click the trash bin icon to revoke a privilege
