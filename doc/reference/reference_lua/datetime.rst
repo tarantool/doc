@@ -118,7 +118,7 @@ Functions
                 -   0
 
             *   -   sec
-                -   Seconds. Value range: 0 - 60.
+                -   Seconds. Value range: 0 - 60. A leap second is supported, see a section :ref:`leap second <leap-second>`.
                 -   number
                 -   0
 
@@ -263,9 +263,14 @@ Functions
     *   RFC 3339
     *   extended `strftime <https://www.freebsd.org/cgi/man.cgi?query=strftime&sektion=3>`__ -- see description of the :ref:`format() <datetime-format>` for details.
 
+    By default fields that are not specified are equal to appropriate values in a Unix time.
+
+    Leap second is supported, see a section :ref:`leap second <leap-second>`.
+
     :param string input_string: string with the date and time information.
-    :param string format: indicator of the input_sting format. Possible values: 'iso8601', 'rfc3339', or ``strptime``-like format string.
-                            If no value is set, the default formatting  is used.
+    :param string format: indicator of the ``input_string`` format.
+                          Possible values: 'iso8601', 'rfc3339', or ``strptime``-like format string.
+                          If no value is set, the default formatting is used (``"%F %T %Z"``).
     :param number tzoffset: time zone offset from UTC, in minutes.
 
     :return: a datetime_object
@@ -316,6 +321,25 @@ Functions
         tarantool> T
         ---
         - 1970-01-01T03:00:00.125+0300
+        ...
+
+        tarantool> dt = datetime.parse('01:01:01', {format ='%H:%M:%S'})
+        ---
+        ...
+
+        tarantool> dt.year
+        ---
+        - 1970
+        ...
+
+        tarantool> dt.month
+        ---
+        - 1
+        ...
+
+        tarantool> dt.wday
+        ---
+        - 5
         ...
 
 ..  _datetime-interval-is_interval:
@@ -584,7 +608,7 @@ datetime_object
     ..  method:: format( ['input_string'] )
 
         Convert the standard ``datetime`` object presentation into a formatted string.
-        The conversion specifications are the same as in the `strftime <https://www.freebsd.org/cgi/man.cgi?query=strftime&sektion=3>`__ library.
+        The conversion specifications are the same as in the `strftime <https://www.freebsd.org/cgi/man.cgi?query=strftime&sektion=3>`__ function.
         Additional specification for nanoseconds is `%f` which also allows a modifier to control the output precision of fractional part: `%5f` (see the example below).
         If no arguments are set for the method, the default conversions are used: `'%FT%T.%f%z'` (see the example below).
 
@@ -1012,3 +1036,56 @@ Support for relational operators for ``interval`` objects has been added since :
     ---
     - true
     ...
+
+.. _leap-second:
+
+Leap second
+-----------
+
+`Leap seconds <https://en.wikipedia.org/wiki/Leap_second>`__ are a periodic
+one-second adjustment of Coordinated Universal Time(UTC) in order to keep
+a system's time of day close to the mean solar time. However,
+the Earth's rotation speed varies in response to climatic and geological events,
+and due to this, UTC leap seconds are irregularly spaced and unpredictable.
+
+Tarantool includes the `Time Zone Database <https://www.iana.org/time-zones>`__
+that beside the time zone description files also contains a leapseconds file.
+
+This section describes how the ``datetime`` module supports leap seconds:
+
+*   The function :ref:`datetime.parse() <datetime-parse>` correctly parses
+    an input string with 60 seconds:
+
+    ..  code-block:: tarantoolsession
+
+        tarantool> datetime.parse('23:12:60', {format ='%H:%M:%S'})
+        ---
+        - 1970-01-01T23:13:00Z
+        - 8
+        ...
+
+*   The :ref:`datetime.new() <datetime-new>` function and the
+    :ref:`datetime_object:set() <datetime-set>` method accept a table with the ``sec`` key set to 60 seconds:
+
+    ..  code-block:: tarantoolsession
+
+        tarantool> datetime.new({ sec = 60 })
+        ---
+        - 1970-01-01T00:01:00Z
+        ...
+
+Limitations
+-----------
+
+The supported date range is from ``-5879610-06-22`` to ``+5879611-07-11``.
+
+References
+----------
+
+*   `RFC 3339: Date and Time on the Internet: Timestamps <https://www.rfc-editor.org/rfc/rfc3339>`_
+
+*   `ISO 8601: Date and time format <https://www.iso.org/iso-8601-date-and-time-format.html>`_
+
+*   `Lua 5.1 Reference Manual: 5.8 – Operating System Facilities <https://www.lua.org/manual/5.1/manual.html#pdf-os.date>`_
+
+*   `Lua Programming in Lua: 22.1 – Date and Time <https://www.lua.org/pil/22.1.html>`_
