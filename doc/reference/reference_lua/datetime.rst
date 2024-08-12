@@ -1049,7 +1049,9 @@ the Earth's rotation speed varies in response to climatic and geological events,
 and due to this, UTC leap seconds are irregularly spaced and unpredictable.
 
 Tarantool includes the `Time Zone Database <https://www.iana.org/time-zones>`__
-that beside the time zone description files also contains a leapseconds file.
+that besides the time zone description files also contains a leapseconds file.
+You can use the Lua module :ref:`tarantool <tarantool-module>` to get a used
+version of ``tzdata``.
 
 This section describes how the ``datetime`` module supports leap seconds:
 

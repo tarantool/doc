@@ -49,3 +49,14 @@ the tarantool module is recommended.
     ---
     - 108.64641499519
     ...
+
+Tarantool includes parts of `tzdata <https://www.iana.org/time-zones>`__ package
+and uses its database for a correct time zone support. Since :doc:`3.2.0 </release/3.2.0>`,
+you can get a used version of ``tzdata``:
+
+..  code-block:: tarantoolsession
+
+    tarantool> tarantool.build.tzdata_version
+    ---
+    - 2022a
+    ...
