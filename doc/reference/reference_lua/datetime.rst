@@ -271,6 +271,10 @@ Functions
     :param string format: indicator of the ``input_string`` format.
                           Possible values: 'iso8601', 'rfc3339', or ``strptime``-like format string.
                           If no value is set, the default formatting is used (``"%F %T %Z"``).
+                          Note that only a part of possible ISO 8601 and RFC 3339 formats are supported.
+                          To parse unsupported formats, you can specify a format string manually using
+                          `conversion specifications <https://www.freebsd.org/cgi/man.cgi?query=strftime&sektion=3>`__
+                          and ordinary characters.
     :param number tzoffset: time zone offset from UTC, in minutes.
 
     :return: a datetime_object
