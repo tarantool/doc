@@ -13,16 +13,16 @@ on connected clusters.
 .. note::
 
     This page describes management of :ref:`Tarantool users and roles <access_control>`
-    on instances of connected clusters. To learn about TCM users, see :ref:`tcm_access_control`.
+    on instances of connected clusters. To learn to manage |tcm| users, see :ref:`tcm_access_control`.
 
 The :ref:`Tarantool access model <access_control>` defines user access to entities
-inside a single instance. Thus, to create or alter a user on a cluster, you need to
+inside a single instance. Thus, to create or alter a cluster-wide user or role, you need to
 do this on all cluster instances. In replication clusters, changes in access model
 are possible only on read-write instances (replica set leaders). Changes made on
-a leader instance are propagated to all instances of the same replica set automatically.
+a leader instance are propagated to all instances of its replica set automatically.
 
-Operations on cluster access model are possible only if the user that |tcm| uses
-to connect to the cluster has the privileges to manage users and roles.
+Operations on cluster access model are possible only if the :ref:`user <tcm_connect_clusters_parameters_tarantool>`
+that |tcm| uses to connect to the cluster has the privileges to manage users and roles.
 
 You can also manage Tarantool users and roles from |tcm| using the Lua API
 as described in :ref:`access_control`. To do this, connect to instance consoles
