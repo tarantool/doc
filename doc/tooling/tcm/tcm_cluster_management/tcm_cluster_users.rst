@@ -56,7 +56,7 @@ To edit a user's privileges:
 #.  In the privileges dialog:
 
     -   Click **Add** to grant privileges
-    -   Click the **Revoke** button (the trash bin icon) to revoke a privilege
+    -   Click **Revoke** (the trash bin icon) to revoke a privilege
 
 ..  _tcm_cluster_users_roles:
 
@@ -85,4 +85,4 @@ To edit a role's privileges:
 #.  In the privileges dialog:
 
     -   Click **Add** to grant privileges
-    -   Click the trash bin icon to revoke a privilege
+    -   Click **Revoke** (the trash bin icon) to revoke a privilege
