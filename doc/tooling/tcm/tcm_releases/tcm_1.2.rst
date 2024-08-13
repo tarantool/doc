@@ -5,7 +5,7 @@ Tarantool Cluster Manager 1.2
 
 Release date: July 30, 2024
 
-Latest release in series: 1.2.0
+Latest release in series: 1.2.1
 
 |tcm_full_name| 1.2 introduces new features that extend its
 cluster management capabilities. Below is an overview of its key updates.
