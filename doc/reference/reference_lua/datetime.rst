@@ -50,7 +50,7 @@ Below is a list of ``datetime`` functions, properties, and related objects.
             -
 
         *   -   :ref:`datetime.TZ <datetime-tz>`
-            -   An array of timezone names and abbreviations
+            -   A Lua table that maps timezone names and abbreviations to its index and vice-versa.
 
         *   -   **Methods**
             -
@@ -155,12 +155,14 @@ Functions
                 -   0
 
             *   -   tzoffset
-                -   Time zone offset from UTC, in minutes. If both ``tzoffset`` and ``tz`` are specified, ``tz`` has the preference and the ``tzoffset`` value is ignored.
+                -   A time zone offset from UTC, in minutes. If both ``tzoffset`` and
+                    ``tz`` are specified, ``tz`` has the preference and the ``tzoffset``
+                    value is ignored. See a section :ref:`timezone <timezone>`.
                 -   number
                 -   0
 
             *   -   tz
-                -   Time zone name according to the `tz database <https://en.wikipedia.org/wiki/Tz_database>`__.
+                -   A time zone name according to the Time Zone Database. See the :ref:`timezone` section.
                 -   string
                 -   -
 
@@ -327,7 +329,8 @@ Functions
         - 1970-01-01T03:00:00.125+0300
         ...
 
-        tarantool> dt = datetime.parse('01:01:01', {format ='%H:%M:%S'})
+        tarantool> dt = datetime.parse('01:01:01 MSK', {format ='%H:%M:%S %Z'})
+
         ---
         ...
 
@@ -344,6 +347,11 @@ Functions
         tarantool> dt.wday
         ---
         - 5
+        ...
+
+        tarantool> dt.tz
+        ---
+        - MSK
         ...
 
 ..  _datetime-interval-is_interval:
@@ -497,9 +505,21 @@ Properties
 
     Since: :doc:`2.11.0 </release/2.11.0>`
 
-    An array of timezone names and abbreviations.
+    A Lua table that maps timezone names (like ``Europe/Moscow``) and
+    timezone abbreviations (like ``MSK``) to its index and vice-versa.
+    See the :ref:`timezone` section.
 
+    ..  code-block:: tarantoolsession
 
+        tarantool> datetime.TZ['Europe/Moscow']
+        ---
+        - 947
+        ...
+
+        tarantool> datetime.TZ[947]
+        ---
+        - Europe/Moscow
+        ...
 
 ..  _datetime-module-api-reference-objects:
 
@@ -520,7 +540,8 @@ datetime_object
     ..  method:: add( input[, { adjust } ] )
 
         Modify an existing datetime object by adding values of the input argument.
-        See also: :ref:`interval_arithm`.
+        See also: :ref:`interval_arithm`. The addition is performed taking ``tzdata``
+        into account, when ``tzoffset`` or ``tz`` fields are set, see the :ref:`timezone`.
 
         :param table input: an :ref:`interval object <interval_obj>` or an equivalent table (see **Example #1**)
         :param string adjust: defines how to round days in a month after an arithmetic operation.
@@ -701,7 +722,8 @@ datetime_object
     ..  method:: sub( { input[, adjust ] } )
 
         Modify an existing datetime object by subtracting values of the input argument.
-        See also: :ref:`interval_arithm`.
+        See also: :ref:`interval_arithm`. The subtraction is performed taking ``tzdata``
+        into account, when ``tzoffset`` or ``tz`` fields are set, see the :ref:`timezone`.
 
         :param table input: an :ref:`interval object <interval_obj>` or an equivalent table (see **Example**)
         :param string adjust: defines how to round days in a month after an arithmetic operation.
@@ -762,37 +784,41 @@ datetime_object
                     -   Description
 
                 *   -   nsec
-                    -   Nanoseconds
+                    -   Nanoseconds. Number.
 
                 *   -   sec
-                    -   Seconds
+                    -   Seconds. Number.
 
                 *   -   min
-                    -   Minutes
+                    -   Minutes. Number.
 
                 *   -   hour
-                    -   Hours
+                    -   Hours. Number.
 
                 *   -   day
-                    -   Day number
+                    -   Day number.
 
                 *   -   month
-                    -   Month number
+                    -   Month number.
 
                 *   -   year
-                    -   Year
+                    -   Year. Number.
 
                 *   -   wday
-                    -   Days since the beginning of the week
+                    -   Days since the beginning of the week. Number.
 
                 *   -   yday
-                    -   Days since the beginning of the year
+                    -   Days since the beginning of the year. Number.
 
                 *   -   isdst
-                    -   Is the DST (Daylight saving time) applicable for the date. Boolean.
+                    -   Is the DST (Daylight Saving Time) applicable for the date,
+                        see a section :ref:`timezone <timezone>`. Boolean.
 
                 *   -   tzoffset
-                    -   Time zone offset from UTC
+                    -   Time zone offset from UTC, see a section :ref:`timezone <timezone>`. Number.
+
+                *   -   tz
+                    -   Time zone name or abbreviation, see a section :ref:`timezone <timezone>`. String.
 
         :return: table with the date and time parameters
         :rtype: table
@@ -809,20 +835,22 @@ datetime_object
                         day = 20,
                         month = 8,
                         year = 2021,
+                        tz = 'MAGT',
                         }
             ---
             ...
 
             tarantool> dt:totable()
             ---
-            - sec: 20
+            - tz: 'MAGT'
+              sec: 20
               min: 25
               yday: 232
               day: 20
               nsec: 0
               isdst: false
               wday: 6
-              tzoffset: 0
+              tzoffset: 600
               month: 8
               year: 2021
               hour: 18
@@ -993,6 +1021,16 @@ The matrix of the ``subtraction`` operands eligibility and their result types:
             -   interval
             -   interval
 
+The subtraction and addition of datetime objects are performed taking ``tzdata``
+into account ``tzoffset`` or ``tz`` fields are set:
+
+..  code-block:: tarantoolsession
+
+    tarantool> datetime.new({tz='MSK'}) - datetime.new({tz='UTC'})
+    ---
+    - -180 minutes
+    ...
+
 .. _interval_comp:
 
 Datetime and interval comparison
@@ -1080,10 +1118,70 @@ This section describes how the ``datetime`` module supports leap seconds:
         - 1970-01-01T00:01:00Z
         ...
 
+.. _timezone:
+
+Time zones
+----------
+
+Full support has been added since :doc:`2.11.0 </release/2.11.0>`.
+
+Tarantool uses the `Time Zone Database <https://www.iana.org/time-zones>`__
+(also known as the Olson database and supported by IANA) for timezone support.
+You can use the Lua module :ref:`tarantool <tarantool-module>` to get a used version of ``tzdata``.
+
+Every datetime object has three fields that represent timezone support:
+``tz``, ``tzoffset``, and ``isdst``:
+
+*   The field ``isdst`` is calculated using tzindex and attributes of the selected
+    timezone in the Olson DB timezone.
+
+    ..  code-block:: tarantoolsession
+
+        tarantool> require('datetime').parse('2004-06-01T00:00 Europe/Moscow').isdst
+        ---
+        - true
+        ...
+
+*   The field ``tz`` field can be set to a timezone name or abbreviation. A timezone name
+    is a human-readable name based on the Time Zone Database, for example, "Europe/Moscow".
+    Timezone abbreviations represent time zones by `alphabetic abbreviations <https://www.timeanddate.com/time/zones/>`__
+    such as "EST", "WST", and "F". Both timezone names and abbreviations are available
+    via the bidirectional array :ref:`datetime.TZ <datetime-tz>`.
+
+*   The field ``tzoffset`` is calculated automatically using the current Olson rule.
+    This means that it takes into account summer time, leap year, and leap seconds information
+    when a timezone name is set. However, the ``tzoffset`` field can be set manually when
+    an appropriate timezone is not available.
+
+The fields ``tz`` and ``tzoffset`` can be set in :ref:`datetime.new() <datetime-new>`,
+:ref:`datetime.parse() <datetime-parse>`, and :ref:`datetime_object:set() <datetime-set>`.
+The arithmetic on datetime objects are performed taking ``tzdata`` into account, when
+``tzoffset`` or ``tz`` fields are set, see the :ref:`interval_arithm` section.
+
 Limitations
 -----------
 
-The supported date range is from ``-5879610-06-22`` to ``+5879611-07-11``.
+*   The supported date range is from ``-5879610-06-22`` to ``+5879611-07-11``.
+
+*   There were moments in past history when local mean time in some particular zone
+    used a timezone offset not representable in a whole minutes but rather in seconds.
+    For example, in Moscow before 1918 there used to be offset +2 hours 31 minutes and 19 seconds.
+    See an Olson dump for this period:
+
+    .. code-block:: console
+
+        $ zdump -c1880,1918 -i Europe/Moscow
+
+        TZ="Europe/Moscow"
+        -       -       +023017 MMT
+        1916-07-03      00:01:02        +023119 MMT
+        1917-07-02      00      +033119 MST     1
+        1917-12-27      23      +023119 MMT
+
+    Modern ``tzdata`` rules do not use such a tiny fraction, and all timezones differ
+    from UTC in units measured in minutes, not seconds. Tarantool datetime module uses
+    minutes internally as units for ``tzoffset``. So there might be some loss of precision
+    if you try to operate with such ancient timestamps.
 
 References
 ----------
