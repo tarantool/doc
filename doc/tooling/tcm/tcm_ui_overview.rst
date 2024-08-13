@@ -124,7 +124,7 @@ On this page, you can:
     by clicking instance names in the cluster topology list
 -   start and stop instances (in the development mode).
 
-Learn more about using the cluster stateboard in :ref:`tcm_cluster_monitoring`.
+Learn more about using the cluster stateboard in :ref:`tcm_cluster_state`.
 
 ..  _tcm_ui_instance:
 
@@ -144,7 +144,8 @@ It provides a set of tabs for performing actions on the selected Tarantool insta
     or as a console output of ``box.cfg``, ``box.info``, and other built-in functions
 -   **SQL** and **Terminal** tabs: run SQL and Lua commands on the instance
 -   **Logs** tab: view instance logs
--   **Slab stats** tab: view :ref:`slab allocator <memtx-memory>` statistics
+-   **Slabs** tab: view :ref:`slab allocator <memtx-memory>` statistics
+-   **Users** tab: manage Tarantool :ref:`users and roles <tcm_cluster_users>` on the instance
 -   **Funcs**: manage and call stored functions
 -   **Metrics**: view instance metrics
 

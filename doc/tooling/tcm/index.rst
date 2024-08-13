@@ -38,9 +38,7 @@ to read data. LDAP authorization is supported as well.
 
     tcm_ui_overview
     tcm_connect_clusters
-    tcm_cluster_config
-    tcm_cluster_monitoring
-    tcm_cluster_metrics
+    tcm_cluster_management/index
     tcm_cluster_data_access
     tcm_access_control
     tcm_audit_log

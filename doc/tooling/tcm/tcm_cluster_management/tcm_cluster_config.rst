@@ -3,7 +3,7 @@
 Configuring clusters
 ====================
 
-..  include:: index.rst
+..  include:: ../index.rst
     :start-after: ee_note_tcm_start
     :end-before: ee_note_tcm_end
 

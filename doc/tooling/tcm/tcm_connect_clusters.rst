@@ -32,6 +32,8 @@ Connection parameters
 When connecting a cluster to |tcm|, you need to provide two sets of connection parameters:
 for the cluster instances and for the centralized configuration storage.
 
+..  _tcm_connect_clusters_parameters_storage:
+
 Configuration storage connection
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -49,6 +51,8 @@ Additionally, if SSL or TLS encryption is enabled for the configuration storage,
 provide the corresponding encryption configuration: keys, certificates, and other
 parameters. For the complete list of parameters, consult the `etcd documentation <https://etcd.io/docs/v3.5/op-guide/configuration/#security>`__
 or Tarantool :ref:`enterprise-iproto-encryption`.
+
+..  _tcm_connect_clusters_parameters_tarantool:
 
 Cluster connection
 ~~~~~~~~~~~~~~~~~~

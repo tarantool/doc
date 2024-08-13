@@ -39,7 +39,7 @@ the selected cluster:
 From the stateboard, you can navigate to specific instances to view their details
 or connect to their interactive consoles.
 
-To learn more, see :ref:`tcm_cluster_monitoring`.
+To learn more, see :ref:`tcm_cluster_state`.
 
 .. _tcm_releases_1_0_config:
 
