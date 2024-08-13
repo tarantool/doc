@@ -47,7 +47,8 @@ To create a user on a cluster:
 #.  Find a replica set leader in the instances list and click it to open the instance page.
 #.  Go to the **Users** tab and click **Add user**.
 
-To edit or delete a user, click the **Edit** or **Delete** button in the **Users** table.
+To edit or delete a user, click the **Edit** or **Delete** button against the username
+in the **Users** table.
 
 To edit a user's privileges:
 
@@ -76,7 +77,7 @@ To create a role on a cluster:
 #.  Find a replica set leader in the instances list and click it to open the instance page.
 #.  Go to the **Users** tab and click **Add role**.
 
-To delete a role, click the trash bin icon in the **Roles** table.
+To delete a role, click the **Delete** button against the role name in the **Roles** table.
 
 To edit a role's privileges:
 
