@@ -9,7 +9,7 @@ Cluster management
 
 The main goal of |tcm_full_name| is to provide visual tools for managing
 various aspects of Tarantool clusters from the browser. See the pages of this section
-to learn to perform various management operations on Tarantool clusters from |tcm|.
+to learn how to perform various management operations on Tarantool clusters from |tcm|.
 
 ..  toctree::
     :maxdepth: 1

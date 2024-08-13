@@ -21,7 +21,7 @@ do this on all cluster instances. In replication clusters, changes in access mod
 are possible only on read-write instances (replica set leaders). Changes made on
 a leader instance are propagated to all instances of its replica set automatically.
 
-Operations on cluster access model are possible only if the :ref:`user <tcm_connect_clusters_parameters_tarantool>`
+Operations on the cluster access model are possible only if the :ref:`user <tcm_connect_clusters_parameters_tarantool>`
 that |tcm| uses to connect to the cluster has the privileges to manage users and roles.
 
 You can also manage Tarantool users and roles from |tcm| using the Lua API
@@ -47,7 +47,7 @@ To create a user on a cluster:
 #.  Find a replica set leader in the instances list and click it to open the instance page.
 #.  Go to the **Users** tab and click **Add user**.
 
-To edit or delete a user, click the corresponding button in the **Users** table.
+To edit or delete a user, click the **Edit** or **Delete** button in the **Users** table.
 
 To edit a user's privileges:
 
@@ -55,7 +55,7 @@ To edit a user's privileges:
 #.  In the privileges dialog:
 
     -   Click **Add** to grant privileges
-    -   Click the trash bin icon to revoke a privilege
+    -   Click the **Revoke** button (the trash bin icon) to revoke a privilege
 
 ..  _tcm_cluster_users_roles:
 
