@@ -1,0 +1,15 @@
+groups:
+  group001:
+    replicasets:
+      replicaset001:
+        instances:
+          instance001:
+            database:
+              hot_standby: true
+            wal:
+              dir: /tmp/wals
+            snapshot:
+              dir: /tmp/snapshots
+            iproto:
+              listen:
+              - uri: '127.0.0.1:3301'
