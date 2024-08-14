@@ -1428,6 +1428,40 @@ The ``database`` section defines database-specific configuration parameters, suc
 
 .. confval:: database.hot_standby
 
+    Whether to start the server in the hot standby mode.
+    This mode can be used to provide failover without :ref:`replication <replication>`.
+
+    Suppose there are two cluster applications.
+    Each cluster has one instance with the same configuration:
+
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/hot_standby_1/config.yaml
+        :language: yaml
+        :dedent:
+
+    In particular, both instances use the same directory for storing write-ahead logs and snapshots.
+
+    When you start both cluster applications on the same machine, the instance from the first one will be the primary instance and the second will be the standby instance.
+    In the :ref:`logs <configuration_reference_log>` of the second cluster instance, you should see a notification:
+
+    ..  code-block:: text
+
+        main/104/interactive I> Entering hot standby mode
+
+    This means that the standby instance is ready to take over if the primary instance goes down.
+    The standby instance initializes and tries to take a lock on a directory for storing write-ahead logs
+    but fails because the primary instance has made a lock on this directory.
+
+    If the primary instance goes down for any reason, the lock is released.
+    In this case, the standby instance succeeds in taking the lock and becomes the primary instance.
+
+    ``database.hot_standby`` has no effect:
+
+    * If :ref:`wal.mode <configuration_reference_wal_mode>` is set to ``none``.
+    * If :ref:`wal.dir_rescan_delay <configuration_reference_wal_dir_rescan_delay>` is set to a large value on macOS or FreeBSD. On these platforms, the hot standby mode is designed so that the loop repeats every ``wal.dir_rescan_delay`` seconds.
+    * If spaces are created with :ref:`engine <space_opts_engine>` set to ``vinyl``.
+
+    Examples on GitHub: `hot_standby_1 <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/hot_standby_1>`_, `hot_standby_2 <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/hot_standby_2>`_
+
     |
     | Type: boolean
     | Default: false
