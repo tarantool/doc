@@ -155,8 +155,8 @@ Functions
                 -   0
 
             *   -   tzoffset
-                -   A time zone offset from UTC, in minutes. If both ``tzoffset`` and
-                    ``tz`` are specified, ``tz`` has the preference and the ``tzoffset``
+                -   A time zone offset from UTC, in minutes. Value range: -720 - 840 inclusive.
+                    If both ``tzoffset`` and ``tz`` are specified, ``tz`` has the preference and the ``tzoffset``
                     value is ignored. See a section :ref:`timezone <timezone>`.
                 -   number
                 -   0
