@@ -8,8 +8,11 @@ box.info.package
 
 .. data:: package
 
-    The package name.
+    The package name. It can be:
 
-    See also: :ref:`tarantool --version <index-tarantool_version>`
+    -   ``Tarantool``
+    -   ``Tarantool Enterprise``
+
+    See also: :ref:`tarantool.package <tarantool-module>`, :ref:`tarantool --version <index-tarantool_version>`
 
     :rtype: string
