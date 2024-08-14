@@ -810,6 +810,9 @@ datetime_object
                 *   -   yday
                     -   Days since the beginning of the year. Number.
 
+                *   -   timestamp
+                    -   Timestamp, in seconds. Number.
+
                 *   -   isdst
                     -   Is the DST (Daylight Saving Time) applicable for the date,
                         see a section :ref:`timezone <timezone>`. Boolean.
