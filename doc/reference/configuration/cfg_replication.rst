@@ -722,6 +722,21 @@
     Specify the instance name.
     This value must be unique in a replica set.
 
+    The following rules are applied to instance names:
+
+    -   The maximum number of symbols is 63.
+    -   Should start with a letter.
+    -   Can contain lowercase letters (a-z). If uppercase letters are used, they are converted to lowercase.
+    -   Can contain digits (0-9).
+    -   Can contain the following characters: ``-``, ``_``.
+
+    To change or remove the specified name, you should temporarily set the :ref:`box.cfg.force_recovery <cfg_binary_logging_snapshots-force_recovery>` configuration option to ``true``.
+    When all the names are updated and all the instances synced, ``box.cfg.force_recovery`` can be set back to ``false``.
+
+    ..  NOTE::
+
+        The instance name is persisted in the :ref:`box.space._cluster <box_space-cluster>` system space.
+
     See also: :ref:`box_info_name`
 
     |
@@ -739,6 +754,15 @@
     Specify the name of a replica set to which this instance belongs.
     This value must be the same for all instances of the replica set.
 
+    See the :ref:`instance_name <cfg_replication-instance_name>` description to learn:
+
+    -   which rules are applied to names
+    -   how to change or remove an already specified name
+
+    ..  NOTE::
+
+        The replica set name is persisted in the :ref:`box.space._schema <box_space-schema>` system space.
+
     See also: :ref:`box_info_replicaset`
 
     |
@@ -755,6 +779,15 @@
 
     Specify the name of a cluster to which this instance belongs.
     This value must be the same for all instances of the cluster.
+
+    See the :ref:`instance_name <cfg_replication-instance_name>` description to learn:
+
+    -   which rules are applied to names
+    -   how to change or remove an already specified name
+
+    ..  NOTE::
+
+        The cluster name is persisted in the :ref:`box.space._schema <box_space-schema>` system space.
 
     See also: :ref:`box_info_cluster`
 
