@@ -65,6 +65,25 @@ Options
 
     Start an external coordinator used for a :ref:`supervised failover <repl_supervised_failover>`.
 
+.. _tarantool_cli_force_recovery:
+
+..  option:: --force-recovery
+
+    **Since:** :doc:`3.0.0 </release/3.0.0>`.
+
+    Try to start an instance if there is an error while reading a corrupted snapshot or write-ahead log file during the recovery process:
+
+    -   For a corrupted :ref:`snapshot file <index-box_persistence>` -- at the instance start.
+    -   For a corrupted :ref:`write-ahead log file <internals-wal>` -- at the instance start or when applying an update at a replica.
+
+    With this option enabled, Tarantool skips invalid records, reads as much data as possible, and lets the process finish with a warning.
+    Then call :ref:`box.snapshot() <box-snapshot>` to make a new snapshot so that the corrupted snapshots or write-ahead logs aren't used for recovery anymore.
+
+    You can also enable this option using the ``TT_FORCE_RECOVERY`` environment variable.
+    ``TT_FORCE_RECOVERY`` has a lower priority than the ``--force-recovery`` option.
+
+    Example on GitHub: `force_recovery <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/force_recovery>`_
+
 .. _index-tarantool_version:
 
 ..  option:: -v, -V, --version
