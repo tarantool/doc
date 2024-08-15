@@ -10,26 +10,26 @@ skinparam {
 json "**IPROTO_UPSERT**" as upsert_request {
     "Size": "MP_UINT",
     "Header": {
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "IPROTO_UPSERT",
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SYNC]]": "MP_UINT"
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "IPROTO_UPSERT",
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_SYNC]]": "MP_UINT"
     },
     "Body": {
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SPACE_ID]]": "MP_UINT",
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_INDEX_BASE]]": "MP_UINT",
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_OPS]]": "MP_ARRAY",            
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_TUPLE]]": "MP_ARRAY"
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_SPACE_ID]]": "MP_UINT",
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_INDEX_BASE]]": "MP_UINT",
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_OPS]]": "MP_ARRAY",
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_TUPLE]]": "MP_ARRAY"
     }
 }
 
 json "**Response to IPROTO_UPSERT**" as upsert_response {
     "Size": "MP_UINT",
     "Header": {
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "IPROTO_OK",
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SYNC]]": "MP_UINT",
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SCHEMA_VERSION]]": "MP_UINT"
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "IPROTO_OK",
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_SYNC]]": "MP_UINT",
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_SCHEMA_VERSION]]": "MP_UINT"
     },
     "Body": {
-    "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_DATA]]": "MP_OBJECT"
+    "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_DATA]]": "MP_OBJECT"
     }
 }
 

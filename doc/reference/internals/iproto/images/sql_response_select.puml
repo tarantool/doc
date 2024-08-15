@@ -10,13 +10,13 @@ skinparam {
 json "**Response to SELECT, VALUES, or PRAGMA**" as sql_response_select {
     "Size": "MP_UINT",
     "Header": {
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "IPROTO_OK",
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SYNC]]": "MP_UINT",
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SCHEMA_VERSION]]": "MP_UINT"
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "IPROTO_OK",
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_SYNC]]": "MP_UINT",
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_SCHEMA_VERSION]]": "MP_UINT"
     },
     "Body": {
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_METADATA]]": "MP_ARRAY of column maps",
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_DATA]]": "MP_ARRAY of tuples"
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_METADATA]]": "MP_ARRAY of column maps",
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_DATA]]": "MP_ARRAY of tuples"
     }
 }
 

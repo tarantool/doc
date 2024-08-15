@@ -10,24 +10,24 @@ skinparam {
 json "**IPROTO_INSERT** example request" as insert_example_request {
     "Size": "17",
     "Header": {
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "IPROTO_INSERT",
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SYNC]]": "5"
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "IPROTO_INSERT",
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_SYNC]]": "5"
     },
     "Body": {
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SPACE_ID]]": "512",
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_TUPLE]]": "[1, 'AAA']"
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_SPACE_ID]]": "512",
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_TUPLE]]": "[1, 'AAA']"
     }
 }
 
 json "**IPROTO_INSERT** example response" as insert_example_response {
     "Size": "36",
     "Header": {
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "IPROTO_OK",
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SYNC]]": "5",
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SCHEMA_VERSION]]": "100"
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "IPROTO_OK",
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_SYNC]]": "5",
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_SCHEMA_VERSION]]": "100"
     },
     "Body": {
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_DATA]]": "[1, 'AAA']"
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_DATA]]": "[1, 'AAA']"
     }
 }
 

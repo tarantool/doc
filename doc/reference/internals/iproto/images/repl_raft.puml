@@ -10,16 +10,16 @@ skinparam {
 json "**IPROTO_RAFT**" as raft {
     "Size": "MP_UINT",
     "Header": {
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "IPROTO_RAFT",
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_REPLICA_ID]]": "MP_UINT"
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "IPROTO_RAFT",
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_REPLICA_ID]]": "MP_UINT"
     },
     "Body": {
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_RAFT_TERM]]": "MP_UINT",
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_RAFT_VOTE]]": "MP_UINT",
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_RAFT_STATE]]": "MP_UINT",
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_RAFT_VCLOCK]]": "MP_MAP",
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_RAFT_LEADER_ID]]": "MP_UINT",
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_RAFT_IS_LEADER_SEEN]]": "MP_BOOL"
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_RAFT_TERM]]": "MP_UINT",
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_RAFT_VOTE]]": "MP_UINT",
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_RAFT_STATE]]": "MP_UINT",
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_RAFT_VCLOCK]]": "MP_MAP",
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_RAFT_LEADER_ID]]": "MP_UINT",
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_RAFT_IS_LEADER_SEEN]]": "MP_BOOL"
     }
 }
 

@@ -8,9 +8,9 @@ skinparam {
 }
 
 json "**Body**" as execute_body_1 {
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_STMT_ID]]": "0xd7aa741b",
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SQL_BIND]]": "[1, 'a']",      
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_OPTIONS]]": "[]"
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_STMT_ID]]": "0xd7aa741b",
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_SQL_BIND]]": "[1, 'a']",
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_OPTIONS]]": "[]"
 }
 
 @enduml

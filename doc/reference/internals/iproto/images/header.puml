@@ -8,10 +8,10 @@ skinparam {
 }
 
 map "**Header**" as Header {
-    [[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_REQUEST_TYPE]] => MP_UINT
-    [[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SYNC]] => MP_UINT
-    [[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SCHEMA_VERSION]] => MP_UINT
-    [[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_STREAM_ID]] => MP_UINT
+    [[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_REQUEST_TYPE]] => MP_UINT
+    [[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_SYNC]] => MP_UINT
+    [[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_SCHEMA_VERSION]] => MP_UINT
+    [[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_STREAM_ID]] => MP_UINT
 }
 
 @enduml

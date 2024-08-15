@@ -8,7 +8,7 @@ skinparam {
 }
 
 json "**Body**" as update_body_0 {
-    "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_TUPLE]]": {
+    "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_TUPLE]]": {
         "[[https://www.tarantool.io/en/doc/latest/reference/reference_lua/box_space/update/ Operator]]": "MP_STR: '#'",
         "[[https://www.tarantool.io/en/doc/latest/reference/reference_lua/box_space/update/ Field number]]": "MP_INT"
     }
