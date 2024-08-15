@@ -1458,7 +1458,7 @@ The ``database`` section defines database-specific configuration parameters, suc
 
     * If :ref:`wal.mode <configuration_reference_wal_mode>` is set to ``none``.
     * If :ref:`wal.dir_rescan_delay <configuration_reference_wal_dir_rescan_delay>` is set to a large value on macOS or FreeBSD. On these platforms, the hot standby mode is designed so that the loop repeats every ``wal.dir_rescan_delay`` seconds.
-    * If spaces are created with :ref:`engine <space_opts_engine>` set to ``vinyl``.
+    * For spaces created with :ref:`engine <space_opts_engine>` set to ``vinyl``.
 
     Examples on GitHub: `hot_standby_1 <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/hot_standby_1>`_, `hot_standby_2 <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/hot_standby_2>`_
 
