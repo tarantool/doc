@@ -1,107 +1,126 @@
 .. _limitations_fields_in_index:
 .. _tarantool_limitations:
 
-================================================================================
 Limitations
-================================================================================
+===========
 
-**Number of parts in an index**
+.. _limitations_parts_in_index:
 
-    For TREE or HASH indexes, the maximum
-    is 255 (``box.schema.INDEX_PART_MAX``). For :ref:`RTREE <box_index-rtree>` indexes, the
-    maximum is 1 but the field is an ARRAY of up to 20 dimensions.
-    For BITSET indexes, the maximum is 1.
+Number of parts in an index
+---------------------------
+
+For TREE or HASH indexes, the maximum
+is 255 (``box.schema.INDEX_PART_MAX``). For :ref:`RTREE <box_index-rtree>` indexes, the
+maximum is 1 but the field is an ARRAY of up to 20 dimensions.
+For BITSET indexes, the maximum is 1.
+
+.. _limitations_tuples_in_hash_index:
+
+Number of tuples in a hash index
+--------------------------------
+
+4,294,967,288 (2\ :sup:`32`-8).
 
 .. _limitations_indexes_in_space:
 
-**Number of indexes in a space**
+Number of indexes in a space
+----------------------------
 
-    128 (``box.schema.INDEX_MAX``).
+128 (``box.schema.INDEX_MAX``).
 
 .. _limitations_fields_in_tuple:
 
-**Number of fields in a tuple**
+Number of fields in a tuple
+---------------------------
 
-    The theoretical maximum is 2,147,483,647 (``box.schema.FIELD_MAX``). The
-    practical maximum is whatever is specified by the space's
-    :ref:`field_count <box_space-field_count>`
-    member, or the maximal tuple length.
+The theoretical maximum is 2,147,483,647 (``box.schema.FIELD_MAX``). The
+practical maximum is whatever is specified by the space's
+:ref:`field_count <box_space-field_count>`
+member, or the maximal tuple length.
 
 .. _limitations_bytes_in_tuple:
 
-**Number of bytes in a tuple**
+Number of bytes in a tuple
+--------------------------
 
-    The maximal number of bytes in a tuple is roughly equal to
-    :ref:`memtx_max_tuple_size <cfg_storage-memtx_max_tuple_size>` or
-    :ref:`vinyl_max_tuple_size <cfg_storage-vinyl_max_tuple_size>`
-    (with a metadata
-    overhead of about 20 bytes per tuple, which is added on top of useful bytes).
-    By default, the value of either ``memtx_max_tuple_size`` or
-    ``vinyl_max_tuple_size`` is 1,048,576. To increase it,
-    specify a larger value when starting the Tarantool instance.
-    For example, ``box.cfg{memtx_max_tuple_size=2*1048576}``.
+The maximal number of bytes in a tuple is roughly equal to
+:ref:`memtx.max_tuple_size <configuration_reference_memtx_max_size>` or
+:ref:`vinyl.max_tuple_size <configuration_reference_vinyl_max_tuple_size>`
+(with a metadata
+overhead of about 20 bytes per tuple, which is added on top of useful bytes).
+By default, the value of either ``memtx.max_tuple_size`` or
+``vinyl.max_tuple_size`` is 1,048,576.
 
 .. _limitations_bytes_in_index_key:
 
-**Number of bytes in an index key**
+Number of bytes in an index key
+-------------------------------
 
-    If a field in a tuple can contain a million bytes, then the index key
-    can contain a million bytes, so the maximum is determined by factors
-    such as :ref:`Number of bytes in a tuple <limitations_bytes_in_tuple>`,
-    not by the index support.
+If a field in a tuple can contain a million bytes, then the index key
+can contain a million bytes, so the maximum is determined by factors
+such as :ref:`Number of bytes in a tuple <limitations_bytes_in_tuple>`,
+not by the index support.
 
 .. _limitations_fields_in_tuple_multikey_index:
 
-**Number of elements in array fields in a space with a multikey index**
+Number of elements in array fields in a space with a multikey index
+-------------------------------------------------------------------
 
-    In a Tarantool space that has :ref:`multikey indexes <box_space-path_multikey>`,
-    any tuple cannot contain more than ~8,000 elements in a field indexed with that multikey index.
-    This is because every element has 4 bytes of metadata, and the tuple's metadata,
-    which includes multikey metadata, cannot exceed 2^16 bytes.
+In a Tarantool space that has :ref:`multikey indexes <box_space-path_multikey>`,
+any tuple cannot contain more than ~8,000 elements in a field indexed with that multikey index.
+This is because every element has 4 bytes of metadata, and the tuple's metadata,
+which includes multikey metadata, cannot exceed 2^16 bytes.
 
 .. _limitations_number_of_spaces:
 
-**Number of spaces**
+Number of spaces
+----------------
 
-    The theoretical maximum is 2147483646 (``box.schema.SPACE_MAX``)
-    but the practical maximum is around 65,000.
+The theoretical maximum is 2,147,483,646 (``box.schema.SPACE_MAX``)
+but the practical maximum is around 65,000.
 
 .. _limitations_number_of_connections:
 
-**Number of connections**
+Number of connections
+---------------------
 
-    The practical limit is the number of file descriptors that one can set
-    with the operating system.
+The practical limit is the number of file descriptors that one can set
+with the operating system.
 
 .. _limitations_space_size:
 
-**Space size**
+Space size
+----------
 
-    The total maximum size for all spaces is in effect set by
-    :ref:`memtx.memory <configuration_reference_memtx_memory>`, which in turn
-    is limited by the total available memory.
+The total maximum size for all spaces is in effect set by
+:ref:`memtx.memory <configuration_reference_memtx_memory>`, which in turn
+is limited by the total available memory.
 
 .. _limitations_update_ops:
 
-**Update operations count**
+Update operations count
+-----------------------
 
-    The maximum number of operations per tuple that can be in a single update
-    is 4000 (``BOX_UPDATE_OP_CNT_MAX``).
+The maximum number of operations per tuple that can be in a single update
+is 4,000 (``BOX_UPDATE_OP_CNT_MAX``).
 
 .. _limitations_users_and_roles:
 
-**Number of users and roles**
+Number of users and roles
+-------------------------
 
-    32 (``BOX_USER_MAX``).
+32 (``BOX_USER_MAX``).
 
 .. _limitations_length:
 
-**Length of an index name or space name or user name**
+Length of an index name or space name or user name
+--------------------------------------------------
 
-    65000 (``box.schema.NAME_MAX``).
+65,000 (``box.schema.NAME_MAX``).
 
 .. _limitations_replicas:
 
-**Number of replicas in a replica set**
+Number of replicas in a replica set
+-----------------------------------
 
-    32 (``vclock.VCLOCK_MAX``).
+32 (``vclock.VCLOCK_MAX``).
