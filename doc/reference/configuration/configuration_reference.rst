@@ -2582,6 +2582,14 @@ The ``groups`` section provides the ability to define the :ref:`full topology of
 
     A group name.
 
+    The following rules are applied to group names:
+
+    -   The maximum number of symbols is 63.
+    -   Should start with a letter.
+    -   Can contain lowercase letters (a-z).
+    -   Can contain digits (0-9).
+    -   Can contain the following characters: ``-``, ``_``.
+
 .. _configuration_reference_groups_name_replicasets:
 
 .. confval:: groups.<group_name>.replicasets
@@ -2615,6 +2623,9 @@ replicasets
 .. confval:: replicasets.<replicaset_name>
 
     A replica set name.
+
+    Note that the rules applied to a replica set name are the same as for groups.
+    Learn more in :ref:`groups.\<group_name\> <configuration_reference_groups_name>`.
 
 .. _configuration_reference_replicasets_name_leader:
 
@@ -2678,6 +2689,9 @@ instances
 .. confval:: instances.<instance_name>
 
     An instance name.
+
+    Note that the rules applied to an instance name are the same as for groups.
+    Learn more in :ref:`groups.\<group_name\> <configuration_reference_groups_name>`.
 
 .. _configuration_reference_instances_name_config_parameter:
 

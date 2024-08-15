@@ -8,30 +8,20 @@ box.info.listen
 
 .. data:: listen
 
-    Since version :doc:`2.4.1 </release/2.4.1>`.
-    Return a real address to which an instance was bound. For example, if
-    ``box.cfg{listen}`` was set with a zero port, ``box.info.listen`` will show
-    a real port. The address is stored as a string:
+    Since: :doc:`2.4.1 </release/2.4.1>`
 
-    * unix/:<path> for UNIX domain sockets
-    * <ip>:<port> for IPv4
-    * [ip]:<port> for IPv6
+    A real address to which an instance is bound.
+    If an instance does not listen to anything, ``box.info.listen`` is ``nil``.
 
-    If an instance does not listen to anything, ``box.info.listen`` is nil.
+    To learn how to configure URIs used to listen for incoming requests, see :ref:`iproto.listen <configuration_reference_iproto_listen>`.
 
-    **Example:**
+    :rtype: string
 
-    .. code-block:: tarantoolsession
+    **Example**
 
-      tarantool> box.cfg{listen=0}
-      ---
-      ...
-      tarantool> box.cfg.listen
-      ---
-      - '0'
-      ...
-      tarantool> box.info.listen
-      ---
-      - 0.0.0.0:44149
-      ...
+    ..  code-block:: tarantoolsession
 
+        sharded_cluster_crud:storage-a-002> box.info.listen
+        ---
+        - 127.0.0.1:3303
+        ...

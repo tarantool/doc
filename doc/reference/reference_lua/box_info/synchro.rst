@@ -10,7 +10,7 @@ box.info.synchro
 
     Since version :doc:`2.8.1 </release/2.8.1>`.
 
-    Show the current state of synchronous replication.
+    The current state of synchronous replication.
 
     In :ref:`synchronous replication <repl_sync>`, transaction is considered committed only after achieving
     the required quorum number.

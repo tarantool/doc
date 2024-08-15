@@ -6,60 +6,7 @@ Submodule box.info
 
 .. module:: box.info
 
-The ``box.info`` submodule provides access to information about server instance
-variables.
-
-* **cluster.uuid** is the UUID of the replica set.
-  Every instance in a replica set will have the same ``cluster.uuid`` value.
-  This value is also stored in :ref:`box.space._schema <box_space-schema>`
-  system space.
-* **gc()** returns the state of the
-  :ref:`Tarantool garbage collector <cfg_checkpoint_daemon-garbage-collector>`
-  including the checkpoints and their consumers (users); see details
-  :doc:`here </reference/reference_lua/box_info/gc>`.
-* **id** corresponds to :samp:`replication[{n}].id`
-  (see :doc:`here </reference/reference_lua/box_info/replication>`).
-* **lsn** corresponds to :samp:`replication[{n}].lsn`
-  (see :doc:`here </reference/reference_lua/box_info/replication>`).
-* **listen** returns a real address to which an instance was bound
-  (see :doc:`here </reference/reference_lua/box_info/listen>`).
-* **memory()** returns the statistics about memory
-  (see :doc:`here </reference/reference_lua/box_info/memory>`).
-* **pid** is the process ID. This value is also shown by
-  :ref:`tarantool <tarantool-build>` module
-  and by the Linux command ``ps -A``.
-* **ro** is ``true`` if the instance is in read-only mode
-  (same as :ref:`read_only <cfg_basic-read_only>` in ``box.cfg{}``),
-  or if status is 'orphan'.
-* **ro_reason** is ``nil`` if the instance is in writable mode.
-  When the field is not ``nil``, it contains the reason why the instance is read-only.
-  Possible error reasons: ``election``, ``synchro``, ``config``, and ``orphan``
-  (see :ref:`box.info.ro_reason <box_info_ro-reason>` for details).
-* **signature** is the sum of all ``lsn`` values from each :ref:`vector clock <replication-vector>`
-  (**vclock**) for all instances in the replica set.
-* **sql().cache.size** is the number of bytes in the SQL prepared statement cache.
-* **sql().cache.stmt_count** is the number of statements in the SQL prepared statement cache.
-* **status** is the current state of the instance. It can be:
-
-  * ``running`` -- the instance is loaded,
-  * ``loading`` -- the instance is either recovering xlogs/snapshots or bootstrapping,
-  * ``orphan`` --  the instance has not (yet) succeeded in joining the required
-    number of masters (see :ref:`orphan status <replication-orphan_status>`),
-  * ``hot_standby`` -- the instance is :ref:`standing by <index-hot_standby>` another instance.
-* **uptime** is the number of seconds since the instance started.
-  This value can also be retrieved with
-  :ref:`tarantool.uptime() <tarantool-build>`.
-* **uuid** corresponds to :samp:`replication[{n}].uuid`
-  (see :doc:`here </reference/reference_lua/box_info/replication>`).
-* **vclock** is a table with the vclock values of all instances in a replica set which have made data changes.
-* **version** is the Tarantool version. This value is also shown by
-  :ref:`tarantool -V <index-tarantool_version>`.
-* **vinyl()** returns runtime statistics for the vinyl storage engine.
-  This function is deprecated, use
-  :ref:`box.stat.vinyl() <box_introspection-box_stat_vinyl>` instead.
-* **election** shows the current state of a replica set node regarding leader
-  election (see :doc:`here </reference/reference_lua/box_info/election>`).
-
+The ``box.info`` submodule provides access to information about a running Tarantool instance.
 Below is a list of all ``box.info`` functions and members.
 
 ..  container:: table
@@ -68,53 +15,125 @@ Below is a list of all ``box.info`` functions and members.
     ..  rst-class:: left-align-column-2
 
     ..  list-table::
-        :widths: 25 75
+        :widths: 30 70
         :header-rows: 1
 
         *   - Name
             - Use
 
         *  - :doc:`./box_info/info`
-           - Return all keys and values provided in the submodule
+           - Get all keys and values provided by the ``box.info`` submodule
+
+        *  - :doc:`./box_info/cluster`
+           - Information about the cluster to which the current instance belongs
+
+        *  - :doc:`./box_info/config`
+           - The instance's state in regard to configuration
+
+        *  - :doc:`./box_info/election`
+           - The current state of this replica set node in regard to leader election
 
         *  - :doc:`./box_info/gc`
-           - Return info about garbage collector
+           - Get information about the Tarantool garbage collector
+
+        *  - :doc:`./box_info/hostname`
+           - The hostname that identifies a machine the current instance is running on
+
+        *  - :doc:`./box_info/id`
+           - A numeric identifier of the current instance within the replica set
+
+        *  - :doc:`./box_info/listen`
+           - A real address to which an instance is bound
+
+        *  - :doc:`./box_info/lsn`
+           - A log sequence number (LSN) for the latest entry in the instance's write-ahead log (WAL)
 
         *  - :doc:`./box_info/memory`
-           - Return info about memory usage
+           - Get information about memory usage for the current instance
+
+        *  - :doc:`./box_info/name`
+           - The name of the current instance
+
+        *  - :doc:`./box_info/package`
+           - The package name
+
+        *  - :doc:`./box_info/pid`
+           - Get a process ID of the current instance
+
+        *  - :doc:`./box_info/replicaset`
+           - Information about the replica set to which the current instance belongs
+
+        *  - :doc:`./box_info/replication`
+           - Statistics for all instances in the replica set
 
         *  - :doc:`./box_info/replication_anon`
            - List all the anonymous replicas following the instance
 
-        *  - :doc:`./box_info/replication`
-           - Return statistics for all instances in the replica set
-
-        *  - :doc:`./box_info/listen`
-           - Return a real address to which an instance was bound
-
-        *  - :doc:`./box_info/election`
-           - Show the current state of a replica set node
-             in regards to leader election
-
-        *  - :doc:`./box_info/synchro`
-           - Show the current state of synchronous replication
+        *  - :doc:`./box_info/ro`
+           - The current mode of the instance (writable or read-only)
 
         *  - :doc:`./box_info/ro_reason`
-           - Show the current mode of an instance (writable or read-only)
+           - The reason why the current instance is read-only
 
         *  - :doc:`./box_info/schema_version`
-           - Show the database schema version
+           - The database schema version
+
+        *  - :doc:`./box_info/signature`
+           - The sum of all ``lsn`` values from each vector clock for all instances in the replica set
+
+        *  - :doc:`./box_info/sql`
+           - Get information about the cache for all SQL prepared statements
+
+        *  - :doc:`./box_info/status`
+           - The current state of the instance
+
+        *  - :doc:`./box_info/synchro`
+           - The current state of synchronous replication
+
+        *  - :doc:`./box_info/uptime`
+           - The number of seconds since the instance started
+
+        *  - :doc:`./box_info/uuid`
+           - A globally unique identifier of the current instance
+
+        *  - :doc:`./box_info/vclock`
+           - A table with the vclock values of all instances in a replica set which have made data changes
+
+        *  - :doc:`./box_info/version`
+           - The Tarantool version
+
+        *  - :doc:`./box_info/vinyl`
+           - (Deprecated) Get runtime statistics for the vinyl storage engine
+
 
 ..  toctree::
     :hidden:
 
     box_info/info
-    box_info/gc
-    box_info/memory
-    box_info/replication_anon
-    box_info/replication
-    box_info/listen
+    box_info/cluster
+    box_info/config
     box_info/election
-    box_info/synchro
+    box_info/gc
+    box_info/hostname
+    box_info/id
+    box_info/listen
+    box_info/lsn
+    box_info/memory
+    box_info/name
+    box_info/package
+    box_info/pid
+    box_info/replicaset
+    box_info/replication
+    box_info/replication_anon
+    box_info/ro
     box_info/ro_reason
     box_info/schema_version
+    box_info/signature
+    box_info/sql
+    box_info/status
+    box_info/synchro
+    box_info/uptime
+    box_info/uuid
+    box_info/vclock
+    box_info/version
+    box_info/vinyl
