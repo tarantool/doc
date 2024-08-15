@@ -31,7 +31,7 @@ Below is a list of all ``box.info`` functions and members.
            - The instance's state in regard to configuration
 
         *  - :doc:`./box_info/election`
-           - The current state of this replica set node in regards to leader election
+           - The current state of this replica set node in regard to leader election
 
         *  - :doc:`./box_info/gc`
            - Get information about the Tarantool garbage collector
