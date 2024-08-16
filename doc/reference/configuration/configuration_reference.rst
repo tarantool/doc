@@ -3,9 +3,6 @@
 Configuration reference
 =======================
 
-..  TODO
-    https://github.com/tarantool/doc/issues/3664
-
 This topic describes all :ref:`configuration parameters <configuration>` provided by Tarantool.
 
 Most of the configuration options described in this reference can be applied to a specific instance, replica set, group, or to all instances globally.
@@ -22,6 +19,10 @@ In the ``app`` section, you can load the application and provide an application 
 .. NOTE::
 
     ``app`` can be defined in any :ref:`scope <configuration_scopes>`.
+
+..  NOTE::
+
+    Note that an application specified using ``app`` is loaded after application roles specified using the :ref:`roles <configuration_reference_roles>` option.
 
 -   :ref:`app.cfg <configuration_reference_app_cfg>`
 -   :ref:`app.file <configuration_reference_app_file>`
@@ -883,6 +884,10 @@ config.etcd.*
 This section describes options related to providing connection settings to a :ref:`centralized etcd-based storage <configuration_etcd>`.
 If :ref:`replication.failover <configuration_reference_replication_failover>` is set to ``supervised``, Tarantool also uses etcd to maintain the state of failover coordinators.
 
+..  NOTE::
+
+    Note that a :ref:`centralized cluster configuration <centralized_configuration_storage_publish_config>` cannot contain the ``config.etcd`` section.
+
 * :ref:`config.etcd.endpoints <config_etcd_endpoints>`
 * :ref:`config.etcd.prefix <config_etcd_prefix>`
 * :ref:`config.etcd.username <config_etcd_username>`
@@ -1069,6 +1074,10 @@ config.storage.*
     :end-before: ee_note_centralized_config_end
 
 This section describes options related to providing connection settings to a :ref:`centralized Tarantool-based storage <configuration_etcd>`.
+
+..  NOTE::
+
+    Note that a :ref:`centralized cluster configuration <centralized_configuration_storage_publish_config>` cannot contain the ``config.storage`` section.
 
 * :ref:`config.storage.endpoints <config_storage_endpoints>`
 * :ref:`config.storage.prefix <config_storage_prefix>`
