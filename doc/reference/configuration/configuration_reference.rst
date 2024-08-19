@@ -3580,6 +3580,10 @@ The ``replication`` section defines configuration parameters related to :ref:`re
         Once :ref:`box.ctl.promote() <box_ctl-promote>` is called, the instance becomes a candidate and starts a new election round.
         If the instance wins the elections, it becomes a leader but won't participate in any new elections.
 
+    ..  NOTE::
+
+        You can set ``replication.election_mode`` to a value other than ``off`` if the :ref:`replication.failover <configuration_reference_replication_failover>` mode is ``election``.
+
     |
     | Type: string
     | Default: :ref:`box.NULL <box-null>` (the actual default value depends on :ref:`replication.failover <configuration_reference_replication_failover>`)
