@@ -10,14 +10,14 @@ skinparam {
 json "**Response to SQL requests other than SELECT, VALUES, or PRAGMA**" as sql_response_other {
     "Size": "MP_UINT",
     "Header": {
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "IPROTO_OK",
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SYNC]]": "MP_UINT",
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SCHEMA_VERSION]]": "MP_UINT"
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "IPROTO_OK",
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_SYNC]]": "MP_UINT",
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_SCHEMA_VERSION]]": "MP_UINT"
     },
     "Body": {
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys SQL_INFO]]": {
-        "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys SQL_INFO_ROW_COUNT]]": "MP_UINT",
-        "(Optional) [[tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys SQL_INFO_AUTO_INCREMENT_IDS]]": "MP_ARRAY"
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys SQL_INFO]]": {
+        "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys SQL_INFO_ROW_COUNT]]": "MP_UINT",
+        "(Optional) [[tarantool.io/en/doc/latest/reference/internals/iproto/keys SQL_INFO_AUTO_INCREMENT_IDS]]": "MP_ARRAY"
       }
     }
 }

@@ -10,11 +10,11 @@ skinparam {
 json "**IPROTO_EVENT**" as event {
     "Size": "MP_UINT",
     "Header": {
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "IPROTO_EVENT"
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "IPROTO_EVENT"
     },
     "Body": {
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_EVENT_KEY]]": "MP_STR",
-      "(Optional) [[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_EVENT_DATA]]": "MP_OBJECT"
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_EVENT_KEY]]": "MP_STR",
+      "(Optional) [[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_EVENT_DATA]]": "MP_OBJECT"
     }
 }
 

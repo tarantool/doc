@@ -8,7 +8,7 @@ skinparam {
 }
 
 map "**Body**" as Body {
-    [[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_DATA]] => MP_OBJECT
+    [[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_DATA]] => MP_OBJECT
 }
 
 @enduml

@@ -10,15 +10,15 @@ skinparam {
 json "**IPROTO_UPDATE** example request" as update_example {
     "Size": "32",
     "Header": {
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "IPROTO_UPDATE",
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SYNC]]": "5"
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "IPROTO_UPDATE",
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_SYNC]]": "5"
     },
     "Body": {
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SPACE_ID]]": "512",
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_INDEX_ID]]": "0",
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_INDEX_BASE]]": "1",
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_TUPLE]]": "['=',2,'B']",
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_KEY]]": "[999]"
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_SPACE_ID]]": "512",
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_INDEX_ID]]": "0",
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_INDEX_BASE]]": "1",
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_TUPLE]]": "['=',2,'B']",
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_KEY]]": "[999]"
     }
 }
 

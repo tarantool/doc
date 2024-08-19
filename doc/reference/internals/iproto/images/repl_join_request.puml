@@ -10,11 +10,11 @@ skinparam {
 json "**IPROTO_JOIN**" as join_request {
     "Size": "MP_UINT",
     "Header": {
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "IPROTO_JOIN",
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_SYNC]]": "MP_UINT"
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "IPROTO_JOIN",
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_SYNC]]": "MP_UINT"
     },
     "Body": {
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_INSTANCE_UUID]]": "MP_STR – UUID of this instance"
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_INSTANCE_UUID]]": "MP_STR – UUID of this instance"
     }
 }
 

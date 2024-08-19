@@ -8,20 +8,20 @@ skinparam {
 }
 
 json "**Body**" as execute_body_2 {
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_STMT_ID]]": "MP_UINT",
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_BIND_COUNT]]": "MP_INT",      
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_BIND_METADATA]]": "MP_ARRAY",
-      "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_METADATA]]": {
-                "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_FIELD_NAME]]": "'DD'",
-                "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_FIELD_TYPE]]": "'integer'",
-                "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_FIELD_IS_NULLABLE]]": "false",
-                "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_FIELD_IS_AUTOINCREMENT]]": "true",
-                "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_FIELD_SPAN]]": "nil",
-                "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_FIELD_NAME]]": "'Д'",
-                "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_FIELD_TYPE]]": "'string'",
-                "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_FIELD_COLL]]": "'unicode'",
-                "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_FIELD_IS_NULLABLE]]": "true",
-                "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_FIELD_SPAN]]": "'дд'"
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_STMT_ID]]": "MP_UINT",
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_BIND_COUNT]]": "MP_INT",
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_BIND_METADATA]]": "MP_ARRAY",
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_METADATA]]": {
+                "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_FIELD_NAME]]": "'DD'",
+                "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_FIELD_TYPE]]": "'integer'",
+                "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_FIELD_IS_NULLABLE]]": "false",
+                "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_FIELD_IS_AUTOINCREMENT]]": "true",
+                "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_FIELD_SPAN]]": "nil",
+                "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_FIELD_NAME]]": "'Д'",
+                "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_FIELD_TYPE]]": "'string'",
+                "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_FIELD_COLL]]": "'unicode'",
+                "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_FIELD_IS_NULLABLE]]": "true",
+                "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_FIELD_SPAN]]": "'дд'"
       }
 }
 
