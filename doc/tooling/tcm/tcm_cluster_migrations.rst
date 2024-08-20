@@ -38,6 +38,12 @@ To create a migration:
 Once you complete writing the migration, save it by clicking **Save**.
 This saves the migration that is currently opened in the editor.
 
+..  _tcm_cluster_migrations_apply:
+
+Appliyng migrations
+-------------------
+
+After you prepare a set of migrations, apply it to the cluster.
 To apply all saved migrations to the cluster at once, click **Apply**.
 
 .. important::
@@ -55,7 +61,7 @@ Migrations that were created but not saved yet are not applied when you click **
 Checking migrations status
 --------------------------
 
-To check the migration results on the cluster, use the **Migrations** widget on the
+To check the migration results on the cluster, use the **Migrated** widget on the
 :ref:`cluster stateboard <tcm_ui_cluster_stateboard>`. It reflects the general result
 of the last applied migration set:
 
@@ -70,4 +76,34 @@ saved migration set is successfully applied.
 You can also check the status of each particular migration on the **Migrations** page.
 The migrations that are successfully applied are marked with green check marks.
 Failed migrations are marked with exclamation mark icons (**!**). Hover the cursor over
-the icon to see the information about the error.
+the icon to see the information about the error. To reapply a failed migration,
+click **Force apply** in the pop-up with the error information.
+
+..  _tcm_cluster_migrations_example:
+
+Migration file example
+----------------------
+
+The following migration code creates a formatted space with two indexes in a
+sharded cluster:
+
+.. code-block:: lua
+
+    local function apply_scenario()
+        local space = box.schema.space.create('customers')
+
+        space:format {
+            { name = 'id',        type = 'number' },
+            { name = 'bucket_id', type = 'number' },
+            { name = 'name',      type = 'string' },
+        }
+
+        space:create_index('primary', { parts = { 'id' } })
+        space:create_index('bucket_id', { parts = { 'bucket_id' }, unique = false })
+    end
+
+    return {
+        apply = {
+            scenario = apply_scenario,
+        },
+    }
