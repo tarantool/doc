@@ -11,8 +11,8 @@ Performing migrations
 in connected clusters. To learn more about migrations in Tarantool, see :ref:`migrations`.
 
 Migrations are named Lua files with code that alters the cluster data schema, for example,
-creates a space, changes it format, or adds indexes. In |tcm|, there is a dedicated
-page on which you can organize migrations, edit their code, and apply them to the cluster.
+creates a space, changes its format, or adds indexes. In |tcm|, there is a dedicated
+page where you can organize migrations, edit their code, and apply them to the cluster.
 
 ..  _tcm_cluster_migrations_manage:
 
@@ -48,10 +48,10 @@ To apply all saved migrations to the cluster at once, click **Apply**.
 
 .. important::
 
-    Applying all saved migrations **at once in the lexicographical** order is the
-    only way to apply migrations in |tcm|. There is no way to select a single  or
+    Applying all saved migrations **at once, in the lexicographical order** is the
+    only way to apply migrations in |tcm|. There is no way to select a single or
     several migrations to apply.
-    The migrations that are already applied are skipped. To learn how to find out
+    The migrations that are already applied are skipped. To learn how to check
     a migration status, see :ref:`tcm_cluster_migrations_check`.
 
 Migrations that were created but not saved yet are not applied when you click **Apply**.
