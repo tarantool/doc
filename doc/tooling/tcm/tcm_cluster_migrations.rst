@@ -38,7 +38,7 @@ To create a migration:
 Once you complete writing the migration, save it by clicking **Save**.
 This saves the migration that is currently opened in the editor.
 
-To apply all *saved* migrations to the cluster at once, click **Apply**.
+To apply all saved migrations to the cluster at once, click **Apply**.
 
 .. important::
 
@@ -48,6 +48,7 @@ To apply all *saved* migrations to the cluster at once, click **Apply**.
     The migrations that are already applied are skipped. To learn how to find out
     a migration status, see :ref:`tcm_cluster_migrations_check`.
 
+Migrations that were created but not saved yet are not applied when you click **Apply**.
 
 ..  _tcm_cluster_migrations_check:
 
