@@ -32,13 +32,13 @@ To create a migration:
         Use ordered numbers as filename prefixes to define the migrations order.
         For example, ``001_create_table``, ``002_add_column``, ``003_create_index``.
 
-#.  Write the migration code in Lua in the editor window. Use the :ref:`box module reference <box-module>`
+#.  Write the migration code in the editor window. Use the :ref:`box.schema module reference <box_schema>`
     to learn how to work with Tarantool data schema.
 
-To save the migration without applying it to the cluster, click **Save**.
-This saves the currently selected migration.
+Once you complete writing the migration, save it by clicking **Save**.
+This saves the migration that is currently opened in the editor.
 
-To apply all _saved_ migrations to the cluster at once, click **Apply**.
+To apply all *saved* migrations to the cluster at once, click **Apply**.
 
 .. important::
 
@@ -64,7 +64,7 @@ of the last applied migration set:
 -   If there are saved migrations that are not applied yet, the widget becomes gray.
 
 Hovering a cursor over the widget shows the number of instances on which the currently
-saved migration set is already applied.
+saved migration set is successfully applied.
 
 You can also check the status of each particular migration on the **Migrations** page.
 The migrations that are successfully applied are marked with green check marks.
