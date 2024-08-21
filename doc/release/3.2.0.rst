@@ -82,6 +82,8 @@ Finally, you can pass the specified schema to the :ref:`validate() <roles_api_re
     local function validate(cfg)
         if cfg.host and cfg.port then
             listen_address_schema:validate(cfg)
+        else
+            error("You need to set both host and port values")
         end
     end
 
