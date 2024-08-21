@@ -55,25 +55,22 @@ The ``validate_port()`` function can be used to check that a port value is betwe
 ..  code-block:: lua
 
     local function validate_port(port, w)
-        if (port <= 1 or port >= 65535) then
-            w.error("'port' should be between 1 and 65535, got %q", port)
+        if port <= 1 or port >= 65535 then
+            w.error("'port' should be between 1 and 65535, got %d", port)
         end
     end
 
 Then, you can create a schema used for validation:
 
--   ``host`` should be a string value from the ``allowed_values`` array.
+-   ``host`` should be one of the specified string values.
 -   ``port`` should be a number that is checked using the ``validate_port()`` function declared above.
 
 ..  code-block:: lua
 
     local listen_address_schema = schema.new('listen_address', schema.record({
-        host = schema.scalar({
-            type = 'string',
-            allowed_values = { '127.0.0.1', '0.0.0.0' },
-        }),
+        host = schema.enum({ '127.0.0.1', '0.0.0.0' }),
         port = schema.scalar({
-            type = 'number',
+            type = 'integer',
             validate = validate_port,
         }),
     }))
@@ -83,12 +80,10 @@ Finally, you can pass the specified schema to the :ref:`validate() <roles_api_re
 ..  code-block:: lua
 
     local function validate(cfg)
-        if (cfg.host and cfg.port) then
+        if cfg.host and cfg.port then
             listen_address_schema:validate(cfg)
         end
     end
-
-
 
 
 
@@ -138,12 +133,15 @@ Once the protocol is specified, use the ``encode()`` method to encode data:
 
 ..  code-block:: lua
 
-    local sample_customer = customer_protocol:encode('Customer',
-            { id = 3,
-              firstName = 'Andrew',
-              lastName = 'Fuller',
-              customerType = 1
-            })
+    local sample_customer = customer_protocol:encode(
+        'Customer',
+        {
+            id = 3,
+            firstName = 'Andrew',
+            lastName = 'Fuller',
+            customerType = 1
+        }
+    )
 
 
 
