@@ -35,6 +35,11 @@ after the specified date.
             -   End of life
             -   End of support
 
+        *   -   `2.11.4 LTS <https://github.com/tarantool/tarantool/releases/tag/2.11.4>`_
+            -   August 16, 2024
+            -   May 24, 2025
+            -   Not planned yet
+
         *   -   `2.11.3 LTS <https://github.com/tarantool/tarantool/releases/tag/2.11.3>`_
             -   April 18, 2024
             -   May 24, 2025
