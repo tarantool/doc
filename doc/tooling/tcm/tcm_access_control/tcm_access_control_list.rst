@@ -1,10 +1,13 @@
-
 .. _tcm_access_control_acl:
 
 Access control list
--------------------
+===================
 
-|tcm|'s *access control list* (*ACL*) determines user access to particular data
+..  include:: ../index.rst
+    :start-after: ee_note_tcm_start
+    :end-before: ee_note_tcm_end
+
+|tcm_full_name| *access control list* (*ACL*) determines user access to particular data
 and functions stored in clusters. You can use it to allow or deny access to specific
 stored objects one by one.
 
@@ -59,7 +62,7 @@ If the user doesn't exist yet, you can do the same when creating it.
 .. _tcm_access_control_acl_manage:
 
 Managing ACL
-~~~~~~~~~~~~
+------------
 
 The tools for managing ACL are located on the **ACL** page.
 

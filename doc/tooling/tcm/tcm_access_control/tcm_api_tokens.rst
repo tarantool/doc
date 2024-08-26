@@ -2,9 +2,13 @@
 .. _tcm_access_control_api_tokens:
 
 API tokens
-----------
+==========
 
-|tcm| uses the Bearer HTTP authentication scheme with *API tokens* to authenticate
+..  include:: ../index.rst
+    :start-after: ee_note_tcm_start
+    :end-before: ee_note_tcm_end
+
+|tcm_full_name| uses the Bearer HTTP authentication scheme with *API tokens* to authenticate
 external applications' requests to |tcm|. For example, these can be Prometheus
 jobs that retrieve metrics of connected Tarantool clusters.
 
@@ -26,7 +30,7 @@ be changed.
 .. _tcm_access_control_api_tokens_manage:
 
 Managing API tokens
-~~~~~~~~~~~~~~~~~~~
+-------------------
 
 .. note::
 

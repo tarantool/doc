@@ -3,7 +3,7 @@
 Access control
 ==============
 
-..  include:: index.rst
+..  include:: ../index.rst
     :start-after: ee_note_tcm_start
     :end-before: ee_note_tcm_end
 
@@ -29,7 +29,7 @@ and users (or user accounts). They work as follows:
     :maxdepth: 1
 
     tcm_access_control_rbac
-    tcm_access_control_acl
-    tcm_access_control_api_tokens
+    tcm_access_control_list
+    tcm_api_tokens
     tcm_ldap_auth
-    tcm_access_control_sessions
+    tcm_sessions
