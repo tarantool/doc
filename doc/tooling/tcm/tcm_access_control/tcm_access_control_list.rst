@@ -1,4 +1,4 @@
-.. _tcm_access_control_acl:
+.. _tcm_access_control_list:
 
 Access control list
 ===================
@@ -33,7 +33,7 @@ read, write, and execute (for stored functions only). The privileges work as fol
     ACL only increases the access control granularity to particular objects.
     Make sure that users have these permissions before enabling ACL for them.
 
-.. _tcm_access_control_acl_enable:
+.. _tcm_access_control_list_enable:
 
 Enabling ACL for a user
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -59,7 +59,7 @@ If the user doesn't exist yet, you can do the same when creating it.
     When ACL use is enabled for a user, this user loses access to all spaces and
     functions of the selected cluster except the ones explicitly specified in the ACL.
 
-.. _tcm_access_control_acl_manage:
+.. _tcm_access_control_list_manage:
 
 Managing ACL
 ------------

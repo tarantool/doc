@@ -13,7 +13,7 @@ web interface. You can view, add, edit, and delete tuples from spaces.
 .. note::
 
     A |TCM| user's access to specific clusters and spaces is determined by their
-    :ref:`cluster permissions <tcm_access_control_permissions>` and :ref:`access control list <tcm_access_control_acl>`.
+    :ref:`cluster permissions <tcm_access_control_permissions>` and :ref:`access control list <tcm_access_control_list>`.
 
 Data access is implemented in |tcm| on a per-instance basis: you can access
 data stored on one cluster instance at a time. For sharded clusters that use the

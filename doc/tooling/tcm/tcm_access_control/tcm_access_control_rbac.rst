@@ -57,7 +57,7 @@ There are two types of permissions in |tcm|: *administrative* and *cluster* perm
     Cluster permissions are assigned to users individually when creating or editing them.
 
     For a fine-grained control over user access to particular spaces and functions stored
-    in clusters, there is the :ref:`access control list <tcm_access_control_acl>`.
+    in clusters, there is the :ref:`access control list <tcm_access_control_list>`.
 
 Permissions are predefined in |tcm|, there is no way to change, add, or delete them.
 The complete lists of administrative and cluster permissions in |tcm| are provided
