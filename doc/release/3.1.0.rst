@@ -3,7 +3,7 @@ Tarantool 3.1
 
 Release date: April 16, 2024
 
-Releases on GitHub: :tarantool-release:`3.1.1`, :tarantool-release:`3.1.0`
+Releases on GitHub: :tarantool-release:`3.1.2`, :tarantool-release:`3.1.1`, :tarantool-release:`3.1.0`
 
 The 3.1 release of Tarantool continues the development of a new cluster configuration approach introduced in the :ref:`3.0 version <3-0-new_declarative_configuration>` and adds the following main product features and improvements for the Community and Enterprise editions:
 
