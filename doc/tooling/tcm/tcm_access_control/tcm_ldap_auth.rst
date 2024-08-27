@@ -7,10 +7,16 @@ LDAP authentication
     :start-after: ee_note_tcm_start
     :end-before: ee_note_tcm_end
 
-In addition to its internal :ref:`role-based access model <tcm_access_control_rbac>`,
-|tcm_full_name| can be configured to use an external LDAP (Lightweight Directory Access Protocol)
-server for user authentication and authorization. Both LDAP and secure LDAPS
-(LDAP over TLS) protocols are supported.
+In addition to its internal :ref:`role-based access control model <tcm_access_control_rbac>`,
+|tcm_full_name| can use an external LDAP (Lightweight Directory Access Protocol)
+directory server for user authentication and authorization.
+
+When LDAP authentication is enabled, |tcm| attempts to authenticate users who submit
+the login form on a connected LDAP directory server. |tcm| constructs requests to
+the servers according to configuration parameters described on this page. Permissions
+of LDAP users in |tcm| are defined by LDAP group mapping.
+
+Both LDAP and secure LDAPS (LDAP over TLS) protocols are supported.
 
 ..  _tcm_ldap_auth_enable:
 
@@ -44,14 +50,14 @@ in the :ref:`security.auth <tcm_configuration_reference_security_auth>` configur
 LDAP configuration
 ------------------
 
-To allow LDAP user access to |tcm|, create a *LDAP configuration* that connects
-|tcm| to the LDAP server that stores the users. A LDAP configuration
+To enable LDAP user access to |tcm|, create an *LDAP configuration* that connects
+|tcm| to the LDAP server that stores the users. An LDAP configuration
 defines how |tcm| connects to the server and queries user data. To create a LDAP
 configuration, go to the **LDAP** page and click **Add**.
 
-To edit a LDAP configuration, click **Edit** in the **Actions** menu of the corresponding table row.
+To edit a LDAP configuration, click **Edit** in the **Actions** menu of the corresponding row.
 
-To delete a LDAP configuration, click **Delete** in the **Actions** menu of the corresponding table row.
+To delete a LDAP configuration, click **Delete** in the **Actions** menu of the corresponding row.
 
 ..  _tcm_ldap_auth_config_general:
 
@@ -81,7 +87,7 @@ Enter the LDAP server connection parameters:
 
 *   **Endpoints**. URLs of the LDAP server.
 *   **Request timeout**. The timeout for |tcm| requests to the LDAP server, in seconds.
-*   **Enabled TLS**. If the server uses LDAPS, toggle **Enabled TLS** and specify
+*   **Enabled TLS**. If the server uses LDAPS, turn this toggle on and specify
     TLS connection parameters, such as a certificate and a key file.
 
 ..  _tcm_ldap_auth_config_query:
@@ -106,10 +112,12 @@ fill in the fields of the **Queries** step:
 -   **Template DN**. A template for building a DN to send in an authentication bind request.
     Use the numbers in curly braces as placeholders to replace with username regex parts:
     ``{0}``, ``{1}`` and so on.
-    Example: ``cn={0},cn=users,dc=tarantool,dc=io``. When used with the username regex
-    shown above, it takes only the username part of the email address (before ``@``)
-    entered into the login form.
--   **Template query**. A template for searching DN in the LDAP directory for authentication.
+    Example: ``cn={0},cn=users,dc=tarantool,dc=io``. When used with the **Username regex**
+    shown above, it substitutes ``{0}`` with the username part of the email address (before ``@``)
+    entered into the login form. For example, the username ``user1@tarantool.io``
+    forms the following DN for bind request: ``cn=user1,cn=users,dc=tarantool,dc=io``.
+-   **Template query**. A template for querying the LDAP server for the DN. This
+    way is used if **Template DN** is not provided.
 -   **Group query template**. A template for querying groups to which a user belongs
     for authorization purposes. Learn more in :ref:`tcm_ldap_auth_config_permissions`.
     Example: ``(&(objectCategory=person)(objectClass=user)(cn={0}))``
@@ -139,4 +147,4 @@ Each user has permissions of all LDAP groups to which they belong.
 Disabling LDAP configurations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To stop using a LDAP configuration, open its **Edit** page and turn off the **Enabled** toggle.
+To stop using an LDAP configuration, open its **Edit** page and turn off the **Enabled** toggle.
