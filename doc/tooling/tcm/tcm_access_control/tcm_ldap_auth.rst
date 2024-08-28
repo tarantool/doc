@@ -135,7 +135,7 @@ fill in the fields of the **Queries** step:
 
     ..  code-block:: text
 
-        ``cn=user1,cn=users,dc=tarantool,dc=io``.
+        cn=user1,cn=users,dc=tarantool,dc=io
 
 -   (Optional) **Template query**. A template for querying the LDAP server for the DN. This
     way is used if **Template DN** is not provided.
