@@ -112,6 +112,7 @@ fill in the fields of the **Queries** step:
     this LDAP configuration. When a user enters their username on the login page,
     |tcm| matches it against username regular expressions of all enabled LDAP
     configurations and selects the one to use for this user authentication.
+
     Example: a regex to match employee email addresses within the specified domain.
 
     ..  code-block:: text
@@ -121,6 +122,7 @@ fill in the fields of the **Queries** step:
 -   (Optional) **Template DN**. A template for building a DN to send in an authentication bind request.
     Use the numbers in curly braces as placeholders to replace with username regex parts:
     ``{0}``, ``{1}``, and so on.
+
     Example:
 
     ..  code-block:: text
@@ -142,6 +144,7 @@ fill in the fields of the **Queries** step:
     Example:
 
     ..  code-block:: text
+
         ``(&(objectCategory=person)(objectClass=user)(cn={0}))``
 
 
