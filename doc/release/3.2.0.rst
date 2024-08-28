@@ -1,0 +1,301 @@
+Tarantool 3.2
+=============
+
+Release date: August 26, 2024
+
+Releases on GitHub: :tarantool-release:`3.2.0`
+
+The 3.2 release of Tarantool adds the following main product features and improvements for the Community and Enterprise editions:
+
+*   **Community Edition (CE)**
+
+    *   A new experimental module for validating role configurations.
+    *   Initial support for encoding structured data using Protobuf.
+    *   Next and Previous prefix iterators.
+    *   Support for all UUID versions.
+    *   Automatic loading of the most often used built-in modules into the console environment.
+
+*   **Enterprise Edition (EE)**
+
+    *   Time-to-live (TTL) for keys in a Tarantool-based configuration storage.
+
+
+
+.. _3-2-features-for-developers:
+
+Developing applications
+-----------------------
+
+.. _3-2-configuration-validation:
+
+Configuration validation
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Tarantool 3.2 includes a new experimental module for :ref:`validating role configurations <roles_create_custom_role_validate>` using a declarative schema.
+For example, you can validate the type of configuration values, provide an array of allowed values, or specify a custom validation function.
+
+Suppose, a sample :ref:`'http-api' custom role <roles_example_custom_role_http_api>` can accept the ``host`` and ``port`` configuration values:
+
+..  code-block:: yaml
+
+    roles: [ http-api ]
+    roles_cfg:
+      http-api:
+        host: '127.0.0.1'
+        port: 8080
+
+First, you need to load the ``experimental.config.utils.schema`` module:
+
+..  code-block:: lua
+
+    local schema = require('experimental.config.utils.schema')
+
+The ``validate_port()`` function can be used to check that a port value is between ``1`` and ``65535``:
+
+..  code-block:: lua
+
+    local function validate_port(port, w)
+        if port <= 1 or port >= 65535 then
+            w.error("'port' should be between 1 and 65535, got %d", port)
+        end
+    end
+
+Then, you can create a schema used for validation:
+
+-   ``host`` should be one of the specified string values.
+-   ``port`` should be a number that is checked using the ``validate_port()`` function declared above.
+
+..  code-block:: lua
+
+    local listen_address_schema = schema.new('listen_address', schema.record({
+        host = schema.enum({ '127.0.0.1', '0.0.0.0' }),
+        port = schema.scalar({
+            type = 'integer',
+            validate = validate_port,
+        }),
+    }))
+
+Finally, you can pass the specified schema to the :ref:`validate() <roles_api_reference_validate>` role's function:
+
+..  code-block:: lua
+
+    local function validate(cfg)
+        if cfg.host and cfg.port then
+            listen_address_schema:validate(cfg)
+        else
+            error("You need to set both host and port values")
+        end
+    end
+
+
+
+.. _3-2-protobuf:
+
+Protobuf encoder
+~~~~~~~~~~~~~~~~
+
+The 3.2 release adds initial support for encoding structured data using `Protocol buffers <https://protobuf.dev/>`__.
+First, you need to load the ``protobuf`` module:
+
+..  code-block:: lua
+
+    local protobuf = require('protobuf')
+
+To encode data, you need to define a protocol:
+
+..  code-block:: lua
+
+    local customer_protocol = protobuf.protocol({
+        -- Define a message and enum --
+    })
+
+The two main components of the protocol are messages and enums:
+
+-   A message specifies the structure of data, in particular, the fields and their types.
+-   An enum defines a set of enumerated constants within the message.
+
+To create a message and enum, use the ``message()`` and ``enum()`` functions, respectively:
+
+..  code-block:: lua
+
+    local customer_protocol = protobuf.protocol({
+        protobuf.message('Customer', {
+            id = { 'int32', 1 },
+            firstName = { 'string', 2 },
+            lastName = { 'string', 3 },
+            customerType = { 'CustomerType', 4 }
+        }),
+        protobuf.enum('CustomerType', {
+            active = 0,
+            inactive = 1,
+        })
+    })
+
+Once the protocol is specified, use the ``encode()`` method to encode data:
+
+..  code-block:: lua
+
+    local sample_customer = customer_protocol:encode(
+        'Customer',
+        {
+            id = 3,
+            firstName = 'Andrew',
+            lastName = 'Fuller',
+            customerType = 1
+        }
+    )
+
+
+
+.. _3-2-next-prefix-iterator:
+
+Next and Previous prefix iterators
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This release adds two new :ref:`iterators for TREE indexes <box_index-iterator-types>`: ``np`` (next prefix) and ``pp`` (previous prefix).
+If a key is a string value, a prefix is a common starting substring shared by multiple keys.
+
+Suppose, the ``products`` space contains the following values:
+
+..  code-block:: tarantoolsession
+
+    application:instance001> box.space.products:select()
+    ---
+    - - ['clothing_pants']
+      - ['clothing_shirt']
+      - ['electronics_laptop']
+      - ['electronics_phone']
+      - ['electronics_tv']
+      - ['furniture_chair']
+      - ['furniture_sofa']
+      - ['furniture_table']
+    ...
+
+If you use the ``np`` iterator type and set the key value to ``electronics``, the output should look as follows:
+
+..  code-block:: tarantoolsession
+
+    application:instance001> box.space.products:select({ 'electronics' }, { iterator = 'np' })
+    ---
+    - - ['furniture_chair']
+      - ['furniture_sofa']
+      - ['furniture_table']
+    ...
+
+Similarly, you can use the ``pp`` iterator:
+
+..  code-block:: tarantoolsession
+
+    application:instance001> box.space.products:select({ 'electronics' }, { iterator = 'pp' })
+    ---
+    - - ['clothing_shirt']
+      - ['clothing_pants']
+    ...
+
+Note that new iterators work only for the :ref:`memtx engine <engines-memtx>`.
+
+
+
+.. _3-2-uuid-ttl-config-storage:
+
+Tarantool configuration storage: TTL support for keys (EE)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The Enterprise Edition now includes a time-to-live (TTL) for keys in a Tarantool-based :ref:`configuration storage <configuration_etcd>`.
+You can specify a TTL value in the :ref:`config.storage.put() <config_storage_api_reference_put>` call as follows:
+
+..  code-block:: lua
+
+    config.storage.put('/foo/bar', 'v1', { ttl = 60 })
+
+Similarly, you can configure TTL in :ref:`config.storage.txn() <config_storage_api_reference_txn>`:
+
+..  code-block:: lua
+
+    config.storage.txn({
+        predicates = { { 'revision', '==', revision } },
+        on_success = { { 'put', '/foo/bar', 'v1', { ttl = 60 } } }
+    })
+
+A new ``config.storage.info.features.ttl`` field allows you to check whether the current version of the configuration storage supports requests with TTL.
+In the example below, the :ref:`conn:call() <net_box-call>` method is used to make a remote call to get the ``ttl`` field value:
+
+..  code-block:: lua
+
+    local info = conn.call('config.storage.info')
+    if info.features == nil or not info.features.ttl then
+        error('...')
+    end
+
+
+
+.. _3-2-uuid:
+
+Support for all UUID versions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Before the 3.2 version, Tarantool supported only UUIDs following the rules for RFC 4122 version 4.
+With v3.2, UUID values of all versions (including new 6, 7, and 8) can be parsed using the :ref:`uuid <uuid-module>` module.
+This improves interoperability with third-party data sources whose data is processed by Tarantool.
+
+
+
+.. _3-2-administration-and-maintenance:
+
+Administration and maintenance
+------------------------------
+
+.. _3-2-admin-console:
+
+Interactive console
+~~~~~~~~~~~~~~~~~~~
+
+With this release, both the :ref:`Tarantool <interactive_console>` and :ref:`tt <tt-interactive-console>` interactive consoles automatically add the most often used built-in modules into the environment.
+This means that you can start using a module without loading it with the ``require`` directive.
+
+In the interactive session below, the :ref:`config <config-module>` module is used to get the instance's configuration state right after connecting to this instance:
+
+..  code-block:: tarantoolsession
+
+    application:instance001> config:info('v2')
+    ---
+    - status: ready
+      meta:
+        last: &0 []
+        active: *0
+      alerts: []
+    ...
+
+To enable this new behavior, you need to set the ``console_session_scope_vars`` :ref:`compat <configuration_reference_compat>` option value to ``new``:
+
+..  code-block:: yaml
+
+    compat:
+      console_session_scope_vars: 'new'
+
+
+
+.. _3-2-admin-observability:
+
+Observability
+~~~~~~~~~~~~~
+
+The 3.2 release adds the following improvements related to observability:
+
+-   A new :ref:`box.info.config <box_info_config>` field allows you to access an instance's configuration status.
+
+-   :ref:`box.info.synchro.queue.term <box_info_synchro>` now includes the ``age`` and ``confirm_lag`` fields:
+
+    -   ``age`` -- shows how much time the oldest entry in the queue has spent waiting for the quorum.
+    -   ``confirm_lag`` -- shows how much time the latest successfully confirmed entry has waited for the quorum to gather.
+
+-   New :ref:`metrics <metrics-reference>` are added:
+
+    -   ``tnt_memtx_tuples_data_total``
+    -   ``tnt_memtx_tuples_data_read_view``
+    -   ``tnt_memtx_tuples_data_garbage``
+    -   ``tnt_memtx_index_total``
+    -   ``tnt_memtx_index_read_view``
+    -   ``tnt_vinyl_memory_tuple``
+    -   ``tnt_config_alerts``
+    -   ``tnt_config_status``
