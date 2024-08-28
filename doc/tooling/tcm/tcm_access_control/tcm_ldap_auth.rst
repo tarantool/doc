@@ -52,12 +52,12 @@ LDAP configuration
 
 To enable LDAP user access to |tcm|, create an *LDAP configuration* that connects
 |tcm| to the LDAP server that stores the users. An LDAP configuration
-defines how |tcm| connects to the server and queries user data. To create a LDAP
-configuration, go to the **LDAP** page and click **Add**.
+defines how |tcm| connects to the server and queries user data. To create an LDAP
+configuration, go to the **LDAP** page in the **Settings** group and click **Add**.
 
-To edit a LDAP configuration, click **Edit** in the **Actions** menu of the corresponding row.
+To edit an LDAP configuration, click **Edit** in the **Actions** menu of the corresponding row.
 
-To delete a LDAP configuration, click **Delete** in the **Actions** menu of the corresponding row.
+To delete an LDAP configuration, click **Delete** in the **Actions** menu of the corresponding row.
 
 ..  _tcm_ldap_auth_config_general:
 
@@ -100,7 +100,11 @@ fill in the fields of the **Queries** step:
 
 -   **Query user** and **Query password**. Credentials of the LDAP user on behalf
     of which all LDAP queries are executed: a distinguished name (DN) and a password.
-    Example DN: ``cn=admin,cn=users,dc=tarantool,dc=io``.
+    Example DN:
+    
+    ..  code-block:: text
+    
+        cn=admin,cn=users,dc=tarantool,dc=io
 -   **Base DN**. The DN of a directory that serves as a root for making all LDAP requests.
     Example: ``dc=tarantool,dc=io``.
 -   **Username regex**. A regular expression that defines a username template for
@@ -111,7 +115,7 @@ fill in the fields of the **Queries** step:
     email addresses within the specified domain.
 -   **Template DN**. A template for building a DN to send in an authentication bind request.
     Use the numbers in curly braces as placeholders to replace with username regex parts:
-    ``{0}``, ``{1}`` and so on.
+    ``{0}``, ``{1}``, and so on.
     Example: ``cn={0},cn=users,dc=tarantool,dc=io``. When used with the **Username regex**
     shown above, it substitutes ``{0}`` with the username part of the email address (before ``@``)
     entered into the login form. For example, the username ``user1@tarantool.io``
@@ -128,7 +132,7 @@ fill in the fields of the **Queries** step:
 LDAP user permissions
 ~~~~~~~~~~~~~~~~~~~~~
 
-Permissions of LDAP users in |tcm| are defined by groups to which they belong.
+Permissions of LDAP users in |tcm| are defined by the groups to which they belong.
 You can map |tcm| administrative and cluster :ref:`permissions <tcm_access_control_permissions>`
 to LDAP groups on the **Groups** step of the configuration creation.
 
