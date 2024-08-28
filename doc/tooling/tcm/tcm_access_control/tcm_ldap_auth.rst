@@ -145,7 +145,7 @@ fill in the fields of the **Queries** step:
 
     ..  code-block:: text
 
-        ``(&(objectCategory=person)(objectClass=user)(cn={0}))``
+        (&(objectCategory=person)(objectClass=user)(cn={0}))
 
 
 ..  _tcm_ldap_auth_config_permissions:
