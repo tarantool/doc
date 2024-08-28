@@ -16,7 +16,7 @@ to its own functions and connected clusters:
     directory server.
 -   :ref:`Access control list <tcm_access_control_list>` enables fine-grained access
     to entities stored on connected clusters.
--   :ref:`API tokens <tcm_access_control_api_tokens>` enable intergration with third-party applications.
+-   :ref:`API tokens <tcm_access_control_api_tokens>` enable integration with third-party applications.
 -   :ref:`Sessions management <tcm_access_control_sessions>` allow administrators to view and
     revoke user sessions.
 

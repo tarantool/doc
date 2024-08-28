@@ -11,8 +11,8 @@ In addition to its internal :ref:`role-based access control model <tcm_access_co
 |tcm_full_name| can use an external LDAP (Lightweight Directory Access Protocol)
 directory server for user authentication and authorization.
 
-When LDAP authentication is enabled, |tcm| attempts to authenticate users who submit
-the login form on a connected LDAP directory server. |tcm| constructs requests to
+When LDAP authentication is enabled, |tcm| uses a connected LDAP directory server
+to authenticates users who submit the login form. |tcm| constructs requests to
 the servers according to configuration parameters described on this page. Permissions
 of LDAP users in |tcm| are defined by LDAP group mapping.
 
@@ -85,7 +85,7 @@ LDAP server connection
 
 Enter the LDAP server connection parameters:
 
-*   **Endpoints**. URLs of the LDAP server.
+*   **Endpoints**. URLs of the LDAP server. Example: ``127.0.0.1:5056``.
 *   **Request timeout**. The timeout for |tcm| requests to the LDAP server, in seconds.
 *   **Enabled TLS**. If the server uses LDAPS, turn this toggle on and specify
     TLS connection parameters, such as a certificate and a key file.
@@ -105,26 +105,44 @@ fill in the fields of the **Queries** step:
     ..  code-block:: text
     
         cn=admin,cn=users,dc=tarantool,dc=io
+
 -   **Base DN**. The DN of a directory that serves as a root for making all LDAP requests.
     Example: ``dc=tarantool,dc=io``.
 -   **Username regex**. A regular expression that defines a username template for
     this LDAP configuration. When a user enters their username on the login page,
     |tcm| matches it against username regular expressions of all enabled LDAP
     configurations and selects the one to use for this user authentication.
-    Example: ``^([\w\-\.]+)@tarantool.io$`` -- a regex to match employee
-    email addresses within the specified domain.
--   **Template DN**. A template for building a DN to send in an authentication bind request.
+    Example: a regex to match employee email addresses within the specified domain.
+
+    ..  code-block:: text
+
+        ^([\w\-\.]+)@tarantool.io$
+
+-   (Optional) **Template DN**. A template for building a DN to send in an authentication bind request.
     Use the numbers in curly braces as placeholders to replace with username regex parts:
     ``{0}``, ``{1}``, and so on.
-    Example: ``cn={0},cn=users,dc=tarantool,dc=io``. When used with the **Username regex**
-    shown above, it substitutes ``{0}`` with the username part of the email address (before ``@``)
-    entered into the login form. For example, the username ``user1@tarantool.io``
-    forms the following DN for bind request: ``cn=user1,cn=users,dc=tarantool,dc=io``.
--   **Template query**. A template for querying the LDAP server for the DN. This
+    Example:
+
+    ..  code-block:: text
+
+        cn={0},cn=users,dc=tarantool,dc=io
+
+    When used with the **Username regex** shown above, it substitutes ``{0}`` with
+    the username part of the email address (before ``@``) entered into the login form.
+    For example, the username ``user1@tarantool.io`` forms the following DN for bind request:
+
+    ..  code-block:: text
+
+        ``cn=user1,cn=users,dc=tarantool,dc=io``.
+
+-   (Optional) **Template query**. A template for querying the LDAP server for the DN. This
     way is used if **Template DN** is not provided.
 -   **Group query template**. A template for querying groups to which a user belongs
     for authorization purposes. Learn more in :ref:`tcm_ldap_auth_config_permissions`.
-    Example: ``(&(objectCategory=person)(objectClass=user)(cn={0}))``
+    Example:
+
+    ..  code-block:: text
+        ``(&(objectCategory=person)(objectClass=user)(cn={0}))``
 
 
 ..  _tcm_ldap_auth_config_permissions:
