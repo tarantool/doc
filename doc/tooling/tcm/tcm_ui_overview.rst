@@ -267,7 +267,7 @@ The **ACL** page displays the |tcm| access control list.
     :width: 700
     :alt: TCM ACL page
 
-On this page, you can add and delete ACL entries. Learn more in :ref:`tcm_access_control_acl`.
+On this page, you can add and delete ACL entries. Learn more in :ref:`tcm_access_control_list`.
 
 ..  _tcm_ui_users:
 

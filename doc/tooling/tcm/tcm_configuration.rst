@@ -13,6 +13,10 @@ Configuration
 This topic describes how to configure |tcm_full_name|. For the complete
 list of |tcm| configuration parameters, see the :ref:`TCM configuration reference <tcm_configuration_reference>`.
 
+.. note::
+
+    To learn about Tarantool cluster configuration, see :ref:`configuration`.
+
 Configuration structure
 -----------------------
 

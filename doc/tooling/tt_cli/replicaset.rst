@@ -251,7 +251,7 @@ To expel an instance from a Cartridge cluster:
 .. _tt-replicaset-vshard:
 
 vshard
------
+------
 
 ..  code-block:: console
 
