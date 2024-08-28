@@ -894,6 +894,7 @@ If :ref:`replication.failover <configuration_reference_replication_failover>` is
 * :ref:`config.etcd.password <config_etcd_password>`
 * :ref:`config.etcd.ssl.ca_file <config_etcd_ssl_ca_file>`
 * :ref:`config.etcd.ssl.ca_path <config_etcd_ssl_ca_path>`
+* :ref:`config.etcd.ssl.ssl_cert <config_etcd_ssl_ssl_cert>`
 * :ref:`config.etcd.ssl.ssl_key <config_etcd_ssl_ssl_key>`
 * :ref:`config.etcd.ssl.verify_host <config_etcd_ssl_verify_host>`
 * :ref:`config.etcd.ssl.verify_peer <config_etcd_ssl_verify_peer>`
@@ -977,6 +978,19 @@ If :ref:`replication.failover <configuration_reference_replication_failover>` is
     | Type: string
     | Default: nil
     | Environment variable: TT_CONFIG_ETCD_SSL_CA_PATH
+
+.. _config_etcd_ssl_ssl_cert:
+
+.. confval:: config.etcd.ssl.ssl_cert
+
+    **Since:** :doc:`3.2.0 </release/3.2.0>`
+
+    A path to an SSL certificate file.
+
+    |
+    | Type: string
+    | Default: nil
+    | Environment variable: TT_CONFIG_ETCD_SSL_SSL_CERT
 
 .. _config_etcd_ssl_ssl_key:
 
