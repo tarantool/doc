@@ -627,6 +627,8 @@ If :ref:`replication.failover <configuration_reference_replication_failover>` is
 
 .. confval:: config.etcd.ssl.ssl_cert
 
+    **Since:** :doc:`3.2.0 </release/3.2.0>`
+
     A path to an SSL certificate file.
 
     |
