@@ -54,6 +54,8 @@ help for the given command.
             -   List enabled applications
         *   -   :doc:`kill <kill>`
             -   Terminate Tarantool applications or instances
+        *   -   :doc:`log <log>`
+            -   Print instance logs
         *   -   :doc:`logrotate <logrotate>`
             -   Rotate instance logs
         *   -   :doc:`pack <pack>`
@@ -107,6 +109,7 @@ help for the given command.
     install <install>
     instances <instances>
     kill <kill>
+    log <log>
     logrotate <logrotate>
     pack <pack>
     play <play>

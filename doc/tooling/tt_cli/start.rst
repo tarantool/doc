@@ -21,6 +21,13 @@ To start all instances of the application stored in the ``app`` directory inside
 
     $ tt start app
 
+To start all instances of the ``app`` application appending their logs to stdout
+(in the interactive mode):
+
+..  code-block:: console
+
+    $ tt start -i app
+
 To start the ``router`` instance of the ``app`` application:
 
 ..  code-block:: console
@@ -124,6 +131,14 @@ If an integrity check fails, ``tt`` stops the application.
 
 Options
 -------
+
+..  option:: -i, --interactive
+
+    Start the application or instance in the interactive mode.
+    In this mode, instance logs are printed to the standard output in real time.
+
+    You can use the ``SIGINT`` signal (``CTRL+C``) to stop ``tt`` and its child
+    Tarantool processes in the interactive mode. No watchdog processes are created.
 
 ..  option:: --integrity-check-interval NUMBER
 
