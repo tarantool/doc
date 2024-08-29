@@ -102,6 +102,7 @@ help for the given command.
     create <create>
     crud <crud>
     download <download>
+    enable <enable>
     export <export>
     help <help>
     import <import>
