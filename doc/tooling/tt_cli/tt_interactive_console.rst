@@ -119,7 +119,7 @@ using the ``\set output`` console command:
     app:storage001> \set output table
     app:storage001> box.space.bands:select { }
     +------+-------------+------+
-    | col1 | col2        | col3 |
+    | id   | band_name   | year |
     +------+-------------+------+
     | 1    | Roxette     | 1986 |
     +------+-------------+------+
@@ -128,6 +128,11 @@ using the ``\set output`` console command:
     | 3    | Ace of Base | 1987 |
     +------+-------------+------+
 
+.. note::
+
+    Field names are printed since Tarantool 3.2. On earlier versions,
+    actual names are replaced by numbered placeholders ``col1``, ``col2``, and so on.
+
 The table output can be printed in the transposed format, where an object's fields
 are arranged in columns instead of rows:
 
@@ -135,13 +140,13 @@ are arranged in columns instead of rows:
 
     app:storage001> \set output ttable
     app:storage001> box.space.bands:select { }
-    +------+---------+-----------+-------------+
-    | col1 | 1       | 2         | 3           |
-    +------+---------+-----------+-------------+
-    | col2 | Roxette | Scorpions | Ace of Base |
-    +------+---------+-----------+-------------+
-    | col3 | 1986    | 1965      | 1987        |
-    +------+---------+-----------+-------------+
+    +-----------+---------+-----------+-------------+
+    | id        | 1       | 2         | 3           |
+    +-----------+---------+-----------+-------------+
+    | band_name | Roxette | Scorpions | Ace of Base |
+    +-----------+---------+-----------+-------------+
+    | year      | 1986    | 1965      | 1987        |
+    +-----------+---------+-----------+-------------+
 
 .. note::
 
@@ -162,9 +167,9 @@ following commands:
 
         app:storage001> \set table_format jira
         app:storage001> box.space.bands:select {}
-        | col1 | 1 | 2 | 3 |
-        | col2 | Roxette | Scorpions | Ace of Base |
-        | col3 | 1986 | 1965 | 1987 |
+        | id | 1 | 2 | 3 |
+        | band_name | Roxette | Scorpions | Ace of Base |
+        | year | 1986 | 1965 | 1987 |
 
 *   ``\set grahpics`` -- enable or disable graphics for table cells in the default format:
 
@@ -173,9 +178,9 @@ following commands:
         app:storage001> \set table_format default
         app:storage001> \set graphics false
         app:storage001> box.space.bands:select {}
-         col1  1        2          3
-         col2  Roxette  Scorpions  Ace of Base
-         col3  1986     1965       1987
+         id         1        2          3
+         band_name  Roxette  Scorpions  Ace of Base
+         year       1986     1965       1987
 
 *   ``\set table_column_width`` -- maximum column width.
 
@@ -183,10 +188,10 @@ following commands:
 
         app:storage001> \set table_column_width 6
         app:storage001> box.space.bands:select {}
-         col1  1       2       3
-         col2  Roxett  Scorpi  Ace of
-               +e      +ons    + Base
-         col3  1986    1965    1987
+         id      1       2       3
+         band_n  Roxett  Scorpi  Ace of
+         +ame    +e      +ons    + Base
+         year    1986    1965    1987
 
 
 .. _tt-interactive-console-commands:
