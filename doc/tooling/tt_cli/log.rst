@@ -9,7 +9,7 @@ Printing Tarantool logs
 
 ``tt log`` prints the last lines of instance logs.
 
-To print 10 last log lines of all instances of the ``app`` application:
+To print 10 last log lines of all the ``app`` application instances:
 
 ..  code-block:: console
 
@@ -21,7 +21,7 @@ To print 50 last log lines of the ``router`` instance of the ``app`` application
 
     $ tt log -n 50 app:router
 
-To print logs of the ``app`` application instances interactively:
+To keep printing logs of the ``app`` application instances as they grow:
 
 ..  code-block:: console
 
