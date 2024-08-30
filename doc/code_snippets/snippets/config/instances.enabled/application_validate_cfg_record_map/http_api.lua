@@ -1,8 +1,8 @@
 -- http_api.lua --
-log = require('log').new("http_api")
-schema = require('experimental.config.utils.schema')
+local log = require('log').new("http_api")
+local schema = require('experimental.config.utils.schema')
 
-listen_address_schema = schema.new('listen_address', schema.record({
+local listen_address_schema = schema.new('listen_address', schema.record({
     scheme = schema.enum({ 'http', 'https' }),
     host = schema.scalar({ type = 'string' }),
     port = schema.scalar({ type = 'integer' }),
