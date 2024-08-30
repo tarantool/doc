@@ -10,6 +10,7 @@ groups:
                 host: '127.0.0.1'
                 port: 8080
                 scheme: 'http'
-                query_params:
-                  skip: 0
-                  limit: 10
+                endpoints:
+                  user: true
+                  order: true
+                  customer: false
