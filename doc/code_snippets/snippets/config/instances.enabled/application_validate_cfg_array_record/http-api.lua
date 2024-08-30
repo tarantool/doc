@@ -15,7 +15,7 @@ local function validate(cfg)
 end
 
 local function apply(cfg)
-    for _, uri in pairs(cfg) do
+    for _, uri in ipairs(cfg) do
         local scheme = uri.scheme
         local host = uri.host
         local port = uri.port
