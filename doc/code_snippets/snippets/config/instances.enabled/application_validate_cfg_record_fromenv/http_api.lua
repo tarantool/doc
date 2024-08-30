@@ -2,32 +2,34 @@
 local log = require('log').new("http_api")
 local schema = require('experimental.config.utils.schema')
 
-local scheme_node = schema.enum({ 'http', 'https' })
-local host_node = schema.scalar({ type = 'string' })
-local port_node = schema.scalar({ type = 'integer' })
-
-local scheme_from_env = schema.fromenv('HTTP_SCHEME', os.getenv('HTTP_SCHEME'), scheme_node)
-local host_from_env = schema.fromenv('HTTP_HOST', os.getenv('HTTP_HOST'), host_node)
-local port_from_env = schema.fromenv('HTTP_PORT', os.getenv('HTTP_PORT'), port_node)
-
 local listen_address_schema = schema.new('listen_address', schema.record({
-    scheme = scheme_node,
-    host = host_node,
-    port = port_node
+    scheme = schema.enum({ 'http', 'https' }, { env = 'HTTP_SCHEME' }),
+    host = schema.scalar({ type = 'string', env = 'HTTP_HOST' }),
+    port = schema.scalar({ type = 'integer', env = 'HTTP_PORT' })
 }))
 
+local function collect_env_cfg()
+    local res = {}
+    for _, w in listen_address_schema:pairs() do
+        local env_var = w.schema.env
+        if env_var ~= nil then
+            local value = schema.fromenv(env_var, os.getenv(env_var), w.schema)
+            listen_address_schema:set(res, w.path, value)
+        end
+    end
+    return res
+end
+
 local function validate(cfg)
-    listen_address_schema:set(cfg, 'scheme', scheme_from_env)
-    listen_address_schema:set(cfg, 'host', host_from_env)
-    listen_address_schema:set(cfg, 'port', port_from_env)
-    listen_address_schema:validate(cfg)
+    local env_cfg = collect_env_cfg()
+    local result_cfg = listen_address_schema:merge(cfg, env_cfg)
+    listen_address_schema:validate(result_cfg)
 end
 
 local function apply(cfg)
-    local scheme = listen_address_schema:get(cfg, 'scheme')
-    local host = listen_address_schema:get(cfg, 'host')
-    local port = listen_address_schema:get(cfg, 'port')
-    log.info("HTTP API endpoint: %s://%s:%d", scheme, host, port)
+    local env_cfg = collect_env_cfg()
+    local result_cfg = listen_address_schema:merge(cfg, env_cfg)
+    log.info("HTTP API endpoint: %s://%s:%d", result_cfg.scheme, result_cfg.host, result_cfg.port)
 end
 
 local function stop()
