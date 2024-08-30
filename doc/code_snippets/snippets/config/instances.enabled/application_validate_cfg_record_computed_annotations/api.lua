@@ -9,8 +9,8 @@ local listen_address = schema.record({
 }, {
     validate = function(data, w)
         local protocol = w.schema.computed.annotations.protocol
-        if protocol == 'grpc' and data.scheme then
-            w.error("grpc doesn't support 'scheme'")
+        if protocol == 'iproto' and data.scheme ~= nil then
+            w.error("iproto doesn't support 'scheme'")
         end
     end,
 })
@@ -22,11 +22,11 @@ local http_listen_address_schema = schema.new('http_listen_address', schema.reco
     protocol = 'http',
 }))
 
-local grpc_listen_address_schema = schema.new('grpc_listen_address', schema.record({
+local iproto_listen_address_schema = schema.new('iproto_listen_address', schema.record({
     name = schema.scalar({ type = 'string' }),
     listen_address = listen_address,
 }, {
-    protocol = 'grpc',
+    protocol = 'iproto',
 }))
 
 local function validate(cfg)
