@@ -44,6 +44,11 @@ Global options
     Use the ``tt`` environment from the specified directory.
     Learn more about the :ref:`local launch mode <tt-config_modes-local>`.
 
+.. option:: -s, --self
+
+    Use the current ``tt`` version instead of executing the one located
+    in the :ref:`bin_dir <tt-config_file_env>` directory.
+
 .. option:: -S, --system
 
     Use the ``tt`` environment installed in the system.

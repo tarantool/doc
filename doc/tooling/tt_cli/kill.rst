@@ -13,19 +13,19 @@ To terminate all instances of the ``app`` application:
 
 ..  code-block:: console
 
-    $ tt stop app
+    $ tt kill app
 
 To terminate the ``storage-001-r`` instance of the ``app`` application without confirmation:
 
 ..  code-block:: console
 
-    $ tt stop app:storage-001-r --force
+    $ tt kill app:storage-001-r --force
 
 To terminate the ``storage-001-r`` instance of the ``app`` application and generate its core dump:
 
 ..  code-block:: console
 
-    $ tt stop app:storage-001-r --dump
+    $ tt kill app:storage-001-r --dump
 
 Options
 -------

@@ -5,7 +5,7 @@ Starting Tarantool applications
 
 ..  code-block:: console
 
-    $ tt start APPLICATION[:APP_INSTANCE]
+    $ tt start [APPLICATION[:APP_INSTANCE]]
 
 ``tt start`` starts Tarantool applications. The application files must be stored
 inside the ``instances_enabled`` directory specified in the :ref:`tt configuration file <tt-config_file_app>`.
@@ -20,6 +20,13 @@ To start all instances of the application stored in the ``app`` directory inside
 ..  code-block:: console
 
     $ tt start app
+
+To start all instances of the ``app`` application appending their logs to stdout
+(in the interactive mode):
+
+..  code-block:: console
+
+    $ tt start -i app
 
 To start the ``router`` instance of the ``app`` application:
 
@@ -124,6 +131,14 @@ If an integrity check fails, ``tt`` stops the application.
 
 Options
 -------
+
+..  option:: -i, --interactive
+
+    Start the application or instance in the interactive mode.
+    In this mode, instance logs are printed to the standard output in real time.
+
+    You can use the ``SIGINT`` signal (``CTRL+C``) to stop ``tt`` and its child
+    Tarantool processes in the interactive mode. No watchdog processes are created.
 
 ..  option:: --integrity-check-interval NUMBER
 
