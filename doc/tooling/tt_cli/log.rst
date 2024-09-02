@@ -5,7 +5,7 @@ Printing Tarantool logs
 
 ..  code-block:: console
 
-    $ tt log APPLICATION[:APP_INSTANCE]
+    $ tt log [APPLICATION[:APP_INSTANCE]]
 
 ``tt log`` prints the last lines of instance logs.
 

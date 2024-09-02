@@ -5,7 +5,7 @@ Starting Tarantool applications
 
 ..  code-block:: console
 
-    $ tt start APPLICATION[:APP_INSTANCE]
+    $ tt start [APPLICATION[:APP_INSTANCE]]
 
 ``tt start`` starts Tarantool applications. The application files must be stored
 inside the ``instances_enabled`` directory specified in the :ref:`tt configuration file <tt-config_file_app>`.

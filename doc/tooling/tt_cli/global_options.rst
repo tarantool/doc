@@ -46,8 +46,8 @@ Global options
 
 .. option:: -s, --self
 
-    Execute the same ``tt`` installation in presence of other active ``tt`` versions
-    in :ref:`bin_dir <tt-config_file_env>`.
+    Use the current ``tt`` version instead of executing the one located
+    in the :ref:`bin_dir <tt-config_file_env>` directory.
 
 .. option:: -S, --system
 
