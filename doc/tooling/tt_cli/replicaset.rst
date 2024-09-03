@@ -14,13 +14,12 @@ Managing replica sets
 ``COMMAND`` is one of the following:
 
 *   :ref:`status <tt-replicaset-status>`
-*   :ref:`bootstrap <tt-replicaset-bootstrap>`
-*   :ref:`rebootstrap <tt-replicaset-rebootstrap>`
 *   :ref:`promote <tt-replicaset-promote>`
 *   :ref:`demote <tt-replicaset-demote>`
 *   :ref:`expel <tt-replicaset-expel>`
 *   :ref:`vshard <tt-replicaset-vshard>`
-
+*   :ref:`bootstrap <tt-replicaset-bootstrap>`
+*   :ref:`rebootstrap <tt-replicaset-rebootstrap>`
 
 .. _tt-replicaset-status:
 
@@ -314,9 +313,9 @@ bootstrap
 
 ..  code-block:: console
 
-    $ tt replicaset bootstrap APPLICATION[:APP_INSTANCE [OPTIONS ...]
+    $ tt replicaset bootstrap APPLICATION[:APP_INSTANCE] [OPTIONS ...]
     # or
-    $ tt rs bootstrap APPLICATION[:APP_INSTANCE] | URI} [OPTIONS ...]
+    $ tt rs bootstrap APPLICATION[:APP_INSTANCE] [OPTIONS ...]
 
 ``tt replicaset bootstrap`` (``tt rs bootstrap``) bootstraps a Cartridge cluster or
 an instance. The command works within the current ``tt`` environment and uses
@@ -335,7 +334,7 @@ Bootstrapping a Cartridge cluster
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To bootstrap the ``cartridge_app`` application using its default replica sets file
-``replicasets.yml`` in the application directory:
+``replicasets.yml``:
 
 ..  code-block:: console
 
