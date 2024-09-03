@@ -60,7 +60,7 @@ jobs:
       S3_UPLOAD_PATH: ${{secrets.S3_DOCX_PATH}}
     steps:
       - name: download artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4.1.7
 
       - name: generate docx-en
         run: |
