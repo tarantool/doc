@@ -59,7 +59,7 @@ Example:
 
 After entering the command, click **Save** to send the command for execution.
 
-Tarantool assigns an id to the command and waits for a coordinator to process the command.
+Tarantool assigns an id to the command and waits for the active coordinator to process the command.
 
 All failover commands executed on the cluster are shown on the **Commands** tab with
 their ids and statuses. A command can have the following statuses:
@@ -69,4 +69,4 @@ their ids and statuses. A command can have the following statuses:
 -   ``failed`` -- an error occurred during the command execution.
     A short error description is shown in the **Reason** field.
 
-To see the command execution details, click this command in the commands list.
+To see the command execution details, click this command in the list.
