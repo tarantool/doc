@@ -18,3 +18,4 @@ to learn how to perform various management operations on Tarantool clusters from
     tcm_cluster_config
     tcm_cluster_users
     tcm_cluster_metrics
+    tcm_supervised_failover
