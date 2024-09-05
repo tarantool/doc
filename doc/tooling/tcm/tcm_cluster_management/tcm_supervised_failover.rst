@@ -7,11 +7,16 @@ Using supervised failover
     :start-after: ee_note_tcm_start
     :end-before: ee_note_tcm_end
 
-For Tarantool clusters that use :ref:`supervised failover` <repl_supervised_failover>`,
-|tcm_full_name| offers tools for interaction with failover coordinators from its web interface.
+For Tarantool clusters that use :ref:`supervised failover <repl_supervised_failover>`,
+|tcm_full_name| offers tools for interaction with external failover coordinators from its web interface.
 
 The tools for using supervised failover are located on the **Failovers** page
 available from the **Actions** menu on the cluster stateboard.
+
+.. note::
+
+    |tcm| can interact with failover coordinators that are already running.
+    There is no way to start or stop coordinators from |tcm|.
 
 ..  _tcm_supervised_failover_view:
 
@@ -42,7 +47,7 @@ fields:
 -   ``command`` -- the command name. Possible value: ``switch`` -- switch master
     in a replica set.
 -   ``new_master`` -- the name of the instance to make the new master.
--   ``timeout``: the command execution timeout.
+-   ``timeout`` -- the command execution timeout.
 
 Example:
 
@@ -52,7 +57,7 @@ Example:
     new_master: instance-002
     timeout: 30
 
-After entering the command, click **Save**.
+After entering the command, click **Save** to send the command for execution.
 
 Tarantool assigns an id to the command and waits for a coordinator to process the command.
 
