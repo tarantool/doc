@@ -69,4 +69,4 @@ their ids and statuses. A command can have the following statuses:
 -   ``failed`` -- an error occurred during the command execution.
     A short error description is shown in the **Reason** field.
 
-To see the command execution details, click it in the commands list.
+To see the command execution details, click this command in the commands list.
