@@ -18,7 +18,8 @@ Managing replica sets
 *   :ref:`demote <tt-replicaset-demote>`
 *   :ref:`expel <tt-replicaset-expel>`
 *   :ref:`vshard <tt-replicaset-vshard>`
-
+*   :ref:`bootstrap <tt-replicaset-bootstrap>`
+*   :ref:`rebootstrap <tt-replicaset-rebootstrap>`
 
 .. _tt-replicaset-status:
 
@@ -29,10 +30,9 @@ status
 
     $ tt replicaset status {APPLICATION[:APP_INSTANCE] | URI} [OPTIONS ...]
     # or
-    $ tt rs status  {APPLICATION[:APP_INSTANCE] | URI} [OPTIONS ...]
+    $ tt rs status {APPLICATION[:APP_INSTANCE] | URI} [OPTIONS ...]
 
 ``tt replicaset status`` (``tt rs status``) shows the current status of a replica set.
-
 
 .. _tt-replicaset-status-application:
 
@@ -65,7 +65,6 @@ For a replica outside the current ``tt`` environment, specify its URI and access
     $ tt replicaset status 192.168.10.10:3301 -u myuser -p p4$$w0rD
 
 Learn about other ways to provide user credentials in :ref:`tt-replicaset-authentication`.
-
 
 .. _tt-replicaset-promote:
 
@@ -305,6 +304,93 @@ To bootstrap ``vshard`` in a Cartridge cluster:
 
     $ tt replicaset vshard bootstrap my-cartridge-app --cartridge
 
+.. _tt-replicaset-bootstrap:
+
+bootstrap
+---------
+
+..  include:: _includes/cartridge_deprecation_note.rst
+
+..  code-block:: console
+
+    $ tt replicaset bootstrap APPLICATION[:APP_INSTANCE] [OPTIONS ...]
+    # or
+    $ tt rs bootstrap APPLICATION[:APP_INSTANCE] [OPTIONS ...]
+
+``tt replicaset bootstrap`` (``tt rs bootstrap``) bootstraps a Cartridge cluster or
+an instance. The command works within the current ``tt`` environment and uses
+application and instance names.
+
+.. note::
+
+    ``tt replicasets bootstrap`` effectively duplicates two other commands:
+
+    -   When called with an application name: :ref:`tt cartridge replicasets setup <tt_cartridge_replicasets_setup>`
+    -   When called with an instance name: :ref:`tt cartridge replicasets join <tt_cartridge_replicasets_join>`
+
+.. _tt-replicaset-bootstrap-cluster:
+
+Bootstrapping a Cartridge cluster
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To bootstrap the ``cartridge_app`` application using its default replica sets file
+``replicasets.yml``:
+
+..  code-block:: console
+
+    $ tt replicaset bootstrap cartridge_app
+
+To use another file with replica set configuration, provide a path to it in the ``--file`` option:
+
+..  code-block:: console
+
+    $ tt replicaset bootstrap cartridge_app --file replicasets1.yml
+
+To additionally bootstrap vshard after the cluster bootstrap, add ``--bootstrap-vshard``:
+
+..  code-block:: console
+
+    $ tt replicaset bootstrap --bootstrap-vshard cartridge_app
+
+
+.. _tt-replicaset-bootstrap-instance:
+
+Bootstrapping an instance
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When called with the instance name, ``tt replicaset bootstrap`` joins the
+instance to the replica set specified in the ``--replicaset`` option:
+
+..  code-block:: console
+
+    $ tt replicaset bootstrap --replicaset replicaset cartridge_app:instance1
+
+.. _tt-replicaset-rebootstrap:
+
+rebootstrap
+-----------
+
+..  code-block:: console
+
+    $ tt replicaset rebootstrap APPLICATION:APP_INSTANCE [-y | --yes]
+    # or
+    $ tt rs rebootstrap APPLICATION:APP_INSTANCE [-y | --yes]
+
+``tt replicaset rebootstrap`` (``tt rs rebootstrap``) rebootstraps an instance:
+stops it, removes instance artifacts, starts it again.
+
+To rebootstrap the ``storage-001`` instance of the ``myapp`` application:
+
+..  code-block:: console
+
+    $ tt replicaset rebootstrap myapp:storage-001
+
+To automatically confirm reboostrap, add the ``-y``/``--yes`` option:
+
+..  code-block:: console
+
+    $ tt replicaset rebootstrap myapp:storage-001 -y
+
 .. _tt-replicaset-orchestrator:
 
 Selecting the application orchestrator manually
@@ -358,6 +444,12 @@ connecting to the instance by its URI:
 Options
 -------
 
+..  option:: --bootstrap-vshard
+
+    **Applicable to:** ``bootstrap``
+
+    Additionally bootstrap vshard when bootstrapping a Cartridge application.
+
 ..  option:: --cartridge
 
     Force the Cartridge orchestrator for Tarantool 2.x clusters.
@@ -370,11 +462,28 @@ Options
 
     Force a custom orchestrator for Tarantool 2.x clusters.
 
+..  option:: --file FILE
+
+    **Applicable to:** ``bootstrap``
+
+    A file with Cartridge replica sets configuration. Default: ``instances.yml``
+    in the application directory.
+
+    See also: :ref:`tt-replicaset-bootstrap-cluster`
+
 ..  option:: -f, --force
 
     **Applicable to:** ``promote``, ``demote``
 
     Skip promotion or demotion if the specified instance is not running in the same environment.
+
+..  option:: --replicaset REPLICASET
+
+    **Applicable to:** ``bootstrap``
+
+    A replica set name for instance bootstrapping.
+
+    See also: :ref:`tt-replicaset-bootstrap-instance`
 
 ..  option:: -u USERNAME, --username USERNAME
 
@@ -402,9 +511,15 @@ Options
 
 ..  option:: --timeout
 
-    **Applicable to:** ``promote``, ``demote``, ``expel``, ``vshard``
+    **Applicable to:** ``promote``, ``demote``, ``expel``, ``vshard``, ``bootstrap``
 
     The timeout for completing the operation, in seconds. Default:
 
     -   ``3`` for ``promote``, ``demote``, ``expel``
-    -   ``10`` for ``vshard``
+    -   ``10`` for ``vshard`` and ``bootstrap``
+
+..  option:: -y, --yes
+
+    **Applicable to:** ``rebootstrap``
+
+    Automatically confirm rebootstrap.
