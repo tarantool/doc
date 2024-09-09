@@ -74,7 +74,7 @@
 
     A Tarantool replica can be anonymous. This type of replica
     is read-only (but you still can write to temporary and
-    replica-local spaces), and it isn't present in the ``_cluster`` table.
+    replica-local spaces), and it isn't present in the :ref:`_cluster <box_space-cluster>` space.
 
     Since an anonymous replica isn't registered in the ``_cluster`` table,
     there is no limitation for anonymous replicas count in a replica set:
