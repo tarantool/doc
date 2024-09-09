@@ -284,7 +284,7 @@ The 3.2 release adds the following improvements related to observability:
 
 -   A new :ref:`box.info.config <box_info_config>` field allows you to access an instance's configuration status.
 
--   :ref:`box.info.synchro.queue.term <box_info_synchro>` now includes the ``age`` and ``confirm_lag`` fields:
+-   :ref:`box.info.synchro.queue <box_info_synchro>` now includes the ``age`` and ``confirm_lag`` fields:
 
     -   ``age`` -- shows how much time the oldest entry in the queue has spent waiting for the quorum.
     -   ``confirm_lag`` -- shows how much time the latest successfully confirmed entry has waited for the quorum to gather.
