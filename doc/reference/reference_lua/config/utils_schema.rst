@@ -39,7 +39,7 @@ Example config - scalar type:
         :end-at: config.utils.schema
         :dedent:
 
-2.  Define a schema using :ref:`config.utils.schema.new() <config-utils-schema-new>`.
+2.  Define a schema using :ref:`schema.new() <config-utils-schema-new>`.
     Example enum:
 
     ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/application_validate_cfg_scalar/http_api.lua
@@ -72,7 +72,7 @@ Example config - scalar type:
 Defining a schema
 -----------------
 
-Create using :ref:`config.utils.schema.new() <config-utils-schema-new>`. Options:
+Create using :ref:`schema.new() <config-utils-schema-new>`. Options:
 
 -   schema name
 -   schema node:
@@ -94,22 +94,22 @@ Scalar and composite types
 
 There are scalar and composite types.
 
--   :ref:`config.utils.schema.scalar() <config-utils-schema-scalar>`
--   :ref:`config.utils.schema.record() <config-utils-schema-record>`
--   :ref:`config.utils.schema.map() <config-utils-schema-map>`
--   :ref:`config.utils.schema.array() <config-utils-schema-array>`
+-   :ref:`schema.scalar() <config-utils-schema-scalar>`
+-   :ref:`schema.record() <config-utils-schema-record>`
+-   :ref:`schema.map() <config-utils-schema-map>`
+-   :ref:`schema.array() <config-utils-schema-array>`
 
 Shortcuts:
 
--   :ref:`config.utils.schema.enum() <config-utils-schema-enum>`
--   :ref:`config.utils.schema.set() <config-utils-schema-set>`
+-   :ref:`schema.enum() <config-utils-schema-enum>`
+-   :ref:`schema.set() <config-utils-schema-set>`
 
 .. _config_utils_schema_type_system_scalar:
 
 Scalar
 ^^^^^^
 
-:ref:`config.utils.schema.scalar() <config-utils-schema-scalar>`
+:ref:`schema.scalar() <config-utils-schema-scalar>`
 
 Example config - scalar type:
 
@@ -150,12 +150,17 @@ Schema:
     :end-before: local function validate
     :dedent:
 
+
+TODO: add a sample with nested records. It can be used in the ``Processing configuration data`` section.
+
+
+
 .. _array_record:
 
 Array
 ^^^^^
 
-Also: :ref:`config.utils.schema.set() <config-utils-schema-set>`
+Also: :ref:`schema.set() <config-utils-schema-set>`
 
 Example config:
 
@@ -193,39 +198,10 @@ Schema:
     :dedent:
 
 
-
-
-.. _config_utils_schema_annotation:
-
-Annotations
-***********
-
--   ``type`` (string)
--   ``validate`` (function)
--   ``allowed_values`` (table)
--   ``default`` (any)
--   ``apply_default_if`` (function)
--   custom annotations
-
 .. _config_utils_schema_data_types:
 
-Type annotation
-^^^^^^^^^^^^^^^
-
-Example config - scalar type:
-
-..  literalinclude:: /code_snippets/snippets/config/instances.enabled/application_validate_cfg_scalar/config.yaml
-    :language: yaml
-    :start-at: roles
-    :dedent:
-
-Schema definition:
-
-..  literalinclude:: /code_snippets/snippets/config/instances.enabled/application_validate_cfg_scalar/http_api.lua
-    :language: lua
-    :start-at: local http_api_schema
-    :end-before: local function validate
-    :dedent:
+Data types
+**********
 
 Supported types:
 
@@ -238,10 +214,12 @@ Supported types:
 -   ``number, string`` -- ``string`` or ``string``
 
 
-.. _config_utils_schema_validate_annotation:
 
-Validate annotation
-^^^^^^^^^^^^^^^^^^^
+
+.. _config_utils_schema_annotation:
+
+Annotations
+***********
 
 Example config:
 
@@ -269,12 +247,12 @@ Validate functions:
 
 
 
-.. _config_utils_schema_custom_annotations:
+.. _config_utils_schema_user_defined_annotations:
 
-Custom annotations
-^^^^^^^^^^^^^^^^^^
+User-defined annotations
+^^^^^^^^^^^^^^^^^^^^^^^^
 
-``env``:
+The ``env`` annotation:
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/application_validate_cfg_record_fromenv/http_api.lua
     :language: lua
@@ -282,7 +260,7 @@ Custom annotations
     :end-before: local function collect_env_cfg
     :dedent:
 
-Learn more about getting env vars: :ref:`config_utils_schema_env-vars`.
+See the full sample here: :ref:`config_utils_schema_env-vars`.
 
 
 .. _config_utils_schema_computed_annotations:
@@ -298,7 +276,7 @@ Schema node:
     :end-before: local http_listen_address_schema
     :dedent:
 
-Valid schema:
+Passes validation:
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/application_validate_cfg_record_computed_annotations/api.lua
     :language: lua
@@ -306,7 +284,7 @@ Valid schema:
     :end-before: local iproto_listen_address_schema
     :dedent:
 
-Invalid schema:
+Raises an error:
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/application_validate_cfg_record_computed_annotations/api.lua
     :language: lua
@@ -389,13 +367,21 @@ Array:
     :dedent:
 
 
+.. _config_utils_schema_transform_configuration:
+
+Transforming configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+TODO: filter, merge, map, apply_default ?
+
+
 
 .. _config_utils_schema_env-vars:
 
 Parsing environment variables
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Using :ref:`config.utils.schema.fromenv() <config-utils-schema-fromenv>`:
+Using :ref:`schema.fromenv() <config-utils-schema-fromenv>`:
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/application_validate_cfg_record_fromenv/http_api.lua
     :language: lua
@@ -427,28 +413,28 @@ API Reference
         *   -   **Functions**
             -
 
-        *   -   :ref:`config.utils.schema.array() <config-utils-schema-array>`
+        *   -   :ref:`schema.array() <config-utils-schema-array>`
             -   TODO
 
-        *   -   :ref:`config.utils.schema.enum() <config-utils-schema-enum>`
+        *   -   :ref:`schema.enum() <config-utils-schema-enum>`
             -   TODO
 
-        *   -   :ref:`config.utils.schema.fromenv() <config-utils-schema-fromenv>`
+        *   -   :ref:`schema.fromenv() <config-utils-schema-fromenv>`
             -   TODO
 
-        *   -   :ref:`config.utils.schema.map() <config-utils-schema-map>`
+        *   -   :ref:`schema.map() <config-utils-schema-map>`
             -   TODO
 
-        *   -   :ref:`config.utils.schema.new() <config-utils-schema-new>`
+        *   -   :ref:`schema.new() <config-utils-schema-new>`
             -   TODO
 
-        *   -   :ref:`config.utils.schema.record() <config-utils-schema-record>`
+        *   -   :ref:`schema.record() <config-utils-schema-record>`
             -   TODO
 
-        *   -   :ref:`config.utils.schema.scalar() <config-utils-schema-scalar>`
+        *   -   :ref:`schema.scalar() <config-utils-schema-scalar>`
             -   TODO
 
-        *   -   :ref:`config.utils.schema.set() <config-utils-schema-set>`
+        *   -   :ref:`schema.set() <config-utils-schema-set>`
             -   TODO
 
         *   -   **schema_object**
@@ -466,11 +452,7 @@ API Reference
         *   -   :ref:`schema_object:map() <config-schema_object-map>`
             -   TODO
 
-        *   -   :ref:`schema_object.methods <config-schema_object-methods>`
-            -   TODO
 
-        *   -   :ref:`schema_object.name <config-schema_object-name>`
-            -   TODO
 
         *   -   :ref:`schema_object:merge() <config-schema_object-merge>`
             -   TODO
@@ -481,28 +463,34 @@ API Reference
         *   -   :ref:`schema_object:set() <config-schema_object-set>`
             -   TODO
 
-        *   -   :ref:`schema_object.schema <config-schema_object-schema>`
+        *   -   :ref:`schema_object:validate() <config-schema_object-validate>`
             -   TODO
 
-        *   -   :ref:`schema_object:validate() <config-schema_object-validate>`
+        *   -   :ref:`schema_object.methods <config-schema_object-methods>`
+            -   TODO
+
+        *   -   :ref:`schema_object.name <config-schema_object-name>`
+            -   TODO
+
+        *   -   :ref:`schema_object.schema <config-schema_object-schema>`
             -   TODO
 
         *   -   **schema_node_annotation**
             -
 
-        *   -   :ref:`schema_node_annotation.allowed_values <config-schema_node_annotation-allowed_values>`
+        *   -   :ref:`allowed_values <config-schema_node_annotation-allowed_values>`
             -   TODO
 
-        *   -   :ref:`schema_node_annotation.apply_default_if <config-schema_node_annotation-apply_default_if>`
+        *   -   :ref:`apply_default_if <config-schema_node_annotation-apply_default_if>`
             -   TODO
 
-        *   -   :ref:`schema_node_annotation.default <config-schema_node_annotation-default>`
+        *   -   :ref:`default <config-schema_node_annotation-default>`
             -   TODO
 
-        *   -   :ref:`schema_node_annotation.type <config-schema_node_annotation-type>`
+        *   -   :ref:`type <config-schema_node_annotation-type>`
             -   TODO
 
-        *   -   :ref:`schema_node_annotation.validate <config-schema_node_annotation-validate>`
+        *   -   :ref:`validate <config-schema_node_annotation-validate>`
             -   TODO
 
         *   -   **schema_node_object**
@@ -684,18 +672,6 @@ schema_object
         :param any f: walkthrough node, described below
         :param any f_ctx: user-provided context for the transformation function
 
-    ..  _config-schema_object-methods:
-
-    ..  method:: methods()
-
-        TODO
-
-    ..  _config-schema_object-name:
-
-    ..  data:: name
-
-        TODO
-
     ..  _config-schema_object-merge:
 
     ..  method:: merge(a, b)
@@ -721,11 +697,7 @@ schema_object
 
         TODO
 
-    ..  _config-schema_object-schema:
-
-    ..  data:: schema
-
-        TODO
+    ..  _config-schema_object-methods:
 
     ..  _config-schema_object-validate:
 
@@ -736,7 +708,23 @@ schema_object
 
         :param any data: data
 
-        Example: see :ref:`config_utils_schema_validate_annotation`
+        Example: see :ref:`config_utils_schema_annotation`
+
+    ..  data:: methods
+
+        TODO
+
+    ..  _config-schema_object-name:
+
+    ..  data:: name
+
+        TODO
+
+    ..  _config-schema_object-schema:
+
+    ..  data:: schema
+
+        TODO
 
 
 
@@ -747,51 +735,43 @@ schema_object
 schema_node_annotation
 ~~~~~~~~~~~~~~~~~~~~~~
 
-..  class:: schema_node_annotation
+..  _config-schema_node_annotation-allowed_values:
 
-    ..  _config-schema_node_annotation-allowed_values:
+-   ``allowed_values``
 
-    ..  data:: allowed_values
+    A list of allowed values.
 
-        A list of allowed values.
+..  _config-schema_node_annotation-apply_default_if:
 
-        Example: see :ref:`config_utils_schema_validate_annotation`
+-   ``apply_default_if``
 
-    ..  _config-schema_node_annotation-apply_default_if:
+    A function that specifies whether to apply the default value specified using ``default``.
 
-    ..  data:: apply_default_if
+..  _config-schema_node_annotation-default:
 
-        A function that specifies whether to apply the default value specified using ``default``.
+-   ``default``
 
-    ..  _config-schema_node_annotation-default:
+    The value to be placed instead of a missed one.
 
-    ..  data:: default
+..  _config-schema_node_annotation-type:
 
-        The value to be placed instead of a missed one.
+-   ``type``
 
-        Example: see :ref:`config_utils_schema_validate_annotation`
+    A value type. See :ref:`config_utils_schema_data_types`.
 
-    ..  _config-schema_node_annotation-type:
+..  _config-schema_node_annotation-validate:
 
-    ..  data:: type
+-   ``validate``
 
-        A value type. See :ref:`config_utils_schema_data_types`.
-
-        Example: see :ref:`config_utils_schema_validate_annotation`
-
-    ..  _config-schema_node_annotation-validate:
-
-    ..  data:: validate
-
-        A function used to validate data.
-
-        Example: see :ref:`config_utils_schema_validate_annotation`
+    A function used to validate data.
 
 
 ..  _config-utils-schema_node_object:
 
 schema_node_object
 ~~~~~~~~~~~~~~~~~~
+
+TODO: add missing fields
 
 ..  class:: schema_node_object
 
