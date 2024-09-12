@@ -26,14 +26,14 @@ Getting started with config.utils.schema
 
 Example config - scalar type:
 
-..  literalinclude:: /code_snippets/snippets/config/instances.enabled/application_validate_cfg_scalar/config.yaml
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_nodes_scalar/config.yaml
     :language: yaml
     :start-at: roles
     :dedent:
 
 1.  Load the module:
 
-    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/application_validate_cfg_scalar/http_api.lua
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_nodes_scalar/http_api.lua
         :language: lua
         :start-at: config.utils.schema
         :end-at: config.utils.schema
@@ -42,7 +42,7 @@ Example config - scalar type:
 2.  Define a schema using :ref:`schema.new() <config-utils-schema-new>`.
     Example enum:
 
-    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/application_validate_cfg_scalar/http_api.lua
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_nodes_scalar/http_api.lua
         :language: lua
         :start-at: local http_api_schema
         :end-before: local function validate
@@ -51,7 +51,7 @@ Example config - scalar type:
 3.  Validate config values using ``config.utils.schema.validate()``.
     For a role, inside the ``validate()`` func:
 
-    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/application_validate_cfg_scalar/http_api.lua
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_nodes_scalar/http_api.lua
         :language: lua
         :start-at: local function validate
         :end-before: local function apply
@@ -59,7 +59,7 @@ Example config - scalar type:
 
 4.  Get value. For a role, inside the ``apply()`` func:
 
-    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/application_validate_cfg_scalar/http_api.lua
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_nodes_scalar/http_api.lua
         :language: lua
         :start-at: local function apply
         :end-before: local function stop
@@ -113,14 +113,14 @@ Scalar
 
 Example config - scalar type:
 
-..  literalinclude:: /code_snippets/snippets/config/instances.enabled/application_validate_cfg_scalar/config.yaml
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_nodes_scalar/config.yaml
     :language: yaml
     :start-at: roles
     :dedent:
 
 Schema definition:
 
-..  literalinclude:: /code_snippets/snippets/config/instances.enabled/application_validate_cfg_scalar/http_api.lua
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_nodes_scalar/http_api.lua
     :language: lua
     :start-at: local http_api_schema
     :end-before: local function validate
@@ -137,21 +137,36 @@ Record
 
 Example config:
 
-..  literalinclude:: /code_snippets/snippets/config/instances.enabled/application_validate_cfg_record/config.yaml
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_nodes_record/config.yaml
     :language: yaml
     :start-at: roles
     :dedent:
 
 Schema:
 
-..  literalinclude:: /code_snippets/snippets/config/instances.enabled/application_validate_cfg_record/http_api.lua
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_nodes_record/http_api.lua
     :language: lua
     :start-at: local listen_address_schema
     :end-before: local function validate
     :dedent:
 
 
-TODO: add a sample with nested records. It can be used in the ``Processing configuration data`` section.
+Example config 2 (nested fields inside ``listen_address``):
+
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_nodes_record_hierarchy/config.yaml
+    :language: yaml
+    :start-at: roles
+    :dedent:
+
+Schema:
+
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_nodes_record_hierarchy/http_api.lua
+    :language: lua
+    :start-at: local listen_address_schema
+    :end-before: local function validate
+    :dedent:
+
+TODO: This sample can be used in the ``Processing configuration data`` section.
 
 
 
@@ -164,14 +179,14 @@ Also: :ref:`schema.set() <config-utils-schema-set>`
 
 Example config:
 
-..  literalinclude:: /code_snippets/snippets/config/instances.enabled/application_validate_cfg_array_record/config.yaml
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_nodes_array/config.yaml
     :language: yaml
     :start-at: roles
     :dedent:
 
 Schema:
 
-..  literalinclude:: /code_snippets/snippets/config/instances.enabled/application_validate_cfg_array_record/http-api.lua
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_nodes_array/http-api.lua
     :language: lua
     :start-at: local listen_address_schema
     :end-before: local function validate
@@ -184,14 +199,14 @@ Map
 
 Example config:
 
-..  literalinclude:: /code_snippets/snippets/config/instances.enabled/application_validate_cfg_record_map/config.yaml
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_nodes_map/config.yaml
     :language: yaml
     :start-at: roles
     :dedent:
 
 Schema:
 
-..  literalinclude:: /code_snippets/snippets/config/instances.enabled/application_validate_cfg_record_map/http_api.lua
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_nodes_map/http_api.lua
     :language: lua
     :start-at: local listen_address_schema
     :end-before: local function validate
@@ -223,14 +238,14 @@ Annotations
 
 Example config:
 
-..  literalinclude:: /code_snippets/snippets/config/instances.enabled/application_validate_cfg_record_annotations/config.yaml
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_annotations/config.yaml
     :language: yaml
     :start-at: roles
     :dedent:
 
 Schema definition (``validate``, ``allowed_values``, ``default``):
 
-..  literalinclude:: /code_snippets/snippets/config/instances.enabled/application_validate_cfg_record_annotations/http_api.lua
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_annotations/http_api.lua
     :language: lua
     :start-at: local listen_address_schema
     :end-before: local function validate
@@ -238,7 +253,7 @@ Schema definition (``validate``, ``allowed_values``, ``default``):
 
 Validate functions:
 
-..  literalinclude:: /code_snippets/snippets/config/instances.enabled/application_validate_cfg_record_annotations/http_api.lua
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_annotations/http_api.lua
     :language: lua
     :start-at: local function validate_host
     :end-before: local listen_address_schema
@@ -254,7 +269,7 @@ User-defined annotations
 
 The ``env`` annotation:
 
-..  literalinclude:: /code_snippets/snippets/config/instances.enabled/application_validate_cfg_record_fromenv/http_api.lua
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_fromenv/http_api.lua
     :language: lua
     :start-at: local listen_address_schema
     :end-before: local function collect_env_cfg
@@ -270,7 +285,7 @@ Computed annotations
 
 Schema node:
 
-..  literalinclude:: /code_snippets/snippets/config/instances.enabled/application_validate_cfg_record_computed_annotations/api.lua
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_computed_annotations/api.lua
     :language: lua
     :start-at: local listen_address
     :end-before: local http_listen_address_schema
@@ -278,7 +293,7 @@ Schema node:
 
 Passes validation:
 
-..  literalinclude:: /code_snippets/snippets/config/instances.enabled/application_validate_cfg_record_computed_annotations/api.lua
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_computed_annotations/api.lua
     :language: lua
     :start-at: local http_listen_address_schema
     :end-before: local iproto_listen_address_schema
@@ -286,7 +301,7 @@ Passes validation:
 
 Raises an error:
 
-..  literalinclude:: /code_snippets/snippets/config/instances.enabled/application_validate_cfg_record_computed_annotations/api.lua
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_computed_annotations/api.lua
     :language: lua
     :start-at: local iproto_listen_address_schema
     :end-before: local function validate
@@ -301,14 +316,14 @@ User-defined methods
 
 Example config:
 
-..  literalinclude:: /code_snippets/snippets/config/instances.enabled/application_validate_cfg_record_methods/config.yaml
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_methods/config.yaml
     :language: yaml
     :start-at: roles
     :dedent:
 
 Schema:
 
-..  literalinclude:: /code_snippets/snippets/config/instances.enabled/application_validate_cfg_record_methods/http_api.lua
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_methods/http_api.lua
     :language: lua
     :start-at: local listen_address_schema
     :end-before: local function validate
@@ -330,7 +345,7 @@ Validating configuration
 
 Role -- inside the ``validate()`` function:
 
-..  literalinclude:: /code_snippets/snippets/config/instances.enabled/application_validate_cfg_scalar/http_api.lua
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_nodes_record_hierarchy/http_api.lua
     :language: lua
     :start-at: local function validate
     :end-before: local function apply
@@ -342,29 +357,12 @@ Role -- inside the ``validate()`` function:
 Getting configuration values
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Role -- inside the ``apply()`` function (scalar):
-
-..  literalinclude:: /code_snippets/snippets/config/instances.enabled/application_validate_cfg_scalar/http_api.lua
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_nodes_record_hierarchy/http_api.lua
     :language: lua
     :start-at: local function apply
     :end-before: local function stop
     :dedent:
 
-Record -- pass field names:
-
-..  literalinclude:: /code_snippets/snippets/config/instances.enabled/application_validate_cfg_record/http_api.lua
-    :language: lua
-    :start-at: local function apply
-    :end-before: local function stop
-    :dedent:
-
-Array:
-
-..  literalinclude:: /code_snippets/snippets/config/instances.enabled/application_validate_cfg_array_record/http-api.lua
-    :language: lua
-    :start-at: local function apply
-    :end-before: local function stop
-    :dedent:
 
 
 .. _config_utils_schema_transform_configuration:
@@ -383,7 +381,7 @@ Parsing environment variables
 
 Using :ref:`schema.fromenv() <config-utils-schema-fromenv>`:
 
-..  literalinclude:: /code_snippets/snippets/config/instances.enabled/application_validate_cfg_record_fromenv/http_api.lua
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_fromenv/http_api.lua
     :language: lua
     :start-at: local listen_address_schema
     :end-before: local function validate
