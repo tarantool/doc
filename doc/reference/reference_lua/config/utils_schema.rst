@@ -94,15 +94,14 @@ Scalar and composite types
 
 There are scalar and composite types.
 
--   :ref:`schema.scalar() <config-utils-schema-scalar>`
--   :ref:`schema.record() <config-utils-schema-record>`
--   :ref:`schema.map() <config-utils-schema-map>`
--   :ref:`schema.array() <config-utils-schema-array>`
+-   Scalar type.
+    Can be created using ``schema.scalar()``.
+    There is also a shortcut: :ref:`schema.enum() <config-utils-schema-enum>`.
+    Learn more about supported data types: :ref:`config_utils_schema_data_types`.
+-   Composite data types: record, array, map.
+    Can be created using :ref:`schema.record() <config-utils-schema-record>`, :ref:`schema.array() <config-utils-schema-array>`, :ref:`schema.map() <config-utils-schema-map>`.
+    There is also a shortcut for arrays: :ref:`schema.set() <config-utils-schema-set>`.
 
-Shortcuts:
-
--   :ref:`schema.enum() <config-utils-schema-enum>`
--   :ref:`schema.set() <config-utils-schema-set>`
 
 .. _config_utils_schema_type_system_scalar:
 
@@ -135,7 +134,7 @@ See also: :ref:`config_utils_schema_data_types`.
 Record
 ^^^^^^
 
-Example config:
+Example config 1 (no nested fields - only scalars inside the record):
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_nodes_record/config.yaml
     :language: yaml
@@ -218,6 +217,8 @@ Schema:
 Data types
 **********
 
+Passed to ``scalar()``, see :ref:`config_utils_schema_type_system_scalar`.
+
 Supported types:
 
 -   ``string`` -- ``string``
@@ -235,6 +236,19 @@ Supported types:
 
 Annotations
 ***********
+
+3 groups of annotations:
+
+-   Built-in annotations handled by the module (``validate``, ``allowed_values``, ``default``, ``apply_default_if``). Note that ``validate``, ``allowed_values`` used for validation only. ``default`` and ``apply_default_if`` can transform the configuration.
+-   User-defined annotations
+-   Computed annotations
+
+.. _config_utils_schema_built_in_annotations:
+
+Built-in annotations
+^^^^^^^^^^^^^^^^^^^^
+
+TODO: check the ``Built-in annotation`` term.
 
 Example config:
 
@@ -508,7 +522,7 @@ API Reference
         *   -   :ref:`schema_node_object.apply_default_if <config-schema_node_object-apply_default_if>`
             -   TODO
 
-        *   -   :ref:`schema_node_object.computed.annotations <config-schema_node_object-computed-annotations>`
+        *   -   :ref:`schema_node_object.computed <config-schema_node_object-computed>`
             -   TODO
 
         *   -   :ref:`schema_node_object.default <config-schema_node_object-default>`
@@ -745,7 +759,7 @@ schema_object
 
     ..  data:: schema
 
-        TODO
+        TODO, see also ``schema_node_object``
 
 
 
@@ -806,11 +820,11 @@ schema_node_object
 
         TODO
 
-    ..  _config-schema_node_object-computed-annotations:
+    ..  _config-schema_node_object-computed:
 
-    ..  data:: computed.annotations
+    ..  data:: computed
 
-        TODO
+        TODO (for example, ``computed.annotations``)
 
     ..  _config-schema_node_object-default:
 
