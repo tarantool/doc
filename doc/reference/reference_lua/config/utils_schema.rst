@@ -372,6 +372,14 @@ Transforming configuration
 
 TODO: filter, merge, map, apply_default ?
 
+Example with ``apply_default()``:
+
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_annotations/http_api.lua
+    :language: lua
+    :start-at: local function apply
+    :end-before: local function stop
+    :dedent:
+
 
 
 .. _config_utils_schema_env-vars:
