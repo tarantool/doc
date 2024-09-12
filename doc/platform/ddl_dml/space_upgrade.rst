@@ -1,4 +1,5 @@
 ..  _enterprise-space_upgrade:
+.. _box_space-upgrade:
 
 Upgrading space schema
 ======================

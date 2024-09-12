@@ -58,6 +58,8 @@ help for the given command.
             -   Print instance logs
         *   -   :doc:`logrotate <logrotate>`
             -   Rotate instance logs
+        *   -   :doc:`migrations <migrations>`
+            -   Manage migrations
         *   -   :doc:`pack <pack>`
             -   Package an application
         *   -   :doc:`play <play>`
@@ -112,6 +114,7 @@ help for the given command.
     kill <kill>
     log <log>
     logrotate <logrotate>
+    migrations <migrations>
     pack <pack>
     play <play>
     replicaset <replicaset>

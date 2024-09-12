@@ -97,6 +97,9 @@ Below is a list of all ``box.space`` functions and members.
         *  - :doc:`./box_space/update`
            - Update a tuple
 
+        *  - :ref:`box_space-upgrade`
+           - Upgrade the space format and tuples
+
         *  - :doc:`./box_space/upsert`
            - Update a tuple
 
