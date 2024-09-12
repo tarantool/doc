@@ -502,13 +502,28 @@ API Reference
         *   -   **schema_node_object**
             -
 
+        *   -   :ref:`schema_node_object.allowed_values <config-schema_node_object-allowed_values>`
+            -   TODO
+
+        *   -   :ref:`schema_node_object.apply_default_if <config-schema_node_object-apply_default_if>`
+            -   TODO
+
         *   -   :ref:`schema_node_object.computed.annotations <config-schema_node_object-computed-annotations>`
+            -   TODO
+
+        *   -   :ref:`schema_node_object.default <config-schema_node_object-default>`
             -   TODO
 
         *   -   :ref:`schema_node_object.fields <config-schema_node_object-fields>`
             -   TODO
 
+        *   -   :ref:`schema_node_object.items <config-schema_node_object-items>`
+            -   TODO
+
         *   -   :ref:`schema_node_object.type <config-schema_node_object-type>`
+            -   TODO
+
+        *   -   :ref:`schema_node_object.validate <config-schema_node_object-validate>`
             -   TODO
 
 
@@ -777,13 +792,29 @@ schema_node_annotation
 schema_node_object
 ~~~~~~~~~~~~~~~~~~
 
-TODO: add missing fields
-
 ..  class:: schema_node_object
+
+    ..  _config-schema_node_object-allowed_values:
+
+    ..  data:: allowed_values
+
+        TODO
+
+    ..  _config-schema_node_object-apply_default_if:
+
+    ..  data:: apply_default_if
+
+        TODO
 
     ..  _config-schema_node_object-computed-annotations:
 
-    ..  data:: schema_node_object.computed.annotations
+    ..  data:: computed.annotations
+
+        TODO
+
+    ..  _config-schema_node_object-default:
+
+    ..  data:: default
 
         TODO
 
@@ -793,8 +824,20 @@ TODO: add missing fields
 
         TODO
 
+    ..  _config-schema_node_object-items:
+
+    ..  data:: items
+
+        TODO
+
     ..  _config-schema_node_object-type:
 
     ..  data:: type
+
+        TODO
+
+    ..  _config-schema_node_object-validate:
+
+    ..  data:: validate
 
         TODO
