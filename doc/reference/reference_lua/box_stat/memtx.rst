@@ -7,7 +7,7 @@ box.stat.memtx()
 
 .. function:: memtx()
 
-    Shows memtx-storage-engine activity.
+    Shows ``memtx`` storage engine activity.
 
 .. _box_introspection-box_stat_memtx_tx:
 
@@ -88,13 +88,13 @@ Let's take a look at `used` and `retained` tuples in a transaction.
 Within the first ``box.cfg()`` call to a new Tarantool instance, we
 :ref:`enable the MVCC engine <txn_mode_mvcc-enabling>`:
 
-.. code-block:: console
+.. code-block:: lua
 
    box.cfg{memtx_use_mvcc_engine = true}
 
 Next, we create a space with a primary index, and begin a transaction:
 
-.. code-block:: console
+.. code-block:: lua
 
    box.schema.space.create('test')
    box.space.test:create_index('pk')
@@ -118,7 +118,7 @@ they don't belong to any index (unlike ``{0, 1}``), but they cannot be deleted y
 
 If we call ``box.stat.memtx.tx()`` now, we'll see something like this:
 
-.. code-block:: javascript
+.. code-block:: tarantoolsession
    :emphasize-lines: 33-39
 
 	tarantool> box.stat.memtx.tx()
