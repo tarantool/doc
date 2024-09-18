@@ -83,16 +83,16 @@ box.stat.memtx().tx
 
 **Example**
 
-Let's take a look at `used` and `retained` tuples in a transaction.
+Let's get memory statistics for `used` tuples in a transaction.
 
-Within the first ``box.cfg()`` call to a new Tarantool instance, we
-:ref:`enable the MVCC engine <txn_mode_mvcc-enabling>`:
+To make transactions work, we need to :ref:`enable the MVCC engine <txn_mode_mvcc-enabling>`.
+We'll do it within the first ``box.cfg{}`` call to a new Tarantool instance:
 
 .. code-block:: lua
 
    box.cfg{memtx_use_mvcc_engine = true}
 
-Next, we create a space with a primary index, and begin a transaction:
+Next, we'll create a space with a primary index, and begin a transaction:
 
 .. code-block:: lua
 
@@ -106,7 +106,7 @@ Next, we create a space with a primary index, and begin a transaction:
    box.space.test:replace{1, 1}
    box.space.test:replace{2, 1}
 
-In the transaction above, we replace three tuples by the `0` key:
+In the transaction above, we replaced three tuples by the `0` key:
 
 * ``{0, 0}``
 * ``{0, 'aa...aa'}``
@@ -168,3 +168,11 @@ If we call ``box.stat.memtx.tx()`` now, we'll see something like this:
 	          count: 0
 	          total: 0
 	...
+
+Pay attention to highlighted lines -- it's the memory used allocated for `used` tuples.
+
+For a neat experiment, let's commit the transaction:
+
+.. code-block:: lua
+
+   box.commit()
