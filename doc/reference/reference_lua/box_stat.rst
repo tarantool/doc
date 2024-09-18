@@ -27,10 +27,10 @@ Below is a list of all ``box.stat`` functions.
             - Show network activity
 
         *   - :doc:`./box_stat/memtx`
-            -  Show memtx-storage-engine activity
+            -  Show ``memtx`` storage engine activity
 
         *   - :doc:`./box_stat/vinyl`
-            -  Show vinyl-storage-engine activity
+            -  Show ``vinyl`` storage engine activity
 
         *   - :doc:`./box_stat/reset`
             - Reset the statistics
