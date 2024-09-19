@@ -20,7 +20,7 @@ and multiversion concurrency control (``box.stat.memtx().tx.mvcc``).
 
 * ``box.stat.memtx().tx.txn`` shows memory allocation related to transactions.
 
-   It consists of the following sections:
+  It consists of the following sections:
 
   * ``statements`` are *transaction statements*.
     As an example, consider a user starting a transaction with
