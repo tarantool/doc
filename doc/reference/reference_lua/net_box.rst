@@ -952,7 +952,7 @@ Below is a list of all ``net.box`` functions.
 
     .. _conn-new_stream:
 
-    .. method:: new_stream([options])
+    .. method:: new_stream()
 
         Create a stream.
 

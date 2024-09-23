@@ -97,7 +97,7 @@ Most of the configuration options can be applied to a specific instance, replica
 
 -   *Instance*
 
-    To apply specific configuration options to a concrete instance,
+    To apply certain configuration options to a specific instance,
     specify such options for this instance only.
     In the example below, ``iproto.listen`` is applied to *instance001* only.
 
