@@ -39,6 +39,8 @@
 
     Roll back the current transaction as far as the specified savepoint.
 
+.. _txn-box_txn_alloc:
+
 .. c:function:: void *box_txn_alloc(size_t size)
 
     Allocate memory on txn memory pool.
