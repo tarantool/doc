@@ -93,7 +93,7 @@ This example illustrates memory statistics for ``used`` tuples in a transaction.
 
 The cluster must be started with the :ref:`database.use_mvcc_engine <configuration_reference_database_use_mvcc_engine>`
 parameter set to true. This :ref:`enables MVCC <txn_mode_mvcc-enabling>` so that
-``box.stat.memtx.tx().mvcc`` contained non-zero values.
+``box.stat.memtx.tx().mvcc`` contains non-zero values.
 
 The next step is to create a space with a primary index and to begin a transaction:
 
@@ -117,7 +117,7 @@ In the transaction above, three tuples are replaced by the `0` key:
 
 MVCC considers all these tuples as ``used`` since they belong to the current transaction.
 Also, MVCC considers tuples ``{0, 0}`` and ``{0, 'aa..aa'}`` as ``retained`` because
-they don't belong to any index (unlike ``{0, 1}``), but they cannot be deleted yet.
+they don't belong to any index (unlike ``{0, 1}``) but cannot be deleted yet.
 
 Calling ``box.stat.memtx.tx()`` now will bring something like this:
 
