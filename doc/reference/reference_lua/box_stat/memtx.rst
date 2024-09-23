@@ -9,6 +9,64 @@ box.stat.memtx()
 
     Shows ``memtx`` storage engine activity.
 
+.. _box_introspection-box_stat_memtx_data:
+
+box.stat.memtx().data
+---------------------
+
+``data`` shows how much memory (in bytes) is allocated for memtx tuples:
+
+* ``data.garbage`` is the amount of memory that is unused and scheduled to be freed
+  (freed lazily on memory allocation).
+
+* ``data.total`` is the total amount of memory allocated for data tuples.
+  This includes ``data.read_view`` and ``data.garbage`` plus tuples that are
+  actually stored in memtx spaces.
+
+* ``data.read_view`` is the amount of memory held for read views.
+  This includes memory allocated both for system read views (snapshot, replication)
+  and user read views (EE-only). This should be non-zero only if there are open read views.
+
+  To list all open read views, use :ref:`box.read_view.list() <reference_lua-box_read_view_list>`.
+
+  **Example:**
+
+  .. code-block:: tarantoolsession
+
+     tarantool> box.stat.memtx().data
+     ---
+     - garbage: 0
+       total: 25334
+       read_view: 0
+     ...
+
+.. _box_introspection-box_stat_memtx_index:
+
+box.stat.memtx().index
+----------------------
+
+``index`` shows how much memory (in bytes) is allocated for memtx index extentions:
+
+* ``index.read_view`` is the amount of memory held for read views.
+  This includes memory allocated both for system read views (snapshot, replication)
+  and user read views (EE-only). This should be non-zero only if there are open read views.
+
+  To list all open read views, use :ref:`box.read_view.list() <reference_lua-box_read_view_list>`.
+
+* ``index.total`` is the total amount of memory allocated for
+  indexing data. This includes ``index.read_view`` plus memory used for indexing
+  tuples that are actually stored in memtx spaces.
+
+  **Example:**
+
+  .. code-block:: tarantoolsession
+
+     tarantool> box.stat.memtx().index
+     ---
+     - read_view: 0
+       total: 1032192
+     ...
+
 .. _box_introspection-box_stat_memtx_tx:
 
 box.stat.memtx().tx
