@@ -89,19 +89,13 @@ and multiversion concurrency control (``box.stat.memtx().tx.mvcc``).
 
 **Example**
 
-Let's get memory statistics for ``used`` tuples in a transaction.
+This example illustrates memory statistics for ``used`` tuples in a transaction.
 
-First, we :ref:`enable MVCC <txn_mode_mvcc-enabling>` so that
+The cluster must be started with the :ref:`database.use_mvcc_engine <configuration_reference_database_use_mvcc_engine>`
+parameter set to true. This :ref:`enables MVCC <txn_mode_mvcc-enabling>` so that
 ``box.stat.memtx.tx().mvcc`` contained non-zero values.
 
-.. code-block:: lua
-
-   box.cfg{memtx_use_mvcc_engine = true}
-
-We did it within the first ``box.cfg{}`` call to a new Tarantool instance,
-because the parameter ``memtx_use_mvcc_engine`` is non-dynamic.
-
-Next, we create a space with a primary index, and begin a transaction:
+The next step is to create a space with a primary index and to begin a transaction:
 
 .. code-block:: lua
 
@@ -115,7 +109,7 @@ Next, we create a space with a primary index, and begin a transaction:
    box.space.test:replace{1, 1}
    box.space.test:replace{2, 1}
 
-In the transaction above, we replaced three tuples by the `0` key:
+In the transaction above, three tuples are replaced by the `0` key:
 
 * ``{0, 0}``
 * ``{0, 'aa...aa'}``
@@ -125,7 +119,7 @@ MVCC considers all these tuples as ``used`` since they belong to the current tra
 Also, MVCC considers tuples ``{0, 0}`` and ``{0, 'aa..aa'}`` as ``retained`` because
 they don't belong to any index (unlike ``{0, 1}``), but they cannot be deleted yet.
 
-If we call ``box.stat.memtx.tx()`` now, we'll see something like this:
+Calling ``box.stat.memtx.tx()`` now will bring something like this:
 
 .. code-block:: tarantoolsession
    :emphasize-lines: 33-39
