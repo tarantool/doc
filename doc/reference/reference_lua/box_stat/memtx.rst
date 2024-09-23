@@ -119,7 +119,7 @@ MVCC considers all these tuples as ``used`` since they belong to the current tra
 Also, MVCC considers tuples ``{0, 0}`` and ``{0, 'aa..aa'}`` as ``retained`` because
 they don't belong to any index (unlike ``{0, 1}``) but cannot be deleted yet.
 
-Calling ``box.stat.memtx.tx()`` now will bring something like this:
+Calling ``box.stat.memtx.tx()`` now returns the following result:
 
 .. code-block:: tarantoolsession
    :emphasize-lines: 33-39
