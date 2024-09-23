@@ -31,14 +31,14 @@ box.stat.memtx().data
 
   **Example:**
 
-  .. code-block:: tarantoolsession
+.. code-block:: tarantoolsession
 
-     tarantool> box.stat.memtx().data
-     ---
-     - garbage: 0
-       total: 25334
-       read_view: 0
-     ...
+   tarantool> box.stat.memtx().data
+   ---
+   - garbage: 0
+     total: 25334
+     read_view: 0
+   ...
 
 .. _box_introspection-box_stat_memtx_index:
 
@@ -59,13 +59,13 @@ box.stat.memtx().index
 
   **Example:**
 
-  .. code-block:: tarantoolsession
+.. code-block:: tarantoolsession
 
-     tarantool> box.stat.memtx().index
-     ---
-     - read_view: 0
-       total: 1032192
-     ...
+   tarantool> box.stat.memtx().index
+   ---
+   - read_view: 0
+     total: 1032192
+   ...
 
 .. _box_introspection-box_stat_memtx_tx:
 
@@ -182,52 +182,52 @@ Calling ``box.stat.memtx.tx()`` now returns the following result:
 .. code-block:: tarantoolsession
    :emphasize-lines: 33-39
 
-	tarantool> box.stat.memtx.tx()
-	---
-	- txn:
-	    statements:
-	      max: 720
-	      avg: 720
-	      total: 720
-	    user:
-	      max: 0
-	      avg: 0
-	      total: 0
-	    system:
-	      max: 916
-	      avg: 916
-	      total: 916
-	  mvcc:
-	    trackers:
-	      max: 0
-	      avg: 0
-	      total: 0
-	    conflicts:
-	      max: 0
-	      avg: 0
-	      total: 0
-	    tuples:
-	      tracking:
-	        stories:
-	          count: 0
-	          total: 0
-	        retained:
-	          count: 0
-	          total: 0
-	      used:
-	        stories:
-	          count: 6
-	          total: 944
-	        retained:
-	          count: 2
-	          total: 119
-	      read_view:
-	        stories:
-	          count: 0
-	          total: 0
-	        retained:
-	          count: 0
-	          total: 0
-	...
+   tarantool> box.stat.memtx.tx()
+   ---
+   - txn:
+       statements:
+         max: 720
+         avg: 720
+         total: 720
+       user:
+         max: 0
+         avg: 0
+         total: 0
+       system:
+         max: 916
+         avg: 916
+         total: 916
+     mvcc:
+       trackers:
+         max: 0
+         avg: 0
+         total: 0
+       conflicts:
+         max: 0
+         avg: 0
+         total: 0
+       tuples:
+         tracking:
+           stories:
+             count: 0
+             total: 0
+           retained:
+             count: 0
+             total: 0
+         used:
+           stories:
+             count: 6
+             total: 944
+           retained:
+             count: 2
+             total: 119
+         read_view:
+           stories:
+             count: 0
+             total: 0
+           retained:
+             count: 0
+             total: 0
+   ...
 
 Pay attention to highlighted lines -- it's the memory allocated for `used` tuples.
