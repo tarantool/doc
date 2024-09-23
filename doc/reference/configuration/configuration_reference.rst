@@ -408,7 +408,7 @@ The ``compat`` section defines values of the :ref:`compat <compat-module>` modul
 * :ref:`compat.box_cfg_replication_sync_timeout <configuration_reference_compat_replication_timeout>`
 * :ref:`compat.box_error_serialize_verbose <configuration_reference_compat_error_serialize>`
 * :ref:`compat.box_error_unpack_type_and_code <configuration_reference_compat_error_unpack>`
-* :ref:`compat.box_info_cluster_meaning <configuration_reference_compat_yaml_pretty>`
+* :ref:`compat.box_info_cluster_meaning <configuration_reference_compat_cluster_meaning>`
 * :ref:`compat.box_session_push_deprecation <configuration_reference_compat_session_push>`
 * :ref:`compat.box_space_execute_priv <configuration_reference_compat_space_execute>`
 * :ref:`compat.box_space_max <configuration_reference_compat_space_max>`
@@ -416,7 +416,7 @@ The ``compat`` section defines values of the :ref:`compat <compat-module>` modul
 * :ref:`compat.box_tuple_new_vararg <configuration_reference_compat_tuple_new>`
 * :ref:`compat.c_func_iproto_multireturn <configuration_reference_compat_iproto_multireturn>`
 * :ref:`compat.fiber_channel_close_mode <configuration_reference_compat_fiber_channel>`
-* :ref:`compat.fiber_slice_default <configuration_reference_compat_cluster_meaning>`
+* :ref:`compat.fiber_slice_default <configuration_reference_compat_fiber_slice>`
 * :ref:`compat.json_escape_forward_slash <configuration_reference_compat_json_escape>`
 * :ref:`compat.sql_priv <configuration_reference_compat_sql_priv>`
 * :ref:`compat.sql_seq_scan_default <configuration_reference_compat_sql_scan>`
@@ -624,6 +624,23 @@ The ``compat`` section defines values of the :ref:`compat <compat-module>` modul
     | Possible values: 'new', 'old'
     | Default: 'new'
     | Environment variable: TT_COMPAT_FIBER_CHANNEL_CLOSE_MODE
+
+.. _configuration_reference_compat_fiber_slice:
+
+.. confval:: compat.fiber_slice_default
+
+    Define the maximum fiber execution time without a yield:
+
+    -   ``new``: ``{warn = 0.5, err = 1.0}``
+    -   ``old``: infinity (no warnings or errors raised).
+
+    See also: :ref:`compat-option-fiber-slice`
+
+    |
+    | Type: string
+    | Possible values: 'new', 'old'
+    | Default: 'new'
+    | Environment variable: TT_COMPAT_FIBER_SLICE_DEFAULT
 
 .. _configuration_reference_compat_json_escape:
 

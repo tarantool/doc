@@ -99,7 +99,7 @@ easy.c
 Start another shell. Change directory (``cd``) so that it is
 the same as the directory that the client is running on.
 
-Create a file. Name it ``easy.c``. Put these six lines in it.
+Create a file. Name it ``easy.c``. Put the following code in it:
 
 .. code-block:: c
 
