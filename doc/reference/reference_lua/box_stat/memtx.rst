@@ -45,7 +45,7 @@ box.stat.memtx().data
 box.stat.memtx().index
 ----------------------
 
-``index`` shows how much memory (in bytes) is allocated for memtx index extentions:
+``index`` shows how much memory (in bytes) is allocated for indexing memtx tuples:
 
 * ``index.read_view`` is the amount of memory held for read views.
   This includes memory allocated both for system read views (snapshot, replication)
