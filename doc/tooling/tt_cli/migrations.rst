@@ -18,26 +18,6 @@ Performing migrations
 
     Only Tarantool EE clusters with etcd centralized configuration storage are supported.
 
-Prereq:
-- EE
-- crud
-- etcd
-
-how to write migration files? tt-migrtions.helpers
-
-Migration workflow
-
-prepare files
-publish to etcd
-apply
-check status
-
-Handling errors
-
-stop
-rollback - show examples with force apply?
-
-
 ``COMMAND`` is one of the following:
 
 *   :ref:`apply <tt-migrations-apply>`

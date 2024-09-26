@@ -1,0 +1,10 @@
+config:
+  etcd:
+    endpoints:
+    - http://localhost:2379
+    prefix: /myapp/
+    username: app_user
+    password: config_pass
+    http:
+      request:
+        timeout: 3
