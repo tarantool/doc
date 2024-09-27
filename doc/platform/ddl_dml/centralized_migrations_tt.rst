@@ -1,12 +1,17 @@
 ..  _centralized_migrations_tt:
 
-Centralized migration management with tt
-========================================
+Centralized migrations with tt
+==============================
 
 **Example on GitHub:** `migrations <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/migrations>`_
 
 In this tutorial, you learn to use the centralized migration management mechanism
 implemented in the Enterprise Edition of the :ref:`tt <tt-cli>` utility.
+
+See also:
+
+-   :ref:`tt migrations <tt-migrations>` reference to see the full list of command-line options.
+-   :ref:`tcm_cluster_migrations` to learn about managing migrations from |tcm_full_name|.
 
 ..  _centralized_migrations_tt_prereq:
 
@@ -221,8 +226,8 @@ a cluster user's credentials:
 
 .. code-block:: console
 
-    tt migrations apply http://app_user:config_pass@localhost:2379/myapp \
-                        --tarantool-username=client --tarantool-password=secret
+    $ tt migrations apply http://app_user:config_pass@localhost:2379/myapp \
+                          --tarantool-username=client --tarantool-password=secret
 
 .. important::
 

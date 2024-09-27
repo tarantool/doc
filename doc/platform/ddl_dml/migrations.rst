@@ -3,26 +3,6 @@
 Migrations
 ==========
 
-TBD: rewrite
-
-- what is migration: examples  изменение + первоначальное создание
-- ce approach ?
-- ee approach: centralized migration(s?) management
-    - prereq: etcd, 3.x ee cluster w/etcd, tt-ee 2.4.0 || tcm,
-        tarantool user with ~admin permissions
-        advertise url required?
-    - way to manage: tt and tcm (check diff implementation)
-    - writing migrations:
-        examples: create space (if_not_exists?), add index (with shard key), add index existing space,
-        space upgrade: wait or just run in bg
-
-    - general workflow + status
-    - troubleshooting?
-
-
-
-
-
 **Migration** refers to any change in a data schema: adding or removing a field,
 creating or dropping an index, changing a field format, an so on. Space creation
 is also a schema migration. You can use this fact to track the evolution of your
@@ -129,7 +109,6 @@ and the database schema is updated.
 However, this method may not work for everyone.
 You may not be able to restart Tarantool or update the code using the hot-reload mechanism.
 
-
 **Method 2**: the :ref:`tt <tt-cli>` utility
 
 Connect to the necessary instance using ``tt connect``.
@@ -177,15 +156,15 @@ The centralized migration management mechanism is implemented in the Enterprise
 version of the :ref:`tt <tt-cli>` utility and in :ref:`tcm`.
 
 To learn how to manage migrations in Tarantool EE clusters from the command line,
-see :ref:`performing_migrations_tt`. To learn how to use the mechanism from the |tcm|
+see :ref:`centralized_migrations_tt`. To learn how to use the mechanism from the |tcm|
 web interface, see the :ref:`tcm_migrations` |tcm| documentation page.
 
 The ``tt`` implementation of the mechanism additionally includes commands for
 troubleshooting migration issues. :ref:`troubleshooting_migrations_tt`.
 
-
 ..  toctree::
+    :maxdepth: 1
 
     space_upgrade
-    performing_migrations_tt
+    centralized_migrations_tt
     troubleshooting_migrations_tt

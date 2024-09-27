@@ -1,7 +1,7 @@
 .. _tt-migrations:
 
-Performing migrations
-=====================
+Managing centralized migrations
+===============================
 
 ..  admonition:: Enterprise Edition
     :class: fact
@@ -12,7 +12,8 @@ Performing migrations
 
     $ tt migrations COMMAND [COMMAND_OPTION ...]
 
-``tt migrations`` manages :ref:`migrations <migrations>` in a Tarantool EE cluster.
+``tt migrations`` manages :ref:`centralized migrations <centralized_migrations_tt>` in a Tarantool EE cluster.
+See :ref:`centralized_migrations_tt` for a detailed guide on using centralized migrations.
 
 .. important::
 
