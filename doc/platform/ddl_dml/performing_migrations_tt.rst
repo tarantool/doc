@@ -5,9 +5,8 @@ Centralized migration management with tt
 
 **Example on GitHub:** `migrations <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/migrations>`_
 
-In this tutorial, you learn to user the centralized migration management mechanism
-implemented in the Enterprise Edition of the :ref:``tt <tt-cli>`` utility.
-
+In this tutorial, you learn to use the centralized migration management mechanism
+implemented in the Enterprise Edition of the :ref:`tt <tt-cli>` utility.
 
 ..  _centralized_migrations_tt_prereq:
 
@@ -16,25 +15,27 @@ Prerequisites
 
 Before starting this tutorial:
 
--   Download and :ref:`install Tarantool Enterprise SDK <enterprise-install>.
--   Install `etcd <https://etcd.io/>`__
+-   Download and :ref:`install Tarantool Enterprise SDK <enterprise-install>`.
+-   Install `etcd <https://etcd.io/>`__.
 
 ..  _centralized_migrations_tt_cluster:
 
 Preparing a cluster
 -------------------
 
-Centralized migration mechanism works with Tarantool EE clusters that:
+The centralized migration mechanism works with Tarantool EE clusters that:
 
 -   use etcd as a centralized configuration storage
 -   use the `CRUD <https://github.com/tarantool/crud>`__ module for data sharding
+
+..  _centralized_migrations_tt_cluster_etcd:
 
 Setting up etcd
 ~~~~~~~~~~~~~~~
 
 First, start up an etcd instance to use as a configuration storage:
 
-.. code-block::
+.. code-block:: console
 
     $ etcd
 
@@ -53,14 +54,15 @@ Optionally, you can enable etcd authentication by running the following script:
     etcdctl user grant-role app_user app_config_manager
     etcdctl auth enable
 
-It creates an etcd user ``app_user`` with read and write permissions to the ``/app``
-prefix, in which the cluster configuration will be stored. The user's password is ``config_pass``
+It creates an etcd user ``app_user`` with read and write permissions to the ``/myapp``
+prefix, in which the cluster configuration will be stored. The user's password is ``config_pass``.
 
 .. note::
 
-    If you don't enable etcd authentication, you can make all ``tt migrations``
-    call without the configuration storage credentials.
+    If you don't enable etcd authentication, make ``tt migrations`` calls without
+    the configuration storage credentials.
 
+..  _centralized_migrations_tt_cluster_create:
 
 Creating a cluster
 ~~~~~~~~~~~~~~~~~~
@@ -76,138 +78,41 @@ Creating a cluster
 
     -    ``instances.yml``:
 
-        .. code-block:: yaml
-
-            router-001-a:
-            storage-001-a:
-            storage-001-b:
-            storage-002-a:
-            storage-002-b:
+        ..  literalinclude:: /code_snippets/snippets/migrations/instances.enabled/myapp/instances.yml
+            :language: yaml
+            :dedent:
 
     -    ``config.yaml``:
 
-        .. code-block:: yaml
-
-            config:
-              etcd:
-                endpoints:
-                - http://localhost:2379
-                prefix: /app/
-                username: app_user
-                password: config_pass
-                http:
-                  request:
-                    timeout: 3
+        ..  literalinclude:: /code_snippets/snippets/migrations/instances.enabled/myapp/config.yaml
+            :language: yaml
+            :dedent:
 
     -   ``app-scm-1.rockspec``:
 
-        .. code-block:: text
+        ..  literalinclude:: /code_snippets/snippets/migrations/instances.enabled/myapp/pp-scm-1.rockspec
+            :dedent:
 
-            package = 'app'
-            version = 'scm-1'
-
-            source  = {
-                url = '/dev/null',
-            }
-
-            dependencies = {
-                'crud == 1.5.2',
-            }
-
-            build = {
-                type = 'none';
-            }
-
-#.  Create the ``source.yaml`` with a cluster configuration to publish to etcd:
+4.  Create the ``source.yaml`` with a cluster configuration to publish to etcd:
 
     .. note::
 
         This configuration describes a typical CRUD-enabled sharded cluster with
         one router and two storages, each including one master and one read-only replica.
 
-    .. code-block:: yaml
+    ..  literalinclude:: /code_snippets/snippets/migrations/instances.enabled/myapp/source.yaml
+        :language: yaml
+        :dedent:
 
-        credentials:
-          users:
-            client:
-              password: 'secret'
-              roles: [super]
-            replicator:
-              password: 'secret'
-              roles: [replication]
-            storage:
-              password: 'secret'
-              roles: [sharding]
-
-        iproto:
-          advertise:
-            peer:
-              login: replicator
-            sharding:
-              login: storage
-
-        sharding:
-          bucket_count: 3000
-
-        groups:
-          routers:
-            sharding:
-              roles: [router]
-            roles: [roles.crud-router]
-            replicasets:
-              router-001:
-                instances:
-                  router-001-a:
-                    iproto:
-                      listen:
-                      - uri: localhost:3301
-                      advertise:
-                        client: localhost:3301
-          storages:
-            sharding:
-              roles: [storage]
-            roles: [roles.crud-storage]
-            replication:
-              failover: manual
-            replicasets:
-              storage-001:
-                leader: storage-001-a
-                instances:
-                  storage-001-a:
-                    iproto:
-                      listen:
-                        - uri: localhost:3302
-                      advertise:
-                        client: localhost:3302
-                  storage-001-b:
-                    iproto:
-                      listen:
-                      - uri: localhost:3303
-                      advertise:
-                        client: localhost:3303
-              storage-002:
-                leader: storage-002-a
-                instances:
-                  storage-002-a:
-                    iproto:
-                      listen:
-                      - uri: localhost:3304
-                      advertise:
-                        client: localhost:3304
-                  storage-002-b:
-                    iproto:
-                      listen:
-                      - uri: localhost:3305
-                      advertise:
-                        client: localhost:3305
-
-#.  Publish the configuration to etcd by running the following command:
+#.  Publish the configuration to etcd:
 
     .. code-block:: console
 
         $ tt cluster publish "http://app_user:config_pass@localhost:2379/myapp/" source.yaml
 
-The full cluster code is available on GitHub here: `migrations <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/migrations/instances.enabled/myapp>`_
+The full cluster code is available on GitHub here: `migrations <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/migrations/instances.enabled/myapp>`_.
+
+..  _centralized_migrations_tt_cluster_start:
 
 Building and starting the cluster
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -226,9 +131,9 @@ Building and starting the cluster
 
     To check that the cluster is up and running, use ``tt status``:
 
-        .. code-block:: console
+    .. code-block:: console
 
-            $ tt status myapp
+        $ tt status myapp
 
 #.  Bootstrap vshard in the cluster:
 
@@ -236,14 +141,13 @@ Building and starting the cluster
 
         $ tt replicaset vshard bootstrap myapp
 
-Now the cluster is ready.
-
 ..  _centralized_migrations_tt_write:
 
 Writing migrations
 ------------------
 
-To perform migrations in the cluster, you should write them in Lua and publish to etcd.
+To perform migrations in the cluster, write them in Lua and publish to the cluster's
+etcd configuration storage.
 
 Each migration file must return a Lua table with one object named ``apply``.
 This object has one field -- ``scenario`` -- that stores the migration function:
@@ -264,7 +168,7 @@ The migration unit is a single file: its ``scenario`` is executed as a whole. An
 that happens in any step of the ``scenario`` causes the entire migration to fail.
 
 Migrations are executed in the lexicographical order. Thus, it's convenient to
-use filenames that start with ordered numbers to set the migrations order, for example:
+use filenames that start with ordered numbers to define the migrations order, for example:
 
 .. code-block:: text
 
@@ -278,31 +182,9 @@ Create this subdirectory inside the ``tt`` environment. Then, create two migrati
 -   ``000001_create_writers_space.lua``: create a space, define its format, and
     create a primary index.
 
-    .. code-block:: lua
-
-        local helpers = require('tt-migrations.helpers')
-
-        local function apply_scenario()
-            local space = box.schema.space.create('writers')
-
-            space:format({
-                {name = 'id', type = 'number'},
-                {name = 'bucket_id', type = 'number'},
-                {name = 'name', type = 'string'},
-                {name = 'age', type = 'number'},
-            })
-
-            space:create_index('primary', {parts = {'id'}})
-            space:create_index('bucket_id', {parts = {'bucket_id'}})
-
-            helpers.register_sharding_key('writers', {'id'})
-        end
-
-        return {
-            apply = {
-                scenario = apply_scenario,
-            },
-        }
+    ..  literalinclude:: /code_snippets/snippets/migrations/migrations/scenario/000001_create_writers_space.lua
+        :language: lua
+        :dedent:
 
     .. note::
 
@@ -312,19 +194,9 @@ Create this subdirectory inside the ``tt`` environment. Then, create two migrati
 
 -   ``000002_create_writers_index.lua``: add one more index.
 
-    .. code-block:: lua
-
-        local function apply_scenario()
-            local space = box.space['writers']
-
-            space:create_index('age', {parts = {'age'}})
-        end
-
-        return {
-            apply = {
-                scenario = apply_scenario,
-            },
-        }
+    ..  literalinclude:: /code_snippets/snippets/migrations/migrations/scenario/000002_create_writers_index.lua
+        :language: lua
+        :dedent:
 
 ..  _centralized_migrations_tt_publish:
 
@@ -339,21 +211,22 @@ To publish migrations to the etcd configuration storage, run ``tt migrations pub
        • 000001_create_writes_space.lua: successfully published to key "000001_create_writes_space.lua"
        • 000002_create_writers_index.lua: successfully published to key "000002_create_writers_index.lua"
 
+..  _centralized_migrations_tt_apply:
 
 Applying migrations
 -------------------
 
-To apply stored migrations to the cluster, run ``tt migrations apply`` providing
+To apply published migrations to the cluster, run ``tt migrations apply`` providing
 a cluster user's credentials:
 
 .. code-block:: console
 
-    tt migrations apply http://app_user:config_pass@localhost:2379/myapp --tarantool-username=client --tarantool-password=secret
+    tt migrations apply http://app_user:config_pass@localhost:2379/myapp \
+                        --tarantool-username=client --tarantool-password=secret
 
 .. important::
 
-    The cluster user must have enough access privileges to execute all functions
-    used in migrations code.
+    The cluster user must have enough access privileges to execute the migrations code.
 
 The output should look as follows:
 
@@ -372,8 +245,7 @@ The output should look as follows:
 The migrations are applied on all replica set leaders. Read-only replicas
 receive the changes from the corresponding replica set leaders.
 
-The ``tt migration status`` allows checking which migrations are stored in etcd and
-how they are applied to the cluster instances:
+Check the migrations status with ``tt migration status``:
 
 .. code-block:: console
 
@@ -392,8 +264,8 @@ how they are applied to the cluster instances:
        •     000001_create_writes_space.lua: APPLIED
        •     000002_create_writers_index.lua: APPLIED
 
-To make sure that the migrations are actually applied, connect to the router
-instance and retrieve the information about spaces and indexes in the cluster:
+To make sure that the space and indexes are created in the cluster, connect to the router
+instance and retrieve the space information:
 
 .. code-block:: $ tt connect myapp:router-001
 
@@ -426,16 +298,17 @@ instance and retrieve the information about spaces and indexes in the cluster:
           'is_nullable': true}, {'name': 'name', 'type': 'string'}, {'name': 'age', 'type': 'number'}]
     ...
 
+..  _centralized_migrations_tt_space_upgrade:
 
-Adding new migrations
----------------------
+Complex migrations with space.upgrade()
+---------------------------------------
 
 Complex migrations require data migration along with schema migration. Insert some
 tuples into the space before proceeding to the next steps:
 
 .. code-block:: tarantoolsession
 
-    require('crud').insert_object_many('writers', {
+    myapp:router-001-a> require('crud').insert_object_many('writers', {
         {id = 1, name = 'Haruki Murakami', age = 75},
         {id = 2, name = 'Douglas Adams', age = 49},
         {id = 3, name = 'Eiji Mikage', age = 41},
@@ -443,7 +316,7 @@ tuples into the space before proceeding to the next steps:
 
 The next migration changes the space format incompatibly: instead of one ``name``
 field, the new format includes two fields ``first_name`` and ``last_name``.
-To apply this migration, you need to change each tuple's format preserving the stored
+To apply this migration, you need to change each tuple's structure preserving the stored
 data. The :ref:`space.upgrade <enterprise-space_upgrade>` helps with this task.
 
 Create a new file ``000003_alter_writers_space.lua`` in ``/migrations/scenario``.
@@ -452,9 +325,7 @@ Prepare its initial structure the same way as in previous migrations:
 .. code-block:: lua
 
     local function apply_scenario()
-
     --  migration code
-
     end
     return {
         apply = {
@@ -464,24 +335,11 @@ Prepare its initial structure the same way as in previous migrations:
 
 Start the migration function with the new format description:
 
-.. code-block:: lua
-
-    local function apply_scenario()
-
-        local space = box.space['writers']
-
-        local new_format = {
-            {name = 'id', type = 'number'},
-            {name = 'bucket_id', type = 'number'},
-            {name = 'first_name', type = 'string'},
-            {name = 'last_name', type = 'string'},
-            {name = 'age', type = 'number'},
-        }
-        box.space.writers.index.age:drop()
-
-    --  migration code
-
-    end
+..  literalinclude:: /code_snippets/snippets/migrations/migrations/scenario/000003_alter_writers_space.lua
+    :language: lua
+    :start-at: local function apply_scenario()
+    :end-at: box.space.writers.index.age:drop()
+    :dedent:
 
 .. note::
 
@@ -494,111 +352,20 @@ Next, create a stored function that transforms tuples to fit the new format.
 In this case, the functions extracts the first and the last name from the ``name`` field
 and returns a tuple of the new format:
 
-.. code-block:: lua
+..  literalinclude:: /code_snippets/snippets/migrations/migrations/scenario/000003_alter_writers_space.lua
+    :language: lua
+    :start-at: box.schema.func.create
+    :end-before: local future = space:upgrade
+    :dedent:
 
-    box.schema.func.create('_writers_split_name', {
-        language = 'lua',
-        is_deterministic = true,
-        body = [[
-        function(t)
-            local name = t[3]
+Finally, call ``space:upgrade()`` with the new format and the transformation function
+as its arguments. Here is the complete migration code:
 
-            local split_data = {}
-            local split_regex = '([^%s]+)'
-            for v in string.gmatch(name, split_regex) do
-                table.insert(split_data, v)
-            end
+..  literalinclude:: /code_snippets/snippets/migrations/migrations/scenario/000003_alter_writers_space.lua
+    :language: lua
+    :dedent:
 
-            local first_name = split_data[1]
-            assert(first_name ~= nil)
-
-            local last_name = split_data[2]
-            assert(last_name ~= nil)
-
-            return {t[1], t[2], first_name, last_name, t[4]}
-        end
-        ]],
-    })
-
-Finally pass the new format and the transformation function name into a ``space:upgrade``
-call and wait for it to complete:
-
-.. code-block:: lua
-
-    local function apply_scenario()
-
-        -- space format
-
-        box.schema.func.create('_writers_split_name', {
-            language = 'lua',
-            is_deterministic = true,
-            body =
-            -- data migration function
-        })
-
-        local future = space:upgrade({
-            func = '_writers_split_name',
-            format = new_format,
-        })
-
-        future:wait()
-    end
-
-Learn moew in space upgrade
-
-The full ``000003_alter_writers_space.lua`` migration code is as follows:
-
-.. code-block:: lua
-
-    local function apply_scenario()
-        local space = box.space['writers']
-
-        local new_format = {
-            {name = 'id', type = 'number'},
-            {name = 'bucket_id', type = 'number'},
-            {name = 'first_name', type = 'string'},
-            {name = 'last_name', type = 'string'},
-            {name = 'age', type = 'number'},
-        }
-        box.space.writers.index.age:drop()
-
-        box.schema.func.create('_writers_split_name', {
-            language = 'lua',
-            is_deterministic = true,
-            body = [[
-            function(t)
-                local name = t[3]
-
-                local split_data = {}
-                local split_regex = '([^%s]+)'
-                for v in string.gmatch(name, split_regex) do
-                    table.insert(split_data, v)
-                end
-
-                local first_name = split_data[1]
-                assert(first_name ~= nil)
-
-                local last_name = split_data[2]
-                assert(last_name ~= nil)
-
-                return {t[1], t[2], first_name, last_name, t[4]}
-            end
-            ]],
-        })
-
-        local future = space:upgrade({
-            func = '_writers_split_name',
-            format = new_format,
-        })
-
-        future:wait()
-    end
-
-    return {
-        apply = {
-            scenario = apply_scenario,
-        },
-    }
+Learn more about ``space.upgrade()` execution in :ref:`enterprise-space_upgrade`.
 
 Publish the new migration to etcd. Migrations that already exist in the storage are skipped.
 
@@ -615,15 +382,17 @@ Publish the new migration to etcd. Migrations that already exist in the storage 
 
     .. code-block:: console
 
-        $ tt migrations publish http://app_user:config_pass@localhost:2379/myapp migrations/scenario/000003_alter_writers_space.lua
+        $ tt migrations publish http://app_user:config_pass@localhost:2379/myapp \
+                                migrations/scenario/000003_alter_writers_space.lua
 
 Apply the migrations:
 
 .. code-block::
 
-    $ tt migrations apply http://app_user:config_pass@localhost:2379/myapp --tarantool-username=client --tarantool-password=secret
+    $ tt migrations apply http://app_user:config_pass@localhost:2379/myapp \
+                          --tarantool-username=client --tarantool-password=secret
 
-Connect to the router instance and retrieve the information about spaces and indexes in the cluster:
+Connect to the router instance and check that the space and its tuples have the new format:
 
 .. code-block:: $ tt connect myapp:router-001
 
@@ -638,21 +407,82 @@ Connect to the router instance and retrieve the information about spaces and ind
     - null
     ...
 
-Extending the cluster
----------------------
+..  _centralized_migrations_tt_new_instances:
 
-With centralized migrations mechanism, you can
+Applying migrations on new instances
+------------------------------------
 
-how to write migration files? tt-migrtions.helpers
+Having all migrations in a centralized etcd storage, you can apply
 
-Migration workflow
+To add one more storage, edit the cluster files in ``instances.enabled/myapp``:
 
-prepare files
-publish to etcd
-apply
-check status
+-   ``instances.yml``: add the lines below to the end.
 
-Handling errors
+    ..  literalinclude:: /code_snippets/snippets/migrations/instances.enabled/myapp/instances-3-storages.yml
+        :language: yaml
+        :start-at: storage-003-a:
+        :dedent:
 
-stop
-rollback - show examples with force apply?
+-   ``source.yaml``: add the lines below to the end.
+
+    ..  literalinclude:: /code_snippets/snippets/migrations/instances.enabled/myapp/source-3-storages.yml
+        :language: yaml
+        :start-at: storage-003:
+        :dedent:
+
+Publish the new cluster configuration to etcd:
+
+.. code-block:: console
+
+    $ tt cluster publish "http://app_user:config_pass@localhost:2379/myapp/" source.yaml
+
+Run ``tt start`` to start up the new instances:
+
+.. code-block:: console
+
+    $ tt start myapp
+       • The instance myapp:router-001-a (PID = 61631) is already running.
+       • The instance myapp:storage-001-a (PID = 61632) is already running.
+       • The instance myapp:storage-001-b (PID = 61634) is already running.
+       • The instance myapp:storage-002-a (PID = 61639) is already running.
+       • The instance myapp:storage-002-b (PID = 61640) is already running.
+       • Starting an instance [myapp:storage-003-a]...
+       • Starting an instance [myapp:storage-003-b]...
+
+Now the cluster contains three storage replica sets. The new one -- ``storage-003``--
+is just started and has no data schema yet. Apply all stored migrations to the cluster
+to load the same data schema to the new replica set:
+
+.. code-block:: console
+
+    $ tt migrations apply http://app_user:config_pass@localhost:2379/myapp --tarantool-username=client --tarantool-password=secret
+       • router-001:
+       •     000001_create_writes_space.lua: skipped, already applied
+       •     000002_create_writers_index.lua: skipped, already applied
+       •     000003_alter_writers_space.lua: skipped, already applied
+       • storage-001:
+       •     000001_create_writes_space.lua: skipped, already applied
+       •     000002_create_writers_index.lua: skipped, already applied
+       •     000003_alter_writers_space.lua: skipped, already applied
+       • storage-002:
+       •     000001_create_writes_space.lua: skipped, already applied
+       •     000002_create_writers_index.lua: skipped, already applied
+       •     000003_alter_writers_space.lua: skipped, already applied
+       • storage-003:
+       •     000001_create_writes_space.lua: successfully applied
+       •     000002_create_writers_index.lua: successfully applied
+       •     000003_alter_writers_space.lua: successfully applied
+
+To make sure that the space exists on the new instances, connect to ``storage-003-a``
+and check ``box.space.writers``:
+
+.. code-block:: console
+
+    $ tt connect myapp:storage-003-a
+
+.. code-block:: tarantoolsession
+
+    myapp:storage-003-a> box.space.writers ~= nil
+    ---
+    - true
+    ...
