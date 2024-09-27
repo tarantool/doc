@@ -1,7 +1,7 @@
 ..  _extend_migrations_tt:
 
-Centralized migrations with tt
-==============================
+Extending the cluster
+=====================
 
 **Example on GitHub:** `migrations <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/migrations>`_
 
@@ -13,7 +13,9 @@ added cluster instances using the centralized migration management mechanism.
 Prerequisites
 -------------
 
-Before starting this tutorial, complete the :ref:`_basic_migrations_tt` and :ref:`upgrade_migrations_tt`
+Before starting this tutorial, complete the :ref:`basic_migrations_tt` and :ref:`upgrade_migrations_tt`.
+As a result, you have a sharded Tarantool EE cluster that uses an etcd-based configuration
+storage. The cluster has a space with two indexes.
 
 ..  _extend_migrations_tt_cluster:
 
@@ -71,34 +73,20 @@ Apply all stored migrations to the cluster to load the same data schema to the n
 
 .. code-block:: console
 
-    $ tt migrations apply http://app_user:config_pass@localhost:2379/myapp \
-                          --tarantool-username=client --tarantool-password=secret
-       • router-001:
-       •     000001_create_writes_space.lua: skipped, already applied
-       •     000002_create_writers_index.lua: skipped, already applied
-       •     000003_alter_writers_space.lua: skipped, already applied
-       • storage-001:
-       •     000001_create_writes_space.lua: skipped, already applied
-       •     000002_create_writers_index.lua: skipped, already applied
-       •     000003_alter_writers_space.lua: skipped, already applied
-       • storage-002:
-       •     000001_create_writes_space.lua: skipped, already applied
-       •     000002_create_writers_index.lua: skipped, already applied
-       •     000003_alter_writers_space.lua: skipped, already applied
-       • storage-003:
-       •     000001_create_writes_space.lua: successfully applied
-       •     000002_create_writers_index.lua: successfully applied
-       •     000003_alter_writers_space.lua: successfully applied
+     $ tt migrations apply http://app_user:config_pass@localhost:2379/myapp \
+                           --tarantool-username=client --tarantool-password=secret
+                           --replicaset storage-003
 
 .. note::
 
-    You can apply migrations to a specific replica set using the ``--replicaset`` option:
+    You can also apply migrations without specifying the replica set. All published
+    migrations are already applied on other replica sets, so ``tt`` skips the
+    operation on them.
 
     .. code-block:: console
 
-         $ tt migrations apply http://app_user:config_pass@localhost:2379/myapp \
-                               --tarantool-username=client --tarantool-password=secret
-                               --replicaset storage-003
+        $ tt migrations apply http://app_user:config_pass@localhost:2379/myapp \
+                              --tarantool-username=client --tarantool-password=secret
 
 To make sure that the space exists on the new instances, connect to ``storage-003-a``
 and check ``box.space.writers``:

@@ -165,6 +165,6 @@ troubleshooting migration issues. :ref:`troubleshooting_migrations_tt`.
 ..  toctree::
     :maxdepth: 1
 
-    space_upgrade
     centralized_migrations_tt
-    troubleshooting_migrations_tt
+    space_upgrade
+

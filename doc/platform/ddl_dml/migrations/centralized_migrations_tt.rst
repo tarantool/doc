@@ -8,10 +8,7 @@ Centralized migrations with tt
 In this section, you learn to use the centralized migration management mechanism
 implemented in the Enterprise Edition of the :ref:`tt <tt-cli>` utility.
 
-See also:
-
--   :ref:`tt migrations reference <tt-migrations>` for the full list of command-line options.
--   :ref:`tcm_cluster_migrations` to learn about managing migrations from |tcm_full_name|.
+The section includes the following tutorials:
 
 .. toctree::
     :maxdepth: 1
@@ -20,3 +17,9 @@ See also:
     upgrade_migrations_tt
     extend_migrations_tt
     troubleshoot_migrations_tt
+
+
+See also:
+
+-   :ref:`tt migrations reference <tt-migrations>` for the full list of command-line options.
+-   :ref:`tcm_cluster_migrations` to learn about managing migrations from |tcm_full_name|.

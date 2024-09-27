@@ -6,7 +6,7 @@ Complex migrations with space.upgrade()
 **Example on GitHub:** `migrations <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/migrations>`_
 
 In this tutorial, you learn to write migrations that include data migration using
-the ``space.upgrade`` function.
+the ``space.upgrade()`` function.
 
 See also:
 
@@ -18,15 +18,19 @@ See also:
 Prerequisites
 -------------
 
-Before starting this tutorial, complete the :ref:`_basic_migrations_tt`.
+Before starting this tutorial, complete the :ref:`basic_migrations_tt`.
+As a result, you have a sharded Tarantool EE cluster that uses an etcd-based configuration
+storage. The cluster has a space with two indexes.
 
 ..  _upgrade_migrations_tt_write:
 
 Writing a complex migration
 ---------------------------
 
-Complex migrations require data migration along with schema migration. Insert some
-tuples into the space before proceeding to the next steps:
+Complex migrations require data migration along with schema migration. Connect to
+the router instance and insert some tuples into the space before proceeding to the next steps.
+
+.. code-block:: $ tt connect myapp:router-001
 
 .. code-block:: tarantoolsession
 
@@ -98,26 +102,26 @@ Publish the new migration to etcd. Migrations that already exist in the storage 
 
 .. code-block:: console
 
-    $ tt migrations publish http://app_user:config_pass@localhost:2379/myapp
-       • 000001_create_writes_space.lua: skipped, key "000001_create_writes_space.lua" already exists with the same content
-       • 000002_create_writers_index.lua: skipped, key "000002_create_writers_index.lua" already exists with the same content
-       • 000003_alter_writers_space.lua: successfully published to key "000003_alter_writers_space.lua"
+    $ tt migrations publish http://app_user:config_pass@localhost:2379/myapp \
+                            migrations/scenario/000003_alter_writers_space.lua
 
 .. note::
 
-    You can also publish a single migration file by passing a path to it as an argument:
+    You can also publish all migrations from the default location ``/migrations/scenario``.
+    All other migrations stored in this directory are already published, so ``tt``
+    skips them.
 
     .. code-block:: console
 
-        $ tt migrations publish http://app_user:config_pass@localhost:2379/myapp \
-                                migrations/scenario/000003_alter_writers_space.lua
+        $ tt migrations publish http://app_user:config_pass@localhost:2379/myapp
+
 
 ..  _upgrade_migrations_tt_apply:
 
 Applying the migration
 ----------------------
 
-Apply the migrations:
+Apply the published migrations:
 
 .. code-block:: console
 
