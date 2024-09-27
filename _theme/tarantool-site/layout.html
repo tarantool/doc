@@ -1,0 +1,199 @@
+{% from 'elements.html' import i_header           with context %}
+{% from 'elements.html' import i_footer           with context %}
+{% from 'elements.html' import abspath            with context %}
+{% from 'elements.html' import version_switcher   with context %}
+
+{% set page = {"slug": "documentation"} %}
+{% set script_files = [
+    '_static/jquery.js',
+    '_static/underscore.js',
+    '_static/doctools.js',
+    '_static/searchtools.js',
+    '_static/language_data.js',
+    '_static/js/jquery.scrollTo.min.js',
+    '_static/js/clipboard.js',
+    '_static/js/copy-button.js',
+    '_static/js/brushup-doc.js',
+    '_static/js/mobile_menu.js',
+    '_static/js/menu-toggle.js',
+    '_static/js/left-menu.js',
+    '_static/js/right-menu.js',
+    '_static/js/doc-header-menu.js',
+    '_static/js/version-switcher.js',
+] %}
+{% set css_files = [
+    '_static/css/doc-critical.min.css',
+    '_static/css/doc.min.css',
+    '_static/css/doc-fixes.css'
+] %}
+
+{% set favicons -%}
+  <meta name="theme-color" content="#ffffff">
+  <link rel="apple-touch-icon-precomposed" sizes="57x57" href="{{ abspath("_static/favicons/apple-touch-icon-57x57.png") }}" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ abspath("_static/favicons/apple-touch-icon-114x114.png") }}" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ abspath("_static/favicons/apple-touch-icon-72x72.png") }}" />
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ abspath("_static/favicons/apple-touch-icon-144x144.png") }}" />
+  <link rel="apple-touch-icon-precomposed" sizes="60x60" href="{{ abspath("_static/favicons/apple-touch-icon-60x60.png") }}" />
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="{{ abspath("_static/favicons/apple-touch-icon-120x120.png") }}" />
+  <link rel="apple-touch-icon-precomposed" sizes="76x76" href="{{ abspath("_static/favicons/apple-touch-icon-76x76.png") }}" />
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="{{ abspath("_static/favicons/apple-touch-icon-152x152.png") }}" />
+  <link rel="icon" type="image/png" href="{{ abspath("_static/favicons/favicon-196x196.png") }}" sizes="196x196" />
+  <link rel="icon" type="image/png" href="{{ abspath("_static/favicons/favicon-96x96.png") }}" sizes="96x96" />
+  <link rel="icon" type="image/png" href="{{ abspath("_static/favicons/favicon-32x32.png") }}" sizes="32x32" />
+  <link rel="icon" type="image/png" href="{{ abspath("_static/favicons/favicon-16x16.png") }}" sizes="16x16" />
+  <link rel="icon" type="image/png" href="{{ abspath("_static/favicons/favicon-128.png") }}"" sizes="128x128" />
+  <meta name="application-name" content="&nbsp;"/>
+  <meta name="msapplication-TileColor" content="#FFFFFF" />
+  <meta name="msapplication-TileImage" content="{{ abspath("_static/favicons/mstile-144x144.png") }}" />
+  <meta name="msapplication-square70x70logo" content="{{ abspath("_static/favicons/mstile-70x70.png") }}" />
+  <meta name="msapplication-square150x150logo" content="{{ abspath("_static/favicons/mstile-150x150.png") }}" />
+  <meta name="msapplication-wide310x150logo" content="{{ abspath("_static/favicons/mstile-310x150.png") }}" />
+  <meta name="msapplication-square310x310logo" content="{{ abspath("_static/favicons/mstile-310x310.png") }}" />
+{%- endset %}
+
+{% set opengraph -%}
+  {% set canonical_url = [
+    use_opensearch, language, '/', pagename, file_suffix
+  ] | join('') %}
+  {% set logo_url = [
+    use_opensearch, language, '/_static/images/tarantool.png'
+  ] | join('') %}
+
+  <meta property="og:title"       content="{{ title }}">
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="{{ canonical_url }}">
+  <meta property="og:image"       content="{{ logo_url }}">
+  {% if pagename not in ['index'] -%}
+  <meta property="og:description" content="Get your data in RAM. Get compute close to data. Enjoy the performance.">
+  {%- endif %}
+{%- endset %}
+
+{% set is_website  = website.get(pagename, False) %}
+{% set is_package_page  = packages.get(pagename, False) %}
+{% set is_mainpage = pagename in ["doc/2.0/index", "doc/2.0/singlehtml", "doc/1.9/index", "doc/1.9/singlehtml", "doc/1.6/index", "doc/1.6/singlehtml"] %}
+
+{% set pagename_stripped = pagename | replace("/", "_") %}
+{% set body_suffix = "" if is_website else " b-doc-%s" % pagename_stripped %}
+{% set header_suffix = "" if is_mainpage or is_website else "toggle-navigation" %}
+{% set header_class = "b-section-title b-ellipsis " + header_suffix %}
+
+{% set content_pane %}
+  <article class="b-article">
+    {% if pagename == "doc/2.0/singlehtml" %}
+      <div class="toctree-wrapper compound">
+        {{ toctree(maxdepth=2, collapse=false) }}
+      </div>
+    {% endif %}
+    {% if not is_website and language == "ru" %}
+      <div class="admonition note">
+        <p class="first admonition-title">Замечание</p>
+        <p class="last">
+          Документация находится в процессе перевода и может
+          отставать от английской версии.
+        </p>
+      </div>
+    {% endif %}
+    {{ body }}
+  </article>
+{% endset %}
+
+<!doctype html>
+<html class="doc blue">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="google-site-verification" content="CR40jzpLISkiUAw2MrH2zHSDNVmzyK88Nj7Crmx_RxQ" />
+    <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet"> -->
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="{% trans docstitle=docstitle|e %}Search within {{ docstitle }}{% endtrans %}"
+          href="{{ pathto('_static/opensearch.xml', 1) }}"/>
+    {{ favicons }}
+    {{ opengraph }}
+    <title>{{ title | striptags }}</title>
+    {%- for scriptfile in script_files %}
+      <script type="text/javascript" src="{{ abspath(scriptfile) }}"></script>
+    {%- endfor %}
+    {%- for cssfile in css_files %}
+      <link rel="stylesheet" href="{{ abspath(cssfile) }}">
+    {%- endfor %}
+
+    {% block extrahead %}
+    <!--[if lt IE 9]>
+      <script src="/js/ie8.js"></script>
+      <link rel="stylesheet" href="/theme/ie8.css" />
+    <![endif]-->
+    {% include "script" ignore missing %}
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:       '{{ url_root }}',
+        VERSION:        '{{ release|e }}',
+        LANGUAGE:       'en',
+        COLLAPSE_INDEX: false,
+        BUILDER:        'html',
+        FILE_SUFFIX:    '{{ '' if no_search_suffix else file_suffix }}',
+        LINK_SUFFIX:    '.html',
+        HAS_SOURCE:     {{ has_source | lower }}
+      };
+      {# Uncomment this, to enable disqus everywhere #}
+      {# var disqus_developer = 1;                   #}
+      var disqus_config = function () {
+          this.page.identifier = "{{ pagename }}";
+          this.language        = "{{ language }}"
+      };
+      window.twttr = (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0], t = window.twttr || {};
+        if (d.getElementById(id)) return t;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://platform.twitter.com/widgets.js";
+        fjs.parentNode.insertBefore(js, fjs);
+
+        t._e = []; t.ready = function(f) { t._e.push(f); };
+        return t;
+      }(document, "script", "twitter-wjs"));
+    </script>
+    {% endblock extrahead %}
+
+  </head>
+  <body>
+    {{ i_header() }}
+    <div class="b-wrapper">
+      <div>
+        <div class="b-cols_content" id="b-cols_content">
+          <div class="b-cols_content_left" id="b-cols_content_left" data-component="menu-left">
+            <div class="doc-sidebar__header">
+              <button class="doc-sidebar__close-button" id="sidebar_close"></button>
+              <div class="flex_row_nowrap with_hpadding_20px with_vmargin_20px version-switcher__row">
+                {{- version_switcher() -}}
+              </div>
+            </div>
+            {{- toctree(maxdepth=-1, collapse=false, includehidden=true) }}
+          </div>
+          <div class="b-cols_content_right_wrapper">
+            <div class="b-cols_content_right">
+              <div class="b-cols_content_right-slot">
+                <div class="doc-content__background">
+                  <div class="doc-content__body">
+                    <div class="doc-content__main-column">
+                      {% block body %}
+                      {% endblock %}
+                    </div>
+                    <div class="doc-content__side-column">
+                      <div class="doc-content__side-column-content" data-component="menu-right">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {{- i_footer() -}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="mobile-checker"></div>
+  </body>
+</html>
+
+{# vim: set syntax=jinja ts=2 sts=2 sw=2 expandtab : #}

@@ -80,7 +80,7 @@ exclude_patterns = [
 
 base_url = "https://tarantool.io/"
 # -- Options for HTML output ----------------------------------------------
-html_theme           = 'tarantool'
+html_theme           = 'tarantool-site'
 html_theme_path      = ['../_theme']
 html_theme_options   = {
     'base_url': base_url
