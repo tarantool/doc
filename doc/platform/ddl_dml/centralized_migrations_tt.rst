@@ -10,7 +10,7 @@ implemented in the Enterprise Edition of the :ref:`tt <tt-cli>` utility.
 
 See also:
 
--   :ref:`tt migrations <tt-migrations>` reference to see the full list of command-line options.
+-   :ref:`tt migrations <tt-migrations>` for the full list of command-line options.
 -   :ref:`tcm_cluster_migrations` to learn about managing migrations from |tcm_full_name|.
 
 ..  _centralized_migrations_tt_prereq:
@@ -46,7 +46,7 @@ First, start up an etcd instance to use as a configuration storage:
 
 etcd runs on the default port 2379.
 
-Optionally, you can enable etcd authentication by running the following script:
+Optionally, enable etcd authentication by executing the following script:
 
 .. code-block:: bash
 
@@ -93,9 +93,9 @@ Creating a cluster
             :language: yaml
             :dedent:
 
-    -   ``app-scm-1.rockspec``:
+    -   ``myapp-scm-1.rockspec``:
 
-        ..  literalinclude:: /code_snippets/snippets/migrations/instances.enabled/myapp/pp-scm-1.rockspec
+        ..  literalinclude:: /code_snippets/snippets/migrations/instances.enabled/myapp/myapp-scm-1.rockspec
             :dedent:
 
 4.  Create the ``source.yaml`` with a cluster configuration to publish to etcd:
@@ -103,7 +103,7 @@ Creating a cluster
     .. note::
 
         This configuration describes a typical CRUD-enabled sharded cluster with
-        one router and two storages, each including one master and one read-only replica.
+        one router and two storage replica sets, each including one master and one read-only replica.
 
     ..  literalinclude:: /code_snippets/snippets/migrations/instances.enabled/myapp/source.yaml
         :language: yaml
@@ -322,7 +322,7 @@ tuples into the space before proceeding to the next steps:
 The next migration changes the space format incompatibly: instead of one ``name``
 field, the new format includes two fields ``first_name`` and ``last_name``.
 To apply this migration, you need to change each tuple's structure preserving the stored
-data. The :ref:`space.upgrade <enterprise-space_upgrade>` helps with this task.
+data. The :ref:`space.upgrade <enterprise-space_upgrade>` function helps with this task.
 
 Create a new file ``000003_alter_writers_space.lua`` in ``/migrations/scenario``.
 Prepare its initial structure the same way as in previous migrations:
@@ -370,7 +370,7 @@ as its arguments. Here is the complete migration code:
     :language: lua
     :dedent:
 
-Learn more about ``space.upgrade()` execution in :ref:`enterprise-space_upgrade`.
+Learn more about ``space.upgrade()`` execution in :ref:`enterprise-space_upgrade`.
 
 Publish the new migration to etcd. Migrations that already exist in the storage are skipped.
 
@@ -392,7 +392,7 @@ Publish the new migration to etcd. Migrations that already exist in the storage 
 
 Apply the migrations:
 
-.. code-block::
+.. code-block:: console
 
     $ tt migrations apply http://app_user:config_pass@localhost:2379/myapp \
                           --tarantool-username=client --tarantool-password=secret
@@ -414,12 +414,13 @@ Connect to the router instance and check that the space and its tuples have the 
 
 ..  _centralized_migrations_tt_new_instances:
 
-Applying migrations on new instances
-------------------------------------
+Extending the cluster
+---------------------
 
-Having all migrations in a centralized etcd storage, you can apply
+Having all migrations in a centralized etcd storage, you can extend the cluster
+and consistently define the data schema on new instances on the fly.
 
-To add one more storage, edit the cluster files in ``instances.enabled/myapp``:
+Add one more storage replica set to the cluster. To do this, edit the cluster files in ``instances.enabled/myapp``:
 
 -   ``instances.yml``: add the lines below to the end.
 
@@ -430,7 +431,7 @@ To add one more storage, edit the cluster files in ``instances.enabled/myapp``:
 
 -   ``source.yaml``: add the lines below to the end.
 
-    ..  literalinclude:: /code_snippets/snippets/migrations/instances.enabled/myapp/source-3-storages.yml
+    ..  literalinclude:: /code_snippets/snippets/migrations/instances.enabled/myapp/source-3-storages.yaml
         :language: yaml
         :start-at: storage-003:
         :dedent:
@@ -491,3 +492,40 @@ and check ``box.space.writers``:
     ---
     - true
     ...
+
+..  _centralized_migrations_tt_troubleshoot:
+
+Troubleshooting migrations
+--------------------------
+
+.. warning::
+
+    The options used for migration troubleshooting can cause migration inconsistency in the cluster.
+
+Incorrect migration published
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Problem: an incorrect migration is published to etcd.
+Solution: fix the migration file and publish it again with the ``--overwrite`` option:
+
+.. code-block:: console
+
+    $ tt migrations publish http://app_user:config_pass@localhost:2379/myapp --overwrite
+
+If there are several migrations and the erroneous one isn't the last, add also ``--ignore-order-violation``:
+
+.. code-block:: console
+
+    $ tt migrations publish http://app_user:config_pass@localhost:2379/myapp --overwrite --ignore-order-violation
+
+Incorrect migration applied
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If the migration is already applied, publish the fixed version and apply it with
+the ``--force-reapply`` option:
+
+.. code-block:: console
+
+    $ tt migrations apply http://app_user:config_pass@localhost:2379/myapp \
+                          --tarantool-username=client --tarantool-password=secret \
+                          --force-reapply

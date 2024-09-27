@@ -12,8 +12,9 @@ Managing centralized migrations
 
     $ tt migrations COMMAND [COMMAND_OPTION ...]
 
-``tt migrations`` manages :ref:`centralized migrations <centralized_migrations_tt>` in a Tarantool EE cluster.
-See :ref:`centralized_migrations_tt` for a detailed guide on using centralized migrations.
+``tt migrations`` manages :ref:`centralized migrations <centralized_migrations_tt>`
+in a Tarantool EE cluster. See :ref:`centralized_migrations_tt` for a detailed guide
+on using the centralized migrations mechanism.
 
 .. important::
 
@@ -37,8 +38,8 @@ apply
 
     $ tt migrations apply ETCD_URI [OPTION ...]
 
-``tt migrations apply`` applies migrations :ref:`published <tt-migrations-publish>`
-to the cluster to the cluster. It executes all migrations from the cluster's centralized
+``tt migrations apply`` applies :ref:`published <tt-migrations-publish>` migrations
+to the cluster. It executes all migrations from the cluster's centralized
 configuration storage on all its read-write instances (replica set leaders).
 
 .. code-block:: console
@@ -46,7 +47,7 @@ configuration storage on all its read-write instances (replica set leaders).
     tt migrations apply https://user:pass@localhost:2379/myapp  \
                         -tarantool-username=admin --tarantool-password=pass
 
-You can select a single migration for execution by adding the ``--migration`` option:
+To apply a single published migration, pass its name in the ``--migration`` option:
 
 .. code-block:: console
 
@@ -54,7 +55,7 @@ You can select a single migration for execution by adding the ``--migration`` op
                         --tarantool-username=admin --tarantool-password=pass  \
                         --migration=000001_create_space.lua
 
-You can select a single replica set to apply migrations to:
+To apply migrations on a single replica set, specify the ``replicaset`` option:
 
 .. code-block:: console
 
@@ -62,7 +63,7 @@ You can select a single replica set to apply migrations to:
                         --tarantool-username=admin --tarantool-password=pass  \
                         --replicaset=storage-001
 
--- migration - single migration. --order violation
+--order violation
 
 
 ?? diff --force-reapply  --ignore-preceding-status
@@ -101,14 +102,14 @@ To publish a single migration from a file, use its name or path as the command a
 
     $ tt migrations publish https://user:pass@localhost:2379/myapp migrations/000001_create_space.lua
 
-Optionally, you can provide a key to use as a migration identifier instead of the file name:
+Optionally, you can provide a key to use as a migration identifier instead of the filename:
 
 ..  code-block:: console
 
     $ tt migrations publish https://user:pass@localhost:2379/myapp file.lua  \
                             --key=000001_create_space.lua
 
-When publishing migrations, ``tt`` performs several checks for:
+When publishing migrations, ``tt`` performs checks for:
 
 -   Syntax errors in migration files. To skip syntax check, add the ``--skip-syntax-check`` option.
 -   Existence of migrations with same names. To overwrite an existing migration with
@@ -246,7 +247,7 @@ stop
 
     $ tt migrations stop ETCD_URI [OPTION ...]
 
-``tt migrations stop`` stops the execution of migrations in the cluster
+``tt migrations stop`` stops the execution of migrations in the cluster.
 
 .. warning::
 
@@ -284,15 +285,12 @@ If the cluster uses SSL traffic encryption, provide the necessary connection
 parameters in the ``--tarantool-ssl*`` options: ``--tarantool-sslcertfile``,
 ``--tarantool-sslkeyfile``, and other. All options are listed in :ref:`tt-migrations-options`.
 
-?auth type
-?example
-
 .. _tt-migrations-options:
 
 Options
 -------
 
-.. option:: --acquire-lock-timeout int
+.. option:: --acquire-lock-timeout INT
 
     **Applicable to:** ``apply``
 
@@ -321,7 +319,7 @@ Options
 
     See also: :ref:`tt-migrations-status`.
 
-.. option:: --execution-timeout int
+.. option:: --execution-timeout INT
 
     **Applicable to:** ``apply``, ``remove``, ``status``, ``stop``
 
@@ -359,13 +357,21 @@ Options
 
     **Applicable to:** ``apply``, ``publish``
 
-    Skip migration scenarios order check before publish. Using this flag may result in cluster migrations inconsistency
+    Skip migration scenarios order check before publish.
+
+    .. warning::
+
+        Using this option may result in cluster migrations inconsistency.
 
 .. option:: --ignore-preceding-status
 
     **Applicable to:** ``apply``
 
-    skip preceding migrations status check on apply. Using this flag may result in cluster migrations inconsistency
+    Skip preceding migrations status check on apply.
+
+    .. warning::
+
+        Using this option may result in cluster migrations inconsistency.
 
 .. option:: --key STRING
 
@@ -373,7 +379,7 @@ Options
 
     put scenario to /<prefix>/migrations/scenario/<key> etcd key instead. Only for single file publish
 
-.. option:: --migration string
+.. option:: --migration STRING
 
     **Applicable to:** ``apply``, ``remove``, ``status``
 
@@ -383,9 +389,13 @@ Options
 
     **Applicable to:** ``publish``
 
-    overwrite existing migration storage keys. Using this flag may result in cluster migrations inconsistency
+    overwrite existing migration storage keys.
 
-.. option:: --replicaset string
+    .. warning::
+
+        Using this option may result in cluster migrations inconsistency.
+
+.. option:: --replicaset STRING
 
     **Applicable to:** ``apply``, ``remove``, ``status``, ``stop``
 
@@ -395,69 +405,73 @@ Options
 
     **Applicable to:** ``publish``
 
-    Skip syntax check before publish. Using this flag may cause other tt migrations operations to fail
+    Skip syntax check before publish.
 
-.. option:: --tarantool-auth string
+    .. warning::
 
-    **Applicable to:** ``apply``, ``remove``, ``status``, ``stop``
+        Using this option may cause further ``tt migrations`` calls to fail.
 
-    authentication type (used only to connect to Tarantool cluster instances)
-
-.. option:: --tarantool-connect-timeout int
+.. option:: --tarantool-auth STRING
 
     **Applicable to:** ``apply``, ``remove``, ``status``, ``stop``
 
-    Tarantool cluster instances connection timeout,in seconds. Default: 3.
+    Authentication type used to connect to the cluster instances.
 
-.. option:: --tarantool-password string
-
-    **Applicable to:** ``apply``, ``remove``, ``status``, ``stop``
-
-    A password used for connecting to the Tarantool cluster instances.
-
-.. option:: --tarantool-sslcafile string
+.. option:: --tarantool-connect-timeout INT
 
     **Applicable to:** ``apply``, ``remove``, ``status``, ``stop``
 
-    SSL CA file (used only to connect to Tarantool cluster instances)
+    Tarantool cluster instances connection timeout, in seconds. Default: 3.
 
-.. option:: --tarantool-sslcertfile string
-
-    **Applicable to:** ``apply``, ``remove``, ``status``, ``stop``
-
-    SSL cert file (used only to connect to Tarantool cluster instances)
-
-.. option:: --tarantool-sslciphers string
+.. option:: --tarantool-password STRING
 
     **Applicable to:** ``apply``, ``remove``, ``status``, ``stop``
 
-    Colon-separated list of SSL ciphers (used only to connect to Tarantool cluster instances)
+    A password used to connect to the cluster instances.
 
-.. option:: --tarantool-sslkeyfile string
-
-    **Applicable to:** ``apply``, ``remove``, ``status``, ``stop``
-
-    SSL key file (used only to connect to Tarantool cluster instances)
-
-.. option:: --tarantool-sslpassword string
+.. option:: --tarantool-sslcafile STRING
 
     **Applicable to:** ``apply``, ``remove``, ``status``, ``stop``
 
-    SSL key file password (used only to connect to Tarantool cluster instances)
+    SSL CA file used to connect to the cluster instances.
 
-.. option:: --tarantool-sslpasswordfile string
+.. option:: --tarantool-sslcertfile STRING
 
     **Applicable to:** ``apply``, ``remove``, ``status``, ``stop``
 
-    File with list of password to SSL key file (used only to connect to Tarantool cluster instances)
+    SSL cert file used to connect to the cluster instances.
+
+.. option:: --tarantool-sslciphers STRING
+
+    **Applicable to:** ``apply``, ``remove``, ``status``, ``stop``
+
+    Colon-separated list of SSL ciphers used to connect to the cluster instances.
+
+.. option:: --tarantool-sslkeyfile STRING
+
+    **Applicable to:** ``apply``, ``remove``, ``status``, ``stop``
+
+    SSL key file used to connect to the cluster instances.
+
+.. option:: --tarantool-sslpassword STRING
+
+    **Applicable to:** ``apply``, ``remove``, ``status``, ``stop``
+
+    SSL key file password used to connect to the cluster instances.
+
+.. option:: --tarantool-sslpasswordfile STRING
+
+    **Applicable to:** ``apply``, ``remove``, ``status``, ``stop``
+
+    File with list of password to SSL key file used to connect to the cluster instances.
 
 .. option:: --tarantool-use-ssl
 
     **Applicable to:** ``apply``, ``remove``, ``status``, ``stop``
 
-    use SSL without providing any additional SSL info (used only to connect to Tarantool cluster instances)
+    Whether SSL is used to connect to the  cluster instances.
 
-.. option:: --tarantool-username string
+.. option:: --tarantool-username STRING
 
     **Applicable to:** ``apply``, ``remove``, ``status``, ``stop``
 
