@@ -32,7 +32,7 @@ This section contains guides on performing data operations in Tarantool.
     value_store
     schema_desc
     operations
-    migrations
+    migrations/index
     read_views
     sql/index
 
