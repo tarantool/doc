@@ -4,28 +4,26 @@ Migrations
 ==========
 
 **Migration** refers to any change in a data schema: adding or removing a field,
-creating or dropping an index, changing a field format, an so on. Space creation
-is also a schema migration. You can use this fact to track the evolution of your
-data schema since its initial state.
+creating or dropping an index, changing a field format, and so on. Space creation
+is also a migration. Using migrations, you can track the evolution of your
+data schema since its initial state. In Tarantool, migrations are presented as Lua
+code that alters the data schema using the built-in Lua API.
 
 There are two types of migrations:
 
 -   *simple migrations* don't require additional actions on existing data
 -   *complex migrations* include both schema and data changes
 
-In Tarantool, migrations are presented as Lua code that alters the data schema
-using the built-in Lua API.
-
 .. _migrations_simple:
 
 Simple migrations
 -----------------
 
-In Tarantool, there are two types of schema migration that do not require data migration:
+There are two types of schema migration that do not require data migration:
 
--   Creating an index. A new index can be created at any time. To learn more about
+-   *Creating an index*. A new index can be created at any time. To learn more about
     index creation, see :ref:`concepts-data_model_indexes` and the :ref:`box_space-create_index` reference.
--   Adding a field to the end of a space. To add a field, update the space format so
+-   *Adding a field to the end of a space*. To add a field, update the space format so
     that it includes all its fields and also the new field. For example:
 
     .. code-block:: lua
@@ -79,17 +77,17 @@ its availability requirements.
 
 Tarantool offers the following features that make migrations easier and safer:
 
--   Transaction mechanism. It is useful when writing a migration,
+-   *Transaction mechanism*. It is useful when writing a migration,
     because it allows you to work with the data atomically. But before using
     the transaction mechanism, you should explore its limitations.
     For details, see the section about :ref:`transactions <atomic-atomic_execution>`.
 
--   ``space:upgrade()`` function (EE only). With the help of ``space:upgrade()``,
+-   ``space:upgrade()`` *function* (EE only). With the help of ``space:upgrade()``,
     you can enable compression and migrate, including already created tuples.
     For details, check the :ref:`Upgrading space schema <enterprise-space_upgrade>` section.
 
--   Centralized migration management mechanism (EE only). Implemented
-    in the Enterprise version of the :ref:`tt <tt-cli>` utility and :ref:`tcm`,
+-   *Centralized migration management mechanism* (EE only). Implemented
+    in the Enterprise version of the :ref:`tt <tt-cli>` utility and in :ref:`tcm`,
     this mechanism enables migration execution and tracking in the replication
     clusters. For details, see :ref:`migrations_centralized`.
 
@@ -158,9 +156,6 @@ version of the :ref:`tt <tt-cli>` utility and in :ref:`tcm`.
 To learn how to manage migrations in Tarantool EE clusters from the command line,
 see :ref:`centralized_migrations_tt`. To learn how to use the mechanism from the |tcm|
 web interface, see the :ref:`tcm_migrations` |tcm| documentation page.
-
-The ``tt`` implementation of the mechanism additionally includes commands for
-troubleshooting migration issues. :ref:`troubleshooting_migrations_tt`.
 
 ..  toctree::
     :maxdepth: 1

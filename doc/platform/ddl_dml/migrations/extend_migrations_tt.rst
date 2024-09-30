@@ -73,9 +73,9 @@ Apply all stored migrations to the cluster to load the same data schema to the n
 
 .. code-block:: console
 
-     $ tt migrations apply http://app_user:config_pass@localhost:2379/myapp \
+     $ tt migrations apply "http://app_user:config_pass@localhost:2379/myapp" \
                            --tarantool-username=client --tarantool-password=secret
-                           --replicaset storage-003
+                           --replicaset=storage-003
 
 .. note::
 
@@ -85,7 +85,7 @@ Apply all stored migrations to the cluster to load the same data schema to the n
 
     .. code-block:: console
 
-        $ tt migrations apply http://app_user:config_pass@localhost:2379/myapp \
+        $ tt migrations apply "http://app_user:config_pass@localhost:2379/myapp" \
                               --tarantool-username=client --tarantool-password=secret
 
 To make sure that the space exists on the new instances, connect to ``storage-003-a``

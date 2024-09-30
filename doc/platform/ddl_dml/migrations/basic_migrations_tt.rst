@@ -26,7 +26,7 @@ Preparing a cluster
 The centralized migration mechanism works with Tarantool EE clusters that:
 
 -   use etcd as a centralized configuration storage
--   use the `CRUD <https://github.com/tarantool/crud>`__ module for data sharding
+-   use the `CRUD <https://github.com/tarantool/crud>`__ module for data distribution
 
 ..  _basic_migrations_tt_cluster_etcd:
 
@@ -207,7 +207,7 @@ To publish migrations to the etcd configuration storage, run ``tt migrations pub
 
 .. code-block:: console
 
-    $ tt migrations publish http://app_user:config_pass@localhost:2379/myapp
+    $ tt migrations publish "http://app_user:config_pass@localhost:2379/myapp"
        • 000001_create_writes_space.lua: successfully published to key "000001_create_writes_space.lua"
        • 000002_create_writers_index.lua: successfully published to key "000002_create_writers_index.lua"
 
@@ -221,7 +221,7 @@ a cluster user's credentials:
 
 .. code-block:: console
 
-    $ tt migrations apply http://app_user:config_pass@localhost:2379/myapp \
+    $ tt migrations apply "http://app_user:config_pass@localhost:2379/myapp" \
                           --tarantool-username=client --tarantool-password=secret
 
 .. important::
@@ -249,7 +249,8 @@ Check the migrations status with ``tt migration status``:
 
 .. code-block:: console
 
-    $ tt migrations status http://app_user:config_pass@localhost:2379/myapp --tarantool-username=client --tarantool-password=secret
+    $ tt migrations status "http://app_user:config_pass@localhost:2379/myapp" \
+                           --tarantool-username=client --tarantool-password=secret
        • migrations centralized storage scenarios:
        •   000001_create_writes_space.lua
        •   000002_create_writers_index.lua
@@ -297,3 +298,10 @@ instance and retrieve the space information:
       format: [{'name': 'id', 'type': 'number'}, {'type': 'number', 'name': 'bucket_id',
           'is_nullable': true}, {'name': 'name', 'type': 'string'}, {'name': 'age', 'type': 'number'}]
     ...
+
+..  _basic_migrations_tt_next:
+
+Next steps
+----------
+
+Learn to write and perform data migration in :ref:`upgrade_migrations_tt`.

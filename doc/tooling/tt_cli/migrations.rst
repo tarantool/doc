@@ -44,14 +44,14 @@ configuration storage on all its read-write instances (replica set leaders).
 
 .. code-block:: console
 
-    tt migrations apply https://user:pass@localhost:2379/myapp  \
+    $ tt migrations apply "https://user:pass@localhost:2379/myapp"  \
                         -tarantool-username=admin --tarantool-password=pass
 
 To apply a single published migration, pass its name in the ``--migration`` option:
 
 .. code-block:: console
 
-    tt migrations apply https://user:pass@localhost:2379/myapp  \
+    $ tt migrations apply "https://user:pass@localhost:2379/myapp"  \
                         --tarantool-username=admin --tarantool-password=pass  \
                         --migration=000001_create_space.lua
 
@@ -59,16 +59,18 @@ To apply migrations on a single replica set, specify the ``replicaset`` option:
 
 .. code-block:: console
 
-    tt migrations apply https://user:pass@localhost:2379/myapp  \
+    $ tt migrations apply "https://user:pass@localhost:2379/myapp"  \
                         --tarantool-username=admin --tarantool-password=pass  \
                         --replicaset=storage-001
 
---order violation
+The command also provides options for migration troubleshooting: ``--ignore-order-violation``,
+``--force-reapply``, and ``--ignore-preceding-status``. Learn to use them in
+:ref:`centralized_migrations_tt_troubleshoot`.
 
+.. warning::
 
-?? diff --force-reapply  --ignore-preceding-status
-
-warning about dangerous options
+    The use of migration troubleshooting options may lead to migration inconsistency
+    in the cluster. Use them only for local development and testing purposes.
 
 .. _tt-migrations-publish:
 
@@ -87,26 +89,26 @@ directory.
 
 ..  code-block:: console
 
-    $ tt migrations publish https://user:pass@localhost:2379/myapp
+    $ tt migrations publish "https://user:pass@localhost:2379/myapp"
 
 To select another directory with migration files, provide a path to it as the command
 argument:
 
 ..  code-block:: console
 
-    $ tt migrations publish https://user:pass@localhost:2379/myapp my_migrations
+    $ tt migrations publish "https://user:pass@localhost:2379/myapp my_migrations"
 
 To publish a single migration from a file, use its name or path as the command argument:
 
 ..  code-block:: console
 
-    $ tt migrations publish https://user:pass@localhost:2379/myapp migrations/000001_create_space.lua
+    $ tt migrations publish "https://user:pass@localhost:2379/myapp" migrations/000001_create_space.lua
 
 Optionally, you can provide a key to use as a migration identifier instead of the filename:
 
 ..  code-block:: console
 
-    $ tt migrations publish https://user:pass@localhost:2379/myapp file.lua  \
+    $ tt migrations publish "https://user:pass@localhost:2379/myapp" file.lua  \
                             --key=000001_create_space.lua
 
 When publishing migrations, ``tt`` performs checks for:
@@ -123,7 +125,7 @@ When publishing migrations, ``tt`` performs checks for:
 .. warning::
 
     Using the options that ignore checks when publishing migration may cause
-    migration inconsistency.
+    migration inconsistency in the etcd storage.
 
 .. _tt-migrations-remove:
 
@@ -142,16 +144,16 @@ To remove all migrations from a specified centralized storage:
 
 .. code-block:: console
 
-    tt migrations remove https://user:pass@localhost:2379/myapp  \
-                         --tarantool-username=admin --tarantool-password=pass
+    $ tt migrations remove "https://user:pass@localhost:2379/myapp"  \
+                           --tarantool-username=admin --tarantool-password=pass
 
 To remove a specific migration, pass its name in the ``--migration`` option:
 
 .. code-block:: console
 
-    tt migrations remove https://user:pass@localhost:2379/myapp  \
-                         --tarantool-username=admin --tarantool-password=pass  \
-                         --migration=000001_create_writers_space.lua
+    $ tt migrations remove "https://user:pass@localhost:2379/myapp"  \
+                           --tarantool-username=admin --tarantool-password=pass  \
+                           --migration=000001_create_writers_space.lua
 
 Before removing migrations, the command checks their :ref:`status <tt-migrations-status>`
 on the cluster. To ignore the status and remove migrations anyway, add the
@@ -159,31 +161,30 @@ on the cluster. To ignore the status and remove migrations anyway, add the
 
 .. code-block:: console
 
-    tt migrations remove https://user:pass@localhost:2379/myapp  --force-remove-on=config-storage
+    $ tt migrations remove "https://user:pass@localhost:2379/myapp"  \
+                            --force-remove-on=config-storage
 
 .. note::
 
-    In this case, cluster credentials are not required
+    In this case, cluster credentials are not required.
 
 To remove migration execution information from the cluster (clear the migration status),
 use the ``--force-remove-on=cluster`` option:
 
 .. code-block:: console
 
-    tt migrations remove https://user:pass@localhost:2379/myapp  \
-                         --tarantool-username=admin --tarantool-password=pass  \
-                         --force-remove-on=cluster
+    $ tt migrations remove "https://user:pass@localhost:2379/myapp"  \
+                           --tarantool-username=admin --tarantool-password=pass  \
+                           --force-remove-on=cluster
 
 To clear all migration information from the centralized storage and cluster,
 use the ``--force-remove-on=all`` option:
 
 .. code-block:: console
 
-    tt migrations remove https://user:pass@localhost:2379/myapp  \
-                         --tarantool-username=admin --tarantool-password=pass  \
-                         --force-remove-on=all
-
-?? dangers/warnings?
+    $ tt migrations remove "https://user:pass@localhost:2379/myapp"  \
+                           --tarantool-username=admin --tarantool-password=pass  \
+                           --force-remove-on=all
 
 .. _tt-migrations-status:
 
@@ -208,8 +209,8 @@ their execution on the cluster, run:
 
 .. code-block:: console
 
-    tt migrations status https://user:pass@localhost:2379/myapp  \
-                         --tarantool-username=admin --tarantool-password=pass
+    $ tt migrations status "https://user:pass@localhost:2379/myapp"  \
+                           --tarantool-username=admin --tarantool-password=pass
 
 If the cluster uses SSL encryption, add SSL options. Learn more in :ref:`Authentication <tt-migrations-auth>`.
 
@@ -218,7 +219,7 @@ migrations or replica sets:
 
 .. code-block:: console
 
-    tt migrations status https://user:pass@localhost:2379/myapp  \
+    $ tt migrations status "https://user:pass@localhost:2379/myapp"  \
                          --tarantool-username=admin --tarantool-password=pass \
                          --replicaset=storage-001 --migration=000001_create_writers_space.lua
 
@@ -233,9 +234,9 @@ To find out the results of a migration execution on a specific replica set in th
 
 .. code-block:: console
 
-    tt migrations status https://user:pass@localhost:2379/myapp  \
-                         --tarantool-username=admin --tarantool-password=pass  \
-                         --replicaset=storage-001 --display-mode=cluster
+    $ tt migrations status "https://user:pass@localhost:2379/myapp"  \
+                           --tarantool-username=admin --tarantool-password=pass  \
+                           --replicaset=storage-001 --display-mode=cluster
 
 
 .. _tt-migrations-stop:
@@ -257,12 +258,12 @@ To stop execution of migrations currently running in the cluster:
 
 ..  code-block:: console
 
-    $ tt migrations stop https://user:pass@localhost:2379/myapp  \
-                         --tarantool-username=admin --tarantool-password=secret-cluster-cookie
+    $ tt migrations stop "https://user:pass@localhost:2379/myapp"  \
+                         --tarantool-username=admin --tarantool-password=pass
 
-all migration in the batch?
-can any of them complete?
-can it cause inconsistency?
+Q: can any migrations in a batch complete successfully? If I apply 2 migrations and call
+`tt migrations stop` after the first one is finished without errors, what are migration statuses?
+
 
 .. _tt-migrations-auth:
 
@@ -275,7 +276,7 @@ needs credentials to access this storage. There are two ways to pass etcd creden
 -   command options ``--config-storage-username`` and ``--config-storage-password``
 -   the etcd URI, for example, ``https://user:pass@localhost:2379/myapp``
 
-?priority
+Q: which way has a higher priority?
 
 For commands that connect to the cluster (that is, all except ``publish``), Tarantool
 credentials are also required. The are passed in the ``--tarantool-username`` and
@@ -294,7 +295,8 @@ Options
 
     **Applicable to:** ``apply``
 
-    migrations fiber lock acquire timeout (in seconds). Fiber lock is used to prevent concurrent migrations run (default 60)
+    Migrations fiber lock acquire timeout in seconds. Default: 60.
+    Fiber lock is used to prevent concurrent migrations run
 
 .. option:: --config-storage-password STRING
 
@@ -337,7 +339,7 @@ Options
 
     .. warning::
 
-        Using this option may result in cluster migrations inconsistency.
+        Using this option may lead to migrations inconsistency in the cluster.
 
 .. option:: --force-remove-on STRING
 
@@ -351,7 +353,7 @@ Options
 
     .. warning::
 
-        Using this option may result in cluster migrations inconsistency.
+        Using this option may lead to migrations inconsistency in the cluster.
 
 .. option:: --ignore-order-violation
 
@@ -361,7 +363,7 @@ Options
 
     .. warning::
 
-        Using this option may result in cluster migrations inconsistency.
+        Using this option may lead to migrations inconsistency in the cluster.
 
 .. option:: --ignore-preceding-status
 
@@ -371,13 +373,14 @@ Options
 
     .. warning::
 
-        Using this option may result in cluster migrations inconsistency.
+        Using this option may lead to migrations inconsistency in the cluster.
 
 .. option:: --key STRING
 
     **Applicable to:** ``publish``
 
-    put scenario to /<prefix>/migrations/scenario/<key> etcd key instead. Only for single file publish
+    Put scenario to ``/<prefix>/migrations/scenario/<key>`` etcd key instead.
+    Only for single file publish.
 
 .. option:: --migration STRING
 
@@ -393,13 +396,13 @@ Options
 
     .. warning::
 
-        Using this option may result in cluster migrations inconsistency.
+        Using this option may lead to migrations inconsistency in the cluster.
 
 .. option:: --replicaset STRING
 
     **Applicable to:** ``apply``, ``remove``, ``status``, ``stop``
 
-    Execute the operation only on the specified replicaset.
+    Execute the operation only on the specified replica set.
 
 .. option:: --skip-syntax-check
 
