@@ -1,8 +1,7 @@
 ..  _box_info_synchro:
 
-================================================================================
 box.info.synchro
-================================================================================
+================
 
 ..  module:: box.info
 
@@ -29,6 +28,13 @@ box.info.synchro
             With elections enabled, an instance runs ``box.ctl.promote()`` command automatically after winning the elections.
             To clear the ownership, call :ref:`box.ctl.demote() <box_ctl-demote>` on the synchronous queue owner.
 
+            ..  note::
+
+                When Raft election is enabled and :ref:`replication.election_mode <configuration_reference_replication_election_mode>`
+                is set to ``candidate``, the new Raft leader claims the queue automatically.
+                It means that the value of ``box.info.synchro.queue.owner`` becomes equal to :ref:`box.info.election.leader <box_info_election>`.
+                When Raft enabled, no manual intervention with ``box.ctl.promote()`` or ``box.ctl.demote()`` is required.
+
         -   ``term`` (since version :doc:`2.10.0 </release/2.10.0>`) -- current queue term.
             It contains the term of the last ``PROMOTE`` request.
             Usually, it is equal to :ref:`box.info.election.term <box_info_election>`.
@@ -43,6 +49,12 @@ box.info.synchro
             Until the request is complete, any other incoming synchronous transactions and system requests
             will be delayed.
 
+        -   ``age`` (since version :doc:`3.2.0 </release/3.2.0>`) -- the time in seconds that the oldest entry currently
+            present in the queue has spent waiting for the quorum to collect.
+
+        -   ``confirm_lag`` (since version :doc:`3.2.0 </release/3.2.0>`) -- the time in seconds that the latest successfully
+            confirmed entry waited for the quorum to collect.
+
     *   ``quorum`` -- the resulting value of the
         :ref:`replication_synchro_quorum <cfg_replication-replication_synchro_quorum>` configuration option.
         Since version :doc:`2.5.3 </release/2.5.3>`, the option can be set as a dynamic formula.
@@ -50,17 +62,19 @@ box.info.synchro
 
     **Example 1:**
 
-    In this example, the ``quorum`` field is equal to ``1``.
+    In this example, the ``quorum`` field is equal to `1`.
     That is, synchronous transactions work like asynchronous ones.
     `1` means that a successful WAL writing to the master is enough to commit.
 
-    ..  code-block:: tarantoolsession
+    ..  code-block:: console
 
-        tarantool> box.info.synchro
+        instance001> box.info.synchro
         ---
         - queue:
             owner: 1
+            confirm_lag: 0
             term: 2
+            age: 0
             len: 0
             busy: false
           quorum: 1
@@ -68,24 +82,25 @@ box.info.synchro
 
     **Example 2:**
 
-    First, set a quorum number and a timeout for synchronous replication using the following command:
+    First, set a quorum number and a timeout for synchronous replication in the configuration file (``config.yaml``):
 
-    ..  code-block:: tarantoolsession
+    ..  code-block:: yaml
 
-        tarantool> box.cfg{
-                 > replication_synchro_quorum=2,
-                 > replication_synchro_timeout=1000
-                 > }
+        replication:
+          synchro_quorum: 2
+          synchro_timeout: 1000
 
-    Next, check the current state of synchronous replication:
+    Check the current state of synchronous replication:
 
-    ..  code-block:: tarantoolsession
+    ..  code-block:: console
 
-        tarantool> box.info.synchro
+        app:instance001> box.info.synchro
         ---
         - queue:
-            owner: 1
-            term: 2
+            owner: 2
+            confirm_lag: 0
+            term: 28
+            age: 0
             len: 0
             busy: false
           quorum: 2
@@ -94,51 +109,53 @@ box.info.synchro
     Create a space called ``sync`` and enable synchronous replication on this space.
     Then, create an index.
 
-    ..  code-block:: tarantoolsession
+    ..  code-block:: console
 
-        tarantool> s = box.schema.space.create("sync", {is_sync=true})
-        tarantool> _ = s:create_index('pk')
+        app:instance001> s = box.schema.space.create("sync", {is_sync=true})
+        app:instance001> _ = s:create_index('pk')
 
     After that, use ``box.ctl.promote()`` function to claim a queue:
 
-    ..  code-block:: tarantoolsession
+    ..  code-block:: console
 
-        tarantool> box.ctl.promote()
+        app:instance001> box.ctl.promote()
 
     Next, perform data manipulations:
 
-    ..  code-block:: tarantoolsession
+    ..  code-block:: console
 
-        tarantool> require('fiber').new(function() box.space.sync:replace{1} end)
+        app:instance001> require('fiber').new(function() box.space.sync:replace{1} end)
         ---
         - status: suspended
           name: lua
-          id: 119
+          id: 127
         ...
-        tarantool> require('fiber').new(function() box.space.sync:replace{1} end)
+        app:instance001> require('fiber').new(function() box.space.sync:replace{1} end)
         ---
         - status: suspended
           name: lua
-          id: 120
+          id: 128
         ...
-        tarantool> require('fiber').new(function() box.space.sync:replace{1} end)
+        app:instance001> require('fiber').new(function() box.space.sync:replace{1} end)
         ---
         - status: suspended
           name: lua
-          id: 121
+          id: 129
         ...
 
     If you call the ``box.info.synchro`` command again,
     you will see that now there are 3 transactions waiting in the queue:
 
-    ..  code-block:: tarantoolsession
+    ..  code-block:: console
 
-        tarantool> box.info.synchro
+        app:instance001> box.info.synchro
         ---
         - queue:
             owner: 1
-            term: 2
-            len: 3
+            confirm_lag: 0
+            term: 29
+            age: 0
+            len: 0
             busy: false
           quorum: 2
         ...
