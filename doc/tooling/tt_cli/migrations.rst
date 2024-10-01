@@ -22,55 +22,13 @@ on using the centralized migrations mechanism.
 
 ``COMMAND`` is one of the following:
 
-*   :ref:`apply <tt-migrations-apply>`
+
 *   :ref:`publish <tt-migrations-publish>`
-*   :ref:`remove <tt-migrations-remove>`
+*   :ref:`apply <tt-migrations-apply>`
 *   :ref:`status <tt-migrations-status>`
 *   :ref:`stop <tt-migrations-stop>`
+*   :ref:`remove <tt-migrations-remove>`
 
-
-.. _tt-migrations-apply:
-
-apply
------
-
-..  code-block:: console
-
-    $ tt migrations apply ETCD_URI [OPTION ...]
-
-``tt migrations apply`` applies :ref:`published <tt-migrations-publish>` migrations
-to the cluster. It executes all migrations from the cluster's centralized
-configuration storage on all its read-write instances (replica set leaders).
-
-.. code-block:: console
-
-    $ tt migrations apply "https://user:pass@localhost:2379/myapp"  \
-                        --tarantool-username=admin --tarantool-password=pass
-
-To apply a single published migration, pass its name in the ``--migration`` option:
-
-.. code-block:: console
-
-    $ tt migrations apply "https://user:pass@localhost:2379/myapp"  \
-                        --tarantool-username=admin --tarantool-password=pass  \
-                        --migration=000001_create_space.lua
-
-To apply migrations on a single replica set, specify the ``replicaset`` option:
-
-.. code-block:: console
-
-    $ tt migrations apply "https://user:pass@localhost:2379/myapp"  \
-                        --tarantool-username=admin --tarantool-password=pass  \
-                        --replicaset=storage-001
-
-The command also provides options for migration troubleshooting: ``--ignore-order-violation``,
-``--force-reapply``, and ``--ignore-preceding-status``. Learn to use them in
-:ref:`centralized_migrations_tt_troubleshoot`.
-
-.. warning::
-
-    The use of migration troubleshooting options may lead to migration inconsistency
-    in the cluster. Use them only for local development and testing purposes.
 
 .. _tt-migrations-publish:
 
@@ -125,7 +83,133 @@ When publishing migrations, ``tt`` performs checks for:
 .. warning::
 
     Using the options that ignore checks when publishing migration may cause
-    migration inconsistency in the etcd storage.
+    migration inconsistency in the cluster.
+
+
+.. _tt-migrations-apply:
+
+apply
+-----
+
+..  code-block:: console
+
+    $ tt migrations apply ETCD_URI [OPTION ...]
+
+``tt migrations apply`` applies :ref:`published <tt-migrations-publish>` migrations
+to the cluster. It executes all migrations from the cluster's centralized
+configuration storage on all its read-write instances (replica set leaders).
+
+.. code-block:: console
+
+    $ tt migrations apply "https://user:pass@localhost:2379/myapp"  \
+                        --tarantool-username=admin --tarantool-password=pass
+
+To apply a single published migration, pass its name in the ``--migration`` option:
+
+.. code-block:: console
+
+    $ tt migrations apply "https://user:pass@localhost:2379/myapp"  \
+                        --tarantool-username=admin --tarantool-password=pass  \
+                        --migration=000001_create_space.lua
+
+To apply migrations on a single replica set, specify the ``replicaset`` option:
+
+.. code-block:: console
+
+    $ tt migrations apply "https://user:pass@localhost:2379/myapp"  \
+                        --tarantool-username=admin --tarantool-password=pass  \
+                        --replicaset=storage-001
+
+The command also provides options for migration troubleshooting: ``--ignore-order-violation``,
+``--force-reapply``, and ``--ignore-preceding-status``. Learn to use them in
+:ref:`centralized_migrations_tt_troubleshoot`.
+
+.. warning::
+
+    The use of migration troubleshooting options may lead to migration inconsistency
+    in the cluster. Use them only for local development and testing purposes.
+
+
+.. _tt-migrations-status:
+
+status
+------
+
+..  code-block:: console
+
+    $ tt migrations status ETCD_URI [OPTION ...]
+
+``tt migrations status`` prints the list of migrations published to the centralized
+storage and the result of their execution on the cluster instances.
+
+Possible migration statuses are:
+
+-  ``APPLY_STARTED`` -- the migration execution has started but not completed yet
+    or has been interrupted with :ref:`tt migrations stop <tt-migrations-stop>``
+-  ``APPLIED`` -- the migration is successfully applied on the instance
+-  ``FAILED`` -- there were errors during the migration execution on the instance
+
+To get the list of migrations stored in the given etcd storage and information about
+their execution on the cluster, run:
+
+.. code-block:: console
+
+    $ tt migrations status "https://user:pass@localhost:2379/myapp"  \
+                           --tarantool-username=admin --tarantool-password=pass
+
+If the cluster uses SSL encryption, add SSL options. Learn more in :ref:`Authentication <tt-migrations-auth>`.
+
+Use the ``--migration`` and ``--replicaset`` options to get information about specific
+migrations or replica sets:
+
+.. code-block:: console
+
+    $ tt migrations status "https://user:pass@localhost:2379/myapp"  \
+                         --tarantool-username=admin --tarantool-password=pass \
+                         --replicaset=storage-001 --migration=000001_create_writers_space.lua
+
+The ``--display-mode`` option allows to tailor the command output:
+
+-   with ``--display-mode config-storage``, the command prints only the list of migrations
+    published to the centralized storage.
+-   with ``--display-mode cluster``, the command prints only the migration statuses
+    on the cluster instances.
+
+To find out the results of a migration execution on a specific replica set in the cluster, run:
+
+.. code-block:: console
+
+    $ tt migrations status "https://user:pass@localhost:2379/myapp"  \
+                           --tarantool-username=admin --tarantool-password=pass  \
+                           --replicaset=storage-001 --display-mode=cluster
+
+
+.. _tt-migrations-stop:
+
+stop
+----
+
+..  code-block:: console
+
+    $ tt migrations stop ETCD_URI [OPTION ...]
+
+``tt migrations stop`` stops the execution of migrations in the cluster.
+
+.. warning::
+
+    Calling ``tt migration stop`` may cause migration inconsistency in the cluster.
+
+To stop the execution of a migration currently running in the cluster:
+
+..  code-block:: console
+
+    $ tt migrations stop "https://user:pass@localhost:2379/myapp"  \
+                         --tarantool-username=admin --tarantool-password=pass
+
+``tt migrations stop`` interrupts a single migration. If you call it to interrupt
+the process that applies multiple migrations, the ones completed before the call
+receive the ``APPLIED`` status. The migration is interrupted by the call remains in
+``APPLY_STARTED``.
 
 .. _tt-migrations-remove:
 
@@ -186,85 +270,6 @@ use the ``--force-remove-on=all`` option:
                            --tarantool-username=admin --tarantool-password=pass  \
                            --force-remove-on=all
 
-.. _tt-migrations-status:
-
-status
-------
-
-..  code-block:: console
-
-    $ tt migrations status ETCD_URI [OPTION ...]
-
-``tt migrations status`` prints the list of migrations published to the centralized
-storage and the result of their execution on the cluster instances.
-
-Possible migration statuses are:
-
--  ``APPLY_STARTED`` -- the migration execution has started but not completed yet
--  ``APPLIED`` -- the migration is successfully applied on the instance
--  ``FAILED`` -- there were errors during the migration execution on the instance
-
-To get the list of migrations stored in the given etcd storage and information about
-their execution on the cluster, run:
-
-.. code-block:: console
-
-    $ tt migrations status "https://user:pass@localhost:2379/myapp"  \
-                           --tarantool-username=admin --tarantool-password=pass
-
-If the cluster uses SSL encryption, add SSL options. Learn more in :ref:`Authentication <tt-migrations-auth>`.
-
-Use the ``--migration`` and ``--replicaset`` options to get information about specific
-migrations or replica sets:
-
-.. code-block:: console
-
-    $ tt migrations status "https://user:pass@localhost:2379/myapp"  \
-                         --tarantool-username=admin --tarantool-password=pass \
-                         --replicaset=storage-001 --migration=000001_create_writers_space.lua
-
-The ``--display-mode`` option allows to tailor the command output:
-
--   with ``--display-mode config-storage``, the command prints only the list of migrations
-    published to the centralized storage.
--   with ``--display-mode cluster``, the command prints only the migration statuses
-    on the cluster instances.
-
-To find out the results of a migration execution on a specific replica set in the cluster, run:
-
-.. code-block:: console
-
-    $ tt migrations status "https://user:pass@localhost:2379/myapp"  \
-                           --tarantool-username=admin --tarantool-password=pass  \
-                           --replicaset=storage-001 --display-mode=cluster
-
-
-.. _tt-migrations-stop:
-
-stop
-----
-
-..  code-block:: console
-
-    $ tt migrations stop ETCD_URI [OPTION ...]
-
-``tt migrations stop`` stops the execution of migrations in the cluster.
-
-.. warning::
-
-    Calling ``tt migration stop`` may cause migration inconsistency in the cluster.
-
-To stop execution of migrations currently running in the cluster:
-
-..  code-block:: console
-
-    $ tt migrations stop "https://user:pass@localhost:2379/myapp"  \
-                         --tarantool-username=admin --tarantool-password=pass
-
-Q: can any migrations in a batch complete successfully? If I apply 2 migrations and call
-`tt migrations stop` after the first one is finished without errors, what are migration statuses?
-
-
 .. _tt-migrations-auth:
 
 Authentication
@@ -273,10 +278,10 @@ Authentication
 Since ``tt migrations`` operates migrations via a centralizes etcd storage, it
 needs credentials to access this storage. There are two ways to pass etcd credentials:
 
--   command options ``--config-storage-username`` and ``--config-storage-password``
+-   command-line options ``--config-storage-username`` and ``--config-storage-password``
 -   the etcd URI, for example, ``https://user:pass@localhost:2379/myapp``
 
-Q: which way has a higher priority?
+Credentials specified in the URI have a higher priority.
 
 For commands that connect to the cluster (that is, all except ``publish``), Tarantool
 credentials are also required. The are passed in the ``--tarantool-username`` and
@@ -386,7 +391,7 @@ Options
 
     **Applicable to:** ``apply``, ``remove``, ``status``
 
-    migration to remove
+    A migration to apply, remove, or check status.
 
 .. option:: --overwrite
 

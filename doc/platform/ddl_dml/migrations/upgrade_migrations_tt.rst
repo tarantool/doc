@@ -25,7 +25,7 @@ Writing a complex migration
 Complex migrations require data migration along with schema migration. Connect to
 the router instance and insert some tuples into the space before proceeding to the next steps.
 
-.. code-block:: $ tt connect myapp:router-001
+.. code-block:: $ tt connect myapp:router-001-a
 
 .. code-block:: tarantoolsession
 
@@ -125,13 +125,15 @@ Apply the published migrations:
 
 Connect to the router instance and check that the space and its tuples have the new format:
 
-.. code-block:: $ tt connect myapp:router-001
+.. code-block:: console
+
+    $ tt connect myapp:router-001-a
 
 .. code-block:: tarantoolsession
 
     myapp:router-001-a> require('crud').get('writers', 2)
     ---
-    - rows: []
+    - rows: [2, 401, 'Douglas', 'Adams', 49]
       metadata: [{'name': 'id', 'type': 'number'}, {'name': 'bucket_id', 'type': 'number'},
         {'name': 'first_name', 'type': 'string'}, {'name': 'last_name', 'type': 'string'},
         {'name': 'age', 'type': 'number'}]

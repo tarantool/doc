@@ -26,7 +26,8 @@ Preparing a cluster
 The centralized migration mechanism works with Tarantool EE clusters that:
 
 -   use etcd as a centralized configuration storage
--   use the `CRUD <https://github.com/tarantool/crud>`__ module for data distribution
+-   use the `CRUD <https://github.com/tarantool/crud>`__ module or its Enterprise
+    version for data distribution
 
 ..  _basic_migrations_tt_cluster_etcd:
 
@@ -268,7 +269,9 @@ Check the migrations status with ``tt migration status``:
 To make sure that the space and indexes are created in the cluster, connect to the router
 instance and retrieve the space information:
 
-.. code-block:: $ tt connect myapp:router-001
+.. code-block:: console
+
+    $ tt connect myapp:router-001-a
 
 .. code-block:: tarantoolsession
 

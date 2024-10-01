@@ -59,10 +59,14 @@ the ``--force-reapply`` option:
 If execution of the incorrect migration version has failed, you may also need to add
 the ``--ignore-preceding-status`` option:
 
+When you reapply a migration, ``tt`` checks the statuses of preceding migrations
+to ensure consistency. To skip this check, add the ``--ignore-preceding-status`` option:
+
 .. code-block:: console
 
-    $ tt migrations apply http://app_user:config_pass@localhost:2379/myapp \
+    $ tt migrations apply "http://app_user:config_pass@localhost:2379/myapp" \
                           --tarantool-username=client --tarantool-password=secret \
+                          --migration=00003_alter_space.lua
                           --force-reapply --ignore-preceding-status
 
 ..  _centralized_migrations_tt_troubleshoot_stop:
@@ -77,11 +81,16 @@ To interrupt migration execution on the cluster, use ``tt migrations stop``:
     $ tt migrations stop "http://app_user:config_pass@localhost:2379/myapp" \
                           --tarantool-username=client --tarantool-password=secret
 
-To avoid such situations in the future, restrict the maximum migration execution time
-using the ``--execution-timeout`` option of ``tt migrations apply``:
+You can adjust the maximum migration execution time using the ``--execution-timeout``
+option of ``tt migrations apply``:
 
 .. code-block:: console
 
     $ tt migrations apply "http://app_user:config_pass@localhost:2379/myapp" \
                           --tarantool-username=client --tarantool-password=secret \
                           --execution-timeout=60
+
+.. note::
+
+    If a migration timeout is reached, you may need to call ``tt migrations stop``
+    to cancel requests that were sent when applying migrations.
