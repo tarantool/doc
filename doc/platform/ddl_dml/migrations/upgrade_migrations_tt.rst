@@ -8,7 +8,7 @@ Data migrations with space.upgrade()
 In this tutorial, you learn to write migrations that include data migration using
 the ``space.upgrade()`` function.
 
-..  _upgrade_migrations_tt:
+..  _upgrade_migrations_tt_prereq:
 
 Prerequisites
 -------------
@@ -25,7 +25,9 @@ Writing a complex migration
 Complex migrations require data migration along with schema migration. Connect to
 the router instance and insert some tuples into the space before proceeding to the next steps.
 
-.. code-block:: $ tt connect myapp:router-001-a
+.. code-block:: console
+
+    $ tt connect myapp:router-001-a
 
 .. code-block:: tarantoolsession
 
