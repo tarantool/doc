@@ -45,7 +45,7 @@ configuration storage on all its read-write instances (replica set leaders).
 .. code-block:: console
 
     $ tt migrations apply "https://user:pass@localhost:2379/myapp"  \
-                        -tarantool-username=admin --tarantool-password=pass
+                        --tarantool-username=admin --tarantool-password=pass
 
 To apply a single published migration, pass its name in the ``--migration`` option:
 
@@ -96,7 +96,7 @@ argument:
 
 ..  code-block:: console
 
-    $ tt migrations publish "https://user:pass@localhost:2379/myapp my_migrations"
+    $ tt migrations publish "https://user:pass@localhost:2379/myapp" my_migrations
 
 To publish a single migration from a file, use its name or path as the command argument:
 

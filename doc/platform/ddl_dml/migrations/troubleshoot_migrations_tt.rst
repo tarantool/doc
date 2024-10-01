@@ -78,7 +78,7 @@ To interrupt migration execution on the cluster, use ``tt migrations stop``:
                           --tarantool-username=client --tarantool-password=secret
 
 To avoid such situations in the future, restrict the maximum migration execution time
-using the ``--executions-timeout`` option of ``tt migrations apply``:
+using the ``--execution-timeout`` option of ``tt migrations apply``:
 
 .. code-block:: console
 
