@@ -95,7 +95,7 @@ Creating a cluster
             :language: none
             :dedent:
 
-#.  Create the ``source.yaml`` with a cluster configuration to publish to etcd:
+4.  Create the ``source.yaml`` with a cluster configuration to publish to etcd:
 
     .. note::
 
