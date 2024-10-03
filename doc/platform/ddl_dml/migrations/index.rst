@@ -155,7 +155,7 @@ version of the :ref:`tt <tt-cli>` utility and in :ref:`tcm`.
 
 To learn how to manage migrations in Tarantool EE clusters from the command line,
 see :ref:`centralized_migrations_tt`. To learn how to use the mechanism from the |tcm|
-web interface, see the :ref:`tcm_migrations` |tcm| documentation page.
+web interface, see the :ref:`tcm_cluster_migrations` |tcm| documentation page.
 
 ..  toctree::
     :maxdepth: 1

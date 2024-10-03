@@ -352,8 +352,8 @@ Options
 
     Remove migrations disregarding their status. Possible values:
 
-    -   ``config-storage``: remove  migrations on etcd centralized migrations storage disregarding the cluster apply status.
-    -   ``cluster``: remove  migrations status info only on a Tarantool cluster.
+    -   ``config-storage``: remove migrations on etcd centralized migrations storage disregarding the cluster apply status.
+    -   ``cluster``: remove migrations status info only on a Tarantool cluster.
     -   ``all`` to execute both ``config-storage`` and ``cluster`` force removals.
 
     .. warning::

@@ -94,7 +94,7 @@ Creating a cluster
         ..  literalinclude:: /code_snippets/snippets/migrations/instances.enabled/myapp/myapp-scm-1.rockspec
             :dedent:
 
-4.  Create the ``source.yaml`` with a cluster configuration to publish to etcd:
+#.  Create the ``source.yaml`` with a cluster configuration to publish to etcd:
 
     .. note::
 
