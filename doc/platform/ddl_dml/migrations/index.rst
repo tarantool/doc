@@ -28,7 +28,7 @@ There are two types of schema migration that do not require data migration:
 
     .. code-block:: lua
 
-        local users = box.space.users
+        local users = box.space.writers
         local fmt = users:format()
 
         table.insert(fmt, { name = 'age', type = 'number', is_nullable = true })

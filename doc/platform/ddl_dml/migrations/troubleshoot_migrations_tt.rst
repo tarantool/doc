@@ -1,7 +1,7 @@
 ..  _centralized_migrations_tt_troubleshoot:
 
 Troubleshooting migrations
---------------------------
+==========================
 
 The centralized migrations mechanism allows troubleshooting migration issues using
 dedicated ``tt migration`` options. When troubleshooting migrations, remember that
@@ -16,7 +16,7 @@ Additional steps may be needed to fix this.
 ..  _centralized_migrations_tt_troubleshoot_publish:
 
 Incorrect migration published
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------------
 
 If an incorrect migration was published to etcd but wasn't applied yet,
 fix the migration file and publish it again with the ``--overwrite`` option:
@@ -45,7 +45,7 @@ from etcd using ``tt migrations remove``:
 ..  _centralized_migrations_tt_troubleshoot_apply:
 
 Incorrect migration applied
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------
 
 If the migration is already applied, publish the fixed version and apply it with
 the ``--force-reapply`` option:
@@ -72,7 +72,7 @@ to ensure consistency. To skip this check, add the ``--ignore-preceding-status``
 ..  _centralized_migrations_tt_troubleshoot_stop:
 
 Migration execution takes too long
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------
 
 To interrupt migration execution on the cluster, use ``tt migrations stop``:
 
