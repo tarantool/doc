@@ -1,0 +1,73 @@
+credentials:
+  users:
+    client:
+      password: 'secret'
+      roles: [super]
+    replicator:
+      password: 'secret'
+      roles: [replication]
+    storage:
+      password: 'secret'
+      roles: [sharding]
+
+iproto:
+  advertise:
+    peer:
+      login: replicator
+    sharding:
+      login: storage
+
+sharding:
+  bucket_count: 3000
+
+groups:
+  routers:
+    sharding:
+      roles: [router]
+    roles: [roles.crud-router]
+    replicasets:
+      router-001:
+        instances:
+          router-001-a:
+            iproto:
+              listen:
+              - uri: localhost:3301
+              advertise:
+                client: localhost:3301
+  storages:
+    sharding:
+      roles: [storage]
+    roles: [roles.crud-storage]
+    replication:
+      failover: manual
+    replicasets:
+      storage-001:
+        leader: storage-001-a
+        instances:
+          storage-001-a:
+            iproto:
+              listen:
+                - uri: localhost:3302
+              advertise:
+                client: localhost:3302
+          storage-001-b:
+            iproto:
+              listen:
+              - uri: localhost:3303
+              advertise:
+                client: localhost:3303
+      storage-002:
+        leader: storage-002-a
+        instances:
+          storage-002-a:
+            iproto:
+              listen:
+              - uri: localhost:3304
+              advertise:
+                client: localhost:3304
+          storage-002-b:
+            iproto:
+              listen:
+              - uri: localhost:3305
+              advertise:
+                client: localhost:3305

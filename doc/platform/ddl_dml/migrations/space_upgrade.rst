@@ -1,4 +1,5 @@
 ..  _enterprise-space_upgrade:
+.. _box_space-upgrade:
 
 Upgrading space schema
 ======================
@@ -20,7 +21,7 @@ If you need to change a data schema, there are several possible cases:
 
 To solve the task of migrating the data, you can:
 
-*   :ref:`Migrate data <other-migrations>` to a new space manually.
+*   :ref:`Migrate data <migrations>` to a new space manually.
 
 *   Use the ``space:upgrade()`` feature.
 
