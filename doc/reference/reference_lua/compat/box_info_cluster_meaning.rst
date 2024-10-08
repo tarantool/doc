@@ -51,7 +51,7 @@ Old behavior: ``box.info.cluster`` displays information about the current replic
     - <... other attributes of the replicaset>
     ...
 
-    tarantool> box.info.replicaset (= nil on < 3.0.0)
+    tarantool> box.info.replicaset
     ---
     - uuid: <replicaset uuid>
     - <... other attributes of the replicaset>
