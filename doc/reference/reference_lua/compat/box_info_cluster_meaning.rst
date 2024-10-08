@@ -7,8 +7,9 @@ Option: ``box_info_cluster_meaning``
 
 Starting from version 3.0, the :ref:`box_info_cluster` table stores the information
 about the entire cluster. In earlier versions, it stored only the current replica set
-information. The ``box_info_cluster_meaning`` compat option allows to define the
-the scope of ``box.info.cluster``: the entire cluster or a single replica set.
+information. The ``box_info_cluster_meaning`` compat option in Tarantool 3.0 or later
+allows to rollback to the old meaning of ``box.info.cluster`` - display information
+about a single replica set.
 
 Old and new behavior
 --------------------
@@ -24,13 +25,13 @@ cluster with all its replica sets.
 
     tarantool> box.info.cluster
     ---
-    - <cluster information>
+    - name: my_cluster
     ...
 
     tarantool> box.info.replicaset
     ---
-    - uuid: <replicaset uuid>
-    - <... other attributes of the replicaset>
+    - uuid: 0a3ff0c7-9075-441c-b0f5-b93a24be07cb
+      name: router-001
     ...
 
 .. note::
@@ -47,14 +48,14 @@ Old behavior: ``box.info.cluster`` displays information about the current replic
 
     tarantool> box.info.cluster
     ---
-    - uuid: <replicaset uuid>
-    - <... other attributes of the replicaset>
+    - uuid: 0a3ff0c7-9075-441c-b0f5-b93a24be07cb
+      name: router-001
     ...
 
     tarantool> box.info.replicaset
     ---
-    - uuid: <replicaset uuid>
-    - <... other attributes of the replicaset>
+    - uuid: 0a3ff0c7-9075-441c-b0f5-b93a24be07cb
+      name: router-001
     ...
 
 Known compatibility issues
