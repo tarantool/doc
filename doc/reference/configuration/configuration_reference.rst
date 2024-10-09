@@ -505,6 +505,8 @@ The ``compat`` section defines values of the :ref:`compat <compat-module>` modul
     -   ``new``: show the entire cluster
     -   ``old:``: show the current replica set
 
+    See also: :ref:`compat-option-box-info-cluster`
+
     |
     | Type: string
     | Possible values: 'new', 'old'

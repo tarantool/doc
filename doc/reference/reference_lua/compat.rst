@@ -73,6 +73,7 @@ Below are the available ``compat`` options:
 * :doc:`sql_seq_scan_default <./compat/sql_seq_scan_default>`
 * :doc:`fiber_slice_default <./compat/fiber_slice_default>`
 * :doc:`binary_data_decoding <./compat/binary_data_decoding>`
+* :doc:`box_info_cluster_meaning <./compat/box_info_cluster_meaning>`
 
 ..  toctree::
     :hidden:

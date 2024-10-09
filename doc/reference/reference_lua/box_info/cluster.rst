@@ -13,6 +13,6 @@ box.info.cluster
 
     *   ``name`` -- the cluster name
 
-    See also: :ref:`compat.box_info_cluster_meaning <configuration_reference_compat_cluster_meaning>`
+    See also: :ref:`compat.box_info_cluster_meaning <compat-option-box-info-cluster>`
 
     :rtype: table
