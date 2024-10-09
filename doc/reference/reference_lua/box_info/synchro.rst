@@ -25,15 +25,12 @@ box.info.synchro
             but they can't create any synchronous transactions.
             To claim or reclaim the queue, use :ref:`box.ctl.promote() <box_ctl-promote>` on the instance that you want
             to promote.
-            With elections enabled, an instance runs ``box.ctl.promote()`` command automatically after winning the elections.
             To clear the ownership, call :ref:`box.ctl.demote() <box_ctl-demote>` on the synchronous queue owner.
 
-            ..  note::
-
-                When Raft election is enabled and :ref:`replication.election_mode <configuration_reference_replication_election_mode>`
-                is set to ``candidate``, the new Raft leader claims the queue automatically.
-                It means that the value of ``box.info.synchro.queue.owner`` becomes equal to :ref:`box.info.election.leader <box_info_election>`.
-                When Raft enabled, no manual intervention with ``box.ctl.promote()`` or ``box.ctl.demote()`` is required.
+            When Raft election is enabled and :ref:`replication.election_mode <configuration_reference_replication_election_mode>`
+            is set to ``candidate``, the new Raft leader claims the queue automatically after winning the elections.
+            It means that the value of ``box.info.synchro.queue.owner`` becomes equal to :ref:`box.info.election.leader <box_info_election>`.
+            When Raft enabled, no manual intervention with ``box.ctl.promote()`` or ``box.ctl.demote()`` is required.
 
         -   ``term`` (since version :doc:`2.10.0 </release/2.10.0>`) -- current queue term.
             It contains the term of the last ``PROMOTE`` request.
@@ -97,22 +94,30 @@ box.info.synchro
         app:instance001> box.info.synchro
         ---
         - queue:
-            owner: 2
+            owner: 1
             confirm_lag: 0
-            term: 28
+            term: 2
             age: 0
             len: 0
             busy: false
           quorum: 2
         ...
 
-    Create a space called ``sync`` and enable synchronous replication on this space.
-    Then, create an index.
+    Create a space called ``sync`` and enable synchronous replication on this space:
 
     ..  code-block:: console
 
         app:instance001> s = box.schema.space.create("sync", {is_sync=true})
+        ---
+        ...
+
+    Then, create an index:
+
+    ..  code-block:: console
+
         app:instance001> _ = s:create_index('pk')
+        ---
+        ...
 
     After that, use ``box.ctl.promote()`` function to claim a queue:
 
@@ -128,19 +133,19 @@ box.info.synchro
         ---
         - status: suspended
           name: lua
-          id: 127
+          id: 130
         ...
         app:instance001> require('fiber').new(function() box.space.sync:replace{1} end)
         ---
         - status: suspended
           name: lua
-          id: 128
+          id: 131
         ...
         app:instance001> require('fiber').new(function() box.space.sync:replace{1} end)
         ---
         - status: suspended
           name: lua
-          id: 129
+          id: 132
         ...
 
     If you call the ``box.info.synchro`` command again,
@@ -153,7 +158,7 @@ box.info.synchro
         - queue:
             owner: 1
             confirm_lag: 0
-            term: 29
+            term: 2
             age: 0
             len: 0
             busy: false
