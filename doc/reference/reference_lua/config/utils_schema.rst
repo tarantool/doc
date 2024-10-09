@@ -5,18 +5,17 @@ Submodule experimental.config.utils.schema
 
 **Since:** :doc:`3.2.0 </release/3.2.0>`
 
-Tarantool allows you to provide arbitrary configurations for cluster applications:
+The ``experimental.config.utils.schema`` module is used to validate and process
+parts of cluster configurations that have arbitrary user-defined structures:
 
--   For applications loaded using the :ref:`app <configuration_reference_app>` option, :ref:`app.cfg <configuration_reference_app_cfg>` is used to provide a configuration.
--   For :ref:`custom roles <application_roles>` developed as a part of a cluster application, :ref:`roles_cfg <configuration_reference_roles_cfg>` is used.
+-   :ref:`app.cfg <configuration_reference_app_cfg>` for applications loaded using the :ref:`app <configuration_reference_app>` option
+-   :ref:`roles_cfg <configuration_reference_roles_cfg>` for :ref:`custom roles <application_roles>` developed as a part of a cluster application
 
-The ``experimental.config.utils.schema`` module can be used to validate such configurations and process their data: get and set configuration values, filter and transform configuration data, and so on.
+The module provides an API to get and set configuration values, filter and transform configuration data, and so on.
 
 ..  important::
 
     ``experimental.config.utils.schema`` is an experimental submodule and is subject to changes.
-
-
 
 
 .. _config_utils_schema_getting_started:
@@ -24,12 +23,16 @@ The ``experimental.config.utils.schema`` module can be used to validate such con
 Getting started with config.utils.schema
 ----------------------------------------
 
-Example config - scalar type:
+As an example, consider an :ref:`application role <configuration_application_roles>`
+that has a single configuration option - an HTTP endpoint address.
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_nodes_scalar/config.yaml
     :language: yaml
     :start-at: roles
     :dedent:
+
+This is how you can use the ``experimental.config.utils.schema`` module to process
+the role configuration:
 
 1.  Load the module:
 
@@ -39,8 +42,9 @@ Example config - scalar type:
         :end-at: config.utils.schema
         :dedent:
 
-2.  Define a schema using :ref:`schema.new() <config-utils-schema-new>`.
-    Example enum:
+2.  Define a *schema* -- the root object that stores information about the role's
+    configuration -- using :ref:`schema.new() <config-utils-schema-new>`. The example
+    below shows a schema that includes a single string option:
 
     ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_nodes_scalar/http_api.lua
         :language: lua
@@ -48,8 +52,9 @@ Example config - scalar type:
         :end-before: local function validate
         :dedent:
 
-3.  Validate config values using ``config.utils.schema.validate()``.
-    For a role, inside the ``validate()`` func:
+3.  Use the :ref:`schema.validate() <config-utils-schema-validate>` function to
+    validate configuration values against the schema. In case of a role, call this
+    function inside the role's :ref:`validate() <roles_create_custom_role_validate>` function:
 
     ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_nodes_scalar/http_api.lua
         :language: lua
@@ -57,7 +62,8 @@ Example config - scalar type:
         :end-before: local function apply
         :dedent:
 
-4.  Get value. For a role, inside the ``apply()`` func:
+4.  Obtain values of configuration options using :ref:`schema.get() <config-utils-schema-get>`.
+    In case of a role, call it inside the role's :ref:`apply() <roles_create_custom_role_apply>` function:
 
     ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_nodes_scalar/http_api.lua
         :language: lua
@@ -66,16 +72,17 @@ Example config - scalar type:
         :dedent:
 
 
-
 .. _config_utils_schema_definition:
 
 Defining a schema
 -----------------
 
-Create using :ref:`schema.new() <config-utils-schema-new>`. Options:
+An application's or a role's *configuration schema* is a core object that stores all
+information about a user-defined configuration. To create a schema, use
+the :ref:`schema.new() <config-utils-schema-new>` function. It has the following options:
 
--   schema name
--   schema node:
+-   schema name -- an arbitrary string
+-   schema node -- th
 
     -   scalar and composite (record, array, map) types
     -   annotations (type, validate, and so on)
@@ -87,6 +94,7 @@ Create using :ref:`schema.new() <config-utils-schema-new>`. Options:
 Schema nodes
 ~~~~~~~~~~~~
 
+Schema nodes can have one of two types: *scalar* or *composite*.
 .. _config_utils_schema_scalar_composite_types:
 
 Scalar and composite types
@@ -103,21 +111,23 @@ There are scalar and composite types.
     There is also a shortcut for arrays: :ref:`schema.set() <config-utils-schema-set>`.
 
 
-.. _config_utils_schema_type_system_scalar:
+.. _config_utils_schema_nodes_scalar:
 
-Scalar
-^^^^^^
+Scalar nodes
+************
 
-:ref:`schema.scalar() <config-utils-schema-scalar>`
+Scalar nodes hold a single value of a primitive type: a string, a number, a boolean value
+and so on. For the full list of available scalar types, see :ref:`config_utils_schema_data_types`.
 
-Example config - scalar type:
+This configuration has one scalar node of the ``string`` type:
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_nodes_scalar/config.yaml
     :language: yaml
     :start-at: roles
     :dedent:
 
-Schema definition:
+To define a scalar node in a schema, use :ref:`schema.scalar() <config-utils-schema-scalar>`:
+The following code defines a configuration schema shown above:
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_nodes_scalar/http_api.lua
     :language: lua
@@ -125,23 +135,27 @@ Schema definition:
     :end-before: local function validate
     :dedent:
 
-See also: :ref:`config_utils_schema_data_types`.
+Todo: enum?
+allowed?
 
+.. _config_utils_schema_nodes_record:
 
+Records
+*******
 
-.. _record:
+*Record* is a composite node that includes a predefined set of other nodes, scalar
+or composite. The names and types of fields in a record are determined by the schema.
 
-Record
-^^^^^^
-
-Example config 1 (no nested fields - only scalars inside the record):
+In YAML, a record is represented as a node with nested fields.
+For example, the following configuration has a record node ``http_api`` with
+three scalar fields:
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_nodes_record/config.yaml
     :language: yaml
     :start-at: roles
     :dedent:
 
-Schema:
+The following schema describes this configuration:
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_nodes_record/http_api.lua
     :language: lua
@@ -149,15 +163,21 @@ Schema:
     :end-before: local function validate
     :dedent:
 
+.. note::
 
-Example config 2 (nested fields inside ``listen_address``):
+    Note the use of the :ref:`schema.enum() <config-utils-schema-enum>` function.
+    It defines a scalar node with a limited set of allowed values.
+
+Records are also used to define nested schema nodes of non-primitive types. In the example
+below, the ``http_api`` node holds a single composite object -- ``listen_address``.
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_nodes_record_hierarchy/config.yaml
     :language: yaml
     :start-at: roles
     :dedent:
 
-Schema:
+To create a record node in a schema, use :ref:`schema.record() <config-utils-schema-record>`.
+The following schema describes this configuration:
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_nodes_record_hierarchy/http_api.lua
     :language: lua
@@ -168,22 +188,25 @@ Schema:
 TODO: This sample can be used in the ``Processing configuration data`` section.
 
 
-
-.. _array_record:
+.. _config_utils_schema_nodes_array:
 
 Array
-^^^^^
+*****
 
-Also: :ref:`schema.set() <config-utils-schema-set>`
+*Array* is a composite node type that includes a collection of items of the same
+type. The type can be either primitive or complex.
 
-Example config:
+In YAML, array items start with hyphens. For example, the following configuration
+includes an array named ``http_api``. Each its item is a record with three fields:
+``host``, ``port``, and ``scheme``:
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_nodes_array/config.yaml
     :language: yaml
     :start-at: roles
     :dedent:
 
-Schema:
+To create an array node in a schema, use :ref:`schema.array() <config-utils-schema-array>`.
+The following schema describes this configuration:
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_nodes_array/http-api.lua
     :language: lua
@@ -191,19 +214,28 @@ Schema:
     :end-before: local function validate
     :dedent:
 
-.. _record_map:
+There is also the :ref:`schema.set() <config-utils-schema-set>` function that enables
+creating arrays with a limited set of item values.
+
+.. _config_utils_schema_nodes_map:
 
 Map
-^^^
+***
 
-Example config:
+*Map* is a composite node type that includes key-value pairs with arbitrary values
+of predefined types.
+
+In YAML, a map is represented as a node with nested fields.
+For example, the following configuration has a map node ``endpoints`` with
+three items:
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_nodes_map/config.yaml
     :language: yaml
     :start-at: roles
     :dedent:
 
-Schema:
+To create a map node in a schema, use :ref:`schema.map() <config-utils-schema-map>`.
+The following schema describes this configuration:
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_nodes_map/http_api.lua
     :language: lua
@@ -217,27 +249,60 @@ Schema:
 Data types
 **********
 
-Passed to ``scalar()``, see :ref:`config_utils_schema_type_system_scalar`.
-
-Supported types:
-
--   ``string`` -- ``string``
--   ``number`` -- ``number``
--   ``integer``	-- ``number``
--   ``boolean``	-- ``boolean``
--   ``any``	-  any accepts an arbitrary Lua type, including ``table``. A scalar of the ``any`` type may be used to declare an arbitrary value that doesn't need any validation.
--   ``string, number`` -- ``string`` or ``number``
--   ``number, string`` -- ``string`` or ``string``
+Scalar nodes can have the following data types:
 
 
+..  container:: table
 
+    ..  list-table::
+        :header-rows: 1
+
+        *   -   Scalar type
+            -   Lua type
+            -   Comment
+
+        *   -   ``string``
+            -   ``string``
+            -
+
+        *   -   ``number``
+            -   ``number``
+            -
+        *   -   ``integer``
+            -   ``number``
+            -   Only integer numbers
+
+        *   -   ``boolean``
+            -   ``boolean``
+            -   ``true`` or ``false``
+
+        *   -   ``any``
+            -   Arbitrary Lua value
+            -   May be used to declare an arbitrary value that doesn't need validation.
+
+        *   -   |``string, number``
+                | or
+                |``number, string``
+            -   ``string`` or ``number``
+            -
 
 .. _config_utils_schema_annotation:
 
 Annotations
 ***********
 
-3 groups of annotations:
+Each scalar node is defined by a set of *annotations* -- attributes that set its
+parameters: type, default value, validation function, etc
+
+Annotations are passed as schema.scalar argument rows
+
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_annotations/http_api.lua
+    :language: lua
+    :start-at: host
+    :end-before: port
+    :dedent:
+
+Node annotations fall into three groups:
 
 -   Built-in annotations handled by the module (``validate``, ``allowed_values``, ``default``, ``apply_default_if``). Note that ``validate``, ``allowed_values`` used for validation only. ``default`` and ``apply_default_if`` can transform the configuration.
 -   User-defined annotations
@@ -250,14 +315,20 @@ Built-in annotations
 
 TODO: check the ``Built-in annotation`` term.
 
-Example config:
+Built-in annotations are interpreted by the module itself. There are the following
+built-in annotations:
+
+-
+
+Consider the following role configuration:
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_annotations/config.yaml
     :language: yaml
     :start-at: roles
     :dedent:
 
-Schema definition (``validate``, ``allowed_values``, ``default``):
+The following schema uses built-in annotations ``default``, ``allowed_values``, and ``validate``
+to define default and allowed option values and validation functions:
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_annotations/http_api.lua
     :language: lua
@@ -265,7 +336,7 @@ Schema definition (``validate``, ``allowed_values``, ``default``):
     :end-before: local function validate
     :dedent:
 
-Validate functions:
+Validation functions can look as follows:
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_annotations/http_api.lua
     :language: lua
@@ -274,14 +345,17 @@ Validate functions:
     :dedent:
 
 
-
-
 .. _config_utils_schema_user_defined_annotations:
 
 User-defined annotations
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ``env`` annotation:
+A schema node can have *user-defined annotations* with arbitrary names. Such annotations
+are used to implement custom behavior. You can get their names and values from
+the schema and use in the role or application code.
+
+In the example below, the user-defined ``env`` annotation is used to provide names
+of environment variables that can store values of configuration options:
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_fromenv/http_api.lua
     :language: lua
@@ -297,7 +371,10 @@ See the full sample here: :ref:`config_utils_schema_env-vars`.
 Computed annotations
 ^^^^^^^^^^^^^^^^^^^^
 
-Schema node:
+*Computed annotations* enable access to schema data
+
+In the example below, the validate function of the listen_address record
+uses computed annotation to access the schema data from outside the record:
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_computed_annotations/api.lua
     :language: lua
@@ -305,6 +382,7 @@ Schema node:
     :end-before: local http_listen_address_schema
     :dedent:
 
+The following schema with listen_address passes the validation:
 Passes validation:
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_computed_annotations/api.lua
@@ -313,7 +391,7 @@ Passes validation:
     :end-before: local iproto_listen_address_schema
     :dedent:
 
-Raises an error:
+If this record is added to a schema with ``protocol = 'iproto'``, an error is raised:
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_computed_annotations/api.lua
     :language: lua
@@ -328,14 +406,10 @@ Raises an error:
 User-defined methods
 ~~~~~~~~~~~~~~~~~~~~
 
-Example config:
+In addition to nodes, a schema can include *methods*. Methods are user-defined
+functions that can be called on this schema.
 
-..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_methods/config.yaml
-    :language: yaml
-    :start-at: roles
-    :dedent:
-
-Schema:
+For example, this schema has a method that returns its fields merged in a URI string:
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_methods/http_api.lua
     :language: lua
@@ -357,7 +431,11 @@ Processing configuration data
 Validating configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-Role -- inside the ``validate()`` function:
+The schema object's :ref:`validate() <config-schema_object-validate>` function performs all the necessary checks
+on the provided configuration. It validates the configuration structure, node types, allowed values,
+and other aspects defines in the schema.
+
+When writing roles, call this function inside the :ref:`role validation function <roles_create_custom_role_validate>`:
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_nodes_record_hierarchy/http_api.lua
     :language: lua
@@ -370,6 +448,9 @@ Role -- inside the ``validate()`` function:
 
 Getting configuration values
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To get configuration values, use the schema's :ref:`get() <config-schema_object-get>` method.
+The function takes the configuration and the full path to the node as arguments:
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_nodes_record_hierarchy/http_api.lua
     :language: lua
@@ -401,7 +482,9 @@ Example with ``apply_default()``:
 Parsing environment variables
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Using :ref:`schema.fromenv() <config-utils-schema-fromenv>`:
+The :ref:`schema.fromenv() <config-utils-schema-fromenv>` allows getting configuration
+values from environment variables. The example below shows how to do this by
+adding a user-defined annotation ``env``:
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_fromenv/http_api.lua
     :language: lua
@@ -409,12 +492,10 @@ Using :ref:`schema.fromenv() <config-utils-schema-fromenv>`:
     :end-before: local function validate
     :dedent:
 
-Other API members:
+The function also uses schema object methods:
 
--   Custom annotation (``env``)
--   ``pairs()``
--   ``set()``
-
+-   :ref:`pairs() <config-schema_object-pairs>` to iterate over the schema nodes.
+-   :ref:`set() <config-schema_object-set>` to assign configuration values.
 
 
 .. _api-reference-config-utils-schema:
@@ -434,28 +515,28 @@ API Reference
             -
 
         *   -   :ref:`schema.array() <config-utils-schema-array>`
-            -   TODO
+            -   Define an array
 
         *   -   :ref:`schema.enum() <config-utils-schema-enum>`
-            -   TODO
+            -   Create an enum
 
         *   -   :ref:`schema.fromenv() <config-utils-schema-fromenv>`
-            -   TODO
+            -   Parse a value from an environment variable
 
         *   -   :ref:`schema.map() <config-utils-schema-map>`
-            -   TODO
+            -   Create a map
 
         *   -   :ref:`schema.new() <config-utils-schema-new>`
-            -   TODO
+            -   Create a schema
 
         *   -   :ref:`schema.record() <config-utils-schema-record>`
-            -   TODO
+            -   Create a record
 
         *   -   :ref:`schema.scalar() <config-utils-schema-scalar>`
-            -   TODO
+            -   Create a scalar
 
         *   -   :ref:`schema.set() <config-utils-schema-set>`
-            -   TODO
+            -   Define a set
 
         *   -   **schema_object**
             -
@@ -471,8 +552,6 @@ API Reference
 
         *   -   :ref:`schema_object:map() <config-schema_object-map>`
             -   TODO
-
-
 
         *   -   :ref:`schema_object:merge() <config-schema_object-merge>`
             -   TODO
@@ -539,12 +618,6 @@ API Reference
 
         *   -   :ref:`schema_node_object.validate <config-schema_node_object-validate>`
             -   TODO
-
-
-
-
-
-
 
 
 ..  _config-utils-schema_functions:
