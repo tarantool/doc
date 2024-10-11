@@ -43,7 +43,7 @@ Function box.once
     First, check the ``_schema`` system space.
     The ``_schema`` space in the example contains two ``box.once`` objects -- ``oncebye`` and ``oncehello``:
 
-    ..  code-block:: console
+    ..  code-block:: tarantoolsession
 
         app:instance001> box.space._schema:select{}
         ---
@@ -55,7 +55,7 @@ Function box.once
 
     Delete the ``oncehello`` object:
 
-    ..  code-block:: console
+    ..  code-block:: tarantoolsession
 
         app:instance001> box.space._schema:delete('oncehello')
         ---
@@ -64,7 +64,7 @@ Function box.once
 
     After that, check the ``_schema`` space again:
 
-    ..  code-block:: console
+    ..  code-block:: tarantoolsession
 
         app:instance001> box.space._schema:select{}
         ---
@@ -76,7 +76,7 @@ Function box.once
 
     To re-execute the function, call the ``box.once()`` method again:
 
-    ..  code-block:: console
+    ..  code-block:: tarantoolsession
 
         app:instance001> box.once('hello', function() end)
         ---
