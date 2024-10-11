@@ -25,7 +25,7 @@ Function box.once
 
     :param string        key: a value that will be checked
     :param function function: a function
-    :param               ...: arguments that must be passed to function
+    :param               ...: arguments that must be passed to the function
 
     ..  NOTE::
 
