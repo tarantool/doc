@@ -15,7 +15,7 @@ box.space._schema
     * ``replicaset_name`` (since :doc:`3.0.0 <release/3.0.0>`): the name of a replica set to which this instance belongs.
     * ``replicaset_uuid`` (since :doc:`3.0.0 <release/3.0.0>`): the instance's replica set UUID. In version :doc:`3.0.0 <release/3.0.0>`,
       the field was renamed from ``cluster`` to ``replicaset_uuid``.
-    * ``max_id`` (deprecated since :doc:`2.11.1 <https://github.com/tarantool/tarantool/releases/tag/2.11.1>`__): the maximal space ID.
+    * ``max_id`` (deprecated since `2.11.1 <https://github.com/tarantool/tarantool/releases/tag/2.11.1>`__): the maximal space ID.
       Use the :ref:`box.space._space.index[0]:max() <box_index-max>` function instead.
     * ``once...``: tuples that correspond to specific
       :ref:`box.once() <box-once>` blocks from the instance's
