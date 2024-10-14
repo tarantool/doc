@@ -52,7 +52,7 @@ the role configuration:
         :end-before: local function validate
         :dedent:
 
-3.  Use the :ref:`schema.validate() <config-utils-schema-validate>` function to
+3.  Use the :ref:`schema.validate() <config-schema_object-validate>` function to
     validate configuration values against the schema. In case of a role, call this
     function inside the role's :ref:`validate() <roles_create_custom_role_validate>` function:
 
@@ -62,7 +62,7 @@ the role configuration:
         :end-before: local function apply
         :dedent:
 
-4.  Obtain values of configuration options using :ref:`schema.get() <config-utils-schema-get>`.
+4.  Obtain values of configuration options using :ref:`schema.get() <config-schema_object-get>`.
     In case of a role, call it inside the role's :ref:`apply() <roles_create_custom_role_apply>` function:
 
     ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_nodes_scalar/http_api.lua
@@ -86,8 +86,8 @@ To create a schema, use the :ref:`schema.new() <config-utils-schema-new>` functi
 It has the following arguments:
 
 -   schema name -- an arbitrary string to use as an identifier
--   schema nodes -- a hierarchical structure of configuration options that form
-    the schema.
+-   root schema node -- a table describing the hierarchical schema structure
+    starting from the root.
 -   (optional) methods -- functions that can be called on this schema object.
 
 .. _config_utils_schema_nodes:
@@ -99,14 +99,10 @@ Schema nodes describe the hierarchy of options within a schema. There are two ty
 
 -   *Scalar* nodes hold a single value of a supported primitive type. For example,
     a string configuration option of a role is a scalar node its schema.
--   *Composite* nodes include multiple values in different forms: records, arrays, or maps.
+-   *Composite* nodes include multiple values in different forms: *records*, *arrays*, or *maps*.
 
-    Can be created using :ref:`schema.record() <config-utils-schema-record>`, :ref:`schema.array() <config-utils-schema-array>`, :ref:`schema.map() <config-utils-schema-map>`.
-    There is also a shortcut for arrays: :ref:`schema.set() <config-utils-schema-set>`.
-
-Each schema node is defined by its *annotations*
-   -   annotations (type, validate, and so on)
-
+A node can have *annotations* -- named attributes that enable customization of
+its behavior, for example, setting a default value.
 
 .. _config_utils_schema_nodes_scalar:
 
@@ -123,8 +119,8 @@ This configuration has one scalar node of the ``string`` type:
     :start-at: roles
     :dedent:
 
-To define a scalar node in a schema, use :ref:`schema.scalar() <config-utils-schema-scalar>`:
-The following code defines a configuration schema shown above:
+To define a scalar node in a schema, use :ref:`schema.scalar() <config-utils-schema-scalar>`.
+The following schema can be used to process the configuration shown above:
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_nodes_scalar/http_api.lua
     :language: lua
@@ -213,7 +209,7 @@ The following schema describes the configuration above:
     :dedent:
 
 Records are also used to define nested schema nodes of non-primitive types. In the example
-below, the ``http_api`` node holds a single composite object -- ``listen_address``.
+below, the ``http_api`` node includes another record ``listen_address``.
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_nodes_record_hierarchy/config.yaml
     :language: yaml
@@ -227,8 +223,6 @@ The following schema describes this configuration:
     :start-at: local listen_address_schema
     :end-before: local function validate
     :dedent:
-
-TODO: This sample can be used in the ``Processing configuration data`` section.
 
 
 .. _config_utils_schema_nodes_array:
@@ -265,7 +259,7 @@ creating arrays with a limited set of allowed items.
 Maps
 ****
 
-*Map* is a composite node type that includes key-value pairs with arbitrary values
+*Map* is a composite node type that holds an arbitrary number of key-value pairs
 of predefined types.
 
 In YAML, a map is represented as a node with nested fields.
@@ -291,16 +285,16 @@ any number of options with arbitrary names and boolean values.
 Annotations
 ***********
 
-Node *annotations* are attributes that define the its various aspects. For example,
-scalar nodes have a required annotation ``type`` that defines the option type.
+Node *annotations* are named attributes that define the its various aspects. For example,
+scalar nodes have a required annotation ``type`` that defines the node value type.
 Other annotations can optionally set default values, validation function, and
 
 Annotations are passed in a table to the node creation function:
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_annotations/http_api.lua
     :language: lua
-    :start-at: host
-    :end-before: port
+    :start-at: scheme = schema.scalar
+    :end-before: host = schema.scalar
     :dedent:
 
 Node annotations fall into three groups:
@@ -317,16 +311,14 @@ Node annotations fall into three groups:
 Built-in annotations
 ^^^^^^^^^^^^^^^^^^^^
 
-TODO: check the ``Built-in annotation`` term.
-
 Built-in annotations are interpreted by the module itself. There are the following
 built-in annotations:
 
--   ``type`` -- the node value type. Mandatory for scalar nodes, except those created with ``schema.enum``.
--   ``allowed_values`` -- a list of possible node values.
--   ``validate`` -- a validation function for the provided node value.
--   ``default`` -- a value to use if the option is not specified in the configuration.
--   ``apply_default_if`` -- a function that defines when to apply the default value.
+-   :ref:`type <config-schema_node_object-type>` -- the node value type. Mandatory for scalar nodes, except for those created with ``schema.enum()``.
+-   :ref:`allowed_values <config-schema_node_object-allowed_values>` -- a list of possible node values.
+-   :ref:`validate <config-schema_node_object-validate>` -- a validation function for the provided node value.
+-   :ref:`default <config-schema_node_object-default>` -- a value to use if the option is not specified in the configuration.
+-   :ref:`apply_default_if <config-schema_node_object-apply_default_if>` -- a function that defines when to apply the default value.
 
 Consider the following role configuration:
 
@@ -362,8 +354,8 @@ A schema node can have *user-defined annotations* with arbitrary names. Such ann
 are used to implement custom behavior. You can get their names and values from
 the schema and use in the role or application code.
 
-In the example below, the user-defined ``env`` annotation is used to provide names
-of environment variables that can store values of configuration options:
+Example: the ``env`` user-defined annotation is used to provide names
+of environment variables from which the configuration values can be taken.
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_fromenv/http_api.lua
     :language: lua
@@ -469,22 +461,23 @@ The function takes the configuration and the full path to the node as arguments:
     :dedent:
 
 
-
 .. _config_utils_schema_transform_configuration:
 
 Transforming configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-TODO: filter, merge, map, apply_default ?
+The module provides methods that transform configuration data based on the schema,
+for example, :ref:`apply_default() <config-schema_object-apply_default>`,
+:ref:`merge() <config-schema_object-merge>`, ref:`set() <config-schema_object-set>`.
 
-Example with ``apply_default()``:
+The following sample shows how to apply default values from the schema to fill
+missing configuration fields:
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_annotations/http_api.lua
     :language: lua
     :start-at: local function apply
     :end-before: local function stop
     :dedent:
-
 
 
 .. _config_utils_schema_env-vars:
@@ -546,43 +539,43 @@ API Reference
             -   Create a scalar
 
         *   -   :ref:`schema.set() <config-utils-schema-set>`
-            -   Define a set
+            -   Create a set
 
         *   -   **schema_object**
             -
 
         *   -   :ref:`schema_object:apply_default() <config-schema_object-apply_default>`
-            -   TODO
+            -   Apply default values
 
         *   -   :ref:`schema_object:filter() <config-schema_object-filter>`
-            -   TODO
+            -   Filter schema nodes
 
         *   -   :ref:`schema_object:get() <config-schema_object-get>`
-            -   TODO
+            -   Get specified configuration data
 
         *   -   :ref:`schema_object:map() <config-schema_object-map>`
             -   TODO
 
         *   -   :ref:`schema_object:merge() <config-schema_object-merge>`
-            -   TODO
+            -   Merge two configurations
 
         *   -   :ref:`schema_object:pairs() <config-schema_object-pairs>`
-            -   TODO
+            -   Traverse a configuration
 
         *   -   :ref:`schema_object:set() <config-schema_object-set>`
-            -   TODO
+            -   Set a configuration value
 
         *   -   :ref:`schema_object:validate() <config-schema_object-validate>`
-            -   TODO
+            -   Validate a configuration against a schema
 
         *   -   :ref:`schema_object.methods <config-schema_object-methods>`
-            -   TODO
+            -   User-defined methods
 
         *   -   :ref:`schema_object.name <config-schema_object-name>`
-            -   TODO
+            -   Schema name
 
         *   -   :ref:`schema_object.schema <config-schema_object-schema>`
-            -   TODO
+            -   Schema nodes hierarchy
 
         *   -   **schema_node_annotation**
             -
@@ -591,7 +584,7 @@ API Reference
             -   Allowed node values
 
         *   -   :ref:`apply_default_if <config-schema_node_annotation-apply_default_if>`
-            -   TODO
+            -   Condition to apply defaults
 
         *   -   :ref:`default <config-schema_node_annotation-default>`
             -   Default node value
@@ -609,25 +602,25 @@ API Reference
             -   Allowed node values
 
         *   -   :ref:`schema_node_object.apply_default_if <config-schema_node_object-apply_default_if>`
-            -   TODO
+            -   Condition to apply defaults
 
         *   -   :ref:`schema_node_object.computed <config-schema_node_object-computed>`
-            -   TODO
+            -   Computed annotations
 
         *   -   :ref:`schema_node_object.default <config-schema_node_object-default>`
-            -   TODO
+            -   Default value
 
         *   -   :ref:`schema_node_object.fields <config-schema_node_object-fields>`
-            -   TODO
+            -   Record node fields
 
         *   -   :ref:`schema_node_object.items <config-schema_node_object-items>`
-            -   TODO
+            -   Array node items
 
         *   -   :ref:`schema_node_object.type <config-schema_node_object-type>`
-            -   TODO
+            -   Scalar node type
 
         *   -   :ref:`schema_node_object.validate <config-schema_node_object-validate>`
-            -   TODO
+            -   Validation function
 
 
 ..  _config-utils-schema_functions:
@@ -1010,13 +1003,13 @@ schema_node_object
 
     ..  data:: computed
 
-        TODO (for example, ``computed.annotations``)
+        ``computed.annotations`` stores the node's :ref:`computed annotations <config_utils_schema_computed_annotations>`.
 
     ..  _config-schema_node_object-default:
 
     ..  data:: default
 
-        The default value.
+        Node's default value.
 
     ..  _config-schema_node_object-fields:
 
@@ -1036,7 +1029,7 @@ schema_node_object
 
     ..  data:: type
 
-        Scalar node type. See :ref:`config_utils_schema_data_types`
+        Node type for scalar nodes. See :ref:`config_utils_schema_data_types`
 
     ..  _config-schema_node_object-validate:
 
