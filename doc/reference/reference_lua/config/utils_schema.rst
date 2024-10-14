@@ -233,8 +233,8 @@ TODO: This sample can be used in the ``Processing configuration data`` section.
 
 .. _config_utils_schema_nodes_array:
 
-Array
-*****
+Arrays
+******
 
 *Array* is a composite node type that includes a collection of items of the same
 type. The items can be either scalar or composite nodes.
@@ -262,8 +262,8 @@ creating arrays with a limited set of allowed items.
 
 .. _config_utils_schema_nodes_map:
 
-Map
-***
+Maps
+****
 
 *Map* is a composite node type that includes key-value pairs with arbitrary values
 of predefined types.
@@ -525,7 +525,7 @@ API Reference
             -
 
         *   -   :ref:`schema.array() <config-utils-schema-array>`
-            -   Define an array
+            -   Create an array
 
         *   -   :ref:`schema.enum() <config-utils-schema-enum>`
             -   Create an enum
@@ -588,25 +588,25 @@ API Reference
             -
 
         *   -   :ref:`allowed_values <config-schema_node_annotation-allowed_values>`
-            -   TODO
+            -   Allowed node values
 
         *   -   :ref:`apply_default_if <config-schema_node_annotation-apply_default_if>`
             -   TODO
 
         *   -   :ref:`default <config-schema_node_annotation-default>`
-            -   TODO
+            -   Default node value
 
         *   -   :ref:`type <config-schema_node_annotation-type>`
-            -   TODO
+            -   Value type
 
         *   -   :ref:`validate <config-schema_node_annotation-validate>`
-            -   TODO
+            -   Validation function
 
         *   -   **schema_node_object**
             -
 
         *   -   :ref:`schema_node_object.allowed_values <config-schema_node_object-allowed_values>`
-            -   TODO
+            -   Allowed node values
 
         *   -   :ref:`schema_node_object.apply_default_if <config-schema_node_object-apply_default_if>`
             -   TODO
@@ -641,7 +641,7 @@ Functions
 
 ..  function:: schema.array(opts)
 
-    Define an array.
+    Create an array node of a configuration schema.
 
     :param table opts: a table in the following format:
 
@@ -651,14 +651,24 @@ Functions
 
                        See also: :ref:`schema_node_object <config-utils-schema_node_object>`, :ref:`schema_node_annotation <config-utils-schema_node_annotation>`.
 
+    :return: the created schema node
+    :rtype: table
+
+    See also: :ref:`config_utils_schema_nodes_array`
+
 ..  _config-utils-schema-enum:
 
 ..  function:: schema.enum(allowed_values, annotations)
 
-    Create an enum.
+    A shortcut for creating a string scalar node with a limited set of allowed values.
 
-    :param table allowed_values: allowed values
+    :param table allowed_values: a list of enum members -- values allowed for the node
     :param table annotations: annotations (see :ref:`schema_node_annotation <config-utils-schema_node_annotation>`)
+
+    :return: the created schema node
+    :rtype: table
+
+    See also: :ref:`config_utils_schema_nodes_scalar`
 
 ..  _config-utils-schema-fromenv:
 
@@ -666,16 +676,17 @@ Functions
 
     Parse data from an environment variable as a value of the given type.
 
-    :param string env_var_name: env var name
-    :param string raw_value: raw value
+    :param string env_var_name: environment variable name
+    :param string raw_value: environment variable value
     :param schema_node_object schema_node: a schema node (see :ref:`schema_node_object <config-utils-schema_node_object>`)
 
+    See also :ref:`config_utils_schema_env-vars`
 
 ..  _config-utils-schema-map:
 
 ..  function:: schema.map(opts)
 
-    Create a map.
+    Create a map node of a configuration schema.
 
     :param table opts: a table in the following format:
 
@@ -685,8 +696,10 @@ Functions
 
                        See also: :ref:`schema_node_object <config-utils-schema_node_object>`, :ref:`schema_node_annotation <config-utils-schema_node_annotation>`.
 
-    :return: a table that represents the created schema node
+    :return: the created schema node
     :rtype: table
+
+    See also: :ref:`config_utils_schema_nodes_map`
 
 ..  _config-utils-schema-new:
 
@@ -695,18 +708,19 @@ Functions
     Create a schema object.
 
     :param string schema_name: a name
-    :param table schema_node: a node
+    :param table schema_node: a root schema node
     :param table methods: methods
 
     :return: a new schema instance (see :ref:`schema_object <config-utils-schema_object>`)
     :rtype: userdata
 
+    See also: :ref:`config_utils_schema_getting_started`
 
 ..  _config-utils-schema-record:
 
 ..  function:: schema.record(fields[, annotations])
 
-    Create a record.
+    Create a record node of a configuration schema.
 
     :param table fields: a table of fields in the following format:
 
@@ -718,34 +732,38 @@ Functions
 
     :param table annotations: annotations (see :ref:`config_utils_schema_annotation`)
 
-    :return: a table that represents the created schema node
+    :return: the created schema node
     :rtype: table
 
+    See also: :ref:`config_utils_schema_nodes_record`
 
 ..  _config-utils-schema-scalar:
 
 ..  function:: schema.scalar(type[, annotations])
 
-    Create a scalar.
+    Create a scalar node of a configuration schema.
 
     :param string type: data type (see :ref:`config_utils_schema_data_types`)
     :param table annotations: annotations (see :ref:`config_utils_schema_annotation`)
 
-    :return: a table that represents the created schema node
+    :return: the created schema node
     :rtype: table
+
+    See also: :ref:`config_utils_schema_nodes_scalar`
 
 ..  _config-utils-schema-set:
 
 ..  function:: schema.set(allowed_values, annotations)
 
-    Shortcut for array of unique string values from the given list of allowed values.
+    Shortcut for creating an array node of unique string values from the given list of allowed values.
 
-    :param table allowed_values: allowed values
+    :param table allowed_values: allowed values of array items
     :param table annotations: annotations (see :ref:`config_utils_schema_annotation`)
 
-    :return: a table that represents the created schema node
+    :return: the created schema node
     :rtype: table
 
+    See also: :ref:`config_utils_schema_nodes_array`
 
 ..  _config-utils-schema_object:
 
@@ -758,17 +776,52 @@ schema_object
 
     ..  method:: apply_default(data)
 
-        Apply default values.
+        Apply default values. The functions takes the ``default``
+        built-in annotation values of the scalar nodes and applies them based
+        on the ``apply_default_if`` annotation. If there is no ``apply_default_if``
+        annotation on a node, the default value is also applied.
 
-        :param any data: data
+        .. note::
 
-        :return: new data
+            The method works for static defaults. To define a dynamic default value,
+            use the :ref:`map() <config-schema_object-map>` method.
+
+        :param any data: configuration data
+
+        :return: configuration data with applied schema defaults
 
     ..  _config-schema_object-filter:
 
     ..  method:: filter(data, f)
 
-        Filter data based on the schema annotations.
+        Filter data based on the schema annotations. The methods returns an iterator
+        by configuration nodes for which the given filter function ``f`` returns ``true``.
+
+        The filter function f receives the following table as the argument:
+
+        .. code-block:: lua
+
+            w = {
+                path = <array-like table>,
+                schema = <schema node>,
+                data = <data at the given path>,
+            }
+
+        The filter function returns a boolean value that is interpreted as 'accepted' or 'not accepted'.
+
+        Example: call a function on all schema nodes that have the ``my_annotation``
+        annotation defined:
+
+        .. code-block:: lua
+
+            s:filter(function(w)
+                return w.schema.my_annotation ~= nil
+            end):each(function(w)
+                do_something(w.data)
+            end)
+
+        :param any data: configuration data
+        :param function f: filter function
 
         :return: a luafun iterator
 
@@ -776,9 +829,15 @@ schema_object
 
     ..  method:: get(data, path)
 
-        Get nested data that is pointed by the given path.
+        Get nested data that is pointed by the given path. The path can be
+        either a dot-separated string (``http.scheme``) or an array-like table (``{ 'http', 'scheme'}``).
 
         Example: see :ref:`config_utils_schema_get_configuration`
+
+        :param any data: configuration data
+        :param any path: path to the target node
+
+        :return: data at the given path
 
     ..  _config-schema_object-map:
 
@@ -796,10 +855,10 @@ schema_object
 
         Merge two hierarchical values (prefer the latter).
 
-        :param any a: data
-        :param any b: data
+        :param any a: configuration data
+        :param any b: configuration data
 
-        :return: new data
+        :return: merged configuration data
 
     ..  _config-schema_object-pairs:
 
@@ -811,41 +870,55 @@ schema_object
 
     ..  _config-schema_object-set:
 
-    ..  method:: set()
+    ..  method:: set(data, path, value)
 
-        TODO
+        Set a given value at the given path in a configuration.
+        The path can be either a dot-separated string (``http.scheme``) or
+        an array-like table (``{ 'http', 'scheme'}``).
 
-    ..  _config-schema_object-methods:
+        :param any data: configuration data
+        :param any path: path to the target node
+        :param any value: new value
+
+        :return: updated configuration data
 
     ..  _config-schema_object-validate:
 
     ..  method:: validate(data)
 
-        Validate data against the schema.
-        ``validate()`` raises an error if the specified data doesn't adhere this schema.
+        Validate data against the schema. If the data doesn't adhere to the schema,
+        an error is raised.
+
+        The method checks the types of ``data`` fields against the schema node types.
+        Additionally, it checks the data using the ``allowed_values`` and ``validate``
+        built-in annotations.
 
         :param any data: data
 
         Example: see :ref:`config_utils_schema_annotation`
+        Example: see :ref:`config_utils_schema_validating_configuration`
+
+    ..  _config-schema_object-methods:
 
     ..  data:: methods
 
-        TODO
+        User-defines methods in the schema.
+
+        See also: :ref:`config_utils_schema_methods`
 
     ..  _config-schema_object-name:
 
     ..  data:: name
 
-        TODO
+        Schema name.
 
     ..  _config-schema_object-schema:
 
     ..  data:: schema
 
-        TODO, see also ``schema_node_object``
+        Schema nodes hierarchy.
 
-
-
+        See also ``schema_node_object``
 
 
 ..  _config-utils-schema_node_annotation:
@@ -857,7 +930,7 @@ schema_node_annotation
 
 -   ``allowed_values``
 
-    A list of allowed values.
+    A list of allowed values. See also :ref:`config-schema_object-validate`
 
 ..  _config-schema_node_annotation-apply_default_if:
 
@@ -865,24 +938,54 @@ schema_node_annotation
 
     A function that specifies whether to apply the default value specified using ``default``.
 
+    See also: :ref:`config-schema_object-apply_default`
+
 ..  _config-schema_node_annotation-default:
 
 -   ``default``
 
-    The value to be placed instead of a missed one.
+    A default value to use for a scalar node if it's not specified explicitly.
+    Example: :ref:`config_utils_schema_transform_configuration`
+
+    See also: :ref:`config-schema_object-apply_default`
 
 ..  _config-schema_node_annotation-type:
 
 -   ``type``
 
-    A value type. See :ref:`config_utils_schema_data_types`.
+    A value type. See also :ref:`config_utils_schema_data_types`.
 
 ..  _config-schema_node_annotation-validate:
 
 -   ``validate``
 
-    A function used to validate data.
+    A function used to validate node data.
 
+    The function should accept the following arguments:
+
+    See also :ref:`config-schema_object-validate`
+
+    Example:
+
+    .. code-block:: lua
+
+        local schema = require('experimental.config.utils.schema')
+
+        local function validate_email(email, w)
+            if email:find('@') == nil then
+                w.error('A email must contain @ symbol, got %q', email)
+            end
+        end
+
+        local personal_info_schema = schema.new('personal_info', schema.record({
+            email = schema.scalar({
+                type = 'string',
+                validate = validate_email,
+            }),
+        }))
+
+        personal_info_schema:validate({email = 'foo'})
+        -- error: [personal_info] email: A email must contain @ symbol, got "foo"
 
 ..  _config-utils-schema_node_object:
 
@@ -895,13 +998,13 @@ schema_node_object
 
     ..  data:: allowed_values
 
-        TODO
+        A list of values allowed for the node.
 
     ..  _config-schema_node_object-apply_default_if:
 
     ..  data:: apply_default_if
 
-        TODO
+        A
 
     ..  _config-schema_node_object-computed:
 
@@ -913,28 +1016,30 @@ schema_node_object
 
     ..  data:: default
 
-        TODO
+        The default value.
 
     ..  _config-schema_node_object-fields:
 
     ..  data:: fields
 
-        TODO
+        Child nodes for record nodes.
+        See also :ref:`config_utils_schema_nodes_record`.
 
     ..  _config-schema_node_object-items:
 
     ..  data:: items
 
-        TODO
+        Node items for array nodes.
+        See also :ref:`config_utils_schema_nodes_array`
 
     ..  _config-schema_node_object-type:
 
     ..  data:: type
 
-        TODO
+        Scalar node type. See :ref:`config_utils_schema_data_types`
 
     ..  _config-schema_node_object-validate:
 
     ..  data:: validate
 
-        TODO
+        Node value validation function.
