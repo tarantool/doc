@@ -554,7 +554,7 @@ API Reference
             -   Get specified configuration data
 
         *   -   :ref:`schema_object:map() <config-schema_object-map>`
-            -   TODO
+            -   Transform configuration data
 
         *   -   :ref:`schema_object:merge() <config-schema_object-merge>`
             -   Merge two configurations
@@ -647,7 +647,7 @@ Functions
     :return: the created schema node
     :rtype: table
 
-    See also: :ref:`config_utils_schema_nodes_array`
+    **See also:** :ref:`config_utils_schema_nodes_array`
 
 ..  _config-utils-schema-enum:
 
@@ -661,19 +661,38 @@ Functions
     :return: the created schema node
     :rtype: table
 
-    See also: :ref:`config_utils_schema_nodes_scalar`
+    **See also:** :ref:`config_utils_schema_nodes_scalar`
 
 ..  _config-utils-schema-fromenv:
 
 ..  function:: schema.fromenv(env_var_name, raw_value, schema_node)
 
-    Parse data from an environment variable as a value of the given type.
+    Parse an environment variable as a value of the given schema node.
+    The ``env_var_name`` parameter is used only for error messages.
+    The value (``raw_value``) should be received using ``os.getenv()`` or ``os.environ()``.
+
+    How the raw value is parsed depends on the ``schema_node`` type:
+
+    -   Scalar:
+        -   ``string``: return the value as is
+        -   ``number`` or ``integer: parse the value as a number or an integer
+        -   ``string, number``: attempt to parse as a number; in case of a failure
+            return the value as is
+        -   ``boolean``: accept ``true`` or ``1`` for ``true``, ``false`` or ``0`` for ``false``
+        -   ``any``: parse the value as a JSON
+    -   Map: parse either as JSON (if the raw value starts with ``{``)
+        or as a comma-separated string of ``key=value`` pairs: ``key1=value1,key2=value2``
+    -   Array: parse either as JSON (if the raw value starts with ``[``)
+        or as a comma-separated string of items: ``item1,item2,item3``
 
     :param string env_var_name: environment variable name
     :param string raw_value: environment variable value
     :param schema_node_object schema_node: a schema node (see :ref:`schema_node_object <config-utils-schema_node_object>`)
 
-    See also :ref:`config_utils_schema_env-vars`
+    :return: the created schema node
+    :rtype: table
+
+    **See also:** :ref:`config_utils_schema_env-vars`
 
 ..  _config-utils-schema-map:
 
@@ -692,7 +711,7 @@ Functions
     :return: the created schema node
     :rtype: table
 
-    See also: :ref:`config_utils_schema_nodes_map`
+    **See also:** :ref:`config_utils_schema_nodes_map`
 
 ..  _config-utils-schema-new:
 
@@ -707,7 +726,7 @@ Functions
     :return: a new schema instance (see :ref:`schema_object <config-utils-schema_object>`)
     :rtype: userdata
 
-    See also: :ref:`config_utils_schema_getting_started`
+    **See also:** :ref:`config_utils_schema_getting_started`
 
 ..  _config-utils-schema-record:
 
@@ -728,7 +747,7 @@ Functions
     :return: the created schema node
     :rtype: table
 
-    See also: :ref:`config_utils_schema_nodes_record`
+    **See also:** :ref:`config_utils_schema_nodes_record`
 
 ..  _config-utils-schema-scalar:
 
@@ -742,7 +761,7 @@ Functions
     :return: the created schema node
     :rtype: table
 
-    See also: :ref:`config_utils_schema_nodes_scalar`
+    **See also:** :ref:`config_utils_schema_nodes_scalar`
 
 ..  _config-utils-schema-set:
 
@@ -756,7 +775,7 @@ Functions
     :return: the created schema node
     :rtype: table
 
-    See also: :ref:`config_utils_schema_nodes_array`
+    **See also:** :ref:`config_utils_schema_nodes_array`
 
 ..  _config-utils-schema_object:
 
@@ -769,7 +788,7 @@ schema_object
 
     ..  method:: apply_default(data)
 
-        Apply default values. The functions takes the ``default``
+        Apply default values to scalar nodes. The functions takes the ``default``
         built-in annotation values of the scalar nodes and applies them based
         on the ``apply_default_if`` annotation. If there is no ``apply_default_if``
         annotation on a node, the default value is also applied.
@@ -783,14 +802,16 @@ schema_object
 
         :return: configuration data with applied schema defaults
 
-    ..  _config-schema_object-filter:
+        **See also:** :ref:`config-schema_node_annotation-default`, :ref:`config-schema_node_annotation-apply_default_if`
+
+..  _config-schema_object-filter:
 
     ..  method:: filter(data, f)
 
         Filter data based on the schema annotations. The methods returns an iterator
         by configuration nodes for which the given filter function ``f`` returns ``true``.
 
-        The filter function f receives the following table as the argument:
+        The filter function ``f`` receives the following table as the argument:
 
         .. code-block:: lua
 
@@ -800,9 +821,11 @@ schema_object
                 data = <data at the given path>,
             }
 
-        The filter function returns a boolean value that is interpreted as 'accepted' or 'not accepted'.
+        The filter function returns a boolean value that is interpreted as "accepted" or "not accepted".
 
-        Example: call a function on all schema nodes that have the ``my_annotation``
+        **Example:**
+
+        Calling a function on all schema nodes that have the ``my_annotation``
         annotation defined:
 
         .. code-block:: lua
@@ -822,15 +845,23 @@ schema_object
 
     ..  method:: get(data, path)
 
-        Get nested data that is pointed by the given path. The path can be
+        Get nested configuration values at the given path. The path can be
         either a dot-separated string (``http.scheme``) or an array-like table (``{ 'http', 'scheme'}``).
 
-        Example: see :ref:`config_utils_schema_get_configuration`
+        **Example:**
+
+        ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_nodes_record_hierarchy/http_api.lua
+            :language: lua
+            :start-at: local scheme
+            :end-before: local host
+            :dedent:
 
         :param any data: configuration data
         :param any path: path to the target node
 
         :return: data at the given path
+
+        **See also**: see :ref:`config_utils_schema_get_configuration`
 
     ..  _config-schema_object-map:
 
@@ -844,9 +875,24 @@ schema_object
 
     ..  _config-schema_object-merge:
 
-    ..  method:: merge(a, b)
+    ..  method:: merge(data_a, data_b)
 
-        Merge two hierarchical values (prefer the latter).
+        Merge two configurations. The method merges configurations in a single
+        node hierarchy, preferring the latter in case of a collision.
+
+        The following merge rules are used:
+
+        -   any present value is preferred over ``nil`` and ``box.NULL``
+        -   ``box.NULL`` is preferred over ``nil``
+        -   for scalar and array nodes, the right-hand value is used
+
+            .. important::
+
+                Note that the method doesn't concatenate arrays. Left hand array
+                items are discarded.
+
+        -   records and maps are deeply merged, that is, the merge is performed
+            recursively for their nested nodes
 
         :param any a: configuration data
         :param any b: configuration data
@@ -857,9 +903,23 @@ schema_object
 
     ..  method:: pairs()
 
-        Traverse the schema.
+        Walk over the schema and return scalar, array and map schema nodes
+
+        .. important::
+
+            The method doesn't return records nodes.
 
         :return: a luafun iterator
+
+        **Example:**
+
+        .. code-block:: lua
+
+            for _, w in schema:pairs() do
+                local path = w.path
+                local schema = w.schema
+                -- <...>
+            end
 
     ..  _config-schema_object-set:
 
@@ -875,6 +935,8 @@ schema_object
 
         :return: updated configuration data
 
+        **Example:** see :ref:`config_utils_schema_env-vars`
+
     ..  _config-schema_object-validate:
 
     ..  method:: validate(data)
@@ -882,22 +944,28 @@ schema_object
         Validate data against the schema. If the data doesn't adhere to the schema,
         an error is raised.
 
-        The method checks the types of ``data`` fields against the schema node types.
-        Additionally, it checks the data using the ``allowed_values`` and ``validate``
-        built-in annotations.
+        The method performs the following checks:
+
+        -   field type checks: field values are checked against the schema node types
+        -   allowed values: if a node has the :ref:`config-schema_node_annotation-allowed_values`
+            annotations of schema nodes, the corresponding data field is checked
+            against the allowed values list
+        -   validation functions: if a validation function is defined for a node
+            (the :ref:`config-schema_node_annotation-validate` annotation), it is
+            executed to check that the provided value is valid.
 
         :param any data: data
 
-        Example: see :ref:`config_utils_schema_annotation`
-        Example: see :ref:`config_utils_schema_validating_configuration`
+        **Example:** see :ref:`config_utils_schema_annotation` and
+        :ref:`config_utils_schema_validating_configuration`
 
     ..  _config-schema_object-methods:
 
     ..  data:: methods
 
-        User-defines methods in the schema.
+        User-defined methods in the schema.
 
-        See also: :ref:`config_utils_schema_methods`
+        **See also:** :ref:`config_utils_schema_methods`
 
     ..  _config-schema_object-name:
 
@@ -911,7 +979,7 @@ schema_object
 
         Schema nodes hierarchy.
 
-        See also ``schema_node_object``
+        **See also:** ``schema_node_object``
 
 
 ..  _config-utils-schema_node_annotation:
@@ -919,46 +987,75 @@ schema_object
 schema_node_annotation
 ~~~~~~~~~~~~~~~~~~~~~~
 
+The following elements of tables passed as node constructor arguments are
+parsed by the modules as :ref:`built-in annotations <config_utils_schema_built_in_annotations>`:
+
 ..  _config-schema_node_annotation-allowed_values:
 
 -   ``allowed_values``
 
-    A list of allowed values. See also :ref:`config-schema_object-validate`
+    A list of allowed values for a node.
+
+    **See also** :ref:`config-schema_object-validate`
 
 ..  _config-schema_node_annotation-apply_default_if:
 
 -   ``apply_default_if``
 
-    A function that specifies whether to apply the default value specified using ``default``.
+    A boolean function that defines whether to apply the default value specified
+    using ``default``. If this function returns ``true`` on a provided configuration data,
+    the node receives the default value upon the :ref:`config-schema_object-apply_default`
+    method call.
 
-    See also: :ref:`config-schema_object-apply_default`
+    The function takes two arguments:
+
+    -   ``data`` -- the configuration data
+    -   ``w`` -- *walkthrough node* with the following fields:
+
+        -   ``w.schema`` -- schema node
+        -   ``w.path`` -- the path to the schema node
+        -   ``w.error()` -- a function for printing human-readable error messages
+
+    **See also:** :ref:`config-schema_object-apply_default`.
 
 ..  _config-schema_node_annotation-default:
 
 -   ``default``
 
     A default value to use for a scalar node if it's not specified explicitly.
-    Example: :ref:`config_utils_schema_transform_configuration`
 
-    See also: :ref:`config-schema_object-apply_default`
+    **Example:** see :ref:`config_utils_schema_transform_configuration`
+
+    **See also:** :ref:`config-schema_object-apply_default`
 
 ..  _config-schema_node_annotation-type:
 
 -   ``type``
 
-    A value type. See also :ref:`config_utils_schema_data_types`.
+    A value type.
+
+    **See also:** :ref:`config_utils_schema_data_types`
 
 ..  _config-schema_node_annotation-validate:
 
 -   ``validate``
 
-    A function used to validate node data.
+    A boolean function used to validate node data. Node data is valid if this function
+    returns ``true``. The function is called upon the :ref:`config-schema_object-validate`
+    function calls.
 
-    The function should accept the following arguments:
+    The function takes two arguments:
+
+    -   ``data`` -- the configuration data
+    -   ``w`` -- *walkthrough node* with the following fields:
+
+        -   ``w.schema`` -- schema node
+        -   ``w.path`` -- the path to the schema node
+        -   ``w.error()` -- a function for printing human-readable error messages
 
     See also :ref:`config-schema_object-validate`
 
-    Example:
+    **Example:**
 
     .. code-block:: lua
 
@@ -991,13 +1088,15 @@ schema_node_object
 
     ..  data:: allowed_values
 
-        A list of values allowed for the node.
+        A list of values allowed for the node. The values are taken from the
+        :ref:`config-schema_node_annotation-allowed_values` node annotation.
 
     ..  _config-schema_node_object-apply_default_if:
 
     ..  data:: apply_default_if
 
-        A
+        A function to define when to apply the default node value. The value
+        is taken from the :ref:`config-schema_node_annotation-apply_default_if` annotation.
 
     ..  _config-schema_node_object-computed:
 
@@ -1009,7 +1108,8 @@ schema_node_object
 
     ..  data:: default
 
-        Node's default value.
+        Node's default value. The value
+        is taken from the :ref:`config-schema_node_annotation-default` annotation.
 
     ..  _config-schema_node_object-fields:
 
@@ -1035,4 +1135,5 @@ schema_node_object
 
     ..  data:: validate
 
-        Node value validation function.
+        Node value validation function. The value
+        is taken from the :ref:`config-schema_node_annotation-validate` annotation.
