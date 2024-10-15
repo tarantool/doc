@@ -867,11 +867,43 @@ schema_object
 
     ..  method:: map(data, f, f_ctx)
 
-        Transform data by the given function.
+        Transform data by the given function. The ``data`` fields are transformed
+        by the function passed in the second argument (``f``), while its structure remains unchanged.
+
+        The transformation function takes three arguments:
+
+        -   ``data`` -- the configuration data
+        -   ``w`` -- *walkthrough node* with the following fields:
+
+            -   ``w.schema`` -- schema node
+            -   ``w.path`` -- the path to the schema node
+            -   ``w.error()` -- a function for printing human-readable error messages
+
+        -   ``ctx`` -- additional *context* for the transformation function. Can be
+            used to provide values for a specific call.
+
+        An example of the transformation function:
+
+        .. code-block:: lua
+
+            local function f(data, w, ctx)
+                if w.schema.type == 'string' and data ~= nil then
+                    return data:gsub('{{ *foo *}}', ctx.foo)
+                end
+                return data
+            end
+
+        The ``map()`` method traverses all fields of the schema records,
+        even if they are ``nil`` or ``box.NULL`` in the provided configuration.
+        This allows using this method to set computed default values for missing
+        fields. Note that this is not the case for maps and arrays since the schema
+        doesn't define their fields to traverse.
 
         :param any data: value at the given path
         :param any f: walkthrough node, described below
         :param any f_ctx: user-provided context for the transformation function
+
+         :return: transformed configuration data
 
     ..  _config-schema_object-merge:
 
