@@ -199,7 +199,7 @@ three scalar fields:
     :start-at: roles
     :dedent:
 
-To define a record node in a schema, use :ref:`schema.record() <config-utils-schema-record>`:
+To define a record node in a schema, use :ref:`schema.record() <config-utils-schema-record>`.
 The following schema describes the configuration above:
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_nodes_record/http_api.lua
@@ -314,11 +314,11 @@ Built-in annotations
 Built-in annotations are interpreted by the module itself. There are the following
 built-in annotations:
 
--   :ref:`type <config-schema_node_object-type>` -- the node value type. Mandatory for scalar nodes, except for those created with ``schema.enum()``.
--   :ref:`allowed_values <config-schema_node_object-allowed_values>` -- a list of possible node values.
--   :ref:`validate <config-schema_node_object-validate>` -- a validation function for the provided node value.
--   :ref:`default <config-schema_node_object-default>` -- a value to use if the option is not specified in the configuration.
--   :ref:`apply_default_if <config-schema_node_object-apply_default_if>` -- a function that defines when to apply the default value.
+-   :ref:`type <config-schema_node_annotation-type>` -- the node value type. Mandatory for scalar nodes, except for those created with ``schema.enum()``.
+-   :ref:`allowed_values <config-schema_node_annotation-allowed_values>` -- a list of possible node values.
+-   :ref:`validate <config-schema_node_annotation-validate>` -- a validation function for the provided node value.
+-   :ref:`default <config-schema_node_annotation-default>` -- a value to use if the option is not specified in the configuration.
+-   :ref:`apply_default_if <config-schema_node_annotation-apply_default_if>` -- a function that defines when to apply the default value.
 
 Consider the following role configuration:
 
@@ -468,7 +468,7 @@ Transforming configuration
 
 The module provides methods that transform configuration data based on the schema,
 for example, :ref:`apply_default() <config-schema_object-apply_default>`,
-:ref:`merge() <config-schema_object-merge>`, ref:`set() <config-schema_object-set>`.
+:ref:`merge() <config-schema_object-merge>`, :ref:`set() <config-schema_object-set>`.
 
 The following sample shows how to apply default values from the schema to fill
 missing configuration fields:
@@ -485,9 +485,9 @@ missing configuration fields:
 Parsing environment variables
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The :ref:`schema.fromenv() <config-utils-schema-fromenv>` allows getting configuration
-values from environment variables. The example below shows how to do this by
-adding a user-defined annotation ``env``:
+The :ref:`schema.fromenv() <config-utils-schema-fromenv>` function allows getting
+configuration values from environment variables. The example below shows how to do
+this by adding a user-defined annotation ``env``:
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_fromenv/http_api.lua
     :language: lua
@@ -674,12 +674,14 @@ Functions
     How the raw value is parsed depends on the ``schema_node`` type:
 
     -   Scalar:
+
         -   ``string``: return the value as is
-        -   ``number`` or ``integer: parse the value as a number or an integer
+        -   ``number`` or ``integer``: parse the value as a number or an integer
         -   ``string, number``: attempt to parse as a number; in case of a failure
             return the value as is
         -   ``boolean``: accept ``true`` or ``1`` for ``true``, ``false`` or ``0`` for ``false``
         -   ``any``: parse the value as a JSON
+
     -   Map: parse either as JSON (if the raw value starts with ``{``)
         or as a comma-separated string of ``key=value`` pairs: ``key1=value1,key2=value2``
     -   Array: parse either as JSON (if the raw value starts with ``[``)
@@ -804,7 +806,7 @@ schema_object
 
         **See also:** :ref:`config-schema_node_annotation-default`, :ref:`config-schema_node_annotation-apply_default_if`
 
-..  _config-schema_object-filter:
+    ..  _config-schema_object-filter:
 
     ..  method:: filter(data, f)
 
@@ -877,7 +879,7 @@ schema_object
 
             -   ``w.schema`` -- schema node
             -   ``w.path`` -- the path to the schema node
-            -   ``w.error()` -- a function for printing human-readable error messages
+            -   ``w.error()`` -- a function for printing human-readable error messages
 
         -   ``ctx`` -- additional *context* for the transformation function. Can be
             used to provide values for a specific call.
@@ -1046,7 +1048,7 @@ parsed by the modules as :ref:`built-in annotations <config_utils_schema_built_i
 
         -   ``w.schema`` -- schema node
         -   ``w.path`` -- the path to the schema node
-        -   ``w.error()` -- a function for printing human-readable error messages
+        -   ``w.error()`` -- a function for printing human-readable error messages
 
     **See also:** :ref:`config-schema_object-apply_default`.
 
@@ -1083,31 +1085,19 @@ parsed by the modules as :ref:`built-in annotations <config_utils_schema_built_i
 
         -   ``w.schema`` -- schema node
         -   ``w.path`` -- the path to the schema node
-        -   ``w.error()` -- a function for printing human-readable error messages
+        -   ``w.error()`` -- a function for printing human-readable error messages
 
     See also :ref:`config-schema_object-validate`
 
     **Example:**
 
-    .. code-block:: lua
+    A function that checks that a string a valid IP address:
 
-        local schema = require('experimental.config.utils.schema')
-
-        local function validate_email(email, w)
-            if email:find('@') == nil then
-                w.error('A email must contain @ symbol, got %q', email)
-            end
-        end
-
-        local personal_info_schema = schema.new('personal_info', schema.record({
-            email = schema.scalar({
-                type = 'string',
-                validate = validate_email,
-            }),
-        }))
-
-        personal_info_schema:validate({email = 'foo'})
-        -- error: [personal_info] email: A email must contain @ symbol, got "foo"
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_annotations/http_api.lua
+        :language: lua
+        :start-at: local function validate_host
+        :end-before: local function validate_port
+        :dedent:
 
 ..  _config-utils-schema_node_object:
 
