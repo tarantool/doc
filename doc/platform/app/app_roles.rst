@@ -98,7 +98,7 @@ The :ref:`experimental.config.utils.schema <config_utils_schema_module>` built-i
 provides the :ref:`config-utils-schema_object` class. An object of this class defines
 a custom configuration scheme of a role or an application.
 
-This example shows how to define a scheme that reflect the role configuration shown above:
+This example shows how to define a schema that reflects the role configuration shown above:
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/application_role_cfg/greeter.lua
     :language: lua
@@ -107,7 +107,7 @@ This example shows how to define a scheme that reflect the role configuration sh
     :dedent:
 
 If you don't use the module, skip this step. In this case, use the ``cfg`` argument
-of the role's ``validate()`` and ``apply()`` function to refer to its configuration
+of the role's ``validate()`` and ``apply()`` functions to refer to its configuration
 values, for example, ``cfg.greeting``.
 
 .. _roles_create_custom_role_validate:
