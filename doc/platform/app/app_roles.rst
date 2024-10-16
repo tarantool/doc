@@ -66,10 +66,11 @@ Overview
 
 Creating a custom role includes the following steps:
 
-1.  Define a function that validates a role configuration.
-2.  Define a function that applies a validated configuration.
-3.  Define a function that stops a role.
-4.  (Optional) Define roles from which this custom role depends on.
+#.  (Optional) Define the role configuration schema.
+#.  Define a function that validates a role configuration.
+#.  Define a function that applies a validated configuration.
+#.  Define a function that stops a role.
+#.  (Optional) Define roles from which this custom role depends on.
 
 As a result, a role module should return an object that has corresponding functions and fields specified:
 
@@ -88,6 +89,26 @@ The examples below show how to do this.
 
     Code snippets shown in this section are included from the following application: `application_role_cfg <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/application_role_cfg>`_.
 
+.. _roles_create_custom_role_schema:
+
+Defining the role configuration schema
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The :ref:`experimental.config.utils.schema <config_utils_schema_module>` built-in module
+provides the :ref:`config-utils-schema_object` class. An object of this class defines
+a custom configuration scheme of a role or an application.
+
+This example shows how to define a scheme that reflect the role configuration shown above:
+
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/application_role_cfg/greeter.lua
+    :language: lua
+    :start-at: local greeter_schema
+    :end-before: local function validate
+    :dedent:
+
+If you don't use the module, skip this step. In this case, use the ``cfg`` argument
+of the role's ``validate()`` and ``apply()`` function to refer to its configuration
+values, for example, ``cfg.greeting``.
 
 .. _roles_create_custom_role_validate:
 
@@ -97,7 +118,8 @@ Validating a role configuration
 To validate a role configuration, you need to define the :ref:`validate([cfg]) <roles_api_reference_validate>` function.
 The ``cfg`` argument provides access to the :ref:`role's configuration <roles_create_custom_role_config>` and check its validity.
 
-In the example below, the ``validate()`` function is used to validate the ``greeting`` configuration value:
+In the example below, the ``validate()`` function of the role configuration schema
+is used to validate the ``greeting`` value:
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/application_role_cfg/greeter.lua
     :language: lua
