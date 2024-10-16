@@ -1,15 +1,20 @@
 -- greeter.lua --
 local log = require('log').new("greeter")
+local schema = require('experimental.config.utils.schema')
+
+local greeter_schema = schema.new('greeter', schema.record({
+    greeting = schema.scalar({
+        type = 'string',
+        allowed_values = { 'Hi', 'Hello' }
+    })
+}))
 
 local function validate(cfg)
-    if cfg.greeting then
-        assert(type(cfg.greeting) == "string", "'greeting' should be a string")
-        assert(cfg.greeting == "Hi" or cfg.greeting == "Hello", "'greeting' should be 'Hi' or 'Hello'")
-    end
+    greeter_schema:validate(cfg)
 end
 
 local function apply(cfg)
-    log.info("%s from the 'greeter' role!", cfg.greeting)
+    log.info("%s from the 'greeter' role!", greeter_schema:get(cfg, 'greeting'))
 end
 
 local function stop()

@@ -27,8 +27,6 @@ To learn how to enable and configure roles, see :ref:`configuration_application_
     -   A role of a replica set in regard to sharding. Learn more in :ref:`vshard_config_sharding_roles`.
 
 
-
-
 .. _roles_create_custom_role_config:
 
 Providing a role configuration
@@ -44,10 +42,15 @@ This example shows how to enable and configure the ``greeter`` role, which is im
     :start-at: instance001
     :dedent:
 
-The role's configuration provided in ``roles_cfg`` can be accessed when :ref:`validating <roles_create_custom_role_validate>` and :ref:`applying <roles_create_custom_role_apply>` this configuration.
+The role configuration provided in ``roles_cfg`` can be accessed when :ref:`validating <roles_create_custom_role_validate>` and :ref:`applying <roles_create_custom_role_apply>` this configuration.
 
-Given that a role is a :ref:`Lua module <app_server-modules>`, a role's name is passed to ``require()`` to obtain the module.
-When :ref:`developing an application <admin-instance_config-develop-app>`, you can place a file with a role's code next to a cluster's configuration file.
+Tarantool includes the :ref:`experimental.config.utils.schema <config_utils_schema_module>`
+built-in module that provides an for managing user-defined configurations
+of applications (``app.cfg``) and roles (``roles_cfg``). The examples below show its
+basic usage.
+
+Given that a role is a :ref:`Lua module <app_server-modules>`, a role name is passed to ``require()`` to obtain the module.
+When :ref:`developing an application <admin-instance_config-develop-app>`, you can place a file with the role code next to the cluster configuration file.
 
 
 
@@ -63,12 +66,12 @@ Overview
 
 Creating a custom role includes the following steps:
 
-1.  Define a function that validates a role's configuration.
+1.  Define a function that validates a role configuration.
 2.  Define a function that applies a validated configuration.
 3.  Define a function that stops a role.
 4.  (Optional) Define roles from which this custom role depends on.
 
-As a result, a role's module should return an object that has corresponding functions and fields specified:
+As a result, a role module should return an object that has corresponding functions and fields specified:
 
 ..  code-block:: lua
 
@@ -86,14 +89,12 @@ The examples below show how to do this.
     Code snippets shown in this section are included from the following application: `application_role_cfg <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/application_role_cfg>`_.
 
 
-
-
 .. _roles_create_custom_role_validate:
 
 Validating a role configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To validate a role's configuration, you need to define the :ref:`validate([cfg]) <roles_api_reference_validate>` function.
+To validate a role configuration, you need to define the :ref:`validate([cfg]) <roles_api_reference_validate>` function.
 The ``cfg`` argument provides access to the :ref:`role's configuration <roles_create_custom_role_config>` and check its validity.
 
 In the example below, the ``validate()`` function is used to validate the ``greeting`` configuration value:
@@ -107,8 +108,6 @@ In the example below, the ``validate()`` function is used to validate the ``gree
 If the configuration is not valid, ``validate()`` reports an unrecoverable error by throwing an error object.
 
 
-
-
 .. _roles_create_custom_role_apply:
 
 Applying a role configuration
@@ -117,7 +116,7 @@ Applying a role configuration
 To apply the validated configuration, define the :ref:`apply([cfg]) <roles_api_reference_apply>` function.
 As the ``validate()`` function, ``apply()`` provides access to a role's configuration using the ``cfg`` argument.
 
-In the example below, the ``apply()`` function uses the :ref:`log <log-module>` module to write a role's configuration value to the log:
+In the example below, the ``apply()`` function uses the :ref:`log <log-module>` module to write a value from the role configuration to the log:
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/application_role_cfg/greeter.lua
     :language: lua
@@ -142,7 +141,7 @@ In the example below, the ``stop()`` function uses the :ref:`log <log-module>` m
     :end-before: return
     :dedent:
 
-When you've defined all the role's functions, you need to return an object that has corresponding functions specified:
+When you've defined all the role functions, you need to return an object that has corresponding functions specified:
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/application_role_cfg/greeter.lua
     :language: lua

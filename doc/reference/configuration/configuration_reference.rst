@@ -46,6 +46,12 @@ In the ``app`` section, you can load the application and provide an application 
 
     Example on GitHub: `application <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/application>`_
 
+    .. tip::
+
+        The :ref:`experimental.config.utils.schema <config_utils_schema_module>`
+        built-in module provides an API for managing user-defined configurations
+        of applications (``app.cfg``) and roles (``roles_cfg``).
+
     |
     | Type: map
     | Default: nil

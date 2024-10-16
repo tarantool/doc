@@ -52,7 +52,7 @@ the role configuration:
         :end-before: local function validate
         :dedent:
 
-3.  Use the :ref:`schema.validate() <config-schema_object-validate>` function to
+3.  Use the :ref:`validate() <config-schema_object-validate>` function to
     validate configuration values against the schema. In case of a role, call this
     function inside the role's :ref:`validate() <roles_create_custom_role_validate>` function:
 
@@ -62,7 +62,7 @@ the role configuration:
         :end-before: local function apply
         :dedent:
 
-4.  Obtain values of configuration options using :ref:`schema.get() <config-schema_object-get>`.
+4.  Obtain values of configuration options using :ref:`get() <config-schema_object-get>`.
     In case of a role, call it inside the role's :ref:`apply() <roles_create_custom_role_apply>` function:
 
     ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_nodes_scalar/http_api.lua
@@ -804,7 +804,7 @@ schema_object
 
         :return: configuration data with applied schema defaults
 
-        **See also:** :ref:`config-schema_node_annotation-default`, :ref:`config-schema_node_annotation-apply_default_if`
+        **See also:** :ref:`default <config-schema_node_annotation-default>`, :ref:`apply_default_if <config-schema_node_annotation-apply_default_if>`
 
     ..  _config-schema_object-filter:
 
@@ -905,7 +905,7 @@ schema_object
         :param any f: walkthrough node, described below
         :param any f_ctx: user-provided context for the transformation function
 
-         :return: transformed configuration data
+        :return: transformed configuration data
 
     ..  _config-schema_object-merge:
 
@@ -981,17 +981,18 @@ schema_object
         The method performs the following checks:
 
         -   field type checks: field values are checked against the schema node types
-        -   allowed values: if a node has the :ref:`config-schema_node_annotation-allowed_values`
-            annotations of schema nodes, the corresponding data field is checked
-            against the allowed values list
+        -   allowed values: if a node has the ``allowed_values`` annotations of schema nodes,
+            the corresponding data field is checked against the allowed values list
         -   validation functions: if a validation function is defined for a node
-            (the :ref:`config-schema_node_annotation-validate` annotation), it is
-            executed to check that the provided value is valid.
+            (the ``validate`` annotation), it is executed to check that the provided value is valid.
 
         :param any data: data
 
         **Example:** see :ref:`config_utils_schema_annotation` and
         :ref:`config_utils_schema_validating_configuration`
+
+        **See also:** :ref:`allowed_values <config-schema_node_annotation-allowed_values>`,
+        :ref:`validate <config-schema_node_annotation-validate>`
 
     ..  _config-schema_object-methods:
 
@@ -1030,7 +1031,8 @@ parsed by the modules as :ref:`built-in annotations <config_utils_schema_built_i
 
     A list of allowed values for a node.
 
-    **See also** :ref:`config-schema_object-validate`
+    **See also:** :ref:`schema_object:validate() <config-schema_object-validate>`
+
 
 ..  _config-schema_node_annotation-apply_default_if:
 
@@ -1038,7 +1040,7 @@ parsed by the modules as :ref:`built-in annotations <config_utils_schema_built_i
 
     A boolean function that defines whether to apply the default value specified
     using ``default``. If this function returns ``true`` on a provided configuration data,
-    the node receives the default value upon the :ref:`config-schema_object-apply_default`
+    the node receives the default value upon the :ref:`schema_object.apply_default() <config-schema_object-apply_default>`
     method call.
 
     The function takes two arguments:
@@ -1050,7 +1052,7 @@ parsed by the modules as :ref:`built-in annotations <config_utils_schema_built_i
         -   ``w.path`` -- the path to the schema node
         -   ``w.error()`` -- a function for printing human-readable error messages
 
-    **See also:** :ref:`config-schema_object-apply_default`.
+    **See also:** :ref:`schema_object:apply_default() <config-schema_object-apply_default>`
 
 ..  _config-schema_node_annotation-default:
 
@@ -1060,7 +1062,7 @@ parsed by the modules as :ref:`built-in annotations <config_utils_schema_built_i
 
     **Example:** see :ref:`config_utils_schema_transform_configuration`
 
-    **See also:** :ref:`config-schema_object-apply_default`
+    **See also:** :ref:`schema_object:apply_default() <config-schema_object-apply_default>`
 
 ..  _config-schema_node_annotation-type:
 
@@ -1075,7 +1077,7 @@ parsed by the modules as :ref:`built-in annotations <config_utils_schema_built_i
 -   ``validate``
 
     A boolean function used to validate node data. Node data is valid if this function
-    returns ``true``. The function is called upon the :ref:`config-schema_object-validate`
+    returns ``true``. The function is called upon the :ref:`schema_object:validate() <config-schema_object-validate>`
     function calls.
 
     The function takes two arguments:
@@ -1087,8 +1089,6 @@ parsed by the modules as :ref:`built-in annotations <config_utils_schema_built_i
         -   ``w.path`` -- the path to the schema node
         -   ``w.error()`` -- a function for printing human-readable error messages
 
-    See also :ref:`config-schema_object-validate`
-
     **Example:**
 
     A function that checks that a string a valid IP address:
@@ -1098,6 +1098,8 @@ parsed by the modules as :ref:`built-in annotations <config_utils_schema_built_i
         :start-at: local function validate_host
         :end-before: local function validate_port
         :dedent:
+
+    **See also:** :ref:`schema_object:validate() <config-schema_object-validate>`
 
 ..  _config-utils-schema_node_object:
 
@@ -1111,14 +1113,14 @@ schema_node_object
     ..  data:: allowed_values
 
         A list of values allowed for the node. The values are taken from the
-        :ref:`config-schema_node_annotation-allowed_values` node annotation.
+        :ref:`allowed_values <config-schema_node_annotation-allowed_values>` node annotation.
 
     ..  _config-schema_node_object-apply_default_if:
 
     ..  data:: apply_default_if
 
         A function to define when to apply the default node value. The value
-        is taken from the :ref:`config-schema_node_annotation-apply_default_if` annotation.
+        is taken from the :ref:`apply_default_if <config-schema_node_annotation-apply_default_if>` annotation.
 
     ..  _config-schema_node_object-computed:
 
@@ -1131,7 +1133,7 @@ schema_node_object
     ..  data:: default
 
         Node's default value. The value
-        is taken from the :ref:`config-schema_node_annotation-default` annotation.
+        is taken from the :ref:`default <config-schema_node_annotation-default>` annotation.
 
     ..  _config-schema_node_object-fields:
 
@@ -1158,4 +1160,4 @@ schema_node_object
     ..  data:: validate
 
         Node value validation function. The value
-        is taken from the :ref:`config-schema_node_annotation-validate` annotation.
+        is taken from the :ref:`validate <config-schema_node_annotation-validate>` annotation.
