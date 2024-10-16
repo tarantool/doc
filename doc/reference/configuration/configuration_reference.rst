@@ -3912,6 +3912,12 @@ This section describes configuration parameters related to :ref:`application rol
 
     See also: :ref:`configuration_application_roles`
 
+    .. tip::
+
+        The :ref:`experimental.config.utils.schema <config_utils_schema_module>`
+        built-in module provides an API for managing user-defined configurations
+        of applications (``app.cfg``) and roles (``roles_cfg``).
+
     |
     | Type: map
     | Default: nil

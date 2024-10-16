@@ -413,7 +413,7 @@ User-defined methods
 
 A schema can implement custom logic with *methods* -- user-defined functions that can be called on this schema.
 
-For example, this schema has a method that returns its fields merged in a URI string:
+For example, this schema has the ``format`` method that returns its fields merged in a URI string:
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_methods/http_api.lua
     :language: lua
@@ -451,7 +451,7 @@ When writing roles, call this function inside the :ref:`role validation function
 Getting configuration values
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To get configuration values, use the schema's :ref:`get() <config-schema_object-get>` method.
+To get configuration values, use the schema object's :ref:`get() <config-schema_object-get>` method.
 The function takes the configuration and the full path to the node as arguments:
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_nodes_record_hierarchy/http_api.lua
@@ -941,7 +941,7 @@ schema_object
 
         .. important::
 
-            The method doesn't return records nodes.
+            The method doesn't return record nodes.
 
         :return: a luafun iterator
 
@@ -1014,7 +1014,7 @@ schema_object
 
         Schema nodes hierarchy.
 
-        **See also:** ``schema_node_object``
+        **See also:** :ref:`config-utils-schema_node_object`
 
 
 ..  _config-utils-schema_node_annotation:
