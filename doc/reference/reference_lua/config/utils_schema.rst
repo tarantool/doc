@@ -52,9 +52,9 @@ the role configuration:
         :end-before: local function validate
         :dedent:
 
-3.  Use the :ref:`validate() <config-schema_object-validate>` function to
+3.  Use the :ref:`validate() <config-schema_object-validate>` method of the schema object to
     validate configuration values against the schema. In case of a role, call this
-    function inside the role's :ref:`validate() <roles_create_custom_role_validate>` function:
+    method inside the role's :ref:`validate() <roles_create_custom_role_validate>` function:
 
     ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_nodes_scalar/http_api.lua
         :language: lua
@@ -62,7 +62,7 @@ the role configuration:
         :end-before: local function apply
         :dedent:
 
-4.  Obtain values of configuration options using :ref:`get() <config-schema_object-get>`.
+4.  Obtain values of configuration options using the :ref:`get() <config-schema_object-get>` method.
     In case of a role, call it inside the role's :ref:`apply() <roles_create_custom_role_apply>` function:
 
     ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_nodes_scalar/http_api.lua
@@ -85,10 +85,10 @@ option names, types, hierarchy, and other aspects of a configuration.
 To create a schema, use the :ref:`schema.new() <config-utils-schema-new>` function.
 It has the following arguments:
 
--   schema name -- an arbitrary string to use as an identifier
--   root schema node -- a table describing the hierarchical schema structure
+-   Schema name -- an arbitrary string to use as an identifier.
+-   Root schema node -- a table describing the hierarchical schema structure
     starting from the root.
--   (optional) methods -- functions that can be called on this schema object.
+-   (Optional) methods -- user-defined functions that can be called on this schema object.
 
 .. _config_utils_schema_nodes:
 
@@ -287,7 +287,8 @@ Annotations
 
 Node *annotations* are named attributes that define the its various aspects. For example,
 scalar nodes have a required annotation ``type`` that defines the node value type.
-Other annotations can optionally set default values, validation function, and
+Other annotations can, for example, set a node's default value and a validation function,
+or store arbitrary user-provided data.
 
 Annotations are passed in a table to the node creation function:
 
@@ -314,11 +315,14 @@ Built-in annotations
 Built-in annotations are interpreted by the module itself. There are the following
 built-in annotations:
 
--   :ref:`type <config-schema_node_annotation-type>` -- the node value type. Mandatory for scalar nodes, except for those created with ``schema.enum()``.
--   :ref:`allowed_values <config-schema_node_annotation-allowed_values>` -- a list of possible node values.
--   :ref:`validate <config-schema_node_annotation-validate>` -- a validation function for the provided node value.
--   :ref:`default <config-schema_node_annotation-default>` -- a value to use if the option is not specified in the configuration.
--   :ref:`apply_default_if <config-schema_node_annotation-apply_default_if>` -- a function that defines when to apply the default value.
+-   :ref:`type <config-schema_node_annotation-type>` -- the node value type.
+    The type must be explicitly specified for scalar nodes, except for those created with ``schema.enum()``.
+    For composite nodes and scalar enums, the corresponding constructors ``schema.record()``, ``schema.map()``, ``schema.array()``,
+    ``schema.set()``, and ``schema.enum`` set the type automatically.
+-   :ref:`allowed_values <config-schema_node_annotation-allowed_values>` -- (optional) a list of possible node values .
+-   :ref:`validate <config-schema_node_annotation-validate>` -- (optional) a validation function for the provided node value.
+-   :ref:`default <config-schema_node_annotation-default>` -- (optional) a value to use if the option is not specified in the configuration.
+-   :ref:`apply_default_if <config-schema_node_annotation-apply_default_if>` -- (optional) a function that defines when to apply the default value.
 
 Consider the following role configuration:
 
@@ -433,9 +437,9 @@ Processing configuration data
 Validating configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-The schema object's :ref:`validate() <config-schema_object-validate>` function performs all the necessary checks
+The schema object's :ref:`validate() <config-schema_object-validate>` method performs all the necessary checks
 on the provided configuration. It validates the configuration structure, node types, allowed values,
-and other aspects defines in the schema.
+and other aspects of the schema.
 
 When writing roles, call this function inside the :ref:`role validation function <roles_create_custom_role_validate>`:
 
@@ -452,7 +456,7 @@ Getting configuration values
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To get configuration values, use the schema object's :ref:`get() <config-schema_object-get>` method.
-The function takes the configuration and the full path to the node as arguments:
+It takes the configuration and the full path to the node as arguments:
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_nodes_record_hierarchy/http_api.lua
     :language: lua
@@ -466,7 +470,7 @@ The function takes the configuration and the full path to the node as arguments:
 Transforming configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The module provides methods that transform configuration data based on the schema,
+The schema object has methods that transform configuration data based on the schema,
 for example, :ref:`apply_default() <config-schema_object-apply_default>`,
 :ref:`merge() <config-schema_object-merge>`, :ref:`set() <config-schema_object-set>`.
 
@@ -518,28 +522,28 @@ API Reference
             -
 
         *   -   :ref:`schema.array() <config-utils-schema-array>`
-            -   Create an array
+            -   Create an array node
 
         *   -   :ref:`schema.enum() <config-utils-schema-enum>`
-            -   Create an enum
+            -   Create an enum scalar node
 
         *   -   :ref:`schema.fromenv() <config-utils-schema-fromenv>`
             -   Parse a value from an environment variable
 
         *   -   :ref:`schema.map() <config-utils-schema-map>`
-            -   Create a map
+            -   Create a map node
 
         *   -   :ref:`schema.new() <config-utils-schema-new>`
             -   Create a schema
 
         *   -   :ref:`schema.record() <config-utils-schema-record>`
-            -   Create a record
+            -   Create a record node
 
         *   -   :ref:`schema.scalar() <config-utils-schema-scalar>`
-            -   Create a scalar
+            -   Create a scalar node
 
         *   -   :ref:`schema.set() <config-utils-schema-set>`
-            -   Create a set
+            -   Create a set array node
 
         *   -   **schema_object**
             -
@@ -632,17 +636,20 @@ Functions
 
 ..  _config-utils-schema-array:
 
-..  function:: schema.array(opts)
+..  function:: schema.array(array_def)
 
     Create an array node of a configuration schema.
 
-    :param table opts: a table in the following format:
+    :param table array_def: a table in the following format:
 
-                       ..  code-block:: text
+                            ..  code-block:: text
 
-                           { items = <schema_node_object>, <..annotations..> }
+                                {
+                                    items = <schema_node_object>,
+                                    <..annotations..>
+                                }
 
-                       See also: :ref:`schema_node_object <config-utils-schema_node_object>`, :ref:`schema_node_annotation <config-utils-schema_node_annotation>`.
+                            See also: :ref:`schema_node_object <config-utils-schema_node_object>`, :ref:`schema_node_annotation <config-utils-schema_node_annotation>`.
 
     :return: the created schema node
     :rtype: table
@@ -679,7 +686,8 @@ Functions
         -   ``number`` or ``integer``: parse the value as a number or an integer
         -   ``string, number``: attempt to parse as a number; in case of a failure
             return the value as is
-        -   ``boolean``: accept ``true`` or ``1`` for ``true``, ``false`` or ``0`` for ``false``
+        -   ``boolean``: accept ``true`` and ``false`` (case-insensitively), or ``1``and ``0``
+            for ``true`` and  ``false`` values correspondingly
         -   ``any``: parse the value as a JSON
 
     -   Map: parse either as JSON (if the raw value starts with ``{``)
@@ -687,28 +695,36 @@ Functions
     -   Array: parse either as JSON (if the raw value starts with ``[``)
         or as a comma-separated string of items: ``item1,item2,item3``
 
-    :param string env_var_name: environment variable name
+    .. note::
+
+        Parsing records from environment variables is not supported.
+
+    :param string env_var_name: environment variable name to use for error messages
     :param string raw_value: environment variable value
     :param schema_node_object schema_node: a schema node (see :ref:`schema_node_object <config-utils-schema_node_object>`)
 
-    :return: the created schema node
+    :return: the parsed value
     :rtype: table
 
     **See also:** :ref:`config_utils_schema_env-vars`
 
 ..  _config-utils-schema-map:
 
-..  function:: schema.map(opts)
+..  function:: schema.map(map_def)
 
     Create a map node of a configuration schema.
 
-    :param table opts: a table in the following format:
+    :param table map_def: a table in the following format:
 
-                       ..  code-block:: text
+                            ..  code-block:: text
 
-                           { key = <schema_node_object>, value = <schema_node_object>, <..annotations..> }
+                                {
+                                    key = <schema_node_object>,
+                                    value = <schema_node_object>,
+                                    <..annotations..>
+                                }
 
-                       See also: :ref:`schema_node_object <config-utils-schema_node_object>`, :ref:`schema_node_annotation <config-utils-schema_node_annotation>`.
+                          See also: :ref:`schema_node_object <config-utils-schema_node_object>`, :ref:`schema_node_annotation <config-utils-schema_node_annotation>`.
 
     :return: the created schema node
     :rtype: table
@@ -725,8 +741,14 @@ Functions
     :param table schema_node: a root schema node
     :param table methods: methods
 
-    :return: a new schema instance (see :ref:`schema_object <config-utils-schema_object>`)
-    :rtype: userdata
+    :return: a new schema object (see :ref:`schema_object <config-utils-schema_object>`)
+             as a table with the following fields:
+
+                *   ``name``: the schema name
+                *   ``schema``: a table with schema nodes
+                *   ``methods``: a table with user-provided methods
+
+    :rtype: table
 
     **See also:** :ref:`config_utils_schema_getting_started`
 
@@ -740,7 +762,10 @@ Functions
 
                          ..  code-block:: text
 
-                             { [<field_name>] = <schema_node_object>, <...> }
+                             {
+                                 [<field_name>] = <schema_node_object>,
+                                 <...>
+                             }
 
                          See also: :ref:`schema_node_object <config-utils-schema_node_object>`.
 
@@ -790,6 +815,10 @@ schema_object
 
     ..  method:: apply_default(data)
 
+        .. important::
+
+            ``data`` is assumed to be validated against the given schema.
+
         Apply default values to scalar nodes. The functions takes the ``default``
         built-in annotation values of the scalar nodes and applies them based
         on the ``apply_default_if`` annotation. If there is no ``apply_default_if``
@@ -810,7 +839,11 @@ schema_object
 
     ..  method:: filter(data, f)
 
-        Filter data based on the schema annotations. The methods returns an iterator
+        .. important::
+
+            ``data`` is assumed to be validated against the given schema.
+
+        Filter data based on the schema annotations. The method returns an iterator
         by configuration nodes for which the given filter function ``f`` returns ``true``.
 
         The filter function ``f`` receives the following table as the argument:
@@ -847,6 +880,10 @@ schema_object
 
     ..  method:: get(data, path)
 
+        .. important::
+
+            ``data`` is assumed to be validated against the given schema.
+
         Get nested configuration values at the given path. The path can be
         either a dot-separated string (``http.scheme``) or an array-like table (``{ 'http', 'scheme'}``).
 
@@ -859,7 +896,9 @@ schema_object
             :dedent:
 
         :param any data: configuration data
-        :param any path: path to the target node
+        :param string path: path to the target node in the dot notation
+        :param table path: path to the target node in an array-like table
+
 
         :return: data at the given path
 
@@ -868,6 +907,10 @@ schema_object
     ..  _config-schema_object-map:
 
     ..  method:: map(data, f, f_ctx)
+
+        .. important::
+
+            ``data`` is assumed to be validated against the given schema.
 
         Transform data by the given function. The ``data`` fields are transformed
         by the function passed in the second argument (``f``), while its structure remains unchanged.
@@ -901,8 +944,8 @@ schema_object
         fields. Note that this is not the case for maps and arrays since the schema
         doesn't define their fields to traverse.
 
-        :param any data: value at the given path
-        :param any f: walkthrough node, described below
+        :param any data: configuration data
+        :param function f: transformation function
         :param any f_ctx: user-provided context for the transformation function
 
         :return: transformed configuration data
@@ -910,6 +953,10 @@ schema_object
     ..  _config-schema_object-merge:
 
     ..  method:: merge(data_a, data_b)
+
+        .. important::
+
+            ``data`` is assumed to be validated against the given schema.
 
         Merge two configurations. The method merges configurations in a single
         node hierarchy, preferring the latter in case of a collision.
@@ -922,8 +969,12 @@ schema_object
 
             .. important::
 
-                Note that the method doesn't concatenate arrays. Left hand array
-                items are discarded.
+                Scalars of the ``any`` type are merged the same way as other scalars.
+                They are not deeply merged even if they are tables.
+
+            .. important::
+
+                Arrays are not concatenated. Left hand array items are discarded.
 
         -   records and maps are deeply merged, that is, the merge is performed
             recursively for their nested nodes
@@ -959,12 +1010,18 @@ schema_object
 
     ..  method:: set(data, path, value)
 
+        .. important::
+
+            ``data`` is assumed to be validated against the given schema.
+            ``value`` is validated by the method before the assignment.
+
         Set a given value at the given path in a configuration.
         The path can be either a dot-separated string (``http.scheme``) or
         an array-like table (``{ 'http', 'scheme'}``).
 
         :param any data: configuration data
-        :param any path: path to the target node
+        :param string path: path to the target node in the dot notation
+        :param table path: path to the target node in an array-like table
         :param any value: new value
 
         :return: updated configuration data
@@ -1068,7 +1125,7 @@ parsed by the modules as :ref:`built-in annotations <config_utils_schema_built_i
 
 -   ``type``
 
-    A value type.
+    A schema node type.
 
     **See also:** :ref:`config_utils_schema_data_types`
 
@@ -1076,8 +1133,8 @@ parsed by the modules as :ref:`built-in annotations <config_utils_schema_built_i
 
 -   ``validate``
 
-    A boolean function used to validate node data. Node data is valid if this function
-    returns ``true``. The function is called upon the :ref:`schema_object:validate() <config-schema_object-validate>`
+    A function used to validate node data. The function must raise an error to
+    fail the check. The function is called upon the :ref:`schema_object:validate() <config-schema_object-validate>`
     function calls.
 
     The function takes two arguments:
