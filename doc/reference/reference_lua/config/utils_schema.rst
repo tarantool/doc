@@ -651,7 +651,12 @@ Functions
 
                             See also: :ref:`schema_node_object <config-utils-schema_node_object>`, :ref:`schema_node_annotation <config-utils-schema_node_annotation>`.
 
-    :return: the created schema node
+    :return: the created array node as a table with the following fields:
+
+             -   ``type``: ``array``
+             -   ``items``: a table describing an array item as a schema node
+             -   annotations, if provided in ``array_def``
+
     :rtype: table
 
     **See also:** :ref:`config_utils_schema_nodes_array`
@@ -665,7 +670,12 @@ Functions
     :param table allowed_values: a list of enum members -- values allowed for the node
     :param table annotations: annotations (see :ref:`schema_node_annotation <config-utils-schema_node_annotation>`)
 
-    :return: the created schema node
+    :return: the created scalar node as a table with the following fields:
+
+            -   ``type``: ``string``
+            -   ``allowed_values``: allowed node values
+            -   annotations, if ``annotations`` is provided
+
     :rtype: table
 
     **See also:** :ref:`config_utils_schema_nodes_scalar`
@@ -726,7 +736,13 @@ Functions
 
                           See also: :ref:`schema_node_object <config-utils-schema_node_object>`, :ref:`schema_node_annotation <config-utils-schema_node_annotation>`.
 
-    :return: the created schema node
+    :return: the created map node as a table with the following fields:
+
+            -   ``type``: ``map``
+            -   ``key``: map key type
+            -   ``value``: map value type
+            -   annotations, if provided in ``map_def``
+
     :rtype: table
 
     **See also:** :ref:`config_utils_schema_nodes_map`
@@ -771,7 +787,12 @@ Functions
 
     :param table annotations: annotations (see :ref:`config_utils_schema_annotation`)
 
-    :return: the created schema node
+    :return: the created record node as a table with the following fields:
+
+            -   ``type``: ``record``
+            -   ``fields``: a table describing the record fields
+            -   annotations, if provided
+
     :rtype: table
 
     **See also:** :ref:`config_utils_schema_nodes_record`
@@ -785,7 +806,11 @@ Functions
     :param string type: data type (see :ref:`config_utils_schema_data_types`)
     :param table annotations: annotations (see :ref:`config_utils_schema_annotation`)
 
-    :return: the created schema node
+    :return: the created scalar node as a table with the following fields:
+
+            -   ``type``: the node type (see :ref:`config_utils_schema_data_types`)
+            -   annotations, if provided
+
     :rtype: table
 
     **See also:** :ref:`config_utils_schema_nodes_scalar`
