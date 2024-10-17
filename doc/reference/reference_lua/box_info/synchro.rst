@@ -87,10 +87,10 @@ box.info.synchro
     - ``instance002`` is a follower instance.
 
     ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/box_info_synchro/config.yaml
-    :language: yaml
-    :start-at: groups
-    :end-at: 3302
-    :dedent:
+        :language: yaml
+        :start-at: groups
+        :end-at: 3302
+        :dedent:
 
     On the **first** instance, grant the user with the ``super`` role:
 
@@ -149,7 +149,7 @@ box.info.synchro
         ---
         ...
         box_info_synchro:instance001> for i = 1, 3 do fiber.new(function() box.space.sync:replace{i} end) end
-        ---                                                                                          end
+        ---
         ...
 
     Call the ``box.info.synchro`` command on the first instance again:
