@@ -1,0 +1,9 @@
+groups:
+  group001:
+    replicasets:
+      replicaset001:
+        instances:
+          instance001:
+            roles: [ http_api ]
+            roles_cfg:
+              http_api: 'http://127.0.0.1:8080'

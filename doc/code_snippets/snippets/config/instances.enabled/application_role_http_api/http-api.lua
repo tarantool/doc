@@ -1,22 +1,46 @@
 -- http-api.lua --
 local httpd
 local json = require('json')
+local schema = require('experimental.config.utils.schema')
+
+local function validate_host(host, w)
+    local host_pattern = "^(%d+)%.(%d+)%.(%d+)%.(%d+)$"
+    if not host:match(host_pattern) then
+        w.error("'host' should be a string containing a valid IP address, got %q", host)
+    end
+end
+
+local function validate_port(port, w)
+    if port <= 1 or port >= 65535 then
+        w.error("'port' should be between 1 and 65535, got %d", port)
+    end
+end
+
+local listen_address_schema = schema.new('listen_address', schema.record({
+    host = schema.scalar({
+        type = 'string',
+        validate = validate_host,
+        default = '127.0.0.1',
+    }),
+    port = schema.scalar({
+        type = 'integer',
+        validate = validate_port,
+        default = 8080,
+    }),
+}))
 
 local function validate(cfg)
-    if cfg.host then
-        assert(type(cfg.host) == "string", "'host' should be a string containing a valid IP address")
-    end
-    if cfg.port then
-        assert(type(cfg.port) == "number", "'port' should be a number")
-        assert(cfg.port >= 1 and cfg.port <= 65535, "'port' should be between 1 and 65535")
-    end
+    listen_address_schema:validate(cfg)
 end
 
 local function apply(cfg)
     if httpd then
         httpd:stop()
     end
-    httpd = require('http.server').new(cfg.host, cfg.port)
+    local cfg_with_defaults = listen_address_schema:apply_default(cfg)
+    local host = listen_address_schema:get(cfg_with_defaults, 'host')
+    local port = listen_address_schema:get(cfg_with_defaults, 'port')
+    httpd = require('http.server').new(host, port)
     local response_headers = { ['content-type'] = 'application/json' }
     httpd:route({ path = '/band/:id', method = 'GET' }, function(req)
         local id = req:stash('id')

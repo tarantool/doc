@@ -1,0 +1,14 @@
+groups:
+  group001:
+    replicasets:
+      replicaset001:
+        instances:
+          instance001:
+            roles: [ api ]
+            roles_cfg:
+              api:
+                name: 'HTTP listen address'
+                listen_address:
+                  host: '127.0.0.1'
+                  port: 8080
+                  scheme: 'http'
