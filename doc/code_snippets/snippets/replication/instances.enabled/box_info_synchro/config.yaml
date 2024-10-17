@@ -1,0 +1,31 @@
+credentials:
+  users:
+    replicator:
+      password: 'topsecret'
+      roles: [replication]
+
+iproto:
+  advertise:
+    peer:
+      login: replicator
+
+groups:
+  group001:
+    replicasets:
+      replicaset001:
+        instances:
+          instance001:
+            database:
+              mode: rw
+            replication:
+              synchro_quorum: 2
+              synchro_timeout: 1000
+            iproto:
+              listen:
+              - uri: '127.0.0.1:3301'
+          instance002:
+            database:
+              mode: ro
+            iproto:
+              listen:
+              - uri: '127.0.0.1:3302'
