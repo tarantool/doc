@@ -824,7 +824,14 @@ Functions
     :param table allowed_values: allowed values of array items
     :param table annotations: annotations (see :ref:`config_utils_schema_annotation`)
 
-    :return: the created schema node
+    :return: the created array node as a table with the following fields:
+
+             -   ``type``: ``array``
+             -   ``items``: a table describing an array item as a schema node
+             -   ``validate``: an auto-generated validation function that check
+                 that the values don't repeat
+             -   annotations, if provided
+
     :rtype: table
 
     **See also:** :ref:`config_utils_schema_nodes_array`
@@ -921,8 +928,9 @@ schema_object
             :dedent:
 
         :param any data: configuration data
-        :param string path: path to the target node in the dot notation
-        :param table path: path to the target node in an array-like table
+        :param string/table path: path to the target node as:
+                                  -   a string in the dot notation
+                                  -   an array-like table
 
 
         :return: data at the given path
@@ -992,14 +1000,11 @@ schema_object
         -   ``box.NULL`` is preferred over ``nil``
         -   for scalar and array nodes, the right-hand value is used
 
-            .. important::
+            .. note::
 
-                Scalars of the ``any`` type are merged the same way as other scalars.
-                They are not deeply merged even if they are tables.
-
-            .. important::
-
-                Arrays are not concatenated. Left hand array items are discarded.
+                -   Scalars of the ``any`` type are merged the same way as other scalars.
+                    They are not deeply merged even if they are tables.
+                -   Arrays are not concatenated. Left hand array items are discarded.
 
         -   records and maps are deeply merged, that is, the merge is performed
             recursively for their nested nodes
@@ -1013,7 +1018,7 @@ schema_object
 
     ..  method:: pairs()
 
-        Walk over the schema and return scalar, array and map schema nodes
+        Walk over the schema and return scalar, array, and map schema nodes
 
         .. important::
 
@@ -1045,8 +1050,9 @@ schema_object
         an array-like table (``{ 'http', 'scheme'}``).
 
         :param any data: configuration data
-        :param string path: path to the target node in the dot notation
-        :param table path: path to the target node in an array-like table
+        :param string/table path: path to the target node as:
+                                  -   a string in the dot notation
+                                  -   an array-like table
         :param any value: new value
 
         :return: updated configuration data
