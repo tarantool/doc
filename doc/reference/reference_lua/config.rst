@@ -523,3 +523,9 @@ The ``config.storage`` API allows you to interact with a Tarantool-based :ref:`c
         :dedent:
 
     Example on GitHub: `tarantool_config_storage <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/centralized_config/instances.enabled/tarantool_config_storage>`_
+
+.. toctree::
+    :maxdepth: 1
+    :includehidden:
+
+    config/utils_schema
