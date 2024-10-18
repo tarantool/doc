@@ -1,8 +1,7 @@
 ..  _box_info_synchro:
 
-================================================================================
 box.info.synchro
-================================================================================
+================
 
 ..  module:: box.info
 
@@ -26,8 +25,12 @@ box.info.synchro
             but they can't create any synchronous transactions.
             To claim or reclaim the queue, use :ref:`box.ctl.promote() <box_ctl-promote>` on the instance that you want
             to promote.
-            With elections enabled, an instance runs ``box.ctl.promote()`` command automatically after winning the elections.
             To clear the ownership, call :ref:`box.ctl.demote() <box_ctl-demote>` on the synchronous queue owner.
+
+            When Raft election is enabled and :ref:`replication.election_mode <configuration_reference_replication_election_mode>`
+            is set to ``candidate``, the new Raft leader claims the queue automatically after winning the elections.
+            It means that the value of ``box.info.synchro.queue.owner`` becomes equal to :ref:`box.info.election.leader <box_info_election>`.
+            When Raft is enabled, no manual intervention with ``box.ctl.promote()`` or ``box.ctl.demote()`` is required.
 
         -   ``term`` (since version :doc:`2.10.0 </release/2.10.0>`) -- current queue term.
             It contains the term of the last ``PROMOTE`` request.
@@ -43,24 +46,32 @@ box.info.synchro
             Until the request is complete, any other incoming synchronous transactions and system requests
             will be delayed.
 
+        -   ``age`` (since version :doc:`3.2.0 </release/3.2.0>`) -- the time in seconds that the oldest entry currently
+            present in the queue has spent waiting for the quorum to collect.
+
+        -   ``confirm_lag`` (since version :doc:`3.2.0 </release/3.2.0>`) -- the time in seconds that the latest successfully
+            confirmed entry waited for the quorum to collect.
+
     *   ``quorum`` -- the resulting value of the
-        :ref:`replication_synchro_quorum <cfg_replication-replication_synchro_quorum>` configuration option.
+        :ref:`replication.synchro_quorum <configuration_reference_replication_synchro_quorum>` configuration option.
         Since version :doc:`2.5.3 </release/2.5.3>`, the option can be set as a dynamic formula.
         In this case, the value of the ``quorum`` member depends on the current number of replicas.
 
     **Example 1:**
 
-    In this example, the ``quorum`` field is equal to ``1``.
+    In this example, the ``quorum`` field is equal to `1`.
     That is, synchronous transactions work like asynchronous ones.
     `1` means that a successful WAL writing to the master is enough to commit.
 
     ..  code-block:: tarantoolsession
 
-        tarantool> box.info.synchro
+        box_info_synchro:instance001> box.info.synchro
         ---
         - queue:
             owner: 1
+            confirm_lag: 0
             term: 2
+            age: 0
             len: 0
             busy: false
           quorum: 1
@@ -68,77 +79,93 @@ box.info.synchro
 
     **Example 2:**
 
-    First, set a quorum number and a timeout for synchronous replication using the following command:
+    Example on GitHub: `box_info_synchro <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/replication/instances.enabled/box_info_synchro>`_
+
+    In this example, there are two instances:
+
+    - ``instance001`` is going to be the leader.
+    - ``instance002`` is a follower instance.
+
+    ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/box_info_synchro/config.yaml
+        :language: yaml
+        :start-at: groups
+        :end-at: 3302
+        :dedent:
+
+    On the **first** instance, grant the user with the ``super`` role:
 
     ..  code-block:: tarantoolsession
 
-        tarantool> box.cfg{
-                 > replication_synchro_quorum=2,
-                 > replication_synchro_timeout=1000
-                 > }
+        box_info_synchro:instance001> box.schema.user.grant('guest', 'super')
 
-    Next, check the current state of synchronous replication:
+    After that, use the ``box.ctl.promote()`` function to claim the queue:
 
     ..  code-block:: tarantoolsession
 
-        tarantool> box.info.synchro
+        box_info_synchro:instance001> box.ctl.promote()
+
+    Create a space named ``sync`` and enable synchronous replication on this space:
+
+    ..  code-block:: tarantoolsession
+
+        box_info_synchro:instance001> s = box.schema.space.create("sync", {is_sync=true})
+
+    Then, create an index:
+
+    ..  code-block:: tarantoolsession
+
+        box_info_synchro:instance001> _ = s:create_index('pk')
+
+    Check the current state of synchronous replication:
+
+    ..  code-block:: tarantoolsession
+
+        box_info_synchro:instance001> box.info.synchro
         ---
         - queue:
             owner: 1
+            confirm_lag: 0
             term: 2
+            age: 0
             len: 0
             busy: false
           quorum: 2
         ...
 
-    Create a space called ``sync`` and enable synchronous replication on this space.
-    Then, create an index.
+    On the **second** instance, simulate failure like if this instance would crash or go out of the network:
 
     ..  code-block:: tarantoolsession
 
-        tarantool> s = box.schema.space.create("sync", {is_sync=true})
-        tarantool> _ = s:create_index('pk')
+        box_info_synchro:instance002> os.exit(0)
+           ⨯ Connection was closed. Probably instance process isn't running anymore
 
-    After that, use ``box.ctl.promote()`` function to claim a queue:
-
-    ..  code-block:: tarantoolsession
-
-        tarantool> box.ctl.promote()
-
-    Next, perform data manipulations:
+    On the **first** instance, try to perform some synchronous transactions.
+    The transactions would hang, because the :ref:`replication.synchro_quorum <configuration_reference_replication_synchro_quorum>`
+    option is set to `2`, and the second instance is not available:
 
     ..  code-block:: tarantoolsession
 
-        tarantool> require('fiber').new(function() box.space.sync:replace{1} end)
+        box_info_synchro:instance001> fiber = require('fiber')
         ---
-        - status: suspended
-          name: lua
-          id: 119
         ...
-        tarantool> require('fiber').new(function() box.space.sync:replace{1} end)
+        box_info_synchro:instance001> for i = 1, 3 do fiber.new(function() box.space.sync:replace{i} end) end
         ---
-        - status: suspended
-          name: lua
-          id: 120
-        ...
-        tarantool> require('fiber').new(function() box.space.sync:replace{1} end)
-        ---
-        - status: suspended
-          name: lua
-          id: 121
         ...
 
-    If you call the ``box.info.synchro`` command again,
-    you will see that now there are 3 transactions waiting in the queue:
+    Call the ``box.info.synchro`` command on the first instance again:
 
     ..  code-block:: tarantoolsession
 
-        tarantool> box.info.synchro
+        box_info_synchro:instance001> box.info.synchro
         ---
         - queue:
             owner: 1
+            confirm_lag: 0
             term: 2
+            age: 5.2658250015229
             len: 3
             busy: false
           quorum: 2
         ...
+
+    The ``len`` field is now equal to 3. It means that there are 3 transactions waiting in the queue.
