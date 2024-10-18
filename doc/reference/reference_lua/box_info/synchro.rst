@@ -30,7 +30,7 @@ box.info.synchro
             When Raft election is enabled and :ref:`replication.election_mode <configuration_reference_replication_election_mode>`
             is set to ``candidate``, the new Raft leader claims the queue automatically after winning the elections.
             It means that the value of ``box.info.synchro.queue.owner`` becomes equal to :ref:`box.info.election.leader <box_info_election>`.
-            When Raft enabled, no manual intervention with ``box.ctl.promote()`` or ``box.ctl.demote()`` is required.
+            When Raft is enabled, no manual intervention with ``box.ctl.promote()`` or ``box.ctl.demote()`` is required.
 
         -   ``term`` (since version :doc:`2.10.0 </release/2.10.0>`) -- current queue term.
             It contains the term of the last ``PROMOTE`` request.
@@ -98,13 +98,13 @@ box.info.synchro
 
         box_info_synchro:instance001> box.schema.user.grant('guest', 'super')
 
-    After that, use ``box.ctl.promote()`` function to claim the queue:
+    After that, use the ``box.ctl.promote()`` function to claim the queue:
 
     ..  code-block:: tarantoolsession
 
         box_info_synchro:instance001> box.ctl.promote()
 
-    Create a space called ``sync`` and enable synchronous replication on this space:
+    Create a space named ``sync`` and enable synchronous replication on this space:
 
     ..  code-block:: tarantoolsession
 
