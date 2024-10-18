@@ -318,7 +318,7 @@ built-in annotations:
 -   :ref:`type <config-schema_node_annotation-type>` -- the node value type.
     The type must be explicitly specified for scalar nodes, except for those created with ``schema.enum()``.
     For composite nodes and scalar enums, the corresponding constructors ``schema.record()``, ``schema.map()``, ``schema.array()``,
-    ``schema.set()``, and ``schema.enum`` set the type automatically.
+    ``schema.set()``, and ``schema.enum()`` set the type automatically.
 -   :ref:`allowed_values <config-schema_node_annotation-allowed_values>` -- (optional) a list of possible node values .
 -   :ref:`validate <config-schema_node_annotation-validate>` -- (optional) a validation function for the provided node value.
 -   :ref:`default <config-schema_node_annotation-default>` -- (optional) a value to use if the option is not specified in the configuration.
@@ -696,7 +696,7 @@ Functions
         -   ``number`` or ``integer``: parse the value as a number or an integer
         -   ``string, number``: attempt to parse as a number; in case of a failure
             return the value as is
-        -   ``boolean``: accept ``true`` and ``false`` (case-insensitively), or ``1``and ``0``
+        -   ``boolean``: accept ``true`` and ``false`` (case-insensitively), or ``1`` and ``0``
             for ``true`` and  ``false`` values correspondingly
         -   ``any``: parse the value as a JSON
 
@@ -799,9 +799,20 @@ Functions
 
 ..  _config-utils-schema-scalar:
 
-..  function:: schema.scalar(type[, annotations])
+..  function:: schema.scalar(scalar_def)
 
     Create a scalar node of a configuration schema.
+
+    :param table scalar_def: a table in the following format:
+
+                             ..  code-block:: text
+
+                                 {
+                                     type = <scalar_type>,
+                                     <..annotations..>
+                                 }
+
+                          See also: :ref:`schema_node_object <config-utils-schema_node_object>`, :ref:`schema_node_annotation <config-utils-schema_node_annotation>`.
 
     :param string type: data type (see :ref:`config_utils_schema_data_types`)
     :param table annotations: annotations (see :ref:`config_utils_schema_annotation`)
@@ -989,7 +1000,7 @@ schema_object
 
         .. important::
 
-            ``data`` is assumed to be validated against the given schema.
+            ``data_a`` and ``data_b`` are assumed to be validated against the given schema.
 
         Merge two configurations. The method merges configurations in a single
         node hierarchy, preferring the latter in case of a collision.
@@ -1009,8 +1020,8 @@ schema_object
         -   records and maps are deeply merged, that is, the merge is performed
             recursively for their nested nodes
 
-        :param any a: configuration data
-        :param any b: configuration data
+        :param any data_a: configuration data
+        :param any data_b: configuration data
 
         :return: merged configuration data
 
