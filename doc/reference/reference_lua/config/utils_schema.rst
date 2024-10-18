@@ -52,6 +52,8 @@ the role configuration:
         :end-before: local function validate
         :dedent:
 
+    Learn more in :ref:`config_utils_schema_definition`.
+
 3.  Use the :ref:`validate() <config-schema_object-validate>` method of the schema object to
     validate configuration values against the schema. In case of a role, call this
     method inside the role's :ref:`validate() <roles_create_custom_role_validate>` function:
@@ -62,14 +64,12 @@ the role configuration:
         :end-before: local function apply
         :dedent:
 
-4.  Obtain values of configuration options using the :ref:`get() <config-schema_object-get>` method.
-    In case of a role, call it inside the role's :ref:`apply() <roles_create_custom_role_apply>` function:
+    Learn more in :ref:`config_utils_schema_validating_configuration`.
 
-    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_nodes_scalar/http_api.lua
-        :language: lua
-        :start-at: local function apply
-        :end-before: local function stop
-        :dedent:
+4.  Refer to values of configuration options using the :ref:`get() <config-schema_object-get>`
+    method inside the role's :ref:`apply() <roles_create_custom_role_apply>` function.
+    Learn more in :ref:`config_utils_schema_get_configuration`.
+
 
 
 .. _config_utils_schema_definition:
