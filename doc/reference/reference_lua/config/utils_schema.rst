@@ -24,7 +24,7 @@ Getting started with config.utils.schema
 ----------------------------------------
 
 As an example, consider an :ref:`application role <configuration_application_roles>`
-that has a single configuration option - an HTTP endpoint address.
+that has a single configuration option -- an HTTP endpoint address.
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_nodes_scalar/config.yaml
     :language: yaml
@@ -285,7 +285,7 @@ any number of options with arbitrary names and boolean values.
 Annotations
 ***********
 
-Node *annotations* are named attributes that define the its various aspects. For example,
+Node *annotations* are named attributes that define its various aspects. For example,
 scalar nodes have a required annotation ``type`` that defines the node value type.
 Other annotations can, for example, set a node's default value and a validation function,
 or store arbitrary user-provided data.
@@ -301,7 +301,7 @@ Annotations are passed in a table to the node creation function:
 Node annotations fall into three groups:
 
 -   *Built-in annotations* are handled by the module. These are: ``type``, ``validate``, ``allowed_values``, ``default`` and ``apply_default_if``.
-    Note that ``validate``, ``allowed_values`` are used for validation only. ``default`` and ``apply_default_if`` can transform the configuration.
+    Note that ``validate`` and ``allowed_values`` are used for validation only. ``default`` and ``apply_default_if`` can transform the configuration.
 -   *User-defined annotations* add named node attributes that can be used in the
     application or role code.
 -   *Computed annotations* allow access to annotations of other nodes throughout
@@ -319,7 +319,7 @@ built-in annotations:
     The type must be explicitly specified for scalar nodes, except for those created with ``schema.enum()``.
     For composite nodes and scalar enums, the corresponding constructors ``schema.record()``, ``schema.map()``, ``schema.array()``,
     ``schema.set()``, and ``schema.enum()`` set the type automatically.
--   :ref:`allowed_values <config-schema_node_annotation-allowed_values>` -- (optional) a list of possible node values .
+-   :ref:`allowed_values <config-schema_node_annotation-allowed_values>` -- (optional) a list of possible node values.
 -   :ref:`validate <config-schema_node_annotation-validate>` -- (optional) a validation function for the provided node value.
 -   :ref:`default <config-schema_node_annotation-default>` -- (optional) a value to use if the option is not specified in the configuration.
 -   :ref:`apply_default_if <config-schema_node_annotation-apply_default_if>` -- (optional) a function that defines when to apply the default value.
@@ -839,7 +839,7 @@ Functions
 
              -   ``type``: ``array``
              -   ``items``: a table describing an array item as a schema node
-             -   ``validate``: an auto-generated validation function that check
+             -   ``validate``: an auto-generated validation function that checks
                  that the values don't repeat
              -   annotations, if provided
 
@@ -1190,7 +1190,7 @@ parsed by the modules as :ref:`built-in annotations <config_utils_schema_built_i
 
     **Example:**
 
-    A function that checks that a string a valid IP address:
+    A function that checks that a string is a valid IP address:
 
     ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/config_schema_annotations/http_api.lua
         :language: lua

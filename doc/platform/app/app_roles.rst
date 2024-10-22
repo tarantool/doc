@@ -45,7 +45,7 @@ This example shows how to enable and configure the ``greeter`` role, which is im
 The role configuration provided in ``roles_cfg`` can be accessed when :ref:`validating <roles_create_custom_role_validate>` and :ref:`applying <roles_create_custom_role_apply>` this configuration.
 
 Tarantool includes the :ref:`experimental.config.utils.schema <config_utils_schema_module>`
-built-in module that provides an for managing user-defined configurations
+built-in module that provides tools for managing user-defined configurations
 of applications (``app.cfg``) and roles (``roles_cfg``). The examples below show its
 basic usage.
 
