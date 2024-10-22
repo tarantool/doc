@@ -116,7 +116,6 @@ Validating a role configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To validate a role configuration, you need to define the :ref:`validate([cfg]) <roles_api_reference_validate>` function.
-The ``cfg`` argument provides access to the :ref:`role's configuration <roles_create_custom_role_config>` and check its validity.
 
 In the example below, the ``validate()`` function of the role configuration schema
 is used to validate the ``greeting`` value:

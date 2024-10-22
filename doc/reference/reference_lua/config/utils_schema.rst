@@ -98,7 +98,7 @@ Schema nodes
 Schema nodes describe the hierarchy of options within a schema. There are two types of schema nodes:
 
 -   *Scalar* nodes hold a single value of a supported primitive type. For example,
-    a string configuration option of a role is a scalar node its schema.
+    a string configuration option of a role is a scalar node in its schema.
 -   *Composite* nodes include multiple values in different forms: *records*, *arrays*, or *maps*.
 
 A node can have *annotations* -- named attributes that enable customization of
@@ -564,7 +564,7 @@ API Reference
             -   Merge two configurations
 
         *   -   :ref:`schema_object:pairs() <config-schema_object-pairs>`
-            -   Traverse a configuration
+            -   Walk over a configuration
 
         *   -   :ref:`schema_object:set() <config-schema_object-set>`
             -   Set a configuration value
@@ -940,6 +940,7 @@ schema_object
 
         :param any data: configuration data
         :param string/table path: path to the target node as:
+
                                   -   a string in the dot notation
                                   -   an array-like table
 
@@ -1062,6 +1063,7 @@ schema_object
 
         :param any data: configuration data
         :param string/table path: path to the target node as:
+
                                   -   a string in the dot notation
                                   -   an array-like table
         :param any value: new value
