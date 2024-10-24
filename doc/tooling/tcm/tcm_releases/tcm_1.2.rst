@@ -37,3 +37,10 @@ provides a text editor where you can write migration scripts in Lua and apply th
 to the cluster.
 
 Learn more about migrations in Tarantool :ref:`migrations`.
+
+.. _tcm_releases_1_2_cluster_security:
+
+Cluster security settings
+-------------------------
+
+Learn more in :ref:`tcm_cluster_security`.

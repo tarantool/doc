@@ -1,0 +1,31 @@
+..  _tcm_cluster_security:
+
+Security settings
+=================
+
+..  include:: ../index.rst
+    :start-after: ee_note_tcm_start
+    :end-before: ee_note_tcm_end
+
+:ref:`configuration_reference_security`
+
+|tcm_full_name| includes a web interface for managing security settings of connected
+clusters. It is available on the **Cluster** > **Security** page. On this page,
+you can manage the following security features in the cluster:
+
+-   *Authentication settings*: protocol (CHAP or PAP), number of retries, and
+    the delay after a failed authentication attempt (``security.auth_*`` configuration options).
+    To learn more about authentication settings, see :ref:`configuration_authentication`.
+-   *Password policy*: minimal password length, mandatory characters, expiration
+    period, and other settings (``security.password_*`` configuration options).
+    To learn more about Tarantool password policy, see :ref:`enterprise-password-policy`.
+-   *Guest access*: whether unauthenticated or :ref:`guest <authentication-passwords>`
+    users can connect to cluster (``security.disable_guest`` configuration option).
+-   *Secure erasing*: whether to delete data files so that it cannot be restored.
+    (:ref:`security.secure_erasing <configuration_reference_security_secure_erasing>` configuration option).
+-   *Audit log*: configure audit logging in the cluster
+    (:ref:`audit_log.* <configuration_reference_audit>` configuration options)
+    To learn how to manage audit logging, see :ref:`enterprise_audit_module`.
+
+
+

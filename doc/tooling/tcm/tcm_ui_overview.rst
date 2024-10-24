@@ -172,19 +172,20 @@ sent to this centralized storage.
 
 Learn more in :ref:`tcm_configuring_clusters`.
 
-..  _tcm_ui_cluster_migrations:
+..  _tcm_ui_cluster_security:
 
-Migrations
-~~~~~~~~~~
+Security
+~~~~~~~~
 
-The **Migrations** page provides centralized migration management tools for the selected cluster.
+The **Security** page provides controls for managing the cluster security settings.
 
-.. image:: _images/tcm_ui_cluster_migrations.png
+.. image:: _images/tcm_ui_cluster_security.png
     :align: left
     :width: 700
-    :alt: TCM cluster migrations page
+    :alt: TCM cluster security page
 
-Learn more in :ref:`tcm_cluster_migrations`.
+Learn more in :ref:`tcm_cluster_security`.
+
 
 ..  _tcm_ui_cluster_tuples:
 
