@@ -43,4 +43,7 @@ Learn more about migrations in Tarantool :ref:`migrations`.
 Cluster security settings
 -------------------------
 
-Learn more in :ref:`tcm_cluster_security`.
+Since version 1.2.2, |tcm| provides a web interface for managing cluster security settings
+on the **Migrations** page in the **Cluster** group.
+
+Learn more about managing cluster security from |tcm| in :ref:`tcm_cluster_security`.

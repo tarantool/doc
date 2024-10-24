@@ -186,7 +186,19 @@ The **Security** page provides controls for managing the cluster security settin
 
 Learn more in :ref:`tcm_cluster_security`.
 
+..  _tcm_ui_cluster_migrations:
 
+Migrations
+~~~~~~~~~~
+
+The **Migrations** page provides centralized migration management tools for the selected cluster.
+
+.. image:: _images/tcm_ui_cluster_migrations.png
+    :align: left
+    :width: 700
+    :alt: TCM cluster migrations page
+
+Learn more in :ref:`tcm_cluster_migrations`.
 ..  _tcm_ui_cluster_tuples:
 
 Tuples
