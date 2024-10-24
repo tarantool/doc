@@ -37,3 +37,13 @@ provides a text editor where you can write migration scripts in Lua and apply th
 to the cluster.
 
 Learn more about migrations in Tarantool :ref:`migrations`.
+
+.. _tcm_releases_1_2_cluster_security:
+
+Cluster security settings
+-------------------------
+
+Since version 1.2.2, |tcm| provides a web interface for managing cluster security settings
+on the **Migrations** page in the **Cluster** group.
+
+Learn more about managing cluster security from |tcm| in :ref:`tcm_cluster_security`.

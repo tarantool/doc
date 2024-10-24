@@ -33,7 +33,7 @@ types of connections:
 * Over a binary port for read and write operations and procedure invocation.
 
 For more information on authentication and connection types, see the
-:ref:`admin-security` section of the Tarantool manual.
+:ref:`admin-security` section in :ref:`Administration <admin>`.
 
 In addition, Tarantool provides the following functionality:
 
