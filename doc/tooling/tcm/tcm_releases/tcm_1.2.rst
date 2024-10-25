@@ -44,6 +44,6 @@ Cluster security settings
 -------------------------
 
 Since version 1.2.2, |tcm| provides a web interface for managing cluster security settings
-on the **Migrations** page in the **Cluster** group.
+on the **Security** page in the **Cluster** group.
 
 Learn more about managing cluster security from |tcm| in :ref:`tcm_cluster_security`.
