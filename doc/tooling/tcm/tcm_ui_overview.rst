@@ -228,7 +228,7 @@ On this page, you can:
 TCF
 ~~~
 
-The **TCF** page provides control
+The **TCF** page provides an interface for clusters that run within `Tarantool Clusters Federation <https://www.tarantool.io/en/clustersfederation/>`__.
 
 .. image:: _images/tcm_ui_tcf.png
     :align: left
@@ -237,8 +237,8 @@ The **TCF** page provides control
 
 On this page, you can:
 
--   view the states of clusters within TCF: active or passive
--   switch cluster states
+-   view information about TCF clusters
+-   switch cluster states in a TCF installation
 
 Learn more in :ref:`tcm_cluster_tcf`.
 

@@ -21,3 +21,4 @@ to learn how to perform various management operations on Tarantool clusters from
     tcm_cluster_metrics
     tcm_supervised_failover
     tcm_cluster_migrations
+    tcm_cluster_tcf

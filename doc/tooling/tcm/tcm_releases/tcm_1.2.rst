@@ -53,7 +53,7 @@ Learn more about managing cluster security from |tcm| in :ref:`tcm_cluster_secur
 TCF integration
 ---------------
 
-Since version 1.2.2, |tcm| includes a page for managing state of clusters that
+Since version 1.2.2, |tcm| includes a page for managing clusters that
 run within `Tarantool Clusters Federation <https://www.tarantool.io/en/clustersfederation/>`__.
 
-Learn more about working with TCF in |tcm| in :ref:``.
+Learn more about working with TCF in |tcm| in :ref:`tcm_cluster_tcf`.
