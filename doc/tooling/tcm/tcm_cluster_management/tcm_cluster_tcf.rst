@@ -7,7 +7,7 @@ TCF integration
     :start-after: ee_note_tcm_start
     :end-before: ee_note_tcm_end
 
-|tcm_full_name| provides a web interface for clusters that run within `Tarantool Clusters Federation <https://www.tarantool.io/en/clustersfederation/>`__,
+|tcm_full_name| provides a web interface for clusters that run within `Tarantool Clusters Federation <https://www.tarantool.io/en/clustersfederation/>`__.
 It is available on the **Cluster** > **TCF** page. If a connected cluster is
 configured to run in a TCF installation, this page shows information about both
 clusters in this installation: their ID's, names, and statuses. To switch cluster
