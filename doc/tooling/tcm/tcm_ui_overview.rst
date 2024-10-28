@@ -199,6 +199,7 @@ The **Migrations** page provides centralized migration management tools for the 
     :alt: TCM cluster migrations page
 
 Learn more in :ref:`tcm_cluster_migrations`.
+
 ..  _tcm_ui_cluster_tuples:
 
 Tuples
@@ -221,6 +222,25 @@ On this page, you can:
 
 -   view the list of user spaces, their size and engines
 -   view and edit tuples stored in user spaces
+
+..  _tcm_ui_cluster_tcf:
+
+TCF
+~~~
+
+The **TCF** page provides control
+
+.. image:: _images/tcm_ui_tcf.png
+    :align: left
+    :width: 700
+    :alt: TCM TCF page
+
+On this page, you can:
+
+-   view the states of clusters within TCF: active or passive
+-   switch cluster states
+
+Learn more in :ref:`tcm_cluster_tcf`.
 
 ..  _tcm_ui_cluster_metrics:
 
