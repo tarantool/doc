@@ -2325,7 +2325,7 @@ upon the first |tcm| startup.
 
 .. _tcm_configuration_reference_initial_cluster_name:
 
-.. confval:: initial-settings.clusters.<cluster>.id
+.. confval:: initial-settings.clusters.<cluster>.name
 
     A name to use for the cluster.
 
