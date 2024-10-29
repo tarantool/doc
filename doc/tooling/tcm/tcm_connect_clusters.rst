@@ -10,7 +10,7 @@ Connecting clusters
 |tcm_full_name| works with clusters that:
 
 *   run on Tarantool EE 3.0 or later
-*   use :ref:`centralized configuration <configuration>` stored in etcd or another Tarantool cluster.
+*   use :ref:`centralized configuration <configuration_etcd>` storage: etcd or Tarantool-based.
 
 A single |tcm| installation can have multiple connected clusters. A connection to
 |tcm| doesn't affect the cluster's functioning. You can connect clusters to |tcm|
