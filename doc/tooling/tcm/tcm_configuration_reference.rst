@@ -19,6 +19,7 @@ There are the following groups of |tcm| configuration parameters:
 - :ref:`limits <tcm_configuration_reference_limits>`
 - :ref:`security <tcm_configuration_reference_security>`
 - :ref:`mode <tcm_configuration_reference_mode>`
+- :ref:`initial-settings <tcm_configuration_reference_initial>`
 
 .. _tcm_configuration_reference_cluster:
 
@@ -1096,11 +1097,11 @@ The ``log`` section defines the |tcm|  logging parameters.
 storage
 -------
 
-The ``storage`` section defines the parameters of the |tcm| data storage.
+The ``storage`` section defines the parameters of the |tcm| :ref:`backend store <tcm_backend_store>`.
 
 -   :ref:`storage.provider <tcm_configuration_reference_storage_provider>`
 
-etcd storage parameters:
+etcd backend store parameters:
 
 -   :ref:`storage.etcd.prefix <tcm_configuration_reference_storage_etcd_prefix>`
 -   :ref:`storage.etcd.endpoints <tcm_configuration_reference_storage_etcd_endpoints>`
@@ -1176,7 +1177,7 @@ etcd storage parameters:
 -   :ref:`storage.etcd.embed.initial-cluster-state <tcm_configuration_reference_storage_etcd_embed>`
 -   :ref:`storage.etcd.embed.self-signed-cert-validity <tcm_configuration_reference_storage_etcd_embed>`
 
-Tarantool storage parameters:
+Tarantool backend store parameters:
 
 -   :ref:`storage.tarantool.prefix <tcm_configuration_reference_storage_tarantool_prefix>`
 -   :ref:`storage.tarantool.addr <tcm_configuration_reference_storage_tarantool_addr>`
@@ -2282,3 +2283,571 @@ The ``feature`` section defines the security parameters of |tcm|.
     | Default: false
     | Environment variable: TCM_FEATURE_API_TOKEN
     | Command-line option: ``--feature.api-token``
+
+.. _tcm_configuration_reference_initial:
+
+initial-settings
+----------------
+
+The ``initial-settings`` group defines entities that are created automatically
+upon the first |tcm| startup.
+
+-   :ref:`clusters <tcm_configuration_reference_initial_clusters>`
+
+.. important::
+
+    no env vars?
+    no cli opts?
+
+.. _tcm_configuration_reference_initial_clusters:
+
+.. confval:: initial-settings.clusters
+
+    An array of clusters to connect to |tcm| automatically upon the first startup.
+    TODO: link to instruction
+
+    |
+    | Type: []Cluster
+    | Default: []
+
+
+.. _tcm_configuration_reference_initial_cluster_id:
+
+.. confval:: initial-settings.clusters.<cluster>.id
+
+    An id to use for the cluster.
+    Use 00-00 to customize default cluster settings
+
+    |
+    | Type: String
+    | Default: ?
+
+
+.. _tcm_configuration_reference_initial_cluster_name:
+
+.. confval:: initial-settings.clusters.<cluster>.id
+
+    A name to use for the cluster.
+
+    |
+    | Type: String
+    | Default: ?
+
+.. _tcm_configuration_reference_initial_cluster_description:
+
+.. confval:: initial-settings.clusters.<cluster>.description
+
+    A name to use for the cluster.
+
+    |
+    | Type: String
+    | Default: ?
+
+
+.. _tcm_configuration_reference_initial_cluster_color:
+
+.. confval:: initial-settings.clusters.<cluster>.color
+
+    An id to use for the cluster.
+    Use 00-00 to customize default cluster settings
+
+    |
+    | Type: String
+    | Default: ?
+
+
+.. _tcm_configuration_reference_initial_cluster_urls:
+
+.. confval:: initial-settings.clusters.<cluster>.urls
+
+    An array of URLs.
+
+    |
+    | Type: []ClusterUrl
+    | Default: []
+
+
+.. _tcm_configuration_reference_initial_cluster_url_label:
+
+.. confval:: initial-settings.clusters.<cluster>.<url>.label
+
+    An array of URLs.
+
+    |
+    | Type: String
+    | Default:
+
+.. _tcm_configuration_reference_initial_cluster_url_url:
+
+.. confval:: initial-settings.clusters.<cluster>.<url>.url
+
+    An array of URLs.
+
+    |
+    | Type: String
+    | Default:
+
+
+
+.. _tcm_configuration_reference_initial_cluster_storage_provider:
+
+.. confval:: initial-settings.clusters.<cluster>.storage-connection.provider
+
+    etcd or tarantool
+
+    |
+    | Type: String
+    | Default:
+
+.. _tcm_configuration_reference_initial_cluster_storage_etcd_endpoints:
+
+.. confval:: initial-settings.clusters.<cluster>.storage-connection.etcd-connection.endpoints
+
+    etcd or tarantool
+
+    |
+    | Type: String
+    | Default:
+
+.. _tcm_configuration_reference_initial_cluster_storage_etcd_autosync:
+
+.. confval:: initial-settings.clusters.<cluster>.storage-connection.etcd-connection.auto-sync-interval
+
+    etcd or tarantool
+
+    |
+    | Type: String
+    | Default:
+
+.. _tcm_configuration_reference_initial_cluster_storage_etcd_dialtimeout:
+
+.. confval:: initial-settings.clusters.<cluster>.storage-connection.etcd-connection.dial-timeout
+
+    etcd or tarantool
+
+    |
+    | Type: String
+    | Default:
+
+.. _tcm_configuration_reference_initial_cluster_storage_etcd_dialkatime:
+
+.. confval:: initial-settings.clusters.<cluster>.storage-connection.etcd-connection.dial-keep-alive-time
+
+    etcd or tarantool
+
+    |
+    | Type: String
+    | Default:
+
+.. _tcm_configuration_reference_initial_cluster_storage_etcd_dialkatimeout:
+
+.. confval:: initial-settings.clusters.<cluster>.storage-connection.etcd-connection.dial-keep-alive-timeout
+
+    etcd or tarantool
+
+    |
+    | Type: String
+    | Default:
+
+.. _tcm_configuration_reference_initial_cluster_storage_etcd_maxcallsend:
+
+.. confval:: initial-settings.clusters.<cluster>.storage-connection.etcd-connection.max-call-send-msg-size
+
+    etcd or tarantool
+
+    |
+    | Type: String
+    | Default:
+
+.. _tcm_configuration_reference_initial_cluster_storage_etcd_maxcallrecv:
+
+.. confval:: initial-settings.clusters.<cluster>.storage-connection.etcd-connection.max-call-recv-msg-size
+
+    etcd or tarantool
+
+    |
+    | Type: String
+    | Default:
+
+.. _tcm_configuration_reference_initial_cluster_storage_etcd_username:
+
+.. confval:: initial-settings.clusters.<cluster>.storage-connection.etcd-connection.username
+
+    etcd or tarantool
+
+    |
+    | Type: String
+    | Default:
+
+.. _tcm_configuration_reference_initial_cluster_storage_etcd_password:
+
+.. confval:: initial-settings.clusters.<cluster>.storage-connection.etcd-connection.password
+
+    etcd or tarantool
+
+    |
+    | Type: String
+    | Default:
+
+.. _tcm_configuration_reference_initial_cluster_storage_etcd_rejectold:
+
+.. confval:: initial-settings.clusters.<cluster>.storage-connection.etcd-connection.reject-old-cluster
+
+    etcd or tarantool
+
+    |
+    | Type: String
+    | Default:
+
+.. _tcm_configuration_reference_initial_cluster_storage_etcd_permitwostream:
+
+.. confval:: initial-settings.clusters.<cluster>.storage-connection.etcd-connection.permit-without-stream
+
+    etcd or tarantool
+
+    |
+    | Type: String
+    | Default:
+
+.. _tcm_configuration_reference_initial_cluster_storage_etcd_method:
+
+.. confval:: initial-settings.clusters.<cluster>.storage-connection.etcd-connection.method
+
+    etcd or tarantool
+
+    |
+    | Type: String
+    | Default:
+
+.. _tcm_configuration_reference_initial_cluster_storage_etcd_prefix:
+
+.. confval:: initial-settings.clusters.<cluster>.storage-connection.etcd-connection.prefix
+
+    etcd or tarantool
+
+    |
+    | Type: String
+    | Default:
+
+
+.. _tcm_configuration_reference_initial_cluster_etcd_tls_enabled:
+
+.. confval:: initial-settings.clusters.<cluster>.storage-connection.etcd-connection.tls.enabled
+
+    Indicates whether TLS is enabled for etcd connections.
+
+    |
+    | Type: bool
+    | Default: false
+
+.. _tcm_configuration_reference_initial_cluster_etcd_tls_cert-file:
+
+.. confval:: initial-settings.clusters.<cluster>.storage-connection.etcd-connection.tls.cert-file
+
+    A path to a TLS certificate file to use for etcd connections.
+
+    |
+    | Type: string
+    | Default: ""
+
+.. _tcm_configuration_reference_initial_cluster_etcd_tls_key-file:
+
+.. confval:: initial-settings.clusters.<cluster>.storage-connection.etcd-connection.tls.key-file
+
+    A path to a TLS private key file to use for etcd connections.
+
+    |
+    | Type: string
+    | Default: ""
+
+.. _tcm_configuration_reference_initial_cluster_etcd_tls_trusted-ca-file:
+
+.. confval:: initial-settings.clusters.<cluster>.storage-connection.etcd-connection.tls.trusted-ca-file
+
+    A path to a trusted CA certificate file to use for etcd connections.
+
+    |
+    | Type: string
+    | Default: ""
+
+.. _tcm_configuration_reference_initial_cluster_etcd_tls_client-cert-auth:
+
+.. confval:: initial-settings.clusters.<cluster>.storage-connection.etcd-connection.tls.client-cert-auth
+
+    Indicates whether client cert authentication is enabled.
+
+    |
+    | Type: bool
+    | Default: false
+
+.. _tcm_configuration_reference_initial_cluster_etcd_tls_crl-file:
+
+.. confval:: initial-settings.clusters.<cluster>.storage-connection.etcd-connection.tls.crl-file
+
+    A path to the client certificate revocation list file.
+
+    |
+    | Type: string
+    | Default: ""
+
+.. _tcm_configuration_reference_initial_cluster_etcd_tls_insecure-skip-verify:
+
+.. confval:: initial-settings.clusters.<cluster>.storage-connection.etcd-connection.tls.insecure-skip-verify
+
+    Skip checking client certificate in etcd connections.
+
+    |
+    | Type: bool
+    | Default: false
+
+.. _tcm_configuration_reference_initial_cluster_etcd_tls_skip-client-san-verify:
+
+.. confval:: initial-settings.clusters.<cluster>.storage-connection.etcd-connection.tls.skip-client-san-verify
+
+    Skip verification of SAN field in client certificate for etcd connections.
+
+    |
+    | Type: bool
+    | Default: false
+
+.. _tcm_configuration_reference_initial_cluster_etcd_tls_server-name:
+
+.. confval:: initial-settings.clusters.<cluster>.storage-connection.etcd-connection.tls.server-name
+
+    Name of the TLS server for etcd connections.
+
+    |
+    | Type: string
+    | Default: ""
+
+.. _tcm_configuration_reference_initial_cluster_etcd_tls_cipher-suites:
+
+.. confval:: initial-settings.clusters.<cluster>.storage-connection.etcd-connection.tls.cipher-suites
+
+    TLS cipher suites for etcd connections. Possible values are the Golang `tls.TLS_* <https://pkg.go.dev/crypto/tls#pkg-constants>`__ constants.
+
+    |
+    | Type: []uint16
+    | Default: []
+
+.. _tcm_configuration_reference_initial_cluster_etcd_tls_allowed-cn:
+
+.. confval:: initial-settings.clusters.<cluster>.storage-connection.etcd-connection.tls.allowed-cn
+
+    An allowed common name for authentication in etcd connections.
+
+    |
+    | Type: string
+    | Default: ""
+
+.. _tcm_configuration_reference_initial_cluster_etcd_tls_allowed-hostname:
+
+.. confval:: initial-settings.clusters.<cluster>.storage-connection.etcd-connection.tls.allowed-hostname
+
+    An allowed TLS certificate name for authentication in etcd connections.
+
+    |
+    | Type: string
+    | Default: ""
+
+.. _tcm_configuration_reference_initial_cluster_etcd_tls_empty-cn:
+
+.. confval:: initial-settings.clusters.<cluster>.storage-connection.etcd-connection.tls.empty-cn
+
+    Whether the empty common name is allowed in etcd connections.
+
+    |
+    | Type: bool
+    | Default: false
+
+
+.. _tcm_configuration_reference_initial_cluster_storage_tarantool_username:
+
+.. confval:: initial-settings.clusters.<cluster>.storage-connection.tarantool-connection.username
+
+    etcd or tarantool
+
+    |
+    | Type: String
+    | Default:
+
+.. _tcm_configuration_reference_initial_cluster_storage_tarantool_password:
+
+.. confval:: initial-settings.clusters.<cluster>.storage-connection.tarantool-connection.password
+
+    etcd or tarantool
+
+    |
+    | Type: String
+    | Default:
+
+
+.. _tcm_configuration_reference_initial_cluster_storage_tarantool_endpoints:
+
+.. confval:: initial-settings.clusters.<cluster>.storage-connection.tarantool-connection.endpoints
+
+    etcd or tarantool
+
+    |
+    | Type: String
+    | Default:
+
+.. _tcm_configuration_reference_initial_cluster_storage_tarantool_method:
+
+.. confval:: initial-settings.clusters.<cluster>.storage-connection.tarantool-connection.method
+
+    etcd or tarantool
+
+    |
+    | Type: String
+    | Default:
+
+.. _tcm_configuration_reference_initial_cluster_storage_tarantool_prefix:
+
+.. confval:: initial-settings.clusters.<cluster>.storage-connection.tarantool-connection.prefix
+
+    etcd or tarantool
+
+    |
+    | Type: String
+    | Default:
+
+
+.. _tcm_configuration_reference_initial_cluster_storage_tarantool_ssl_key-file:
+
+.. confval:: initial-settings.clusters.<cluster>.storage-connection.tarantool-connection.ssl.key-file
+
+    A path to a TLS private key file to use for connecting to the Tarantool |tcm|
+    configuration storage.
+
+    See also: :ref:`configuration_connections_ssl`.
+
+    |
+    | Type: string
+    | Default: ""
+
+.. _tcm_configuration_reference_initial_cluster_storage_tarantool_ssl_cert-file:
+
+.. confval:: initial-settings.clusters.<cluster>.storage-connection.tarantool-connection.ssl.cert-file
+
+    A path to an SSL certificate to use for connecting to the Tarantool |tcm|
+    configuration storage.
+
+    See also: :ref:`configuration_connections_ssl`.
+
+    |
+    | Type: string
+    | Default: ""
+
+.. _tcm_configuration_reference_initial_cluster_storage_tarantool_ssl_ca-file:
+
+.. confval:: initial-settings.clusters.<cluster>.storage-connection.tarantool-connection.ssl.ca-file
+
+    A path to a trusted CA certificate to use for connecting to the Tarantool |tcm|
+    configuration storage.
+
+    See also: :ref:`configuration_connections_ssl`.
+
+    |
+    | Type: string
+    | Default: ""
+
+.. _tcm_configuration_reference_initial_cluster_storage_tarantool_ssl_ciphers:
+
+.. confval:: initial-settings.clusters.<cluster>.storage-connection.tarantool-connection.ssl.ciphers
+
+    A list of SSL cipher suites that can be used for connecting to the Tarantool |tcm|
+    configuration storage. Possible values are listed in :ref:`<uri>.params.ssl_ciphers <configuration_reference_iproto_uri_params_ssl_ciphers>`.
+
+    See also: :ref:`configuration_connections_ssl`.
+
+    |
+    | Type: string
+    | Default: ""
+
+.. _tcm_configuration_reference_initial_cluster_storage_tarantool_ssl_enabled:
+
+.. confval:: initial-settings.clusters.<cluster>.storage-connection.tarantool-connection.ssl.enabled
+
+    A password for an encrypted private SSL key to use for connecting to the Tarantool |tcm|
+    configuration storage.
+
+    See also: :ref:`configuration_connections_ssl`.
+
+    |
+    | Type: string
+    | Default: ""
+
+.. _tcm_configuration_reference_initial_cluster_storage_tarantool_ssl_password-file:
+
+.. confval:: initial-settings.clusters.<cluster>.storage-connection.tarantool-connection.ssl.password-file
+
+    A text file with passwords for encrypted private SSL keys to use
+    for connecting to the Tarantool |tcm| configuration storage.
+
+    See also: :ref:`configuration_connections_ssl`.
+
+    |
+    | Type: string
+    | Default: ""
+
+
+.. _tcm_configuration_reference_initial_cluster_tarantool_username:
+
+.. confval:: initial-settings.clusters.<cluster>.tarantool-connection.username
+
+    tbd
+
+    |
+    | Type: string
+    | Default: ""
+
+.. _tcm_configuration_reference_initial_cluster_tarantool_password:
+
+.. confval:: initial-settings.clusters.<cluster>.tarantool-connection.password
+
+    tbd
+
+    |
+    | Type: string
+    | Default: ""
+
+.. _tcm_configuration_reference_initial_cluster_tarantool_method:
+
+.. confval:: initial-settings.clusters.<cluster>.tarantool-connection.method
+
+    tbd
+
+    |
+    | Type: string
+    | Default: ""
+
+.. _tcm_configuration_reference_initial_cluster_tarantool_timeout:
+
+.. confval:: initial-settings.clusters.<cluster>.tarantool-connection.timeout
+
+    tbd
+
+    |
+    | Type: string
+    | Default: ""
+
+.. _tcm_configuration_reference_initial_cluster_tarantool_rate-limit:
+
+.. confval:: initial-settings.clusters.<cluster>.tarantool-connection.rate-limit
+
+    tbd
+
+    |
+    | Type: string
+    | Default: ""
+
+.. _tcm_configuration_reference_initial_cluster_tarantool_ssl:
+
+.. confval:: initial-settings.clusters.<cluster>.tarantool-connection.ssl
+
+    tbd
+
+    |
+    | Type: string
+    | Default: ""
