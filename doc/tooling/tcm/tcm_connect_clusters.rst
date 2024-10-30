@@ -25,9 +25,11 @@ There are two scenarios of cluster connection to |tcm|:
 In both cases, you need to deploy Tarantool and start the cluster instances using
 the :ref:`tt-cli` or another suitable way.
 
-To add a cluster to |tcm|, you can use either the |tcm| web interface as described on this page,
-or the ``initial-settings.clusters`` section of the |tcm| configuration. To learn
-more, see :ref:`tcm_configuration_initial`.
+To add a cluster to |tcm|, you can use two ways:
+
+-   Use the |tcm| web interface as described on this page.
+-   Specify the ``initial-settings.clusters`` section of the |tcm| configuration.
+    To learn more, see :ref:`tcm_configuration_initial`.
 
 ..  _tcm_connect_clusters_parameters:
 
