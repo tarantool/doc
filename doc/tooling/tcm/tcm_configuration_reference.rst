@@ -2292,7 +2292,7 @@ initial-settings
 The ``initial-settings`` group defines entities that are created automatically
 upon the first |tcm| startup.
 
-TODO: doc link :ref:`tcm_connect_clusters`
+TODO: doc link :ref:`tcm_configuration_initial`
 
 
 -   :ref:`initial-settings.clusters <tcm_configuration_reference_initial_clusters>`
@@ -2309,7 +2309,7 @@ TODO: doc link :ref:`tcm_connect_clusters`
 
     An array of clusters to create in |tcm| automatically upon the first startup.
 
-    See also :ref:`tcm_connect_clusters`.
+    See also :ref:`tcm_configuration_initial`.
 
     |
     | Type: []Cluster
@@ -2524,8 +2524,8 @@ TODO: doc link :ref:`tcm_connect_clusters`
     TODO: ??
 
     |
-    | Type: bool TBD:check
-    | Default:
+    | Type: bool
+    | Default: false
 
 .. _tcm_configuration_reference_initial_cluster_storage_etcd_permitwostream:
 
