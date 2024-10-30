@@ -162,6 +162,8 @@ multiple |tcm| installations:
 -   Command-line options for parameters that must be unique for different |tcm| instances
     running on a single server. For example, ``http.port``.
 
+.. _tcm_configuration_types:
+
 Configuration parameter types
 -----------------------------
 
@@ -219,6 +221,8 @@ packages documentation <https://pkg.go.dev/>`__.
         websession-cookie:
             same-site: SameSiteStrictMode
 
+.. _tcm_configuration_template:
+
 Creating a configuration template
 ---------------------------------
 
@@ -230,3 +234,93 @@ To write a default |tcm| configuration to the ``tcm.example.yml`` file, run:
 .. code-block:: console
 
     $ tcm generate-config > tcm.example.yml.
+
+.. _tcm_configuration_initial:
+
+Initial settings
+----------------
+
+You can use YAML configuration files to create entities in |tcm| automatically
+upon the first start. These entities are defined in the :ref:`tcm_configuration_reference_initial`
+section of the configuration files.
+
+.. important::
+
+    The initial settings are applied **only once** upon the first |tcm| start.
+    Further changes are **not applied** upon |tcm| restarts.
+
+.. _tcm_configuration_initial_clusters:
+
+Clusters
+~~~~~~~~
+
+To add clusters to |tcm| upon the first start, specify their settings in the
+:ref:`initial-settings.clusters <tcm_configuration_reference_initial_clusters>`
+configuration section.
+
+The ``initial-settings.clusters`` section is an array whose items describe separate clusters,
+for example:
+
+.. code-block:: yaml
+
+    initial-settings:
+      clusters:
+        - name: "Cluster 1"
+          description: "First cluster"
+          # cluster settings
+        - name: "Cluster 2"
+          description: "Second cluster"
+          # cluster settings
+
+In this configuration, you can specify all cluster settings that you define
+when :ref:`connecting clusters` through the |tcm| web interface. This includes
+the cluster name, a text description, additional URLs, configuration storage connection,
+Tarantool instances connection, and other settings. For the full list of cluster
+configuration parameters, see the :ref:`initial-settings.clusters <tcm_configuration_reference_initial_clusters>`
+reference. For example, this is how you add a cluster that uses an etcd configuration
+storage:
+
+
+.. code-block:: yaml
+
+    initial-settings:
+      clusters:
+        - name: "My cluster"
+          description: "Cluster description"
+          urls:
+          - label: Test
+            url: http://example.com
+          storage-connection:
+            provider: etcd
+            etcd-connection:
+              endpoints:
+                - http://127.0.0.1:2379
+              username: ""
+              password: ""
+              prefix: /cluster1
+            tarantool-connection:
+              username: "guest"
+              password: ""
+
+By default, |tcm| contains a cluster named **Default cluster** with ID
+``00000000-0000-0000-0000-000000000000``. You can specify this ID to modify
+the default cluster settings upon the first |tcm| start. For example, rename it
+and add its connection settings:
+
+.. code-block:: yaml
+
+    initial-settings:
+      clusters:
+        - id: 00000000-0000-0000-0000-000000000000
+          name: "My cluster"
+          storage-connection:
+            provider: etcd
+            etcd-connection:
+              endpoints:
+                - http://127.0.0.1:2379
+              username: etcd-user
+              password: secret
+              prefix: /cluster1
+            tarantool-connection:
+              username: "guest"
+              password: ""

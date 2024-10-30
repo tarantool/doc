@@ -16,13 +16,18 @@ A single |tcm| installation can have multiple connected clusters. A connection t
 |tcm| doesn't affect the cluster's functioning. You can connect clusters to |tcm|
 and disconnect them on the fly.
 
-There are two ways to add a cluster to |tcm|:
+There are two scenarios of cluster connection to |tcm|:
 
 -   Connect an existing cluster.
--   Add a new cluster and :ref:`write its configuration <getting_started_tcm_cluster_config>` from scratch in the |tcm| web UI.
+-   Add a new cluster and :ref:`write its configuration <getting_started_tcm_cluster_config>` from scratch in the |tcm|
+    web interface.
 
 In both cases, you need to deploy Tarantool and start the cluster instances using
 the :ref:`tt-cli` or another suitable way.
+
+To add a cluster to |tcm|, you can use either the |tcm| web interface as described on this page,
+or the ``initial-settings.clusters`` section of the |tcm| configuration. To learn
+more, see :ref:`tcm_configuration_initial`.
 
 ..  _tcm_connect_clusters_parameters:
 
