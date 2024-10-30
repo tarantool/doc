@@ -2299,15 +2299,17 @@ TODO: doc link :ref:`tcm_connect_clusters`
 
 .. important::
 
-    no env vars?
-    no cli opts?
+    The ``initial-settings.*`` configuration options can be set in the YAML
+    configuration file only. There are no environment variables nor
+    command-line options for them.
 
 .. _tcm_configuration_reference_initial_clusters:
 
 .. confval:: initial-settings.clusters
 
-    An array of clusters to connect to |tcm| automatically upon the first startup.
-    TODO: link to instruction
+    An array of clusters to create in |tcm| automatically upon the first startup.
+
+    See also :ref:`tcm_connect_clusters`.
 
     |
     | Type: []Cluster
@@ -2324,7 +2326,7 @@ TODO: doc link :ref:`tcm_connect_clusters`
 
     |
     | Type: string
-    | Default: ""
+    | Default: "" (ID is generated automatically)
 
 
 .. _tcm_configuration_reference_initial_cluster_name:
@@ -2369,11 +2371,11 @@ TODO: doc link :ref:`tcm_connect_clusters`
     -   ``yellow``
     -   ``orange``
     -   ``teal``
-    -   empty string (no highlighting)
+    -   empty string (no color)
 
     |
     | Type: string
-    | Default: ""
+    | Default: "" (no color)
 
 
 .. _tcm_configuration_reference_initial_cluster_urls:
@@ -2391,7 +2393,7 @@ TODO: doc link :ref:`tcm_connect_clusters`
 
 .. confval:: initial-settings.clusters.<cluster>.<url>.label
 
-    URL label to show in |tcm|.
+    URL label to show in |tcm|. Typically, this is the linked service name.
 
     |
     | Type: string
@@ -2401,7 +2403,7 @@ TODO: doc link :ref:`tcm_connect_clusters`
 
 .. confval:: initial-settings.clusters.<cluster>.<url>.url
 
-    The URL address.
+    The URL address of the linked service.
 
     |
     | Type: string
@@ -2421,18 +2423,17 @@ TODO: doc link :ref:`tcm_connect_clusters`
 
     |
     | Type: string
-    | Default: TBD??
+    | Default: ??TODO
 
 .. _tcm_configuration_reference_initial_cluster_storage_etcd_endpoints:
 
 .. confval:: initial-settings.clusters.<cluster>.storage-connection.etcd-connection.endpoints
 
-    An array of node URIs of the etcd cluster where the Tarantool cluster configuration is stored,
-    separated by semicolons (;).
+    An array of node URIs of the etcd cluster where the Tarantool cluster configuration is stored.
 
     |
     | Type: []string
-    | Default: TBD??
+    | Default: []
 
 .. _tcm_configuration_reference_initial_cluster_storage_etcd_autosync:
 
@@ -2441,8 +2442,8 @@ TODO: doc link :ref:`tcm_connect_clusters`
     An automated sync interval.
 
     |
-    | Type: string
-    | Default:
+    | Type: time.Duration
+    | Default: TODO??
 
 .. _tcm_configuration_reference_initial_cluster_storage_etcd_dialtimeout:
 
@@ -2452,7 +2453,7 @@ TODO: doc link :ref:`tcm_connect_clusters`
 
     |
     | Type: time.Duration
-    | Default: 10s TBD:check
+    | Default: TODO??
 
 .. _tcm_configuration_reference_initial_cluster_storage_etcd_dialkatime:
 
@@ -2462,7 +2463,7 @@ TODO: doc link :ref:`tcm_connect_clusters`
 
     |
     | Type: time.Duration
-    | Default: 30s TBD:check
+    | Default: TODO??
 
 .. _tcm_configuration_reference_initial_cluster_storage_etcd_dialkatimeout:
 
@@ -2472,29 +2473,29 @@ TODO: doc link :ref:`tcm_connect_clusters`
 
     |
     | Type: time.Duration
-    | Default: 30s TBD:check
+    | Default: TODO??
 
 .. _tcm_configuration_reference_initial_cluster_storage_etcd_maxcallsend:
 
 .. confval:: initial-settings.clusters.<cluster>.storage-connection.etcd-connection.max-call-send-msg-size
 
-    The maximum size (in bytes) of a transaction between the cluster and its etcd
-    configuration storage. TBD:check
+    The maximum size (in bytes) of a message between the cluster and its etcd
+    configuration storage. TODO:check
 
     |
     | Type: int
-    | Default: 2097152 TBD:check
+    | Default: TODO?? 2097152?
 
 .. _tcm_configuration_reference_initial_cluster_storage_etcd_maxcallrecv:
 
 .. confval:: initial-settings.clusters.<cluster>.storage-connection.etcd-connection.max-call-recv-msg-size
 
-    The maximum size (in bytes) of a transaction between the cluster and its etcd
+    The maximum size (in bytes) of a message between the cluster and its etcd
     configuration storage. TBD:check
 
     |
     | Type: int
-    | Default: 2097152 TBD:check
+    | Default: TODO?? 2097152
 
 .. _tcm_configuration_reference_initial_cluster_storage_etcd_username:
 
@@ -2520,7 +2521,7 @@ TODO: doc link :ref:`tcm_connect_clusters`
 
 .. confval:: initial-settings.clusters.<cluster>.storage-connection.etcd-connection.reject-old-cluster
 
-    TBD: ??
+    TODO: ??
 
     |
     | Type: bool TBD:check
@@ -2534,7 +2535,7 @@ TODO: doc link :ref:`tcm_connect_clusters`
 
     |
     | Type: bool
-    | Default: false TBD:check
+    | Default: false
 
 .. _tcm_configuration_reference_initial_cluster_storage_etcd_method:
 
@@ -2554,7 +2555,7 @@ TODO: doc link :ref:`tcm_connect_clusters`
 
     |
     | Type: string
-    | Default: "" TBD:check
+    | Default: ""
 
 
 .. _tcm_configuration_reference_initial_cluster_etcd_tls_enabled:
@@ -2696,7 +2697,7 @@ TODO: doc link :ref:`tcm_connect_clusters`
 
     |
     | Type: string
-    | Default:
+    | Default: ""
 
 .. _tcm_configuration_reference_initial_cluster_storage_tarantool_password:
 
@@ -2706,7 +2707,7 @@ TODO: doc link :ref:`tcm_connect_clusters`
 
     |
     | Type: string
-    | Default:
+    | Default: ""
 
 
 .. _tcm_configuration_reference_initial_cluster_storage_tarantool_endpoints:
@@ -2717,7 +2718,7 @@ TODO: doc link :ref:`tcm_connect_clusters`
 
     |
     | Type: []string
-    | Default: ""
+    | Default: []
 
 .. _tcm_configuration_reference_initial_cluster_storage_tarantool_method:
 
@@ -2744,7 +2745,7 @@ TODO: doc link :ref:`tcm_connect_clusters`
 
     |
     | Type: string
-    | Default: "" TBD:check
+    | Default: "" TODO:check
 
 
 .. _tcm_configuration_reference_initial_cluster_storage_tarantool_ssl_key-file:
@@ -2852,7 +2853,7 @@ TODO: doc link :ref:`tcm_connect_clusters`
 
     An authentication method for connecting to the cluster.
 
-    TBD: values
+    TODO: values
 
     |
     | Type: string
@@ -2866,7 +2867,7 @@ TODO: doc link :ref:`tcm_connect_clusters`
 
     |
     | Type: time.Duration
-    | Default: TBD
+    | Default: TODO
 
 .. _tcm_configuration_reference_initial_cluster_tarantool_rate-limit:
 
@@ -2876,13 +2877,78 @@ TODO: doc link :ref:`tcm_connect_clusters`
 
     |
     | Type: uint
-    | Default: TBD
+    | Default: TODO
 
-.. _tcm_configuration_reference_initial_cluster_tarantool_ssl:
 
-.. confval:: initial-settings.clusters.<cluster>.tarantool-connection.ssl
+.. _tcm_configuration_reference_initial_cluster__tarantool_ssl_key-file:
 
-    tbd
+.. confval:: initial-settings.clusters.<cluster>.tarantool-connection.ssl.key-file
+
+    A path to a TLS private key file to use for connecting to the cluster instances.
+
+    See also: :ref:`configuration_connections_ssl`.
+
+    |
+    | Type: string
+    | Default: ""
+
+.. _tcm_configuration_reference_initial_cluster_tarantool_ssl_cert-file:
+
+.. confval:: initial-settings.clusters.<cluster>.tarantool-connection.ssl.cert-file
+
+    A path to an SSL certificate to use for connecting to the cluster instances.
+
+    See also: :ref:`configuration_connections_ssl`.
+
+    |
+    | Type: string
+    | Default: ""
+
+.. _tcm_configuration_reference_initial_cluster_tarantool_ssl_ca-file:
+
+.. confval:: initial-settings.clusters.<cluster>.tarantool-connection.ssl.ca-file
+
+    A path to a trusted CA certificate to use for connecting to the cluster instances.
+
+    See also: :ref:`configuration_connections_ssl`.
+
+    |
+    | Type: string
+    | Default: ""
+
+.. _tcm_configuration_reference_initial_cluster_tarantool_ssl_ciphers:
+
+.. confval:: initial-settings.clusters.<cluster>.tarantool-connection.ssl.ciphers
+
+    A list of SSL cipher suites that can be used for connecting to the cluster instances.
+    Possible values are listed in :ref:`<uri>.params.ssl_ciphers <configuration_reference_iproto_uri_params_ssl_ciphers>`.
+
+    See also: :ref:`configuration_connections_ssl`.
+
+    |
+    | Type: string
+    | Default: ""
+
+.. _tcm_configuration_reference_initial_cluster_tarantool_ssl_enabled:
+
+.. confval:: initial-settings.clusters.<cluster>.tarantool-connection.ssl.enabled
+
+    A password for an encrypted private SSL key to use for connecting to the cluster instances.
+
+    See also: :ref:`configuration_connections_ssl`.
+
+    |
+    | Type: string
+    | Default: ""
+
+.. _tcm_configuration_reference_initial_cluster_tarantool_ssl_password-file:
+
+.. confval:: initial-settings.clusters.<cluster>.tarantool-connection.ssl.password-file
+
+    A text file with passwords for encrypted private SSL keys to use
+    for connecting to the cluster instances.
+
+    See also: :ref:`configuration_connections_ssl`.
 
     |
     | Type: string
