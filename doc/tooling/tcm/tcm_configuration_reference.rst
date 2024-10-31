@@ -2420,10 +2420,11 @@ TODO: doc link :ref:`tcm_configuration_initial`
 
     -   ``etcd``
     -   ``tarantool``
+    -   empty string (undefined)
 
     |
     | Type: string
-    | Default: ??TODO
+    | Default: ""
 
 .. _tcm_configuration_reference_initial_cluster_storage_etcd_endpoints:
 
@@ -2724,7 +2725,6 @@ TODO: doc link :ref:`tcm_configuration_initial`
 
 .. confval:: initial-settings.clusters.<cluster>.storage-connection.tarantool-connection.method
 
-    TBD: check
     An authentication method for the cluster's Tarantool-based configuration storage.
 
     Possible values are the Go's `go-tarantool/Auth <https://pkg.go.dev/github.com/tarantool/go-tarantool#Auth>`__ constants:
@@ -2745,7 +2745,7 @@ TODO: doc link :ref:`tcm_configuration_initial`
 
     |
     | Type: string
-    | Default: "" TODO:check
+    | Default: ""
 
 
 .. _tcm_configuration_reference_initial_cluster_storage_tarantool_ssl_key-file:
@@ -2853,7 +2853,11 @@ TODO: doc link :ref:`tcm_configuration_initial`
 
     An authentication method for connecting to the cluster.
 
-    TODO: values
+    Possible values are the Go's `go-tarantool/Auth <https://pkg.go.dev/github.com/tarantool/go-tarantool#Auth>`__ constants:
+
+    -   ``AutoAuth`` (0)
+    -   ``ChapSha1Auth``
+    -   ``PapSha256Auth``
 
     |
     | Type: string
