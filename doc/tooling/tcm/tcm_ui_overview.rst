@@ -72,10 +72,11 @@ Page visibility
 ---------------
 
 This overview describes most |tcm| pages. The exact set of pages and controls available
-to a particular are determined by the user's :ref:`permissions <tcm_access_control_permissions>`.
+to a particular user is determined by the user's :ref:`permissions <tcm_access_control_permissions>`.
 
 Some features, such as data schema editing, are available only in the **development** mode.
 You can switch to it in the :ref:`user settings <tcm_ui_user_settings>` of the **Default Admin** user.
+To learn more about the development mode, see :ref:`tcm_dev_mode`.
 
 ..  _tcm_ui_groups:
 

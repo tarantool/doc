@@ -99,14 +99,20 @@ To view the detailed information about an instance or connect to it, click the c
 row in the instances list or a vertex of the graph. On the instance page, you can
 find:
 
-*   its configuration overview
+*   the instance configuration overview
 *   current state (with warning and error messages if any)
 *   the detailed Tarantool information returned by the instance introspection functions
     from :ref:`box.info <box_introspection-box_info>`, :ref:`box.stat <box_introspection-box_stat>`,
-    and other built-in modules.
+    and other built-in modules
+*   memory usage by the :ref:`slab allocator <memtx-memory>`
+*   instance users and roles
+*   stored functions
+*   instance metrics
 
-Additionally, on the instance details page there is a terminal in which you can execute
-arbitrary Lua code on the instance.
+The page also provides Lua and SQL terminals to execute built-in functions
+and requests on the instance. You can choose between two Lua terminals: the
+:ref:`tt interactive console <tt-interactive-console>` with code completion and highlighting or
+the default :ref:`Tarantool console <interactive_console>`.
 
 ..  _tcm_cluster_state_urls:
 
