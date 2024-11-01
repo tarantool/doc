@@ -8,10 +8,8 @@ Development mode
     :end-before: ee_note_tcm_end
 
 |tcm_full_name| provides a special mode aimed to use during the development.
-This mode enables capabilities that can be useful in development or testing enviroments,
-such as:
-
-*
+This mode extends the web interface with capabilities that can help in development
+or testing environments, such as starting and stopping instances or instance promotion.
 
 ..  _tcm_dev_mode_enable:
 
@@ -42,6 +40,7 @@ in its :ref:`configuration file <tcm_configuration>`:
 
 .. code-block:: yaml
 
+    # tcm_config.yaml
     mode: development
 
 ..  _tcm_dev_mode_enable_cli:
@@ -61,8 +60,8 @@ To start |tcm| in the development mode, specify the ``--mode=development`` comma
 Environment variable
 ~~~~~~~~~~~~~~~~~~~~
 
-To make new |tcm| instances start in the development mode, set the ``TCM_MODE``
-environment variable to ``development``:
+To make new |tcm| instances start in the development mode by default, set the
+``TCM_MODE`` environment variable to ``development``:
 
 .. code-block:: console
 
