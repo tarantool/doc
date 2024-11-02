@@ -137,9 +137,9 @@ Starting instances
     .. code-block:: console
 
         $ tt status manual_leader
-        INSTANCE                      STATUS      PID   MODE
-        manual_leader:instance001     RUNNING     15272 RW
-        manual_leader:instance002     RUNNING     15273 RO
+        INSTANCE                   STATUS   PID   MODE  CONFIG  BOX      UPSTREAM
+        manual_leader:instance001  RUNNING  8841  RW    ready   running  --
+        manual_leader:instance002  RUNNING  8842  RO    ready   running  --
 
 
 .. _replication-master_replica_status:
@@ -292,10 +292,10 @@ Starting an instance
     .. code-block:: console
 
         $ tt status manual_leader
-        INSTANCE                      STATUS      PID   MODE
-        manual_leader:instance001     RUNNING     15272 RW
-        manual_leader:instance002     RUNNING     15273 RO
-        manual_leader:instance003     RUNNING     15551 RO
+        INSTANCE                   STATUS   PID   MODE  CONFIG  BOX      UPSTREAM
+        manual_leader:instance001  RUNNING  8841  RW    ready   running  --
+        manual_leader:instance002  RUNNING  8842  RO    ready   running  --
+        manual_leader:instance003  RUNNING  8856  RO    ready   running  --
 
 
 ..  _replication-add_instances-reload-config:

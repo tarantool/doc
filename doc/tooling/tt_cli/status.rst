@@ -5,15 +5,18 @@ Checking instance status
 
 ..  code-block:: console
 
-    $ tt status [APPLICATION[:APP_INSTANCE]] [-p|--pretty]
+    $ tt status [APPLICATION[:APP_INSTANCE]] [OPTION ...]
 
 ``tt status`` prints the information about Tarantool applications and instances
 in the current environment. This includes:
 
-- Application and instance names
-- Instance statuses: running or not
-- PIDs
-- Instance modes: read-write or read-only
+-   ``INSTANCE`` -- application and instance names
+-   ``STATUS`` -- instance status: running, not running, or terminated with an error
+-   ``PID`` -- process IDs
+-   ``MODE`` -- instance modes: read-write or read-only
+-   ``CONFIG`` -- the instances' states in regard to configuration for Tarantool 3.0 or later (see :ref:`config.info() <config_api_reference_info>`)
+-   ``BOX`` -- the instances' :ref:`box.info() <box_info_info>` statuses
+-   ``UPSTREAM`` -- the instances' :ref:`box.info.replication[*].upstream <box_info_replication>` statuses
 
 When called without arguments, prints the status of all enabled applications in the current environment.
 
@@ -40,6 +43,10 @@ Examples
 
 Options
 -------
+
+..  option:: -d, --details
+
+    Print detailed alerts.
 
 ..  option:: -p, --pretty
 

@@ -141,9 +141,9 @@ Starting instances
     .. code-block:: console
 
         $ tt status master_master
-        INSTANCE                      STATUS      PID   MODE
-        master_master:instance001     RUNNING     30818 RW
-        master_master:instance002     RUNNING     30819 RW
+        INSTANCE                   STATUS   PID   MODE  CONFIG  BOX      UPSTREAM
+        master_master:instance001  RUNNING  9263  RW    ready   running  --
+        master_master:instance002  RUNNING  9264  RW    ready   running  --
 
 
 .. _replication-master-master-check-status:

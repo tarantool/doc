@@ -62,8 +62,9 @@ Details
 -------
 
 When called without an explicitly specified version, ``tt install`` installs the
-latest available version. To check versions available for installation, use
-:doc:`tt search <search>`.
+latest available version. If the version is specified in the incomplete format ``<MAJOR>.<MINOR>``,
+the command installs the latest available patch version in the series.
+To check versions available for installation, use :doc:`tt search <search>`.
 
 By default, available versions of Tarantool Community Edition and ``tt`` are taken from their git repositories.
 Their installation includes building from sources, which requires some tools and
@@ -143,6 +144,12 @@ Example
     ..  code-block:: console
 
         $ tt install tarantool
+
+*   Install the latest available patch version of Tarantool CE 3.2 release series:
+
+    ..  code-block:: console
+
+        $ tt install tarantool 3.2
 
 *   Install Tarantool 2.11.1 from the local repository:
 

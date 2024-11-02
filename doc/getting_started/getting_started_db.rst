@@ -76,8 +76,8 @@ Starting an instance
     ..  code-block:: console
 
         $ tt status create_db
-        INSTANCE                       STATUS      PID   MODE
-        create_db:instance001          RUNNING     54560 RW
+        INSTANCE               STATUS   PID   MODE  CONFIG  BOX      UPSTREAM
+        create_db:instance001  RUNNING  8685  RW    ready   running  --
 
 #.  Connect to the instance with :ref:`tt connect <tt-connect>`:
 
