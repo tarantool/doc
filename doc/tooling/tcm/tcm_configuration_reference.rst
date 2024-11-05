@@ -1276,7 +1276,7 @@ Tarantool backend store parameters:
 
     |
     | Type: time.Duration
-    | Default: 0s
+    | Default: 0 (disabled)
     | Environment variable: TCM_STORAGE_ETCD_AUTO_SYNC_INTERVAL
     | Command-line option: ``--storage.etcd.auto-sync-interval``
 
@@ -1550,10 +1550,11 @@ storage.etcd.embed.*
 ~~~~~~~~~~~~~~~~~~~~
 
 The ``storage.etcd.embed`` group defines the configuration of the embedded etcd
-cluster that can used as a |tcm| configuration storage.
+cluster to use as a |tcm| backend store.
 This cluster can be used for development purposes when the production or testing
 etcd cluster is not available or not needed.
 
+See also :ref:`tcm_backend_store_embed`.
 
 .. _tcm_configuration_reference_storage_tarantool_prefix:
 
@@ -1912,10 +1913,11 @@ storage.tarantool.embed.*
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The ``storage.tarantool.embed`` group parameters define the configuration of the
-embedded Tarantool cluster that can used as a |tcm| configuration storage.
+embedded Tarantool cluster to use as a |tcm| backend store.
 This cluster can be used for development purposes when the production or testing
 cluster is not available or not needed.
 
+See also :ref:`tcm_backend_store_embed`.
 
 .. _tcm_configuration_reference_addon:
 
@@ -2292,7 +2294,7 @@ initial-settings
 The ``initial-settings`` group defines entities that are created automatically
 upon the first |tcm| startup.
 
-TODO: doc link :ref:`tcm_configuration_initial`
+See also :ref:`tcm_configuration_initial`.
 
 
 -   :ref:`initial-settings.clusters <tcm_configuration_reference_initial_clusters>`
@@ -2444,7 +2446,7 @@ TODO: doc link :ref:`tcm_configuration_initial`
 
     |
     | Type: time.Duration
-    | Default: TODO??
+    | Default: 0 (disabled)
 
 .. _tcm_configuration_reference_initial_cluster_storage_etcd_dialtimeout:
 
@@ -2454,7 +2456,7 @@ TODO: doc link :ref:`tcm_configuration_initial`
 
     |
     | Type: time.Duration
-    | Default: TODO??
+    | Default: 0 (not set)
 
 .. _tcm_configuration_reference_initial_cluster_storage_etcd_dialkatime:
 
@@ -2464,7 +2466,7 @@ TODO: doc link :ref:`tcm_configuration_initial`
 
     |
     | Type: time.Duration
-    | Default: TODO??
+    | Default: 0 (not set)
 
 .. _tcm_configuration_reference_initial_cluster_storage_etcd_dialkatimeout:
 
@@ -2474,29 +2476,29 @@ TODO: doc link :ref:`tcm_configuration_initial`
 
     |
     | Type: time.Duration
-    | Default: TODO??
+    | Default: 0 (not set)
 
 .. _tcm_configuration_reference_initial_cluster_storage_etcd_maxcallsend:
 
 .. confval:: initial-settings.clusters.<cluster>.storage-connection.etcd-connection.max-call-send-msg-size
 
-    The maximum size (in bytes) of a message between the cluster and its etcd
-    configuration storage. TODO:check
+    The maximum size (in bytes) of a request from the cluster to its etcd
+    configuration storage.
 
     |
     | Type: int
-    | Default: TODO?? 2097152?
+    | Default: 2097152
 
 .. _tcm_configuration_reference_initial_cluster_storage_etcd_maxcallrecv:
 
 .. confval:: initial-settings.clusters.<cluster>.storage-connection.etcd-connection.max-call-recv-msg-size
 
-    The maximum size (in bytes) of a message between the cluster and its etcd
-    configuration storage. TBD:check
+    The maximum size (in bytes) of a response to the cluster from its etcd
+    configuration storage.
 
     |
     | Type: int
-    | Default: TODO?? 2097152
+    | Default: 0 (unlimited)
 
 .. _tcm_configuration_reference_initial_cluster_storage_etcd_username:
 
@@ -2522,7 +2524,7 @@ TODO: doc link :ref:`tcm_configuration_initial`
 
 .. confval:: initial-settings.clusters.<cluster>.storage-connection.etcd-connection.reject-old-cluster
 
-    TODO: ??
+    Whether etcd should refuse to create a client against an outdated cluster.
 
     |
     | Type: bool
@@ -2871,7 +2873,7 @@ TODO: doc link :ref:`tcm_configuration_initial`
 
     |
     | Type: time.Duration
-    | Default: TODO
+    | Default: 0 (not set)
 
 .. _tcm_configuration_reference_initial_cluster_tarantool_rate-limit:
 
@@ -2881,7 +2883,7 @@ TODO: doc link :ref:`tcm_configuration_initial`
 
     |
     | Type: uint
-    | Default: TODO
+    | Default: 0 (not set)
 
 
 .. _tcm_configuration_reference_initial_cluster__tarantool_ssl_key-file:
