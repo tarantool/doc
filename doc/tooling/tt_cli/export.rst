@@ -187,7 +187,7 @@ in the ``--username`` and ``--password`` command options:
 .. code-block:: console
 
     $ tt crud export localhost:3301 customers:customers.csv \
-                     --username myuser -password p4$$w0rD
+                     --username myuser --password p4$$w0rD
 
 .. _tt-export-ssl:
 
@@ -201,7 +201,7 @@ If necessary, add other SSL parameters in the ``--ssl*`` options.
 .. code-block:: console
 
     $ tt crud export localhost:3301 customers:customers.csv \
-                     --username myuser -password p4$$w0rD   \
+                     --username myuser --password p4$$w0rD   \
                      --auth pap-sha256 --sslcertfile certs/server.crt \
                      --sslkeyfile certs/server.key
 
@@ -211,7 +211,7 @@ option:
 .. code-block:: console
 
     $ tt crud export localhost:3301 customers:customers.csv \
-                     --username myuser -password p4$$w0rD   \
+                     --username myuser --password p4$$w0rD   \
                      --use-ssl
 
 .. _tt-export-options:
