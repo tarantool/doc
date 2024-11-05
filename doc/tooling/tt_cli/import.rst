@@ -184,6 +184,13 @@ The objects are described in the ``customers.jsonl`` file.
 
     $ tt tdg2 import localhost:3301 customers.jsonl:customers
 
+If token authentication is enabled in TDG2, pass the application token in the ``-token`` option:
+
+.. code-block:: console
+
+    $ tt tdg2 import localhost:3301 customers.jsonl:customers \
+                     --token=2fc136cf-8cae-4655-a431-7c318967263d
+
 The input file can look like this:
 
 .. code-block:: json
@@ -220,10 +227,57 @@ To automatically confirm a batch import operation, add the ``--force`` option:
                      --force
 
 
+.. _tt-import-auth:
+
+Authentication
+--------------
+
+When connecting to the cluster with enabled authentication, specify access credentials
+in the ``--username`` and ``--password`` command options:
+
+.. code-block:: console
+
+    $ tt crud import localhost:3301 customers.csv:customers \
+                     --header --match=header \
+                     --username myuser -password p4$$w0rD
+
+.. _tt-import-ssl:
+
+Encrypted connection
+--------------------
+
+To connect to instances that use :ref:`SSL encryption <configuration_connections_ssl>`,
+provide the SSL certificate and SSL key files in the ``--sslcertfile`` and ``--sslkeyfile`` options.
+If necessary, add other SSL parameters in the ``--ssl*`` options.
+
+.. code-block:: console
+
+    $ tt crud import localhost:3301 customers.csv:customers \
+                     --header --match=header \
+                     --username myuser -password p4$$w0rD   \
+                     --auth pap-sha256 --sslcertfile certs/server.crt \
+                     --sslkeyfile certs/server.key
+
+For connections that use SSL but don't require additional parameters, add the ``--use-ssl``
+option:
+
+.. code-block:: console
+
+    $ tt crud import localhost:3301 customers.csv:customers \
+                     --header --match=header \
+                     --username myuser -password p4$$w0rD   \
+                     --use--ssl
+
 .. _tt-import-options:
 
 Options
 -------
+
+..  option:: --auth STRING
+
+    **Applicable to:** ``tt crud import``, ``tt tdg2 import``
+
+    Authentication type: ``chap-sha1`` or ``pap-sha256``.
 
 ..  option:: --batch-size INT
 
@@ -377,6 +431,54 @@ Options
     For CSV, double quotes are used by default (``"``).
     The double symbol of this option acts as the escaping symbol within input data.
 
+..  option:: --sslcafile STRING
+
+    **Applicable to:** ``tt crud import``, ``tt tdg2 import``
+
+    The path to a trusted certificate authorities (CA) file for encrypted connections.
+
+    See also :ref:`tt-import-ssl`.
+
+..  option:: --sslcertfile STRING
+
+    **Applicable to:** ``tt crud import``, ``tt tdg2 import``
+
+    The path to an SSL certificate file for encrypted connections.
+
+    See also :ref:`tt-import-ssl`.
+
+..  option:: --sslciphersfile STRING
+
+    **Applicable to:** ``tt crud import``, ``tt tdg2 import``
+
+    The list of SSL cipher suites used for encrypted connections, separated by colons (``:``).
+
+    See also :ref:`tt-import-ssl`.
+
+..  option:: --sslkeyfile STRING
+
+    **Applicable to:** ``tt crud import``, ``tt tdg2 import``
+
+    The path to a private SSL key file for encrypted connections.
+
+    See also :ref:`tt-import-ssl`.
+
+..  option:: --sslpassword STRING
+
+    **Applicable to:** ``tt crud import``, ``tt tdg2 import``
+
+    The password for the SSL key file for encrypted connections.
+
+    See also :ref:`tt-import-ssl`.
+
+..  option:: --sslpasswordfile STRING
+
+    **Applicable to:** ``tt crud import``, ``tt tdg2 import``
+
+    A file with list of passwords to the SSL key file for encrypted connections.
+
+    See also :ref:`tt-import-auth`.
+
 ..  option:: -success STRING
 
     The name of a file with rows that were imported (the default is ``success``).
@@ -393,6 +495,12 @@ Options
     .. NOTE::
 
         Symbols specified in this option cannot intersect with ``--dec-sep``.
+
+..  option:: --token STRING
+
+    **Applicable to:** ``tt tdg2 import``
+
+    An application token for connecting to TDG2.
 
 ..  option:: --username STRING
 

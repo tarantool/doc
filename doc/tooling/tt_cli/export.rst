@@ -130,7 +130,15 @@ the ``customers.jsonl`` file:
 
     $ tt tdg2 export localhost:3301 customers:customers.jsonl
 
-If the ``customers`` type has four fields (``id``, ``firstname``, ``lastname``, and ``age``), the file with exported data might look like this:
+If token authentication is enabled in TDG2, pass the application token in the ``-token`` option:
+
+.. code-block:: console
+
+    $ tt tdg2 export localhost:3301 customers:customers.jsonl \
+                     --token=2fc136cf-8cae-4655-a431-7c318967263d
+
+If the ``customers`` type has four fields (``id``, ``firstname``, ``lastname``, and ``age``),
+the file with exported data might look like this:
 
 .. code-block:: json
 
@@ -138,7 +146,7 @@ If the ``customers`` type has four fields (``id``, ``firstname``, ``lastname``, 
     {"age":41,"first_name":"Fay","id":2,"second_name":"Rivers"}
     {"age":74,"first_name":"Milo","id":4,"second_name":"Walters"}
 
-If an object contains a ``null`` value in a field, this field skipped:
+``null`` field values are skipped:
 
 .. code-block:: json
 
@@ -168,10 +176,54 @@ Set the ``tt tdg2 export`` batch size less or equal to 1000:
 
     $ tt tdg2 export localhost:3301 customers:customers.jsonl --batch-size=1000
 
+.. _tt-export-auth:
+
+Authentication
+--------------
+
+When connecting to the cluster with enabled authentication, specify access credentials
+in the ``--username`` and ``--password`` command options:
+
+.. code-block:: console
+
+    $ tt crud export localhost:3301 customers:customers.csv \
+                     --username myuser -password p4$$w0rD
+
+.. _tt-export-ssl:
+
+Encrypted connection
+--------------------
+
+To connect to instances that use :ref:`SSL encryption <configuration_connections_ssl>`,
+provide the SSL certificate and SSL key files in the ``--sslcertfile`` and ``--sslkeyfile`` options.
+If necessary, add other SSL parameters in the ``--ssl*`` options.
+
+.. code-block:: console
+
+    $ tt crud export localhost:3301 customers:customers.csv \
+                     --username myuser -password p4$$w0rD   \
+                     --auth pap-sha256 --sslcertfile certs/server.crt \
+                     --sslkeyfile certs/server.key
+
+For connections that use SSL but don't require additional parameters, add the ``--use-ssl``
+option:
+
+.. code-block:: console
+
+    $ tt crud export localhost:3301 customers:customers.csv \
+                     --username myuser -password p4$$w0rD   \
+                     --use--ssl
+
 .. _tt-export-options:
 
 Options
 -------
+
+..  option:: --auth STRING
+
+    **Applicable to:** ``tt crud export``, ``tt tdg2 export``
+
+    Authentication type: ``chap-sha1`` or ``pap-sha256``.
 
 ..  option:: --batch-queue-size INT
 
@@ -225,6 +277,60 @@ Options
     **Applicable to:** ``tt export``, ``tt crud export``
 
     Export data using a :ref:`read view <read_views>`.
+
+..  option:: --sslcafile STRING
+
+    **Applicable to:** ``tt crud export``, ``tt tdg2 export``
+
+    The path to a trusted certificate authorities (CA) file for encrypted connections.
+
+    See also :ref:`tt-export-ssl`.
+
+..  option:: --sslcertfile STRING
+
+    **Applicable to:** ``tt crud export``, ``tt tdg2 export``
+
+    The path to an SSL certificate file for encrypted connections.
+
+    See also :ref:`tt-export-ssl`.
+
+..  option:: --sslciphersfile STRING
+
+    **Applicable to:** ``tt crud export``, ``tt tdg2 export``
+
+    The list of SSL cipher suites used for encrypted connections, separated by colons (``:``).
+
+    See also :ref:`tt-export-ssl`.
+
+..  option:: --sslkeyfile STRING
+
+    **Applicable to:** ``tt crud export``, ``tt tdg2 export``
+
+    The path to a private SSL key file for encrypted connections.
+
+    See also :ref:`tt-export-ssl`.
+
+..  option:: --sslpassword STRING
+
+    **Applicable to:** ``tt crud export``, ``tt tdg2 export``
+
+    The password for the SSL key file for encrypted connections.
+
+    See also :ref:`tt-export-ssl`.
+
+..  option:: --sslpasswordfile STRING
+
+    **Applicable to:** ``tt crud export``, ``tt tdg2 export``
+
+    A file with list of passwords to the SSL key file for encrypted connections.
+
+    See also :ref:`tt-export-auth`.
+
+..  option:: --token STRING
+
+    **Applicable to:** ``tt tdg2 export``
+
+    An application token for connecting to TDG2.
 
 ..  option:: --username STRING
 

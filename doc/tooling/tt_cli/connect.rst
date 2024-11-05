@@ -104,9 +104,9 @@ If no credentials are provided for a remote connection, the user is automaticall
 Encrypted connection
 ~~~~~~~~~~~~~~~~~~~~
 
-To connect to instances that use SSL encryption, provide the SSL certificate and
-SSL key files in the ``--sslcertfile`` and ``--sslkeyfile`` options. If necessary,
-add other SSL parameters -- ``--sslcafile`` and ``--sslciphers``.
+To connect to instances that use :ref:`SSL encryption <configuration_connections_ssl>`,
+provide the SSL certificate and SSL key files in the ``--sslcertfile`` and ``--sslkeyfile`` options.
+If necessary, add other SSL parameters -- ``--sslcafile`` and ``--sslciphers``.
 
 Script evaluation
 ~~~~~~~~~~~~~~~~~
