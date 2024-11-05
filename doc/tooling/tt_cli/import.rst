@@ -184,7 +184,7 @@ The objects are described in the ``customers.jsonl`` file.
 
     $ tt tdg2 import localhost:3301 customers.jsonl:customers
 
-If token authentication is enabled in TDG2, pass the application token in the ``-token`` option:
+If token authentication is enabled in TDG2, pass the application token in the ``--token`` option:
 
 .. code-block:: console
 
@@ -266,7 +266,7 @@ option:
     $ tt crud import localhost:3301 customers.csv:customers \
                      --header --match=header \
                      --username myuser -password p4$$w0rD   \
-                     --use--ssl
+                     --use-ssl
 
 .. _tt-import-options:
 
