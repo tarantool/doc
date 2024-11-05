@@ -223,7 +223,7 @@ Options
 
     **Applicable to:** ``tt crud export``, ``tt tdg2 export``
 
-    Authentication type: ``chap-sha1`` or ``pap-sha256``.
+    Authentication type: ``chap-sha1``, ``pap-sha256``, or ``auto``.
 
 ..  option:: --batch-queue-size INT
 
@@ -331,6 +331,12 @@ Options
     **Applicable to:** ``tt tdg2 export``
 
     An application token for connecting to TDG2.
+
+..  option:: --use-ssl STRING
+
+    Use SSL without providing any additional SSL parameters.
+
+    See also :ref:`tt-export-ssl`.
 
 ..  option:: --username STRING
 

@@ -239,7 +239,7 @@ in the ``--username`` and ``--password`` command options:
 
     $ tt crud import localhost:3301 customers.csv:customers \
                      --header --match=header \
-                     --username myuser -password p4$$w0rD
+                     --username myuser --password p4$$w0rD
 
 .. _tt-import-ssl:
 
@@ -254,7 +254,7 @@ If necessary, add other SSL parameters in the ``--ssl*`` options.
 
     $ tt crud import localhost:3301 customers.csv:customers \
                      --header --match=header \
-                     --username myuser -password p4$$w0rD   \
+                     --username myuser --password p4$$w0rD   \
                      --auth pap-sha256 --sslcertfile certs/server.crt \
                      --sslkeyfile certs/server.key
 
@@ -265,7 +265,7 @@ option:
 
     $ tt crud import localhost:3301 customers.csv:customers \
                      --header --match=header \
-                     --username myuser -password p4$$w0rD   \
+                     --username myuser --password p4$$w0rD   \
                      --use-ssl
 
 .. _tt-import-options:
@@ -277,7 +277,7 @@ Options
 
     **Applicable to:** ``tt crud import``, ``tt tdg2 import``
 
-    Authentication type: ``chap-sha1`` or ``pap-sha256``.
+    Authentication type: ``chap-sha1``, ``pap-sha256``, or ``auto``.
 
 ..  option:: --batch-size INT
 
@@ -431,6 +431,17 @@ Options
     For CSV, double quotes are used by default (``"``).
     The double symbol of this option acts as the escaping symbol within input data.
 
+..  option:: --rollback-on-error
+
+    **Applicable to:** ``tt crud import``
+
+    Specify whether any operation failed on a storage leads to rollback of a batch
+    import on this storage.
+
+    .. note::
+
+        ``tt tdg2 import`` always works as if ``--rollback-on-error`` is ``true``.
+
 ..  option:: --sslcafile STRING
 
     **Applicable to:** ``tt crud import``, ``tt tdg2 import``
@@ -502,17 +513,13 @@ Options
 
     An application token for connecting to TDG2.
 
+..  option:: --use-ssl STRING
+
+    Use SSL without providing any additional SSL parameters.
+
+    See also :ref:`tt-import-ssl`.
+
 ..  option:: --username STRING
 
     A username for connecting to the instance.
 
-..  option:: --rollback-on-error
-
-    **Applicable to:** ``tt crud import``
-
-    Specify whether any operation failed on a storage leads to rollback of a batch
-    import on this storage.
-
-    .. note::
-
-        ``tt tdg2 import`` always works as if ``--rollback-on-error`` is ``true``.
