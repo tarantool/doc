@@ -253,7 +253,7 @@ To deploy a local cluster based on the configuration from etcd:
     .. code-block:: console
 
         $ tt status cluster
-        INSTANCE               STATUS   PID   MODE  CONFIG  BOX      UPSTREAM
+        INSTANCE              STATUS   PID   MODE  CONFIG  BOX      UPSTREAM
         cluster:instance-001  RUNNING  8747  RW    ready   running  --
         cluster:instance-002  RUNNING  8748  RO    ready   running  --
         cluster:instance-003  RUNNING  8749  RO    ready   running  --
