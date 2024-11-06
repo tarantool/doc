@@ -116,7 +116,7 @@ To add a new instance ``instance-003`` to the ``replicaset-001`` replica set:
 
 .. code-block:: console
 
-    tt cluster publish "http://localhost:2379/myapp?name=instance-003" instance_source.yaml --replicaset replicaset-001
+    $ tt cluster publish "http://localhost:2379/myapp?name=instance-003" instance_source.yaml --replicaset replicaset-001
 
 
 .. _tt-cluster-publish-validation:
@@ -265,12 +265,14 @@ subcommands:
 
 -   :ref:`promote <tt-cluster-replicaset-promote>`
 -   :ref:`demote <tt-cluster-replicaset-demote>`
+-   :ref:`expel <tt-cluster-replicaset-expel>`
+-   :ref:`roles <tt-cluster-replicaset-roles>`
 
 .. important::
 
     ``tt cluster replicaset`` works only with centralized cluster configurations.
-    To manage replica set leaders in clusters with local YAML configurations,
-    use :ref:`tt replicaset promote <tt-replicaset-demote>` and :ref:`tt replicaset demote <tt-replicaset-demote>`.
+    To manage replica sets in clusters with local YAML configurations,
+    use :ref:`tt replicaset <tt-replicaset>`.
 
 .. _tt-cluster-replicaset-promote:
 
@@ -331,6 +333,50 @@ to ``ro`` and reloads the configuration.
 
     If failover is ``off``, the command doesn't consider the modes of other
     replica set members, so there can be any number of read-write instances in one replica set.
+
+.. _tt-cluster-replicaset-expel:
+
+expel
+~~~~~
+
+.. code-block:: console
+
+    $ tt cluster replicaset expel CONFIG_URI INSTANCE_NAME [OPTION ...]
+
+``tt cluster replicaset expel`` expels an instance from the cluster. Example:
+
+    $ tt cluster replicaset expel "http://localhost:2379" storage-b-002
+
+.. _tt-cluster-replicaset-roles:
+
+roles
+~~~~~
+
+.. code-block:: console
+
+    $ tt cluster replicaset roles [add|remove] CONFIG_URI ROLE_NAME [OPTION ...]
+
+``tt cluster replicaset roles`` manages :ref:`application roles <application_roles>`
+in the configuration scope specified in the command options. It has two subcommands:
+
+*   ``add`` adds a role
+*   ``remove`` removes a role
+
+Use the ``--global``, ``--group``, ``--replicaset``, ``--instance`` options to select
+the configuration scope to add or remove the role. For example, to add a role to
+all instances in a replicaset:
+
+.. code-block:: console
+
+    $ tt cluster replicaset roles add "http://localhost:2379" roles.my-role \
+                                       --replicaset storage-a
+
+To remove a role defined in the global configuration scope:
+
+.. code-block:: console
+
+    $ tt cluster replicaset roles remove "http://localhost:2379" roles.my-role \
+                                       --global
 
 
 .. _tt-cluster-failover:
@@ -507,21 +553,34 @@ Options
 
 ..  option:: --force
 
-    **Applicable to:** ``publish``
+    **Applicable to:** ``publish``, ``replicaset``
 
     Skip validation when publishing. Default: `false` (validation is enabled).
+    TODO: update for replicaset
+
+..  option:: -G, --global
+
+    **Applicable to:** ``replicaset roles``
+
+    Apply the operation to the global configuration scope, that is, to all instances.
 
 ..  option:: --group
 
-    **Applicable to:** ``publish``
+    **Applicable to:** ``publish``, ``replicaset roles``
 
-    A name of the configuration group to which the instance belongs.
+    A name of the configuration group to which the operation applies.
+
+..  option:: --instance
+
+    **Applicable to:** ``replicaset roles``
+
+    A name of the instance to which the operation applies.
 
 ..  option:: --replicaset
 
-    **Applicable to:** ``publish``
+    **Applicable to:** ``publish``, ``replicaset roles``
 
-    A name of the replica set to which the instance belongs.
+    A name of the replica set to which the operation applies.
 
 ..  option:: -t, --timeout UINT
 
@@ -548,7 +607,7 @@ Options
 
         This option is supported by the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only.
 
-    **Applicable to:** ``publish``
+    **Applicable to:** ``publish``, ``replicaset``
 
     Generate hashes and signatures for integrity checks.
 
