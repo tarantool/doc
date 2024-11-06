@@ -435,7 +435,7 @@ Options
 
     **Applicable to:** ``tt crud import``
 
-    Specify whether any operation failed on a storage leads to rollback of a batch
+    Specify whether any operation failed on a storage leads to rolling back batch
     import on this storage.
 
     .. note::
@@ -486,7 +486,7 @@ Options
 
     **Applicable to:** ``tt crud import``, ``tt tdg2 import``
 
-    A file with list of passwords to the SSL key file for encrypted connections.
+    A file with a list of passwords to the SSL key file for encrypted connections.
 
     See also :ref:`tt-import-auth`.
 
