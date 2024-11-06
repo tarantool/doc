@@ -2540,16 +2540,6 @@ See also :ref:`tcm_configuration_initial`.
     | Type: bool
     | Default: false
 
-.. _tcm_configuration_reference_initial_cluster_storage_etcd_method:
-
-.. confval:: initial-settings.clusters.<cluster>.storage-connection.etcd-connection.method
-
-    TBD: ??
-
-    |
-    | Type: string
-    | Default:
-
 .. _tcm_configuration_reference_initial_cluster_storage_etcd_prefix:
 
 .. confval:: initial-settings.clusters.<cluster>.storage-connection.etcd-connection.prefix
