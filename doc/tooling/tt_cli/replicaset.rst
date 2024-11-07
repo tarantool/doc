@@ -20,6 +20,7 @@ Managing replica sets
 *   :ref:`vshard <tt-replicaset-vshard>`
 *   :ref:`bootstrap <tt-replicaset-bootstrap>`
 *   :ref:`rebootstrap <tt-replicaset-rebootstrap>`
+*   :ref:`roles <tt-replicaset-roles>`
 
 .. _tt-replicaset-status:
 
@@ -391,6 +392,98 @@ To automatically confirm reboostrap, add the ``-y``/``--yes`` option:
 
     $ tt replicaset rebootstrap myapp:storage-001 -y
 
+.. _tt-replicaset-roles:
+
+roles
+-----
+
+..  code-block:: console
+
+    $ tt replicaset roles [add|remove] APPLICATION[:APP_INSTANCE] ROLE_NAME [OPTIONS ...]
+    # or
+    $ tt rs roles [add|remove] APPLICATION[:APP_INSTANCE] ROLE_NAME [OPTIONS ...]
+
+``tt replicaset roles`` (``tt rs roles``) manages :ref:`application roles <application_roles>`
+in the cluster.
+This command works on Tarantool clusters with a local YAML
+configuration and Cartridge clusters. It has two subcommands:
+
+*   ``add`` adds a role
+*   ``remove`` removes a role
+
+.. note::
+
+    To manage roles in a Tarantool cluster with a :ref:`centralized configuration <configuration_etcd>`,
+    use :ref:`tt cluster replicaset roles <tt-cluster-replicaset-roles>`.
+
+
+.. _tt-replicaset-roles-config:
+
+Managing roles in clusters with local YAML configurations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When called on clusters with local YAML configurations, ``tt replicaset roles``
+subcommands add or remove the corresponding lines from the configuration file
+and reload the configuration.
+
+Use the ``--global``, ``--group``, ``--replicaset``, ``--instance`` options to specify
+the configuration scope to add or remove roles. For example, to add a role to
+all instances in a replica set:
+
+.. code-block:: console
+
+    $ tt replicaset roles add my-app roles.my-role --replicaset storage-a
+
+You can also manage roles of a specific instance by specifying its name after the application name:
+
+.. code-block:: console
+
+    $ tt replicaset roles add my-app:router-001 roles.my-role
+
+To remove a role defined in the global configuration scope:
+
+.. code-block:: console
+
+    $ tt replicaset roles remove my-app roles.my-role --global
+
+If some instances of the affected scope are running outside the current ``tt``
+environment, ``tt replicaset roles`` can't ensure the configuration reload on
+them and reports an error. You can skip this check by adding the ``-f``/``--force`` option:
+
+..  code-block:: console
+
+    $ tt replicaset roles add my-app roles.my-role --replicaset storage-a --force
+
+
+.. _tt-replicaset-roles-cartridge:
+
+Managing roles in Cartridge clusters
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+..  include:: _includes/cartridge_deprecation_note.rst
+
+When called on Cartridge clusters, ``tt replicaset roles`` subcommands add or remove
+Cartridge `cluster roles <https://www.tarantool.io/en/doc/2.11/book/cartridge/cartridge_dev/#cluster-roles>`__.
+
+Cartridge cluster roles are defined per replica set. Thus, you can use the
+``--replicaset`` and ``--group`` options to define a role's scope. In this case,
+a group is a `vshard group <https://www.tarantool.io/en/doc/2.11/book/cartridge/cartridge_dev/#using-multiple-vshard-storage-groups>`__.
+
+To add a role to a Cartridge cluster replica set:
+
+..  code-block:: console
+
+    $ tt replicaset roles add my-cartridge-app my-role --replicaset storage-001
+
+To remove a role from a vshard group:
+
+..  code-block:: console
+
+    $ tt replicaset roles remove my-cartridge-app my-role --group cold-data
+
+Learn more about `Cartridge cluster roles <https://www.tarantool.io/en/doc/2.11/book/cartridge/cartridge_dev/#cluster-roles>`_.
+
+
 .. _tt-replicaset-orchestrator:
 
 Selecting the application orchestrator manually
@@ -462,7 +555,7 @@ Options
 
     Force a custom orchestrator for Tarantool 2.x clusters.
 
-..  option:: --file FILE
+..  option:: --file STRING
 
     **Applicable to:** ``bootstrap``
 
@@ -473,35 +566,55 @@ Options
 
 ..  option:: -f, --force
 
-    **Applicable to:** ``promote``, ``demote``
+    **Applicable to:** ``promote``, ``demote``, ``roles``
 
-    Skip promotion or demotion if the specified instance is not running in the same environment.
+    Skip operation on instances not running in the same environment.
 
-..  option:: --replicaset REPLICASET
+..  option:: -G, --global
 
-    **Applicable to:** ``bootstrap``
+    **Applicable to:** ``roles`` on Tarantool 3.x and later
 
-    A replica set name for instance bootstrapping.
+    Apply the operation to the global configuration scope, that is, to all instances.
+
+..  option:: -g, --group STRING
+
+    **Applicable to:** ``roles``
+
+    A name of the configuration group to which the operation applies.
+
+
+..  option:: -i, --instance STRING
+
+    **Applicable to:** ``roles``
+
+    A name of the instance to which the operation applies. Not applicable to Cartridge clusters.
+    Learn more in :ref:`tt-replicaset-roles-cartridge`.
+
+..  option:: -r, --replicaset STRING
+
+    **Applicable to:** ``bootstrap``, ``roles``
+
+    A name of the replica set to which the operation applies.
 
     See also: :ref:`tt-replicaset-bootstrap-instance`
 
-..  option:: -u USERNAME, --username USERNAME
+..  option:: -u, --username STRING
 
     A Tarantool user for connecting to the instance using a URI.
 
-..  option:: -p PASSWORD, --password PASSWORD
+..  option:: -p, --password STRING
 
     The user's password.
 
-..  option:: --sslcertfile FILEPATH
+..  option:: --sslcertfile STRING
 
     The path to an SSL certificate file for encrypted connections for the URI case.
 
-..  option:: --sslkeyfile FILEPATH
+..  option:: --sslkeyfile STRING
 
     The path to a private SSL key file for encrypted connections for the URI case.
 
-..  option:: --sslcafile FILEPATH
+..  option:: --sslcafile STRING
 
     The path to a trusted certificate authorities (CA) file for encrypted connections for the URI case.
 
@@ -509,14 +622,25 @@ Options
 
     The list of SSL cipher suites used for encrypted connections for the URI case, separated by colons (``:``).
 
-..  option:: --timeout
+..  option:: --timeout UINT
 
     **Applicable to:** ``promote``, ``demote``, ``expel``, ``vshard``, ``bootstrap``
 
     The timeout for completing the operation, in seconds. Default:
 
-    -   ``3`` for ``promote``, ``demote``, ``expel``
+    -   ``3`` for ``promote``, ``demote``, ``expel``, ``roles``
     -   ``10`` for ``vshard`` and ``bootstrap``
+
+..  option:: --with-integrity-check STRING
+
+    ..  admonition:: Enterprise Edition
+        :class: fact
+
+        This option is supported by the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only.
+
+    **Applicable to:** ``publish``, ``replicaset``
+
+    Generate hashes and signatures for integrity checks.
 
 ..  option:: -y, --yes
 

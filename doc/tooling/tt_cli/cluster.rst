@@ -345,6 +345,8 @@ expel
 
 ``tt cluster replicaset expel`` expels an instance from the cluster. Example:
 
+.. code-block:: console
+
     $ tt cluster replicaset expel "http://localhost:2379" storage-b-002
 
 .. _tt-cluster-replicaset-roles:
@@ -362,22 +364,45 @@ in the configuration scope specified in the command options. It has two subcomma
 *   ``add`` adds a role
 *   ``remove`` removes a role
 
-Use the ``--global``, ``--group``, ``--replicaset``, ``--instance`` options to select
-the configuration scope to add or remove the role. For example, to add a role to
-all instances in a replicaset:
+Use the ``--global``, ``--group``, ``--replicaset``, ``--instance`` options to specify
+the configuration scope to add or remove roles. For example, to add a role to
+all instances in a replica set:
 
 .. code-block:: console
 
-    $ tt cluster replicaset roles add "http://localhost:2379" roles.my-role \
-                                       --replicaset storage-a
+    $ tt cluster replicaset roles add "http://localhost:2379" roles.my-role --replicaset storage-a
 
 To remove a role defined in the global configuration scope:
 
 .. code-block:: console
 
-    $ tt cluster replicaset roles remove "http://localhost:2379" roles.my-role \
-                                       --global
+    $ tt cluster replicaset roles remove "http://localhost:2379" roles.my-role --global
 
+
+.. _tt-cluster-replicaset-details:
+
+Implementation details
+~~~~~~~~~~~~~~~~~~~~~~
+
+The changes that ``tt cluster replicaset`` makes to the configuration storage
+occur transactionally. Each call creates a new revision. In case of a revision mismatch,
+an error is raised.
+
+If the cluster configuration is distributed over multiple keys in the configuration
+storage (for example, in two paths ``/myapp/config/k1`` and ``/myapp/config/k2``),
+the affected instance configuration can be present in more that one of them.
+If it is found under several different keys, the command prompts the user to choose
+a key for patching. You can skip the selection by adding the ``-f``/``--force`` option:
+
+..  code-block:: console
+
+    $ tt cluster replicaset promote "http://localhost:2379/myapp" storage-001-a --force
+
+In this case, the command selects the key for patching automatically. A key's priority
+is determined by the detail level of the instance or replica set configuration stored
+under this key. For example, when failover is ``off``, a key with
+``instance.database`` options takes precedence over a key with the only ``instance`` field.
+In case of equal priority, the first key in the lexicographical order is patched.
 
 .. _tt-cluster-failover:
 
@@ -446,34 +471,6 @@ Example:
 .. code-block:: console
 
     $ tt cluster failover switch-status http://localhost:2379/myapp b1e938dd-2867-46ab-acc4-3232c2ef7ffe
-
-
-
-
-.. _tt-cluster-replicaset-details:
-
-Implementation details
-----------------------
-
-The changes that ``tt cluster replicaset`` makes to the configuration storage
-occur transactionally. Each call creates a new revision. In case of a revision mismatch,
-an error is raised.
-
-If the cluster configuration is distributed over multiple keys in the configuration
-storage (for example, in two paths ``/myapp/config/k1`` and ``/myapp/config/k2``),
-the affected instance configuration can be present in more that one of them.
-If it is found under several different keys, the command prompts the user to choose
-a key for patching. You can skip the selection by adding the ``-f``/``--force`` option:
-
-..  code-block:: console
-
-    $ tt cluster replicaset promote "http://localhost:2379/myapp" storage-001-a --force
-
-In this case, the command selects the key for patching automatically. A key's priority
-is determined by the detail level of the instance or replica set configuration stored
-under this key. For example, when failover is ``off``, a key with
-``instance.database`` options takes precedence over a key with the only ``instance`` field.
-In case of equal priority, the first key in the lexicographical order is patched.
 
 .. _tt-cluster-authentication:
 
@@ -555,8 +552,8 @@ Options
 
     **Applicable to:** ``publish``, ``replicaset``
 
-    Skip validation when publishing. Default: `false` (validation is enabled).
-    TODO: update for replicaset
+    -   ``publish``: skip validation when publishing. Default: `false` (validation is enabled).
+    -   ``replicaset``: skip key selection for patching. Learn more in :ref:`tt-cluster-replicaset-details:`.
 
 ..  option:: -G, --global
 
@@ -564,19 +561,19 @@ Options
 
     Apply the operation to the global configuration scope, that is, to all instances.
 
-..  option:: --group
+..  option:: -g, --group
 
     **Applicable to:** ``publish``, ``replicaset roles``
 
     A name of the configuration group to which the operation applies.
 
-..  option:: --instance
+..  option:: -i, --instance
 
     **Applicable to:** ``replicaset roles``
 
     A name of the instance to which the operation applies.
 
-..  option:: --replicaset
+..  option:: -r, --replicaset
 
     **Applicable to:** ``publish``, ``replicaset roles``
 
