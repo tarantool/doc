@@ -638,7 +638,7 @@ Options
 
         This option is supported by the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only.
 
-    **Applicable to:** ``publish``, ``replicaset``
+    **Applicable to:** ``promote``, ``demote``, ``expel``, ``roles``
 
     Generate hashes and signatures for integrity checks.
 
