@@ -47,6 +47,13 @@ from etcd using ``tt migrations remove``:
 Incorrect migration applied
 ---------------------------
 
+.. warning::
+
+    Any schema change that was made by an incorrect migration before its fail or
+    cancellation must be resolved manually on each replica set before reapply.
+    ``--force-reapply`` and other ``tt migrations`` options affect only internal
+    status of the migration and don't revert changes that it has made in the cluster.
+
 If the migration is already applied, publish the fixed version and apply it with
 the ``--force-reapply`` option:
 
