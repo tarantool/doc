@@ -42,10 +42,9 @@ General
             -   0x29
             -   Response to IPROTO_VOTE. Used during replica set bootstrap
 
-        *   -   IPROTO_FETCH_SNAPSHOT
+        *   -   :ref:`IPROTO_FETCH_SNAPSHOT <box_protocol-fetch-snapshot>`
             -   0x45
             -   Fetch the master's snapshot and start anonymous replication.
-                See :ref:`replication.anon <configuration_reference_replication_anon>`
 
         *   -   IPROTO_REGISTER
             -   0x46
@@ -55,7 +54,7 @@ The master also sends :ref:`heartbeat <heartbeat>` messages to the replicas.
 The heartbeat message's IPROTO_REQUEST_TYPE is ``0``.
 
 Below are details on individual replication requests.
-For synchronous replication requests, see :ref:`below <internals-iproto-replication-synchronous>`.
+For synchronous replication requests, see :ref:`<internals-iproto-replication-synchronous>`.
 
 ..  _box_protocol-heartbeat:
 
@@ -97,6 +96,8 @@ To join a replica set, an instance must send an initial IPROTO_JOIN request to a
 ..  raw:: html
     :file: images/repl_join_request.svg
 
+.. iproto_join_response_sequence_start
+
 The node that receives the request does the following in response:
 
 #.  It sends its vclock:
@@ -108,8 +109,18 @@ The node that receives the request does the following in response:
     In this way, the data is updated on the instance that sent the IPROTO_JOIN request.
     The instance should not reply to these INSERT requests.
 
+#.  It sends the new vclock's MP_MAP in a response similar to the one above.
+
+#.  It sends a number of :ref:`INSERT <box_protocol-insert>`, :ref:`REPLACE <box_protocol-replace>`,
+    :ref:`UPDATE <box_protocol-update>`, :ref:`UPSERT <box_protocol-upsert>`,
+    and :ref:`DELETE <box_protocol-delete>` requests. This way, the instance
+    that is joining the replica receives data updates that happened during
+    the join stage.
+
 #.  It sends the new vclock's MP_MAP in a response similar to the one above
     and closes the socket.
+
+.. iproto_join_response_sequence_end
 
 ..  _internals-iproto-replication-subscribe:
 
@@ -134,6 +145,37 @@ IPROTO_ID_FILTER (0x51)
 is an optional key used in the SUBSCRIBE request followed by an array
 of ids of instances whose rows won't be relayed to the replica.
 The field is encoded only when the ID list is not empty.
+
+..  _box_protocol-fetch-snapshot:
+
+IPROTO_FETCH_SNAPSHOT
+~~~~~~~~~~~~~~~~~~~~~
+
+Code: 0x45.
+
+To join a replica set as an anonymous replica, an instance must send an initial
+IPROTO_FETCH_SNAPSHOT request to any node in the replica set:
+
+..  raw:: html
+    :file: images/repl_fetch_snapshot_request.svg
+
+To learn about anonymous replicas, see :ref:`replication.anon <configuration_reference_replication_anon>`.
+
+..  include:: replication.rst
+    :start-after: iproto_join_response_sequence_start
+    :end-before: iproto_join_response_sequence_end
+
+
+..  _box_protocol-fetch-snapshot:
+
+IPROTO_REGISTER
+~~~~~~~~~~~~~~~
+
+Code: 0x46.
+
+To register an anonymous replica in a replica set so that it's not anonymous anymore,
+it must send an IPROTO_REGISTER request to any (TODO: or master?) node in the replica set:
+
 
 ..  _internals-iproto-replication-vote:
 

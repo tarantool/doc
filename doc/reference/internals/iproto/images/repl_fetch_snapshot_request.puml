@@ -7,10 +7,10 @@ skinparam {
     BackgroundColor transparent
 }
 
-json "**IPROTO_JOIN**" as join_request {
+json "**IPROTO_FETCH_SNAPSHOT**" as fetch_snapshot_request {
     "Size": "MP_UINT",
     "Header": {
-      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "IPROTO_JOIN",
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "IPROTO_FETCH_SNAPSHOT",
       "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_SYNC]]": "MP_UINT"
     },
     "Body": {
