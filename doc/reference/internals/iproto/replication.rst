@@ -166,7 +166,7 @@ To learn about anonymous replicas, see :ref:`replication.anon <configuration_ref
     :end-before: iproto_join_response_sequence_end
 
 
-..  _box_protocol-fetch-snapshot:
+..  _box_protocol-register:
 
 IPROTO_REGISTER
 ~~~~~~~~~~~~~~~
