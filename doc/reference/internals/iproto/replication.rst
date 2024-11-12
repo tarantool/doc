@@ -114,7 +114,7 @@ The node that receives the request does the following in response:
 #.  It sends a number of :ref:`INSERT <box_protocol-insert>`, :ref:`REPLACE <box_protocol-replace>`,
     :ref:`UPDATE <box_protocol-update>`, :ref:`UPSERT <box_protocol-upsert>`,
     and :ref:`DELETE <box_protocol-delete>` requests. This way, the instance
-    that is joining the replica receives data updates that happened during
+    that is joining the replica set receives data updates that happened during
     the join stage.
 
 #.  It sends the new vclock's MP_MAP in a response similar to the one above
@@ -176,6 +176,7 @@ Code: 0x46.
 To register an anonymous replica in a replica set so that it's not anonymous anymore,
 it must send an IPROTO_REGISTER request to any (TODO: or master?) node in the replica set:
 
+TODO: request structure diagram
 
 ..  _internals-iproto-replication-vote:
 
