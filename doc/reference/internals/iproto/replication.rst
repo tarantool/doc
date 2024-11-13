@@ -64,7 +64,7 @@ The master also sends :ref:`heartbeat <heartbeat>` messages to the replicas.
 The heartbeat message's IPROTO_REQUEST_TYPE is ``0``.
 
 Below are details on individual replication requests.
-For synchronous replication requests, see :ref:`<internals-iproto-replication-synchronous>`.
+For synchronous replication requests, see :ref:`internals-iproto-replication-synchronous`.
 
 ..  _box_protocol-heartbeat:
 
@@ -110,12 +110,12 @@ To join a replica set, an instance must send an initial IPROTO_JOIN request to a
 
 The instance that receives the request sends the following messages in response:
 
-#.  Its vclock:
+1.  Its vclock:
 
     ..  raw:: html
         :file: images/repl_join_response.svg
 
-#.  (Optional) A sequence of requests with information required for instance initialization:
+2.  (Optional) A sequence of requests with information required for instance initialization:
 
     -   an :ref:`IPROTO_JOIN_META <box_protocol-join-meta>` request
     -   an :ref:`IPROTO_RAFT <box_protocol-raft>` request with IPROTO_RAFT_TERM and IPROTO_RAFT_VOTE fields
@@ -124,21 +124,21 @@ The instance that receives the request sends the following messages in response:
 
     This step applies if the IPROTO_SERVER_VERSION specified in the request is `2.10` or later.
 
-#.  A number of :ref:`INSERT <box_protocol-insert>` requests (with additional LSN and ServerID).
+3.  A number of :ref:`INSERT <box_protocol-insert>` requests (with additional LSN and ServerID).
     This way, the data is updated on the instance that sent the IPROTO_JOIN request.
     The instance should not reply to these INSERT requests.
 
-#.  The new vclock's MP_MAP in a response similar to the one above.
+4.  The new vclock's MP_MAP in a response similar to the one above.
 
-.. iproto_join_response_sequence_end
+.. iproto_fetch_snapshot_response_sequence_end
 
-#.  A number of :ref:`INSERT <box_protocol-insert>`, :ref:`REPLACE <box_protocol-replace>`,
+5.  A number of :ref:`INSERT <box_protocol-insert>`, :ref:`REPLACE <box_protocol-replace>`,
     :ref:`UPDATE <box_protocol-update>`, :ref:`UPSERT <box_protocol-upsert>`,
     and :ref:`DELETE <box_protocol-delete>` requests. This way, the instance
     that is joining the replica set receives data updates that happened during
     the join stage.
 
-#.  The new vclock's MP_MAP in a response similar to the one above.
+6.  The new vclock's MP_MAP in a response similar to the one above.
 
 Then the instance closes the socket.
 
@@ -183,8 +183,8 @@ IPROTO_FETCH_SNAPSHOT request to any node in the replica set:
 To learn about anonymous replicas, see :ref:`replication.anon <configuration_reference_replication_anon>`.
 
 ..  include:: replication.rst
-    :start-after: iproto_join_response_sequence_start
-    :end-before: iproto_join_response_sequence_end
+    :start-after: iproto_fetch_snapshot_response_sequence_start
+    :end-before: iproto_fetch_snapshot_response_sequence_end
 
 Then the instance closes the socket.
 
