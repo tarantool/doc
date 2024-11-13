@@ -52,11 +52,13 @@ General
 
         *   -   :ref:`IPROTO_JOIN_META <box_protocol-join-meta>`
             -   0x47
-            -   A request sent in response to IPROTO_JOIN before the instance initialization information
+            -   A request sent in response to IPROTO_JOIN or IPROTO_FETCH_SNAPSHOT
+                before the instance initialization information
 
         *   -   :ref:`IPROTO_JOIN_SNAPSHOT <box_protocol-join-snapshot>`
             -   0x48
-            -   A request sent in response to IPROTO_JOIN after the instance initialization information
+            -   A request sent in response to IPROTO_JOIN  or IPROTO_FETCH_SNAPSHOT
+                after the instance initialization information
             
 The master also sends :ref:`heartbeat <heartbeat>` messages to the replicas.
 The heartbeat message's IPROTO_REQUEST_TYPE is ``0``.
@@ -104,7 +106,7 @@ To join a replica set, an instance must send an initial IPROTO_JOIN request to a
 ..  raw:: html
     :file: images/repl_join_request.svg
 
-.. iproto_join_response_sequence_start
+.. iproto_fetch_snapshot_response_sequence_start
 
 The instance that receives the request sends the following messages in response:
 
@@ -128,16 +130,18 @@ The instance that receives the request sends the following messages in response:
 
 #.  The new vclock's MP_MAP in a response similar to the one above.
 
+.. iproto_join_response_sequence_end
+
 #.  A number of :ref:`INSERT <box_protocol-insert>`, :ref:`REPLACE <box_protocol-replace>`,
     :ref:`UPDATE <box_protocol-update>`, :ref:`UPSERT <box_protocol-upsert>`,
     and :ref:`DELETE <box_protocol-delete>` requests. This way, the instance
     that is joining the replica set receives data updates that happened during
     the join stage.
 
-#.  The new vclock's MP_MAP in a response similar to the one above. After this,
-    the instance closes the socket.
+#.  The new vclock's MP_MAP in a response similar to the one above.
 
-.. iproto_join_response_sequence_end
+Then the instance closes the socket.
+
 
 ..  _internals-iproto-replication-subscribe:
 
@@ -182,6 +186,8 @@ To learn about anonymous replicas, see :ref:`replication.anon <configuration_ref
     :start-after: iproto_join_response_sequence_start
     :end-before: iproto_join_response_sequence_end
 
+Then the instance closes the socket.
+
 ..  _box_protocol-register:
 
 IPROTO_REGISTER
@@ -190,9 +196,25 @@ IPROTO_REGISTER
 Code: 0x46.
 
 To register an anonymous replica in a replica set so that it's not anonymous anymore,
-it must send an IPROTO_REGISTER request to any (TODO: or master?) node in the replica set:
+it must send an IPROTO_REGISTER request to a master node of the replica set:
 
-TODO: request structure diagram
+..  raw:: html
+    :file: images/repl_register.svg
+
+The instance that receives the request sends the following messages in response:
+
+#.  A number of :ref:`INSERT <box_protocol-insert>`, :ref:`REPLACE <box_protocol-replace>`,
+    :ref:`UPDATE <box_protocol-update>`, :ref:`UPSERT <box_protocol-upsert>`,
+    and :ref:`DELETE <box_protocol-delete>` requests. This way, the instance
+    that is registering in the replica set receives data updates that happened
+    since the time it fetched the snapshot.
+
+#.  The new vclock's MP_MAP.
+
+Then the instance closes the socket.
+
+Technically, subsequent IPROTO_FETCH_SNAPSHOT and IPROTO_REGISTER requests are equivalent
+to IPROTO_JOIN.
 
 ..  _box_protocol-join-meta:
 
@@ -201,10 +223,10 @@ IPROTO_JOIN_META
 
 Code: 0x47.
 
-When an instance receives an IPOTO_JOIN request, its response includes information
-required for the instance initialization: current Raft term, current state of
-synchronous transaction queue. Before sending this information, the instance
-sends an IPROTO_JOIN_META request with an empty body:
+When an instance receives an IPOTO_JOIN or IPROTO_FETCH_SNAPSHOT request, its responses
+include the information required for the instance initialization: current Raft term,
+current state of synchronous transaction queue. Before sending this information,
+the instance sends an IPROTO_JOIN_META request with an empty body:
 
 ..  raw:: html
     :file: images/repl_join_meta.svg
@@ -218,9 +240,9 @@ IPROTO_JOIN_SNAPSHOT
 
 Code: 0x48.
 
-An instance that has received an IPROTO_JOIN request sends an IPROTO_JOIN_SNAPSHOT
-request with an empty body after it completes sending the instance initialization
-information.
+An instance that has received an IPROTO_JOIN or IPROTO_FETCH_SNAPSHOT request
+sends an IPROTO_JOIN_SNAPSHOT request with an empty body after it completes sending
+the instance initialization information.
 
 ..  raw:: html
     :file: images/repl_join_snapshot.svg
