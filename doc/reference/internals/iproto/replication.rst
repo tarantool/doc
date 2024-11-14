@@ -101,7 +101,8 @@ IPROTO_JOIN
 
 Code: 0x41.
 
-To join a replica set, an instance must send an initial IPROTO_JOIN request to any node in the replica set:
+To join a replica set, an instance must send an initial IPROTO_JOIN request to
+the master instance of the replica set:
 
 ..  raw:: html
     :file: images/repl_join_request.svg
@@ -175,7 +176,7 @@ IPROTO_FETCH_SNAPSHOT
 Code: 0x45.
 
 To join a replica set as an anonymous replica, an instance must send an initial
-IPROTO_FETCH_SNAPSHOT request to any node in the replica set:
+IPROTO_FETCH_SNAPSHOT request to the master instance of the replica set:
 
 ..  raw:: html
     :file: images/repl_fetch_snapshot_request.svg
