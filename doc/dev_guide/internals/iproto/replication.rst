@@ -42,20 +42,29 @@ General
             -   0x29
             -   Response to IPROTO_VOTE. Used during replica set bootstrap
 
-        *   -   IPROTO_FETCH_SNAPSHOT
+        *   -   :ref:`IPROTO_FETCH_SNAPSHOT <box_protocol-fetch-snapshot>`
             -   0x45
             -   Fetch the master's snapshot and start anonymous replication.
-                See :ref:`replication_anon <cfg_replication-replication_anon>`
 
-        *   -   IPROTO_REGISTER
+        *   -   :ref:`IPROTO_REGISTER <box_protocol-register>`
             -   0x46
             -   Register an anonymous replica so it is not anonymous anymore
+
+        *   -   :ref:`IPROTO_JOIN_META <box_protocol-join-meta>`
+            -   0x47
+            -   A request sent in response to IPROTO_JOIN or IPROTO_FETCH_SNAPSHOT
+                before the instance initialization information
+
+        *   -   :ref:`IPROTO_JOIN_SNAPSHOT <box_protocol-join-snapshot>`
+            -   0x48
+            -   A request sent in response to IPROTO_JOIN  or IPROTO_FETCH_SNAPSHOT
+                after the instance initialization information
             
 The master also sends :ref:`heartbeat <heartbeat>` messages to the replicas.
 The heartbeat message's IPROTO_REQUEST_TYPE is ``0``.
 
 Below are details on individual replication requests.
-For synchronous replication requests, see :ref:`below <internals-iproto-replication-synchronous>`.
+For synchronous replication requests, see :ref:`internals-iproto-replication-synchronous`.
 
 ..  _box_protocol-heartbeat:
 
@@ -92,24 +101,45 @@ IPROTO_JOIN
 
 Code: 0x41.
 
-To join a replica set, an instance must send an initial IPROTO_JOIN request to any node in the replica set:
+To join a replica set, an instance must send an initial IPROTO_JOIN request to
+the master instance of the replica set:
 
 ..  raw:: html
     :file: images/repl_join_request.svg
 
-The node that receives the request does the following in response:
+.. iproto_fetch_snapshot_response_sequence_start
 
-#.  It sends its vclock:
+The instance that receives the request sends the following messages in response:
+
+1.  Its vclock:
 
     ..  raw:: html
         :file: images/repl_join_response.svg
 
-#.  It sends a number of :ref:`INSERT <box_protocol-insert>` requests (with additional LSN and ServerID).
-    In this way, the data is updated on the instance that sent the IPROTO_JOIN request.
+2.  (Optional) A sequence of requests with information required for instance initialization:
+
+    -   an :ref:`IPROTO_JOIN_META <box_protocol-join-meta>` request
+    -   an :ref:`IPROTO_RAFT <box_protocol-raft>` request with IPROTO_RAFT_TERM and IPROTO_RAFT_VOTE fields
+    -   an :ref:`IPROTO_RAFT_PROMOTE <internals-iproto-replication-raft_promote>` request
+    -   an :ref:`IPROTO_JOIN_SNAPSHOT <box_protocol-join-snapshot>` request
+
+    This step applies if the IPROTO_SERVER_VERSION specified in the request is `2.10` or later.
+
+3.  A number of :ref:`INSERT <box_protocol-insert>` requests (with additional LSN and ServerID).
+    This way, the data is updated on the instance that sent the IPROTO_JOIN request.
     The instance should not reply to these INSERT requests.
 
-#.  It sends the new vclock's MP_MAP in a response similar to the one above
-    and closes the socket.
+4.  The new vclock's MP_MAP in a response similar to the one above.
+
+.. iproto_fetch_snapshot_response_sequence_end
+
+5.  A number of :ref:`INSERT <box_protocol-insert>`, :ref:`REPLACE <box_protocol-replace>`,
+    :ref:`UPDATE <box_protocol-update>`, :ref:`UPSERT <box_protocol-upsert>`,
+    and :ref:`DELETE <box_protocol-delete>` requests. This way, the instance
+    that is joining the replica set receives data updates that happened during
+    the join stage.
+
+6.  The new vclock's MP_MAP in a response similar to the one above.
 
 ..  _internals-iproto-replication-subscribe:
 
@@ -134,6 +164,84 @@ IPROTO_ID_FILTER (0x51)
 is an optional key used in the SUBSCRIBE request followed by an array
 of ids of instances whose rows won't be relayed to the replica.
 The field is encoded only when the ID list is not empty.
+
+..  _box_protocol-fetch-snapshot:
+
+IPROTO_FETCH_SNAPSHOT
+~~~~~~~~~~~~~~~~~~~~~
+
+Code: 0x45.
+
+To join a replica set as an anonymous replica, an instance must send an initial
+IPROTO_FETCH_SNAPSHOT request to the master instance of the replica set:
+
+..  raw:: html
+    :file: images/repl_fetch_snapshot_request.svg
+
+To learn about anonymous replicas, see :ref:`replication.anon <configuration_reference_replication_anon>`.
+
+..  include:: replication.rst
+    :start-after: iproto_fetch_snapshot_response_sequence_start
+    :end-before: iproto_fetch_snapshot_response_sequence_end
+
+..  _box_protocol-register:
+
+IPROTO_REGISTER
+~~~~~~~~~~~~~~~
+
+Code: 0x46.
+
+To register an anonymous replica in a replica set so that it's not anonymous anymore,
+it must send an IPROTO_REGISTER request to a master node of the replica set:
+
+..  raw:: html
+    :file: images/repl_register.svg
+
+The instance that receives the request sends the following messages in response:
+
+#.  A number of :ref:`INSERT <box_protocol-insert>`, :ref:`REPLACE <box_protocol-replace>`,
+    :ref:`UPDATE <box_protocol-update>`, :ref:`UPSERT <box_protocol-upsert>`,
+    and :ref:`DELETE <box_protocol-delete>` requests. This way, the instance
+    that is registering in the replica set receives data updates that happened
+    since the time it fetched the snapshot.
+
+#.  The new vclock's MP_MAP.
+
+Technically, subsequent IPROTO_FETCH_SNAPSHOT and IPROTO_REGISTER requests are equivalent
+to IPROTO_JOIN.
+
+..  _box_protocol-join-meta:
+
+IPROTO_JOIN_META
+~~~~~~~~~~~~~~~~
+
+Code: 0x47.
+
+When an instance receives an IPOTO_JOIN or IPROTO_FETCH_SNAPSHOT request, its responses
+include the information required for the instance initialization: current Raft term,
+current state of synchronous transaction queue. Before sending this information,
+the instance sends an IPROTO_JOIN_META request with an empty body:
+
+..  raw:: html
+    :file: images/repl_join_meta.svg
+
+Learn more in :ref:`IPROTO_JOIN <box_protocol-join>`
+
+..  _box_protocol-join-snapshot:
+
+IPROTO_JOIN_SNAPSHOT
+~~~~~~~~~~~~~~~~~~~~
+
+Code: 0x48.
+
+An instance that has received an IPROTO_JOIN or IPROTO_FETCH_SNAPSHOT request
+sends an IPROTO_JOIN_SNAPSHOT request with an empty body after it completes sending
+the instance initialization information.
+
+..  raw:: html
+    :file: images/repl_join_snapshot.svg
+
+Learn more in :ref:`IPROTO_JOIN <box_protocol-join>`
 
 ..  _internals-iproto-replication-vote:
 
@@ -187,7 +295,7 @@ Synchronous
         *   -   :ref:`IPROTO_RAFT <box_protocol-raft>`
             -   0x1e
             -   Inform that the node changed its :ref:`RAFT status <repl_leader_elect>`
-   
+
         *   -   :ref:`IPROTO_RAFT_PROMOTE <internals-iproto-replication-raft_promote>`
             -   0x1f
             -   Wait, then choose new replication leader
