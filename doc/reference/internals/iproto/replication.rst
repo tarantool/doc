@@ -141,9 +141,6 @@ The instance that receives the request sends the following messages in response:
 
 6.  The new vclock's MP_MAP in a response similar to the one above.
 
-Then the instance closes the socket.
-
-
 ..  _internals-iproto-replication-subscribe:
 
 IPROTO_SUBSCRIBE
@@ -187,8 +184,6 @@ To learn about anonymous replicas, see :ref:`replication.anon <configuration_ref
     :start-after: iproto_fetch_snapshot_response_sequence_start
     :end-before: iproto_fetch_snapshot_response_sequence_end
 
-Then the instance closes the socket.
-
 ..  _box_protocol-register:
 
 IPROTO_REGISTER
@@ -211,8 +206,6 @@ The instance that receives the request sends the following messages in response:
     since the time it fetched the snapshot.
 
 #.  The new vclock's MP_MAP.
-
-Then the instance closes the socket.
 
 Technically, subsequent IPROTO_FETCH_SNAPSHOT and IPROTO_REGISTER requests are equivalent
 to IPROTO_JOIN.
