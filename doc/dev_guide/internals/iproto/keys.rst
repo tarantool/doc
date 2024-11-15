@@ -641,7 +641,7 @@ Multiple operations make use of this key in different ways:
                 :ref:`IPROTO_REPLACE <box_protocol-replace>`,
                 :ref:`IPROTO_UPSERT <box_protocol-upsert>`
             -   Tuple to be inserted
-        *   -   :ref:`IPROTO_UPSERT <box_protocol-update>`
+        *   -   :ref:`IPROTO_UPDATE <box_protocol-update>`
             -   Operations to perform
         *   -   :ref:`IPROTO_AUTH <box_protocol-auth>`
             -   Array of 2 fields:

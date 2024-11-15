@@ -7,7 +7,7 @@ skinparam {
     BackgroundColor transparent
 }
 
-json "**Response to IPROTO_JOIN**" as join_response {
+json "**Response to IPROTO_JOIN/IPROTO_FETCH_SNAPSHOT**" as join_response {
     "Size": "MP_UINT",
     "Header": {
       "[[https://tarantool.io/en/doc/latest/dev_guide/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "IPROTO_OK",
