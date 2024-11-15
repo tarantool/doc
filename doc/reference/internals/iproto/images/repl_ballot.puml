@@ -16,7 +16,8 @@ json "**IPROTO_BALLOT body**" as ballot {
     "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys/#general-replication IPROTO_BALLOT_IS_BOOTED]]": "MP_BOOL",
     "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys/#general-replication IPROTO_BALLOT_CAN_LEAD]]": "MP_BOOL",
     "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys/#general-replication IPROTO_BALLOT_BOOTSTRAP_LEADER_UUID]]": "MP_STR",
-    "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys/#general-replication IPROTO_BALLOT_REGISTERED_REPLICA_UUIDS]]": "MP_ARRAY"
+    "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys/#general-replication IPROTO_BALLOT_REGISTERED_REPLICA_UUIDS]]": "MP_ARRAY",
+    "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys/#general-replication IPROTO_BALLOT_INSTANCE_NAME]]": "MP_STR"
 }
 
 @enduml

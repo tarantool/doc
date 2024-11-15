@@ -12,6 +12,9 @@ json "**IPROTO_FETCH_SNAPSHOT**" as fetch_snapshot_request {
     "Header": {
       "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "IPROTO_FETCH_SNAPSHOT",
       "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_SYNC]]": "MP_UINT"
+    },
+    "Body": {
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_SERVER_VERSION]]": "MP_UINT – replica's version"
     }
 }
 

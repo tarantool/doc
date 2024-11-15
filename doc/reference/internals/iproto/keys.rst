@@ -252,6 +252,11 @@ General replication
             -   An array of MP_STR elements that contains the UUIDs of members registered in the replica set.
                 Each UUID is encoded as a 36-byte string.
                 Since v. 2.11
+
+        *   -   :ref:`IPROTO_BALLOT_INSTANCE_NAME <internals-iproto-keys-ballot>`
+            -   0x0a |br| MP_STR
+            -   The name of the instance
+                Since v. 3.0
         
         *   -   :ref:`IPROTO_FLAGS <internals-iproto-keys-flags>`
             -   0x09 |br| MP_UINT
@@ -273,6 +278,18 @@ General replication
             -   Optional key used in :ref:`SUBSCRIBE request <internals-iproto-replication-subscribe>`,
                 followed by an array of ids of instances whose rows won't be relayed to the replica.
                 Since v. :doc:`2.10.0 </release/2.10.0>`
+
+        *   -   IPROTO_REPLICASET_NAME
+            -   0x5c |br| MP_STR
+            -   Optional key used to pass the initiator instance name in
+                :ref:`JOIN <internals-iproto-replication-join>`,
+                :ref:`SUBSCRIBE <internals-iproto-replication-subscribe>`, and
+                :ref:`REGISTER <internals-iproto-replication-register>` requests.
+
+        *   -   IPROTO_INSTANCE_NAME
+            -   0x5d |br| MP_STR
+            -   Optional key used to pass the instance's replica set name in
+                :ref:`SUBSCRIBE <internals-iproto-replication-subscribe>` requests.
 
 ..  _internals-iproto-keys-synchro-replication:
 
