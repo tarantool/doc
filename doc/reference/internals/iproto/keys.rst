@@ -282,9 +282,9 @@ General replication
         *   -   IPROTO_REPLICASET_NAME
             -   0x5c |br| MP_STR
             -   Optional key used to pass the initiator instance name in
-                :ref:`JOIN <internals-iproto-replication-join>`,
+                :ref:`JOIN <box_protocol-join>`,
                 :ref:`SUBSCRIBE <internals-iproto-replication-subscribe>`, and
-                :ref:`REGISTER <internals-iproto-replication-register>` requests.
+                :ref:`REGISTER <box_protocol-register>` requests.
 
         *   -   IPROTO_INSTANCE_NAME
             -   0x5d |br| MP_STR
