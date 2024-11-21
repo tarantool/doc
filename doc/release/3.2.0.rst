@@ -3,7 +3,7 @@ Tarantool 3.2
 
 Release date: August 26, 2024
 
-Releases on GitHub: :tarantool-release:`3.2.0`
+Releases on GitHub: :tarantool-release:`3.2.1`, :tarantool-release:`3.2.0`
 
 The 3.2 release of Tarantool adds the following main product features and improvements for the Community and Enterprise editions:
 
