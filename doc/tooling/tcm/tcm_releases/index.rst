@@ -28,7 +28,8 @@ Supported versions
 
         *   -   :ref:`1.2 <tcm_releases_1_2>`
             -   July 30, 2024
-            -   | 1.2.1
+            -   | 1.2.2
+                | 1.2.1
                 | 1.2.0
 
         *   -   :ref:`1.1 <tcm_releases_1_1>`
