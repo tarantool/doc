@@ -106,9 +106,9 @@ Configuring a cluster
 
 To configure a cluster to work with an external failover coordinator, follow the steps below:
 
-1.  (Optional) If you need to run :ref:`several failover coordinators <supervised_failover_overview_fault_tolerance>` to increase fault tolerance, set up an etcd-based configuration storage, as described in :ref:`configuration_etcd`.
+#.  (Optional) If you need to run :ref:`several failover coordinators <supervised_failover_overview_fault_tolerance>` to increase fault tolerance, set up an etcd-based configuration storage, as described in :ref:`configuration_etcd`.
 
-2.  Set the :ref:`replication.failover <configuration_reference_replication_failover>` option to ``supervised``:
+#.  Set the :ref:`replication.failover <configuration_reference_replication_failover>` option to ``supervised``:
 
     ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/supervised_failover/source.yaml
         :language: yaml
@@ -116,7 +116,7 @@ To configure a cluster to work with an external failover coordinator, follow the
         :end-at: failover: supervised
         :dedent:
 
-3.  Grant a user used for replication :ref:`permissions <configuration_credentials_managing_users_roles_granting_privileges>` to execute the ``failover.execute`` function:
+#.  Grant a user used for replication :ref:`permissions <configuration_credentials_managing_users_roles_granting_privileges>` to execute the ``failover.execute`` function:
 
     ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/supervised_failover/source.yaml
         :language: yaml
@@ -124,7 +124,12 @@ To configure a cluster to work with an external failover coordinator, follow the
         :end-at: failover.execute
         :dedent:
 
-5.  (Optional) Configure options that control how a failover coordinator operates in the :ref:`failover <configuration_reference_failover>` section:
+.. note::
+
+    For Tarantool 3.0 and 3.1, the configuration is different and a custom application
+    role is required. See :ref:`supervised_failover_configuration_with_role` for details.
+
+#.  (Optional) Configure options that control how a failover coordinator operates in the :ref:`failover <configuration_reference_failover>` section:
 
     ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/supervised_failover/source.yaml
         :language: yaml
@@ -134,6 +139,62 @@ To configure a cluster to work with an external failover coordinator, follow the
 
 You can find the full example on GitHub: `supervised_failover <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/replication/instances.enabled/supervised_failover>`_.
 
+.. _supervised_failover_configuration_with_role:
+
+Tarantool 3.0 and 3.1 configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Before version 3.2, Tarantool used another mechanism to grant execute access to Lua
+functions. With Tarantool 3.0 or 3.1, the ``credentials`` configuration section
+should look as follows:
+
+.. code-block:: yaml
+
+    # Tarantool 3.0 and 3.1
+    credentials:
+      users:
+        replicator:
+          password: 'topsecret'
+          roles: [ replication ]
+          privileges:
+          - permissions: [ execute ]
+            functions: [ 'failover.execute' ]
+
+Additionally, you should create the ``failover.execute`` function in the application code.
+For example, you can create a :ref:`custom role <application_roles>` for this purpose:
+
+.. code-block:: lua
+
+    -- Tarantool 3.0 and 3.1 --
+    -- supervised_instance.lua --
+    return {
+        validate = function()
+        end,
+        apply = function()
+            if box.info.ro then
+                return
+            end
+            local func_name = 'failover.execute'
+            local opts = { if_not_exists = true }
+            box.schema.func.create(func_name, opts)
+        end,
+        stop = function()
+            if box.info.ro then
+                return
+            end
+            local func_name = 'failover.execute'
+            if not box.schema.func.exists(func_name) then
+                return
+            end
+            box.schema.func.drop(func_name)
+        end,
+    }
+
+Then, enable this role for all storage instances:
+
+.. code-block:: yaml
+
+    roles: [ 'supervised_instance' ]
 
 .. _supervised_failover_start_coordinator:
 
