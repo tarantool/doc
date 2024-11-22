@@ -127,7 +127,7 @@ To configure a cluster to work with an external failover coordinator, follow the
     .. note::
 
         In Tarantool 3.0 and 3.1, the configuration is different and the function
-        must be created in the application code . See :ref:`supervised_failover_configuration_with_role` for details.
+        must be created in the application code. See :ref:`supervised_failover_configuration_with_role` for details.
 
 #.  (Optional) Configure options that control how a failover coordinator operates in the :ref:`failover <configuration_reference_failover>` section:
 
