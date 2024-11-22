@@ -5,7 +5,7 @@ credentials:
       roles: [ replication ]
       privileges:
       - permissions: [ execute ]
-        functions: [ 'failover.execute' ]
+        lua_call: [ 'failover.execute' ]
 
 iproto:
   advertise:
@@ -22,8 +22,6 @@ failover:
   stateboard:
     keepalive_interval: 5
     renew_interval: 1
-
-roles: [ 'supervised_instance' ]
 
 groups:
   group001:

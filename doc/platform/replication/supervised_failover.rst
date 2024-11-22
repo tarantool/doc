@@ -124,21 +124,6 @@ To configure a cluster to work with an external failover coordinator, follow the
         :end-at: failover.execute
         :dedent:
 
-4.  Create the ``failover.execute`` function in the application code.
-    For example, you can create a :ref:`custom role <application_roles>` for this purpose:
-
-    ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/supervised_failover/supervised_instance.lua
-        :language: lua
-        :dedent:
-
-    Then, you need to enable this role for all storage instances:
-
-    ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/supervised_failover/source.yaml
-        :language: yaml
-        :start-at: supervised_instance
-        :end-before: groups:
-        :dedent:
-
 5.  (Optional) Configure options that control how a failover coordinator operates in the :ref:`failover <configuration_reference_failover>` section:
 
     ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/supervised_failover/source.yaml
