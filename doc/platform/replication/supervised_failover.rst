@@ -124,17 +124,17 @@ To configure a cluster to work with an external failover coordinator, follow the
         :end-at: failover.execute
         :dedent:
 
-.. note::
+    .. note::
 
-    For Tarantool 3.0 and 3.1, the configuration is different and a custom application
-    role is required. See :ref:`supervised_failover_configuration_with_role` for details.
+        In Tarantool 3.0 and 3.1, the configuration is different and the function
+        must be created in the application code . See :ref:`supervised_failover_configuration_with_role` for details.
 
 #.  (Optional) Configure options that control how a failover coordinator operates in the :ref:`failover <configuration_reference_failover>` section:
 
     ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/supervised_failover/source.yaml
         :language: yaml
         :start-after: failover: supervised
-        :end-before: supervised_instance
+        :end-before: groups
         :dedent:
 
 You can find the full example on GitHub: `supervised_failover <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/replication/instances.enabled/supervised_failover>`_.
@@ -145,7 +145,7 @@ Tarantool 3.0 and 3.1 configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Before version 3.2, Tarantool used another mechanism to grant execute access to Lua
-functions. With Tarantool 3.0 or 3.1, the ``credentials`` configuration section
+functions. In Tarantool 3.0 or 3.1, the ``credentials`` configuration section
 should look as follows:
 
 .. code-block:: yaml
@@ -194,6 +194,7 @@ Then, enable this role for all storage instances:
 
 .. code-block:: yaml
 
+    # Tarantool 3.0 and 3.1
     roles: [ 'supervised_instance' ]
 
 .. _supervised_failover_start_coordinator:
