@@ -3,7 +3,7 @@ Tarantool 2.11 (LTS)
 
 Release date: May 24, 2023
 
-Releases on GitHub: :tarantool-release:`2.11.4`, :tarantool-release:`2.11.3`, :tarantool-release:`2.11.2`, :tarantool-release:`2.11.1`, :tarantool-release:`2.11.0`
+Releases on GitHub: :tarantool-release:`2.11.5`, :tarantool-release:`2.11.4`, :tarantool-release:`2.11.3`, :tarantool-release:`2.11.2`, :tarantool-release:`2.11.1`, :tarantool-release:`2.11.0`
 
 The 2.11 release of Tarantool includes many new features and fixes.
 This document provides an overview of the most important features for the Enterprise and Community editions.
