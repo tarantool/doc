@@ -145,7 +145,7 @@ Tarantool 3.0 and 3.1 configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Before version 3.2, Tarantool used another mechanism to grant execute access to Lua
-functions. In Tarantool 3.0 or 3.1, the ``credentials`` configuration section
+functions. In Tarantool 3.0 and 3.1, the ``credentials`` configuration section
 should look as follows:
 
 .. code-block:: yaml
