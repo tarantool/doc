@@ -121,5 +121,5 @@ configuration option was used to prevent such situations.
 Since version 3.3, leader instances persist the information about WAL files in use
 in the new system space ``_gc_consumers``. After a restart, the replication state
 is restored, and WAL files needed for replication are protected from garbage collection.
-This eliminates the need to keep all WAL files after a restart, so the ``wal_cleanup_delay``
+This eliminates the need to keep all WAL files after a restart, so the ``wal.cleanup_delay``
 option is now deprecated.
