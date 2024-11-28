@@ -1,0 +1,124 @@
+Tarantool 3.3
+=============
+
+Release date: November 29, 2024
+
+Releases on GitHub: :tarantool-release:`3.3.0`
+
+The 3.3 release of Tarantool adds the following main product features and improvements for the Community and Enterprise editions:
+
+*   **Community Edition (CE)**
+
+    *   Improvements around queries with offsets.
+    *   Improvement in Raft implementation.
+    *   Persistent replication state.
+    *   New C API for sending work to the TX thread.
+
+*   **Enterprise Edition (EE)**
+
+    *   Offset-related improvements in read views.
+
+
+.. _3-3-features-for-developers:
+
+Developing applications
+-----------------------
+
+.. _3-3-offset:
+
+Improved offset processing
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Первое: появились методы offset_of у индексов и спейсов, возвращающие порядковый номер тапла/ключа с начала спейса,
+параметры offset в select и pairs стал вычисляться за O(log(offset)) вместо O(offset),
+метод count стал тоже иметь сложность O(log(размер результата)) вместо O(размер результата)
+
+Аналогичные работы в ридвью в EE тоже были проведены:
+
+Tarantool 3.3 brings a number of improvements around queries with offsets.
+
+-   The performance of tree index :ref:`select() <box_index-select>` with offset and
+    :ref:`count() <box_index-count>` methods was improved.
+    Previously, the algorithm complexity had a linear dependency on the
+    provided offset size (``O(offset``)) or the number of tuples to count. Now,
+    the new algorithm complexity is ``O(log(size))`` where ``size`` is the number of tuples
+    in the index. This change also eliminates the dependency on the offset value or
+    the number of tuple to count.
+-   The :ref:`index <box_index>` and :ref:`space <box_space>` entities get the new
+    ``offset_of`` method that returns the position relative to the given iterator
+    direction of the tuple that matches the given key.
+-   The ``offset`` parameter has been added to the :ref:`index:pairs() <box_index-pairs>` method,
+    allowing to skip the first tuples in the iterator.
+
+Same improvements are also introduced to :ref:`read views <read_views>` in the Enterprise Edition.
+
+-   Improved performance of the tree index read view ``select()`` with offset.
+-   A new ``offset_of()`` method of index read views.
+-   A new ``offset`` parameter in the ``index_read_view:pairs()`` method.
+
+.. _3-3-sync-no-timeout:
+
+No timeout for synchronous transactions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To better match the canonical Raft algorithm design, Tarantool no longer rolls
+back synchronous transactions due to :ref:`replication.synchro_timeout <cfg_replication-replication_synchro_timeout>`.
+In the new implementation, transactions can only be rolled back by a new leader after it is elected.
+Otherwise, they can wait for a quorum infinitely.
+
+Given that this changes the behavior, a new ``replication_synchro_timeout`` :ref:`compat <compat-module>` option is introduced.
+To try the new behavior, set this option to ``new``:
+
+..  code-block:: tarantoolsession
+
+    tarantool> require('compat').replication_synchro_timeout = 'new'
+    ---
+    ...
+
+There is also the new ``replication.synchro_queue_max_size`` configuration option
+that limits the total size of transactions in the master synchronous queue. By default,
+it's 16 megabytes.
+
+.. _3-3-c-api-tx-thread:
+
+C API for sending work to TX thread
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The new public C API functions ``tnt_tx_push()`` and ``tnt_tx_flush()``
+allow to send work to the :ref:`TX thread <thread_model>` from any other thread:
+
+-   ``tnt_tx_push()`` schedules the given callback to be executed with the provided
+    arguments.
+
+-   ``tnt_tx_flush()`` sends all the pending callback for execution in the TX thread.
+    The execution is started in the same order as the callbacks were pushed.
+
+.. _3-3-administration-and-maintenance:
+
+Administration and maintenance
+------------------------------
+
+.. _3-3-persistent-wal-gc:
+
+Persistent replication state
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Tarantool :ref:`persistence mechanism <concepts-data_model-persistence>` operates
+two types of files: snapshots and write-ahead log (WAL) files. These files are also used
+for replication: read-only replicas receive data changes from the replica set leader
+by reading these files.
+
+The :ref:`garbage collector <configuration_persistence_garbage_collector>` that
+cleans up obsolete snapshots and WAL files is implemented so that it doesn't remove
+the files that are in use for replication. To make these checks possible the replica
+set leaders stored the replication state in connection with files. However, this information
+was not persisted, which could lead to issues in case of the leader restart.
+The garbage collector could delete WAL files after the restart even if there were
+replicas that still read these files. The :ref:`wal.cleanup_delay <configuration_reference_wal_cleanup_delay>`
+configuration option was used to prevent such situations.
+
+Since version 3.3, leader instances persist the information about WAL files in use
+in the new system space ``_gc_consumers``. After a restart, the replication state
+is restored, and WAL files needed for replication are protected from garbage collection.
+This eliminates the need to keep all WAL files after a restart, so the ``wal_cleanup_delay``
+option is now deprecated.

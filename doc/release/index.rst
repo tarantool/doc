@@ -61,6 +61,12 @@ For information about earlier versions, see :doc:`eol_versions`.
             -   End of support
             -   Versions
 
+        *   -   :doc:`3.3 </release/3.3.0>`
+            -   **November 29, 2024**
+            -   **November 29, 2026**
+            -   **Not planned yet**
+            -   | :tarantool-release:`3.3.0`
+
         *   -   :doc:`3.2 </release/3.2.0>`
             -   **August 26, 2024**
             -   **August 26, 2026**
@@ -120,6 +126,7 @@ For information about earlier versions, see :doc:`eol_versions`.
 ..  toctree::
     :maxdepth: 1
 
+    3.3.0
     3.2.0
     3.1.0
     3.0.0
