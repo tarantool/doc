@@ -59,11 +59,11 @@ Same improvements are also introduced to :ref:`read views <read_views>` in the E
 
 .. _3-3-sync-no-timeout:
 
-No timeout for synchronous transactions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+No rollback on timeout for synchronous transactions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To better match the canonical Raft algorithm design, Tarantool no longer rolls
-back synchronous transactions due to :ref:`replication.synchro_timeout <cfg_replication-replication_synchro_timeout>`.
+back synchronous transactions on timeout (upon reaching :ref:`replication.synchro_timeout <cfg_replication-replication_synchro_timeout>`).
 In the new implementation, transactions can only be rolled back by a new leader after it is elected.
 Otherwise, they can wait for a quorum infinitely.
 
@@ -104,14 +104,14 @@ Administration and maintenance
 Persistent replication state
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Tarantool :ref:`persistence mechanism <concepts-data_model-persistence>` operates
+Tarantool :ref:`persistence mechanism <concepts-data_model-persistence>` uses
 two types of files: snapshots and write-ahead log (WAL) files. These files are also used
 for replication: read-only replicas receive data changes from the replica set leader
 by reading these files.
 
 The :ref:`garbage collector <configuration_persistence_garbage_collector>` that
 cleans up obsolete snapshots and WAL files is implemented so that it doesn't remove
-the files that are in use for replication. To make these checks possible the replica
+the files that are in use for replication. To make such a check possible, the replica
 set leaders stored the replication state in connection with files. However, this information
 was not persisted, which could lead to issues in case of the leader restart.
 The garbage collector could delete WAL files after the restart even if there were
