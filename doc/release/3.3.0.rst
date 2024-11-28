@@ -34,7 +34,7 @@ Tarantool 3.3 brings a number of improvements around queries with offsets.
 -   The performance of tree index :ref:`select() <box_index-select>` with offset and
     :ref:`count() <box_index-count>` methods was improved.
     Previously, the algorithm complexity had a linear dependency on the
-    provided offset size (``O(offset``)) or the number of tuples to count. Now,
+    provided offset size (``O(offset)``) or the number of tuples to count. Now,
     the new algorithm complexity is ``O(log(size))`` where ``size`` is the number of tuples
     in the index. This change also eliminates the dependency on the offset value or
     the number of tuple to count.
@@ -110,9 +110,9 @@ for replication: read-only replicas receive data changes from the replica set le
 by reading these files.
 
 The :ref:`garbage collector <configuration_persistence_garbage_collector>` that
-cleans up obsolete snapshots and WAL files is implemented so that it doesn't remove
-the files that are in use for replication. To make such a check possible, the replica
-set leaders stored the replication state in connection with files. However, this information
+cleans up obsolete snapshots and WAL files it doesn't remove the files while they
+are in use for replication. To make such a check possible, the replica set leaders
+store the replication state in connection with files. However, this information
 was not persisted, which could lead to issues in case of the leader restart.
 The garbage collector could delete WAL files after the restart even if there were
 replicas that still read these files. The :ref:`wal.cleanup_delay <configuration_reference_wal_cleanup_delay>`
