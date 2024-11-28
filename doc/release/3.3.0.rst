@@ -29,12 +29,6 @@ Developing applications
 Improved offset processing
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Первое: появились методы offset_of у индексов и спейсов, возвращающие порядковый номер тапла/ключа с начала спейса,
-параметры offset в select и pairs стал вычисляться за O(log(offset)) вместо O(offset),
-метод count стал тоже иметь сложность O(log(размер результата)) вместо O(размер результата)
-
-Аналогичные работы в ридвью в EE тоже были проведены:
-
 Tarantool 3.3 brings a number of improvements around queries with offsets.
 
 -   The performance of tree index :ref:`select() <box_index-select>` with offset and
@@ -47,6 +41,13 @@ Tarantool 3.3 brings a number of improvements around queries with offsets.
 -   The :ref:`index <box_index>` and :ref:`space <box_space>` entities get the new
     ``offset_of`` method that returns the position relative to the given iterator
     direction of the tuple that matches the given key.
+
+    .. code-block:: lua
+
+        -- index: {{1}, {3}}
+        index:offset_of({3}, {iterator = 'eq'})  -- returns 1: [1, <3>]
+        index:offset_of({3}, {iterator = 'req'}) -- returns 0: [<3>, 1]
+
 -   The ``offset`` parameter has been added to the :ref:`index:pairs() <box_index-pairs>` method,
     allowing to skip the first tuples in the iterator.
 
