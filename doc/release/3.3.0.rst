@@ -112,9 +112,33 @@ allow to send work to the :ref:`TX thread <thread_model>` from any other thread:
 JSON schema of the cluster configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-A new ``jsonschema()`` method to the config module. This method generates
-and returns the JSON schema of the cluster configuration, providing a detailed
-description of each field
+Now the Tarantool cluster configuration schema is available for download in the JSON format.
+The schema lists all configuration options available in a certain Tarantool version
+together with their descriptions. As of Tarantool 3.3 release date, the following versions
+are available:
+
+-   `3.0.0 <https://download.tarantool.org/tarantool/schema/config.schema.3.0.0.json>`__
+-   `3.0.1 <https://download.tarantool.org/tarantool/schema/config.schema.3.0.1.json>`__
+-   `3.0.2 <https://download.tarantool.org/tarantool/schema/config.schema.3.0.2.json>`__
+-   `3.1.0 <https://download.tarantool.org/tarantool/schema/config.schema.3.1.0.json>`__
+-   `3.1.1 <https://download.tarantool.org/tarantool/schema/config.schema.3.1.1.json>`__
+-   `3.1.2 <https://download.tarantool.org/tarantool/schema/config.schema.3.1.2.json>`__
+-   `3.2.0 <https://download.tarantool.org/tarantool/schema/config.schema.3.2.0.json>`__
+-   `3.2.1 <https://download.tarantool.org/tarantool/schema/config.schema.3.2.1.json>`__
+-   `3.3.0 <https://download.tarantool.org/tarantool/schema/config.schema.3.3.0.json>`__
+
+Additionally, there is the `latest <https://download.tarantool.org/tarantool/schema/config.schema.json>`__
+schema that reflects the latest configuration schema in development (master branch).
+
+You can use the URIs of these schemas to validate you configuration with `check-jsonschema <https://pypi.org/project/check-jsonschema/>`__
+as follows:
+
+.. code-block:: console
+
+    $ check-jsonschema --schemafile https://download.tarantool.org/tarantool/schema/config.schema.3.3.0.json config.yaml
+
+There is also a new API for generating the JSON configuration schema as a Lua table --
+the ``config:jsonschema()`` function.
 
 .. _3-3-roles-on-event:
 
