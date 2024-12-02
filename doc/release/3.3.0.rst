@@ -74,11 +74,20 @@ Otherwise, they can wait for a quorum infinitely.
 Given that this changes the behavior, a new ``replication_synchro_timeout`` :ref:`compat <compat-module>` option is introduced.
 To try the new behavior, set this option to ``new``:
 
-..  code-block:: tarantoolsession
+-   In YAML configuration:
 
-    tarantool> require('compat').replication_synchro_timeout = 'new'
-    ---
-    ...
+    ..  code-block:: yaml
+
+        compat:
+          replication_synchro_timeout: new
+
+-   In Lua code:
+
+    ..  code-block:: tarantoolsession
+
+        tarantool> require('compat').replication_synchro_timeout = 'new'
+        ---
+        ...
 
 There is also the new ``replication.synchro_queue_max_size`` configuration option
 that limits the total size of transactions in the master synchronous queue. By default,
@@ -97,6 +106,91 @@ allow to send work to the :ref:`TX thread <thread_model>` from any other thread:
 
 -   ``tnt_tx_flush()`` sends all the pending callback for execution in the TX thread.
     The execution is started in the same order as the callbacks were pushed.
+
+.. _3-3-json-config-schema:
+
+JSON schema of the cluster configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A new ``jsonschema()`` method to the config module. This method generates
+and returns the JSON schema of the cluster configuration, providing a detailed
+description of each field
+
+.. _3-3-roles-on-event:
+
+on_event callbacks in roles
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Now :ref:`application roles <application_roles>` can have ``on_event`` callbacks.
+They are executed every time a ``box.status`` :ref:`system event <system-events>` is
+broadcasted or the configuration is updated. The callback has three arguments:
+
+-   ``config`` -- the current configuration.
+-   ``key`` -- an event that has triggered the callback: ``config.apply`` or ``box.status``.
+-   ``value`` -- is the value of the ``box.status`` :ref:`system event <system-events>`.
+
+Example:
+
+.. code-block:: lua
+
+    return {
+        name = 'my_role',
+        validate = function() end,
+        apply = function() end,
+        stop = function() end,
+        on_event = function(config, key, value)
+            local log = require('log')
+
+            log.info('on_event is triggered by ' .. key)
+            log.info('is_ro: ' .. value.is_ro)
+            log.info('roles_cfg.my_role.foo: ' .. config.foo)
+        end,
+    }
+
+.. _3-3-alert-api:
+
+API for raising alerts
+~~~~~~~~~~~~~~~~~~~~~~
+
+Now developers can raise their own alerts from their application or application roles.
+For this purpose, a new API is introduced into the ``config`` module.
+
+The ``config:new_alerts_namespace()`` function creates a new
+*alerts namespace* -- a named container for user-defined alerts:
+
+.. code-block:: lua
+
+    local config = require('config')
+    local alerts = config:new_alerts_namespace('my_alerts')
+
+Alerts namespaces provides methods for managing alerts within them. All user-defined
+alerts raised in all namespaces are shown in ``box.info.config.alerts``.
+
+To raise an alert, use the namespace methods ``add`` or ``set``:
+The difference between them is that ``set()`` accepts a key to use as an alert
+identifier for further operations. An alert must be a table; it's ``message`` field is logged.
+
+.. code-block:: lua
+
+    -- Raise a new alert.
+    alerts:add({
+        message = 'Test alert',
+        my_field = 'my_value',
+    })
+
+    -- Raise a new alert with a key.
+    alerts:set("my_alert", {
+        message = 'Test alert',
+        my_field = 'my_value',
+    })
+
+You can discard alerts individually by keys using the ``unset()`` method, or
+all at once using ``clear()``:
+
+.. code-block:: lua
+
+    alerts:unset("my_alert")
+    alerts:clear()
 
 .. _3-3-administration-and-maintenance:
 
