@@ -24,6 +24,10 @@ The 3.3 release of Tarantool adds the following main product features and improv
 Developing applications
 -----------------------
 
+* JSON-схема для кластерного конфига.
+* В ролях появился коллбек on_event для реакции на RO/RW.
+* Возможность поднять или убрать алерт из роли или приложения.
+
 .. _3-3-offset:
 
 Improved offset processing
@@ -98,6 +102,134 @@ allow to send work to the :ref:`TX thread <thread_model>` from any other thread:
 
 Administration and maintenance
 ------------------------------
+
+.. _3-3-upgrade-ddl:
+
+DDL before upgrade
+~~~~~~~~~~~~~~~~~~~
+
+* Апгрейд лишился ограничений на DDL по сравнению с версиями 3.0, 3.1, 3.2.
+Это позволяет, например, выдать права на функции до вызова box.schema.upgrade()..
+
+Tarantool now allows DDL operations before calling ``box.schema.upgrade()`` during
+an upgrade from an earlier version. For example, you can
+
+.. _3-3-isolated-instances:
+
+Isolated instances
+~~~~~~~~~~~~~~~~~~
+
+A new instance-level configuration option ``isolated`` puts an instance into the
+*isolated* mode.
+
+.. code-block:: yaml
+
+    groups:
+      group-001:
+        replicasets:
+          replicaset-001:
+            instances:
+              instance-001: {}
+              instance-002: {}
+              instance-003:
+                isolated: true
+
+In this mode, an instance doesn't accept updates from other members of its replicaset
+and other iproto requests. It also doesn't perform background data modifications
+and remains in read-only mode.
+
+Use the isolated mode to temporarily isolate instances for maintenance, debugging,
+or other actions that should not affect other cluster instances.
+
+.. _3-3-replica-unregister:
+
+Automatic expulsion configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A new configuration section ``replication.autoexpel`` allows to automatically expel
+instances after they are removed from the YAML configuration.
+
+.. code-block:: yaml
+
+    replication:
+      autoexpel:
+        enabled: true
+        by: prefix
+        prefix: '{{ replicaset_name }}'
+
+The section includes three options:
+
+-   ``enabled``: whether automatic expulsion logic is enabled in the cluster.
+-   ``by``: a criterion for selecting instances that can be expelled automatically.
+    In version 3.3, the only available criterion is ``prefix``.
+-   ``prefix``: a prefix with which an instance name should start to make automatic expulsion possible.
+
+.. note::
+
+    Automatic expulsion happens after a :ref:`configuration reload <config_api_reference_reload>`.
+
+.. _3-3-lua-memory-size:
+
+Lua memory size
+~~~~~~~~~~~~~~~
+
+A new configuration option ``lua.memory`` specifies the maximum amount of memory
+for Lua scripts execution, in bytes. For example, this configuration sets the Lua memory limit to 2 GB:
+
+.. code-block:: yaml
+
+    lua:
+        memory: 2147483648
+
+
+.. 3-3-supervised-failover-improvements:
+
+Supervised failover improvements
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Tarantool 3.3 is receiving a number of supervised failover improvements:
+
+*   Support for Tarantool-based :ref:`stateboard <supervised_failover_overview_fault_tolerance>`
+    as an alternative to etcd.
+*   Instance priority configuration: new ``failover.priority`` configuration section.
+    This section specify the instances' relative order of being appointed by a coordinator:
+    bigger values mean higher priority.
+
+    .. code-block:: yaml
+
+        failover:
+          replicasets:
+            replicaset-001:
+              priority:
+                instance-001: 5
+                instance-002: -5
+                instance-003: 4
+
+    Additionally, there is ``failover.learners`` section that lists instances
+    that should never be appointed as replica set leaders:
+
+    .. code-block:: yaml
+
+        failover:
+          replicasets:
+            replicaset-001:
+              learners:
+                - instance-004
+                - instance-005
+
+*   Automatic failover configuration update.
+*   Failover logging configuration with new configuration options ``failover.log.to``
+    and ``failover.log.file``:
+
+    .. code-block:: yaml
+
+        failover:
+          log:
+            to: file # or stderr
+            file: var/log/tarantool/failover.log
+
+Learn more about supervised failover :ref:`repl_supervised_failover`.
+
 
 .. _3-3-persistent-wal-gc:
 
