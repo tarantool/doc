@@ -62,8 +62,8 @@ For information about earlier versions, see :doc:`eol_versions`.
             -   Versions
 
         *   -   :doc:`3.3 </release/3.3.0>`
-            -   **November 29, 2024**
-            -   **November 29, 2026**
+            -   **November 30, 2024**
+            -   **November 30, 2026**
             -   **Not planned yet**
             -   | :tarantool-release:`3.3.0`
 

@@ -1,7 +1,7 @@
 Tarantool 3.3
 =============
 
-Release date: November 29, 2024
+Release date: November 30, 2024
 
 Releases on GitHub: :tarantool-release:`3.3.0`
 
@@ -12,7 +12,13 @@ The 3.3 release of Tarantool adds the following main product features and improv
     *   Improvements around queries with offsets.
     *   Improvement in Raft implementation.
     *   Persistent replication state.
-    *   New C API for sending work to the TX thread.
+    *   New C API for sending work to the TX thread
+    *   JSON schema for cluster configuration validation
+    *   New ``on_event`` callback in application roles
+    *   API for user-defined alerts
+    *   Isolated instance mode
+    *   New configuration option for Lua memory size
+    *   Supervised failover improvements
 
 *   **Enterprise Edition (EE)**
 
@@ -23,10 +29,6 @@ The 3.3 release of Tarantool adds the following main product features and improv
 
 Developing applications
 -----------------------
-
-* JSON-схема для кластерного конфига.
-* В ролях появился коллбек on_event для реакции на RO/RW.
-* Возможность поднять или убрать алерт из роли или приложения.
 
 .. _3-3-offset:
 
@@ -113,9 +115,8 @@ JSON schema of the cluster configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Now the Tarantool cluster configuration schema is available for download in the JSON format.
-The schema lists all configuration options available in a certain Tarantool version
-together with their descriptions. As of Tarantool 3.3 release date, the following versions
-are available:
+The schema lists configuration options of a certain Tarantool version with descriptions.
+As of Tarantool 3.3 release date, the following versions are available:
 
 -   `3.0.0 <https://download.tarantool.org/tarantool/schema/config.schema.3.0.0.json>`__
 -   `3.0.1 <https://download.tarantool.org/tarantool/schema/config.schema.3.0.1.json>`__
@@ -130,8 +131,9 @@ are available:
 Additionally, there is the `latest <https://download.tarantool.org/tarantool/schema/config.schema.json>`__
 schema that reflects the latest configuration schema in development (master branch).
 
-You can use the URIs of these schemas to validate you configuration with `check-jsonschema <https://pypi.org/project/check-jsonschema/>`__
-as follows:
+Use these schemas to add completion for YAML configuration files and get
+hints with option descriptions in your IDE, or validate your configurations,
+for example, with `check-jsonschema <https://pypi.org/project/check-jsonschema/>`__:
 
 .. code-block:: console
 
@@ -187,12 +189,13 @@ The ``config:new_alerts_namespace()`` function creates a new
     local config = require('config')
     local alerts = config:new_alerts_namespace('my_alerts')
 
-Alerts namespaces provides methods for managing alerts within them. All user-defined
+Alerts namespaces provide methods for managing alerts within them. All user-defined
 alerts raised in all namespaces are shown in ``box.info.config.alerts``.
 
-To raise an alert, use the namespace methods ``add`` or ``set``:
-The difference between them is that ``set()`` accepts a key to use as an alert
-identifier for further operations. An alert must be a table; it's ``message`` field is logged.
+To raise an alert, use the namespace methods ``add()`` or ``set()``:
+The difference between them is that ``set()`` accepts a key to refer to the alert
+later: overwrite or discard it. An alert is a table with one mandatory  field ``message``
+(its value is logged) and arbitrary used-defined fields.
 
 .. code-block:: lua
 
@@ -226,11 +229,10 @@ Administration and maintenance
 DDL before upgrade
 ~~~~~~~~~~~~~~~~~~~
 
-* Апгрейд лишился ограничений на DDL по сравнению с версиями 3.0, 3.1, 3.2.
-Это позволяет, например, выдать права на функции до вызова box.schema.upgrade()..
-
-Tarantool now allows DDL operations before calling ``box.schema.upgrade()`` during
-an upgrade from an earlier version. For example, you can
+Since version 3.3, Tarantool allows DDL operations before calling ``box.schema.upgrade()``
+during an upgrade if the source schema version is 2.11.1 or later. This allows,
+for example, granting execute access to user-defined functions in the cluster configuration
+before the schema is upgraded.
 
 .. _3-3-isolated-instances:
 
@@ -238,7 +240,9 @@ Isolated instances
 ~~~~~~~~~~~~~~~~~~
 
 A new instance-level configuration option ``isolated`` puts an instance into the
-*isolated* mode.
+*isolated* mode. In this mode, an instance doesn't accept updates from other members
+of its replica set and other iproto requests. It also doesn't perform background
+data modifications and remains in read-only mode.
 
 .. code-block:: yaml
 
@@ -252,17 +256,13 @@ A new instance-level configuration option ``isolated`` puts an instance into the
               instance-003:
                 isolated: true
 
-In this mode, an instance doesn't accept updates from other members of its replicaset
-and other iproto requests. It also doesn't perform background data modifications
-and remains in read-only mode.
-
 Use the isolated mode to temporarily isolate instances for maintenance, debugging,
 or other actions that should not affect other cluster instances.
 
-.. _3-3-replica-unregister:
+.. _3-3-autoexpel:
 
-Automatic expulsion configuration
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Automatic expulsion of removed instances
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 A new configuration section ``replication.autoexpel`` allows to automatically expel
 instances after they are removed from the YAML configuration.
@@ -282,9 +282,6 @@ The section includes three options:
     In version 3.3, the only available criterion is ``prefix``.
 -   ``prefix``: a prefix with which an instance name should start to make automatic expulsion possible.
 
-.. note::
-
-    Automatic expulsion happens after a :ref:`configuration reload <config_api_reference_reload>`.
 
 .. _3-3-lua-memory-size:
 
@@ -292,15 +289,17 @@ Lua memory size
 ~~~~~~~~~~~~~~~
 
 A new configuration option ``lua.memory`` specifies the maximum amount of memory
-for Lua scripts execution, in bytes. For example, this configuration sets the Lua memory limit to 2 GB:
+for Lua scripts execution, in bytes. For example, this configuration sets the Lua memory
+limit to 4 GB:
 
 .. code-block:: yaml
 
     lua:
-        memory: 2147483648
+      memory: 4294967296
 
+The default limit is 2 GB.
 
-.. 3-3-supervised-failover-improvements:
+.. _3-3-supervised-failover-improvements:
 
 Supervised failover improvements
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
