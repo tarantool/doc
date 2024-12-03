@@ -1,7 +1,7 @@
 Tarantool 3.3
 =============
 
-Release date: November 30, 2024
+Release date: November 29, 2024
 
 Releases on GitHub: :tarantool-release:`3.3.0`
 
@@ -12,13 +12,14 @@ The 3.3 release of Tarantool adds the following main product features and improv
     *   Improvements around queries with offsets.
     *   Improvement in Raft implementation.
     *   Persistent replication state.
-    *   New C API for sending work to the TX thread
-    *   JSON schema for cluster configuration validation
-    *   New ``on_event`` callback in application roles
-    *   API for user-defined alerts
-    *   Isolated instance mode
-    *   New configuration option for Lua memory size
-    *   Supervised failover improvements
+    *   New C API for sending work to the TX thread.
+    *   JSON cluster configuration schema.
+    *   New ``on_event`` callback in application roles.
+    *   API for user-defined alerts.
+    *   Isolated instance mode.
+    *   Automatic instance expulsion.
+    *   New configuration option for Lua memory size.
+    *   Supervised failover improvements.
 
 *   **Enterprise Edition (EE)**
 
@@ -114,8 +115,8 @@ allow to send work to the :ref:`TX thread <thread_model>` from any other thread:
 JSON schema of the cluster configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Now the Tarantool cluster configuration schema is available for download in the JSON format.
-The schema lists configuration options of a certain Tarantool version with descriptions.
+Tarantool cluster configuration schema is now available in the JSON format.
+A schema lists configuration options of a certain Tarantool version with descriptions.
 As of Tarantool 3.3 release date, the following versions are available:
 
 -   `3.0.0 <https://download.tarantool.org/tarantool/schema/config.schema.3.0.0.json>`__
