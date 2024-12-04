@@ -19,12 +19,11 @@ The 3.3 release of Tarantool adds the following main product features and improv
     *   Isolated instance mode.
     *   Automatic instance expulsion.
     *   New configuration option for Lua memory size.
-    *   Supervised failover improvements.
 
 *   **Enterprise Edition (EE)**
 
     *   Offset-related improvements in read views.
-
+    *   Supervised failover improvements.
 
 .. _3-3-features-for-developers:
 
