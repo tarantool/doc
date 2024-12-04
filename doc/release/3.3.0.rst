@@ -149,7 +149,7 @@ on_event callbacks in roles
 
 Now :ref:`application roles <application_roles>` can have ``on_event`` callbacks.
 They are executed every time a ``box.status`` :ref:`system event <system-events>` is
-broadcasted or the configuration is updated. The callback has three arguments:
+broadcast or the configuration is updated. The callback has three arguments:
 
 -   ``config`` -- the current configuration.
 -   ``key`` -- an event that has triggered the callback: ``config.apply`` or ``box.status``.
@@ -345,7 +345,7 @@ Tarantool 3.3 is receiving a number of supervised failover improvements:
             to: file # or stderr
             file: var/log/tarantool/failover.log
 
-Learn more about supervised failover :ref:`repl_supervised_failover`.
+Learn more about supervised failover in :ref:`repl_supervised_failover`.
 
 
 .. _3-3-persistent-wal-gc:
