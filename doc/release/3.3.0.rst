@@ -12,7 +12,7 @@ The 3.3 release of Tarantool adds the following main product features and improv
     *   Improvements around queries with offsets.
     *   Improvement in Raft implementation.
     *   Persistent replication state.
-    *   New C API for sending work to the TX thread.
+    *   New C API for sending work to the TX thread from user threads.
     *   JSON cluster configuration schema.
     *   New ``on_event`` callback in application roles.
     *   API for user-defined alerts.
