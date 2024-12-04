@@ -43,8 +43,8 @@ Tarantool 3.3 brings a number of improvements around queries with offsets.
     provided offset size (``O(offset)``) or the number of tuples to count. Now,
     the new algorithm complexity is ``O(log(size))`` where ``size`` is the number of tuples
     in the index. This change also eliminates the dependency on the offset value or
-    the number of tuple to count.
--   The :ref:`index <box_index>` and :ref:`space <box_space>` entities get the new
+    the number of tuples to count.
+-   The :ref:`index <box_index>` and :ref:`space <box_space>` entities get a new
     ``offset_of`` method that returns the position relative to the given iterator
     direction of the tuple that matches the given key.
 
@@ -73,7 +73,7 @@ back synchronous transactions on timeout (upon reaching :ref:`replication.synchr
 In the new implementation, transactions can only be rolled back by a new leader after it is elected.
 Otherwise, they can wait for a quorum infinitely.
 
-Given that this changes the behavior, a new ``replication_synchro_timeout`` :ref:`compat <compat-module>` option is introduced.
+Given this change in behavior, a new ``replication_synchro_timeout`` :ref:`compat <compat-module>` option is introduced.
 To try the new behavior, set this option to ``new``:
 
 -   In YAML configuration:
@@ -91,23 +91,23 @@ To try the new behavior, set this option to ``new``:
         ---
         ...
 
-There is also the new ``replication.synchro_queue_max_size`` configuration option
-that limits the total size of transactions in the master synchronous queue. By default,
-it's 16 megabytes.
+There is also a new ``replication.synchro_queue_max_size`` configuration option
+that limits the total size of transactions in the master synchronous queue. The default
+value is 16 megabytes.
 
 .. _3-3-c-api-tx-thread:
 
 C API for sending work to TX thread
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The new public C API functions ``tnt_tx_push()`` and ``tnt_tx_flush()``
+New public C API functions ``tnt_tx_push()`` and ``tnt_tx_flush()``
 allow to send work to the :ref:`TX thread <thread_model>` from any other thread:
 
 -   ``tnt_tx_push()`` schedules the given callback to be executed with the provided
     arguments.
 
--   ``tnt_tx_flush()`` sends all the pending callback for execution in the TX thread.
-    The execution is started in the same order as the callbacks were pushed.
+-   ``tnt_tx_flush()`` sends all pending callbacks for execution in the TX thread.
+    Execution is started in the same order as the callbacks were pushed.
 
 .. _3-3-json-config-schema:
 
@@ -131,7 +131,7 @@ As of Tarantool 3.3 release date, the following versions are available:
 Additionally, there is the `latest <https://download.tarantool.org/tarantool/schema/config.schema.json>`__
 schema that reflects the latest configuration schema in development (master branch).
 
-Use these schemas to add completion for YAML configuration files and get
+Use these schemas to add code completion for YAML configuration files and get
 hints with option descriptions in your IDE, or validate your configurations,
 for example, with `check-jsonschema <https://pypi.org/project/check-jsonschema/>`__:
 
@@ -153,7 +153,7 @@ broadcasted or the configuration is updated. The callback has three arguments:
 
 -   ``config`` -- the current configuration.
 -   ``key`` -- an event that has triggered the callback: ``config.apply`` or ``box.status``.
--   ``value`` -- is the value of the ``box.status`` :ref:`system event <system-events>`.
+-   ``value`` -- the value of the ``box.status`` :ref:`system event <system-events>`.
 
 Example:
 
@@ -194,7 +194,7 @@ alerts raised in all namespaces are shown in ``box.info.config.alerts``.
 
 To raise an alert, use the namespace methods ``add()`` or ``set()``:
 The difference between them is that ``set()`` accepts a key to refer to the alert
-later: overwrite or discard it. An alert is a table with one mandatory  field ``message``
+later: overwrite or discard it. An alert is a table with one mandatory field ``message``
 (its value is logged) and arbitrary used-defined fields.
 
 .. code-block:: lua
@@ -241,7 +241,7 @@ Isolated instances
 
 A new instance-level configuration option ``isolated`` puts an instance into the
 *isolated* mode. In this mode, an instance doesn't accept updates from other members
-of its replica set and other iproto requests. It also doesn't perform background
+of its replica set and other iproto requests. It also performs no background
 data modifications and remains in read-only mode.
 
 .. code-block:: yaml
@@ -322,7 +322,7 @@ Tarantool 3.3 is receiving a number of supervised failover improvements:
                 instance-002: -5
                 instance-003: 4
 
-    Additionally, there is ``failover.learners`` section that lists instances
+    Additionally, there is a ``failover.learners`` section that lists instances
     that should never be appointed as replica set leaders:
 
     .. code-block:: yaml
@@ -358,8 +358,8 @@ two types of files: snapshots and write-ahead log (WAL) files. These files are a
 for replication: read-only replicas receive data changes from the replica set leader
 by reading these files.
 
-The :ref:`garbage collector <configuration_persistence_garbage_collector>` that
-cleans up obsolete snapshots and WAL files it doesn't remove the files while they
+The :ref:`garbage collector <configuration_persistence_garbage_collector>`
+cleans up obsolete snapshots and WAL files, but it doesn't remove the files while they
 are in use for replication. To make such a check possible, the replica set leaders
 store the replication state in connection with files. However, this information
 was not persisted, which could lead to issues in case of the leader restart.
@@ -368,7 +368,7 @@ replicas that still read these files. The :ref:`wal.cleanup_delay <configuration
 configuration option was used to prevent such situations.
 
 Since version 3.3, leader instances persist the information about WAL files in use
-in the new system space ``_gc_consumers``. After a restart, the replication state
+in a new system space ``_gc_consumers``. After a restart, the replication state
 is restored, and WAL files needed for replication are protected from garbage collection.
 This eliminates the need to keep all WAL files after a restart, so the ``wal.cleanup_delay``
 option is now deprecated.
