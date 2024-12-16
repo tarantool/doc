@@ -25,6 +25,7 @@ box.watch_once()
         -- Get the value of this key
         tarantool> box.watch_once('foo')
         ---
+        - 42
         ...
 
         -- Non-existent keys' values are empty
