@@ -7,14 +7,13 @@ box.watch_once()
 
     Returns the current value of a given notification key.
     The function can be used as an alternative to :ref:`box.watch() <box-watch>`
-    for cases when the caller only needs to retrieve the current value without
-    subscribing to future changes.
+    when the caller only needs the current value without subscribing to future changes.
 
     :param string key: key name
 
     :return: the key value
 
-    To read more about watchers, see the :ref:`Functions for watchers <box-watchers>` section.
+    To read more about watchers, see the :ref:`box-watchers` section.
 
     **Example:**
 

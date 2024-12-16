@@ -68,7 +68,7 @@ Below is a list of all functions and pages related to watchers or events.
            - Create a local watcher.
 
         *  - :ref:`box.watch_once() <box-watch>`
-           - Create a local watcher for a single use.
+           - Get the current key value.
 
         *  - :ref:`conn:watch() <conn-watch>`
            - Create a watcher for the remote host.
