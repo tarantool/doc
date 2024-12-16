@@ -64,8 +64,11 @@ Below is a list of all functions and pages related to watchers or events.
         *   - Name
             - Use
 
-        *  - :doc:`./box_events/watch`
+        *  - :ref:`box.watch() <box-watch>`
            - Create a local watcher.
+
+        *  - :ref:`box.watch_once() <box-watch>`
+           - Create a local watcher for a single use.
 
         *  - :ref:`conn:watch() <conn-watch>`
            - Create a watcher for the remote host.
@@ -80,5 +83,6 @@ Below is a list of all functions and pages related to watchers or events.
     :hidden:
 
     box_events/watch
+    box_events/watch_once
     box_events/broadcast
     box_events/system_events
