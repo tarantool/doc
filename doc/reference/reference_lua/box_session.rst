@@ -67,7 +67,7 @@ Below is a list of all ``box.session`` functions and members.
            - 	Define a trigger to report restricted actions
 
         *  - :doc:`./box_session/push`
-           - Send an out-of-band message
+           - (Deprecated) Send an out-of-band message
 
 .. toctree::
     :hidden:

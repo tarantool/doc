@@ -529,6 +529,7 @@ The ``compat`` section defines values of the :ref:`compat <compat-module>` modul
     -   ``new``: raise an error
     -   ``old``: do not raise an error
 
+    See also: :ref:`compat-option-session-push-deprecation`
 
     |
     | Type: string
