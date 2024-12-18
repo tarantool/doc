@@ -10,7 +10,9 @@ box.session.push()
 
 .. function:: box.session.push(message [, sync])
 
-    **Deprecated since:** 3.0
+    .. warning::
+
+        **Deprecated since:** 3.0
 
     Generate an out-of-band message. By "out-of-band" we mean an extra
     message which supplements what is passed in a network via the usual

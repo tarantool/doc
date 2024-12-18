@@ -5,8 +5,8 @@ box.session.push deprecation
 
 Option: ``box_session_push_deprecation``
 
-Starting from version 3.0, Lua API function :ref:`box.session.push()`
-and C API function :ref:`box_session_push()` are deprecated.
+Starting from version 3.0, Lua API function :ref:`box.session.push() <box_session-push>`
+and C API function :ref:`box_session_push() <box_box_session_push>` are deprecated.
 
 Old and new behavior
 --------------------
