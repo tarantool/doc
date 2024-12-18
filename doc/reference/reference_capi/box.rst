@@ -192,9 +192,7 @@
 
 .. c:function:: int box_session_push(const char *data, const char *data_end)
 
-    .. warning::
-
-        **Deprecated since:** 3.0
+    **Deprecated since** :doc:`3.0.0 </release/3.0.0>`.
 
     Since version :doc:`2.4.1 </release/2.4.1>`. Push MessagePack data into
     a session data channel -- socket, console or

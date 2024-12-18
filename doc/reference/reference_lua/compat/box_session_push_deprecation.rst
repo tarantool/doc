@@ -1,7 +1,7 @@
 .. _compat-option-session-push-deprecation:
 
-box.session.push deprecation
-============================
+box.session.push() deprecation
+==============================
 
 Option: ``box_session_push_deprecation``
 
