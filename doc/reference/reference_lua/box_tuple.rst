@@ -88,6 +88,7 @@ Below is a list of all ``box.tuple`` functions.
     box_tuple/field_name
     box_tuple/field_path
     box_tuple/find
+    box_tuple/format
     box_tuple/info
     box_tuple/next
     box_tuple/pairs
