@@ -117,14 +117,6 @@ For information about earlier versions, see :doc:`eol_versions`.
                 | :doc:`2.10.1 </release/2.10.1>`
                 | :doc:`2.10.0 </release/2.10.0>`
 
-        *   -   2.8
-            -   August 19, 2021
-            -   April 25, 2022
-            -   December 31, 2024
-            -   | :doc:`2.8.4 </release/2.8.4>`
-                | :doc:`2.8.3 </release/2.8.3>`
-                | :doc:`2.8.2 </release/2.8.2>`
-
 ..  toctree::
     :maxdepth: 1
 
