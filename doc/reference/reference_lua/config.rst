@@ -8,8 +8,7 @@ Module config
 The ``config`` module provides the ability to work with an instance's configuration.
 For example, you can determine whether the current instance is up and running without errors after applying the :ref:`cluster's configuration <configuration_overview>`.
 
-By using the ``config.storage`` :ref:`role <configuration_application_roles>`, you can set up a Tarantool-based :ref:`centralized configuration storage <configuration_etcd>` and interact with this storage using the ``config`` module API.
-
+By using the ``config.storage`` :ref:`role <configuration_application_roles>`, you can set up a Tarantool-based :ref:`centralized configuration storage <configuration_etcd>` and interact with this storage using the ``config`` module API. ``config.storage_client`` allows to connect to such storages and to interact with them from other Tarantool instances.
 
 ..  _config_module_loading:
 
@@ -72,13 +71,52 @@ API Reference
         *   -   :ref:`config.storage.delete() <config_storage_api_reference_delete>`
             -   Delete a value stored by the specified path
 
-        *   -   :ref:`config.storage.info() <config_storage_api_reference_info>`
+        *   -   :ref:`config.storage.info <config_storage_api_reference_info>` |br|
+                :ref:`config.storage.info() <config_storage_api_reference_info>`
             -   Get information about an instance's connection state
 
         *   -   :ref:`config.storage.txn() <config_storage_api_reference_txn>`
             -   Make an atomic request
 
+        *   -   **config.storage client API**
+            -
 
+        *   -   :ref:`config.storage_client.connect() <config_storage_client_api_reference_connect>`
+            -   Connect to a remote config.storage cluster
+
+        *   -   :ref:`<config.storage client>:put() <config_storage_client_api_reference_put>`
+            -   Put a value by the specified path
+
+        *   -   :ref:`<config.storage client>:get() <config_storage_client_api_reference_get>`
+            -   Get a value stored by the specified path
+
+        *   -   :ref:`<config.storage client>:delete() <config_storage_client_api_reference_delete>`
+            -   Delete a value stored by the specified path
+
+        *   -   :ref:`<config.storage client>.info <config_storage_client_api_reference_info>` |br|
+                :ref:`<config.storage client>:info() <config_storage_client_api_reference_info>`
+            -   Get information about an instance's connection state
+
+        *   -   :ref:`<config.storage client>:txn() <config_storage_client_api_reference_txn>`
+            -   Make an atomic request
+
+        *   -   :ref:`<config.storage client>:is_connected() <config_storage_client_api_reference_is_connected>`
+            -   Check if there is active connection to a config.storage cluster
+
+        *   -   :ref:`<config.storage client>:close() <config_storage_client_api_reference_close>`
+            -   Close connection to a config.storage cluster
+
+        *   -   :ref:`<config.storage client>:is_closed() <config_storage_client_api_reference_is_closed>`
+            -   Check whether the connection has been closed by a user
+
+        *   -   :ref:`<config.storage client>:reconnect() <config_storage_client_api_reference_reconnect>`
+            -   Reconnect to one of the config.storage instances after calling ``close()``
+
+        *   -   :ref:`<config.storage client>:on_disconnect() <config_storage_client_api_reference_on_disconnect>`
+            -   Define a config.storage cluster disconnect trigger
+
+        *   -   :ref:`<config.storage client>:watch() <config_storage_client_api_reference_watch>`
+            -   Subscribe to config.storage events broadcast
 
 ..  _config_api_reference:
 
@@ -466,6 +504,7 @@ The ``config.storage`` API allows you to interact with a Tarantool-based :ref:`c
 
 .. _config_storage_api_reference_info:
 
+.. data:: info
 .. function:: info()
 
     Get information about an instance's connection state.
@@ -523,6 +562,295 @@ The ``config.storage`` API allows you to interact with a Tarantool-based :ref:`c
         :dedent:
 
     Example on GitHub: `tarantool_config_storage <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/centralized_config/instances.enabled/tarantool_config_storage>`_
+
+
+..  _config_storage_client_api_reference:
+
+config.storage_client API
+~~~~~~~~~~~~~~~~~~
+
+    The ``config.storage_client`` API allows you to connect to a remote replica set configured as a Tarantool-based :ref:`centralized configuration storage <configuration_etcd>` and interact with it as a key-value storage.
+
+.. module:: config.storage_client
+
+.. _config_storage_client_api_reference_connect:
+
+.. function:: connect(endpoints[, options])
+
+    Connect to a remote config.storage cluster.
+
+    :param table endpoints: table of config.storage instance URIs
+    :param table options: client options to pass. The following options are available:
+
+                           -   ``timeout`` (default: ``nil``, unset) -- connect & call timeout.
+
+    :return:    a <config.storage client> object
+
+    :rtype: table
+
+The example below shows how to connect to a specific config.storage cluster:
+
+..  literalinclude:: /code_snippets/snippets/centralized_config/instances.enabled/config_storage/myapp.lua
+    :language: lua
+    :start-after: config = require
+    :end-at: })
+    :dedent:
+
+The example below shows how to connect to a config storage cluster configured as the :ref:`centralized configuration storage <configuration_etcd>` in the :ref:`config.storage <configuration_reference_config_storage>` option:
+
+..  literalinclude:: /code_snippets/snippets/centralized_config/instances.enabled/config_storage/myapp.lua
+    :language: lua
+    :start-after: function connect_to_configured_storage
+    :end-at: config.storage_client.connect
+    :dedent:
+
+Examples on GitHub: `config_storage <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/centralized_config/instances.enabled/config_storage>`_
+
+.. _config_storage_client_api_reference_put:
+
+.. function:: <config.storage client>:put(path, value)
+
+Put a value by the specified path to remote config.storage.
+
+:param string path: a path to put the value by
+:param string value: a value to put
+
+:return:    a table containing the following fields:
+
+            *   ``revision``: a revision after performing the operation
+
+:rtype: table
+
+**Example:**
+
+The example below shows how to read a configuration stored in the ``source.yaml`` file using the :ref:`fio module <fio-module>` API and put this configuration by the ``/myapp/config/all`` path:
+
+..  literalinclude:: /code_snippets/snippets/centralized_config/instances.enabled/config_storage/myapp.lua
+    :language: lua
+    :start-after: function put_config
+    :end-at: cluster_config_handle:close()
+    :dedent:
+
+Examples on GitHub: `config_storage <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/centralized_config/instances.enabled/config_storage>`_
+
+.. _config_storage_client_api_reference_get:
+
+.. function:: <config.storage client>:get(path)
+
+Get a value from remote config.storage stored by the specified path or prefix.
+
+:param string path: a path or prefix to get a value by; prefixes end with ``/``
+
+:return:    a table containing the following fields:
+
+            *   ``data``: a table containing the information about the value:
+
+                * ``path``: a path
+                * ``mod_revision``: the last revision at which this value was modified
+                * ``value:``: a value
+
+            *   ``revision``: a revision after performing the operation
+
+:rtype: table
+
+**Examples:**
+
+The example below shows how to get a configuration stored by the ``/myapp/config/all`` path on a remote config.storage cluster:
+
+..  literalinclude:: /code_snippets/snippets/centralized_config/instances.enabled/config_storage/myapp.lua
+    :language: lua
+    :start-after: get_config_by_path
+    :end-at: get('/myapp/config/all')
+    :dedent:
+
+This example shows how to get all configurations stored by the ``/myapp/`` prefix on a remote config.storage cluster:
+
+..  literalinclude:: /code_snippets/snippets/centralized_config/instances.enabled/config_storage/myapp.lua
+    :language: lua
+    :start-after: get_config_by_prefix
+    :end-at: get('/myapp/')
+    :dedent:
+
+Examples on GitHub: `config_storage <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/centralized_config/instances.enabled/config_storage>`_
+
+.. _config_storage_client_api_reference_delete:
+
+.. function:: <config.storage client>:delete(path)
+
+Delete a value stored by the specified path or prefix in remote config.storage.
+
+:param string path: a path or prefix to delete the value by; prefixes end with ``/``
+
+:return:    a table containing the following fields:
+
+            *   ``data``: a table containing the information about the value:
+
+                * ``path``: a path
+                * ``mod_revision``: the last revision at which this value was modified
+                * ``value:``: a value
+
+            *   ``revision``: a revision after performing the operation
+
+:rtype: table
+
+**Examples:**
+
+The example below shows how to delete a configuration stored by the ``/myapp/config/all`` path:
+
+..  literalinclude:: /code_snippets/snippets/centralized_config/instances.enabled/config_storage/myapp.lua
+    :language: lua
+    :start-after: delete_config
+    :end-at: delete('/myapp/config/all')
+    :dedent:
+
+In this example, all values are deleted:
+
+..  literalinclude:: /code_snippets/snippets/centralized_config/instances.enabled/config_storage/myapp.lua
+    :language: lua
+    :start-after: delete_all_configs
+    :end-at: delete('/')
+    :dedent:
+
+Examples on GitHub: `config_storage <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/centralized_config/instances.enabled/config_storage>`_
+
+.. _config_storage_client_api_reference_info:
+
+.. data:: <config.storage client>.info
+.. function:: <config.storage client>:info()
+
+Get information about a connection state to the config.storage cluster.
+
+:return:    a table containing the following fields:
+
+            *   ``status``: a connection status, which can be one of the following:
+
+                * ``connected``: if any instance from the quorum is available to the current instance
+                * ``disconnected``: if the current instance doesn't have a connection with the quorum
+
+:rtype: table
+
+
+.. _config_storage_client_api_reference_txn:
+
+.. function:: <config.storage client>:txn(request)
+
+Make an atomic request on remote config.storage.
+
+:param table request:   a table containing the following optional fields:
+
+                        *   ``predicates``: a list of predicates to check. Each predicate is a list that contains:
+
+                            .. code-block:: none
+
+                                {target, operator, value[, path]}
+
+                            *   ``target`` -- one of the following string values: ``revision``, ``mod_revision``, ``value``, ``count``
+                            *   ``operator`` -- a string value: ``eq``, ``ne``, ``gt``, ``lt``, ``ge``, ``le`` or its symbolic equivalent, for example, ``==``, ``!=``, ``>``
+                            *   ``value`` -- an unsigned or string value to compare
+                            *   ``path`` (optional) -- a string value: can be a path with the ``mod_revision`` and ``value`` target or a path/prefix with the ``count`` target
+
+                        * ``on_success``: a list with operations to execute if all predicates in the list evaluate to ``true``
+
+                        * ``on_failure``: a list with operations to execute if any of a predicate evaluates to ``false``
+
+:return:    a table containing the following fields:
+
+            *   ``data``: a table containing response data:
+
+                * ``responses``: the list of responses for all operations
+                * ``is_success``: a boolean value indicating whether the predicate is evaluated to ``true``
+
+            *   ``revision``: a revision after performing the operation
+
+:rtype: table
+
+**Example:**
+
+..  literalinclude:: /code_snippets/snippets/centralized_config/instances.enabled/config_storage/myapp.lua
+    :language: lua
+    :start-at: storage_client:txn
+    :end-at: })
+    :dedent:
+
+Examples on GitHub: `config_storage <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/centralized_config/instances.enabled/config_storage>`_
+
+.. _config_storage_client_api_reference_is_connected:
+
+.. function:: <config.storage client>:is_connected()
+
+Show whether there is an active connection to the config.storage cluster.
+
+:return: true if connected, false on failure.
+:rtype:  boolean
+
+.. _config_storage_client_api_reference_close:
+
+.. function:: <config.storage client>:close()
+
+Close existing connection to a config.storage cluster. Connection objects are destroyed by the Lua garbage collector, just like any other objects in Lua, so an explicit destruction is not mandatory. However, since ``close()`` is a system call, it is good programming practice to close a connection explicitly when it is no longer needed, to avoid lengthy stalls of the garbage collector.
+
+Note connection to the config.storage will be re-established automatically if one of the remote config.storage client methods is called.
+
+.. _config_storage_client_api_reference_is_closed:
+
+.. function:: <config.storage client>:is_closed()
+
+Show whether the connection has been closed by a user with ``close()``.
+
+:return: true if closed, false on failure.
+:rtype:  boolean
+
+.. _config_storage_client_api_reference_reconnect:
+
+.. function:: <config.storage client>:reconnect()
+
+Reconnect to one of the config.storage instances after calling ``close()``.
+
+.. _config_storage_client_api_reference_on_disconnect:
+
+.. function:: <config.storage client>:on_disconnect(func)
+
+Set a trigger for execution when the established connection to a config.storage cluster instance is closed. This also includes the cases when the config.storage client loses connection to a specific instance but automatically re-establishes it to another available one. Execution stops after a config.storage client is explicitly closed, or once the Lua garbage collector removes it. Calling this method replaces an old disconnect trigger with a new one if set.
+
+.. _config_storage_client_api_reference_watch:
+
+.. function:: <config.storage client>:watch(path_or_event_key, func)
+
+Subscribe to config.storage events broadcast. You might use one of the following events.
+
+* ``info`` is an event corresponding to the update on the client information.
+* ``/path/to/key`` or ``/prefix/to/watch/`` is an event that corresponds to the updates of the specific key or of multiple keys having the specified prefix.
+
+:param string path_or_key: a key name of an event to subscribe to
+:param function func:  a callback to invoke when the key value is updated. The values passed to the callback depend on the passed key and might be one of the following:
+
+                           -   ``event_key``, ``revision`` -- if a path or a prefix is specified.
+
+                           -   ``event_key``, ``info`` -- if the key is ``info``.
+
+:return: a watcher handle. The handle consists of one method -- ``unregister()``, which unregisters the watcher.
+
+To read more about watchers, see the :ref:`Functions for watchers <box-watchers>` section.
+
+The method has the same syntax as :ref:`box.watch() <box-watch>` and :ref:`conn:watch() <conn-watch>` functions. In fact, the call ``<config.storage client>:watch('<key>', f)`` internally subscribes to ``config.storage.<key>`` or to ``config.storage:<path>`` event broadcast through :ref:`IPROTO <box_protocol-id>`.
+
+All registered watchers are automatically resubscribed when the connection is reestablished.
+
+..  note::
+
+    Keep in mind that garbage collection of a watcher handle doesn't lead to the watcher's destruction.
+    In this case, the watcher remains registered.
+    It is okay to discard the result of ``watch`` function if the watcher will never be unregistered.
+
+**Examples:**
+
+..  literalinclude:: /code_snippets/snippets/centralized_config/instances.enabled/config_storage/myapp.lua
+    :language: lua
+    :start-after: function register_watchers
+    :end-at: end)
+    :dedent:
+
+Examples on GitHub: `config_storage <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/centralized_config/instances.enabled/config_storage>`_
 
 .. toctree::
     :maxdepth: 1
