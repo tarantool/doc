@@ -58,7 +58,7 @@ each instance independently.
 
 Learn more about working with multi-instance applications in :ref:`Multi-instance applications <admin-start_stop_instance-multi-instance>`.
 
-Replacement for tarantooctl and Cartridge CLI
+Replacement for tarantoolctl and Cartridge CLI
 ---------------------------------------------
 
 A multi-purpose tool for working with Tarantool from the command line, ``tt`` has
