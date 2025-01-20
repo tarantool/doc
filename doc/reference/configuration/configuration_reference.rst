@@ -3133,6 +3133,28 @@ log.syslog.*
     | Default: box.NULL
     | Environment variable: TT_LOG_SYSLOG_SERVER
 
+.. _configuration_reference_lua:
+
+lua
+===
+
+The ``lua`` section outlines the configuration parameters related to the Lua environment within Tarantool.
+
+lua.memory
+----------
+
+Specifies the amount of memory allocated to Lua, measured in bytes.
+
+- **Default Value**: 2GB
+- **Minimum Value**: 256MB
+
+Dynamic adjustment behavior
+---------------------------
+
+- If the specified value is **greater** than the current memory usage, the new limit is applied immediately without requiring a restart.
+- If the specified value is **less** than the current memory usage, a **restart** of the instance is required for the change to take effect.
+
+
 ..  _configuration_reference_memtx:
 
 memtx
