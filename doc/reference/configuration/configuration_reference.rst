@@ -3138,9 +3138,9 @@ log.syslog.*
 lua
 ---
 
-The ``lua`` section outlines the configuration parameters related to the Lua environment within Tarantool.
+The ``lua`` section outlines the configuration parameters related to the ``lua`` environment within Tarantool.
 
-Below is an overview of the available configuration options for Lua:
+Below is an overview of the available configuration options for ``lua``:
 
 - :ref:`lua.memory <configuration_reference_lua>`
 
@@ -3149,7 +3149,7 @@ Below is an overview of the available configuration options for Lua:
 
 .. confval:: lua.memory
 
-Specifies the amount of memory allocated to Lua, measured in bytes.
+Specifies the amount of memory allocated to ``lua``, measured in bytes.
 
 - **Type**: integer
 - **Default Value**: 2GB
