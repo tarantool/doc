@@ -3136,7 +3136,7 @@ log.syslog.*
 .. _configuration_reference_lua:
 
 lua
-===
+---
 
 The ``lua`` section outlines the configuration parameters related to the Lua environment within Tarantool.
 
