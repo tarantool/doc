@@ -115,7 +115,7 @@ a profiling report:
     :ref:`note about jitoff <profiler_usage_internal_jitoff>` for more details.
 
 *   Lines 6-8: Tail call optimization doesn't create a new call frame, so all
-    allocations inside the function called via the ``CALLT/CALLMT`` `bytecodes <http://wiki.luajit.org/Bytecode-2.0#calls-and-vararg-handling>`_
+    allocations inside the function called via the ``CALLT/CALLMT`` `bytecodes <https://github.com/tarantool/tarantool/wiki/LuaJIT-Bytecodes>`_
     are attributed to the function's caller. See also the comments preceding these lines.
 
 *   Lines 14-16: Usually the information about allocations inside Lua built‑ins
