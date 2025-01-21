@@ -3138,9 +3138,13 @@ log.syslog.*
 lua
 ---
 
-The ``lua`` section outlines the configuration parameters related to the ``lua`` environment within Tarantool.
+The lua section outlines the configuration parameters related to the Lua environment within Tarantool.
 
-Below is an overview of the available configuration options for ``lua``:
+.. NOTE::
+
+    ``lua`` can be defined in any :ref:`scope <configuration_scopes>`.
+
+..  NOTE::
 
 - :ref:`lua.memory <configuration_reference_lua>`
 
@@ -3149,18 +3153,20 @@ Below is an overview of the available configuration options for ``lua``:
 
 .. confval:: lua.memory
 
-Specifies the amount of memory allocated to ``lua``, measured in bytes.
+Specifies the amount of memory allocated to lua, measured in bytes.
 
-- **Type**: integer
-- **Default Value**: 2GB
-- **Minimum Value**: 256MB
+ |
+ | Type: integer
+ | Default Value: 2147483648 (2GB)
+ | Environment variable: TT_LUA_MEMORY for the cast value and TT_LUA_MEMORY_DEFAULT for the default value
 
+When the specified value exceeds the current memory usage, the new limit takes effect immediately without a restart.
+However, **when the specified value is lower than the current memory usage, a restart of the instance is required** for the change to take effect.
 
-**Dynamic adjustment behavior:**
+Example to set the Lua memory limit for 4 GB:
 
-- If the specified value is **greater** than the current memory usage, the new limit is applied immediately without requiring a restart.
-- If the specified value is **less** than the current memory usage, a **restart** of the instance is required for the change to take effect.
-
+``lua:
+    memory: 4294967296``
 
 ..  _configuration_reference_memtx:
 
