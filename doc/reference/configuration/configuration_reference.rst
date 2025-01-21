@@ -3166,6 +3166,7 @@ However, **when the specified value is lower than the current memory usage, a re
 Example to set the Lua memory limit for 4 GB:
 
 .. code-block:: text
+
     lua:
         memory: 4294967296
 
