@@ -60,7 +60,7 @@ Below is a chunk of Lua code named ``test.lua`` to illustrate this.
             append('q', i)
         )
     end
-    local stp, err = misc.memprof.stop()
+    local str, err = misc.memprof.stop()
 
 The Lua code for starting the profiler -- as in line 3 in the test.lua example above -- is:
 
@@ -81,7 +81,7 @@ The Lua code for stopping the profiler -- as in line 18 in the test.lua example 
 
 ..  code-block:: lua
 
-    local stp, err = misc.memprof.stop()
+    local str, err = misc.memprof.stop()
 
 If the operation fails,
 for example if  there is an error when the file descriptor is being closed
