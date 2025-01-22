@@ -3153,6 +3153,7 @@ The ``lua`` section outlines the configuration parameters related to the Lua env
 
     Specifies the maximum memory amount available to Lua scripts, measured in bytes.
 
+
     |
     | Type: integer
     | Default: 2147483648 (2GB)
