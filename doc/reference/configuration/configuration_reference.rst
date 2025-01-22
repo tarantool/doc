@@ -3153,12 +3153,12 @@ The ``lua`` section outlines the configuration parameters related to the Lua env
 
 .. confval:: lua.memory
 
-Specifies the amount of memory allocated to lua, measured in bytes.
+Specifies the maximum memory amount available to Lua scripts, measured in bytes.
 
  |
  | Type: integer
  | Default Value: 2147483648 (2GB)
- | Environment variable: TT_LUA_MEMORY for the cast value and TT_LUA_MEMORY_DEFAULT for the default value
+ | Environment variable: TT_LUA_MEMORY
 
 When the specified value exceeds the current memory usage, the new limit takes effect immediately without a restart.
 However, **when the specified value is lower than the current memory usage, a restart of the instance is required** for the change to take effect.
