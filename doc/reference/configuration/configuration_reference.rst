@@ -3163,7 +3163,7 @@ Specifies the maximum memory amount available to Lua scripts, measured in bytes.
 When the specified value exceeds the current memory usage, the new limit takes effect immediately without a restart.
 However, **when the specified value is lower than the current memory usage, a restart of the instance is required** for the change to take effect.
 
-Example to set the Lua memory limit for 4 GB:
+Example to set the Lua memory limit to 4 GB:
 
 .. code-block:: yaml
 
