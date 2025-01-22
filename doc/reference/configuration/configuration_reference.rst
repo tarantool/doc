@@ -3153,12 +3153,6 @@ The ``lua`` section outlines the configuration parameters related to the Lua env
 
     Specifies the maximum memory amount available to Lua scripts, measured in bytes.
 
-
-    |
-    | Type: integer
-    | Default: 2147483648 (2GB)
-    | Environment variable: TT_LUA_MEMORY
-
     When the specified value exceeds the current memory usage, the new limit takes effect immediately without a restart.
     However, **when the specified value is lower than the current memory usage, a restart of the instance is required** for the change to take effect.
 
@@ -3168,6 +3162,11 @@ The ``lua`` section outlines the configuration parameters related to the Lua env
 
         lua:
             memory: 4294967296
+
+    |
+    | Type: integer
+    | Default: 2147483648 (2GB)
+    | Environment variable: TT_LUA_MEMORY
 
 ..  _configuration_reference_memtx:
 
