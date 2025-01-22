@@ -3144,8 +3144,6 @@ The ``lua`` section outlines the configuration parameters related to the Lua env
 
     ``lua`` can be defined in any :ref:`scope <configuration_scopes>`.
 
-..  NOTE::
-
 - :ref:`lua.memory <configuration_reference_lua>`
 
 
@@ -3153,22 +3151,22 @@ The ``lua`` section outlines the configuration parameters related to the Lua env
 
 .. confval:: lua.memory
 
-Specifies the maximum memory amount available to Lua scripts, measured in bytes.
+    Specifies the maximum memory amount available to Lua scripts, measured in bytes.
 
- |
- | Type: integer
- | Default Value: 2147483648 (2GB)
- | Environment variable: TT_LUA_MEMORY
+    When the specified value exceeds the current memory usage, the new limit takes effect immediately without a restart.
+    However, **when the specified value is lower than the current memory usage, a restart of the instance is required** for the change to take effect.
 
-When the specified value exceeds the current memory usage, the new limit takes effect immediately without a restart.
-However, **when the specified value is lower than the current memory usage, a restart of the instance is required** for the change to take effect.
+    Example to set the Lua memory limit to 4 GB:
 
-Example to set the Lua memory limit to 4 GB:
+    .. code-block:: yaml
 
-.. code-block:: yaml
+        lua:
+            memory: 4294967296
 
-    lua:
-        memory: 4294967296
+    |
+    | Type: integer
+    | Default: 2147483648 (2GB)
+    | Environment variable: TT_LUA_MEMORY
 
 ..  _configuration_reference_memtx:
 
@@ -3545,6 +3543,7 @@ replication
 The ``replication`` section defines configuration parameters related to :ref:`replication <replication>`.
 
 -   :ref:`replication.anon <configuration_reference_replication_anon>`
+-   :ref:`replication.anon <configuration_reference_replication_autoexpel>`
 -   :ref:`replication.bootstrap_strategy <configuration_reference_replication_bootstrap_strategy>`
 -   :ref:`replication.connect_timeout <configuration_reference_replication_connect_timeout>`
 -   :ref:`replication.election_mode <configuration_reference_replication_election_mode>`
