@@ -3617,6 +3617,7 @@ The ``replication`` section defines configuration parameters related to :ref:`re
     The expulsion process follows the standard procedure, involving the removal of the instance from the ``_cluster`` system space.
 
     The ``autoexpel`` logic is activated during specific events:
+
 	- **Startup**. When the cluster starts, ``autoexpel`` checks and removes instances not matching the updated configuration.
 	- **Reconfiguration**. When the YAML configuration is reloaded, ``autoexpel`` compares the current state to the updated configuration and performs necessary expulsions.
 	- ``box.status`` **Watcher event**. Changes detected by the ``box.status watcher`` also trigger the ``autoexpel`` mechanism.
@@ -3633,15 +3634,17 @@ The ``replication`` section defines configuration parameters related to :ref:`re
 
     Configuration fields
 
-    - **`enabled`** *(boolean, default: `false`)*: enables or disables the ``autoexpel`` logic.
+    - ``enabled`` *(boolean, default: ``false``)*: enables or disables the ``autoexpel`` logic.
 
-    - **`by`** *(string, default: `nil`)*: specifies the ``autoexpel`` criterion. Currently, only `prefix` is supported and must be explicitly set.
+    - ``by`` *(string, default: ``nil``)*: specifies the ``autoexpel`` criterion. Currently, only ``prefix`` is supported and must be explicitly set.
 
-    - **`prefix`** *(string, default: `nil`)*: defines the pattern for instance names that are considered part of the cluster.
+    - ``prefix`` *(string, default: ``nil``)*: defines the pattern for instance names that are considered part of the cluster.
 
       **Example Patterns**:
+
       - If instances are prefixed with the replicaset name, set:
         ``prefix: '{{ replicaset_name }}'``
+
       - For instances matching a specific pattern (e.g., `i-\d\d\d`), set:
         ``prefix: 'i-'``
 
@@ -3679,7 +3682,6 @@ The ``replication`` section defines configuration parameters related to :ref:`re
 
 
     This configuration:
-
 	- Sets up authentication with a guest user assigned the super role.
 	- Enables the ``autoexpel`` option to automatically expel instances not present in the YAML file.
 	- Defines instance names based on a prefix pattern: ``{{ replicaset_name }}``.
