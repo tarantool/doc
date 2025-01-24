@@ -3634,11 +3634,11 @@ The ``replication`` section defines configuration parameters related to :ref:`re
 
     Configuration fields
 
-    - ``enabled`` *(boolean, default: ``false``)*: enables or disables the ``autoexpel`` logic.
+    - ``enabled`` (boolean, default: ``false``): enables or disables the ``autoexpel`` logic.
 
-    - ``by`` *(string, default: ``nil``)*: specifies the ``autoexpel`` criterion. Currently, only ``prefix`` is supported and must be explicitly set.
+    - ``by`` (string, default: ``nil``): specifies the ``autoexpel`` criterion. Currently, only ``prefix`` is supported and must be explicitly set.
 
-    - ``prefix`` *(string, default: ``nil``)*: defines the pattern for instance names that are considered part of the cluster.
+    - ``prefix`` (string, default: ``nil``): defines the pattern for instance names that are considered part of the cluster.
 
       **Example Patterns**:
 
@@ -3716,7 +3716,7 @@ The ``replication`` section defines configuration parameters related to :ref:`re
 
     Save the file.
 
-    4. For the leader instance (``r-001-i-001``), check the _cluster space:
+    4. For the leader instance (``r-001-i-001``), check the ``_cluster`` space:
 
     .. hint::
 
@@ -3738,6 +3738,13 @@ The ``replication`` section defines configuration parameters related to :ref:`re
 
     After the reload, ``r-001-i-003`` should no longer appear in the ``_cluster`` system space.
 
+    |
+    | Type: boolean
+    | Default: false
+    | Environment variable:
+    | TT_REPLICATION_AUTOEXPEL_BY
+    | TT_REPLICATION_AUTOEXPEL_ENABLED
+    | TT_REPLICATION_AUTOEXPEL_PREFIX
 
 
 .. _configuration_reference_replication_bootstrap_strategy:
