@@ -3610,6 +3610,7 @@ The ``replication`` section defines configuration parameters related to :ref:`re
     Additionally, instances without a persistent name are ignored.
 
     If an instance is in read-write mode and has the latest database schema, it initiates the expulsion of instances that:
+
 	- Match the specified prefix
 	- Absent from the updated YAML configuration
 
@@ -3618,7 +3619,7 @@ The ``replication`` section defines configuration parameters related to :ref:`re
     The ``autoexpel`` logic is activated during specific events:
 	- **Startup**. When the cluster starts, ``autoexpel`` checks and removes instances not matching the updated configuration.
 	- **Reconfiguration**. When the YAML configuration is reloaded, ``autoexpel`` compares the current state to the updated configuration and performs necessary expulsions.
-	- ``box.status`` **Watcher Event**. Changes detected by the ``box.status watcher`` also trigger the ``autoexpel`` mechanism.
+	- ``box.status`` **Watcher event**. Changes detected by the ``box.status watcher`` also trigger the ``autoexpel`` mechanism.
 
     New instances
 
@@ -3631,6 +3632,7 @@ The ``replication`` section defines configuration parameters related to :ref:`re
         global levels. It is not applicable at the instance level.
 
     Configuration fields
+
     - **`enabled`** *(boolean, default: `false`)*: enables or disables the ``autoexpel`` logic.
 
     - **`by`** *(string, default: `nil`)*: specifies the ``autoexpel`` criterion. Currently, only `prefix` is supported and must be explicitly set.
@@ -3677,10 +3679,11 @@ The ``replication`` section defines configuration parameters related to :ref:`re
 
 
     This configuration:
+
 	- Sets up authentication with a guest user assigned the super role.
-	- Enables the autoexpel option to automatically expel instances not present in the YAML file.
-	- Defines instance names based on a prefix pattern: {{ replicaset_name }}.
-	- Lists three instances: r-001-i-001, r-001-i-002, and r-001-i-003.
+	- Enables the ``autoexpel`` option to automatically expel instances not present in the YAML file.
+	- Defines instance names based on a prefix pattern: ``{{ replicaset_name }}``.
+	- Lists three instances: ``r-001-i-001``, ``r-001-i-002``, and ``r-001-i-003``.
 
 
     2. Open terminal window and start three instances using the following commands:
@@ -3713,8 +3716,7 @@ The ``replication`` section defines configuration parameters related to :ref:`re
 
     4. For the leader instance (``r-001-i-001``), check the _cluster space:
 
-        ..  admonition:: Info
-        :class: fact
+    .. hint::
 
         The ``_cluster`` system space in Tarantool stores metadata about all instances currently recognized as part of the cluster.
         It shows which instances are registered and active.
