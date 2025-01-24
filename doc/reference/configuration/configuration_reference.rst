@@ -3690,15 +3690,24 @@ The ``replication`` section defines configuration parameters related to :ref:`re
 
     2. Open terminal window and start three instances using the following commands:
 
-    ``tarantool --name r-001-i-001 --config config.yaml -i``
+    .. code-block:: lua
 
-    ``tarantool --name r-001-i-002 --config config.yaml -i``
+        tarantool --name r-001-i-001 --config config.yaml -i
 
-    ``tarantool --name r-001-i-003 --config config.yaml -i``
+
+    .. code-block:: lua
+
+        tarantool --name r-001-i-002 --config config.yaml -i``
+
+
+    .. code-block:: lua
+
+        tarantool --name r-001-i-003 --config config.yaml -i
 
     3. Edit ``config.yaml`` and remove the following entry for ``r-001-i-003``:
 
-    ``r-001-i-003: {}``
+    .. code-block:: lua
+        r-001-i-003: {}
 
 
     The updated ``config.yaml`` should look like this:
@@ -3734,7 +3743,9 @@ The ``replication`` section defines configuration parameters related to :ref:`re
 
     6. Verify the changes:
 
-    ``box.space._cluster:fselect()``
+    .. code-block:: lua
+
+        box.space._cluster:fselect()
 
     After the reload, ``r-001-i-003`` should no longer appear in the ``_cluster`` system space.
 
