@@ -3545,7 +3545,7 @@ replication
 The ``replication`` section defines configuration parameters related to :ref:`replication <replication>`.
 
 -   :ref:`replication.anon <configuration_reference_replication_anon>`
--   :ref:`replication.anon <configuration_reference_replication_autoexpel>`
+-   :ref:`replication.autoexpel <configuration_reference_replication_autoexpel>`
 -   :ref:`replication.bootstrap_strategy <configuration_reference_replication_bootstrap_strategy>`
 -   :ref:`replication.connect_timeout <configuration_reference_replication_connect_timeout>`
 -   :ref:`replication.election_mode <configuration_reference_replication_election_mode>`
