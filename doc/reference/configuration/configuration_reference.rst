@@ -3621,7 +3621,8 @@ The ``replication`` section defines configuration parameters related to :ref:`re
 	- ``box.status`` **Watcher Event**. Changes detected by the ``box.status watcher`` also trigger the ``autoexpel`` mechanism.
 
     New instances
-    ``Autoexpel`` does not take any actions on newly joined instances unless one of the triggering events occurs.
+
+    ``autoexpel`` does not take any actions on newly joined instances unless one of the triggering events occurs.
     This means that an instance meeting the ``autoexpel`` criterion can still join the cluster, but it may be removed
     later during reconfiguration or on subsequent triggering events.
 
