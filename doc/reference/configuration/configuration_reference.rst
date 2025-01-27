@@ -3620,7 +3620,7 @@ The ``replication`` section defines configuration parameters related to :ref:`re
 
 	- **Startup**. When the cluster starts, ``autoexpel`` checks and removes instances not matching the updated configuration.
 	- **Reconfiguration**. When the YAML configuration is reloaded, ``autoexpel`` compares the current state to the updated configuration and performs necessary expulsions.
-	- ``box.status`` **Watcher event**. Changes detected by the ``box.status`` watcher also trigger the ``autoexpel`` mechanism.
+	- ``box.status`` **watcher event**. Changes detected by the ``box.status`` watcher also trigger the ``autoexpel`` mechanism.
 
 
     ``autoexpel`` does not take any actions on newly joined instances unless one of the triggering events occurs.
@@ -3634,7 +3634,7 @@ The ``replication`` section defines configuration parameters related to :ref:`re
 
     Configuration fields
 
-    - ``by`` :ref:`replication.autoexpel_by.*` (string, default: ``nil``): specifies the ``autoexpel`` criterion. Currently, only ``prefix`` is supported and must be explicitly set.
+    - ``by`` (string, default: ``nil``): specifies the ``autoexpel`` criterion. Currently, only ``prefix`` is supported and must be explicitly set.
 
     - ``enabled`` (boolean, default: ``false``): enables or disables the ``autoexpel`` logic.
 
@@ -3649,6 +3649,7 @@ replication.autoexpel_by.*
     subject to the ``autoexpel`` process.
 
     The by field helps differentiate between:
+
     - Instances that are part of the cluster and should adhere to the YAML configuration.
 	- Instances or tools (e.g., CDC tools) that use the replication channel but are not part of the cluster configuration.
 
@@ -3658,7 +3659,8 @@ replication.autoexpel_by.*
     based on their names, matching them against a prefix pattern defined in the configuration.
 
     If the ``autoexpel`` feature is enabled (``enabled: true``), the ``by`` field must be explicitly set to ``prefix``.
-	The absence of this field or an unsupported value will result in configuration errors.
+
+    The absence of this field or an unsupported value will result in configuration errors.
 
     .. code-block:: yaml
 
@@ -3671,7 +3673,7 @@ replication.autoexpel_by.*
     |
     | Type: string
     | Default: ``nil``
-    | Environment variable: TT_REPLICATION_BY
+    | Environment variable: TT_REPLICATION_AUTOEXPEL_BY
 
 
 
@@ -3713,7 +3715,7 @@ replication.autoexpel_enabled.*
     |
     | Type: boolean
     | Default: ``false``
-    | Environment variable: TT_REPLICATION_ENABLED
+    | Environment variable: TT_REPLICATION_AUTOEXPEL_ENABLED
 
 
 replication.autoexpel_prefix.*
@@ -3728,13 +3730,13 @@ replication.autoexpel_prefix.*
     This field is **mandatory** when ``replication.autoexpel_enabled`` is set to ``true``.
 
 
-    How It Works:
+    How it works:
 
-	1.	The prefix filters instance names (e.g., ``{{ replicaset_name }}`` for replicaset-specific names or i- for names starting with i-).
+	1.	The prefix filters instance names (e.g., ``{{ replicaset_name }}`` for replicaset-specific names or ``i-`` for names starting with ``i-``).
 	2.	Instances matching the prefix and removed from the YAML configuration are expelled.
 	3.	Unnamed instances or those not matching the prefix are ignored.
 
-    Dynamic Prefix Based on Replicaset Name:
+    Dynamic prefix based on replicaset name:
 
     .. code-block:: yaml
 
@@ -3746,11 +3748,12 @@ replication.autoexpel_prefix.*
 
 
     In this setup:
+
 	- Instances are grouped by replicaset names (e.g., ``r-001-i-001`` for ``replicaset r-001``).
 	- The prefix ensures that only instances with names matching the replicaset name are auto expelled when removed from the configuration.
 
 
-    Static Prefix for Matching Patterns:
+    Static prefix for matching patterns:
 
     .. code-block:: yaml
 
@@ -3761,13 +3764,15 @@ replication.autoexpel_prefix.*
             prefix: 'i-'
 
     In this setup:
+
     - All instances with names starting with ``i-`` (e.g., ``i-001``, ``i-002``) are considered for expulsion.
     - This is useful when instances follow a uniform naming convention.
 
     |
     | Type: string
     | Default: ``nil``
-    | Environment variable: TT_REPLICATION_PREFIX
+    | Environment variable: TT_REPLICATION_AUTOEXPEL_PREFIX
+
 
 
     **Full Example**
@@ -3871,13 +3876,6 @@ replication.autoexpel_prefix.*
 
     After the reload, ``r-001-i-003`` should no longer appear in the ``_cluster`` system space.
 
-    |
-    | Type: boolean
-    | Default: false
-    | Environment variable:
-    | TT_REPLICATION_AUTOEXPEL_BY
-    | TT_REPLICATION_AUTOEXPEL_ENABLED
-    | TT_REPLICATION_AUTOEXPEL_PREFIX
 
 
 .. _configuration_reference_replication_bootstrap_strategy:
