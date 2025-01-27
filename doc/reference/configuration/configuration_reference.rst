@@ -3651,7 +3651,9 @@ replication.autoexpel_by.*
     The ``by`` field helps differentiate between:
 
     - Instances that are part of the cluster and should adhere to the YAML configuration.
+
 	- Instances or tools (e.g., CDC tools) that use the replication channel but are not part of the cluster configuration.
+
 
     The default value of by is ``nil``, meaning no ``autoexpel`` criterion is applied unless explicitly set.
 
