@@ -3648,7 +3648,7 @@ replication.autoexpel_by.*
     ``replication.autoexpel_by`` purpose is to define the criterion used for determining which instances in a cluster are
     subject to the ``autoexpel`` process.
 
-    The by field helps differentiate between:
+    The ``by`` field helps differentiate between:
 
     - Instances that are part of the cluster and should adhere to the YAML configuration.
 	- Instances or tools (e.g., CDC tools) that use the replication channel but are not part of the cluster configuration.
@@ -3687,7 +3687,7 @@ replication.autoexpel_enabled.*
 
         By default, the ``enabled`` field is set to ``false``, meaning the ``autoexpel`` logic is turned off. This ensures that no instances are automatically removed unless explicitly configured.
 
-    Enabling ``autoexpel`` Logic
+    Enabling ``autoexpel`` logic
 
     To enable ``autoexpel``, you should set enabled to true in the ``replication.autoexpel`` section of your YAML configuration:
 
@@ -3775,7 +3775,8 @@ replication.autoexpel_prefix.*
 
 
 
-    **Full Example**
+Full example
+~~~~~~~~~~~~~
 
     1. Create a ``config.yaml`` file with the following content:
 
