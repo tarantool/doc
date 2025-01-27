@@ -3620,9 +3620,8 @@ The ``replication`` section defines configuration parameters related to :ref:`re
 
 	- **Startup**. When the cluster starts, ``autoexpel`` checks and removes instances not matching the updated configuration.
 	- **Reconfiguration**. When the YAML configuration is reloaded, ``autoexpel`` compares the current state to the updated configuration and performs necessary expulsions.
-	- ``box.status`` **Watcher event**. Changes detected by the ``box.status watcher`` also trigger the ``autoexpel`` mechanism.
+	- ``box.status`` **Watcher event**. Changes detected by the ``box.status`` watcher also trigger the ``autoexpel`` mechanism.
 
-    New instances
 
     ``autoexpel`` does not take any actions on newly joined instances unless one of the triggering events occurs.
     This means that an instance meeting the ``autoexpel`` criterion can still join the cluster, but it may be removed
@@ -3635,7 +3634,7 @@ The ``replication`` section defines configuration parameters related to :ref:`re
 
     Configuration fields
 
-    - ``by`` (string, default: ``nil``): specifies the ``autoexpel`` criterion. Currently, only ``prefix`` is supported and must be explicitly set.
+    - ``by`` :ref:`replication.autoexpel_by.*` (string, default: ``nil``): specifies the ``autoexpel`` criterion. Currently, only ``prefix`` is supported and must be explicitly set.
 
     - ``enabled`` (boolean, default: ``false``): enables or disables the ``autoexpel`` logic.
 
@@ -3762,7 +3761,7 @@ replication.autoexpel_prefix.*
             prefix: 'i-'
 
     In this setup:
-    - All instances with names starting with ``i-`` (e.g., v``i-001``, ``i-002``) are considered for expulsion.
+    - All instances with names starting with ``i-`` (e.g., ``i-001``, ``i-002``) are considered for expulsion.
     - This is useful when instances follow a uniform naming convention.
 
     |
@@ -3771,7 +3770,7 @@ replication.autoexpel_prefix.*
     | Environment variable: TT_REPLICATION_PREFIX
 
 
-    ** Full Example**
+    **Full Example**
 
     1. Create a ``config.yaml`` file with the following content:
 
@@ -3862,7 +3861,7 @@ replication.autoexpel_prefix.*
     .. code-block:: lua
 
         config = require('config')
-            config:reload()
+        config:reload()
 
     6. Verify the changes:
 
