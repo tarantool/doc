@@ -3603,6 +3603,8 @@ The ``replication`` section defines configuration parameters related to :ref:`re
 
 .. confval:: replication.autoexpel
 
+    **Since:** :doc:`3.3.0 </release/3.3.0>`
+
     The ``replication.autoexpel`` option designed for managing dynamic clusters using YAML-based configurations.
     It enables the automatic expulsion of instances that are removed from the YAML configuration.
 
@@ -3777,7 +3779,7 @@ replication.autoexpel_prefix.*
 
 
 
-Full example
+autoexpel full example
 ~~~~~~~~~~~~~
 
     1. Create a ``config.yaml`` file with the following content:
