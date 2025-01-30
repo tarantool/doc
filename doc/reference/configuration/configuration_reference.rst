@@ -3634,8 +3634,8 @@ The ``replication`` section defines configuration parameters related to :ref:`re
         global levels. It is not applicable at the instance level.
 
 
-Configuration fields
-^^^^^^^^^^^^^^^^^^^^
+    **Configuration fields**
+
 
     - ``by`` (string, default: ``nil``): specifies the ``autoexpel`` criterion. Currently, only ``prefix`` is supported and must be explicitly set.
 
@@ -3692,8 +3692,8 @@ replication.autoexpel.enabled
 
         By default, the ``enabled`` field is set to ``false``, meaning the ``autoexpel`` logic is turned off. This ensures that no instances are automatically removed unless explicitly configured.
 
-Enabling ``autoexpel`` logic
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    **Enabling ``autoexpel`` logic**
+
     To enable ``autoexpel``, you should set enabled to true in the ``replication.autoexpel`` section of your YAML configuration:
 
     .. code-block:: yaml
@@ -3708,8 +3708,8 @@ Enabling ``autoexpel`` logic
     To disable ``autoexpel``, set enabled to ``false``.
 
 
-Dependencies
-^^^^^^^^^^^^
+    **Dependencies**
+
 
     If ``enabled`` is set to ``true``, the following fields are required:
 
