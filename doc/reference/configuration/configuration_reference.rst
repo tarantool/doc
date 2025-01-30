@@ -3634,7 +3634,8 @@ The ``replication`` section defines configuration parameters related to :ref:`re
         global levels. It is not applicable at the instance level.
 
 
-    Configuration fields
+Configuration fields
+^^^^^^^^^^^^^^^^^^^^
 
     - ``by`` (string, default: ``nil``): specifies the ``autoexpel`` criterion. Currently, only ``prefix`` is supported and must be explicitly set.
 
@@ -3644,7 +3645,7 @@ The ``replication`` section defines configuration parameters related to :ref:`re
 
 
 
-replication.autoexpel_by.*
+replication.autoexpel.by
 ~~~~~~~~~~~~~
 
     ``replication.autoexpel_by`` purpose is to define the criterion used for determining which instances in a cluster are
@@ -3654,10 +3655,10 @@ replication.autoexpel_by.*
 
     - Instances that are part of the cluster and should adhere to the YAML configuration.
 
-	- Instances or tools (e.g., CDC tools) that use the replication channel but are not part of the cluster configuration.
+    - Instances or tools (e.g., CDC tools) that use the replication channel but are not part of the cluster configuration.
 
 
-    The default value of by is ``nil``, meaning no ``autoexpel`` criterion is applied unless explicitly set.
+    The default value of ``by`` is ``nil``, meaning no ``autoexpel`` criterion is applied unless explicitly set.
 
     Currently, the only supported value for by is ``prefix``. The ``prefix`` value instructs the system to identify instances
     based on their names, matching them against a prefix pattern defined in the configuration.
@@ -3681,7 +3682,7 @@ replication.autoexpel_by.*
 
 
 
-replication.autoexpel_enabled.*
+replication.autoexpel.enabled
 ~~~~~~~~~~~~~
 
     The ``replication.autoexpel_enabled`` field is a boolean configuration option that determines whether the autoexpel logic is active for the cluster.
@@ -3691,8 +3692,8 @@ replication.autoexpel_enabled.*
 
         By default, the ``enabled`` field is set to ``false``, meaning the ``autoexpel`` logic is turned off. This ensures that no instances are automatically removed unless explicitly configured.
 
-    Enabling ``autoexpel`` logic
-
+Enabling ``autoexpel`` logic
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     To enable ``autoexpel``, you should set enabled to true in the ``replication.autoexpel`` section of your YAML configuration:
 
     .. code-block:: yaml
@@ -3707,7 +3708,8 @@ replication.autoexpel_enabled.*
     To disable ``autoexpel``, set enabled to ``false``.
 
 
-    Dependencies
+Dependencies
+^^^^^^^^^^^^
 
     If ``enabled`` is set to ``true``, the following fields are required:
 
@@ -3722,7 +3724,7 @@ replication.autoexpel_enabled.*
     | Environment variable: TT_REPLICATION_AUTOEXPEL_ENABLED
 
 
-replication.autoexpel_prefix.*
+replication.autoexpel.prefix
 ~~~~~~~~~~~~~
 
     The ``prefix`` field filters instances for expulsion by differentiating cluster instances (from the YAML configuration) from external services (e.g., CDC tools). Only instances matching the prefix are considered.
@@ -3753,7 +3755,7 @@ replication.autoexpel_prefix.*
 
     In this setup:
 
-	- Instances are grouped by replicaset names (e.g., ``r-001-i-001`` for ``replicaset r-001``).
+	- Instances are prefixed with a replicaset name (e.g., ``r-001-i-001`` for replicaset ``r-001``).
 	- The prefix ensures that only instances with names matching the replicaset name are auto expelled when removed from the configuration.
 
 
