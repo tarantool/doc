@@ -3656,7 +3656,7 @@ replication.autoexpel.by
     Currently, the only supported value for by is ``prefix``. The ``prefix`` value instructs the system to identify instances
     based on their names, matching them against a prefix pattern defined in the configuration.
 
-    If the ``autoexpel`` feature is enabled (``enabled: true``), the ``by`` field must be explicitly set to ``prefix``.
+    If the ``autoexpel`` feature is enabled, the ``by`` field must be explicitly set to ``prefix``.
 
     The absence of this field or an unsupported value will result in configuration errors.
 
