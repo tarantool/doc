@@ -3618,13 +3618,6 @@ The ``replication`` section defines configuration parameters related to :ref:`re
 
     The expulsion process follows the standard procedure, involving the removal of the instance from the ``_cluster`` system space.
 
-    The ``autoexpel`` logic is activated during specific events:
-
-	- **Startup**. When the cluster starts, ``autoexpel`` checks and removes instances not matching the updated configuration.
-	- **Reconfiguration**. When the YAML configuration is reloaded, ``autoexpel`` compares the current state to the updated configuration and performs necessary expulsions.
-	- ``box.status`` **watcher event**. Changes detected by the ``box.status`` watcher also trigger the ``autoexpel`` mechanism.
-
-
     ``autoexpel`` does not take any actions on newly joined instances unless one of the triggering events occurs.
     This means that an instance meeting the ``autoexpel`` criterion can still join the cluster, but it may be removed
     later during reconfiguration or on subsequent triggering events.
@@ -3778,111 +3771,6 @@ replication.autoexpel.prefix
     | Type: string
     | Default: ``nil``
     | Environment variable: TT_REPLICATION_AUTOEXPEL_PREFIX
-
-
-
-autoexpel full example
-~~~~~~~~~~~~~
-
-    1. Create a ``config.yaml`` file with the following content:
-
-    .. code-block:: yaml
-
-        credentials:
-          users:
-            guest:
-              roles: [super]
-
-        replication:
-          failover: manual
-          autoexpel:
-            enabled: true
-            by: prefix
-            prefix: '{{ replicaset_name }}'
-
-        iproto:
-          listen:
-            - uri: 'unix/:./var/run/{{ instance_name }}.iproto'
-
-        groups:
-          g-001:
-            replicasets:
-              r-001:
-                leader: r-001-i-001
-                instances:
-                  r-001-i-001: {}
-                  r-001-i-002: {}
-                  r-001-i-003: {}
-
-
-    This configuration:
-	- Sets up authentication with a guest user assigned the super role.
-	- Enables the ``autoexpel`` option to automatically expel instances not present in the YAML file.
-	- Defines instance names based on a prefix pattern: ``{{ replicaset_name }}``.
-	- Lists three instances: ``r-001-i-001``, ``r-001-i-002``, and ``r-001-i-003``.
-
-
-    2. Open terminal window and start three instances using the following commands:
-
-    .. code-block:: lua
-
-        tarantool --name r-001-i-001 --config config.yaml -i
-
-
-    .. code-block:: lua
-
-        tarantool --name r-001-i-002 --config config.yaml -i
-
-
-    .. code-block:: lua
-
-        tarantool --name r-001-i-003 --config config.yaml -i
-
-    3. Edit ``config.yaml`` and remove the following entry for ``r-001-i-003``:
-
-    .. code-block:: lua
-        r-001-i-003: {}
-
-
-    The updated ``config.yaml`` should look like this:
-
-    .. code-block:: yaml
-
-        groups:
-          g-001:
-            replicasets:
-              r-001:
-                leader: r-001-i-001
-                instances:
-                  r-001-i-001: {}
-                  r-001-i-002: {}
-
-    Save the file.
-
-    4. For the leader instance (``r-001-i-001``), check the ``_cluster`` space:
-
-    .. hint::
-
-        The ``_cluster`` system space in Tarantool stores metadata about all instances currently recognized as part of the cluster.
-        It shows which instances are registered and active.
-
-    You should see ``r-001-i-003`` still listed in the ``_cluster`` system space.
-
-    5. Reload the configuration:
-
-    .. code-block:: lua
-
-        config = require('config')
-        config:reload()
-
-    6. Verify the changes:
-
-    .. code-block:: lua
-
-        box.space._cluster:fselect()
-
-    After the reload, ``r-001-i-003`` should no longer appear in the ``_cluster`` system space.
-
 
 
 .. _configuration_reference_replication_bootstrap_strategy:
