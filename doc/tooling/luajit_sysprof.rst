@@ -4,26 +4,26 @@ LuaJIT platform profiler
 ========================
 
 The default profiling options for LuaJIT are not fine enough to
-get an understanding of performance. For example, performance only
-able to show host stack, so all the Lua calls are seen as single
+get an understanding of performance. For example, ``perf`` is only
+able to show the host stack, so all the Lua calls are displayed as a single
 ``pcall()``. Oppositely, the ``jit.p`` module provided with LuaJIT
 is not able to give any information about the host stack.
 
 Starting from version :doc:`2.10.0 </release/2.10.0>`, Tarantool
-has a built‑in module called ``misc.syprof`` that implements a
+has a built‑in module called ``misc.sysprof`` that implements a
 LuaJIT sampling profiler (which we will just call *the profiler*
 in this section). The profiler is able to capture both guest and
 host stacks simultaneously, along with virtual machine states, so
 it can show the whole picture.
 
-The following profiling modes are available:
+Three profiling modes are available:
 
-*    **Default**: only virtual machine state counters.
-*    **Leaf**: shows the last frame on the stack.
-*    **Callchain**: performs a complete stack dump.
+* **Default**: shows only virtual machine state counters.
+* **Leaf**: shows the last frame on the stack.
+* **Callchain**: performs a complete stack dump.
 
-The profiler comes with the default parser, which produces output in
-a `flamegraph.pl`-suitable format.
+The profiler comes with a default parser, which produces output in
+a ``flamegraph.pl``-suitable format.
 
 ..  contents::
     :local:
@@ -34,23 +34,23 @@ a `flamegraph.pl`-suitable format.
 Working with the profiler
 -------------------------
 
-Usage of the profiler involves two steps:
+The profiler usage involves two steps:
 
 1.  :ref:`Collecting <profiler_usage_get>` a binary profile of
-    stacks, (further, *binary sampling profile* or *binary profile*
+    stacks (further referred as *binary sampling profile* or *binary profile*
     for short).
 2.  :ref:`Parsing <profiler_usage_parse>` the collected binary
     profile to get a human-readable profiling report.
 
 .. _profiler_usage_get:
 
-Collecting binary profile
-~~~~~~~~~~~~~~~~~~~~~~~~~
+Collecting a binary profile
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To collect a binary profile for a particular part of the Lua and C code,
-you need to place this part between two ``misc.sysprof`` functions,
-namely, ``misc.sysprof.start()`` and ``misc.sysprof.stop()``, and
-then execute the code under Tarantool.
+you need to place this part between two ``misc.sysprof`` functions --
+namely, ``misc.sysprof.start()`` and ``misc.sysprof.stop()`` -- and
+then execute the code in Tarantool.
 
 Below is a chunk of Lua code named ``test.lua`` to illustrate this.
 
@@ -86,15 +86,17 @@ The Lua code for starting the profiler -- as in line 1 in the
 
     local str, err = misc.sysprof.start({mode = 'C', interval = 1, path = 'sysprof.bin'})
 
-where ``mode`` is a profiling mode, ``interval`` is a sampling interval,
-and ``sysprof.bin`` is the name of the binary file where
-profiling events are written.
+where:
+* ``mode`` is a profiling mode,
+* ``interval`` is a sampling interval,
+* ``sysprof.bin`` is the name of the binary file where profiling events are written.
 
 If the operation fails, for example if it is not possible to open
 a file for writing or if the profiler is already running,
 ``misc.sysprof.start()`` returns ``nil`` as the first result,
 an error-message string as the second result,
 and a system-dependent error code number as the third result.
+
 If the operation succeeds, ``misc.sysprof.start()`` returns ``true``.
 
 The Lua code for stopping the profiler -- as in line 15 in the
@@ -104,37 +106,38 @@ The Lua code for stopping the profiler -- as in line 15 in the
 
     local res, err = misc.sysprof.stop()
 
-If the operation fails, for example if  there is an error when the
+If the operation fails, for example if there is an error when the
 file descriptor is being closed or if there is a failure during
 reporting, ``misc.sysprof.stop()`` returns ``nil`` as the first
 result, an error-message string as the second result,
 and a system-dependent error code number as the third result.
+
 If the operation succeeds, ``misc.sysprof.stop()`` returns ``true``.
 
 .. _profiler_usage_generate:
 
-To generate the file with memory profile in binary format
+To generate a file with the memory profile in the binary format
 (in the :ref:`test.lua code example above <profiler_usage_example01>`
-the file name is ``sysprof.bin``), execute the code under Tarantool:
+the file name is ``sysprof.bin``), execute the code in Tarantool:
 
 ..  code-block:: console
 
     $ tarantool test.lua
 
-Tarantool collects the allocation events in ``sysprof.bin``, puts
+Tarantool collects allocation events in ``sysprof.bin``, puts
 the file in its :ref:`working directory <cfg_basic-work_dir>`,
 and closes the session.
 
 .. _profiler_usage_parse:
 
-Parsing binary profile and generating profiling report
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Parsing a binary profile and generating a profiling report
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. _profiler_usage_parse_command:
 
-After getting the platform profile in binary format, the next step is
+After getting the platform profile in the binary format, the next step is
 to parse it to get a human-readable profiling report. You can do this
-via Tarantool by using the following command
+via Tarantool with the following command
 (mind the hyphen ``-`` before the filename):
 
 ..  code-block:: console
@@ -145,26 +148,31 @@ via Tarantool by using the following command
 
 where ``sysprof.bin`` is the binary profile
 :ref:`generated earlier <profiler_usage_generate>` by ``tarantool test.lua``.
-(Warning: there is a slight behavior change here, the ``tarantool -e ...``
-command was slightly different in Tarantool versions prior to Tarantool 2.8.1.)
-Resulted SVG image contains a flamegraph with collected stacks and can be opened
-by modern web-browser for analysis.
+
+..  note::
+
+    There is a slight behavior change here: the ``tarantool -e ...`` command
+    was slightly different in Tarantool versions prior to Tarantool 2.8.1.
+    The resulting SVG image contains a flamegraph with collected stacks
+    and can be opened by a modern web-browser for analysis.
 
 As for investigating the Lua code with the help of profiling reports,
-it is always code-dependent and there can't be hundred per cent definite
-recommendations in this regard. Nevertheless, you can see some of the things
-in the :ref:`Profiling report analysis example <profiler_analysis>` later.
+it is always code-dependent and there are no definite recommendations
+in this regard. Nevertheless, you can see some of the things
+in the :ref:`Profiling report analysis example <profiler_analysis>` below.
 
-.. _profiler_api:
+.. _profiler_lua_api:
 
-The Lua API
-~~~~~~~~~~~
+Profiler Lua API
+----------------
 
-*   ``misc.sysprof.start(opts)``
-*   ``misc.sysprof.stop()``
-*   ``misc.sysprof.report()``
+The platform profiler provides a Lua interface:
 
-First two functions return boolean ``res`` and ``err``, which is
+* ``misc.sysprof.start(opts)``
+* ``misc.sysprof.stop()``
+* ``misc.sysprof.report()``
+
+The first two functions return boolean ``res`` and ``err``, which is
 ``nil`` on success and contains an error message on failure.
 
 ``misc.sysprof.report`` returns a Lua table containing the
@@ -186,111 +194,145 @@ following counters:
       "TRACE" = int
    }
 
-Parameter opts for the ``misc.sysprof.start`` can contain the
+The ``opts`` argument of ``misc.sysprof.start`` can contain the
 following parameters:
 
-..  code-block:: console
+* ``mode`` (required) -- one of the supported profiling modes:
 
-   {
-     mode = 'D'/'L'/'C', -- 'D' = DEFAULT, 'L' = LEAF, 'C' = CALLGRAPH
-     interval = 10, -- sampling interval in msec.
-     path = '/path/to/file' -- location to store profile data.
-   }
+  * ``'D'`` = DEFAULT
+  * ``'L'`` = LEAF
+  * ``'C'`` = CALLGRAPH
 
-Mode MUST be provided always, interval and path are optional.
-The default interval is 10 msec, default path is ``sysprof.bin``.
+* ``interval`` (optional) -- sampling interval in msec (default is 10 msec).
+* ``path`` (optional) -- path to a file to store profile data
+  (default is ``sysprof.bin``).
 
-The C API
-~~~~~~~~~
+.. _profiler_c_api:
+
+Profiler C API
+--------------
 
 The platform profiler provides a low-level C interface:
 
-..  code-block:: console
+* ``int luaM_sysprof_set_writer(sp_writer writer)`` -- sets a writer function
+  for sysprof.
 
-    int luaM_sysprof_set_writer(sp_writer writer). Sets writer function for sysprof.
+* ``int luaM_sysprof_set_on_stop(sp_on_stop on_stop)`` -- sets
+  an on-stop callback for ``sysprof`` to clear resources.
 
-    int luaM_sysprof_set_on_stop(sp_on_stop on_stop). Sets on stop callback for sysprof to clear resources.
+* ``int luaM_sysprof_set_backtracer(sp_backtracer backtracer)`` -- sets
+  a backtracing function. If the ``backtracer`` argument is NULL,
+  the default backtracer is set.
 
-    int luaM_sysprof_set_backtracer(sp_backtracer backtracer). Sets backtracking function. If backtracer arg is NULL, the default backtracer is set.
-    There is no need to call the configuration functions multiple times, if you are starting and stopping profiler several times in a single program. Also, it is not necessary to configure sysprof for the default mode, however, one MUST configure it for the other modes.
+..  note::
 
-    int luaM_sysprof_start(lua_State *L, const struct luam_Sysprof_Options *opt)
+    There is no need to call the configuration functions multiple times
+    if you are starting and stopping the profiler several times
+    in a single program.
 
-    int luaM_sysprof_stop(lua_State *L)
+    Also, it is not necessary to configure ``sysprof`` for the ``Default`` mode.
+    However, you MUST configure it for other modes.
 
-    int luaM_sysprof_report(struct luam_Sysprof_Counters *counters). Writes profiling counters for each vmstate.
+* ``int luaM_sysprof_start(lua_State *L, const struct luam_Sysprof_Options *opt)`` --
+  see :ref:`Profiler options <profiler_c_options>`.
+
+* ``int luaM_sysprof_stop(lua_State *L)``
+
+* ``int luaM_sysprof_report(struct luam_Sysprof_Counters *counters)`` -- writes
+  :ref:`profiling counters <profiler_c_counters>` for each vmstate.
 
 All of the functions return 0 on success and an error code on failure.
 
-The configuration C types are:
+.. _profiler_c_config_types:
 
-..  code-block:: console
+Configuration C types
+~~~~~~~~~~~~~~~~~~~~~
 
-    /* Profiler configurations. */
-    /*
-     ** Writer function for profile events. Must be async-safe, see also
-     ** `man 7 signal-safety`.
-     ** Should return amount of written bytes on success or zero in case of error.
-     ** Setting *data to NULL means end of profiling.
-     ** For details see <lj_wbuf.h>.
-     */
+Profiler configuration settings include:
 
-    typedef size_t (*sp_writer)(const void **data, size_t len, void *ctx);
-    /*
-    ** Callback on profiler stopping. Required for correctly cleaning
-    ** at VM finalization when profiler is still running.
-    ** Returns zero on success.
-    */
-    typedef int (*sp_on_stop)(void *ctx, uint8_t *buf);
-    /*
-    ** Backtracing function for the host stack. Should call `frame_writer` on
-    ** each frame in the stack in the order from the stack top to the stack
-    ** bottom. The `frame_writer` function is implemented inside the sysprof
-    ** and will be passed to the `backtracer` function. If `frame_writer` returns
-    ** NULL, backtracing should be stopped. If `frame_writer` returns not NULL,
-    ** the backtracing should be continued if there are frames left.
-    */
-    typedef void (*sp_backtracer)(void *(*frame_writer)(int frame_no, void *addr));
+* ``typedef size_t (*sp_writer)(const void **data, size_t len, void *ctx)`` --
+  a writer function for profile events.
 
-Profiler options are the following:
+  Must be async-safe, see also ``man 7 signal-safety``.
+
+  Should return the amount of written bytes on success, or zero in case of error.
+
+  Setting ``*data`` to NULL means end of profiling.
+  For details see ``lj_wbuf.h``.
+
+* ``typedef int (*sp_on_stop)(void *ctx, uint8_t *buf)`` -- a callback
+  on profiler stopping. Required for a correct cleanup at VM finalization
+  when the profiler is still running.
+
+  Returns zero on success.
+
+* ``typedef void (*sp_backtracer)(void *(*frame_writer)(int frame_no, void *addr))`` --
+  a backtracing function for the host stack.
+  Should call ``frame_writer`` on each frame in the stack, in the order
+  from the stack top to the stack bottom.
+
+  The ``frame_writer`` function is implemented inside ``sysprof``
+  and will be passed to the ``backtracer`` function.
+
+  If ``frame_writer`` returns NULL, backtracing should be stopped.
+  If ``frame_writer`` returns not NULL, the backtracing should be continued
+  if there are frames left.
+
+.. _profiler_c_options:
+
+Profiler options
+~~~~~~~~~~~~~~~~
+
+The options structure for ``luaM_sysprof_start`` is as follows:
 
 ..  code-block:: console
 
     struct luam_Sysprof_Options {
       /* Profiling mode. */
       uint8_t mode;
+
       /* Sampling interval in msec. */
       uint64_t interval;
+
       /* Custom buffer to write data. */
       uint8_t *buf;
+
       /* The buffer's size. */
       size_t len;
+
       /* Context for the profile writer and final callback. */
       void *ctx;
     };
 
-Profiling modes:
+.. _profiler_c_modes:
+
+Profiling modes
+~~~~~~~~~~~~~~~
+
+The platform profiler supports three profiling modes:
+
+* ``DEFAULT`` mode collects only data for ``luam_sysprof_counters``,
+  which is stored in memory and can be collected with ``luaM_sysprof_report``
+  after the profiler stops.
+
+* ``LEAF`` mode = ``DEFAULT`` + streams samples with only top frames of the host
+  and guests stacks in the format described in ``lj_sysprof.h``.
+
+* ``CALLGRAPH`` mode = DEFAULT + streams samples with full callchains of the host
+  and guest stacks in the format described in ``lj_sysprof.h``.
 
 ..  code-block:: console
 
-    /*
-    ** DEFAULT mode collects only data for luam_sysprof_counters, which is stored
-    ** in memory and can be collected with luaM_sysprof_report after profiler
-    ** stops.
-    */
     #define LUAM_SYSPROF_DEFAULT 0
-    /*
-    ** LEAF mode = DEFAULT + streams samples with only top frames of host and
-    ** guests stacks in format described in <lj_sysprof.h>
-    */
     #define LUAM_SYSPROF_LEAF 1
-    /*
-    ** CALLGRAPH mode = DEFAULT + streams samples with full callchains of host
-    ** and guest stacks in format described in <lj_sysprof.h>
-    */
     #define LUAM_SYSPROF_CALLGRAPH 2
 
-Counters structure for the luaM_Sysprof_Report:
+.. _profiler_c_counters:
+
+Profiling counters
+~~~~~~~~~~~~~~~~~~
+
+The counters structure for ``luaM_sysprof_report`` is as follows:
 
 ..  code-block:: console
 
@@ -305,16 +347,21 @@ Counters structure for the luaM_Sysprof_Report:
      uint64_t vmst_opt;
      uint64_t vmst_asm;
      uint64_t vmst_trace;
-     /*
-     ** XXX: Order of vmst counters is important: it should be the same as the
-     ** order of the vmstates.
-     */
+
      uint64_t samples;
    };
 
-Caveats:
+..  note::
 
-*    Providing writers, backtracers, etc; in the Default mode is pointless, since
-     it just collect counters.
-*    There is NO default configuration for sysprof, so the ``luaM_Sysprof_Configure``
-     must be called before the first run of the sysprof. Mind the async-safety.
+    The order of ``vmst_*`` counters is important: it should be the same as
+    the order of the vmstates.
+
+.. _profiler_caveats:
+
+Caveats
+~~~~~~~
+
+* Providing writers, backtracers and other settings in the ``Default`` mode
+  is pointless, since it only collects counters.
+* There is NO default configuration for ``sysprof``, so ``luaM_Sysprof_Configure``
+  must be called before the first run of ``sysprof``. Mind the async safety.

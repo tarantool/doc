@@ -62,7 +62,7 @@ Below is a chunk of Lua code named ``test.lua`` to illustrate this.
     end
     local str, err = misc.memprof.stop()
 
-The Lua code for starting the profiler -- as in line 3 in the test.lua example above -- is:
+The Lua code for starting the profiler -- as in line 3 in the ``test.lua`` example above -- is:
 
 ..  code-block:: lua
 
@@ -77,14 +77,14 @@ an error-message string as the second result,
 and a system-dependent error code number as the third result.
 If the operation succeeds, ``misc.memprof.start()`` returns ``true``.
 
-The Lua code for stopping the profiler -- as in line 18 in the test.lua example above -- is:
+The Lua code for stopping the profiler -- as in line 18 in the ``test.lua`` example above -- is:
 
 ..  code-block:: lua
 
     local str, err = misc.memprof.stop()
 
 If the operation fails,
-for example if  there is an error when the file descriptor is being closed
+for example if there is an error when the file descriptor is being closed
 or if there is a failure during reporting,
 ``misc.memprof.stop()`` returns ``nil`` as the first result,
 an error-message string as the second result,
@@ -203,20 +203,19 @@ An event record has the following format:
 ..  code-block:: text
 
     @<filename>:<line_number>: <number_of_events> events +<allocated> bytes -<freed> bytes
-    
 
+where:
 
-*   <filename>—a name of the file containing Lua code.
-*   <line_number>—the line number where the event is detected.
-*   <number_of_events>—a number of events for this code line.
-*   +<allocated> bytes—amount of memory allocated during all the events on this line.
-*   -<freed> bytes—amount of memory freed during all the events on this line.
+* ``<filename>`` -— a name of the file containing Lua code.
+* ``<line_number>`` -— the line number where the event is detected.
+* ``<number_of_events>`` —- a number of events for this code line.
+* ``+<allocated> bytes`` —- amount of memory allocated during all the events on this line.
+* ``-<freed> bytes`` —- amount of memory freed during all the events on this line.
 
 The ``Overrides`` label shows what allocation has been overridden.
 
 See the :ref:`test.lua chunk above <profiler_usage_example01>`
 with the explanation in the comments for some examples.
-
 
 .. _profiler_usage_internal_jitoff:
 
@@ -423,9 +422,9 @@ you will get the following profiling report:
 
 Reasonable questions regarding the report can be:
 
-*   Why are there no allocations related to the ``concat()`` function?
-*   Why is the number of allocations not a round number?
-*   Why are there about 20K allocations instead of 10K?
+* Why are there no allocations related to the ``concat()`` function?
+* Why is the number of allocations not a round number?
+* Why are there about 20K allocations instead of 10K?
 
 First of all, LuaJIT doesn't create a new string if the string with the same
 payload exists (see details on `lua-users.org/wiki <http://lua-users.org/wiki/ImmutableObjects>`_).
@@ -493,8 +492,6 @@ allocations are JIT-related (see also the related
     HEAP SUMMARY:
     @format_concat.lua:0 holds 640 bytes: 4 allocs, 0 frees
     INTERNAL holds 360 bytes: 2 allocs, 1 frees
-
-
 
 This happens because a trace has been compiled after 56 iterations (the default
 value of the ``hotloop`` compiler parameter). Then, the
