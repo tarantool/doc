@@ -59,26 +59,27 @@ Below is a chunk of Lua code named ``test.lua`` to illustrate this.
 .. _profiler_usage_example01:
 
 ..  code-block:: lua
+    :linenos:
 
-    local function payload()
-      local function fib(n)
-        if n <= 1 then
-          return n
+      local function payload()
+        local function fib(n)
+          if n <= 1 then
+            return n
+          end
+          return fib(n - 1) + fib(n - 2)
         end
-        return fib(n - 1) + fib(n - 2)
+        return fib(32)
       end
-      return fib(32)
-    end
 
-    payload()
+      payload()
 
-    local res, err = misc.sysprof.start({mode = 'C', interval = 1, path = 'sysprof.bin'})
-    assert(res, err)
+      local res, err = misc.sysprof.start({mode = 'C', interval = 1, path = 'sysprof.bin'})
+      assert(res, err)
 
-    payload()
+      payload()
 
-    res, err = misc.sysprof.stop()
-    assert(res, err)
+      res, err = misc.sysprof.stop()
+      assert(res, err)
 
 The Lua code for starting the profiler -- as in line 1 in the
 ``test.lua`` example above -- is:
