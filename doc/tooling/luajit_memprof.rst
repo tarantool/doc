@@ -45,24 +45,24 @@ Below is a chunk of Lua code named ``test.lua`` to illustrate this.
 ..  code-block:: lua
     :linenos:
 
-    -- Prevent allocations on traces.
-    jit.off()
-    local str, err = misc.memprof.start("memprof_new.bin")
-    -- Lua doesn't create a new frame to call string.rep, and all allocations
-    -- are attributed not to the append() function but to the parent scope.
-    local function append(str, rep)
-        return string.rep(str, rep)
-    end
+      -- Prevent allocations on traces.
+      jit.off()
+      local str, err = misc.memprof.start("memprof_new.bin")
+      -- Lua doesn't create a new frame to call string.rep, and all allocations
+      -- are attributed not to the append() function but to the parent scope.
+      local function append(str, rep)
+          return string.rep(str, rep)
+      end
 
-    local t = {}
-    for i = 1, 1e4 do
-        -- table.insert is the built-in function and all corresponding
-        -- allocations are reported in the scope of the main chunk.
-        table.insert(t,
-            append('q', i)
-        )
-    end
-    local str, err = misc.memprof.stop()
+      local t = {}
+      for i = 1, 1e4 do
+          -- table.insert is the built-in function and all corresponding
+          -- allocations are reported in the scope of the main chunk.
+          table.insert(t,
+              append('q', i)
+          )
+      end
+      local str, err = misc.memprof.stop()
 
 The Lua code for starting the profiler -- as in line 3 in the ``test.lua`` example above -- is:
 
@@ -322,31 +322,31 @@ console for a running instance.
 ..  code-block:: lua
     :linenos:
 
-    local fiber = require "fiber"
-    local log = require "log"
+      local fiber = require "fiber"
+      local log = require "log"
 
-    fiber.create(function()
-      fiber.name("memprof")
+      fiber.create(function()
+        fiber.name("memprof")
 
-      collectgarbage() -- Collect all objects already dead
-      log.warn("start of profile")
+        collectgarbage() -- Collect all objects already dead
+        log.warn("start of profile")
 
-      local st, err = misc.memprof.start(FILENAME)
-      if not st then
-        log.error("failed to start profiler: %s", err)
-      end
+        local st, err = misc.memprof.start(FILENAME)
+        if not st then
+          log.error("failed to start profiler: %s", err)
+        end
 
-      fiber.sleep(TIME)
+        fiber.sleep(TIME)
 
-      collectgarbage()
-      st, err = misc.memprof.stop()
+        collectgarbage()
+        st, err = misc.memprof.stop()
 
-      if not st then
-        log.error("profiler on stop error: %s", err)
-      end
+        if not st then
+          log.error("profiler on stop error: %s", err)
+        end
 
-      log.warn("end of profile")
-    end)
+        log.warn("end of profile")
+      end)
 
 where:
 
@@ -369,37 +369,37 @@ investigated with the help of the memory profiler reports.
 ..  code-block:: lua
     :linenos:
 
-    -- Prevent allocations on new traces.
-    jit.off()
+      -- Prevent allocations on new traces.
+      jit.off()
 
-    local function concat(a)
-      local nstr = a.."a"
-      return nstr
-    end
+      local function concat(a)
+        local nstr = a.."a"
+        return nstr
+      end
 
-    local function format(a)
-      local nstr = string.format("%sa", a)
-      return nstr
-    end
+      local function format(a)
+        local nstr = string.format("%sa", a)
+        return nstr
+      end
 
-    collectgarbage()
+      collectgarbage()
 
-    local binfile = "/tmp/memprof_"..(arg[0]):match("([^/]*).lua")..".bin"
+      local binfile = "/tmp/memprof_"..(arg[0]):match("([^/]*).lua")..".bin"
 
-    local st, err = misc.memprof.start(binfile)
-    assert(st, err)
+      local st, err = misc.memprof.start(binfile)
+      assert(st, err)
 
-    -- Payload.
-    for i = 1, 10000 do
-      local f = format(i)
-      local c = concat(i)
-    end
-    collectgarbage()
+      -- Payload.
+      for i = 1, 10000 do
+        local f = format(i)
+        local c = concat(i)
+      end
+      collectgarbage()
 
-    local st, err = misc.memprof.stop()
-    assert(st, err)
+      local st, err = misc.memprof.stop()
+      assert(st, err)
 
-    os.exit()
+      os.exit()
 
 When you run this code :ref:`in Tarantool <profiler_usage_generate>` and
 then :ref:`parse <profiler_usage_parse_command>` the binary memory profile
