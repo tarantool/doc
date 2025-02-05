@@ -59,7 +59,6 @@ Below is a chunk of Lua code named ``test.lua`` to illustrate this.
 .. _profiler_usage_example01:
 
 ..  code-block:: lua
-    :linenos:
 
     local function payload()
       local function fib(n)
