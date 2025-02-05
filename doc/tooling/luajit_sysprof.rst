@@ -9,10 +9,10 @@ able to show the host stack, so all the Lua calls are displayed as a single
 ``pcall()``. Oppositely, the ``jit.p`` module provided with LuaJIT
 is not able to give any information about the host stack.
 
-Starting from version :doc:`2.10.0 </release/2.10.0>`, Tarantool
+Since version :doc:`2.10.0 </release/2.10.0>`, Tarantool
 has a built‑in module called ``misc.sysprof`` that implements a
-LuaJIT sampling profiler (which we will just call *the profiler*
-in this section). The profiler is able to capture both guest and
+LuaJIT sampling profiler (further in this section we call it *the profiler*
+for short). The profiler can capture both guest and
 host stacks simultaneously, along with virtual machine states, so
 it can show the whole picture.
 
@@ -24,6 +24,8 @@ Three profiling modes are available:
 
 The profiler comes with a default parser, which produces output in
 a ``flamegraph.pl``-suitable format.
+
+Inside this section:
 
 ..  contents::
     :local:
@@ -87,8 +89,9 @@ The Lua code for starting the profiler -- as in line 1 in the
     local str, err = misc.sysprof.start({mode = 'C', interval = 1, path = 'sysprof.bin'})
 
 where:
-* ``mode`` is a profiling mode,
-* ``interval`` is a sampling interval,
+
+* ``mode`` is a profiling mode;
+* ``interval`` is a sampling interval;
 * ``sysprof.bin`` is the name of the binary file where profiling events are written.
 
 If the operation fails, for example if it is not possible to open

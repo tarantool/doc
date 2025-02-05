@@ -3,11 +3,13 @@
 LuaJIT memory profiler
 ======================
 
-Starting from version :doc:`2.7.1 </release/2.7.1>`, Tarantool
+Since version :doc:`2.7.1 </release/2.7.1>`, Tarantool
 has a built‑in module called ``misc.memprof`` that implements a LuaJIT memory
-profiler (which we will just call *the profiler* in this section). The profiler provides
-a memory allocation report that helps analyze Lua code and find the places
-that put the most pressure on the Lua garbage collector (GC).
+profiler (further in this section we call it *the profiler* for short).
+The profiler provides a memory allocation report that helps analyze Lua code
+and find the places that put the most pressure on the Lua garbage collector (GC).
+
+Inside this section:
 
 ..  contents::
     :local:
@@ -18,7 +20,7 @@ that put the most pressure on the Lua garbage collector (GC).
 Working with the profiler
 -------------------------
 
-Usage of the profiler involves two steps:
+The profiler usage involves two steps:
 
 1.  :ref:`Collecting <profiler_usage_get>` a binary profile of allocations,
     reallocations, and deallocations in memory related to Lua
@@ -28,13 +30,13 @@ Usage of the profiler involves two steps:
 
 .. _profiler_usage_get:
 
-Collecting binary profile
-~~~~~~~~~~~~~~~~~~~~~~~~~
+Collecting a binary profile
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To collect a binary profile for a particular part of the Lua code,
 you need to place this part between two ``misc.memprof`` functions,
 namely, ``misc.memprof.start()`` and ``misc.memprof.stop()``, and then execute
-the code under Tarantool.
+the code in Tarantool.
 
 Below is a chunk of Lua code named ``test.lua`` to illustrate this.
 
@@ -75,6 +77,7 @@ for example if it is not possible to open a file for writing or if the profiler 
 ``misc.memprof.start()`` returns ``nil`` as the first result,
 an error-message string as the second result,
 and a system-dependent error code number as the third result.
+
 If the operation succeeds, ``misc.memprof.start()`` returns ``true``.
 
 The Lua code for stopping the profiler -- as in line 18 in the ``test.lua`` example above -- is:
@@ -89,13 +92,14 @@ or if there is a failure during reporting,
 ``misc.memprof.stop()`` returns ``nil`` as the first result,
 an error-message string as the second result,
 and a system-dependent error code number as the third result.
+
 If the operation succeeds, ``misc.memprof.stop()`` returns ``true``.
 
 .. _profiler_usage_generate:
 
 To generate the file with memory profile in binary format
 (in the :ref:`test.lua code example above <profiler_usage_example01>`
-the file name is ``memprof_new.bin``), execute the code under Tarantool:
+the file name is ``memprof_new.bin``), execute the code in Tarantool:
 
 ..  code-block:: console
 
@@ -127,8 +131,8 @@ a profiling report:
 
 .. _profiler_usage_parse:
 
-Parsing binary profile and generating profiling report
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Parsing a binary profile and generating a profiling report
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. _profiler_usage_parse_command:
 
@@ -143,8 +147,11 @@ via Tarantool by using the following command
 
 where ``memprof_new.bin`` is the binary profile
 :ref:`generated earlier <profiler_usage_generate>` by ``tarantool test.lua``.
-(Warning: there is a slight behavior change here, the ``tarantool -e ...``
-command was slightly different in Tarantool versions prior to Tarantool 2.8.1.)
+
+..  note::
+
+    There is a slight behavior change here: the ``tarantool -e ...`` command
+    was slightly different in Tarantool versions prior to Tarantool 2.8.1.
 
 Tarantool generates a profiling report and displays it on the console before closing
 the session:
@@ -186,7 +193,6 @@ the session:
 
     On macOS, a report will be different for the same chunk of code because
     Tarantool and LuaJIT are built with the GC64 mode enabled for macOS.
-
 
 Let's examine the report structure. A report has four sections:
 
@@ -255,10 +261,10 @@ structures.
 As for investigating the Lua code with the help of profiling reports,
 it is always code-dependent and there can't be hundred per cent definite
 recommendations in this regard. Nevertheless, you can see some of the things
-in the :ref:`Profiling report analysis example <profiler_analysis>` later.
+in the :ref:`Profiling a report analysis example <profiler_analysis>` later.
 
 Also, below is the :ref:`FAQ <profiler_faq>` section with the questions that
-most probably can arise while using profiler.
+most probably can arise while using the profiler.
 
 .. _profiler_faq:
 
@@ -342,18 +348,18 @@ console for a running instance.
       log.warn("end of profile")
     end)
 
-where
+where:
 
-*   ``FILENAME``—the name of the binary file where profiling events are written
-*   ``TIME``—duration of profiling, in seconds.
+* ``FILENAME``—the name of the binary file where profiling events are written
+* ``TIME``—duration of profiling, in seconds.
 
 Also, you can directly call ``misc.memprof.start()`` and ``misc.memprof.stop()``
 from a console.
 
 .. _profiler_analysis:
 
-Profiling report analysis example
----------------------------------
+Profiling a report analysis example
+-----------------------------------
 
 In the example below, the following Lua code named ``format_concat.lua`` is
 investigated with the help of the memory profiler reports.
@@ -395,7 +401,7 @@ investigated with the help of the memory profiler reports.
 
     os.exit()
 
-When you run this code :ref:`under Tarantool <profiler_usage_generate>` and
+When you run this code :ref:`in Tarantool <profiler_usage_generate>` and
 then :ref:`parse <profiler_usage_parse_command>` the binary memory profile
 in /tmp/memprof_format_concat.bin,
 you will get the following profiling report:
@@ -468,8 +474,8 @@ To profile only the ``concat()`` function, comment out line 23 (which is
 **Q**: But what will change if JIT compilation is enabled?
 
 **A**: In the :ref:`code <profiler_usage_example03>`, comment out line 2 (which is
-``jit.off()``) and run
-the profiler . Now there are only 56 allocations in the report, and all other
+``jit.off()``) and run the profiler.
+Now there are only 56 allocations in the report, and all the other
 allocations are JIT-related (see also the related
 `dev issue <https://github.com/tarantool/tarantool/issues/5679>`_):
 
@@ -535,7 +541,7 @@ identifier is not yet compiled via LuaJIT. So, a trace can't be recorded and
 the compiler doesn't perform the corresponding optimizations.
 
 If we change the ``format()`` function in lines 9-12 of the
-:ref:`Profiling report analysis example <profiler_usage_example03>`
+:ref:`Profiling a report analysis example <profiler_usage_example03>`
 in the following way
 
 ..  code-block:: lua
@@ -591,4 +597,4 @@ for example
 
     $ tarantool -e 'require("memprof")(arg)' - --leak-only memprof_new.bin
 
-When `--leak-only`` is used, only the HEAP SUMMARY section is displayed.
+When ``--leak-only`` is used, only the HEAP SUMMARY section is displayed.
