@@ -11,4 +11,5 @@ to work with Tarantool.
     tcm/index
     interactive_console
     luajit_memprof
+    luajit_sysprof
     luajit_getmetrics

@@ -3,11 +3,13 @@
 LuaJIT memory profiler
 ======================
 
-Starting from version :doc:`2.7.1 </release/2.7.1>`, Tarantool
+Since version :doc:`2.7.1 </release/2.7.1>`, Tarantool
 has a built‑in module called ``misc.memprof`` that implements a LuaJIT memory
-profiler (which we will just call *the profiler* in this section). The profiler provides
-a memory allocation report that helps analyze Lua code and find the places
-that put the most pressure on the Lua garbage collector (GC).
+profiler (further in this section we call it *the profiler* for short).
+The profiler provides a memory allocation report that helps analyze Lua code
+and find the places that put the most pressure on the Lua garbage collector (GC).
+
+Inside this section:
 
 ..  contents::
     :local:
@@ -18,7 +20,7 @@ that put the most pressure on the Lua garbage collector (GC).
 Working with the profiler
 -------------------------
 
-Usage of the profiler involves two steps:
+The profiler usage involves two steps:
 
 1.  :ref:`Collecting <profiler_usage_get>` a binary profile of allocations,
     reallocations, and deallocations in memory related to Lua
@@ -28,13 +30,13 @@ Usage of the profiler involves two steps:
 
 .. _profiler_usage_get:
 
-Collecting binary profile
-~~~~~~~~~~~~~~~~~~~~~~~~~
+Collecting a binary profile
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To collect a binary profile for a particular part of the Lua code,
 you need to place this part between two ``misc.memprof`` functions,
 namely, ``misc.memprof.start()`` and ``misc.memprof.stop()``, and then execute
-the code under Tarantool.
+the code in Tarantool.
 
 Below is a chunk of Lua code named ``test.lua`` to illustrate this.
 
@@ -43,26 +45,26 @@ Below is a chunk of Lua code named ``test.lua`` to illustrate this.
 ..  code-block:: lua
     :linenos:
 
-    -- Prevent allocations on traces.
-    jit.off()
-    local str, err = misc.memprof.start("memprof_new.bin")
-    -- Lua doesn't create a new frame to call string.rep, and all allocations
-    -- are attributed not to the append() function but to the parent scope.
-    local function append(str, rep)
-        return string.rep(str, rep)
-    end
+      -- Prevent allocations on traces.
+      jit.off()
+      local str, err = misc.memprof.start("memprof_new.bin")
+      -- Lua doesn't create a new frame to call string.rep, and all allocations
+      -- are attributed not to the append() function but to the parent scope.
+      local function append(str, rep)
+          return string.rep(str, rep)
+      end
 
-    local t = {}
-    for i = 1, 1e4 do
-        -- table.insert is the built-in function and all corresponding
-        -- allocations are reported in the scope of the main chunk.
-        table.insert(t,
-            append('q', i)
-        )
-    end
-    local stp, err = misc.memprof.stop()
+      local t = {}
+      for i = 1, 1e4 do
+          -- table.insert is the built-in function and all corresponding
+          -- allocations are reported in the scope of the main chunk.
+          table.insert(t,
+              append('q', i)
+          )
+      end
+      local str, err = misc.memprof.stop()
 
-The Lua code for starting the profiler -- as in line 3 in the test.lua example above -- is:
+The Lua code for starting the profiler -- as in line 3 in the ``test.lua`` example above -- is:
 
 ..  code-block:: lua
 
@@ -75,27 +77,29 @@ for example if it is not possible to open a file for writing or if the profiler 
 ``misc.memprof.start()`` returns ``nil`` as the first result,
 an error-message string as the second result,
 and a system-dependent error code number as the third result.
+
 If the operation succeeds, ``misc.memprof.start()`` returns ``true``.
 
-The Lua code for stopping the profiler -- as in line 18 in the test.lua example above -- is:
+The Lua code for stopping the profiler -- as in line 18 in the ``test.lua`` example above -- is:
 
 ..  code-block:: lua
 
-    local stp, err = misc.memprof.stop()
+    local str, err = misc.memprof.stop()
 
 If the operation fails,
-for example if  there is an error when the file descriptor is being closed
+for example if there is an error when the file descriptor is being closed
 or if there is a failure during reporting,
 ``misc.memprof.stop()`` returns ``nil`` as the first result,
 an error-message string as the second result,
 and a system-dependent error code number as the third result.
+
 If the operation succeeds, ``misc.memprof.stop()`` returns ``true``.
 
 .. _profiler_usage_generate:
 
 To generate the file with memory profile in binary format
 (in the :ref:`test.lua code example above <profiler_usage_example01>`
-the file name is ``memprof_new.bin``), execute the code under Tarantool:
+the file name is ``memprof_new.bin``), execute the code in Tarantool:
 
 ..  code-block:: console
 
@@ -115,7 +119,7 @@ a profiling report:
     :ref:`note about jitoff <profiler_usage_internal_jitoff>` for more details.
 
 *   Lines 6-8: Tail call optimization doesn't create a new call frame, so all
-    allocations inside the function called via the ``CALLT/CALLMT`` `bytecodes <http://wiki.luajit.org/Bytecode-2.0#calls-and-vararg-handling>`_
+    allocations inside the function called via the ``CALLT/CALLMT`` `bytecodes <https://github.com/tarantool/tarantool/wiki/LuaJIT-Bytecodes>`_
     are attributed to the function's caller. See also the comments preceding these lines.
 
 *   Lines 14-16: Usually the information about allocations inside Lua built‑ins
@@ -127,8 +131,8 @@ a profiling report:
 
 .. _profiler_usage_parse:
 
-Parsing binary profile and generating profiling report
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Parsing a binary profile and generating a profiling report
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. _profiler_usage_parse_command:
 
@@ -143,8 +147,11 @@ via Tarantool by using the following command
 
 where ``memprof_new.bin`` is the binary profile
 :ref:`generated earlier <profiler_usage_generate>` by ``tarantool test.lua``.
-(Warning: there is a slight behavior change here, the ``tarantool -e ...``
-command was slightly different in Tarantool versions prior to Tarantool 2.8.1.)
+
+..  note::
+
+    There is a slight behavior change here: the ``tarantool -e ...`` command
+    was slightly different in Tarantool versions prior to Tarantool 2.8.1.
 
 Tarantool generates a profiling report and displays it on the console before closing
 the session:
@@ -187,7 +194,6 @@ the session:
     On macOS, a report will be different for the same chunk of code because
     Tarantool and LuaJIT are built with the GC64 mode enabled for macOS.
 
-
 Let's examine the report structure. A report has four sections:
 
 * ALLOCATIONS
@@ -203,20 +209,19 @@ An event record has the following format:
 ..  code-block:: text
 
     @<filename>:<line_number>: <number_of_events> events +<allocated> bytes -<freed> bytes
-    
 
+where:
 
-*   <filename>—a name of the file containing Lua code.
-*   <line_number>—the line number where the event is detected.
-*   <number_of_events>—a number of events for this code line.
-*   +<allocated> bytes—amount of memory allocated during all the events on this line.
-*   -<freed> bytes—amount of memory freed during all the events on this line.
+* ``<filename>`` -— a name of the file containing Lua code.
+* ``<line_number>`` -— the line number where the event is detected.
+* ``<number_of_events>`` —- a number of events for this code line.
+* ``+<allocated> bytes`` —- amount of memory allocated during all the events on this line.
+* ``-<freed> bytes`` —- amount of memory freed during all the events on this line.
 
 The ``Overrides`` label shows what allocation has been overridden.
 
 See the :ref:`test.lua chunk above <profiler_usage_example01>`
 with the explanation in the comments for some examples.
-
 
 .. _profiler_usage_internal_jitoff:
 
@@ -256,10 +261,10 @@ structures.
 As for investigating the Lua code with the help of profiling reports,
 it is always code-dependent and there can't be hundred per cent definite
 recommendations in this regard. Nevertheless, you can see some of the things
-in the :ref:`Profiling report analysis example <profiler_analysis>` later.
+in the :ref:`Profiling a report analysis example <profiler_analysis>` later.
 
 Also, below is the :ref:`FAQ <profiler_faq>` section with the questions that
-most probably can arise while using profiler.
+most probably can arise while using the profiler.
 
 .. _profiler_faq:
 
@@ -317,44 +322,44 @@ console for a running instance.
 ..  code-block:: lua
     :linenos:
 
-    local fiber = require "fiber"
-    local log = require "log"
+      local fiber = require "fiber"
+      local log = require "log"
 
-    fiber.create(function()
-      fiber.name("memprof")
+      fiber.create(function()
+        fiber.name("memprof")
 
-      collectgarbage() -- Collect all objects already dead
-      log.warn("start of profile")
+        collectgarbage() -- Collect all objects already dead
+        log.warn("start of profile")
 
-      local st, err = misc.memprof.start(FILENAME)
-      if not st then
-        log.error("failed to start profiler: %s", err)
-      end
+        local st, err = misc.memprof.start(FILENAME)
+        if not st then
+          log.error("failed to start profiler: %s", err)
+        end
 
-      fiber.sleep(TIME)
+        fiber.sleep(TIME)
 
-      collectgarbage()
-      st, err = misc.memprof.stop()
+        collectgarbage()
+        st, err = misc.memprof.stop()
 
-      if not st then
-        log.error("profiler on stop error: %s", err)
-      end
+        if not st then
+          log.error("profiler on stop error: %s", err)
+        end
 
-      log.warn("end of profile")
-    end)
+        log.warn("end of profile")
+      end)
 
-where
+where:
 
-*   ``FILENAME``—the name of the binary file where profiling events are written
-*   ``TIME``—duration of profiling, in seconds.
+* ``FILENAME``—the name of the binary file where profiling events are written
+* ``TIME``—duration of profiling, in seconds.
 
 Also, you can directly call ``misc.memprof.start()`` and ``misc.memprof.stop()``
 from a console.
 
 .. _profiler_analysis:
 
-Profiling report analysis example
----------------------------------
+Profiling a report analysis example
+-----------------------------------
 
 In the example below, the following Lua code named ``format_concat.lua`` is
 investigated with the help of the memory profiler reports.
@@ -364,39 +369,39 @@ investigated with the help of the memory profiler reports.
 ..  code-block:: lua
     :linenos:
 
-    -- Prevent allocations on new traces.
-    jit.off()
+      -- Prevent allocations on new traces.
+      jit.off()
 
-    local function concat(a)
-      local nstr = a.."a"
-      return nstr
-    end
+      local function concat(a)
+        local nstr = a.."a"
+        return nstr
+      end
 
-    local function format(a)
-      local nstr = string.format("%sa", a)
-      return nstr
-    end
+      local function format(a)
+        local nstr = string.format("%sa", a)
+        return nstr
+      end
 
-    collectgarbage()
+      collectgarbage()
 
-    local binfile = "/tmp/memprof_"..(arg[0]):match("([^/]*).lua")..".bin"
+      local binfile = "/tmp/memprof_"..(arg[0]):match("([^/]*).lua")..".bin"
 
-    local st, err = misc.memprof.start(binfile)
-    assert(st, err)
+      local st, err = misc.memprof.start(binfile)
+      assert(st, err)
 
-    -- Payload.
-    for i = 1, 10000 do
-      local f = format(i)
-      local c = concat(i)
-    end
-    collectgarbage()
+      -- Payload.
+      for i = 1, 10000 do
+        local f = format(i)
+        local c = concat(i)
+      end
+      collectgarbage()
 
-    local st, err = misc.memprof.stop()
-    assert(st, err)
+      local st, err = misc.memprof.stop()
+      assert(st, err)
 
-    os.exit()
+      os.exit()
 
-When you run this code :ref:`under Tarantool <profiler_usage_generate>` and
+When you run this code :ref:`in Tarantool <profiler_usage_generate>` and
 then :ref:`parse <profiler_usage_parse_command>` the binary memory profile
 in /tmp/memprof_format_concat.bin,
 you will get the following profiling report:
@@ -423,9 +428,9 @@ you will get the following profiling report:
 
 Reasonable questions regarding the report can be:
 
-*   Why are there no allocations related to the ``concat()`` function?
-*   Why is the number of allocations not a round number?
-*   Why are there about 20K allocations instead of 10K?
+* Why are there no allocations related to the ``concat()`` function?
+* Why is the number of allocations not a round number?
+* Why are there about 20K allocations instead of 10K?
 
 First of all, LuaJIT doesn't create a new string if the string with the same
 payload exists (see details on `lua-users.org/wiki <http://lua-users.org/wiki/ImmutableObjects>`_).
@@ -469,8 +474,8 @@ To profile only the ``concat()`` function, comment out line 23 (which is
 **Q**: But what will change if JIT compilation is enabled?
 
 **A**: In the :ref:`code <profiler_usage_example03>`, comment out line 2 (which is
-``jit.off()``) and run
-the profiler . Now there are only 56 allocations in the report, and all other
+``jit.off()``) and run the profiler.
+Now there are only 56 allocations in the report, and all the other
 allocations are JIT-related (see also the related
 `dev issue <https://github.com/tarantool/tarantool/issues/5679>`_):
 
@@ -493,8 +498,6 @@ allocations are JIT-related (see also the related
     HEAP SUMMARY:
     @format_concat.lua:0 holds 640 bytes: 4 allocs, 0 frees
     INTERNAL holds 360 bytes: 2 allocs, 1 frees
-
-
 
 This happens because a trace has been compiled after 56 iterations (the default
 value of the ``hotloop`` compiler parameter). Then, the
@@ -538,7 +541,7 @@ identifier is not yet compiled via LuaJIT. So, a trace can't be recorded and
 the compiler doesn't perform the corresponding optimizations.
 
 If we change the ``format()`` function in lines 9-12 of the
-:ref:`Profiling report analysis example <profiler_usage_example03>`
+:ref:`Profiling a report analysis example <profiler_usage_example03>`
 in the following way
 
 ..  code-block:: lua
@@ -594,4 +597,4 @@ for example
 
     $ tarantool -e 'require("memprof")(arg)' - --leak-only memprof_new.bin
 
-When `--leak-only`` is used, only the HEAP SUMMARY section is displayed.
+When ``--leak-only`` is used, only the HEAP SUMMARY section is displayed.
