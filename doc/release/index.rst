@@ -68,7 +68,6 @@ For information about earlier versions, see :doc:`eol_versions`.
             -   | :tarantool-release:`3.3.1`
                 | :tarantool-release:`3.3.0`
 
-
         *   -   :doc:`3.2 </release/3.2.0>`
             -   **August 26, 2024**
             -   **August 26, 2026**
@@ -96,7 +95,8 @@ For information about earlier versions, see :doc:`eol_versions`.
             -   **May 24, 2023**
             -   **May 24, 2025**
             -   **Not planned yet**
-            -   | :tarantool-release:`2.11.5`
+            -   | :tarantool-release:`2.11.6`
+                | :tarantool-release:`2.11.5`
                 | :tarantool-release:`2.11.4`
                 | :tarantool-release:`2.11.3`
                 | :tarantool-release:`2.11.2`
