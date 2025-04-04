@@ -1646,12 +1646,64 @@ The ``failover`` section defines parameters related to a :ref:`supervised failov
 
     ``failover`` can be defined in the global :ref:`scope <configuration_scopes>` only.
 
+-   :ref:`failover.log.to <configuration_reference_failover_log_to>`
+-   :ref:`failover.log.file <configuration_reference_failover_log_file>`
 -   :ref:`failover.call_timeout <configuration_reference_failover_call_timeout>`
 -   :ref:`failover.connect_timeout <configuration_reference_failover_connect_timeout>`
 -   :ref:`failover.lease_interval <configuration_reference_failover_lease_interval>`
 -   :ref:`failover.probe_interval <configuration_reference_failover_probe_interval>`
 -   :ref:`failover.renew_interval <configuration_reference_failover_renew_interval>`
 -   :ref:`failover.stateboard.* <configuration_reference_failover_stateboard>`
+
+..  _configuration_reference_failover_log_to:
+
+..  confval:: failover.log.to
+
+    **Since:** :doc:`3.3.0 </release/3.3.0>`
+
+    ..  admonition:: Enterprise Edition
+        :class: fact
+
+        Configuring ``failover.log.to`` and ``failover.log.file`` parameters is available in the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only.
+
+
+    Define a location Tarantool sends failover logs to.
+    This option accepts the following values:
+
+    *   ``stderr``: write logs to the standard error stream.
+    *   ``file``: write logs to a file (see :ref:`failover.log.file <configuration_reference_failover_log_file>`).
+
+    |
+    | Type: string
+    | Default: 'stderr'
+    | Environment variable: TT_FAILOVER_LOG_TO
+
+
+..  _configuration_reference_failover_log_file:
+
+..  confval:: failover.log.file
+
+    **Since:** :doc:`3.3.0 </release/3.3.0>`
+
+    Specify a file for failover logs destination.
+    To write logs to a file, set :ref:`failover.log.to <configuration_reference_failover_log_to>` to ``file``.
+    Otherwise, ``failover.log.file`` is ignored.
+
+    **Example**
+
+    The example below shows how to write failover logs to a file placed in the specified directory:
+
+    ..  code-block:: yaml
+
+        failover:
+          log:
+            to: file
+            file: var/log/failover.log
+
+    |
+    | Type: string
+    | Default: nil
+    | Environment variable: TT_FAILOVER_LOG_FILE
 
 ..  _configuration_reference_failover_call_timeout:
 
