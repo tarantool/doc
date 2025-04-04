@@ -39,6 +39,9 @@ Below is a list of all ``box.session`` functions and members.
         *  - :doc:`./box_session/user`
            - Get the current user's name
 
+        *  - :doc:`./box_session/effective_user`
+           - Get the current effective user's name
+
         *  - :doc:`./box_session/type`
            - Get the connection type or cause of action
 
@@ -49,7 +52,7 @@ Below is a list of all ``box.session`` functions and members.
            - Get the current user's ID
 
         *  - :doc:`./box_session/euid`
-           - 	Get the current effective user's ID
+           - Get the current effective user's ID
 
         *  - :doc:`./box_session/storage`
            - Table with session-specific names and values
@@ -61,10 +64,10 @@ Below is a list of all ``box.session`` functions and members.
            - Define a disconnect trigger
 
         *  - :doc:`./box_session/on_auth`
-           - 	Define an authentication trigger
+           - Define an authentication trigger
 
         *  - :doc:`./box_session/on_access_denied`
-           - 	Define a trigger to report restricted actions
+           - Define a trigger to report restricted actions
 
         *  - :doc:`./box_session/push`
            - (Deprecated) Send an out-of-band message

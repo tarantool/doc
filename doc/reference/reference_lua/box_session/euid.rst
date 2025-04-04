@@ -1,34 +1,36 @@
+..  _box_session-euid:
 
-.. _box_session-euid:
-
-================================================================================
 box.session.euid()
-================================================================================
+==================
 
 .. module:: box.session
 
 .. function:: euid()
 
-    :return: the effective user ID of the :ref:`current user <authentication-users>`.
+    :return: the :ref:`effective user <box_session-effective_user>` ID of the :ref:`current user <authentication-users>`.
 
+    The system uses the effective user ID to determine the process's permissions at any given moment.
     This is the same as :doc:`/reference/reference_lua/box_session/uid`, except
-    in two cases:
+    two cases:
 
-    * The first case: if the call to ``box.session.euid()`` is within
+    * ``box.session.euid()`` is called within
       a function invoked by
-      :doc:`box.session.su(user-name, function-to-execute) </reference/reference_lua/box_session/su>`
-      -- in that case, ``box.session.euid()`` returns the ID of the changed user
-      (the user who is specified by the ``user-name`` parameter of the ``su``
-      function)  but ``box.session.uid()`` returns the ID of the original user
-      (the user who is calling the ``su`` function).
+      :doc:`box.session.su() </reference/reference_lua/box_session/su>`.
+      In this case:
 
-    * The second case: if the call to ``box.session.euid()`` is within
+      - ``box.session.euid()`` returns the ID of the changed user
+      (the user who is specified by the ``user-name`` parameter of the ``box.session.su()`` function).
+      - ``box.session.uid()`` returns the ID of the original user
+      (the user who calls the ``box.session.su()`` function).
+
+    * ``box.session.euid()`` is called within
       a function specified with
       :doc:`box.schema.func.create(function-name, {setuid= true}) </reference/reference_lua/box_schema/func_create>`
-      and the binary protocol is in use
-      -- in that case, ``box.session.euid()`` returns the ID of the user who
-      created "function-name" but ``box.session.uid()`` returns the ID of the
-      the user who is calling "function-name".
+      and the binary protocol is in use.
+      In this case:
+
+      - ``box.session.euid()`` returns the ID of the user who created ``function-name``.
+      - ``box.session.uid()`` returns the ID of the user who calls ``function-name``.
 
     :rtype: number
 
