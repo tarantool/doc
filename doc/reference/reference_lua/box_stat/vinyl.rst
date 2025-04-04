@@ -19,44 +19,6 @@ box.stat.vinyl()
         - 1047632
         ...
 
-.. _box_introspection-box_stat_vinyl_regulator:
-
-box.stat.vinyl().regulator
---------------------------
-The vinyl regulator decides when to take or delay actions for
-disk IO, grouping activity in batches so that it is
-consistent and efficient. The regulator is invoked by
-the vinyl scheduler, once per second, and updates
-related variables whenever it is invoked.
-
-* ``box.stat.vinyl().regulator.dump_bandwidth`` is
-  the estimated average rate at which dumps are done.
-  Initially this will appear as 10485760 (10 megabytes per second).
-  Only significant dumps (larger than one megabyte) are used for estimating.
-
-* ``box.stat.vinyl().regulator.dump_watermark``
-  is the point when dumping must occur.
-  The value is slightly smaller than the amount of memory
-  that is allocated for vinyl trees, which is the
-  :ref:`vinyl_memory <cfg_storage-vinyl_memory>` parameter.
-
-* ``box.stat.vinyl().regulator.write_rate``
-  is the actual average rate at which recent writes to disk are done.
-  Averaging is done over a 5-second time window, so if there has
-  been no activity for 5 seconds then ``regulator.write_rate = 0``.
-  The ``write_rate`` may be slowed when a dump is in progress
-  or when the user has set
-  :ref:`snap_io_rate_limit <cfg_binary_logging_snapshots-snap_io_rate_limit>`.
-
-* ``box.stat.vinyl().regulator.rate_limit`` is the write rate limit,
-  in bytes per second, imposed on transactions by
-  the regulator based on the observed dump/compaction performance.
-
-* ``box.stat.vinyl().regulator.blocked_writers`` is the number of fibers
-  currently blocked waiting for vinyl :ref:`L0 memory <engines-algorithm_filling_lsm>`
-  quota.
-
-
 .. _box_introspection-box_stat_vinyl_disk:
 
 box.stat.vinyl().disk
@@ -110,38 +72,44 @@ bloom filter predicts their presence in a run file) --
 that statistic can be found with
 :doc:`/reference/reference_lua/box_index/stat`.
 
-.. _box_introspection-box_stat_vinyl_tx:
+.. _box_introspection-box_stat_vinyl_regulator:
 
-box.stat.vinyl().tx
--------------------
-This is about requests that affect transactional activity
-("tx" is used here as an abbreviation for "transaction"):
+box.stat.vinyl().regulator
+--------------------------
+The vinyl regulator decides when to take or delay actions for
+disk IO, grouping activity in batches so that it is
+consistent and efficient. The regulator is invoked by
+the vinyl scheduler, once per second, and updates
+related variables whenever it is invoked.
 
-* ``box.stat.vinyl().tx.conflict``
-  counts conflicts that caused a transaction to roll back.
-* ``box.stat.vinyl().tx.commit``
-  is the count of commits (successful transaction ends).
-  It includes implicit commits, for example any insert causes a commit unless
-  it is within a begin-end block.
-* ``box.stat.vinyl().tx.rollback``
-  is the count of rollbacks (unsuccessful transaction ends).
-  This is not merely a count of explicit
-  :doc:`/reference/reference_lua/box_txn_management/rollback` requests --
-  it includes requests that ended in errors.
-  For example, after an attempted insert request that causes
-  a "Duplicate key exists in unique index" error, ``tx.rollback``
-  is incremented.
-* ``box.stat.vinyl().tx.statements``
-  will usually be 0.
-* ``box.stat.vinyl().tx.transactions``
-  is the number of transactions that are currently running.
-* ``box.stat.vinyl().tx.gap_locks``
-  is the number of gap locks that are outstanding during execution of a request.
-  For a low-level description of Tarantool's implementation of gap locking, see
-  `Gap locks in Vinyl transaction manager <https://github.com/tarantool/tarantool/issues/2671>`_.
-* ``box.stat.vinyl().tx.read_views``
-  shows whether a transaction has entered a read-only state
-  to avoid conflict temporarily. This will usually be 0.
+* ``box.stat.vinyl().regulator.dump_bandwidth`` is
+  the estimated average rate at which dumps are done.
+  Initially this will appear as 10485760 (10 megabytes per second).
+  Only significant dumps (larger than one megabyte) are used for estimating.
+
+* ``box.stat.vinyl().regulator.dump_watermark``
+  is the point when dumping must occur.
+  The value is slightly smaller than the amount of memory
+  that is allocated for vinyl trees, which is the
+  :ref:`vinyl_memory <cfg_storage-vinyl_memory>` parameter.
+
+* ``box.stat.vinyl().regulator.write_rate``
+  is the actual average rate at which recent writes to disk are done.
+  Averaging is done over a 5-second time window, so if there has
+  been no activity for 5 seconds then ``regulator.write_rate = 0``.
+  The ``write_rate`` may be slowed when a dump is in progress
+  or when the user has set
+  :ref:`snap_io_rate_limit <cfg_binary_logging_snapshots-snap_io_rate_limit>`.
+
+* ``box.stat.vinyl().regulator.rate_limit`` is the write rate limit,
+  in bytes per second, imposed on transactions by
+  the regulator based on the observed dump/compaction performance.
+
+* ``box.stat.vinyl().regulator.blocked_writers`` is the number of fibers
+  currently blocked waiting for vinyl :ref:`L0 memory <engines-algorithm_filling_lsm>`
+  quota.
+
+.. _box_introspection-box_stat_vinyl_scheduler:
 
 box.stat.vinyl().scheduler
 --------------------------
@@ -190,4 +158,45 @@ for dumping or compaction:
 
   A dump will also occur during a
   :doc:`snapshot </reference/reference_lua/box_snapshot>` operation.
-  
+
+.. _box_introspection-box_stat_vinyl_memory_tuple:
+
+box.stat.vinyl().memory.tuple
+-----------------------------
+Vinyl tuples returned to the user are allocated with `malloc()`, and they may be
+pinned by Lua indefinitely. This counter shows the total size of memory
+(in bytes) occupied by Vinyl tuples. It includes cached tuples and tuples pinned
+by the Lua world.
+
+.. _box_introspection-box_stat_vinyl_tx:
+
+box.stat.vinyl().tx
+-------------------
+This is about requests that affect transactional activity
+("tx" is used here as an abbreviation for "transaction"):
+
+* ``box.stat.vinyl().tx.conflict``
+  counts conflicts that caused a transaction to roll back.
+* ``box.stat.vinyl().tx.commit``
+  is the count of commits (successful transaction ends).
+  It includes implicit commits, for example any insert causes a commit unless
+  it is within a begin-end block.
+* ``box.stat.vinyl().tx.rollback``
+  is the count of rollbacks (unsuccessful transaction ends).
+  This is not merely a count of explicit
+  :doc:`/reference/reference_lua/box_txn_management/rollback` requests --
+  it includes requests that ended in errors.
+  For example, after an attempted insert request that causes
+  a "Duplicate key exists in unique index" error, ``tx.rollback``
+  is incremented.
+* ``box.stat.vinyl().tx.statements``
+  will usually be 0.
+* ``box.stat.vinyl().tx.transactions``
+  is the number of transactions that are currently running.
+* ``box.stat.vinyl().tx.gap_locks``
+  is the number of gap locks that are outstanding during execution of a request.
+  For a low-level description of Tarantool's implementation of gap locking, see
+  `Gap locks in Vinyl transaction manager <https://github.com/tarantool/tarantool/issues/2671>`_.
+* ``box.stat.vinyl().tx.read_views``
+  shows whether a transaction has entered a read-only state
+  to avoid conflict temporarily. This will usually be 0.
