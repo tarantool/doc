@@ -1667,7 +1667,7 @@ The ``failover`` section defines parameters related to a :ref:`supervised failov
         Configuring ``failover.log.to`` and ``failover.log.file`` parameters is available in the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only.
 
 
-    Define a location Tarantool sends failover logs.
+    Define a location Tarantool sends failover logs to.
     This option accepts the following values:
 
     *   ``stderr``: write logs to the standard error stream.
@@ -1686,7 +1686,7 @@ The ``failover`` section defines parameters related to a :ref:`supervised failov
     **Since:** :doc:`3.3.0 </release/3.3.0>`
 
     Specify a file for failover logs destination.
-    To write logs to a file, you need to set :ref:`failover.log.to <configuration_reference_failover_log_to>` to ``file``.
+    To write logs to a file, set :ref:`failover.log.to <configuration_reference_failover_log_to>` to ``file``.
     Otherwise, ``failover.log.file`` is ignored.
 
     **Example**
