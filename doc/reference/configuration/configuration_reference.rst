@@ -3544,6 +3544,7 @@ The ``replication`` section defines configuration parameters related to :ref:`re
 
 -   :ref:`replication.anon <configuration_reference_replication_anon>`
 -   :ref:`replication.autoexpel <configuration_reference_replication_autoexpel>`
+-   :ref:`replication.anon <configuration_reference_replication_autoexpel>`
 -   :ref:`replication.bootstrap_strategy <configuration_reference_replication_bootstrap_strategy>`
 -   :ref:`replication.connect_timeout <configuration_reference_replication_connect_timeout>`
 -   :ref:`replication.election_mode <configuration_reference_replication_election_mode>`
@@ -3554,6 +3555,7 @@ The ``replication`` section defines configuration parameters related to :ref:`re
 -   :ref:`replication.skip_conflict <configuration_reference_replication_skip_conflict>`
 -   :ref:`replication.sync_lag <configuration_reference_replication_sync_lag>`
 -   :ref:`replication.sync_timeout <configuration_reference_replication_sync_timeout>`
+-   :ref:`replication.synchro_queue_max_size <configuration_reference_replication_synchro_queue_max_size`>
 -   :ref:`replication.synchro_quorum <configuration_reference_replication_synchro_quorum>`
 -   :ref:`replication.synchro_timeout <configuration_reference_replication_synchro_timeout>`
 -   :ref:`replication.threads <configuration_reference_replication_threads>`
@@ -3618,6 +3620,13 @@ The ``replication`` section defines configuration parameters related to :ref:`re
 
     The expulsion process follows the standard procedure, involving the removal of the instance from the ``_cluster`` system space.
 
+    The ``autoexpel`` logic is activated during specific events:
+
+	- **Startup**. When the cluster starts, ``autoexpel`` checks and removes instances not matching the updated configuration.
+	- **Reconfiguration**. When the YAML configuration is reloaded, ``autoexpel`` compares the current state to the updated configuration and performs necessary expulsions.
+	- ``box.status`` **watcher event**. Changes detected by the ``box.status`` watcher also trigger the ``autoexpel`` mechanism.
+
+
     ``autoexpel`` does not take any actions on newly joined instances unless one of the triggering events occurs.
     This means that an instance meeting the ``autoexpel`` criterion can still join the cluster, but it may be removed
     later during reconfiguration or on subsequent triggering events.
@@ -3627,8 +3636,7 @@ The ``replication`` section defines configuration parameters related to :ref:`re
         global levels. It is not applicable at the instance level.
 
 
-    **Configuration fields**
-
+    Configuration fields
 
     - ``by`` (string, default: ``nil``): specifies the ``autoexpel`` criterion. Currently, only ``prefix`` is supported and must be explicitly set.
 
@@ -3638,7 +3646,7 @@ The ``replication`` section defines configuration parameters related to :ref:`re
 
 
 
-replication.autoexpel.by
+replication.autoexpel_by.*
 ~~~~~~~~~~~~~
 
     ``replication.autoexpel_by`` purpose is to define the criterion used for determining which instances in a cluster are
@@ -3648,15 +3656,15 @@ replication.autoexpel.by
 
     - Instances that are part of the cluster and should adhere to the YAML configuration.
 
-    - Instances or tools (e.g., CDC tools) that use the replication channel but are not part of the cluster configuration.
+	- Instances or tools (e.g., CDC tools) that use the replication channel but are not part of the cluster configuration.
 
 
-    The default value of ``by`` is ``nil``, meaning no ``autoexpel`` criterion is applied unless explicitly set.
+    The default value of by is ``nil``, meaning no ``autoexpel`` criterion is applied unless explicitly set.
 
     Currently, the only supported value for by is ``prefix``. The ``prefix`` value instructs the system to identify instances
     based on their names, matching them against a prefix pattern defined in the configuration.
 
-    If the ``autoexpel`` feature is enabled, the ``by`` field must be explicitly set to ``prefix``.
+    If the ``autoexpel`` feature is enabled (``enabled: true``), the ``by`` field must be explicitly set to ``prefix``.
 
     The absence of this field or an unsupported value will result in configuration errors.
 
@@ -3675,7 +3683,7 @@ replication.autoexpel.by
 
 
 
-replication.autoexpel.enabled
+replication.autoexpel_enabled.*
 ~~~~~~~~~~~~~
 
     The ``replication.autoexpel_enabled`` field is a boolean configuration option that determines whether the autoexpel logic is active for the cluster.
@@ -3685,7 +3693,7 @@ replication.autoexpel.enabled
 
         By default, the ``enabled`` field is set to ``false``, meaning the ``autoexpel`` logic is turned off. This ensures that no instances are automatically removed unless explicitly configured.
 
-    **Enabling ``autoexpel`` logic**
+    Enabling ``autoexpel`` logic
 
     To enable ``autoexpel``, you should set enabled to true in the ``replication.autoexpel`` section of your YAML configuration:
 
@@ -3701,8 +3709,7 @@ replication.autoexpel.enabled
     To disable ``autoexpel``, set enabled to ``false``.
 
 
-    **Dependencies**
-
+    Dependencies
 
     If ``enabled`` is set to ``true``, the following fields are required:
 
@@ -3717,7 +3724,7 @@ replication.autoexpel.enabled
     | Environment variable: TT_REPLICATION_AUTOEXPEL_ENABLED
 
 
-replication.autoexpel.prefix
+replication.autoexpel_prefix.*
 ~~~~~~~~~~~~~
 
     The ``prefix`` field filters instances for expulsion by differentiating cluster instances (from the YAML configuration) from external services (e.g., CDC tools). Only instances matching the prefix are considered.
@@ -3748,7 +3755,7 @@ replication.autoexpel.prefix
 
     In this setup:
 
-	- Instances are prefixed with a replicaset name (e.g., ``r-001-i-001`` for replicaset ``r-001``).
+	- Instances are grouped by replicaset names (e.g., ``r-001-i-001`` for ``replicaset r-001``).
 	- The prefix ensures that only instances with names matching the replicaset name are auto expelled when removed from the configuration.
 
 
@@ -3771,6 +3778,111 @@ replication.autoexpel.prefix
     | Type: string
     | Default: ``nil``
     | Environment variable: TT_REPLICATION_AUTOEXPEL_PREFIX
+
+
+
+autoexpel full example
+~~~~~~~~~~~~~
+
+    1. Create a ``config.yaml`` file with the following content:
+
+    .. code-block:: yaml
+
+        credentials:
+          users:
+            guest:
+              roles: [super]
+
+        replication:
+          failover: manual
+          autoexpel:
+            enabled: true
+            by: prefix
+            prefix: '{{ replicaset_name }}'
+
+        iproto:
+          listen:
+            - uri: 'unix/:./var/run/{{ instance_name }}.iproto'
+
+        groups:
+          g-001:
+            replicasets:
+              r-001:
+                leader: r-001-i-001
+                instances:
+                  r-001-i-001: {}
+                  r-001-i-002: {}
+                  r-001-i-003: {}
+
+
+    This configuration:
+	- Sets up authentication with a guest user assigned the super role.
+	- Enables the ``autoexpel`` option to automatically expel instances not present in the YAML file.
+	- Defines instance names based on a prefix pattern: ``{{ replicaset_name }}``.
+	- Lists three instances: ``r-001-i-001``, ``r-001-i-002``, and ``r-001-i-003``.
+
+
+    2. Open terminal window and start three instances using the following commands:
+
+    .. code-block:: lua
+
+        tarantool --name r-001-i-001 --config config.yaml -i
+
+
+    .. code-block:: lua
+
+        tarantool --name r-001-i-002 --config config.yaml -i
+
+
+    .. code-block:: lua
+
+        tarantool --name r-001-i-003 --config config.yaml -i
+
+    3. Edit ``config.yaml`` and remove the following entry for ``r-001-i-003``:
+
+    .. code-block:: lua
+        r-001-i-003: {}
+
+
+    The updated ``config.yaml`` should look like this:
+
+    .. code-block:: yaml
+
+        groups:
+          g-001:
+            replicasets:
+              r-001:
+                leader: r-001-i-001
+                instances:
+                  r-001-i-001: {}
+                  r-001-i-002: {}
+
+    Save the file.
+
+    4. For the leader instance (``r-001-i-001``), check the ``_cluster`` space:
+
+    .. hint::
+
+        The ``_cluster`` system space in Tarantool stores metadata about all instances currently recognized as part of the cluster.
+        It shows which instances are registered and active.
+
+    You should see ``r-001-i-003`` still listed in the ``_cluster`` system space.
+
+    5. Reload the configuration:
+
+    .. code-block:: lua
+
+        config = require('config')
+        config:reload()
+
+    6. Verify the changes:
+
+    .. code-block:: lua
+
+        box.space._cluster:fselect()
+
+    After the reload, ``r-001-i-003`` should no longer appear in the ``_cluster`` system space.
+
 
 
 .. _configuration_reference_replication_bootstrap_strategy:
@@ -4033,6 +4145,59 @@ replication.autoexpel.prefix
     | Type: number
     | Default: 0
     | Environment variable: TT_REPLICATION_SYNC_TIMEOUT
+
+
+.. _configuration_reference_replication_synchro_queue_max_size:
+
+.. confval:: replication.synchro_queue_max_size
+
+    **Since:** :doc:`3.3.0 </release/3.3.0>`
+
+    The maximum size of the synchronous transaction queue on a master node, in bytes. The size limit isn't strict, i.e. if there's at least one free byte, the whole write request fits and no blocking is involved.
+    This parameter ensures that the queue does not grow indefinitely, potentially impacting performance and resource usage, and applies only to the master node.
+
+    The ``0`` value disables the limit.
+
+
+    If the synchronous queue reaches the configured size limit, new transactions attempting to enter the queue are discarded.
+    In such cases, the system returns an error to the user:
+    ``The synchronous transaction queue is full.``
+
+    This size limitation does not apply during the recovery process. Transactions processed during recovery are unaffected by the queue size limit.
+
+    Use the following command to view the current size of the synchronous queue:
+
+    .. code-block:: lua
+
+        box.info.synchro.queue.size
+
+
+    .. code-block:: command line
+
+        tarantool> box.info.synchro
+        ---
+        - queue:
+            owner: 1
+            size: 60
+            busy: false
+            len: 1
+            term: 2
+            quorum: 2
+        ...
+
+    Set the synchronous queue size limit in the configuration file:
+
+    .. code-block:: yaml
+
+        replication:
+            synchro_queue_max_size: 33554432  # Limit set to 32 MB
+
+    |
+    | Type: integer
+    | Default: 16777216 (16 MB)
+    | Environment variable: TT_REPLICATION_SYNCHRO_QUEUE_MAX_SIZE
+
+
 
 .. _configuration_reference_replication_synchro_quorum:
 
