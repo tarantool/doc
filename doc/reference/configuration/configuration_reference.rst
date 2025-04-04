@@ -1646,8 +1646,8 @@ The ``failover`` section defines parameters related to a :ref:`supervised failov
 
     ``failover`` can be defined in the global :ref:`scope <configuration_scopes>` only.
 
--   :ref:`failover.call_timeout <configuration_reference_failover_log_to>`
--   :ref:`failover.call_timeout <configuration_reference_failover_log_file>`
+-   :ref:`failover.log.to <configuration_reference_failover_log_to>`
+-   :ref:`failover.log.file <configuration_reference_failover_log_file>`
 -   :ref:`failover.call_timeout <configuration_reference_failover_call_timeout>`
 -   :ref:`failover.connect_timeout <configuration_reference_failover_connect_timeout>`
 -   :ref:`failover.lease_interval <configuration_reference_failover_lease_interval>`
