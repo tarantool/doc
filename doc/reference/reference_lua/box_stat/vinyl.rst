@@ -159,14 +159,16 @@ for dumping or compaction:
   A dump will also occur during a
   :doc:`snapshot </reference/reference_lua/box_snapshot>` operation.
 
-.. _box_introspection-box_stat_vinyl_memory_tuple:
+.. _box_introspection-box_stat_vinyl_memory:
 
-box.stat.vinyl().memory.tuple
------------------------------
-Vinyl tuples returned to the user are allocated with `malloc()`, and they may be
-pinned by Lua indefinitely. This counter shows the total size of memory
-(in bytes) occupied by Vinyl tuples. It includes cached tuples and tuples pinned
-by the Lua world.
+box.stat.vinyl().memory
+-----------------------
+This is about vinyl tuples returned to the user. They are allocated with
+``malloc()``, and they may be pinned by Lua indefinitely.
+
+* ``box.stat.vinyl().memory.tuple`` is the total size of memory (in bytes)
+  occupied by vinyl tuples. It includes cached tuples and tuples pinned by the
+  Lua world.
 
 .. _box_introspection-box_stat_vinyl_tx:
 
