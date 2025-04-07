@@ -19,6 +19,62 @@ box.stat.vinyl()
         - 1047632
         ...
 
+.. _box_introspection-box_stat_vinyl_disk:
+
+box.stat.vinyl().disk
+---------------------
+Since vinyl is an on-disk storage engine
+(unlike memtx which is an in-memory storage engine),
+it can handle large databases -- but if a database is
+larger than the amount of memory that is allocated for vinyl,
+then there will be more disk activity.
+
+* ``box.stat.vinyl().disk.data`` and ``box.stat.vinyl().disk.index``
+  are the amount of data that has gone into files in a subdirectory
+  of :ref:`vinyl_dir <cfg_basic-vinyl_dir>`,
+  with names like ``{lsn}.run``
+  and ``{lsn}.index``. The size of the run will be
+  related to the output of ``scheduler.dump_*``.
+
+* ``box.stat.vinyl().disk.data_compacted``
+  Sum size of data stored at the last LSM tree level, in bytes,
+  without taking disk compression into account. It can be thought of as the
+  size of disk space that the user data would occupy if there were no compression,
+  indexing, or space increase caused by the LSM tree design.
+
+.. _box_introspection-box_stat_vinyl_memory:
+
+box.stat.vinyl().memory
+-----------------------
+Although the vinyl storage engine is not "in-memory", Tarantool does
+need to have memory for write buffers and for caches:
+
+* ``box.stat.vinyl().memory.tuple_cache``
+  is the size of memory (in bytes) occupied by tuples stored in the cache.
+* ``box.stat.vinyl().memory.tuple``
+  is the size of memory (in bytes) occupied by all allocated tuples.
+  This includes cached tuples and tuples that are referenced in Lua.
+* ``box.stat.vinyl().memory.tx``
+  is transactional memory. This will usually be 0.
+* ``box.stat.vinyl().memory.level0``
+  is the "level0" memory area, sometimes abbreviated "L0", which is the
+  area that vinyl can use for in-memory storage of an LSM tree.
+
+Therefore we can say that "L0 is becoming full" when the
+amount in ``memory.level0`` is close to the maximum, which is
+:ref:`regulator.dump_watermark <box_introspection-box_stat_vinyl_regulator>`.
+We can expect that "L0 = 0" immediately after a dump.
+``box.stat.vinyl().memory.page_index`` and  ``box.stat.vinyl().memory.bloom_filter``
+have the current amount being used for index-related structures.
+The size is a function of the number and size of keys,
+plus :ref:`vinyl_page_size <cfg_storage-vinyl_page_size>`,
+plus :ref:`vinyl_bloom_fpr <cfg_storage-vinyl_bloom_fpr>`.
+This is not a count of bloom filter "hits"
+(the number of reads that could be avoided because the
+bloom filter predicts their presence in a run file) --
+that statistic can be found with
+:doc:`/reference/reference_lua/box_index/stat`.
+
 .. _box_introspection-box_stat_vinyl_regulator:
 
 box.stat.vinyl().regulator
@@ -56,92 +112,7 @@ related variables whenever it is invoked.
   currently blocked waiting for vinyl :ref:`L0 memory <engines-algorithm_filling_lsm>`
   quota.
 
-
-.. _box_introspection-box_stat_vinyl_disk:
-
-box.stat.vinyl().disk
----------------------
-Since vinyl is an on-disk storage engine
-(unlike memtx which is an in-memory storage engine),
-it can handle large databases -- but if a database is
-larger than the amount of memory that is allocated for vinyl,
-then there will be more disk activity.
-
-* ``box.stat.vinyl().disk.data`` and ``box.stat.vinyl().disk.index``
-  are the amount of data that has gone into files in a subdirectory
-  of :ref:`vinyl_dir <cfg_basic-vinyl_dir>`,
-  with names like ``{lsn}.run``
-  and ``{lsn}.index``. The size of the run will be
-  related to the output of ``scheduler.dump_*``.
-
-* ``box.stat.vinyl().disk.data_compacted``
-  Sum size of data stored at the last LSM tree level, in bytes,
-  without taking disk compression into account. It can be thought of as the
-  size of disk space that the user data would occupy if there were no compression,
-  indexing, or space increase caused by the LSM tree design.
-
-.. _box_introspection-box_stat_vinyl_memory:
-
-box.stat.vinyl().memory
------------------------
-Although the vinyl storage engine is not "in-memory", Tarantool does
-need to have memory for write buffers and for caches:
-
-* ``box.stat.vinyl().memory.tuple_cache``
-  is the number of bytes that are being used for tuples (data).
-* ``box.stat.vinyl().memory.tx``
-  is transactional memory. This will usually be 0.
-* ``box.stat.vinyl().memory.level0``
-  is the "level0" memory area, sometimes abbreviated "L0", which is the
-  area that vinyl can use for in-memory storage of an LSM tree.
-
-Therefore we can say that "L0 is becoming full" when the
-amount in ``memory.level0`` is close to the maximum, which is
-:ref:`regulator.dump_watermark <box_introspection-box_stat_vinyl_regulator>`.
-We can expect that "L0 = 0" immediately after a dump.
-``box.stat.vinyl().memory.page_index`` and  ``box.stat.vinyl().memory.bloom_filter``
-have the current amount being used for index-related structures.
-The size is a function of the number and size of keys,
-plus :ref:`vinyl_page_size <cfg_storage-vinyl_page_size>`,
-plus :ref:`vinyl_bloom_fpr <cfg_storage-vinyl_bloom_fpr>`.
-This is not a count of bloom filter "hits"
-(the number of reads that could be avoided because the
-bloom filter predicts their presence in a run file) --
-that statistic can be found with
-:doc:`/reference/reference_lua/box_index/stat`.
-
-.. _box_introspection-box_stat_vinyl_tx:
-
-box.stat.vinyl().tx
--------------------
-This is about requests that affect transactional activity
-("tx" is used here as an abbreviation for "transaction"):
-
-* ``box.stat.vinyl().tx.conflict``
-  counts conflicts that caused a transaction to roll back.
-* ``box.stat.vinyl().tx.commit``
-  is the count of commits (successful transaction ends).
-  It includes implicit commits, for example any insert causes a commit unless
-  it is within a begin-end block.
-* ``box.stat.vinyl().tx.rollback``
-  is the count of rollbacks (unsuccessful transaction ends).
-  This is not merely a count of explicit
-  :doc:`/reference/reference_lua/box_txn_management/rollback` requests --
-  it includes requests that ended in errors.
-  For example, after an attempted insert request that causes
-  a "Duplicate key exists in unique index" error, ``tx.rollback``
-  is incremented.
-* ``box.stat.vinyl().tx.statements``
-  will usually be 0.
-* ``box.stat.vinyl().tx.transactions``
-  is the number of transactions that are currently running.
-* ``box.stat.vinyl().tx.gap_locks``
-  is the number of gap locks that are outstanding during execution of a request.
-  For a low-level description of Tarantool's implementation of gap locking, see
-  `Gap locks in Vinyl transaction manager <https://github.com/tarantool/tarantool/issues/2671>`_.
-* ``box.stat.vinyl().tx.read_views``
-  shows whether a transaction has entered a read-only state
-  to avoid conflict temporarily. This will usually be 0.
+.. _box_introspection-box_stat_vinyl_scheduler:
 
 box.stat.vinyl().scheduler
 --------------------------
@@ -190,4 +161,36 @@ for dumping or compaction:
 
   A dump will also occur during a
   :doc:`snapshot </reference/reference_lua/box_snapshot>` operation.
-  
+
+.. _box_introspection-box_stat_vinyl_tx:
+
+box.stat.vinyl().tx
+-------------------
+This is about requests that affect transactional activity
+("tx" is used here as an abbreviation for "transaction"):
+
+* ``box.stat.vinyl().tx.conflict``
+  counts conflicts that caused a transaction to roll back.
+* ``box.stat.vinyl().tx.commit``
+  is the count of commits (successful transaction ends).
+  It includes implicit commits, for example any insert causes a commit unless
+  it is within a begin-end block.
+* ``box.stat.vinyl().tx.rollback``
+  is the count of rollbacks (unsuccessful transaction ends).
+  This is not merely a count of explicit
+  :doc:`/reference/reference_lua/box_txn_management/rollback` requests --
+  it includes requests that ended in errors.
+  For example, after an attempted insert request that causes
+  a "Duplicate key exists in unique index" error, ``tx.rollback``
+  is incremented.
+* ``box.stat.vinyl().tx.statements``
+  will usually be 0.
+* ``box.stat.vinyl().tx.transactions``
+  is the number of transactions that are currently running.
+* ``box.stat.vinyl().tx.gap_locks``
+  is the number of gap locks that are outstanding during execution of a request.
+  For a low-level description of Tarantool's implementation of gap locking, see
+  `Gap locks in Vinyl transaction manager <https://github.com/tarantool/tarantool/issues/2671>`_.
+* ``box.stat.vinyl().tx.read_views``
+  shows whether a transaction has entered a read-only state
+  to avoid conflict temporarily. This will usually be 0.
