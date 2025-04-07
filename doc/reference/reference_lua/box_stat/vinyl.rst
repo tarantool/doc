@@ -50,7 +50,10 @@ Although the vinyl storage engine is not "in-memory", Tarantool does
 need to have memory for write buffers and for caches:
 
 * ``box.stat.vinyl().memory.tuple_cache``
-  is the number of bytes that are being used for tuples (data).
+  is the size of memory (in bytes) occupied by tuples stored in the cache.
+* ``box.stat.vinyl().memory.tuple``
+  is the size of memory (in bytes) occupied by all allocated tuples.
+  This includes cached tuples and tuples that are referenced in Lua.
 * ``box.stat.vinyl().memory.tx``
   is transactional memory. This will usually be 0.
 * ``box.stat.vinyl().memory.level0``
@@ -158,17 +161,6 @@ for dumping or compaction:
 
   A dump will also occur during a
   :doc:`snapshot </reference/reference_lua/box_snapshot>` operation.
-
-.. _box_introspection-box_stat_vinyl_memory:
-
-box.stat.vinyl().memory
------------------------
-This is about vinyl tuples returned to the user. They are allocated with
-``malloc()``, and they may be pinned by Lua indefinitely.
-
-* ``box.stat.vinyl().memory.tuple`` is the total size of memory (in bytes)
-  occupied by vinyl tuples. It includes cached tuples and tuples pinned by the
-  Lua world.
 
 .. _box_introspection-box_stat_vinyl_tx:
 
