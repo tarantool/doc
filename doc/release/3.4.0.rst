@@ -123,16 +123,20 @@ for example:
 Now supervised failover coordinator supports three bootstrap strategies:
 native, supervised, auto.
 
-The new ``native `` strategy acts more or less similar to the ``auto`` strategy,
-but relaxes its limitations. It is based on the supervised strategy and basically
-performs two things:
-* issues ``box.ctl.make_bootstrap_leader({graceful = true})`` to bootstrap
-  a replicaset;
-* issues ``box.ctl.make_bootstrap_leader()`` to keep the bootstrap leader
-  record pointing to the instance that is currently in the RW mode (to register
-  new replicas).
+The new ``native`` strategy relaxes the limitations of the ``auto`` strategy,
+but has different under-the-hood implementation (based on the ``supervised`` strategy).
+Otherwise, it acts similar to the ``auto`` strategy.
 
-To enable the ``native `` bootstrap strategy, set it in the ``replication`` section
+In effect, it helps resolve these two problems:
+* Avoid the error ``Some replica set members were not specified in box.cfg.replication``
+  in the following cases:
+  * several replicas join at the same time,
+  * the replica set includes non-anonymous CDC instances,
+  * ``_cluster`` contains expelled replicas.
+* Make the database get bootstrapped upon the coordinator's command rather than
+  let the instances boostrap it on their own.
+
+To enable the ``native`` bootstrap strategy, set it in the ``replication`` section
 of the cluster's configuration, together with a proper failover strategy
 (for ``native``, you can choose any failover strategy you like, for example ``supervised``):
 
@@ -177,23 +181,14 @@ maintain compatibility and consistency with other privilege types.
 
 Three new methods are now available in the ``config`` module:
 
-* ``has_role(<role_name>, {instance = <instance_name})`` returns ``true`` if
-  the instance with the name ``<instance_name>`` has the role ``<role_name>``
-  enabled in the current configuration, or ``false`` if not.
-  The second argument is optional: if not provided, the check is performed
-  for the instance the method is called on.
+* ``config:has_role('myrole')`` tells whether the current instance has the role ``myrole``, and
+  ``config:has_role('myrole', {instance = 'i-001'})`` does the same for the specified instance (``i-001``).
 
-* ``is_router({instance = <instance_name})`` returns ``true`` if the instance
-  with the name ``<instance_name>`` is a vshard router, according to the current
-  configuration, or ``false`` if not.
-  The argument is optional: if not provided, the check is performed for
-  the instance the method is called on.
+* ``config:is_router()`` tells whether the current instance is a vshard router, and
+  ``config:is_router({instance = 'i-002'})`` does the same for the specified instance (``i-002``).
 
-* ``is_storage({instance = <instance_name})`` returns ``true`` if the instance
-  with the name ``<instance_name>`` is a vshard storage, according to the current
-  configuration, or ``false`` if not.
-  The argument is optional: if not provided, the check is performed for
-  the instance the method is called on.
+* ``config:is_storage()`` tells whether the current instance is a vshard storage, and
+  ``config:is_storage({instance = 'i-003'})`` does the same for the specified instance (``i-003``).
 
 .. _3-4-storage-client-api:
 
