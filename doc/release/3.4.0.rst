@@ -132,7 +132,7 @@ In effect, it helps resolve these two problems:
   in the following cases:
   * several replicas join at the same time,
   * the replica set includes non-anonymous CDC instances,
-  * ``_cluster`` contains expelled replicas.
+  * ``_cluster`` contains old unneeded replicas.
 * Make the database get bootstrapped upon the coordinator's command rather than
   let the instances boostrap it on their own.
 
