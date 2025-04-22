@@ -136,6 +136,9 @@ In effect, it helps resolve these two problems:
 * Make the database get bootstrapped upon the coordinator's command rather than
   let the instances boostrap it on their own.
 
+This strategy is the recommended choice for highly dynamic clusters with automatic
+scaling, as well as in most other cases.
+
 To enable the ``native`` bootstrap strategy, set it in the ``replication`` section
 of the cluster's configuration, together with a proper failover strategy
 (for ``native``, you can choose any failover strategy you like, for example ``supervised``):
