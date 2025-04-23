@@ -3,16 +3,12 @@
 SQL features
 ============
 
-This section compares Tarantool's features with SQL:2016's "Feature taxonomy and definition
-for mandatory features".
+This section compares Tarantool's features with SQL:2016's
+"Feature taxonomy and definition for mandatory features".
 
-For each feature in that list, there will be a simple example SQL
-statement.
+For each feature in that list, there will be a simple example SQL statement.
 If Tarantool appears to handle the example, it will be marked "Okay",
-else it will be marked "Fail".
-Since this is rough and arbitrary, the hope is that tests which are unfairly
-marked "Okay" will probably be balanced by tests which are unfairly marked "Fail".
-
+else it will be marked "No".
 
 E011, Numeric data types
 ------------------------
@@ -34,7 +30,7 @@ E011, Numeric data types
         *   -   E011-02
             -   REAL, DOUBLE PRECISION, and FLOAT data types
             -   ``CREATE TABLE tr (s1 FLOAT PRIMARY KEY);``
-            -   Fail. Tarantool's floating point data type is
+            -   No. Tarantool's floating point data type is
                 :ref:`DOUBLE <sql_data_type_double>`.
                 **Note:** Floating point SQL types are not planned to
                 be compatible between 2.1 and 2.2 releases. The reason
@@ -48,7 +44,7 @@ E011, Numeric data types
         *   -   E011-03
             -   DECIMAL and NUMERIC data types
             -   ``CREATE TABLE td (s1 NUMERIC PRIMARY KEY);``
-            -   Fail, NUMERIC data types are not supported,
+            -   No, NUMERIC data types are not supported,
                 although the DECIMAL data type is supported.
         *   -   E011-04
             -   Arithmetic operators
@@ -80,11 +76,11 @@ E021, Character string types
         *   -   E021-01
             -   Character data type (including all its spellings)
             -   ``CREATE TABLE t44 (s1 CHAR PRIMARY KEY);``
-            -   Fail, CHAR is not supported. This type of Fail will only be counted once.
+            -   No, CHAR is not supported. This type of unsupported features will only be counted once.
         *   -   E021-02
             -   CHARACTER VARYING data type (including all its spellings)
             -   ``CREATE TABLE t45 (s1 VARCHAR PRIMARY KEY);``
-            -   Fail, Tarantool only allows VARCHAR(n), which is a
+            -   No, Tarantool only allows VARCHAR(n), which is a
                 synonym for :ref:`STRING <sql_data_type_string>`.
         *   -   E021-03
             -   Character literals
@@ -99,11 +95,11 @@ E021, Character string types
         *   -   E021-05
             -   OCTET_LENGTH
             -   ``SELECT octet_length(s1) FROM t;``
-            -   Fail. There is no such function.
+            -   No. There is no such function.
         *   -   E021-06
             -   SUBSTRING function
             -   ``SELECT substring(s1 FROM 1 FOR 1) FROM t;``
-            -   Fail. There is no such function. There is a function
+            -   No. There is no such function. There is a function
                 :ref:`SUBSTR(x,n,n) <sql_function_substr>`, which is okay.
         *   -   E021-07
             -   Character concatenation
@@ -123,11 +119,11 @@ E021, Character string types
             -   Implicit casting among the fixed-length and
                 variable-length character string types
             -   ``SELECT * FROM tm WHERE char_column > varchar_column;``
-            -   Fail, there is no fixed-length character string type.
+            -   No, there is no fixed-length character string type.
         *   -   E021-11
             -   POSITION function
             -   ``SELECT position(x IN y) FROM z;``
-            -   Fail. Tarantool's :ref:`POSITION <sql_function_position>` function
+            -   No. Tarantool's :ref:`POSITION <sql_function_position>` function
                 requires '``,``' rather than '``IN``'.
         *   -   E021-12
             -   Character comparison
@@ -153,7 +149,7 @@ E031, Identifiers
         *   -   E031
             -   Identifiers
             -   ``CREATE TABLE rank (ceil INT PRIMARY KEY);``
-            -   Fail. Tarantool's list of
+            -   No. Tarantool's list of
                 :ref:`reserved words <sql_reserved_words>`
                 differs from the standard's list of reserved words.
         *   -   E031-01
@@ -218,7 +214,7 @@ E051, Basic query specification
         *   -   E051-09
             -   Rename columns in the FROM clause
             -   ``SELECT * FROM t AS x(q,c);``
-            -   Fail.
+            -   No.
 
 
 E061, Basic predicates and search conditions
@@ -261,7 +257,7 @@ E061, Basic predicates and search conditions
         *   -   E061-07
             -   Quantified comparison predicate
             -   ``SELECT * FROM t WHERE s1 = ANY (SELECT s1 FROM t);``
-            -   Fail. Syntax error.
+            -   No. Syntax error.
         *   -   E061-08
             -   EXISTS predicate
             -   ``SELECT * FROM t WHERE NOT EXISTS (SELECT * FROM t);``
@@ -277,7 +273,7 @@ E061, Basic predicates and search conditions
         *   -   E061-12
             -   Subqueries in quantified comparison predicate
             -   ``SELECT * FROM t WHERE s1 >= ALL (SELECT s1 FROM t);``
-            -   Fail. Syntax error.
+            -   No. Syntax error.
         *   -   E061-13
             -   Correlated subqueries
             -   ``SELECT * FROM t WHERE s1 = (SELECT s1 FROM t2 WHERE t2.s2 = t.s1);``
@@ -304,7 +300,7 @@ E071, Basic query expressions
         *   -   E071-01
             -   UNION DISTINCT table operator
             -   ``SELECT * FROM t UNION DISTINCT SELECT * FROM t;``
-            -   Fail. However,
+            -   No. However,
                 ``SELECT * FROM t UNION SELECT * FROM t;`` is okay.
         *   -   E071-02
             -   UNION ALL table operator
@@ -313,7 +309,7 @@ E071, Basic query expressions
         *   -   E071-03
             -   EXCEPT DISTINCT table operator
             -   ``SELECT * FROM t EXCEPT DISTINCT SELECT * FROM t;``
-            -   Fail. However,
+            -   No. However,
                 ``SELECT * FROM t EXCEPT SELECT * FROM t;`` is okay.
         *   -   E071-05
             -   Columns combined via table operators need not
@@ -348,7 +344,7 @@ E091, Set functions
         *   -   E091-01
             -   AVG
             -   ``SELECT avg(s1) FROM t7;``
-            -   Fail. Tarantool supports
+            -   No. Tarantool supports
                 :ref:`AVG <sql_aggregate_avg>` but there is no warning
                 that NULLs are eliminated.
         *   -   E091-02
@@ -439,7 +435,7 @@ E121, Basic cursor support
         *   -   E121-01
             -   DECLARE CURSOR
             -
-            -   Fail. Tarantool doesn't support cursors.
+            -   No. Tarantool doesn't support cursors.
         *   -   E121-02
             -   ORDER BY columns need not be in select list
             -   ``SELECT s1 FROM t ORDER BY s2;``
@@ -451,27 +447,27 @@ E121, Basic cursor support
         *   -   E121-04
             -   OPEN statement
             -
-            -   Fail. Tarantool doesn't support cursors.
+            -   No. Tarantool doesn't support cursors.
         *   -   E121-06
             -   Positioned UPDATE statement
             -
-            -   Fail. Tarantool doesn't support cursors.
+            -   No. Tarantool doesn't support cursors.
         *   -   E121-07
             -   Positioned DELETE statement
             -
-            -   Fail. Tarantool doesn't support cursors.
+            -   No. Tarantool doesn't support cursors.
         *   -   E121-08
             -   CLOSE statement
             -
-            -   Fail. Tarantool doesn't support cursors.
+            -   No. Tarantool doesn't support cursors.
         *   -   E121-10
             -   FETCH statement implicit next
             -
-            -   Fail. Tarantool doesn't support cursors.
+            -   No. Tarantool doesn't support cursors.
         *   -   E121-17
             -   WITH HOLD cursors
             -
-            -   Fail. Tarantool doesn't support cursors.
+            -   No. Tarantool doesn't support cursors.
 
 
 E131, Null value support
@@ -560,7 +556,7 @@ E151, Transaction support
         *   -   E151-01
             -   COMMIT statement
             -   ``COMMIT;``
-            -   Fail. Tarantool supports
+            -   No. Tarantool supports
                 :ref:`COMMIT <sql_commit>` but it is necessary to say
                 :ref:`START TRANSACTION <sql_start_transaction>` first.
         *   -   E151-02
@@ -585,11 +581,11 @@ E152, Basic SET TRANSACTION statement
         *   -   E152-01
             -   SET TRANSACTION statement: ISOLATION SERIALIZABLE clause
             -   ``SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;``
-            -   Fail. Syntax error.
+            -   No. Syntax error.
         *   -   E152-02
             -   SET TRANSACTION statement: READ ONLY and READ WRITE clauses
             -   ``SET TRANSACTION READ ONLY;``
-            -   Fail. Syntax error.
+            -   No. Syntax error.
 
 
 E*, Other
@@ -608,7 +604,7 @@ E*, Other
         *   -   E153
             -   Updatable queries with subqueries
             -   ``UPDATE "view_containing_subquery" SET column1=0;``
-            -   Fail.
+            -   No.
         *   -   E161
             -   SQL comments using leading double minus
             -   ``--comment;``
@@ -616,7 +612,7 @@ E*, Other
         *   -   E171
             -   SQLSTATE support
             -   ``DROP TABLE no_such_table;``
-            -   Fail. Tarantool returns an error message but not an SQLSTATE string.
+            -   No. Tarantool returns an error message but not an SQLSTATE string.
         *   -   E182
             -   Host language binding
             -
@@ -640,7 +636,7 @@ F021, Basic information schema
         *   -   F021
             -   Basic information schema
             -   ``SELECT * from information_schema.tables;``
-            -   Fail. Tarantool's metadata is not in a schema with that
+            -   No. Tarantool's metadata is not in a schema with that
                 name (not counted in the final score).
 
 
@@ -660,7 +656,7 @@ F031, Basic schema manipulation
         *   -   F031-01
             -   CREATE TABLE statement to create persistent base tables
             -   ``CREATE TABLE t20 (t20_1 INT NOT NULL);``
-            -   Fail. We always have to specify PRIMARY KEY (we only count this flaw once).
+            -   No. We always have to specify PRIMARY KEY (we only count this flaw once).
         *   -   F031-02
             -   CREATE VIEW statement
             -   ``CREATE VIEW t21 AS SELECT * FROM t20;``
@@ -668,7 +664,7 @@ F031, Basic schema manipulation
         *   -   F031-03
             -   GRANT statement
             -
-            -   Fail. Tarantool doesn't support privileges except via NoSQL.
+            -   No. Tarantool doesn't support privileges except via NoSQL.
         *   -   F031-04
             -   ALTER TABLE statement: add column
             -   ``ALTER TABLE t7 ADD COLUMN t7_2 VARCHAR(1) DEFAULT 'q';``
@@ -677,15 +673,15 @@ F031, Basic schema manipulation
         *   -   F031-13
             -   DROP TABLE statement: RESTRICT clause
             -   ``DROP TABLE t20 RESTRICT;``
-            -   Fail. Tarantool supports :ref:`DROP TABLE <sql_drop_table>` but not this clause.
+            -   No. Tarantool supports :ref:`DROP TABLE <sql_drop_table>` but not this clause.
         *   -   F031-16
             -   DROP VIEW statement: RESTRICT clause
             -   ``DROP VIEW v2 RESTRICT;``
-            -   Fail. Tarantool supports :ref:`DROP VIEW <sql_drop_view>` but not this clause.
+            -   No. Tarantool supports :ref:`DROP VIEW <sql_drop_view>` but not this clause.
         *   -   F031-19
             -   REVOKE statement: RESTRICT clause
             -
-            -   Fail. Tarantool does not support privileges except via NoSQL.
+            -   No. Tarantool does not support privileges except via NoSQL.
 
 
 F041, Basic joined table
@@ -716,7 +712,7 @@ F041, Basic joined table
         *   -   F041-04
             -   RIGHT OUTER JOIN
             -   ``SELECT t7.*,t22.* FROM t22 RIGHT OUTER JOIN t7 ON (t22_1 = s1);``
-            -   Fail. Syntax error.
+            -   No. Syntax error.
         *   -   F041-05
             -   Outer joins can be nested
             -   ``SELECT t7.*,t22.* FROM t22 LEFT OUTER JOIN t7 ON (t22_1 = s1) LEFT OUTER JOIN t23;``
@@ -748,35 +744,35 @@ F051, Basic date and time
         *   -   F051-01
             -   DATE data type (including support of DATE literal)
             -   ``CREATE TABLE dates (s1 DATE);``
-            -   Fail. Tarantool does not support the DATE data type.
+            -   No. Tarantool does not support the DATE data type.
         *   -   F051-02
             -   TIME data type (including support of TIME literal)
             -   ``CREATE TABLE times (s1 TIME DEFAULT TIME '1:2:3');``
-            -   Fail. Syntax error.
+            -   No. Syntax error.
         *   -   F051-03
             -   TIMESTAMP data type (including support of TIMESTAMP literal)
             -   ``CREATE TABLE timestamps (s1 TIMESTAMP);``
-            -   Fail. Syntax error.
+            -   No. Syntax error.
         *   -   F051-04
             -   Comparison predicate on DATE, TIME and TIMESTAMP data types
             -   ``SELECT * FROM dates WHERE s1 = s1;``
-            -   Fail. Date and time data types are not supported.
+            -   No. Date and time data types are not supported.
         *   -   F051-05
             -   Explicit CAST between date-time types and character string types
             -   ``SELECT cast(s1 AS VARCHAR(10)) FROM dates;``
-            -   Fail. Date and time data types are not supported.
+            -   No. Date and time data types are not supported.
         *   -   F051-06
             -   CURRENT_DATE
             -   ``SELECT current_date FROM t;``
-            -   Fail. Syntax error.
+            -   No. Syntax error.
         *   -   F051-07
             -   LOCALTIME
             -   ``SELECT localtime FROM t;``
-            -   Fail. Syntax error.
+            -   No. Syntax error.
         *   -   F051-08
             -   LOCALTIMESTAMP
             -   ``SELECT localtimestamp FROM t;``
-            -   Fail. Syntax error.
+            -   No. Syntax error.
 
 
 F081, UNION and EXCEPT in views
@@ -836,7 +832,7 @@ F131, Grouped operations
 F181, Multiple module support
 -----------------------------
 
-Fail. Tarantool doesn't have modules.
+No. Tarantool doesn't have modules.
 
 
 F201, CAST function
@@ -874,7 +870,7 @@ F221, Explicit defaults
         *   -   F221
             -   Explicit defaults
             -   ``UPDATE t SET s1 = DEFAULT;``
-            -   Fail. Syntax error.
+            -   No. Syntax error.
 
 
 F261, CASE expression
@@ -922,19 +918,19 @@ F311, Schema definition statement
             -   Tests
         *   -   F311-01
             -   CREATE SCHEMA
-            -   Fail. Tarantool doesn't have schemas or databases.
+            -   No. Tarantool doesn't have schemas or databases.
         *   -   F311-02
             -   CREATE TABLE for persistent base tables
-            -   Fail. Tarantool doesn't have CREATE TABLE inside CREATE SCHEMA.
+            -   No. Tarantool doesn't have CREATE TABLE inside CREATE SCHEMA.
         *   -   F311-03
             -   CREATE VIEW
-            -   Fail. Tarantool doesn't have CREATE VIEW inside CREATE SCHEMA.
+            -   No. Tarantool doesn't have CREATE VIEW inside CREATE SCHEMA.
         *   -   F311-04
             -   CREATE VIEW: WITH CHECK OPTION
-            -   Fail. Tarantool doesn't have CREATE VIEW inside CREATE SCHEMA.
+            -   No. Tarantool doesn't have CREATE VIEW inside CREATE SCHEMA.
         *   -   F311-05
             -   GRANT statement
-            -   Fail. Tarantool doesn't have GRANT inside CREATE SCHEMA.
+            -   No. Tarantool doesn't have GRANT inside CREATE SCHEMA.
 
 
 F*, Other
@@ -957,11 +953,11 @@ F*, Other
         *   -   F481
             -   Expanded NULL predicate
             -   ``SELECT * FROM t WHERE row(s1,s1) IS NOT NULL;``
-            -   Fail. Syntax error.
+            -   No. Syntax error.
         *   -   F812
             -   Basic flagging
             -
-            -   Fail. Tarantool doesn't support any flagging.
+            -   No. Tarantool doesn't support any flagging.
 
 
 S011, Distinct types
@@ -980,7 +976,7 @@ S011, Distinct types
         *   -   S011
             -   Distinct types
             -   ``CREATE TYPE x AS FLOAT;``
-            -   Fail. Tarantool doesn't support distinct types.
+            -   No. Tarantool doesn't support distinct types.
 
 
 T321, Basic SQL-invoked routines
@@ -999,12 +995,12 @@ T321, Basic SQL-invoked routines
         *   -   T321-01
             -   User-defined functions with no overloading
             -   ``CREATE FUNCTION f() RETURNS INT RETURN 5;``
-            -   Fail. User-defined functions for SQL are created in
+            -   No. User-defined functions for SQL are created in
                 :ref:`Lua <sql_calling_lua>` with a different syntax.
         *   -   T321-02
             -   User-defined procedures with no overloading
             -   ``CREATE PROCEDURE p() BEGIN END;``
-            -   Fail. User-defined functions for SQL are created in
+            -   No. User-defined functions for SQL are created in
                 :ref:`Lua <sql_calling_lua>` with a different syntax.
         *   -   T321-03
             -   Function invocation
@@ -1013,11 +1009,11 @@ T321, Basic SQL-invoked routines
         *   -   T321-04
             -   CALL statement
             -   ``CALL p();``
-            -   Fail. Tarantool doesn't support CALL statements.
+            -   No. Tarantool doesn't support CALL statements.
         *   -   T321-05
             -   RETURN statement
             -   ``CREATE FUNCTION f() RETURNS INT RETURN 5;``
-            -   Fail. Tarantool doesn't support RETURN statements.
+            -   No. Tarantool doesn't support RETURN statements.
 
 
 T*, Other
@@ -1039,6 +1035,6 @@ T*, Other
             -   Okay.
 
 
-Total number of items marked "Fail": 67
+Total number of items marked "No": 67
 
 Total number of items marked "Okay": 79
