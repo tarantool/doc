@@ -6,9 +6,10 @@ SQL features
 This section compares Tarantool's features with SQL:2016's
 "Feature taxonomy and definition for mandatory features".
 
-For each feature in that list, there will be a simple example SQL statement.
-If Tarantool appears to handle the example, it will be marked "Okay",
-else it will be marked "No".
+For each feature in that list, there is a simple example SQL statement.
+If Tarantool appears to handle the example, it is marked "OK",
+otherwise it is marked "No".
+
 
 E011, Numeric data types
 ------------------------
@@ -26,7 +27,7 @@ E011, Numeric data types
         *   -   E011-01
             -   INTEGER and SMALLINT
             -   ``CREATE TABLE t (s1 INT PRIMARY KEY);``
-            -   :ref:`Okay <sql_create_table>`.
+            -   :ref:`OK <sql_create_table>`.
         *   -   E011-02
             -   REAL, DOUBLE PRECISION, and FLOAT data types
             -   ``CREATE TABLE tr (s1 FLOAT PRIMARY KEY);``
@@ -49,15 +50,15 @@ E011, Numeric data types
         *   -   E011-04
             -   Arithmetic operators
             -   ``SELECT 10+1, 9-2, 8*3, 7/2 FROM t;``
-            -   :ref:`Okay <sql_operator_arithmetic>`.
+            -   :ref:`OK <sql_operator_arithmetic>`.
         *   -   E011-05
             -   Numeric comparisons
             -   ``SELECT * FROM t WHERE 1 < 2;``
-            -   :ref:`Okay <sql_operator_comparison>`.
+            -   :ref:`OK <sql_operator_comparison>`.
         *   -   E011-06
             -   Implicit casting among the numeric data types
             -   ``SELECT * FROM t WHERE s1 = 1.00;``
-            -   Okay, because Tarantool allows comparison of 1.00 with an INTEGER column.
+            -   OK, because Tarantool allows comparison of 1.00 with an INTEGER column.
 
 
 E021, Character string types
@@ -85,12 +86,12 @@ E021, Character string types
         *   -   E021-03
             -   Character literals
             -   ``INSERT INTO t45 VALUES ('');``
-            -   Okay, and the bad practice of accepting ``""`` for
+            -   OK, and the bad practice of accepting ``""`` for
                 character literals is avoided.
         *   -   E021-04
             -   CHARACTER_LENGTH function
             -   ``SELECT character_length(s1) FROM t;``
-            -   Okay. Tarantool treats this as a synonym of
+            -   OK. Tarantool treats this as a synonym of
                 :ref:`LENGTH() <sql_function_length>`.
         *   -   E021-05
             -   OCTET_LENGTH
@@ -100,21 +101,21 @@ E021, Character string types
             -   SUBSTRING function
             -   ``SELECT substring(s1 FROM 1 FOR 1) FROM t;``
             -   No. There is no such function. There is a function
-                :ref:`SUBSTR(x,n,n) <sql_function_substr>`, which is okay.
+                :ref:`SUBSTR(x,n,n) <sql_function_substr>`, which is OK.
         *   -   E021-07
             -   Character concatenation
             -   ``SELECT 'a' || 'b' FROM t;``
-            -   :ref:`Okay <sql_operator_concatenate>`.
+            -   :ref:`OK <sql_operator_concatenate>`.
         *   -   E021-08
             -   UPPER and LOWER functions
             -   ``SELECT upper('a'),lower('B') FROM t;``
-            -   Okay. Tarantool supports both
+            -   OK. Tarantool supports both
                 :ref:`UPPER() <sql_function_upper>` and
                 :ref:`LOWER() <sql_function_lower>`.
         *   -   E021-09
             -   TRIM function
             -   ``SELECT trim('a ') FROM t;``
-            -   :ref:`Okay <sql_function_trim>`.
+            -   :ref:`OK <sql_function_trim>`.
         *   -   E021-10
             -   Implicit casting among the fixed-length and
                 variable-length character string types
@@ -128,7 +129,7 @@ E021, Character string types
         *   -   E021-12
             -   Character comparison
             -   ``SELECT * FROM t WHERE s1 > 'a';``
-            -   Okay. We should note here that comparisons use a binary
+            -   OK. We should note here that comparisons use a binary
                 collation by default, but it is easy to use a
                 :ref:`COLLATE clause <sql_collate_clause>`.
 
@@ -155,18 +156,18 @@ E031, Identifiers
         *   -   E031-01
             -   Delimited identifiers
             -   ``CREATE TABLE "t47" (s1 INT PRIMARY KEY);``
-            -   :ref:`Okay <sql_identifiers>`.
+            -   :ref:`OK <sql_identifiers>`.
                 Also, enclosing identifiers inside double quotes
                 means they won't be converted to upper case or lower
                 case, this is the behavior that some other DBMSs lack.
         *   -   E031-02
             -   Lower case identifiers
             -   ``CREATE TABLE t48 (s1 INT PRIMARY KEY);``
-            -   Okay.
+            -   OK.
         *   -   E031-03
             -   Trailing underscore
             -   ``CREATE TABLE t49_ (s1 INT PRIMARY KEY);``
-            -   Okay.
+            -   OK.
 
 
 E051, Basic query specification
@@ -185,32 +186,32 @@ E051, Basic query specification
         *   -   E051-01
             -   SELECT DISTINCT
             -   ``SELECT DISTINCT s1 FROM t;``
-            -   Okay.
+            -   OK.
         *   -   E051-02
             -   GROUP BY clause
             -   ``SELECT DISTINCT s1 FROM t GROUP BY s1;``
-            -   :ref:`Okay <sql_group_by>`.
+            -   :ref:`OK <sql_group_by>`.
         *   -   E051-04
             -   GROUP BY can contain columns not in select list
             -   ``SELECT s1 FROM t GROUP BY lower(s1);``
-            -   Okay.
+            -   OK.
         *   -   E051-05
             -   Select list items can be renamed
             -   ``SELECT s1 AS K FROM t ORDER BY K;``
-            -   Okay.
+            -   OK.
         *   -   E051-06
             -   HAVING clause
             -   ``SELECT count(*) FROM t HAVING count(*) > 0;``
-            -   Okay. Tarantool supports :ref:`HAVING <sql_having>`, and GROUP BY is not
+            -   OK. Tarantool supports :ref:`HAVING <sql_having>`, and GROUP BY is not
                 mandatory before HAVING.
         *   -   E051-07
             -   Qualified * in SELECT list
             -   ``SELECT t.* FROM t;``
-            -   Okay.
+            -   OK.
         *   -   E051-08
             -   Correlation names in the FROM clause
             -   ``SELECT * FROM t AS K;``
-            -   Okay.
+            -   OK.
         *   -   E051-09
             -   Rename columns in the FROM clause
             -   ``SELECT * FROM t AS x(q,c);``
@@ -233,27 +234,27 @@ E061, Basic predicates and search conditions
         *   -   E061-01
             -   Comparison predicate
             -   ``SELECT * FROM t WHERE 0 = 0;``
-            -   Okay.
+            -   OK.
         *   -   E061-02
             -   BETWEEN predicate
             -   ``SELECT * FROM t WHERE ' ' BETWEEN '' AND ' ';``
-            -   :ref:`Okay <sql_operator_between>`.
+            -   :ref:`OK <sql_operator_between>`.
         *   -   E061-03
             -   IN predicate with list of values
             -   ``SELECT * FROM t WHERE s1 IN ('a', upper('a'));``
-            -   Okay.
+            -   OK.
         *   -   E061-04
             -   LIKE predicate
             -   ``SELECT * FROM t WHERE s1 LIKE '_';``
-            -   :ref:`Okay <sql_operator_like>`.
+            -   :ref:`OK <sql_operator_like>`.
         *   -   E061-05
             -   LIKE predicate: ESCAPE clause
             -   ``VALUES ('abc_' LIKE 'abcX_' ESCAPE 'X');``
-            -   Okay.
+            -   OK.
         *   -   E061-06
             -   NULL predicate
             -   ``SELECT * FROM t WHERE s1 IS NOT NULL;``
-            -   :ref:`Okay <sql_is_null>`.
+            -   :ref:`OK <sql_is_null>`.
         *   -   E061-07
             -   Quantified comparison predicate
             -   ``SELECT * FROM t WHERE s1 = ANY (SELECT s1 FROM t);``
@@ -261,15 +262,15 @@ E061, Basic predicates and search conditions
         *   -   E061-08
             -   EXISTS predicate
             -   ``SELECT * FROM t WHERE NOT EXISTS (SELECT * FROM t);``
-            -   :ref:`Okay <sql_subquery>`.
+            -   :ref:`OK <sql_subquery>`.
         *   -   E061-09
             -   Subqueries in comparison predicate
             -   ``SELECT * FROM t WHERE s1 > (SELECT s1 FROM t);``
-            -   :ref:`Okay <sql_subquery>`.
+            -   :ref:`OK <sql_subquery>`.
         *   -   E061-11
             -   Subqueries in IN predicate
             -   ``SELECT * FROM t WHERE s1 IN (SELECT s1 FROM t);``
-            -   Okay.
+            -   OK.
         *   -   E061-12
             -   Subqueries in quantified comparison predicate
             -   ``SELECT * FROM t WHERE s1 >= ALL (SELECT s1 FROM t);``
@@ -277,11 +278,11 @@ E061, Basic predicates and search conditions
         *   -   E061-13
             -   Correlated subqueries
             -   ``SELECT * FROM t WHERE s1 = (SELECT s1 FROM t2 WHERE t2.s2 = t.s1);``
-            -   Okay.
+            -   OK.
         *   -   E061-14
             -   Search condition
             -   ``SELECT * FROM t WHERE 0 <> 0 OR 'a' < 'b' AND s1 IS NULL;``
-            -   Okay.
+            -   OK.
 
 
 E071, Basic query expressions
@@ -301,25 +302,25 @@ E071, Basic query expressions
             -   UNION DISTINCT table operator
             -   ``SELECT * FROM t UNION DISTINCT SELECT * FROM t;``
             -   No. However,
-                ``SELECT * FROM t UNION SELECT * FROM t;`` is okay.
+                ``SELECT * FROM t UNION SELECT * FROM t;`` is OK.
         *   -   E071-02
             -   UNION ALL table operator
             -   ``SELECT * FROM t UNION ALL SELECT * FROM t;``
-            -   :ref:`Okay <sql_union>`.
+            -   :ref:`OK <sql_union>`.
         *   -   E071-03
             -   EXCEPT DISTINCT table operator
             -   ``SELECT * FROM t EXCEPT DISTINCT SELECT * FROM t;``
             -   No. However,
-                ``SELECT * FROM t EXCEPT SELECT * FROM t;`` is okay.
+                ``SELECT * FROM t EXCEPT SELECT * FROM t;`` is OK.
         *   -   E071-05
             -   Columns combined via table operators need not
                 have exactly the same data type
             -   ``SELECT s1 FROM t UNION SELECT 5 FROM t;``
-            -   Okay.
+            -   OK.
         *   -   E071-06
             -   Table operators in subqueries
             -   ``SELECT * FROM t WHERE 'a' IN (SELECT * FROM t UNION SELECT * FROM t);``
-            -   Okay.
+            -   OK.
 
 
 E081, Basic privileges
@@ -350,27 +351,27 @@ E091, Set functions
         *   -   E091-02
             -   COUNT
             -   ``SELECT count(*) FROM t7 WHERE s1 > 0;``
-            -   :ref:`Okay <sql_aggregate_count_row>`.
+            -   :ref:`OK <sql_aggregate_count_row>`.
         *   -   E091-03
             -   MAX
             -   ``SELECT max(s1) FROM t7 WHERE s1 > 0;``
-            -   :ref:`Okay <sql_aggregate_max>`.
+            -   :ref:`OK <sql_aggregate_max>`.
         *   -   E091-04
             -   MIN
             -   ``SELECT min(s1) FROM t7 WHERE s1 > 0;``
-            -   :ref:`Okay <sql_aggregate_min>`.
+            -   :ref:`OK <sql_aggregate_min>`.
         *   -   E091-05
             -   SUM
             -   ``SELECT sum(1) FROM t7 WHERE s1 > 0;``
-            -   :ref:`Okay <sql_aggregate_sum>`.
+            -   :ref:`OK <sql_aggregate_sum>`.
         *   -   E091-06
             -   ALL quantifier
             -   ``SELECT sum(ALL s1) FROM t7 WHERE s1 > 0;``
-            -   Okay.
+            -   OK.
         *   -   E091-07
             -   DISTINCT quantifier
             -   ``SELECT sum(DISTINCT s1) FROM t7 WHERE s1 > 0;``
-            -   Okay.
+            -   OK.
 
 
 E101, Basic data manipulation
@@ -389,15 +390,15 @@ E101, Basic data manipulation
         *   -   E101-01
             -   INSERT statement
             -   ``INSERT INTO t (s1,s2) VALUES (1,''), (2,NULL), (3,55);``
-            -   :ref:`Okay <sql_insert>`.
+            -   :ref:`OK <sql_insert>`.
         *   -   E101-03
             -   Searched UPDATE statement
             -   ``UPDATE t SET s1 = NULL WHERE s1 IN (SELECT s1 FROM t2);``
-            -   :ref:`Okay <sql_update>`.
+            -   :ref:`OK <sql_update>`.
         *   -   E101-04
             -   Searched DELETE statement
             -   ``DELETE FROM t WHERE s1 IN (SELECT s1 FROM t);``
-            -   :ref:`Okay <sql_delete>`.
+            -   :ref:`OK <sql_delete>`.
 
 
 E111, Single row SELECT statement
@@ -416,7 +417,7 @@ E111, Single row SELECT statement
         *   -   E111
             -   Single row SELECT statement
             -   ``SELECT count(*) FROM t;``
-            -   :ref:`Okay <sql_SELECT>`.
+            -   :ref:`OK <sql_SELECT>`.
 
 
 E121, Basic cursor support
@@ -439,11 +440,11 @@ E121, Basic cursor support
         *   -   E121-02
             -   ORDER BY columns need not be in select list
             -   ``SELECT s1 FROM t ORDER BY s2;``
-            -   :ref:`Okay <sql_order_by>`.
+            -   :ref:`OK <sql_order_by>`.
         *   -   E121-03
             -   Value expressions in ORDER BY clause
             -   ``SELECT s1 FROM t7 ORDER BY -s1;``
-            -   Okay.
+            -   OK.
         *   -   E121-04
             -   OPEN statement
             -
@@ -486,7 +487,7 @@ E131, Null value support
         *   -   E131
             -   Null value support (nulls in lieu of values)
             -   ``SELECT s1 FROM t7 WHERE s1 IS NULL;``
-            -   Okay.
+            -   OK.
 
 
 E141, Basic integrity constraints
@@ -505,39 +506,39 @@ E141, Basic integrity constraints
         *   -   E141-01
             -   NOT NULL constraints
             -   ``CREATE TABLE t8 (s1 INT PRIMARY KEY, s2 INT NOT NULL);``
-            -   :ref:`Okay <sql_table_constraint_def>`.
+            -   :ref:`OK <sql_table_constraint_def>`.
         *   -   E141-02
             -   UNIQUE constraints of NOT NULL columns
             -   ``CREATE TABLE t9 (s1 INT PRIMARY KEY , s2 INT NOT NULL UNIQUE);``
-            -   :ref:`Okay <sql_table_constraint_def>`.
+            -   :ref:`OK <sql_table_constraint_def>`.
         *   -   E141-03
             -   PRIMARY KEY constraints
             -   ``CREATE TABLE t10 (s1 INT PRIMARY KEY);``
-            -   Okay, although Tarantool shouldn't always insist on
+            -   OK, although Tarantool shouldn't always insist on
                 having a primary key.
         *   -   E141-04
             -   Basic FOREIGN KEY constraint with the NO ACTION default
                 for both referential delete and referential update actions
             -   ``CREATE TABLE t11 (s0 INT PRIMARY KEY, s1 INT REFERENCES t10);``
-            -   :ref:`Okay <sql_foreign_key>`.
+            -   :ref:`OK <sql_foreign_key>`.
         *   -   E141-06
             -   CHECK constraints
             -   ``CREATE TABLE t12 (s1 INT PRIMARY KEY, s2 INT, CHECK (s1 = s2));``
-            -   Okay.
+            -   OK.
         *   -   E141-07
             -   Column defaults
             -   ``CREATE TABLE t13 (s1 INT PRIMARY KEY, s2 INT DEFAULT -1);``
-            -   Okay.
+            -   OK.
         *   -   E141-08
             -   NOT NULL inferred on primary key
             -   ``CREATE TABLE t14 (s1 INT PRIMARY KEY);``
-            -   Okay. We are unable to insert NULL although we don't
+            -   OK. We are unable to insert NULL although we don't
                 explicitly say the column is NOT NULL.
         *   -   E141-10
             -   Names in a foreign key can be specified in any order
             -   ``CREATE TABLE t15 (s1 INT, s2 INT, PRIMARY KEY (s1,s2));``
                 ``CREATE TABLE t16 (s1 INT PRIMARY KEY, s2 INT, FOREIGN KEY (s2,s1) REFERENCES t15 (s1,s2));``
-            -   Okay.
+            -   OK.
 
 
 E151, Transaction support
@@ -562,7 +563,7 @@ E151, Transaction support
         *   -   E151-02
             -   ROLLBACK statement
             -   ``ROLLBACK;``
-            -   :ref:`Okay <sql_rollback>`.
+            -   :ref:`OK <sql_rollback>`.
 
 
 E152, Basic SET TRANSACTION statement
@@ -608,7 +609,7 @@ E*, Other
         *   -   E161
             -   SQL comments using leading double minus
             -   ``--comment;``
-            -   :ref:`Okay <sql_tokens>`.
+            -   :ref:`OK <sql_tokens>`.
         *   -   E171
             -   SQLSTATE support
             -   ``DROP TABLE no_such_table;``
@@ -616,7 +617,7 @@ E*, Other
         *   -   E182
             -   Host language binding
             -
-            -   Okay. Any of the Tarantool connectors should be able
+            -   OK. Any of the Tarantool connectors should be able
                 to call :ref:`box.execute() <box-sql>`.
 
 
@@ -660,7 +661,7 @@ F031, Basic schema manipulation
         *   -   F031-02
             -   CREATE VIEW statement
             -   ``CREATE VIEW t21 AS SELECT * FROM t20;``
-            -   :ref:`Okay <sql_create_view>`.
+            -   :ref:`OK <sql_create_view>`.
         *   -   F031-03
             -   GRANT statement
             -
@@ -668,7 +669,7 @@ F031, Basic schema manipulation
         *   -   F031-04
             -   ALTER TABLE statement: add column
             -   ``ALTER TABLE t7 ADD COLUMN t7_2 VARCHAR(1) DEFAULT 'q';``
-            -   Okay. Tarantool supports :ref:`ALTER TABLE <sql_alter_table>`,
+            -   OK. Tarantool supports :ref:`ALTER TABLE <sql_alter_table>`,
                 and support for ADD COLUMN was added in Tarantool 2.7.
         *   -   F031-13
             -   DROP TABLE statement: RESTRICT clause
@@ -700,15 +701,15 @@ F041, Basic joined table
         *   -   F041-01
             -   Inner join but not necessarily the INNER keyword
             -   ``SELECT a.s1 FROM t7 a JOIN t7 b;``
-            -   :ref:`Okay <sql_from>`.
+            -   :ref:`OK <sql_from>`.
         *   -   F041-02
             -   INNER keyword
             -   ``SELECT a.s1 FROM t7 a INNER JOIN t7 b;``
-            -   Okay.
+            -   OK.
         *   -   F041-03
             -   LEFT OUTER JOIN
             -   ``SELECT t7.*,t22.* FROM t22 LEFT OUTER JOIN t7 ON (t22_1 = s1);``
-            -    Okay.
+            -    OK.
         *   -   F041-04
             -   RIGHT OUTER JOIN
             -   ``SELECT t7.*,t22.* FROM t22 RIGHT OUTER JOIN t7 ON (t22_1 = s1);``
@@ -716,15 +717,15 @@ F041, Basic joined table
         *   -   F041-05
             -   Outer joins can be nested
             -   ``SELECT t7.*,t22.* FROM t22 LEFT OUTER JOIN t7 ON (t22_1 = s1) LEFT OUTER JOIN t23;``
-            -   Okay.
+            -   OK.
         *   -   F041-07
             -   The inner table in a left or right outer join can also be used in an inner join
             -   ``SELECT t7.* FROM (t22 LEFT OUTER JOIN t7 ON (t22_1 = s1)) j INNER JOIN t22 ON (j.t22_4 = t7.s1);``
-            -   Okay.
+            -   OK.
         *   -   F041-08
             -   All comparison operators are supported
             -   ``SELECT * FROM t WHERE 0 = 1 OR 0 > 1 OR 0 < 1 OR 0 <> 1;``
-            -   :ref:`Okay <sql_operator_comparison>`.
+            -   :ref:`OK <sql_operator_comparison>`.
 
 ..  _sql-compare-datetime:
 
@@ -791,7 +792,7 @@ F081, UNION and EXCEPT in views
         *   -   F081
             -   UNION and EXCEPT in views
             -   ``CREATE VIEW vv AS SELECT * FROM t7 EXCEPT SELECT * * FROM t15;``
-            -   Okay.
+            -   OK.
 
 
 F131, Grouped operations
@@ -810,23 +811,23 @@ F131, Grouped operations
         *   -   F131-01
             -   WHERE, GROUP BY, and HAVING clauses supported in queries with grouped views
             -   ``CREATE VIEW vv2 AS SELECT * FROM vv GROUP BY s1;``
-            -   Okay.
+            -   OK.
         *   -   F131-02
             -   Multiple tables supported in queries with grouped views
             -   ``CREATE VIEW vv3 AS SELECT * FROM vv2,t30;``
-            -   Okay.
+            -   OK.
         *   -   F131-03
             -   Set functions supported in queries with grouped views
             -   ``CREATE VIEW vv4 AS SELECT count(*) FROM vv2;``
-            -   Okay.
+            -   OK.
         *   -   F131-04
             -   Subqueries with GROUP BY and HAVING clauses and grouped views
             -   ``CREATE VIEW vv5 AS SELECT count(*) FROM vv2 GROUP BY s1 HAVING count(*) > 0;``
-            -   Okay.
+            -   OK.
         *   -   F131-05
             -   Single row SELECT with GROUP BY and HAVING clauses and grouped views
             -   ``SELECT count(*) FROM vv2 GROUP BY s1 HAVING count(*) > 0;``
-            -   Okay.
+            -   OK.
 
 
 F181, Multiple module support
@@ -851,7 +852,7 @@ F201, CAST function
         *   -   F201
             -   CAST function
             -   ``SELECT cast(s1 AS INT) FROM t;``
-            -   :ref:`Okay <sql_function_cast>`.
+            -   :ref:`OK <sql_function_cast>`.
 
 
 F221, Explicit defaults
@@ -889,19 +890,19 @@ F261, CASE expression
         *   -   F261-01
             -   Simple CASE
             -   ``SELECT CASE WHEN 1 = 0 THEN 5 ELSE 7 END FROM t;``
-            -   Okay.
+            -   OK.
         *   -   F261-02
             -   Searched CASE
             -   ``SELECT CASE 1 WHEN 0 THEN 5 ELSE 7 END FROM t;``
-            -   Okay.
+            -   OK.
         *   -   F261-03
             -   NULLIF
             -   ``SELECT nullif(s1,7) FROM t;``
-            -   :ref:`Okay <sql_function_nullif>`
+            -   :ref:`OK <sql_function_nullif>`
         *   -   F261-04
             -   COALESCE
             -   ``SELECT coalesce(s1,7) FROM t;``
-            -   :ref:`Okay <sql_function_coalesce>`.
+            -   :ref:`OK <sql_function_coalesce>`.
 
 
 F311, Schema definition statement
@@ -949,7 +950,7 @@ F*, Other
         *   -   F471
             -   Scalar subquery values
             -   ``SELECT s1 FROM t WHERE s1 = (SELECT count(*) FROM t);``
-            -   Okay.
+            -   OK.
         *   -   F481
             -   Expanded NULL predicate
             -   ``SELECT * FROM t WHERE row(s1,s1) IS NOT NULL;``
@@ -1005,7 +1006,7 @@ T321, Basic SQL-invoked routines
         *   -   T321-03
             -   Function invocation
             -   ``SELECT f(1) FROM t;``
-            -   Okay. Tarantool can invoke Lua user-defined functions.
+            -   OK. Tarantool can invoke Lua user-defined functions.
         *   -   T321-04
             -   CALL statement
             -   ``CALL p();``
@@ -1032,9 +1033,9 @@ T*, Other
         *   -   T631
             -   IN predicate with one list element
             -   ``SELECT * FROM t WHERE 1 IN (1);``
-            -   Okay.
+            -   OK.
 
 
 Total number of items marked "No": 67
 
-Total number of items marked "Okay": 79
+Total number of items marked "OK": 79
