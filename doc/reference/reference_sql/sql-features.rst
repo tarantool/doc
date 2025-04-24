@@ -6,10 +6,9 @@ SQL features
 This section compares Tarantool's features with SQL:2016's
 "Feature taxonomy and definition for mandatory features".
 
-For each feature in that list, there will be a simple example SQL
-statement.
-If Tarantool appears to handle the example, it will be marked "Okay",
-else it will be marked "No".
+For each feature in that list, there is a simple example SQL statement.
+If Tarantool appears to handle the example, it is marked "OK",
+otherwise it is marked "No".
 
 
 E011, Numeric data types
