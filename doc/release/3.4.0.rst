@@ -1,0 +1,247 @@
+Tarantool 3.4
+=============
+
+Release date: April 14, 2024
+
+Releases on GitHub: :tarantool-release:`3.4.0`
+
+The 3.4 release of Tarantool adds the following main product features and improvements
+for the Community and Enterprise editions:
+
+*   **Community Edition (CE)**
+
+    *   Memtx-vinyl cross-engine transactions.
+    *   New ``index:quantile()`` function for finding a quantile key in an indexed data range.
+    *   Functional indexes in the MVCC transaction manager.
+    *   Vinyl now supports ``np`` (next prefix) and ``pp`` (previous prefix) iterators.
+    *   Fixed incorrect number comparisons and duplicates in unique indexes.
+    *   Runtime priviledges for ``lua_call`` are now granted before ``box.cfg()``.
+    *   The ``stop`` callbacks for the roles are now called during graceful shutdown,
+        in the reverse order of roles startup.
+    *   New ``has_role``, ``is_router``, and ``is_storage`` methods in the
+        ``config`` module to check if a role is enabled on an instance.
+    *   LuaJIT profilers are now more user-friendly.
+    *   Built-in logger now encodes table arguments in the JSON format.
+    *   Multiple bugfixes for MVCC, vinyl, WAL, and snapshotting.
+    *   Fixed memory overgrowing for cdata-intensive workloads.
+
+*   **Enterprise Edition (EE)**
+
+    *   New in-memory columnar storage engine: ``memcs``.
+    *   New bootstrap strategy in failover: ``native``.
+    *   New public API for accessing remote ``config.storage`` clusters as key-value storages.
+    *   Two-phase appointment process to avoid incorrect behavior of the failover coordinator.
+
+.. _3-4-memcs:
+
+[EE] New in-memory columnar storage engine: ``memcs``
+-----------------------------------------------------
+
+The engine stores data in the memtx arena but in contrast to memtx it doesn't
+organize data in tuples. Instead, it stores data in columns. Each format field
+is assigned its own BPS tree-like structure (BPS vector), which stores values
+only of that field. If the field type fits in 8 bytes, raw field values are
+stored directly in tree leaves without any encoding. For values larger than 8
+bytes, like decimal, uuid or strings, the leaves store pointers to
+MsgPack-encoded data.
+
+The main benefit of such data organization is a significant performance boost
+of columnar data sequential scans compared to memtx thanks to CPU cache
+locality. That's why memcs supports a special C api for such columnar scans:
+see `box_index_arrow_stream()` and `box_raw_read_view_arrow_stream()`.
+Peak performance is achieved when scanning embedded field types.
+
+Querying full tuples, like in memtx, is also supported, but the performance is
+worse compared to memtx, because a tuple has to be constructed on the runtime
+arena from individual field values gathered from each column tree.
+
+Other features include:
+* Point lookup.
+* Stable iterators.
+* Insert/replace/delete/update.
+* Batch insertion in the Arrow format.
+* Transactions, including cross-engine transactions with memtx
+  (with ``memtx_use_mvcc_engine = false``).
+* Read view support.
+* Secondary indexes with an ability to specify covered columns and sequentially scan
+  indexed + covered columns.
+
+Embedded field types include only fixed-width types:
+* Integer: (u)int8/16/32/64.
+* Floating point: float32/64.
+
+Types with external storage include:
+* Strings.
+* All the other types supported by Tarantool: UUID, Decimal, Datetime, etc.
+
+By default, NULL values are stored explicitly and use up the same space as
+any other valid column value (1, 2, 4 or 8 bytes depending on an exact field
+type), however RLE encoding of NULLs is also supported. For reference,
+RLE-encoding of a column with 90% evenly distributed NULL values reduces
+memory consumption of that column by around 5 times.
+
+.. _3-4-cross-engine:
+
+[CE] Memtx-vinyl cross-engine transactions
+-----------------------------------------------
+
+Tarantool now supports mixing statements for memtx and vinyl in the same transaction,
+for example:
+
+.. code-block:: lua
+
+    local memtx = box.schema.space.create('memtx', {engine = 'memtx'})
+    memtx:create_index('primary')
+    local vinyl = box.schema.space.create('vinyl', {engine = 'vinyl'})
+    vinyl:create_index('primary')
+
+    memtx:insert({1, 'a'})
+    vinyl:insert({2, 'b'})
+
+    box.begin()
+    memtx:replace(vinyl:get(2))
+    vinyl:replace(memtx:get(1))
+    box.commit()
+
+.. note::
+
+   * Accessing a vinyl space may trigger a fiber yield (to read a file from the disk),
+     so MVCC must be enabled in memtx to make use of the new feature:
+
+     .. code-block:: lua
+
+         box.cfg{memtx_use_mvcc_engine = true}
+
+   * Vinyl operations may yield implicitly, so a transaction may be aborted
+     with TRANSACTION_CONFLICT in case of concurrent transactions.
+
+.. _3-4-native:
+
+[EE] New boostrap strategy in failover: ``native``
+--------------------------------------------------
+
+Now supervised failover coordinator supports three bootstrap strategies:
+native, supervised, auto.
+
+The new ``native`` strategy relaxes the limitations of the ``auto`` strategy,
+but has different under-the-hood implementation (based on the ``supervised`` strategy).
+Otherwise, it acts similar to the ``auto`` strategy.
+
+In effect, it helps resolve these two problems:
+* Avoid the error ``Some replica set members were not specified in box.cfg.replication``
+  in the following cases:
+  * several replicas join at the same time,
+  * the replica set includes non-anonymous CDC instances,
+  * ``_cluster`` contains old unneeded replicas.
+* Make the database get bootstrapped upon the coordinator's command rather than
+  let the instances boostrap it on their own.
+
+This strategy is the recommended choice for highly dynamic clusters with automatic
+scaling, as well as in most other cases.
+
+To enable the ``native`` bootstrap strategy, set it in the ``replication`` section
+of the cluster's configuration, together with a proper failover strategy
+(for ``native``, you can choose any failover strategy you like, for example ``supervised``):
+
+.. code-block:: yaml
+
+    replication:
+      failover: supervised
+      bootstrap_strategy: native
+
+.. _3-4-runtime-priv:
+
+[CE] Runtime priviledges for ``lua_call`` granted before ``box.cfg()``
+----------------------------------------------------------------------
+
+It is now possible to grant execution privileges for Lua functions
+through the declarative configuration, even when the database is in
+read-only mode or has an outdated schema version. You might also
+permit ``guest`` to execute Lua functions before the initial bootstrap.
+
+You can specify function permissions using the ``lua_call`` option in
+the configuration, for example:
+
+.. code-block:: lua
+
+    credentials:
+      users:
+        alice:
+          privileges:
+            - permissions: [execute]
+              lua_call: [my_func]
+
+This grants the ``alice`` user permission to execute the ``my_func`` Lua
+function, regardless of the database's mode or status. The special option
+``lua_call: [all]`` is also supported, granting access to all global Lua
+functions except built-in ones, bypassing database restrictions.
+
+Privileges will still be written to the database when possible to
+maintain compatibility and consistency with other privilege types.
+
+[CE] New methods in the ``config`` module to check instance roles
+-----------------------------------------------------------------
+
+Three new methods are now available in the ``config`` module:
+
+* ``config:has_role('myrole')`` tells whether the current instance has the role ``myrole``, and
+  ``config:has_role('myrole', {instance = 'i-001'})`` does the same for the specified instance (``i-001``).
+
+* ``config:is_router()`` tells whether the current instance is a vshard router, and
+  ``config:is_router({instance = 'i-002'})`` does the same for the specified instance (``i-002``).
+
+* ``config:is_storage()`` tells whether the current instance is a vshard storage, and
+  ``config:is_storage({instance = 'i-003'})`` does the same for the specified instance (``i-003``).
+
+.. _3-4-storage-client-api:
+
+[EE] New public API: ``config.storage_client``
+----------------------------------------------
+
+Remote ``config.storage`` clusters can now be accessed by using the
+``config.storage_client.connect(endpoints[, {options}])`` method.
+The returned object represents a connection to a remote key-value
+storage accessed through the ``:get()``, ``:put()``, ``:info()``, ``:txn()``
+methods with the same signature as in the server
+:ref:`config.storage <config_module_api_reference>` API.
+
+The ``config.storage_client`` API has also several specific methods:
+``:is_connected()``, ``:watch()``, ``:reconnect()``, ``:close()``.
+
+Here are some usage examples:
+
+.. code-block:: lua
+
+    -- Connect to a config.storage cluster using the endpoints
+    -- configured in the `config.storage` section.
+    --
+    -- You can provide endpoints as a Lua table:
+    --
+    -- local endpoints = {
+    --     {
+    --         uri = '127.0.0.1:4401',
+    --         login = 'sampleuser',
+    --         password = '123456',
+    --     }
+    -- }
+
+    local endpoints = config:get('config.storage.endpoints')
+    local client = config.storage_client.connect(endpoints)
+
+    -- Put a value to the connected client.
+    client:put('/v', 'a')
+
+    -- Get all stored values.
+    local values = client:get('/')
+
+    -- Clean the storage.
+    local response = client:delete('/')
+
+    -- Watch for key changes.
+    local log = require('log')
+    local w = client:watch('/config/main', function()
+        log.info('config has been updated')
+    end)
+
+    -- Unregister a watcher.
+    w:unregister()
