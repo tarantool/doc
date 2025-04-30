@@ -10,7 +10,7 @@ for the Community and Enterprise editions:
 
 *   **Community Edition (CE)**
 
-    *   Memtx <--> vinyl cross-engine transactions.
+    *   Memtx-vinyl cross-engine transactions.
     *   New ``index:quantile()`` function for finding a quantile key in an indexed data range.
     *   Functional indexes in the MVCC transaction manager.
     *   Vinyl now supports ``np`` (next prefix) and ``pp`` (previous prefix) iterators.
@@ -82,7 +82,7 @@ memory consumption of that column by around 5 times.
 
 .. _3-4-cross-engine:
 
-[CE] Memtx <--> vinyl cross-engine transactions
+[CE] Memtx-vinyl cross-engine transactions
 -----------------------------------------------
 
 Tarantool now supports mixing statements for memtx and vinyl in the same transaction,
