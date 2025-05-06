@@ -220,7 +220,7 @@
     :param const char* key_end: the end of encoded ``key``
 
     :return: -1 on error (check :ref:`box_error_last() <c_api-error-box_error_last>`)
-    :return: 0 on success
+    :return: >=0 otherwise
 
     See also: :ref:`index_object.count()<box_index-count>`
 
