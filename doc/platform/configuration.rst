@@ -77,7 +77,7 @@ Basic instance configuration
 
 The example below shows a sample configuration of a single Tarantool instance:
 
-..  literalinclude:: /code_snippets/snippets/config/instances.enabled/instance_scope/config.yaml
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/instance_scope/config_annotated.yaml
     :language: yaml
     :dedent:
 
@@ -86,6 +86,15 @@ The example below shows a sample configuration of a single Tarantool instance:
 -   The ``replicasets`` section contains one replica set named *replicaset001*.
 -   The ``groups`` section contains one group named *group001*.
 
+.. note:
+
+   The initial line in this sample contains a link to an annotated Tarantool configuration
+   schema for a YAML language server (e.g. for `LSP-Yaml`).
+   With this link you can set up your code editor (VScode, Neovim, Sublime, etc.) to get
+   full-text annotations and completion prompts when you work with Tarantool configuration.
+
+..  image:: images/yaml-annotated.png
+    :align: center
 
 .. _configuration_scopes:
 
