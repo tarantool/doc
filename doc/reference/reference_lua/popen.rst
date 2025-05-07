@@ -746,6 +746,8 @@ Below is a list of all ``popen`` functions and handle methods.
                           :ref:`popen.new() <popen-new>` or
                           :ref:`popen.shell() <popen-shell>`
         :param number timeout: since version 3.2.0. The parameter defines the period in seconds for the method to wait for a resolution.
+        :return: (if success) formatted result
+        :rtype: res
 
         Possible raised errors:
 
