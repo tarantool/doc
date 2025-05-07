@@ -613,7 +613,6 @@ Below is a list of all ``popen`` functions and handle methods.
         :param handle ph: handle of a child process created with
                           :ref:`popen.new() <popen-new>` or
                           :ref:`popen.shell() <popen-shell>`
-        :param number signo: signal to send
         :return: (if success) formatted result
         :rtype: res
 
@@ -746,7 +745,6 @@ Below is a list of all ``popen`` functions and handle methods.
         :param handle ph: handle of a child process created with
                           :ref:`popen.new() <popen-new>` or
                           :ref:`popen.shell() <popen-shell>`
-        :param number signo: signal to send
         :return: (if success) formatted result
         :rtype: res
 
