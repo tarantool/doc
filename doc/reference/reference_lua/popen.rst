@@ -746,39 +746,34 @@ Below is a list of all ``popen`` functions and handle methods.
         :param handle ph: handle of a child process created with
                           :ref:`popen.new() <popen-new>` or
                           :ref:`popen.shell() <popen-shell>`
+        :param number timeout: since version 3.2.0. The parameter defines the period in seconds for the method to wait for a resolution.
         :param number signo: signal to send
         :return: (if success) formatted result
         :rtype: res
 
-        Possible raised errors are:
+        Possible raised errors:
 
-        * IllegalParams: an incorrect handle parameter
-        * IllegalParams: called on a closed handle
-        * FiberIsCancelled: cancelled by an outside code
+        * ``IllegalParams``: an incorrect handle parameter
+        * ``IllegalParams``: called on a closed handle
+        * ``FiberIsCancelled``: cancelled by an outside code
+        * ``TimedOut``: since version 3.2.0. The error means that the method has not reached the positive result but has reached the defined **timeout**.
+        * ``ChannelIsClosed``: since version 3.2.0. The error is returned when the target popen handle is closed from another fiber.
 
         The formatted result is a process status table (the same as the
         ``status`` component of the table returned by
         :ref:`popen_handle:info() <popen-info>`).
 
-        Since version 3.2.0 the *popen_handle:*wait() method has one more parameter and may raise two more errors:
-        * :param **timeout**, in seconds. The parameter defines the period for the mwthod to wait for a resolution.
-        * error TimedOut. The error means that the method has not reached the positive result but has reached defined **timeout**.
-        * error ChannelIsClosed. The error is returned when the target popen handle is closed from another fiber.
-
         **Timeout parameter example**
-
-        (on Tarantool console)
 
         ..  code-block:: lua
           
-          local ph = popen.new(<...>)
-          local res, err = ph:wait({timeout = 1})
-
-          if res == nil then
-              -- Timeout is reached.
-              assert(err.type == 'TimedOut')
-              <...>
-          end
+            local ph = popen.new(<...>)
+            local res, err = ph:wait({timeout = 1})
+            if res == nil then
+            -- Timeout is reached.
+            assert(err.type == 'TimedOut')
+            <...>
+            end
 
     ..  _popen-close:
 
