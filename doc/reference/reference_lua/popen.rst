@@ -760,6 +760,26 @@ Below is a list of all ``popen`` functions and handle methods.
         ``status`` component of the table returned by
         :ref:`popen_handle:info() <popen-info>`).
 
+        Since version 3.2.0 the *popen_handle:*wait() method has one more parameter and may raise two more errors:
+        * :param **timeout**, in seconds. The parameter defines the period for the mwthod to wait for a resolution.
+        * error TimedOut. The error means that the method has not reached the positive result but has reached defined **timeout**.
+        * error ChannelIsClosed. The error is returned when the target popen handle is closed from another fiber.
+
+        **Timeout parameter example**
+
+        (on Tarantool console)
+
+        ..  code-block:: lua
+          
+          local ph = popen.new(<...>)
+          local res, err = ph:wait({timeout = 1})
+
+          if res == nil then
+              -- Timeout is reached.
+              assert(err.type == 'TimedOut')
+              <...>
+          end
+
     ..  _popen-close:
 
     ..  method:: close()
