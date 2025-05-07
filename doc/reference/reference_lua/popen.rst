@@ -613,7 +613,6 @@ Below is a list of all ``popen`` functions and handle methods.
         :param handle ph: handle of a child process created with
                           :ref:`popen.new() <popen-new>` or
                           :ref:`popen.shell() <popen-shell>`
-        :param number signo: signal to send
         :return: (if success) formatted result
         :rtype: res
 
@@ -747,9 +746,6 @@ Below is a list of all ``popen`` functions and handle methods.
                           :ref:`popen.new() <popen-new>` or
                           :ref:`popen.shell() <popen-shell>`
         :param number timeout: since version 3.2.0. The parameter defines the period in seconds for the method to wait for a resolution.
-        :param number signo: signal to send
-        :return: (if success) formatted result
-        :rtype: res
 
         Possible raised errors:
 
