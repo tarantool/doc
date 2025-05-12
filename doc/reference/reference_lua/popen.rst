@@ -251,13 +251,16 @@ Below is a list of all ``popen`` functions and handle methods.
         |                      |                | or when Lua GC collects the handle.       |
         +----------------------+----------------+-------------------------------------------+
 
-
     The returned ``ph`` handle provides a
     :ref:`popen_handle:close() <popen-close>` method for explicitly
     releasing all occupied resources, including the child process
     itself if ``opts.keep_child`` is not set). However, if the ``close()``
     method is not called for a handle during its lifetime, the
     Lua GC will trigger the same freeing actions.
+
+    Since version 3.2.0, the ``inherit.fds`` option is added to the ``opts`` 
+    table. The option allows define file descriptor numbers that should be 
+    left open in the child process if the close_fds flag is set to ``true``.
 
     Tarantool recommends using ``opts.setsid`` plus ``opts.group_signal``
     if a child process may spawn its own children and if they should all
