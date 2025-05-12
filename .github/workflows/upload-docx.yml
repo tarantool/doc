@@ -28,7 +28,7 @@ jobs:
           make singlehtml
           
       - name: save singlehtml-en
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: singlehtml-en
           path: output/singlehtml/en/alternate_build_master.html
@@ -37,13 +37,13 @@ jobs:
         run: make singlehtml-ru
          
       - name: save singlehtml-ru
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: singlehtml-ru
           path: output/singlehtml/ru/alternate_build_master.html
 
       - name: save pandoc filters from the repo
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: pandoc
           path: pandoc/filter-espd.py
@@ -60,7 +60,7 @@ jobs:
       S3_UPLOAD_PATH: ${{secrets.S3_DOCX_PATH}}
     steps:
       - name: download artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
 
       - name: generate docx-en
         run: |
