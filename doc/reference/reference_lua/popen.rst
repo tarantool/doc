@@ -165,20 +165,19 @@ Below is a list of all ``popen`` functions and handle methods.
 
              (if failure) ``nil, err``
 
-    Possible raised errors are:
+    Possible raised errors:
 
-    * IllegalParams: incorrect type or value of a parameter
-    * IllegalParams: group signal is set, while setsid is not
+    * ``IllegalParams``: incorrect type or value of a parameter
+    * ``IllegalParams``: group signal is set, while setsid is not
 
-    Possible error reasons when ``nil, err`` is returned are:
+    Possible error reasons when ``nil, err`` is returned:
 
-    * SystemError: dup(), fcntl(), pipe(), vfork() or close() fails in the
+    * ``SystemError``: dup(), fcntl(), pipe(), vfork() or close() fails in the
       parent process
-    * SystemError: (temporary restriction) the parent process has closed stdin,
+    * ``SystemError``: (temporary restriction) the parent process has closed stdin,
       stdout or stderr
-    * OutOfMemory: unable to allocate the handle or a temporary buffer
 
-    Possible ``opts`` items are:
+    Possible ``opts`` items:
 
     * ``opts.stdin`` (action on STDIN_FILENO)
     * ``opts.stdout`` (action on STDOUT_FILENO)
@@ -252,13 +251,16 @@ Below is a list of all ``popen`` functions and handle methods.
         |                      |                | or when Lua GC collects the handle.       |
         +----------------------+----------------+-------------------------------------------+
 
-
     The returned ``ph`` handle provides a
     :ref:`popen_handle:close() <popen-close>` method for explicitly
     releasing all occupied resources, including the child process
     itself if ``opts.keep_child`` is not set). However, if the ``close()``
     method is not called for a handle during its lifetime, the
     Lua GC will trigger the same freeing actions.
+
+    Since version 3.2.0, the ``inherit.fds`` option is added to the ``opts`` 
+    table. The option allows define file descriptor numbers that should be 
+    left open in the child process if the ``close_fds`` flag is set to ``true``.
 
     Tarantool recommends using ``opts.setsid`` plus ``opts.group_signal``
     if a child process may spawn its own children and if they should all
@@ -397,7 +399,7 @@ Below is a list of all ``popen`` functions and handle methods.
                           :ref:`popen.shell() <popen-shell>`
         :param table opts: options
 
-        Possible ``opts`` items are:
+        Possible ``opts`` items:
 
         * ``opts.stdout`` (boolean, default ``true``, if ``true`` then read from stdout)
         * ``opts.stderr`` (boolean, default ``false``, if ``true`` then read from stderr)
@@ -415,19 +417,18 @@ Below is a list of all ``popen`` functions and handle methods.
         
         These errors are raised on incorrect parameters or when the fiber is cancelled:
 
-        * IllegalParams:    incorrect type or value of a parameter
-        * IllegalParams:    called on a closed handle
-        * IllegalParams:    opts.stdout and opts.stderr are both set
-        * IllegalParams:    a requested IO operation is not supported by
+        * ``IllegalParams``:    incorrect type or value of a parameter
+        * ``IllegalParams``:    called on a closed handle
+        * ``IllegalParams``:    opts.stdout and opts.stderr are both set
+        * ``IllegalParams``:    a requested IO operation is not supported by
           the handle (stdout / stderr is not piped)
-        * IllegalParams:    attempt to operate on a closed file descriptor
-        * FiberIsCancelled: cancelled by external code
+        * ``IllegalParams``:    attempt to operate on a closed file descriptor
+        * ``FiberIsCancelled``: cancelled by external code
 
         ``nil, err`` is returned on following failures:
 
         * SocketError: an IO error occurs at read()
         * TimedOut:    exceeded the opts.timeout quota
-        * OutOfMemory: no memory space for a buffer to read into
         * LuajitError: ("not enough memory"): no memory space for the Lua string
 
     ..  _popen-write:
