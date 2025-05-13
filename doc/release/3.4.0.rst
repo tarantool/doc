@@ -34,8 +34,8 @@ for the Community and Enterprise editions:
 
 .. _3-4-memcs:
 
-[EE] New in-memory columnar storage engine: ``memcs``
------------------------------------------------------
+[EE] New in-memory columnar storage engine: 'memcs'
+---------------------------------------------------
 
 The engine stores data in the memtx arena but in contrast to memtx it doesn't
 organize data in tuples. Instead, it stores data in columns. Each format field
@@ -83,7 +83,7 @@ memory consumption of that column by around 5 times.
 .. _3-4-cross-engine:
 
 [CE] Memtx-vinyl cross-engine transactions
------------------------------------------------
+------------------------------------------
 
 Tarantool now supports mixing statements for memtx and vinyl in the same transaction,
 for example:
@@ -117,8 +117,8 @@ for example:
 
 .. _3-4-native:
 
-[EE] New boostrap strategy in failover: ``native``
---------------------------------------------------
+[EE] New boostrap strategy in failover: 'native'
+------------------------------------------------
 
 Now supervised failover coordinator supports three bootstrap strategies:
 native, supervised, auto.
@@ -151,8 +151,8 @@ of the cluster's configuration, together with a proper failover strategy
 
 .. _3-4-runtime-priv:
 
-[CE] Runtime priviledges for ``lua_call`` granted before ``box.cfg()``
-----------------------------------------------------------------------
+[CE] Runtime priviledges for 'lua_call' granted before 'box.cfg()'
+------------------------------------------------------------------
 
 It is now possible to grant execution privileges for Lua functions
 through the declarative configuration, even when the database is in
@@ -179,8 +179,10 @@ functions except built-in ones, bypassing database restrictions.
 Privileges will still be written to the database when possible to
 maintain compatibility and consistency with other privilege types.
 
-[CE] New methods in the ``config`` module to check instance roles
------------------------------------------------------------------
+.. _3-4-config:
+
+[CE] New methods in the 'config' module to check instance roles
+---------------------------------------------------------------
 
 Three new methods are now available in the ``config`` module:
 
@@ -195,8 +197,8 @@ Three new methods are now available in the ``config`` module:
 
 .. _3-4-storage-client-api:
 
-[EE] New public API: ``config.storage_client``
-----------------------------------------------
+[EE] New public API: 'config.storage_client'
+--------------------------------------------
 
 Remote ``config.storage`` clusters can now be accessed by using the
 ``config.storage_client.connect(endpoints[, {options}])`` method.
