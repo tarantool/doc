@@ -59,10 +59,9 @@ Other features include:
 
 * Point lookup.
 * Stable iterators.
-* Insert/replace/delete/update.
+* Insert / replace / delete / update.
 * Batch insertion in the Arrow format.
-* Transactions, including cross-engine transactions with memtx
-  (with ``memtx_use_mvcc_engine = false``).
+* Transactions, including cross-engine transactions with memtx (with ``memtx_use_mvcc_engine = false``).
 * Read view support.
 * Secondary indexes with an ability to specify covered columns and sequentially scan
   indexed + covered columns.
