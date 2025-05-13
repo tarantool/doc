@@ -34,8 +34,8 @@ for the Community and Enterprise editions:
 
 .. _3-4-memcs:
 
-[EE] New in-memory columnar storage engine: ``memcs``
------------------------------------------------------
+[EE] New in-memory columnar storage engine: 'memcs'
+---------------------------------------------------
 
 The engine stores data in the memtx arena but in contrast to memtx it doesn't
 organize data in tuples. Instead, it stores data in columns. Each format field
@@ -56,21 +56,23 @@ worse compared to memtx, because a tuple has to be constructed on the runtime
 arena from individual field values gathered from each column tree.
 
 Other features include:
+
 * Point lookup.
 * Stable iterators.
-* Insert/replace/delete/update.
+* Insert / replace / delete / update.
 * Batch insertion in the Arrow format.
-* Transactions, including cross-engine transactions with memtx
-  (with ``memtx_use_mvcc_engine = false``).
+* Transactions, including cross-engine transactions with memtx (with ``memtx_use_mvcc_engine = false``).
 * Read view support.
 * Secondary indexes with an ability to specify covered columns and sequentially scan
   indexed + covered columns.
 
 Embedded field types include only fixed-width types:
+
 * Integer: (u)int8/16/32/64.
 * Floating point: float32/64.
 
 Types with external storage include:
+
 * Strings.
 * All the other types supported by Tarantool: UUID, Decimal, Datetime, etc.
 
@@ -83,7 +85,7 @@ memory consumption of that column by around 5 times.
 .. _3-4-cross-engine:
 
 [CE] Memtx-vinyl cross-engine transactions
------------------------------------------------
+------------------------------------------
 
 Tarantool now supports mixing statements for memtx and vinyl in the same transaction,
 for example:
@@ -117,8 +119,8 @@ for example:
 
 .. _3-4-native:
 
-[EE] New boostrap strategy in failover: ``native``
---------------------------------------------------
+[EE] New boostrap strategy in failover: 'native'
+------------------------------------------------
 
 Now supervised failover coordinator supports three bootstrap strategies:
 native, supervised, auto.
@@ -128,11 +130,14 @@ but has different under-the-hood implementation (based on the ``supervised`` str
 Otherwise, it acts similar to the ``auto`` strategy.
 
 In effect, it helps resolve these two problems:
+
 * Avoid the error ``Some replica set members were not specified in box.cfg.replication``
   in the following cases:
+
   * several replicas join at the same time,
   * the replica set includes non-anonymous CDC instances,
   * ``_cluster`` contains old unneeded replicas.
+
 * Make the database get bootstrapped upon the coordinator's command rather than
   let the instances boostrap it on their own.
 
@@ -151,8 +156,8 @@ of the cluster's configuration, together with a proper failover strategy
 
 .. _3-4-runtime-priv:
 
-[CE] Runtime priviledges for ``lua_call`` granted before ``box.cfg()``
-----------------------------------------------------------------------
+[CE] Runtime priviledges for 'lua_call' granted before 'box.cfg()'
+------------------------------------------------------------------
 
 It is now possible to grant execution privileges for Lua functions
 through the declarative configuration, even when the database is in
@@ -179,8 +184,10 @@ functions except built-in ones, bypassing database restrictions.
 Privileges will still be written to the database when possible to
 maintain compatibility and consistency with other privilege types.
 
-[CE] New methods in the ``config`` module to check instance roles
------------------------------------------------------------------
+.. _3-4-config:
+
+[CE] New methods in the 'config' module to check instance roles
+---------------------------------------------------------------
 
 Three new methods are now available in the ``config`` module:
 
@@ -195,8 +202,8 @@ Three new methods are now available in the ``config`` module:
 
 .. _3-4-storage-client-api:
 
-[EE] New public API: ``config.storage_client``
-----------------------------------------------
+[EE] New public API: 'config.storage_client'
+--------------------------------------------
 
 Remote ``config.storage`` clusters can now be accessed by using the
 ``config.storage_client.connect(endpoints[, {options}])`` method.
