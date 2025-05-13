@@ -258,7 +258,7 @@ Below is a list of all ``popen`` functions and handle methods.
     method is not called for a handle during its lifetime, the
     Lua GC will trigger the same freeing actions.
 
-    Since version 3.2.0, the ``inherit.fds`` option is added to the ``opts`` 
+    Since version :doc:`3.2.0 </release/3.2.0>`, the ``inherit_fds`` option is added to the ``opts`` 
     table. The option allows define file descriptor numbers that should be 
     left open in the child process if the ``close_fds`` flag is set to ``true``.
 
@@ -746,7 +746,7 @@ Below is a list of all ``popen`` functions and handle methods.
         :param handle ph: handle of a child process created with
                           :ref:`popen.new() <popen-new>` or
                           :ref:`popen.shell() <popen-shell>`
-        :param number timeout: since version 3.2.0. The parameter defines the period in seconds for the method to wait for a resolution. The default value is "infinity".
+        :param number timeout: since version :doc:`3.2.0 </release/3.2.0>`. The parameter defines the period in seconds for the method to wait for a resolution. The default value is "infinity".
         :return: (if success) formatted result
 
                  (if failure) ``nil, err``
@@ -760,8 +760,8 @@ Below is a list of all ``popen`` functions and handle methods.
 
         Possible error reasons when ``nil, err`` is returned are:
         
-        * ``TimedOut``: since version 3.2.0. The error means that the method has not reached the positive result but has reached the defined **timeout**.
-        * ``ChannelIsClosed``: since version 3.2.0. The error is returned when the target popen handle is closed during the :wait() operation.
+        * ``TimedOut``: since version :doc:`3.2.0 </release/3.2.0>`. The error means that the method has not reached the positive result but has reached the defined **timeout**.
+        * ``ChannelIsClosed``: since version :doc:`3.2.0 </release/3.2.0>`. The error is returned when the target popen handle is closed during the :wait() operation.
 
         The formatted result is a process status table (the same as the
         ``status`` component of the table returned by
