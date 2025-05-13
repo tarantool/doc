@@ -260,7 +260,7 @@ Below is a list of all ``popen`` functions and handle methods.
 
     Since version 3.2.0, the ``inherit.fds`` option is added to the ``opts`` 
     table. The option allows define file descriptor numbers that should be 
-    left open in the child process if the close_fds flag is set to ``true``.
+    left open in the child process if the ``close_fds`` flag is set to ``true``.
 
     Tarantool recommends using ``opts.setsid`` plus ``opts.group_signal``
     if a child process may spawn its own children and if they should all
