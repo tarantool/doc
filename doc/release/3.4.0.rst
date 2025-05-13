@@ -56,6 +56,7 @@ worse compared to memtx, because a tuple has to be constructed on the runtime
 arena from individual field values gathered from each column tree.
 
 Other features include:
+
 * Point lookup.
 * Stable iterators.
 * Insert/replace/delete/update.
@@ -67,10 +68,12 @@ Other features include:
   indexed + covered columns.
 
 Embedded field types include only fixed-width types:
+
 * Integer: (u)int8/16/32/64.
 * Floating point: float32/64.
 
 Types with external storage include:
+
 * Strings.
 * All the other types supported by Tarantool: UUID, Decimal, Datetime, etc.
 
@@ -128,11 +131,14 @@ but has different under-the-hood implementation (based on the ``supervised`` str
 Otherwise, it acts similar to the ``auto`` strategy.
 
 In effect, it helps resolve these two problems:
+
 * Avoid the error ``Some replica set members were not specified in box.cfg.replication``
   in the following cases:
+
   * several replicas join at the same time,
   * the replica set includes non-anonymous CDC instances,
   * ``_cluster`` contains old unneeded replicas.
+
 * Make the database get bootstrapped upon the coordinator's command rather than
   let the instances boostrap it on their own.
 
