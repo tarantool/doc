@@ -196,6 +196,6 @@ error_object
 
         **Since:** :doc:`3.1.0 </release/3.1.0>`
 
-        Returns the name of the error used at creation.
+        Returns the name of the error.
 
     

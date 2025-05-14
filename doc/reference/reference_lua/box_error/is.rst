@@ -4,25 +4,26 @@
 box.error.is()
 ===============================================================================
 
-.. function:: box.error.is(object_name)
+.. function:: box.error.is(object)
 
     **Since:** :doc:`3.2.0 </release/3.2.0>`
 
-    The ``box.error.is`` function allows verify whether the specified argument is an error.
+    The ``box.error.is`` function allows verify whether the specified argument is an error cdata object.
 
-    :param object_name object_name: the subject of the request
+    :param object object: the name of the othe object to be verified.
 
     **Return type:**
     boolean
 
     **Example**
 
-        ..  code-block:: lua
-            tarantool> box.error.is(box.error.new(box.error.UNKNOWN))
-            ---
-            - true
-            ...
-            tarantool> box.error.is('foo')
-            ---
-            - false
-            ...
+    ..  code-block:: lua
+
+        tarantool> box.error.is(box.error.new(box.error.UNKNOWN))
+        ---
+        - true
+        ...
+        tarantool> box.error.is('foo')
+        ---
+        - false
+        ...

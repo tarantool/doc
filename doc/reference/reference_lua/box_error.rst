@@ -277,7 +277,7 @@ Below is a list of ``box.error`` functions and related objects.
             - Set the specified error as the last system error explicitly
         
         *   - :doc:`./box_error/is`
-            - Verify whether the specified argument is an error
+            - Verify whether the specified argument is an error cdata object
 
         *   - :doc:`./box_error/error_object`
             - An object that defines an error
