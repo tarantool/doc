@@ -189,3 +189,13 @@ error_object
 
         For the ``box.error.READONLY`` error, returns the current election term (see :ref:`box.info.election.term <box_info_election>`).
         This attribute may present if the :ref:`error reason <box_error-reason>` is ``election`` or ``synchro``.
+
+    .. _box_error-name:
+
+    .. data:: name
+
+        **Since:** :doc:`3.1.0 </release/3.1.0>`
+
+        Returns the name of the error used at creation.
+
+    
