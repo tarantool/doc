@@ -395,12 +395,16 @@ The ``config.storage`` API allows you to interact with a Tarantool-based :ref:`c
 
 .. _config_storage_api_reference_put:
 
-.. function:: put(path, value)
+.. function:: put(path, value, opts)
 
     Put a value by the specified path.
 
     :param string path: a path to put the value by
     :param string value: a value to put
+    :param table opts:   a table containing the following optional fields:
+
+                            *   ``ttl`` (since :doc:`3.2.0 </release/3.2.0>`, default: unset): time-to-live in seconds, if nil or not set the key won't expire, may issue an error if set on config.storage running old schema, see :ref:`config.storage.info <config_storage_api_reference_info>`.
+
 
     :return:    a table containing the following fields:
 
@@ -516,8 +520,24 @@ The ``config.storage`` API allows you to interact with a Tarantool-based :ref:`c
                     * ``connected``: if any instance from the quorum is available to the current instance
                     * ``disconnected``: if the current instance doesn't have a connection with the quorum
 
+                *   ``features`` (since :doc:`3.2.0 </release/3.2.0>`): a table of features config.storage supports, may include the following:
+
+                    * ``ttl``: true if key TTL (time-to-live) is supported, false otherwise if the schema hasn't been upgraded yet
+
+
     :rtype: table
 
+
+    **Example:**
+
+    The example below shows how to check whether config.storage supports keys TTL:
+
+        .. code-block:: lua
+
+            local info = config.storage.info
+            if info.features == nil or not info.features.ttl then
+                error('...')
+            end
 
 .. _config_storage_api_reference_txn:
 
@@ -541,6 +561,17 @@ The ``config.storage`` API allows you to interact with a Tarantool-based :ref:`c
                             * ``on_success``: a list with operations to execute if all predicates in the list evaluate to ``true``
 
                             * ``on_failure``: a list with operations to execute if any of a predicate evaluates to ``false``
+
+            Operations in ``on_success`` and ``on_failure`` follow the format:
+
+            .. code-block:: none
+
+                {operation, key_or_path[, value][, opts]}
+
+            * ``operation``: one of ``'put'``, ``'get'``, ``'delete'``
+            * ``opts``:  a table containing optional fields for the operations:
+
+                            *   ``ttl`` (since :doc:`3.2.0 </release/3.2.0>`, default: unset): time-to-live for a key in seconds, if nil or not set the key won't expire
 
     :return:    a table containing the following fields:
 
@@ -608,12 +639,17 @@ Examples on GitHub: `config_storage <https://github.com/tarantool/doc/tree/lates
 
 .. _config_storage_client_api_reference_put:
 
-.. function:: <config.storage client>:put(path, value)
+.. function:: <config.storage client>:put(path, value, opts)
 
 Put a value by the specified path to remote config.storage.
 
 :param string path: a path to put the value by
 :param string value: a value to put
+:param table opts:   a table containing the following optional fields:
+
+                    *   ``ttl`` (since :doc:`3.2.0 </release/3.2.0>`, default: unset): time-to-live in seconds, if nil or not set the key won't expire, may issue an error if set on config.storage running old schema, see :ref:`<config.storage client>.info <config_storage_client_api_reference_info>`.
+
+
 
 :return:    a table containing the following fields:
 
@@ -727,7 +763,24 @@ Get information about a connection state to the config.storage cluster.
                 * ``connected``: if any instance from the quorum is available to the current instance
                 * ``disconnected``: if the current instance doesn't have a connection with the quorum
 
+            *   ``features`` (since :doc:`3.2.0 </release/3.2.0>`): a table of features config.storage supports, may include the following:
+
+                * ``ttl``: true if key TTL (time-to-live) is supported, false otherwise if the schema hasn't been upgraded yet
+
+
 :rtype: table
+
+
+**Example:**
+
+The example below shows how to check whether remote config.storage supports keys TTL:
+
+    .. code-block:: lua
+
+        local info = storage_client.info
+        if info.features == nil or not info.features.ttl then
+            error('...')
+        end
 
 
 .. _config_storage_client_api_reference_txn:
@@ -752,6 +805,18 @@ Make an atomic request on remote config.storage.
                         * ``on_success``: a list with operations to execute if all predicates in the list evaluate to ``true``
 
                         * ``on_failure``: a list with operations to execute if any of a predicate evaluates to ``false``
+
+        Operations in ``on_success`` and ``on_failure`` follow the format:
+
+        .. code-block:: none
+
+            {operation, key_or_path[, value][, opts]}
+
+        * ``operation``: one of ``'put'``, ``'get'``, ``'delete'``
+        * ``opts``:  a table containing optional fields for the operations:
+
+                        *   ``ttl`` (since :doc:`3.2.0 </release/3.2.0>`, default: unset): time-to-live for a key in seconds, if nil or not set the key won't expire
+
 
 :return:    a table containing the following fields:
 
