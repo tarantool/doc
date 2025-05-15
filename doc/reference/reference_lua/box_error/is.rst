@@ -10,7 +10,7 @@ box.error.is()
 
     The ``box.error.is`` function allows verify whether the specified argument is an error cdata object.
 
-    :param object object: the name of the othe object to be verified.
+    :param object object: the object to be verified.
 
     **Return type:**
     boolean
