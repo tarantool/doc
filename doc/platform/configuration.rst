@@ -91,7 +91,8 @@ The example below shows a sample configuration of a single Tarantool instance:
     The initial line in this sample contains a link to an annotated Tarantool configuration
     schema for a YAML language server (e.g. for `LSP-Yaml`).
     With this link you can set up your code editor (VScode, Neovim, Sublime, etc.) to get
-    full-text annotations and completion prompts when you work with Tarantool configuration.
+    full-text annotations and completion prompts upon ``Alt+ESC`` (Linux) / ``Option+ESC`` (MacOS)
+    when you work with Tarantool configuration.
 
 .. image:: images/yaml-annotated.png
    :align: center
