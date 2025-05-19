@@ -92,7 +92,7 @@ Below is a list of all ``popen`` functions and handle methods.
 
     :param string command: a command to run, mandatory
     :param string mode: communication mode, optional
-    :return: (if success) a popen handle
+    :return: (if success) a popen handle object
 
              (if failure) ``nil, err``
 
@@ -156,7 +156,7 @@ Below is a list of all ``popen`` functions and handle methods.
                        mandatory; absolute path to the program is required when
                        ``opts.shell`` is false (default)
     :param table opts: table of options, optional
-    :return: (if success) a popen handle
+    :return: (if success) a popen handle object
 
              (if failure) ``nil, err``
 
@@ -389,7 +389,7 @@ Below is a list of all ``popen`` functions and handle methods.
 
         Read data from a child peer.
 
-        :param handle ph: handle of a child process created with
+        :param userdata ph: handle of a child process created with
                           :ref:`popen.new() <popen-new>` or
                           :ref:`popen.shell() <popen-shell>`
         :param table opts: options
@@ -432,7 +432,7 @@ Below is a list of all ``popen`` functions and handle methods.
 
         Write string ``str`` to stdin stream of a child process.
 
-        :param handle ph: handle of a child process created with
+        :param userdata ph: handle of a child process created with
                           :ref:`popen.new() <popen-new>` or
                           :ref:`popen.shell() <popen-shell>`
         :param string str: string to write
@@ -475,7 +475,7 @@ Below is a list of all ``popen`` functions and handle methods.
 
         Close parent's ends of std* fds.
 
-        :param handle ph: handle of a child process created with
+        :param userdata ph: handle of a child process created with
                           :ref:`popen.new() <popen-new>` or
                           :ref:`popen.shell() <popen-shell>`
         :param table opts: options
@@ -530,7 +530,7 @@ Below is a list of all ``popen`` functions and handle methods.
 
         Send SIGTERM signal to a child process.
 
-        :param handle ph: handle of a child process created with
+        :param userdata ph: handle of a child process created with
                           :ref:`popen.new() <popen-new>` or
                           :ref:`popen.shell() <popen-shell>`
         :return: see :ref:`popen_handle:signal() <popen-signal>` for errors and
@@ -546,7 +546,7 @@ Below is a list of all ``popen`` functions and handle methods.
 
         Send SIGKILL signal to a child process.
 
-        :param handle ph: handle of a child process created with
+        :param userdata ph: handle of a child process created with
                           :ref:`popen.new() <popen-new>` or
                           :ref:`popen.shell() <popen-shell>`
         :return: see :ref:`popen_handle:signal() <popen-signal>` for errors and
@@ -563,7 +563,7 @@ Below is a list of all ``popen`` functions and handle methods.
 
         Send signal to a child process.
 
-        :param handle ph: handle of a child process created with
+        :param userdata ph: handle of a child process created with
                           :ref:`popen.new() <popen-new>` or
                           :ref:`popen.shell() <popen-shell>`
         :param number signo: signal to send
@@ -606,7 +606,7 @@ Below is a list of all ``popen`` functions and handle methods.
 
         Return information about the popen handle.
 
-        :param handle ph: handle of a child process created with
+        :param userdata ph: handle of a child process created with
                           :ref:`popen.new() <popen-new>` or
                           :ref:`popen.shell() <popen-shell>`
         :return: (if success) formatted result
@@ -738,7 +738,7 @@ Below is a list of all ``popen`` functions and handle methods.
 
         Wait until a child process gets exited or signaled.
 
-        :param handle ph: handle of a child process created with
+        :param userdata ph: handle of a child process created with
                           :ref:`popen.new() <popen-new>` or
                           :ref:`popen.shell() <popen-shell>`
         :param number timeout: since version :doc:`3.2.0 </release/3.2.0>`. The parameter defines the period in seconds for the method to wait for a resolution. The default value is "infinity".
@@ -780,7 +780,7 @@ Below is a list of all ``popen`` functions and handle methods.
 
         Close a popen handle.
 
-        :param handle ph: handle of a child process created with
+        :param userdata ph: handle of a child process created with
                           :ref:`popen.new() <popen-new>` or
                           :ref:`popen.shell() <popen-shell>`
         :return: (if success) true
