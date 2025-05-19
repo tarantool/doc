@@ -30,13 +30,6 @@ object:
   syscall
 * :ref:`popen.new <popen-new>` to create a popen object with more specific options
 
-Either function returns a handle which we will call ``popen_handle`` or ``ph``.
-With the handle one can execute methods.
-
-===============================================================================
-                                    Index
-===============================================================================
-
 Below is a list of all ``popen`` functions and handle methods.
 
 ..  container:: table
@@ -87,6 +80,10 @@ Below is a list of all ``popen`` functions and handle methods.
     | <popen-handle_fields>`               |                                 |
     +--------------------------------------+---------------------------------+
 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                      popen module constructors
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 ..  _popen-shell:
 
 ..  function:: shell(command [, mode])
@@ -95,8 +92,7 @@ Below is a list of all ``popen`` functions and handle methods.
 
     :param string command: a command to run, mandatory
     :param string mode: communication mode, optional
-    :return: (if success) a popen handle, which we will call
-             ``popen_handle`` or ``ph``
+    :return: (if success) a popen handle
 
              (if failure) ``nil, err``
 
@@ -160,8 +156,7 @@ Below is a list of all ``popen`` functions and handle methods.
                        mandatory; absolute path to the program is required when
                        ``opts.shell`` is false (default)
     :param table opts: table of options, optional
-    :return: (if success) a popen handle, which we will call
-             ``popen_handle`` or ``ph``
+    :return: (if success) a popen handle
 
              (if failure) ``nil, err``
 
@@ -251,7 +246,7 @@ Below is a list of all ``popen`` functions and handle methods.
         |                      |                | or when Lua GC collects the handle.       |
         +----------------------+----------------+-------------------------------------------+
 
-    The returned ``ph`` handle provides a
+    The returned ``popen_handle`` handle provides a
     :ref:`popen_handle:close() <popen-close>` method for explicitly
     releasing all occupied resources, including the child process
     itself if ``opts.keep_child`` is not set). However, if the ``close()``
@@ -835,6 +830,10 @@ Below is a list of all ``popen`` functions and handle methods.
         means success for a caller. The return values are purely
         informational: they are for logging or some kind of reporting.
 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                      popen handle fields
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
     ..  _popen-handle_fields:
 
     **Handle fields**
@@ -850,6 +849,10 @@ Below is a list of all ``popen`` functions and handle methods.
         popen_handle.stderr
 
     See :ref:`popen_handle:info() <popen-info>` for details.
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                      popen module constants
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     ..  _popen-constants:
 
