@@ -30,7 +30,9 @@ object:
   syscall
 * :ref:`popen.new <popen-new>` to create a popen object with more specific options
 
-Below is a list of all ``popen`` functions and handle methods.
+Below are tables with summaries of ``popen`` constructors, constants, mrthods, and fields.
+
+Popen module constructors:
 
 ..  container:: table
 
@@ -46,6 +48,31 @@ Below is a list of all ``popen`` functions and handle methods.
     | :ref:`popen.new()                    | Execute a child program in      |
     | <popen-new>`                         | a new process                   |
     +--------------------------------------+---------------------------------+
+
+Popen module constants:
+
+..  container:: table
+
+    ..  rst-class:: left-align-column-1
+    ..  rst-class:: left-align-column-2
+
+    +--------------------------------------+---------------------------------+
+    | Name                                 | Use                             |
+    +======================================+=================================+
+    | :ref:`Module constants               | Module constants                |
+    | <popen-constants>`                   |                                 |
+    +--------------------------------------+---------------------------------+
+
+Popen handle methods:
+
+..  container:: table
+
+    ..  rst-class:: left-align-column-1
+    ..  rst-class:: left-align-column-2
+
+    +--------------------------------------+---------------------------------+
+    | Name                                 | Use                             |
+    +======================================+=================================+
     | :ref:`popen_handle:read()            | Read data from a child peer     |
     | <popen-read>`                        |                                 |
     +--------------------------------------+---------------------------------+
@@ -73,16 +100,24 @@ Below is a list of all ``popen`` functions and handle methods.
     | :ref:`popen_handle:close()           | Close a popen handle            |
     | <popen-close>`                       |                                 |
     +--------------------------------------+---------------------------------+
-    | :ref:`Module constants               | Module constants                |
-    | <popen-constants>`                   |                                 |
+
+Popen handle fields:
+
+..  container:: table
+
+    ..  rst-class:: left-align-column-1
+    ..  rst-class:: left-align-column-2
+
     +--------------------------------------+---------------------------------+
+    | Name                                 | Use                             |
+    +======================================+=================================+
     | :ref:`Handle fields                  | Handle fields                   |
     | <popen-handle_fields>`               |                                 |
     +--------------------------------------+---------------------------------+
 
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-                      popen module constructors
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+===============================================================================
+                                   popen module constructors
+===============================================================================
 
 ..  _popen-shell:
 
@@ -377,9 +412,39 @@ Below is a list of all ``popen`` functions and handle methods.
             return table.concat(chunks):rstrip()
         end
 
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-                      popen handle methods
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+===============================================================================
+                                   popen module constants
+===============================================================================
+
+    ..  _popen-constants:
+
+    **Module constants**
+
+    ..  code-block:: none
+
+        - popen.opts
+          - INHERIT (== 'inherit')
+          - DEVNULL (== 'devnull')
+          - CLOSE   (== 'close')
+          - PIPE    (== 'pipe')
+
+        - popen.signal
+          - SIGTERM (== 9)
+          - SIGKILL (== 15)
+          - ...
+
+        - popen.state
+          - ALIVE    (== 'alive')
+          - EXITED   (== 'exited')
+          - SIGNALED (== 'signaled')
+
+        - popen.stream
+          - OPEN    (== 'open')
+          - CLOSED  (== 'closed')
+
+===============================================================================
+                                   popen handle methods
+===============================================================================
 
 ..  class:: popen_handle
 
@@ -830,9 +895,9 @@ Below is a list of all ``popen`` functions and handle methods.
         means success for a caller. The return values are purely
         informational: they are for logging or some kind of reporting.
 
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-                      popen handle fields
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+===============================================================================
+                                   popen handle fields
+===============================================================================
 
     ..  _popen-handle_fields:
 
@@ -849,33 +914,3 @@ Below is a list of all ``popen`` functions and handle methods.
         popen_handle.stderr
 
     See :ref:`popen_handle:info() <popen-info>` for details.
-
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-                      popen module constants
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-    ..  _popen-constants:
-
-    **Module constants**
-
-    ..  code-block:: none
-
-        - popen.opts
-          - INHERIT (== 'inherit')
-          - DEVNULL (== 'devnull')
-          - CLOSE   (== 'close')
-          - PIPE    (== 'pipe')
-
-        - popen.signal
-          - SIGTERM (== 9)
-          - SIGKILL (== 15)
-          - ...
-
-        - popen.state
-          - ALIVE    (== 'alive')
-          - EXITED   (== 'exited')
-          - SIGNALED (== 'signaled')
-
-        - popen.stream
-          - OPEN    (== 'open')
-          - CLOSED  (== 'closed')
