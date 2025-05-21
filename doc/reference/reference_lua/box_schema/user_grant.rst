@@ -31,7 +31,7 @@ box.schema.user.grant()
 
     **Variation:** instead of
     :samp:`box.schema.user.grant('{username}','usage,session','universe',nil,` :code:`{if_not_exists=true})`
-    say :samp:`box.schema.user.enable('{username}')`.
+    say :samp:`box.schema.user.enable('{username}')` (see section :ref:`box.schema.user.enable <box_schema-user_enable>`).
 
     The possible options are:
 
