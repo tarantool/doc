@@ -13,7 +13,10 @@ box.schema.user.disable()
 
     :param string username: the name of a user to be deactivated
  
-    :return: ``---``
+    :return: (if success) ``---``
+
+             (if failure) ``error: User 'username' is not found``
+
 
     **Example:**
 
