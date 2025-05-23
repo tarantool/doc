@@ -16,9 +16,9 @@ box.schema.user.enable()
 
     .. NOTE::
 
-       * ``session`` - (cannot be granted to a role) allows the binary protocol layer (iproto) to authenticate the user
+       * ``session`` - allows the binary protocol layer (iproto) to authenticate the user
 
-       * ``usage`` - (cannot be granted to a role) lets user use their privileges on database objects (such as read, write and alter space)
+       * ``usage`` - lets user use their privileges on database objects (such as read, write and alter space)
 
     For more information about granting permissions see section :ref:`box.schema.user.grant <box_schema-user_grant>`.
 
