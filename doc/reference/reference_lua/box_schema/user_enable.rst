@@ -1,0 +1,31 @@
+.. _box_schema-user_enable:
+
+===============================================================================
+box.schema.user.enable()
+===============================================================================
+
+.. module:: box.schema
+
+.. function:: box.schema.user.enable(username)
+
+    Grants ``usage`` and ``session`` permissions to the subject user. Equivalent to the following call:
+
+    ..  code-block:: lua
+
+        box.schema.user.grant(username, 'usage,session', 'universe', nil, {if_not_exists = true})
+
+    .. NOTE::
+
+       * ``session`` - allows the binary protocol layer (iproto) to authenticate the user
+
+       * ``usage`` - lets user use their privileges on database objects (such as read, write and alter space)
+
+    For more information about granting permissions see section :ref:`box.schema.user.grant <box_schema-user_grant>`.
+
+    :param string username: the name of the subject user
+ 
+    :return: (if success) nothing
+
+    Possible errors:
+
+    * ``NO_SUCH_USER`` - in case the subject user is not found.

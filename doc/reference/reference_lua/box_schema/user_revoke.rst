@@ -31,7 +31,7 @@ box.schema.user.revoke()
 
     **Variation:** instead of
     :samp:`box.schema.user.revoke('{username}','usage,session','universe',nil,` :code:`{if_exists=true})`
-    say :samp:`box.schema.user.disable('{username}')`.
+    say :samp:`box.schema.user.disable('{username}')` (see section :ref:`box.schema.user.disable <box_schema-user_disable>`).
 
     **Example:**
 
