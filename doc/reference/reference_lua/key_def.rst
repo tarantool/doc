@@ -38,7 +38,7 @@ to extract or compare the index key values.
 
     Example: ``key_def.new({{type = 'string', collation = 'unicode', field = 2}})``
 
-    You can use the standard lua operator ``#`` (__len metamethod) to check the ``key_def`` length (parts count).
+    Since version :doc:`3.2.0 </release/3.2.0>`, you can use the standard lua operator ``#`` (__len metamethod) to check the ``key_def`` length (parts count).
 
     **Example**
 
