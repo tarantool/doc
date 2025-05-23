@@ -54,10 +54,10 @@ Below is a list of all ``box.schema`` functions.
            - Revoke privileges from a user or a role
 
         *  - :doc:`./box_schema/user_enable`
-           - Activate previously deactivated user
+           - Grant ``usage`` and ``session`` permissions
 
         *  - :doc:`./box_schema/user_disable`
-           - Deactivate user
+           - Revoke ``usage`` and ``session`` permissions
 
         *  - :doc:`./box_schema/user_password`
            - Get a hash of a user's password
