@@ -1,7 +1,7 @@
 .. _box_index-parts:
 
 ===============================================================================
-index_object:parts
+index_object.parts
 ===============================================================================
 
 .. class:: index_object
@@ -9,16 +9,16 @@ index_object:parts
     .. data:: parts
 
     The index's key parts. 
-    Since version :doc:`3.0.0 </release/3.0.0>`, the ``index_object:parts`` can operate methods
+    Since version :doc:`3.0.0 </release/3.0.0>`, the ``index_object.parts`` can operate methods
     :ref:`extract_key() <key_def-extract_key>`,
     :ref:`compare() <key_def-compare>`,
     :ref:`compare_with_key() <key_def-compare_with_key>`,
     :ref:`merge() <key_def-merge>`.
 
-    **``index_object:parts`` example**
+    **``index_object.parts`` example**
 
     ..  code-block:: lua
-          
+
             box.schema.space.create('T')
             i = box.space.T:create_index('I', {parts={3, 'string', 1, 'unsigned'}})
             box.space.T:insert{1, 99.5, 'X', nil, 99.5}
@@ -27,7 +27,7 @@ index_object:parts
     **``key_def`` equivalent**
 
         ..  code-block:: lua
-          
+
             key_def = require('key_def')
             box.schema.space.create('T')
             i = box.space.T:create_index('I', {parts={3, 'string', 1, 'unsigned'}})
