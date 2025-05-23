@@ -60,7 +60,7 @@ You can flexibly configure a cluster's settings on different levels: from global
 
 ..  NOTE::
 
-    All the available options are documented in the :ref:`Configuration reference <configuration_reference>`.
+     All the available options are documented in the :ref:`Configuration reference <configuration_reference>`.
 
 
 ..  _configuration_file:
@@ -77,7 +77,7 @@ Basic instance configuration
 
 The example below shows a sample configuration of a single Tarantool instance:
 
-..  literalinclude:: /code_snippets/snippets/config/instances.enabled/instance_scope/config.yaml
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/instance_scope/config_annotated.yaml
     :language: yaml
     :dedent:
 
@@ -86,6 +86,16 @@ The example below shows a sample configuration of a single Tarantool instance:
 -   The ``replicasets`` section contains one replica set named *replicaset001*.
 -   The ``groups`` section contains one group named *group001*.
 
+.. NOTE::
+
+    The initial line in this sample contains a link to an annotated Tarantool configuration
+    schema for a YAML language server (e.g. for `LSP-Yaml`).
+    With this link you can set up your code editor (VScode, Neovim, Sublime, etc.) to get
+    full-text annotations and completion prompts upon ``Alt+ESC`` (Linux) / ``Option+ESC`` (MacOS)
+    when you work with Tarantool configuration.
+
+.. image:: images/yaml-annotated.png
+   :align: center
 
 .. _configuration_scopes:
 
@@ -436,7 +446,7 @@ To see all the supported environment variables, execute the ``tarantool`` comman
 
 ..  NOTE::
 
-    There are also special ``TT_INSTANCE_NAME`` and ``TT_CONFIG`` environment variables that can be used to :ref:`start <configuration_run_instance_tarantool>` the specified Tarantool instance with configuration from the given file.
+     There are also special ``TT_INSTANCE_NAME`` and ``TT_CONFIG`` environment variables that can be used to :ref:`start <configuration_run_instance_tarantool>` the specified Tarantool instance with configuration from the given file.
 
 Below are a few examples that show how to set environment variables of different types, like *string*, *number*, *array*, or *map*.
 
