@@ -10,8 +10,9 @@ box.schema.user.enable()
 
     Grants ``usage`` and ``session`` permissions to the subject user. Equivalent to the following call:
 
-        ..  code-block:: lua
-            box.schema.user.grant('{username}','usage,session','universe',nil,{if_not_exists=true})            
+    ..  code-block:: lua
+        
+        box.schema.user.grant('{username}','usage,session','universe',nil,{if_not_exists=true})            
     
     .. NOTE::
 

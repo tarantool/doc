@@ -10,8 +10,9 @@ box.schema.user.disable()
 
     Revokes ``usage`` and ``session`` permissions from the subject user. Equivalent to the following call:
 
-        ..  code-block:: lua
-            box.schema.user.revoke('{username}','usage,session','universe',nil,{if_not_exists=true})            
+    ..  code-block:: lua
+        
+        box.schema.user.revoke('{username}','usage,session','universe',nil,{if_not_exists=true})            
     
     .. NOTE::
 
