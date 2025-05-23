@@ -12,18 +12,20 @@ box.schema.user.enable()
 
     ..  code-block:: lua
 
-        box.schema.user.grant('{username}','usage,session','universe',nil,{if_not_exists=true})            
-    
+        box.schema.user.grant(username, 'usage,session', 'universe', nil, {if_not_exists = true})
+
     .. NOTE::
 
-       * ``session`` - (cannot be granted to a role) if is not granted, ``IPROTO_AUTH`` always fails connection to the user, so does ``box.session.su()``
+       * ``session`` - (cannot be granted to a role) allows the binary protocol layer (iproto) to authenticate the user
 
-       * ``usage`` - (cannot be granted to a role) lets user use their privileges on database objects (e.g. read, write and alter space)
-    
+       * ``usage`` - (cannot be granted to a role) lets user use their privileges on database objects (such as read, write and alter space)
+
     For more information about granting permissions see section :ref:`box.schema.user.grant <box_schema-user_grant>`.
 
     :param string username: the name of the subject user
  
     :return: (if success) nothing
 
-             (if failure) The error is raised ``- error: User 'username' is not found``
+    Possible errors:
+
+    * ``NO_SUCH_USER`` - in case the subject user is not found.
