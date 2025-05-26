@@ -38,6 +38,15 @@ to extract or compare the index key values.
 
     Example: ``key_def.new({{type = 'string', collation = 'unicode', field = 2}})``
 
+    Since version :doc:`3.2.0 </release/3.2.0>`, you can use the standard lua operator ``#`` (__len metamethod) to check the ``key_def`` length (parts count).
+
+    **Example**
+
+    ..  code-block:: lua
+
+        function is_full_pkey(space, key)
+        return #space.index[0].parts == #key
+        end
 
 ..  _key_def-object:
 
