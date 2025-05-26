@@ -221,3 +221,99 @@ to extract or compare the index key values.
             key_def = require('key_def')
             k = key_def.new({{type = 'string', fieldno = 3}})
             k:totable()
+
+    ..  _key_validate_key:
+
+    ..  method:: validate_key(key)
+
+        Since version :doc:`3.1.0 </release/3.1.0>`
+        Validates whether the input ``key`` (partially or completely) matches the rules of the key definition object.
+        Returns nothing on success.
+        If the key fails the validation, a ``box.error`` type exception is raised.
+
+        **Example:**
+
+        ..  code-block:: lua
+
+            local key_def = require('key_def')
+            -- Create a rule: key = {id (number), name (string)}
+            local rules = key_def.new({
+                {fieldno = 1, type = 'number'},
+                {fieldno = 2, type = 'string'}
+            })
+            -- Validate key {1001} (only id data type). Returns nothing:
+            local ok, err = rules:validate_key({1001})
+
+    ..  _key_validate_full_key:
+
+    ..  method:: validate_full_key(key)
+
+        Since version :doc:`3.1.0 </release/3.1.0>`        
+        Validates whether they input ``key`` contains all fields and mathces the rules of the key definition object.
+        Returns nothing on success.
+        If the key fails the validation, a ``box.error`` type exception is raised.
+
+        **Example:**
+
+        ..  code-block:: lua
+
+            local key_def = require('key_def')
+            -- Create a rule: full key = {id, name}
+            local rules = key_def.new({
+                {fieldno = 1, type = 'number'},
+                {fieldno = 2, type = 'string'}
+            })
+            -- Validate full key {1001, "Testuser"}. Returns nothing:
+            local ok, err = rules:validate_full_key({1001, "Testuser"})
+
+    ..  _key_validate_tuple:
+
+    ..  method:: validate_tuple(tuple)
+
+        Since version :doc:`3.1.0 </release/3.1.0>`        
+        Validates whether the ``tuple`` matches the rules of the key definition object
+        Returns nothing on success.
+        If the key fails the validation, a ``box.error`` type exception is raised.
+
+        **Example:**
+
+        ..  code-block:: lua
+
+            local key_def = require('key_def')
+            -- Create a rule: tuple = {id (number), name (string), age (number)}
+            local rules = key_def.new({
+                {fieldno = 1, type = 'number'},
+                {fieldno = 2, type = 'string'},
+                {fieldno = 3, type = 'number'}
+            })
+            -- Validate tuple {1001, "Testuser", 28}. Returns nothing:
+            local ok, err = rules:validate_tuple({1001, "Testuser", 28})
+
+    ..  _key_compare_keys:
+
+    ..  method:: compare_keys(key_a, key_b)
+
+        Since version :doc:`3.1.0 </release/3.1.0>`        
+        Compares two keys against each other and according to the key definition object.
+        On success, returns:
+        * ``<0`` if ``key_a`` parts are less than ``key_b`` parts
+        * ``0`` if ``key_a`` parts are equal to ``key_b`` parts
+        * ``>0`` if ``key_a`` parts are greater than ``key_b`` parts
+
+        If any key does not match the key definition rules, a ``box.error`` type exception is raised.
+
+        **Example:**
+
+        ..  code-block:: lua
+
+            local key_def = require('key_def')
+            -- Create rules: key = {timestamp (number), user_id (number)}
+            local rules = key_def.new({
+                {fieldno = 1, type = 'number'},
+                {fieldno = 2, type = 'number'}
+            })
+            -- Compare keys. Returns -1
+            local result = rules:compare_keys(
+                {1748266198238, 1001},  -- 2025-05-26, user_id=1001
+                {1748266198239, 1002}   -- 2025-05-26, user_id=1002
+            )
