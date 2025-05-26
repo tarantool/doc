@@ -227,8 +227,10 @@ to extract or compare the index key values.
     ..  method:: validate_key(key)
 
         Since version :doc:`3.1.0 </release/3.1.0>`
+
         Validates whether the input ``key`` (partially or completely) matches the rules of the key definition object.
         Returns nothing on success.
+
         If the key fails the validation, a ``box.error`` type exception is raised.
 
         **Example:**
@@ -248,9 +250,11 @@ to extract or compare the index key values.
 
     ..  method:: validate_full_key(key)
 
-        Since version :doc:`3.1.0 </release/3.1.0>`        
+        Since version :doc:`3.1.0 </release/3.1.0>`
+
         Validates whether they input ``key`` contains all fields and mathces the rules of the key definition object.
         Returns nothing on success.
+
         If the key fails the validation, a ``box.error`` type exception is raised.
 
         **Example:**
@@ -270,9 +274,11 @@ to extract or compare the index key values.
 
     ..  method:: validate_tuple(tuple)
 
-        Since version :doc:`3.1.0 </release/3.1.0>`        
+        Since version :doc:`3.1.0 </release/3.1.0>`
+
         Validates whether the ``tuple`` matches the rules of the key definition object
         Returns nothing on success.
+
         If the key fails the validation, a ``box.error`` type exception is raised.
 
         **Example:**
@@ -293,12 +299,14 @@ to extract or compare the index key values.
 
     ..  method:: compare_keys(key_a, key_b)
 
-        Since version :doc:`3.1.0 </release/3.1.0>`        
+        Since version :doc:`3.1.0 </release/3.1.0>`
+
         Compares two keys against each other and according to the key definition object.
         On success, returns:
-        * ``<0`` if ``key_a`` parts are less than ``key_b`` parts
-        * ``0`` if ``key_a`` parts are equal to ``key_b`` parts
-        * ``>0`` if ``key_a`` parts are greater than ``key_b`` parts
+
+        *  ``<0`` if ``key_a`` parts are less than ``key_b`` parts
+        *  ``0`` if ``key_a`` parts are equal to ``key_b`` parts
+        *  ``>0`` if ``key_a`` parts are greater than ``key_b`` parts
 
         If any key does not match the key definition rules, a ``box.error`` type exception is raised.
 
