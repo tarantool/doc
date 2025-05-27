@@ -228,23 +228,44 @@ to extract or compare the index key values.
 
         Since version :doc:`3.1.0 </release/3.1.0>`
 
-        Validates whether the input ``key`` (partially or completely) matches the rules of the key definition object.
+        Validates all parts of the specified key match the key definition. Partial keys are considered valid.
         Returns nothing on success.
 
         If the key fails the validation, a ``box.error`` type exception is raised.
 
         **Example:**
 
-        ..  code-block:: lua
+        ..  code-block:: tarantoolsession
 
-            local key_def = require('key_def')
-            -- Create a rule: key = {id (number), name (string)}
-            local rules = key_def.new({
-                {fieldno = 1, type = 'number'},
-                {fieldno = 2, type = 'string'}
-            })
-            -- Validate key {1001} (only id data type). Returns nothing:
-            local ok, err = rules:validate_key({1001})
+            -- Create a rule: key = {1 ('unsigned'), 2 (string)}
+            -- Validate key {1001} (only id data type). Returns nothing
+            -- Validate key {'x'}. ER_KEY_PART_TYPE is raised
+            -- Validate key ({1000, 2000}). ER_KEY_PART_TYPE is raised
+            -- Validate key ({1000, 'abc', 'xyz'}). ER_KEY_PART_COUNT is raised
+
+            tarantool> key_def = require('key_def').new({{fieldno = 1, type = 'unsigned'},
+            >                           {fieldno = 2, type = 'string'}})
+            ---
+            ...
+
+            tarantool> key_def:validate_key({1001})
+            ---
+            ...
+
+            tarantool> key_def:validate_key({'x'})
+            ---
+            - error: 'Supplied key type of part 0 does not match index part type: expected unsigned'
+            ...
+
+            tarantool> key_def:validate_key({1000, 2000})
+            ---
+            - error: 'Supplied key type of part 1 does not match index part type: expected string'
+            ...
+
+            tarantool> key_def:validate_key({1000, 'abc', 'xyz'})
+            ---
+            - error: Invalid key part count (expected [0..2], got 3)
+            ...
 
     ..  _key_validate_full_key:
 
@@ -259,16 +280,19 @@ to extract or compare the index key values.
 
         **Example:**
 
-        ..  code-block:: lua
+        ..  code-block:: tarantoolsession
 
-            local key_def = require('key_def')
-            -- Create a rule: full key = {id, name}
-            local rules = key_def.new({
-                {fieldno = 1, type = 'number'},
-                {fieldno = 2, type = 'string'}
-            })
-            -- Validate full key {1001, "Testuser"}. Returns nothing:
-            local ok, err = rules:validate_full_key({1001, "Testuser"})
+            -- Create a rule: key = {1 ('unsigned'), 2 (string)}
+            -- Validate key {100, "Testuser"}. Returns nothing
+
+            tarantool> key_def = require('key_def').new({{fieldno = 1, type = 'unsigned'},
+            >                           {fieldno = 2, type = 'string'}})
+            ---
+            ...
+
+            tarantool> key_def:validate_full_key({100, "Testuser"})
+            ---
+            ...
 
     ..  _key_validate_tuple:
 
@@ -283,17 +307,21 @@ to extract or compare the index key values.
 
         **Example:**
 
-        ..  code-block:: lua
+        ..  code-block:: tarantoolsession
 
-            local key_def = require('key_def')
             -- Create a rule: tuple = {id (number), name (string), age (number)}
-            local rules = key_def.new({
-                {fieldno = 1, type = 'number'},
-                {fieldno = 2, type = 'string'},
-                {fieldno = 3, type = 'number'}
-            })
-            -- Validate tuple {1001, "Testuser", 28}. Returns nothing:
-            local ok, err = rules:validate_tuple({1001, "Testuser", 28})
+            -- Validate tuple {1001, "Testuser", 28}. Returns nothing
+
+            tarantool> key_def = require('key_def').new({
+            >                           {fieldno = 1, type = 'number'},
+            >                           {fieldno = 2, type = 'string'},
+            >                           {fieldno = 3, type = 'number'})
+            ---
+            ...
+
+            tarantool> key_def:validate_tuple({1001, "Testuser", 28})
+            ---
+            ...
 
     ..  _key_compare_keys:
 
@@ -312,16 +340,35 @@ to extract or compare the index key values.
 
         **Example:**
 
-        ..  code-block:: lua
+        ..  code-block:: tarantoolsession
 
-            local key_def = require('key_def')
-            -- Create rules: key = {timestamp (number), user_id (number)}
-            local rules = key_def.new({
-                {fieldno = 1, type = 'number'},
-                {fieldno = 2, type = 'number'}
-            })
-            -- Compare keys. Returns -1
-            local result = rules:compare_keys(
-                {1748266198238, 1001},  -- 2025-05-26, user_id=1001
-                {1748266198239, 1002}   -- 2025-05-26, user_id=1002
-            )
+            -- Create a rule: key = {1 ('unsigned'), 2 (string)}
+            -- Validate keys ({1000, 'x'}, {1000, 'y'}). Returns -1
+            -- Validate keys ({1000, 'x'}, {1000, 'x'}). Returns 0
+            -- Validate keys ({1000, 'x'}, {1000}). Returns 0
+            -- Validate keys ({2000, 'x'}, {1000, 'x'}). Returns 1
+
+            tarantool> key_def = require('key_def').new({{fieldno = 1, type = 'unsigned'},
+            >                           {fieldno = 2, type = 'string'}})
+            ---
+            ...
+
+            tarantool> key_def:compare_keys({1000, 'x'}, {1000, 'y'})
+            ---
+            - -1
+            ...
+
+            tarantool> key_def:compare_keys({1000, 'x'}, {1000, 'x'})
+            ---
+            - 0
+            ...
+
+            tarantool> key_def:compare_keys({1000, 'x'}, {1000})
+            ---
+            - 0
+            ...
+
+            tarantool> key_def:compare_keys({2000, 'x'}, {1000, 'x'})
+            ---
+            - 1
+            ...
