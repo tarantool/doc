@@ -2836,6 +2836,40 @@ Attributes must be ``key: value`` pairs with string keys and values.
 
     See also: :ref:`configuration_labels`
 
+..  _configuration_reference_isolated_mode:
+
+isolated mode
+------
+
+Since version :doc:`3.3.0 </release/3.3.0>`, a new ``isolated`` option is added to instance configuration.
+
+The option takes boolean values, by default it is set to ``false``.
+
+When set to ``true``, it moves the instance it has been applied at to the **isolated** mode.
+
+The isolated mode allows the user to temporarily isolate an instance and perform maintenance activities on it. 
+
+The isolated mode moves the instance to the read-only state, in which:
+
+*   iproto stops listening for new connections
+*   iproto drops all the current connections
+*   The instance is disconnected from all the replication upstreams
+*   Other replicaset members exclude the isolated instance from the replication upstreams
+
+Once the mode is enabled, After any requests that try to change persistent data will fail with the ``ER_READONLY`` error.
+
+..  NOTE::
+
+    isolated instance can't be bootstrapped (a local snapshot is required to start).
+
+    **Example**
+
+    The example below shows how to isolate an instance:
+
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/isolated_mode/config.yaml
+        :language: yaml
+        :dedent:
+
 ..  _configuration_reference_log:
 
 log
