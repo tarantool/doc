@@ -230,3 +230,160 @@ to extract or compare the index key values.
             key_def = require('key_def')
             k = key_def.new({{type = 'string', fieldno = 3}})
             k:totable()
+
+    ..  _key_validate_key:
+
+    ..  method:: validate_key(key)
+
+        Since version :doc:`3.1.0 </release/3.1.0>`
+
+        Validates all parts of the specified key match the key definition. Partial keys are considered valid.
+        Returns nothing on success.
+
+        If the key fails the validation, a ``box.error`` type exception is raised.
+
+        **Example:**
+
+        ..  code-block:: tarantoolsession
+
+            -- Create a rule: key = {1 ('unsigned'), 2 (string)}
+            -- Validate key {1001} (only id data type). Returns nothing
+            -- Validate key {'x'}. ER_KEY_PART_TYPE is raised
+            -- Validate key ({1000, 2000}). ER_KEY_PART_TYPE is raised
+            -- Validate key ({1000, 'abc', 'xyz'}). ER_KEY_PART_COUNT is raised
+
+            tarantool> key_def = require('key_def').new({{fieldno = 1, type = 'unsigned'},
+            >                           {fieldno = 2, type = 'string'}})
+            ---
+            ...
+
+            tarantool> key_def:validate_key({1001})
+            ---
+            ...
+
+            tarantool> key_def:validate_key({'x'})
+            ---
+            - error: 'Supplied key type of part 0 does not match index part type: expected unsigned'
+            ...
+
+            tarantool> key_def:validate_key({1000, 2000})
+            ---
+            - error: 'Supplied key type of part 1 does not match index part type: expected string'
+            ...
+
+            tarantool> key_def:validate_key({1000, 'abc', 'xyz'})
+            ---
+            - error: 'Invalid key part count: (expected [0..2], got 3)
+            ...
+
+    ..  _key_validate_full_key:
+
+    ..  method:: validate_full_key(key)
+
+        Since version :doc:`3.1.0 </release/3.1.0>`
+
+        Validates whether they input ``key`` contains all fields and mathces the rules of the key definition object.
+        Returns nothing on success.
+
+        If the key fails the validation, a ``box.error`` type exception is raised.
+
+        **Example:**
+
+        ..  code-block:: tarantoolsession
+
+            -- Create a rule: key = {1 ('unsigned'), 2 (string)}
+            -- Validate key {100, "Testuser"}. Returns nothing
+            -- Validate key ({100}). ER_EXACT_MATCH is raised
+
+            tarantool> key_def = require('key_def').new({{fieldno = 1, type = 'unsigned'},
+            >                           {fieldno = 2, type = 'string'}})
+            ---
+            ...
+
+            tarantool> key_def:validate_full_key({100, "Testuser"})
+            ---
+            ...
+
+            tarantool> key_def:validate_full_key({100})
+            ---
+            - error: 'Invalid key part count in an exact match: (expected 2, got 1)
+            ...
+
+    ..  _key_validate_tuple:
+
+    ..  method:: validate_tuple(tuple)
+
+        Since version :doc:`3.1.0 </release/3.1.0>`
+
+        Validates whether the ``tuple`` matches the rules of the key definition object
+        Returns nothing on success.
+
+        If the key fails the validation, a ``box.error`` type exception is raised.
+
+        **Example:**
+
+        ..  code-block:: tarantoolsession
+
+            -- Create a rule: tuple = {id (number), name (string), age (number)}
+            -- Validate tuple {1001, "Testuser", 28}. Returns nothing
+
+            tarantool> key_def = require('key_def').new({
+            >                           {fieldno = 1, type = 'number'},
+            >                           {fieldno = 2, type = 'string'},
+            >                           {fieldno = 3, type = 'number'})
+            ---
+            ...
+
+            tarantool> key_def:validate_tuple({1001, "Testuser", 28})
+            ---
+            ...
+
+    ..  _key_compare_keys:
+
+    ..  method:: compare_keys(key_a, key_b)
+
+        Since version :doc:`3.1.0 </release/3.1.0>`
+
+        Compares two keys against each other and according to the key definition object.
+        On success, returns:
+
+        *  ``<0`` if ``key_a`` parts are less than ``key_b`` parts
+        *  ``0`` if ``key_a`` parts are equal to ``key_b`` parts
+        *  ``>0`` if ``key_a`` parts are greater than ``key_b`` parts
+
+        If any key does not match the key definition rules, a ``box.error`` type exception is raised.
+
+        **Example:**
+
+        ..  code-block:: tarantoolsession
+
+            -- Create a rule: key = {1 ('unsigned'), 2 (string)}
+            -- Validate keys ({1000, 'x'}, {1000, 'y'}). Returns -1
+            -- Validate keys ({1000, 'x'}, {1000, 'x'}). Returns 0
+            -- Validate keys ({1000, 'x'}, {1000}). Returns 0
+            -- Validate keys ({2000, 'x'}, {1000, 'x'}). Returns 1
+
+            tarantool> key_def = require('key_def').new({{fieldno = 1, type = 'unsigned'},
+            >                           {fieldno = 2, type = 'string'}})
+            ---
+            ...
+
+            tarantool> key_def:compare_keys({1000, 'x'}, {1000, 'y'})
+            ---
+            - -1
+            ...
+
+            tarantool> key_def:compare_keys({1000, 'x'}, {1000, 'x'})
+            ---
+            - 0
+            ...
+
+            tarantool> key_def:compare_keys({1000, 'x'}, {1000})
+            ---
+            - 0
+            ...
+
+            tarantool> key_def:compare_keys({2000, 'x'}, {1000, 'x'})
+            ---
+            - 1
+            ...
