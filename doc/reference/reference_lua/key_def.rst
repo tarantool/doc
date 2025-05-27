@@ -264,7 +264,7 @@ to extract or compare the index key values.
 
             tarantool> key_def:validate_key({1000, 'abc', 'xyz'})
             ---
-            - error: Invalid key part count (expected [0..2], got 3)
+            - error: 'Invalid key part count: (expected [0..2], got 3)
             ...
 
     ..  _key_validate_full_key:
@@ -284,6 +284,7 @@ to extract or compare the index key values.
 
             -- Create a rule: key = {1 ('unsigned'), 2 (string)}
             -- Validate key {100, "Testuser"}. Returns nothing
+            -- Validate key ({100}). ER_EXACT_MATCH is raised
 
             tarantool> key_def = require('key_def').new({{fieldno = 1, type = 'unsigned'},
             >                           {fieldno = 2, type = 'string'}})
@@ -292,6 +293,11 @@ to extract or compare the index key values.
 
             tarantool> key_def:validate_full_key({100, "Testuser"})
             ---
+            ...
+
+            tarantool> key_def:validate_full_key({100})
+            ---
+            - error: 'Invalid key part count in an exact match: (expected 2, got 1)
             ...
 
     ..  _key_validate_tuple:
