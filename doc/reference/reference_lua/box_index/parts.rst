@@ -15,6 +15,12 @@ index_object.parts
     :ref:`compare_with_key() <key_def-compare_with_key>`,
     :ref:`merge() <key_def-merge>`.
 
+    Since version :doc:`3.1.0 </release/3.1.0>`, the ``index_object.parts`` can operate methods
+    :ref:`validate_key() <key_validate_key>`,
+    :ref:`validate_full_key() <key_validate_full_key>`,
+    :ref:`validate_tuple() <key_validate_tuple>`,
+    :ref:`compare_keys() <key_compare_keys>`.
+
     **``index_object.parts`` example**
 
     ..  code-block:: lua
