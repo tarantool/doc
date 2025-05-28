@@ -254,6 +254,10 @@ This issue can be fixed in two ways:
 -   Manually: :ref:`reseed <replication-master-master-reseed-replica>` one master from another by removing write-ahead logs and snapshots.
 -   Programmatically: set up a :ref:`conflict resolution trigger <replication-problem_solving>`.
 
+..  NOTE::
+
+    To avoid brain split between two masters, one of the instances may be put in the :ref:`isolated mode <_configuration_reference_isolated_mode>`.
+
 Then, restart replication as described in :ref:`Restarting replication <replication-master-master-resolve-conflict>`.
 
 

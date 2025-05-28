@@ -2856,13 +2856,13 @@ The isolated mode moves the instance to the read-only state, in which:
 *   The instance is disconnected from all the replication upstreams
 *   Other replicaset members exclude the isolated instance from the replication upstreams
 
-Once the mode is enabled, After any requests that try to change persistent data will fail with the ``ER_READONLY`` error.
+Once the mode is enabled, any request trying to change persistent data will fail with the ``ER_READONLY`` error.
 
 ..  NOTE::
 
-    isolated instance can't be bootstrapped (a local snapshot is required to start).
+    Isolated instance can't be bootstrapped (a local snapshot is required to start).
 
-    **Example**
+**Example**
 
     The example below shows how to isolate an instance:
 
