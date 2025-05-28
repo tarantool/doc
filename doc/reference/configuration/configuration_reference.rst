@@ -2844,8 +2844,7 @@ isolated mode
 Since version :doc:`3.3.0 </release/3.3.0>`, a new ``isolated`` option is added to instance configuration.
 
 The option takes boolean values, by default it is set to ``false``.
-
-When set to ``true``, it moves the instance it has been applied at to the **isolated** mode.
+``isolated:true`` moves the instance it has been applied at to the **isolated** mode.
 
 The isolated mode allows the user to temporarily isolate an instance and perform maintenance activities on it. 
 
