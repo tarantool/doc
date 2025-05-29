@@ -256,7 +256,7 @@ This issue can be fixed in two ways:
 
 ..  NOTE::
 
-    To avoid brain split between two masters, one of the instances may be put in the :ref:`isolated mode <_configuration_reference_isolated_mode>`.
+    If one of the instances must be isolated during troubleshooting, it can be put to the :ref:`isolated mode <_configuration_reference_isolated_mode>`.
 
 Then, restart replication as described in :ref:`Restarting replication <replication-master-master-resolve-conflict>`.
 

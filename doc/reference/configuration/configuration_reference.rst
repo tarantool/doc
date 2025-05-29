@@ -2848,14 +2848,13 @@ The option takes boolean values, by default it is set to ``false``.
 
 The isolated mode allows the user to temporarily isolate an instance and perform maintenance activities on it. 
 
-The isolated mode moves the instance to the read-only state, in which:
+In the isolated mode:
 
+*   The instance is moved to the read-only state
 *   iproto stops listening for new connections
 *   iproto drops all the current connections
 *   The instance is disconnected from all the replication upstreams
 *   Other replicaset members exclude the isolated instance from the replication upstreams
-
-Once the mode is enabled, any request trying to change persistent data will fail with the ``ER_READONLY`` error.
 
 ..  NOTE::
 
