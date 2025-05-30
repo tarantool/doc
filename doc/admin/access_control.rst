@@ -797,7 +797,31 @@ To give the ability to execute a function named 'sum', grant the following privi
 
     box.schema.user.grant('testuser','execute','function','sum')
 
+.. _access_control_grant_lua_functions_execute:
 
+Executing lua functions
+***********************
+
+Granting the 'execute' privilege on ``lua_call`` permits the user to call any global (accessible via the ``_G`` Lua table) 
+user-defined Lua function with the ``IPROTO_CALL`` request. To grant permission to any non-persistent function, you need to 
+specify its name when granting the ``lua_call`` privilege.
+
+..  NOTE::
+
+    The function doesn't need to be defined at the time privileges are granted, meaning that the access to the function will be provided for the user once this function is defined.
+
+..  code-block:: lua
+
+    function my_func_1() end
+    function my_func_2() end
+    box.cfg({listen = 3301})
+    box.schema.user.create('alice', {password = 'secret'})
+    conn = require('net.box').connect(box.cfg.listen, {user = 'alice', password = 'secret'})
+    box.schema.user.grant('alice', 'execute', 'lua_call', 'my_func_1')
+    conn:call('my_func_1') -- ok
+    conn:call('my_func_2') -- access denied
+    box.schema.user.grant('alice', 'execute', 'lua_call', 'box.session.su')
+    conn:call('box.session.su', {'admin'}) -- ok
 
 
 
