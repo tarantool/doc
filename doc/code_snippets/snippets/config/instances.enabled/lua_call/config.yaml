@@ -4,4 +4,3 @@ credentials:
       privileges:
         - permissions: [execute]
           lua_call: [my_func]
-          
