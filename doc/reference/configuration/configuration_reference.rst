@@ -2805,6 +2805,38 @@ instances
     Any configuration parameter that can be defined in the instance :ref:`scope <configuration_scopes>`.
     For example, :ref:`iproto <configuration_reference_iproto>` and :ref:`database <configuration_reference_database>` configuration parameters defined at the instance level are applied to this instance only.
 
+..  _configuration_reference_isolated_mode:
+
+isolated mode
+------
+
+Since version :doc:`3.3.0 </release/3.3.0>`, a new ``isolated`` option is added to instance configuration.
+
+The option takes boolean values, by default it is set to ``false``.
+``isolated: true`` moves the instance it has been applied at to the **isolated** mode.
+
+The isolated mode allows the user to temporarily isolate an instance and perform maintenance activities on it. 
+
+In the isolated mode:
+
+*   The instance is moved to the read-only state
+*   iproto stops listening for new connections
+*   iproto drops all the current connections
+*   The instance is disconnected from all the replication upstreams
+*   Other replicaset members exclude the isolated instance from the replication upstreams
+
+..  NOTE::
+
+    Isolated instance can't be bootstrapped (a local snapshot is required to start).
+
+**Example**
+
+    The example below shows how to isolate an instance:
+
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/isolated_mode/config.yaml
+        :language: yaml
+        :dedent:
+
 ..  _configuration_reference_labels:
 
 labels

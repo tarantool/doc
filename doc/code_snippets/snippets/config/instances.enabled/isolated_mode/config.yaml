@@ -1,0 +1,10 @@
+groups:
+  g:
+    replicasets:
+      r:
+        instances:
+          i-001: {}
+          i-002: {}
+          i-003: {}
+          i-004:
+            isolated: true
