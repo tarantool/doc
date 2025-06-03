@@ -17,6 +17,9 @@ box.info()
     :return: keys and values in the submodule
     :rtype:  table
 
+    Since version :doc:`3.3.0 </release/3.3.0>`
+    Returns the ``hierarchy`` table, showing names of the group, replicaset, and the instance itself.
+
     **Example**
 
     This example is for a master-replica set that contains one master instance
@@ -94,4 +97,8 @@ box.info()
               last: &0 []
               active: *0
             alerts: []
+            hierarchy:
+              group: group-001
+              replicaset: replicaset-001
+              instance: instance-001
         ...

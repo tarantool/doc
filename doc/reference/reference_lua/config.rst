@@ -159,6 +159,10 @@ config API
 
                  -   ``alerts`` -- warnings or errors raised on an attempt to apply the configuration
 
+                Since version :doc:`3.3.0 </release/3.3.0>`
+
+                 -   ``hierarchy`` -- table, showing names of the group, replicaset, and the instance itself.
+
         Below are a few examples demonstrating how the ``info()`` output might look.
 
         **Example: no configuration warnings or errors**
@@ -174,6 +178,10 @@ config API
                 last: &0 []
                 active: *0
               alerts: []
+              hierarchy:
+                group: group-001
+                replicaset: replicaset-001
+                instance: instance-001
             ...
 
         **Example: configuration warnings**
@@ -196,6 +204,10 @@ config API
                   upgrade has not been performed, or the privilege write has failed (separate
                   alert reported)
                 timestamp: 2024-07-03T18:09:18.826138+0300
+              hierarchy:
+                group: group-001
+                replicaset: replicaset-001
+                instance: instance-001
             ...
 
         This warning is cleared when the ``bands`` space is created.
@@ -219,6 +231,10 @@ config API
                   allowed: 0, fatal, 1, syserror, 2, error, 3, crit, 4, warn, 5, info, 6, verbose,
                   7, debug'
                 timestamp: 2024-07-03T18:13:19.755454+0300
+              hierarchy:
+                group: group-001
+                replicaset: replicaset-001
+                instance: instance-001
             ...
 
         **Example: configuration errors (centralized configuration storage)**
@@ -248,6 +264,10 @@ config API
                   8, but only the following values are allowed: 0, fatal, 1, syserror, 2, error,
                   3, crit, 4, warn, 5, info, 6, verbose, 7, debug'
                 timestamp: 2024-07-03T15:22:06.438275Z
+              hierarchy:
+                group: group-001
+                replicaset: replicaset-001
+                instance: instance-001
             ...
 
 
