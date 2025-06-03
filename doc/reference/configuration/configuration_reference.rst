@@ -1447,10 +1447,23 @@ credentials.users.*
 .. confval:: <user_or_role_name>.privileges.lua_call
 
     A list of global user-defined Lua functions that this user or a user with this role can call.
-    To allow calling all such functions, specify the ``all`` value.
+    To allow calling a specific function, specify its name as the value.
+    To allow calling all global Lua functions except built-in ones functions, specify the ``all`` value.
 
     This option should be configured together with the ``execute``
     :ref:`permission <configuration_reference_credentials_privileges_permissions>`.
+
+    To take a previously granted privilege away, specify the ``lua_call`` option without the function name, 
+    or with an empty privileges array (furhter options may retain commented-out).
+
+    Since version :doc:`3.3.0 </release/3.3.0>`, the ``lua_call`` option allows granting users privileges to call specified lua function on 
+    the instance in runtime.
+
+    Example to grant and take away custom functions from the 'alice' user:
+
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/lua_call/config.yaml
+        :language: yaml
+        :dedent:
 
 ..  _configuration_reference_credentials_privileges_sql:
 
@@ -3219,26 +3232,6 @@ The ``lua`` section outlines the configuration parameters related to the Lua env
     | Type: integer
     | Default: 2147483648 (2GB)
     | Environment variable: TT_LUA_MEMORY
-
-.. _configuration_reference_lua_call:
-
-.. confval:: lua_call
-
-    Since version :doc:`3.3.0 </release/3.3.0>`, the ``lua_call`` option allows the specified user to perform the specified lua function on 
-    the instance during runtime.
-
-    Via the ``lua_call`` option, one can grant permissions to the function to any user registered on the instance. 
-
-    Note that the special option ``lua_call: [all]`` is also supported, granting access to all global Lua functions except built-in ones,   
-    bypassing database restrictions.
-
-    After the instance is rebooted, permissions defined via the ``lua_call`` options are reset to the values stored in the database.
-
-    Example to grant custom function to the 'alice' user:
-
-    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/lua_call/config.yaml
-        :language: yaml
-        :dedent:
 
 ..  _configuration_reference_memtx:
 
