@@ -1453,13 +1453,10 @@ credentials.users.*
     This option should be configured together with the ``execute``
     :ref:`permission <configuration_reference_credentials_privileges_permissions>`.
 
-    To take a previously granted privilege away, specify the ``lua_call`` option without the function name, 
-    or with an empty privileges array (furhter options may retain commented-out).
-
     Since version :doc:`3.3.0 </release/3.3.0>`, the ``lua_call`` option allows granting users privileges to call specified lua function on 
-    the instance in runtime.
+    the instance in runtime (thus it doesn't require an ability to write to the database).
 
-    Example to grant and take away custom functions from the 'alice' user:
+    Example to grant custom functions from the 'alice' user:
 
     ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/lua_call/config.yaml
         :language: yaml

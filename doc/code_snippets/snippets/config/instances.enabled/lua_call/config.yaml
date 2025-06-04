@@ -1,23 +1,6 @@
-# grant privilege
 credentials:
   users:
     alice:
       privileges:
         - permissions: [execute]
           lua_call: [my_func, my_func2]
-
-# take away a privilege:
-credentials:
-  users:
-    alice:
-      privileges:
-        - permissions: [execute]
-          lua_call: [my_func]
-
-# take away a privilege:
-credentials:
-  users:
-    alice:
-      privileges: []
-#        - permissions: [execute]
-#          lua_call: [my_func, my_func2]
