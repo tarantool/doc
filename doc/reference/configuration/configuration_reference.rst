@@ -1456,7 +1456,7 @@ credentials.users.*
     Since version :doc:`3.3.0 </release/3.3.0>`, the ``lua_call`` option allows granting users privileges to call specified lua function on 
     the instance in runtime (thus it doesn't require an ability to write to the database).
 
-    Example to grant custom functions from the 'alice' user:
+    Example to grant custom functions to the 'alice' user:
 
     ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/lua_call/config.yaml
         :language: yaml
