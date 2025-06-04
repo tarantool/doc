@@ -17,6 +17,11 @@ box.info()
     :return: keys and values in the submodule
     :rtype:  table
 
+    Since version :doc:`3.3.0 </release/3.3.0>` returns the ``hierarchy`` table, showing names of the group, replicaset, and the instance itself.
+    These names are taken directly from the ``--name`` CLI option (or the ``TT_INSTANCE_NAME`` environment variable) 
+    and the cluster configuration. This means they are always present if the YAML configuration flow is in use, 
+    disregarding the database status (whether upgraded, writable or not).
+
     **Example**
 
     This example is for a master-replica set that contains one master instance
@@ -94,4 +99,8 @@ box.info()
               last: &0 []
               active: *0
             alerts: []
+            hierarchy:
+              group: storages
+              replicaset: storage-a
+              instance: storage-a-002
         ...
