@@ -161,7 +161,10 @@ config API
 
                 Since version :doc:`3.3.0 </release/3.3.0>`
 
-                 -   ``hierarchy`` -- table, showing names of the group, replicaset, and the instance itself.
+                 -   ``hierarchy`` -- table, showing names of the group, replicaset, and the instance itself. 
+                 These names are taken directly from the ``--name`` CLI option (or the ``TT_INSTANCE_NAME`` environment variable) 
+                 and the cluster configuration. This means they are always present if the YAML configuration flow is in use, 
+                 disregarding the database status (whether upgraded, writable or not).
 
         Below are a few examples demonstrating how the ``info()`` output might look.
 
@@ -265,9 +268,9 @@ config API
                   3, crit, 4, warn, 5, info, 6, verbose, 7, debug'
                 timestamp: 2024-07-03T15:22:06.438275Z
               hierarchy:
-                group: group-001
-                replicaset: replicaset-001
-                instance: instance-001
+                group: group001
+                replicaset: replicaset001
+                instance: instance001
             ...
 
 
