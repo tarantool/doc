@@ -1,0 +1,6 @@
+credentials:
+  users:
+    alice:
+      privileges:
+        - permissions: [execute]
+          lua_call: [my_func, my_func2]

@@ -1447,10 +1447,20 @@ credentials.users.*
 .. confval:: <user_or_role_name>.privileges.lua_call
 
     A list of global user-defined Lua functions that this user or a user with this role can call.
-    To allow calling all such functions, specify the ``all`` value.
+    To allow calling a specific function, specify its name as the value.
+    To allow calling all global Lua functions except built-in ones functions, specify the ``all`` value.
 
     This option should be configured together with the ``execute``
     :ref:`permission <configuration_reference_credentials_privileges_permissions>`.
+
+    Since version :doc:`3.3.0 </release/3.3.0>`, the ``lua_call`` option allows granting users privileges to call specified lua function on 
+    the instance in runtime (thus it doesn't require an ability to write to the database).
+
+    Example to grant custom functions to the 'alice' user:
+
+    ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/lua_call/config.yaml
+        :language: yaml
+        :dedent:
 
 ..  _configuration_reference_credentials_privileges_sql:
 
