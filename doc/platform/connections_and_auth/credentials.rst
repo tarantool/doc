@@ -80,7 +80,18 @@ In this example, ``sampleuser`` gets privileges to select and modify data in the
 
 You can find the full example here: `credentials <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/credentials>`_.
 
+.. _configuration_credentials_managing_users_roles_revoking_privileges:
 
+Revoking privileges from a user
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To take a previously granted privilege away, specify the ``permission`` field without the 
+previously allowed privilege, or with an empty ``privileges`` array. Further options may retain commented-out, if necessary:
+
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/credentials/revoke.yaml
+    :language: yaml
+    :start-at: sampleuser:
+    :dedent:
 
 .. _configuration_credentials_loading_secrets:
 
