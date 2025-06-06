@@ -90,7 +90,7 @@ previously allowed privilege, or with an empty ``privileges`` array. Further opt
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/credentials/revoke.yaml
     :language: yaml
-    :start-at: sampleuser:
+    :start-at: # grant privileges
     :dedent:
 
 .. _configuration_credentials_loading_secrets:
