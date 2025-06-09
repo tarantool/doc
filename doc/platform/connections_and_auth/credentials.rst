@@ -87,7 +87,7 @@ Revoking privileges from a user
 
 To revoke a previously granted privilege, remove it from the configuration.
 
-For example, here is how to to grant privileges to a space and how to revoke one of the privileges:
+For example, here is how to grant privileges to a space and how to revoke one of the privileges:
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/credentials/revoke_one.yaml
     :language: yaml
@@ -98,15 +98,15 @@ If you want to revoke the remaining privilege to from a space, you can remove it
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/credentials/revoke_all.yaml
     :language: yaml
-    :start-at: # empty permissions array
-    :end-at: [ books ]
+    :start-at: # empty permissions array:
+    :end-at: [books]
     :dedent:
 
 You can revoke all privileges by making the ``privileges`` an empty array:
 
 ..  literalinclude:: /code_snippets/snippets/config/instances.enabled/credentials/revoke_all.yaml
     :language: yaml
-    :start-at: # empty privileges array
+    :start-at: # empty privileges array:
     :dedent:
 
 ..  warning::
