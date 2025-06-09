@@ -85,13 +85,33 @@ You can find the full example here: `credentials <https://github.com/tarantool/d
 Revoking privileges from a user
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To take a previously granted privilege away, specify the ``permission`` field without the 
-previously allowed privilege, or with an empty ``privileges`` array. Further options may retain commented-out, if necessary:
+To revoke a previously granted privilege, remove it from the configuration.
 
-..  literalinclude:: /code_snippets/snippets/config/instances.enabled/credentials/revoke.yaml
+For example, here is how to to grant privileges to a space and how to revoke one of the privileges:
+
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/credentials/revoke_one.yaml
     :language: yaml
     :start-at: # grant privileges
     :dedent:
+
+If you want to revoke the remaining privilege to from a space, you can remove it, too, thus making ``permissions`` an empty array:
+
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/credentials/revoke_all.yaml
+    :language: yaml
+    :start-at: # empty permissions array
+    :end-at: [ books ]
+    :dedent:
+
+You can revoke all privileges by making the ``privileges`` an empty array:
+
+..  literalinclude:: /code_snippets/snippets/config/instances.enabled/credentials/revoke_all.yaml
+    :language: yaml
+    :start-at: # empty privileges array
+    :dedent:
+
+..  warning::
+    Do not remove a user or a role from configuration in order to revoke that user's or role's privileges. If a user or a role is entirely 
+    removed from the configuration, it is not tracked by configuration machinery anymore. The user/role is not removed and its privileges are not revoked.
 
 .. _configuration_credentials_loading_secrets:
 
