@@ -112,7 +112,7 @@ For information about earlier versions, see :doc:`eol_versions`.
         *   -   2.10
             -   May 22, 2022
             -   September 14, 2023
-            -   Not planned yet
+            -   December 31, 2025
             -   | :doc:`2.10.8 </release/2.10.8>`
                 | :doc:`2.10.7 </release/2.10.7>`
                 | :doc:`2.10.6 </release/2.10.6>`
