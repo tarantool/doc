@@ -2,7 +2,7 @@ Release calendar
 ================
 
 Every Tarantool release series has :ref:`the same lifecycle <release-series-lifecycle>`.
-To see the lifecycle of Tarantool 2.x versions supported in 2025 see the :ref:`calendar <https://www.tarantool.io/en/doc/latest/release/#supported-versions>`.
+To see the lifecycle of Tarantool 2.x versions supported in 2025 see the `calendar <https://www.tarantool.io/en/doc/latest/release/#supported-versions>`_.
 
 ..  _release-table:
 
