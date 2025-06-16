@@ -2,16 +2,7 @@ Release calendar
 ================
 
 Every Tarantool release series has :ref:`the same lifecycle <release-series-lifecycle>`.
-Below you can find the lifecycle of Tarantool 2.x versions supported in 2024
-visualised as a calendar:
-
-.. ifconfig:: builder not in ('latex', )
-
-    .. image:: _images/releases_calendar.svg
-        :target: ../../_images/releases_calendar.svg
-        :align: left
-        :alt: releases_calendar.svg
-
+To see the lifecycle of Tarantool 2.x versions supported in 2025 see the `calendar <https://www.tarantool.io/en/doc/latest/release/#supported-versions>`_.
 
 ..  _release-table:
 
@@ -34,6 +25,16 @@ after the specified date.
             -   Release date
             -   End of life
             -   End of support
+
+        *   -   `2.11.7 LTS <https://github.com/tarantool/tarantool/releases/tag/2.11.7>`_
+            -   May 29, 2025
+            -   May 24, 2025
+            -   Not planned yet
+
+        *   -   `2.11.6 LTS <https://github.com/tarantool/tarantool/releases/tag/2.11.6>`_
+            -   February 24, 2025
+            -   May 24, 2025
+            -   Not planned yet
 
         *   -   `2.11.5 LTS <https://github.com/tarantool/tarantool/releases/tag/2.11.5>`_
             -   November 22, 2024
@@ -68,62 +69,62 @@ after the specified date.
         *   -   :doc:`2.10.8 </release/2.10.8>`
             -   September 14, 2023
             -   September 14, 2023
-            -   Not planned yet
+            -   December 31, 2025
 
         *   -   :doc:`2.10.7 </release/2.10.7>`
             -   May 24, 2023
             -   September 14, 2023
-            -   Not planned yet
+            -   December 31, 2025
 
         *   -   :doc:`2.10.6 </release/2.10.6>`
             -   March 22, 2023
             -   September 14, 2023
-            -   Not planned yet
+            -   December 31, 2025
 
         *   -   :doc:`2.10.5 </release/2.10.5>`
             -   February 20, 2023
             -   September 14, 2023
-            -   Not planned yet
+            -   December 31, 2025
 
         *   -   :doc:`2.10.4 </release/2.10.4>`
             -   November 11, 2022
             -   September 14, 2023
-            -   Not planned yet
+            -   December 31, 2025
 
         *   -   :doc:`2.10.3 </release/2.10.3>`
             -   September 30, 2022
             -   September 14, 2023
-            -   Not planned yet
+            -   December 31, 2025
 
         *   -   :doc:`2.10.2 </release/2.10.2>`
             -   September 1, 2022
             -   September 14, 2023
-            -   Not planned yet
+            -   December 31, 2025
 
         *   -   :doc:`2.10.1 </release/2.10.1>`
             -   August 8, 2022
             -   September 14, 2023
-            -   Not planned yet
+            -   December 31, 2025
 
         *   -   :doc:`2.10.0 </release/2.10.0>`
             -   May 22, 2022
             -   September 14, 2023
-            -   Not planned yet
+            -   December 31, 2025
 
         *   -   :doc:`2.8.4 </release/2.8.4>`
             -   April 25, 2022
             -   April 25, 2022
-            -   Not planned yet
+            -   December 31, 2024
 
         *   -   :doc:`2.8.3 </release/2.8.3>`
             -   December 22, 2021
             -   April 25, 2022
-            -   Not planned yet
+            -   December 31, 2024
 
         *   -   :doc:`2.8.2 </release/2.8.2>`
             -   August 19, 2021
             -   April 25, 2022
-            -   Not planned yet
+            -   December 31, 2024
 
         *   -   :doc:`2.7.3 </release/2.7.3>`
             -   August 19, 2021
