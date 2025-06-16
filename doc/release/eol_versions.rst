@@ -25,12 +25,32 @@ For information about major changes between EOL versions, see :ref:`release-eol-
             -   End of life
             -   End of support
 
-        *   -   :doc:`3.1 </release/3.1.0>`
+        *   -   :doc:`3.1.2 </release/3.1.2>`
+            -   August 26, 2024
+            -   August 26, 2024
+            -   August 26, 2024
+
+        *   -   :doc:`3.1.1 </release/3.1.1>`
+            -   July 31, 2024
+            -   August 26, 2024
+            -   August 26, 2024
+
+        *   -   :doc:`3.1.0 </release/3.1.0>`
             -   April 16, 2024
             -   August 26, 2024
             -   August 26, 2024
 
-        *   -   :doc:`3.0 </release/3.0.0>`
+        *   -   :doc:`3.0.2 </release/3.0.2>`
+            -   April 16, 2024
+            -   April 17, 2024
+            -   April 17, 2024
+
+        *   -   :doc:`3.0.1 </release/3.0.1>`
+            -   January 25, 2024
+            -   April 17, 2024
+            -   April 17, 2024
+
+        *   -   :doc:`3.0.0 </release/3.0.0>`
             -   December 26, 2023
             -   April 17, 2024
             -   April 17, 2024
@@ -270,8 +290,12 @@ For information about major changes between EOL versions, see :ref:`release-eol-
 
     major-features
     legacy-policy
-    3.1
-    3.0
+    3.1.2
+    3.1.1
+    3.1.0
+    3.0.2
+    3.0.1
+    3.0.0
     2.11.7
     2.11.6
     2.11.5
