@@ -29,17 +29,11 @@ For information about major changes between EOL versions, see :ref:`release-eol-
             -   April 16, 2024
             -   August 26, 2024
             -   August 26, 2024
-            -   | :tarantool-release:`3.1.2`
-                | :tarantool-release:`3.1.1`
-                | :tarantool-release:`3.1.0`
 
         *   -   :doc:`3.0 </release/3.0.0>`
             -   December 26, 2023
             -   April 17, 2024
             -   April 17, 2024
-            -   | :tarantool-release:`3.0.2`
-                | :tarantool-release:`3.0.1`
-                | :tarantool-release:`3.0.0`
 
         *   -   `2.11.7 LTS <https://github.com/tarantool/tarantool/releases/tag/2.11.7>`_
             -   May 29, 2025
