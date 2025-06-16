@@ -25,6 +25,62 @@ For information about major changes between EOL versions, see :ref:`release-eol-
             -   End of life
             -   End of support
 
+        *   -   :doc:`3.1 </release/3.1.0>`
+            -   April 16, 2024
+            -   August 26, 2024
+            -   August 26, 2024
+            -   | :tarantool-release:`3.1.2`
+                | :tarantool-release:`3.1.1`
+                | :tarantool-release:`3.1.0`
+
+        *   -   :doc:`3.0 </release/3.0.0>`
+            -   December 26, 2023
+            -   April 17, 2024
+            -   April 17, 2024
+            -   | :tarantool-release:`3.0.2`
+                | :tarantool-release:`3.0.1`
+                | :tarantool-release:`3.0.0`
+
+        *   -   `2.11.7 LTS <https://github.com/tarantool/tarantool/releases/tag/2.11.7>`_
+            -   May 29, 2025
+            -   May 24, 2025
+            -   Not planned yet
+
+        *   -   `2.11.6 LTS <https://github.com/tarantool/tarantool/releases/tag/2.11.6>`_
+            -   February 24, 2025
+            -   May 24, 2025
+            -   Not planned yet
+
+        *   -   `2.11.5 LTS <https://github.com/tarantool/tarantool/releases/tag/2.11.5>`_
+            -   November 22, 2024
+            -   May 24, 2025
+            -   Not planned yet
+
+        *   -   `2.11.4 LTS <https://github.com/tarantool/tarantool/releases/tag/2.11.4>`_
+            -   August 16, 2024
+            -   May 24, 2025
+            -   Not planned yet
+
+        *   -   `2.11.3 LTS <https://github.com/tarantool/tarantool/releases/tag/2.11.3>`_
+            -   April 18, 2024
+            -   May 24, 2025
+            -   Not planned yet
+
+        *   -   `2.11.2 LTS <https://github.com/tarantool/tarantool/releases/tag/2.11.2>`_
+            -   December 7, 2023
+            -   May 24, 2025
+            -   Not planned yet
+
+        *   -   `2.11.1 LTS <https://github.com/tarantool/tarantool/releases/tag/2.11.1>`_
+            -   August 17, 2023
+            -   May 24, 2025
+            -   Not planned yet
+
+        *   -   :doc:`2.11.0 LTS </release/2.11.0>`
+            -   May 24, 2023
+            -   May 24, 2025
+            -   Not planned yet
+        
         *   -   :doc:`2.10.8 </release/2.10.8>`
             -   September 14, 2023
             -   September 14, 2023
@@ -220,6 +276,15 @@ For information about major changes between EOL versions, see :ref:`release-eol-
 
     major-features
     legacy-policy
+    3.1
+    3.0
+    2.11.7
+    2.11.6
+    2.11.5
+    2.11.4
+    2.11.3
+    2.11.2
+    2.11.1
     2.10.8
     2.10.7
     2.10.6
