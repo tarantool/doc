@@ -3649,7 +3649,7 @@ The ``replication`` section defines configuration parameters related to :ref:`re
 -   :ref:`replication.skip_conflict <configuration_reference_replication_skip_conflict>`
 -   :ref:`replication.sync_lag <configuration_reference_replication_sync_lag>`
 -   :ref:`replication.sync_timeout <configuration_reference_replication_sync_timeout>`
--   :ref:`replicarion.synchro_queue_max_size <configuration_reference_replication_synchro_queue_max_size>`
+-   :ref:`replication.synchro_queue_max_size <configuration_reference_replication_synchro_queue_max_size>`
 -   :ref:`replication.synchro_quorum <configuration_reference_replication_synchro_quorum>`
 -   :ref:`replication.synchro_timeout <configuration_reference_replication_synchro_timeout>`
 -   :ref:`replication.threads <configuration_reference_replication_threads>`
