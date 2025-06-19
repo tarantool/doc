@@ -400,8 +400,9 @@
 
     .. NOTE::
 
-        The default ``replication_sync_timeout`` value can be changed to 300 by using the ``compat`` module.
-        More information on how to change the default value see in :ref:`Default value for replication_sync_timeout <compat-option-replication-timeout>`.
+        The default ``replication_sync_timeout`` value can be changed to the old default value (300) by using the ``compat`` module.
+        More information on changing the default value via the ``compat`` module 
+        see in :ref:`Default value for replication_sync_timeout <compat-option-replication-timeout>`.
 
 .. _cfg_replication-replication_timeout:
 
