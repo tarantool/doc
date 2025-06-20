@@ -76,7 +76,7 @@ default settings to all the parameters:
       replication_connect_timeout  = 30
       replication_skip_conflict    = false
       replication_sync_lag         = 10
-      replication_sync_timeout     = 300
+      replication_sync_timeout     = 0
       replication_timeout          = 1
       slab_alloc_factor            = 1.05
       snap_io_rate_limit           = nil
