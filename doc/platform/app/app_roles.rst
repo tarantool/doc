@@ -74,12 +74,12 @@ defined by roles dependencies.
 
 The ``on_event`` callback provides 3 arguments, when it is called:
 
-    - ``config``, which is the configuration of the role;
+    - ``config``, which contains the configuration of the role;
 
     - ``key``, which reflects the trigger event:
-
-        - ``config.apply`` if the callback was triggered by a configuration update; 
+        - ``config.apply`` if the callback was triggered by a configuration update;
         - ``box.status`` if it was triggered by the ``box.status`` system event.
+
     - ``value``, which shows and logs the information about the instance status as in the trigger ``box.status`` system event.
     If the callback is triggered by a configuration update, the ``value`` shows the information of the most recent ``box.status`` system event.
 
