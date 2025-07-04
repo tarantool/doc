@@ -84,8 +84,8 @@ The ``on_event`` callback provides 3 arguments, when it is called:
 
 ..  NOTE::
 
-    - All ``on_event`` callbacks with the ``config.apply`` key  are executed as a part of the configuration 
-    process. Process statuses ``ready`` or ``check_warnings`` are reached only after all such ``on_event`` callbacks are done.
+    - All ``on_event`` callbacks with the ``config.apply`` key  are executed as a part of the configuration process. 
+    Process statuses ``ready`` or ``check_warnings`` are reached only after all such ``on_event`` callbacks are done.
 
     - All ``on_event`` callbacks are executed inside of a ``pcall``. If an error is raised for a callback, it is logged with ``error`` level 
     and the series execution continues.
