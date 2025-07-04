@@ -90,7 +90,6 @@ The ``on_event`` callback provides 3 arguments, when it is called:
     - All ``on_event`` callbacks are executed inside of a ``pcall``. If an error is raised for a callback, it is logged with ``error`` level 
     and the series execution continues.
 
-
 Creating a custom role includes the following steps:
 
 #.  (Optional) Define the role configuration schema.
