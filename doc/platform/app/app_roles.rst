@@ -71,6 +71,7 @@ Since version :doc:`3.4.0 </release/3.4.0>`, you can define an ``on_event`` call
 every time a ``box.status`` system event is broadcasted, or after the ``apply`` action of the configuration update is finished.
 If multiple custom roles have the ``on_event`` callback defined, these callbacks are called one after another in the order
 defined by roles dependencies.
+
 The ``on_event`` callback provides 3 arguments, when it is called:
 
     - ``config``, which is the configuration of the role;
