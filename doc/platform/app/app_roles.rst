@@ -73,11 +73,13 @@ If multiple custom roles have the ``on_event`` callback defined, these callbacks
 defined by roles dependencies.
 The ``on_event`` callback provides 3 arguments, when it is called:
 
-- ``config``, which is the configuration of the role;
-- ``key``, which reflects the trigger event:
-    - ``config.apply`` if the callback was triggered by a configuration update; 
-    - ``box.status`` if it was triggered by the ``box.status`` system event.
-- ``value``, which shows and logs the information about the instance status as in the trigger ``box.status`` system event.
+    - ``config``, which is the configuration of the role;
+
+    - ``key``, which reflects the trigger event:
+
+        - ``config.apply`` if the callback was triggered by a configuration update; 
+        - ``box.status`` if it was triggered by the ``box.status`` system event.
+    - ``value``, which shows and logs the information about the instance status as in the trigger ``box.status`` system event. 
     If the callback is triggered by a configuration update, the ``value`` shows the information of the most recent ``box.status`` system event.
 
 ..  NOTE::
@@ -110,10 +112,10 @@ As a result, a role module should return an object that has corresponding functi
         on_event = function(config, key, value)
         local log = require('log')
 
-    log.info('roles_cfg.my_role.foo: ' .. config.foo)
-    log.info('on_event is triggered by ' .. key)
-    log.info('is_ro: ' .. value.is_ro)
-    end,
+        log.info('roles_cfg.my_role.foo: ' .. config.foo)
+        log.info('on_event is triggered by ' .. key)
+        log.info('is_ro: ' .. value.is_ro)
+        end,
     }
 
 The examples below show how to do this.
