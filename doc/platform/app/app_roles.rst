@@ -81,16 +81,13 @@ The ``on_event`` callback returns 3 arguments, when it is called:
    - ``config.apply`` if the callback was triggered by a configuration update;
 
    - ``box.status`` if it was triggered by the ``box.status`` system event.
-- ``value``, which shows and logs the information about the instance status as in the trigger ``box.status`` system event.
-If the callback is triggered by a configuration update, the ``value`` shows the information of the most recent ``box.status`` system event.
+- ``value``, which shows and logs the information about the instance status as in the trigger ``box.status`` system event. If the callback is triggered by a configuration update, the ``value`` shows the information of the most recent ``box.status`` system event.
 
 ..  NOTE::
 
-- All ``on_event`` callbacks with the ``config.apply`` key  are executed as a part of the configuration process.
-Process statuses ``ready`` or ``check_warnings`` are reached only after all such ``on_event`` callbacks are done.
+   - All ``on_event`` callbacks with the ``config.apply`` key  are executed as a part of the configuration process. Process statuses ``ready`` or ``check_warnings`` are reached only after all such ``on_event`` callbacks are done.
 
-- All ``on_event`` callbacks are executed inside of a ``pcall``. If an error is raised for a callback,
-it is logged with the ``error`` level and the series execution continues.
+   - All ``on_event`` callbacks are executed inside of a ``pcall``. If an error is raised for a callback, it is logged with the ``error`` level and the series execution continues.
 
 Creating a custom role includes the following steps:
 
