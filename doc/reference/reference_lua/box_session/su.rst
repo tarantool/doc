@@ -1,43 +1,75 @@
+..  _box_session-su:
 
-.. _box_session-su:
-
-================================================================================
 box.session.su()
-================================================================================
+================
 
-.. module:: box.session
+..  module:: box.session
 
-.. function:: su(user-name [, function-to-execute])
+..  function:: su(user-name [, function-to-execute])
 
     Change Tarantool's :ref:`current user <authentication-users>` --
     this is analogous to the Unix command ``su``.
 
-    Or, if function-to-execute is specified,
-    change Tarantool's :ref:`current user <authentication-users>`
-    temporarily while executing the function --
+    Or, if the ``function-to-execute`` option is specified,
+    change Tarantool's current user temporarily while executing the function --
     this is analogous to the Unix command ``sudo``.
+    If the user is changed temporarily:
+
+    - :ref:`box.session.user() <box_session-user>` ignores this change.
+    - :ref:`box.session.effective_user() <box_session-effective_user>` shows this change.
+
 
     :param string user-name: name of a target user
-    :param function-to-execute: name of a function, or definition of a function.
+    :param function-to-execute: a function object.
                                 Additional parameters may be passed to
-                                ``box.session.su``, they will be interpreted
-                                as parameters of function-to-execute.
+                                ``box.session.su()``, they will be interpreted
+                                as parameters of ``function-to-execute``.
 
-    **Example:**
+    **Example 1**
 
-    .. code-block:: tarantoolsession
+    Change Tarantool's current user to ``guest``:
 
-        tarantool> function f(a) return box.session.user() .. a end
+    ..  code-block:: tarantoolsession
+
+        app:instance001> box.session.su('guest')
         ---
         ...
 
-        tarantool> box.session.su('guest', f, '-xxx')
+    **Example 2**
+
+    Change Tarantool's current user to ``temporary_user`` temporarily:
+
+    ..  code-block:: tarantoolsession
+
+        app:instance001> function get_current_user() return box.session.user() end
         ---
-        - guest-xxx
         ...
 
-        tarantool> box.session.su('guest',function(...) return ... end,1,2)
+        app:instance001> function get_effective_user() return box.session.effective_user() end
         ---
-        - 1
-        - 2
+        ...
+
+        app:instance001> get_current_user()
+        ---
+        - admin
+        ...
+
+        app:instance001> box.session.su('temporary_user', get_current_user)
+        ---
+        - admin
+        ...
+
+        app:instance001> box.session.su('temporary_user', get_effective_user)
+        ---
+        - temporary_user
+        ...
+
+        app:instance001> box.session.su('temporary_user', get_effective_user, '-xxx')
+        ---
+        - temporary_user-xxx
+        ...
+
+        app:instance001> box.session.su('temporary_user', function(...) return box.session.user() end)
+        ---
+        - admin
         ...
