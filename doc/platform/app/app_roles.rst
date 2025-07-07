@@ -72,11 +72,11 @@ every time a ``box.status`` system event is broadcasted, or after the ``apply`` 
 If multiple custom roles have the ``on_event`` callback defined, these callbacks are called one after another in the order
 defined by roles dependencies.
 
-The ``on_event`` callback provides 3 arguments, when it is called:
+The ``on_event`` callback returns 3 arguments, when it is called:
 
 - ``config``, which contains the configuration of the role;
 
-- ``key``, which reflects the trigger event:
+- ``key``, which reflects the trigger event and is set to:
 
    - ``config.apply`` if the callback was triggered by a configuration update;
 
@@ -87,11 +87,11 @@ If the callback is triggered by a configuration update, the ``value`` shows the 
 
 ..  NOTE::
 
-   - All ``on_event`` callbacks with the ``config.apply`` key  are executed as a part of the configuration process.
-   Process statuses ``ready`` or ``check_warnings`` are reached only after all such ``on_event`` callbacks are done.
+ - All ``on_event`` callbacks with the ``config.apply`` key  are executed as a part of the configuration process.
+ Process statuses ``ready`` or ``check_warnings`` are reached only after all such ``on_event`` callbacks are done.
 
-   - All ``on_event`` callbacks are executed inside of a ``pcall``. If an error is raised for a callback, it is logged
-   with the ``error`` level and the series execution continues.
+ - All ``on_event`` callbacks are executed inside of a ``pcall``. If an error is raised for a callback,
+ it is logged with the ``error`` level and the series execution continues.
 
 Creating a custom role includes the following steps:
 
