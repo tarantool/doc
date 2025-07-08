@@ -266,14 +266,14 @@ A release series cannot reach EOL until the vast majority of production environm
 for which we have commitments and SLAs, is updated to a newer series.
 
 End of support
---------------
+~~~~~~~~~~~~~~~~~
 
 The end of support (EOS) date is later in time than the EOL date. When the series
 reaches EOS, the Tarantool team ceases its technical support and does not comply with support-
 related inquiries.
 
-It is recommended that the customers follow the :ref:`Supported versions <_release-supported-versions>`
-calendar and plan for updates of their Tarantool version before the EOS date.
+It is recommended that the customers follow the :ref:`calendar <release-supported-versions>`
+and plan for updates of their Tarantool version before the EOS date.
 
 Versions per lifecycle stage
 ----------------------------
