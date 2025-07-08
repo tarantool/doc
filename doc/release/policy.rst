@@ -6,19 +6,19 @@ Tarantool release policy
 Summary
 -------
 
-The Tarantool release policy is changing to become more clear and intuitive.
-The new policy uses a `SemVer-like <https://semver.org/>`__ versioning format,
-and introduces a new version lifecycle with more long-time support series.
-This document explains the new release policy, versioning rules, and :term:`release series` lifecycle.
+The Tarantool release policy is constantly changing to become more clear and intuitive.
+The stated policy uses a `SemVer-like <https://semver.org/>`__ versioning format,
+and upholds version lifecycle with more long-time support series.
+This document explains the Tarantool release policy, versioning rules, and :term:`release series` lifecycle.
 
-The new release policy replaces :doc:`the legacy policy </release/legacy-policy>`
+The stated release policy replaces :doc:`the legacy policy </release/legacy-policy>`
 for:
 
 *   The ``2.x.y`` series since the ``2.10.0`` release.
-    Development for this new release starts with version ``2.10.0-beta1``.
-*   The future ``3.0.0`` series.
+    Development for this release starts with version ``2.10.0-beta1``.
+*   The ``3.0.0`` series.
 
-Here are the most significant changes from the legacy release policy:
+Here are the most significant changes from the previously supported legacy release policy:
 
 *   The third number in the version label doesn't distinguish between
     pre-release (alpha and beta) and release versions.
@@ -29,7 +29,7 @@ Here are the most significant changes from the legacy release policy:
     while ``2.x.y`` had stable releases, but wasn't an LTS series.
     Now both series are long-term supported.
 
-The topics below describe the new versioning policy in more detail.
+The topics below describe the versioning policy in more detail.
 
 Versioning policy
 -----------------
@@ -37,7 +37,7 @@ Versioning policy
 Release series and versions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The new Tarantool release policy is based on having several release series,
+The Tarantool release policy is based on having several release series,
 each with its own lifecycle, pre-release and release versions.
 
 ..  glossary::
@@ -265,6 +265,15 @@ that reaches EOL.
 A release series cannot reach EOL until the vast majority of production environments,
 for which we have commitments and SLAs, is updated to a newer series.
 
+End of support
+---------------
+
+The end of support (EOS) date is later in time than the EOL date. When the series
+reaches EOS, the Tarantool team ceases its support and does not comply with support-
+related inquiries.
+
+It is recommended that the customers follow the :doc:`Supported versions <_release-supported-versions>` 
+calendar and plan for updates of their Tarantool version before the EOS date.
 
 Versions per lifecycle stage
 ----------------------------
