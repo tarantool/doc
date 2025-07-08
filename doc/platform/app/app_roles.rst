@@ -68,7 +68,7 @@ A custom application role is an object which implements custom functions or logi
 For example, a logging role can be created to add logging functionality on top of the built-in one.
 
 Since version :doc:`3.4.0 </release/3.4.0>`, you can define an ``on_event`` callback for custom roles. The ``on_event`` callback is called
-every time a ``box.status`` system event is broadcasted, or after the ``apply`` action of the configuration update is finished.
+every time a ``box.status`` system event is broadcasted.
 If multiple custom roles have the ``on_event`` callback defined, these callbacks are called one after another in the order
 defined by roles dependencies.
 
@@ -111,11 +111,10 @@ As a result, a role module should return an object that has corresponding functi
         stop = function() -- ... -- end,
         dependencies = { -- ... -- },
         on_event = function(config, key, value)
-        local log = require('log')
-
-        log.info('roles_cfg.my_role.foo: ' .. config.foo)
-        log.info('on_event is triggered by ' .. key)
-        log.info('is_ro: ' .. value.is_ro)
+            local log = require('log')
+            log.info('roles_cfg.my_role.foo: ' .. config.foo)
+            log.info('on_event is triggered by ' .. key)
+            log.info('is_ro: ' .. value.is_ro)
         end,
     }
 
