@@ -163,7 +163,6 @@ is used to validate the ``greeting`` value:
 
 If the configuration is not valid, ``validate()`` reports an unrecoverable error by throwing an error object.
 
-
 .. _roles_create_custom_role_apply:
 
 Applying a role configuration
@@ -181,6 +180,41 @@ In the example below, the ``apply()`` function uses the :ref:`log <log-module>` 
     :dedent:
 
 
+
+.. _roles_create_custom_role_edit:
+
+Editing a role
+~~~~~~~~~~~~~~
+
+Editing a custom application role object means changing the contents of its LUA file. To edit a role object, you can do the following:
+
+* Edit, remove, or set to nil the the role configuration schema;
+
+* Edit, remove, or set to nil dependencies;
+
+* Edit, remove, or set to nil the ``on_event`` callback function;
+
+* Edit the role configuration validation function;
+
+* Edit the apply validation function;
+
+* Edit the stopping role function.
+
+..  code-block:: lua
+
+    return {
+        validate = function() -- ... -- end,
+        apply = function() -- ... -- end,
+        stop = function() -- ... -- end,
+        dependencies = { -- ... -- },
+        on_event = nil
+        end,
+    }
+
+
+Once the editing of the role object is finished, the :ref:`config:reload() <config_api_reference_reload>` is triggered automatically
+to apply the changes. However, if the :ref:`config.reload <configuration_reference_config_reload>` option is set to ``manual``,
+then the user must manually perform configuration reload or restart Tarantool instance.
 
 .. _roles_create_custom_role_stop:
 
