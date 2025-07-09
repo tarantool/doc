@@ -214,7 +214,7 @@ Editing a custom application role object means changing the contents of its LUA 
 
 Once the editing of the role object is finished, the :ref:`config:reload() <config_api_reference_reload>` is triggered automatically
 to apply the changes. However, if the :ref:`config.reload <configuration_reference_config_reload>` option is set to ``manual``,
-then the user must manually perform configuration reload or restart Tarantool instance.
+then the you must manually perform configuration reload or restart the Tarantool instance with the role.
 
 .. _roles_create_custom_role_stop:
 
