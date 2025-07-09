@@ -64,6 +64,34 @@ Creating a custom role
 Overview
 ~~~~~~~~
 
+A custom application role is an object which implements custom functions or logic adding to Tarantool's built-in roles and roles provided by third-party Lua modules.
+For example, a logging role can be created to add logging functionality on top of the built-in one.
+
+Since version :doc:`3.4.0 </release/3.4.0>`, you can define an ``on_event`` callback for custom roles. The ``on_event`` callback is called
+every time a ``box.status`` system event is broadcasted.
+If multiple custom roles have the ``on_event`` callback defined, these callbacks are called one after another in the order
+defined by roles dependencies.
+
+The ``on_event`` callback returns 3 arguments, when it is called:
+
+- ``config``, which contains the configuration of the role;
+
+- ``key``, which reflects the trigger event and is set to:
+
+   - ``config.apply`` if the callback was triggered by a configuration update;
+
+   - ``box.status`` if it was triggered by the ``box.status`` system event.
+- ``value``, which shows and logs the information about the instance status as in the trigger ``box.status`` system event.
+  If the callback is triggered by a configuration update, the ``value`` shows the information of the most recent ``box.status`` system event.
+
+..  NOTE::
+
+   - All ``on_event`` callbacks with the ``config.apply`` key  are executed as a part of the configuration process.
+     Process statuses ``ready`` or ``check_warnings`` are reached only after all such ``on_event`` callbacks are done.
+
+   - All ``on_event`` callbacks are executed inside of a ``pcall``. If an error is raised for a callback, it is logged
+     with the ``error`` level and the series execution continues.
+
 Creating a custom role includes the following steps:
 
 #.  (Optional) Define the role configuration schema.
@@ -71,6 +99,7 @@ Creating a custom role includes the following steps:
 #.  Define a function that applies a validated configuration.
 #.  Define a function that stops a role.
 #.  (Optional) Define roles from which this custom role depends on.
+#.  (Optional) Define the ``on_event`` callback function.
 
 As a result, a role module should return an object that has corresponding functions and fields specified:
 
@@ -81,6 +110,12 @@ As a result, a role module should return an object that has corresponding functi
         apply = function() -- ... -- end,
         stop = function() -- ... -- end,
         dependencies = { -- ... -- },
+        on_event = function(config, key, value)
+            local log = require('log')
+            log.info('roles_cfg.my_role.foo: ' .. config.foo)
+            log.info('on_event is triggered by ' .. key)
+            log.info('is_ro: ' .. value.is_ro)
+        end,
     }
 
 The examples below show how to do this.
