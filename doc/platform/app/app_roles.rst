@@ -107,7 +107,7 @@ You can omit the optional steps and get a simple role as in the example below.
         stop = function() -- ... -- end,
     }
 
-You can modify a role, for example, by adding dependencies or specifying the on_event callback.
+You can modify a role, for example, by adding dependencies or specifying the ``on_event`` callback.
 If you modify a role, you need to restart the Tarantool instance with the role in order to apply the changes.
 
 ..  NOTE::
@@ -218,6 +218,7 @@ You can find the full example here: `application_role_cfg <https://github.com/ta
 .. _roles_create_custom_role_on_event_callback:
 
 On_event callback
+~~~~~~~~~~~~~~~~~
 
 Since version :doc:`3.4.0 </release/3.4.0>`, you can define the ``on_event`` callback for custom roles. The ``on_event`` callback is called
 every time a ``box.status`` system event is broadcasted.
