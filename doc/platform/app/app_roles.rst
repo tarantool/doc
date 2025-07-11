@@ -118,11 +118,24 @@ As a result, a role module should return an object that has corresponding functi
         end,
     }
 
-The examples below show how to do this.
+The examples in this article show how to do this.
+
+You can omit the optional steps and get a simple role as in the example below.
+
+..  code-block:: lua
+
+    return {
+        validate = function() -- ... -- end,
+        apply = function() -- ... -- end,
+        stop = function() -- ... -- end,
+    }
+
+You can modify a role, for example, by adding dependencies or specifying the on_event callback.
+If you modify a role, you need to restart the Tarantool instance with the role in order to apply the changes.
 
 ..  NOTE::
 
-    Code snippets shown in this section are included from the following application: `application_role_cfg <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/application_role_cfg>`_.
+    - Code snippets shown in this section are included from the following application: `application_role_cfg <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/application_role_cfg>`_.
 
 .. _roles_create_custom_role_schema:
 
@@ -163,7 +176,6 @@ is used to validate the ``greeting`` value:
 
 If the configuration is not valid, ``validate()`` reports an unrecoverable error by throwing an error object.
 
-
 .. _roles_create_custom_role_apply:
 
 Applying a role configuration
@@ -179,8 +191,6 @@ In the example below, the ``apply()`` function uses the :ref:`log <log-module>` 
     :start-at: local function apply
     :end-before: local function stop
     :dedent:
-
-
 
 .. _roles_create_custom_role_stop:
 
