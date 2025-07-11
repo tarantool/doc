@@ -118,11 +118,24 @@ As a result, a role module should return an object that has corresponding functi
         end,
     }
 
-The examples below show how to do this.
+The examples in this article show how to do this.
+
+You can omit the optional steps and get a simple role as in the example below.
+
+..  code-block:: lua
+
+    return {
+        validate = function() -- ... -- end,
+        apply = function() -- ... -- end,
+        stop = function() -- ... -- end,
+    }
+
+You can modify a role, for example, by adding dependencies or specifying the on_event callback.
+If you modify a role, you need to restart the Tarantool instance with the role in order to apply the changes.
 
 ..  NOTE::
 
-    Code snippets shown in this section are included from the following application: `application_role_cfg <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/application_role_cfg>`_.
+    - Code snippets shown in this section are included from the following application: `application_role_cfg <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/application_role_cfg>`_.
 
 .. _roles_create_custom_role_schema:
 
@@ -178,43 +191,6 @@ In the example below, the ``apply()`` function uses the :ref:`log <log-module>` 
     :start-at: local function apply
     :end-before: local function stop
     :dedent:
-
-
-
-.. _roles_create_custom_role_edit:
-
-Editing a role
-~~~~~~~~~~~~~~
-
-Editing a custom application role object means changing the contents of its LUA file. To edit a role object, you can do the following:
-
-* Edit, remove, or set to nil the the role configuration schema;
-
-* Edit, remove, or set to nil dependencies;
-
-* Edit, remove, or set to nil the ``on_event`` callback function;
-
-* Edit the role configuration validation function;
-
-* Edit the apply validation function;
-
-* Edit the stopping role function.
-
-..  code-block:: lua
-
-    return {
-        validate = function() -- ... -- end,
-        apply = function() -- ... -- end,
-        stop = function() -- ... -- end,
-        dependencies = { -- ... -- },
-        on_event = nil
-        end,
-    }
-
-
-Once the editing of the role object is finished, the :ref:`config:reload() <config_api_reference_reload>` is triggered automatically
-to apply the changes. However, if the :ref:`config.reload <configuration_reference_config_reload>` option is set to ``manual``,
-then the you must manually perform configuration reload or restart the Tarantool instance with the role.
 
 .. _roles_create_custom_role_stop:
 
