@@ -67,39 +67,16 @@ Overview
 A custom application role is an object which implements custom functions or logic adding to Tarantool's built-in roles and roles provided by third-party Lua modules.
 For example, a logging role can be created to add logging functionality on top of the built-in one.
 
-Since version :doc:`3.4.0 </release/3.4.0>`, you can define an ``on_event`` callback for custom roles. The ``on_event`` callback is called
-every time a ``box.status`` system event is broadcasted.
-If multiple custom roles have the ``on_event`` callback defined, these callbacks are called one after another in the order
-defined by roles dependencies.
 
-The ``on_event`` callback returns 3 arguments, when it is called:
-
-- ``config``, which contains the configuration of the role;
-
-- ``key``, which reflects the trigger event and is set to:
-
-   - ``config.apply`` if the callback was triggered by a configuration update;
-
-   - ``box.status`` if it was triggered by the ``box.status`` system event.
-- ``value``, which shows and logs the information about the instance status as in the trigger ``box.status`` system event.
-  If the callback is triggered by a configuration update, the ``value`` shows the information of the most recent ``box.status`` system event.
-
-..  NOTE::
-
-   - All ``on_event`` callbacks with the ``config.apply`` key  are executed as a part of the configuration process.
-     Process statuses ``ready`` or ``check_warnings`` are reached only after all such ``on_event`` callbacks are done.
-
-   - All ``on_event`` callbacks are executed inside of a ``pcall``. If an error is raised for a callback, it is logged
-     with the ``error`` level and the series execution continues.
 
 Creating a custom role includes the following steps:
 
-#.  (Optional) Define the role configuration schema.
-#.  Define a function that validates a role configuration.
-#.  Define a function that applies a validated configuration.
-#.  Define a function that stops a role.
-#.  (Optional) Define roles from which this custom role depends on.
-#.  (Optional) Define the ``on_event`` callback function.
+#.  (Optional) Define the :ref:`role configuration schema <roles_create_custom_role_schema>`.
+#.  Define a function that :ref:`validates a role configuration <roles_create_custom_role_validate>`.
+#.  Define a function that :ref:`applies a validated configuration <roles_create_custom_role_apply>`.
+#.  Define a function that :ref:`stops a role <roles_create_custom_role_stop>`.
+#.  (Optional) Define roles from which this custom role :ref:`depends on <roles_create_custom_role_dependencies>`.
+#.  (Optional) Define the ``on_event`` :ref:`callback function <roles_create_custom_role_on_event_callback>`.
 
 As a result, a role module should return an object that has corresponding functions and fields specified:
 
@@ -130,7 +107,7 @@ You can omit the optional steps and get a simple role as in the example below.
         stop = function() -- ... -- end,
     }
 
-You can modify a role, for example, by adding dependencies or specifying the on_event callback.
+You can modify a role, for example, by adding dependencies or specifying the ``on_event`` callback.
 If you modify a role, you need to restart the Tarantool instance with the role in order to apply the changes.
 
 ..  NOTE::
@@ -238,7 +215,60 @@ This means that all the dependencies of a role should be defined in the ``roles`
 
 You can find the full example here: `application_role_cfg <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/config/instances.enabled/application_role_cfg>`_.
 
+.. _roles_create_custom_role_on_event_callback:
 
+On_event callback
+~~~~~~~~~~~~~~~~~
+
+Since version :doc:`3.4.0 </release/3.4.0>`, you can define the ``on_event`` callback for custom roles. The ``on_event`` callback is called
+every time a ``box.status`` system event is broadcasted.
+If multiple custom roles have the ``on_event`` callback defined, these callbacks are called one after another in the order
+defined by roles dependencies.
+
+The ``on_event`` callback returns 3 arguments, when it is called:
+
+- ``config``, which contains the configuration of the role;
+
+- ``key``, which reflects the trigger event and is set to:
+
+   - ``config.apply`` if the callback was triggered by a configuration update;
+
+   - ``box.status`` if it was triggered by the ``box.status`` system event.
+- ``value``, which shows and logs the information about the instance status as in the trigger ``box.status`` system event.
+  If the callback is triggered by a configuration update, the ``value`` shows the information of the most recent ``box.status`` system event.
+
+..  NOTE::
+
+   - All ``on_event`` callbacks with the ``config.apply`` key  are executed as a part of the configuration process.
+     Process statuses ``ready`` or ``check_warnings`` are reached only after all such ``on_event`` callbacks are done.
+
+   - All ``on_event`` callbacks are executed inside of a ``pcall``. If an error is raised for a callback, it is logged
+     with the ``error`` level and the series execution continues.
+
+..  code-block:: lua
+
+    return {
+        validate = function() end,
+        apply = function()
+            _G.foo = 0
+        end,
+        stop = function()
+            _G.foo = -1
+            _G.bar = nil
+        end,
+        on_event = function(config, key, value)
+            assert(_G.foo >= 0)
+            assert(config == 12345)
+            if(_G.foo == 0) then
+                assert(key == 'config.apply')
+            else
+                assert(key == 'box.status')
+            end
+            _G.is_ro = value.is_ro
+            _G.foo = _G.foo + 1
+            _G.bar = config
+            end,
+        }
 
 .. _roles_create_custom_role_init:
 
