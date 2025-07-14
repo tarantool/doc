@@ -76,7 +76,7 @@ Creating a custom role includes the following steps:
 #.  Define a function that :ref:`applies a validated configuration <roles_create_custom_role_apply>`.
 #.  Define a function that :ref:`stops a role <roles_create_custom_role_stop>`.
 #.  (Optional) Define roles from which this custom role :ref:`depends on <roles_create_custom_role_dependencies>`.
-#.  (Optional) Define the ``on_event`` :ref:`callback function <roles_create_custom_role_on_event_callback>.
+#.  (Optional) Define the ``on_event`` :ref:`callback function <roles_create_custom_role_on_event_callback>`.
 
 As a result, a role module should return an object that has corresponding functions and fields specified:
 
