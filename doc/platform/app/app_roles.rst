@@ -314,7 +314,7 @@ See the example of such definition below:
                 if_not_exists = true,
             })
         end
-}
+    }
 
 .. _roles_life_cycle:
 
