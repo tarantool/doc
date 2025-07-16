@@ -163,6 +163,12 @@ Router public API
              optional attribute containing a message with the human-readable error description,
              and other attributes specific for the error code.
 
+    ..  note::
+
+        Any write requests that are intended to be executed repeatedly should be idempotent.
+        The operations' idempotency ensures that the change is applied **only once**.
+        Read more: :ref:`<vshard-deduplication>`.
+
     **Examples:**
 
     To call ``customer_add`` function from ``vshard/example``, say:
