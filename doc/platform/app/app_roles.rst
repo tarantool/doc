@@ -220,12 +220,12 @@ You can find the full example here: `application_role_cfg <https://github.com/ta
 On_event callback
 ~~~~~~~~~~~~~~~~~
 
-Since version :doc:`3.4.0 </release/3.4.0>`, you can define the ``on_event`` callback for custom roles. The ``on_event`` callback is called
+Since version :doc:`3.3.1 </release/3.3.0>`, you can define the ``on_event`` callback for custom roles. The ``on_event`` callback is called
 every time a ``box.status`` system event is broadcasted.
 If multiple custom roles have the ``on_event`` callback defined, these callbacks are called one after another in the order
 defined by roles dependencies.
 
-The ``on_event`` callback returns 3 arguments, when it is called:
+The ``on_event`` callback accepts 3 arguments, when it is called:
 
 - ``config``, which contains the configuration of the role;
 
@@ -234,7 +234,7 @@ The ``on_event`` callback returns 3 arguments, when it is called:
    - ``config.apply`` if the callback was triggered by a configuration update;
 
    - ``box.status`` if it was triggered by the ``box.status`` system event.
-- ``value``, which shows and logs the information about the instance status as in the trigger ``box.status`` system event.
+- ``value``, which shows the information about the instance status as in the trigger ``box.status`` system event.
   If the callback is triggered by a configuration update, the ``value`` shows the information of the most recent ``box.status`` system event.
 
 ..  NOTE::
@@ -245,30 +245,7 @@ The ``on_event`` callback returns 3 arguments, when it is called:
    - All ``on_event`` callbacks are executed inside of a ``pcall``. If an error is raised for a callback, it is logged
      with the ``error`` level and the series execution continues.
 
-..  code-block:: lua
-
-    return {
-        validate = function() end,
-        apply = function()
-            _G.foo = 0
-        end,
-        stop = function()
-            _G.foo = -1
-            _G.bar = nil
-        end,
-        on_event = function(config, key, value)
-            assert(_G.foo >= 0)
-            assert(config == 12345)
-            if(_G.foo == 0) then
-                assert(key == 'config.apply')
-            else
-                assert(key == 'box.status')
-            end
-            _G.is_ro = value.is_ro
-            _G.foo = _G.foo + 1
-            _G.bar = config
-            end,
-        }
+The example of the ``on_event`` callback is provided in the :ref:`spaces creation <roles_create_space>` article below. 
 
 .. _roles_create_custom_role_init:
 
@@ -306,14 +283,38 @@ You can check an instance state by subscribing to the ``box.status`` event using
         -- ...
     end)
 
-
 ..  NOTE::
 
     Given that a role may be enabled when an instance is already in read-write mode,
     you also need to execute schema initialization code from :ref:`apply() <roles_create_custom_role_apply>`.
     To make sure a space is created only once, use the :ref:`if_not_exists <space_opts_if_not_exists>` option.
 
+Since version :doc:`3.3.1 </release/3.3.0>`, you can define space creation in a role via
+the ``on_event`` :ref:`callback function <roles_create_custom_role_on_event_callback>`.
 
+See the example of such definition below:
+
+..  code-block:: lua
+
+    return {
+        validate = function() end,
+        apply = function() end,
+        stop = function() end,
+        on_event = function(config, key, value)
+            -- Can only create spaces on RW.
+            if value.is_ro then
+                return
+            end
+            -- Assume the role config is a table.
+            if type(config) ~= 'table' then
+                error('Config must be a table')
+            end
+            local space_name = config.space_name or 'default'
+            box.schema.space.create(space_name, {
+                if_not_exists = true,
+            })
+        end
+    }
 
 .. _roles_life_cycle:
 
