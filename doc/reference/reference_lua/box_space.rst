@@ -32,7 +32,7 @@ such as id, and whether or not a space is enabled.
 
     - initiate named operations on spaces that do not exceed 10000 tuples OR 
     - initiate named operations when the node is not under any load;
-    - instead of the space format change operation, perform the :ref:`box_space-upgrade` operation.
+    - instead of the ``space_object:format()`` operation, perform the :ref:`box_space-upgrade` operation.
 
     Safe exceptions for named operations are:
 
@@ -59,7 +59,7 @@ such as id, and whether or not a space is enabled.
 
     - initiate named operations on spaces that do not exceed 10000 tuples OR 
     - initiate named operations when the node is not under any load;
-    - instead of the space format change operation, perform the :ref:`box_space-upgrade` operation.
+    - instead of the ``space_object:format()`` operation, perform the :ref:`box_space-upgrade` operation.
 
     Safe exceptions for named operations are:
     - changing indexed field type to a more generic one («unsigned» to «number», «decimal» to «scalar»); 

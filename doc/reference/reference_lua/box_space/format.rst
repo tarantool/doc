@@ -29,7 +29,7 @@ space_object:format()
 
             - initiate the ``space_object:format()`` operation on spaces that do not exceed 10000 tuples OR 
             - initiate the ``space_object:format()`` operation when the node is not under any load;
-            - instead of the space format change operation, perform the :ref:`box_space-upgrade` operation.
+            - instead of the ``space_object:format()`` operation, perform the :ref:`box_space-upgrade` operation.
 
             Safe exception for the ``space_object:format()`` operation is:
 
@@ -50,7 +50,7 @@ space_object:format()
 
             - initiate the ``space_object:format()`` operation on spaces that do not exceed 10000 tuples OR 
             - initiate the ``space_object:format()`` operation when the node is not under any load;
-            - instead of the space format change operation, perform the :ref:`box_space-upgrade` operation.
+            - instead of the ``space_object:format()`` operation, perform the :ref:`box_space-upgrade` operation.
 
             Safe exception for the ``space_object:format()`` operation is:
 
