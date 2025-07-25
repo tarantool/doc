@@ -132,6 +132,15 @@ Router public API
         * ``timeout`` — a request timeout, in seconds. If the ``router`` cannot identify a
           shard with the specified ``bucket_id``, it will retry until the timeout is reached.
 
+        * ``request_timeout`` (since ``vshard`` 0.1.28) — timeout in seconds that serves as a protection against hung replicas.
+          The parameter is used in the read requests only (``mode=read``).
+          It is necessary to pass the ``request_timeout`` and ``timeout`` parameters together, with the following requirement:
+          ``timeout > request_timeout``.
+
+          The ``timeout`` parameter controls how much time a single request attempt may take.
+          When this time is over (the ``TimedOut`` error is raised), router retries the request on the next replica as long
+          as the ``timeout`` value is not elapsed.
+
         * other :ref:`net.box options <net_box-options>`, such as ``is_async``,
           ``buffer``, ``on_push`` are also supported.
 
@@ -163,11 +172,15 @@ Router public API
              optional attribute containing a message with the human-readable error description,
              and other attributes specific for the error code.
 
+    .. reference_vshard_note_start
+
     ..  note::
 
-        Any write requests that are intended to be executed repeatedly should be idempotent.
+        Any write requests that are intended to be executed repeatedly (for example, retried after an error) should be idempotent.
         The operations' idempotency ensures that the change is applied **only once**.
         Read more: :ref:`<vshard-deduplication>`.
+
+    .. reference_vshard_note_end
 
     **Examples:**
 
@@ -204,6 +217,13 @@ Router public API
 
         * ``timeout`` — a request timeout, in seconds.If the ``router`` cannot identify a
           shard with the specified ``bucket_id``, it will retry until the timeout is reached.
+
+        * ``request_timeout`` (since ``vshard`` 0.1.28) — timeout in seconds that serves as a protection against hung replicas.
+          It is necessary to pass the ``request_timeout`` and ``timeout`` parameters together, with the following requirement:
+          ``timeout > request_timeout``.
+          The ``timeout`` parameter controls how much time a single request attempt may take.
+          When this time is over (the ``TimedOut`` error is raised), router retries the request on the next replica as long
+          as the ``timeout`` value is not elapsed.
 
         * other :ref:`net.box options <net_box-options>`, such as ``is_async``,
           ``buffer``, ``on_push`` are also supported.
@@ -254,6 +274,10 @@ Router public API
     optional attribute containing a message with the human-readable error description,
     and other attributes specific for this error code.
 
+    ..  include:: /reference/reference_rock/vshard/vshard_router.rst
+        :start-after: reference_vshard_note_start
+        :end-before: reference_vshard_note_end
+
 ..  _router_api-callre:
 
 ..  function:: vshard.router.callre(bucket_id, function_name, {argument_list}, {options})
@@ -272,6 +296,13 @@ Router public API
 
         * ``timeout`` — a request timeout, in seconds. If the ``router`` cannot identify a
           shard with the specified ``bucket_id``, it will retry until the timeout is reached.
+
+        * ``request_timeout`` (since ``vshard`` 0.1.28) — timeout in seconds that serves as a protection against hung replicas.
+          It is necessary to pass the ``request_timeout`` and ``timeout`` parameters together, with the following requirement:
+          ``timeout > request_timeout``.
+          The ``timeout`` parameter controls how much time a single request attempt may take.
+          When this time is over (the ``TimedOut`` error is raised), router retries the request on the next replica as long
+          as the ``timeout`` value is not elapsed.
 
         * other :ref:`net.box options <net_box-options>`, such as ``is_async``,
           ``buffer``, ``on_push`` are also supported.

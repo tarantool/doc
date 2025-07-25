@@ -563,7 +563,7 @@ When such an operation is applied again, the value for the field increases by 2 
 
 ..  note::
 
-    Any write requests that are intended to be executed repeatedly should be idempotent.
+    Any write requests that are intended to be executed repeatedly (for example, retried after an error) should be idempotent.
     The operations' idempotency ensures that the change is applied **only once**.
 
 A request may need to be run again if an error occurs on the server or client side.
@@ -588,16 +588,25 @@ In this case:
   Lack of such a check might lead to duplicate records or unplanned data changes.
 
   For example, a client has sent a request to the server. The client is waiting for a response within a specified timeout.
-  If the server sends a successful response after this time has elapsed, the client will receive an error.
+  If the server sends a successful response after this time has elapsed,
+  the client won't see this response due to a timeout, and will consider the request as failed.
   When re-executing this request without additional check, the operation may be applied twice.
 
-  A write request can be executed repeatedly without a check only if the error occurred on the server side --
-  for example, `ER_READONLY`.
+  A write request can be executed repeatedly without a check in two cases:
+  - The request is idempotent.
+  - It's known for sure that the previous request raised an error before executing any write operations.
+    For example, ER_READONLY was thrown by the server.
+    In this case, we know that the request couldn't complete due to server in read-only mode.
 
 **Deduplication examples**
 
 To ensure that the write requests (INSERT, UPDATE, UPSERT, and autoincrement) are idempotent,
 you should implement a check that the request is applied for the first time.
+
+..  note::
+
+    There is no built-in deduplication check in Tarantool.
+    Currently, deduplication can be only implemented by the user in the application code.
 
 For example, when you add a new tuple to a space, you can use a unique insert ID to check the request.
 In the example below within a single transaction:
