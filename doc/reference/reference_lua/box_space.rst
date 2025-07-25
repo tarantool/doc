@@ -11,6 +11,62 @@ It has the data-manipulation functions ``select``, ``insert``, ``replace``,
 ``update``, ``upsert``, ``delete``, ``get``, ``put``. It also has members,
 such as id, and whether or not a space is enabled.
 
+..  WARNING::
+
+    Option 1 global Warning:
+    The following operations involve full space traversal:
+
+    - :doc:`./box_space/create_index`;
+    - :doc:`./box_space/alter`;
+    - :doc:`./box_space/format`.
+
+    Full traversal is the process of processing every node or element in the space structure exactly once
+    in a systematic manner. Full traversal may leadThese operations introduce replication lag for both 
+    synchronous and asynchronous replication and make writes with synchronous replication unavailable
+    for the whole duration of operation when initiated at the following conditions:
+
+    - initiated on a space with over 10000 tuples AND
+    - when the node is under any load (when it processes user requests/performs business operations).
+
+    To avoid issues:
+
+    - initiate named operations on spaces that do not exceed 10000 tuples OR 
+    - initiate named operations when the node is not under any load;
+    - instead of the space format change operation, perform the :ref:`box_space-upgrade` operation.
+
+    Safe exceptions for named operations are:
+
+    - changing indexed field type to a more generic one («unsigned» to «number», «decimal» to «scalar»); 
+    - turning a unique index into a non-unique one; 
+    - changing some of the index parameters which do not require a rebuild (changing page_size of a vinyl space index).
+    - changing space format to a more generic one.
+
+    Option 2 global Warning:
+    The following operations involve full space traversal and introduce replication lag for both synchronous 
+    and asynchronous replication and make writes with synchronous replication unavailable for the whole duration 
+    of operation when initiated at certain conditions:
+
+    - :doc:`./box_space/create_index`;
+    - :doc:`./box_space/alter`;
+    - :doc:`./box_space/format`.
+
+    The issues occur when the operations are initiated at the following conditions:
+
+    - initiated on a space with over 10000 tuples AND
+    - when the node is under any load (when it processes user requests/performs business operations).
+
+    To avoid issues:
+
+    - initiate named operations on spaces that do not exceed 10000 tuples OR 
+    - initiate named operations when the node is not under any load;
+    - instead of the space format change operation, perform the :ref:`box_space-upgrade` operation.
+
+    Safe exceptions for named operations are:
+    - changing indexed field type to a more generic one («unsigned» to «number», «decimal» to «scalar»); 
+    - turning a unique index into a non-unique one; 
+    - changing some of the index parameters which do not require a rebuild (changing page_size of a vinyl space index).
+    - changing space format to a more generic one.
+
 Below is a list of all ``box.space`` functions and members.
 
 ..  container:: table
