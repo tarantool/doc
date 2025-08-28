@@ -13,7 +13,7 @@ To see information about earlier Tarantool versions, see the
 `Releases <https://www.tarantool.io/en/doc/2.11/release/>`_ page of the corresponding documentation.
 
 All currently supported versions are listed on this page :ref:`below <release-supported-versions>`.
-The information about earlier versions is provided in :ref:`release-eos-versions`.
+Information about earlier versions is provided in :ref:`release-eos-versions`.
 
 The Enterprise Edition of Tarantool is distributed in the form of an SDK that has
 its own versioning. See the :ref:`release-enterprise-changelog` to learn about
