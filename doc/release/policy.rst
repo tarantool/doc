@@ -11,26 +11,6 @@ The stated policy uses a `SemVer-like <https://semver.org/>`__ versioning format
 and upholds version lifecycle with more long-time support series.
 This document explains the Tarantool release policy, versioning rules, and :term:`release series` lifecycle.
 
-The stated release policy replaces :doc:`the legacy policy </release/legacy-policy>`
-for:
-
-*   The ``2.x.y`` series since the ``2.10.0`` release.
-    Development for this release starts with version ``2.10.0-beta1``.
-*   The ``3.0.0`` series.
-
-Here are the most significant changes from the previously supported legacy release policy:
-
-*   The third number in the version label doesn't distinguish between
-    pre-release (alpha and beta) and release versions.
-    Instead, it is used for patch (bugfix-only) releases.
-    Pre-release versions have suffixes, like ``3.0.0-alpha1``.
-
-*   In the legacy release policy, ``1.10`` was a long-term support (LTS) series,
-    while ``2.x.y`` had stable releases, but wasn't an LTS series.
-    Now both series are long-term supported.
-
-The topics below describe the versioning policy in more detail.
-
 Versioning policy
 -----------------
 

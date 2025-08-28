@@ -348,7 +348,7 @@ r511
 r510
 ----
 
-*   Updated Tarantool to :doc:`2.10.3 </release/2.10.3>`.
+*   Updated Tarantool to 2.10.3.
 *   Added a readable error for the case when the flight recoder fails
     to write data due to insufficient free space on the disk device.
     Previously, it was sending a `SIGBUS` error (:tarantool-ee-issue:`196`).
@@ -358,7 +358,7 @@ r510
 r502
 ----
 
-*   Updated Tarantool to :doc:`2.10.2 </release/2.10.2>`.
+*   Updated Tarantool to 2.10.2.
 *   Increased resolution of stored entries in flight recorder (:tarantool-ee-issue:`193`).
 *   Fixed a bug in the flight recorder that resulted in skipping log entries in case
     ``box.cfg.log_level`` is less than ``flightrec_log_level`` (:tarantool-ee-issue:`201`).
@@ -366,7 +366,7 @@ r502
 r498
 ----
 
-*   Updated Tarantool to :doc:`2.10.1 </release/2.10.1>`.
+*   Updated Tarantool to 2.10.1.
 *   Updated Cyrus SASL to version 2.1.28.
 *   Updated OpenLDAP to version 2.5.13.
 *   Updated LZ4 to version 1.9.3. Fixed `CVE-2021-3520 <https://github.com/advisories/GHSA-gmc7-pqv9-966m>`__.

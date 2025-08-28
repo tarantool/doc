@@ -6,12 +6,14 @@
 Releases
 ========
 
-This section contains information about Tarantool releases: release notes, lifecycle
+This section contains information about 3.x Tarantool releases: release notes, lifecycle
 information, release policy, and other documents.
 To download Tarantool releases, check the `Download <https://www.tarantool.io/en/download/>`_ page.
+To see information about earlier Tarantool versions, see the
+`Releases <https://www.tarantool.io/en/doc/2.11/release/>`_ page of the corresponding documentation.
 
 All currently supported versions are listed on this page :ref:`below <release-supported-versions>`.
-The information about earlier versions is provided in :ref:`release-eol-versions`.
+Information about earlier versions is provided in :ref:`release-eos-versions`.
 
 The Enterprise Edition of Tarantool is distributed in the form of an SDK that has
 its own versioning. See the :ref:`release-enterprise-changelog` to learn about
@@ -39,16 +41,16 @@ supported Tarantool versions:
 
 The table below provides information about supported versions with links to their
 *What's new* pages in the documentation and detailed changelogs on GitHub.
-For information about earlier versions, see :doc:`eol_versions`.
+For information about earlier versions, see :doc:`eos_versions`.
 
 .. note::
 
     *End of life* (*EOL*) means the release series will no longer receive any patches,
-    updates, or feature improvements after the specified date. Versions that haven't
-    reached their end of life yet are shown in **bold**.
+    updates, or feature improvements after the specified date.
 
     *End of support* (*EOS*) means that we won't provide technical support to product
-    versions after the specified date.
+    versions after the specified date. Versions that haven't
+    reached their end of life yet are shown in **bold**.
 
 ..  container:: table
 
@@ -81,59 +83,13 @@ For information about earlier versions, see :doc:`eol_versions`.
             -   | :tarantool-release:`3.2.1`
                 | :tarantool-release:`3.2.0`
 
-        *   -   :doc:`3.1 </release/3.1.0>`
-            -   April 16, 2024
-            -   August 26, 2024
-            -   August 26, 2024
-            -   | :tarantool-release:`3.1.2`
-                | :tarantool-release:`3.1.1`
-                | :tarantool-release:`3.1.0`
-
-        *   -   :doc:`3.0 </release/3.0.0>`
-            -   December 26, 2023
-            -   April 17, 2024
-            -   April 17, 2024
-            -   | :tarantool-release:`3.0.2`
-                | :tarantool-release:`3.0.1`
-                | :tarantool-release:`3.0.0`
-
-        *   -   :doc:`2.11 LTS </release/2.11.0>`
-            -   May 24, 2023
-            -   May 24, 2025
-            -   Not planned yet
-            -   | :tarantool-release:`2.11.7`
-                | :tarantool-release:`2.11.6`
-                | :tarantool-release:`2.11.5`
-                | :tarantool-release:`2.11.4`
-                | :tarantool-release:`2.11.3`
-                | :tarantool-release:`2.11.2`
-                | :tarantool-release:`2.11.1`
-                | :tarantool-release:`2.11.0`
-
-        *   -   2.10
-            -   May 22, 2022
-            -   September 14, 2023
-            -   December 31, 2025
-            -   | :doc:`2.10.8 </release/2.10.8>`
-                | :doc:`2.10.7 </release/2.10.7>`
-                | :doc:`2.10.6 </release/2.10.6>`
-                | :doc:`2.10.5 </release/2.10.5>`
-                | :doc:`2.10.4 </release/2.10.4>`
-                | :doc:`2.10.3 </release/2.10.3>`
-                | :doc:`2.10.2 </release/2.10.2>`
-                | :doc:`2.10.1 </release/2.10.1>`
-                | :doc:`2.10.0 </release/2.10.0>`
-
 ..  toctree::
     :maxdepth: 1
 
+    policy
     3.4.0
     3.3.0
     3.2.0
-    3.1.0
-    3.0.0
-    2.11.0
-    eol_versions
+    eos_versions
     enterprise-changelog
-    policy
     compatibility
