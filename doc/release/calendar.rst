@@ -1,8 +1,27 @@
 Release calendar
 ================
 
-Every Tarantool release series has :ref:`the same lifecycle <release-series-lifecycle>`.
-To see the lifecycle of Tarantool 2.x versions supported in 2025 see the `calendar <https://www.tarantool.io/en/doc/latest/release/#supported-versions>`_.
+This section contains information about 1.x and 2.x Tarantool releases: release notes, lifecycle information, release policy, and other documents.
+
+..  _release-supported-versions:
+
+Supported versions
+------------------
+
+Every Tarantool release series has :ref:`the same lifecycle <release-series-lifecycle>`
+defined by the release policy. The following diagram visualizes the lifecycle of currently supported Tarantool 2.x versions:
+
+.. image:: _images/releases_calendar_2_x.svg
+    :align: center
+    :alt: Release calendar
+
+.. note::
+
+    *End of life* (*EOL*) means the release series will no longer receive any patches,
+    updates, or feature improvements after the specified date.
+
+    *End of support* (*EOS*) means that we won't provide technical support to product
+    versions after the specified date.
 
 ..  _release-table:
 
@@ -10,12 +29,9 @@ Release lifetime table
 ----------------------
 
 The release lifetime table lists all Tarantool versions
-starting from 1.10.x up to the current latest versions.
-Each link leads to the release notes page of the corresponding version.
-*End of life* means the release series will no longer receive any patches, updates,
-or feature improvements after the specified date.
-*End of support* means that we won't provide technical support to product versions
-after the specified date.
+starting from 1.10.x up to the 2.11.7 version. To see the information about Tarantool 3.x versions,
+see the corresponding `page <https://www.tarantool.io/en/doc/latest/release/>`_.
+
 
 ..  container:: table
 
