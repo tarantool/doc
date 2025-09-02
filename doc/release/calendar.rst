@@ -1,7 +1,8 @@
 Release calendar
 ================
 
-This section contains information about 1.x and 2.x Tarantool releases: release notes, lifecycle information, release policy, and other documents.
+This section contains general information and links to appropriate pages containing details
+about 1.x and 2.x Tarantool releases: release notes, lifecycle information, release policy, and other info.
 
 ..  _release-supported-versions:
 
@@ -23,15 +24,12 @@ defined by the release policy. The following diagram visualizes the lifecycle of
     *End of support* (*EOS*) means that we won't provide technical support to product
     versions after the specified date.
 
-..  _release-table:
+The table below provides information about currently supported versions with links to their
+*What's new* pages in the documentation and/or detailed changelogs on GitHub.
+For information about earlier versions, see :doc:`eos_versions`.
 
-Release lifetime table
-----------------------
-
-The release lifetime table lists all Tarantool versions
-starting from 1.10.x up to the 2.11.7 version. To see the information about Tarantool 3.x versions,
+To see the information about Tarantool 3.x versions,
 see the corresponding `page <https://www.tarantool.io/en/doc/latest/release/>`_.
-
 
 ..  container:: table
 
@@ -126,148 +124,3 @@ see the corresponding `page <https://www.tarantool.io/en/doc/latest/release/>`_.
             -   May 22, 2022
             -   September 14, 2023
             -   December 31, 2025
-
-        *   -   :doc:`2.8.4 </release/2.8.4>`
-            -   April 25, 2022
-            -   April 25, 2022
-            -   December 31, 2024
-
-        *   -   :doc:`2.8.3 </release/2.8.3>`
-            -   December 22, 2021
-            -   April 25, 2022
-            -   December 31, 2024
-
-        *   -   :doc:`2.8.2 </release/2.8.2>`
-            -   August 19, 2021
-            -   April 25, 2022
-            -   December 31, 2024
-
-        *   -   :doc:`2.7.3 </release/2.7.3>`
-            -   August 19, 2021
-            -   August 19, 2021
-            -   August 19, 2021
-
-        *   -   :doc:`2.7.2 </release/2.7.2>`
-            -   April 21, 2021
-            -   August 19, 2021
-            -   August 19, 2021
-
-        *   -   :doc:`2.6.3 </release/2.6.3>`
-            -   April 21, 2021
-            -   April 21, 2021
-            -   April 21, 2021
-
-        *   -   :doc:`2.6.2 </release/2.6.2>`
-            -   December 30, 2020
-            -   April 21, 2021
-            -   April 21, 2021
-
-        *   -   :doc:`2.5.3 </release/2.5.3>`
-            -   December 30, 2020
-            -   December 30, 2020
-            -   December 30, 2020
-
-        *   -   :doc:`2.5.2 </release/2.5.2>`
-            -   October 22, 2020
-            -   December 30, 2020
-            -   December 30, 2020
-
-        *   -   :doc:`2.4.3 </release/2.4.3>`
-            -   October 22, 2020
-            -   October 22, 2020
-            -   October 22, 2020
-
-        *   -   :doc:`2.4.2 </release/2.4.2>`
-            -   July 17, 2020
-            -   October 22, 2020
-            -   October 22, 2020
-
-        *   -   :doc:`2.3.3 </release/2.3.3>`
-            -   July 17, 2020
-            -   July 17, 2020
-            -   July 17, 2020
-
-        *   -   :doc:`2.3.2 </release/2.3.2>`
-            -   April 20, 2020
-            -   July 17, 2020
-            -   July 17, 2020
-
-        *   -   :doc:`2.2.3 </release/2.2.3>`
-            -   April 20, 2020
-            -   April 20, 2020
-            -   April 20, 2020
-
-        *   -   :doc:`2.2.2 </release/2.2.2>`
-            -   December 31, 2019
-            -   April 20, 2020
-            -   April 20, 2020
-
-        *   -   :doc:`1.10.15 LTS </release/1.10.15>`
-            -   February 20, 2023
-            -   February 20, 2023
-            -   February, 2024
-
-        *   -   :doc:`1.10.14 LTS </release/1.10.14>`
-            -   August 8, 2022
-            -   February 20, 2023
-            -   February, 2024
-
-        *   -   :doc:`1.10.13 LTS </release/1.10.13>`
-            -   April 25, 2022
-            -   February 20, 2023
-            -   February, 2024
-
-        *   -   :doc:`1.10.12 LTS </release/1.10.12>`
-            -   December 22, 2021
-            -   February 20, 2022
-            -   February 20, 2023
-
-        *   -   :doc:`1.10.11 LTS </release/1.10.11>`
-            -   August 19, 2021
-            -   February 20, 2022
-            -   February 20, 2023
-
-        *   -   :doc:`1.10.10 LTS </release/1.10.10>`
-            -   April 24, 2021
-            -   February 20, 2022
-            -   February 20, 2023
-
-        *   -   :doc:`1.10.9 LTS </release/1.10.9>`
-            -   December 30, 2020
-            -   February 20, 2022
-            -   February 20, 2023
-
-        *   -   :doc:`1.10.8 LTS </release/1.10.8>`
-            -   October 22, 2020
-            -   February 20, 2022
-            -   February 20, 2023
-
-        *   -   :doc:`1.10.7 LTS </release/1.10.7>`
-            -   July 17, 2020
-            -   February 20, 2022
-            -   February 20, 2023
-
-        *   -   :doc:`1.10.6 LTS </release/1.10.6>`
-            -   April 20, 2020
-            -   February 20, 2022
-            -   February 20, 2023
-
-        *   -   :doc:`1.10.5 LTS </release/1.10.5>`
-            -   January 14, 2020
-            -   February 20, 2022
-            -   February 20, 2023
-
-        *   -   :ref:`1.10.4 LTS <whats_new_1104>`
-            -   September 26, 2019
-            -   February 20, 2022
-            -   February 20, 2023
-
-        *   -   :ref:`1.10.3 LTS <whats_new_1103>`
-            -   April 1, 2019
-            -   February 20, 2022
-            -   February 20, 2023
-
-        *   -   :ref:`1.10.2 LTS <whats_new_1102>`
-            -   October 13, 2018
-            -   February 20, 2022
-            -   February 20, 2023
