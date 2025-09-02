@@ -1,23 +1,14 @@
 
-EOL versions
+EOS versions
 ============
 
 This page lists release notes for Tarantool versions that have reached
-their end of life in accordance with the :doc:`release policy <policy>`.
+their end of support in accordance with the :doc:`release policy <policy>`.
 See the :doc:`release calendar <calendar>` for more information.
 
 ..  toctree::
     :maxdepth: 1
 
-    2.10.8
-    2.10.7
-    2.10.6
-    2.10.5
-    2.10.4
-    2.10.3
-    2.10.2
-    2.10.1
-    2.10.0
     2.8.4
     2.8.3
     2.8.2
