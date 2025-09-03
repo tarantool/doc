@@ -1,11 +1,13 @@
 Tarantool legacy release policy
 ===============================
 
+This release policy is actual for Tarantool releases from ``1.6`` and until ``2.8.4`` inclusive.
+Starting from the ``2.10.0`` release, a more actual :doc:`release policy <policy>` is applied.
 
-A Tarantool release is identified by three digits, for example, 2.6.2 or 1.10.9:
+A Tarantool release is identified by three digits, for example, ``2.6.2`` or ``1.10.9``:
 
 *   The first digit stands for a MAJOR release series that introduces
-    some *major changes*. Up to now, there has been only one major release jump
+    some *major changes*. One of major release jumps, for example, has happened
     when we delivered the 2.x release series with the SQL support.
 *   The second digit stands for a MINOR release series that is used for
     introducing new *features*.
@@ -22,14 +24,14 @@ So, each MINOR release series goes through a development-maturity life cycle
 as follows:
 
 1.  **Alpha**. Once a quarter, we start off with a new alpha version,
-    such as 2.3.0, 2.4.0, and so on. This is not what an alpha release usually
+    such as ``2.3.0``, ``2.4.0``, and so on. This is not what an alpha release usually
     means in the typical software release life cycle but rather the current trunk
     version which is under heavy development and can be unstable.
     The current alpha version always lives in the master branch.
 
 2.  **Beta**. When all the features planned are implemented, we fork a new branch
     from the master branch and tag it as a new beta version.
-    It contains ``1`` for the PATCH digit, e.g., 2.3.1, 2.4.1, and so on.
+    It contains ``1`` for the PATCH digit, e.g., ``2.3.1``, ``2.4.1``, and so on.
     This version cannot be called stable yet (feature freeze has just been done)
     although there are no known critical regressions in it since
     the last stable release.
@@ -38,11 +40,11 @@ as follows:
     Finally, after we see our beta version runs successfully in
     a production or development environment during another quarter while we fix
     incoming bugs, we declare this version stable. It is tagged with ``2`` for
-    the PATCH digit, e.g., 2.3.2, 2.4.2, and so on.
+    the PATCH digit, e.g., ``2.3.2``, ``2.4.2``, and so on.
 
     We support such version for 3 months while making another stable release
     by fixing all bugs found. We release it in a quarter. This last tag
-    contains ``3`` for the PATCH digit, e.g., 2.3.3, 2.4.3, and so on.
+    contains ``3`` for the PATCH digit, e.g., ``2.3.3``, ``2.4.3``, and so on.
     After the tag is set, no new changes are allowed to the release branch,
     and it is declared deprecated and superseded by a newer MINOR version.
 
@@ -54,7 +56,7 @@ release series:
 
 *   **LTS (Long Term Support)** is a release series that is supported
     for 3 years (community) and up to 5 years (paying customers).
-    Current LTS release series is 1.10, and it receives only PATCH level
+    Current LTS release series is ``1.10``, and it receives only PATCH level
     releases.
 
 *   **Standard** is a release series that is supported only for a few months
@@ -92,14 +94,14 @@ by an example of some latest releases and release series:
 *Support* means that we continue fixing bugs. We add bug fixes simultaneously
 into the following release series: LTS, last stable, beta, and alpha.
 If we look at the release diagram above, it means that the bug fixes are to be
-added into 1.10, 2.4, 2.5, and 2.6 release series.
+added into ``1.10``, ``2.4``, ``2.5``, and ``2.6`` release series.
 
 To sum it up, once a quarter we release (see the release diagram above for
 reference):
 
-*   next LTS release, e.g., 1.10.9
-*   two stable releases, e.g., 2.5.3 and 2.6.2
-*   beta version of the next release series, e.g., 2.7.1.
+*   next LTS release, e.g., ``1.10.9``
+*   two stable releases, e.g., ``2.5.3`` and ``2.6.2``
+*   beta version of the next release series, e.g., ``2.7.1.``
 
 In all supported releases, when we find and fix an outstanding CVE/vulnerability,
 we deliver a patch for that but do not tag a new PATCH level version.
