@@ -7,7 +7,7 @@ Release date: March 14, 2025
 
 Latest release in series: 1.3.1
 
-|tcm_full_name| 1.3.0 enhances the TCF integration page with minor bug fixes and functional enhancements.
+|tcm_full_name| 1.3.0 enhances the TCF integration page with minor bug fixes and functional improvements.
 Below is an overview of key updates.
 
 .. _tcm_releases_1_3_0_tcf:
@@ -18,7 +18,7 @@ TCF page improvements
 Starting from version 1.3.0, |tcm| provides additional actions for managing TCF clusters through the web interface.
 You can now use **promote** and **demote** operations directly on the **TCF** page without switching to external tools.
 Also, the **TCF** page is now disabled by default and must be explicitly enabled if needed.
-In addition, |tcm| now supports connections to multiple gRPS servers, which improves integration with distributed cluster infrastructures.
+In addition, |tcm| now supports connections to multiple gRPC servers, which improves integration with distributed cluster infrastructures.
 
 
 .. _tcm_releases_1_3_0_explorer:

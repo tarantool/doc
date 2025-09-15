@@ -51,6 +51,6 @@ This release includes multiple fixes across different modules:
 - CRUD and Explorer -- data types used during operations have been corrected to comply with FSTEC security requirements, ensuring strict typing and better protection of sensitive data.
 - Authentication -- the system no longer relies on etcd for storing authentication parameters. Instead, it uses local configuration to improve startup reliability and simplify setup.
 - Logging -- fixed issues with log output by switching to the ``slog`` logging system.
-- UI -- resolved display issues in the ``OperationStatus ``component.
+- UI -- resolved display issues in the ``OperationStatus`` component.
 - Tuples -- fixed an error that caused tab refresh failures in clusters with a large number of spaces.
 

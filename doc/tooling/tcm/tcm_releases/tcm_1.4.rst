@@ -22,8 +22,8 @@ The authentication settings now support switching between local and LDAP methods
 
 The LDAP configuration form has been simplified:
 
-* ``groupQueryTemplate`` field is now optional, allowing LDAP authentication without querying for user groups.
-* ``queryUser`` and ``queryPassword`` fields are also optional, which enables anonymous binding to the LDAP server.
+* The ``groupQueryTemplate`` field is now optional, allowing LDAP authentication without querying for user groups.
+* The ``queryUser`` and ``queryPassword`` fields are also optional, which enables anonymous binding to the LDAP server.
 * You now only need to provide either ``templateDN`` or ``templateQuery``, instead of both -- reducing configuration complexity.
 
 More about :ref:`tcm_ldap_auth`.
