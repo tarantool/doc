@@ -26,6 +26,20 @@ Supported versions
             -   First release date
             -   Versions
 
+        *   -   :ref:`1.5 <tcm_releases_1_5>`
+            -   August 28, 2025
+            -   | 1.5.1
+                | 1.5.0
+
+        *   -   :ref:`1.4 <tcm_releases_1_4>`
+            -   June 9, 2025
+            -   1.4.0
+
+        *   -   :ref:`1.3 <tcm_releases_1_3>`
+            -   March 14, 2025
+            -   | 1.3.1
+                | 1.3.0
+
         *   -   :ref:`1.2 <tcm_releases_1_2>`
             -   July 30, 2024
             -   | 1.2.2
@@ -47,6 +61,9 @@ Supported versions
 ..  toctree::
     :maxdepth: 1
 
+    tcm_1.5
+    tcm_1.4
+    tcm_1.3
     tcm_1.2
     tcm_1.1
     tcm_1.0
