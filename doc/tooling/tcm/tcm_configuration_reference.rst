@@ -654,13 +654,63 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
 
 .. confval:: http.tls.cipher-suites
 
-    Enabled TLS cipher suites. Possible values are the Golang `tls.TLS_* <https://pkg.go.dev/crypto/tls#pkg-constants>`__ constants.
+   Enabled TLS cipher suites. The supported ciphers are:
 
-    |
-    | Type: []uint16
-    | Default: []
-    | Environment variable: TCM_HTTP_TLS_CIPHER_SUITES
-    | Command-line option: ``--http.tls.cipher-suites``
+    - TLS 1.0 - 1.2 cipher suites:
+        - TLS_RSA_WITH_RC4_128_SHA
+        - TLS_RSA_WITH_3DES_EDE_CBC_SHA
+        - TLS_RSA_WITH_AES_128_CBC_SHA
+        - TLS_RSA_WITH_AES_256_CBC_SHA
+        - TLS_RSA_WITH_AES_128_CBC_SHA256
+        - TLS_RSA_WITH_AES_128_GCM_SHA256
+        - TLS_RSA_WITH_AES_256_GCM_SHA384
+        - TLS_ECDHE_ECDSA_WITH_RC4_128_SHA
+        - TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA
+        - TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA
+        - TLS_ECDHE_RSA_WITH_RC4_128_SHA
+        - TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA
+        - TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
+        - TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA
+        - TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256
+        - TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256
+        - TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        - TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
+        - TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        - TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
+        - TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256
+        - TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256
+
+    - TLS 1.3 cipher suites:
+        - TLS_AES_128_GCM_SHA256
+        - TLS_AES_256_GCM_SHA384
+        - TLS_CHACHA20_POLY1305_SHA256
+        - TLS_FALLBACK_SCSV isn't a standard cipher suite but an indicator that the client is doing version fallback
+        - TLS_FALLBACK_SCSV uint16 = 0x5600
+        - TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305   = TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256
+        - TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305 = TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA25
+
+   For detailed information on ciphers, refer to the Golang `tls.TLS_* <https://pkg.go.dev/crypto/tls#pkg-constants>`__ constants.
+
+   The example below shows how to configure cipher suites:
+
+   .. code-block:: yaml
+
+       http:
+           cipher-suites:
+             - TLS_AES_256_GCM_SHA384
+             - TLS_AES_128_GCM_SHA256
+             - TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
+             - TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
+             - TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+             - TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+             - TLS_DHE_RSA_WITH_AES_256_GCM_SHA384
+             - TLS_DHE_RSA_WITH_AES_128_GCM_SHA256
+
+   |
+   | Type: []uint16
+   | Default: []
+   | Environment variable: TCM_HTTP_TLS_CIPHER_SUITES
+   | Command-line option: ``--http.tls.cipher-suites``
 
 .. _tcm_configuration_reference_http_read-timeout:
 
