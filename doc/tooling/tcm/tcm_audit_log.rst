@@ -275,7 +275,7 @@ audit log events.
         *   -   ``passwordpolicy.save``
             -   Password policy changed
         *   -   ``passwordpolicy.resetpasswords``
-            -   All passwords expired by an administrator
+            -   All passwords are expired by an administrator
         *   -   ``ddl.save``
             -   Cluster data model saved
         *   -   ``ddl.apply``
@@ -307,9 +307,9 @@ audit log events.
         *   -   ``cluster.delete``
             -   Cluster removed
         *   -   ``ldap.testlogin``
-            -   Login test executed for a LDAP configuration
+            -   Login test executed for an LDAP configuration
         *   -   ``ldap.testconnection``
-            -   Connection test executed for a LDAP configuration
+            -   Connection test executed for an LDAP configuration
         *   -   ``ldap.add``
             -   LDAP configuration added
         *   -   ``ldap.update``
