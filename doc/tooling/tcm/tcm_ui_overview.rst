@@ -253,7 +253,7 @@ These parameters affect how memory is allocated per object size class and can he
 - improve cache locality and performance
 - better understand memory consumption via the **Slabs** tab
 
-Use cases and recommendations
+Use cases and recommendations table:
 
 .. list-table::
    :header-rows: 1
