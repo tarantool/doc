@@ -201,9 +201,9 @@ Each block represents a single slab (a fixed-size memory region). The color indi
 
 The color transitions smoothly, providing a quick visual way to understand which slabs are:
 
-- Actively used
-- Partially utilized
-- Potentially underused or contributing to memory fragmentation
+- actively used
+- partially utilized
+- potentially underused or contributing to memory fragmentation
 
 In the example screenshot:
 
@@ -234,9 +234,9 @@ Behavior across Tarantool instances
 
 Slab allocation may vary between Tarantool instances within the same replica set due to:
 
-- Runs in a separate process
-- Allocates memory independently
-- May receive different workloads or query patterns
+- runs in a separate process
+- allocates memory independently
+- may receive different workloads or query patterns
 
 Slab allocator tuning
 ^^^^^^^^^^^^^^^^^^^^^
@@ -248,10 +248,10 @@ You can fine-tune the allocator behavior with two configuration options:
 
 These parameters affect how memory is allocated per object size class and can help:
 
-- Reduce internal fragmentation
-- Optimize memory usage
-- Improve cache locality and performance
-- Better understand memory consumption via the **Slabs** tab
+- reduce internal fragmentation
+- optimize memory usage
+- improve cache locality and performance
+- better understand memory consumption via the **Slabs** tab
 
 Use cases and recommendations
 
