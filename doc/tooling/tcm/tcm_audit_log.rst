@@ -238,6 +238,10 @@ audit log events.
             -   Authentication successful
         *   -   ``access.denied``
             -   An attempt to access an object without the required permission
+        *   -   ``crud.insert``
+            -   Data inserted via CRUD operations
+        *   -   ``crud.delete``
+            -   Data deleted via CRUD operations
         *   -   ``user.add``
             -   User added
         *   -   ``user.update``
@@ -263,14 +267,6 @@ audit log events.
         *   -   ``explorer.insert``
             -   Data inserted in a cluster
         *   -   ``explorer.delete``
-            -   Data deleted from a cluster
-        *   -   ``explorer.replace``
-            -   Data replaced in a cluster
-        *   -   ``explorer.call``
-            -   Stored function called on a cluster
-        *   -   ``explorer.evaluate``
-            -   Code executed on a cluster
-        *   -   ``explorer.switchover``
             -   Master switched manually
         *   -   ``test.devmode``
             -   Switched to development mode
