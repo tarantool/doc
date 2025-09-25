@@ -105,7 +105,7 @@ snapshot creation (due to writing the sort data to persistent storage).
 ------------------------------------------
 
 A ``fail_if`` tag has been added for roles and scripts.
-If the tag ``fail_if`` is set to an expression string, role/script loading will raise an error
+If the tag ``fail_if`` is set to an expression string, loading a role/script will raise an error
 if the ``fail_if`` expression evaluates to ``true``.
 
 .. _3-5-fast-reload:
