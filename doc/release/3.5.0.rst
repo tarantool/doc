@@ -134,7 +134,7 @@ in regards to various possible situations, and the main patch, which adds the ``
 [EE] Supervised failover coordinator skips RW switch in presence of dead instances
 ----------------------------------------------------------------------------------
 
-When applying centralized configuration updates Tarantool supervised failover coordinator no longer performs RW
+When applying centralized configuration updates, Tarantool supervised failover coordinator no longer performs RW
 switch within the replicaset if there are dead instances.
 
 A new patch introduces a smarter configuration update process for the Tarantool supervised failover
