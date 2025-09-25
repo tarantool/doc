@@ -163,9 +163,9 @@ The **Slabs** tab in the TCM Web UI visualizes memory allocation within each Tar
 
 This tab is useful for:
 
-- Identifying memory fragmentation
-- Analyzing cache saturation by object size
-- Debugging excessive memory use in real time
+- identifying memory fragmentation
+- analyzing slab saturation by object size
+- debugging excessive memory use in real time
 
 Data source
 ^^^^^^^^^^^
@@ -195,7 +195,7 @@ Slab visualization
 
 Each block represents a single slab (a fixed-size memory region). The color indicates how full the slab is:
 
-- **Green** — the slab is mostly empty
+- **Green** — the slab is less than 30% full
 - **Red** — slab is full (100% usage)
 - **Gradient colors between green and red** — indicate intermediate fill levels (e.g., 30%, 50%, 75%)
 
@@ -221,7 +221,7 @@ the more memory allocated, the larger the visual representation.
 Calculating fill percentage
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The overall fill percentage for a cache class is calculated using:
+The overall fill percentage for a slab is calculated using:
 
 .. code-block:: text
 
@@ -232,7 +232,7 @@ However, each slab is visualized individually, so different fill levels across s
 Behavior across Tarantool instances
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Slab allocation may vary between instances in the same replica set due to differences in configuration, data loading order, and use of local memory.
+Slab allocation may vary between instances in the same replicaset due to differences in configuration, data loading order, and use of local memory.
 The reasons are:
 
 1.	Slab allocation may differ because each instance can use its own values for ``slab_alloc_factor`` and ``slab_alloc_granularity``. These parameters control how memory is divided into size classes and slabs, affecting memory layout and potential fragmentation.
@@ -244,14 +244,14 @@ Slab allocator tuning
 
 You can fine-tune the allocator behavior with two configuration options:
 
-- :ref:`slab_alloc_factor <configuration_reference_memtx_slab_alloc_factor>` – multiplier for calculating object size classes. Default value: 1.05
-- :ref:`slab_alloc_granularity <configuration_reference_memtx_slab_alloc_granularity>` – minimum allocation step (in bytes) for the small allocator. Default value: 8
+- :ref:`slab_alloc_factor <configuration_reference_memtx_slab_alloc_factor>` – multiplier for calculating object size classes. Default value: ``1.05``
+- :ref:`slab_alloc_granularity <configuration_reference_memtx_slab_alloc_granularity>` – minimum allocation step (in bytes) for the small allocator. Default value: ``8``
 
 These parameters affect how memory is allocated per object size class and can help:
 
 - reduce internal fragmentation
 - optimize memory usage
-- improve cache locality and performance
+- improve slab locality and performance
 - better understand memory consumption via the **Slabs** tab
 
 Use cases and recommendations table:
@@ -266,12 +266,12 @@ Use cases and recommendations table:
      - Effect on performance
      - Visualization in **Slabs** tab
    * - Reduce memory waste (small, uniform tuples)
-     - 1.05 / 4
+     - ``1.05`` / ``4``
      - Many size classes – minimal internal memory waste
      - Higher overhead for managing slab pools
      - Many rows, partially filled blocks, gradient from green to red
    * - Optimize performance (mixed-size tuples)
-     - 1.3 / 16
+     - ``1.3`` / ``16``
      - Fewer size classes – slightly more memory waste
      - Lower overhead – faster memory allocation
      - Fewer rows, larger blocks, color contrast: partially or filled
