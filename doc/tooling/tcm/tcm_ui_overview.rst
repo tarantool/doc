@@ -232,11 +232,12 @@ However, each slab is visualized individually, so different fill levels across s
 Behavior across Tarantool instances
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Slab allocation may vary between Tarantool instances within the same replica set due to:
+Slab allocation may vary between instances in the same replica set due to differences in configuration, data loading order, and use of local memory.
+The reasons are:
 
-- runs in a separate process
-- allocates memory independently
-- may receive different workloads or query patterns
+1.	Slab allocation may differ because each instance can use its own values for ``slab_alloc_factor`` and ``slab_alloc_granularity``. These parameters control how memory is divided into size classes and slabs, affecting memory layout and potential fragmentation.
+2.	Differences also appear during replica join or restart. A replica allocates memory for tuples in primary index order, while on the master, allocation follows the order of incoming requests. This results in different slab structures and usually lower fragmentation on replicas after a restart.
+3.	Local and temporary spaces exist only on specific instances and are not replicated. They consume memory independently and contribute to differences in slab allocation across nodes.
 
 Slab allocator tuning
 ^^^^^^^^^^^^^^^^^^^^^
