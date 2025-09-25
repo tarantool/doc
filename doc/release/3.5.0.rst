@@ -122,11 +122,10 @@ configuration reloads, especially for large clusters.
 [EE] Support of the quorum synchronous replication setup in three availability zones
 ------------------------------------------------------------------------------------
 
-Now the ``replication.failover = supervised`` mode supports the quorum synchronous replication setup in three
-availability zones.
+A new patchset makes the ``replication.failover = supervised`` mode supports the quorum synchronous 
+replication setup in three availability zones.
 
-A new patchset makes the supervised failover mode support quorum synchronous replication in three availability
-zones. The patchset includes several preliminary patches, which make the ``appoint_commit`` logic more safe
+The patchset includes several preliminary patches, which make the ``appoint_commit`` logic more safe
 in regards to various possible situations, and the main patch, which adds the ``box.ctl.promote()`` call to
 ``appoint_commit`` if the ``failover.replicasets.<replicaset_name>.synchro_mode`` is set to ``true``.
 
