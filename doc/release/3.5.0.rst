@@ -85,7 +85,7 @@ With the option set to ``true``, additional data is saved into a
 separate ``.sortdata`` file during snapshot creation and is used during recovery.
 The default value is ``false``, so the behavior must be explicitly enabled by the user if required.
 
-The option can be changed at runtime. For example, one can enable
+The option can be changed at runtime. For example, you can enable
 it during recovery to use the new secondary key sorting approach, but disable it
 before creating a new snapshot, so only the ``.snap`` file will be created
 and the O(n) secondary key sort will not be available for that snapshot.
