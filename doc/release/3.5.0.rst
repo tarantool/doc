@@ -160,8 +160,8 @@ It is now possible to define a field with the ``decimal32/64/128/256`` type (fix
 
 .. _3-5-memcs-brin-indexes:
 
-[EE] Brin indexes are supported in MemCS
------------------------------------
+[EE] BRIN indexes are supported in MemCS
+-------------------------------------------
 
 This release introduces a new family of ArrowStream filters named logical combinators, which allow
 combining other filters using logical ``AND`` and ``OR`` operations. Validation occurs recursively from the
