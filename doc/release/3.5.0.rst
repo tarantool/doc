@@ -20,7 +20,7 @@ for the Community and Enterprise editions:
     *   Quorum synchronous replication setup in three availability zones is supported by ``failover = 'supervised'``.
     *   Supervised failover coordinator skips RW switch in presence of dead instances.
     *   Fixed-point decimal types are supported in MemCS.
-    *   Brin indexes are supported in MemCS.
+    *   BRIN indexes are supported in MemCS.
     *   Performance is improved in MemCS.
     *   Secondary index batch insertion performance is improved in MemCS.
     *   Storage format and string scanning performance improvements in MemCS.
