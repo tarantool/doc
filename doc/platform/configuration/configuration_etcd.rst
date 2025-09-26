@@ -241,6 +241,9 @@ Configuring connection to a storage
 
 To use a configuration from a centralized storage for your cluster, you need to provide connection settings in a local configuration file.
 
+..  include:: /platform/configuration/configuration_etcd.rst
+    :start-after: ee_note_centralized_config_start
+    :end-before: ee_note_centralized_config_end
 
 .. _centralized_configuration_storage_connect_tarantool:
 
@@ -291,14 +294,29 @@ You can find the full example here: `config_etcd <https://github.com/tarantool/d
 Starting a cluster
 ------------------
 
+.. ate_note_run_instances_start
+
+..  note::
+
+    To run instances in production, it is recommended to use Ansible Tarantool Enterprise installer (ATE).
+    ATE is a set of Ansible playbooks that are used to deploy and maintain Tarantool Enterprise products.
+    `ATE documentation <https://www.tarantool.io/ru/devops/latest>`__ is available to users logged in on the Tarantool website.
+
+.. ate_note_run_instances_end
+
 The :ref:`tt <tt-cli>` utility is the recommended way to start Tarantool instances.
 You can learn how to do this from the :ref:`Starting and stopping instances <admin-start_stop_instance>` section.
 
 You can also use the ``tarantool`` command to :ref:`start a Tarantool instance <configuration_run_instance_tarantool>`.
-In this case, you can eliminate creating a :ref:`local configuration  <centralized_configuration_storage_connect>` and provide connection settings using the following :ref:`environment variables <configuration_environment_variable>`:
+In this case, you can eliminate creating a :ref:`local configuration  <centralized_configuration_storage_connect>` and
+provide connection settings using the following :ref:`environment variables <configuration_environment_variable>`:
 
 *   Tarantool-based storage: ``TT_CONFIG_STORAGE_ENDPOINTS`` and ``TT_CONFIG_STORAGE_PREFIX``.
 *   etcd-based storage: ``TT_CONFIG_ETCD_ENDPOINTS`` and ``TT_CONFIG_ETCD_PREFIX``.
+
+..  include:: /platform/configuration/configuration_etcd.rst
+    :start-after: ee_note_centralized_config_start
+    :end-before: ee_note_centralized_config_end
 
 The example below shows how to provide etcd connection settings and start cluster instances using the ``tarantool`` command:
 

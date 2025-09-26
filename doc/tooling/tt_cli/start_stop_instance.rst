@@ -3,6 +3,10 @@
 Starting and stopping instances
 ===============================
 
+..  include:: /platform/configuration/configuration_etcd.rst
+    :start-after: ate_note_run_instances_start
+    :end-before: ate_note_run_instances_end
+
 This section describes how to manage instances in a Tarantool cluster using the :ref:`tt <tt-cli>` utility.
 A cluster can include multiple instances that run different code.
 A typical example is a cluster application that includes router and storage instances.
