@@ -1,0 +1,34 @@
+@startuml
+
+skinparam {
+    HyperlinkColor #0077FF
+    FontColor #313131
+    BorderColor #313131
+    BackgroundColor transparent
+}
+
+json "**IPROTO_ARROW**" as insert_request {
+    "Size": "MP_UINT",
+    "Header": {
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "IPROTO_ARROW",
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_SYNC]]": "MP_UINT"
+    },
+    "Body": {
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_SPACE_ID]]": "MP_UINT",
+      "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_ARROW]]": "MP_ARROW"
+    }
+}
+
+json "**Response to IPROTO_ARROW**" as insert_response {
+    "Size": "MP_UINT",
+    "Header": {
+    "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_REQUEST_TYPE]]": "IPROTO_OK",
+    "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_SYNC]]": "MP_UINT",
+    "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_SCHEMA_VERSION]]": "MP_UINT"
+    },
+    "Body": {
+    "[[https://tarantool.io/en/doc/latest/reference/internals/iproto/keys IPROTO_DATA]]": "Empty body"
+    }
+}
+
+@enduml
