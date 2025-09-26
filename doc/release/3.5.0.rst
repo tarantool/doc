@@ -1,0 +1,214 @@
+Tarantool 3.5
+=============
+
+Release date:  2025-08-27
+
+Releases on GitHub: :tarantool-release:`3.5.0`
+
+The 3.5 release of Tarantool adds the following main product features and improvements
+for the Community and Enterprise editions:
+
+*   **Community Edition (CE)**
+
+    *   Fixed-point decimal types ``decimal32``, ``decimal64`` are supported.
+    *   Memtx: new O(n) sorting algorithm for sorting secondary keys on startup.
+    *   New ``fail_if`` tag for roles and scripts.
+    *   Faster large (500+) clusters reload.
+
+*   **Enterprise Edition (EE)**
+
+    *   Quorum synchronous replication setup in three availability zones is supported by ``failover = 'supervised'``.
+    *   Supervised failover coordinator skips RW switch in presence of dead instances.
+    *   Fixed-point decimal types are supported in MemCS.
+    *   BRIN indexes are supported in MemCS.
+    *   Performance is improved in MemCS.
+    *   Secondary index batch insertion performance is improved in MemCS.
+    *   Storage format and string scanning performance improvements in MemCS.
+
+.. _3-5-fixed-point-decimals-ce:
+
+[CE] Support for fixed-point decimal types ``decimal32``, ``decimal64``
+-----------------------------------------------------------------------
+
+Fixed-point decimal types are now supported: ``decimal32``, ``decimal64``, ``decimal128``, and ``decimal256``.
+They differ in their number of significant decimal digits:
+
+* ``decimal32`` - 9
+* ``decimal64`` - 18
+* ``decimal128`` - 38
+* ``decimal256`` - 76
+
+These types also have an additional parameter, ``scale``, which defines the position of the decimal point.
+This can also be interpreted as an implied decimal exponent with a value of ``-scale``.
+
+For example:
+
+* A ``decimal32`` type with ``scale = 4`` can represent values from ``-99999.9999`` to ``99999.9999``.
+* A ``decimal32`` type with ``scale = -2`` can represent values from ``-999999999 × 10²`` to ``999999999 × 10²``.
+
+Example 1. Creating a space with a field of a fixed decimal type:
+
+.. code-block:: lua
+
+    s = box.schema.create_space('test', {format = {
+        {'a', 'unsigned'}, {'b', 'decimal32', scale = 4},
+    }})
+
+Decimal values can be created using the ``decimal`` module. It has been updated the following way to support
+representing values of the new types:
+
+* The limitation on exponent has been removed.
+* Precision has been increased to 76 decimal digits.
+* Printing is now done in scientific notation.
+
+.. code-block:: lua
+
+    local decimal = require('decimal')
+    s = box.schema.create_space('test', {format = {
+        {'a', 'unsigned'}, {'b', 'decimal32', scale = 4},
+    }})
+    s:create_index('pk')
+    s:insert({1, decimal.new(13333)})
+    s:insert({2, decimal.new(0.0017)})
+
+.. _3-5-memtx-sorting-secondary:
+
+[CE] Memtx: new O(n) sorting algorithm for sorting secondary keys
+-----------------------------------------------------------------
+
+Now it is possible to sort secondary keys using a new O(n) sorting
+algorithm that uses additional data written into the snapshot. The
+feature can be enabled with a new ``memtx_use_sort_data`` option
+in ``box.cfg`` or ``memtx.use_sort_data`` in the instance configuration.
+
+With the option set to ``true``, additional data is saved into a
+separate ``.sortdata`` file during snapshot creation and is used during recovery.
+The default value is ``false``, so the behavior must be explicitly enabled by the user if required.
+
+The option can be changed at runtime. For example, you can enable
+it during recovery to use the new secondary key sorting approach, but disable it
+before creating a new snapshot, so only the ``.snap`` file will be created
+and the O(n) secondary key sort will not be available for that snapshot.
+
+The performance impact of the option depends on the persistent
+storage read/write speed and the number of tuples and secondary
+keys in spaces (the more tuples and keys, the more beneficial the new approach is).
+Additionally, the approach only utilizes a single CPU core.
+
+As a downside, it creates additional footprint overhead during
+recovery (up to ~45 bytes per tuple) and overhead during
+snapshot creation (due to writing the sort data to persistent storage).
+
+.. _3-5-role-script-tag:
+
+[CE] ``fail_if`` tag for roles and scripts
+------------------------------------------
+
+A ``fail_if`` tag has been added for roles and scripts.
+If the tag ``fail_if`` is set to an expression string, loading a role/script will raise an error
+if the ``fail_if`` expression evaluates to ``true``.
+
+.. _3-5-fast-reload:
+
+[CE] Faster large (500+) clusters reload
+----------------------------------------
+
+The new patch processes an instance's configuration only when it is explicitly accessed,
+such as through a ``config:get(<...>, {instance = <...>})`` call. This significantly speeds up startup and
+configuration reloads, especially for large clusters.
+
+.. _3-5-quorum-synchronous-replication:
+
+[EE] Support of the quorum synchronous replication setup in three availability zones
+------------------------------------------------------------------------------------
+
+A new patchset makes the ``replication.failover = supervised`` mode supports the quorum synchronous 
+replication setup in three availability zones.
+
+The patchset includes several preliminary patches, which make the ``appoint_commit`` logic more safe
+in regards to various possible situations, and the main patch, which adds the ``box.ctl.promote()`` call to
+``appoint_commit`` if the ``failover.replicasets.<replicaset_name>.synchro_mode`` is set to ``true``.
+
+.. _3-5-skip-rw-switch:
+
+[EE] Supervised failover coordinator skips RW switch in presence of dead instances
+----------------------------------------------------------------------------------
+
+When applying centralized configuration updates, Tarantool supervised failover coordinator no longer performs RW
+switch within the replicaset if there are dead instances.
+
+A new patch introduces a smarter configuration update process for the Tarantool supervised failover
+coordinator. Previously, any change would trigger a full restart of all services, causing unnecessary downtime.
+Now, the system intelligently differentiates between option types: most settings can be applied dynamically without
+any restart. A restart will only occur if you modify critical core parameters, specifically any options under
+``failover.*`` or ``failover.stateboard.*`` (with the exception of ``failover.replicasets``). This targeted
+approach minimizes disruptive restarts and significantly improves the coordinator's availability.
+
+.. _3-5-memcs-fixed-point-decimals:
+
+[EE] Fixed-point decimal types are supported in MemCS
+-----------------------------------------------------
+
+It is now possible to define a field with the ``decimal32/64/128/256`` type (fixed-point decimal):
+
+* ``Insert/Replace/Get/Select`` operations for fixed point decimal values are represented as standard decimals
+  (``MP_DECIMAL``) in all engines (MemTX, Vinyl, MemCS, Quiver (if applicable)).
+* The internal representation of fixed point decimal values remains the same as the exisitng decimal
+  type (decNumber) in all engines except MemCS and Quiver.
+* It is now possible to batch insert and scan fixed point decimal values in the Arrow format 
+  in MemCS and Quiver engines.
+
+.. _3-5-memcs-brin-indexes:
+
+[EE] BRIN indexes are supported in MemCS
+-------------------------------------------
+
+This release introduces a new family of ArrowStream filters named logical combinators, which allow
+combining other filters using logical ``AND`` and ``OR`` operations. Validation occurs recursively from the
+root. Note that complex filters are not optimized; each child filter is evaluated sequentially until
+the overall condition is satisfied.
+
+.. _3-5-memcs-performance:
+
+[EE] Performance is improved in MemCS
+-------------------------------------
+
+This release brings performance enhancements to the MemCS engine, focusing on interoperability and insertion
+speed. A fix for Arrow array ``null_count`` calculation resolves an issue for users of the Rust Arrow C API.
+Furthermore, batch insertion into RLE-formatted columns is now dramatically faster, showing performance
+improvements of 2.5x for 10% filled columns and 11x for 1% filled columns.
+
+.. _3-5-memcs-index-batch-insertion:
+
+Secondary index batch insertion performance is improved in MemCS
+----------------------------------------------------------------
+
+This release introduces a new ``next_row`` method that significantly accelerates batch insertion and secondary
+index building. The method replaces the old tuple-based iterator, using a column mask to process only necessary
+data and returning raw row information to eliminate costly MsgPack conversions. Performance for secondary
+index insertion has improved by over 550%, with rates jumping from ~10k to 62k rows per second.
+
+.. _3-5-memcs-storage-string-scanning:
+
+Storage format and string scanning performance improvements in MemCS
+--------------------------------------------------------------------
+
+This release combines a new optimized storage format for short strings with a powerful Arrow view layout to
+deliver huge performance improvements for string scanning.
+
+Storage format updates:
+
+* Strings shorter than 13 characters are now stored inline within a 16-byte vector, significantly improving
+  access speed for common short-string data.
+* New ``force_view_types`` parameter for Arrow streams (disabled by default) allows switching to a
+  "variable-size binary view layout," which unlocks major performance gains when used with a read-view.
+* The ``memcs_column_data_size()`` API function has been split into ``memcs_column_int_data_size()``
+  and ``memcs_column_ext_data_size()`` to account for the new dual storage format.
+
+Scan performance for 3 different sets of strings (the lengths are randomly distributed in the range 1-12, 1-100, 1-1000)
+and 2 different modes, ``notouch`` and ``touch``. In the ``notouch`` mode strings are only scanned as a batch, without
+accessing them; in the ``touch`` mode, strings are scanned and the first external character is checked:
+
+* Strings 1-12 chars: Up to 4.8x faster in the ``notouch`` mode, and 3.2x faster in the ``touch`` mode.
+* Strings 1-100 chars: Up to 3.1x faster in the ``notouch`` mode, and 1.8x faster in the ``touch`` mode.
+* Strings 1-1000 chars: Up to 10x faster in the ``notouch`` mode, and 2.9x faster in the ``touch`` mode.
