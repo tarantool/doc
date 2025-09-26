@@ -42,7 +42,7 @@ Overview
             -   -1 |br| MP_UINT
             -   An unknown request type
 
-        *   -   :ref:`IPROTO_INSERT_ARROW <internals-insert-arrow>`
+        *   -   :ref:`IPROTO_INSERT_ARROW <internals-iproto-arrow>`
             -   0x11
             -   Insert Arrow data request. Available since
                 version :doc:`3.3.0 </release/3.3.0>`.
