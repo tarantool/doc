@@ -36,7 +36,7 @@ To log into |tcm| after bootstrap, use the following credentials:
 After logging in with the default password:
 
 #.  Adjust the :ref:`password policy <tcm_access_control_password_policy>`
-    in accordance to the security requirements that apply in your organization.
+    in accordance with the security requirements that apply in your organization.
 #.  Change the ``admin`` user's password on the :ref:`User settings <tcm_ui_user_settings>` page.
 
 To log out of |tcm|, click the user's name in the header and click **Log out**.
@@ -64,7 +64,7 @@ Onboarding
 ----------
 
 The **Onboarding** item of the navigation pane starts the interactive onboarding
-tutorial. Use it to get familiar with main |tcm| features directly in the web interface.
+tutorial. Use it to get familiar with the main |tcm| features directly in the web interface.
 
 ..  _tcm_ui_visibility:
 
@@ -92,7 +92,7 @@ There are the following page groups:
 -   **Tools**: |tcm| administration.
 -   **Settings**: runtime management of |tcm| settings.
 
-Read on to learn what you can do on pages of these groups.
+Read on to learn what you can do on the pages of these groups.
 
 ..  _tcm_ui_cluster:
 
@@ -156,6 +156,131 @@ The instance page has an **Actions** menu at the top that allows you to:
 -   edit the instance configuration
 -   remove the instance
 
+Slabs tab overview
+~~~~~~~~~~~~~~~~~~
+
+The **Slabs** tab in the TCM Web UI visualizes memory allocation within each Tarantool instance using the slab allocator.
+
+This tab is useful for:
+
+- identifying memory fragmentation
+- analyzing slab saturation by object size
+- debugging excessive memory use in real time
+
+Data source
+^^^^^^^^^^^
+
+This visualization is based on the output of:
+
+.. code-block:: lua
+
+    box.slab.stats()
+
+This function returns a Lua table with per-class (per object size) memory allocation statistics from the slab allocator.
+More about :ref:`box.slab.stats() <box_slab_stats>`.
+
+Each entry in the output contains:
+
+- ``item_size``: object size class
+- ``slab_count``: number of slab blocks
+- ``slab_size``: memory size of each slab
+- ``item_count``: number of allocated objects
+- ``mem_used``: bytes used
+- ``mem_free``: bytes free
+
+These values are parsed and rendered as visual elements in the UI.
+
+Slab visualization
+^^^^^^^^^^^^^^^^^^
+
+Each block represents a single slab (a fixed-size memory region). The color indicates how full the slab is:
+
+- **Green** — the slab is less than 30% full
+- **Red** — slab is full (100% usage)
+- **Gradient colors between green and red** — indicate intermediate fill levels (e.g., 30%, 50%, 75%)
+
+The color transitions smoothly, providing a quick visual way to understand which slabs are:
+
+- actively used
+- partially utilized
+- potentially underused or contributing to memory fragmentation
+
+In the example screenshot:
+
+- Slab #17 (168 KB) — 75% full (dark red)
+- Slab #18 (320 KB) — 53% full (brownish-red)
+- Slab #16 (40 KB) — only 1% used (bright green)
+- Slab #2 (56 B) — 60% used (intermediate gradient)
+
+Each slab block’s size in the visualization reflects the total memory allocated for its ``item_size`` class --
+the more memory allocated, the larger the visual representation.
+
+.. image:: _images/tcm_ui_slabs.png
+   :width: 1100px
+
+Calculating fill percentage
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The overall fill percentage for a slab is calculated using:
+
+.. code-block:: text
+
+    fill % = (item_count * item_size) / (slab_count * slab_size)
+
+However, each slab is visualized individually, so different fill levels across slabs will result in various colors within the same row.
+
+Behavior across Tarantool instances
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Slab allocation may vary between instances in the same replicaset due to differences in configuration, data loading order, and use of local memory.
+The reasons are:
+
+1.	Slab allocation may differ because each instance can use its own values for ``slab_alloc_factor`` and ``slab_alloc_granularity``. These parameters control how memory is divided into size classes and slabs, affecting memory layout and potential fragmentation.
+2.	Differences also appear during replica join or restart. A replica allocates memory for tuples in primary index order, while on the master, allocation follows the order of incoming requests. This results in different slab structures and usually lower fragmentation on replicas after a restart.
+3.	Local and temporary spaces exist only on specific instances and are not replicated. They consume memory independently and contribute to differences in slab allocation across nodes.
+
+Slab allocator tuning
+^^^^^^^^^^^^^^^^^^^^^
+
+You can fine-tune the allocator behavior with two configuration options:
+
+- :ref:`slab_alloc_factor <configuration_reference_memtx_slab_alloc_factor>` – multiplier for calculating object size classes. Default value: ``1.05``
+- :ref:`slab_alloc_granularity <configuration_reference_memtx_slab_alloc_granularity>` – minimum allocation step (in bytes) for the small allocator. Default value: ``8``
+
+These parameters affect how memory is allocated per object size class and can help:
+
+- reduce internal fragmentation
+- optimize memory usage
+- improve slab locality and performance
+- better understand memory consumption via the **Slabs** tab
+
+Use cases and recommendations table:
+
+.. list-table::
+   :header-rows: 1
+   :widths: 20 20 20 20 20
+
+   * - Scenario / Goal
+     - Parameters (`slab_alloc_factor` / `slab_alloc_granularity`)
+     - Effect on memory
+     - Effect on performance
+     - Visualization in **Slabs** tab
+   * - Reduce memory waste (small, uniform tuples)
+     - ``1.05`` / ``4``
+     - Many size classes – minimal internal memory waste
+     - Higher overhead for managing slab pools
+     - Many rows, partially filled blocks, gradient from green to red
+   * - Optimize performance (mixed-size tuples)
+     - ``1.3`` / ``16``
+     - Fewer size classes – slightly more memory waste
+     - Lower overhead – faster memory allocation
+     - Fewer rows, larger blocks, color contrast: partially or filled
+   * - Control fragmentation and slab count
+     - Task-dependent: lower values – more classes; higher values – fewer classes
+     - Balance between internal memory waste and the number of blocks
+     - Balance between overhead and allocator speed
+     - Balance between number of rows and block sizes; colors indicate fill level
+
 ..  _tcm_ui_cluster_config:
 
 Configuration
@@ -163,7 +288,7 @@ Configuration
 
 The cluster **Configuration** page provides an interactive editor for the cluster
 :ref:`configuration <configuration>`. It is connected to the centralized configuration
-storage that the cluster uses. All changes you make and apply on this page are
+storage that the cluster uses. All changes you make and apply to this page are
 sent to this centralized storage.
 
 .. image:: _images/tcm_ui_config.png
@@ -211,7 +336,7 @@ Tuples
     The cluster-wide access to stored data on the **Tuples** page is supported only
     for sharded clusters that use the `CRUD <https://github.com/tarantool/crud>`__ module.
 
-The **Tuples** page provides access to data stored in user spaces of the selected
+The **Tuples** page provides access to data stored in the user spaces of the selected
 cluster.
 
 .. image:: _images/tcm_ui_tuples.png
@@ -221,7 +346,7 @@ cluster.
 
 On this page, you can:
 
--   view the list of user spaces, their size and engines
+-   view the list of user spaces, their size, and engines
 -   view and edit tuples stored in user spaces
 
 ..  _tcm_ui_cluster_tcf:
@@ -273,7 +398,7 @@ including system spaces.
 
 On this page, you can:
 
--   view and edit instance spaces, their size and engines
+-   view and edit instance spaces, their size, and engines
 -   view and edit tuples stored in all spaces of the instance
 
 ..  _tcm_ui_clusters:
