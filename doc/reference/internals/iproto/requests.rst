@@ -145,9 +145,9 @@ Code: -1.
 An unknown request type. The constant is used to override the handler of unknown IPROTO request types.
 Learn more: :ref:`box.iproto.override() <reference_lua-box_iproto_override>` and :ref:`box_iproto_override <box_box_iproto_override>`.
 
-..  _internals-iproto-arrow:
+..  _internals-iproto-insert-arrow:
 
-IPROTO_ARROW
+IPROTO_INSERT_ARROW
 -------------------
 
 Since version :doc:`3.3.0 </release/3.3.0>`.
@@ -156,10 +156,7 @@ Code: 0x11
 The body is a 2-item map:
 
 ..  raw:: html
-    :file: images/insert_arrow.svg
-
-The structure of the ``IPROTO_INSERT_ARROW`` request is similar to
-:ref:`IPROTO_INSERT <box_protocol-insert>`.
+    :file: images/iproto_insert_arrow.svg
 
 ..  _box_protocol-select:
 
