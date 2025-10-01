@@ -492,7 +492,7 @@ Available IPROTO_FEATURES are the following:
     :ref:`IPROTO_UNWATCH <box_protocol-unwatch>`, and :ref:`IPROTO_EVENT <box_protocol-event>` commands.
 
 -   ``IPROTO_FEATURE_INSERT_ARROW = 12`` -- support of data insertion in the Arrow format. Learn more 
-    about the :ref:`feature <internals-iproto-arrow>`. Available since version :doc:`3.3.0 </release/3.3.0>`.
+    about the :ref:`feature <internals-iproto-insert-arrow>`. Available since version :doc:`3.3.0 </release/3.3.0>`.
 
 ..  _internals-iproto-keys-sync:
 
