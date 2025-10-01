@@ -42,11 +42,6 @@ Overview
             -   -1 |br| MP_UINT
             -   An unknown request type
 
-        *   -   :ref:`IPROTO_INSERT_ARROW <internals-iproto-insert-arrow>`
-            -   0x11
-            -   Iproto Insert Arrow data request. Available since
-                version :doc:`3.3.0 </release/3.3.0>`.
-
         *   -   :ref:`IPROTO_SELECT <box_protocol-select>`
             -   0x01
             -   :ref:`Select <box_space-select>` request
@@ -86,6 +81,11 @@ Overview
         *   -   :ref:`IPROTO_NOP <box_protocol-nop>`
             -   0x0c
             -   Increment the LSN and do nothing else
+
+        *   -   :ref:`IPROTO_INSERT_ARROW <internals-iproto-insert-arrow>`
+            -   0x11
+            -   Iproto Insert Arrow data request. Available since
+                version :doc:`3.3.0 </release/3.3.0>`.
 
         *   -   :ref:`IPROTO_PING <box_protocol-ping>`
             -   0x40
