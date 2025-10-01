@@ -145,19 +145,6 @@ Code: -1.
 An unknown request type. The constant is used to override the handler of unknown IPROTO request types.
 Learn more: :ref:`box.iproto.override() <reference_lua-box_iproto_override>` and :ref:`box_iproto_override <box_box_iproto_override>`.
 
-..  _internals-iproto-insert-arrow:
-
-IPROTO_INSERT_ARROW
--------------------
-
-Since version :doc:`3.3.0 </release/3.3.0>`.
-
-Code: 0x11
-The body is a 2-item map:
-
-..  raw:: html
-    :file: images/iproto_insert_arrow.svg
-
 ..  _box_protocol-select:
 
 IPROTO_SELECT
@@ -407,6 +394,19 @@ It could be sometimes used for updates where the old and new values
 are the same, but the LSN must be increased because a data-change
 must be recorded.
 The body is: nothing.
+
+..  _internals-iproto-insert-arrow:
+
+IPROTO_INSERT_ARROW
+-------------------
+
+Since version :doc:`3.3.0 </release/3.3.0>`.
+
+Code: 0x11
+The body is a 2-item map:
+
+..  raw:: html
+    :file: images/iproto_insert_arrow.svg
 
 
 ..  _box_protocol-ping:
