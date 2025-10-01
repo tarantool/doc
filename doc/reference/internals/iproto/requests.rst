@@ -82,6 +82,11 @@ Overview
             -   0x0c
             -   Increment the LSN and do nothing else
 
+        *   -   :ref:`IPROTO_INSERT_ARROW <internals-iproto-insert-arrow>`
+            -   0x11
+            -   Iproto Insert Arrow data request. Available since
+                version :doc:`3.3.0 </release/3.3.0>`.
+
         *   -   :ref:`IPROTO_PING <box_protocol-ping>`
             -   0x40
             -   Ping (:ref:`conn:ping() <conn-ping>`)
@@ -89,8 +94,6 @@ Overview
         *   -   :ref:`IPROTO_ID <box_protocol-id>`
             -   0x49
             -   Share iproto version and supported features
-
-
 
 ..  _internals-iproto-ok:
 
@@ -391,6 +394,19 @@ It could be sometimes used for updates where the old and new values
 are the same, but the LSN must be increased because a data-change
 must be recorded.
 The body is: nothing.
+
+..  _internals-iproto-insert-arrow:
+
+IPROTO_INSERT_ARROW
+-------------------
+
+Since version :doc:`3.3.0 </release/3.3.0>`.
+
+Code: 0x11
+The body is a 2-item map:
+
+..  raw:: html
+    :file: images/iproto_insert_arrow.svg
 
 
 ..  _box_protocol-ping:

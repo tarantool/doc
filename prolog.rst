@@ -34,7 +34,7 @@
 
     <br />
 
-.. |iproto_version| replace:: 3
+.. |iproto_version| replace:: 10
 
 .. |tcm_full_name| replace:: Tarantool Cluster Manager
 
