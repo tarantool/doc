@@ -18,10 +18,21 @@ of LDAP users in |tcm| are defined by LDAP group mapping.
 
 Both LDAP and secure LDAPS (LDAP over TLS) protocols are supported.
 
+
 ..  _tcm_ldap_auth_enable:
 
 Enabling LDAP authentication
 ----------------------------
+
+LDAP authentication can be enabled using either of two configuration methods:
+
+- :ref:`Enabling via CLI <tcm_ldap_auth_enable_cli>` -- set the ``security.auth`` option to include ldap in the TCM YAML config or as a CLI flag.
+- :ref:`Enabling via web interface <tcm_ldap_auth_enable_ui>` -- starting from version 1.4.0, you can enable LDAP authentication interactively in the TCM UI.
+
+..  _tcm_ldap_auth_enable_cli:
+
+Via CLI
+~~~~~~~
 
 To allow LDAP user authentication in |tcm|, enable the ``ldap`` authentication method
 in the :ref:`security.auth <tcm_configuration_reference_security_auth>` configuration option before startup:
@@ -45,10 +56,23 @@ in the :ref:`security.auth <tcm_configuration_reference_security_auth>` configur
     If both authentication methods -- LDAP and local -- are enabled, |tcm| tries them
     for each login attempt in the order they are specified in the configuration.
 
+..  _tcm_ldap_auth_enable_ui:
+
+Via web interface
+~~~~~~~~~~~~~~~~~
+
+To enable LDAP authentication using the TCM web interface:
+
+1.	Click the user icon in the top-right corner of the screen.
+2.	Select **Settings** from the dropdown menu.
+3.	Navigate to the **Authentication methods** tab.
+4.	Check the box next to **LDAP**.
+5.	Save the changes.
+
 ..  _tcm_ldap_auth_config:
 
 LDAP configuration
-------------------
+~~~~~~~~~~~~~~~~~~
 
 To enable LDAP user access to |tcm|, create an *LDAP configuration* that connects
 |tcm| to the LDAP server that stores the users. An LDAP configuration
