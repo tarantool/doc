@@ -72,7 +72,7 @@ To enable LDAP authentication using the TCM web interface:
 ..  _tcm_ldap_auth_config:
 
 LDAP configuration
-~~~~~~~~~~~~~~~~~~
+------------------
 
 To enable LDAP user access to |tcm|, create an *LDAP configuration* that connects
 |tcm| to the LDAP server that stores the users. An LDAP configuration
