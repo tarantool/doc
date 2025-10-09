@@ -7,7 +7,7 @@ Integrity check
     :start-after: ee_note_tcm_start
     :end-before: ee_note_tcm_end
 
-TCM supports the integrity check mechanism.
+|tcm| supports the integrity check mechanism.
 This feature ensures that the environment, application files, and centralized configuration have not been tampered with after packaging and publishing.
 
 The integrity check mechanism is used to:
@@ -15,9 +15,6 @@ The integrity check mechanism is used to:
 * Ensure the environment and application files haven’t been modified.
 * Prevent launching or running TCM in a compromised state.
 * Detect unauthorized changes in centralized configuration.
-
-This feature is available for any application managed by tt, including TCM.
-
 
 ..  _tcm_integrity_check_enable:
 
@@ -54,11 +51,11 @@ Configuration parameters
      - Description
      - Type
      - Default
-   * - ``security.integrity-check``
+   * - :ref:```security.integrity-check`` <tcm_configuration_reference_security_integrity-check:`
      - Enables signature validation
      - ``bool``
      - ``false``
-   * - ``security.signature-private-key-file``
+   * - :ref:```security.signature-private-key-file`` <tcm_configuration_reference_security_signature-private-key-file:`
      - Path to the private key for signing configuration
      - ``string``
      - ``""``
@@ -81,8 +78,8 @@ Environment variables
 Example configuration
 =====================
 
-Integrity check in TCM can be enabled and customized using several methods.
-You can configure it directly in the TCM configuration file or through environment variables when starting the application.
+Integrity check in |tcm| can be enabled and customized using several methods.
+You can configure it directly in the |tcm| configuration file or through environment variables when starting the application.
 
 * In configuration file:
 
@@ -102,13 +99,3 @@ You can configure it directly in the TCM configuration file or through environme
         export TCM_SECURITY_SIGNATURE_PRIVATE_KEY_FILE=/etc/tcm/private_key.pem
 
         tt --integrity-check /etc/tcm/public_key.pem start tcm
-
-
-
-
-
-
-
-
-
-
