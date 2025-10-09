@@ -41,7 +41,7 @@ Configure integrity check
 -------------------------
 
 Configuration parameters
-========================
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. list-table::
    :header-rows: 1
@@ -61,7 +61,7 @@ Configuration parameters
      - ``""``
 
 Environment variables
-=====================
+~~~~~~~~~~~~~~~~~~~~~
 
 .. list-table::
    :header-rows: 1
@@ -76,7 +76,7 @@ Environment variables
 
 
 Example configuration
-=====================
+~~~~~~~~~~~~~~~~~~~~~
 
 Integrity check in |tcm| can be enabled and customized using several methods.
 You can configure it directly in the |tcm| configuration file or through environment variables when starting the application.
