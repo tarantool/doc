@@ -8,12 +8,12 @@ Integrity check
     :end-before: ee_note_tcm_end
 
 |tcm| supports the integrity check mechanism.
-This feature ensures that the environment, application files, and centralized configuration have not been tampered with after packaging and publishing.
+The integrity check mechanism in TCM verifies the digital signature of centralized configuration files.
+It ensures that TCM only applies configurations that are signed with a trusted private key.
 
-The integrity check mechanism is used to:
+This mechanism allows TCM to:
 
-* Ensure the environment and application files haven’t been modified.
-* Prevent launching or running TCM in a compromised state.
+* Allows updating the configuration with integrity check support.
 * Detect unauthorized changes in centralized configuration.
 
 ..  _tcm_integrity_check_enable:
