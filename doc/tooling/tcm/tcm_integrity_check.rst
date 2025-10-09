@@ -51,11 +51,11 @@ Configuration parameters
      - Description
      - Type
      - Default
-   * - :ref:`security.integrity-check <tcm_configuration_reference_security_integrity-check`
+   * - :ref:`security.integrity-check <tcm_configuration_reference_security_integrity-check>`
      - Enables signature validation
      - ``bool``
      - ``false``
-   * - :ref:`security.signature-private-key-file` <tcm_configuration_reference_security_signature-private-key-file`
+   * - :ref:`security.signature-private-key-file <tcm_configuration_reference_security_signature-private-key-file>`
      - Path to the private key for signing configuration
      - ``string``
      - ``""``
