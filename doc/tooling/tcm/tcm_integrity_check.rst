@@ -41,20 +41,6 @@ Configuration parameters
      - ``string``
      - ``""``
 
-Environment variables
-~~~~~~~~~~~~~~~~~~~~~
-
-.. list-table::
-   :header-rows: 1
-   :widths: 40 60
-
-   * - Variable
-     - Description
-   * - ``TCM_SECURITY_INTEGRITY_CHECK``
-     - Enables integrity check via environment variable
-   * - ``TCM_SECURITY_SIGNATURE_PRIVATE_KEY_FILE``
-     - Path to the private key for signing configuration
-
 
 Example configuration
 ~~~~~~~~~~~~~~~~~~~~~
