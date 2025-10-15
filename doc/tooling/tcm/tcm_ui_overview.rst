@@ -357,7 +357,7 @@ TCF
 The **TCF** page provides an interface for clusters that run within `Tarantool Clusters Federation <https://www.tarantool.io/en/clustersfederation/>`__.
 
 .. image:: _images/tcm_ui_tcf.png
-    :align: left
+    :align: center
     :width: 700
     :alt: TCM TCF page
 
@@ -389,12 +389,12 @@ On this page, you can:
 
 
     .. image:: _images/tcm_tcf_settings.png
-        :align: left
+        :align: center
         :width: 700
         :alt: TCM TCF settings page
 
     .. image:: _images/tcm_tcf_settings_params.png
-        :align: left
+        :align: center
         :width: 700
         :alt: TCM TCF settings page
 
