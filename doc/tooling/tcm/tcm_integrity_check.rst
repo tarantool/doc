@@ -45,7 +45,7 @@ Configuration parameters
 Example configuration
 ~~~~~~~~~~~~~~~~~~~~~
 
-Integrity check in |tcm| can be enabled directly in the |tcm| configuration file:
+Integrity check can be enabled directly in the |tcm| configuration file:
 
 .. code-block:: yaml
 
