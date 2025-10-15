@@ -13,7 +13,7 @@ It ensures that TCM only applies configurations that are signed with a trusted p
 
 This mechanism allows TCM to:
 
-* Allows updating the configuration with integrity check support.
+* Update the configuration with integrity check support.
 * Detect unauthorized changes in centralized configuration.
 
 ..  _tcm_integrity_check_configure:
