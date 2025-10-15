@@ -356,6 +356,11 @@ TCF
 
 The **TCF** page provides an interface for clusters that run within `Tarantool Clusters Federation <https://www.tarantool.io/en/clustersfederation/>`__.
 
+.. image:: _images/tcm_ui_tcf.png
+    :align: left
+    :width: 700
+    :alt: TCM TCF page
+
 TCF page can be added via the |tcm| configuration file:
 
 .. code-block:: yaml
@@ -364,11 +369,6 @@ TCF page can be added via the |tcm| configuration file:
     feature:
         tcf:True
 
-
-.. image:: _images/tcm_ui_tcf.png
-    :align: left
-    :width: 700
-    :alt: TCM TCF page
 
 On this page, you can:
 
@@ -388,15 +388,15 @@ On this page, you can:
   - ``status_ttl``: time-to-live for service status. Default value: ``4``
 
 
-.. image:: _images/tcm_tcf_settings.png
-    :align: left
-    :width: 700
-    :alt: TCM TCF settings page
+    .. image:: _images/tcm_tcf_settings.png
+        :align: left
+        :width: 700
+        :alt: TCM TCF settings page
 
-.. image:: _images/tcm_tcf_settings_params.png
-    :align: left
-    :width: 700
-    :alt: TCM TCF settings page
+    .. image:: _images/tcm_tcf_settings_params.png
+        :align: left
+        :width: 700
+        :alt: TCM TCF settings page
 
 
 Learn more in :ref:`tcm_cluster_tcf`.
