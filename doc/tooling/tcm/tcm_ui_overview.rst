@@ -376,16 +376,16 @@ On this page, you can:
 *   toggle the state of clusters
 *   promote or demote clusters
 *   change key cluster parameters. To open the settings, click **Actions** (the three dots next to the cluster status) and select **Settings**. Available parameters:
-    - ``dml_users``: list of DML users
-    - ``cluster1``, ``cluster2``: cluster settings
-    - ``replication_user``: replication username
-    - ``replication_password``: password associated with the replication user
-    - ``failover_timeout``: time period (in seconds) to wait before initiating failover to another cluster. Default value: ``20``
-    - ``initial_status``: initial service state
-    - ``max_suspect_counts``: maximum suspect counts for failover. Default value: ``3``
-    - ``health_check_delay``: delay (in seconds) between health checks. Default value: ``2``
-    - ``enable_system_check``: enables or disables system-level health checks. Default value: ``true``
-    - ``status_ttl``: time-to-live for service status. Default value: ``4``
+  - ``dml_users``: list of DML users
+  - ``cluster1``, ``cluster2``: cluster settings
+  - ``replication_user``: replication username
+  - ``replication_password``: password associated with the replication user
+  - ``failover_timeout``: time period (in seconds) to wait before initiating failover to another cluster. Default value: ``20``
+  - ``initial_status``: initial service state
+  - ``max_suspect_counts``: maximum suspect counts for failover. Default value: ``3``
+  - ``health_check_delay``: delay (in seconds) between health checks. Default value: ``2``
+  - ``enable_system_check``: enables or disables system-level health checks. Default value: ``true``
+  - ``status_ttl``: time-to-live for service status. Default value: ``4``
 
 
 .. image:: _images/tcm_tcf_settings.png
