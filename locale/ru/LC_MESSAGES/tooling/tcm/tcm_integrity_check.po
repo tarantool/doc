@@ -1,0 +1,66 @@
+
+msgid ""
+"Integrity check"
+msgstr ""
+"Проверка целостности"
+
+msgid ""
+"|tcm| supports the integrity check mechanism. "
+"The integrity check mechanism in TCM verifies the digital signature of centralized configuration files. "
+"It ensures that TCM only applies configurations that are signed with a trusted private key."
+msgstr ""
+"|tcm| поддерживает механизм проверки целостности. Механизм проверки целостности в TCM проверяет цифровую подпись централизованных файлов конфигурации. "
+"Он гарантирует, что TCM применяет только конфигурации, подписанные доверенным закрытым ключом."
+
+msgid ""
+"This mechanism allows |tcm| to"
+msgstr ""
+"Этот механизм позволяет |tcm|"
+
+msgid ""
+"Update the configuration with integrity check support"
+msgstr ""
+"обновлять конфигурацию с поддержкой проверки целостности;"
+
+msgid ""
+"Detect unauthorized changes in centralized configuration"
+msgstr ""
+"обнаруживать несанкционированные изменения в централизованной конфигурации."
+
+msgid ""
+"Configure integrity check"
+msgstr ""
+"Настройка проверки целостности"
+
+msgid ""
+"Configuration parameters"
+msgstr ""
+"Конфигурационные параметры"
+
+msgid "Parameter"
+msgstr "Параметр"
+
+msgid "Description"
+msgstr "Описание"
+
+msgid "Type"
+msgstr "Тип"
+
+msgid "Default"
+msgstr "Значение по умолчанию"
+
+msgid "Enables signature validation"
+msgstr "Включает проверку подписи"
+
+msgid "Path to the private key for signing configuration"
+msgstr "Путь к приватному ключу для подписи конфигурации"
+
+msgid ""
+"Example configuration"
+msgstr ""
+"Пример конфигурации"
+
+msgid ""
+"Integrity check can be enabled directly in the |tcm| configuration file:"
+msgstr ""
+"Проверку целостности можно включить в конфигурационном файле |tcm|:"
