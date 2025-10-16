@@ -138,7 +138,7 @@ Router public API
           ``timeout > request_timeout``.
 
           The ``timeout`` parameter controls how much time a single request attempt may take.
-          When this time is over (the ``TimedOut`` error is raised), router retries the request on the next replica as long
+          When this time is over (the ``TimedOut`` error is raised), the router retries this request on the next replica as long
           as the ``timeout`` value is not elapsed.
 
         * other :ref:`net.box options <net_box-options>`, such as ``is_async``,
@@ -222,7 +222,7 @@ Router public API
           It is necessary to pass the ``request_timeout`` and ``timeout`` parameters together, with the following requirement:
           ``timeout > request_timeout``.
           The ``timeout`` parameter controls how much time a single request attempt may take.
-          When this time is over (the ``TimedOut`` error is raised), router retries the request on the next replica as long
+          When this time is over (the ``TimedOut`` error is raised), the router retries this request on the next replica as long
           as the ``timeout`` value is not elapsed.
 
         * other :ref:`net.box options <net_box-options>`, such as ``is_async``,
@@ -301,7 +301,7 @@ Router public API
           It is necessary to pass the ``request_timeout`` and ``timeout`` parameters together, with the following requirement:
           ``timeout > request_timeout``.
           The ``timeout`` parameter controls how much time a single request attempt may take.
-          When this time is over (the ``TimedOut`` error is raised), router retries the request on the next replica as long
+          When this time is over (the ``TimedOut`` error is raised), the router retries this request on the next replica as long
           as the ``timeout`` value is not elapsed.
 
         * other :ref:`net.box options <net_box-options>`, such as ``is_async``,

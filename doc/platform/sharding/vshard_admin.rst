@@ -593,7 +593,9 @@ In this case:
   When re-executing this request without additional check, the operation may be applied twice.
 
   A write request can be executed repeatedly without a check in two cases:
+
   - The request is idempotent.
+
   - It's known for sure that the previous request raised an error before executing any write operations.
     For example, ER_READONLY was thrown by the server.
     In this case, we know that the request couldn't complete due to server in read-only mode.
