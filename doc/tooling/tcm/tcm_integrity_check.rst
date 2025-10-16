@@ -60,5 +60,4 @@ Integrity check can be enabled directly in the |tcm| configuration file:
     In TCM, this option is not used, as the component only uploads and verifies configuration signatures and does not interact directly with the database.
     Moreover, TCM cannot stop Tarantool execution in case of an integrity check failure — this behavior is specific to tt when Tarantool
     is started with the ``--integrity-check`` and ``--integrity-check-period`` options.
-
     Read details about ``tt`` integrity check in :ref:`its documentation <tt-start-integrity-check>`.
