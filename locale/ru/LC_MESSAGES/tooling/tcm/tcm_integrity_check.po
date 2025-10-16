@@ -13,9 +13,9 @@ msgstr ""
 "Он гарантирует, что TCM применяет только конфигурации, подписанные доверенным закрытым ключом."
 
 msgid ""
-"This mechanism allows |tcm| to"
+"This mechanism allows TCM to:"
 msgstr ""
-"Этот механизм позволяет |tcm|"
+"Этот механизм позволяет TCM:"
 
 msgid ""
 "Update the configuration with integrity check support"
