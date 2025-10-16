@@ -1,0 +1,79 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C)
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-10-16 13:03+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Maryia Lichko <m.lichko@vkteam.ru>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../doc/tooling/tcm/tcm_integrity_check.rst:3
+msgid "Integrity check"
+msgstr ""
+
+#: ../../../doc/tooling/tcm/tcm_integrity_check.rst:10
+msgid "|tcm| supports the integrity check mechanism. "
+"The integrity check mechanism in TCM verifies the digital signature of centralized configuration files. "
+"It ensures that TCM only applies configurations that are signed with a trusted private key."
+msgstr ""
+
+#: ../../../doc/tooling/tcm/tcm_integrity_check.rst:14
+msgid "This mechanism allows TCM to:"
+msgstr ""
+
+#: ../../../doc/tooling/tcm/tcm_integrity_check.rst:16
+msgid "Update the configuration with integrity check support"
+msgstr ""
+
+#: ../../../doc/tooling/tcm/tcm_integrity_check.rst:17
+msgid "Detect unauthorized changes in centralized configuration"
+msgstr ""
+
+#: ../../../doc/tooling/tcm/tcm_integrity_check.rst:21
+msgid "Configure integrity check"
+msgstr ""
+
+#: ../../../doc/tooling/tcm/tcm_integrity_check.rst:24
+msgid "Configuration parameters"
+msgstr ""
+
+#: ../../../doc/tooling/tcm/tcm_integrity_check.rst:31
+msgid "Parameter"
+msgstr ""
+
+#: ../../../doc/tooling/tcm/tcm_integrity_check.rst:32
+msgid "Description"
+msgstr ""
+
+#: ../../../doc/tooling/tcm/tcm_integrity_check.rst:33
+msgid "Type"
+msgstr ""
+
+#: ../../../doc/tooling/tcm/tcm_integrity_check.rst:34
+msgid "Default"
+msgstr ""
+
+#: ../../../doc/tooling/tcm/tcm_integrity_check.rst:36
+msgid "Enables signature validation"
+msgstr ""
+
+#: ../../../doc/tooling/tcm/tcm_integrity_check.rst:40
+msgid "Path to the private key for signing configuration"
+msgstr ""
+
+#: ../../../doc/tooling/tcm/tcm_integrity_check.rst:45
+msgid "Example configuration"
+msgstr ""
+
+#: ../../../doc/tooling/tcm/tcm_integrity_check.rst:48
+msgid "Integrity check can be enabled directly in the |tcm| configuration file:"
+msgstr ""
