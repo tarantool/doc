@@ -53,7 +53,7 @@ This release includes multiple fixes across different modules:
 - Logging -- fixed issues with log output by switching to the ``slog`` logging system.
 - UI -- resolved display issues in the ``OperationStatus`` component.
 - Tuples -- fixed an error that caused tab refresh failures in clusters with a large number of spaces.
-- ``utils`` — the`` FilterSlices`` function to correctly filter slices. Since version 1.5.1.
+- ``utils`` — the ``FilterSlices`` function to correctly filter slices. Since version 1.5.1.
 - :ref:`Audit log <tcm_audit_log>` documentation now contains only necessary event types. Since version 1.5.1.
 
 
