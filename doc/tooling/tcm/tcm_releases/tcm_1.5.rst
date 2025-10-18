@@ -53,4 +53,14 @@ This release includes multiple fixes across different modules:
 - Logging -- fixed issues with log output by switching to the ``slog`` logging system.
 - UI -- resolved display issues in the ``OperationStatus`` component.
 - Tuples -- fixed an error that caused tab refresh failures in clusters with a large number of spaces.
+- ``utils`` — the ``FilterSlices`` function to correctly filter slices. Since version 1.5.1.
+- :ref:`Audit log <tcm_audit_log>` documentation now contains only necessary event types. Since version 1.5.1.
 
+
+.. _tcm_releases_1_5_1:
+
+Migrations section
+------------------
+
+Since version 1.5.1, |tcm| includes a new ``migrations`` section with a ``duration`` field.
+This field allows specifying the maximum execution time for long-running migrations, preventing them from being interrupted by the default timeout.
