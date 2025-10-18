@@ -53,3 +53,11 @@ Integrity check can be enabled directly in the |tcm| configuration file:
     security:
         integrity-check: true
         signature-private-key-file: /etc/tcm/private_key.pem
+
+.. note::
+
+    The ``integrity-check-period`` option works only in the ``tt`` + Tarantool setup, where tt periodically verifies the integrity of the running instance.
+    In TCM, this option is not used, as the component only uploads and verifies configuration signatures and does not interact directly with the database.
+    Moreover, TCM cannot stop Tarantool execution in case of an integrity check failure — this behavior is specific to tt when Tarantool
+    is started with the ``--integrity-check`` and ``--integrity-check-period`` options.
+    Read details about ``tt`` integrity check in :ref:`its documentation <tt-start-integrity-check>`.
