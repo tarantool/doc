@@ -693,9 +693,10 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
 
    The example below shows how to configure cipher suites:
 
-   .. code-block:: yaml
+   ..  code-block:: yaml
 
        http:
+         tls:
            cipher-suites:
              - TLS_AES_256_GCM_SHA384
              - TLS_AES_128_GCM_SHA256
