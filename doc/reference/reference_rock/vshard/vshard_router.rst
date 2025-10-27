@@ -133,7 +133,7 @@ Router public API
           shard with the specified ``bucket_id``, it will retry until the timeout is reached.
 
         * ``request_timeout`` (since ``vshard`` 0.1.28) — timeout in seconds that serves as a protection against hung replicas.
-          The parameter is used in the read requests only (``mode=read``).
+          The parameter is used in read requests only (``mode=read``).
           It is necessary to pass the ``request_timeout`` and ``timeout`` parameters together, with the following requirement:
           ``timeout > request_timeout``.
 

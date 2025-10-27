@@ -611,7 +611,7 @@ you should implement a check that the request is applied for the first time.
     Currently, deduplication can be only implemented by the user in the application code.
 
 For example, when you add a new tuple to a space, you can use a unique insert ID to check the request.
-In the example below within a single transaction:
+In the example below, within a single transaction:
 
 1. It is checked whether a tuple with the ``key`` ID exists in the ``bands`` space.
 2. If there is no tuple with this ID in the space, the tuple is inserted.
@@ -632,7 +632,7 @@ This space can have any name, in the example it is called ``deduplication``.
 In the example below, within a single transaction:
 
 1. It is checked whether the ``deduplication_key`` request ID exists in the ``deduplication`` space.
-2. If there is no such ID, The ID is added to the deduplication space.
+2. If there is no such ID, the ID is added to the deduplication space.
 3. If the request hasn't been applied before, it increments the specified field in the ``bands`` space by one.
 
 This approach ensures that each data modification request will be executed **only once**.
