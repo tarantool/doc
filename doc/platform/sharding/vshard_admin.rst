@@ -551,6 +551,104 @@ In a router application, you can define the ``put`` function that specifies how 
 
 Learn more at :ref:`vshard-process-requests`.
 
+.. _vshard-deduplication:
+
+Deduplication of non-idempotent requests
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Idempotent requests** produce the same result every time they are executed.
+For example, a data read request or a multiplication by one are both idempotent.
+Therefore, incrementing by one is an example of a non-idempotent operation.
+When such an operation is applied again, the value for the field increases by 2 instead of just 1.
+
+..  note::
+
+    Any write requests that are intended to be executed repeatedly (for example, retried after an error) should be idempotent.
+    The operations' idempotency ensures that the change is applied **only once**.
+
+A request may need to be run again if an error occurs on the server or client side.
+In this case:
+
+- Read requests can be executed repeatedly.
+  For this purpose, :ref:`vshard.router.call() <router_api-call>` (with ``mode=read``) uses the ``request_timeout`` parameter
+  (since ``vshard`` 0.1.28).
+  It is necessary to pass the ``request_timeout`` and ``timeout`` parameters together, with the following requirement:
+
+  ..  code-block:: text
+
+      timeout > request_timeout
+
+
+  For example, if ``timeout = 10`` and ``request_timeout = 2``,
+  within 10 seconds the router is able to make 5 attempts (2 seconds each) to send a request to different replicas
+  until the request finally succeeds.
+
+- Write requests (:ref:`vshard.router.callrw() <router_api-callrw>`) generally **cannot be re-executed** without verifying
+  that they have not been applied before.
+  Lack of such a check might lead to duplicate records or unplanned data changes.
+
+  For example, a client has sent a request to the server. The client is waiting for a response within a specified timeout.
+  If the server sends a successful response after this time has elapsed,
+  the client won't see this response due to a timeout, and will consider the request as failed.
+  When re-executing this request without additional check, the operation may be applied twice.
+
+  A write request can be executed repeatedly without a check in two cases:
+
+  - The request is idempotent.
+
+  - It's known for sure that the previous request raised an error before executing any write operations.
+    For example, ER_READONLY was thrown by the server.
+    In this case, we know that the request couldn't complete due to server in read-only mode.
+
+**Deduplication examples**
+
+To ensure that the write requests (INSERT, UPDATE, UPSERT, and autoincrement) are idempotent,
+you should implement a check that the request is applied for the first time.
+
+..  note::
+
+    There is no built-in deduplication check in Tarantool.
+    Currently, deduplication can be only implemented by the user in the application code.
+
+For example, when you add a new tuple to a space, you can use a unique insert ID to check the request.
+In the example below, within a single transaction:
+
+1. It is checked whether a tuple with the ``key`` ID exists in the ``bands`` space.
+2. If there is no tuple with this ID in the space, the tuple is inserted.
+
+..  code-block:: lua
+
+    box.begin()
+    if box.space.bands:get{key} == nil then
+        box.space.bands:insert{key, value}
+    end
+    box.commit()
+
+For update and upsert requests, you can create a *deduplication space* where the request IDs will be saved.
+*Deduplication space* is a user space that contains a list of unique identifiers.
+Each identifier corresponds to one applied request.
+This space can have any name, in the example it is called ``deduplication``.
+
+In the example below, within a single transaction:
+
+1. It is checked whether the ``deduplication_key`` request ID exists in the ``deduplication`` space.
+2. If there is no such ID, the ID is added to the deduplication space.
+3. If the request hasn't been applied before, it increments the specified field in the ``bands`` space by one.
+
+This approach ensures that each data modification request will be executed **only once**.
+
+..  code-block:: lua
+
+    function update_1(deduplication_key, key)
+        box.begin()
+        if box.space.deduplication:get{deduplication_key} == nil then
+            box.space.deduplication:insert{deduplication_key}
+            box.space.bands:update(key, {{'+', 'value', 1 }})
+        end
+        box.commit()
+    end
+
+
 .. _vshard-maintenance:
 
 Sharded cluster maintenance
