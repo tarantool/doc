@@ -178,7 +178,7 @@ Router public API
 
         Any write requests that are intended to be executed repeatedly (for example, retried after an error) should be idempotent.
         The operations' idempotency ensures that the change is applied **only once**.
-        Read more: :ref:`<vshard-deduplication>`.
+        Read more: :ref:`Deduplication of non-idempotent requests <vshard-deduplication>`.
 
     .. reference_vshard_note_end
 
