@@ -9,7 +9,7 @@ about 1.x and 2.x Tarantool releases: release notes, lifecycle information, rele
 Supported versions
 ------------------
 
-Every Tarantool release series has :ref:`the same lifecycle <release-series-lifecycle>`
+Every Tarantool release series has the same :ref:`lifecycle <release-series-lifecycle>`
 defined by the release policy. The following diagram visualizes the lifecycle of currently supported Tarantool 2.x versions:
 
 .. image:: _images/releases_calendar_2_x.svg
