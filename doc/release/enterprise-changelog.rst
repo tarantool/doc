@@ -50,7 +50,7 @@ r694
 -   Bumped ``metrics`` version to `1.5.0 <https://github.com/tarantool/metrics/releases/tag/1.5.0>`__.
 -   Added ``migrations`` CE `1.1.0 <https://github.com/tarantool/migrations/releases/tag/1.1.0>`__.
 -   Added ``vshard`` CE `0.1.36 <https://github.com/tarantool/vshard/releases/tag/0.1.36>`__.
--   Moved to community edition modules.
+-   Moved to Community Edition modules.
 
 r693
 ----
