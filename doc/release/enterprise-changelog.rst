@@ -18,6 +18,7 @@ For example: ``2.11.1-0-gc42d9735b-r589``.
 -   ``TARANTOOL_BASE_VERSION`` is the Community version which the Enterprise version is based on.
 -   ``REVISION`` is the SDK revision. Besides Tarantool itself, it includes the ``tt`` utility, a set of open and closed source modules, and examples. Learn more from :ref:`Package contents <enterprise-package-contents>`.
 
+
 r703
 ----
 
@@ -231,7 +232,7 @@ r643
 r640
 ----
 
--   Updated Docker image
+-   Updated Docker image.
 -   Updated CMake to 3.20.6.
 -   Installed dependencies for building OpenSSL.
 -   Fixed installation of Python 3.6.
@@ -338,7 +339,7 @@ r609
 r606
 ----
 
--   Updated ``tarantool-master`` to 3.0.0-beta1.
+-   Updated ``tarantool-master`` to ``3.0.0-beta1``.
 
 r605
 ----
@@ -372,7 +373,7 @@ r589
 ----
 
 -   Updated ``tarantool-2.10`` to 2.10.8.
--   Updated ``tarantool-master`` to 3.0.0-alpha3.
+-   Updated ``tarantool-master`` to ``3.0.0-alpha3``.
 -   Updated ``migrations`` to `0.6.0 <https://github.com/tarantool/migrations/releases/tag/0.6.0>`__.
 -   Updated ``tt-ee`` to `1.2.0 <https://github.com/tarantool/tt-ee/releases/tag/v1.2.0>`__.
 -   Updated ``space-explorer`` to `1.1.8 <https://github.com/tarantool/space-explorer/releases/tag/1.1.8>`__.
@@ -482,7 +483,7 @@ r537
 r536
 ----
 
--   Added the missing property ``2.10`` for scope ``CACHE`` in CMakeLists.txt.
+-   Added the missing property ``2.10`` for scope ``CACHE`` in ``CMakeLists.txt``.
 
 r535
 ----
