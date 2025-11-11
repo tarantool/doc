@@ -46,8 +46,8 @@ r694
 -   Added CRUD CE `1.6.1 <https://github.com/tarantool/crud/releases/tag/1.6.1>`__.
 -   Added  ``expirationd`` CE `1.7.0 <https://github.com/tarantool/expirationd/releases/tag/1.7.0>`__.
 -   Added ``ddl`` CE `1.7.1 <https://github.com/tarantool/ddl/releases/tag/1.7.1>`__.
--   Bumped metrics version to `1.5.0 <https://github.com/tarantool/metrics/releases/tag/1.5.0>`__.
--   Added migrations CE `1.1.0 <https://github.com/tarantool/migrations/releases/tag/1.1.0>`__.
+-   Bumped ``metrics`` version to `1.5.0 <https://github.com/tarantool/metrics/releases/tag/1.5.0>`__.
+-   Added ``migrations`` CE `1.1.0 <https://github.com/tarantool/migrations/releases/tag/1.1.0>`__.
 -   Added ``vshard`` CE `0.1.36 <https://github.com/tarantool/vshard/releases/tag/0.1.36>`__.
 -   Moved to community edition modules.
 
@@ -65,7 +65,7 @@ r691
 ----
 
 -   Bumped Cartridge version to `2.16.2 <https://github.com/tarantool/cartridge/releases/tag/2.16.2>`__.
--   Bumped metrics version to `1.4.0 <https://github.com/tarantool/metrics/releases/tag/1.4.0>`__.
+-   Bumped ``metrics`` version to `1.4.0 <https://github.com/tarantool/metrics/releases/tag/1.4.0>`__.
 -   Bumped ``http`` version to `1.8.0 <https://github.com/tarantool/http/releases/tag/1.8.0)>`__.
 -   Bumped ``crud-ee`` version to `1.7.4 <https://gitlab.corp.mail.ru/tarantool/tdb/crud-ee/-/tags/1.7.4>`__.
 
@@ -217,7 +217,7 @@ r647
 r646
 ----
 
--   Moved to enterprise edition modules.
+-   Moved to Enterprise Edition modules.
 -   Fixed Docker image due to CentOS 7 EOL.
 -   Fixed CI/CD workflows running inside CentOS 7.
 
@@ -245,7 +245,7 @@ r639
 r637
 ----
 
--   Updated metrics to `1.1.0 <https://github.com/tarantool/metrics/releases/tag/1.1.0>`__.
+-   Updated ``metrics`` to `1.1.0 <https://github.com/tarantool/metrics/releases/tag/1.1.0>`__.
 -   Updated ``queue`` to `1.4.1 <https://github.com/tarantool/queue/releases/tag/1.4.1>`__.
 -   Updated CRUD to `1.5.2 <https://github.com/tarantool/crud/releases/tag/1.5.2>`__.
 
@@ -273,7 +273,7 @@ r633
 r632
 ----
 
--   Updated cartridge-cli to `2.12.12 <https://github.com/tarantool/cartridge-cli/releases/tag/2.12.12>`__.
+-   Updated ``cartridge-cli`` to `2.12.12 <https://github.com/tarantool/cartridge-cli/releases/tag/2.12.12>`__.
 -   ``tt`` used instead of ``tarantoolctl`` for build/test routines.
 -   Made Tarantool and bundle versions correct.
 -   Bumped ``tarantool-2.11`` to 2.11.3.
@@ -291,8 +291,8 @@ r627
 
 -   Updated ``expirationd`` to `1.6.0 <https://github.com/tarantool/expirationd/releases/tag/1.6.0>`__.
 -   Updated ``sharded-queue`` to `1.0.0 <https://github.com/tarantool/sharded-queue/releases/tag/1.0.0>`__.
--   Dropped building macOS bundles.
--   Updated cartridge-cli to `2.12.11 <https://github.com/tarantool/cartridge-cli/releases/tag/2.12.11>`__.
+-   Dropped building MacOS bundles.
+-   Updated ``cartridge-cli`` to `2.12.11 <https://github.com/tarantool/cartridge-cli/releases/tag/2.12.11>`__.
 
 r623
 ----
@@ -314,7 +314,7 @@ r616
 
 -   Updated CRUD to `1.4.3 <https://github.com/tarantool/crud/releases/tag/1.4.3>`__.
 -   Updated ``luatest`` to `1.0.1 <https://github.com/tarantool/luatest/releases/tag/1.0.1>`__.
--   Updated migrations to `0.7.0 <https://github.com/tarantool/migrations/releases/tag/0.7.0>`__.
+-   Updated ``migrations`` to `0.7.0 <https://github.com/tarantool/migrations/releases/tag/0.7.0>`__.
 -   Updated ``tt-ee`` to `2.1.2 <https://github.com/tarantool/tt-ee/releases/tag/v2.1.2>`__.
 
 r613
@@ -352,7 +352,7 @@ r605
 r598
 ----
 
--   Updated cartridge-cli to `2.12.9 <https://github.com/tarantool/cartridge-cli/releases/tag/2.12.7>`__.
+-   Updated ``cartridge-cli`` to `2.12.9 <https://github.com/tarantool/cartridge-cli/releases/tag/2.12.7>`__.
 -   Updated ``tt-ee`` to `1.3.1 <https://github.com/tarantool/tt-ee/releases/tag/v1.3.1>`__.
 
 r595
@@ -373,7 +373,7 @@ r589
 
 -   Updated ``tarantool-2.10`` to 2.10.8.
 -   Updated ``tarantool-master`` to 3.0.0-alpha3.
--   Updated migrations to `0.6.0 <https://github.com/tarantool/migrations/releases/tag/0.6.0>`__.
+-   Updated ``migrations`` to `0.6.0 <https://github.com/tarantool/migrations/releases/tag/0.6.0>`__.
 -   Updated ``tt-ee`` to `1.2.0 <https://github.com/tarantool/tt-ee/releases/tag/v1.2.0>`__.
 -   Updated ``space-explorer`` to `1.1.8 <https://github.com/tarantool/space-explorer/releases/tag/1.1.8>`__.
 -   Updated ``cartridge-metrics-role`` to `0.1.1 <https://github.com/tarantool/cartridge-metrics-role/releases/tag/0.1.1>`__.
@@ -384,7 +384,7 @@ r589
 r579
 ----
 
--   Updated cartridge-cli to `2.12.7 <https://github.com/tarantool/cartridge-cli/releases/tag/2.12.7>`__.
+-   Updated ``cartridge-cli`` to `2.12.7 <https://github.com/tarantool/cartridge-cli/releases/tag/2.12.7>`__.
 -   Updated ``tarantool-2.11`` to 2.11.1.
 
 r577
@@ -395,7 +395,7 @@ r577
 -   Added ``sharded-queue`` `0.1.0 <https://github.com/tarantool/sharded-queue/releases/tag/0.1.0>`__.
 -   Added ``ddl`` `1.6.4 <https://github.com/tarantool/ddl/releases/tag/1.6.4>`__.
 -   Updated ``tt-ee`` to `1.1.2 <https://github.com/tarantool/tt-ee/releases/tag/v1.1.2>`__.
--   Updated cartridge-cli to `2.12.6 <https://github.com/tarantool/cartridge-cli/releases/tag/2.12.6>`__.
+-   Updated ``cartridge-cli`` to `2.12.6 <https://github.com/tarantool/cartridge-cli/releases/tag/2.12.6>`__.
 
 r563
 ----
@@ -404,7 +404,7 @@ r563
 -   Updated ``tarantool-2.11`` to 2.11.0.
 -   Added Kafka `1.6.6 <https://github.com/tarantool/kafka/releases/tag/1.6.6>`__.
 -   Added ``vshard`` `0.1.24 <https://github.com/tarantool/vshard/releases/tag/0.1.24>`__.
--   Added metrics `1.0.0 <https://github.com/tarantool/metrics/releases/tag/1.0.0>`__.
+-   Added ``metrics`` `1.0.0 <https://github.com/tarantool/metrics/releases/tag/1.0.0>`__.
 -   Added ``cartridge-metrics-role`` `0.1.0 <https://github.com/tarantool/cartridge-metrics-role/releases/tag/0.1.0>`__.
 -   Added Cartridge `2.8.0 <https://github.com/tarantool/cartridge/releases/tag/2.8.0>`__.
 -   Added ``http`` `1.5.0 <https://github.com/tarantool/http/releases/tag/1.5.0>`__.
@@ -413,7 +413,7 @@ r557
 ----
 
 -   Added checks `3.3.0 <https://github.com/tarantool/checks/releases/tag/3.3.0>`__.
--   Updated cartridge-cli to `2.12.5 <https://github.com/tarantool/cartridge-cli/releases/tag/2.12.5>`__.
+-   Updated ``cartridge-cli`` to `2.12.5 <https://github.com/tarantool/cartridge-cli/releases/tag/2.12.5>`__.
 
 r553
 ----
@@ -424,8 +424,8 @@ r553
 -   Added ``expirationd`` `1.4.0 <https://github.com/tarantool/expirationd/releases/tag/1.4.0>`__.
 -   Added ``graphql`` `0.3.0 <https://github.com/tarantool/graphql/releases/tag/0.3.0>`__.
 -   Added ``graphqlapi`` `0.0.10 <https://github.com/tarantool/graphqlapi/releases/tag/0.0.10>`__.
--   Added metrics `0.17.0 <https://github.com/tarantool/metrics/releases/tag/0.17.0>`__.
--   Added migrations `0.5.0 <https://github.com/tarantool/migrations/releases/tag/0.5.0>`__.
+-   Added ``metrics`` `0.17.0 <https://github.com/tarantool/metrics/releases/tag/0.17.0>`__.
+-   Added ``migrations`` `0.5.0 <https://github.com/tarantool/migrations/releases/tag/0.5.0>`__.
 -   Added Oracle `1.4.0 <https://github.com/tarantool/oracle/releases/tag/1.4.0>`__.
 -   Added Cartridge `2.7.9 <https://github.com/tarantool/cartridge/releases/tag/2.7.9>`__.
 -   Added ``vshard`` `0.1.23 <https://github.com/tarantool/vshard/releases/tag/0.1.23>`__.
@@ -475,9 +475,7 @@ r537
 ----
 
 -   Fixed non-interactive installation of the ``brew`` package.
-
 -   Changed the owner of the ``/usr/local/bin`` directory.
-
 -   Installed ``awscli@1`` instead of ``awscli`` since it takes much less
     time.
 
@@ -507,15 +505,15 @@ r532
 
 -   Added ``http`` `1.4.0 <https://github.com/tarantool/http/releases/tag/1.4.0>`__.
 -   Added ``space-explorer`` `1.1.7 <https://github.com/tarantool/space-explorer/releases/tag/1.1.7>`__.
--   Added ``checks `3.2.0 <https://github.com/tarantool/checks/releases/tag/3.2.0>`__.
--   Added metrics `0.16.0 <https://github.com/tarantool/metrics/releases/tag/0.16.0>`__.
+-   Added ``checks`` `3.2.0 <https://github.com/tarantool/checks/releases/tag/3.2.0>`__.
+-   Added ``metrics`` `0.16.0 <https://github.com/tarantool/metrics/releases/tag/0.16.0>`__.
 -   Added Cartridge `2.7.8 <https://github.com/tarantool/cartridge/releases/tag/2.7.8>`__.
 
 r531
 ----
 
--   Added the ``-DENABLE_LTO=ON``  flag for tarantool-ee@master branch to
-    CMakeLists.txt
+-   Added the ``-DENABLE_LTO=ON``  flag for ``tarantool-ee@master`` branch to
+    CMakeLists.txt.
 
 r530
 ----
@@ -571,8 +569,8 @@ r521
 
 -   Added CRUD `0.14.1 <https://github.com/tarantool/crud/releases/tag/0.14.1>`__.
 -   Added ``expirationd`` `1.3.0 <https://github.com/tarantool/expirationd/releases/tag/1.3.0>`__.
--   Added metrics `0.15.1 <https://github.com/tarantool/metrics/releases/tag/0.15.1>`__.
--   Added queue `1.2.2 <https://github.com/tarantool/queue/releases/tag/1.2.2>`__.
+-   Added ``metrics`` `0.15.1 <https://github.com/tarantool/metrics/releases/tag/0.15.1>`__.
+-   Added ``queue`` `1.2.2 <https://github.com/tarantool/queue/releases/tag/1.2.2>`__.
 
 r520
 ----
@@ -591,9 +589,9 @@ r519
 r518
 ----
 
-*   Added frontend core `8.2.1 <https://github.com/tarantool/frontend-core/releases/tag/8.2.1>`__.
+*   Added ``frontend-core`` `8.2.1 <https://github.com/tarantool/frontend-core/releases/tag/8.2.1>`__.
 *   Added ``vshard`` `0.1.21 <https://github.com/tarantool/vshard/releases/tag/0.1.21>`__.
-*   Added http `1.3.0 <https://github.com/tarantool/http/releases/tag/1.3.0>`__.
+*   Added ``http`` `1.3.0 <https://github.com/tarantool/http/releases/tag/1.3.0>`__.
 *   Added Cartridge `2.7.6 <https://github.com/tarantool/cartridge/releases/tag/2.7.6>`__.
 
 r517
@@ -616,7 +614,7 @@ r514
 ----
 
 *   Remove the local registry and setup using GitHub registry.
-*   Sync rocks cache to s3 and back.
+*   Sync rocks cache to S3 and back.
 *   Setup using shared runners.
 *   Refactor and format ``ci-linux.yml`` and ``ci-macos.yml``.
 
