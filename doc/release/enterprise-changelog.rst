@@ -22,14 +22,14 @@ For example: ``2.11.1-0-gc42d9735b-r589``.
 r703
 ----
 
--   Bumped ``checks`` version to `3.4.0 <https://github.com/tarantool/checks/releases/tag/3.4.0>`__.
--   Bumped Cartridge version to `2.16.4 <https://github.com/tarantool/cartridge/releases/tag/2.16.4)>`__.
+-   Bumped ``checks`` version to 3.4.0.
+-   Bumped Cartridge version to `2.16.4 <https://github.com/tarantool/cartridge/releases/tag/2.16.4>`__.
 -   Bumped ``vshard`` version to `0.1.37 <https://github.com/tarantool/vshard/releases/tag/0.1.37>`__.
 
 r702
 ----
 
--   Bumped ``tarantool-2.11`` series to `2.11.8 <https://github.com/tarantool/tarantool-ee/releases/tag/2.11.8>`__.
+-   Bumped ``tarantool-2.11`` series to 2.11.8.
 
 r696
 ----
@@ -38,7 +38,7 @@ r696
 r695
 ----
 
--   Bumped ``tt-ee`` version to `v2.11.0 <https://github.com/tarantool/tt-ee/releases/tag/v2.11.0>`__.
+-   Bumped ``tt-ee`` version to v2.11.0.
 
 r694
 ----
@@ -67,13 +67,13 @@ r691
 
 -   Bumped Cartridge version to `2.16.2 <https://github.com/tarantool/cartridge/releases/tag/2.16.2>`__.
 -   Bumped ``metrics`` version to `1.4.0 <https://github.com/tarantool/metrics/releases/tag/1.4.0>`__.
--   Bumped ``http`` version to `1.8.0 <https://github.com/tarantool/http/releases/tag/1.8.0)>`__.
--   Bumped ``crud-ee`` version to `1.7.4 <https://gitlab.corp.mail.ru/tarantool/tdb/crud-ee/-/tags/1.7.4>`__.
+-   Bumped ``http`` version to 1.8.0.
+-   Bumped ``crud-ee`` version to 1.7.4.
 
 r690
 ----
 
--   Bumped ``tt-ee`` version to `v2.10.1 <https://github.com/tarantool/tt-ee/releases/tag/v2.10.1>`__.
+-   Bumped ``tt-ee`` version to v2.10.1.
 
 r689
 ----
@@ -83,7 +83,7 @@ r689
 r688
 ----
 
--   Bumped ``vshard-ee`` version to `0.1.34 <https://github.com/tarantool/vshard-ee/releases/tag/0.1.34>`__.
+-   Bumped ``vshard-ee`` version to 0.1.34.
 
 r687
 ----
@@ -93,17 +93,17 @@ r687
 r686
 ----
 
--   Bumped ``tt-ee`` version to `v2.10.0 <https://github.com/tarantool/tt-ee/releases/tag/v2.10.0>`__.
+-   Bumped ``tt-ee`` version to v2.10.0.
 
 r685
 ----
 
--   Bumped ``migrations-ee`` version to `1.3.2 <https://github.com/tarantool/migrations-ee/releases/tag/1.3.2>`__.
+-   Bumped ``migrations-ee`` version to 1.3.2.
 
 r684
 ----
 
--   Bumped ``tarantool-2.11`` series to `2.11.7 <https://github.com/tarantool/tarantool-ee/releases/tag/2.11.7>`__.
+-   Bumped ``tarantool-2.11`` series to 2.11.7.
 
 r683
 ----
@@ -118,17 +118,17 @@ r682
 r681
 ----
 
--   Bumped ``vshard-ee`` version to `0.1.33 <https://github.com/tarantool/vshard-ee/releases/tag/0.1.33>`__.
+-   Bumped ``vshard-ee`` version to 0.1.33.
 
 r680
 ----
 
--   Bumped ``tt-ee`` version to `v2.9.1 <https://github.com/tarantool/tt-ee/releases/tag/v2.9.1>`__.
+-   Bumped ``tt-ee`` version to v2.9.1.
 
 r679
 ----
 
--   Bumped ``tt-ee`` version to `v2.9.0 <https://github.com/tarantool/tt-ee/releases/tag/v2.9.0>`__.
+-   Bumped ``tt-ee`` version to v2.9.0.
 -   Bumped Cartridge version to `2.15.2 <https://github.com/tarantool/cartridge/releases/tag/2.15.2>`__.
 -   Bumped ``membership`` version to `2.5.2 <https://github.com/tarantool/membership/releases/tag/2.5.2>`__.
 
@@ -136,39 +136,39 @@ r677
 ----
 
 -   Bumped Cartridge version to `2.15.1 <https://github.com/tarantool/cartridge/releases/tag/2.15.1>`__.
--   Bumped ``tt-ee`` version to `v2.8.1 <https://github.com/tarantool/tt-ee/releases/tag/v2.8.1>`__.
--   Bumped ``vshard-ee`` version to `0.1.32 <https://github.com/tarantool/vshard-ee/releases/tag/0.1.32)>`__.
+-   Bumped ``tt-ee`` version to v2.8.1.
+-   Bumped ``vshard-ee`` version to 0.1.32.
 
 r673
 ----
 
 -   Bumped Cartridge version to `2.15.0 <https://github.com/tarantool/cartridge/releases/tag/2.15.0>`__.
--   Bumped ``membership`` version to `2.5.1 <https://github.com/tarantool/membership/releases/tag/2.5.1)>`__.
--   Bumped ``expirationd-ee`` version to `1.8.0 <https://gitlab.corp.mail.ru/tarantool/tdb/expirationd-ee/-/blob/master/CHANGELOG.md?ref_type=heads#180---2024-08-30)>`__.
+-   Bumped ``membership`` version to 2.5.1.
+-   Bumped ``expirationd-ee`` version to 1.8.0.
 
 r672
 ----
 
--   Bumped ``tarantool-2.11`` series to `2.11.6 <https://github.com/tarantool/tarantool-ee/releases/tag/2.11.6>`__.
--   Bumped ``tt-ee`` version to `v2.8.0 <https://github.com/tarantool/tt-ee/releases/tag/v2.8.0>`__.
--   Bumped ``migrations-ee`` version to `1.3.1 <https://github.com/tarantool/migrations-ee/releases/tag/1.3.1>`__.
+-   Bumped ``tarantool-2.11`` series to 2.11.6.
+-   Bumped ``tt-ee`` version to v2.8.0.
+-   Bumped ``migrations-ee`` version to 1.3.1.
 
 r669
 ----
 
 -   Bumped Cartridge version to `2.14.0 <https://github.com/tarantool/cartridge/releases/tag/2.14.0>`__.
--   Bumped ``membership`` version to `2.4.6 <https://github.com/tarantool/membership/releases/tag/2.4.6)>`__.
+-   Bumped ``membership`` version to `2.4.6 <https://github.com/tarantool/membership/releases/tag/2.4.6>`__.
 
 r662
 ----
 
--   Bumped ``vshard-ee`` version to `0.1.31 <https://github.com/tarantool/vshard-ee/releases/tag/0.1.31>`__.
--   Bumped ``tt-ee`` version to `v2.7.0 <https://github.com/tarantool/tt-ee/releases/tag/v2.7.0)>`__.
+-   Bumped ``vshard-ee`` version to 0.1.31.
+-   Bumped ``tt-ee`` version to v2.7.0.
 
 r660
 ----
 
--   Bumped ``tt-ee`` version to `v2.6.0 <https://github.com/tarantool/tt-ee/releases/tag/v2.6.0>`__.
+-   Bumped ``tt-ee`` version to v2.6.0.
 -   Bumped Cartridge version to `2.13.0 <https://github.com/tarantool/cartridge/releases/tag/2.13.0>`__.
 -   Bumped ``vshard`` version to `0.1.30 <https://github.com/tarantool/vshard/releases/tag/0.1.30>`__.
 -   Bumped ``http`` version to `1.7.0 <https://github.com/tarantool/http/releases/tag/1.7.0>`__.
@@ -176,18 +176,18 @@ r660
 r659
 ----
 
--   Bumped ``tarantool-2.11`` series to `2.11.5 <https://github.com/tarantool/tarantool-ee/releases/tag/2.11.5>`__.
--   Bumped ``tt-ee`` version to `v2.5.2 <https://github.com/tarantool/tt-ee/releases/tag/v2.5.2>`__.
+-   Bumped ``tarantool-2.11`` series to 2.11.5.
+-   Bumped ``tt-ee`` version to v2.5.2.
 -   Updated Kafka to `1.6.9 <https://github.com/tarantool/kafka/releases/tag/1.6.9>`__.
--   Bumped ``tt-ee`` version to `v2.5.1 <https://github.com/tarantool/tt-ee/releases/tag/v2.5.1>`__.
--   Bumped ``tt-ee`` version to `v2.5.0 <https://github.com/tarantool/tt-ee/releases/tag/v2.5.0>`__.
+-   Bumped ``tt-ee`` version to v2.5.1.
+-   Bumped ``tt-ee`` version to v2.5.0.
 
 r654
 ----
 
 -   Moved ``cartridge-auth-extension`` to **stable** directory.
--   Bumped ``crud-ee`` version to `1.7.1 <https://github.com/tarantool/crud-ee/releases/tag/1.7.1>`__.
--   Bumped ``migrations-ee`` version to `1.3.0 <https://github.com/tarantool/migrations-ee/releases/tag/1.3.0>`__.
+-   Bumped ``crud-ee`` version to 1.7.1.
+-   Bumped ``migrations-ee`` version to 1.3.0.
 
 r653
 ----
@@ -199,21 +199,21 @@ r653
 r652
 ----
 
--   Bumped ``tarantool-2.11`` series to `2.11.4 <https://github.com/tarantool/tarantool-ee/releases/tag/2.11.4>`__.
+-   Bumped ``tarantool-2.11`` series to 2.11.4.
 -   Bumped Cartridge version to `2.12.3 <https://github.com/tarantool/cartridge/releases/tag/2.12.3>`__.
 
 r650
 ----
 
--   Bumped ``tt-ee`` version to `v2.4.0 <https://github.com/tarantool/tt-ee/releases/tag/v2.4.0>`__.
+-   Bumped ``tt-ee`` version to v2.4.0.
 -   Bumped ``queue`` version to `1.4.2 <https://github.com/tarantool/queue/releases/tag/1.4.2>`__.
 -   Added Migration Guide to bundle.
 
 r647
 ----
 
--   Updated Oracle to `1.5.0 <https://github.com/tarantool/oracle/releases/tag/1.5.0>`__ for x86_64.
--   Updated ``oci`` to `21.14 <https://github.com/tarantool/oci/releases/tag/21.14>`__ for x86_64.
+-   Updated Oracle to 1.5.0 for x86_64.
+-   Updated ``oci`` to 21.14 for x86_64.
 
 r646
 ----
@@ -225,7 +225,7 @@ r646
 r643
 ----
 
--   Bumped ``tt-ee`` version to `v2.3.1 <https://github.com/tarantool/tt-ee/releases/tag/v2.3.1>`__.
+-   Bumped ``tt-ee`` version to v2.3.1.
 -   Enabled ``tt`` bash completion.
 -   Updated Kafka to `1.6.8 <https://github.com/tarantool/kafka/releases/tag/1.6.8>`__.
 
@@ -267,9 +267,9 @@ r633
 ----
 
 -   Updated CRUD to `1.5.1 <https://github.com/tarantool/crud/releases/tag/1.5.1>`__.
--   Updated ``sideservice`` to `0.2.1 <https://github.com/tarantool/sideservice/releases/tag/0.2.1>`__.
--   Updated ``httpgo`` to `0.2.2 <https://github.com/tarantool/httpgo/releases/tag/0.2.2>`__.
--   Updated ``httpgo-crud`` to `0.1.1  <https://github.com/tarantool/httpgo-crud/releases/tag/0.1.1>`__.
+-   Updated ``sideservice`` to 0.2.1.
+-   Updated ``httpgo`` to 0.2.2.
+-   Updated ``httpgo-crud`` to 0.1.1.
 
 r632
 ----
@@ -298,7 +298,7 @@ r627
 r623
 ----
 
--   Updated ``tt-ee`` to `2.2.1 <https://github.com/tarantool/tt-ee/releases/tag/v2.2.1>`__.
+-   Updated ``tt-ee`` to 2.2.1.
 -   Updated CRUD to `1.5.0 <https://github.com/tarantool/crud/releases/tag/1.5.0>`__.
 -   Updated ``membership`` to `2.4.3 <https://github.com/tarantool/membership/releases/tag/2.4.3>`__.
 -   Updated Cartridge to `2.9.0 <https://github.com/tarantool/cartridge/releases/tag/2.9.0>`__.
@@ -307,7 +307,7 @@ r619
 ----
 
 -   Updated bundle ``tt-ee`` aarch64.
--   Updated ``tt-ee`` to `2.2.0 <https://github.com/tarantool/tt-ee/releases/tag/v2.2.0>`__.
+-   Updated ``tt-ee`` to 2.2.0.
 -   Fixed running Tarantool tests on RED OS.
 
 r616
@@ -316,7 +316,7 @@ r616
 -   Updated CRUD to `1.4.3 <https://github.com/tarantool/crud/releases/tag/1.4.3>`__.
 -   Updated ``luatest`` to `1.0.1 <https://github.com/tarantool/luatest/releases/tag/1.0.1>`__.
 -   Updated ``migrations`` to `0.7.0 <https://github.com/tarantool/migrations/releases/tag/0.7.0>`__.
--   Updated ``tt-ee`` to `2.1.2 <https://github.com/tarantool/tt-ee/releases/tag/v2.1.2>`__.
+-   Updated ``tt-ee`` to 2.1.2.
 
 r613
 ----
@@ -325,15 +325,15 @@ r613
 -   Updated CRUD to `1.4.2 <https://github.com/tarantool/crud/releases/tag/1.4.2>`__.
 -   Added ``frontend-core`` `8.2.2 <https://github.com/tarantool/frontend-core/releases/tag/8.2.2>`__.
 -   Updated ``membership`` to `2.4.2 <https://github.com/tarantool/membership/releases/tag/2.4.2>`__.
--   Updated ``sideservice`` to `0.2.0 <https://github.com/tarantool/sideservice/releases/tag/0.2.0>`__.
--   Updated ``tt-ee`` to `2.1.1 <https://github.com/tarantool/tt-ee/releases/tag/v2.1.1>`__.
+-   Updated ``sideservice`` to 0.2.0.
+-   Updated ``tt-ee`` to 2.1.1.
 -   Updated ``vshard`` to `0.1.26 <https://github.com/tarantool/vshard/releases/tag/0.1.26>`__.
 
 r609
 ----
 
--   Updated ``httpgo`` to `0.2.1 <https://github.com/tarantool/httpgo/releases/tag/0.2.1>`__.
--   Added ``httpgo-crud`` `0.1.0 <https://github.com/tarantool/httpgo-crud/releases/tag/0.1.0>`__.
+-   Updated ``httpgo`` to 0.2.1.
+-   Added ``httpgo-crud`` 0.1.0.
 -   Updated ``tarantool-2.11`` to 2.11.2.
 
 r606
@@ -347,19 +347,19 @@ r605
 -   Updated Cartridge to `2.8.4 <https://github.com/tarantool/cartridge/releases/tag/2.8.4>`__.
 -   Updated CRUD to `1.4.1 <https://github.com/tarantool/crud/releases/tag/1.4.1>`__.
 -   Updated ``ddl`` to `1.6.5 <https://github.com/tarantool/ddl/releases/tag/1.6.5>`__.
--   Added ``httpgo`` `0.2.0 <https://github.com/tarantool/httpgo/releases/tag/0.2.0>`__.
--   Updated ``tt-ee`` to `2.0.0 <https://github.com/tarantool/tt-ee/releases/tag/v2.0.0>`__.
+-   Added ``httpgo`` 0.2.0.
+-   Updated ``tt-ee`` to 2.0.0.
 
 r598
 ----
 
 -   Updated ``cartridge-cli`` to `2.12.9 <https://github.com/tarantool/cartridge-cli/releases/tag/2.12.7>`__.
--   Updated ``tt-ee`` to `1.3.1 <https://github.com/tarantool/tt-ee/releases/tag/v1.3.1>`__.
+-   Updated ``tt-ee`` to 1.3.1.
 
 r595
 ----
 
--   Updated ``tt-ee`` to `1.3.0 <https://github.com/tarantool/tt-ee/releases/tag/v1.3.0>`__.
+-   Updated ``tt-ee`` to 1.3.0.
 -   Updated Cartridge to `2.8.3 <https://github.com/tarantool/cartridge/releases/tag/2.8.3>`__.
 -   Updated ``cartridge-cli-extensions`` to `1.1.2 <https://github.com/tarantool/cartridge-cli-extensions/releases/tag/1.1.2>`__.
 -   Updated CRUD to `1.3.0 <https://github.com/tarantool/crud/releases/tag/1.3.0>`__.
@@ -374,13 +374,13 @@ r589
 
 -   Updated ``tarantool-2.10`` to 2.10.8.
 -   Updated ``tarantool-master`` to ``3.0.0-alpha3``.
--   Updated ``migrations`` to `0.6.0 <https://github.com/tarantool/migrations/releases/tag/0.6.0>`__.
--   Updated ``tt-ee`` to `1.2.0 <https://github.com/tarantool/tt-ee/releases/tag/v1.2.0>`__.
+-   Updated ``migrations`` to 0.6.0.
+-   Updated ``tt-ee`` to 1.2.0.
 -   Updated ``space-explorer`` to `1.1.8 <https://github.com/tarantool/space-explorer/releases/tag/1.1.8>`__.
 -   Updated ``cartridge-metrics-role`` to `0.1.1 <https://github.com/tarantool/cartridge-metrics-role/releases/tag/0.1.1>`__.
 -   Updated Cartridge to `2.8.2 <https://github.com/tarantool/cartridge/releases/tag/2.8.2>`__.
 -   Updated ``expirationd`` to `1.5.0 <https://github.com/tarantool/expirationd/releases/tag/1.5.0>`__.
--   Added ``sideservice`` `0.1.0 <https://github.com/tarantool/sideservice/releases/tag/0.1.0>`__.
+-   Added ``sideservice`` 0.1.0.
 
 r579
 ----
@@ -395,7 +395,7 @@ r577
 -   Added ``ddl`` `1.6.3 <https://github.com/tarantool/ddl/releases/tag/1.6.3>`__.
 -   Added ``sharded-queue`` `0.1.0 <https://github.com/tarantool/sharded-queue/releases/tag/0.1.0>`__.
 -   Added ``ddl`` `1.6.4 <https://github.com/tarantool/ddl/releases/tag/1.6.4>`__.
--   Updated ``tt-ee`` to `1.1.2 <https://github.com/tarantool/tt-ee/releases/tag/v1.1.2>`__.
+-   Updated ``tt-ee`` to 1.1.2.
 -   Updated ``cartridge-cli`` to `2.12.6 <https://github.com/tarantool/cartridge-cli/releases/tag/2.12.6>`__.
 
 r563
@@ -427,7 +427,7 @@ r553
 -   Added ``graphqlapi`` `0.0.10 <https://github.com/tarantool/graphqlapi/releases/tag/0.0.10>`__.
 -   Added ``metrics`` `0.17.0 <https://github.com/tarantool/metrics/releases/tag/0.17.0>`__.
 -   Added ``migrations`` `0.5.0 <https://github.com/tarantool/migrations/releases/tag/0.5.0>`__.
--   Added Oracle `1.4.0 <https://github.com/tarantool/oracle/releases/tag/1.4.0>`__.
+-   Added Oracle 1.4.0.
 -   Added Cartridge `2.7.9 <https://github.com/tarantool/cartridge/releases/tag/2.7.9>`__.
 -   Added ``vshard`` `0.1.23 <https://github.com/tarantool/vshard/releases/tag/0.1.23>`__.
 -   Added Kafka `1.6.5 <https://github.com/tarantool/kafka/releases/tag/1.6.5>`__.
@@ -505,7 +505,7 @@ r532
 ----
 
 -   Added ``http`` `1.4.0 <https://github.com/tarantool/http/releases/tag/1.4.0>`__.
--   Added ``space-explorer`` `1.1.7 <https://github.com/tarantool/space-explorer/releases/tag/1.1.7>`__.
+-   Added ``space-explorer`` 1.1.7.
 -   Added ``checks`` `3.2.0 <https://github.com/tarantool/checks/releases/tag/3.2.0>`__.
 -   Added ``metrics`` `0.16.0 <https://github.com/tarantool/metrics/releases/tag/0.16.0>`__.
 -   Added Cartridge `2.7.8 <https://github.com/tarantool/cartridge/releases/tag/2.7.8>`__.
@@ -598,7 +598,7 @@ r518
 r517
 ----
 
-*   Updated Tarantool EE to `2.10.4 <https://github.com/tarantool/tarantool-ee/releases/tag/2.10.4>`__.
+*   Updated Tarantool EE to 2.10.4.
 
 r516
 ----
@@ -641,17 +641,17 @@ r510
 *   Updated Tarantool to 2.10.3.
 *   Added a readable error for the case when the flight recoder fails
     to write data due to insufficient free space on the disk device.
-    Previously, it was sending a ``SIGBUS`` error (:tarantool-ee-issue:`196`).
+    Previously, it was sending a ``SIGBUS`` error.
 *   Fixed a crash in the flight recorder caused by non-thread-safe log
-    recording from multiple threads (:tarantool-ee-issue:`226`).
+    recording from multiple threads.
 
 r502
 ----
 
 *   Updated Tarantool to 2.10.2.
-*   Increased resolution of stored entries in flight recorder (:tarantool-ee-issue:`193`).
+*   Increased resolution of stored entries in flight recorder.
 *   Fixed a bug in the flight recorder that resulted in skipping log entries in case
-    ``box.cfg.log_level`` is less than ``flightrec_log_level`` (:tarantool-ee-issue:`201`).
+    ``box.cfg.log_level`` is less than ``flightrec_log_level``.
 
 r498
 ----
@@ -660,12 +660,12 @@ r498
 *   Updated Cyrus SASL to version 2.1.28.
 *   Updated OpenLDAP to version 2.5.13.
 *   Updated LZ4 to version 1.9.3. Fixed `CVE-2021-3520 <https://github.com/advisories/GHSA-gmc7-pqv9-966m>`__.
-*   Fixed replication reconnect failure after disabling SSL encryption (:tarantool-ee-issue:`137`).
+*   Fixed replication reconnect failure after disabling SSL encryption.
 *   Fixed a crash that occurred while tyring to start an instance that has
-    a compressed ``memtx`` space (:tarantool-ee-issue:`171`).
+    a compressed ``memtx`` space.
 *   Fixed `CVE-2022-29242 <https://www.cve.org/CVERecord?id=CVE-2022-29242>`__ in GOST SSL engine.
 *   Fixed a bug in the flight recorder reader implementation that resulted in
-    a hang or error while trying to open an empty section (:tarantool-ee-issue:`187`).
+    a hang or error while trying to open an empty section.
 
 r467
 ----
@@ -682,15 +682,15 @@ Enterprise
 ^^^^^^^^^^
 
 *   Implemented user-defined audit events. Now it's possible to log custom
-    messages to the audit log from Lua (:tarantool-ee-issue:`65`).
+    messages to the audit log from Lua.
 
 *   **[Breaking change]** Switched the default audit log format to CSV. The
     format can be switched back to JSON using the new ``box.cfg.audit_format``
-    configuration option (:tarantool-ee-issue:`66`).
+    configuration option.
 
 *   Implemented the audit log filter. Now, it's possible to enable logging only
     for a subset of all audit events using the new ``box.cfg.audit_filter``
-    configuration option (:tarantool-ee-issue:`67`).
+    configuration option.
 
 Core
 ^^^^
@@ -741,10 +741,10 @@ Bugs fixed
 Enterprise
 ^^^^^^^^^^
 
-*   Disabled audit log unless explicitly configured (:tarantool-ee-issue:`39`). Before this change,
+*   Disabled audit log unless explicitly configured. Before this change,
     audit events were written to stderr if ``box.cfg.audit_log`` wasn't set. Now,
     audit log is disabled in this case.
-*   Disabled audit logging of replicated events (:tarantool-ee-issue:`59`). Now, replicated events
+*   Disabled audit logging of replicated events. Now, replicated events
     (for example, user creation) are logged only on the origin, never on a
     replica.
 
