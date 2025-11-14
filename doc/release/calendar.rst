@@ -41,9 +41,14 @@ see the corresponding `page <https://www.tarantool.io/en/doc/latest/release/>`_.
             -   End of life
             -   End of support
 
+        *   -   `2.11.8 LTS <https://github.com/tarantool/tarantool/releases/tag/2.11.8>`_
+            -   October 15, 2025
+            -   Not planned yet
+            -   Not planned yet
+
         *   -   `2.11.7 LTS <https://github.com/tarantool/tarantool/releases/tag/2.11.7>`_
             -   May 29, 2025
-            -   May 24, 2025
+            -   May 29, 2025
             -   Not planned yet
 
         *   -   `2.11.6 LTS <https://github.com/tarantool/tarantool/releases/tag/2.11.6>`_
