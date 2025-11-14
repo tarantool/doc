@@ -344,9 +344,9 @@ Then it can proceed with a version sequence like the following:
         3.1.0 (release with new features and, possibly, extra fixed bugs)
 
 Eventually, the release series reaches the end of life (EOL) date and stops
-receiving any patches, updates, or feature improvements. Some time after that,
+receiving regular patches, updates, or feature improvements. Some time after that,
 the release series comes to the end of support (EOS) date. After the EOS date,
-the series does not receive any technical support.   
+the series does not receive any technical support.
 
     ..  note::
 

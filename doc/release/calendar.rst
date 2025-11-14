@@ -18,8 +18,9 @@ defined by the release policy. The following diagram visualizes the lifecycle of
 
 .. note::
 
-    *End of life* (*EOL*) means the release series will no longer receive any patches,
-    updates, or feature improvements after the specified date.
+    *End of life* (*EOL*) means the release series will no longer receive any automatic patches,
+    updates, or feature improvements after the specified date. However, periodic patches containing
+    critical or vulnerability fixes may still be delivered.
 
     *End of support* (*EOS*) means that we won't provide technical support to product
     versions after the specified date.

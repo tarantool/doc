@@ -6,7 +6,7 @@
 Releases
 ========
 
-This section contains links to release notes for Tarantool versions from 2.10.0 to 2.11.
+This section contains links to release notes for Tarantool versions 2.10 and 2.11.
 
 For information about earlier release series, see :doc:`EOS Versions <eos_versions>`.
 For information about newer release series, see the corresponding version's

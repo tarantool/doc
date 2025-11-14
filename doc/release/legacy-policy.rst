@@ -56,7 +56,7 @@ release series:
 
 *   **LTS (Long Term Support)** is a release series that is supported
     for 3 years (community) and up to 5 years (paying customers).
-    Current LTS release series is ``1.10``, and it receives only PATCH level
+    Current LTS release series is ``2.11``, and it receives only PATCH level
     releases.
 
 *   **Standard** is a release series that is supported only for a few months
