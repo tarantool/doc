@@ -12,7 +12,9 @@ The main concepts of Tarantool access control system are as follows:
 *   A *privilege* allows a user to perform certain operations on specific objects, for example, creating spaces, reading or updating data.
 *   A *role* is a named collection of privileges that can be granted to a user.
 
+..  note::
 
+    The full list of object types and permissions is available in the :ref:`access_control_list` section.
 
 .. _access_control_overview:
 
@@ -114,11 +116,20 @@ The privileges granted to a user determine which operations the user can perform
 *   The ``read`` and ``write`` permissions granted to the ``space`` :ref:`object <access_control_concepts_objects>` allow a user to read or modify data in the specified space.
 *   The ``create`` permission granted to the ``space`` object allows a user to create new spaces.
 *   The ``execute`` permission granted to the ``function`` object allows a user to execute the specified function.
-*   The ``session`` permission granted to a user allows connecting to an instance over IPROTO.
+*   The ``session`` permission granted to the ``universe`` object allows a user to connect to an instance over IPROTO.
+*   The ``usage`` permission granted to ``universe`` object allows a user to use his privileges on database objects (for example, read, write, and alter space).
+*   The ``alter`` permission granted to a user allows modifying its own settings, for example, a password.
+*   The ``drop`` permission granted to a user allows dropping users.
+
+..  note::
+
+    The full lists of object types and the permissions supported for them are available in the
+    :ref:`access_control_list_privileges` and :ref:`access_control_list_objects_and_privileges` sections.
 
 Note that some privileges might require read and write access to certain system spaces.
 For example, the ``create`` permission granted to the ``space`` object requires ``read`` and ``write`` permissions to the :ref:`_space <box_space-space>` system space.
 Similarly, granting the ability to create functions requires ``read`` and ``write`` access to the :ref:`_func <box_space-func>` space.
+
 
 ..  NOTE::
 
