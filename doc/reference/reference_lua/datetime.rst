@@ -806,6 +806,7 @@ datetime_object
 
                 *   -   wday
                     -   Days since the beginning of the week. Number.
+                        1 is Sunday as for ``os.date('*t')``.
 
                 *   -   yday
                     -   Days since the beginning of the year. Number.
