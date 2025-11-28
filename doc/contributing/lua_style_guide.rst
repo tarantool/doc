@@ -303,7 +303,7 @@ add a prefix, or add a table instead of a prefix:
     function bad_global_example()
     end
 
-    function good_local_example()
+    local function good_local_example()
     end
     -- Good
     _G.modulename_good_local_example = good_local_example
