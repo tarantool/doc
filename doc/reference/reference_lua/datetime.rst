@@ -118,7 +118,7 @@ Functions
                 -   0
 
             *   -   sec
-                -   Seconds. Value range: 0 - 60. A leap second is supported, see a section :ref:`leap second <leap-second>`.
+                -   Seconds. Value range: 0 - 60. A leap second is supported at the most basic level, see the section :ref:`leap second <leap-second>`.
                 -   number
                 -   0
 
@@ -267,7 +267,7 @@ Functions
 
     By default fields that are not specified are equal to appropriate values in a Unix time.
 
-    Leap second is supported, see a section :ref:`leap second <leap-second>`.
+    Leap second is supported at the most basic level, see the section :ref:`leap second <leap-second>`.
 
     :param string input_string: string with the date and time information.
     :param string format: indicator of the ``input_string`` format.
@@ -1099,7 +1099,7 @@ that besides the time zone description files also contains a leapseconds file.
 You can use the Lua module :ref:`tarantool <tarantool-module>` to get a used
 version of ``tzdata``.
 
-This section describes how the ``datetime`` module supports leap seconds:
+The ``datetime`` module supports leap seconds at the most basic level:
 
 *   The function :ref:`datetime.parse() <datetime-parse>` correctly parses
     an input string with 60 seconds:
@@ -1121,6 +1121,27 @@ This section describes how the ``datetime`` module supports leap seconds:
         ---
         - 1970-01-01T00:01:00Z
         ...
+
+Meanwhile the following cases are NOT supported by the ``datetime`` module:
+
+*  With the :ref:`datetime.new() <datetime-new>` function, the 60 leap seconds in the ``sec`` key
+   give an extra minute like regular seconds, and the result is represented in a regular manner,
+   without leap seconds:
+
+    ..  code-block:: tarantoolsession
+
+        datetime.new({ year = 1998, month = 12, day = 31, hour = 23, min = 59, sec = 60})
+        ---
+        - 1999-01-01T00:00:00Z
+
+*  The function :ref:`datetime.parse() <datetime-parse>` produces an error when parsing a leap second
+   input string with 60 seconds and a format that supports leap seconds ('rfc3339', 'iso8601'):
+
+    ..  code-block:: tarantoolsession
+
+        datetime.parse('1998-12-31T23:59:60Z', {format='rfc3339'})
+        ---
+        - error: 'builtin/datetime.lua:885: could not parse ''1998-12-31T23:59:60Z'''
 
 .. _timezone:
 
