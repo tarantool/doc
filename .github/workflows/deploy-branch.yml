@@ -55,15 +55,6 @@ jobs:
         id: set-deployment-name
         run: echo "DEPLOYMENT_NAME=${GITHUB_HEAD_REF##*/}" >> $GITHUB_ENV
 
-      - name: Start dev server deployment
-        uses: bobheadxi/deployments@v1
-        id: deployment
-        with:
-          step: start
-          token: ${{secrets.GITHUB_TOKEN}}
-          env: "branch-${{env.DEPLOYMENT_NAME}}"
-          ref: ${{github.head_ref}}
-
       - run: cmake .
         id: cmake
       - run: make pull-modules
@@ -86,17 +77,6 @@ jobs:
           timeout_seconds: 15
           retry_wait_seconds: 15
           max_attempts: 3
-
-      - name: update deployment status
-        id: finalize-deployment
-        uses: bobheadxi/deployments@v1
-        with:
-          step: finish
-          token: ${{secrets.GITHUB_TOKEN}}
-          env: "branch-${{env.DEPLOYMENT_NAME}}"
-          status: ${{job.status}}
-          deployment_id: ${{steps.deployment.outputs.deployment_id}}
-          env_url: ${{secrets.TARANTOOL_HOST}}/doc/${{env.DEPLOYMENT_NAME}}/
 
       - name: Send VK Teams message on failures
         # bot token won't be accessible in the forks
