@@ -1089,7 +1089,7 @@ Leap second
 -----------
 
 `Leap seconds <https://en.wikipedia.org/wiki/Leap_second>`__ are a periodic
-one-second adjustment of Coordinated Universal Time(UTC) in order to keep
+one-second adjustment of Coordinated Universal Time (UTC) in order to keep
 a system's time of day close to the mean solar time. However,
 the Earth's rotation speed varies in response to climatic and geological events,
 and due to this, UTC leap seconds are irregularly spaced and unpredictable.
@@ -1124,9 +1124,9 @@ The ``datetime`` module supports leap seconds at the most basic level:
 
 Meanwhile the following cases are NOT supported by the ``datetime`` module:
 
-*  With the :ref:`datetime.new() <datetime-new>` function, the 60 leap seconds in the ``sec`` key
-   give an extra minute like regular seconds, and the result is represented in a regular manner,
-   without leap seconds:
+*   With the :ref:`datetime.new() <datetime-new>` function, the 60 leap seconds in the ``sec`` key
+    give an extra minute like regular seconds, and the result is represented in a regular manner,
+    without leap seconds:
 
     ..  code-block:: tarantoolsession
 
@@ -1134,8 +1134,8 @@ Meanwhile the following cases are NOT supported by the ``datetime`` module:
         ---
         - 1999-01-01T00:00:00Z
 
-*  The function :ref:`datetime.parse() <datetime-parse>` produces an error when parsing a leap second
-   input string with 60 seconds and a format that supports leap seconds ('rfc3339', 'iso8601'):
+*   The function :ref:`datetime.parse() <datetime-parse>` produces an error when parsing a leap second
+    input string with 60 seconds and a format that supports leap seconds ('rfc3339', 'iso8601'):
 
     ..  code-block:: tarantoolsession
 
