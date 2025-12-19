@@ -70,8 +70,8 @@ than earlier ones, including ULIDs generated within the same millisecond.
 Comparison works both between ULID objects and between a ULID object
 and a ULID string:
 
-* ``u1 == u2`` compares two ULID objects directly;
-* ``u1 == "01..."`` converts the string to ULID and compares values;
+* ``u1 == u2`` compares two ULID objects directly.
+* ``u1 == "01..."`` converts the string to ULID and compares values.
 * ``u1 < "01..."`` or ``"01..." < u1`` convert the string argument to ULID
   and perform lexicographical comparison.
 
