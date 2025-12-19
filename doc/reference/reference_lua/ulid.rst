@@ -45,7 +45,7 @@ and to avoid silent wrap-around, the implementation detects this overflow
 and fails the next generation attempt with a Lua error
 (``ULID random component overflow``).
 
-To use this module:
+To use this module, run the following command:
 
 ..  code-block:: lua
 
