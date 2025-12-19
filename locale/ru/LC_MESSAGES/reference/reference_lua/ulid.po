@@ -27,7 +27,7 @@ msgid ""
 "ULID strings are encoded using **Crockford Base32**, a compact and human-"
 "friendly alphabet that excludes visually ambiguous characters."
 msgstr ""
-"Строки ULID кодируются с использованием **Crockford Base32** - компактного и "
+"Строки ULID кодируются с использованием **Crockford Base32** -- компактного и "
 "удобного, человекочитаемого алфавита, который исключает визуально неоднозначные символы."
 
 msgid ""
