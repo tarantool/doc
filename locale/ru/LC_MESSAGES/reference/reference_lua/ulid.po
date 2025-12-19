@@ -3,7 +3,7 @@ msgid "Module ulid"
 msgstr "Модуль ulid"
 
 msgid "Since version 3.6.0."
-msgstr "Начиная с версии 3.6.0."
+msgstr "Доступно с версии 3.6.0."
 
 msgid "Overview"
 msgstr "Обзор"
