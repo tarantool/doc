@@ -3,6 +3,8 @@
 Module ulid
 ===========
 
+Since version 3.6.0.
+
 .. _ulid-module-overview:
 
 Overview
