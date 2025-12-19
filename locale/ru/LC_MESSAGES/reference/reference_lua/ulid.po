@@ -259,7 +259,7 @@ msgstr ""
 "<ulid-isnil>`"
 
 msgid "Check ULID type or nil value"
-msgstr "Проверка типа ULID или нулевого значения"
+msgstr "Проверить тип ULID или нулевое значение"
 
 msgid "A nil ULID object - a ULID that contains 16 zero bytes."
 msgstr "Нулевой объект ULID - ULID, содержащий 16 нулевых байт."
