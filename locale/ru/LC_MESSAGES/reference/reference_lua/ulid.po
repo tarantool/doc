@@ -262,7 +262,7 @@ msgid "Check ULID type or nil value"
 msgstr "Проверить тип ULID или нулевое значение"
 
 msgid "A nil ULID object - a ULID that contains 16 zero bytes."
-msgstr "Нулевой объект ULID - ULID, содержащий 16 нулевых байт."
+msgstr "Нулевой объект ULID -- это идентификатор, содержащий 16 нулевых байт."
 
 msgid "return"
 msgstr "return"
