@@ -85,7 +85,7 @@ msgstr ""
 "ошибкой Lua (``ULID random component overflow``)."
 
 msgid "To use this module, run the following command:"
-msgstr "Чтобы использовать модуль, выполните команду:"
+msgstr "Чтобы использовать модуль, выполните команду ниже:"
 
 msgid "ulid = require('ulid')"
 msgstr "ulid = require('ulid')"
