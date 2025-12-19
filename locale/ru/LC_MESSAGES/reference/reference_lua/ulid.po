@@ -44,16 +44,16 @@ msgid "ULIDs have several useful properties:"
 msgstr "ULID обладают рядом полезных свойств: Такие идентификаторы:"
 
 msgid "They are lexicographically sortable by creation time."
-msgstr "Они лексикографически сортируются по времени создания."
+msgstr "лексикографически сортируются по времени создания;"
 
 msgid "They fit entirely into 26 ASCII characters."
-msgstr "Они полностью помещаются в 26 ASCII-символов."
+msgstr "полностью помещаются в 26 ASCII-символов;"
 
 msgid "They avoid visually ambiguous symbols (``I``, ``L``, ``O``, ``U``)."
-msgstr "Они избегают визуально неоднозначных символов (``I``, ``L``, ``O``, ``U``)."
+msgstr "избегают визуально неоднозначных символов, таких как ``I``, ``L``, ``O`` или ``U``;"
 
 msgid "They have 128 bits of total uniqueness-same as UUID v4."
-msgstr "Они имеют 128 бит общей уникальности - как UUID v4."
+msgstr "имеют 128 бит общей уникальности -- как UUID v4."
 
 msgid ""
 "Tarantool uses a *monotonic* ULID generator. This ensures that multiple "
