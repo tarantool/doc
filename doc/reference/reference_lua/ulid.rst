@@ -75,7 +75,7 @@ Below is list of all ``ulid`` functions and members.
         *  - :ref:`ulid.NULL <ulid-null>`
            - A nil ULID object
 
-        *  - :ref:`ulid() <ulid-__call>` |br|
+        *  - :ref:`ulid.ulid() <ulid-call>` |br|
              :ref:`ulid.bin() <ulid-bin>` |br|
              :ref:`ulid.str() <ulid-str>`
            - Shortcuts to create a new ULID value
