@@ -97,13 +97,13 @@ msgid "ULID objects support the full set of Lua comparison operators:"
 msgstr "Объекты ULID поддерживают полный набор операторов сравнения Lua:"
 
 msgid "``==`` and ``~=`` - equality and inequality."
-msgstr "``==`` и ``~=`` - равенство и неравенство."
+msgstr "``==`` и ``~=`` -- равенство и неравенство;"
 
 msgid "``<`` and ``<=`` - lexicographical comparison."
-msgstr "``<`` и ``<=`` - лексикографическое сравнение."
+msgstr "``<`` и ``<=`` -- лексикографическое сравнение;"
 
 msgid "``>`` and ``>=`` - lexicographical comparison."
-msgstr "``>`` и ``>=`` - лексикографическое сравнение."
+msgstr "``>`` и ``>=`` -- лексикографическое сравнение."
 
 msgid ""
 "The comparison is based on the internal 16-byte representation in big-"
