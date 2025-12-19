@@ -51,6 +51,66 @@ To use this module, run the following command:
 
     ulid = require('ulid')
 
+.. _ulid-module-comparison:
+
+Comparison
+----------
+
+ULID objects support the full set of Lua comparison operators:
+
+* ``==`` and ``~=`` - equality and inequality;
+* ``<`` and ``<=`` - lexicographical comparison;
+* ``>`` and ``>=`` - lexicographical comparison.
+
+The comparison is based on the internal 16-byte representation in
+big-endian order and is consistent with the ULID specification:
+for ULIDs created by the monotonic generator, later ULIDs are greater
+than earlier ones, including ULIDs generated within the same millisecond.
+
+Comparison works both between ULID objects and between a ULID object
+and a ULID string:
+
+* ``u1 == u2`` compares two ULID objects directly;
+* ``u1 == "01..."`` converts the string to ULID and compares values;
+* ``u1 < "01..."`` or ``"01..." < u1`` convert the string argument to ULID
+  and perform lexicographical comparison.
+
+Examples:
+
+..  code-block:: tarantoolsession
+
+    tarantool> u1 = ulid.new()
+    tarantool> u2 = ulid.new()
+    tarantool> u1 < u2, u1 <= u2, u1 == u2, u1 ~= u2, u1 > u2, u1 >= u2
+    ---
+    - true
+    - true
+    - false
+    - true
+    - false
+    - false
+    ...
+
+    tarantool> u = ulid.new()
+    tarantool> s = u:str()
+    tarantool> u == s, u < s, u > s
+    ---
+    - true
+    - false
+    - false
+    ...
+
+    tarantool> u == "not-a-valid-ulid"
+    ---
+    - false
+    ...
+
+    tarantool> u < "not-a-valid-ulid"
+    ---
+    - error: '[string "return u < "not-a-valid-ulid""]:1: incorrect value to convert to
+        ulid as 2 argument'
+    ...
+
 .. _ulid-module-api-reference:
 
 API Reference
@@ -341,66 +401,6 @@ or :func:`ulid.frombin` provides the following methods:
         ---
         - false
         ...
-
-.. _ulid-module-comparison:
-
-Comparison
-----------
-
-ULID objects support the full set of Lua comparison operators:
-
-* ``==`` and ``~=`` - equality and inequality;
-* ``<`` and ``<=`` - lexicographical comparison;
-* ``>`` and ``>=`` - lexicographical comparison.
-
-The comparison is based on the internal 16-byte representation in
-big-endian order and is consistent with the ULID specification:
-for ULIDs created by the monotonic generator, later ULIDs are greater
-than earlier ones, including ULIDs generated within the same millisecond.
-
-Comparison works both between ULID objects and between a ULID object
-and a ULID string:
-
-* ``u1 == u2`` compares two ULID objects directly;
-* ``u1 == "01..."`` converts the string to ULID and compares values;
-* ``u1 < "01..."`` or ``"01..." < u1`` convert the string argument to ULID
-  and perform lexicographical comparison.
-
-Examples:
-
-..  code-block:: tarantoolsession
-
-    tarantool> u1 = ulid.new()
-    tarantool> u2 = ulid.new()
-    tarantool> u1 < u2, u1 <= u2, u1 == u2, u1 ~= u2, u1 > u2, u1 >= u2
-    ---
-    - true
-    - true
-    - false
-    - true
-    - false
-    - false
-    ...
-
-    tarantool> u = ulid.new()
-    tarantool> s = u:str()
-    tarantool> u == s, u < s, u > s
-    ---
-    - true
-    - false
-    - false
-    ...
-
-    tarantool> u == "not-a-valid-ulid"
-    ---
-    - false
-    ...
-
-    tarantool> u < "not-a-valid-ulid"
-    ---
-    - error: '[string "return u < "not-a-valid-ulid""]:1: incorrect value to convert to
-        ulid as 2 argument'
-    ...
 
 Examples
 --------
