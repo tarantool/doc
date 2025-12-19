@@ -133,7 +133,7 @@ Below is list of all ``ulid`` functions and members.
         - 06DGE3YNDCM2PPWJT3SKTTRNZR
         ...
 
-..  _ulid-__call:
+..  _ulid-call:
 
 ..  function:: ulid()
 
