@@ -209,7 +209,7 @@ msgid "API Reference"
 msgstr "Справочник API"
 
 msgid "Below is list of all ``ulid`` functions and members."
-msgstr "Ниже приведён список всех функций и членов модуля ``ulid``."
+msgstr "Ниже приведён список всех функций и элементов модуля ``ulid``."
 
 msgid "Name"
 msgstr "Имя"
