@@ -299,7 +299,7 @@ msgid ""
 "millisecond are strictly increasing."
 msgstr ""
 "Эта функция использует монотонный генератор, описанный в разделе "
-":ref:`overview <ulid-module>`. Несколько ULID, созданных в пределах одной "
+":ref:`Общие сведения <ulid-module>`. Несколько ULID, созданных в пределах одной "
 "миллисекунды, строго возрастают."
 
 msgid "a new ULID object"
