@@ -342,6 +342,8 @@ or :func:`ulid.frombin` provides the following methods:
         - false
         ...
 
+.. _ulid-module-comparison:
+
 Comparison
 ----------
 
