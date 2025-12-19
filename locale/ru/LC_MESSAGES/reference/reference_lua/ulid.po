@@ -123,17 +123,17 @@ msgstr ""
 "Сравнение работает как между объектами ULID, так и между объектом ULID и строкой ULID:"
 
 msgid "``u1 == u2`` compares two ULID objects directly."
-msgstr "``u1 == u2`` напрямую сравнивает два объекта ULID."
+msgstr "``u1 == u2`` сравнивает два объекта ULID напрямую;"
 
 msgid "``u1 == \"01...\"`` converts the string to ULID and compares values."
-msgstr "``u1 == \"01...\"`` преобразует строку в ULID и сравнивает значения."
+msgstr "``u1 == \"01...\"`` преобразует строку в ULID и сравнивает значения;"
 
 msgid ""
 "``u1 < \"01...\"`` or ``\"01...\" < u1`` convert the string argument to "
 "ULID and perform lexicographical comparison."
 msgstr ""
-"``u1 < \"01...\"`` или ``\"01...\" < u1`` преобразуют строковый аргумент в ULID "
-"и выполняют лексикографическое сравнение."
+"``u1 < \"01...\"`` или ``\"01...\" < u1`` преобразует строковый аргумент в ULID "
+"и выполняет лексикографическое сравнение."
 
 msgid "Examples:"
 msgstr "Примеры:"
