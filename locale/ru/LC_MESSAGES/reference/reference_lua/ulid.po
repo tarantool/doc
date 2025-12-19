@@ -295,7 +295,7 @@ msgstr "Создать новый объект ULID."
 
 msgid ""
 "This function uses the monotonic generator described in the "
-":ref:`overview <ulid-module>`. Multiple ULIDs created within the same "
+":ref:`Overview <ulid-module>`. Multiple ULIDs created within the same "
 "millisecond are strictly increasing."
 msgstr ""
 "Эта функция использует монотонный генератор, описанный в разделе "
