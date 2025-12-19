@@ -14,8 +14,8 @@ The ``ulid`` module implements ULID (Universally Unique Lexicographically
 Sortable Identifier) support in Tarantool. A ULID is a 128-bit identifier
 consisting of:
 
-* a 48-bit timestamp in milliseconds since the Unix epoch;
-* an 80-bit random (entropy) component.
+* a 48-bit timestamp in milliseconds since the Unix epoch
+* an 80-bit random (entropy) component
 
 ULID strings are encoded using **Crockford Base32**, a compact and
 human-friendly alphabet that excludes visually ambiguous characters.
