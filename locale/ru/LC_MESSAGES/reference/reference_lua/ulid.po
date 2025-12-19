@@ -221,7 +221,7 @@ msgid ":ref:`ulid.NULL <ulid-null>`"
 msgstr ":ref:`ulid.NULL <ulid-null>`"
 
 msgid "A nil ULID object"
-msgstr "Нулевой объект ULID"
+msgstr "Объект c нулевым ULID"
 
 msgid ""
 ":ref:`ulid.ulid() <ulid-call>` |br| :ref:`ulid.bin() <ulid-bin>` |br| "
