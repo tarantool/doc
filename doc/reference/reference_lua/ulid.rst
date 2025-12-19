@@ -58,8 +58,8 @@ Comparison
 
 ULID objects support the full set of Lua comparison operators:
 
-* ``==`` and ``~=`` - equality and inequality;
-* ``<`` and ``<=`` - lexicographical comparison;
+* ``==`` and ``~=`` - equality and inequality.
+* ``<`` and ``<=`` - lexicographical comparison.
 * ``>`` and ``>=`` - lexicographical comparison.
 
 The comparison is based on the internal 16-byte representation in
