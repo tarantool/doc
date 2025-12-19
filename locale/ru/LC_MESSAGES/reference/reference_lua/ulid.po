@@ -6,7 +6,7 @@ msgid "Since version 3.6.0."
 msgstr "Доступно с версии 3.6.0."
 
 msgid "Overview"
-msgstr "Обзор"
+msgstr "Общие сведения"
 
 msgid ""
 "The ``ulid`` module implements ULID (Universally Unique Lexicographically"
