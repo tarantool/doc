@@ -18,10 +18,10 @@ msgstr ""
 "состоящий из:"
 
 msgid "a 48-bit timestamp in milliseconds since the Unix epoch"
-msgstr "48-битной временной метки в миллисекундах от эпохи Unix"
+msgstr "48-битной временной метки в миллисекундах от эпохи Unix ;"
 
 msgid "an 80-bit random (entropy) component"
-msgstr "80-битной случайной (энтропийной) части"
+msgstr "80-битной случайной (энтропийной) части."
 
 msgid ""
 "ULID strings are encoded using **Crockford Base32**, a compact and human-"
