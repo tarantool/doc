@@ -320,7 +320,7 @@ msgid "Calling the module directly is the same as calling :func:`ulid.new()`."
 msgstr "Вызов модуля напрямую эквивалентен вызову :func:`ulid.new()`."
 
 msgid "In other words, ``ulid()`` is a shortcut for ``ulid.new()``."
-msgstr "Иными словами, ``ulid()`` - это сокращение для ``ulid.new()``."
+msgstr "Метод ``ulid()`` - это сокращение для ``ulid.new()``."
 
 msgid "a new ULID object (same as :func:`ulid.new`)"
 msgstr "новый объект ULID (то же самое, что :func:`ulid.new`)"
