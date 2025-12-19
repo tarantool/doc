@@ -26,10 +26,10 @@ matches their chronological order, in accordance with the ULID specification.
 
 ULIDs have several useful properties:
 
-* they are lexicographically sortable by creation time;
-* they fit entirely into 26 ASCII characters;
-* they avoid visually ambiguous symbols (``I``, ``L``, ``O``, ``U``);
-* they have 128 bits of total uniqueness-same as UUID v4.
+* They are lexicographically sortable by creation time;
+* They fit entirely into 26 ASCII characters;
+* They avoid visually ambiguous symbols (``I``, ``L``, ``O``, ``U``).
+* They have 128 bits of total uniqueness-same as UUID v4.
 
 Tarantool uses a *monotonic* ULID generator. This ensures that multiple ULIDs
 created within the same millisecond are strictly increasing and preserve
