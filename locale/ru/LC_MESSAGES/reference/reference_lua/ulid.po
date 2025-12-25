@@ -496,7 +496,7 @@ msgid ""
 "A ULID object returned by :func:`ulid.new`, :func:`ulid.fromstr`, or "
 ":func:`ulid.frombin` provides the following methods:"
 msgstr ""
-"Объект ULID, который возвращают функции :func:`ulid.new`, :func:`ulid.fromstr` и "
+"Объект ULID, который возвращает функции :func:`ulid.new`, :func:`ulid.fromstr` и "
 ":func:`ulid.frombin`, предоставляет следующие методы:"
 
 msgid "Return the ULID as a 16-byte binary string."
