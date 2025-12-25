@@ -41,7 +41,7 @@ msgstr ""
 "хронологическим порядком, как и требует спецификация ULID."
 
 msgid "ULIDs have several useful properties:"
-msgstr "ULID обладают рядом полезных свойств: Такие идентификаторы:"
+msgstr "ULID обладают рядом полезных свойств. Такие идентификаторы:"
 
 msgid "They are lexicographically sortable by creation time."
 msgstr "лексикографически сортируются по времени создания;"
