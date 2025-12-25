@@ -1,0 +1,672 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 
+# This file is distributed under the same license as the Tarantool package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarantool 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-12-19 13:32+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../doc/reference/reference_lua/ulid.rst:4
+msgid "Module ulid"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:6
+msgid "Since version 3.6.0."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:11
+msgid "Overview"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:13
+msgid "The ``ulid`` module implements ULID (Universally Unique Lexicographically Sortable Identifier) support in Tarantool. A ULID is a 128-bit identifier consisting of:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:17
+msgid "a 48-bit timestamp in milliseconds since the Unix epoch"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:18
+msgid "an 80-bit random (entropy) component"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:20
+msgid "ULID strings are encoded using **Crockford Base32**, a compact and human-friendly alphabet that excludes visually ambiguous characters."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:23
+msgid "In binary form, ULIDs are represented as 16-byte values in **big-endian** byte order. This ensures that the lexicographical order of binary ULIDs matches their chronological order, in accordance with the ULID specification."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:27
+msgid "ULIDs have several useful properties:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:29
+msgid "They are lexicographically sortable by creation time."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:30
+msgid "They fit entirely into 26 ASCII characters."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:31
+msgid "They avoid visually ambiguous symbols (``I``, ``L``, ``O``, ``U``)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:32
+msgid "They have 128 bits of total uniqueness-same as UUID v4."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:34
+msgid "Tarantool uses a *monotonic* ULID generator. This ensures that multiple ULIDs created within the same millisecond are strictly increasing and preserve sort order: for any two ULIDs generated in the same millisecond, the one created later is greater than the earlier one."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:39
+msgid "Internally, the monotonic generator keeps the last generated ULID for the current millisecond and increments the 80-bit random part for each subsequent ULID. A real overflow of the random part can happen only after generating ``2^80`` ULIDs within the same millisecond, which is practically impossible on real hardware. However, for strict correctness of the ULID specification and to avoid silent wrap-around, the implementation detects this overflow and fails the next generation attempt with a Lua error (``ULID random component overflow``)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:48
+msgid "To use this module, run the following command:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:50
+msgid "ulid = require('ulid')"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:57
+msgid "Comparison"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:59
+msgid "ULID objects support the full set of Lua comparison operators:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:61
+msgid "``==`` and ``~=`` - equality and inequality."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:62
+msgid "``<`` and ``<=`` - lexicographical comparison."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:63
+msgid "``>`` and ``>=`` - lexicographical comparison."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:65
+msgid "The comparison is based on the internal 16-byte representation in big-endian order and is consistent with the ULID specification: for ULIDs created by the monotonic generator, later ULIDs are greater than earlier ones, including ULIDs generated within the same millisecond."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:70
+msgid "Comparison works both between ULID objects and between a ULID object and a ULID string:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:73
+msgid "``u1 == u2`` compares two ULID objects directly."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:74
+msgid "``u1 == \"01...\"`` converts the string to ULID and compares values."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:75
+msgid "``u1 < \"01...\"`` or ``\"01...\" < u1`` convert the string argument to ULID and perform lexicographical comparison."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:78
+msgid "Examples:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:80
+msgid "tarantool> u1 = ulid.new()\n"
+"tarantool> u2 = ulid.new()\n"
+"tarantool> u1 < u2, u1 <= u2, u1 == u2, u1 ~= u2, u1 > u2, u1 >= u2\n"
+"---\n"
+"- true\n"
+"- true\n"
+"- false\n"
+"- true\n"
+"- false\n"
+"- false\n"
+"...\n"
+"\n"
+"tarantool> u = ulid.new()\n"
+"tarantool> s = u:str()\n"
+"tarantool> u == s, u < s, u > s\n"
+"---\n"
+"- true\n"
+"- false\n"
+"- false\n"
+"...\n"
+"\n"
+"tarantool> u == \"not-a-valid-ulid\"\n"
+"---\n"
+"- false\n"
+"...\n"
+"\n"
+"tarantool> u < \"not-a-valid-ulid\"\n"
+"---\n"
+"- error: '[string \"return u < \"not-a-valid-ulid\"\"]:1: incorrect value to convert to\n"
+"    ulid as 2 argument'\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:117
+msgid "API Reference"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:119
+msgid "Below is list of all ``ulid`` functions and members."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:132
+msgid "Name"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:133
+msgid "Use"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:135
+msgid ":ref:`ulid.NULL <ulid-null>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:136
+msgid "A nil ULID object"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:138
+msgid ":ref:`ulid.ulid() <ulid-call>` |br| :ref:`ulid.bin() <ulid-bin>` |br| :ref:`ulid.str() <ulid-str>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:141
+msgid "Shortcuts to create a new ULID value"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:143
+msgid ":ref:`ulid.new() <ulid-new>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:144
+msgid "Create a new ULID object"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:146
+msgid ":ref:`ulid.fromstr() <ulid-fromstr>` |br| :ref:`ulid.frombin() <ulid-frombin>` |br| :ref:`ulid_object:bin() <ulid-object_bin>` |br| :ref:`ulid_object:str() <ulid-object_str>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:150
+msgid "Convert between string, binary, and ULID object forms"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:152
+msgid ":ref:`ulid.is_ulid() <ulid-is_ulid>` |br| :ref:`ulid_object:isnil() <ulid-isnil>`"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:154
+msgid "Check ULID type or nil value"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:160
+msgid "A nil ULID object - a ULID that contains 16 zero bytes."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:0
+#: ../../doc/reference/reference_lua/ulid.rst:0
+#: ../../doc/reference/reference_lua/ulid.rst:0
+#: ../../doc/reference/reference_lua/ulid.rst:0
+#: ../../doc/reference/reference_lua/ulid.rst:0
+#: ../../doc/reference/reference_lua/ulid.rst:0
+#: ../../doc/reference/reference_lua/ulid.rst:0
+#: ../../doc/reference/reference_lua/ulid.rst:0
+#: ../../doc/reference/reference_lua/ulid.rst:0
+#: ../../doc/reference/reference_lua/ulid.rst:0
+#: ../../doc/reference/reference_lua/ulid.rst:0
+msgid "return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:162
+msgid "the nil ULID value"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:0
+#: ../../doc/reference/reference_lua/ulid.rst:0
+#: ../../doc/reference/reference_lua/ulid.rst:0
+#: ../../doc/reference/reference_lua/ulid.rst:0
+#: ../../doc/reference/reference_lua/ulid.rst:0
+#: ../../doc/reference/reference_lua/ulid.rst:0
+#: ../../doc/reference/reference_lua/ulid.rst:0
+#: ../../doc/reference/reference_lua/ulid.rst:0
+#: ../../doc/reference/reference_lua/ulid.rst:0
+#: ../../doc/reference/reference_lua/ulid.rst:0
+#: ../../doc/reference/reference_lua/ulid.rst:0
+msgid "rtype"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:163
+#: ../../doc/reference/reference_lua/ulid.rst:185
+#: ../../doc/reference/reference_lua/ulid.rst:205
+#: ../../doc/reference/reference_lua/ulid.rst:291
+msgid "cdata"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:165
+#: ../../doc/reference/reference_lua/ulid.rst:187
+#: ../../doc/reference/reference_lua/ulid.rst:207
+#: ../../doc/reference/reference_lua/ulid.rst:229
+#: ../../doc/reference/reference_lua/ulid.rst:250
+#: ../../doc/reference/reference_lua/ulid.rst:273
+#: ../../doc/reference/reference_lua/ulid.rst:293
+#: ../../doc/reference/reference_lua/ulid.rst:315
+#: ../../doc/reference/reference_lua/ulid.rst:344
+#: ../../doc/reference/reference_lua/ulid.rst:371
+#: ../../doc/reference/reference_lua/ulid.rst:391
+msgid "Example:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:167
+msgid "tarantool> ulid.NULL\n"
+"---\n"
+"- 00000000000000000000000000\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:178
+msgid "Create a new ULID object."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:180
+msgid "This function uses the monotonic generator described in the :ref:`overview <ulid-module>`. Multiple ULIDs created within the same millisecond are strictly increasing."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:184
+msgid "a new ULID object"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:189
+msgid "tarantool> ulid.new()\n"
+"---\n"
+"- 06DGE3YNDCM2PPWJT3SKTTRNZR\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:200
+msgid "Calling the module directly is the same as calling :func:`ulid.new()`."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:202
+msgid "In other words, ``ulid()`` is a shortcut for ``ulid.new()``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:204
+msgid "a new ULID object (same as :func:`ulid.new`)"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:209
+msgid "tarantool> ulid()\n"
+"---\n"
+"- 06DGE41G63GAZ6F0TV4WRSVCCW\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:220
+msgid "Create a new ULID and return its **string** representation."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:222
+msgid "This is a shortcut for ``ulid.new():str()``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:224
+msgid "The result is always 26 characters, encoded using Crockford Base32."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:226
+msgid "a ULID string"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:227
+#: ../../doc/reference/reference_lua/ulid.rst:363
+msgid "26-byte string"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:231
+msgid "tarantool> ulid.str()\n"
+"---\n"
+"- 06DGE480BWZ6H5BKX0KS3Q8S2G\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:242
+msgid "Create a new ULID and return its **binary** representation as a 16-byte string."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:245
+msgid "This is a shortcut for ``ulid.new():bin()``."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:247
+msgid "a ULID in binary form"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:248
+#: ../../doc/reference/reference_lua/ulid.rst:342
+msgid "16-byte string"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:252
+msgid "tarantool> #ulid.bin()\n"
+"---\n"
+"- 16\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:263
+msgid "Create a ULID object from a 26-character string."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:265
+msgid "The input must be a valid ULID string encoded using Crockford Base32. If the string is invalid (wrong length or invalid symbols), ``nil`` is returned."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:0
+#: ../../doc/reference/reference_lua/ulid.rst:0
+#: ../../doc/reference/reference_lua/ulid.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:0
+#: ../../doc/reference/reference_lua/ulid.rst:0
+#: ../../doc/reference/reference_lua/ulid.rst:0
+msgid "Return"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:0
+#: ../../doc/reference/reference_lua/ulid.rst:0
+#: ../../doc/reference/reference_lua/ulid.rst:0
+msgid "Return type"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:269
+msgid "ULID in 26-character string form"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:270
+msgid "converted ULID or ``nil``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:271
+msgid "cdata or ``nil``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:275
+msgid "tarantool> u = ulid.fromstr('06DGE4FH80PHA28YZVV5Z473T4')\n"
+"tarantool> u\n"
+"---\n"
+"- 06DGE4FH80PHA28YZVV5Z473T4\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:287
+msgid "Create a ULID object from a 16-byte binary string."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:289
+msgid "ULID in 16-byte binary string form"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:290
+msgid "converted ULID"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:295
+msgid "tarantool> u1 = ulid.new()\n"
+"tarantool> b = u1:bin()\n"
+"tarantool> u2 = ulid.frombin(b)\n"
+"tarantool> u1 == u2\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:309
+msgid "Check if the given value is a ULID cdata object."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:311
+msgid "a value of any type"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:312
+msgid "``true`` if the value is a ULID, otherwise ``false``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:313
+#: ../../doc/reference/reference_lua/ulid.rst:389
+msgid "boolean"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:317
+msgid "tarantool> ulid.is_ulid(ulid.new())\n"
+"---\n"
+"- true\n"
+"...\n"
+"\n"
+"tarantool> ulid.is_ulid(\"string\")\n"
+"---\n"
+"- false\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:330
+msgid "ULID object"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:332
+msgid "A ULID object returned by :func:`ulid.new`, :func:`ulid.fromstr`, or :func:`ulid.frombin` provides the following methods:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:339
+msgid "Return the ULID as a 16-byte binary string."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:341
+msgid "ULID in binary form"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:346
+msgid "tarantool> u = ulid.new()\n"
+"tarantool> b = u:bin()\n"
+"tarantool> #b, b\n"
+"---\n"
+"- 16\n"
+"- \"\\x01\\x9B\\a\\xAD==\\x81u۶-\\x93hPa\\xAE\"\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:360
+msgid "Return the ULID as a 26-character string."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:362
+msgid "ULID in string form"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:365
+msgid "ULID objects also implement the standard Lua ``__tostring`` metamethod. This means that calling ``tostring(u)`` for a ULID object ``u`` returns the same value as ``u:str()``, and ULID objects are automatically converted to their 26-character string representation when needed in string context."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:373
+msgid "tarantool> u = ulid.new()\n"
+"tarantool> u:str(), tostring(u)\n"
+"---\n"
+"- 06DGFBE3J07B7DB5A3JP4WQ9CM\n"
+"- 06DGFBE3J07B7DB5A3JP4WQ9CM\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:386
+msgid "Check if the ULID is the nil ULID (all 16 bytes are zero)."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:388
+msgid "``true`` for :data:`ulid.NULL`, otherwise ``false``"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:393
+msgid "tarantool> ulid.NULL:isnil()\n"
+"---\n"
+"- true\n"
+"...\n"
+"\n"
+"tarantool> ulid.new():isnil()\n"
+"---\n"
+"- false\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:406
+msgid "Examples"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:408
+msgid "Basic usage:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:410
+msgid "tarantool> u_obj = ulid.new()\n"
+"tarantool> u_str = ulid.str()\n"
+"tarantool> u_bin = ulid.bin()\n"
+"\n"
+"tarantool> u_obj, u_str, u_bin\n"
+"---\n"
+"- 06DGE6SEZDCFFSFEAJFMC9YQAR\n"
+"- 06DGE6T0DW0N2N6KMPVZ8SGE4W\n"
+"- \"\\x01\\x9B\\a\\eSz8\\xBA\\xB3\\xC5\\xCC\\xFE\\x18\\xBB1\\xD6\"\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:423
+msgid "Creating a ULID object and inspecting it:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:425
+msgid "tarantool> u = ulid()\n"
+"---\n"
+"...\n"
+"\n"
+"tarantool> #u:bin(), #u:str(), type(u), u:isnil()\n"
+"---\n"
+"- 16\n"
+"- 26\n"
+"- cdata\n"
+"- false\n"
+"...\n"
+"\n"
+"tarantool> tostring(u) == u:str()\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:444
+msgid "Converting between string and binary formats:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:446
+msgid "tarantool> s = ulid.str()\n"
+"tarantool> s\n"
+"---\n"
+"- 06DGE70CPFDV344XX43687N1SM\n"
+"...\n"
+"\n"
+"tarantool> u = ulid.fromstr(s)\n"
+"tarantool> u:str() == s\n"
+"---\n"
+"- true\n"
+"...\n"
+"\n"
+"tarantool> b = u:bin()\n"
+"tarantool> u2 = ulid.frombin(b)\n"
+"tarantool> u2 == u\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:467
+msgid "Working with ``ulid.NULL``:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:469
+msgid "tarantool> ulid.NULL\n"
+"---\n"
+"- 00000000000000000000000000\n"
+"...\n"
+"\n"
+"tarantool> ulid.NULL:isnil()\n"
+"---\n"
+"- true\n"
+"...\n"
+"\n"
+"tarantool> ulid.new():isnil()\n"
+"---\n"
+"- false\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:486
+msgid "Comparison operators:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:488
+msgid "tarantool> u1 = ulid.new()\n"
+"tarantool> u2 = ulid.new()\n"
+"tarantool> u1 < u2\n"
+"---\n"
+"- true\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:497
+msgid "Checking types:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:499
+msgid "tarantool> u = ulid.new()\n"
+"tarantool> ulid.is_ulid(u)\n"
+"---\n"
+"- true\n"
+"...\n"
+"\n"
+"tarantool> ulid.is_ulid(\"06DGE7RJK8QWJE27X5VVCC5VDW\")\n"
+"---\n"
+"- false\n"
+"..."
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:512
+msgid "Generating many ULIDs:"
+msgstr ""
+
+#: ../../doc/reference/reference_lua/ulid.rst:514
+msgid "tarantool> for i = 1,5 do print(ulid.str()) end\n"
+"---\n"
+"06DGE7T8AJD6EDNJ3VQ2ZYB3R4\n"
+"06DGE7T8AJD6EDNJ3VQ2ZYB3R8\n"
+"06DGE7T8AJD6EDNJ3VQ2ZYB3RC\n"
+"06DGE7T8AJD6EDNJ3VQ2ZYB3RG\n"
+"06DGE7T8AJD6EDNJ3VQ2ZYB3RM\n"
+"..."
+msgstr ""
