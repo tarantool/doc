@@ -178,7 +178,7 @@ Below is list of all ``ulid`` functions and members.
     Create a new ULID object.
 
     This function uses the monotonic generator described in the
-    :ref:`overview <ulid-module>`. Multiple ULIDs created within the
+    :ref:`Overview <ulid-module>`. Multiple ULIDs created within the
     same millisecond are strictly increasing.
 
     :return: a new ULID object
