@@ -63,8 +63,14 @@ For information about earlier versions, see :doc:`eos_versions`.
             -   End of support
             -   Versions
 
-        *   -   :doc:`3.5 </release/3.5.0>`
+        *   -   :doc:`3.6 </release/3.6.0>`
+            -   **December 12, 2025**
             -   **Not planned yet**
+            -   **Not planned yet**
+            -   | :tarantool-release:`3.6.0`
+
+        *   -   :doc:`3.5 </release/3.5.0>`
+            -   **August 27, 2025**
             -   **Not planned yet**
             -   **Not planned yet**
             -   | :tarantool-release:`3.5.0`
@@ -93,6 +99,7 @@ For information about earlier versions, see :doc:`eos_versions`.
     :maxdepth: 1
 
     policy
+    3.6.0
     3.5.0
     3.4.0
     3.3.0

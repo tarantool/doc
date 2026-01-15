@@ -1,0 +1,84 @@
+Tarantool 3.6
+=============
+
+Release date:  2025-12-12
+
+Releases on GitHub: :tarantool-release:`3.6.0`
+
+The 3.6 release of Tarantool adds the following main product features and improvements
+for the Community and Enterprise editions:
+
+*   **Community Edition (CE)**
+
+    *   Memtx: significantly faster snapshot recovery.
+    *   New privileges: ``grant`` and ``metagrant``.
+
+*   **Enterprise Edition (EE)**
+
+    *   Failover coordinator: synchronous replication for 2 DC topology.
+    *   MemCS: multiple improvements.
+
+.. _3-6-faster-snapshot-recovery-ce:
+
+[CE] Memtx: significantly faster snapshot recovery
+--------------------------------------------------
+
+This release speeds up memtx snapshot recovery by up to 70% by offloading MsgPack decoding
+to a separate thread. Space and transactional triggers (``space.on_replace``, ``space.before_replace``)
+are now deprecated during recovery.
+
+.. _3-6-grant-metagrant-privileges-ce:
+
+[CE] New privileges: ``grant`` and ``metagrant``
+------------------------------------------------
+
+This release introduces new privileges, ``grant`` and ``metagrant``. They allow Tarantool users
+to create new users with a complete range of privileges, like the builtin ``admin`` user does.
+
+The ``grant`` privilege allows granting any privilege, except ``grant`` and ``metagrant``,
+on an object, object class or universe.
+
+The ``metagrant`` privilege allows granting ``grant`` and ``metagrant`` privileges.
+
+Both ``grant`` and ``metagrant`` are only grantable on the universe and
+allow granting privileges only to other users, not to the current user.
+
+.. _3-6-sync-replication-2-dc-ee:
+
+[EE] Failover coordinator: synchronous replication for 2 DC topology
+--------------------------------------------------------------------
+
+In previous releases, the failover coordinator supported synchronous replication for topologies with 3 and more data centers.
+With N instances within a replica set, the minimal quorum size could be ``N/2 + 1``.
+Topologies with 2 data centers were not supported because the quorum size could not be dynamically decreased if connection to the second data center was lost.
+For example, in a minimal replica set of 2 instances the default quorum size is 2 (calculated as 2/2 + 1 = 2).
+If one of the instances fails, no new transactions can be committed, because it is impossible to get an ack from the second instance.
+So, new transactions are lost.
+
+Now, for *supervised failover*, Tarantool supports synchronous replication for topologies with 2 data centers.
+The failover coordinator automatically decreases the quorum size if connection to the second data center is lost,
+and restores the cluster's operability within the available data center.
+When connection to the second data center is up again, the failover coordinator automatically restores the normal quorum size.
+So, no transactions are lost.
+
+.. _3-6-memcs-improvements:
+
+[EE] MemCS: multiple improvements
+---------------------------------
+
+This release brings multiple minor enhancements to the MemCS engine, most of them focusing on indexes and performance.
+
+MemCS now supports:
+* aggregates over decimal fields,
+* null layout columns passed to ``insert_arrow``,
+* inserting into the middle of MemCS primary index with aggregates,
+* inserting columns in the REE encoding (except for columns that are part of index keys or skip indexes)
+* specifying per-column layout in space format and secondary index definitions,
+* LT, LE, and GT iterator types in Arrow streams,
+* ``index:quantile()``,
+* bloom aggregates,
+* statistics of index aggregates and scanner,
+* index aggregates exported to their Lua objects.
+
+Furthermore, the performance of MemCS skip index writes is increased. Now this index
+doesn't reallocate blocks if they are not used by any read view.
