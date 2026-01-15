@@ -35,9 +35,7 @@ are now deprecated during recovery.
 This release introduces new privileges, ``grant`` and ``metagrant``. They allow Tarantool users
 to create new users with a complete range of privileges, like the builtin ``admin`` user does.
 
-The ``grant`` privilege allows granting any privilege, except ``grant`` and ``metagrant``,
-on an object, object class or universe.
-
+The ``grant`` privilege allows granting any privilege, except ``grant`` and ``metagrant``, on an object, object class or universe.
 The ``metagrant`` privilege allows granting ``grant`` and ``metagrant`` privileges.
 
 Both ``grant`` and ``metagrant`` are only grantable on the universe and
@@ -69,16 +67,17 @@ So, no transactions are lost.
 This release brings multiple minor enhancements to the MemCS engine, most of them focusing on indexes and performance.
 
 MemCS now supports:
-* aggregates over decimal fields,
-* null layout columns passed to ``insert_arrow``,
-* inserting into the middle of MemCS primary index with aggregates,
-* inserting columns in the REE encoding (except for columns that are part of index keys or skip indexes)
-* specifying per-column layout in space format and secondary index definitions,
+
+* Aggregates over decimal fields,
+* Null layout columns passed to ``insert_arrow``,
+* Inserting into the middle of MemCS primary index with aggregates,
+* Inserting columns in the REE encoding (except for columns that are part of index keys or skip indexes)
+* Specifying per-column layout in space format and secondary index definitions,
 * LT, LE, and GT iterator types in Arrow streams,
 * ``index:quantile()``,
-* bloom aggregates,
-* statistics of index aggregates and scanner,
-* index aggregates exported to their Lua objects.
+* Bloom aggregates,
+* Statistics of index aggregates and scanner,
+* Index aggregates exported to their Lua objects.
 
 Furthermore, the performance of MemCS skip index writes is increased. Now this index
 doesn't reallocate blocks if they are not used by any read view.
