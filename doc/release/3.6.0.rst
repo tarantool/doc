@@ -69,15 +69,13 @@ This release brings multiple minor enhancements to the MemCS engine, most of the
 MemCS now supports:
 
 * Aggregates over decimal fields,
-* Null layout columns passed to ``insert_arrow``,
 * Inserting into the middle of MemCS primary index with aggregates,
-* Inserting columns in the REE encoding (except for columns that are part of index keys or skip indexes)
 * Specifying per-column layout in space format and secondary index definitions,
-* LT, LE, and GT iterator types in Arrow streams,
 * ``index:quantile()``,
 * Bloom aggregates,
 * Statistics of index aggregates and scanner,
-* Index aggregates exported to their Lua objects.
+* Index aggregates exported to their Lua objects,
+* Some C API improvements related to inserting and scanning data in the Apache Arrow format.
 
 Furthermore, the performance of MemCS skip index writes is increased. Now this index
 doesn't reallocate blocks if they are not used by any read view.
