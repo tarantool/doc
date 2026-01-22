@@ -348,6 +348,61 @@ On this page, you can:
 
 -   view the list of user spaces, their size, and engines
 -   view and edit tuples stored in user spaces
+-   search for tuples by entering *search condition* in the **Search** bar
+
+Search by condition
+^^^^^^^^^^^^^^^^^^^
+
+TCM supports the following comparison operators:
+
+- ``==`` -- equal to
+- ``>`` -- greater than
+- ``<`` -- less than
+- ``>=`` -- greater than or equal to
+- ``<=`` -- less than or equal to
+
+The search condition has the following structure:
+
+..  code-block:: text
+
+    index_name comparator value
+
+where:
+
+- ``index_name`` -- the left side of the expression. Contains the name of the index.
+- ``comparator`` -- comparison operator (``>``, ``>=``, ``==``, ``<=``, ``<``), separated from the left and right sides of the expression by spaces.
+- ``right`` -- the right side of the expression. Contains a string, numeric, or a boolean value.
+  The string value must be enclosed in quotation marks (``""``).
+
+..  note::
+
+    TCM does not support plain text search. For example, to search for customers named Ivan in the
+    space, use the index name and comparison operator to specify the expression:
+
+    - correct: typing ``name == "Ivan"`` in the **Search** bar
+    - incorrect: typing ``Ivan`` in the **Search** bar
+
+**Examples**
+
+The search expression below returns tuples with IDs greater than 9990:
+
+..  code-block:: text
+
+    id > 9990
+
+In TCM, the result can look as follows:
+
+.. image:: _images/tcm_ui_search_bar.png
+    :align: left
+    :width: 700
+    :alt: TCM Tuples page
+
+In the example below, the search returns tuples with the ``name`` index equal to ``Ivan``:
+
+..  code-block:: text
+
+    name == "Ivan"
+
 
 ..  _tcm_ui_cluster_tcf:
 
