@@ -12,11 +12,10 @@ The following Java connectors are available:
     `Testcontainers <https://www.testcontainers.org/>`__ are implemented as modules within the
     Tarantool Java SDK project, providing seamless integration with these frameworks.
 
-    *   Separate documentation is available for each major and minor Tarantool Java SDK version,
-        for example: https://tarantool.github.io/tarantool-java-sdk/1.5.*/.
-
-    *   For the most up-to-date documentation (including the latest changes and features),
-        please refer to the dev version: https://tarantool.github.io/tarantool-java-sdk/dev/.
+    Separate documentation is available for each major and minor Tarantool Java SDK version,
+    for example: https://tarantool.github.io/tarantool-java-sdk/1.5.*/.
+    For the most up-to-date documentation (including the latest changes and features),
+    please refer to the dev version: https://tarantool.github.io/tarantool-java-sdk/dev/.
 
 .. NOTE::
 
