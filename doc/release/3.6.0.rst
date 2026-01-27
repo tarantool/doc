@@ -67,12 +67,13 @@ automatically restores the normal quorum size.
 So, no transactions are lost.
 
 However, there are some limitations.
-An important thing is that while data storages can be located in just 2 DCs,
-the configuration storage (based on etcd or Tarantool) must be located in yet another DC
-(a so-called "quorum DC"). So, the effective topology (also known as "2,5 DC topology")
-implies 3 DCs all in all.
+An important thing is that while data storages can be deployed in just 2 DCs,
+we need yet another DC (a so-called "quorum DC") for an extra configuration storage
+(based on etcd or Tarantool). So, the effective topology (also known as "2,5 DC topology")
+implies 3 DCs all in all: two DCs with a complete set of components
+(data storages, routers, configuration storages) + one DC with configuration storage.
 
-Here are the cases when a topology with data storages located in 2 DCs may fail.
+Here are the cases when a topology with data storages deployed in 2 DCs may fail.
 
 **Case #1:** "interrupted data enrichment after DC failure"
 
