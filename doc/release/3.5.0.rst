@@ -113,19 +113,19 @@ if the ``fail_if`` expression evaluates to ``true``.
 [CE] Faster large (500+) clusters reload
 ----------------------------------------
 
-The new patch processes an instance's configuration only when it is explicitly accessed,
-such as through a ``config:get(<...>, {instance = <...>})`` call. This significantly speeds up startup and
-configuration reloads, especially for large clusters.
+The new release processes an instance's configuration only when it is explicitly accessed,
+such as through a ``config:get(<...>, {instance = <...>})`` call.
+This significantly speeds up startup and configuration reloads, especially for large clusters.
 
 .. _3-5-quorum-synchronous-replication:
 
-[EE] Support of the quorum synchronous replication setup in three availability zones
-------------------------------------------------------------------------------------
+[EE] Support for quorum synchronous replication setup in three availability zones
+---------------------------------------------------------------------------------
 
-A new patchset makes the ``replication.failover = supervised`` mode supports the quorum synchronous 
+This release makes the ``replication.failover = supervised`` mode support quorum synchronous
 replication setup in three availability zones.
 
-The patchset includes several preliminary patches, which make the ``appoint_commit`` logic more safe
+This release includes several preliminary patches, which make the ``appoint_commit`` logic more safe
 in regards to various possible situations, and the main patch, which adds the ``box.ctl.promote()`` call to
 ``appoint_commit`` if the ``failover.replicasets.<replicaset_name>.synchro_mode`` is set to ``true``.
 
@@ -137,7 +137,7 @@ in regards to various possible situations, and the main patch, which adds the ``
 When applying centralized configuration updates, Tarantool supervised failover coordinator no longer performs RW
 switch within the replicaset if there are dead instances.
 
-A new patch introduces a smarter configuration update process for the Tarantool supervised failover
+This release introduces a smarter configuration update process for the Tarantool supervised failover
 coordinator. Previously, any change would trigger a full restart of all services, causing unnecessary downtime.
 Now, the system intelligently differentiates between option types: most settings can be applied dynamically without
 any restart. A restart will only occur if you modify critical core parameters, specifically any options under
@@ -155,7 +155,7 @@ It is now possible to define a field with the ``decimal32/64/128/256`` type (fix
   (``MP_DECIMAL``) in all engines (MemTX, Vinyl, MemCS, Quiver (if applicable)).
 * The internal representation of fixed point decimal values remains the same as the exisitng decimal
   type (decNumber) in all engines except MemCS and Quiver.
-* It is now possible to batch insert and scan fixed point decimal values in the Arrow format 
+* It is now possible to batch insert and scan fixed point decimal values in the Apache Arrow format
   in MemCS and Quiver engines.
 
 .. _3-5-memcs-brin-indexes:
@@ -180,8 +180,8 @@ improvements of 2.5x for 10% filled columns and 11x for 1% filled columns.
 
 .. _3-5-memcs-index-batch-insertion:
 
-Secondary index batch insertion performance is improved in MemCS
-----------------------------------------------------------------
+[EE] Secondary index batch insertion performance is improved in MemCS
+---------------------------------------------------------------------
 
 This release introduces a new ``next_row`` method that significantly accelerates batch insertion and secondary
 index building. The method replaces the old tuple-based iterator, using a column mask to process only necessary
@@ -190,8 +190,8 @@ index insertion has improved by over 550%, with rates jumping from ~10k to 62k r
 
 .. _3-5-memcs-storage-string-scanning:
 
-Storage format and string scanning performance improvements in MemCS
---------------------------------------------------------------------
+[EE] Storage format and string scanning performance improvements in MemCS
+-------------------------------------------------------------------------
 
 This release combines a new optimized storage format for short strings with a powerful Arrow view layout to
 deliver huge performance improvements for string scanning.
@@ -205,9 +205,9 @@ Storage format updates:
 * The ``memcs_column_data_size()`` API function has been split into ``memcs_column_int_data_size()``
   and ``memcs_column_ext_data_size()`` to account for the new dual storage format.
 
-Scan performance for 3 different sets of strings (the lengths are randomly distributed in the range 1-12, 1-100, 1-1000)
-and 2 different modes, ``notouch`` and ``touch``. In the ``notouch`` mode strings are only scanned as a batch, without
-accessing them; in the ``touch`` mode, strings are scanned and the first external character is checked:
+We ran scan performance tests for 3 different sets of strings (the lengths were randomly distributed in the ranges 1-12, 1-100, 1-1000)
+and 2 different modes, ``notouch`` and ``touch``. In the ``notouch`` mode strings were only scanned as a batch, without
+accessing them; in the ``touch`` mode, strings were scanned and the first external character was checked:
 
 * Strings 1-12 chars: Up to 4.8x faster in the ``notouch`` mode, and 3.2x faster in the ``touch`` mode.
 * Strings 1-100 chars: Up to 3.1x faster in the ``notouch`` mode, and 1.8x faster in the ``touch`` mode.
