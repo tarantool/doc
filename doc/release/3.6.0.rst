@@ -46,25 +46,59 @@ allow granting privileges only to other users, not to the current user.
 [EE] Failover coordinator: synchronous replication for 2 DC topology
 --------------------------------------------------------------------
 
-In previous releases, the failover coordinator supported synchronous replication for topologies with 3 and more data centers.
+In previous releases, the failover coordinator supported synchronous replication
+for topologies with data storages located in 3 and more data centers.
 With N instances within a replica set, the minimal quorum size could be ``N/2 + 1``.
-Topologies with 2 data centers were not supported because the quorum size could not be dynamically decreased if connection to the second data center was lost.
-For example, in a minimal replica set of 2 instances the default quorum size is 2 (calculated as 2/2 + 1 = 2).
-If one of the instances fails, no new transactions can be committed, because it is impossible to get an ack from the second instance.
+Topologies with 2 data centers were not supported because the quorum size could not be
+dynamically decreased if connection to the second data center was lost.
+For example, in a minimal replica set of 2 instances the default quorum size is 2
+(calculated as 2/2 + 1 = 2).
+If one of the instances fails, no new transactions can be committed, because it is
+impossible to get an ack from the second instance.
 So, new transactions are lost.
 
-Now, for *supervised failover*, Tarantool supports synchronous replication for topologies with 2 data centers.
-The failover coordinator automatically decreases the quorum size if connection to the second data center is lost,
-and restores the cluster's operability within the available data center.
-When connection to the second data center is up again, the failover coordinator automatically restores the normal quorum size.
+Now, for *supervised failover*, Tarantool supports synchronous replication for topologies
+with data storages located in 2 data centers.
+The failover coordinator automatically decreases the quorum size if connection
+to the second data center is lost, and restores the cluster's operability within
+the available data center.
+When connection to the second data center is up again, the failover coordinator
+automatically restores the normal quorum size.
 So, no transactions are lost.
+
+However, there are some limitations.
+An important thing is that while data storages can be located in just 2 DCs,
+the configuration storage (based on etcd or Tarantool) must be located in yet another DC
+(a so-called "quorum DC"). So, the effective topology (also known as "2,5 DC topology")
+implies 3 DCs all in all.
+
+Here are the cases when a topology with data storages located in 2 DCs may fail.
+
+**Case #1:** "interrupted data enrichment after DC failure"
+
+a. DC #1 goes down, while DC #2 is up. The failover coordinator decreases the quorum size
+   to 1. The cluster keeps serving the clients.
+b. DC #1 goes up and starts obtaining missed data from DC #2. The quorum size is still 1.
+c. The data enrichment process for DC #1 is still in progress, but DC #2 goes down now.
+   In this case, the cluster becomes unavailable.
+
+**Case #2:** "no multiple quorum decrease"
+
+a. DC #1 (2 instances) goes down, while DC #2 (2 instances) is up.
+b. One of the 2 instances in DC #2 goes down.
+   In this case, the cluster becomes unavailable as well.
+
+**Case #3:** Both DCs go down -- the ultimate case when the cluster becomes unavailable.
+
+In other cases, the cluster will keep working.
 
 .. _3-6-memcs-improvements:
 
 [EE] MemCS: multiple improvements
 ---------------------------------
 
-This release brings multiple minor enhancements to the MemCS engine, most of them focusing on indexes and performance.
+This release brings multiple minor enhancements to the MemCS engine, most of them
+focusing on indexes and performance.
 
 MemCS now supports:
 
