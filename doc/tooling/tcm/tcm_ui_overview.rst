@@ -361,7 +361,7 @@ TCM supports the following comparison operators:
 - ``>=`` -- greater than or equal to
 - ``<=`` -- less than or equal to
 
-The search condition has the following structure:
+Search condition has the following structure:
 
 ..  code-block:: text
 
@@ -369,15 +369,15 @@ The search condition has the following structure:
 
 where:
 
-- ``index_name`` -- the left side of the expression. Contains the name of the index.
-- ``comparator`` -- comparison operator (``>``, ``>=``, ``==``, ``<=``, ``<``), separated from the left and right sides of the expression by spaces.
-- ``right`` -- the right side of the expression. Contains a string, numeric, or a boolean value.
-  The string value must be enclosed in quotation marks (``""``).
+- ``index_name`` -- the name of the index. This is the left-hand side of the expression.
+- ``comparator`` -- a comparison operator (``>``, ``>=``, ``==``, ``<=``, ``<``). It must be separated by spaces on both sides of the expression.
+- ``value`` -- a string, numeric, or boolean value. This is the right-hand side of the expression.
+  String values must be enclosed in double quotes (``""``).
 
 ..  note::
 
-    TCM does not support plain text search. For example, to search for customers named Ivan in the
-    space, use the index name and comparison operator to specify the expression:
+    TCM does not support plain text search. For example, to search for customers named Ivan in a
+    space, use the index name and a comparison operator to specify the expression:
 
     - correct: typing ``name == "Ivan"`` in the **Search** bar
     - incorrect: typing ``Ivan`` in the **Search** bar
@@ -390,7 +390,7 @@ The search expression below returns tuples with IDs greater than 9990:
 
     id > 9990
 
-In TCM, the result can look as follows:
+In TCM, the result might look as follows:
 
 .. image:: _images/tcm_ui_search_bar.png
     :align: left
