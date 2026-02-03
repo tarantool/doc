@@ -29,14 +29,16 @@ are now deprecated during recovery.
 
 .. _3-6-grant-metagrant-privileges-ce:
 
-[CE] New privileges: ``grant`` and ``metagrant``
-------------------------------------------------
+[CE] New privileges: grant and metagrant
+----------------------------------------
 
 This release introduces new privileges, ``grant`` and ``metagrant``. They allow Tarantool users
-to create new users with a complete range of privileges, like the builtin ``admin`` user does.
+to create new users with a complete range of privileges, like the built-in ``admin`` user does.
 
-The ``grant`` privilege allows granting any privilege, except ``grant`` and ``metagrant``, on an object, object class or universe.
-The ``metagrant`` privilege allows granting ``grant`` and ``metagrant`` privileges.
+The ``grant`` privilege allows granting any privilege (except ``grant`` and ``metagrant``)
+on an object, object class or universe.
+
+The ``metagrant`` privilege allows granting the ``grant`` and ``metagrant`` privileges.
 
 Both ``grant`` and ``metagrant`` are only grantable on the universe and
 allow granting privileges only to other users, not to the current user.
@@ -47,29 +49,29 @@ allow granting privileges only to other users, not to the current user.
 --------------------------------------------------------------------
 
 In previous releases, the failover coordinator supported synchronous replication
-for topologies with data storages located in 3 and more data centers.
+for topologies with data storages located in 3 or more data centers.
 With N instances within a replica set, the minimal quorum size could be ``N/2 + 1``.
 Topologies with 2 data centers were not supported because the quorum size could not be
-dynamically decreased if connection to the second data center was lost.
-For example, in a minimal replica set of 2 instances the default quorum size is 2
+dynamically decreased if the connection to the second data center was lost.
+For example, in a minimal replica set of 2 instances the default quorum size was 2
 (calculated as 2/2 + 1 = 2).
-If one of the instances fails, no new transactions can be committed, because it is
+If one of the instances failed, no new transactions could be committed, because it was
 impossible to get an ack from the second instance.
-So, new transactions are lost.
+So, new transactions were lost.
 
 Now, for *supervised failover*, Tarantool supports synchronous replication for topologies
 with data storages located in 2 data centers.
-The failover coordinator automatically decreases the quorum size if connection
+The failover coordinator automatically decreases the quorum size if the connection
 to the second data center is lost, and restores the cluster's operability within
 the available data center.
-When connection to the second data center is up again, the failover coordinator
+When the connection to the second data center is up again, the failover coordinator
 automatically restores the normal quorum size.
 So, no transactions are lost.
 
 However, there are some limitations.
 An important thing is that while data storages can be deployed in just 2 DCs,
-we need yet another DC (a so-called "quorum DC") for an extra configuration storage
-(based on etcd or Tarantool). So, the effective topology (also known as "2,5 DC topology")
+the system requires yet another DC (a so-called "quorum DC") for an extra configuration storage
+(based on etcd or Tarantool). So, the effective topology (also known as a "2,5 DC topology")
 implies 3 DCs all in all: two DCs with a complete set of components
 (data storages, routers, configuration storages) + one DC with configuration storage.
 
@@ -106,7 +108,7 @@ MemCS now supports:
 * Aggregates over decimal fields,
 * Inserting into the middle of MemCS primary index with aggregates,
 * Specifying per-column layout in space format and secondary index definitions,
-* ``index:quantile()``,
+* The ``index:quantile()`` function,
 * Bloom aggregates,
 * Statistics of index aggregates and scanner,
 * Index aggregates exported to their Lua objects,
