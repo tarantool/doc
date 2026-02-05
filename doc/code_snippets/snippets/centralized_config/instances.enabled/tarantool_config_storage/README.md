@@ -10,7 +10,7 @@ To start all instances of the configuration storage, execute the following comma
 $ tt start tarantool_config_storage
 ```
 
-To upload configuration for [config_storage](../config_storage) application, execute `put_config` function for the leader instanse (instance with RW mode):
+To upload configuration for the [config_storage](../config_storage) application, execute the `put_config()` function for the leader instance (the instance in the RW mode):
 
 ```console
 $ tt status tarantool_config_storage
