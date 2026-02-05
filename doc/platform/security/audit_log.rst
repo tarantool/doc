@@ -209,7 +209,7 @@ If the ``extract_key`` option is set to ``true``, the audit system prints the pr
       "user": "admin",
       "type": "space_insert",
       "tag": "",
-      "description": "Insert key [2] into space bands"
+      "description": "Insert key [1] into space bands"
     }
 
 If the ``extract_key`` option is set to ``false``, the audit system prints the full tuple like this:
