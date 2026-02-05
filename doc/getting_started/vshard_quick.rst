@@ -237,7 +237,9 @@ Open the ``storage.lua`` file and define a space and indexes inside :ref:`box.wa
     This field represents a sharding key used to partition a dataset across different storage instances.
 *   :ref:`space_object:create_index() <box_space-create_index>` creates two indexes based on the ``id`` and ``bucket_id`` fields.
 
-
+..  include:: /platform/sharding/vshard_admin.rst
+    :start-after: note_vshard_secondary_index_start
+    :end-before: note_vshard_secondary_index_end
 
 ..  _vshard-quick-start-router-code:
 
