@@ -524,8 +524,13 @@ In the example below, the ``bands`` space has the ``bucket_id`` field, which is 
 
 Example on GitHub: `sharded_cluster <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/sharding/instances.enabled/sharded_cluster>`_
 
+..  note_vshard_secondary_index_start
 
+..  note::
 
+    In a sharded space, uniqueness by secondary index is only guaranteed within a single shard, not across the whole cluster.
+
+..  note_vshard_secondary_index_end
 
 ..  _vshard-adding-data:
 
