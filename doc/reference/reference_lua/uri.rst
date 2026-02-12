@@ -91,13 +91,16 @@ Functions
 
 .. _uri-parse:
 
-.. function:: parse(uri-string)
+.. function:: parse(uri-string | uri-table)
 
     Parse a URI string into components.
 
     **See also:** :ref:`uri.format() <uri-format>`
 
     :param string uri-string: a URI string
+    :param table uri-table: a URI table with an URI string and an optional override of URI query parameters.
+                            URI string table key must be ``'uri'`` or ``1`` (first array-like element).
+                            URI query parameters override must be given in a ``table`` element ``'params'``.
     :return: a URI components table (see :ref:`uri_components <uri_components>`)
 
     :rtype: table
@@ -106,7 +109,7 @@ Functions
 
     ..  literalinclude:: /code_snippets/test/uri/uri_parse_test.lua
         :language: lua
-        :lines: 1-11
+        :lines: 1-11,33-72
 
 
 .. _uri-format:
@@ -377,6 +380,13 @@ uri_components
         A query component.
 
         **Example:** ``key1=value1&key2=value2``
+
+    .. data:: params
+
+        A query component parameters. Overrides `query`.
+        Table with ``string`` or 'arrays' of ``string``.
+
+        **Example:** ``{key1 = 'value1', key2 = 'value2', key3 = {'1', '2'}``
 
     ..  _uri_components-fragment:
 
