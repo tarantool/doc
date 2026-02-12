@@ -424,7 +424,6 @@ TCF page can be added via the |tcm| configuration file:
     feature:
         tcf:True
 
-
 On this page, you can:
 
 *   view information about TCF clusters
