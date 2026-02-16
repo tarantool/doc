@@ -99,8 +99,8 @@ Functions
 
     :param string uri-string: a URI string
     :param table uri-table: a URI table with an URI string and an optional override of URI query parameters.
-                            URI string table key must be ``'uri'`` or ``1`` (first array-like element).
-                            URI query parameters override must be given in a ``table`` element ``'params'``.
+                            The URI string table key must be ``'uri'`` or ``1`` (the first array-like element).
+                            The override of URI query parameters must be given in the ``'params'`` element of the table.
     :return: a URI components table (see :ref:`uri_components <uri_components>`)
 
     :rtype: table
