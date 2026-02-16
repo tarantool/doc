@@ -384,7 +384,7 @@ uri_components
     .. data:: params
 
         Parameters of a query component. Overrides `query`.
-        Table with ``string`` or arrays of ``string``.
+        The table elements may be 'string' or arrays of 'string'.
 
         **Example:** ``{key1 = 'value1', key2 = 'value2', key3 = {'1', '2'}}``
 
