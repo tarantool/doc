@@ -386,7 +386,7 @@ uri_components
         Parameters of a query component. Overrides `query`.
         Table with ``string`` or arrays of ``string``.
 
-        **Example:** ``{key1 = 'value1', key2 = 'value2', key3 = {'1', '2'}``
+        **Example:** ``{key1 = 'value1', key2 = 'value2', key3 = {'1', '2'}}``
 
     ..  _uri_components-fragment:
 
