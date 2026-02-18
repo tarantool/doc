@@ -109,7 +109,7 @@ Functions
 
     ..  literalinclude:: /code_snippets/test/uri/uri_parse_test.lua
         :language: lua
-        :lines: 1-11,33-72
+        :lines: 1-12,33-45,53-66
 
 
 .. _uri-format:
@@ -131,7 +131,7 @@ Functions
 
     ..  literalinclude:: /code_snippets/test/uri/uri_parse_test.lua
         :language: lua
-        :lines: 1-2,13-21
+        :lines: 1-2,13-22,34,46-53,67-73
 
 
 
@@ -384,7 +384,7 @@ uri_components
     .. data:: params
 
         Parameters of a query component. Overrides `query`.
-        The table elements may be 'string' or arrays of 'string'.
+        The table elements may be `string` or arrays of `string`.
 
         **Example:** ``{key1 = 'value1', key2 = 'value2', key3 = {'1', '2'}}``
 
