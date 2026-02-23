@@ -7,7 +7,7 @@ Release date: February 6, 2026
 
 Latest release in series: 1.6.0
 
-This release introduces support for TDB workers in the cluster dashboard with integrated health monitoring,
+This release introduces support for Tarantool DataBase (TDB) workers in the cluster dashboard with integrated health monitoring,
 adds TLS configuration guides for secure connections, improves audit log configuration and validation,
 and introduces a feature flag for managing the Tuples tab. It also includes important fixes for LDAP authentication,
 TLS configuration parsing, and a memory leak in SSL cluster connections.
@@ -17,13 +17,16 @@ TLS configuration parsing, and a memory leak in SSL cluster connections.
 TDB workers monitoring in cluster dashboard
 --------------------------------------------
 
-|tcm| adds support for TDB workers in the cluster dashboard with integrated health monitoring and visibility.
+|tcm| adds support for TDB workers in the cluster **Stateboard** tab with integrated health monitoring and visibility.
 
+TDB workers are supported starting from TDB 3.1.0.
 Workers are automatically discovered from etcd and continuously monitored via dedicated health check endpoints.
 Their metrics are proxied through TCM and exposed individually, allowing detailed operational insight.
 
 The interface displays workers directly in the stateboard with clear status indicators and a details panel.
-Each worker can be in one of four states: healthy, degraded, unhealthy, or no connection, helping administrators quickly detect and diagnose issues.
+Each worker can be in one of four statuses: healthy, degraded, unhealthy, or no connection, helping administrators quickly detect and diagnose issues.
+
+To learn more, see `TDB documentation <https://www.tarantool.io/ru/tarantooldb/doc/latest/examples/tdb_worker/tdb_worker_example/>`__.
 
 .. _tcm_releases_1_6_audit_log:
 
@@ -44,7 +47,15 @@ Explorer enhancements
 A feature flag has been introduced to control the visibility of the **Tuples** tab in the Explorer interface.
 
 The tab is displayed only when the corresponding feature flag is enabled and the CRUD module is available.
-The flag can be configured either in the application configuration file or via command-line arguments at startup
+The flag can be configured either in the TCM configuration file or via command-line arguments at startup.
+
+To enable the **Tuples** tab in the TCM configuration file:
+
+.. code-block:: yaml
+
+    # tcm.yaml
+    feature:
+        tuples: True
 
 .. _tcm_releases_1_6_fixes:
 
