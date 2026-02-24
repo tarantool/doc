@@ -25,6 +25,5 @@ LDAP authentication improvements
 --------------------------------
 
 Error handling has been improved for LDAP authentication when the **Automatically add non-existent users** option is disabled.
-The system now provides clearer behavior in this scenario.
 
 It is also now possible to create a user via the UI with LDAP authentication enabled, simplifying user management in LDAP-based environments.
