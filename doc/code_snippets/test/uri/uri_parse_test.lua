@@ -84,3 +84,61 @@ test_group.test_uri_parsing2 = function()
     luatest.assert_equals(parsed_uri21.params, {x = {'2'}, y = {'3'}})
     luatest.assert_equals(formatted_uri2, 'foo.bar?y=3&x=2')
 end
+
+formatted_uri3_e = uri.format({
+    login = uri.escape('replic@ator'),
+    password = uri.escape(':::'),
+    host = 'foo.bar',
+    params = {x = uri.escape('sec ret?', uri.FORM_URLENCODED)}
+    },
+    true
+)
+--[[
+---
+- replic%40ator:%3A%3A%3A@foo.bar?x=sec+ret%3F
+...
+]]--
+
+parsed_uri3_e = uri.parse(formatted_uri3_e)
+--[[
+---
+- password: '%3A%3A%3A'
+  login: replic%40ator
+  query: x=sec+ret%3F
+  params:
+    x:
+    - sec+ret%3F
+  host: foo.bar
+...
+]]--
+
+parsed_uri3 = {
+    login = uri.unescape(parsed_uri3_e.login),
+    password = uri.unescape(parsed_uri3_e.password),
+    host = parsed_uri3_e.host,
+    params = {x = {uri.unescape(parsed_uri3_e.params.x[1], uri.FORM_URLENCODED)}},
+}
+--[[
+---
+- password: ':::'
+  params:
+    x:
+    - sec ret?
+  host: foo.bar
+  login: replic@ator
+...
+]]--
+
+test_group.test_uri_parsing3 = function()
+    luatest.assert_equals(formatted_uri3_e, 'replic%40ator:%3A%3A%3A@foo.bar?x=sec+ret%3F')
+    luatest.assert_equals(parsed_uri3_e.login, 'replic%40ator')
+    luatest.assert_equals(parsed_uri3_e.password, '%3A%3A%3A')
+    luatest.assert_equals(parsed_uri3_e.host, 'foo.bar')
+    luatest.assert_equals(parsed_uri3_e.query, 'x=sec+ret%3F')
+    luatest.assert_equals(parsed_uri3_e.params, {x = {'sec+ret%3F'}})
+
+    luatest.assert_equals(parsed_uri3.login, 'replic@ator')
+    luatest.assert_equals(parsed_uri3.password, ':::')
+    luatest.assert_equals(parsed_uri3.host, 'foo.bar')
+    luatest.assert_equals(parsed_uri3.params, {x = {'sec ret?'}})
+end
