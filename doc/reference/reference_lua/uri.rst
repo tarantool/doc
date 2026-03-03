@@ -15,8 +15,12 @@ components, or turn components into URI strings, for example:
     :language: lua
     :lines: 1-21
 
-You can also use this module to encode and decode arbitrary strings using the specified encoding options.
+To escape and unescape special characters, corresponding functions must be used:
+..  literalinclude:: /code_snippets/test/uri/uri_parse_test.lua
+    :language: lua
+    :lines: 88-130
 
+You can also use this module to encode and decode arbitrary strings using the specified encoding options.
 
 .. _uri-module-api-reference:
 
