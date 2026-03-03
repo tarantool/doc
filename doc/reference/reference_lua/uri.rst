@@ -15,7 +15,7 @@ components, or turn components into URI strings, for example:
     :language: lua
     :lines: 1-21
 
-To escape and unescape special characters corresponding functions must be used:
+To escape and unescape special characters, corresponding functions must be used:
 ..  literalinclude:: /code_snippets/test/uri/uri_parse_test.lua
     :language: lua
     :lines: 88-130
