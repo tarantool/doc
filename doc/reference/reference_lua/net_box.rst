@@ -395,7 +395,9 @@ Below is a list of all ``net.box`` functions.
     The returned ``conn`` object supports methods for making remote requests,
     such as select, update or delete.
 
-    :param string URI: the :ref:`URI <index-uri>` of the target for the connection
+    :param URI: the :ref:`URI <index-uri>` of the target for the connection.
+                The URI type may be ``string`` or ``table`` as for the :ref:`uri.parse() <uri-parse>` function.
+                The table form is used to set up connection parameters, see the :ref:`URI <index-uri>` page for details.
     :param options: the supported options are shown below:
 
         *   ``user/password``: two options to connect to a remote host other than through

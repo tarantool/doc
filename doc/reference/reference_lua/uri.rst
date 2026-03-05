@@ -15,8 +15,13 @@ components, or turn components into URI strings, for example:
     :language: lua
     :lines: 1-21
 
-You can also use this module to encode and decode arbitrary strings using the specified encoding options.
+To escape and unescape special characters, corresponding functions must be used:
 
+..  literalinclude:: /code_snippets/test/uri/uri_parse_test.lua
+    :language: lua
+    :lines: 88-130
+
+You can also use this module to encode and decode arbitrary strings using the specified encoding options.
 
 .. _uri-module-api-reference:
 
@@ -91,13 +96,16 @@ Functions
 
 .. _uri-parse:
 
-.. function:: parse(uri-string)
+.. function:: parse(uri-string | uri-table)
 
     Parse a URI string into components.
 
     **See also:** :ref:`uri.format() <uri-format>`
 
     :param string uri-string: a URI string
+    :param table uri-table: a URI table with an URI string and an optional override of URI query parameters.
+                            The URI string table key must be ``'uri'`` or ``1`` (the first array-like element).
+                            The override of URI query parameters must be given in the ``'params'`` element of the table.
     :return: a URI components table (see :ref:`uri_components <uri_components>`)
 
     :rtype: table
@@ -106,7 +114,7 @@ Functions
 
     ..  literalinclude:: /code_snippets/test/uri/uri_parse_test.lua
         :language: lua
-        :lines: 1-11
+        :lines: 1-12,33-45,53-66
 
 
 .. _uri-format:
@@ -128,7 +136,7 @@ Functions
 
     ..  literalinclude:: /code_snippets/test/uri/uri_parse_test.lua
         :language: lua
-        :lines: 1-2,13-21
+        :lines: 1-2,13-22,34,46-53,67-73
 
 
 
@@ -377,6 +385,13 @@ uri_components
         A query component.
 
         **Example:** ``key1=value1&key2=value2``
+
+    .. data:: params
+
+        Parameters of a query component. Overrides `query`.
+        The table elements may be `string` or arrays of `string`.
+
+        **Example:** ``{key1 = 'value1', key2 = 'value2', key3 = {'1', '2'}}``
 
     ..  _uri_components-fragment:
 
