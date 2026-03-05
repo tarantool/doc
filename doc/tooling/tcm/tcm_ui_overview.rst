@@ -700,7 +700,7 @@ For more details, refer to `configuration reference <https://www.tarantool.io/en
 After enabling the feature, the TT Graph DB page appears in the TCM UI and provides the following capabilities:
 
 - Specify the **Endpoint** and **Query** fields for placing a request for a TT Graph DB instance. Click **Execute** to run the query.
-    The result appears in a table below the input form:
+  The result appears in a table below the input form:
 
     .. image:: _images/tcm_tgdb_ui.png
         :align: left
