@@ -3,6 +3,10 @@
 Tarantool Cluster Manager 1.7
 =============================
 
+Release date: February 11, 2026
+
+Latest release in series: 1.7.1
+
 This release introduces control over automatic default cluster creation,
 improves LDAP authentication handling, and enhances user management capabilities in the UI.
 

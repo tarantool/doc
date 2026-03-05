@@ -14,7 +14,7 @@ Latest release in series: 1.5.3
 TCF cluster configuration in UI
 -------------------------------
 
-|tcm| 1.5.0 adds a dedicated settings page for managing TCF cluster parameters directly through the web interface.
+|tcm| 1.5 adds a dedicated settings page for managing TCF cluster parameters directly through the web interface.
 You can now retrieve and modify key fields that define cluster behavior and failover logic without editing configuration files manually.
 
 The new page allows configuring the following parameters:

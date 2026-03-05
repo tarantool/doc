@@ -9,7 +9,7 @@ Latest release in series: 1.6.0
 
 This release introduces support for Tarantool DataBase (TDB) workers in the cluster dashboard with integrated health monitoring,
 adds TLS configuration guides for secure connections, improves audit log configuration and validation,
-and introduces a feature flag for managing the Tuples tab. It also includes important fixes for LDAP authentication,
+and introduces a feature flag for managing the **Tuples** tab. It also includes important fixes for LDAP authentication,
 TLS configuration parsing, and a memory leak in SSL cluster connections.
 
 .. _tcm_releases_1_6_workers_tdb:
@@ -36,7 +36,7 @@ Audit log configuration improvements
 The audit log configuration is now safer and more predictable.
 
 Protocol values are validated during startup. If an invalid protocol is specified, the system automatically falls back to default settings and emits a warning.
-Audit log parameters can be set in advance at the system bootstrap stage by specifying them in the ``auditlog`` field of the initial-settings section in the configuration file.
+Audit log parameters can be set in advance at the system bootstrap stage by specifying them in the ``auditlog`` field of the ``initial-settings`` section in the configuration file.
 These settings will be applied automatically if the audit log has not been configured yet.
 
 .. _tcm_releases_1_6_explorer:
