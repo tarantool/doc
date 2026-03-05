@@ -475,7 +475,7 @@ The **TQE** tab can be added via the |tcm| configuration file:
 You can also enable it using the environment variable or the ``feature`` command-line option.
 For more details, refer to `configuration reference <https://www.tarantool.io/en/doc/latest/tooling/tcm/tcm_configuration_reference/#feature/>`__.
 
-After enabling the feature, the TQE page appears in the |tcm| UI and provides access to **Metrics** and **Queues** pages.
+After enabling the feature, the **TQE** page appears in the |tcm| UI and provides access to **Metrics** and **Queues** pages.
 
 **Metrics** can be viewed in two formats:
 
@@ -489,9 +489,9 @@ After enabling the feature, the TQE page appears in the |tcm| UI and provides ac
 
 The **Queues** page displays runtime information for each queue, including:
 
-* Latency -- the time delay (ms) between a message being added to the queue and being processed.
-* Poll max batch -- the number of messages retrieved in a single request for processing.
-* Deduplication mode -- specifies how duplicate messages are handled. Deduplication is always enabled. Available modes: ``basic`` (default), ``extended``, ``keep_latest``, ``keep_first``.
+- Latency -- the time delay (ms) between a message being added to the queue and being processed.
+- Poll max batch -- the number of messages retrieved in a single request for processing.
+- Deduplication mode -- specifies how duplicate messages are handled. Deduplication is always enabled. Available modes: ``basic`` (default), ``extended``, ``keep_latest``, ``keep_first``.
 
 .. image:: _images/tcm_tqe_ui_queues.png
     :align: left
@@ -667,7 +667,7 @@ Interface elements:
 - **Clear** button — clears the editor
 - Result table — displays returned rows and columns
 
-The TCS page can be added via the |tcm| configuration file:
+The **TCS** page can be added via the |tcm| configuration file:
 
 .. code-block:: yaml
 
@@ -675,7 +675,7 @@ The TCS page can be added via the |tcm| configuration file:
     feature:
         column-store: True
 
-When enabled, the TT Column Store section appears in the left navigation panel.
+When enabled, the **TT Column Store** section appears in the left navigation panel.
 You can also enable it using the environment variable or the ``feature`` command-line option.
 For more details, refer to `configuration reference <https://www.tarantool.io/en/doc/latest/tooling/tcm/tcm_configuration_reference/#feature/>`__.
 
