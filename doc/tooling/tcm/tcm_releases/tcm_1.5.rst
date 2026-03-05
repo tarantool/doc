@@ -7,14 +7,14 @@ Release date: August 28, 2025
 
 Latest release in series: 1.5.3
 
-|tcm_full_name| 1.5.0 introduces a new UI page for configuring TCF clusters and includes important fixes that enhance reliability, compliance, and user experience.
+|tcm_full_name| 1.5 introduces a new UI page for configuring TCF clusters and includes important fixes that enhance reliability, compliance, and user experience.
 
 .. _tcm_releases_1_5_0_tcf_config:
 
 TCF cluster configuration in UI
 -------------------------------
 
-|tcm| 1.5 adds a dedicated settings page for managing TCF cluster parameters directly through the web interface.
+|tcm| 1.5.0 adds a dedicated settings page for managing TCF cluster parameters directly through the web interface.
 You can now retrieve and modify key fields that define cluster behavior and failover logic without editing configuration files manually.
 
 The new page allows configuring the following parameters:
