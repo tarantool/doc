@@ -429,10 +429,13 @@ For more details, refer to `configuration reference <https://www.tarantool.io/en
 
 On this page, you can:
 
-*   view information about TCF clusters
-*   toggle the state of clusters
-*   promote or demote clusters
-*   change key cluster parameters. To open the settings, click **Actions** (the three dots next to the cluster status) and select **Settings**. Available parameters:
+-   view information about TCF clusters
+-   toggle the state of clusters
+-   promote or demote clusters
+-   change key cluster parameters.
+
+To open the settings, click **Actions** (the three dots next to the cluster status) and select **Settings**. Available parameters:
+
   - ``dml_users``: list of DML users
   - ``cluster1``, ``cluster2``: cluster settings
   - ``replication_user``: replication username
