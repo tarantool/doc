@@ -448,12 +448,10 @@ To open the settings, click **Actions** (the three dots next to the cluster stat
   - ``status_ttl``: time-to-live for service status. Default value: ``4``
 
     .. image:: _images/tcm_tcf_settings.png
-        :align: left
         :width: 700
         :alt: TCM TCF settings page
 
     .. image:: _images/tcm_tcf_settings_params.png
-        :align: left
         :width: 700
         :alt: TCM TCF settings page
 
@@ -492,9 +490,9 @@ After enabling the feature, the **TQE** page appears in the |tcm| UI and provide
 
 The **Queues** page displays runtime information for each queue, including:
 
-- Latency -- the time delay (ms) between a message being added to the queue and being processed.
-- Poll max batch -- the number of messages retrieved in a single request for processing.
-- Deduplication mode -- specifies how duplicate messages are handled. Deduplication is always enabled. Available modes: ``basic`` (default), ``extended``, ``keep_latest``, ``keep_first``.
+- **Latency** -- the time delay (ms) between a message being added to the queue and being processed.
+- **Poll max batch** -- the number of messages retrieved in a single request for processing.
+- **Deduplication mode** -- specifies how duplicate messages are handled. Deduplication is always enabled. Available modes: ``basic`` (default), ``extended``, ``keep_latest``, ``keep_first``.
 
 .. image:: _images/tcm_tqe_ui_queues.png
     :align: left
