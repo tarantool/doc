@@ -409,27 +409,33 @@ In the example below, the search returns tuples with the ``name`` index equal to
 TCF
 ~~~
 
-The **TCF** page provides an interface for clusters that run within `Tarantool Clusters Federation <https://www.tarantool.io/en/clustersfederation/>`__.
+The **TCF** tab provides an interface for clusters that run within `Tarantool Clusters Federation <https://www.tarantool.io/docs/tcf/>`__.
 
 .. image:: _images/tcm_ui_tcf.png
-    :align: center
+    :align: left
     :width: 700
     :alt: TCM TCF page
 
-TCF page can be added via the |tcm| configuration file:
+TCF tab can be added via the |tcm| configuration file:
 
 .. code-block:: yaml
 
     # tcm.yaml
     feature:
-        tcf:True
+        tcf: True
+
+You can also enable it using the environment variable or the ``feature`` command-line option.
+For more details, refer to `configuration reference <https://www.tarantool.io/en/doc/latest/tooling/tcm/tcm_configuration_reference/#feature/>`__.
 
 On this page, you can:
 
-*   view information about TCF clusters
-*   toggle the state of clusters
-*   promote or demote clusters
-*   change key cluster parameters. To open the settings, click **Actions** (the three dots next to the cluster status) and select **Settings**. Available parameters:
+-   view information about TCF clusters
+-   toggle the state of clusters
+-   promote or demote clusters
+-   change key cluster parameters.
+
+To open the settings, click **Actions** (the three dots next to the cluster status) and select **Settings**. Available parameters:
+
   - ``dml_users``: list of DML users
   - ``cluster1``, ``cluster2``: cluster settings
   - ``replication_user``: replication username
@@ -441,19 +447,57 @@ On this page, you can:
   - ``enable_system_check``: enables or disables system-level health checks. Default value: ``true``
   - ``status_ttl``: time-to-live for service status. Default value: ``4``
 
-
     .. image:: _images/tcm_tcf_settings.png
-        :align: center
         :width: 700
         :alt: TCM TCF settings page
 
     .. image:: _images/tcm_tcf_settings_params.png
-        :align: center
         :width: 700
         :alt: TCM TCF settings page
 
-
 Learn more in :ref:`tcm_cluster_tcf`.
+
+..  _tcm_ui_cluster_tqe:
+
+TQE
+~~~
+
+TCM provides built-in support for monitoring and inspecting `Tarantool
+Queue Enterprise <https://www.tarantool.io/docs/tqe/>`__ through the web interface.
+
+The **TQE** tab can be added via the |tcm| configuration file:
+
+.. code-block:: yaml
+
+    # tcm.yaml
+    feature:
+        tqe: True
+
+You can also enable it using the environment variable or the ``feature`` command-line option.
+For more details, refer to `configuration reference <https://www.tarantool.io/en/doc/latest/tooling/tcm/tcm_configuration_reference/#feature/>`__.
+
+After enabling the feature, the **TQE** page appears in the |tcm| UI and provides access to **Metrics** and **Queues** pages.
+
+**Metrics** can be viewed in two formats:
+
+* Chart view
+* Table view
+
+.. image:: _images/tcm_tqe_ui_metrics.png
+    :align: left
+    :width: 700
+    :alt: TCM TQE Metrics page
+
+The **Queues** page displays runtime information for each queue, including:
+
+- **Latency** -- the time delay (ms) between a message being added to the queue and being processed.
+- **Poll max batch** -- the number of messages retrieved in a single request for processing.
+- **Deduplication mode** -- specifies how duplicate messages are handled. Deduplication is always enabled. Available modes: ``basic`` (default), ``extended``, ``keep_latest``, ``keep_first``.
+
+.. image:: _images/tcm_tqe_ui_queues.png
+    :align: left
+    :width: 700
+    :alt: TCM TQE Queues page
 
 ..  _tcm_ui_cluster_metrics:
 
@@ -597,19 +641,100 @@ The **Tools** group includes service pages used for |tcm| maintenance and monito
 Audit log
 ~~~~~~~~~
 
-The **Audit log page** displays the |tcm| :ref:`audit log <tcm_audit_log>`.
+The **Audit log** tab displays the |tcm| :ref:`audit log <tcm_audit_log>`.
 
 .. image:: _images/tcm_ui_audit_log.png
     :align: left
     :width: 700
     :alt: TCM audit log
 
+..  _tcm_ui_tools_tcs:
+
+TCS
+~~~
+
+The **TT Column Store** tab provides an interface for querying data stored in `Tarantool Column Store <https://www.tarantool.io/ru/column-store/doc/1.x/>`__ directly from TCM.
+
+.. image:: _images/tcm_tcs_ui.png
+    :align: left
+    :width: 700
+    :alt: TCM TCS page
+
+Interface elements:
+
+- **Endpoint** — TCS HTTP endpoint
+- **Query** — SQL query editor for entering SELECT statements
+- **Query** button — executes the query
+- **Clear** button — clears the editor
+- Result table — displays returned rows and columns
+
+The **TCS** page can be added via the |tcm| configuration file:
+
+.. code-block:: yaml
+
+    # tcm.yaml
+    feature:
+        column-store: True
+
+When enabled, the **TT Column Store** section appears in the left navigation panel.
+You can also enable it using the environment variable or the ``feature`` command-line option.
+For more details, refer to `configuration reference <https://www.tarantool.io/en/doc/latest/tooling/tcm/tcm_configuration_reference/#feature/>`__.
+
+..  _tcm_ui_tools_tgdb:
+
+TT Graph DB
+~~~~~~~~~~~
+
+|tcm| provides built-in support for interacting with `Tarantool Graph DB <https://www.tarantool.io/en/graph-db/>`__ through the web interface.
+
+The **TT Graph DB** tab can be added via the |tcm| configuration file:
+
+.. code-block:: yaml
+
+    # tcm.yaml
+    feature:
+        ttgraph: True
+
+You can also enable it using the environment variable or the ``feature`` command-line option.
+For more details, refer to `configuration reference <https://www.tarantool.io/en/doc/latest/tooling/tcm/tcm_configuration_reference/#feature/>`__.
+
+After enabling the feature, the TT Graph DB page appears in the TCM UI and provides the following capabilities:
+
+- Specify the **Endpoint** and **Query** fields for placing a request for a TT Graph DB instance. Click **Execute** to run the query.
+  The result appears in a table below the input form:
+
+    .. image:: _images/tcm_tgdb_ui.png
+        :align: left
+        :width: 700
+        :alt: TCM TT Graph DB page
+
+- Press **Query** to view the results in a graph format, allowing to analyze relationships between entities:
+
+    .. image:: _images/tcm_tgdb_ui_graph.png
+        :align: left
+        :width: 700
+        :alt: TCM TT Graph DB page
+
+    Each row in the result table can be expanded to view detailed information about a specific record:
+
+    .. image:: _images/tcm_tgdb_ui_detailed.png
+        :align: left
+        :width: 700
+        :alt: TCM TT Graph DB page
+
+    The graph can be opened in full size:
+
+    .. image:: _images/tcm_tgdb_ui_full_graph.png
+        :align: left
+        :width: 700
+        :alt: TCM TT Graph DB page
+
 ..  _tcm_ui_tools_metrics:
 
 TCM metrics
 ~~~~~~~~~~~
 
-The **TCM metrics** page provides access to the |tcm| metrics.
+The **TCM metrics** tab provides access to the |tcm| metrics.
 
 .. image:: _images/tcm_ui_tcm_metrics.png
     :align: left
