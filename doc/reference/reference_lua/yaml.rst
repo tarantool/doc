@@ -74,30 +74,24 @@ The YAML output structure can be specified with ``__serialize``:
 * ``function``: the meta-method called to unpack serializable representation
   of table, cdata, or userdata objects
 
-``'seq'`` or ``'map'`` also enable the flow (compact) mode for the YAML serializer
-(``flow="[1,2,3]"`` vs ``block=" - 1\n - 2\n - 3\n"``).
-
-Serializing ``'A'`` and ``'B'`` with different ``__serialize`` values brings different
-results:
-
 .. code-block:: tarantoolsession
 
-    tarantool> yaml.encode(setmetatable({'A', 'B'}, { __serialize="seq"}))
+    tarantool> yaml.encode(setmetatable({'A', 'B'}, {__serialize='seq'}))
     ---
-    - '["A","B"]'
+    - |
+      --- ['A', 'B']
+      ...
     ...
-    tarantool> yaml.encode(setmetatable({'A', 'B'}, { __serialize="map"}))
+    tarantool> yaml.encode(setmetatable({'A', 'B'}, {__serialize='map'}))
     ---
-    - '{"1":"A","2":"B"}'
+    - |
+      --- {1: 'A', 2: 'B'}
+      ...
     ...
-    tarantool> yaml.encode({setmetatable({f1 = 'A', f2 = 'B'}, { __serialize="map"})})
-    ---
-    - '[{"f2":"B","f1":"A"}]'
-    ...
-    tarantool> yaml.encode({setmetatable({f1 = 'A', f2 = 'B'}, { __serialize="seq"})})
-    ---
-    - '[[]]'
-    ...
+
+``'seq'`` or ``'map'`` also enable the flow (compact) mode for the YAML serializer
+(``flow="[1,2,3]"`` vs ``block=" - 1\n - 2\n - 3\n"``). See the full example in
+the 'Example' section below.
 
 .. _yaml-cfg:
 
@@ -151,6 +145,60 @@ results:
         | ``cfg.decode_save_metatables``  |  true   | A flag saying whether to set metatables    |
         |                                 |         | for all arrays and maps                    |
         +---------------------------------+---------+--------------------------------------------+
+
+**Note on ``decode_save_metatables``**
+
+You may want to change result's metatable to get block-formatted ``encode()`` output
+instead of flow-formatted for large tables for better readability.
+
+The possible solution is to assign new metatable.
+
+.. code-block:: tarantoolsession
+
+    tarantool> t1 = yaml.decode(yaml.encode({[1] = 'a', x = 'b'}))
+    tarantool> yaml.encode(t1)
+    ---
+    - |
+      --- {'x': 'b', 1: 'a'}
+      ...
+    ...
+    tarantool> setmetatable(t1, {__serialize = 'mapping'})
+    tarantool> yaml.encode(t1)
+    ---
+    - |
+      ---
+      x: b
+      1: a
+      ...
+    ...
+
+.. important::
+
+    Decoder uses globally defined tables as metatables for arrays and maps. You must not
+    change entries of ``decode()`` result's table metatable, because it affects all results
+    and may lead to undefined behaviour of other code.
+
+.. code-block:: tarantoolsession
+
+    tarantool> yaml.cfg.decode_save_metatables
+    ---
+    - true
+    ...
+    tarantool> t1 = yaml.decode(yaml.encode({[1] = 'a', x = 'b'}))
+    tarantool> getmetatable(t1).__serialize
+    ---
+    - map
+    ...
+    tarantool> getmetatable(t1).__serialize = 'mapping' -- (!) bad
+    tarantool> t2 = yaml.decode(yaml.encode({[1] = 'a', x = 'b'}))
+    tarantool> yaml.encode(t2) -- (!) got 'block' maps for all results
+    ---
+    - |
+      ---
+      x: b
+      1: a
+      ...
+    ...
 
     .. _yaml-cfg_sparse:
 
@@ -264,41 +312,82 @@ Similar configuration settings exist for :ref:`JSON
 The `YAML collection style <http://yaml.org/spec/1.1/#id930798>`_ can be
 specified with ``__serialize``:
 
-* ``__serialize="sequence"`` for a Block Sequence array,
+* ``__serialize="sequence"`` or ``__serialize="array"`` for a Block Sequence array,
 * ``__serialize="seq"`` for a Flow Sequence array,
 * ``__serialize="mapping"`` for a Block Mapping map,
 * ``__serialize="map"`` for a Flow Mapping map.
 
-Serializing ``'A'`` and ``'B'`` with different ``__serialize`` values causes
-different results:
+Serializing array- or map-like tables containing ``'A'`` and ``'B'``
+with different ``__serialize`` values brings different results:
 
 .. code-block:: tarantoolsession
 
     tarantool> yaml = require('yaml')
     ---
     ...
-
-    tarantool> print(yaml.encode(setmetatable({'A', 'B'}, { __serialize="sequence"})))
+    tarantool> yaml.encode(setmetatable({'A', 'B'}, {__serialize='seq'}))
     ---
-    - A
-    - B
+    - |
+      --- ['A', 'B']
+      ...
     ...
-
+    tarantool> yaml.encode(setmetatable({'A', 'B'}, {__serialize='map'}))
     ---
+    - |
+      --- {1: 'A', 2: 'B'}
+      ...
     ...
-
-    tarantool> print(yaml.encode(setmetatable({'A', 'B'}, { __serialize="seq"})))
-    --- ['A', 'B']
-    ...
-
+    tarantool> array_like_table = {'A', 'B'}
+    tarantool> yaml.encode(setmetatable(array_like_table, {__serialize='seq'}))
     ---
+    - |
+      --- ['A', 'B']
+      ...
     ...
-
-    tarantool> print(yaml.encode({setmetatable({f1 = 'A', f2 = 'B'}, { __serialize="map"})}))
+    tarantool> yaml.encode(setmetatable(array_like_table, {__serialize='sequence'}))
+    tarantool> yaml.encode(setmetatable(array_like_table, {__serialize='array'}))
     ---
-    - {'f2': 'B', 'f1': 'A'}
+    - |
+      ---
+      - A
+      - B
+      ...
     ...
-
+    tarantool> yaml.encode(setmetatable(array_like_table, {__serialize='map'}))
     ---
+    - |
+      --- {1: 'A', 2: 'B'}
+      ...
+    ...
+    tarantool> yaml.encode(setmetatable(array_like_table, {__serialize='mapping'}))
+    ---
+    - |
+      ---
+      1: A
+      2: B
+      ...
+    ...
+    tarantool> map_like_table = {f1 = 'A', f2 = 'B'}
+    tarantool> yaml.encode(setmetatable(map_like_table, {__serialize='seq'}))
+    tarantool> yaml.encode(setmetatable(map_like_table, {__serialize='sequence'}))
+    tarantool> yaml.encode(setmetatable(map_like_table, {__serialize='array'}))
+    ---
+    - |
+      --- []
+      ...
+    ...
+    tarantool> yaml.encode(setmetatable(map_like_table, {__serialize='map'}))
+    ---
+    - |
+      --- {'f2': 'B', 'f1': 'A'}
+      ...
+    ...
+    tarantool> yaml.encode(setmetatable(map_like_table, {__serialize='mapping'}))
+    ---
+    - |
+      ---
+      f2: B
+      f1: A
+      ...
     ...
 
