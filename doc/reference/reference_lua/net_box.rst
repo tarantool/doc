@@ -773,7 +773,7 @@ Below is a list of all ``net.box`` functions.
 
             The results incoming from ``call()`` or ``eval()`` are decoded via ``msgpack.decode``.
             When ``msgpack.cfg.decode_save_metatables`` is ``true``, you may not change
-            result's table metatable entries. See :ref:`MsgPack <msgpack-cfg>` for details.
+            the result's table metatable entries. See :ref:`MsgPack <msgpack-cfg>` for details.
 
     ..  _conn-watch:
 

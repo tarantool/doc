@@ -148,10 +148,10 @@ the 'Example' section below.
 
 **Note on ``decode_save_metatables``**
 
-You may want to change result's metatable to get block-formatted ``encode()`` output
-instead of flow-formatted for large tables for better readability.
+For better readability, you may want to change the result's metatable to get block-formatted ``encode()``
+output instead of flow-formatted output for large tables.
 
-The possible solution is to assign new metatable.
+The possible solution is to assign a new metatable.
 
 .. code-block:: tarantoolsession
 
@@ -176,7 +176,7 @@ The possible solution is to assign new metatable.
 
     Decoder uses globally defined tables as metatables for arrays and maps. You must not
     change entries of ``decode()`` result's table metatable, because it affects all results
-    and may lead to undefined behaviour of other code.
+    and may lead to undefined behavior of other code.
 
 .. code-block:: tarantoolsession
 

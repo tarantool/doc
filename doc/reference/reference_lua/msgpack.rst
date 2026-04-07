@@ -473,7 +473,7 @@ with the MsgPack format name and encoding on the right.
 
     **cfg.decode_save_metatables**. Decoder uses globally defined tables as metatables for arrays and maps.
     You must not change entries of ``decode()`` result's table metatable, because it affects all results
-    and may lead to undefined behaviour of other code. See :ref:`Yaml <yaml-cfg>` for detailed example.
+    and may lead to undefined behavior of other code. See :ref:`Yaml <yaml-cfg>` for a detailed example.
 
     .. _msgpack-cfg_sparse:
 
