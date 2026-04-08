@@ -148,10 +148,16 @@ the 'Example' section below.
 
 **Note on ``decode_save_metatables``**
 
-For better readability, you may want to change the result's metatable to get block-formatted ``encode()``
-output instead of flow-formatted output for large tables.
+You may want to change the result's metatable to get block-formatted ``encode()``
+for better readability, but be careful to do it correctly.
 
-The possible solution is to assign a new metatable.
+.. important::
+
+    Decoder uses globally defined tables as metatables for arrays and maps. You must not
+    change entries of ``decode()`` result's table metatable, because it affects all results
+    and may lead to undefined behavior of other code.
+
+The correct way is to assign a new metatable.
 
 .. code-block:: tarantoolsession
 
@@ -162,7 +168,8 @@ The possible solution is to assign a new metatable.
       --- {'x': 'b', 1: 'a'}
       ...
     ...
-    tarantool> setmetatable(t1, {__serialize = 'mapping'})
+    tarantool> my_mt = {__serialize = 'mapping'}
+    tarantool> setmetatable(t1, my_mt)
     tarantool> yaml.encode(t1)
     ---
     - |
@@ -172,18 +179,10 @@ The possible solution is to assign a new metatable.
       ...
     ...
 
-.. important::
-
-    Decoder uses globally defined tables as metatables for arrays and maps. You must not
-    change entries of ``decode()`` result's table metatable, because it affects all results
-    and may lead to undefined behavior of other code.
+Do not change the metatable like this.
 
 .. code-block:: tarantoolsession
 
-    tarantool> yaml.cfg.decode_save_metatables
-    ---
-    - true
-    ...
     tarantool> t1 = yaml.decode(yaml.encode({[1] = 'a', x = 'b'}))
     tarantool> getmetatable(t1).__serialize
     ---
