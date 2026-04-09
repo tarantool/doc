@@ -217,6 +217,12 @@ results:
         | ``cfg.decode_max_depth``        |  128    | Max recursion depth for decoding           |
         +---------------------------------+---------+--------------------------------------------+
 
+.. important::
+
+    **cfg.decode_save_metatables**. Decoder uses globally defined tables as metatables for arrays and maps.
+    You must not change entries of ``decode()`` result's table metatable, because it affects all results
+    and may lead to undefined behavior of other code. See :ref:`Yaml <yaml-cfg>` for a detailed example.
+
     .. _json-module_cfg_sparse:
 
 **Sparse arrays features:**
