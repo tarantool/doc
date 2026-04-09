@@ -475,7 +475,7 @@ with the MsgPack format name and encoding on the right.
     You must not change entries of ``decode()`` result's table metatable, because it affects all results
     and may lead to undefined behavior of other code. See :ref:`Yaml <yaml-cfg>` for a detailed example.
 
-    .. _msgpack-cfg_sparse:
+.. _msgpack-cfg_sparse:
 
 **Sparse arrays features**
 
