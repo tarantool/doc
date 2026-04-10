@@ -199,7 +199,7 @@ Do not change the metatable like this.
       ...
     ...
 
-    .. _yaml-cfg_sparse:
+.. _yaml-cfg_sparse:
 
 **Sparse arrays features:**
 

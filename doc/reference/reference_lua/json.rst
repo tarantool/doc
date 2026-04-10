@@ -223,7 +223,7 @@ results:
     You must not change entries of ``decode()`` result's table metatable, because it affects all results
     and may lead to undefined behavior of other code. See :ref:`Yaml <yaml-cfg>` for a detailed example.
 
-    .. _json-module_cfg_sparse:
+.. _json-module_cfg_sparse:
 
 **Sparse arrays features:**
 
