@@ -1051,7 +1051,7 @@ Object types and permissions
                 *   ``usage``: Allows a user to use their privileges on database objects (for example, read, write, and alter space).
                 *   ``create``: Allows creating users, roles, functions, spaces, and sequences.
                     This permission requires read and write access to certain system spaces.
-                *   ``drop``: Allows creating users, roles, functions, spaces, and sequences.
+                *   ``drop``: Allows deleting users, roles, functions, spaces, and sequences.
                     This permission requires read and write access to certain system spaces.
                 *   ``alter``: Allows altering user settings or space objects.
         *   -   ``user``
