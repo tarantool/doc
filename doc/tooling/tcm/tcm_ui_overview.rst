@@ -331,10 +331,17 @@ Learn more in :ref:`tcm_cluster_migrations`.
 Tuples
 ~~~~~~
 
-.. important::
+..  important::
 
     The cluster-wide access to stored data on the **Tuples** page is supported only
     for sharded clusters that use the `CRUD <https://github.com/tarantool/crud>`__ module.
+    Starting with TCM 1.6.0, the **Tuples** tab is disabled by default.
+    You can enable the tab in the TCM configuration file (``tcm.yml``) using the option below:
+
+    ..  code-block:: yaml
+
+        feature:
+          tuples: True
 
 The **Tuples** page provides access to data stored in the user spaces of the selected
 cluster.
@@ -376,7 +383,7 @@ where:
 
 ..  note::
 
-    TCM does not support plain text search. For example, to search for customers named Ivan in a
+    TCM does not support text search without a search condition. For example, to search for customers named Ivan in a
     space, use the index name and a comparison operator to specify the expression:
 
     - correct: typing ``name == "Ivan"`` in the **Search** bar
@@ -403,6 +410,12 @@ In the example below, the search returns tuples with the ``name`` index equal to
 
     name == "Ivan"
 
+The example below specifies a multiple search condition.
+The search returns all people with an ID greater than 2 who were born in 1980 or earlier.
+
+..  code-block:: text
+
+    id > 2; year <= 1980;
 
 ..  _tcm_ui_cluster_tcf:
 
