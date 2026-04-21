@@ -19,6 +19,7 @@ There are the following groups of |tcm| configuration parameters:
 - :ref:`limits <tcm_configuration_reference_limits>`
 - :ref:`security <tcm_configuration_reference_security>`
 - :ref:`mode <tcm_configuration_reference_mode>`
+- :ref:`feature <tcm_configuration_reference_feature>`
 - :ref:`initial-settings <tcm_configuration_reference_initial>`
 
 .. _tcm_configuration_reference_cluster:
