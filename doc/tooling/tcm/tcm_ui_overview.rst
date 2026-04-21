@@ -336,7 +336,7 @@ Tuples
     The cluster-wide access to stored data on the **Tuples** page is supported only
     for sharded clusters that use the `CRUD <https://github.com/tarantool/crud>`__ module.
     Starting with TCM 1.6.0, the **Tuples** tab is disabled by default.
-    You can enable the tab in the TCM configuration file (``tcm.yml``) using the option below:
+    You can enable the tab in the TCM configuration file (``tcm.yaml``) using the option below:
 
     ..  code-block:: yaml
 
