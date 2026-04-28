@@ -186,6 +186,9 @@ loaded replica sets to the zero-load replica set.
 ..  note::
 
     A new zero-load replica set should be assigned a weight for rebalancing to start.
+    Before migrating buckets to a new replica set, it's important to check the data schema on the added storage.
+    The data schema on the new storage must match the schema of the other storages in the cluster.
+    Mismatches in data schemas may lead to rebalancing errors, including the halt of the migration process.
 
 When a new shard is added, the configuration can be updated dynamically:
 
