@@ -14,6 +14,13 @@ Migrations are named Lua files with code that alters the cluster data schema, fo
 creates a space, changes its format, or adds indexes. In |tcm|, there is a dedicated
 page where you can organize migrations, edit their code, and apply them to the cluster.
 
+    .. important::
+
+        Migrations created between Tarantool versions 1.5.3 and 1.7.3 **are not compatible** with the :ref:`tt-cli` utility,
+        so TCM reverted to the old behavior of handling them; however, these migrations cannot be applied in TCM version 1.8.0,
+        and must be applied on the corresponding Tarantool versions first before upgrading to TCM 1.8.0.
+
+
 ..  _tcm_cluster_migrations_manage:
 
 Managing migrations
