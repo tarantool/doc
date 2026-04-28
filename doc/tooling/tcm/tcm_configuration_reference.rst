@@ -2294,7 +2294,7 @@ The ``feature`` section defines the security parameters of |tcm|.
 
 .. confval:: feature.ttgraph
 
-    Whether Tarantool Graph DB integration is enabled.
+    Whether :ref:`Tarantool Graph DB <tcm_ui_tools_tgdb>` integration is enabled.
 
     |
     | Type: bool
@@ -2306,7 +2306,7 @@ The ``feature`` section defines the security parameters of |tcm|.
 
 .. confval:: feature.column-store
 
-    Whether Tarantool Column Store integration is enabled.
+    Whether :ref:`Tarantool Column Store <tcm_ui_tools_tcs>` integration is enabled.
 
     |
     | Type: bool
@@ -2318,7 +2318,7 @@ The ``feature`` section defines the security parameters of |tcm|.
 
 .. confval:: feature.tqe
 
-    Whether Tarantool Queue Enterprise integration is enabled.
+    Whether :ref:`Tarantool Queue Enterprise <tcm_ui_cluster_tqe>`  integration is enabled.
 
     |
     | Type: bool
@@ -2337,6 +2337,18 @@ The ``feature`` section defines the security parameters of |tcm|.
     | Default: false
     | Environment variable: TCM_FEATURE_API_TOKEN
     | Command-line option: ``--feature.api-token``
+
+.. _tcm_configuration_reference_feature_tuples:
+
+.. confval:: feature.tuples
+
+    Whether the use of :ref:`Tuples <tcm_ui_cluster_tuples>` is enabled.
+
+    |
+    | Type: bool
+    | Default: false
+    | Environment variable: TCM_FEATURE_TUPLES
+    | Command-line option: ``--feature.tuples``
 
 .. _tcm_configuration_reference_initial:
 
