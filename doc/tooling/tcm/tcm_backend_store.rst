@@ -251,13 +251,17 @@ and form an etcd cluster from them:
             embed:
               enabled: true
               name: infra1
-              endpoints: http://127.0.0.1:2379
-              advertises: http://127.0.0.1:2379
+              endpoints:
+                - http://127.0.0.1:2379
+              advertises:
+                - http://127.0.0.1:2379
               initial-cluster-state: new
-              initial-cluster: infra1=http://127.0.0.1:12380,infra2=http://127.0.0.1:22380,infra3=http://127.0.0.1:32380
+              initial-cluster: "infra1=http://127.0.0.1:12380,infra2=http://127.0.0.1:22380,infra3=http://127.0.0.1:32380"
               initial-cluster-token: etcd-cluster-1
-              peer-endpoints: http://127.0.0.1:12380
-              peer-advertises: http://127.0.0.1:12380
+              peer-endpoints:
+                - http://127.0.0.1:12380
+              peer-advertises:
+                - http://127.0.0.1:12380
               workdir: node1.etcd
 
 *   Second instance:
@@ -275,13 +279,17 @@ and form an etcd cluster from them:
             embed:
               enabled: true
               name: infra2
-              endpoints: http://127.0.0.1:22379
-              advertises: http://127.0.0.1:22379
+              endpoints:
+                - http://127.0.0.1:2379
+              advertises:
+                - http://127.0.0.1:2379
               initial-cluster-state: new
-              initial-cluster: infra1=http://127.0.0.1:12380,infra2=http://127.0.0.1:22380,infra3=http://127.0.0.1:32380
+              initial-cluster: "infra1=http://127.0.0.1:12380,infra2=http://127.0.0.1:22380,infra3=http://127.0.0.1:32380"
               initial-cluster-token: etcd-cluster-1
-              peer-endpoints: http://127.0.0.1:22380
-              peer-advertises: http://127.0.0.1:22380
+              peer-endpoints:
+                - http://127.0.0.1:22380
+              peer-advertises:
+                - http://127.0.0.1:22380
               workdir: node2.etcd
 
 *   Third instance:
@@ -299,13 +307,17 @@ and form an etcd cluster from them:
             embed:
               enabled: true
               name: infra3
-              endpoints: http://127.0.0.1:32379
-              advertises: http://127.0.0.1:32379
+              endpoints:
+                - http://127.0.0.1:2379
+              advertises:
+                - http://127.0.0.1:2379
               initial-cluster-state: new
-              initial-cluster: infra1=http://127.0.0.1:12380,infra2=http://127.0.0.1:22380,infra3=http://127.0.0.1:32380
+              initial-cluster: "infra1=http://127.0.0.1:12380,infra2=http://127.0.0.1:22380,infra3=http://127.0.0.1:32380"
               initial-cluster-token: etcd-cluster-1
-              peer-endpoints: http://127.0.0.1:32380
-              peer-advertises: http://127.0.0.1:32380
+              peer-endpoints:
+                - http://127.0.0.1:32380
+              peer-advertises:
+                - http://127.0.0.1:32380
               workdir: node3.etcd
 
 
@@ -333,6 +345,7 @@ Tarantool-based backend stores and form a cluster from them:
               - http://127.0.0.1:3303
             embed:
               enabled: true
+              executable: /path/to/execfile/tarantool-enterprise/tarantool
               config-filename: config.yml
               workdir: node1.tarantool
               args:
@@ -340,6 +353,7 @@ Tarantool-based backend stores and form a cluster from them:
                 - instance-001
                 - --config
                 - config.yml
+
 
 *   Second instance:
 
@@ -355,6 +369,7 @@ Tarantool-based backend stores and form a cluster from them:
               - http://127.0.0.1:3303
             embed:
               enabled: true
+              executable: /path/to/execfile/tarantool-enterprise/tarantool
               config-filename: config.yml
               workdir: node2.tarantool
               args:
@@ -377,6 +392,7 @@ Tarantool-based backend stores and form a cluster from them:
               - http://127.0.0.1:3303
             embed:
               enabled: true
+              executable: /path/to/execfile/tarantool-enterprise/tarantool
               config-filename: config.yml
               workdir: node3.tarantool
               args:
