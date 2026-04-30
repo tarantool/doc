@@ -282,9 +282,9 @@ and form an etcd cluster from them:
               enabled: true
               name: infra2
               endpoints:
-                - http://127.0.0.1:2379
+                - http://127.0.0.1:22379
               advertises:
-                - http://127.0.0.1:2379
+                - http://127.0.0.1:22379
               initial-cluster-state: new
               initial-cluster: "infra1=http://127.0.0.1:12380,infra2=http://127.0.0.1:22380,infra3=http://127.0.0.1:32380"
               initial-cluster-token: etcd-cluster-1
@@ -311,9 +311,9 @@ and form an etcd cluster from them:
               enabled: true
               name: infra3
               endpoints:
-                - http://127.0.0.1:2379
+                - http://127.0.0.1:32379
               advertises:
-                - http://127.0.0.1:2379
+                - http://127.0.0.1:32379
               initial-cluster-state: new
               initial-cluster: "infra1=http://127.0.0.1:12380,infra2=http://127.0.0.1:22380,infra3=http://127.0.0.1:32380"
               initial-cluster-token: etcd-cluster-1
