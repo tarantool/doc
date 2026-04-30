@@ -240,7 +240,8 @@ and form an etcd cluster from them:
 
     .. code-block:: yaml
 
-        http.port: 8080
+        http
+          port: 8080
         storage:
           provider: etcd
           etcd:
@@ -268,7 +269,8 @@ and form an etcd cluster from them:
 
     .. code-block:: yaml
 
-        http.port: 8081
+        http
+          port: 8081
         storage:
           provider: etcd
           etcd:
@@ -296,7 +298,8 @@ and form an etcd cluster from them:
 
     .. code-block:: yaml
 
-        http.port: 8082
+        http.
+          port: 8082
         storage:
           provider: etcd
           etcd:
@@ -335,7 +338,8 @@ Tarantool-based backend stores and form a cluster from them:
 
     .. code-block:: yaml
 
-        http.port: 8080
+        http
+          port: 8080
         storage:
           provider: tarantool
           tarantool:
@@ -359,7 +363,8 @@ Tarantool-based backend stores and form a cluster from them:
 
     .. code-block:: yaml
 
-        http.port: 8081
+        http
+          port: 8081
         storage:
           provider: tarantool
           tarantool:
@@ -382,7 +387,8 @@ Tarantool-based backend stores and form a cluster from them:
 
     .. code-block:: yaml
 
-        http.port: 8082
+        http
+          port: 8082
         storage:
           provider: tarantool
           tarantool:
