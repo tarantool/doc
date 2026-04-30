@@ -167,6 +167,10 @@ Embedded backend store
 For development purposes, you can start |tcm| with an embedded backend store.
 This is useful for local runs when you don't have or don't need an external backend store.
 
+.. important::
+
+    Do not use the embedded backend stores in production environments.
+
 An embedded |tcm| backend store is a single instance of etcd or Tarantool that
 is started automatically on the same host during the |tcm| startup. It runs
 in the background until |tcm| is stopped. The embedded backend store is persistent:
@@ -240,7 +244,7 @@ and form an etcd cluster from them:
 
     .. code-block:: yaml
 
-        http
+        http:
           port: 8080
         storage:
           provider: etcd
@@ -269,7 +273,7 @@ and form an etcd cluster from them:
 
     .. code-block:: yaml
 
-        http
+        http:
           port: 8081
         storage:
           provider: etcd
@@ -298,7 +302,7 @@ and form an etcd cluster from them:
 
     .. code-block:: yaml
 
-        http.
+        http:
           port: 8082
         storage:
           provider: etcd
@@ -338,7 +342,7 @@ Tarantool-based backend stores and form a cluster from them:
 
     .. code-block:: yaml
 
-        http
+        http:
           port: 8080
         storage:
           provider: tarantool
@@ -363,7 +367,7 @@ Tarantool-based backend stores and form a cluster from them:
 
     .. code-block:: yaml
 
-        http
+        http:
           port: 8081
         storage:
           provider: tarantool
@@ -387,7 +391,7 @@ Tarantool-based backend stores and form a cluster from them:
 
     .. code-block:: yaml
 
-        http
+        http:
           port: 8082
         storage:
           provider: tarantool
