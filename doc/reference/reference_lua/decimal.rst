@@ -37,9 +37,36 @@ Tarantool converts it to a decimal number before
 working with it.
 It is best to construct from strings, and to convert
 back to strings after calculations, because Lua numbers
-have only 15 digits of precision. Decimal numbers have
-38 digits of precision, that is, the total number of digits
-before and after the decimal point can be 38.
+have only 15 digits of precision.
+
+Decimal numbers have
+N digits of precision, that is, the total number of digits
+before and after the decimal point can be equal to N. In Tarantool 3.5
+the precision was increased from N = 38 to N = 76.
+
+.. code-block:: lua
+
+    decimal = require('decimal')
+    e = decimal.exp(1)
+    -- In Tarantool version 3.5 and above:
+    decimal.precision(e)
+    ---
+    - 76
+    ...
+    #tostring(e)
+    ---
+    - 77
+    ...
+    -- In Tarantool versions before 3.5:
+    decimal.precision(e)
+    ---
+    - 38
+    ...
+    #tostring(e)
+    ---
+    - 39
+    ...
+
 Tarantool supports the usual arithmetic and comparison operators
 + - * / % ^ < > <= >= ~= ==.
 If an operation has both decimal and non-decimal operands,
@@ -49,11 +76,11 @@ the operation happens.
 Use ``tostring(decimal-number)`` to convert back to a string.
 
 A decimal operation will fail if overflow happens (when a
-number is greater than 10^38 - 1 or less than -10^38 - 1).
+number is greater than 10^N - 1 or less than -10^N - 1).
 A decimal operation will fail if arithmetic is impossible
 (such as division by zero or square root of minus 1).
 A decimal operation will not fail if rounding of
-post-decimal digits is necessary to get 38-digit precision.
+post-decimal digits is necessary to get N-digit precision.
 
 .. _decimal-abs:
 
@@ -68,7 +95,9 @@ post-decimal digits is necessary to get 38-digit precision.
 
     Returns *e* raised to the power of a decimal number.
     For example if ``a`` is ``1`` then ``decimal.exp(a)`` returns
-    ``2.7182818284590452353602874713526624978``.
+    ``2.7182818284590452353602874713526624978`` for N = 38 or
+    ``2.718281828459045235360287471352662497757247093699959574966967627724076630354``
+    for N = 76.
     Compare ``math.exp(1)`` from the
     `Lua math library <https://www.lua.org/pil/18.html>`_,
     which returns ``2.718281828459``.
@@ -135,7 +164,9 @@ post-decimal digits is necessary to get 38-digit precision.
 
     Returns the square root of a decimal number.
     For example if ``a`` is ``2`` then ``decimal.sqrt(a)`` returns 
-    ``1.4142135623730950488016887242096980786``.
+    ``1.4142135623730950488016887242096980786`` for N = 38 or
+    ``1.414213562373095048801688724209698078569671875376948073176679737990732478462``
+    for N = 76.
 
 .. _decimal-trim:
 
