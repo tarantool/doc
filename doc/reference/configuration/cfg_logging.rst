@@ -52,7 +52,15 @@ application.
     Since version 1.7.4.
 
     By default, Tarantool sends the log to the standard error stream
-    (``stderr``). If ``log`` is specified, Tarantool can send the log to a:
+    (``stderr``).
+
+    .. code-block:: lua
+
+        box.cfg{}
+        -- or
+        box.cfg{log = ''}
+
+    If ``log`` is specified and not empty, Tarantool can send the log to a:
 
     * file
 
