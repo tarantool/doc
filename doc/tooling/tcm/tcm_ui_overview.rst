@@ -562,7 +562,7 @@ The **Clusters** page lists Tarantool clusters that are connected to |tcm|.
 .. image:: _images/tcm_ui_clusters.png
     :align: left
     :width: 700
-    :alt: TCM clusters page
+    :alt: TCM Clusters page
 
 On this page, you can:
 
@@ -571,6 +571,19 @@ On this page, you can:
 -   disconnect clusters
 
 Learn more in :ref:`tcm_connect_clusters`.
+
+When managing Tarantool clusters via |tcm|, you can configure individual cluster settings by clicking the **three-dot menu (⋯)** next
+to the cluster name on the **Clusters** page and selecting **Edit**. This opens a dedicated configuration panel for the selected cluster.
+
+The **Config storage** tab contains settings for the cluster's configuration storage:
+
+- **Provider** – the type of configuration storage used by the cluster. Values: etcd, tarantool.
+- **Prefix** – the key prefix in the configuration storage under which the Tarantool cluster configuration is stored. This helps isolate multiple clusters using the same backend. Must start with a forward slash (/).
+- **Workers prefix** – the key prefix used to locate TDB worker configurations in the storage backend. Must start with a forward slash (/).
+- **Endpoints** – a list of URLs for the configuration storage nodes, each on a new line. These endpoints are used by TCM to connect to the storage backend and retrieve or update cluster data.
+- **Username** – the username for authenticating with the configuration storage (e.g., etcd). Used if the storage backend is secured with user authentication.
+- **Password** – the password for the specified username. Provides secure access to the configuration storage.
+
 
 ..  _tcm_ui_clusters_acl:
 
