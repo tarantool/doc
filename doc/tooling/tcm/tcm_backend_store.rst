@@ -167,6 +167,10 @@ Embedded backend store
 For development purposes, you can start |tcm| with an embedded backend store.
 This is useful for local runs when you don't have or don't need an external backend store.
 
+.. important::
+
+    Do not use the embedded backend stores in production environments.
+
 An embedded |tcm| backend store is a single instance of etcd or Tarantool that
 is started automatically on the same host during the |tcm| startup. It runs
 in the background until |tcm| is stopped. The embedded backend store is persistent:
@@ -240,7 +244,8 @@ and form an etcd cluster from them:
 
     .. code-block:: yaml
 
-        http.port: 8080
+        http:
+          port: 8080
         storage:
           provider: etcd
           etcd:
@@ -251,20 +256,25 @@ and form an etcd cluster from them:
             embed:
               enabled: true
               name: infra1
-              endpoints: http://127.0.0.1:2379
-              advertises: http://127.0.0.1:2379
+              endpoints:
+                - http://127.0.0.1:2379
+              advertises:
+                - http://127.0.0.1:2379
               initial-cluster-state: new
-              initial-cluster: infra1=http://127.0.0.1:12380,infra2=http://127.0.0.1:22380,infra3=http://127.0.0.1:32380
+              initial-cluster: "infra1=http://127.0.0.1:12380,infra2=http://127.0.0.1:22380,infra3=http://127.0.0.1:32380"
               initial-cluster-token: etcd-cluster-1
-              peer-endpoints: http://127.0.0.1:12380
-              peer-advertises: http://127.0.0.1:12380
+              peer-endpoints:
+                - http://127.0.0.1:12380
+              peer-advertises:
+                - http://127.0.0.1:12380
               workdir: node1.etcd
 
 *   Second instance:
 
     .. code-block:: yaml
 
-        http.port: 8081
+        http:
+          port: 8081
         storage:
           provider: etcd
           etcd:
@@ -275,20 +285,25 @@ and form an etcd cluster from them:
             embed:
               enabled: true
               name: infra2
-              endpoints: http://127.0.0.1:22379
-              advertises: http://127.0.0.1:22379
+              endpoints:
+                - http://127.0.0.1:22379
+              advertises:
+                - http://127.0.0.1:22379
               initial-cluster-state: new
-              initial-cluster: infra1=http://127.0.0.1:12380,infra2=http://127.0.0.1:22380,infra3=http://127.0.0.1:32380
+              initial-cluster: "infra1=http://127.0.0.1:12380,infra2=http://127.0.0.1:22380,infra3=http://127.0.0.1:32380"
               initial-cluster-token: etcd-cluster-1
-              peer-endpoints: http://127.0.0.1:22380
-              peer-advertises: http://127.0.0.1:22380
+              peer-endpoints:
+                - http://127.0.0.1:22380
+              peer-advertises:
+                - http://127.0.0.1:22380
               workdir: node2.etcd
 
 *   Third instance:
 
     .. code-block:: yaml
 
-        http.port: 8082
+        http:
+          port: 8082
         storage:
           provider: etcd
           etcd:
@@ -299,13 +314,17 @@ and form an etcd cluster from them:
             embed:
               enabled: true
               name: infra3
-              endpoints: http://127.0.0.1:32379
-              advertises: http://127.0.0.1:32379
+              endpoints:
+                - http://127.0.0.1:32379
+              advertises:
+                - http://127.0.0.1:32379
               initial-cluster-state: new
-              initial-cluster: infra1=http://127.0.0.1:12380,infra2=http://127.0.0.1:22380,infra3=http://127.0.0.1:32380
+              initial-cluster: "infra1=http://127.0.0.1:12380,infra2=http://127.0.0.1:22380,infra3=http://127.0.0.1:32380"
               initial-cluster-token: etcd-cluster-1
-              peer-endpoints: http://127.0.0.1:32380
-              peer-advertises: http://127.0.0.1:32380
+              peer-endpoints:
+                - http://127.0.0.1:32380
+              peer-advertises:
+                - http://127.0.0.1:32380
               workdir: node3.etcd
 
 
@@ -323,7 +342,8 @@ Tarantool-based backend stores and form a cluster from them:
 
     .. code-block:: yaml
 
-        http.port: 8080
+        http:
+          port: 8080
         storage:
           provider: tarantool
           tarantool:
@@ -333,6 +353,7 @@ Tarantool-based backend stores and form a cluster from them:
               - http://127.0.0.1:3303
             embed:
               enabled: true
+              executable: /path/to/execfile/tarantool-enterprise/tarantool
               config-filename: config.yml
               workdir: node1.tarantool
               args:
@@ -341,11 +362,13 @@ Tarantool-based backend stores and form a cluster from them:
                 - --config
                 - config.yml
 
+
 *   Second instance:
 
     .. code-block:: yaml
 
-        http.port: 8081
+        http:
+          port: 8081
         storage:
           provider: tarantool
           tarantool:
@@ -355,6 +378,7 @@ Tarantool-based backend stores and form a cluster from them:
               - http://127.0.0.1:3303
             embed:
               enabled: true
+              executable: /path/to/execfile/tarantool-enterprise/tarantool
               config-filename: config.yml
               workdir: node2.tarantool
               args:
@@ -367,7 +391,8 @@ Tarantool-based backend stores and form a cluster from them:
 
     .. code-block:: yaml
 
-        http.port: 8082
+        http:
+          port: 8082
         storage:
           provider: tarantool
           tarantool:
@@ -377,6 +402,7 @@ Tarantool-based backend stores and form a cluster from them:
               - http://127.0.0.1:3303
             embed:
               enabled: true
+              executable: /path/to/execfile/tarantool-enterprise/tarantool
               config-filename: config.yml
               workdir: node3.tarantool
               args:
