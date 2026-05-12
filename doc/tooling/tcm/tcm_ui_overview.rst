@@ -144,8 +144,8 @@ It provides a set of tabs for performing actions on the selected Tarantool insta
 -   **Details** and **State** tabs: view instance details as a human-readable table
     or as a console output of ``box.cfg``, ``box.info``, and other built-in functions
 -   **SQL** and **Terminal** tabs: run SQL and Lua commands on the instance. TCM provides two ways to interact with Tarantool instances:
-    -  ``direct`` — a terminal that connects directly to a Tarantool instance using the `go-tarantool <https://github.com/tarantool/go-tarantool/>`__ library, bypassing the tt connect utility
-    -  ``tt-connect`` — a terminal that uses the :ref:`tt-cli` utility to connect to a Tarantool instance
+    * ``direct`` — a terminal that connects directly to a Tarantool instance using the `go-tarantool <https://github.com/tarantool/go-tarantool/>`__ library, bypassing the tt connect utility
+    * ``tt-connect`` — a terminal that uses the :ref:`tt-cli` utility to connect to a Tarantool instance
 -   **Logs** tab: view instance logs
 -   **Slabs** tab: view :ref:`slab allocator <memtx-memory>` statistics.
 -   **Users** tab: manage Tarantool :ref:`users and roles <tcm_cluster_users>` on the instance
