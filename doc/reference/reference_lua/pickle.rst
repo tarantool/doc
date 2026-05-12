@@ -89,12 +89,12 @@ Below is a list of all ``pickle`` functions.
 
     Possible errors:
 
-    *   argument count does not match the format. Note: excess values are
-        simple ignored.
+    *   Argument count does not match the format. Note: excess values are
+        simply ignored.
 
-    *   expected 8/16/32/64-bit int.
+    *   Expected 8/16/32/64-bit int.
 
-    *   unsupported pack format specifier.
+    *   Unsupported pack format specifier.
 
     **Example:**
 
