@@ -101,6 +101,7 @@ Define the general configuration settings:
 *   **Automatically add non-existent users**. By default, |tcm| automatically saves
     LDAP user information to its :ref:`backend store <tcm_backend_store>`
     upon their first login. Turn the toggle off if you don't want to save users from this LDAP server.
+    If the parameter is disabled, the user must be added manually in TCM on the **Users** tab, and the authentication method must be set to LDAP.
 
 ..  _tcm_ldap_auth_config_connect:
 
@@ -122,7 +123,7 @@ LDAP queries
 To define how |tcm| queries the LDAP server for user authentication and authorization,
 fill in the fields of the **Queries** step:
 
--   **Query user** and **Query password**. Credentials of the LDAP user on behalf
+-   (Optional fields) **Query user** and **Query password**. Credentials of the LDAP user on behalf
     of which all LDAP queries are executed: a distinguished name (DN) and a password.
     Example DN:
     
@@ -163,7 +164,7 @@ fill in the fields of the **Queries** step:
 
 -   (Optional) **Template query**. A template for querying the LDAP server for the DN. This
     way is used if **Template DN** is not provided.
--   **Group query template**. A template for querying groups to which a user belongs
+-   (Optional) **Group query template**. A template for querying groups to which a user belongs
     for authorization purposes. Learn more in :ref:`tcm_ldap_auth_config_permissions`.
     Example:
 

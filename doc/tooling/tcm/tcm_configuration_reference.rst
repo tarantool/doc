@@ -21,6 +21,8 @@ There are the following groups of |tcm| configuration parameters:
 - :ref:`mode <tcm_configuration_reference_mode>`
 - :ref:`feature <tcm_configuration_reference_feature>`
 - :ref:`initial-settings <tcm_configuration_reference_initial>`
+- :ref:`migrations <tcm_configuration_reference_migrations>`
+- :ref:`default-cluster <tcm_configuration_reference_default-cluster>`
 
 .. _tcm_configuration_reference_cluster:
 
@@ -40,6 +42,14 @@ Tarantool clusters.
 -   :ref:`sharding-index <tcm_configuration_reference_cluster_sharding-index>`
 -   :ref:`skew-time <tcm_configuration_reference_cluster_skew-time>`
 -   :ref:`fragmentation-threshold <tcm_configuration_reference_cluster_fragmentation-threshold>`
+-   :ref:`connectivity-check-timeout <tcm_configuration_reference_cluster_connectivity_check_timeout>`
+-   :ref:`backoff-initial-delay <tcm_configuration_reference_cluster_backoff_initial_delay>`
+-   :ref:`backoff-max-delay <tcm_configuration_reference_cluster_backoff_max_delay>`
+-   :ref:`backoff-failure-threshold <tcm_configuration_reference_cluster_backoff_failure_threshold>`
+-   :ref:`connection-pool-check-timeout <tcm_configuration_reference_cluster_connection_pool_check_timeout>`
+-   :ref:`watcher-retry-delay <tcm_configuration_reference_cluster_watcher_retry_delay>`
+-   :ref:`stats-max-space-length <tcm_configuration_reference_cluster_stats_max_space_length>`
+-   :ref:`stats-timeout <tcm_configuration_reference_cluster_stats_timeout>`
 
 .. _tcm_configuration_reference_cluster_connection-rate-limit:
 
@@ -166,6 +176,102 @@ Tarantool clusters.
     | Environment variable: TCM_CLUSTER_FRAGMENTATION_THRESHOLD
     | Command-line option: ``--cluster.fragmentation-threshold``
 
+.. _tcm_configuration_reference_cluster_connectivity_check_timeout:
+
+.. confval:: cluster.connectivity-check-timeout
+
+    The maximum time to wait for a response from a cluster node during availability check. If the node does not respond within this time, the check is considered failed.
+
+    |
+    | Type: time.Duration
+    | Default: 3s
+    | Environment variable: TCM_CLUSTER_CONNECTIVITY_CHECK_TIMEOUT
+    | Command-line option: ``--cluster.connectivity-check-timeout``
+
+.. _tcm_configuration_reference_cluster_backoff_initial_delay:
+
+.. confval:: cluster.backoff-initial-delay
+
+    The initial delay before the first retry attempt to reconnect to a node after failure. Used to reduce load during frequent failures.
+
+    |
+    | Type: time.Duration
+    | Default: 1s
+    | Environment variable: TCM_CLUSTER_BACKOFF_INITIAL_DELAY
+    | Command-line option: ``--cluster.backoff-initial-delay``
+
+.. _tcm_configuration_reference_cluster_backoff_max_delay:
+
+.. confval:: cluster.backoff-max-delay
+
+    The maximum delay between reconnect attempts. After reaching this delay, it stops increasing.
+
+    |
+    | Type: time.Duration
+    | Default: 30s
+    | Environment variable: TCM_CLUSTER_BACKOFF_MAX_DELAY
+    | Command-line option: ``--cluster.backoff-max-delay``
+
+.. _tcm_configuration_reference_cluster_backoff_failure_threshold:
+
+.. confval:: cluster.backoff-failure-threshold
+
+    The number of failed connection attempts after which TCM stops further attempts and marks the node as unavailable.
+
+    |
+    | Type: int
+    | Default: 3
+    | Environment variable: TCM_CLUSTER_BACKOFF_FAILURE_THRESHOLD
+    | Command-line option: ``--cluster.backoff-failure-threshold``
+
+.. _tcm_configuration_reference_cluster_connection_pool_check_timeout:
+
+.. confval:: cluster.connection-pool-check-timeout
+
+    The maximum time to wait for a connection response from the pool to a cluster node. Used to verify the connection validity.
+
+    |
+    | Type: time.Duration
+    | Default: 3s
+    | Environment variable: TCM_CLUSTER_CONNECTION_POOL_CHECK_TIMEOUT
+    | Command-line option: ``--cluster.connection-pool-check-timeout``
+
+.. _tcm_configuration_reference_cluster_watcher_retry_delay:
+
+.. confval:: cluster.watcher-retry-delay
+
+    The delay between reconnect attempts to the watch system after a failure.
+
+    |
+    | Type: time.Duration
+    | Default: 1s
+    | Environment variable: TCM_CLUSTER_WATCHER_RETRY_DELAY
+    | Command-line option: ``--cluster.watcher-retry-delay``
+
+.. _tcm_configuration_reference_cluster_stats_max_space_length:
+
+.. confval:: cluster.stats-max-space-length
+
+    The maximum number of records in the statistics buffer that will be stored before sending or processing.
+
+    |
+    | Type: int
+    | Default: 10000
+    | Environment variable: TCM_CLUSTER_STATS_MAX_SPACE_LENGTH
+    | Command-line option: ``--cluster.stats-max-space-length``
+
+.. _tcm_configuration_reference_cluster_stats_timeout:
+
+.. confval:: cluster.stats-timeout
+
+    The maximum time to wait for a response from a node when querying statistics. If the node does not respond within this time, the query is considered failed.
+
+    |
+    | Type: time.Duration
+    | Default: 1m
+    | Environment variable: TCM_CLUSTER_STATS_TIMEOUT
+    | Command-line option: ``--cluster.stats-timeout``
+
 .. _tcm_configuration_reference_http:
 
 http
@@ -189,6 +295,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
 -   :ref:`http.websession-cookie.secure <tcm_configuration_reference_http_websession-cookie_secure>`
 -   :ref:`http.websession-cookie.http-only <tcm_configuration_reference_http_websession-cookie_http-only>`
 -   :ref:`http.websession-cookie.same-site <tcm_configuration_reference_http_websession-cookie_same-site>`
+-	:ref:`http.websession-cookie.cleanup-period <tcm_configuration_reference_http_websession-cookie_.cleanup-period>`
 -   :ref:`http.cors.enabled <tcm_configuration_reference_http_cors_enabled>`
 -   :ref:`http.cors.allowed-origins <tcm_configuration_reference_http_cors_allowed-origins>`
 -   :ref:`http.cors.allowed-methods <tcm_configuration_reference_http_cors_allowed-methods>`
@@ -199,7 +306,7 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
 -   :ref:`http.tls.enabled <tcm_configuration_reference_http_tls_enabled>`
 -   :ref:`http.tls.cert-file <tcm_configuration_reference_http_tls_cert-file>`
 -   :ref:`http.tls.key-file <tcm_configuration_reference_http_tls_key-file>`
--   :ref:`http.tls.server <tcm_configuration_reference_http_tls_server>`
+-   :ref:`http.tls.server <tcm_configuration_reference_http_tls_server-name>`
 -   :ref:`http.tls.min-version <tcm_configuration_reference_http_tls_min-version>`
 -   :ref:`http.tls.max-version <tcm_configuration_reference_http_tls_max-version>`
 -   :ref:`http.tls.curve-preferences <tcm_configuration_reference_http_tls_curve-preferences>`
@@ -458,6 +565,18 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Environment variable: TCM_HTTP_WEBSESSION_COOKIE_SAME_SITE
     | Command-line option: ``---http.websession-cookie.same-site``
 
+.. _tcm_configuration_reference_http_websession-cookie_cleanup-period:
+
+.. confval:: http.websession-cookie.cleanup-period
+
+    Interval between cleanup runs for expired sessions. A session is considered expired if it hasn't been updated for the duration specified in the `http.websession-cookie.ttl` variable.
+
+    |
+    | Type: time.Duration
+    | Default value: 2m0s
+    | Environment variable: TCM_HTTP_WEBSESSION_COOKIE_CLEANUP_PERIOD
+    | Command-line flag: ``--http.websession-cookie.cleanup-period``
+
 .. _tcm_configuration_reference_http_cors_enabled:
 
 .. confval:: http.cors.enabled
@@ -597,17 +716,17 @@ The ``http`` group defines parameters of HTTP connections between |tcm| and clie
     | Environment variable: TCM_HTTP_TLS_KEY_FILE
     | Command-line option: ``--http.tls.key-file``
 
-.. _tcm_configuration_reference_http_tls_server:
+.. _tcm_configuration_reference_http_tls_server-name:
 
-.. confval:: http.tls.server
+.. confval:: http.tls.server-name
 
     The TLS server.
 
     |
     | Type: string
     | Default: ""
-    | Environment variable: TCM_HTTP_TLS_SERVER
-    | Command-line option: ``--http.tls.server``
+    | Environment variable: TCM_HTTP_TLS_SERVER_NAME
+    | Command-line option: ``--http.tls.server-name``
 
 .. _tcm_configuration_reference_http_tls_min-version:
 
@@ -2288,6 +2407,8 @@ The ``feature`` section defines the security parameters of |tcm|.
 -   :ref:`feature.column-store <tcm_configuration_reference_feature_column-store>`
 -   :ref:`feature.tqe <tcm_configuration_reference_feature_tqe>`
 -   :ref:`feature.api-token <tcm_configuration_reference_feature_api-token>`
+-   :ref:`feature.tuples <tcm_configuration_reference_feature_tuples>`
+-   :ref:`feature.tcf <tcm_configuration_reference_feature_tcf>`
 
 
 .. _tcm_configuration_reference_feature_ttgraph:
@@ -2349,6 +2470,18 @@ The ``feature`` section defines the security parameters of |tcm|.
     | Default: false
     | Environment variable: TCM_FEATURE_TUPLES
     | Command-line option: ``--feature.tuples``
+
+.. _tcm_configuration_reference_feature_tcf:
+
+.. confval:: feature.tcf
+
+    Whether the use of :ref:`TCF <tcm_ui_cluster_tcf>` is enabled.
+
+    |
+    | Type: bool
+    | Default: false
+    | Environment variable: TCM_FEATURE_TCF
+    | Command-line option: ``--feature.tcf``
 
 .. _tcm_configuration_reference_initial:
 
@@ -3013,3 +3146,191 @@ See also :ref:`tcm_configuration_initial`.
     |
     | Type: string
     | Default: ""
+
+.. _tcm_configuration_reference_initial_auditlog:
+
+.. confval:: initial-settings.auditlog
+
+    Audit log settings, including output to console, file, syslog, and event filtering.
+
+.. _tcm_configuration_reference_initial_auditlog_enabled:
+
+.. confval:: initial-settings.auditlog.enabled
+
+    Enables or disables audit logging.
+
+    |
+    | Type: bool
+    | Default: false
+
+.. _tcm_configuration_reference_initial_auditlog_stdout:
+
+.. confval:: initial-settings.auditlog.stdout
+
+    Enables output of audit logs to standard output (stdout).
+
+    |
+    | Type: bool
+    | Default: false
+
+.. _tcm_configuration_reference_initial_auditlog_protocol:
+
+.. confval:: initial-settings.auditlog.protocol
+
+    Specifies the output method for audit logs. Possible values: `file`, `syslog`.
+
+    |
+    | Type: string
+    | Default: file
+
+.. _tcm_configuration_reference_initial_auditlog_file_output:
+
+.. confval:: initial-settings.auditlog.file.output
+
+    Path to the file where audit logs will be written. The file will appear in the TCM working directory. The user running TCM must have read and write permissions to the specified directory.
+
+    |
+    | Type: string
+    | Default: ""
+
+.. _tcm_configuration_reference_initial_auditlog_file.max-size:
+
+.. confval:: initial-settings.auditlog.file.max-size
+
+    Maximum file size in megabytes before rotation.
+
+    |
+    | Type: int
+    | Default: 0
+
+.. _tcm_configuration_reference_initial_auditlog_file.max-backups:
+
+.. confval:: initial-settings.auditlog.file.max-backups
+
+    Maximum number of backup files to keep.
+
+    |
+    | Type: int
+    | Default: 0
+
+.. _tcm_configuration_reference_initial_auditlog_file.max-age:
+
+.. confval:: initial-settings.auditlog.file.max-age
+
+    Maximum number of days to keep logs.
+
+    |
+    | Type: int
+    | Default: 0
+
+.. _tcm_configuration_reference_initial_auditlog_file.compress:
+
+.. confval:: initial-settings.auditlog.file.compress
+
+    Enables compression of backup log files.
+
+    |
+    | Type: bool
+    | Default: false
+
+.. _tcm_configuration_reference_initial_auditlog_syslog_protocol:
+
+.. confval:: initial-settings.auditlog.syslog.protocol
+
+    Syslog protocol. Possible values: `udp`, `tcp`.
+
+    |
+    | Type: string
+    | Default: udp
+
+.. _tcm_configuration_reference_initial_auditlog_syslog_output:
+
+.. confval:: initial-settings.auditlog.syslog.output
+
+    Syslog server address and port.
+
+    |
+    | Type: string
+    | Default: ""
+
+.. _tcm_configuration_reference_initial_auditlog_syslog_priority:
+
+.. confval:: initial-settings.auditlog.syslog.priority
+
+    Syslog message priority level.
+
+    |
+    | Type: string
+    | Default: ""
+
+.. _tcm_configuration_reference_initial_auditlog_syslog_facility:
+
+.. confval:: initial-settings.auditlog.syslog.facility
+
+    Syslog facility (category) for messages.
+
+    |
+    | Type: string
+    | Default: ""
+
+.. _tcm_configuration_reference_initial_auditlog_syslog_timeout:
+
+.. confval:: initial-settings.auditlog.syslog.timeout
+
+    Maximum timeout for syslog server response.
+
+    |
+    | Type: time.Duration
+    | Default: 2s
+
+.. _tcm_configuration_reference_initial_auditlog_filters:
+
+.. confval:: initial-settings.auditlog.filters
+
+    List of filters applied to audit events. Filters allow including or excluding specific types of events.
+
+    |
+    | Type: string
+    | Default: []
+
+
+.. _tcm_configuration_reference_migrations:
+
+migrations
+----------
+
+Section `migrations` contains settings for migrations.
+
+.. _tcm_configuration_reference_migrations_duration:
+
+.. confval:: migrations.duration
+
+    Maximum time allowed for long-running migrations to prevent interruption, set by default.
+
+    |
+    | Type: time.Duration
+    | Default value: 6m0s
+    | Environment variable:  TCM_MIGRATIONS_DURATION
+    | Command-line option: ``--migrations.duration``
+
+
+.. _tcm_configuration_reference_default-cluster:
+
+default-cluster
+---------------
+
+Section `default-cluster` controls the default cluster.
+
+.. _tcm_configuration_reference_default-cluster_option:
+
+.. confval:: default-cluster
+
+    Whether the default cluster (Default cluster) is automatically created.
+
+    |
+    | Type: string
+    | Possible values: true or false
+    | Default value: true
+    | Environment variable: TCM_DEFAULT_CLUSTER
+    | Command-line option: ``--default-cluster`
+
