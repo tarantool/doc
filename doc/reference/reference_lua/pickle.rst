@@ -145,11 +145,11 @@ Below is a list of all ``pickle`` functions.
 
     Possible errors:
 
-    *   too many bytes: unpacked X, total Y. X < Y.
+    *   Too many bytes: unpacked X, total Y. X < Y.
 
-    *   got X bytes (expected: Y+)'. X < Y.
+    *   Got X bytes (expected: Y+)'. X < Y.
 
-    *   unsupported format specifier.
+    *   Unsupported format specifier.
 
     **Example:**
 
