@@ -127,11 +127,11 @@ On this page, you can:
 -   manage TDB workers, including their visibility, monitoring, and diagnostics.
 
 Support for TDB workers in TCM was introduced starting with TDB 3.1.0 and TCM 1.6.0.
-his feature allows monitoring and management of workers within the cluster, providing full visibility into their status and metrics.
+This feature allows monitoring and management of workers within the cluster, providing full visibility into their status and metrics.
 Workers are automatically discovered through etcd and continuously monitored using dedicated health check endpoints.
 Their metrics are proxied through TCM and exposed individually, enabling comprehensive insight into the system's state.
 
-On the Stateboard interface, workers are displayed with clear status indicators and a details panel. Possible worker statuses include:
+On the **Stateboard** interface, workers are displayed with clear status indicators and a details panel. Possible worker statuses include:
 
 -  healthy — the worker is functioning correctly
 -  degraded — the worker is experiencing issues but remains available
@@ -143,15 +143,18 @@ On the Stateboard interface, workers are displayed with clear status indicators 
     :width: 700
     :alt: TCM Stateboard Workers
 
+
 .. image:: _images/tcm_ui_workers_healthy.png
     :align: left
     :width: 700
     :alt: TCM Stateboard healthy worker
 
+
 .. image:: _images/tcm_ui_workers_unhealthy.png
     :align: left
     :width: 700
     :alt: TCM Stateboard unhealthy worker
+
 
 Learn more about using the cluster stateboard in :ref:`tcm_cluster_state`.
 
