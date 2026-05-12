@@ -61,6 +61,7 @@ Below is a list of all ``pickle`` functions.
         +------+-----------------------------------------------------+
         | N    | converts Lua scalar value to a 4-byte integer, and  |
         |      | stores the integer in the resulting string, big     |
+        |      | endian,                                             |
         +------+-----------------------------------------------------+
         | q, Q | converts Lua scalar value to an 8-byte integer, and |
         |      | stores the integer in the resulting string, big     |
@@ -86,7 +87,14 @@ Below is a list of all ``pickle`` functions.
     large integers should be entered with
     :ref:`tonumber64() or LL or ULL suffixes <index-box_number>`.
 
-    Possible errors: unknown format specifier.
+    Possible errors:
+
+    *   Argument count does not match the format. Note: excess values are
+        simply ignored.
+
+    *   Expected 8/16/32/64-bit int.
+
+    *   Unsupported pack format specifier.
 
     **Example:**
 
@@ -134,6 +142,14 @@ Below is a list of all ``pickle`` functions.
 
     :return: A list of strings or numbers.
     :rtype:  table
+
+    Possible errors:
+
+    *   Too many bytes: unpacked X, total Y. X < Y.
+
+    *   Got X bytes (expected: Y+)'. X < Y.
+
+    *   Unsupported format specifier.
 
     **Example:**
 
