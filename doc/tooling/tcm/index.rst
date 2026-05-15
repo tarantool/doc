@@ -47,4 +47,5 @@ to read data. LDAP authorization is supported as well.
     tcm_dev_mode
     tcm_configuration_reference
     tcm_integrity_check
+    tcm_terminals
     Releases <tcm_releases/index>
