@@ -123,9 +123,41 @@ On this page, you can:
 -   view memory statistics and Tarantool versions running on instances
 -   navigate to :ref:`instance pages <tcm_ui_instance>`
     by clicking instance names in the cluster topology list
--   start and stop instances (in the development mode).
+-   start and stop instances (in the development mode)
+-   manage TDB workers, including their visibility, monitoring, and diagnostics.
+
+Support for TDB workers in TCM was introduced starting with TDB 3.1.0 and TCM 1.6.0.
+This feature allows monitoring and management of workers within the cluster, providing full visibility into their status and metrics.
+Workers are automatically discovered through etcd and continuously monitored using dedicated health check endpoints.
+Their metrics are proxied through TCM and exposed individually, enabling comprehensive insight into the system's state.
+
+On the **Stateboard** interface, workers are displayed with clear status indicators and a details panel. Possible worker statuses include:
+
+-  healthy — the worker is functioning correctly
+-  degraded — the worker is experiencing issues but remains available
+-  unhealthy — the worker is malfunctioning or unavailable
+-  no connection — it is not possible to establish a connection to the worker.
+
+.. image:: _images/tcm_ui_workers_stateboard.png
+    :align: left
+    :width: 700
+    :alt: TCM Stateboard Workers
+
+
+.. image:: _images/tcm_ui_workers_healthy.png
+    :align: left
+    :width: 700
+    :alt: TCM Stateboard healthy worker
+
+
+.. image:: _images/tcm_ui_workers_unhealthy.png
+    :align: left
+    :width: 700
+    :alt: TCM Stateboard unhealthy worker
+
 
 Learn more about using the cluster stateboard in :ref:`tcm_cluster_state`.
+
 
 ..  _tcm_ui_instance:
 
@@ -562,7 +594,7 @@ The **Clusters** page lists Tarantool clusters that are connected to |tcm|.
 .. image:: _images/tcm_ui_clusters.png
     :align: left
     :width: 700
-    :alt: TCM clusters page
+    :alt: TCM Clusters page
 
 On this page, you can:
 
@@ -571,6 +603,23 @@ On this page, you can:
 -   disconnect clusters
 
 Learn more in :ref:`tcm_connect_clusters`.
+
+When managing Tarantool clusters via |tcm|, you can configure individual cluster settings by clicking the **three-dot menu (⋯)** next
+to the cluster name on the **Clusters** page and selecting **Edit**. This opens a dedicated configuration panel for the selected cluster.
+
+The **Config storage** tab contains settings for the cluster's configuration storage:
+
+- **Provider** – the type of configuration storage used by the cluster. Values: `etcd`, `tarantool`.
+- **Prefix** – the key prefix in the configuration storage under which the Tarantool cluster configuration is stored. This helps isolate multiple clusters using the same backend. Must start with a forward slash `/`.
+- **Workers prefix** – the key prefix used to locate TDB workers configurations in the storage backend. Must start with a forward slash `/`.
+- **Endpoints** – a list of URLs for the configuration storage nodes, each on a new line. These endpoints are used by TCM to connect to the storage backend and retrieve or update cluster data.
+- **Username** – the username for authenticating with the configuration storage. Used if the storage backend is secured with user authentication.
+- **Password** – the password for the specified username. Provides secure access to the configuration storage.
+
+.. image:: _images/tcm_ui_clusters_config_storage.png
+    :align: left
+    :width: 700
+    :alt: TCM Clusters Config storage page
 
 ..  _tcm_ui_clusters_acl:
 
