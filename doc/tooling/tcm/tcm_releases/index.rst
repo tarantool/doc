@@ -26,8 +26,21 @@ Supported versions
             -   First release date
             -   Versions
 
+        *   -   :ref:`1.9 <tcm_releases_1_9>`
+            -   April 17, 2026
+            -   | 1.9.1
+            -   | 1.9.0
+
+        *   -   :ref:`1.8 <tcm_releases_1_8>`
+            -   March 30, 2026
+            -   | 1.8.1
+            -   | 1.8.0
+
         *   -   :ref:`1.7 <tcm_releases_1_7>`
             -   February 17, 2026
+            -   | 1.7.3
+            -   | 1.7.2
+            -   | 1.7.1
             -   | 1.7.0
 
         *   -   :ref:`1.6 <tcm_releases_1_6>`
@@ -71,6 +84,8 @@ Supported versions
 ..  toctree::
     :maxdepth: 1
 
+    tcm_1.9
+    tcm_1.8
     tcm_1.7
     tcm_1.6
     tcm_1.5
