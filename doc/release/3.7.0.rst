@@ -1,0 +1,104 @@
+Tarantool 3.7
+=============
+
+Release date:  2026-04-12
+
+Releases on GitHub: :tarantool-release:`3.6.0`
+
+The 3.7 release of Tarantool adds the following main product features and improvements
+for the Community and Enterprise editions:
+
+*   **Community Edition (CE)**
+
+    *   Multiple minor improvements and bug fixes.
+
+*   **Enterprise Edition (EE)**
+
+    *   Failover coordinator: safe SSL configuration.
+    *   MemCS: dictionary encoding and `lz4` compression.
+
+.. _3-7-failover-ssl-params:
+
+[EE] Failover coordinator: safe SSL cofiguration
+------------------------------------------------
+
+Tarantool failover coordinator now safely supports TLS-encrypted and mTLS-authenticated connections.
+SSL certificates and Certificate Authority can be configured via a dedicated failover-specific
+configuration section.
+
+Previuosly, the coordinator relied on SSL parameters taken from instance URIs.
+In case of SSL + CA (mTLS), this approach might require the coordinator host to have access
+to private keys/certificates of the instances it connected to.
+
+Now the `failover.iproto.ssl` configuration section is a source of SSL client parameters
+for outgoing `net.box` connections initiated by the coordinator. The parameters are injected
+into URI parameters passed to `net.box.connect()` only for URIs with `params.transport: ssl`,
+and do not affect non-SSL connections.
+
+Example:
+
+.. code-block:: yaml
+
+   failover:
+     mode: stateful
+     iproto:
+       listen:
+         uri: '127.0.0.1:3302'
+           params:
+             transport: ssl
+       ssl:
+         ca_file: './certs/rootCA.pem'
+         ssl_cert: './certs/coordinator.crt'
+         ssl_key: './certs/coordinator.key'
+         # Optional:
+         # ssl_ciphers: 'ECDHE-RSA-AES256-GCM-SHA384:...'
+         # ssl_password: 'secret'
+         # ssl_password_file: './certs/key_passwords.txt'
+
+.. _3-7-memcs-memory-improvements:
+
+[EE] MemCS: dictionary encoding and lz4 compression
+---------------------------------------------------
+
+This release brings two major memory utilization improvements in the MemCS engine:
+* Arrow dictionary-encoded layout is now supported for string columns.
+* It is now possible to compress column data with `lz4`.
+
+When combined, these features result in 8-13x reduction in occupied space compared
+to uncompressed data.
+
+Dictionary encoding is a data representation technique to store values by integers
+referencing a dictionary (hash-table) consisting of unique values. This is effective
+when a column contains data with many repeated values.
+??? why did we choose Arrow?
+??? Select size of the ID. E.g. can we limit the number of unique values to 256 and use 1-byte id?
+??? Is it possible to return only a pointer to the full dictionary of a column, without creating a subset of a dictionary for each record batch?
+??? Block size. Min/max block size is configured per-index per-column via space:create_index() - what's the syntax? defaults?
+    Block size is set in the number of elements, not bytes, which is natural for Arrow and will allow to unite all columns in a common tree.
+??? what other implementation details from RFC can we disclose? (allocation & readview, multithreading, memcs_column.[ch], bps_vec.h, balancing, last block optimization)
+??? what new params do we have in config?
+
+The `lz4` codec provides is a universal algorythm with optimal compression speed and rate
+and configurable acceleration level within 100 to 10000.
+??? what new params do we have in config?
+
+Compression is configured per column using the 'compression' parameter.
+You can enable/disable compression, specify the algorythm and its parameters.
+
+Examples:
+
+- compression:
+
+.. code-block:: lua
+
+   box.schema.create_space('test', {
+       engine = 'memcs', field_count = 3, format = {
+           {name = 'c1', type = 'uint64'},
+           {name = 'c2', type = 'uint64', compression = 'lz4'},
+           {name = 'c3', type = 'string', compression = {method?codec?algo?algorithm?nothing? = 'lz4', acceleration = 1000}},
+       }
+   })
+
+- dictionary encoding:
+
+???
