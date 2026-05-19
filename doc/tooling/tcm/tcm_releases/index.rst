@@ -33,7 +33,6 @@ Supported versions
 
         *   -   :ref:`1.8 <tcm_releases_1_8>`
             -   March 30, 2026
-            -   | 1.8.1
             -   | 1.8.0
 
         *   -   :ref:`1.7 <tcm_releases_1_7>`
