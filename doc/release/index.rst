@@ -64,7 +64,7 @@ For information about earlier versions, see :doc:`eos_versions`.
             -   Versions
 
         *   -   :doc:`3.7</release/3.7.0>`
-            -   ** 2026**
+            -   **April 22, 2026**
             -   **Not planned yet**
             -   **Not planned yet**
             -   | :tarantool-release:`3.7.0`
