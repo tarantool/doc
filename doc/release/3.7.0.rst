@@ -19,14 +19,14 @@ for the Community and Enterprise editions:
 
 .. _3-7-failover-ssl-params:
 
-[EE] Failover coordinator: safe SSL cofiguration
-------------------------------------------------
+[EE] Failover coordinator: safe SSL configuration
+-------------------------------------------------
 
 Tarantool failover coordinator now safely supports TLS-encrypted and mTLS-authenticated connections.
 SSL certificates and Certificate Authority can be configured via a dedicated failover-specific
 configuration section.
 
-Previuosly, the coordinator relied on SSL parameters taken from instance URIs.
+Previously, the coordinator relied on SSL parameters taken from instance URIs.
 In case of SSL + CA (mTLS), this approach might require the coordinator host to have access
 to private keys/certificates of the instances it connected to.
 
@@ -61,44 +61,83 @@ Example:
 ---------------------------------------------------
 
 This release brings two major memory utilization improvements in the MemCS engine:
-* Arrow dictionary-encoded layout is now supported for string columns.
-* It is now possible to compress column data with `lz4`.
 
-When combined, these features result in 8-13x reduction in occupied space compared
-to uncompressed data.
+* Dictionary encoding for string columns (Arrow dictionary-encoded layout).
+* Column-level compression with the `lz4` codec.
 
-Dictionary encoding is a data representation technique to store values by integers
-referencing a dictionary (hash-table) consisting of unique values. This is effective
-when a column contains data with many repeated values.
-??? why did we choose Arrow?
-??? Select size of the ID. E.g. can we limit the number of unique values to 256 and use 1-byte id?
-??? Is it possible to return only a pointer to the full dictionary of a column, without creating a subset of a dictionary for each record batch?
-??? Block size. Min/max block size is configured per-index per-column via space:create_index() - what's the syntax? defaults?
-    Block size is set in the number of elements, not bytes, which is natural for Arrow and will allow to unite all columns in a common tree.
-??? what other implementation details from RFC can we disclose? (allocation & readview, multithreading, memcs_column.[ch], bps_vec.h, balancing, last block optimization)
-??? what new params do we have in config?
+In typical workloads, using these features together provides an **8–13x reduction in memory footprint** compared to uncompressed storage.
 
-The `lz4` codec provides is a universal algorythm with optimal compression speed and rate
-and configurable acceleration level within 100 to 10000.
-??? what new params do we have in config?
+.. _3-7-memcs-memory-improvements_dict_encoding:
 
-Compression is configured per column using the 'compression' parameter.
-You can enable/disable compression, specify the algorythm and its parameters.
+Dictionary encoding for string columns
+======================================
 
-Examples:
+MemCS can store string values in a **dictionary-encoded** form: unique strings are kept in a shared dictionary, while rows store integer IDs referencing dictionary entries.
+This is most effective for columns with many repeated values (for example, statuses, categories, event types).
 
-- compression:
+Dictionary encoding is enabled via the index `layout` option:
 
 .. code-block:: lua
 
-   box.schema.create_space('test', {
-       engine = 'memcs', field_count = 3, format = {
-           {name = 'c1', type = 'uint64'},
-           {name = 'c2', type = 'uint64', compression = 'lz4'},
-           {name = 'c3', type = 'string', compression = {method?codec?algo?algorithm?nothing? = 'lz4', acceleration = 1000}},
-       }
-   })
+    local s = box.schema.create_space('test', {
+        engine = 'memcs', format = format, field_count = field_count,
+    })
+    local pk = s:create_index('pk', {layout = 'dict'})
 
-- dictionary encoding:
 
-???
+Limitations and behavior
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* Only **non-key string columns** can use dictionary encoding. Other columns silently ignore `layout = 'dict'`.
+* Dictionary IDs are stored as `uint16` (2 bytes per row).
+* The maximum number of unique values per dictionary-encoded column is `UINT16_MAX` (65536). When the dictionary is full, inserting a new unique value fails with an error.
+* Approximate memory usage for such a column is `2 * space_size + dict_size bytes`.
+* Dictionary memory is included in `space:bsize()` statistics.
+* The implementation follows **Apache Arrow dictionary-encoded layout**, since Arrow is the standard interchange format for MemCS.
+
+When reading via ArrowStream, MemCS always returns dictionary-encoded columns in Arrow dictionary-encoded layout:
+
+* the dictionary is returned as **string-view**
+* indices are `uint16`
+
+Additional notes:
+
+* If no new unique values are inserted, all record batches share the same dictionary.
+* Dictionaries are returned by reference (no copying), so ArrowArray export has low overhead.
+* Dictionaries only grow (values are not removed), so after a dictionary update it remains compatible with batches produced with the previous dictionary.
+
+.. _3-7-memcs-memory-improvements_lz4_column_compression:
+
+LZ4 column compression
+======================
+
+MemCS now supports column-level compression with `lz4 <https://en.wikipedia.org/wiki/LZ4_(compression_algorithm)>`_.
+Compression is applied to ranges of consecutive values, stored as compressed blocks.
+
+Compression is configured per column in the space format using the `compression` attribute and can be enabled only at space creation time:
+
+.. code-block:: lua
+
+    local format = {
+        {'c1', 'uint64'},
+        {'c2', 'string', is_nullable = true, compression = 'lz4'},
+        {'c3', 'int32', compression = {type = 'lz4', acceleration = 1000}},
+    }
+    box.schema.create_space('test', {
+        engine = 'memcs', field_count = #format, format = format,
+    })
+
+
+Compression settings:
+
+* Algorithm: `lz4`
+* `acceleration` – LZ4-specific configuration parameter:
+    * allowed range: 1…65537
+    * recommended: 10…1000
+    * higher values improve compression and decompression speed, but reduce the compression ratio
+
+Limitations
+~~~~~~~~~~~
+
+* Only non-indexed columns can be compressed.
+* A column of any type supports compression, however "external" string values (strings longer than 12 characters) are currently not subject to compression.
