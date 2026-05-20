@@ -9,7 +9,7 @@ Latest release in series: 1.9.1
 
 |tcm| 1.9.0 expands cluster connectivity options, simplifies first-time setup by allowing initial user and role provisioning from configuration,
 and improves observability in **Stateboard** when `vshard` issues occur. The release also includes fixes for migration storage connectivity
-in split-configuration setups and corrects password handling during cluster connection tests.
+in split-configuration setups and corrects password handling during cluster `Test connection`.
 
 .. _tcm_releases_1_9_instances_connection:
 
@@ -25,7 +25,7 @@ than alternative connection parameters, and helps align |tcm| connectivity with 
 Bootstrap users and roles on first launch
 -----------------------------------------
 
-TCM 1.9.0 introduces the ability to create users and roles on the very first |tcm| launch using the initial-settings field in the configuration.
+|tcm| 1.9.0 introduces the ability to create users and roles on the very first |tcm| launch using the initial-settings field in the configuration.
 Roles can be created with an explicit ID or without one, allowing you to either keep stable identifiers across environments or let the system generate them as needed.
 
 .. _tcm_releases_1_9_boostrap:

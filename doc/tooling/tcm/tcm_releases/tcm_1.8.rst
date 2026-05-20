@@ -9,7 +9,7 @@ Latest release in series: 1.8.1
 
 |tcm| 1.8.0 improves LDAP reliability, expands the CLI with full user and role administration capabilities,
 and adds safer behavior when creating clusters.
-This release also includes fixes that improve authentication stability after failed login attempts and correct data rendering in the tuples tab.
+This release also includes fixes that improve authentication stability after failed login attempts and correct data rendering in the **Tuples** tab.
 
 .. _tcm_releases_1_8_ldap:
 
@@ -17,7 +17,7 @@ LDAP improvements
 -----------------
 
 |tcm| 1.8.0 introduces support for cascading LDAP connections in environments where multiple LDAP domains share the same domain name.
-Instead of failing on the first unreachable domain, TCM now tries each configured domain sequentially until a successful connection is established.
+Instead of failing on the first unreachable domain, |tcm| now tries each configured domain sequentially until a successful connection is established.
 
 .. _tcm_releases_1_8_new_cli_commands:
 
