@@ -275,7 +275,7 @@ index_opts
 
         Possible values:
 
-        * If not set (or set to an empty string), the default plain layout is used.
+        * If not set (or set to `plain`), the default plain layout is used.
         * If set to `null_rle`, run-length encoding of `NULL` values is used. Applies to nullable columns that are not listed in index `parts`.
 
         For example:
@@ -302,7 +302,7 @@ index_opts
                parts = { 'c1', 'c2' }, covers = { 'c3', 'c4' }, layout = 'null_rle'
            })
 
-        In this example, the `null_rle` layout is applied to `c2, `c3`, `c5`
+        In this example, the `null_rle` layout is applied to `c2`, `c3`, `c5`
         in the primary index, and to `c3` in the secondary index.
 
         |
