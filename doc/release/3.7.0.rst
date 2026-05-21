@@ -3,7 +3,7 @@ Tarantool 3.7
 
 Release date:  2026-04-12
 
-Releases on GitHub: :tarantool-release:`3.6.0`
+Releases on GitHub: :tarantool-release:`3.7.0`
 
 The 3.7 release of Tarantool adds the following main product features and improvements
 for the Community and Enterprise editions:
