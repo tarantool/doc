@@ -70,7 +70,7 @@ In typical workloads, using these features together provides an **8–13x reduct
 .. _3-7-memcs-memory-improvements_dict_encoding:
 
 Dictionary encoding for string columns
-======================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 MemCS can store string values in a **dictionary-encoded** form: unique strings are kept in a shared dictionary, while rows store integer IDs referencing dictionary entries.
 This is most effective for columns with many repeated values (for example, statuses, categories, event types).
@@ -86,7 +86,7 @@ Dictionary encoding is enabled via the index `layout` option:
 
 
 Limitations and behavior
-~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 * Only **non-key string columns** can use dictionary encoding. Other columns silently ignore `layout = 'dict'`.
 * Dictionary IDs are stored as `uint16` (2 bytes per row).
@@ -109,7 +109,7 @@ Additional notes:
 .. _3-7-memcs-memory-improvements_lz4_column_compression:
 
 LZ4 column compression
-======================
+~~~~~~~~~~~~~~~~~~~~~~
 
 MemCS now supports column-level compression with `lz4 <https://en.wikipedia.org/wiki/LZ4_(compression_algorithm)>`_.
 Compression is applied to ranges of consecutive values, stored as compressed blocks.
@@ -137,7 +137,7 @@ Compression settings:
     * higher values improve compression and decompression speed, but reduce the compression ratio
 
 Limitations
-~~~~~~~~~~~
+^^^^^^^^^^^
 
 * Only non-indexed columns can be compressed.
 * A column of any type supports compression, however "external" string values (strings longer than 12 characters) are currently not subject to compression.
