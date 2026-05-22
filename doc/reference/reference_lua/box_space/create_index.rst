@@ -264,6 +264,51 @@ index_opts
         | Type: number
         | Default: :ref:`vinyl.run_size_ratio <configuration_reference_vinyl_run_size_ratio>`
 
+
+    ..  _index_opts_layout:
+
+    .. data:: layout
+
+        **MemCS only**
+
+        Specify how a column within the index is physically stored.
+
+        Possible values:
+
+        * If not set (or set to `plain`), the default plain layout is used.
+        * If set to `null_rle`, run-length encoding of `NULL` values is used. Applies to nullable columns that are not listed in index `parts`.
+
+        For example:
+
+        .. code-block:: lua
+
+           local format = {
+               { 'c1', 'unsigned' },
+               { 'c2', 'unsigned', is_nullable = true },
+               { 'c3', 'unsigned', is_nullable = true },
+               { 'c4', 'unsigned' },
+               { 'c5', 'unsigned', is_nullable = true },
+           }
+
+           box.schema.create_space('test', {
+               engine = 'memcs', format = format, field_count = #format
+           })
+
+           box.space.test:create_index('primary', {
+               parts = { 'c1' }, layout = 'null_rle'
+           })
+
+           box.space.test:create_index('secondary', {
+               parts = { 'c1', 'c2' }, covers = { 'c3', 'c4' }, layout = 'null_rle'
+           })
+
+        In this example, the `null_rle` layout is applied to `c2`, `c3`, `c5`
+        in the primary index, and to `c3` in the secondary index.
+
+        |
+        | Type: string
+        | Default: not set
+
 .. _key_part_object:
 
 key_part
