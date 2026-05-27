@@ -85,6 +85,11 @@ Dictionary encoding is enabled via the :ref:`layout <index_opts_layout>` option:
     local pk = s:create_index('pk', {layout = 'dict'})
 
 
+    .. NOTE::
+
+    Currently the `layout` option can be specified only during the space creation. It's not possible to change it for the existing space.
+
+
 Limitations and behavior
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -126,6 +131,11 @@ Compression is configured per column in the space format using the `compression`
     box.schema.create_space('test', {
         engine = 'memcs', field_count = #format, format = format,
     })
+
+
+    .. NOTE::
+
+    Currently the `compression` attribute can be specified only during the space creation. It's not possible to change it for the existing space.
 
 
 Compression settings:
