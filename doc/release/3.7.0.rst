@@ -94,9 +94,9 @@ Limitations and behavior
 * Dictionary memory is included in `space:bsize()` statistics.
 * The implementation follows **Apache Arrow dictionary-encoded layout**, since Arrow is the standard interchange format for MemCS.
 
-    .. NOTE::
+    .. IMPORTANT::
 
-    Currently the `layout` option can be specified only during the space creation. It's not possible to change it for the existing space.
+        Currently the `layout` option can be specified only during the space creation. It's not possible to change it for the existing space.
 
 When reading via ArrowStream, MemCS always returns dictionary-encoded columns in Arrow dictionary-encoded layout:
 
@@ -145,6 +145,6 @@ Limitations
 * Only non-indexed columns can be compressed.
 * A column of any type supports compression, however "external" string values (strings longer than 12 characters) are currently not subject to compression.
 
-    .. NOTE::
+    .. IMPORTANT::
 
-    Currently the `compression` attribute can be specified only during the space creation. It's not possible to change it for the existing space.
+        Currently the `compression` attribute can be specified only during the space creation. It's not possible to change it for the existing space.
