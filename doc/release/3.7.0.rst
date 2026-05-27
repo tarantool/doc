@@ -84,12 +84,6 @@ Dictionary encoding is enabled via the :ref:`layout <index_opts_layout>` option:
     })
     local pk = s:create_index('pk', {layout = 'dict'})
 
-
-    .. NOTE::
-
-    Currently the `layout` option can be specified only during the space creation. It's not possible to change it for the existing space.
-
-
 Limitations and behavior
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -99,6 +93,10 @@ Limitations and behavior
 * Approximate memory usage for such a column is `2 * space_size + dict_size bytes`.
 * Dictionary memory is included in `space:bsize()` statistics.
 * The implementation follows **Apache Arrow dictionary-encoded layout**, since Arrow is the standard interchange format for MemCS.
+
+    .. NOTE::
+
+    Currently the `layout` option can be specified only during the space creation. It's not possible to change it for the existing space.
 
 When reading via ArrowStream, MemCS always returns dictionary-encoded columns in Arrow dictionary-encoded layout:
 
@@ -133,11 +131,6 @@ Compression is configured per column in the space format using the `compression`
     })
 
 
-    .. NOTE::
-
-    Currently the `compression` attribute can be specified only during the space creation. It's not possible to change it for the existing space.
-
-
 Compression settings:
 
 * Algorithm: `lz4`
@@ -151,3 +144,7 @@ Limitations
 
 * Only non-indexed columns can be compressed.
 * A column of any type supports compression, however "external" string values (strings longer than 12 characters) are currently not subject to compression.
+
+    .. NOTE::
+
+    Currently the `compression` attribute can be specified only during the space creation. It's not possible to change it for the existing space.
