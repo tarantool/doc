@@ -284,6 +284,37 @@ Functions
     :return: a number of parsed characters
     :rtype: number
 
+    **Implementation details:**
+
+    *   For formats with a decimal fraction of the second ([1], 5.3.1.4, a)
+        the tail beyond 9 fracitonal digits is truncated.
+
+        ..  code-block:: tarantoolsession
+
+            tarantool> datetime.parse('2024-07-31T17:30:00.123456789999', {format = 'iso8601'})
+            ---
+            - 2024-07-31T17:30:00.123456789Z
+            - 32
+            ...
+
+    *   For formats with a decimal fraction of the hour ([1], 5.3.1.4, c)
+        or minute ([1], 5.3.1.4, b) fractions are truncated to seconds precision.
+        If second fractions are desired, explicit representation (format a) must be used.
+
+        ..  code-block:: tarantoolsession
+
+            tarantool> datetime.parse('2024-07-31T17,333333333', {format = 'iso8601'})
+            ---
+            - 2024-07-31T17:19:59Z
+            - 23
+            ...
+
+            tarantool> datetime.parse('2024-07-31T17:30.333333333', {format = 'iso8601'})
+            ---
+            - 2024-07-31T17:30:19Z
+            - 26
+            ...
+
     **Example:**
 
     ..  code-block:: tarantoolsession
@@ -1210,6 +1241,8 @@ Limitations
 
 References
 ----------
+
+*   [1] `ISO 8601-1:2019: Date and time — Representations for information interchange. Part 1: Basic rules <https://www.iso.org/standard/70907.html>`_
 
 *   `RFC 3339: Date and Time on the Internet: Timestamps <https://www.rfc-editor.org/rfc/rfc3339>`_
 
