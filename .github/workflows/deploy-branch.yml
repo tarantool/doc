@@ -37,6 +37,9 @@ jobs:
       TARANTOOL_UPDATE_KEY: ${{secrets.TARANTOOL_UPDATE_KEY}}
       TARANTOOL_UPDATE_URL: ${{secrets.TARANTOOL_DEVELOP_UPDATE_URL}}
       VKTEAMS_BOT_TOKEN: ${{secrets.VKTEAMS_TARANTOOLBOT_TOKEN}}
+    permissions:
+      deployments: write
+      contents: read
     steps:
       - name: Prevent dubious ownership
         id: add-safe-directory
