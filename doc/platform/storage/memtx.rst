@@ -14,10 +14,19 @@ This topic describes how to define basic settings related to in-memory storage i
 For the specific settings related to allocator or sorting threads,
 check the corresponding ``memtx`` options in the :ref:`Configuration reference <configuration_reference_memtx>`.
 
+..  note_memtx_memory_estimation_start
+
 ..  NOTE::
 
+    By default, the memory size (``memtx.memory``) parameter is set to 256 MB.
+    Before deploying a cluster, calculate the necessary amount of memory with a reserve and specify it in the
+    ``memtx.memory`` option.
+    Starting a cluster with the default memory size value may lead to memory exhaustion and make further writes
+    to the replica instance impossible.
     To estimate the required amount of memory, you can use the
     `sizing calculator <https://www.tarantool.io/en/sizing_calculator/>`_.
+
+..  note_memtx_memory_estimation_end
 
 ..  _configuration_memtx-memory:
 

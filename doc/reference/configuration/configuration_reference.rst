@@ -3323,6 +3323,10 @@ The ``memtx`` section is used to configure parameters related to the :ref:`memtx
     The server does not go beyond the ``memtx.memory`` limit to allocate tuples, but there is additional memory
     used to store indexes and connection information.
 
+    ..  include:: /platform/storage/memtx.rst
+        :start-after: note_memtx_memory_estimation_start
+        :end-before: note_memtx_memory_estimation_end
+
     **Example**
 
     In the example below, the memory size is set to 1 GB (1073741824 bytes).
