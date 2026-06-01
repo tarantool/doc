@@ -12,11 +12,12 @@ box.space._schema
 
     This space contains the following tuples:
 
-    * ``version`` tuple with version information for this Tarantool instance,
-    * ``cluster`` tuple with the instance's replica set ID,
-    * ``max_id`` tuple with the maximal space ID,
-    * ``once...`` tuples that correspond to specific
-      :doc:`box.once() </reference/reference_lua/box_once>` blocks from the instance's
+    * ``version``: version information for this Tarantool instance.
+    * ``cluster``: the instance's replica set ID.
+    * ``max_id`` (deprecated since `2.11.1 <https://github.com/tarantool/tarantool/releases/tag/2.11.1>`__): the maximal space ID.
+      Use the :ref:`box.space._space.index[0]:max() <box_index-max>` function instead.
+    * ``once...``: tuples that correspond to specific
+      :ref:`box.once() <box-once>` blocks from the instance's
       :ref:`initialization file <index-init_label>`.
       The first field in these tuples contains the ``key`` value from the
       corresponding ``box.once()`` block prefixed with 'once' (e.g. `oncehello`),
@@ -25,8 +26,7 @@ box.space._schema
 
     **Example:**
 
-    Here is what ``_schema`` contains in a typical installation (notice the
-    tuples for two ``box.once()`` blocks, ``'oncebye'`` and ``'oncehello'``):
+    In the example, the ``_schema`` space contains two ``box.once`` objects -- ``oncebye`` and ``oncehello``.
 
     .. code-block:: tarantoolsession
 

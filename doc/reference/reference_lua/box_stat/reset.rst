@@ -7,6 +7,6 @@ box.stat.reset()
 
 .. function:: reset()
 
-    Resets the statistics of ``box.stat()``,
-    ``box.stat.net()``, ``box.stat.vinyl()``, and
+    Resets the statistics of ``box.stat()``, ``box.stat.net()``,
+    ``box.stat.memtx()``, ``box.stat.vinyl()``, and
     :ref:`box.space.index <box_space-space_index>`.

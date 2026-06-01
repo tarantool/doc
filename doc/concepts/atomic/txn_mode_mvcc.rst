@@ -18,7 +18,7 @@ but has a different implementation.
 
     Currently, you cannot use several different storage engines within one transaction.
 
-..  _txn_mode_mvcc-tnx-manager:
+..  _txn_mode_mvcc-txn-manager:
 
 Transaction manager
 -------------------
@@ -97,7 +97,7 @@ You can set an isolation level for a specific transaction in its ``box.begin()``
 
 ..  code-block:: lua
 
-    box.begin({ tnx_isolation = 'best-effort' })
+    box.begin({ txn_isolation = 'best-effort' })
 
 In this case, you can also use the ``default`` option. It sets the transaction's isolation level
 to the one set in ``box.cfg``.

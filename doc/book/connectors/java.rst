@@ -19,7 +19,7 @@ There are two Java connectors available:
 The following modules support Java libraries and frameworks:
 
 *   `TestContainers Tarantool module <http://github.com/tarantool/cartridge-java-testcontainers/>`__
-    adds support for the popular `TestСontainers framework <https://www.testcontainers.org/>`__
+    adds support for the popular `TestContainers framework <https://www.testcontainers.org/>`__
     used for integration testing of Java applications.
 *   `Spring Data Tarantool module <http://github.com/tarantool/cartridge-springdata/>`__
     adds support for the `Spring framework <https://projects.spring.io/spring-data/>`__.

@@ -260,7 +260,7 @@ RTREE index can accept two types of ``distance`` functions: ``euclid`` and ``man
 ..  warning::
 
     Currently, the :ref:`isolation level <transaction_model_levels>` of RTREE indexes
-    in :ref:`MVCC transaction mode <txn_mode_mvcc-tnx-manager>` is *read-committed* (not *serializable*, as stated).
+    in :ref:`MVCC transaction mode <txn_mode_mvcc-txn-manager>` is *read-committed* (not *serializable*, as stated).
     If a transaction uses these indexes, it can read committed or confirmed data (depending on the isolation level).
     However, the indexes are subject to different anomalies that can make them unserializable.
 
@@ -443,7 +443,7 @@ attributes.
 ..  warning::
 
     Currently, the :ref:`isolation level <transaction_model_levels>` of BITSET indexes
-    in :ref:`MVCC transaction mode <txn_mode_mvcc-tnx-manager>` is *read-committed* (not *serializable*, as stated).
+    in :ref:`MVCC transaction mode <txn_mode_mvcc-txn-manager>` is *read-committed* (not *serializable*, as stated).
     If a transaction uses these indexes, it can read committed or confirmed data (depending on the isolation level).
     However, the indexes are subject to different anomalies that can make them unserializable.
 

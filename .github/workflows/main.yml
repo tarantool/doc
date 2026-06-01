@@ -6,7 +6,7 @@ on:
     - cron: '0 2 * * *'
   push:
     branches:
-      - latest
+      - 2.11
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -20,7 +20,7 @@ jobs:
       S3_CZ_PATH: ${{ secrets.S3_DOCX_PATH }}
       TARANTOOL_UPDATE_KEY: ${{secrets.TARANTOOL_UPDATE_KEY}}
       TARANTOOL_UPDATE_URL: ${{secrets.TARANTOOL_UPDATE_URL}}
-      DEPLOYMENT_NAME: latest
+      DEPLOYMENT_NAME: 2.11
       VKTEAMS_BOT_TOKEN: ${{secrets.VKTEAMS_TARANTOOLBOT_TOKEN}}
     steps:
       - name: Prevent dubious ownership

@@ -25,7 +25,7 @@ Options
 
 .. option:: --debug
 
-    **Applicable to:** ``taranttol-ee``
+    **Applicable to:** ``tarantool-ee``
 
     Search for debug builds of Tarantool Enterprise Edition's SDK.
 
@@ -36,7 +36,7 @@ Options
 
 .. option:: --version VERSION
 
-    **Applicable to:** ``taranttol-ee``
+    **Applicable to:** ``tarantool-ee``
 
     Tarantool Enterprise version.
 

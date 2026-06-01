@@ -45,7 +45,7 @@ decide whether you need to take actions:
 *   System events -- events related to modification or configuration of resources.
     For example, such logs record the replacement of a space.
 
-*   :ref:`User-defined events <audit-log-custom>`-- any events added manually using
+*   :ref:`Custom events <audit-log-custom>` -- any events added manually using
     the audit module API.
 
 The full list of available audit log events is provided in the table below:
@@ -62,7 +62,7 @@ The full list of available audit log events is provided in the table below:
         *   -   Audit log enabled for events   
             -   ``audit_enable``   
             -
-        *   -   :ref:`User-defined events <audit-log-custom>`
+        *   -   :ref:`Custom events <audit-log-custom>`
             -   ``custom``
             -
         *   -   User authorized successfully    
@@ -191,7 +191,7 @@ Tarantool provides the following event groups:
 ..  warning::
 
     Be careful when recording ``all`` and ``data_operations`` event groups.
-    The more events you record, the slower the requests will be processed over time.
+    The more events you record, the slower the requests are processed over time.
     It is recommended that you select only those groups
     whose events your company really needs to monitor and analyze.
 
@@ -223,7 +223,7 @@ They are described in the following table.
             -   console             
         *   -   ``module``   
             -   Audit log module. Set to ``tarantool`` for system events;
-                can be overwritten for user-defined events   
+                can be overwritten for custom events
             -   tarantool             
         *   -   ``user``   
             -   User who triggered the event   
@@ -544,10 +544,11 @@ Example:
 
 .. _audit-log-custom:
 
-Create user-defined events
---------------------------
+Custom events
+-------------
 
-Tarantool provides an API for writing user-defined audit log events.
+Tarantool provides an API for writing custom audit log events.
+To enable custom audit log events, specify the ``custom`` value in the :ref:`box.cfg.audit_filter <audit-log-filters>` option.
 
 To add a new event, use the ``audit.log()`` function that takes one of the following values:
 
@@ -562,7 +563,7 @@ To add a new event, use the ``audit.log()`` function that takes one of the follo
 Using the field ``audit.new()``, you can create a new log module that allows you
 to avoid passing all custom audit log fields each time ``audit.log()`` is called.
 It takes a table of audit log field values (same as ``audit.log()``). The ``type``
-of the log module for writing user-defined events must either be ``message`` or
+of the log module for writing custom events must either be ``message`` or
 have the ``custom_`` prefix.
 
 Example
@@ -581,24 +582,16 @@ Example
                tag = 'admin', description = 'Hello, Bob!'})
 
 
-Some user-defined audit log fields (``time``, ``remote``, ``session_type``)
-are set in the same way as for a system event.
-If a field is not overwritten, it is set to the same value as for a system event.  
+It is possible to overwrite most of the custom audit log :ref:`fields <audit-log-structure>` using ``audit.new()`` or ``audit.log()``.
+The only audit log field that cannot be overwritten is ``time``.
+If a field is not overwritten, it is set to the same value as for a system event.
+If omitted, ``session_type`` is set to the current session type, ``remote`` is set to the remote peer address.
 
-Some audit log fields you can overwrite with ``audit.new()`` and ``audit.log()``: 
+..  note::
 
-*   type
-*   user
-*   module
-*   tag
-*   description
-
-    ..  note::
-        
-        To avoid confusion with system events, the value of the type field must either be ``message`` (default)
-        or begin with ``custom_``. Otherwise you will get the error message.
-        User-defined events are filtered out by default.
-        To enable user-defined audit log events, you must add ``custom`` to ``box.cfg.audit_filter``.                                                            
+    To avoid confusion with system events, the value of the type field must either be ``message`` (default)
+    or begin with the ``custom_`` prefix. Otherwise, you receive the error message.
+    Custom events are filtered out by default.
 
 Example
 ~~~~~~~

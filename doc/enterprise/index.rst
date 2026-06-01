@@ -41,8 +41,7 @@ Tarantool Enterprise Edition
         * :ref:`Модуль интеграции с OpenLDAP <ldap_auth>`.
         * :ref:`Журнал аудита безопасности <enterprise-logging>`.
         * Подключения к :ref:`корпоративным базам данных <enterprise-run-app>`:
-          Oracle и любым СУБД с интерфейсом ODBC (MySQL, Microsoft SQL Server и т.д.).
-          (например, MySQL, Microsoft SQL Server).
+          Oracle и любым СУБД с интерфейсом ODBC (например, MySQL, Microsoft SQL Server).
         * :ref:`Шифрование трафика <enterprise-iproto-encryption>` с помощью SSL.
         * :doc:`Сжатие кортежей <tuple_compression>`.
         * :doc:`Смена схемы данных в фоновом режиме <space_upgrade>`.

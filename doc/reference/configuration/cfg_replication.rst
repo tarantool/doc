@@ -68,7 +68,7 @@
     is read-only (but you still can write to temporary and
     replica-local spaces), and it isn't present in the ``_cluster`` table.
 
-    Since an anonymous replica isn't registered in the ``_cluster`` table,
+    Since an anonymous replica isn't registered in the :ref:`_cluster <box_space-cluster>` space,
     there is no limitation for anonymous replicas count in a replica set:
     you can have as many of them as you want.
 
