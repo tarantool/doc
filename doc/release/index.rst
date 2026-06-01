@@ -25,6 +25,7 @@ To learn more, read the :doc:`Compatibility guarantees <compatibility>` article.
     :maxdepth: 1
 
     2.11.0
+    enterprise-changelog
     eol_versions
 
 ..  toctree::
