@@ -309,6 +309,33 @@ index_opts
         | Type: string
         | Default: not set
 
+    ..  _index_opts_covers:
+
+    .. data:: covers
+
+        **MemCS only**
+
+        Specify a list of non-key fields stored in the index (covering index).
+        `covers` also allows specifying a per-column :ref:`layout <index_opts_layout>` for covered fields.
+
+        For example:
+
+        .. code-block:: lua
+
+            box.space.test:create_index('sk', {
+                parts = {'c2', 'c3'},
+                covers = {
+                    {'c4', layout = 'plain'},
+                    {'c5', layout = 'null_rle'},
+                },
+            })
+
+        In this example, `c4` is stored using the `plain` layout, while `c5` is stored using the `null_rle` layout.
+        Per-column layouts specified in covers take precedence over the index-wide `layout` option and any layout specified in the space format.
+
+        | Type: table
+        | Default: not set
+
 .. _key_part_object:
 
 key_part
