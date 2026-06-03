@@ -1,0 +1,41 @@
+.. _column_compression:
+
+Column compression
+==================
+
+..  admonition:: Enterprise Edition
+    :class: fact
+
+    Column compression is available in the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only.
+
+Column compression, introduced in Tarantool Enterprise Edition 3.7.0, aims
+to save memory space. It compresses a range of consecutive values and
+stores them in a compressed block. Default block size is 50-100 values.
+
+The following compression algorithms are supported:
+
+- [lz4](https://en.wikipedia.org/wiki/LZ4_(compression_algorithm))
+- [zstd](https://en.wikipedia.org/wiki/Zstd)
+- [zlib](https://en.wikipedia.org/wiki/Zlib)
+
+A column of any type can be compressed, however the "external" values
+(the strings that are longer than 12 characters) are not yet compressed.
+
+..  note::
+
+    Only non-indexed columns can be compressed.
+    The compression can be enabled only during the space creation.
+
+
+Example:
+
+..  code-block:: lua
+
+    local format = {
+        {'c1', 'uint64'},
+        {'c2', 'string', is_nullable = true, compression = 'lz4'},
+        {'c3', 'int32', compression = {type = 'lz4', acceleration = 1000}},
+    }
+    box.schema.create_space('test', {
+        engine = 'memcs', field_count = #format, format = format,
+    })

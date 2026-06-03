@@ -882,3 +882,4 @@ you will get an error.
     indexes
     using_indexes
     tuple_compression
+    column_compression
