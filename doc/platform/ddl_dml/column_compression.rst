@@ -14,9 +14,9 @@ stores them in a compressed block. Default block size is 50-100 values.
 
 The following compression algorithms are supported:
 
-- [lz4](https://en.wikipedia.org/wiki/LZ4_(compression_algorithm))
-- [zstd](https://en.wikipedia.org/wiki/Zstd)
-- [zlib](https://en.wikipedia.org/wiki/Zlib)
+* `lz4 <https://en.wikipedia.org/wiki/LZ4_(compression_algorithm)>`_
+* `zstd <https://en.wikipedia.org/wiki/Zstd>`_
+* `zlib <https://en.wikipedia.org/wiki/Zlib>`_
 
 A column of any type can be compressed, however the "external" values
 (the strings that are longer than 12 characters) are not yet compressed.
