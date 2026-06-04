@@ -31,7 +31,7 @@ Key Features
 Usage
 -----
 
-MemCS is used as a storage engine for `space` objects and is created using `box.schema.create_space()`:
+MemCS is used as a storage engine for `space` objects and is created using :ref:`box.schema.space.create() <box_schema-space_create>` :
 
 ..  code-block:: lua
 
