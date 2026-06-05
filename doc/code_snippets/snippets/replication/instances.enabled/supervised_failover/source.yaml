@@ -14,6 +14,7 @@ iproto:
 
 replication:
   failover: supervised
+  bootstrap_strategy: native
 
 failover:
   probe_interval: 5

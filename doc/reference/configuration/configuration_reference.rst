@@ -3995,9 +3995,29 @@ autoexpel full example
         To specify the bootstrap leader, use the :ref:`<replicaset_name>.bootstrap_leader <configuration_reference_replicasets_name_bootstrap_leader>` option.
 
     *   ``supervised``: a bootstrap leader isn't chosen automatically but should be appointed using :ref:`box.ctl.make_bootstrap_leader() <box_ctl-make_bootstrap_leader>` on the desired node.
+        The bootstrap leader management is the user's responsibility unless :ref:`replication.failover <configuration_reference_replication_failover>` is set to ``supervised``.
+        In this case, the failover coordinator manages the bootstrap leader.
+
+    *   ``native`` (since :doc:`3.4.0 </release/3.4.0>`): the bootstrap leader is managed in the YAML configuration layer in sync with read-only/read-write mode management.
+        From the user's perspective, this strategy is similar to ``auto``: Tarantool or the failover coordinator handles bootstrapping automatically.
+        Internally, ``native`` is based on ``supervised``, which helps avoid limitations of ``auto``, such as requiring a joining replica to connect to all instances registered in the ``_cluster`` system space.
+
+        When initializing a replica set, ``native`` uses :ref:`box.ctl.make_bootstrap_leader({graceful = true}) <box_ctl-make_bootstrap_leader>`.
+        After bootstrap, when an instance switches to read-write mode, ``native`` uses :ref:`box.ctl.make_bootstrap_leader() <box_ctl-make_bootstrap_leader>` to keep the bootstrap leader record pointing to the current read-write instance.
+        The instance chosen to initialize a replica set depends on :ref:`replication.failover <configuration_reference_replication_failover>`:
+
+        -   ``off``: the first read-write instance in lexicographic order.
+        -   ``manual``: the instance configured as the replica set leader.
+        -   ``election``: the first non-anonymous candidate in lexicographic order.
+        -   ``supervised``: the failover coordinator chooses the bootstrap leader.
 
     *   ``legacy`` (deprecated since :doc:`2.11.0 </release/2.11.0>`): a node requires the :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>` number of other nodes to be connected.
         This option is added to keep the compatibility with the current versions of Cartridge and might be removed in the future.
+
+    ..  NOTE::
+
+        When using ``supervised`` or ``native`` with :ref:`replication.failover <configuration_reference_replication_failover>` set to ``supervised``,
+        Tarantool automatically grants the ``guest`` user runtime privileges to execute the internal ``failover.execute`` call for the initial cluster bootstrap.
 
     |
     | Type: string
