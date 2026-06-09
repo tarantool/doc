@@ -33,7 +33,7 @@ Other features include:
 
 .. _memcs-features:
 
-Key Features
+Key features
 ------------
 
 * Columnar data organization — data is stored column-wise, enabling efficient aggregations, filters, and scans.
@@ -64,7 +64,7 @@ MemCS is used as a storage engine for `space` objects and is created using :ref:
 
 .. _memcs-data:
 
-Supported Data Types
+Supported data types
 --------------------
 
 MemCS supports a wide range of data types, including:
@@ -76,7 +76,7 @@ MemCS supports a wide range of data types, including:
 
 .. _memcs-dict-encoding:
 
-Dictionary Encoding
+Dictionary encoding
 -------------------
 
 MemCS supports **dictionary encoding** for string columns. It stores unique string values in a shared dictionary and replaces repeated values with small integer IDs.
@@ -109,7 +109,7 @@ Memory used by the dictionary is included in ``space:bsize()`` statistics.
 
 .. _memcs-column:
 
-Column Layouts
+Column layouts
 ~~~~~~~~~~~~~~
 
 MemCS supports specifying **column layouts** at multiple levels. The precedence is as follows (from highest to lowest):
@@ -152,7 +152,7 @@ MemCS supports specifying **column layouts** at multiple levels. The precedence 
 
 .. _memcs-column-rle_encoding:
 
-RLE Encoding of NULLs
+RLE encoding of NULLs
 ^^^^^^^^^^^^^^^^^^^^^
 
 By default, NULL values are stored explicitly and consume the same amount of memory as any other valid column value (1, 2, 4, 8, 16, or 32 bytes depending on the exact field type).
@@ -168,7 +168,7 @@ The ``null_rle`` layout can be specified at three levels:
 
 .. _memcs-lz4-compression:
 
-LZ4 Compression
+LZ4 compression
 ----------------
 
 MemCS supports **column-level compression** using the `LZ4 <https://en.wikipedia.org/wiki/LZ4_(compression_algorithm)>`_, which balances speed and compression ratio.
