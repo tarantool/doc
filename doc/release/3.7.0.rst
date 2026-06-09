@@ -114,7 +114,7 @@ Additional notes:
 LZ4 column compression
 ~~~~~~~~~~~~~~~~~~~~~~
 
-MemCS now supports column-level compression with `lz4 <https://en.wikipedia.org/wiki/LZ4_(compression_algorithm)>`_.
+:ref:`MemCS <engines-memcs>` now supports column-level compression with `lz4 <https://en.wikipedia.org/wiki/LZ4_(compression_algorithm)>`_.
 Compression is applied to ranges of consecutive values, stored as compressed blocks.
 
 Compression is configured per column in the space format using the `compression` attribute and can be enabled only at space creation time:
