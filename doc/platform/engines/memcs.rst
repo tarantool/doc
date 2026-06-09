@@ -172,26 +172,4 @@ LZ4 Compression
 ----------------
 
 MemCS supports **column-level compression** using the `LZ4 <https://en.wikipedia.org/wiki/LZ4_(compression_algorithm)>`_, which balances speed and compression ratio.
-Compression is configured per column in the space format using the `compression` attribute and can be enabled only at space creation time:
-
-.. code-block:: lua
-
-    local format = {
-        {'c1', 'uint64'},
-        {'c2', 'string', compression = 'lz4'},
-        {'c3', 'double', compression = {type = 'lz4', acceleration = 1000}},
-    }
-
-**Parameters:**
-
-- ``type`` — compression algorithm (``lz4``)
-- ``acceleration`` — LZ4-specific parameter:
-  - range: 1…65537
-  - recommended: 10…1000
-  - higher values improve speed, but reduce compression ratio
-
-**Limitations:**
-
-- Compression can be enabled **only at space creation**
-- Only **non-indexed columns** can be compressed
-- Strings longer than **12 bytes** are currently **not compressed**
+All the details on the engines you can find in :ref:`Column compression <column_compression>` chapter.
