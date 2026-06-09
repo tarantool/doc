@@ -6,7 +6,8 @@ Column compression
 ..  admonition:: Enterprise Edition
     :class: fact
 
-    Column compression is available in the `Enterprise Edition <https://www.tarantool.io/compare/>`_ only.
+    Column compression is available exclusively in the `Enterprise Edition <https://www.tarantool.io/compare/>`_.
+    Now supported only by the MemCS engine.
 
 Column compression, introduced in Tarantool Enterprise Edition 3.7.0, aims
 to save memory space. It compresses a range of consecutive values and
@@ -26,6 +27,14 @@ A column of any type can be compressed, however the "external" values
     Only non-indexed columns can be compressed.
     The compression can be enabled only during the space creation.
 
+
+Compression settings:
+
+*   `acceleration` – LZ4-specific configuration parameter:
+
+    -   allowed range: 1…65537
+    -   recommended: 10…1000
+    -   higher values improve compression and decompression speed, but reduce the compression ratio
 
 Example:
 
