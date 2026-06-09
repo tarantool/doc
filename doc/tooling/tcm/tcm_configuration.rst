@@ -68,13 +68,10 @@ The example below shows a fragment of a |tcm| configuration file:
 
     # a fragment of a YAML configuration file
     cluster: # top-level group
-        on-air-limit: 4096
         connection-rate-limit: 512
         tarantool-timeout: 10s
         tarantool-ping-timeout: 5s
     http: # top-level group
-        basic-auth: # nested group
-            enabled: false
         network: tcp
         host: 127.0.0.1
         port: 8080
@@ -176,8 +173,6 @@ Most options have the Go's basic types: ``int`` and other numeric types, ``bool`
 .. code-block:: yaml
 
     http:
-        basic-auth:
-            enabled: false # bool
         network: tcp # string
         host: 127.0.0.1 # string
         port: 8080 # int

@@ -37,9 +37,15 @@ For details, see :ref:`Viewing audit log <tcm_audit_log_view>`.
 Enabling audit logging
 ----------------------
 
-To enable audit logging in |tcm|, go to **Audit settings** and click **Enable**.
+You can enable and configure the audit log in two ways:
 
-To additionally send audit log events to the standard output, click **Send to stdout**.
+*   in the TCM UI
+*   in the TCM configuration YAML file
+
+To enable audit logging in |tcm| UI, go to **Audit settings** and click **Enable**. To additionally send audit log events to the standard output, click **Send to stdout**.
+
+You can also pre-configure audit logging during the first TCM launch by setting options in the TCM configuration file (tcm.yaml)
+through the :ref:`initial-settings.auditlog <tcm_configuration_initial>` parameter.
 
 ..  _tcm_audit_log_config:
 
@@ -56,7 +62,7 @@ Writing to a file
 To write |tcm| audit logs to a file:
 
 1.  Go to **Audit settings** and select the **file** protocol.
-2.  Specify the name of the audit log file. The file appears in the |tcm| working directory.
+2.  Specify the name of the audit log file. The file will be saved in the directory specified by the user, which can be either absolute or relative. The file appears in the |tcm| working directory.
 3.  Configure the log files rotation: the maximum file size and age, and the number
     of files to store simultaneously.
 4.  (Optional) Enable compression of audit log files.

@@ -103,6 +103,7 @@ follow these steps:
     *    The URIs of the configuration storage instances.
     *    The credentials for accessing the configuration storage.
     *    The SSL/TLS parameters if the connection encryption is enabled on the storage.
+    *    Optionally, add prefix for TDB worker nodes.
 
 4.  Provide the credentials for accessing the cluster: a Tarantool user's name, their password,
     and SSL parameters in case :ref:`traffic encryption <enterprise-iproto-encryption>`

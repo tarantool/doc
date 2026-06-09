@@ -412,3 +412,24 @@ The following cluster permissions are available in |tcm|:
 
     *   -   ``cluster.metrics``
         -   View cluster metrics
+
+    *   -   ``cluster.config.security``
+        -   View and edit settings on the **Security** tab
+
+    *   -   ``cluster.user.read``
+        -   View users and roles of the cluster on the Users tab on the instance page
+
+    *   -   ``cluster.user.write``
+        -   Create, edit, and delete users and roles of the cluster on the **Users** tab on the **Instance page**
+
+    *   -   ``cluster.migrations.read``
+        -   View information about loaded and applied migrations on the **Migrations** tab
+
+    *   -   ``cluster.migrations.write``
+        -   Create, edit, and apply migrations
+
+    *   -   ``cluster.tcf.read``
+        -   View information about TCF clusters and their status on the **TCF** tab
+
+    *   -   ``cluster.tcf.write``
+        -   Modify TCF configuration settings and switch cluster states on the **TCF** tab
