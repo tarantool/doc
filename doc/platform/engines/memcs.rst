@@ -6,14 +6,30 @@ Storing data with memcs
 ..  admonition:: Enterprise Edition
     :class: fact
 
-The `memcs` engine uses a single-threaded transaction processor (TX thread), similar to `memtx`. However, unlike `memtx`,
-which stores data in row-wise format, `memcs` stores data in columnar format, allowing for efficient access to individual columns.
+The ``memcs`` engine uses a single-threaded transaction processor (TX thread), similar to ``memtx``,
+and stores data in the memtx arena but in contrast to memtx it doesn’t organize data in tuples.
+Instead, it stores data in columns. Each format field is assigned its own BPS tree-like structure (BPS vector), which stores values only of that field.
+If the field type fits in 32 bytes, raw field values are stored directly in tree leaves without any encoding.
+The strings are stored in the format similar to "Arrow Variable-size Binary View Layout", also called "German Strings".
 
-Data is stored in spaces, and each column is stored separately. This allows Tarantool to:
+The main benefit of such data organization is a significant performance boost of columnar data sequential scans compared to memtx thanks to CPU cache locality.
+That’s why memcs supports a special C api for such columnar scans: see ``box_index_arrow_stream()`` and ``box_raw_read_view_arrow_stream()``.
+Peak performance is achieved when scanning embedded field types.
 
-* Read only the columns needed for a query.
-* Apply compression and encoding per column.
-* Efficiently process large datasets using vectorized operations.
+Querying full tuples, like in memtx, is also supported, but the performance is worse compared to memtx,
+because a tuple has to be constructed on the runtime arena from individual field values gathered from each column tree.
+
+Other features include:
+
+* Point lookup
+* Stable iterators
+* Insert / replace / delete / update
+* Batch insertion in the Arrow format
+* Transactions, including cross-engine transactions with ``memtx`` (with
+  ``memtx_use_mvcc_engine = false``)
+* Read view support
+* Secondary indexes with the ability to specify covered columns and sequentially scan
+  indexed + covered columns
 
 .. _memcs-features:
 
@@ -24,7 +40,6 @@ Key Features
 * Apache Arrow support — data can be exported in Arrow format without conversion, enabling zero-copy interoperability.
 * Dictionary encoding — reduces memory usage for string columns with repeated values.
 * `LZ4 <https://en.wikipedia.org/wiki/LZ4_(compression_algorithm)>`_ compression — compresses column data to reduce memory footprint.
-* SQL integration — supports querying via Tarantool SQL engine.
 
 .. _memcs-usage:
 
@@ -54,13 +69,10 @@ Supported Data Types
 
 MemCS supports a wide range of data types, including:
 
-- Integer types: ``uint64``, ``int64``, ``uint32``, ``int32``
-- Floating-point types: ``double``, ``float``
+- Integer types: ``int8``, ``uint8``, ``int16``, ``uint16``, ``int32``, ``uint32``, ``int64``, ``uint64``
+- Floating-point types: ``double``, ``float``, ``float32``, ``float64``
 - Strings: ``string``
-- Boolean: ``boolean``
-- Temporal types: ``datetime``
-- UUID: ``uuid``
-- Decimal: ``decimal``
+- Decimal: ``decimal``, ``decimal32``, ``decimal64``, ``decimal128``, and ``decimal256``
 
 .. _memcs-dict-encoding:
 
@@ -108,7 +120,7 @@ MemCS supports specifying **column layouts** at multiple levels. The precedence 
 
 .. code-block:: lua
 
-    -- 1. In covers (highest precedence)
+    -- 1. In covers
     box.space.test:create_index('sk', {
         parts = {'c2', 'c3'},
         covers = {
@@ -117,14 +129,14 @@ MemCS supports specifying **column layouts** at multiple levels. The precedence 
         },
     })
 
-    -- 2. In layout (default for nullable fields)
+    -- 2. In layout
     box.space.test:create_index('sk', {
         parts = {'c2', 'c3'},
         covers = {'c4', 'c5'},
         layout = 'null_rle',
     })
 
-    -- 3. In format (lowest precedence)
+    -- 3. In format
     box.space.test:format({
         {name = "c2", type = "number"},
         {name = "c3", type = "number"},
@@ -136,6 +148,23 @@ MemCS supports specifying **column layouts** at multiple levels. The precedence 
 
 - ``plain`` — default layout, no encoding
 - ``null_rle`` — RLE encoding for nullable fields
+- ``dict`` – dictionary encoding for string fields
+
+.. _memcs-column-rle_encoding:
+
+RLE Encoding of NULLs
+^^^^^^^^^^^^^^^^^^^^^
+
+By default, NULL values are stored explicitly and consume the same amount of memory as any other valid column value (1, 2, 4, 8, 16, or 32 bytes depending on the exact field type).
+However, RLE encoding of NULLs is also supported via the ``null_rle`` layout.
+For example, in a column with 90% evenly distributed NULL values, RLE encoding reduces memory consumption by approximately 5 times.
+
+The ``null_rle`` layout can be specified at three levels:
+
+* Within ``covers`` in an index definition (highest precedence)
+* Within ``layout`` in an index definition (default for nullable fields)
+* Within ``format`` when defining a space (lowest precedence)
+
 
 .. _memcs-lz4-compression:
 
@@ -179,23 +208,6 @@ MemCS is optimized for:
 - **Efficient memory usage** through dictionary encoding and compression
 
 Using **dictionary encoding** and **LZ4 compression** together typically reduces memory usage by **8–13x** compared to uncompressed data.
-
-.. _memcs-memory:
-
-Memory Consumption
-------------------
-
-MemCS is memory-efficient, especially when dictionary encoding and compression are used together.
-
-**Dictionary-encoded column memory usage:**
-``2 * space_size + dict_size``
-
-Where:
-
-- ``space_size`` — number of rows
-- ``dict_size`` — memory used by the dictionary
-
-Memory usage is accounted for in ``space:bsize()`` statistics.
 
 .. _memcs-use-cases:
 
