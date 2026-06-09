@@ -26,7 +26,6 @@ A column of any type can be compressed, however the "external" values
 
     Only non-indexed columns can be compressed.
     The compression can be enabled only during the space creation.
-    Strings longer than **12 bytes** are currently **not compressed**
 
 
 Compression settings:
