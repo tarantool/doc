@@ -261,6 +261,28 @@
 
     *   ``supervised``: a bootstrap leader isn't chosen automatically but should be appointed using :ref:`box.ctl.make_bootstrap_leader() <box_ctl-make_bootstrap_leader>` on the desired node.
 
+    *   ``native`` (supported since :doc:`3.4.0 </release/3.4.0>`): based on ``supervised``; similar to ``auto`` but
+        with fewer limitations:
+
+        *   bootstraps a replica set with ``box.ctl.make_bootstrap_leader({graceful = true})``;
+        *   keeps the bootstrap leader pointing to the current ``RW`` instance with :ref:`box.ctl.make_bootstrap_leader() <box_ctl-make_bootstrap_leader>`
+            (to register new replicas).
+
+        Bootstrap leader selection depends on ``replication.failover``. Recommended for highly dynamic clusters with autoscaling and in most other cases.
+
+            *   ``off``/``manual``: on initial bootstrap, calls ``box.ctl.make_bootstrap_leader()`` on a configured RW
+                instance (in multi-master: the first one lexicographically). On switching to RW, calls
+                ``box.ctl.make_bootstrap_leader()``; the last instance that became RW is the bootstrap leader.
+
+            *   ``election``: same, but the initial bootstrap leader is the instance with the lowest name
+                (lexicographically, excluding anonymous replicas).
+
+            *   ``supervised``: the coordinator is responsible for calling ``box.ctl.make_bootstrap_leader()`` to
+                bootstrap the replica set; other behavior is the same.
+
+        May be worse than ``auto`` in multi-master if the current bootstrap leader goes down: another ``RW`` instance
+        doesn't take over automatically; ``RW`` -> ``RO`` -> ``RW`` reconfiguration may be required.
+
     *   ``legacy`` (deprecated since :doc:`2.11.0 </release/2.11.0>`): a node requires the :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>` number of other nodes to be connected.
         This option is added to keep the compatibility with the current versions of Cartridge and might be removed in the future.
 
