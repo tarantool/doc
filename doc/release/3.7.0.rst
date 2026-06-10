@@ -72,7 +72,7 @@ In typical workloads, using these features together provides an **8–13x reduct
 Dictionary encoding for string columns
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-MemCS can store string values in a **dictionary-encoded** form: unique strings are kept in a shared dictionary, while rows store integer IDs referencing dictionary entries.
+:ref:`MemCS <engines-memcs>` can store string values in a **dictionary-encoded** form: unique strings are kept in a shared dictionary, while rows store integer IDs referencing dictionary entries.
 This is most effective for columns with many repeated values (for example, statuses, categories, event types).
 
 Dictionary encoding is enabled via the :ref:`layout <index_opts_layout>` option:
