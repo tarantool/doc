@@ -1,0 +1,150 @@
+Tarantool 3.7
+=============
+
+Release date:  2026-04-12
+
+Releases on GitHub: :tarantool-release:`3.7.0`
+
+The 3.7 release of Tarantool adds the following main product features and improvements
+for the Community and Enterprise editions:
+
+*   **Community Edition (CE)**
+
+    *   Multiple minor improvements and bug fixes.
+
+*   **Enterprise Edition (EE)**
+
+    *   Failover coordinator: safe SSL configuration.
+    *   MemCS: dictionary encoding and `lz4` compression.
+
+.. _3-7-failover-ssl-params:
+
+[EE] Failover coordinator: safe SSL configuration
+-------------------------------------------------
+
+Tarantool failover coordinator now safely supports TLS-encrypted and mTLS-authenticated connections.
+SSL certificates and Certificate Authority can be configured via a dedicated failover-specific
+configuration section.
+
+Previously, the coordinator relied on SSL parameters taken from instance URIs.
+In case of SSL + CA (mTLS), this approach might require the coordinator host to have access
+to private keys/certificates of the instances it connected to.
+
+Now the `failover.iproto.ssl` configuration section is a source of SSL client parameters
+for outgoing `net.box` connections initiated by the coordinator. The parameters are injected
+into URI parameters passed to `net.box.connect()` only for URIs with `params.transport: ssl`,
+and do not affect non-SSL connections.
+
+Example:
+
+.. code-block:: yaml
+
+   failover:
+     mode: stateful
+     iproto:
+       listen:
+         uri: '127.0.0.1:3302'
+           params:
+             transport: ssl
+       ssl:
+         ca_file: './certs/rootCA.pem'
+         ssl_cert: './certs/coordinator.crt'
+         ssl_key: './certs/coordinator.key'
+         # Optional:
+         # ssl_ciphers: 'ECDHE-RSA-AES256-GCM-SHA384:...'
+         # ssl_password: 'secret'
+         # ssl_password_file: './certs/key_passwords.txt'
+
+.. _3-7-memcs-memory-improvements:
+
+[EE] MemCS: dictionary encoding and lz4 compression
+---------------------------------------------------
+
+This release brings two major memory utilization improvements in the MemCS engine:
+
+* Dictionary encoding for string columns (Arrow dictionary-encoded layout).
+* Column-level compression with the `lz4` codec.
+
+In typical workloads, using these features together provides an **8–13x reduction in memory footprint** compared to uncompressed storage.
+
+.. _3-7-memcs-memory-improvements_dict_encoding:
+
+Dictionary encoding for string columns
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:ref:`MemCS <engines-memcs>` can store string values in a **dictionary-encoded** form: unique strings are kept in a shared dictionary, while rows store integer IDs referencing dictionary entries.
+This is most effective for columns with many repeated values (for example, statuses, categories, event types).
+
+Dictionary encoding is enabled via the :ref:`layout <index_opts_layout>` option:
+
+.. code-block:: lua
+
+    local s = box.schema.create_space('test', {
+        engine = 'memcs', format = format, field_count = field_count,
+    })
+    local pk = s:create_index('pk', {layout = 'dict'})
+
+Limitations and behavior
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+* Only **non-key string columns** can use dictionary encoding. Other columns silently ignore `layout = 'dict'`.
+* Dictionary IDs are stored as `uint16` (2 bytes per row).
+* The maximum number of unique values per dictionary-encoded column is `UINT16_MAX` (65536). When the dictionary is full, inserting a new unique value fails with an error.
+* Approximate memory usage for such a column is `2 * space_size + dict_size bytes`.
+* Dictionary memory is included in `space:bsize()` statistics.
+* The implementation follows **Apache Arrow dictionary-encoded layout**, since Arrow is the standard interchange format for MemCS.
+
+    .. IMPORTANT::
+
+        Currently the `layout` option can be specified only during the space creation. It's not possible to change it for the existing space.
+
+When reading via ArrowStream, MemCS always returns dictionary-encoded columns in Arrow dictionary-encoded layout:
+
+* the dictionary is returned as **string-view**
+* indices are `uint16`
+
+Additional notes:
+
+* If no new unique values are inserted, all record batches share the same dictionary.
+* Dictionaries are returned by reference (no copying), so ArrowArray export has low overhead.
+* Dictionaries only grow (values are not removed), so after a dictionary update it remains compatible with batches produced with the previous dictionary.
+
+.. _3-7-memcs-memory-improvements_lz4_column_compression:
+
+LZ4 column compression
+~~~~~~~~~~~~~~~~~~~~~~
+
+:ref:`MemCS <engines-memcs>` now supports column-level compression with `lz4 <https://en.wikipedia.org/wiki/LZ4_(compression_algorithm)>`_.
+Compression is applied to ranges of consecutive values, stored as compressed blocks.
+
+Compression is configured per column in the space format using the `compression` attribute and can be enabled only at space creation time:
+
+.. code-block:: lua
+
+    local format = {
+        {'c1', 'uint64'},
+        {'c2', 'string', is_nullable = true, compression = 'lz4'},
+        {'c3', 'int32', compression = {type = 'lz4', acceleration = 1000}},
+    }
+    box.schema.create_space('test', {
+        engine = 'memcs', field_count = #format, format = format,
+    })
+
+
+Compression settings:
+
+* Algorithm: `lz4`
+* `acceleration` – LZ4-specific configuration parameter:
+    * allowed range: 1…65537
+    * recommended: 10…1000
+    * higher values improve compression and decompression speed, but reduce the compression ratio
+
+Limitations
+^^^^^^^^^^^
+
+* Only non-indexed columns can be compressed.
+* A column of any type supports compression, however "external" string values (strings longer than 12 characters) are currently not subject to compression.
+
+    .. IMPORTANT::
+
+        Currently the `compression` attribute can be specified only during the space creation. It's not possible to change it for the existing space.
