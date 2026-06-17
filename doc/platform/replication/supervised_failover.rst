@@ -35,14 +35,16 @@ The main steps of using an external failover coordinator for a newly configured 
 
 1.  :ref:`Configure a cluster <supervised_failover_configuration>` to work with an external coordinator.
     The main step is setting the ``replication.failover`` option to ``supervised`` for all replica sets that should be managed by the external coordinator.
+    For newly configured clusters, set :ref:`replication.bootstrap_strategy <configuration_reference_replication_bootstrap_strategy>` to ``native`` so that the coordinator controls the initial bootstrap as well.
 
 2.  Start a configured cluster.
-    When an external coordinator is still not running, instances in a replica set start in the following modes:
+    If :ref:`replication.bootstrap_strategy <configuration_reference_replication_bootstrap_strategy>` is set to ``native`` or ``supervised``, an unbootstrapped replica set waits for the failover coordinator to appoint a bootstrap leader and no instance bootstraps on its own.
+    After bootstrap, instances are started in read-only mode until the coordinator appoints a leader.
 
-    -   If a replica set is already :ref:`bootstrapped <replication_stages>`, all instances are started in read-only mode.
-    -   If a replica set is not bootstrapped, one instance is started in read-write mode.
+    If the default ``auto`` bootstrap strategy is used instead, one instance in an unbootstrapped replica set can start in read-write mode before the coordinator starts.
 
 3.  :ref:`Start a failover coordinator <supervised_failover_start_coordinator>`.
+    If the replica set is waiting for a bootstrap leader, start the coordinator before :ref:`replication.connect_timeout <configuration_reference_replication_connect_timeout>` expires, or start the coordinator before the instances.
     You can start two or more failover coordinators to increase fault tolerance.
     In this case, one coordinator is active and others are passive.
 
@@ -108,12 +110,12 @@ To configure a cluster to work with an external failover coordinator, follow the
 
 #.  (Optional) If you need to run :ref:`several failover coordinators <supervised_failover_overview_fault_tolerance>` to increase fault tolerance, set up an etcd-based configuration storage, as described in :ref:`configuration_etcd`.
 
-#.  Set the :ref:`replication.failover <configuration_reference_replication_failover>` option to ``supervised``:
+#.  Set the :ref:`replication.failover <configuration_reference_replication_failover>` option to ``supervised`` and :ref:`replication.bootstrap_strategy <configuration_reference_replication_bootstrap_strategy>` to ``native``:
 
     ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/supervised_failover/source.yaml
         :language: yaml
         :start-at: replication:
-        :end-at: failover: supervised
+        :end-at: bootstrap_strategy: native
         :dedent:
 
 #.  Grant a user used for replication :ref:`permissions <configuration_credentials_managing_users_roles_granting_privileges>` to execute the ``failover.execute`` function:
@@ -126,6 +128,9 @@ To configure a cluster to work with an external failover coordinator, follow the
 
     .. note::
 
+        When ``replication.bootstrap_strategy`` is ``native`` or ``supervised``, Tarantool automatically grants the ``guest`` user runtime privileges to execute ``failover.execute`` for the initial cluster bootstrap.
+        The explicit grant above lets the coordinator use the configured replication user after the cluster is bootstrapped.
+
         In Tarantool 3.0 and 3.1, the configuration is different and the function
         must be created in the application code. See :ref:`supervised_failover_configuration_with_role` for details.
 
@@ -133,7 +138,7 @@ To configure a cluster to work with an external failover coordinator, follow the
 
     ..  literalinclude:: /code_snippets/snippets/replication/instances.enabled/supervised_failover/source.yaml
         :language: yaml
-        :start-after: failover: supervised
+        :start-after: bootstrap_strategy: native
         :end-before: groups
         :dedent:
 

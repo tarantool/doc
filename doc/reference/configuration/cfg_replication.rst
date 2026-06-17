@@ -264,6 +264,11 @@
     *   ``legacy`` (deprecated since :doc:`2.11.0 </release/2.11.0>`): a node requires the :ref:`replication_connect_quorum <cfg_replication-replication_connect_quorum>` number of other nodes to be connected.
         This option is added to keep the compatibility with the current versions of Cartridge and might be removed in the future.
 
+    ..  NOTE::
+
+        The ``native`` strategy is available only in the YAML configuration as :ref:`replication.bootstrap_strategy <configuration_reference_replication_bootstrap_strategy>`.
+        When ``native`` is configured in YAML, Tarantool uses ``supervised`` as the underlying ``box.cfg`` bootstrap strategy and manages the bootstrap leader in the configuration layer.
+
     |
     | Type: string
     | Default: auto
