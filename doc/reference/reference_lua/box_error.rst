@@ -175,6 +175,51 @@ Error details may include an error code, type, message, and trace.
     :end-before: Get error details: end
     :dedent:
 
+.. NOTE::
+
+    You can use the error details table to raise an error, but that error would not be the same as the original.
+
+    .. code-block:: Lua
+
+        -- Let e is net.box time out error:
+        e
+        --[[
+        ---
+        - timed out
+        ...
+        --]]
+
+        e:unpack()
+        --[[
+        ---
+        - errno: 110
+        code: 0
+        base_type: TimedOut
+        type: TimedOut
+        message: timed out
+        trace: <doesn't matter, snipped>
+        ...
+        --]]
+
+        box.error(e:unpack())
+        --[[
+        ---
+        - error: timed out
+        ...
+        --]]
+
+        box.error.last():unpack()
+        --[[
+        ---
+        - code: 0
+        base_type: CustomError
+        type: TimedOut
+        custom_type: TimedOut
+        message: timed out
+        trace: <doesn't matter, snipped>
+        ...
+        --]]
+
 .. _box_error_set_last_error:
 
 Setting the last error
