@@ -30,14 +30,11 @@ object:
   syscall
 * :ref:`popen.new <popen-new>` to create a popen object with more specific options
 
-Either function returns a handle which we will call ``popen_handle`` or ``ph``.
-With the handle one can execute methods.
+Below are tables with summaries of ``popen`` constructors, constants, mrthods, and fields.
 
-===============================================================================
-                                    Index
-===============================================================================
-
-Below is a list of all ``popen`` functions and handle methods.
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                      popen module constructors
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 ..  container:: table
 
@@ -53,6 +50,35 @@ Below is a list of all ``popen`` functions and handle methods.
     | :ref:`popen.new()                    | Execute a child program in      |
     | <popen-new>`                         | a new process                   |
     +--------------------------------------+---------------------------------+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                      popen module constants
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+..  container:: table
+
+    ..  rst-class:: left-align-column-1
+    ..  rst-class:: left-align-column-2
+
+    +--------------------------------------+---------------------------------+
+    | Name                                 | Use                             |
+    +======================================+=================================+
+    | :ref:`Module constants               | Module constants                |
+    | <popen-constants>`                   |                                 |
+    +--------------------------------------+---------------------------------+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                      popen module methods
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+..  container:: table
+
+    ..  rst-class:: left-align-column-1
+    ..  rst-class:: left-align-column-2
+
+    +--------------------------------------+---------------------------------+
+    | Name                                 | Use                             |
+    +======================================+=================================+
     | :ref:`popen_handle:read()            | Read data from a child peer     |
     | <popen-read>`                        |                                 |
     +--------------------------------------+---------------------------------+
@@ -80,12 +106,26 @@ Below is a list of all ``popen`` functions and handle methods.
     | :ref:`popen_handle:close()           | Close a popen handle            |
     | <popen-close>`                       |                                 |
     +--------------------------------------+---------------------------------+
-    | :ref:`Module constants               | Module constants                |
-    | <popen-constants>`                   |                                 |
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                      popen module fields
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+..  container:: table
+
+    ..  rst-class:: left-align-column-1
+    ..  rst-class:: left-align-column-2
+
     +--------------------------------------+---------------------------------+
+    | Name                                 | Use                             |
+    +======================================+=================================+
     | :ref:`Handle fields                  | Handle fields                   |
     | <popen-handle_fields>`               |                                 |
     +--------------------------------------+---------------------------------+
+
+===============================================================================
+                                   popen module constructors
+===============================================================================
 
 ..  _popen-shell:
 
@@ -95,8 +135,7 @@ Below is a list of all ``popen`` functions and handle methods.
 
     :param string command: a command to run, mandatory
     :param string mode: communication mode, optional
-    :return: (if success) a popen handle, which we will call
-             ``popen_handle`` or ``ph``
+    :return: (if success) a popen handle object
 
              (if failure) ``nil, err``
 
@@ -160,8 +199,7 @@ Below is a list of all ``popen`` functions and handle methods.
                        mandatory; absolute path to the program is required when
                        ``opts.shell`` is false (default)
     :param table opts: table of options, optional
-    :return: (if success) a popen handle, which we will call
-             ``popen_handle`` or ``ph``
+    :return: (if success) a popen handle object
 
              (if failure) ``nil, err``
 
@@ -251,7 +289,7 @@ Below is a list of all ``popen`` functions and handle methods.
         |                      |                | or when Lua GC collects the handle.       |
         +----------------------+----------------+-------------------------------------------+
 
-    The returned ``ph`` handle provides a
+    The returned ``popen_handle`` handle provides a
     :ref:`popen_handle:close() <popen-close>` method for explicitly
     releasing all occupied resources, including the child process
     itself if ``opts.keep_child`` is not set). However, if the ``close()``
@@ -382,9 +420,39 @@ Below is a list of all ``popen`` functions and handle methods.
             return table.concat(chunks):rstrip()
         end
 
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-                      popen handle methods
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+===============================================================================
+                                   popen module constants
+===============================================================================
+
+    ..  _popen-constants:
+
+    **Module constants**
+
+    ..  code-block:: none
+
+        - popen.opts
+          - INHERIT (== 'inherit')
+          - DEVNULL (== 'devnull')
+          - CLOSE   (== 'close')
+          - PIPE    (== 'pipe')
+
+        - popen.signal
+          - SIGTERM (== 9)
+          - SIGKILL (== 15)
+          - ...
+
+        - popen.state
+          - ALIVE    (== 'alive')
+          - EXITED   (== 'exited')
+          - SIGNALED (== 'signaled')
+
+        - popen.stream
+          - OPEN    (== 'open')
+          - CLOSED  (== 'closed')
+
+===============================================================================
+                                   popen handle methods
+===============================================================================
 
 ..  class:: popen_handle
 
@@ -394,7 +462,7 @@ Below is a list of all ``popen`` functions and handle methods.
 
         Read data from a child peer.
 
-        :param handle ph: handle of a child process created with
+        :param userdata ph: handle of a child process created with
                           :ref:`popen.new() <popen-new>` or
                           :ref:`popen.shell() <popen-shell>`
         :param table opts: options
@@ -437,7 +505,7 @@ Below is a list of all ``popen`` functions and handle methods.
 
         Write string ``str`` to stdin stream of a child process.
 
-        :param handle ph: handle of a child process created with
+        :param userdata ph: handle of a child process created with
                           :ref:`popen.new() <popen-new>` or
                           :ref:`popen.shell() <popen-shell>`
         :param string str: string to write
@@ -480,7 +548,7 @@ Below is a list of all ``popen`` functions and handle methods.
 
         Close parent's ends of std* fds.
 
-        :param handle ph: handle of a child process created with
+        :param userdata ph: handle of a child process created with
                           :ref:`popen.new() <popen-new>` or
                           :ref:`popen.shell() <popen-shell>`
         :param table opts: options
@@ -535,7 +603,7 @@ Below is a list of all ``popen`` functions and handle methods.
 
         Send SIGTERM signal to a child process.
 
-        :param handle ph: handle of a child process created with
+        :param userdata ph: handle of a child process created with
                           :ref:`popen.new() <popen-new>` or
                           :ref:`popen.shell() <popen-shell>`
         :return: see :ref:`popen_handle:signal() <popen-signal>` for errors and
@@ -551,7 +619,7 @@ Below is a list of all ``popen`` functions and handle methods.
 
         Send SIGKILL signal to a child process.
 
-        :param handle ph: handle of a child process created with
+        :param userdata ph: handle of a child process created with
                           :ref:`popen.new() <popen-new>` or
                           :ref:`popen.shell() <popen-shell>`
         :return: see :ref:`popen_handle:signal() <popen-signal>` for errors and
@@ -568,7 +636,7 @@ Below is a list of all ``popen`` functions and handle methods.
 
         Send signal to a child process.
 
-        :param handle ph: handle of a child process created with
+        :param userdata ph: handle of a child process created with
                           :ref:`popen.new() <popen-new>` or
                           :ref:`popen.shell() <popen-shell>`
         :param number signo: signal to send
@@ -611,7 +679,7 @@ Below is a list of all ``popen`` functions and handle methods.
 
         Return information about the popen handle.
 
-        :param handle ph: handle of a child process created with
+        :param userdata ph: handle of a child process created with
                           :ref:`popen.new() <popen-new>` or
                           :ref:`popen.shell() <popen-shell>`
         :return: (if success) formatted result
@@ -743,7 +811,7 @@ Below is a list of all ``popen`` functions and handle methods.
 
         Wait until a child process gets exited or signaled.
 
-        :param handle ph: handle of a child process created with
+        :param userdata ph: handle of a child process created with
                           :ref:`popen.new() <popen-new>` or
                           :ref:`popen.shell() <popen-shell>`
         :param number timeout: since version :doc:`3.2.0 </release/3.2.0>`. The parameter defines the period in seconds for the method to wait for a resolution. The default value is "infinity".
@@ -785,7 +853,7 @@ Below is a list of all ``popen`` functions and handle methods.
 
         Close a popen handle.
 
-        :param handle ph: handle of a child process created with
+        :param userdata ph: handle of a child process created with
                           :ref:`popen.new() <popen-new>` or
                           :ref:`popen.shell() <popen-shell>`
         :return: (if success) true
@@ -835,6 +903,10 @@ Below is a list of all ``popen`` functions and handle methods.
         means success for a caller. The return values are purely
         informational: they are for logging or some kind of reporting.
 
+===============================================================================
+                                   popen handle fields
+===============================================================================
+
     ..  _popen-handle_fields:
 
     **Handle fields**
@@ -850,29 +922,3 @@ Below is a list of all ``popen`` functions and handle methods.
         popen_handle.stderr
 
     See :ref:`popen_handle:info() <popen-info>` for details.
-
-    ..  _popen-constants:
-
-    **Module constants**
-
-    ..  code-block:: none
-
-        - popen.opts
-          - INHERIT (== 'inherit')
-          - DEVNULL (== 'devnull')
-          - CLOSE   (== 'close')
-          - PIPE    (== 'pipe')
-
-        - popen.signal
-          - SIGTERM (== 9)
-          - SIGKILL (== 15)
-          - ...
-
-        - popen.state
-          - ALIVE    (== 'alive')
-          - EXITED   (== 'exited')
-          - SIGNALED (== 'signaled')
-
-        - popen.stream
-          - OPEN    (== 'open')
-          - CLOSED  (== 'closed')
