@@ -10,6 +10,52 @@ space_object:format()
 
         Declare field names and :ref:`types <index-box_data-types>`.
 
+        ..  WARNING::
+
+            Option 1 format Warning:
+
+            The ``space_object:format()`` operation involves full space traversal. Full traversal
+            is the process of processing every node or element in the space structure exactly once
+            in a systematic manner.
+
+            Full traversal may lead to replication lag for both synchronous and asynchronous replication
+            and make writes with synchronous replication unavailable for the whole duration of operation
+            when initiated at the following conditions:
+
+            - initiated on a space with over 10000 tuples AND
+            - when the node is under any load (when it processes user requests/performs business operations).
+
+            To avoid issues:
+
+            - initiate the ``space_object:format()`` operation on spaces that do not exceed 10000 tuples OR 
+            - initiate the ``space_object:format()`` operation when the node is not under any load;
+            - instead of the ``space_object:format()`` operation, perform the :ref:`box_space-upgrade` operation.
+
+            Safe exception for the ``space_object:format()`` operation is:
+
+            - changing space format to a more generic one.
+
+            Option 2 format Warning:
+
+            The ``space_object:format()`` operation involve full space traversal and introduce replication lag for both
+            synchronous and asynchronous replication and make writes with synchronous replication unavailable for the
+            whole duration of operation when initiated at certain conditions.
+
+            The issues occur when the ``space_object:format()`` operation is initiated at the following conditions:
+
+            - initiated on a space with over 10000 tuples AND
+            - when the node is under any load (when it processes user requests/performs business operations).
+
+            To avoid issues:
+
+            - initiate the ``space_object:format()`` operation on spaces that do not exceed 10000 tuples OR 
+            - initiate the ``space_object:format()`` operation when the node is not under any load;
+            - instead of the ``space_object:format()`` operation, perform the :ref:`box_space-upgrade` operation.
+
+            Safe exception for the ``space_object:format()`` operation is:
+
+            - changing space format to a more generic one.
+
         :param space_object space_object: an :ref:`object reference
                                           <app_server-object_reference>`
         :param table format-clause: a list of field names and types
