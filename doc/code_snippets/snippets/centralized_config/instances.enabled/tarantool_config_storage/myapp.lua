@@ -1,6 +1,6 @@
 function put_config()
     local fio = require('fio')
-    local cluster_config_handle = fio.open('../../source.yaml')
+    local cluster_config_handle = fio.open('../../source.yaml', {'O_RDONLY'})
     local cluster_config = cluster_config_handle:read()
     local response = config.storage.put('/myapp/config/all', cluster_config)
     cluster_config_handle:close()

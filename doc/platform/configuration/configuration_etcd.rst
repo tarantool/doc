@@ -263,6 +263,8 @@ In the example below, the following options are specified:
 -   ``timeout`` specifies the interval (in seconds) to perform the status check of a configuration storage.
 -   ``reconnect_after`` specifies how much time to wait (in seconds) before reconnecting to a configuration storage.
 
+You might use :ref:`config.storage_client <config_storage_client_api_reference>` API for connecting and controlling a remote config.storage cluster.
+
 You can find the full example here: `config_storage <https://github.com/tarantool/doc/tree/latest/doc/code_snippets/snippets/centralized_config/instances.enabled/config_storage>`_.
 
 
