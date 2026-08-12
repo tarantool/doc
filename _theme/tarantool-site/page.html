@@ -1,0 +1,42 @@
+{%- extends "layout.html" %}
+
+{% from 'elements.html' import package_page_header  with context %}
+{% from 'elements.html' import regular_page_header  with context %}
+{% from 'elements.html' import version_switcher     with context %}
+{% from 'elements.html' import i_footer             with context %}
+{% from 'elements.html' import navbar               with context %}
+
+{% block body %}
+  {% if is_website %}
+    {% if is_mainpage %}
+      <div class="doc-main-page b-clearbox">
+        {{ body }}
+      </div>
+    {% else %}
+      {{ body }}
+    {% endif %}
+  {% elif is_package_page %}
+    <div class="p-download">
+      <section class="p-download-header b-os-installation-header">
+        <div class="b-block-wrapper">{{- package_page_header() -}}</div>
+      </section>
+      {{ body }}
+    </div>
+  {% else %}
+    {% if is_mainpage %}
+      <section class="b-block b-documentation">
+        <div class="b-block-wrapper">
+          <h1 class="single-page-title">{{ title }}</h1>
+          <div class="single-page-toctree">{{- toctree(maxdepth=2, collapse=false, includehidden=true) }}</div>
+          {{ content_pane }}
+        </div>
+      </section>
+    {% else %}
+      {{- regular_page_header() -}}
+      {{ content_pane }}
+      {{- navbar(False) -}}
+    {% endif %}
+  {% endif %}
+{% endblock %}
+
+{# vim: set syntax=jinja ts=2 sts=2 sw=2 expandtab : #}
