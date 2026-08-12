@@ -221,7 +221,7 @@ Functions
                     tz = 'Europe/Moscow'
                     }
         ---
-        - 2022-07-01T08:30:05.122999906 Europe/Moscow
+        - 2022-07-01T11:30:05.122999906 Europe/Moscow
         ...
 
         tarantool> datetime.new {
@@ -230,7 +230,7 @@ Functions
                     tz = 'Europe/Moscow'
                     }
         ---
-        - 2022-07-01T08:30:05.000000123 Europe/Moscow
+        - 2022-07-01T11:30:05.000000123 Europe/Moscow
         ...
 
 
@@ -744,7 +744,7 @@ datetime_object
 
             tarantool> dt:set {tzoffset = 60}
             ---
-            - 2021-08-20T18:25:20.567+0100
+            - 2021-08-20T16:25:20.567+0100
             ...
 
 
