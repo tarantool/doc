@@ -29,6 +29,16 @@
     configuration and workload, Tarantool can consume up to 20% more than the
     ``memtx_memory`` limit.
 
+
+    ..  NOTE::
+
+        By default, the memory size (``memtx_memory``) parameter is set to 256 MB.
+        Before deploying a cluster, calculate the necessary amount of memory with a reserve and specify it in the
+        ``memtx_memory`` option.
+        Starting a cluster with the default memory size value may lead to memory exhaustion and make further writes
+        to the replica instance impossible.
+
+
     | Type: float
     | Default: 256 * 1024 * 1024 = 268435456 bytes
     | Minimum: 33554432 bytes (32 MB)
