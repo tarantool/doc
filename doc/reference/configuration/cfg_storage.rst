@@ -36,7 +36,7 @@
         Before deploying a cluster, calculate the necessary amount of memory with a reserve and specify it in the
         ``memtx_memory`` option.
         Starting a cluster with the default memory size value may lead to memory exhaustion and make further writes
-        to the replica instance impossible.
+        to the instance impossible.
 
 
     | Type: float
