@@ -28,6 +28,10 @@ You can find a complete list of errors in the
             - box.error.NONMASTER
             - (In replication) A server instance cannot modify data unless it is a master.
 
+        *   - ER_AUTH_DELAY
+            - box.error.AUTH_DELAY
+            - Too many authentication attempts.
+
         *   - ER_ILLEGAL_PARAMS
             - box.error.ILLEGAL_PARAMS
             - Illegal parameters. Malformed protocol message.
