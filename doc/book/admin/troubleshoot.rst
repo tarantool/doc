@@ -329,13 +329,15 @@ On these instances, the ``Too many authentication attempts`` error is raised.
    **Solution**
 
    Identify the instance that other nodes in the replica set are unable to connect to.
-   Check the number of failed authorization attempts on the instance that was unable to connect to.
+   To do this, check the instance logs for authentication errors.
+
+   On that instance, check the number of authentication attempts using ``box.stat().AUTH``:
 
    ..  code-block:: lua
 
        box.stat().AUTH
 
-   If the number of failed attempts is increasing every second, check the list of nodes that are trying to authorize on this replica.
+   If the number of attempts is increasing every second, check the list of nodes that are trying to authorize on this replica.
    An increasing number of attempts may indicate there are some other Tarantool instances on the machine that have been
    previously started on the same addresses.
    In this case, the instance with the ``ER_AUTH_DELAY`` error and some old Tarantool nodes are both trying to
