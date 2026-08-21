@@ -483,19 +483,6 @@ msgstr ""
 "Для этого проверьте параметр :ref:`replication <cfg_replication-replication>`."
 
 msgid ""
-"Network issues"
-msgstr ""
-"Проблемы с сетью"
-
-msgid "Solution"
-msgstr "Решение"
-
-msgid ""
-"If you encounter network issues, restart the instance or re-add the replica set to the cluster."
-msgstr ""
-"При возникновении проблем с сетью перезапустите экземпляр или повторно добавьте набор реплик в кластер."
-
-msgid ""
 "Tarantool instances are running on matching addresses"
 msgstr ""
 "Экземпляры Tarantool запущены на совпадающих адресах"

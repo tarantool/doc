@@ -318,13 +318,7 @@ On these instances, the ``Too many failed authentication attempts`` error is rai
    In the cluster configuration, verify that the credentials the node is attempting to connect with are correct.
    To do this, check the :ref:`replication <cfg_replication-replication>` parameter.
 
-2. Network issues
-
-   **Solution**
-
-   If you encounter network issues, restart the instance or re-add the replica set to the cluster.
-
-3. Tarantool instances are running on matching addresses
+2. Tarantool instances are running on matching addresses
 
    **Solution**
 
