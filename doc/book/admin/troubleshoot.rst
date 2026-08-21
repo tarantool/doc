@@ -332,7 +332,7 @@ On these instances, the ``Too many failed authentication attempts`` error is rai
        box.stat().AUTH
 
    If the number of attempts is increasing every second, check the list of nodes that are trying to authorize on this replica.
-   An increasing number of attempts may indicate there are some other Tarantool instances on the machine that are trying
+   An increasing number of attempts may indicate there are some other Tarantool instances that are trying
    to connect to the same replica address with wrong or outdated credentials.
    In this case, the instance with the ``ER_AUTH_DELAY`` error and some old Tarantool nodes are both trying to
    authorize on the same replica, and the first instance exceeds the authorization time limit on the replica.
