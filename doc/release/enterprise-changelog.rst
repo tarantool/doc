@@ -15,9 +15,179 @@ A :ref:`Tarantool Enterprise SDK <tarantool_enterprise>` version consists of two
 
 For example: ``2.11.1-0-gc42d9735b-r589``.
 
--   ``TARANTOOL_BASE_VERSION`` is the Community version which the Enterprise version is based on.
+-   ``TARANTOOL_BASE_VERSION`` is the Enterprise version.
 -   ``REVISION`` is the SDK revision. Besides Tarantool itself, it includes the ``tt`` utility, a set of open and closed source modules, and examples. Learn more from :ref:`Package contents <enterprise-package-contents>`.
 
+
+r708
+----
+
+This release updates the platform’s key dependencies: Tarantool 2.11.9, a bugfix release of the 2.11 branch focused on
+improving stability and predictability. It also improves diagnostics and error handling for WAL failures, fixes hangs and
+WAL maintenance issues in Core, and delivers a large set of fixes in LuaJIT and the Datetime module. In addition, major
+ecosystem components (``crud``, ``vshard``, ``metrics``, ``tt-ee``, ``cartridge``, ``http``, ``graphqlapi-helpers``) have been updated and refined,
+including safer behavior during rebalancing, fault-tolerant reads, and changes to HTTP TLS/mTLS configuration.
+
+Tarantool 2.11.8 -> 2.11.9
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This is a bugfix release: 34 issues have been fixed since 2.11.8 (r702).
+
+* The 2.x series is the previous stable branch; upgrading to 3.x is recommended.
+* To upgrade from Tarantool 2.x to 3.x, see the `upgrade procedure <https://www.tarantool.io/en/doc/latest/admin/upgrades/upgrade_cluster/#admin-upgrades-replication-cluster>`__.
+
+Core
+^^^^
+
+**Added:**
+
+* A new built-in system event ``box.wal_error`` that is emitted every time Tarantool fails to commit a transaction to the write-ahead log (WAL) (`gh-12585 <hhttps://github.com/tarantool/tarantool/issues/9405>`__).
+
+**Fixed:**
+
+* An issue where SSL errors were logged incorrectly when a client connection was closed.
+* A bug that could cause Tarantool to hang when using ``box.watch`` (`gh-9632 <https://github.com/tarantool/tarantool/issues/9632>`__).
+* A bug where ``.xlog.inprogress`` files were not removed automatically on server startup when ``wal_dir`` was set and differed from the default (`gh-12081 <https://github.com/tarantool/tarantool/issues/12081>`__).
+* A bug where a local space could not be truncated if the ``_truncate`` space was configured as synchronous (`gh-12585 <https://github.com/tarantool/tarantool/issues/12585>`__).
+
+Leader election
+^^^^^^^^^^^^^^^
+
+* If an ``ER_WAL_IO`` error occurs while writing to WAL, the current leader steps down immediately on the first such error.
+
+LuaJIT
+^^^^^^
+
+**Added:**
+
+* Support for ``ffi.abi("dualnum")`` to detect LuaJIT mode (dual-number: distinguishing int64 integers from double).
+* New flags ``misc.memprof.available`` and ``misc.sysprof.available`` to detect whether the corresponding profiler is available in the current build.
+  See `LuaJIT memory profiler <https://www.tarantool.io/en/doc/latest/tooling/luajit_memprof/>`__ and `LuaJIT platform profiler <https://www.tarantool.io/en/doc/latest/tooling/luajit_sysprof/>`__ for details.
+
+**Fixed:**
+
+* Incorrect ``IR_TBAR`` generation on aarch64.
+* Stack overflow handling when exiting a trace.
+* Dangling references to ``CType``.
+* VM state shutdown after early OOM.
+* ``IR_MUL`` generation on x86/x64.
+* Incorrect merging of ``stp``/``ldp`` instructions on aarch64.
+* SCEV record invalidation when returning to a lower frame.
+* Build on macOS 15 / Clang 16.
+* ``IR_HREFK`` generation on aarch64.
+* Stack checks in varargs calls in GC64 builds.
+* Stack checks in ``pcall()``/``xpcall()`` in GC64 builds.
+* Allocation limit in non-JIT builds.
+* OOM handling when growing the stack in ``coroutine.resume()`` and ``lua_checkstack()``.
+* Recording loops with step ``-0`` or control values ``NaN``.
+* Error message generation when an error occurs while handling another error.
+* Dangling reference for an FFI callback.
+* ``BC_UNM`` for argument ``-0`` in ``dual-number`` mode.
+* Unary minus narrowing in ``dual-number`` mode.
+* Recording of ``string.byte()``, ``string.sub()``, and ``string.find()``.
+* Missing type conversion for ``BC_FORI`` slots in ``dual-number`` mode.
+* Various corner cases in ``VM events``.
+* Recording of constructor index resolution in the JIT compiler.
+* UBSan warning in ``unpack()``.
+
+Datetime module
+^^^^^^^^^^^^^^^
+
+**Fixed:**
+
+* A crash due to an ``assert`` when parsing an ambiguous date: when the input contains both the day of year (``yday``, which implicitly defines month and day of month) and a calendar month (without day of month). Such cases are now detected and reported as an error.
+* ``tzoffset`` calculations for cases like ``new({timestamp=x, tz='Zone'})``.
+* An inconsistency between dates created with ``new({tzoffset=x})`` and ``d:set({tzoffset=x})`` when ``d.tz ~= ''`` precedes ``set()``.
+* ``datetime.new()`` and ``datetime_object:set()`` now validate that ``timestamp`` is within the allowed range.
+* ``timestamp`` type checking in ``set()``.
+
+For backward compatibility, the option ``compat.datetime_setfn_timestamp_type_check`` has been added. It is disabled by default (the “old” behavior), meaning no type check is performed. The “new” behavior with type checking is planned to become the default in 4.x.
+
+..  note::
+
+    The modules listed below have changes in this release.
+    If a module is not listed, it was not updated.
+
+crud 1.6.1 -> 1.7.5
+~~~~~~~~~~~~~~~~~~~
+
+..  note::
+
+    Starting with CRUD 1.6.0, a vulnerability that allowed performing operations without sufficient privileges has been fixed.
+    CRUD now strictly enforces access rights: a user can perform only the actions allowed by their privileges.
+    If the application needs access to service spaces, the corresponding privileges must be granted explicitly.
+
+**Added:**
+
+* ``crud.locate()`` to determine where a tuple is stored (memtx or vinyl). Works for spaces managed by the enterprise module ``cooler``.
+* ``crud.len`` now supports options: ``mode``, ``balance``, ``prefer_replica``, ``request_timeout``.
+* Safe mode to prevent writing data to the wrong replica set during vshard rebalancing.
+* Metric ``tnt_crud_router_cache_clear_ts`` to help properly disable safe mode in a cluster.
+* Automatic switch to safe mode when rebalancing starts.
+* Ability to manually switch back to fast mode (``fast mode``).
+* Metric ``tnt_crud_storage_nil_bucket_id_compat_total`` to track operations performed without ``bucket_ref`` (compatibility mode with older routers).
+
+**Fixed:**
+
+* Read-only operations (``get``, ``select``, ``pairs``, ``count``, ``min``, ``max``) are now executed via healthy replicas even if all master nodes in the cluster are unavailable.
+* Storage compatibility with routers < 1.7.0: ``bucket_id = nil`` is now handled correctly in ``get``, ``update``, and ``delete``. In this case, storage skips bucket referencing and logs a rate-limited warning about reduced rebalancing safety during rolling upgrades.
+* ``bucket_ref`` errors in ``crud.*_many`` methods are now returned as an array.
+* ``bucket_unref`` was moved out of the transaction.
+* Prevented duplicate metrics from being created on repeated ``init`` calls.
+* Prevented duplicate triggers on the ``_crud_settings_local`` space on repeated ``init`` calls.
+* A deadlock in ``crud.schema()`` after a schema reload error.
+* Removed metric ``tnt_crud_storage_safe_mode_enabled`` from the router.
+* Removed ``wrap_box_space_func_result`` wrapper to reduce allocations and speed up storage calls.
+
+**Changed:**
+
+* When switching to safe mode, the practice of marking/stopping iproto fibers in fast mode was discontinued; operation correctness on storage is validated via ``yield_checks`` in tests.
+* Switching to safe mode was moved from the ``on_commit`` trigger to ``on_replace``.
+* Vinyl spaces always operate in safe mode.
+
+vshard 0.1.37 -> 0.1.39
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Version 0.1.39 is fully compatible with previous vshard versions.
+
+**Added:**
+
+* Ability to disable the log rate limiter via the ``consts`` module.
+
+**Fixed:**
+
+* An issue where the old master node could not discover the new master instance within a replica set.
+* Connection leak: connections were not released by the garbage collector after reconfiguration or reload.
+* Transaction limitation when working with ``_bucket``: previously, the ``on_commit`` trigger on ``_bucket`` blocked writes to other spaces within the same transaction (for example, from ``on_replace`` triggers). Such scenarios are now allowed: ``on_commit`` skips changes related to “foreign” spaces.
+
+metrics 1.6.2 -> 1.7.0
+~~~~~~~~~~~~~~~~~~~~~~
+
+* ``graphite``: added support for sending metrics to multiple servers.
+* Removing a replica via ``box.space._cluster:delete()`` does not remove that replica’s information from metrics; it disappears only after a cluster restart.
+* Backward compatibility with the previous plugin version is preserved.
+* Behavior changes:
+
+  - ``init`` now assigns a unique name to the created ``fiber`` based on the input ``graphite server`` options (if provided).
+  - Added ``stop()`` to stop all ``fibers`` started by the plugin.
+
+tt-ee v2.11.0 -> v2.12.0
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Added:**
+
+* ``tt pack``: added support for nested ``.packignore`` files in the root of a tt environment.
+* ``tt status``: added the ``--format`` option to output status in JSON and YAML formats (machine-readable output).
+
+**Changed:**
+
+* ``tt export``: changed the default behavior for compound fields (arrays and maps): they are now exported in JSON format by default. To restore the previous behavior, use ``--compound-value-format=ignore``.
+
+**Fixed:**
+
+* Fixed integrity checking for an application using the Cartridge directory layout (a single application whose root directory is the environment root).
+* Fixed an issue with Tarantool 3.5+: the instance did not stop when the periodic integrity check failed.
+* Minor fixes identified by the Svacer static analyzer and CVE scanners.
 
 r703
 ----
