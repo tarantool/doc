@@ -1,0 +1,353 @@
+msgid "Enterprise SDK changelog"
+msgstr "Журнал изменений Enterprise SDK"
+
+msgid "Versioning policy"
+msgstr "Политика версионирования"
+
+msgid "A :ref:`Tarantool Enterprise SDK <tarantool_enterprise>` version consists of two parts:"
+msgstr "Версия :ref:`Tarantool Enterprise SDK <tarantool_enterprise>` состоит из двух частей:"
+
+msgid "<TARANTOOL_BASE_VERSION>-r<REVISION>"
+msgstr "<TARANTOOL_BASE_VERSION>-r<REVISION>"
+
+msgid "For example: ``2.11.1-0-gc42d9735b-r589``."
+msgstr "Например: ``2.11.1-0-gc42d9735b-r589``."
+
+msgid "``TARANTOOL_BASE_VERSION`` is the Enterprise version."
+msgstr "``TARANTOOL_BASE_VERSION`` — версия Tarantool Enterprise."
+
+msgid "``REVISION`` is the SDK revision. Besides Tarantool itself, it includes the ``tt`` utility, a set of open and closed source modules, and examples. Learn more from :ref:`Package contents <enterprise-package-contents>`."
+msgstr "``REVISION`` — ревизия SDK. Помимо самого Tarantool, она включает утилиту ``tt``, набор модулей с открытым и закрытым исходным кодом, а также примеры. Подробнее см. в разделе :ref:`Содержимое пакета <enterprise-package-contents>`."
+
+msgid "r708"
+msgstr "r708"
+
+msgid "In this release, the platform’s key dependencies have been updated: Tarantool 2.11.9 is a bugfix release of the 2.11 branch focused on improving stability and predictability."
+msgstr "В релизе обновлены ключевые зависимости платформы: Tarantool 2.11.9 — bugfix-релиз ветки 2.11, ориентированный на повышение стабильности и предсказуемости работы."
+
+msgid "The release improves diagnostics and error handling for WAL failures, fixes hangs and WAL maintenance issues in Core, and includes a large set of fixes in LuaJIT and the Datetime module."
+msgstr "В релизе улучшены диагностика и реакция на ошибки WAL, устранены зависания и проблемы обслуживания WAL-файлов в Core, а также внесён большой набор исправлений в LuaJIT и модуль Datetime."
+
+msgid "In addition, key ecosystem components (``crud``, ``vshard``, ``metrics``, ``tt-ee``, ``cartridge``, ``http``, ``graphqlapi-helpers``) have been updated and refined, including safer behavior during rebalancing, fault-tolerant reads, and changes to HTTP TLS/mTLS configuration."
+msgstr "Дополнительно обновлены и доработаны ключевые компоненты экосистемы (``crud``, ``vshard``, ``metrics``, ``tt-ee``, ``cartridge``, ``http``, ``graphqlapi-helpers``), включая улучшения безопасной работы при ребалансировке, отказоустойчивого чтения и изменения в настройках TLS/mTLS для HTTP."
+
+msgid "Tarantool 2.11.8 -> 2.11.9"
+msgstr "Tarantool 2.11.8 -> 2.11.9"
+
+msgid "This is a bugfix release: 34 issues have been fixed since 2.11.8 (r702)."
+msgstr "Это bugfix-релиз: исправлено 34 проблемы с версии 2.11.8 (r702)."
+
+msgid "* The 2.x series is the previous stable branch; upgrading to 3.x is recommended."
+msgstr "* Версия 2.x — предыдущая стабильная ветка; рекомендуется обновляться до 3.x."
+
+msgid "* To upgrade from Tarantool 2.x to 3.x, see the upgrade procedure <https://www.tarantool.io/en/doc/latest/admin/upgrades/upgrade_cluster/#admin-upgrades-replication-cluster>."
+msgstr "* Чтобы обновиться с Tarantool 2.x на 3.x, см. `процедуру обновления <https://www.tarantool.io/en/doc/latest/admin/upgrades/upgrade_cluster/#admin-upgrades-replication-cluster>`__."
+
+msgid "Core"
+msgstr "Core"
+
+msgid "**Added:**"
+msgstr "**Добавлено:**"
+
+msgid "* A new built-in system event ``box.wal_error`` that is emitted every time Tarantool fails to commit a transaction to the write-ahead log (WAL) (gh-12585)."
+msgstr "* Новое встроенное системное событие ``box.wal_error``, которое рассылается каждый раз, когда Tarantool не удаётся зафиксировать транзакцию в журнале предзаписи (WAL) (gh-12585)."
+
+msgid "**Fixed:**"
+msgstr "**Исправлено:**"
+
+msgid "* An issue where SSL errors were logged incorrectly when a client connection was closed."
+msgstr "* Проблема, из-за которой ошибки SSL некорректно регистрировались при разрыве соединения с клиентом."
+
+msgid "* A bug that could cause Tarantool to hang when using ``box.watch`` (gh-9632)."
+msgstr "* Ошибка, из-за которой Tarantool мог зависать при использовании ``box.watch`` (gh-9632)."
+
+msgid "* A bug where ``.xlog.inprogress`` files were not removed automatically on server startup when ``wal_dir`` was set and differed from the default (gh-12081)."
+msgstr "* Ошибка, при которой файлы ``.xlog.inprogress`` не удалялись автоматически во время запуска сервера, если ``wal_dir`` задан и отличается от значения по умолчанию (gh-12081)."
+
+msgid "* A bug where a local space could not be truncated if the ``_truncate`` space was configured as synchronous (gh-12585)."
+msgstr "* Ошибка, при которой локальный спейс нельзя было очистить (truncate), если спейс ``_truncate`` настроен как синхронный (synchronous) (gh-12585)."
+
+msgid "Leader election"
+msgstr "Выбор лидера"
+
+msgid "* If an ``ER_WAL_IO`` error occurs while writing to WAL, the current leader steps down immediately on the first such error."
+msgstr "* Если при записи в WAL возникает ``ER_WAL_IO``, текущий лидер при первом же таком случае отказывается от своей роли."
+
+msgid "LuaJIT"
+msgstr "LuaJIT"
+
+msgid "**Added:**"
+msgstr "**Добавлено:**"
+
+msgid "* Support for ``ffi.abi(\"dualnum\")`` to detect LuaJIT mode (dual-number: distinguishing int64 integers from double)."
+msgstr "* Поддержка ``ffi.abi(\"dualnum\")`` для определения режима LuaJIT (dual-number: различение целых int64 и double)."
+
+msgid "* New flags ``misc.memprof.available`` and ``misc.sysprof.available`` to detect whether the corresponding profiler is available in the current build."
+msgstr "* Добавлены флаги ``misc.memprof.available`` и ``misc.sysprof.available`` для определения доступности соответствующего профайлера в текущей сборке."
+
+msgid "* See LuaJIT memory profiler <https://www.tarantool.io/en/doc/latest/tooling/luajit_memprof/> and LuaJIT platform profiler <https://www.tarantool.io/en/doc/latest/tooling/luajit_sysprof/> for details."
+msgstr "* Подробнее про профайлеры в разделах `LuaJIT memory profiler <https://www.tarantool.io/en/doc/latest/tooling/luajit_memprof/>`__ и `LuaJIT platform profiler <https://www.tarantool.io/en/doc/latest/tooling/luajit_sysprof/>`__."
+
+msgid "**Fixed:**"
+msgstr "**Исправлено:**"
+
+msgid "* Incorrect ``IR_TBAR`` generation on aarch64."
+msgstr "* Некорректная генерация ``IR_TBAR`` на aarch64."
+
+msgid "* Stack overflow handling when exiting a trace."
+msgstr "* Обработка переполнения стека при выходе из трассировки."
+
+msgid "* Dangling references to ``CType``."
+msgstr "* «Висячие» ссылки на ``CType``."
+
+msgid "* VM state shutdown after early OOM."
+msgstr "* Закрытие состояния VM после раннего OOM."
+
+msgid "* ``IR_MUL`` generation on x86/x64."
+msgstr "* Генерация ``IR_MUL`` на x86/x64."
+
+msgid "* Incorrect merging of ``stp``/``ldp`` instructions on aarch64."
+msgstr "* Некорректное объединение инструкций ``stp``/``ldp`` на aarch64."
+
+msgid "* SCEV record invalidation when returning to a lower frame."
+msgstr "* Инвалидизация записи SCEV при возврате в более низкий фрейм."
+
+msgid "* Build on macOS 15 / Clang 16."
+msgstr "* Сборка на macOS 15/Clang 16."
+
+msgid "* ``IR_HREFK`` generation on aarch64."
+msgstr "* Генерация ``IR_HREFK`` на aarch64."
+
+msgid "* Stack checks in varargs calls in GC64 builds."
+msgstr "* Проверки стека в varargs-вызовах в сборке GC64."
+
+msgid "* Stack checks in ``pcall()``/``xpcall()`` in GC64 builds."
+msgstr "* Проверки стека в ``pcall()``/``xpcall()`` в сборке GC64."
+
+msgid "* Allocation limit in non-JIT builds."
+msgstr "* Лимит аллокаций для сборки без JIT."
+
+msgid "* OOM handling when growing the stack in ``coroutine.resume()`` and ``lua_checkstack()``."
+msgstr "* Обработка ошибок OOM при расширении стека в ``coroutine.resume()`` и ``lua_checkstack()``."
+
+msgid "* Recording loops with step ``-0`` or control values ``NaN``."
+msgstr "* Запись (recording) циклов со значением шага ``-0`` или управляющими значениями ``NaN``."
+
+msgid "* Error message generation when an error occurs while handling another error."
+msgstr "* Формирование сообщений об ошибках, когда ошибка возникает во время обработки ошибки."
+
+msgid "* Dangling reference for an FFI callback."
+msgstr "* «Висячая» ссылка для FFI callback."
+
+msgid "* ``BC_UNM`` for argument ``-0`` in ``dual-number`` mode."
+msgstr "* ``BC_UNM`` для аргумента ``-0`` в режиме ``dual-number``."
+
+msgid "* Unary minus narrowing in ``dual-number`` mode."
+msgstr "* Сужение (narrowing) унарного минуса в режиме ``dual-number``."
+
+msgid "* Recording of ``string.byte()``, ``string.sub()``, and ``string.find()``."
+msgstr "* Запись (recording) ``string.byte()``, ``string.sub()`` и ``string.find()``."
+
+msgid "* Missing type conversion for ``BC_FORI`` slots in ``dual-number`` mode."
+msgstr "* Отсутствие преобразования типов для слотов ``BC_FORI`` в режиме ``dual-number``."
+
+msgid "* Various corner cases in ``VM events``."
+msgstr "* Различные пограничные случаи в ``VM events``."
+
+msgid "* Recording of constructor index resolution in the JIT compiler."
+msgstr "* Запись разрешения индекса конструктора в JIT-компиляторе."
+
+msgid "* UBSan warning in ``unpack()``."
+msgstr "* Предупреждение UBSan в ``unpack()``."
+
+msgid "Datetime module"
+msgstr "Модуль Datetime"
+
+msgid "**Fixed:**"
+msgstr "**Исправлено:**"
+
+msgid "* A crash due to an ``assert`` when parsing an ambiguous date: when the input contains both the day of year (``yday``, which implicitly defines month and day of month) and a calendar month (without day of month). Such cases are now detected and reported as an error."
+msgstr "* Падение из-за срабатывания ``assert`` при разборе неоднозначной даты: когда в тексте одновременно указаны день года (``yday``, который неявно задаёт месяц и день месяца) и календарный месяц (без дня месяца). Теперь такие случаи распознаются, и отображается ошибка."
+
+msgid "* ``tzoffset`` calculations for cases like ``new({timestamp=x, tz='Zone'})``."
+msgstr "* Вычисления ``tzoffset`` для случаев вида ``new({timestamp=x, tz='Zone'})``."
+
+msgid "* An inconsistency between dates created with ``new({tzoffset=x})`` and ``d:set({tzoffset=x})`` when ``d.tz ~= ''`` precedes ``set()``."
+msgstr "* Неконсистентность между датами, создаваемыми ``new({tzoffset=x})``, и ``d:set({tzoffset=x})``, когда ``d.tz ~= ''`` идёт перед ``set()``."
+
+msgid "* ``datetime.new()`` and ``datetime_object:set()`` now validate that ``timestamp`` is within the allowed range."
+msgstr "* Теперь ``datetime.new()`` и ``datetime_object:set()`` проверяют, что значение ``timestamp`` находится в допустимом диапазоне."
+
+msgid "* ``timestamp`` type checking in ``set()``."
+msgstr "* Проверка типа ``timestamp`` в ``set()``."
+
+msgid "For backward compatibility, the option ``compat.datetime_setfn_timestamp_type_check`` has been added."
+msgstr "Для обратной совместимости добавлена опция ``compat.datetime_setfn_timestamp_type_check``."
+
+msgid "It is disabled by default (the old behavior), meaning the type check is not performed."
+msgstr "Сейчас она по умолчанию выключена («старое» поведение), то есть проверка типа не выполняется."
+
+msgid "The new behavior with type checking is planned to become the default in 4.x."
+msgstr "«Новое» поведение с проверкой типа планируется сделать значением по умолчанию в версии 4.x."
+
+msgid "Note:"
+msgstr "Примечание:"
+
+msgid "The modules listed below have changes in this release. If a module is not listed, it was not updated."
+msgstr "Ниже приведены модули, в которых произошли изменения. Если модуль не указан в списке ниже, то обновления для него не выпускались."
+
+msgid "crud 1.6.1 -> 1.7.5"
+msgstr "crud 1.6.1 → 1.7.5"
+
+msgid "Note:"
+msgstr "Примечание:"
+
+msgid "Starting with CRUD 1.6.0, a vulnerability that allowed performing operations without sufficient privileges has been fixed."
+msgstr "Начиная с CRUD 1.6.0 закрыта уязвимость, позволявшая выполнять операции, на которые у пользователя не было прав."
+
+msgid "CRUD now strictly enforces access rights: a user can perform only the actions allowed by their privileges."
+msgstr "Теперь CRUD строго соблюдает права доступа: пользователь может выполнять только те действия, которые разрешены его привилегиями."
+
+msgid "If the application needs access to service spaces, the corresponding privileges must be granted explicitly."
+msgstr "Если приложению требуется доступ к служебным спейсам, соответствующие права необходимо выдавать явно."
+
+msgid "**Added:**"
+msgstr "**Добавлено:**"
+
+msgid "* ``crud.locate()`` to determine where a tuple is stored (memtx or vinyl). Works for spaces managed by the enterprise module ``cooler``."
+msgstr "* Метод ``crud.locate()`` для определения, где находится кортеж — в движке memtx или vinyl. Работает для спейсов, управляемых enterprise-модулем ``cooler``."
+
+msgid "* ``crud.len`` now supports options: ``mode``, ``balance``, ``prefer_replica``, ``request_timeout``."
+msgstr "* В ``crud.len`` добавлена поддержка опций: ``mode``, ``balance``, ``prefer_replica``, ``request_timeout``."
+
+msgid "* Safe mode to prevent writing data to the wrong replica set during vshard rebalancing."
+msgstr "* Safe mode — безопасный режим, предотвращающий запись данных в неверный набор реплик во время ребалансировки vshard."
+
+msgid "* Metric ``tnt_crud_router_cache_clear_ts`` to help properly disable safe mode in a cluster."
+msgstr "* Метрика ``tnt_crud_router_cache_clear_ts``, помогающая корректно отключать безопасный режим в кластере."
+
+msgid "* Automatic switch to safe mode when rebalancing starts."
+msgstr "* Автоматическое переключение в безопасный режим при старте ребалансировки."
+
+msgid "* Ability to manually switch back to fast mode (``fast mode``)."
+msgstr "* Возможность вручную вернуть быстрый режим (``fast mode``)."
+
+msgid "* Metric ``tnt_crud_storage_nil_bucket_id_compat_total`` to track operations performed without ``bucket_ref`` (compatibility mode with older routers)."
+msgstr "* Метрика ``tnt_crud_storage_nil_bucket_id_compat_total`` для отслеживания операций, выполненных без ``bucket_ref`` (режим совместимости со старыми роутерами)."
+
+msgid "**Fixed:**"
+msgstr "**Исправлено:**"
+
+msgid "* Read-only operations (``get``, ``select``, ``pairs``, ``count``, ``min``, ``max``) are now executed via healthy replicas even if all master nodes in the cluster are unavailable."
+msgstr "* Операции только для чтения (``get``, ``select``, ``pairs``, ``count``, ``min``, ``max``) теперь выполняются через здоровые реплики, даже если все мастер-узлы в кластере недоступны."
+
+msgid "* Storage compatibility with routers < 1.7.0: ``bucket_id = nil`` is now handled correctly in ``get``, ``update``, and ``delete``. In this case, storage skips bucket referencing and logs a rate-limited warning about reduced rebalancing safety during rolling upgrades."
+msgstr "* Совместимость узлов хранилища с роутерами версии < 1.7.0: в ``get``, ``update``, ``delete`` корректно обрабатывается ``bucket_id = nil``. В этом случае хранилище пропускает ``bucket referencing`` и пишет ``rate-limited`` предупреждение о сниженной безопасности ребаланса во время обновления без простоя (rolling upgrade)."
+
+msgid "* ``bucket_ref`` errors in ``crud.*_many`` methods are now returned as an array."
+msgstr "* Ошибка ``bucket_ref`` в методах ``crud.*_many`` теперь возвращается в виде массива."
+
+msgid "* ``bucket_unref`` was moved out of the transaction."
+msgstr "* Вызов ``bucket_unref`` вынесен из транзакции."
+
+msgid "* Prevented duplicate metrics from being created on repeated ``init`` calls."
+msgstr "* Предотвращено создание дублирующихся метрик при повторном вызове ``init``."
+
+msgid "* Prevented duplicate triggers on the ``_crud_settings_local`` space on repeated ``init`` calls."
+msgstr "* Предотвращено создание дублирующихся триггеров на спейсе ``_crud_settings_local`` при повторном вызове ``init``."
+
+msgid "* A deadlock in ``crud.schema()`` after a schema reload error."
+msgstr "* Взаимная блокировка в ``crud.schema()`` после ошибки перезагрузки схемы."
+
+msgid "* Removed metric ``tnt_crud_storage_safe_mode_enabled`` from the router."
+msgstr "* Удалена метрика ``tnt_crud_storage_safe_mode_enabled`` с роутера."
+
+msgid "* Removed ``wrap_box_space_func_result`` wrapper to reduce allocations and speed up storage calls."
+msgstr "* Убрана обёртка ``wrap_box_space_func_result`` для сокращения аллокаций и ускорения вызовов узла хранилища."
+
+msgid "**Changed:**"
+msgstr "**Изменено:**"
+
+msgid "* When switching to safe mode, the practice of marking/stopping iproto fibers in fast mode was discontinued; operation correctness on storage is validated via ``yield_checks`` in tests."
+msgstr "* При переключении в безопасный режим прекращена практика пометки/остановки iproto-файберов в быстром режиме; корректность операций на узле хранилища проверяется через ``yield_checks`` в тестах."
+
+msgid "* Switching to safe mode was moved from the ``on_commit`` trigger to ``on_replace``."
+msgstr "* Переключение в безопасный режим перенесено с триггера ``on_commit`` на ``on_replace``."
+
+msgid "* Vinyl spaces always operate in safe mode."
+msgstr "* Спейсы на движке vinyl всегда работают в безопасном режиме."
+
+msgid "vshard 0.1.37 -> 0.1.39"
+msgstr "vshard 0.1.37 → 0.1.39"
+
+msgid "Version 0.1.39 is fully compatible with previous vshard versions."
+msgstr "Версия 0.1.39 полностью совместима с предыдущими версиями vshard."
+
+msgid "**Added:**"
+msgstr "**Добавлено:**"
+
+msgid "* Ability to disable the log rate limiter via the ``consts`` module."
+msgstr "* Возможность отключать ограничитель частоты логирования (log rate limiter) через модуль ``consts``."
+
+msgid "**Fixed:**"
+msgstr "**Исправлено:**"
+
+msgid "* An issue where the old master node could not discover the new master instance within a replica set."
+msgstr "* Проблема, из‑за которой старый мастер-узел не мог обнаружить новый мастер-экземпляр в пределах набора реплик."
+
+msgid "* Connection leak: connections were not released by the garbage collector after reconfiguration or reload."
+msgstr "* Утечка соединений: соединение не освобождалось сборщиком мусора после реконфигурации или перезагрузки."
+
+msgid "* Transaction limitation when working with ``_bucket``: previously, the ``on_commit`` trigger on ``_bucket`` blocked writes to other spaces within the same transaction (for example, from ``on_replace`` triggers). Such scenarios are now allowed: ``on_commit`` skips changes related to foreign spaces."
+msgstr "* Ограничение транзакций при работе с ``_bucket``: ранее ``on_commit``-триггер на ``_bucket`` блокировал запись в другие спейсы в рамках той же транзакции (например, из ``on_replace``-триггеров). Теперь такие сценарии разрешены — в ``on_commit`` пропускаются изменения, относящиеся к «чужим» спейсам."
+
+msgid "metrics 1.6.2 -> 1.7.0"
+msgstr "metrics 1.6.2 → 1.7.0"
+
+msgid "* ``graphite``: added support for sending metrics to multiple servers."
+msgstr "* ``graphite``: добавлена возможность отправлять метрики на несколько серверов."
+
+msgid "* Removing a replica via ``box.space._cluster:delete()`` does not remove that replica’s information from metrics; it disappears only after a cluster restart."
+msgstr "* Удаление реплики с помощью метода ``box.space._cluster:delete()`` не удаляет информацию об этой реплике из метрик. Информация исчезает только после перезапуска кластера."
+
+msgid "* Backward compatibility with the previous plugin version is preserved."
+msgstr "* Обратная совместимость с предыдущей версией плагина сохранена."
+
+msgid "* Behavior changes:"
+msgstr "* Изменения в поведении:"
+
+msgid "- ``init`` now assigns a unique name to the created ``fiber`` based on the input ``graphite server`` options (if provided)."
+msgstr "- ``init`` теперь присваивает уникальное имя создаваемому файберу ``fiber`` на основе входных опций ``graphite server`` (если переданы)."
+
+msgid "- Added ``stop()`` to stop all ``fibers`` started by the plugin."
+msgstr "- Добавлен метод ``stop()`` для остановки всех файберов ``fibers``, запущенных плагином."
+
+msgid "tt-ee v2.11.0 -> v2.12.0"
+msgstr "tt-ee v2.11.0 -> v2.12.0"
+
+msgid "**Added:**"
+msgstr "**Добавлено:**"
+
+msgid "* ``tt pack``: added support for nested ``.packignore`` files in the root of a tt environment."
+msgstr "* ``tt pack``: добавлена поддержка вложенных файлов ``.packignore`` в корне окружения tt."
+
+msgid "* ``tt status``: added the ``--format`` option to output status in JSON and YAML formats (machine-readable output)."
+msgstr "* ``tt status``: добавлена опция ``--format`` для вывода в форматах JSON и YAML (машиночитаемый вывод)."
+
+msgid "**Changed:**"
+msgstr "**Изменено:**"
+
+msgid "* ``tt export``: compound fields (arrays and maps) are now exported in JSON format by default. To restore the previous behavior, use ``--compound-value-format=ignore``."
+msgstr "* ``tt export``: изменено поведение по умолчанию для составных полей (массивы и словари) — теперь они экспортируются в JSON. Для возврата прежнего поведения используйте ``--compound-value-format=ignore``."
+
+msgid "**Fixed:**"
+msgstr "**Исправлено:**"
+
+msgid "* Fixed integrity checking for an application using the Cartridge directory layout (a single application whose root directory is the environment root)."
+msgstr "* Исправлена проверка целостности для приложения, использующего структуру каталогов Cartridge (одиночное приложение, у которого корневой каталог совпадает с корнем окружения)."
+
+msgid "* Fixed an issue with Tarantool 3.5+: the instance did not stop when the periodic integrity check failed."
+msgstr "* Исправлена проблема с Tarantool 3.5+: экземпляр не останавливался при падении периодической проверки целостности."
+
+msgid "* Minor fixes identified by the Svacer static analyzer and CVE scanners."
+msgstr "* Исправления, выявленные статическим анализатором Svacer и проверками на известные уязвимости (CVE)."

@@ -21,245 +21,172 @@ For example: ``2.11.1-0-gc42d9735b-r589``.
 r708
 ----
 
-В релизе обновлены ключевые зависимости платформы: Tarantool 2.11.9 — bugfix‑релиз ветки 2.11,
-ориентированный на повышение стабильности и предсказуемости работы.
-В релизе улучшены диагностика и реакция на ошибки WAL, устранены зависания и проблемы обслуживания WAL‑файлов в Core,
-а также внесён большой набор исправлений в LuaJIT и модуль Datetime.
-Дополнительно обновлены и доработаны ключевые компоненты экосистемы (``crud``, ``vshard``, ``metrics``, ``tt-ee``, ``cartridge``, ``http``, ``graphqlapi-helpers``),
-включая улучшения безопасной работы при ребалансировке, отказоустойчивого чтения и изменения в TLS/mTLS‑настройках HTTP.
+This release updates the platform’s key dependencies: Tarantool 2.11.9, a bugfix release of the 2.11 branch focused on
+improving stability and predictability. It also improves diagnostics and error handling for WAL failures, fixes hangs and
+WAL maintenance issues in Core, and delivers a large set of fixes in LuaJIT and the Datetime module. In addition, major
+ecosystem components (``crud``, ``vshard``, ``metrics``, ``tt-ee``, ``cartridge``, ``http``, ``graphqlapi-helpers``) have been updated and refined,
+including safer behavior during rebalancing, fault-tolerant reads, and changes to HTTP TLS/mTLS configuration.
 
 Tarantool 2.11.8 -> 2.11.9
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Это bugfix-релиз: исправлено 34 проблемы с версии 2.11.8 (r702).
+This is a bugfix release: 34 issues have been fixed since 2.11.8 (r702).
 
-* Версия 2.x — предыдущая стабильная ветка; рекомендуется обновляться до 3.x.
-* Чтобы обновиться с Tarantool 2.x на 3.x см. `процедуру обновления <https://www.tarantool.io/en/doc/latest/admin/upgrades/upgrade_cluster/#admin-upgrades-replication-cluster>`__.
+* The 2.x series is the previous stable branch; upgrading to 3.x is recommended.
+* To upgrade from Tarantool 2.x to 3.x, see the `upgrade procedure <https://www.tarantool.io/en/doc/latest/admin/upgrades/upgrade_cluster/#admin-upgrades-replication-cluster>`__.
 
 Core
 ^^^^
 
-**Добавлено:**
+**Added:**
 
-* Новое встроенное системное событие ``box.wal_error``, которое
-  рассылается каждый раз, когда Tarantool не удаётся зафиксировать
-  транзакцию в журнале предзаписи (WAL) (`gh-12585 <hhttps://github.com/tarantool/tarantool/issues/9405>`__).
+* A new built-in system event ``box.wal_error`` that is emitted every time Tarantool fails to commit a transaction to the write-ahead log (WAL) (`gh-12585 <hhttps://github.com/tarantool/tarantool/issues/9405>`__).
 
-**Исправлено:**
+**Fixed:**
 
-* Проблема, из-за которой ошибки SSL некорректно регистрировались при разрыве соединения с клиентом.
-* Ошибка, из-за которой Tarantool мог зависать при использовании ``box.watch`` (`gh-9632 <https://github.com/tarantool/tarantool/issues/9632>`__).
-* Ошибка, при которой файлы ``.xlog.inprogress`` не удалялись
-  автоматически во время запуска сервера, если ``wal_dir`` задан и отличается от значения по умолчанию (`gh-12081 <https://github.com/tarantool/tarantool/issues/12081>`__).
-* Ошибка, при которой локальный спейс нельзя было очистить
-  (truncate), если спейс ``_truncate`` настроен как синхронный (synchronous) (`gh-12585 <https://github.com/tarantool/tarantool/issues/12585>`__).
+* An issue where SSL errors were logged incorrectly when a client connection was closed.
+* A bug that could cause Tarantool to hang when using ``box.watch`` (`gh-9632 <https://github.com/tarantool/tarantool/issues/9632>`__).
+* A bug where ``.xlog.inprogress`` files were not removed automatically on server startup when ``wal_dir`` was set and differed from the default (`gh-12081 <https://github.com/tarantool/tarantool/issues/12081>`__).
+* A bug where a local space could not be truncated if the ``_truncate`` space was configured as synchronous (`gh-12585 <https://github.com/tarantool/tarantool/issues/12585>`__).
 
+Leader election
+^^^^^^^^^^^^^^^
 
-Выбор лидера
-^^^^^^^^^^^^
-
-* Если при записи в WAL возникает ``ER_WAL_IO``, текущий лидер при первом же
-  таком случае отказывается от своей роли.
+* If an ``ER_WAL_IO`` error occurs while writing to WAL, the current leader steps down immediately on the first such error.
 
 LuaJIT
 ^^^^^^
 
-**Добавлено:**
+**Added:**
 
-* Поддержка ``ffi.abi("dualnum")`` для определения режима LuaJIT (dual-number: различение целых int64 и double).
-* Добавлены флаги ``misc.memprof.available`` и ``misc.sysprof.available`` для
-  определения доступности соответствующего профайлера в текущей сборке.
-  Подробнее про профайлеры в разделах `LuaJIT memory profiler <https://www.tarantool.io/en/doc/latest/tooling/luajit_memprof/>`__ и `LuaJIT platform profiler <https://www.tarantool.io/en/doc/latest/tooling/luajit_sysprof/>`__.
+* Support for ``ffi.abi("dualnum")`` to detect LuaJIT mode (dual-number: distinguishing int64 integers from double).
+* New flags ``misc.memprof.available`` and ``misc.sysprof.available`` to detect whether the corresponding profiler is available in the current build.
+  See `LuaJIT memory profiler <https://www.tarantool.io/en/doc/latest/tooling/luajit_memprof/>`__ and `LuaJIT platform profiler <https://www.tarantool.io/en/doc/latest/tooling/luajit_sysprof/>`__ for details.
 
-**Исправлено:**
+**Fixed:**
 
-* Некорректная генерация ``IR_TBAR`` на aarch64.
-* Обработка переполнения стека при выходе из трассировки.
-* «Висячие» ссылки на ``CType``.
-* Закрытие состояния VM после раннего OOM.
-* Генерация ``IR_MUL`` на x86/x64.
-* Некорректное объединение  инструкций ``stp``/ ``ldp`` на
-  aarch64.
-* Инвалидизация записи SCEV при возврате в более низкий фрейм.
-* Сборка на macOS 15/Clang 16.
-* Генерация ``IR_HREFK`` на aarch64.
-* Проверки стека в varargs-вызовах в сборке GC64.
-* Проверки стека в ``pcall()``/ ``xpcall()`` в сборке GC64.
-* Лимит аллокаций для сборки без JIT.
-* Обработка ошибок OOM при расширении стека в ``coroutine.resume()``
-  и ``lua_checkstack()``.
-* Запись (recording) циклов со значением шага ``-0`` или управляющими
-  значениями ``NaN``.
-* Формирование сообщений об ошибках, когда ошибка возникает во время
-  обработки ошибки.
-* «Висячая» ссылка для FFI callback.
-* ``BC_UNM`` для аргумента ``-0`` в режиме ``dual-number``.
-* Сужение (narrowing) унарного минуса в режиме ``dual-number``.
-* Запись (recording) ``string.byte()``, ``string.sub()`` и
-  ``string.find()``.
-* Отсутствие преобразования типов для слотов ``BC_FORI`` в режиме
-  ``dual-number``.
-* Различные пограничные случаи в ``VM events``.
-* Запись разрешения индекса конструктора в JIT-компиляторе.
-* Предупреждение UBSan в ``unpack()``.
+* Incorrect ``IR_TBAR`` generation on aarch64.
+* Stack overflow handling when exiting a trace.
+* Dangling references to ``CType``.
+* VM state shutdown after early OOM.
+* ``IR_MUL`` generation on x86/x64.
+* Incorrect merging of ``stp``/``ldp`` instructions on aarch64.
+* SCEV record invalidation when returning to a lower frame.
+* Build on macOS 15 / Clang 16.
+* ``IR_HREFK`` generation on aarch64.
+* Stack checks in varargs calls in GC64 builds.
+* Stack checks in ``pcall()``/``xpcall()`` in GC64 builds.
+* Allocation limit in non-JIT builds.
+* OOM handling when growing the stack in ``coroutine.resume()`` and ``lua_checkstack()``.
+* Recording loops with step ``-0`` or control values ``NaN``.
+* Error message generation when an error occurs while handling another error.
+* Dangling reference for an FFI callback.
+* ``BC_UNM`` for argument ``-0`` in ``dual-number`` mode.
+* Unary minus narrowing in ``dual-number`` mode.
+* Recording of ``string.byte()``, ``string.sub()``, and ``string.find()``.
+* Missing type conversion for ``BC_FORI`` slots in ``dual-number`` mode.
+* Various corner cases in ``VM events``.
+* Recording of constructor index resolution in the JIT compiler.
+* UBSan warning in ``unpack()``.
 
-
-Модуль Datetime
+Datetime module
 ^^^^^^^^^^^^^^^
 
-**Исправлено:**
+**Fixed:**
 
-* Падение из-за срабатывания ``assert`` при разборе неоднозначной
-  даты: когда в тексте одновременно указаны день года (``yday``, который
-  неявно задаёт месяц и день месяца) и календарный месяц (без дня месяца).
-  Теперь такие случаи распознаются, и отображается ошибка.
-* Вычисления ``tzoffset`` для случаев вида
-  ``new({timestamp=x, tz='Zone'})``.
-* Неконсистентность между датами, создаваемыми
-  ``new({tzoffset=x})``, и ``d:set({tzoffset=x})``, когда ``d.tz ~= ''`` идёт
-  перед ``set()``.
-* Теперь ``datetime.new()`` и ``datetime_object:set()`` проверяют, что значение
-  ``timestamp`` находится в допустимом диапазоне.
-* Проверка типа ``timestamp`` в ``set()``.
+* A crash due to an ``assert`` when parsing an ambiguous date: when the input contains both the day of year (``yday``, which implicitly defines month and day of month) and a calendar month (without day of month). Such cases are now detected and reported as an error.
+* ``tzoffset`` calculations for cases like ``new({timestamp=x, tz='Zone'})``.
+* An inconsistency between dates created with ``new({tzoffset=x})`` and ``d:set({tzoffset=x})`` when ``d.tz ~= ''`` precedes ``set()``.
+* ``datetime.new()`` and ``datetime_object:set()`` now validate that ``timestamp`` is within the allowed range.
+* ``timestamp`` type checking in ``set()``.
 
-Для обратной совместимости добавлена опция
-``compat.datetime_setfn_timestamp_type_check``. Сейчас она по умолчанию
-выключена («старое» поведение), то есть проверка типа не выполняется. «Новое»
-поведение с проверкой типа планируется сделать значением по умолчанию в версии 4.x.
+For backward compatibility, the option ``compat.datetime_setfn_timestamp_type_check`` has been added. It is disabled by default (the “old” behavior), meaning no type check is performed. The “new” behavior with type checking is planned to become the default in 4.x.
 
 ..  note::
 
-    Ниже приведены модули, в которых произошли изменения.
-    Если модуль не указан в списке ниже, то обновления для него не выпускались.
+    The modules listed below have changes in this release.
+    If a module is not listed, it was not updated.
 
-
-crud 1.6.1 → 1.7.5
-~~~~~~~~~~~~~~~~~~
+crud 1.6.1 -> 1.7.5
+~~~~~~~~~~~~~~~~~~~
 
 ..  note::
 
-    Начиная с CRUD 1.6.0 закрыта уязвимость, позволявшая выполнять операции, на которые у пользователя не было прав.
-    Теперь CRUD строго соблюдает права доступа: пользователь может выполнять только те действия, которые разрешены его привилегиями.
-    Если приложению требуется доступ к служебным спейсам, соответствующие права необходимо выдавать явно.
+    Starting with CRUD 1.6.0, a vulnerability that allowed performing operations without sufficient privileges has been fixed.
+    CRUD now strictly enforces access rights: a user can perform only the actions allowed by their privileges.
+    If the application needs access to service spaces, the corresponding privileges must be granted explicitly.
 
-**Добавлено:**
+**Added:**
 
-* Метод ``crud.locate()`` для определения, где находится кортеж — в движке memtx или vinyl. Работает для спейсов, управляемых enterprise-модулем ``cooler``.
-* В ``crud.len`` добавлена поддержка опций: ``mode``, ``balance``, ``prefer_replica``, ``request_timeout``.
-* ``safe mode`` – безопасный режим, предотвращающий запись данных в неверный набор реплик во время ребалансировки vshard.
-* Метрика ``tnt_crud_router_cache_clear_ts``, помогающая корректно отключать безопасный режим в кластере.
-* Автоматическое переключение в безопасный режим при старте ребалансировки.
-* Возможность вручную вернуть быстрый режим (``fast mode``).
-* Метрика ``tnt_crud_storage_nil_bucket_id_compat_total`` для отслеживания операций, выполненных без ``bucket_ref`` (режим совместимости со старыми роутерами).
+* ``crud.locate()`` to determine where a tuple is stored (memtx or vinyl). Works for spaces managed by the enterprise module ``cooler``.
+* ``crud.len`` now supports options: ``mode``, ``balance``, ``prefer_replica``, ``request_timeout``.
+* Safe mode to prevent writing data to the wrong replica set during vshard rebalancing.
+* Metric ``tnt_crud_router_cache_clear_ts`` to help properly disable safe mode in a cluster.
+* Automatic switch to safe mode when rebalancing starts.
+* Ability to manually switch back to fast mode (``fast mode``).
+* Metric ``tnt_crud_storage_nil_bucket_id_compat_total`` to track operations performed without ``bucket_ref`` (compatibility mode with older routers).
 
-**Исправлено:**
+**Fixed:**
 
-* Операции только для чтения (``get``, ``select``, ``pairs``, ``count``, ``min``, ``max``) теперь выполняются через здоровые реплики, даже если все мастер-узлы в кластере недоступны.
-* Совместимость узлов хранилища с роутерами версии < 1.7.0: в ``get``, ``update``, ``delete`` корректно обрабатывается ``bucket_id = nil``. В этом случае хранилище пропускает ``bucket referencing`` и пишет ``rate-limited`` предупреждение о сниженной безопасности ребаланса во время обновления без простоя (*rolling upgrade*).
-* Ошибка ``bucket_ref`` в методах ``crud.*_many`` теперь возвращается в виде массива.
-* Вызов ``bucket_unref`` вынесен из транзакции.
-* Предотвращено создание дублирующихся метрик при повторном вызове ``init``.
-* Предотвращено создание дублирующихся триггеров на спейсe ``_crud_settings_local`` при повторном вызове ``init``.
-* Взаимная блокировка в ``crud.schema()`` после ошибки перезагрузки схемы.
-* Удалена метрика ``tnt_crud_storage_safe_mode_enabled`` с роутера.
-* Убрана обёртка ``wrap_box_space_func_result`` для сокращения аллокаций и ускорения вызовов узла хранилища.
+* Read-only operations (``get``, ``select``, ``pairs``, ``count``, ``min``, ``max``) are now executed via healthy replicas even if all master nodes in the cluster are unavailable.
+* Storage compatibility with routers < 1.7.0: ``bucket_id = nil`` is now handled correctly in ``get``, ``update``, and ``delete``. In this case, storage skips bucket referencing and logs a rate-limited warning about reduced rebalancing safety during rolling upgrades.
+* ``bucket_ref`` errors in ``crud.*_many`` methods are now returned as an array.
+* ``bucket_unref`` was moved out of the transaction.
+* Prevented duplicate metrics from being created on repeated ``init`` calls.
+* Prevented duplicate triggers on the ``_crud_settings_local`` space on repeated ``init`` calls.
+* A deadlock in ``crud.schema()`` after a schema reload error.
+* Removed metric ``tnt_crud_storage_safe_mode_enabled`` from the router.
+* Removed ``wrap_box_space_func_result`` wrapper to reduce allocations and speed up storage calls.
 
-**Изменено:**
+**Changed:**
 
-* При переключении в безопасный режим прекращена практика пометки/остановки iproto файберов в быстром режиме; корректность операций на узле хранилища проверяется через ``yield_checks`` в тестах.
-* Переключение в безопасный режим перенесено с триггера ``on_commit`` на ``on_replace``.
-* Спейсы на движке vinyl всегда работают в безопасном режиме.
+* When switching to safe mode, the practice of marking/stopping iproto fibers in fast mode was discontinued; operation correctness on storage is validated via ``yield_checks`` in tests.
+* Switching to safe mode was moved from the ``on_commit`` trigger to ``on_replace``.
+* Vinyl spaces always operate in safe mode.
 
-vshard 0.1.37 → 0.1.39
+vshard 0.1.37 -> 0.1.39
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Version 0.1.39 is fully compatible with previous vshard versions.
+
+**Added:**
+
+* Ability to disable the log rate limiter via the ``consts`` module.
+
+**Fixed:**
+
+* An issue where the old master node could not discover the new master instance within a replica set.
+* Connection leak: connections were not released by the garbage collector after reconfiguration or reload.
+* Transaction limitation when working with ``_bucket``: previously, the ``on_commit`` trigger on ``_bucket`` blocked writes to other spaces within the same transaction (for example, from ``on_replace`` triggers). Such scenarios are now allowed: ``on_commit`` skips changes related to “foreign” spaces.
+
+metrics 1.6.2 -> 1.7.0
 ~~~~~~~~~~~~~~~~~~~~~~
 
-Версия 0.1.39 полностью совместима с предыдущими версиями vshard.
+* ``graphite``: added support for sending metrics to multiple servers.
+* Removing a replica via ``box.space._cluster:delete()`` does not remove that replica’s information from metrics; it disappears only after a cluster restart.
+* Backward compatibility with the previous plugin version is preserved.
+* Behavior changes:
 
-**Добавлено:**
-
-* Возможность отключать ограничитель частоты логирования (log rate limiter) через модуль ``consts``.
-
-**Исправлено:**
-
-* Проблема, из‑за которой старый мастер-узел не мог обнаружить новый мастер-экземпляр в пределах набора реплик.
-* Утечка соединений: соединение не освобождалось сборщиком мусора после реконфигурации или перезагрузки.
-* Ограничение транзакций при работе с ``_bucket``: ранее ``on_commit``‑триггер на ``_bucket`` блокировал запись в другие спейсы в
-  рамках той же транзакции (например, из ``on_replace``‑триггеров). Теперь такие сценарии разрешены — в ``on_commit`` пропускаются изменения, относящиеся к «чужим» спейсам.
-
-metrics 1.6.2 → 1.7.0
-~~~~~~~~~~~~~~~~~~~~~
-
-*   ``graphite``: добавлена возможность отправлять метрики на несколько серверов.
-*   Удаление реплики с помощью метода ``box.space._cluster:delete()`` не удаляет информацию об этой реплике из метрик. Информация исчезает только после перезапуска кластера.
-*   Обратная совместимость с предыдущей версией плагина сохранена.
-*   Изменения в поведении:
-
-    -   ``init`` теперь присваивает уникальное имя создаваемому файберу ``fiber`` на основе входных опций ``graphite server`` (если переданы).
-    -   добавлен метод ``stop()`` для остановки всех файберов ``fibers``, запущенных плагином.
-
+  - ``init`` now assigns a unique name to the created ``fiber`` based on the input ``graphite server`` options (if provided).
+  - Added ``stop()`` to stop all ``fibers`` started by the plugin.
 
 tt-ee v2.11.0 -> v2.12.0
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-**Добавлено:**
+**Added:**
 
-* ``tt pack``: добавлена поддержка вложенных файлов ``.packignore`` в корне окружения tt.
-* ``tt status``: добавлена опция ``--format`` для вывода в форматах JSON и YAML (машиночитаемый вывод).
+* ``tt pack``: added support for nested ``.packignore`` files in the root of a tt environment.
+* ``tt status``: added the ``--format`` option to output status in JSON and YAML formats (machine-readable output).
 
-**Изменено:**
+**Changed:**
 
-* ``tt export``: изменено поведение по умолчанию для составных полей (массивы и словари) — теперь они экспортируются в JSON. Для возврата прежнего поведения используйте опцию – ``-compound-value-format=ignore``.
+* ``tt export``: changed the default behavior for compound fields (arrays and maps): they are now exported in JSON format by default. To restore the previous behavior, use ``--compound-value-format=ignore``.
 
-**Исправлено:**
+**Fixed:**
 
-* Проверка целостности для приложения, использующего структуру каталогов Cartridge (одиночное приложение, у которого корневой каталог совпадает с корнем окружения).
-* Проблема с Tarantool 3.5+: экземпляр не останавливался при падении периодической проверки целостности.
-* Исправления, выявленные статическим анализатором Svacer и проверками на известные уязвимости (CVE).
-
-
-cartridge 2.16.4 → 2.16.6
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
-**Изменено:**
-
-* На странице кода дерево файлов больше не раскрывается автоматически по умолчанию.
-* Зависимости:
-
- - ``vshard`` с версии 0.1.37 до 0.1.39 (изменения см. выше).
- - ``membership`` c версии 2.5.2 до 2.5.3. Обновлена версия CMake, чтобы избежать проблем совместимости с CMake 4.x.
- - ``cartridge-metrics-role`` с версии 0.1.1 до 0.1.3. Обновлена версия CMake, чтобы избежать проблем совместимости с CMake 4.x. Исправлен CI: обновлена версия Ubuntu; вместо ``tarantoolctl`` теперь используется ``tt``.
- - ``graphql`` с версии 0.3.0 до 0.3.1. ``luagraphqlparser`` обновлен до версии 0.2.1.
- - ``http`` с версии 1.8.0 до 1.9.0 (изменения см. ниже).
-
-**Исправлено:**
-
-* Мониторинг синхронных спейсов с учётом фактического режима ``failover``:
-  предупреждение о синхронных спейсах теперь пишется в журнал только если ``failover`` настроен в режиме, который их не поддерживает (например, ``eventual`` или ``stateful`` без ``synchro_mode``), а не всегда при старте экземпляра;
-  в модуль ``cartridge.failover`` добавлена функция ``is_sync_spaces_supported()``; синхронные спейсы теперь определяются динамически, включая спейсы, добавленные во время работы.
-
-http 1.8.0 → 1.9.0
-~~~~~~~~~~~~~~~~~~
-
-**Добавлено:**
-
-* Опция ``ssl_verify_client``.
-
-**Исправлено:**
-
-* Сервер больше не пересоздаётся, если его адрес и порт не изменились.
-* Применение параметров сервера при перезагрузке конфигурации: сервер больше не остаётся без изменений после обновления настроек.
-
-**Несовместимое изменение (Breaking change):**
-
-* При указании ``ca_file`` взаимная TLS-аутентификация (mTLS) теперь включается по умолчанию.
-
-
-graphqlapi-helpers
-~~~~~~~~~~~~~~~~~~
-
-* Обновление модуля ``graphqlapi-helpers`` с 0.0.9-1 на 0.0.11-1.
-  Новая версия работает без зависимостей от ``ddl-ee`` и ``crud-ee``.
-
+* Fixed integrity checking for an application using the Cartridge directory layout (a single application whose root directory is the environment root).
+* Fixed an issue with Tarantool 3.5+: the instance did not stop when the periodic integrity check failed.
+* Minor fixes identified by the Svacer static analyzer and CVE scanners.
 
 r703
 ----
