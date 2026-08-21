@@ -43,7 +43,7 @@ Core
 
 * Новое встроенное системное событие ``box.wal_error``, которое
   рассылается каждый раз, когда Tarantool не удаётся зафиксировать
-  транзакцию в журнале предзаписи (WAL) (`gh-12585 <https://github.com/tarantool/tarantool/issues/12585>`__).
+  транзакцию в журнале предзаписи (WAL) (`gh-12585 <hhttps://github.com/tarantool/tarantool/issues/9405>`__).
 
 **Исправлено:**
 
@@ -69,7 +69,7 @@ LuaJIT
 * Поддержка ``ffi.abi("dualnum")`` для определения режима LuaJIT (dual-number: различение целых int64 и double).
 * Добавлены флаги ``misc.memprof.available`` и ``misc.sysprof.available`` для
   определения доступности соответствующего профайлера в текущей сборке.
-  Подробнее про профайлеры в разделах `LuaJIT memory profiler <https://www.tarantool.io/en/doc/latest/tooling/luajit_memprof/>`__ и `LuaJIT platform profiler <https://www.tarantool.io/en/doc/latest/tooling/luajit_memprof/>`__.
+  Подробнее про профайлеры в разделах `LuaJIT memory profiler <https://www.tarantool.io/en/doc/latest/tooling/luajit_memprof/>`__ и `LuaJIT platform profiler <https://www.tarantool.io/en/doc/latest/tooling/luajit_sysprof/>`__.
 
 **Исправлено:**
 
