@@ -307,7 +307,7 @@ Problem: Adding a new replica set to a cluster results in ER_AUTH_DELAY error
 
 There are instances in the cluster that are unable to connect to another node in the replica set due to exceeding
 the number of authorization attempts.
-On these instances, the ``Too many authentication attempts`` error is raised.
+On these instances, the ``Too many failed authentication attempts`` error is raised.
 
 **Possible reasons**
 
@@ -338,8 +338,8 @@ On these instances, the ``Too many authentication attempts`` error is raised.
        box.stat().AUTH
 
    If the number of attempts is increasing every second, check the list of nodes that are trying to authorize on this replica.
-   An increasing number of attempts may indicate there are some other Tarantool instances on the machine that have been
-   previously started on the same addresses.
+   An increasing number of attempts may indicate there are some other Tarantool instances on the machine that are trying
+   to connect to the same replica address with wrong or outdated credentials.
    In this case, the instance with the ``ER_AUTH_DELAY`` error and some old Tarantool nodes are both trying to
    authorize on the same replica, and the first instance exceeds the authorization time limit on the replica.
 

@@ -30,7 +30,7 @@ You can find a complete list of errors in the
 
         *   - ER_AUTH_DELAY
             - box.error.AUTH_DELAY
-            - Too many authentication attempts.
+            - Too many failed authentication attempts.
 
         *   - ER_ILLEGAL_PARAMS
             - box.error.ILLEGAL_PARAMS
