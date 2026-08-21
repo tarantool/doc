@@ -18,6 +18,7 @@ For example: ``2.11.1-0-gc42d9735b-r589``.
 -   ``TARANTOOL_BASE_VERSION`` is the Enterprise version.
 -   ``REVISION`` is the SDK revision. Besides Tarantool itself, it includes the ``tt`` utility, a set of open and closed source modules, and examples. Learn more from :ref:`Package contents <enterprise-package-contents>`.
 
+
 r708
 ----
 
