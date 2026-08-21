@@ -1,3 +1,24 @@
+msgid "Enterprise SDK changelog"
+msgstr "Журнал изменений Enterprise SDK"
+
+msgid "Versioning policy"
+msgstr "Политика версионирования"
+
+msgid "A :ref:`Tarantool Enterprise SDK <tarantool_enterprise>` version consists of two parts:"
+msgstr "Версия :ref:`Tarantool Enterprise SDK <tarantool_enterprise>` состоит из двух частей:"
+
+msgid "<TARANTOOL_BASE_VERSION>-r<REVISION>"
+msgstr "<TARANTOOL_BASE_VERSION>-r<REVISION>"
+
+msgid "For example: ``2.11.1-0-gc42d9735b-r589``."
+msgstr "Например: ``2.11.1-0-gc42d9735b-r589``."
+
+msgid "``TARANTOOL_BASE_VERSION`` is the Enterprise version."
+msgstr "``TARANTOOL_BASE_VERSION`` — версия Tarantool Enterprise."
+
+msgid "``REVISION`` is the SDK revision. Besides Tarantool itself, it includes the ``tt`` utility, a set of open and closed source modules, and examples. Learn more from :ref:`Package contents <enterprise-package-contents>`."
+msgstr "``REVISION`` — ревизия SDK. Помимо самого Tarantool, она включает утилиту ``tt``, набор модулей с открытым и закрытым исходным кодом, а также примеры. Подробнее см. в разделе :ref:`Содержимое пакета <enterprise-package-contents>`."
+
 msgid "r708"
 msgstr "r708"
 
