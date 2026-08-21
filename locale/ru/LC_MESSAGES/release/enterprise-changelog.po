@@ -351,3 +351,4 @@ msgstr "* Исправлена проблема с Tarantool 3.5+: экземп�
 
 msgid "* Minor fixes identified by the Svacer static analyzer and CVE scanners."
 msgstr "* Исправления, выявленные статическим анализатором Svacer и проверками на известные уязвимости (CVE)."
+
