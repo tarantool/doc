@@ -4,6 +4,17 @@
 Access control
 ================================================================================
 
+
+..  NOTE::
+
+    Starting from crud 1.6.0 (crud-ee 1.7.3), the user on behalf of whom CRUD operations are performed through the router
+    must be granted privileges to execute CRUD read and write operations.
+    See the list of minimum required privileges for reading and writing through CRUD
+    in the :ref:`Minimum set of privileges in typical Tarantool scenarios <authentication-users_minimal_priv>` section.
+
+    Without these privileges the user will get an access error when executing CRUD operations.
+    The error can occur either on the router side or on the storage side, depending on which component cannot access the system space.
+
 This section explains how Tarantool makes it possible for administrators
 to prevent unauthorized access to the database and to certain functions.
 
@@ -375,3 +386,52 @@ at start of the transaction using :doc:`/reference/reference_lua/box_session/syn
 
    To track all connects and disconnects, you can use
    :ref:`connection and authentication triggers <triggers>`.
+
+
+.. _authentication-users_minimal_priv:
+
+--------------------------------------------------------------------------------
+Minimum set of privileges in typical Tarantool scenarios
+--------------------------------------------------------------------------------
+
+This section provides a list of the minimum required privileges for the following typical Tarantool usage scenarios:
+
+- :ref:`Reading and writing data with CRUD <authentication-users_minimal_priv-crud_read_write>`
+
+.. _authentication-users_minimal_priv-crud_read_write:
+
+Reading and writing data with CRUD
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CRUD and vshard modules execute requests on the storage side on behalf of the same user who initiated the request on the
+router.
+For the correct operation of CRUD methods, the user on behalf of whom requests are made to the cluster through the
+router must be granted a minimum set of privileges **on each storage instance**.
+
+Starting from crud 1.6.0 (crud-ee 1.7.3) the minimum set of privileges for reading and writing data with CRUD looks as follows:
+
+..  code-block:: lua
+
+    box.schema.user.grant('db_user', 'execute', 'universe')
+    box.schema.user.grant('db_user', 'read', 'space', '_bucket')
+    box.schema.user.grant('db_user', 'read', 'space', '_ddl_sharding_key')
+
+In the example above, the user ``db_user`` is granted the following privileges:
+
+- `execute` on ``universe`` — executing auxiliary stored procedures on storage instances.
+  CRUD and vshard modules call internal functions on the storage side, and without the `execute` privilege these calls will be denied;
+- `read` on ``_bucket`` — read the bucket map for request routing and checking bucket ownership;
+- `read` on ``_ddl_sharding_key`` — read sharding metadata for routing.
+
+In addition to the privileges for reading system spaces, reading and writing data requires privileges for
+reading and writing data in specific user spaces. In the example below the privileges are granted for the `bands` space:
+
+..  code-block:: lua
+
+    box.schema.user.grant('db_user', 'read,write', 'space', 'bands')
+
+..  note::
+
+    Without these privileges the user will get an access error when executing CRUD operations.
+    The error can occur either on the router side or on the storage side, depending on which component cannot access the system space.
+
