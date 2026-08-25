@@ -25,7 +25,7 @@ r708
 This release updates the platform’s key dependencies: Tarantool 2.11.9, a bugfix release of the 2.11 branch focused on
 improving stability and predictability. It also improves diagnostics and error handling for WAL failures, fixes hangs and
 WAL maintenance issues in Core, and delivers a large set of fixes in LuaJIT and the Datetime module. In addition, major
-ecosystem components (``crud``, ``vshard``, ``metrics``, ``tt-ee``, ``cartridge``, ``http``, ``graphqlapi-helpers``) have been updated and refined,
+ecosystem components (``crud``, ``vshard``, ``metrics``, ``tt-ee``, ``cartridge``, ``http``) have been updated and refined,
 including safer behavior during rebalancing, fault-tolerant reads, and changes to HTTP TLS/mTLS configuration.
 
 Tarantool 2.11.8 -> 2.11.9
