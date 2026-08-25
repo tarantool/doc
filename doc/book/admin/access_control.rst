@@ -519,4 +519,4 @@ Granting the ``execute`` privilege on ``universe`` to the application user is no
     Without these privileges, the user will get an access error when executing CRUD operations.
     The error can occur either on the router side or on the storage side, depending on which component lacks the required permissions.
     For example, the error may be caused by missing access to routing metadata,
-    missing ``read``/``write`` privileges for the target user space, or missing ``execute`` privileges to call the required ``crud.*`` methods on the router.
+    missing ``read`` / ``write`` privileges for the target user space, or missing ``execute`` privileges to call the required ``crud.*`` methods on the router.
