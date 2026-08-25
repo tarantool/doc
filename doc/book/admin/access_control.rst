@@ -4,6 +4,20 @@
 Access control
 ================================================================================
 
+
+..  NOTE::
+
+    Starting from crud 1.6.0 (crud-ee 1.7.3), the user on behalf of whom CRUD operations are performed through the router
+    must be granted privileges to execute CRUD read and write operations.
+    See the list of minimum required privileges for reading and writing through CRUD
+    in the :ref:`Minimum set of privileges in typical Tarantool scenarios <authentication-users_minimal_priv>` section.
+
+    Without these privileges, the user will get an access error when executing CRUD operations.
+    The error can occur either on the router side or on the storage side, depending on which component lacks the required permissions.
+    For example, the error may be caused by missing access to routing metadata,
+    missing ``read``/ ``write`` privileges for the target user space, or missing ``execute`` privileges to call the required ``crud.*`` methods on the router.
+
+
 This section explains how Tarantool makes it possible for administrators
 to prevent unauthorized access to the database and to certain functions.
 
@@ -375,3 +389,134 @@ at start of the transaction using :doc:`/reference/reference_lua/box_session/syn
 
    To track all connects and disconnects, you can use
    :ref:`connection and authentication triggers <triggers>`.
+
+
+.. _authentication-users_minimal_priv:
+
+--------------------------------------------------------------------------------
+Minimum set of privileges in typical Tarantool scenarios
+--------------------------------------------------------------------------------
+
+This section provides a list of the minimum required privileges for the following typical Tarantool usage scenarios:
+
+- :ref:`Reading and writing data with CRUD <authentication-users_minimal_priv-crud_read_write>`
+
+.. _authentication-users_minimal_priv-crud_read_write:
+
+Reading and writing data with CRUD
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CRUD passes the name of the user who initiated the operation on the router to the storage side.
+The internal call is performed via the vshard service user,
+after which CRUD switches to the forwarded user and executes the operation with that user’s privileges.
+
+For the correct operation of CRUD methods, the user on behalf of whom requests are made to the cluster through the
+router must be granted a minimum set of privileges **on each storage instance**.
+
+Starting from crud 1.6.0, grant the user the required privileges on
+the user spaces and, if applicable, on the DDL sharding metadata spaces.
+
+Starting from crud 1.7.0, also grant the user the ``read`` privilege
+on the ``_bucket`` space.
+
+Router-side privileges
+^^^^^^^^^^^^^^^^^^^^^^
+
+It is **not recommended** to grant an application user the ``execute`` privilege on universe,
+because it allows executing arbitrary Lua code and significantly broadens the user’s permissions.
+
+On the router, register only the required CRUD functions and grant the
+application user permission to execute them:
+
+.. code-block:: lua
+
+    local crud_functions = {
+        'crud.select',
+        'crud.get',
+        'crud.insert',
+        'crud.replace',
+        'crud.update',
+        'crud.upsert',
+        'crud.delete',
+    }
+
+    for _, name in ipairs(crud_functions) do
+        box.schema.func.create(name, {
+            setuid = false,
+            if_not_exists = true,
+        })
+        box.schema.user.grant(
+            'db_user', 'execute', 'function', name,
+            {if_not_exists = true}
+        )
+    end
+
+Storage-side privileges
+^^^^^^^^^^^^^^^^^^^^^^^
+
+The minimum set of privileges on a storage instance depends on the enabled functionality and the CRUD version.
+To read and write data, the user must have read and write access to the target user spaces, for example, the ``bands`` space:
+
+..  code-block:: lua
+
+    box.schema.user.grant('db_user', 'read,write', 'space', 'bands')
+
+**Access to routing-related system spaces**
+
+* Read access to ``_bucket`` — starting from CRUD 1.7.0, storage-side operations ``bucket_ref``/ ``bucket_unref`` require it to verify the bucket state and ownership.
+* If DDL-based routing metadata is used, ``read`` access to ``_ddl_sharding_key`` and ``_ddl_sharding_func`` is required.
+
+    ..  note::
+
+        Privileges for DDL sharding metadata are required only in configurations where
+        CRUD routing relies on metadata stored in DDL.
+
+        CRUD loads sharding metadata from the system spaces
+        ``_ddl_sharding_key`` and ``_ddl_sharding_func``:
+
+        * ``_ddl_sharding_key`` — sharding key metadata;
+        * ``_ddl_sharding_func`` — user-defined sharding function metadata.
+
+        If the cluster uses a user-defined sharding function, you need to grant
+        read access to both spaces.
+
+        ..  code-block:: lua
+
+            box.schema.user.grant('db_user', 'read', 'space', '_ddl_sharding_key')
+            box.schema.user.grant('db_user', 'read', 'space', '_ddl_sharding_func')
+
+Example:
+
+..  code-block:: lua
+
+    box.schema.user.grant('db_user', 'read', 'space', '_bucket')
+    box.schema.user.grant('db_user', 'read', 'space', '_ddl_sharding_key')
+    box.schema.user.grant('db_user', 'read', 'space', '_ddl_sharding_func')
+    box.schema.user.grant('db_user', 'read,write', 'space', 'bands')
+
+
+Internal vshard/CRUD calls on storage
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In some configurations (in particular, on Tarantool 2.x or when privileges are configured manually), internal calls on
+storage may require ``execute`` privileges for a set of service functions ``vshard.storage.*``.
+
+..  note::
+
+    These ``execute`` privileges are required for the **vshard service user** (or for the **``sharding`` role**, if it is
+    used in the cluster), not for the application user (for example, ``db_user``).
+
+    The application user must have:
+
+    * router-side privileges to call the required ``crud.*`` methods;
+    * storage-side privileges for the required spaces (user spaces and, if applicable, routing metadata spaces such as
+      ``_bucket`` and DDL metadata spaces).
+
+Granting the ``execute`` privilege on ``universe`` to the application user is not recommended.
+
+..  note::
+
+    Without these privileges, the user will get an access error when executing CRUD operations.
+    The error can occur either on the router side or on the storage side, depending on which component lacks the required permissions.
+    For example, the error may be caused by missing access to routing metadata,
+    missing ``read`` / ``write`` privileges for the target user space, or missing ``execute`` privileges to call the required ``crud.*`` methods on the router.
