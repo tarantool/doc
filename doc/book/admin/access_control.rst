@@ -424,25 +424,32 @@ Router-side privileges
 
 It is **not recommended** to grant an application user the ``execute`` privilege on universe,
 because it allows executing arbitrary Lua code and significantly broadens the user’s permissions.
-Instead, grant execute narrowly — only for the required ``crud.*`` methods invoked via ``lua_call``:
 
-..  code-block:: yaml
+On the router, register only the required CRUD functions and grant the
+application user permission to execute them:
 
-    credentials:
-      users:
-        db_user:
-          password: 'secret'
-          privileges:
-            - permissions: [execute]
-              lua_call:
-                - crud.select
-                - crud.get
-                - crud.insert
-                - crud.replace
-                - crud.update
-                - crud.upsert
-                - crud.delete
+.. code-block:: lua
 
+    local crud_functions = {
+        'crud.select',
+        'crud.get',
+        'crud.insert',
+        'crud.replace',
+        'crud.update',
+        'crud.upsert',
+        'crud.delete',
+    }
+
+    for _, name in ipairs(crud_functions) do
+        box.schema.func.create(name, {
+            setuid = false,
+            if_not_exists = true,
+        })
+        box.schema.user.grant(
+            'db_user', 'execute', 'function', name,
+            {if_not_exists = true}
+        )
+    end
 
 Storage-side privileges
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -478,29 +485,34 @@ To read and write data, the user must have read and write access to the target u
             box.schema.user.grant('db_user', 'read', 'space', '_ddl_sharding_key')
             box.schema.user.grant('db_user', 'read', 'space', '_ddl_sharding_func')
 
-An example of configuring storage-side privileges via YAML:
+Example:
 
-..  code-block:: YAML
+..  code-block:: lua
 
-    credentials:
-      users:
-        db_user:
-          password: 'secret'
-          privileges:
-            - permissions: [read]
-              spaces: [_bucket]
-            - permissions: [read]
-              spaces: [_ddl_sharding_key, _ddl_sharding_func]
-            - permissions: [read, write]
-              spaces: [bands]
+    box.schema.user.grant('db_user', 'read', 'space', '_bucket')
+    box.schema.user.grant('db_user', 'read', 'space', '_ddl_sharding_key')
+    box.schema.user.grant('db_user', 'read', 'space', '_ddl_sharding_func')
+    box.schema.user.grant('db_user', 'read,write', 'space', 'bands')
 
 
 Internal vshard/CRUD calls on storage
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In some configurations (in particular, on Tarantool 2.x or when privileges are configured manually),
-internal calls on storage may require the ``execute`` privilege for a set of service functions ``vshard.storage.*`` (``setuid``).
-Granting ``execute`` on ``universe`` is not recommended.
+In some configurations (in particular, on Tarantool 2.x or when privileges are configured manually), internal calls on
+storage may require ``execute`` privileges for a set of service functions ``vshard.storage.*``.
+
+..  note::
+
+    These ``execute`` privileges are required for the **vshard service user** (or for the **``sharding`` role**, if it is
+    used in the cluster), not for the application user (for example, ``db_user``).
+
+    The application user must have:
+
+    * router-side privileges to call the required ``crud.*`` methods;
+    * storage-side privileges for the required spaces (user spaces and, if applicable, routing metadata spaces such as
+      ``_bucket`` and DDL metadata spaces).
+
+Granting the ``execute`` privilege on ``universe`` to the application user is not recommended.
 
 ..  note::
 
