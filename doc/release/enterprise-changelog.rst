@@ -154,20 +154,26 @@ crud 1.6.1 -> 1.7.5
 * Switching to safe mode was moved from the ``on_commit`` trigger to ``on_replace``.
 * Vinyl spaces always operate in safe mode.
 
-vshard 0.1.37 -> 0.1.39
+vshard 0.1.37 -> 0.1.40
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-Version 0.1.39 is fully compatible with previous vshard versions.
+Version 0.1.40 is fully compatible with previous vshard versions.
 
 **Added:**
 
 * Ability to disable the log rate limiter via the ``consts`` module.
+* Calling ``vshard.router.info()`` and ``vshard.storage.info()`` is now allowed even when the router or storage is disabled. The functions now also return a new boolean field: ``is_enabled``.
+* Improved logging for rebalancer and recovery related activities.
 
 **Fixed:**
 
 * An issue where the old master node could not discover the new master instance within a replica set.
 * Connection leak: connections were not released by the garbage collector after reconfiguration or reload.
-* Transaction limitation when working with ``_bucket``: previously, the ``on_commit`` trigger on ``_bucket`` blocked writes to other spaces within the same transaction (for example, from ``on_replace`` triggers). Such scenarios are now allowed: ``on_commit`` skips changes related to “foreign” spaces.
+* Transaction limitation when working with ``_bucket``: previously, the ``on_commit`` trigger on ``_bucket`` blocked writes to other spaces within the same transaction (for example, from ``on_replace`` triggers).
+  Such scenarios are now allowed: ``on_commit`` skips changes related to “foreign” spaces.
+* An issue where a user error was masked by the ``Transaction is active...`` error when calling a persistent function that throws an error and does not close a transaction on Tarantool versions earlier than 3.0.0-beta1-18.
+  Now, vshard automatically closes such transactions and returns the original user error.
+* An issue where a connection to a replica was not automatically restored when it was closed either by vshard or by the user.
 
 metrics 1.6.2 -> 1.7.0
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -197,6 +203,26 @@ tt-ee v2.11.0 -> v2.12.0
 * Integrity checking for an application using the Cartridge directory layout (a single application whose root directory is the environment root).
 * An issue with Tarantool 3.5+: the instance did not stop when the periodic integrity check failed.
 * Minor fixes identified by the Svacer static analyzer and CVE scanners.
+
+cartridge 2.16.4 -> 2.16.7
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Changed:**
+
+* Do not expand the file tree by default on the code page.
+* Update vshard dependency to 0.1.40.
+* Update membership dependency to 2.5.3.
+* Update cartridge-metrics-role dependency to 0.1.3.
+* Update graphql dependency to 0.3.1.
+* Update http dependency to 1.9.0.
+
+**Fixed:**
+
+* Refactor synchronous spaces monitoring to consider the actual failover mode.
+  Sync spaces warning is now logged when failover is configured in a mode that doesn't support them (eventual, stateful without ``synchro_mode``), instead of unconditionally at instance startup.
+* Added ``is_sync_spaces_supported()`` function to ``cartridge.failover module``.
+* Sync spaces are now detected dynamically, allowing detection of spaces added at runtime.
+
 
 http 1.8.0 -> 1.9.0
 ~~~~~~~~~~~~~~~~~~~
