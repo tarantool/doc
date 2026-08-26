@@ -19,7 +19,7 @@ Compatibility limitation during upgrade
 
 Starting from ``crud`` 1.7.0, the module automatically switches the cluster to
 **safe mode** when vshard
-`rebalancing <../../../platform/sharding/vshard_admin#vshard_config_rebalancing>`_
+`rebalancing <../../../admin/vshard_admin#vshard_config_rebalancing>`_
 starts. Safe mode prevents writing data to an incorrect replica set during
 rebalancing.
 
