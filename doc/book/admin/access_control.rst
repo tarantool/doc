@@ -397,7 +397,9 @@ at start of the transaction using :doc:`/reference/reference_lua/box_session/syn
 Minimum set of privileges in typical Tarantool scenarios
 --------------------------------------------------------------------------------
 
-This section provides a list of the minimum required privileges for the following typical Tarantool usage scenarios:
+This section provides a list of the minimum required privileges for the following typical Tarantool usage scenarios.
+
+Additional limitations and recommendations related to upgrading the ``crud`` module are described in the :ref:`Upgrading the crud module <admin-upgrades-crud>` section.
 
 .. _authentication-users_minimal_priv-crud_read_write:
 
