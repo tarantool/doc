@@ -319,6 +319,13 @@ msgid ""
 msgstr ""
 "Подробнее :ref:`Чтение и запись данных через модуль CRUD <authentication-users_minimal_priv-crud_read_write>`."
 
+msgid ""
+"Safe mode and rolling-upgrade compatibility details are described in "
+":ref:`Upgrading the crud module <admin-upgrades-crud>` (see :ref:`Compatibility limitation during upgrade <admin-upgrades-crud-safe-mode>` and :ref:`Upgrade order <admin-upgrades-crud-order>`)."
+msgstr ""
+"Подробности о безопасном режиме и совместимости при поэтапном (rolling) обновлении описаны в разделе "
+":ref:`Обновление модуля crud <admin-upgrades-crud>` (см. :ref:`Ограничение совместимости при обновлении <admin-upgrades-crud-safe-mode>` и :ref:`Порядок обновления <admin-upgrades-crud-order>`)."
+
 msgid "**Added:**"
 msgstr "**Добавлено:**"
 

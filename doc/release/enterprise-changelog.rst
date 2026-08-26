@@ -125,6 +125,9 @@ crud 1.6.1 -> 1.7.5
 
     See details in :ref:`Reading and writing data with CRUD <authentication-users_minimal_priv-crud_read_write>`.
 
+    Safe mode and rolling-upgrade compatibility details are described in
+    :ref:`Upgrading the crud module <admin-upgrades-crud>` (see :ref:`Compatibility limitation during upgrade <admin-upgrades-crud-safe-mode>` and :ref:`Upgrade order <admin-upgrades-crud-order>`).
+
 **Added:**
 
 * ``crud.locate()`` to determine where a tuple is stored (memtx or vinyl). Works for spaces managed by the enterprise module ``cooler``.
