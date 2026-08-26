@@ -399,8 +399,6 @@ Minimum set of privileges in typical Tarantool scenarios
 
 This section provides a list of the minimum required privileges for the following typical Tarantool usage scenarios:
 
-- :ref:`Reading and writing data with CRUD <authentication-users_minimal_priv-crud_read_write>`
-
 .. _authentication-users_minimal_priv-crud_read_write:
 
 Reading and writing data with CRUD
