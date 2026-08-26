@@ -12,12 +12,11 @@ msgstr ""
 
 msgid ""
 "For the minimum set of privileges required for CRUD operations, see the "
-":ref:`Reading and writing data with CRUD "
-"<../../admin/access_control#access_control_minimal_priv-crud_read_write>` section."
+":ref:`Reading and writing data with CRUD <authentication-users_minimal_priv-crud_read_write>` section."
+
 msgstr ""
 "Требования к минимальному набору разрешений для работы CRUD см. в разделе "
-":ref:`Чтение и запись данных через модуль CRUD "
-"<../../admin/access_control#access_control_minimal_priv-crud_read_write>`."
+":ref:`Чтение и запись данных через модуль CRUD <authentication-users_minimal_priv-crud_read_write>`."
 
 msgid "Compatibility limitation during upgrade"
 msgstr "Ограничение совместимости при обновлении"
