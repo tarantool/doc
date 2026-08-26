@@ -9,7 +9,7 @@ introduced in version 1.7.0.
 
 .. note::
    For the minimum set of privileges required for CRUD operations, see the
-   :ref:`Reading and writing data with CRUD <access_control_minimal_priv-crud_read_write>`
+   :ref:`Reading and writing data with CRUD <../../admin/access_control#access_control_minimal_priv-crud_read_write>`
    section.
 
 .. _admin-upgrades-crud-safe-mode:
