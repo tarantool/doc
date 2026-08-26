@@ -38,7 +38,7 @@ To check whether safe mode is enabled on a storage instance:
 
 or via the ``tnt_crud_storage_safe_mode_enabled`` metric.
 
-.. note:: (info)
+.. note::
    The safe mode metric is available only when the ``metrics`` module is
    installed.
 
