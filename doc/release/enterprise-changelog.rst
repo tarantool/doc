@@ -55,7 +55,7 @@ cartridge 2.16.7 -> 2.17.1
 
   to migrate a stateful replicaset between Tarantool
   ``election_mode = 'off'`` and ``election_mode = 'manual'``.
-* `Documentation <https://github.com/tarantool/cartridge/blob/master/rst/topics/failover.rst>`__ for migrating a stateful replicaset to Tarantool manual
+* `Documentation <https://www.tarantool.io/en/doc/2.11/book/cartridge/cartridge_dev/#failover-architecture>`__ for migrating a stateful replicaset to Tarantool manual
   election mode, including restart-based migration, runtime helpers, rollback,
   and fencing recommendations.
 
