@@ -61,8 +61,6 @@ cartridge 2.16.7 -> 2.17.1
 
 **Changed:**
 
-* Updated ``checks`` dependency to ``3.4.1``.
-* Updated ``http`` dependency to ``1.9.1``.
 * Updated ``vshard`` dependency to ``0.1.41``.
 
 
