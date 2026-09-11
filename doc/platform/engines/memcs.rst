@@ -80,14 +80,17 @@ Dictionary encoding
 -------------------
 
 MemCS supports **dictionary encoding** for string columns. It stores unique string values in a shared dictionary and replaces repeated values with small integer IDs.
-Dictionary encoding is enabled via the :ref:`layout <index_opts_layout>` option:
+Dictionary encoding is enabled via the ``layout`` option in the space format:
 
 .. code-block:: lua
 
-    local s = box.schema.create_space('test', {
-        engine = 'memcs', format = format, field_count = field_count,
+    local format = {
+        {name = 'id', type = 'uint64'},
+        {name = 'name', type = 'string', layout = 'dict'},
+    }
+    box.schema.create_space('test', {
+        engine = 'memcs', format = format, field_count = #format,
     })
-    s:create_index('pk', {layout = 'dict'})
 
 **Limitations:**
 
@@ -112,31 +115,10 @@ Memory used by the dictionary is included in ``space:bsize()`` statistics.
 Column layouts
 ~~~~~~~~~~~~~~
 
-MemCS supports specifying **column layouts** at multiple levels. The precedence is as follows (from highest to lowest):
-
-1. Within :ref:`covers <index_opts_covers>` in index definition
-2. Within :ref:`layout <index_opts_layout>` in index definition (default for nullable fields)
-3. Within `format` in space definition
+MemCS supports specifying **column layouts** using the ``layout`` option in the space format:
 
 .. code-block:: lua
 
-    -- 1. In covers
-    box.space.test:create_index('sk', {
-        parts = {'c2', 'c3'},
-        covers = {
-            {'c4', layout = 'plain'},
-            {'c5', layout = 'null_rle'},
-        },
-    })
-
-    -- 2. In layout
-    box.space.test:create_index('sk', {
-        parts = {'c2', 'c3'},
-        covers = {'c4', 'c5'},
-        layout = 'null_rle',
-    })
-
-    -- 3. In format
     box.space.test:format({
         {name = "c2", type = "number"},
         {name = "c3", type = "number"},
@@ -159,11 +141,7 @@ By default, NULL values are stored explicitly and consume the same amount of mem
 However, RLE encoding of NULLs is also supported via the ``null_rle`` layout.
 For example, in a column with 90% evenly distributed NULL values, RLE encoding reduces memory consumption by approximately 5 times.
 
-The ``null_rle`` layout can be specified at three levels:
-
-* Within ``covers`` in an index definition (highest precedence)
-* Within ``layout`` in an index definition (default for nullable fields)
-* Within ``format`` when defining a space (lowest precedence)
+The ``null_rle`` layout can be specified in the space format for nullable non-key fields.
 
 
 .. _memcs-lz4-compression:
