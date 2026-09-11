@@ -75,7 +75,7 @@ Dictionary encoding for string columns
 :ref:`MemCS <engines-memcs>` can store string values in a **dictionary-encoded** form: unique strings are kept in a shared dictionary, while rows store integer IDs referencing dictionary entries.
 This is most effective for columns with many repeated values (for example, statuses, categories, event types).
 
-Dictionary encoding is enabled via the :ref:`layout <index_opts_layout>` option:
+Dictionary encoding is enabled via the ``layout`` option:
 
 .. code-block:: lua
 
