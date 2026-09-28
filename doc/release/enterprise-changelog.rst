@@ -175,25 +175,16 @@ This release spans versions 2.17.2, 2.17.3, 2.18.0, and 2.18.1.
 * When ``box.ctl.promote()`` returns ``ER_INTERFERING_PROMOTE`` during failover, the retry now happens 3 times with a 1-second delay so the new master doesn't get stuck in read-only mode.
 
 
-kafka 1.6.10 -> 1.6.15
+kafka 1.6.14 -> 1.6.15
 ~~~~~~~~~~~~~~~~~~~~~~
-
-This release spans versions 1.6.11, 1.6.12, 1.6.14, and 1.6.15 (1.6.13 made no functional changes).
 
 **Added:**
 
-* Support for the ``partition`` option in ``produce()`` calls.
-* ``consumer:offsets_for_times()``.
 * A flag to enable ``zstd`` compression.
 
 **Changed:**
 
-* Bumped ``librdkafka`` to 2.13.0, then to 2.15.1.
-* Static builds no longer link ``libcurl``.
-
-**Fixed:**
-
-* A static build compilation failure on CentOS 7.
+* Bumped ``librdkafka`` to 2.15.1.
 
 
 metrics 1.8.1 -> 1.8.3

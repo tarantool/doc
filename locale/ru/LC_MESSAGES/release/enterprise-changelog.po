@@ -688,24 +688,11 @@ msgstr ""
 "``ER_INTERFERING_PROMOTE``, повтор теперь выполняется 3 раза с задержкой в "
 "1 секунду, чтобы новый мастер не застревал в режиме read-only."
 
-msgid "kafka 1.6.10 -> 1.6.15"
-msgstr "kafka 1.6.10 → 1.6.15"
-
-msgid ""
-"This release spans versions 1.6.11, 1.6.12, 1.6.14, and 1.6.15 (1.6.13 made "
-"no functional changes)."
-msgstr ""
-"Этот релиз охватывает версии 1.6.11, 1.6.12, 1.6.14 и 1.6.15 (в версии "
-"1.6.13 функциональных изменений не было)."
+msgid "kafka 1.6.14 -> 1.6.15"
+msgstr "kafka 1.6.14 → 1.6.15"
 
 msgid "**Added:**"
 msgstr "**Добавлено:**"
-
-msgid "Support for the ``partition`` option in ``produce()`` calls."
-msgstr "Поддержка опции ``partition`` в вызовах ``produce()``."
-
-msgid "``consumer:offsets_for_times()``."
-msgstr "``consumer:offsets_for_times()``."
 
 msgid "A flag to enable ``zstd`` compression."
 msgstr "Флаг для включения сжатия ``zstd``."
@@ -713,17 +700,8 @@ msgstr "Флаг для включения сжатия ``zstd``."
 msgid "**Changed:**"
 msgstr "**Изменено:**"
 
-msgid "Bumped ``librdkafka`` to 2.13.0, then to 2.15.1."
-msgstr "Обновлена версия ``librdkafka`` до 2.13.0, затем до 2.15.1."
-
-msgid "Static builds no longer link ``libcurl``."
-msgstr "В статических сборках больше не используется ``libcurl``."
-
-msgid "**Fixed:**"
-msgstr "**Исправлено:**"
-
-msgid "A static build compilation failure on CentOS 7."
-msgstr "Ошибка сборки статической версии на CentOS 7."
+msgid "Bumped ``librdkafka`` to 2.15.1."
+msgstr "Обновлена версия ``librdkafka`` до 2.15.1."
 
 msgid "metrics 1.8.1 -> 1.8.3"
 msgstr "metrics 1.8.1 → 1.8.3"
