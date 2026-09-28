@@ -180,7 +180,7 @@ kafka 1.6.14 -> 1.6.15
 
 **Added:**
 
-* A flag to enable ``zstd`` compression.
+* The ``WITH_ZSTD`` build flag to enable ``zstd`` compression support. In the Enterprise SDK build, ``zstd`` support is enabled by default.
 
 **Changed:**
 
