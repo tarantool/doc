@@ -24,22 +24,27 @@ r711
 ----
 
 This release bumps Tarantool 2.x to 2.11.10, a bugfix release resolving 15
-issues since 2.11.9. ``tt-ee`` 2.14.0 introduces cluster backup and restore.
-The release also updates a wide set of ecosystem components:
-``crud``, ``cartridge``, ``vshard``, ``metrics``, ``checks``, ``membership``, ``migrations``,
+issues since 2.11.9. The release also updates a wide set of ecosystem components:
+``tt-ee``, ``crud``, ``cartridge``, ``vshard``, ``metrics``, ``checks``, ``membership``, ``migrations``,
 ``graphqlapi``, ``graphqlapi-helpers``, and ``kafka``.
 
 
 Tarantool 2.11.9 -> 2.11.10
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This is a bugfix release: 15 issues have been fixed since 2.11.9 (r708).
+
+This is a bugfix release. It resolves 15 issues since 2.11.9 (r708) and additionally introduces one optional feature.
+It is disabled by default and has no effect unless explicitly enabled.
 
 * The 2.x series is the previous stable branch; upgrading to 3.x is recommended.
 * To upgrade from Tarantool 2.x to 3.x, see the `upgrade procedure <https://www.tarantool.io/en/doc/latest/admin/upgrades/upgrade_cluster/#admin-upgrades-replication-cluster>`__.
 
 Core
 ^^^^
+
+**Added:**
+
+* The non-dynamic ``box.cfg.memtx_memory_recovery_check`` option (``'off'`` by default) to warn (``'warn'``) or refuse startup (``'panic'``) when ``memtx_memory`` is set below the previously recorded usage.
 
 **Fixed:**
 
@@ -87,7 +92,7 @@ Datetime module
 **Fixed:**
 
 * Parsing for time with a decimal fraction of hour or minute (`gh-12082 <https://github.com/tarantool/tarantool/issues/12082>`__).
-* A stack overflow in the ``strptime()`` function when parsing timezones (`ghs-146 <https://github.com/tarantool/security/issues/146>`__).
+* A stack overflow in the ``strptime()`` function when parsing timezones.
 
 Pickle
 ^^^^^^
@@ -101,7 +106,7 @@ URI
 
 **Fixed:**
 
-* A use-after-poison crash in ``uri.format()`` caused by a long URI (`ghs-151 <https://github.com/tarantool/security/issues/151>`__).
+* A use-after-poison crash in ``uri.format()`` caused by a long URI.
 
 ..  note::
 
@@ -112,10 +117,6 @@ URI
 crud 1.7.5 -> 1.7.6
 ~~~~~~~~~~~~~~~~~~~
 
-**Changed:**
-
-* Updated ``vshard`` dependency to `0.1.42 <https://github.com/tarantool/vshard/releases/tag/0.1.42>`__.
-
 **Fixed:**
 
 * A consistency violation during rebalancing: a request could be retried on a storage that did not own the bucket yet, so a read returned no data and a write went to the wrong replica set (`#509 <https://github.com/tarantool/crud/issues/509>`__).
@@ -125,27 +126,13 @@ crud 1.7.5 -> 1.7.6
 tt-ee 2.13.0 -> 2.14.0
 ~~~~~~~~~~~~~~~~~~~~~~
 
-This release introduces cluster backup and restore: ``tt backup`` plans a backup, takes it on the nodes, uploads the archives with a cluster manifest to file or S3 storage, and verifies and prunes that storage, while ``tt restore`` plans a recovery point and prepares the instance work directories for it. It also adds cluster topology discovery with ``tt cluster topology`` and the ``\history`` command in the interactive console, and fixes line loss and hangs in ``tt log -f`` around log rotation.
-
 **Added:**
 
-* ``tt backup start`` and ``tt backup finalize``: support for creating and finalizing local backup artifacts. ``--backup-id`` must be a single safe path component: it names a directory and a file on the node and an object key in the storage, so an empty id, a path separator, a leading dot or an absolute path is rejected before the instance is dialed.
-* ``tt cluster topology``: cluster topology discovery from a file, etcd, or Tarantool Config Storage with table and JSON output.
-* ``tt backup last``: support for displaying the latest backup manifest from file or S3 storage.
-* ``tt backup verify``: a read-only health check of a backup storage: missing and corrupted archives, breaks in the backup chain, and dangling archives. Exits with 2 when problems are found. Archives of a backup newer than every stored manifest are reported as an upload in progress and do not make the storage unhealthy. A manifest carrying a warning code this ``tt`` does not know is read normally: ``warnings[]`` is diagnostic, so an unfamiliar code neither invalidates the manifest nor breaks the chain below it.
-* ``tt backup gc``: retention-based cleanup of a backup storage: ``--keep-full`` / ``--keep-days`` delete whole backup chains from their newest end, ``--orphan-age`` collects dangling archives, and ``--dry-run`` reports what a run would delete. The chain holding the newest manifest and the newest chain that can still be recovered from are never deleted, so no combination of flags empties a storage.
-* ``tt backup plan``: a backup planning command that computes the last valid manifest for ``tt backup start``. The plan carries ``format_version``, and ``tt backup upload`` refuses a version it does not know instead of reading the fields it knows: the plan crosses hosts, and possibly a ``tt`` upgrade, between the two commands. When the plan names no chain head, ``previous_backup_id`` and ``base_full_backup_id`` are null rather than absent, so a consumer reads them without a special case. The cluster manifest does the same with ``previous_backup_id`` for the first full backup of a chain. The plan also carries ``checksum_sha256`` of its own content, which is how ``tt backup upload`` tells a plan ``tt`` produced from one written or edited by hand.
-* ``tt backup upload``: a command that builds a cluster manifest from per-shard fragments and uploads archives and the manifest to file or S3 storage. Every archive is read through and checked against the checksum its fragment carries before anything is stored, so a copy that went wrong between the node and the manager host is refused rather than published as healthy. A fragment with no checksum gets the computed one, and the run reports that nothing was verified for that shard. The storage is also compared against the plan before the first object is written: an increment whose chain head moved since the plan was made, and a backup id that does not sort above the newest stored backup, are both refused — the second is what a host with a clock behind produces, and reusing an id looks the same. A full backup landing on a chain whose replica set or master changed records ``promoted_to_full`` in ``warnings[]`` with the reason, so a forced full backup is distinguishable from a scheduled one; being informational, it leaves the manifest status alone. The fragments are compared against the plan as well: one taken on an instance the plan does not name as that replica set's master — a failover between plan and start — or one of a different backup type than the plan asked for is refused. This holds the plan to its word only when ``tt`` wrote it: for a plan written or edited by hand, checked by its ``checksum_sha256``, the same disagreements are reported and the upload continues, which is also how an operator overrides the check. A shard that produced nothing does not fail the run: a replica set the plan expects and no fragment covers is stored as a failed shard with ``shard_unreachable`` in ``warnings[]``, a fragment whose archive never arrived as one with ``shard_partial``, and every shard that did produce data is uploaded either way — the run reports the manifest status, so a degraded backup is visible in the log of a run that exited 0. An archive no fragment describes is still refused: its checksum can be compared against nothing, and storing it would leave an object no manifest refers to.
-* ``tt backup plan``, ``upload``, ``verify``, ``gc``, ``last`` and ``tt restore plan``: ``--cluster-name`` and ``--environment`` select the ``<storage_root>/<cluster_name>/<environment>/`` subtree of the storage, so one storage can hold several clusters. Every command that reads or writes a storage takes the pair and has to be given the same one: a backup uploaded with it is invisible to a reader run without it. ``--environment`` without ``--cluster-name``, and either of them holding a path separator, are refused rather than silently pointing at another storage location. Object keys inside the subtree, and the archive paths the manifest records, stay relative to it. ``tt backup plan`` records the pair it was given in the plan, and ``tt backup upload`` takes it from there — its own flags are only needed to override the plan, which it reports when they do.
-* ``tt restore plan``: restore planning on the manager host. Lists the storage itself, walks the backup chain, resolves ``--target-time`` into the latest cluster recovery point not later than it, downloads the manifests and archives that point needs into ``-d``/``--dir`` and verifies their checksums there. Prints the download plan, the chosen point with its per-replica-set trim positions, and — when the requested time cannot be reached — the recovery times on either side of it. ``restore_targets`` names, per replica set, the node its chain is restored onto and the instance UUID that node has to own afterwards, which is what ``tt restore apply --patch-uuid`` stamps in: a replica set is backed up on its master, so the master is the node whose headers the archives already fit. With ``-c`` the other configured members are listed beside it under ``rejoin`` — they are wiped before the restore and come back by joining the restored node, needing no UUID of their own because Tarantool 3.x identifies an instance by name. With ``-c`` the point's topology is also checked against the cluster being restored: the composition comes from the configuration rather than from the instances, and replica sets are matched by instance name rather than by UUID, so a restore into a freshly deployed cluster passes. Exits with 2 for a topology boundary, 3 when no point is available, 4 for a broken chain, 5 for a time outside the coverage and 6 for a topology that does not match the cluster config. A missing or corrupt archive stops the plan; nothing is distributed to the nodes and nothing is deleted.
-* ``tt restore apply``: preparation of an instance work directory from a backup chain. Unpacks the archives in order, stamps ``--patch-uuid`` into every snap/xlog header, and cuts the chain at ``--target-point``: the xlog holding the point is truncated and the files starting past it are removed. ``--checksums`` verifies the archives before anything is touched, and a chain that is not one — archives out of order, a gap between an increment and its base, or archives taken on different instances — is refused rather than restored into a healthy-looking instance sitting at the wrong position. Re-running for the same point is idempotent, and only the files a restore owns are cleared, so an instance config kept in the same directory survives. Exits with 2 when no xlog covers the point and 3 when an input is rejected, in which case the work directory is left as it was. A ``restore_state.json`` marker is written next to the work directory for the orchestrator to compare across the restored nodes before the cluster is started.
 * ``tt connect``: the ``\history`` command to display the last executed commands in the interactive console.
 
 **Changed:**
 
 * ``tt stop``: preliminary interrupts the processes to enable parallel termination.
-* ``tt create vshard_cluster``: the generated rockspec now pins ``vshard`` 0.1.42 instead of 0.1.25. 0.1.42 is the first release shipping the ``vshard-router`` backend of the ``roles.recovery-point-manager`` role, which is what lets a backup take a cluster-wide recovery point.
-* ``tt backup``: removed ``creation_duration`` from the cluster manifest — the field was unused and is no longer serialized.
 
 **Fixed:**
 
@@ -164,10 +151,7 @@ This release spans versions 2.17.2, 2.17.3, 2.18.0, and 2.18.1.
 
 **Updated:**
 
-* ``vshard`` dependency to `0.1.42 <https://github.com/tarantool/vshard/releases/tag/0.1.42>`__.
-* ``checks`` dependency to `3.4.1 <https://github.com/tarantool/checks/releases/tag/3.4.1>`__.
 * ``http`` dependency to `1.9.1 <https://github.com/tarantool/http/releases/tag/1.9.1>`__.
-* ``membership`` dependency to `2.5.4 <https://github.com/tarantool/membership/releases/tag/2.5.4>`__.
 
 **Fixed:**
 
@@ -244,7 +228,7 @@ VShard 0.1.42 is fully compatible with previous vshard versions.
 
 **Added:**
 
-* A backend for Tarantool's recovery point manager: the ``vshard-router`` backend. It lets the manager periodically create cluster-consistent recovery points that can later be used for backup and point-in-time recovery of the whole VShard cluster. A new public router method, ``vshard.router.create_cluster_recovery_point()``, creates a recovery point on every replica set master (`#648 <https://github.com/tarantool/vshard/issues/648>`__).
+* A backend for Tarantool's recovery point manager: the ``vshard-router`` backend. It lets the manager periodically create cluster-consistent recovery points that can later be used for backup and point-in-time recovery of the whole VShard cluster. A new public router method, ``vshard.router.create_cluster_recovery_point()``, creates a recovery point on every replica set master (`#648 <https://github.com/tarantool/vshard/issues/648>`__). **Only with tarantool 3.8.0+**.
 
 
 graphqlapi 0.0.11 -> 0.0.15
@@ -272,15 +256,8 @@ This release bumps dependencies and the test environment.
 
 * New ``box.cfg`` options for Tarantool 2.11: ``auth_delay``, ``auth_type``, ``bootstrap_strategy``, ``disable_guest``, ``election_fencing_mode``, ``metrics``, ``password_enforce_digits``, ``password_enforce_lowercase``, ``password_enforce_specialchars``, ``password_enforce_uppercase``, ``password_history_length``, ``password_lifetime_days``, ``password_min_length``.
 
-**Changed:**
-
-* ``crud`` dependency bumped to 1.x (``crud`` 1.7.5 in deps, rockspec constraint ``"crud > 0, < 2"``), ``cartridge`` to 2.18.0, and ``graphqlapi`` to 0.0.15.
-* The test environment moved to Tarantool Enterprise 2.11.9.
-
 **Fixed:**
 
-* Detect when check constraints are unsupported (removed in 2.11) and skip them in tests.
-* Raise the vshard bootstrap timeout to cope with slow CI runners.
 * Account for the ``crud`` stats driver default changing to ``metrics``.
 
 
