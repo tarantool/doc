@@ -19,6 +19,105 @@ For example: ``2.11.1-0-gc42d9735b-r589``.
 -   ``REVISION`` is the SDK revision. Besides Tarantool itself, it includes the ``tt`` utility, a set of open and closed source modules, and examples. Learn more from :ref:`Package contents <enterprise-package-contents>`.
 
 
+r710
+----
+
+metrics 1.7.0 -> 1.8.1
+~~~~~~~~~~~~~~~~~~~~~~
+
+This release adds selector-based filtering for custom metrics.
+Custom metrics can now be associated with hierarchical selectors and controlled via ``metrics.set_filter()`` or ``metrics.cfg()`` include/exclude options.
+Unknown include/exclude entries are treated as custom selectors, while built-in metric group names keep the existing behavior.
+
+**Added:**
+
+* ``metrics.namespace()`` and ``metrics.set_filter()`` to mark custom collectors/callbacks with selectors and filter them at collection time.
+
+**Fixed:**
+
+* ``metrics.cfg{exclude = {'all'}}`` so it excludes custom metric selectors in addition to built-in metric groups.
+
+
+r709
+----
+
+cartridge 2.16.7 -> 2.17.1
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Added:**
+
+* Support for Tarantool ``election_mode = 'manual'`` in Cartridge stateful
+  failover, including single-instance replicasets.
+* Added runtime Lua API helpers:
+
+  * ``require('cartridge.lua-api.failover').switch_to_manual_election_mode()``
+  * ``require('cartridge.lua-api.failover').switch_to_off_election_mode()``
+
+  to migrate a stateful replicaset between Tarantool
+  ``election_mode = 'off'`` and ``election_mode = 'manual'``.
+* `Documentation <https://www.tarantool.io/en/doc/2.11/book/cartridge/cartridge_dev/#failover-architecture>`__ for migrating a stateful replicaset to Tarantool manual
+  election mode, including restart-based migration, runtime helpers, rollback,
+  and fencing recommendations.
+
+**Changed:**
+
+* Updated ``vshard`` dependency to ``0.1.41``.
+
+
+**Fixed:**
+
+* A race condition during instance shutdown where ``membership.leave()``
+  could execute before roles were stopped, causing errors.
+* When ``box.ctl.promote()`` returns ``ER_INTERFERING_PROMOTE`` during failover,
+  retry promotion 3 times with a 1 second delay so the new master will not be
+  stuck in read-only mode.
+* A stateful failover race when adding a brand new replicaset: if the
+  state provider has no appointment yet for this replicaset, ``failover.cfg()``
+  now falls back to ``topology.get_leaders_order(...)[1]``
+  (``failover_priority[1]``) for the initial appointment. This prevents the
+  future leader from being switched to ``read_only=true`` and avoids deadlock
+  during topology apply.
+
+
+tt-ee 2.12.0 -> 2.13.0
+~~~~~~~~~~~~~~~~~~~~~~
+
+This release adds cluster worker configuration management and fixes incorrect
+error reporting in ``tt start`` when directory permissions are insufficient.
+
+**Added:**
+
+* ``tt cluster worker publish``: publish (upload) a worker configuration to etcd or Tarantool-based configuration storage.
+* ``tt cluster worker show``: display a worker configuration stored in etcd or Tarantool-based configuration storage.
+* ``tt cluster worker delete``: delete a worker configuration from etcd or Tarantool-based configuration storage.
+
+**Fixed:**
+
+* ``tt start``: fixed a bug where an error did not appear when access rights to
+  the ``var`` directive were insufficient.
+
+
+vshard 0.1.40 -> 0.1.41
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+VShard 0.1.41 is fully compatible with the previous VShard versions.
+
+**Added:**
+
+* A new storage configuration option: ``rebalancer_bucket_send_timeout``. It specifies the timeout in seconds for sending a single bucket during rebalancing.
+  This can be used to limit how long a bucket may be unavailable for writes while it is being sent.
+
+**Changed:**
+
+* Improved rebalancer bucket selection: the rebalancer now prefers buckets that have no active RW requests on top of them.
+
+**Fixed:**
+
+* An issue where duplicated active buckets could appear due to delayed stray TCP `#214 <https://github.com/tarantool/vshard/issues/214>`__.
+* An issue where RW requests could break replication after a master switch during rebalancing `#573 <https://github.com/tarantool/vshard/issues/573>`__.
+* An issue where master switches during rebalancing could lead to duplicated active buckets `#576 <https://github.com/tarantool/vshard/issues/576>`__.
+
+
 r708
 ----
 
