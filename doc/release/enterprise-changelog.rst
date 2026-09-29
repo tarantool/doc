@@ -1,6 +1,6 @@
 ..  _release-enterprise-changelog:
 
-Enterprise SDK
+SDK Enterprise
 ==============
 
 Versioning policy

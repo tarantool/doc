@@ -1,5 +1,5 @@
-msgid "Enterprise SDK"
-msgstr "Enterprise SDK"
+msgid "SDK Enterprise"
+msgstr "SDK Enterprise"
 
 msgid "Versioning policy"
 msgstr "Политика версионирования"
