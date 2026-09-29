@@ -1,7 +1,7 @@
 ..  _release-enterprise-changelog:
 
-Enterprise SDK changelog
-========================
+Enterprise SDK
+==============
 
 Versioning policy
 -----------------
@@ -151,7 +151,9 @@ This release spans versions 2.17.2, 2.17.3, 2.18.0, and 2.18.1.
 
 **Updated:**
 
-* ``http`` dependency to `1.9.1 <https://github.com/tarantool/http/releases/tag/1.9.1>`__.
+* ``vshard`` dependency to :ref:`0.1.42 <enterprise-changelog-r711-vshard>`.
+* ``checks`` dependency to :ref:`3.4.1 <enterprise-changelog-r711-checks>`.
+* ``http`` dependency from version 1.9.0 to `1.9.1 <https://github.com/tarantool/http/releases/tag/1.9.1>`__. This release includes infrastructure fixes that do not alter the module's behavior.
 
 **Fixed:**
 
@@ -213,6 +215,8 @@ This release spans versions 1.2.0 and 1.2.1.
 * When a replica set had no healthy leader candidate (its leader was disabled, down, or not yet elected during stateful failover), ``migrator.up()`` used to silently skip it and report success. Now every replica set is required to have a healthy leader candidate before migrating: if a replica set has no active leader yet or its leader is not healthy, the call fails so the caller can wait for the leader and retry.
 
 
+.. _enterprise-changelog-r711-checks:
+
 checks 3.4.0 -> 3.4.1
 ~~~~~~~~~~~~~~~~~~~~~
 
@@ -220,6 +224,8 @@ checks 3.4.0 -> 3.4.1
 
 * EmmyLua annotations (`#68 <https://github.com/tarantool/checks/issues/68>`__).
 
+
+.. _enterprise-changelog-r711-vshard:
 
 vshard 0.1.41 -> 0.1.42
 ~~~~~~~~~~~~~~~~~~~~~~~
