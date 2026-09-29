@@ -151,9 +151,10 @@ This release spans versions 2.17.2, 2.17.3, 2.18.0, and 2.18.1.
 
 **Updated:**
 
-* ``vshard`` dependency to :ref:`0.1.42 <enterprise-changelog-r711-vshard>`.
-* ``checks`` dependency to :ref:`3.4.1 <enterprise-changelog-r711-checks>`.
+* ``vshard`` dependency from version 0.1.41 to :ref:`0.1.42 <enterprise-changelog-r711-vshard>`.
+* ``checks`` dependency from version 3.4.0 to :ref:`3.4.1 <enterprise-changelog-r711-checks>`.
 * ``http`` dependency from version 1.9.0 to `1.9.1 <https://github.com/tarantool/http/releases/tag/1.9.1>`__. This release includes infrastructure fixes that do not alter the module's behavior.
+* ``membership`` dependency from version 2.5.3 to :ref:`2.5.4 <enterprise-changelog-r711-membership>`.
 
 **Fixed:**
 
@@ -191,6 +192,8 @@ This release spans versions 1.8.2 and 1.8.3: it introduces EmmyLua annotations a
 
 * ``config_metrics_test``: disable system alerts only if the ``config.checks`` option exists (instead of a Tarantool-version-based check), so the test passes on any Tarantool 3.x version (`#553 <https://github.com/tarantool/metrics/issues/553>`__).
 
+
+.. _enterprise-changelog-r711-membership:
 
 membership 2.5.3 -> 2.5.4
 ~~~~~~~~~~~~~~~~~~~~~~~~~
