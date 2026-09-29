@@ -228,7 +228,7 @@ VShard 0.1.42 is fully compatible with previous vshard versions.
 
 **Added:**
 
-* A backend for Tarantool's recovery point manager: the ``vshard-router`` backend. It lets the manager periodically create cluster-consistent recovery points that can later be used for backup and point-in-time recovery of the whole VShard cluster. A new public router method, ``vshard.router.create_cluster_recovery_point()``, creates a recovery point on every replica set master (`#648 <https://github.com/tarantool/vshard/issues/648>`__). **Only with tarantool 3.8.0+**.
+* A backend for Tarantool's recovery point manager: the ``vshard-router`` backend. It lets the manager periodically create cluster-consistent recovery points that can later be used for backup and point-in-time recovery of the whole VShard cluster. A new public router method, ``vshard.router.create_cluster_recovery_point()``, creates a recovery point on every replica set master (`#648 <https://github.com/tarantool/vshard/issues/648>`__). **Only with tarantool 3.8.0+**. No user-visible changes for Tarantool 2.11 users.
 
 
 graphqlapi 0.0.11 -> 0.0.15
