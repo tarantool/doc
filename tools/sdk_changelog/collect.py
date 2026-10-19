@@ -655,10 +655,18 @@ def open_pr(rev, section, args, summary):
         body = ("Draft of the Enterprise SDK r%d changelog collected by "
                 "`tools/sdk_changelog`. Texts are copied from the module changelogs "
                 "as is; edit and translate before merging.\n\n%s\n" % (rev, summary))
+        if args.alongside:
+            body += ("\nThe existing r%d section is kept as is; the draft is added above it as "
+                     "\"r%d (bot draft)\" for comparison.\n" % (rev, rev))
         repo = re.sub(r"^https://github\.com/|\.git$", "", remote)
         if remote_sha:
-            run(["gh", "pr", "edit", branch, "--repo", repo, "--body", body], cwd=wt)
-            run(["gh", "pr", "view", branch, "--repo", repo, "--json", "url", "--jq", ".url"], cwd=wt)
+            # REST, not 'gh pr edit': the latter needs the read:org token scope.
+            owner = repo.split("/")[0]
+            pulls = github("repos/%s/pulls?state=open&head=%s:%s" % (repo, owner, branch)) or []
+            if not pulls:
+                sys.exit("Branch %s is updated, but it has no open PR" % branch)
+            run(["gh", "api", "-X", "PATCH", "repos/%s/pulls/%d" % (repo, pulls[0]["number"]),
+                 "-f", "body=" + body, "--jq", ".html_url"], cwd=wt)
             return
         run(["gh", "pr", "create", "--draft", "--repo", repo, "--base", args.base, "--head", branch,
              "--title", "SDK r%d changelog" % rev, "--body", body], cwd=wt)
