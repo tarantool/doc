@@ -240,6 +240,28 @@ def parse_tarantool_version(sdk_changelog, series, upto_rev):
     return max(found, key=vkey) if found else None
 
 
+def revision_lines(sdk_changelog, prev, rev):
+    """Lines of the SDK CHANGELOG sections for revisions in (prev, rev].
+
+    None if there is no section for rev yet (it appears when the tag is made).
+    """
+    cur, lines, seen = None, [], False
+    for line in sdk_changelog.splitlines():
+        head = re.match(r"#{1,2} \[?r?(\d+)(?:\.0\.0)?\]?", line)
+        if head:
+            cur = int(head.group(1))
+            seen = seen or cur == rev
+            continue
+        if cur is not None and prev < cur <= rev and line.strip():
+            lines.append(line)
+    return lines if seen else None
+
+
+def mentioned(name, text):
+    """Whether a component name occurs in text as a whole word ('graphqlapi' != 'graphqlapi-helpers')."""
+    return re.search(r"(?<![\w-])%s(?![\w-])" % re.escape(name), text, re.I) is not None
+
+
 def tarantool_bump(series):
     return re.compile(r"bump tarantool[^\n]*?%s[^\n]*?(%s\.\d+)" % (
         re.escape(series), re.escape(series)), re.I)
@@ -648,6 +670,8 @@ def main():
     p.add_argument("--write", action="store_true", help="insert the section into %s" % CHANGELOG_RST)
     p.add_argument("--pr", action="store_true", help="commit to a new branch and open a draft PR")
     p.add_argument("--replace", action="store_true", help="replace the revision section if it already exists")
+    p.add_argument("--all", action="store_true",
+                   help="describe every component changed in the bundle, not only the ones in the SDK CHANGELOG")
     p.add_argument("--base", default="2.11", help="base branch for the PR (default: 2.11)")
     p.add_argument("--branch", help="PR branch name (default: <base>-r<N>-changelog)")
     args = p.parse_args()
@@ -677,11 +701,25 @@ def main():
     if bumps:
         new_tnt = max(bumps + [new_tnt or bumps[0]], key=vkey)
 
+    # Which components to describe: the ones named in the SDK CHANGELOG section
+    # of the revision (or, before it is tagged, in the commit subjects).
+    lines = revision_lines(sdk_log, prev, rev)
+    if lines is None:
+        subjects = sdk.subjects(old_ref, new_ref)
+        lines = subjects.splitlines() if subjects else None
+        log("No r%d section in the SDK CHANGELOG yet; using %s" % (
+            rev, "commit subjects" if lines else "all bundle changes"))
+    scope_text = "\n".join(lines or [])
+    in_scope = lambda name: args.all or lines is None or mentioned(name, scope_text)
+    skipped = []
+
     parts, summary = [heading("r%d" % rev, "-"),
                       ".. TODO: intro — what this release bumps and why it matters.\n"], []
     anchor = lambda name: "enterprise-changelog-r%d-%s" % (rev, name)
 
-    if old_tnt and new_tnt and vkey(new_tnt) > vkey(old_tnt):
+    if old_tnt and new_tnt and vkey(new_tnt) > vkey(old_tnt) and not in_scope("tarantool"):
+        skipped.append("Tarantool %s -> %s" % (old_tnt, new_tnt))
+    elif old_tnt and new_tnt and vkey(new_tnt) > vkey(old_tnt):
         log("Tarantool %s -> %s" % (old_tnt, new_tnt))
         rels, src = collect_tarantool(cfg["tarantool"], gitlab, old_tnt, new_tnt)
         parts.append(render_component("Tarantool %s -> %s" % (old_tnt, new_tnt), None,
@@ -694,6 +732,9 @@ def main():
         if not new or (old and vkey(old) >= vkey(new)):
             continue
         title = "%s %s -> %s" % (name, plain(old), plain(new)) if old else "%s %s (new)" % (name, plain(new))
+        if not in_scope(name):
+            skipped.append(title)
+            continue
         log(title)
         rels, src = collect_module(name, ccfg, old, new, gitlab)
         parts.append(render_component(title, anchor(name), rels, src, link_repo(ccfg, ccfg.get("repo"))))
@@ -704,6 +745,9 @@ def main():
         if old and vkey(old) >= vkey(version):
             continue
         title = "%s %s -> %s" % (name, plain(old), plain(version)) if old else "%s %s (new)" % (name, plain(version))
+        if not in_scope(name):
+            skipped.append(title)
+            continue
         log(title)
         mcfg = dict(cfg["default"], **cfg["rocks"].get(name, {}))
         rels, src = collect_module(name, mcfg, old, version, gitlab)
@@ -712,8 +756,14 @@ def main():
         summary.append("- " + title + ("" if rels else " — **TODO: %s**" % src))
     for name in old_rocks:
         if name not in new_rocks:
+            if not in_scope(name):
+                skipped.append("%s removed" % name)
+                continue
             summary.append("- %s removed" % name)
             parts.append(heading("%s (removed)" % name, "~"))
+
+    if skipped:
+        log("Not in the SDK CHANGELOG, skipped: " + ", ".join(skipped))
 
     section = "\n\n".join(parts).rstrip() + "\n"
     if args.pr:

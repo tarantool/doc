@@ -10,15 +10,23 @@
 
 ## Что собирается
 
-Бот сравнивает два тега SDK (`r710.0.0` → `r711.0.0`) в репозитории
-`tarantool/delivery/sdk` (ветка `1.x-2.x`):
+Бот описывает **только компоненты, упомянутые в секции ревизии** в
+`CHANGELOG.md` SDK (например, `# [711.0.0]`: `bump crud to 1.7.6`, …). Если
+указан `--from`, берутся секции всех ревизий диапазона. Версии «было → стало»
+бот берёт не из текста записи, а из файлов SDK на тегах `r710.0.0` и
+`r711.0.0`:
 
-| Что изменилось | Где бот это видит | Откуда берёт changelog |
+| Компонент | Откуда версии | Откуда берёт changelog |
 |---|---|---|
 | Tarantool | `CHANGELOG.md` SDK (`bump tarantool release series 2.11 to …`) | CE: `tarantool/tarantool` → `changelogs/<версия>.md` (GitLab, иначе GitHub Releases). EE: `tarantool/tarantool-ee` → `changelogs/<версия>.md` (GitHub). CE и EE объединяются по подсистемам |
 | tt-ee | `CMakeLists.txt` → `TT_EE_CLI_VERSION` | GitLab `tarantool/tt-ee` → `CHANGELOG.md` |
 | cartridge-cli | `CMakeLists.txt` → `CARTRIDGE_CLI_VERSION` | GitHub `tarantool/cartridge-cli` → `CHANGELOG.md` |
 | Модули (rocks) | `BundleRocks.cmake` → `add_public_rock` / `add_private_rock` | GitHub, по таблице в `modules.json` |
+
+Компоненты, которые изменились в бандле, но не упомянуты в CHANGELOG SDK, в
+черновик не попадают (бот только перечисляет их в терминале). Если секции
+ревизии в CHANGELOG ещё нет (тег не создан), список берётся из сообщений
+коммитов SDK.
 
 Если у компонента обновилось несколько версий подряд, бот берёт записи всех
 промежуточных версий.
@@ -92,6 +100,7 @@ python3 tools/sdk_changelog/collect.py r712 --pr
   предыдущая ревизия = текущая − 1);
 - `--new-ref origin/1.x-2.x --old-ref r711.0.0` — если тега новой ревизии ещё
   нет (только с `SDK_DIR`);
+- `--all` — описать все компоненты, изменившиеся в бандле, а не только упомянутые в CHANGELOG SDK;
 - `--replace` — заменить раздел ревизии, если он уже есть в файле (например,
   после перетегирования SDK);
 - `--base`, `--branch` — другая базовая ветка или имя ветки PR.
