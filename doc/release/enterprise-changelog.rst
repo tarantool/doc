@@ -23,199 +23,108 @@ For example: ``2.11.1-0-gc42d9735b-r589``.
 r711
 ----
 
-This release bumps Tarantool 2.x to 2.11.10, a bugfix release resolving 15
-issues since 2.11.9. The release also updates a wide set of ecosystem components:
-``tt-ee``, ``crud``, ``cartridge``, ``vshard``, ``metrics``, ``checks``, ``membership``, ``migrations``,
-``graphqlapi``, ``graphqlapi-helpers``, and ``kafka``.
+
+.. TODO: intro — what this release bumps and why it matters.
 
 
 Tarantool 2.11.9 -> 2.11.10
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. Source: GitLab tarantool/tarantool:changelogs/2.11.10.md, tarantool/tarantool-ee:changelogs/2.11.10.md (EE)
 
-This is a bugfix release. It resolves 15 issues since 2.11.9 (r708) and additionally introduces one optional feature.
-It is disabled by default and has no effect unless explicitly enabled.
+2.x is the old stable release series. Users are encouraged to update to the latest 3.x release.
 
-* The 2.x series is the previous stable branch; upgrading to 3.x is recommended.
-* To upgrade from Tarantool 2.x to 3.x, see the `upgrade procedure <https://www.tarantool.io/en/doc/latest/admin/upgrades/upgrade_cluster/#admin-upgrades-replication-cluster>`__.
+This is a bugfix release. It resolves the same issues as the corresponding `Community Edition release <https://github.com/tarantool/tarantool/releases/tag/2.11.10>`__ and additionally introduces one optional feature. It is disabled by default and has no effect unless explicitly enabled.
+
+Please consider the full list of user-visible changes below.
+
+Tarantool 2.x and 3.x are compatible in the binary data layout, client-server protocol, and replication protocol. It means upgrade may be performed with zero downtime for read requests and the order-of-network-lag downtime for write requests.
+
+Please follow the `upgrade procedure <https://www.tarantool.io/en/doc/latest/book/admin/upgrades/>`__ to plan your update actions.
 
 Core
 ^^^^
 
 **Added:**
 
-* The non-dynamic ``box.cfg.memtx_memory_recovery_check`` option (``'off'`` by default) to warn (``'warn'``) or refuse startup (``'panic'``) when ``memtx_memory`` is set below the previously recorded usage.
+* Added the non-dynamic ``box.cfg.memtx_memory_recovery_check`` option (``'off'`` by default) to warn (``'warn'``) or refuse startup (``'panic'``) when ``memtx_memory`` is set below the previously recorded usage (gh-1966).
 
 **Fixed:**
 
 * ``box.cfg`` called with a non-table argument now fails with a clear ``cfg should be a table`` error instead of a confusing internal one (`gh-13145 <https://github.com/tarantool/tarantool/issues/13145>`__).
 * Deprecated ``box.cfg`` options set via ``TT_*`` environment variables are now translated to their replacement options, and the translation no longer silently overrides an explicitly provided value of a replacement option (`gh-13144 <https://github.com/tarantool/tarantool/issues/13144>`__).
-* A redundant deprecation warning about ``replication_connect_quorum`` being logged when ``bootstrap_strategy`` is set to ``'legacy'`` explicitly in the same ``box.cfg`` call (`gh-12933 <https://github.com/tarantool/tarantool/issues/12933>`__).
+* Fixed a redundant deprecation warning about ``replication_connect_quorum`` being logged when ``bootstrap_strategy`` is set to ``'legacy'`` explicitly in the same ``box.cfg`` call (`gh-12933 <https://github.com/tarantool/tarantool/issues/12933>`__).
 
 Replication
 ^^^^^^^^^^^
 
 **Fixed:**
 
-* An ordering bug in WAL batching that could make a joining replica miss rows written by the master (`gh-11028 <https://github.com/tarantool/tarantool/issues/11028>`__).
+* Fixed an ordering bug in WAL batching that could make a joining replica miss rows written by the master (`gh-11028 <https://github.com/tarantool/tarantool/issues/11028>`__).
 
 LuaJIT
 ^^^^^^
 
-Backported patches from the vanilla LuaJIT trunk (`gh-12480 <https://github.com/tarantool/tarantool/issues/12480>`__). The following issues were fixed as part of this activity:
-
 **Fixed:**
 
-* Incorrect JIT behavior for vararg FFI functions on the macOS AArch64 platform (`gh-6097 <https://github.com/tarantool/tarantool/issues/6097>`__).
-* Various FFI ABI and calling convention issues for x64/AArch64 architectures.
-* ``ipairs_aux()`` to match JIT backend behavior on x86/x64.
-* ``os.time()`` returning ``-1``.
-* UBSan warnings for ``table.new()``.
+Backported patches from the vanilla LuaJIT trunk (`gh-12480 <https://github.com/tarantool/tarantool/issues/12480>`__). The following issues were fixed as part of this activity:
+
+* Fixed incorrect JIT behavior for vararg FFI functions on the macOS AArch64 platform (`gh-6097 <https://github.com/tarantool/tarantool/issues/6097>`__).
+* Fixed various FFI ABI and calling convention issues for x64/AArch64 architectures.
+* Fixed ``ipairs_aux()`` to match JIT backend behavior on x86/x64.
+* Fixed ``os.time()`` returning ``-1``.
+* Fixed UBSan warnings for ``table.new()``.
 
 Fio
 ^^^
 
-**Changed:**
+**Fixed:**
 
 * The default permission mode for ``fio.open()`` was changed for newly created files to 0666 (before umask) (`gh-7981 <https://github.com/tarantool/tarantool/issues/7981>`__).
 
-HTTP client
+Http client
 ^^^^^^^^^^^
 
 **Fixed:**
 
-* A regression of authorization on an HTTP proxy or a target HTTP(S) host using the Basic algorithm (`gh-12805 <https://github.com/tarantool/tarantool/issues/12805>`__).
+* Fixed a regression of authorization on an HTTP proxy or a target HTTP(S) host using the Basic algorithm (`gh-12805 <https://github.com/tarantool/tarantool/issues/12805>`__).
 
-Datetime module
-^^^^^^^^^^^^^^^
+Datetime
+^^^^^^^^
 
 **Fixed:**
 
-* Parsing for time with a decimal fraction of hour or minute (`gh-12082 <https://github.com/tarantool/tarantool/issues/12082>`__).
-* A stack overflow in the ``strptime()`` function when parsing timezones.
+* Fixed parsing for time with a decimal fraction of hour or minute (`gh-12082 <https://github.com/tarantool/tarantool/issues/12082>`__).
+* Fixed a stack overflow ``strptime()`` function when parsing timezones (`ghs-146 <https://github.com/tarantool/security/issues/146>`__).
 
 Pickle
 ^^^^^^
 
 **Fixed:**
 
-* An abort when calling ``pack()`` with an empty format string or a string value for the ``'a'`` format specifier (`gh-12063 <https://github.com/tarantool/tarantool/issues/12063>`__).
+* Fixed abortion on calling ``pack()`` with an empty format string or a string value for the ``'a'`` format specifier (`gh-12063 <https://github.com/tarantool/tarantool/issues/12063>`__).
 
-URI
+Uri
 ^^^
 
 **Fixed:**
 
-* A use-after-poison crash in ``uri.format()`` caused by a long URI.
-
-..  note::
-
-    The modules listed below have changes in this release.
-    If a module is not listed, it was not updated.
+* Fixed a Use-After-Poison crash in ``uri.format()`` caused by a long URI (`ghs-151 <https://github.com/tarantool/security/issues/151>`__).
 
 
-crud 1.7.5 -> 1.7.6
-~~~~~~~~~~~~~~~~~~~
-
-**Fixed:**
-
-* A consistency violation during rebalancing: a request could be retried on a storage that did not own the bucket yet, so a read returned no data and a write went to the wrong replica set (`#509 <https://github.com/tarantool/crud/issues/509>`__).
-* Requests are no longer retried blindly: a request is now retried only if the router has recovered from the error, and a retry never runs past the original timeout — previously, a request could take up to twice as long as requested.
-
+.. _enterprise-changelog-r711-tt-ee:
 
 tt-ee 2.13.0 -> 2.14.0
 ~~~~~~~~~~~~~~~~~~~~~~
 
-**Added:**
+.. Source: GitLab tarantool/tt-ee:CHANGELOG.md@v2.14.0
 
-* ``tt connect``: the ``\history`` command to display the last executed commands in the interactive console.
-
-**Changed:**
-
-* ``tt stop``: preliminary interrupts the processes to enable parallel termination.
+The release includes changes from version tt 2.14.0, which brings cluster backup and restore (``tt backup`` and ``tt restore``) and cluster topology discovery, and fixes applying and publishing of migration scenarios.
 
 **Fixed:**
 
-* ``tt log -f``: possible line loss/duplication on rename, hanging after a watched log directory is removed, and lines written just as the file was read to the end not showing up until the next write.
-
-
-cartridge 2.17.1 -> 2.18.1
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-This release spans versions 2.17.2, 2.17.3, 2.18.0, and 2.18.1.
-
-**Added:**
-
-* New option ``--vshard-bootstrap-timeout`` (env ``TARANTOOL_VSHARD_BOOTSTRAP_TIMEOUT``) of the ``vshard-router`` role to configure the vshard bootstrap timeout. The default value remains 10 seconds, which may not be enough to distribute buckets across the storages on slow CI runners.
-* Optional ``timeout`` argument to ``cartridge.test-helpers.Cluster:start``, ``cartridge.test-helpers.Cluster:bootstrap``, and ``cartridge.test-helpers.Cluster:bootstrap_vshard`` to extend the bootstrap HTTP request timeout.
-
-**Updated:**
-
-* ``vshard`` dependency from version 0.1.41 to :ref:`0.1.42 <enterprise-changelog-r711-vshard>`.
-* ``checks`` dependency from version 3.4.0 to :ref:`3.4.1 <enterprise-changelog-r711-checks>`.
-* ``http`` dependency from version 1.9.0 to `1.9.1 <https://github.com/tarantool/http/releases/tag/1.9.1>`__. This release includes infrastructure fixes that do not alter the module's behavior.
-* ``membership`` dependency from version 2.5.3 to :ref:`2.5.4 <enterprise-changelog-r711-membership>`.
-
-**Fixed:**
-
-* A race condition during instance shutdown where ``membership.leave()`` could execute before roles were stopped, causing errors.
-* When ``box.ctl.promote()`` returns ``ER_INTERFERING_PROMOTE`` during failover, the retry now happens 3 times with a 1-second delay so the new master doesn't get stuck in read-only mode.
-
-
-kafka 1.6.14 -> 1.6.15
-~~~~~~~~~~~~~~~~~~~~~~
-
-**Added:**
-
-* The ``WITH_ZSTD`` build flag to enable ``zstd`` compression support. In the Enterprise SDK build, ``zstd`` support is enabled by default.
-
-**Changed:**
-
-* Bumped ``librdkafka`` to 2.15.1.
-
-
-metrics 1.8.1 -> 1.8.3
-~~~~~~~~~~~~~~~~~~~~~~
-
-This release spans versions 1.8.2 and 1.8.3: it introduces EmmyLua annotations and fixes the CI pipeline to run on external pull requests.
-
-**Added:**
-
-* EmmyLua analyzer support and annotations (`#551 <https://github.com/tarantool/metrics/issues/551>`__).
-
-**Changed:**
-
-* Set ``config.checks`` to ``'off'`` in ``default_config`` to avoid environment-dependent alerts (THP, readahead) in tests (`#549 <https://github.com/tarantool/metrics/issues/549>`__).
-* CI is now run on pull requests in addition to branch pushes; runs are skipped for pull requests from the base repository to avoid duplicates (`#555 <https://github.com/tarantool/metrics/issues/555>`__).
-
-**Fixed:**
-
-* ``config_metrics_test``: disable system alerts only if the ``config.checks`` option exists (instead of a Tarantool-version-based check), so the test passes on any Tarantool 3.x version (`#553 <https://github.com/tarantool/metrics/issues/553>`__).
-
-
-.. _enterprise-changelog-r711-membership:
-
-membership 2.5.3 -> 2.5.4
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
-**Fixed:**
-
-* A member's payload could be lost permanently after ``leave()`` and a subsequent rejoin.
-
-
-migrations 1.1.0 -> 1.2.1
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
-This release spans versions 1.2.0 and 1.2.1.
-
-**Added:**
-
-* ``drop_sharding_key()`` helper to clean up ``_ddl_sharding_key`` after dropping a space.
-* ``register_sharding_func()`` and ``drop_sharding_func()`` helpers (`#59 <https://github.com/tarantool/migrations/issues/59>`__).
-
-**Fixed:**
-
-* When a replica set had no healthy leader candidate (its leader was disabled, down, or not yet elected during stateful failover), ``migrator.up()`` used to silently skip it and report success. Now every replica set is required to have a healthy leader candidate before migrating: if a replica set has no active leader yet or its leader is not healthy, the call fails so the caller can wait for the leader and retry.
+* ``tt migrations apply`` applied migrations on every replicaset independently.
+* ``tt migrations publish`` could publish a scenario directory even if some files in the directory were invalid.
 
 
 .. _enterprise-changelog-r711-checks:
@@ -223,9 +132,52 @@ This release spans versions 1.2.0 and 1.2.1.
 checks 3.4.0 -> 3.4.1
 ~~~~~~~~~~~~~~~~~~~~~
 
+.. Source: https://github.com/tarantool/checks/blob/master/CHANGELOG.md
+
+This release introduces EmmyLua annotations.
+
 **Added:**
 
-* EmmyLua annotations (`#68 <https://github.com/tarantool/checks/issues/68>`__).
+* Bring EmmyLua annotations (`#68 <https://github.com/tarantool/checks/issues/68>`__).
+
+
+.. _enterprise-changelog-r711-metrics:
+
+metrics 1.8.1 -> 1.8.3
+~~~~~~~~~~~~~~~~~~~~~~
+
+.. Source: https://github.com/tarantool/metrics/blob/master/CHANGELOG.md
+
+This release spans versions 1.8.2 and 1.8.3.
+
+This release introduces EmmyLUA annotations and fixes.
+
+This release fixes the CI pipeline to run on external pull requests and makes tests compatible with any tarantool 3.x version.
+
+**Added:**
+
+* EmmyLUA analyzer support and annotations (`#551 <https://github.com/tarantool/metrics/issues/551>`__).
+
+**Changed:**
+
+* Set config.checks to 'off' in default_config to avoid environment-dependent alerts (THP, readahead) in tests (`#549 <https://github.com/tarantool/metrics/issues/549>`__).
+* CI is run on pull requests in addition to branch pushes; the runs are skipped for pull requests from the base repository to avoid duplicates (`#555 <https://github.com/tarantool/metrics/issues/555>`__).
+
+**Fixed:**
+
+* ``config_metrics_test``: disable system alerts only if the ``config.checks`` option exists (instead of a tarantool version based check), so the test passes on any tarantool 3.x version (`#553 <https://github.com/tarantool/metrics/issues/553>`__).
+
+
+.. _enterprise-changelog-r711-membership:
+
+membership 2.5.3 -> 2.5.4
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. Source: https://github.com/tarantool/membership/blob/master/CHANGELOG.md
+
+**Fixed:**
+
+* Member payload could be lost permanently after ``leave()`` and a subsequent rejoin.
 
 
 .. _enterprise-changelog-r711-vshard:
@@ -233,41 +185,154 @@ checks 3.4.0 -> 3.4.1
 vshard 0.1.41 -> 0.1.42
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-VShard 0.1.42 is fully compatible with previous vshard versions.
+.. Source: https://github.com/tarantool/vshard/releases
+
+VShard 0.1.42 is fully compatible with the previous VShard versions.
 
 **Added:**
 
-* A backend for Tarantool's recovery point manager: the ``vshard-router`` backend. It lets the manager periodically create cluster-consistent recovery points that can later be used for backup and point-in-time recovery of the whole VShard cluster. A new public router method, ``vshard.router.create_cluster_recovery_point()``, creates a recovery point on every replica set master (`#648 <https://github.com/tarantool/vshard/issues/648>`__). **Only with tarantool 3.8.0+**. No user-visible changes for Tarantool 2.11 users.
+* Added a backend for Tarantool's recovery point manager: the ``vshard-router`` backend. It lets the manager periodically create cluster-consistent recovery points that can later be used for backup and point-in-time recovery of the whole VShard cluster. A new public router method ``vshard.router.create_cluster_recovery_point()`` is introduced, which creates a recovery point on every replicaset master (`#648 <https://github.com/tarantool/vshard/issues/648>`__).
 
 
-graphqlapi 0.0.11 -> 0.0.15
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. _enterprise-changelog-r711-crud:
 
-This release spans versions 0.0.12, 0.0.13, 0.0.14, and 0.0.15.
+crud 1.7.4 -> 1.7.6
+~~~~~~~~~~~~~~~~~~~
+
+.. Source: https://github.com/tarantool/crud/blob/master/CHANGELOG.md
+
+This release spans versions 1.7.5 and 1.7.6.
+
+**Added:**
+
+* Add ``_recovery_point`` system space introduced in upcoming Tarantool 3.8 to crud.schema system spaces.
+* Add ``crud.locate()`` method to find whether a tuple is in ``memtx`` or ``vinyl`` engine. Works for spaces managed by the enterprise ``cooler`` module.
+* Support for ``mode``, ``balance``, ``prefer_replica`` and ``request_timeout`` options in ``crud.len``.
 
 **Changed:**
 
-* Support for ``ddl-ee`` was added in 0.0.12 and reverted in 0.0.13; the change did not persist to 0.0.15 (`#55 <https://github.com/tarantool/graphqlapi/issues/55>`__).
+* Update ``vshard`` dependency to `0.1.42 <https://github.com/tarantool/vshard/releases/tag/0.1.42>`__.
 
 **Fixed:**
 
-* Tarantool Enterprise detection in ``utils.get_tnt_version()`` by checking ``tarantool.package`` (`#58 <https://github.com/tarantool/graphqlapi/issues/58>`__).
+* Allow read-only operations (``get``, ``select``, ``pairs``, ``count``, ``min``, ``max``) to execute successfully using healthy replicas when all cluster masters are down.
+* Add ``tnt_crud_storage_nil_bucket_id_compat_total`` metric to track operations performed without bucket_ref (legacy router compatibility mode).
+* Fixed storage compatibility with routers < 1.7.0 by handling nil bucket_id in get, update, and delete operations. Now storage skips bucket referencing and logs a rate-limited warning about reduced rebalance safety during rolling upgrades.
+* Fix consistency violation during rebalancing: a request could be retried on a storage that did not own the bucket yet, so a read returned no data and a write went to the wrong replicaset (`#509 <https://github.com/tarantool/crud/issues/509>`__).
+* Stop retrying requests blindly: a request is retried only if the router has recovered from the error, and a retry never runs past the original timeout — before, a request could take up to twice as long as requested.
+
+
+.. _enterprise-changelog-r711-migrations:
+
+migrations 1.1.0 -> 1.2.1
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. Source: https://github.com/tarantool/migrations/blob/master/CHANGELOG.md
+
+This release spans versions 1.2.0 and 1.2.1.
+
+**Added:**
+
+* Add ``drop_sharding_key()`` helper to clean ``_ddl_sharding_key`` up after dropping a space.
+* Add ``(register|drop)_sharding_func()`` helpers (`gh-59 <https://github.com/tarantool/migrations/issues/59>`__).
+* Update README to highlight that calling ``register_sharding_key()`` is necessary when creating a sharded space (`gh-30 <https://github.com/tarantool/migrations/issues/30>`__).
+
+**Fixed:**
+
+* When a replicaset has no healthy leader candidate (its leader is disabled / down / not yet elected during stateful failover), migrator.up() used to silently skip it and report success. Make sure every replicaset has a healthy leader candidate before migrating. If a replicaset has no active leader yet or its leader is not healthy, fail so the caller can wait for the leader and retry.
+
+
+.. _enterprise-changelog-r711-cartridge:
+
+cartridge 2.17.1 -> 2.18.1
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. Source: https://github.com/tarantool/cartridge/blob/master/CHANGELOG.rst
+
+This release spans versions 2.17.2, 2.17.3, 2.18.0 and 2.18.1.
+
+**Added:**
+
+* New option ``--vshard-bootstrap-timeout`` (env ``TARANTOOL_VSHARD_BOOTSTRAP_TIMEOUT``) of the ``vshard-router`` role to configure the vshard bootstrap timeout. The default value remains 10 seconds, which may be not enough to distribute buckets across the storages on slow CI runners.
+* Optional ``timeout`` argument to ``cartridge.test-helpers.Cluster:start``, ``cartridge.test-helpers.Cluster:bootstrap`` and ``cartridge.test-helpers.Cluster:bootstrap_vshard`` to extend the bootstrap HTTP request timeout.
+
+**Changed:**
+
+* Update ``vshard`` dependency to `0.1.42 <https://github.com/tarantool/vshard/releases/tag/0.1.42>`__.
+* Update ``checks`` dependency to `3.4.1 <https://github.com/tarantool/checks/releases/tag/3.4.1>`__.
+* Update ``http`` dependency to `1.9.1 <https://github.com/tarantool/http/releases/tag/1.9.1>`__.
+* Update ``membership`` dependency to `2.5.4 <https://github.com/tarantool/membership/releases/tag/2.5.4>`__.
+
+**Fixed:**
+
+* Fixed a race condition during instance shutdown where ``membership.leave()`` could execute before roles were stopped, causing errors.
+* When ``box.ctl.promote()`` returns ER_INTERFERING_PROMOTE during failover retry promotion 3 times with 1 second delay so the new master will not be stuck in read-only mode.
+
+
+.. _enterprise-changelog-r711-graphqlapi:
+
+graphqlapi 0.0.13 -> 0.0.15
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. Source: https://github.com/tarantool/graphqlapi/blob/master/CHANGELOG.md
+
+This release spans versions 0.0.14 and 0.0.15.
+
+This release fixes Tarantool Enterprise detection and flaky tests.
+
+This release fixes Tarantool Enterprise detection under cartridge.
+
+**Fixed:**
+
+* Detect Tarantool Enterprise by tarantool.package in utils.get_tnt_version() (`#58 <https://github.com/tarantool/graphqlapi/issues/58>`__).
 * Flaky ``cluster.test_get_instances`` and ``cluster.test_get_replicaset_instances`` tests by waiting until all instances report ``healthy`` status before running assertions.
 * ``utils.get_tnt_version()`` aborting with ``variable 'tarantool' is not declared`` in Cartridge applications, which broke Tarantool Enterprise detection (`#61 <https://github.com/tarantool/graphqlapi/issues/61>`__).
 
 
+.. _enterprise-changelog-r711-http:
+
+http 1.9.0 -> 1.9.1
+~~~~~~~~~~~~~~~~~~~
+
+.. Source: https://github.com/tarantool/http/blob/master/CHANGELOG.md
+
+The release contains infrastructure fixes and does not change the module behavior.
+
+
+.. _enterprise-changelog-r711-kafka:
+
+kafka 1.6.14 -> 1.6.15
+~~~~~~~~~~~~~~~~~~~~~~
+
+.. Source: https://github.com/tarantool/kafka/releases
+
+* bump librdkafka to 2.15.1
+* add a flag to enable zstd
+
+
+.. _enterprise-changelog-r711-graphqlapi-helpers:
+
 graphqlapi-helpers 0.0.11 -> 0.0.12
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This release bumps dependencies and the test environment.
+.. Source: https://github.com/tarantool/graphqlapi-helpers/blob/master/CHANGELOG.md
+
+This release bumps dependencies and test environment.
 
 **Added:**
 
-* New ``box.cfg`` options for Tarantool 2.11: ``auth_delay``, ``auth_type``, ``bootstrap_strategy``, ``disable_guest``, ``election_fencing_mode``, ``metrics``, ``password_enforce_digits``, ``password_enforce_lowercase``, ``password_enforce_specialchars``, ``password_enforce_uppercase``, ``password_history_length``, ``password_lifetime_days``, ``password_min_length``.
+* New ``service`` box_cfg options for Tarantool 2.11: ``auth_delay``, ``auth_type``, ``bootstrap_strategy``, ``disable_guest``, ``election_fencing_mode``, ``metrics``, ``password_enforce_digits``, ``password_enforce_lowercase``, ``password_enforce_specialchars``, ``password_enforce_uppercase``, ``password_history_length``, ``password_lifetime_days``, ``password_min_length`` (#56).
+
+**Changed:**
+
+* Bump crud dependency to 1.x (crud 1.7.5 in deps, rockspec constraint "crud > 0, < 2"), cartridge to 2.18.0 and graphqlapi to 0.0.15 (#56).
+* Move the test environment to Tarantool Enterprise 2.11.9 (#56).
 
 **Fixed:**
 
-* Account for the ``crud`` stats driver default changing to ``metrics``.
+* Detect when check constraints are unsupported (removed in 2.11) and skip them in tests (#56).
+* Raise the vshard bootstrap timeout to cope with slow CI runners (#56).
+* Account for the crud stats driver default changing to ``metrics`` (#56).
 
 
 r710
