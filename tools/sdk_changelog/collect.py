@@ -596,11 +596,11 @@ def render_component(title, anchor, releases, source, repo, subsystem_char="^"):
     return "\n".join(out)
 
 
-def insert_section(rst, section, rev, replace=False):
+def insert_section(rst, section, rev, replace=False, alongside=False):
     cur = re.search(r"^r%d\n-+\n" % rev, rst, re.M)
-    if cur and not replace:
-        sys.exit("r%d is already in %s (use --replace to overwrite it)" % (rev, CHANGELOG_RST))
-    if cur:
+    if cur and not (replace or alongside):
+        sys.exit("r%d is already in %s (use --replace or --alongside)" % (rev, CHANGELOG_RST))
+    if cur and replace:
         nxt = re.compile(r"^r\d+\n-+\n", re.M).search(rst, cur.end())
         end = nxt.start() if nxt else len(rst)
         return rst[:cur.start()] + section + "\n\n" + rst[end:]
@@ -635,20 +635,31 @@ def open_pr(rev, section, args, summary):
     run(GIT_GH + ["fetch", remote, "%s:refs/remotes/origin/%s" % (args.base, args.base)], cwd=REPO_ROOT)
     tmp = tempfile.mkdtemp(prefix="sdk-changelog-")
     wt = os.path.join(tmp, "wt")
-    run(["git", "worktree", "add", "-b", branch, wt, "origin/" + args.base], cwd=REPO_ROOT)
+    remote_sha = subprocess.run(GIT_GH + ["ls-remote", "--heads", remote, branch], cwd=REPO_ROOT,
+                                capture_output=True, text=True, check=True).stdout.split("\t")[0].strip()
+    if remote_sha and not args.update:
+        sys.exit("Branch %s already exists on GitHub (use --update to rebuild its PR)" % branch)
+    run(["git", "worktree", "add", "-B", branch, wt, "origin/" + args.base], cwd=REPO_ROOT)
     try:
         path = os.path.join(wt, CHANGELOG_RST)
         with open(path, encoding="utf-8") as f:
-            text = insert_section(f.read(), section, rev, args.replace)
+            text = insert_section(f.read(), section, rev, args.replace, args.alongside)
         with open(path, "w", encoding="utf-8") as f:
             f.write(text)
         run(["git", "add", CHANGELOG_RST], cwd=wt)
         run(["git", "commit", "-m", "Add SDK r%d changelog draft" % rev], cwd=wt)
-        run(GIT_GH + ["push", remote, "%s:refs/heads/%s" % (branch, branch)], cwd=wt)
+        push = ["push", remote, "%s:refs/heads/%s" % (branch, branch)]
+        if remote_sha:  # rebuild the bot branch from scratch, only if nobody pushed to it meanwhile
+            push.insert(1, "--force-with-lease=refs/heads/%s:%s" % (branch, remote_sha))
+        run(GIT_GH + push, cwd=wt)
         body = ("Draft of the Enterprise SDK r%d changelog collected by "
                 "`tools/sdk_changelog`. Texts are copied from the module changelogs "
                 "as is; edit and translate before merging.\n\n%s\n" % (rev, summary))
         repo = re.sub(r"^https://github\.com/|\.git$", "", remote)
+        if remote_sha:
+            run(["gh", "pr", "edit", branch, "--repo", repo, "--body", body], cwd=wt)
+            run(["gh", "pr", "view", branch, "--repo", repo, "--json", "url", "--jq", ".url"], cwd=wt)
+            return
         run(["gh", "pr", "create", "--draft", "--repo", repo, "--base", args.base, "--head", branch,
              "--title", "SDK r%d changelog" % rev, "--body", body], cwd=wt)
     finally:
@@ -670,6 +681,10 @@ def main():
     p.add_argument("--write", action="store_true", help="insert the section into %s" % CHANGELOG_RST)
     p.add_argument("--pr", action="store_true", help="commit to a new branch and open a draft PR")
     p.add_argument("--replace", action="store_true", help="replace the revision section if it already exists")
+    p.add_argument("--alongside", action="store_true",
+                   help="if the revision section exists, keep it and add the draft above it as 'rNNN (bot draft)'")
+    p.add_argument("--update", action="store_true",
+                   help="with --pr: rebuild the bot branch and PR if they already exist")
     p.add_argument("--all", action="store_true",
                    help="describe every component changed in the bundle, not only the ones in the SDK CHANGELOG")
     p.add_argument("--base", default="2.11", help="base branch for the PR (default: 2.11)")
@@ -713,9 +728,18 @@ def main():
     in_scope = lambda name: args.all or lines is None or mentioned(name, scope_text)
     skipped = []
 
-    parts, summary = [heading("r%d" % rev, "-"),
-                      ".. TODO: intro — what this release bumps and why it matters.\n"], []
-    anchor = lambda name: "enterprise-changelog-r%d-%s" % (rev, name)
+    if args.alongside:
+        # Next to a reviewed section of the same revision: own title and anchors.
+        parts = [heading("r%d (bot draft)" % rev, "-"),
+                 "..  note::\n\n    This section is a draft collected automatically by "
+                 "``tools/sdk_changelog`` from the component changelogs. It is not reviewed.\n",
+                 ".. TODO: intro — what this release bumps and why it matters.\n"]
+        anchor = lambda name: "enterprise-changelog-r%d-bot-%s" % (rev, name)
+    else:
+        parts = [heading("r%d" % rev, "-"),
+                 ".. TODO: intro — what this release bumps and why it matters.\n"]
+        anchor = lambda name: "enterprise-changelog-r%d-%s" % (rev, name)
+    summary = []
 
     if old_tnt and new_tnt and vkey(new_tnt) > vkey(old_tnt) and not in_scope("tarantool"):
         skipped.append("Tarantool %s -> %s" % (old_tnt, new_tnt))
@@ -771,7 +795,7 @@ def main():
     elif args.write:
         path = os.path.join(REPO_ROOT, CHANGELOG_RST)
         with open(path, encoding="utf-8") as f:
-            text = insert_section(f.read(), section, rev, args.replace)
+            text = insert_section(f.read(), section, rev, args.replace, args.alongside)
         with open(path, "w", encoding="utf-8") as f:
             f.write(text)
         log("Written to " + path)
