@@ -19,6 +19,61 @@ For example: ``2.11.1-0-gc42d9735b-r589``.
 -   ``REVISION`` is the SDK revision. Besides Tarantool itself, it includes the ``tt`` utility, a set of open and closed source modules, and examples. Learn more from :ref:`Package contents <enterprise-package-contents>`.
 
 
+r712
+----
+
+This release updates ``tt-ee``, ``crud``, and ``kafka``. Tarantool 2.x remains at 2.11.10.
+
+tt-ee 2.14.0 -> 2.15.1
+~~~~~~~~~~~~~~~~~~~~~~
+
+This release spans versions 2.15.0 and 2.15.1. It parallelizes ``tt status``, adds SSL key password and connection timeout options to ``tt connect`` and ``tt replicaset``, and fixes ``tt log -f`` after log rotation.
+
+**Added:**
+
+* ``tt status``: the ``--instance-timeout`` option to limit how long collecting the status of a single instance may take.
+* ``tt connect``, ``tt replicaset``: the ``--sslpassword`` and ``--sslpasswordfile`` options to decrypt password-protected private SSL keys.
+* ``tt connect``, ``tt replicaset``: the ``--connect-timeout`` option (1 second by default) to limit the time of establishing a binary connection.
+
+**Changed:**
+
+* ``tt status``: status requests are now collected in parallel and have a default timeout of 5 seconds.
+* ``tt log -f`` / ``tt tcm log --follow``: only complete lines are printed; a half-written line is buffered until its newline arrives.
+
+**Fixed:**
+
+* ``tt status``: replication errors were ignored.
+* ``tt log -f`` / ``tt tcm log --follow``: a line could be printed twice right after a log rotation, and following could stall without picking up the rotated file.
+* ``tt log -f``: the message about an unavailable log file printed ``%!q(MISSING)`` instead of the file name.
+* ``tt clean``: files to delete are shown correctly before confirmation again. The verbose option is added.
+
+crud 1.7.6 -> 1.8.0
+~~~~~~~~~~~~~~~~~~~
+
+**Added:**
+
+* The ``crud.atomic_batch()`` method to execute heterogeneous CRUD operations (``get``, ``insert``, ``replace``, ``update``, ``upsert``, ``delete``) atomically on a single bucket.
+* The ``crud.storage_call()`` and ``crud.storage_call_many()`` methods to invoke persistent stored functions on routed vshard storages.
+
+**Updated:**
+
+* ``metrics`` dependency to `1.8.3 <https://github.com/tarantool/metrics/releases/tag/1.8.3>`__.
+* ``cartridge`` dependency to `2.18.1 <https://github.com/tarantool/cartridge/releases/tag/2.18.1>`__.
+* ``migrations`` dependency to `1.2.1 <https://github.com/tarantool/migrations/releases/tag/1.2.1>`__.
+
+These versions are already included in the SDK since r711.
+
+kafka 1.6.15 -> 1.6.16
+~~~~~~~~~~~~~~~~~~~~~~
+
+**Changed:**
+
+* Update ``librdkafka`` to 2.16.0.
+
+**Fixed:**
+
+* The static build no longer references the undefined OpenSSL symbol ``X509_VERIFY_PARAM_set1_host``.
+
 
 r711
 ----
