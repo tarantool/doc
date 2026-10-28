@@ -87,7 +87,6 @@ issues since 2.11.9. The release also updates a wide set of ecosystem components
 Tarantool 2.11.9 -> 2.11.10
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
 This is a bugfix release. It resolves 15 issues since 2.11.9 (r708) and additionally introduces one optional feature.
 It is disabled by default and has no effect unless explicitly enabled.
 
