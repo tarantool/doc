@@ -47,6 +47,7 @@ This release spans versions 2.15.0 and 2.15.1. It parallelizes ``tt status``, ad
 * ``tt log -f``: the message about an unavailable log file printed ``%!q(MISSING)`` instead of the file name.
 * ``tt clean``: files to delete are shown correctly before confirmation again. The verbose option is added.
 
+
 crud 1.7.6 -> 1.8.0
 ~~~~~~~~~~~~~~~~~~~
 
