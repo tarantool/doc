@@ -24,6 +24,11 @@ r712
 
 This release updates ``tt-ee``, ``crud``, and ``kafka``. Tarantool 2.x remains at 2.11.10.
 
+Compatibility
+~~~~~~~~~~~~~
+
+r712 is compatible with r711: the upgrade from r711 to r712 requires no additional steps.
+
 tt-ee 2.14.0 -> 2.15.1
 ~~~~~~~~~~~~~~~~~~~~~~
 
@@ -55,14 +60,6 @@ crud 1.7.6 -> 1.8.0
 
 * The ``crud.atomic_batch()`` method to execute heterogeneous CRUD operations (``get``, ``insert``, ``replace``, ``update``, ``upsert``, ``delete``) atomically on a single bucket.
 * The ``crud.storage_call()`` and ``crud.storage_call_many()`` methods to invoke persistent stored functions on routed vshard storages.
-
-**Updated:**
-
-* ``metrics`` dependency to `1.8.3 <https://github.com/tarantool/metrics/releases/tag/1.8.3>`__.
-* ``cartridge`` dependency to `2.18.1 <https://github.com/tarantool/cartridge/releases/tag/2.18.1>`__.
-* ``migrations`` dependency to `1.2.1 <https://github.com/tarantool/migrations/releases/tag/1.2.1>`__.
-
-These versions are already included in the SDK since r711.
 
 kafka 1.6.15 -> 1.6.16
 ~~~~~~~~~~~~~~~~~~~~~~

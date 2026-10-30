@@ -35,6 +35,16 @@ msgstr ""
 "В этом релизе обновлены ``tt-ee``, ``crud`` и ``kafka``. Версия Tarantool 2.x "
 "не изменилась — 2.11.10."
 
+msgid "Compatibility"
+msgstr "Совместимость"
+
+msgid ""
+"r712 is compatible with r711: the upgrade from r711 to r712 requires no "
+"additional steps."
+msgstr ""
+"Релиз r712 совместим с r711: обновление с r711 на r712 не требует "
+"дополнительных действий."
+
 msgid "tt-ee 2.14.0 -> 2.15.1"
 msgstr "tt-ee 2.14.0 → 2.15.1"
 
@@ -140,33 +150,6 @@ msgid ""
 msgstr ""
 "Методы ``crud.storage_call()`` и ``crud.storage_call_many()`` для вызова "
 "хранимых функций на хранилищах vshard, выбранных маршрутизацией."
-
-msgid "**Updated:**"
-msgstr "**Обновлено:**"
-
-msgid ""
-"``metrics`` dependency to `1.8.3 "
-"<https://github.com/tarantool/metrics/releases/tag/1.8.3>`__."
-msgstr ""
-"Зависимость ``metrics`` до версии `1.8.3 "
-"<https://github.com/tarantool/metrics/releases/tag/1.8.3>`__."
-
-msgid ""
-"``cartridge`` dependency to `2.18.1 "
-"<https://github.com/tarantool/cartridge/releases/tag/2.18.1>`__."
-msgstr ""
-"Зависимость ``cartridge`` до версии `2.18.1 "
-"<https://github.com/tarantool/cartridge/releases/tag/2.18.1>`__."
-
-msgid ""
-"``migrations`` dependency to `1.2.1 "
-"<https://github.com/tarantool/migrations/releases/tag/1.2.1>`__."
-msgstr ""
-"Зависимость ``migrations`` до версии `1.2.1 "
-"<https://github.com/tarantool/migrations/releases/tag/1.2.1>`__."
-
-msgid "These versions are already included in the SDK since r711."
-msgstr "Эти версии входят в SDK начиная с r711."
 
 msgid "kafka 1.6.15 -> 1.6.16"
 msgstr "kafka 1.6.15 → 1.6.16"
