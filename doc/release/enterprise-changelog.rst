@@ -19,6 +19,67 @@ For example: ``2.11.1-0-gc42d9735b-r589``.
 -   ``REVISION`` is the SDK revision. Besides Tarantool itself, it includes the ``tt`` utility, a set of open and closed source modules, and examples. Learn more from :ref:`Package contents <enterprise-package-contents>`.
 
 
+r712
+----
+
+This release updates ``tt-ee``, ``crud``, and ``kafka``. Tarantool 2.x remains at 2.11.10.
+
+.. _enterprise-changelog-r712-compatibility:
+
+Compatibility
+~~~~~~~~~~~~~
+
+r712 is compatible with r711: the upgrade from r711 to r712 requires no additional steps.
+
+.. _enterprise-changelog-r712-tt-ee:
+
+tt-ee 2.14.0 -> 2.15.1
+~~~~~~~~~~~~~~~~~~~~~~
+
+This release spans versions 2.15.0 and 2.15.1. It parallelizes ``tt status``, adds SSL key password and connection timeout options to ``tt connect`` and ``tt replicaset``, and fixes ``tt log -f`` after log rotation.
+
+**Added:**
+
+* ``tt status``: the ``--instance-timeout`` option to limit how long collecting the status of a single instance may take.
+* ``tt connect``, ``tt replicaset``: the ``--sslpassword`` and ``--sslpasswordfile`` options to decrypt password-protected private SSL keys.
+* ``tt connect``, ``tt replicaset``: the ``--connect-timeout`` option (1 second by default) to limit the time of establishing a binary connection.
+
+**Changed:**
+
+* ``tt status``: status requests are now collected in parallel and have a default timeout of 5 seconds.
+* ``tt log -f`` / ``tt tcm log --follow``: only complete lines are printed; a half-written line is buffered until its newline arrives.
+
+**Fixed:**
+
+* ``tt status``: replication errors were ignored.
+* ``tt log -f`` / ``tt tcm log --follow``: a line could be printed twice right after a log rotation, and following could stall without picking up the rotated file.
+* ``tt log -f``: the message about an unavailable log file printed ``%!q(MISSING)`` instead of the file name.
+* ``tt clean``: files to delete are shown correctly before confirmation again. The verbose option is added.
+
+
+.. _enterprise-changelog-r712-crud:
+
+crud 1.7.6 -> 1.8.0
+~~~~~~~~~~~~~~~~~~~
+
+**Added:**
+
+* The ``crud.atomic_batch()`` method to execute heterogeneous CRUD operations (``get``, ``insert``, ``replace``, ``update``, ``upsert``, ``delete``) atomically on a single bucket.
+* The ``crud.storage_call()`` and ``crud.storage_call_many()`` methods to invoke persistent stored functions on routed vshard storages.
+
+.. _enterprise-changelog-r712-kafka:
+
+kafka 1.6.15 -> 1.6.16
+~~~~~~~~~~~~~~~~~~~~~~
+
+**Changed:**
+
+* Update ``librdkafka`` to 2.16.0.
+
+**Fixed:**
+
+* The static build no longer references the undefined OpenSSL symbol ``X509_VERIFY_PARAM_set1_host``.
+
 
 r711
 ----
@@ -29,9 +90,10 @@ issues since 2.11.9. The release also updates a wide set of ecosystem components
 ``graphqlapi``, ``graphqlapi-helpers``, and ``kafka``.
 
 
+.. _enterprise-changelog-r711-tarantool:
+
 Tarantool 2.11.9 -> 2.11.10
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 
 This is a bugfix release. It resolves 15 issues since 2.11.9 (r708) and additionally introduces one optional feature.
 It is disabled by default and has no effect unless explicitly enabled.
@@ -114,6 +176,8 @@ URI
     If a module is not listed, it was not updated.
 
 
+.. _enterprise-changelog-r711-crud:
+
 crud 1.7.5 -> 1.7.6
 ~~~~~~~~~~~~~~~~~~~
 
@@ -122,6 +186,8 @@ crud 1.7.5 -> 1.7.6
 * A consistency violation during rebalancing: a request could be retried on a storage that did not own the bucket yet, so a read returned no data and a write went to the wrong replica set (`#509 <https://github.com/tarantool/crud/issues/509>`__).
 * Requests are no longer retried blindly: a request is now retried only if the router has recovered from the error, and a retry never runs past the original timeout — previously, a request could take up to twice as long as requested.
 
+
+.. _enterprise-changelog-r711-tt-ee:
 
 tt-ee 2.13.0 -> 2.14.0
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -138,6 +204,8 @@ tt-ee 2.13.0 -> 2.14.0
 
 * ``tt log -f``: possible line loss/duplication on rename, hanging after a watched log directory is removed, and lines written just as the file was read to the end not showing up until the next write.
 
+
+.. _enterprise-changelog-r711-cartridge:
 
 cartridge 2.17.1 -> 2.18.1
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -162,6 +230,8 @@ This release spans versions 2.17.2, 2.17.3, 2.18.0, and 2.18.1.
 * When ``box.ctl.promote()`` returns ``ER_INTERFERING_PROMOTE`` during failover, the retry now happens 3 times with a 1-second delay so the new master doesn't get stuck in read-only mode.
 
 
+.. _enterprise-changelog-r711-kafka:
+
 kafka 1.6.14 -> 1.6.15
 ~~~~~~~~~~~~~~~~~~~~~~
 
@@ -173,6 +243,8 @@ kafka 1.6.14 -> 1.6.15
 
 * Bumped ``librdkafka`` to 2.15.1.
 
+
+.. _enterprise-changelog-r711-metrics:
 
 metrics 1.8.1 -> 1.8.3
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -202,6 +274,8 @@ membership 2.5.3 -> 2.5.4
 
 * A member's payload could be lost permanently after ``leave()`` and a subsequent rejoin.
 
+
+.. _enterprise-changelog-r711-migrations:
 
 migrations 1.1.0 -> 1.2.1
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -240,6 +314,8 @@ VShard 0.1.42 is fully compatible with previous vshard versions.
 * A backend for Tarantool's recovery point manager: the ``vshard-router`` backend. It lets the manager periodically create cluster-consistent recovery points that can later be used for backup and point-in-time recovery of the whole VShard cluster. A new public router method, ``vshard.router.create_cluster_recovery_point()``, creates a recovery point on every replica set master (`#648 <https://github.com/tarantool/vshard/issues/648>`__). **Only with tarantool 3.8.0+**. No user-visible changes for Tarantool 2.11 users.
 
 
+.. _enterprise-changelog-r711-graphqlapi:
+
 graphqlapi 0.0.11 -> 0.0.15
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -255,6 +331,8 @@ This release spans versions 0.0.12, 0.0.13, 0.0.14, and 0.0.15.
 * Flaky ``cluster.test_get_instances`` and ``cluster.test_get_replicaset_instances`` tests by waiting until all instances report ``healthy`` status before running assertions.
 * ``utils.get_tnt_version()`` aborting with ``variable 'tarantool' is not declared`` in Cartridge applications, which broke Tarantool Enterprise detection (`#61 <https://github.com/tarantool/graphqlapi/issues/61>`__).
 
+
+.. _enterprise-changelog-r711-graphqlapi-helpers:
 
 graphqlapi-helpers 0.0.11 -> 0.0.12
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
