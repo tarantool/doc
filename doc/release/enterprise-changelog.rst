@@ -98,9 +98,6 @@ Tarantool 2.11.9 -> 2.11.10
 This is a bugfix release. It resolves 15 issues since 2.11.9 (r708) and additionally introduces one optional feature.
 It is disabled by default and has no effect unless explicitly enabled.
 
-* The 2.x series is the previous stable branch; upgrading to 3.x is recommended.
-* To upgrade from Tarantool 2.x to 3.x, see the `upgrade procedure <https://www.tarantool.io/en/doc/latest/admin/upgrades/upgrade_cluster/#admin-upgrades-replication-cluster>`__.
-
 Core
 ^^^^
 
@@ -460,9 +457,6 @@ Tarantool 2.11.8 -> 2.11.9
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This is a bugfix release: 34 issues have been fixed since 2.11.8 (r702).
-
-* The 2.x series is the previous stable branch; upgrading to 3.x is recommended.
-* To upgrade from Tarantool 2.x to 3.x, see the `upgrade procedure <https://www.tarantool.io/en/doc/latest/admin/upgrades/upgrade_cluster/#admin-upgrades-replication-cluster>`__.
 
 When upgrading the SDK, it is recommended to:
 

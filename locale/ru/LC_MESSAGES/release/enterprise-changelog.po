@@ -198,18 +198,6 @@ msgstr ""
 "добавлена одна опциональная функция. Она отключена по умолчанию и не "
 "оказывает никакого эффекта, пока не включена явно."
 
-msgid ""
-"The 2.x series is the previous stable branch; upgrading to 3.x is recommended."
-msgstr ""
-"Версия 2.x — предыдущая стабильная ветка; рекомендуется обновляться до 3.x."
-
-msgid ""
-"To upgrade from Tarantool 2.x to 3.x, see the `upgrade procedure "
-"<https://www.tarantool.io/en/doc/latest/admin/upgrades/upgrade_cluster/#admin-upgrades-replication-cluster>`__."
-msgstr ""
-"Чтобы обновиться с Tarantool 2.x на 3.x см. `процедуру обновления "
-"<https://www.tarantool.io/en/doc/latest/admin/upgrades/upgrade_cluster/#admin-upgrades-replication-cluster>`__."
-
 msgid "Core"
 msgstr "Core"
 
@@ -1039,18 +1027,6 @@ msgstr "Tarantool 2.11.8 -> 2.11.9"
 
 msgid "This is a bugfix release: 34 issues have been fixed since 2.11.8 (r702)."
 msgstr "Это bugfix-релиз: исправлено 34 проблемы с версии 2.11.8 (r702)."
-
-msgid "The 2.x series is the previous stable branch; upgrading to 3.x is recommended."
-msgstr "Версия 2.x — предыдущая стабильная ветка; рекомендуется обновляться до 3.x."
-
-msgid ""
-"To upgrade from Tarantool 2.x to 3.x, see the `upgrade procedure "
-"<https://www.tarantool.io/en/doc/latest/admin/upgrades/upgrade_cluster/"
-"#admin-upgrades-replication-cluster>`__."
-msgstr ""
-"Чтобы обновиться с Tarantool 2.x на 3.x, см. `процедуру обновления "
-"<https://www.tarantool.io/en/doc/latest/admin/upgrades/upgrade_cluster/"
-"#admin-upgrades-replication-cluster>`__."
 
 msgid "When upgrading the SDK, it is recommended to:"
 msgstr "При обновлении SDK рекомендуется:"
