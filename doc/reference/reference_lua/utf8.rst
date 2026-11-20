@@ -242,7 +242,7 @@ and Japanese (Hiragana A = Katakana A).
     "calculate from end of string" rather than "calculate from start of string".
 
     If the string contains a byte sequence which is not valid in UTF-8,
-    each byte in the invalid byte sequence will be counted as one character.
+    the function returns ``nil`` and the byte position of the first invalid byte.
 
     UTF-8 is a variable-size encoding scheme. Typically
     a simple Latin letter takes one byte, a Cyrillic letter

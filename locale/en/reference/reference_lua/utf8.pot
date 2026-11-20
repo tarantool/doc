@@ -316,7 +316,7 @@ msgid "Byte positions for start and end can be negative, which indicates \"calcu
 msgstr ""
 
 #: ../../doc/reference/reference_lua/utf8.rst:244
-msgid "If the string contains a byte sequence which is not valid in UTF-8, each byte in the invalid byte sequence will be counted as one character."
+msgid "If the string contains a byte sequence which is not valid in UTF-8, the function returns ``nil`` and the byte position of the first invalid byte."
 msgstr ""
 
 #: ../../doc/reference/reference_lua/utf8.rst:247
