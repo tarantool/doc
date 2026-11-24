@@ -462,6 +462,104 @@ Run the command to filter:
     -- The Tarantool audit module will not write the event because no filter is set for it
     box.schema.user.drop('alice')
 
+.. _audit-log-spaces:
+
+Select spaces to log
+--------------------
+
+**Since:** 2.11.11
+
+By default, data operation events (``space_select``, ``space_insert``, ``space_replace``,
+``space_delete``) are logged for all spaces if they are enabled by the
+:ref:`audit_filter <audit-log-filters>` option.
+To log these events only for particular spaces, use the ``box.cfg.audit_spaces`` option.
+It takes an array of space names.
+If ``audit_spaces`` is ``nil`` (default) or an empty array, data operation events are logged for all spaces.
+Duplicate space names in the array are ignored.
+
+In the example below, only the events of the ``bands`` and ``singers`` spaces are logged:
+
+..  code-block:: lua
+
+    box.cfg{
+        audit_log = 'audit.log',
+        audit_filter = 'data_operations',
+        audit_spaces = {'bands', 'singers'},
+    }
+
+The ``*`` element in the array means all spaces.
+It can be used together with the :ref:`per-space options <audit-log-extract-key>`.
+
+.. _audit-log-extract-key:
+
+Log primary keys instead of tuples
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Since:** 2.11.11
+
+By default, the ``space_insert``, ``space_replace``, and ``space_delete`` events contain full tuples.
+If the ``box.cfg.audit_extract_key`` option is set to ``true``, the audit subsystem logs
+only the primary key instead of the full tuple.
+This helps hide sensitive data and avoid logging large tuples.
+The default value is ``false``.
+
+..  code-block:: lua
+
+    box.cfg{
+        audit_log = 'audit.log',
+        audit_filter = 'data_operations',
+        audit_extract_key = true,
+    }
+
+With ``audit_extract_key = true``, the description of a ``space_insert`` event looks as follows:
+
+..  code-block:: text
+
+    Insert key [1] into space bands
+
+With ``audit_extract_key = false``, the full tuple is logged:
+
+..  code-block:: text
+
+    Insert tuple [1, 'Roxette', 1986] into space bands
+
+To enable key extraction only for particular spaces, specify these spaces in ``audit_spaces``
+as tables with the ``name`` and ``extract_key`` fields instead of strings:
+
+..  code-block:: lua
+
+    box.cfg{
+        audit_log = 'audit.log',
+        audit_filter = 'data_operations',
+        audit_spaces = {
+            {name = 'customers', extract_key = true},  -- log primary keys only
+            'bands',                                   -- log full tuples
+        },
+    }
+
+The ``extract_key`` value of a space overrides the global ``audit_extract_key`` option.
+If a space is specified as a string or ``extract_key`` is not set,
+the ``audit_extract_key`` value is used.
+
+To log events of all spaces but extract keys only for some of them, add the ``*`` element.
+The ``extract_key`` value of the ``*`` element applies to all spaces that are not listed explicitly:
+
+..  code-block:: lua
+
+    box.cfg{
+        audit_log = 'audit.log',
+        audit_filter = 'data_operations',
+        audit_spaces = {
+            '*',                                       -- all spaces, full tuples
+            {name = 'customers', extract_key = true},  -- primary keys only
+        },
+    }
+
+..  note::
+
+    Like other audit options, ``audit_spaces`` and ``audit_extract_key`` can be set only once,
+    in the initial ``box.cfg`` call.
+
 .. _audit-log-nonblock:
 
 Configure a blocking mode

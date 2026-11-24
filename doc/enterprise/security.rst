@@ -679,6 +679,49 @@ Only mandatory URI parameters are mentioned in these examples.
             read_only = true
         }
 
+.. _enterprise-iproto-encryption-cert-expiration:
+
+Certificate expiration monitoring
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Since:** 2.11.11
+
+Tarantool checks the expiration date of SSL certificates and warns about expiring
+certificates in the :ref:`log <cfg_logging-log>`.
+The check covers the certificates specified in the ``ssl_cert_file`` URI parameter
+of the ``box.cfg.listen`` and ``box.cfg.replication`` options.
+If a PEM file contains several certificates, only the first one is checked.
+
+The check runs in the background after each ``box.cfg()`` call and then every 12 hours.
+Tarantool writes a warning to the log no later than 30 days before a certificate expires
+and once again when the certificate has expired:
+
+..  code-block:: text
+
+    W> SSL certificate "/path_to_cert_file" expires at 2026-12-01T10:00:00Z (components: listen, replication)
+    W> SSL certificate "/path_to_cert_file" expired at 2026-12-01T10:00:00Z (components: listen, replication)
+
+The ``components`` list shows the options in which the certificate is used.
+If a certificate file cannot be read or parsed, Tarantool writes the following warning:
+
+..  code-block:: text
+
+    W> Unable to check SSL certificate "/path_to_cert_file": <error> (components: listen)
+
+If the check itself fails, Tarantool writes the following warning:
+
+..  code-block:: text
+
+    W> Unable to run SSL certificate checker: <error>
+
+After you replace the certificate with a valid one and call ``box.cfg()`` with the new configuration,
+or when the next periodic check finds that the problem is fixed, Tarantool writes an informational
+message to the log:
+
+..  code-block:: text
+
+    I> Resolved: SSL certificate "/path_to_cert_file" expires at 2026-12-01T10:00:00Z (components: listen)
+
 .. _enterprise-security-hardening:
 
 Recommendations on security hardening
