@@ -1,0 +1,193 @@
+..  _release-2-11-11:
+
+Tarantool 2.11.11
+=================
+
+Release date: November 19, 2026.
+
+Releases on GitHub: :tarantool-release:`2.11.11`.
+
+2.11.11 is a bugfix release of the 2.11 long-term support series.
+Enterprise Edition adds two opt-in features that make audit logs smaller and safer
+and warn about expiring SSL certificates before encrypted connections stop working.
+In both editions, fixed crashes in ``net.box``, replication, IPROTO, and MsgPack decoding,
+and long log entries in the ``plain`` format no longer stick together.
+
+Key changes:
+
+*   :ref:`Audit log: choose which spaces to log and hide tuple contents <release-2-11-11-audit>` (Enterprise Edition)
+*   :ref:`Warnings about expiring SSL certificates <release-2-11-11-ssl>` (Enterprise Edition)
+*   :ref:`Long log entries no longer stick together <release-2-11-11-logs>`
+*   :ref:`Crash fixes <release-2-11-11-crashes>`
+
+2.x is the old stable release series. We recommend updating to the latest 3.x release.
+
+.. _release-2-11-11-compatibility:
+
+Compatibility
+-------------
+
+The upgrade from 2.11.10 to 2.11.11 requires no additional steps.
+The new audit options are off by default, so the audit log looks the same until you enable them.
+
+After the upgrade, Tarantool Enterprise Edition starts checking the SSL certificates
+configured in ``box.cfg.listen`` and ``box.cfg.replication``.
+If a certificate expires within 30 days, you will see a warning in the log right after the upgrade.
+
+Tarantool 2.x and 3.x are compatible in the binary data layout, client-server protocol,
+and replication protocol. To plan the update, follow the :doc:`upgrade procedure </book/admin/upgrades>`.
+
+Enterprise Edition
+------------------
+
+.. _release-2-11-11-audit:
+
+Audit log: choose which spaces to log and hide tuple contents
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Two new ``box.cfg`` options control data operation events
+(``space_select``, ``space_insert``, ``space_replace``, ``space_delete``):
+
+*   ``audit_spaces`` -- the list of spaces for which these events are logged.
+    The ``*`` element means all spaces.
+*   ``audit_extract_key`` -- if ``true``, the log contains only the primary key
+    instead of the full tuple.
+    You can also enable it for particular spaces: ``{name = 'customers', extract_key = true}``.
+
+Before 2.11.11, enabling data operation events logged every space and every full tuple.
+The audit log grew fast, and sensitive data from tuples ended up in the log as plain text.
+
+Nothing changes until you set the options.
+With ``audit_extract_key``, an event looks like this:
+
+..  code-block:: text
+
+    Insert key [1] into space customers
+
+instead of:
+
+..  code-block:: text
+
+    Insert tuple [1, 'Alice Smith', '+7 999 123-45-67'] into space customers
+
+To log only some spaces or hide their contents, set the options in the initial ``box.cfg`` call:
+
+..  code-block:: lua
+
+    box.cfg{
+        audit_log = 'audit.log',
+        audit_filter = 'data_operations',
+        audit_spaces = {
+            '*',                                       -- all spaces, full tuples
+            {name = 'customers', extract_key = true},  -- primary keys only
+        },
+    }
+
+Like other audit options, ``audit_spaces`` and ``audit_extract_key`` can't be changed after startup:
+to change them, restart the instance.
+Learn more in :ref:`Select spaces to log <audit-log-spaces>`.
+
+Issues: :tarantool-ee-issue:`502`, :tarantool-ee-issue:`503`, :tarantool-ee-issue:`1735`.
+
+.. _release-2-11-11-ssl:
+
+Warnings about expiring SSL certificates
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Tarantool checks the certificates set in the ``ssl_cert_file`` URI parameter
+of ``box.cfg.listen`` and ``box.cfg.replication`` after each ``box.cfg()`` call and every 12 hours.
+
+When a certificate expires, peers that verify it against a certificate authority
+(the ones with ``ssl_ca_file`` set) reject new encrypted connections,
+including client connections and replication.
+Connections that are already open keep working.
+Before 2.11.11, you could learn about it only from failed connections.
+
+Tarantool writes a warning to the log no later than 30 days before
+the certificate expires and once again when it has expired:
+
+..  code-block:: text
+
+    W> SSL certificate "/etc/tarantool/server.crt" expires at 2026-12-01T10:00:00Z (components: listen, replication)
+
+If a certificate file can't be read or parsed, the warning starts with ``Unable to check SSL certificate``.
+If the check itself fails, the warning starts with ``Unable to run SSL certificate checker``.
+When the problem is fixed, Tarantool writes ``Resolved:`` followed by the original message.
+
+Add the ``SSL certificate``, ``Unable to check SSL certificate``, and
+``Unable to run SSL certificate checker`` messages to your log monitoring,
+and replace a certificate as soon as the warning appears.
+Learn more in :ref:`Certificate expiration monitoring <enterprise-iproto-encryption-cert-expiration>`.
+
+Enterprise and Community editions
+---------------------------------
+
+.. _release-2-11-11-logs:
+
+Long log entries no longer stick together
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Log entries longer than the maximum length (16 KB) are truncated.
+Before 2.11.11, a truncated entry in the ``plain`` format lost its line break,
+so the next entry was written on the same line, for example:
+
+..  code-block:: text
+
+    xxxxxxxx2026-10-13 11:19:05.379 [37338] main/105/interactive/tarantool I> xxxxxxxxxx
+
+Now each entry in the ``plain`` format ends with a line break, and log parsers read such entries correctly
+(:tarantool-issue:`13406`).
+
+.. _release-2-11-11-crashes:
+
+Crash fixes
+~~~~~~~~~~~
+
+Fixed crashes in the following cases:
+
+*   Lua stack leaks in ``net.box`` reconnects, Lua triggers, numeric configuration reads,
+    quorum formula evaluation, and other places (:tarantool-issue:`11061`).
+*   A new replica retries joining a replica set after the initial data transfer was interrupted
+    at the start (:tarantool-issue:`13658`).
+*   An ``IPROTO_EXECUTE`` or ``IPROTO_PREPARE`` request contains SQL fields with unexpected MessagePack types.
+*   MsgPack input with deeply nested arrays and maps is unpacked. Previously, it caused a stack overflow.
+
+Other fixes
+~~~~~~~~~~~
+
+**Replication**
+
+*   An instance that failed to join another instance and then bootstrapped a new replica set
+    no longer gets invalid vclocks and snapshots (:tarantool-issue:`13537`).
+
+**IPROTO**
+
+*   SQL request keys encoded with a non-optimal multibyte MessagePack integer are now decoded correctly.
+*   A packet with an oversized length no longer makes Tarantool allocate a large input buffer
+    before it checks the packet size if no payload bytes were received yet.
+
+**SSL** (Enterprise Edition)
+
+*   Previously, an SSL error message included only the first error from the OpenSSL error queue
+    and could miss the significant one. Now all errors are reported (:tarantool-issue:`13598`).
+
+**HTTP client**
+
+*   The HTTP client no longer hangs in an infinite loop when a response has an incomplete
+    header section (:tarantool-issue:`5937`).
+
+**LuaJIT**
+
+Backported fixes from the LuaJIT upstream (:tarantool-issue:`12880`):
+
+*   stack overflow relimit handling;
+*   the container of a packed bitfield;
+*   ``fp:seek()`` with a string argument;
+*   ``tobit`` conversions on aarch64;
+*   pointer difference on 64-bit platforms.
+
+**Build and platforms**
+
+*   Added packages for Ubuntu 26.04 (Resolute).
+*   Updated the bundled libunwind to 1.8.3. Building Tarantool from source
+    no longer requires Autotools (:tarantool-issue:`13572`).
