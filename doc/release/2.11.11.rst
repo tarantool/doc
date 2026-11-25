@@ -3,7 +3,7 @@
 Tarantool 2.11.11
 =================
 
-Release date: November 30, 2026.
+Release date: November 19, 2026.
 
 Releases on GitHub: :tarantool-release:`2.11.11`.
 
