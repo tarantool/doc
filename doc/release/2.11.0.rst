@@ -12,6 +12,13 @@ This document provides an overview of the most important features for the Enterp
 This means that you will continue to receive all the necessary security fixes and bug fixes throughout this period.
 You can learn more about the Tarantool release policy from the :doc:`corresponding document </release/policy>`.
 
+Bugfix releases with notable changes:
+
+..  toctree::
+    :maxdepth: 1
+
+    2.11.11
+
 
 ..  container:: table
 

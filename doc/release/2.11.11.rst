@@ -97,7 +97,10 @@ Warnings about expiring SSL certificates
 Tarantool checks the certificates set in the ``ssl_cert_file`` URI parameter
 of ``box.cfg.listen`` and ``box.cfg.replication`` after each ``box.cfg()`` call and every 12 hours.
 
-When a certificate expires, encrypted client connections and replication stop working.
+When a certificate expires, peers that verify it against a certificate authority
+(the ones with ``ssl_ca_file`` set) reject new encrypted connections,
+including client connections and replication.
+Connections that are already open keep working.
 Before 2.11.11, you could learn about it only from failed connections.
 
 Tarantool writes a warning to the log no later than 30 days before
