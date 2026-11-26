@@ -23,7 +23,7 @@ r713
 ----
 
 This release bumps Tarantool 2.x to 2.11.11, a bugfix release of the 2.11 LTS series,
-and updates ``tt-ee`` and ``kafka``.
+and updates ``tt-ee`` and ``kafka``. It also adds the new ``etcd-client`` module.
 
 .. _enterprise-changelog-r713-compatibility:
 
@@ -183,6 +183,28 @@ kafka 1.6.16 -> 1.6.17
   or ``nil`` if there was no such error. After a fatal error, the producer or consumer can't be used and must be recreated.
 * The error callback (``error_callback``) receives the ``librdkafka`` error code as the second argument.
   For a fatal error, the code is ``-150`` (``RD_KAFKA_RESP_ERR__FATAL``).
+
+
+..  _enterprise-changelog-r713-etcd-client:
+
+etcd-client 0.2.3
+~~~~~~~~~~~~~~~~~
+
+This is a new module in the SDK.
+
+**Added:**
+
+* The ``etcd-client`` module, a Lua client for etcd 3.2+. It lets a Tarantool application work with etcd directly from its code:
+
+  * read, write, and delete keys and key ranges (``put()``, ``range()``, ``deleterange()``) and compact the key history (``compact()``);
+  * run several operations in one transaction (``txn()``);
+  * watch for key changes (``watchcreate()``, ``watchwait()``, ``watchcancel()``);
+  * manage leases, that is, keys with a limited lifetime (``leasegrant()``, ``leasekeepalive()``, ``leaserevoke()``);
+  * manage etcd cluster members (``members()``, ``addmember()``, ``removemember()``);
+  * authenticate with a user name and password (``authenticate()``).
+
+  The client works with several etcd endpoints and switches to the next node if the current one doesn't respond in time.
+  Learn more in the `API documentation <https://tarantool.github.io/etcd-client/>`__.
 
 
 r712
