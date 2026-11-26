@@ -1,0 +1,69 @@
+{
+  "sdk": {
+    "gitlab_project": "tarantool/delivery/sdk",
+    "tag_format": "r{rev}.0.0"
+  },
+  "tarantool": {
+    "series": "2.11",
+    "gitlab_project": "tarantool/tarantool",
+    "gitlab_file": "changelogs/{version}.md",
+    "github_repo": "tarantool/tarantool",
+    "ee_github_repo": "tarantool/tarantool-ee",
+    "ee_file": "changelogs/{version}.md"
+  },
+  "cmake": {
+    "tt-ee": {"var": "TT_EE_CLI_VERSION", "repo": "tarantool/tt-ee", "source": "gitlab", "file": "CHANGELOG.md"},
+    "cartridge-cli": {"var": "CARTRIDGE_CLI_VERSION", "repo": "tarantool/cartridge-cli", "file": "CHANGELOG.md"}
+  },
+  "default": {
+    "source": "changelog",
+    "file": "CHANGELOG.md"
+  },
+  "rocks": {
+    "argparse": {"repo": "luarocks/argparse"},
+    "avro-schema": {},
+    "cartridge": {"file": "CHANGELOG.rst"},
+    "cartridge-auth-extension": {},
+    "cartridge-cli-extensions": {},
+    "cartridge-metrics-role": {},
+    "checks": {},
+    "cron-parser": {"source": "commits"},
+    "crud": {},
+    "ddl": {},
+    "errors": {},
+    "expirationd": {},
+    "frontend-core": {},
+    "graphql": {},
+    "graphqlapi": {},
+    "graphqlapi-helpers": {},
+    "graphqlide": {},
+    "http": {},
+    "icu-date": {"source": "releases"},
+    "kafka": {"source": "releases"},
+    "ldap": {},
+    "ldecnumber": {},
+    "lua-term": {"repo": "hoelzro/lua-term", "source": "commits"},
+    "luacheck": {},
+    "luacov": {"repo": "lunarmodules/luacov", "source": "releases"},
+    "luacov-reporters": {"source": "commits"},
+    "luagraphqlparser": {"source": "releases"},
+    "luarapidxml": {},
+    "luatest": {},
+    "membership": {},
+    "metrics": {},
+    "migrations": {},
+    "oci": {"source": "releases"},
+    "odbc": {"source": "commits"},
+    "oracle": {},
+    "queue": {},
+    "smtp": {},
+    "space-explorer": {},
+    "stat": {"source": "commits"},
+    "task": {},
+    "tracing": {},
+    "tuple-keydef": {"source": "releases"},
+    "tuple-merger": {"source": "releases"},
+    "vshard": {"source": "releases"},
+    "watchdog": {}
+  }
+}
