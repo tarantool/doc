@@ -19,6 +19,194 @@ For example: ``2.11.1-0-gc42d9735b-r589``.
 -   ``REVISION`` is the SDK revision. Besides Tarantool itself, it includes the ``tt`` utility, a set of open and closed source modules, and examples. Learn more from :ref:`Package contents <enterprise-package-contents>`.
 
 
+r713
+----
+
+This release bumps Tarantool 2.x to 2.11.11, a bugfix release of the 2.11 LTS series,
+and updates ``tt-ee`` and ``kafka``. It also adds the new ``etcd-client`` module.
+
+.. _enterprise-changelog-r713-compatibility:
+
+Compatibility
+~~~~~~~~~~~~~
+
+r713 is compatible with r712: the upgrade from r712 to r713 requires no additional steps.
+The new audit options are off by default, so the audit log looks the same until you enable them.
+
+After the upgrade, Tarantool Enterprise Edition starts checking the SSL certificates
+configured in ``box.cfg.listen`` and ``box.cfg.replication``.
+If a certificate expires within 30 days, you will see a warning in the log right after the upgrade.
+
+.. _enterprise-changelog-r713-tarantool:
+
+Tarantool 2.11.10 -> 2.11.11
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This is a bugfix release. It adds two opt-in features: the audit log can be limited to particular spaces
+and hide tuple contents, and Tarantool warns about expiring SSL certificates.
+It also fixes crashes in ``net.box``, replication, IPROTO, and MsgPack decoding.
+
+Release notes: :ref:`Tarantool 2.11.11 <release-2-11-11>`. Release on GitHub: :tarantool-release:`2.11.11`.
+
+Audit log
+^^^^^^^^^
+
+**Added:**
+
+* The ``box.cfg.audit_spaces`` option to log data operation events
+  (``space_select``, ``space_insert``, ``space_replace``, ``space_delete``) only for the listed spaces.
+  The ``*`` element means all spaces. Learn more in :ref:`Select spaces to log <audit-log-spaces>`.
+* The ``box.cfg.audit_extract_key`` option to log only the primary key instead of the full tuple.
+  This helps hide sensitive data and avoid logging large tuples.
+  You can also enable it for particular spaces: ``{name = 'customers', extract_key = true}``.
+  Learn more in :ref:`Log primary keys instead of tuples <audit-log-extract-key>`.
+
+Like other audit options, ``audit_spaces`` and ``audit_extract_key`` can be set only in the initial ``box.cfg`` call.
+
+SSL
+^^^
+
+**Added:**
+
+* Certificate expiration monitoring. Tarantool checks the certificates set in the ``ssl_cert_file`` URI parameter
+  of ``box.cfg.listen`` and ``box.cfg.replication`` after each ``box.cfg()`` call and every 12 hours.
+  It writes a warning to the log no later than 30 days before a certificate expires and once again when it has expired:
+
+  ..  code-block:: text
+
+      W> SSL certificate "/etc/tarantool/server.crt" expires at 2026-12-01T10:00:00Z (components: listen, replication)
+
+  Add the ``SSL certificate``, ``Unable to check SSL certificate``, and ``Unable to run SSL certificate checker``
+  messages to your log monitoring.
+  Learn more in :ref:`Certificate expiration monitoring <enterprise-iproto-encryption-cert-expiration>`.
+
+**Fixed:**
+
+* An SSL error message included only the first error from the OpenSSL error queue and could miss
+  the significant one. Now all errors are reported (`gh-13598 <https://github.com/tarantool/tarantool/issues/13598>`__).
+
+Logging
+^^^^^^^
+
+**Fixed:**
+
+* A truncated log entry (longer than 16 KB) in the ``plain`` format lost its line break,
+  so the next entry was written on the same line (`gh-13406 <https://github.com/tarantool/tarantool/issues/13406>`__).
+
+Crash fixes
+^^^^^^^^^^^
+
+**Fixed** crashes in the following cases:
+
+* Lua stack leaks in ``net.box`` reconnects, Lua triggers, numeric configuration reads,
+  quorum formula evaluation, and other places (`gh-11061 <https://github.com/tarantool/tarantool/issues/11061>`__).
+* A new replica retries joining a replica set after the initial data transfer was interrupted
+  at the start (`gh-13658 <https://github.com/tarantool/tarantool/issues/13658>`__).
+* An ``IPROTO_EXECUTE`` or ``IPROTO_PREPARE`` request contains SQL fields with unexpected MessagePack types.
+* MsgPack input with deeply nested arrays and maps is unpacked. Previously, it caused a stack overflow.
+
+Replication
+^^^^^^^^^^^
+
+**Fixed:**
+
+* An instance that failed to join another instance and then bootstrapped a new replica set
+  no longer gets invalid vclocks and snapshots (`gh-13537 <https://github.com/tarantool/tarantool/issues/13537>`__).
+
+IPROTO
+^^^^^^
+
+**Fixed:**
+
+* SQL request keys encoded with a non-optimal multibyte MessagePack integer are now decoded correctly.
+* A packet with an oversized length no longer makes Tarantool allocate a large input buffer
+  before it checks the packet size if no payload bytes were received yet.
+
+HTTP client
+^^^^^^^^^^^
+
+**Fixed:**
+
+* The HTTP client no longer hangs in an infinite loop when a response has an incomplete header section (`gh-5937 <https://github.com/tarantool/tarantool/issues/5937>`__).
+
+LuaJIT
+^^^^^^
+
+Backported fixes from the LuaJIT upstream (`gh-12880 <https://github.com/tarantool/tarantool/issues/12880>`__):
+
+**Fixed:**
+
+* Stack overflow relimit handling.
+* The container of a packed bitfield.
+* ``fp:seek()`` with a string argument.
+* ``tobit`` conversions on aarch64.
+* Pointer difference on 64-bit platforms.
+
+Build and platforms
+^^^^^^^^^^^^^^^^^^^
+
+**Added:**
+
+* Packages for Ubuntu 26.04 (Resolute).
+
+**Changed:**
+
+* The bundled libunwind is updated to 1.8.3. Building Tarantool from source
+  no longer requires Autotools (`gh-13572 <https://github.com/tarantool/tarantool/issues/13572>`__).
+
+..  note::
+
+    The sections below list the dependencies and modules that have changed.
+    If a dependency or module is not listed below, it was not updated.
+
+.. _enterprise-changelog-r713-tt-ee:
+
+tt-ee 2.15.1 -> 2.15.2
+~~~~~~~~~~~~~~~~~~~~~~
+
+**Fixed:**
+
+* ``tt migrations apply``: a migration could be applied partially if a target replicaset was unavailable for writes.
+  Now each migration starts only if every target replicaset has an available read-write instance.
+  The error lists the unavailable replicasets.
+* ``tt pack --cartridge-compat``: the ``VERSION`` file lists the versions of the application rocks again.
+  Since 2.11.1, it contained only the application and Tarantool versions.
+
+.. _enterprise-changelog-r713-kafka:
+
+kafka 1.6.16 -> 1.6.17
+~~~~~~~~~~~~~~~~~~~~~~
+
+**Added:**
+
+* The ``fatal_error()`` method of producers and consumers. It returns the reason of a fatal ``librdkafka`` error
+  or ``nil`` if there was no such error. After a fatal error, the producer or consumer can't be used and must be recreated.
+* The error callback (``error_callback``) receives the ``librdkafka`` error code as the second argument.
+  For a fatal error, the code is ``-150`` (``RD_KAFKA_RESP_ERR__FATAL``).
+
+
+..  _enterprise-changelog-r713-etcd-client:
+
+etcd-client 0.2.3
+~~~~~~~~~~~~~~~~~
+
+This is a new module in the SDK.
+
+**Added:**
+
+* The ``etcd-client`` module, a Lua client for etcd 3.2+. It lets a Tarantool application work with etcd directly from its code:
+
+  * read, write, and delete keys and key ranges (``put()``, ``range()``, ``deleterange()``) and compact the key history (``compact()``);
+  * run several operations in one transaction (``txn()``);
+  * watch for key changes (``watchcreate()``, ``watchwait()``, ``watchcancel()``);
+  * manage leases, that is, keys with a limited lifetime (``leasegrant()``, ``leasekeepalive()``, ``leaserevoke()``);
+  * manage etcd cluster members (``members()``, ``addmember()``, ``removemember()``);
+  * authenticate with a user name and password (``authenticate()``).
+
+  The client works with several etcd endpoints and switches to the next node if the current one doesn't respond in time.
+  Learn more in the `API documentation <https://tarantool.github.io/etcd-client/>`__.
+
+
 r712
 ----
 
@@ -169,8 +357,8 @@ URI
 
 ..  note::
 
-    The modules listed below have changes in this release.
-    If a module is not listed, it was not updated.
+    The sections below list the dependencies and modules that have changed.
+    If a dependency or module is not listed below, it was not updated.
 
 
 .. _enterprise-changelog-r711-crud:
@@ -256,10 +444,6 @@ This release spans versions 1.8.2 and 1.8.3: it introduces EmmyLua annotations a
 
 * Set ``config.checks`` to ``'off'`` in ``default_config`` to avoid environment-dependent alerts (THP, readahead) in tests (`#549 <https://github.com/tarantool/metrics/issues/549>`__).
 * CI is now run on pull requests in addition to branch pushes; runs are skipped for pull requests from the base repository to avoid duplicates (`#555 <https://github.com/tarantool/metrics/issues/555>`__).
-
-**Fixed:**
-
-* ``config_metrics_test``: disable system alerts only if the ``config.checks`` option exists (instead of a Tarantool-version-based check), so the test passes on any Tarantool 3.x version (`#553 <https://github.com/tarantool/metrics/issues/553>`__).
 
 
 .. _enterprise-changelog-r711-membership:
@@ -533,8 +717,8 @@ For backward compatibility, the option ``compat.datetime_setfn_timestamp_type_ch
 
 ..  note::
 
-    The modules listed below have changes in this release.
-    If a module is not listed, it was not updated.
+    The sections below list the dependencies and modules that have changed.
+    If a dependency or module is not listed below, it was not updated.
 
 crud 1.6.1 -> 1.7.5
 ~~~~~~~~~~~~~~~~~~~
