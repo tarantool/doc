@@ -156,8 +156,8 @@ Build and platforms
 
 ..  note::
 
-    The modules listed below have changes in this release.
-    If a module is not listed, it was not updated.
+    The sections below list the dependencies and modules that have changed.
+    If a dependency or module is not listed below, it was not updated.
 
 .. _enterprise-changelog-r713-tt-ee:
 
@@ -335,8 +335,8 @@ URI
 
 ..  note::
 
-    The modules listed below have changes in this release.
-    If a module is not listed, it was not updated.
+    The sections below list the dependencies and modules that have changed.
+    If a dependency or module is not listed below, it was not updated.
 
 
 .. _enterprise-changelog-r711-crud:
@@ -695,8 +695,8 @@ For backward compatibility, the option ``compat.datetime_setfn_timestamp_type_ch
 
 ..  note::
 
-    The modules listed below have changes in this release.
-    If a module is not listed, it was not updated.
+    The sections below list the dependencies and modules that have changed.
+    If a dependency or module is not listed below, it was not updated.
 
 crud 1.6.1 -> 1.7.5
 ~~~~~~~~~~~~~~~~~~~
